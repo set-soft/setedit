@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.280  2003/03/21 18:02:58  set
+* Fixed: Syntax highlight propagation in "last line - 1" after pasting.
+
 Revision 1.279  2003/02/19 12:41:22  set
 * Fixed: Heuristic Perl parser didn't pay attention to the \ character, the
 code looked for it but didn't increment the index properly. Reported by

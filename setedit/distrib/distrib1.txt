@@ -462,16 +462,14 @@ terminals, example: Shift+Arrows reported just as arrows.
  The Linux tarballs can be found in Source Forge.
 
  Debian GNU/Linux: (only stable releases)
- An experimental repository is maintained by Ivan in Source Forge.
+ A repository is maintained by Ivan in Source Forge.
  To access the repository, just add the following line to your
 /etc/apt/sources.list:
 
-deb http://setedit.sourceforge.net/debian unstable main
+deb http://setedit.sourceforge.net/debian woody main
 
- That's for unstable branch of Debian (currently Sid) for the stable branch
-use:
-
-deb http://setedit.sourceforge.net/debian stable main
+ That's for the Woody version of Debian, you should substitute "woody" by the
+name of your distribution or by the synonym "stable".
 
  Note that Ivan will upload stable editor releases. For betas look in the
 Source Forge pages.
