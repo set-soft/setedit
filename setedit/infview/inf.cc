@@ -424,7 +424,9 @@ void TInfViewer::changeBounds( const TRect& bounds )
 
 static void moveChar(int indent, char c, char attr, int count, ushort *b)
 {
- ushort val=c | (attr<<8);
+ ushort val;
+ uchar *p=(uchar *)&val;
+ p[0]=c; p[1]=attr;
 
  for (b+=indent; count; count--, b++)
      *b=val;
