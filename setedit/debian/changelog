@@ -1,15 +1,3 @@
-setedit (0.4.53-1) unstable; urgency=low
-
-  * The "Ivan hates computers after having good vacations" release.
-    Well, I was on Punta del Este, good beachs, good womans, some fun
-    at night, and no computers :). My hate for computers is temporary
-    and it happens everytime I have good vacations, so don't worry.
-  * New prerelease version, it fixes some memory leaks, improves
-    compilation, some other tiny things, etc.
-  * Remove internac/fix.exe on debian/rules clean.
-
- -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue,  8 Jan 2002 15:12:38 -0300
-
 setedit (0.4.52-2) unstable; urgency=low
 
   * Well, in the period of last testing of the stable release, some

@@ -24,8 +24,7 @@ clean: clean-debian debianbackup.tar
 # Restore upstream provided regenerated files:
 	test -e debianbackup.tar && tar -xf debianbackup.tar
 	rm -f debianbackup.tar
-# FIXME: ask upstream if the following files shouldn't be cleaned on its makefile:
-	rm -f doc/Makefile internac/Makefile internac/de_iso.po internac/fix.exe \
+	rm -f doc/Makefile internac/Makefile internac/de_iso.po \
 		internac/es_iso.po internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
 		internac/de_iso.mo internac/es.mo internac/es_iso.mo
 
