@@ -7112,7 +7112,7 @@ Boolean TCEditor::insertBuffer( char *p,
  unsigned firstTouchedLine=curPos.y;
  char *firstTouchedP=curLinePtr;
 
- if ((clipboard!=0) && (clipboard==this))
+ if (isClipboard())
     moveToEnd=True;
 
  if (moveToEnd || !staticNoMoveToEndPaste)
@@ -7210,7 +7210,7 @@ Boolean TCEditor::insertBuffer( char *p,
 
  UpdateSyntaxHLBlock(firstTouchedLine,firstTouchedP,x);
 
- if ( !isClipboard() )
+ if (!isClipboard())
     MarkAsModified();
  update(ufView);
 
@@ -10536,6 +10536,12 @@ void TCEditor::setState(uint16 aState, Boolean enable)
             vScrollBar->setState(sfVisible,enable);
          if (indicator)
             indicator->setState(sfVisible,enable);
+         // Note: Commands could be updated when sfFocused is indicated.
+         // But it doesn't help at all. One could think it can help when a modal dialog
+         // is used and it changes the stuff that affects commands. But modal dialogs are
+         // executed through TView::execView and it first saves the current command set
+         // and then restores it. If we process the commands during sfFocused the changes
+         // are lost when execView restores the values.
          updateCommands(1);
          message(TProgram::application,evBroadcast,cmcEditorGotFocus,owner);
          forceNextTimeCheck=True;
