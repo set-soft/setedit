@@ -287,6 +287,8 @@ _("~S~yntax help")
 _("~F~iles to search")
 _("~M~an page View")
 _("A~b~out")
+_("Searc~h~ files under cursor in ...")
+_("Insert key ~n~ame")
 // Colors Window
 _("~G~roup")
 _("~I~tem")

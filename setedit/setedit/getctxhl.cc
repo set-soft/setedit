@@ -104,6 +104,7 @@ static helpNode helpList[]=
  HHe(ScreenSaverOpts,"Screen Saver"),
  HHe(FileOpenOptions,"Sort of the files and directories in the dialog"),
  HHe(EditNoBkp,"Do not create backups for"),
+ HHe(IncludeList,"Search files under cursor in"),
  HHe(RunCommand,"Run program"),
  HHe(ConfRunCommand,"Run program (which one)"),
  Hc(Save),
