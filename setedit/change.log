@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.613  2004/09/22 18:45:13  set
+* Fixed: [NHP] isDisassemblerEditor not initialized when loading from disk.
+
 Revision 1.612  2004/09/20 14:16:01  set
 * Fixed: [MSVC] When you compile for "Debug" the compiler disables *all*
 the optimizations. Including the dead code. For this reason MSVC also needs
