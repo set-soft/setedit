@@ -25,7 +25,7 @@ those routines to DJGPP.
   Is the external entry point, this routine calls to one routine that parses
 the C source searching for functions, the methode is heuristic and doesn't
 detect all the possible cases, in particular the K & R edition I style of
-functions (totally obsolet).
+functions (totally obsolete).
   The routine creates a StringCollection with the functions found and then
 creates a dialog box to select one. If the user select a function the
 routine returns the line where the function starts if there are no functions
