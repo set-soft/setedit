@@ -70,9 +70,12 @@ and in fact follows the same gidelines used in the editor's distribution.
 Additions:
   The last important addition was the man pages viewer.
   Now is possible to use File|Open Infview if no window is already opened.
+  Added a configuration dialog to set the code page used by the OS screen.
+  Internationalization, currently only spanish is fully soported.
 
 Fixes:
   Now all options not available when no window is opened are grayed.
+  The "Shell" menu option wasn't functional.
 
 
 3. REQUIREMENTS:
