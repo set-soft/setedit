@@ -977,6 +977,7 @@ public:
  virtual void *keyOf(void *item);
  void insert(char *name, char *program);
  char *atProgram(ccIndex pos);
+ CLY_DummyTStreamRW(TStringCollection)
 };
 
 TExtrScrSavList::TExtrScrSavList() :
