@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -281,11 +281,11 @@ TAmpDiag *CreateShowDialog()
 
  TSHzGroup *buttons=MakeHzGroup(
                     new TSButton(_("Prev."),cmaMP3Prev),
-                    new TSButton("\x11\x11",cmaMP3Rew),
-                    new TSButton("\xFE",cmaMP3Stop,bfDefault),
-                    new TSButton("\x10",cmaMP3Play),
-                    new TSButton("\x13",cmaMP3Pause),
-                    new TSButton("\x10\x10",cmaMP3Ffw),
+                    new TSButton(MP3Player::butRew,cmaMP3Rew),
+                    new TSButton(MP3Player::butStop,cmaMP3Stop,bfDefault),
+                    new TSButton(MP3Player::butPlay,cmaMP3Play),
+                    new TSButton(MP3Player::butPause,cmaMP3Pause),
+                    new TSButton(MP3Player::butFfw,cmaMP3Ffw),
                     new TSButton(_("Next"),cmaMP3Next),
                     0);
 

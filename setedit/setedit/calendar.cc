@@ -7,6 +7,7 @@
 /*---------------------------------------------------------*/
 
 /* Modified by Robert Hoehne to be used with RHIDE */
+/* Modified by Salvador E. Tropea (SET) for SETEdit */
 
 #define Uses_TRect
 #define Uses_TEvent
@@ -28,6 +29,11 @@
 
 #include <calendar.h>
 
+
+char TCalendarView::upArrowChar  ='\036';
+char TCalendarView::oupArrowChar ='\036';
+char TCalendarView::downArrowChar ='\037';
+char TCalendarView::odownArrowChar='\037';
 
 static char *monthNames[] = {
     "",
@@ -123,7 +129,7 @@ char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
 
  AllocLocalStr(str,l+1);
  if (addArrows)
-    sprintf(str,"\036%15s %4d\037", monthName, year);
+    sprintf(str,"%c%15s %4d%c", upArrowChar, monthName, year, downArrowChar);
  else
     sprintf(str,"%s %4d", monthName, year);
 

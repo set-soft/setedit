@@ -44,15 +44,20 @@ fonts than the BIOS ones.@p
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_ctype
 #include <ceditor.h>
+#include <calendar.h>
+#include <mp3play.h>
+#include <ceditint.h>
 
 #include <codepage.h>
 
 #if TV_MAJOR_VERSION<2
- #define SpecialChars specialChars
+ #define SpecialChars   specialChars
  #define o_SpecialChars o_specialChars
+ #define DefaultBkgrnd  TDeskTop::defaultBkgrnd
 #else
- #define SpecialChars TView::specialChars
+ #define SpecialChars   TView::specialChars
  #define o_SpecialChars TView::ospecialChars
+ #define DefaultBkgrnd  TDeskTop::odefaultBkgrnd
 #endif
 
 TNoCaseNoOwnerStringCollection *CodePages=0;
@@ -1165,6 +1170,13 @@ void RemapCharactersFor(int id)
  C(TDirListBox,middleDir);
  C(TDirListBox,lastDir);
  C(TDirListBox,graphics);
+ #if !defined(NoEditorSpecific) && defined(SUP_MP3)
+ C(MP3Player,butRew);
+ C(MP3Player,butStop);
+ C(MP3Player,butPlay);
+ C(MP3Player,butPause);
+ C(MP3Player,butFfw);
+ #endif
  #undef C
 
  #if 0
@@ -1183,6 +1195,8 @@ void RemapCharactersFor(int id)
  C(TIndicator,modifiedStar);
  #ifndef NoEditorSpecific
  C(TCEditor,TabChar);
+ C(TCalendarView,upArrowChar);
+ C(TCalendarView,downArrowChar);
  #endif
  #undef C
 
@@ -1206,7 +1220,7 @@ void RemapCharactersFor(int id)
  #endif
 
  TBackground *bkg=TProgram::deskTop->getBackground();
- bkg->changePattern(RemapCharCodePage(TDeskTop::defaultBkgrnd,map));
+ bkg->changePattern(RemapCharCodePage(DefaultBkgrnd,map));
 
  TListViewer::columnSeparator=RemapCharCodePage(TListViewer::ocolumnSeparator,map);
 

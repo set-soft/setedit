@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -40,6 +40,16 @@ char *(*MP3Player::GetNext)()=0;
 void  (*MP3Player::EndOfList)()=0;
 char MP3Player::FileToPlay[PATH_MAX]="";
 int  MP3Player::Strategy=mp3UnBuffered;
+char MP3Player::butRew[]="\x11\x11";
+char MP3Player::butStop[]="\xFE";
+char MP3Player::butPlay[]="\x10";
+char MP3Player::butPause[]="\x13";
+char MP3Player::butFfw[]="\x10\x10";
+char MP3Player::obutRew[]="\x11\x11";
+char MP3Player::obutStop[]="\xFE";
+char MP3Player::obutPlay[]="\x10";
+char MP3Player::obutPause[]="\x13";
+char MP3Player::obutFfw[]="\x10\x10";
 
 void MP3Player::SelectNewFile(char *fileName)
 {

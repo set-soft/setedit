@@ -6,6 +6,8 @@
 /*   Calendar.h: Header file for Calendar.cpp            */
 /*-------------------------------------------------------*/
 
+/* Modified by Salvador E. Tropea (SET) for SETEdit */
+
 #if !defined( __CALENDAR_H )
 #define __CALENDAR_H
 
@@ -18,6 +20,11 @@ public:
     virtual void handleEvent(TEvent& event);
     virtual void draw();
     char *getMonthStr(char *buffer, int size, int addArrows);
+    
+    static char upArrowChar;
+    static char oupArrowChar;
+    static char downArrowChar;
+    static char odownArrowChar;
 
 private:
 

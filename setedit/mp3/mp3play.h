@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // A static class to join the variables
 class MP3Player
@@ -53,6 +53,17 @@ public:
  static char FileToPlay[PATH_MAX];
  static int  PlayFileToPlay(char *out=0);
 
+ static char butRew[];
+ static char butStop[];
+ static char butPlay[];
+ static char butPause[];
+ static char butFfw[];
+ static char obutRew[];
+ static char obutStop[];
+ static char obutPlay[];
+ static char obutPause[];
+ static char obutFfw[];
+ 
 protected:
  static char *(*GetNext)();
  static void  (*EndOfList)();
