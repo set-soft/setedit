@@ -283,6 +283,11 @@ sub SeeCommandLine
       {
        $conf{'no-prefix-h'}=1;
       }
+    elsif ($i eq '--no-intl')
+      {
+       $conf{'no-intl'}='yes';
+       $conf{'xgettext'}='no';
+      }
     elsif ($i eq '--static')
       {
        $conf{'static'}='yes';
@@ -411,6 +416,7 @@ sub ShowHelp
  print "Available options:\n\n";
  print "--help         : displays this text.\n";
  print "--prefix=path  : defines the base directory for installation.\n";
+ print "--no-intl      : don't use international support.\n";
  print "--static       : force to create an statically linked executable.\n";
  print "--dynamic      : generated a dynamically linked executable [default].\n";
  print "--fhs          : force the FHS layout under UNIX.\n";
