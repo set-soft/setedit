@@ -320,8 +320,8 @@ SubMenu: "~D~ebug", kbAlD
   MenuItemC: "~R~eady to run", cmeDbgGoReadyToRun
  EndSubMenu
  MenuItemC: "~B~reakpoint", cmeBreakpoint, kbCtF8, "Ctrl+F8"
- MenuItemC: "Ed~i~t breakpoints", cmeDbgEditBreakPts
- MenuItemC: "Edit watchpoints ~3~", cmeDbgEditWatchPts
+ MenuItemC: "Ed~i~t breakpoints...", cmeDbgEditBreakPts
+ MenuItemC: "Edit watchpoints... ~3~", cmeDbgEditWatchPts
  MenuSeparator
  MenuItemC: "~R~un/Continue/Atach", cmeDbgRunContinue, kbShF9, "Shift+F9"
  MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
@@ -331,23 +331,23 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Return ~n~ow", cmeDbgReturnNow
  MenuItemC: "Sto~p~", cmeDbgStop
  MenuItemC: "Restart (~K~ill)", cmeDbgKill
- MenuItemC: "Se~l~ect thread", cmeDbgThreadSel
+ MenuItemC: "Se~l~ect thread...", cmeDbgThreadSel
  MenuSeparator
- MenuItemC: "Disasse~m~bler Window", cmeDbgDisAsmWin
- MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
+ MenuItemC: "Disasse~m~bler Window...", cmeDbgDisAsmWin
+ MenuItemC: "~E~valuate/Modify...", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
  SubMenu: "~W~atch an expression", kbUnknown
 # EN: DNSUW
-  MenuItemC: "~N~ormal watch", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
-  MenuItemC: "~W~ith scope", cmeDbgWatchExpScp
-  MenuItemC: "~U~sing the Inspector", cmeDbgInspector, kbCtF6, "Ctrl+F6"
-  MenuItemC: "~D~ata window", cmeDbgDataWindow
+  MenuItemC: "~N~ormal watch...", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
+  MenuItemC: "~W~ith scope...", cmeDbgWatchExpScp
+  MenuItemC: "~U~sing the Inspector...", cmeDbgInspector, kbCtF6, "Ctrl+F6"
+  MenuItemC: "~D~ata window...", cmeDbgDataWindow
   MenuItemC: "~S~tack window", cmeDbgStackWindow
  EndSubMenu
  MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
  MenuSeparator
  SubMenu: "~D~ebug session", kbUnknown
   MenuItemC: "De~t~ach", cmeDbgDetach
-  MenuItemC: "Clear deb~u~g elements", cmeDbgCleanElem
+  MenuItemC: "Clear deb~u~g elements...", cmeDbgCleanElem
   MenuItemC: "C~l~ose", cmeDbgCloseSession
   MenuItemC: "~D~estroy (DANGER!)", cmeDbgEndSession
  EndSubMenu
@@ -396,8 +396,8 @@ NewMenu: hcDataViewer, 0
 
 SubMenu: "~F~ile", kbAlF
 # EN: RWX
- MenuItemC: "~R~ead block", cmDWRead, kbCtR, "Ctrl+R"
- MenuItemC: "~W~rite block", cmDWWrite, kbCtW, "Ctrl+W"
+ MenuItemC: "~R~ead block...", cmDWRead, kbCtR, "Ctrl+R"
+ MenuItemC: "~W~rite block...", cmDWWrite, kbCtW, "Ctrl+W"
  MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
 EndSubMenu
 
@@ -419,8 +419,8 @@ EndSubMenu
 
 SubMenu: "~A~ddress", kbAlA
 # EN: BFGINPR
- MenuItemC: "Change ~b~ase address", cmDWBaseAddress, kbCtB, "Ctrl+B"
- MenuItemC: "~G~o to new address", cmDWGotoAddress, kbCtG, "Ctrl+G"
+ MenuItemC: "Change ~b~ase address...", cmDWBaseAddress, kbCtB, "Ctrl+B"
+ MenuItemC: "~G~o to new address...", cmDWGotoAddress, kbCtG, "Ctrl+G"
  MenuItemC: "Follow ~p~ointer", cmDWFollowPointer, kbCtF, "Ctrl+F"
  MenuItemC: "Follow pointer in ~n~ew window", cmDWFollowPtnNew, kbCtO, "Ctrl+O"
  MenuItemC: "~R~ecompute address", cmDWRecompute, kbCtH, "Ctrl+H"
@@ -436,9 +436,9 @@ EndSubMenu
 
 SubMenu: "~B~lock", kbAlB
 # EN: CFM
- MenuItemC: "~F~ill", cmDWFill, kbCtI, "Ctrl+I"
- MenuItemC: "~C~lear", cmDWClear, kbCtL, "Ctrl+L"
- MenuItemC: "~M~ove", cmDWMove, kbCtM, "Ctrl+M"
+ MenuItemC: "~F~ill...", cmDWFill, kbCtI, "Ctrl+I"
+ MenuItemC: "~C~lear...", cmDWClear, kbCtL, "Ctrl+L"
+ MenuItemC: "~M~ove...", cmDWMove, kbCtM, "Ctrl+M"
 EndSubMenu
 
 SubMenu: "~V~arious", kbAlV
