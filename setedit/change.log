@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.487  2003/12/15 21:21:43  set
+* Fixed: [RPM] The prereq seems to be /sbin/install-info and not
+/usr/bin/... At least that's what most specs found by Google shows ;-)
+I also added install and delete for the info files.
+
 Revision 1.486  2003/12/15 14:59:16  set
 * Fixed: When pasting using the OS clipboard and the cursor was moved to
 the end of the selection it could go out of screen which is quite annoying.
