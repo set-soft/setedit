@@ -162,7 +162,9 @@ void Mpegtoraw::computebuffer(REAL *fraction,REAL buffer[2][CALCBUFFERSIZE])
 #define XX  vp+=15;r+=*vp * *dp++
 #define OP  r+=*--vp * *dp++
 
-inline void Mpegtoraw::generatesingle(void)
+/*inline SET: I don't see what can we gain making it inline and it makes some gcc
+         versions get confused in some situations */
+void Mpegtoraw::generatesingle(void)
 {
   int i;
   register REAL r, *vp;
@@ -247,7 +249,8 @@ inline void Mpegtoraw::generatesingle(void)
 	   r2+=*--vp2 * *dp++
 
 
-inline void Mpegtoraw::generate(void)
+/*inline */
+void Mpegtoraw::generate(void)
 {
   int i;
   REAL r1,r2;
