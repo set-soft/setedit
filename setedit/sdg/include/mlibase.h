@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIBase) && !defined(__TMLIBase__)
 #define __TMLIBase__
-const int MLIBaseCommands=19;
+const int MLIBaseCommands=20;
 const int MLIBaseConstants=1;
 const int MLIBaseSymbols=5;
 
@@ -60,7 +60,10 @@ void MLIRetString(TMLIBase *o,int stkPos,char *str);
 #define MLIRetStrLenExists(str,len) \
         o->array->ReplaceItem(start-1,new TLispString(str,len,StrAlreadyAllocated))
 #define MLIRetObj(v) \
-        o->array->ReplaceItem(start-1,v)
+        do { \
+        v->type|=1; \
+        o->array->ReplaceItem(start-1,v); \
+        } while(0)
 #define MLIRetNULL() \
         o->array->ReplaceItem(start-1,NULL)
 #define MLIRetString(str) \
