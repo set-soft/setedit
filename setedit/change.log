@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.389  2003/05/23 19:19:47  set
+* Modified: Now if you configure the editor without special options the
+makfiles avoids header dependencies. Using --enable-maintainer-mode enables
+the complex dependencies.
+
 Revision 1.388  2003/05/23 16:10:32  set
 * Added: Detection and use of rhtv-config even if it isn't installed.
 * Added: Error message if rhtv-config can't be found.

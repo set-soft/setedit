@@ -499,51 +499,63 @@ sub SeeCommandLine
 
 sub ShowHelp
 {
- print "Available options:\n\n";
- print "--help          : displays this text.\n";
- print "--prefix=path   : defines the base directory for installation.\n";
- print "--no-intl       : don't use international support.\n";
- print "--static        : force to create an statically linked executable.\n";
- print "--dynamic       : generated a dynamically linked executable [default].\n";
- print "--fhs           : force the FHS layout under UNIX.\n";
- print "--no-fhs        : force to not use the FHS layout under UNIX.\n";
- print "--libset        : create libset, needed to compile RHIDE.\n";
- print "--no-libset     : don't create libset [default].\n";
+ print "Available options:\n";
+ # Targets
+ print "\nOptional targets:\n";
  print "--infview       : also compile InfView [default].\n";
  print "--no-infview    : don't compile InfView, just the editor.\n";
+ print "--libset        : create libset, needed to compile RHIDE.\n";
+ print "--no-libset     : don't create libset [default].\n";
+ # Paths
+ print "\nPaths:\n";
+ print "--prefix=path   : defines the base directory for installation.\n";
+ print "--no-prefix-h   : don't define the prefix in the configuration header\n";
+ print "--fhs           : force the FHS layout under UNIX.\n";
+ print "--no-fhs        : force to not use the FHS layout under UNIX.\n";
+ print "--tv-include=pat: path for Turbo Vision includes\n";
+ print "  Note: if you use --tv-include you should also use --tv-lib\n";
+ print "--tv-lib=path   : path for Turbo Vision libraries\n";
+ # Libs
+ print "\nLibraries and optional support:\n";
+ print "--no-intl       : don't use international support.\n";
+ print "--shipped-intl  : force to use the shipped gettext library [DOS only]\n";
+ print "--bzip2         : include support for bzip2.\n";
  print "--no-bzip2      : don't include support for bzip2 files.\n";
- print "--bzip2         : include support for bzip2 (in case you disabled it).\n";
+ print "--with-aa       : support for AA-lib [used for UNIX].\n";
+ print "--without-aa    : without AA-lib support.\n";
  print "--parser-adv    : use the advanced parser for calc. [default]\n";
  print "--parser-brs    : use the small Burton's parser for calculator\n";
  print "--parser-ml     : use the small ML's parser for calculator\n";
+ print "--without-mp3   : disable MP3 support\n";
  print "--with-amp      : use libamp for MP3 support [DOS only]\n";
  print "--with-mpegsnd  : use libmpegsnd for MP3 support [default]\n";
- print "--without-mp3   : disable MP3 support\n";
+ print "--with-mixer    : include code to control the mixer [default]\n";
+ print "--without-mixer : don't include code to control the mixer\n";
+ print "--with-mss      : compiles with MSS memory debugger.\n";
+ print "--without-mss   : compiles without MSS [default].\n";
+ print "--with-efence   : compiles with Electric Fence memory debugger.\n";
+ print "--without-efence: compiles without Electric Fence [default].\n";
+ # Compilation
+ print "\nCompilation options:\n";
+ print "--enable-maintainer-mode:\n";
+ print "                : enables header dependencies and other stuff needed\n";
+ print "                  for developement, not just use the editor.\n";
+ print "--static        : force to create an statically linked executable.\n";
+ print "                  Currently it only affect TV lib.\n";
+ print "--dynamic       : generated a dynamically linked executable [default].\n";
  print "--cflags=val    : normal C flags [default is env. CFLAGS]\n";
  print "--cppflags=val  : normal C++ flags [default is env. CXXFLAGS]\n";
  print "--Xcflags=val   : special C flags used for MP3 libraries\n";
  print "--Xcppflags=val : special C++ flags used for MP3 libraries\n";
  print "--debug         : selects C/C++ switches for debugging\n";
- print "--with-mixer    : include code to control the mixer [default]\n";
- print "--without-mixer : don't include code to control the mixer\n";
- print "--shipped-intl  : force to use the shipped gettext library [DOS only]\n";
- print "--tv-include=pat: path for Turbo Vision includes\n";
- print "  Note: if you use --tv-include you should also use --tv-lib\n";
- print "--tv-lib=path   : path for Turbo Vision libraries\n";
- print "--no-prefix-h   : don't define the prefix in the configuration header\n";
  print "--comp-exe      : compress all executables with UPX\n";
  print "--no-comp-exe   : don't compress any executables with UPX\n";
- print "--with-mss      : compiles with MSS memory debugger.\n";
- print "--without-mss   : compiles without MSS [default].\n";
- print "--with-efence   : compiles with Electric Fence memory debugger.\n";
- print "--without-efence: compiles without Electric Fence [default].\n";
- print "--x-include=path: X11 include path [/usr/X11R6/lib].\n";
- print "--x-lib=path    : X11 library path [/usr/X11R6/include].\n";
- print "--with-aa       : support for AA-lib [used for UNIX].\n";
- print "--without-aa    : without AA-lib support.\n";
- print "--enable-maintainer-mode:\n";
- print "                : enables header dependencies and other stuff needed\n";
- print "                : develope, not just use.\n";
+
+ print "\n";
+ print "--help          : displays this text.\n";
+
+ #print "--x-include=path: X11 include path [/usr/X11R6/lib].\n";
+ #print "--x-lib=path    : X11 library path [/usr/X11R6/include].\n";
 }
 
 sub GiveAdvice
