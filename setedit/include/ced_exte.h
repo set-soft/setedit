@@ -259,7 +259,8 @@ const int
       undoSelHidedF=4,
       undoModifiedF=8,
       undoOverWriteF=16,
-      undoOverWrite=32;
+      undoOverWrite=32,
+      undoLineInEd=64;
 /************************* End of UNDO types and constants *****************/
 
 // ***************** Various Structures
