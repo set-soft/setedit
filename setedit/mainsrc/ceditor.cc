@@ -933,17 +933,21 @@ void TCEditor::doUpdate()
          }
       }
 
-    if (IsStatusLineOn && !(updateFlags & ufView))
-      { // Repair the damage of the status line
-       int y=delta.y;
-       unsigned p=drawPtr;
-       if (StatusLinePos)
-         {
-          int i=size.y-1;
-          for (;i; y++, --i)
-              p+=lenLines.safeLen(y);
+    if (IsStatusLineOn)
+      {
+       if (!(updateFlags & ufView))
+         {// Repair the damage of the status line
+          int y=delta.y;
+          unsigned p=drawPtr;
+          if (StatusLinePos)
+            {
+             int i=size.y-1;
+             for (;i; y++, --i)
+                 p+=lenLines.safeLen(y);
+            }
+          drawLines(y,1,p);
          }
-       drawLines( y, 1, p );
+       // In any case it isn't there anymore
        IsStatusLineOn=False;
       }
 
@@ -3857,7 +3861,12 @@ Boolean TCEditor::SearchMatchOnTheFly()
     XHLCO=curPos.x;
     YHLCO=curPos.y;
     if (x>=0 && x<size.x && y>=0 && y<size.y)
-       update(ufHLChar);
+      {
+       if (IsStatusLineOn)
+          update(ufHLChar | ufStatus);
+       else
+          update(ufHLChar);
+      }
     if (wasInEdition && ShowMatchPairNow)
        EditLine();
    }

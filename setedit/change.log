@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.304  2003/04/25 15:02:23  set
+* Fixed: TSCheckBoxes computed the with using untranslated messages. Same
+for TSRadioButtons.
+
 Revision 1.303  2003/04/25 12:22:25  set
 * Added: Now you can jump to any symbol from the TAGS file! looks like I
 can't get it working using real regex and also looks like they aren't real
