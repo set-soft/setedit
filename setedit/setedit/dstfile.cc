@@ -45,6 +45,7 @@
 #include <codepage.h>
 #include <mixer.h>
 #include <edspecs.h>
+#include <pathlist.h>
 
 extern TEditorCollection *edHelper;
 extern char *EditorFile;
@@ -358,6 +359,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  SaveConvCPOptions(s);
  s << TGKey::GetKbdMapping();
  BoardMixerSave(s);
+ PathListSave(s);
  s << 0;
 }
 
@@ -664,6 +666,8 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
    }
  if (deskTopVersion>=0x444)
     BoardMixerLoad(s);
+ if (deskTopVersion>=0x449)
+    PathListLoad(s);
 
  // Even when 0.4.15 doesn't use the Config Files path we ensure it's pointing to
  // the SET_FILES path
