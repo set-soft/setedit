@@ -820,6 +820,8 @@ tools/mideline.cc
 +tools/putcopyr.pl
 tools/symify.cc
 tools/TVpo.pl
++update
+*update.bat
 version.txt
 updaterev.pl
 *windos.faq

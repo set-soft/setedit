@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.421  2003/06/27 19:52:07  set
+* Added: Some SQL keywords. Contributed by Grzegorz.
+
 Revision 1.420  2003/06/24 19:17:47  set
 * Added: A tutorial explaining how to use tags stuff step by step. It have
 graphics but I'm not sure about distributing them, size issue.
