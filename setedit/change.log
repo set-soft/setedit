@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.543  2004/07/20 20:45:00  set
+* Added: Now we can attach to running processes. Nice, but it expossed more
+gdb bugs :-(
+
 Revision 1.542  2004/07/20 19:33:17  set
 * Fixed: Added dummies to allow compilation when libmigdb isn't installed.
 

@@ -174,6 +174,9 @@ static char killAfterStop=0;
 // TODO: Move to app class
 static char *cpuLFile=NULL;
 static int   cpuLLine;
+// Path for the binary
+static char *binReference=NULL;
+static int   binReferenceLen=0;
 
 /*****************************************************************************
   Editor debug commands
@@ -264,6 +267,9 @@ void TSetEditorApp::DebugCommonCleanUp()
  stoppedInfo=NULL;
  pendingStoppedInfo=killAfterStop=0;
  DebugCommandsForDisc();
+ delete[] binReference;
+ binReference=NULL;
+ binReferenceLen=0;
 }
 
 /**[txh]********************************************************************
@@ -353,6 +359,8 @@ which state is the debugger. Call it only after checking.
 
 int TSetEditorApp::DebugConnect()
 {
+ // TODO: REMOVE IT!!!
+ //dbg->SetGDBExe("/mnt/hda3/var/tmp/Compartido/set/src/gdb-6.1.1/gdb/gdb");
  int res=dbg->Connect();
  if (res)
    {
@@ -363,11 +371,12 @@ int TSetEditorApp::DebugConnect()
     // Set the path for sources
     char n[PATH_MAX];
     dbg->PathSources(NULL);
+    for (int i=0; PathListGetItem(i,n,paliSource); i++)
+        dbg->PathSources(n);
+    // At the end so it becomes the fist in the list:
     // Yet another gdb bug?? some gdbs need it
     if (getcwd(n,PATH_MAX))
        dbg->PathSources(n);
-    for (int i=0; PathListGetItem(i,n,paliSource); i++)
-        dbg->PathSources(n);
    }
  else
     DebugMsgSetError();
@@ -407,6 +416,30 @@ int IsEmpty(const char *s)
 {
  for (;*s && ucisspace(*s); s++);
  return *s==0;
+}
+
+/**[txh]********************************************************************
+
+  Description: 
+  The sources reported in "frames" are relative to the binary or just
+absolute. If the user specifies "path/binary" we have to use the "path" to
+look for sources.
+  
+***************************************************************************/
+
+static
+void ExtractBinReference()
+{
+ char b[PATH_MAX], path[PATH_MAX];
+ strcpy(b,dOps.program);
+ CLY_fexpand(b);
+ CLY_ExpandPath(b,path,NULL);
+ delete[] binReference;
+ binReferenceLen=strlen(path);
+ binReference=new char[binReferenceLen+1];
+ memcpy(binReference,path,binReferenceLen+1);
+ if (dbg)
+    dbg->PathSources(binReference);
 }
 
 /**[txh]********************************************************************
@@ -515,6 +548,7 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
     DebugMsgSetMode(showConnect);
     // Apply breakpoints.
     DBG_ApplyBkpts();
+    ExtractBinReference();
    }
 
  return res;
@@ -1213,11 +1247,13 @@ static
 mi_bkpt *DBG_SearchBkpt(const char *source, int line)
 {
  mi_bkpt *b=firstB;
- char n[PATH_MAX];
+ char n[2*PATH_MAX];
 
  while (b)
    {
-    strcpy(n,b->file);
+    if (binReference)
+       memcpy(n,binReference,binReferenceLen);
+    strcpy(n+binReferenceLen,b->file);
     CLY_fexpand(n);
     if (strcmp(n,source)==0 && b->line==line)
        return b;
@@ -1281,6 +1317,21 @@ int DBG_RemoveBreakpoint(const char *source, int line)
  return 1;
 }
 
+static
+void AddSpLineBinRef(const char *file, int line)
+{
+ char n[2*PATH_MAX];
+
+ if (binReference)
+    memcpy(n,binReference,binReferenceLen);
+ strcpy(n+binReferenceLen,file);
+ CLY_fexpand(n);
+ 
+ if (DEBUG_BREAKPOINTS_UPDATE)
+    dbgPr("Adding SpLine for %s:%d\n",n,line);
+ SpLinesAdd(n,line,idsplBreak,False);
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -1320,9 +1371,7 @@ void DBG_ApplyBkpts()
          {
           DBG_AddBkpt(nb);
           killIt=1;
-          SpLinesAdd(nb->file,nb->line,idsplBreak,False);
-          if (DEBUG_BREAKPOINTS_UPDATE)
-             dbgPr("DBG_ApplyBkpts: Adding spline %s:%d\n",nb->file,nb->line);
+          AddSpLineBinRef(nb->file,nb->line);
           applied++;
          }
       }
@@ -1401,6 +1450,7 @@ void DBG_ReadBreakpoints(ipstream &is)
 {
  int32 count;
  char version;
+
  is >> version >> count;
  // TODO:
  if (firstB)
@@ -1418,8 +1468,7 @@ void DBG_ReadBreakpoints(ipstream &is)
         b->type=(enum mi_bkp_type)ReadChar(is);
         b->disp=(enum mi_bkp_disp)ReadChar(is);
         DBG_AddBkpt(b);
-        SpLinesAdd(b->file,b->line,idsplBreak,False);
-        dbgPr("Adding SpLine for %s:%d\n",b->file,b->line);
+        AddSpLineBinRef(b->file,b->line);
        }
     }
  if (count)
@@ -1943,8 +1992,18 @@ int DebugMsgJumpToFrame(mi_frames *f, char *msg, int l)
  int jumped=0;
  if (f)
    {// Try to jump to the source line.
-    if (f->file && GotoFileLine(f->line,f->file,msg,-1,l,False))
-       jumped=1;
+    if (f->file)
+      {
+       char file[PATH_MAX];
+       if (binReference)
+          strcpy(file,binReference);
+       else
+          file[0]=0;
+       strcat(file,f->file);
+       dbgPr("Source relative to binary: %s\n",file);
+       if (GotoFileLine(f->line,file,msg,-1,l,False))
+          jumped=1;
+      }
    }
  return jumped;
 }
@@ -2845,6 +2904,7 @@ void DebugReadData(ipstream &is)
     is.readString(dOps.rparam,sizeof(dOps.rparam));
     is >> aux;
     dOps.mode=aux;
+    ExtractBinReference();
    }
  // Type of Messages
  is >> aux;

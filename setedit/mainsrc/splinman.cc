@@ -248,7 +248,10 @@ void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
      p=(NodeCol *)(SpLines->at(i));
      // If we are looking for a particular file and it isn't just continue
      if (file && strcmp(file,p->file))
+       {
+        i++;
         continue;
+       }
      ccIndex c2,j;
      c2=p->idSources->getCount();
      deleted=False;
