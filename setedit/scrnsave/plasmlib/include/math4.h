@@ -50,10 +50,9 @@ extern inline int MA4_XSin(fix8_8 x)
 {
 #ifdef USE_EAX
  int result;
- __asm__ __volatile__ ("
- movzbl %%ah,%%eax
- movl _XSin256t(,%%eax,4),%k0
- "
+ __asm__ __volatile__ (
+" movzbl %%ah,%%eax              \n"
+" movl _XSin256t(,%%eax,4),%k0   \n"
  : "=r" (result)
  : "a" (x));
  return result;
@@ -67,11 +66,10 @@ extern inline int MA4_XSinR(fix8_8 x)
 {
 #ifdef USE_EAX
  int result;
- __asm__ __volatile__ ("
- addl $0x80,%%eax
- movzbl %%ah,%%eax
- movl _XSin256t(,%%eax,4),%k0
- "
+ __asm__ __volatile__ (
+" addl $0x80,%%eax               \n"
+" movzbl %%ah,%%eax              \n"
+" movl _XSin256t(,%%eax,4),%k0   \n"
  : "=r" (result)
  : "a" (x));
  return result;
