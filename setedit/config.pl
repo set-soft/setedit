@@ -152,6 +152,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1].='dl ' if ($conf{'dl'} eq 'yes');
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
+   $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes');
   }
 else # Win32
   {
@@ -1099,6 +1100,7 @@ int main(void)
 }
 ';
  $intllib=(($OS eq 'DOS') || ($OS eq 'Win32')) ? '-lintl' : '';
+ $intllib='-L/usr/local/lib -lintl' if ($OSf eq 'FreeBSD');
  $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib);
  if ($test ne "OK\n")
    {

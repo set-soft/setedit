@@ -1,4 +1,10 @@
 $Log$
+Revision 1.80  2002/05/06 14:52:08  set.
+* Added: X11R6 include directory to the configuration script. It looks like
+this directory isn't automagically included in FreeBSD. Also added options
+to configure it -x-include and -x-lib. Reported by miniEleph
+<nyxo@dnuc.polyn.kiae.su>.
+
 Revision 1.79  2002/05/02 19:35:38  set
 * Modified: The use of tmpnam, now I use unique_name, based on mkstemp. It
 seems to be more secure.
