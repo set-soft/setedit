@@ -118,12 +118,24 @@ bool Rawplayer::roomformore(unsigned size)
   return info.bytes>=size ? true : false;
 }
 
+/* Not all OSS implementations define an endian-independant samplesize.
+ * This code is taken from linux' <sys/soundcard.h, OSS version 0x030802
+ */
+#ifndef AFMT_S16_NE
+ #if defined(_AIX) || defined(AIX) || defined(sparc) || defined(HPPA) || defined(PPC)
+  /* Big endian machines */
+  #define AFMT_S16_NE AFMT_S16_BE
+ #else
+  #define AFMT_S16_NE AFMT_S16_LE
+ #endif
+#endif
+
 bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
 {
   // 1 = stereo, 0 = mono
   rawstereo=stereo;
   // 8 or 16 (bits)
-  rawsamplesize=samplesize;
+  rawsamplesize=samplesize==16 ? AFMT_S16_NE : samplesize;
   // Hz
   rawspeed=speed;
   forcetomono=forceto8=false;
@@ -276,8 +288,8 @@ void Rawplayer::abort(void)
 {
  if (audiohandle==-1) return;
  int a=FLUSHW;
- fprintf(stderr,"I_FLUSH: %d\n",ioctl(audiohandle,I_FLUSH,a));
- fprintf(stderr,"AUDIO_DRAIN: %d\n",ioctl(audiohandle,AUDIO_DRAIN,0));
+ ioctl(audiohandle,I_FLUSH,a);
+ ioctl(audiohandle,AUDIO_DRAIN,0);
  close(audiohandle);
  audiohandle=-1;
 }
@@ -294,7 +306,7 @@ bool Rawplayer::roomformore(unsigned size)
 {
  audio_info_t info;
  ioctl(audiohandle,AUDIO_GETINFO,&info);
- fprintf(stderr,"played: %d bufSize %d\n",info.play.samples*sizeSamp,bufSize);
+ //fprintf(stderr,"played: %d bufSize %d\n",info.play.samples*sizeSamp,bufSize);
   
  return bufSize-info.play.samples*sizeSamp>minBufferedSize ? false : true;
 }
@@ -357,10 +369,10 @@ bool Rawplayer::putblock(void *buffer,int size)
  #endif
 
  unsigned wrote=write(audiohandle,buffer,size);
- if (wrote!=size)
+ /*if (wrote!=size)
     fprintf(stderr,"Error! trying to write %d and we wrote %d\n",size,wrote);
  else
-    fprintf(stderr,"Ok! %d bytes\n",size);
+    fprintf(stderr,"Ok! %d bytes\n",size);*/
  bufSize+=size;
 
  return true;

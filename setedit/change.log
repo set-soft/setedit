@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.102  2002/05/27 19:36:23  set
+* Fixed: [Solaris] the audio problems, now we can play MP3!! The big endian
+issue was solved with the help of Martijn van Buul <pino@dohd.org> (PowerPC
+user of a library derived from splay) and Mikael Hedin <mikael.hedin@irf.se>
+currently maintainer of splay. I also fixed some stuff in the Solaris
+audio code, now seems to work quite nice.
+
 Revision 1.101  2002/05/20 18:08:31  set
 * Fixed: References to SendToTerminal, no longer used in TV 2.0.
 
