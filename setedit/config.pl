@@ -441,7 +441,8 @@ sub SeeCommandLine
       {
        $conf{'CFLAGS'}=$1;
       }
-    elsif ($i=~'--cxxflags=(.*)')
+    elsif ($i=~'--cxxflags=(.*)' ||
+           $i=~'--cppflags=(.*)')
       {
        $conf{'CXXFLAGS'}=$1;
       }
@@ -1320,7 +1321,7 @@ sub GenerateMakefile
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
  my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays,$mantmode);
- my $aux;
+ my ($aux,$extraIns,$extraInsVar);
 
  print "Generating Makefile\n";
 
@@ -1494,11 +1495,22 @@ sub GenerateMakefile
     $text.="\tperl updaterev.pl";
    }
 
+ $extraIns='';
+ # Don't compress executables
+ $extraIns.='--no-compress ' unless ($compExeEditor);
+ # Sources tarball compressed with bzip2
+ $extraIns.='--use-bzip2 '   if $conf{'source-bzip2'} eq 'yes';
+ # .exe extension:
+ # DOS uses a special script where the extension remains.
+ # POSIX systems don't, but Cygwin uses the POSIX script.
+ $extraIns.='--keep-extension ' if ($OS eq 'Win32');
+ $extraInsVar='';
+ $extraInsVar=" \"EXTRA_INS_OPS=$extraIns\"" if $extraIns;
  #### Installations ####
  # editor
  $text.="\n\ninstall-editor: editor\n";
  $text.="\t\$(MAKE) -C makes install";
- $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeEditor);
+ $text.=$extraInsVar;
  # libset
  if ($libset)
    {
@@ -1511,7 +1523,7 @@ sub GenerateMakefile
    {
     $text.="\n\ninstall-infview: infview\n";
     $text.="\t\$(MAKE) -C makes install-infview";
-    $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeInfview);
+    $text.=$extraInsVar;
    }
  # all targets
  $text.="\n\ninstall: install-editor";
@@ -1522,25 +1534,17 @@ sub GenerateMakefile
  if ($distrib)
    {
     #### Distribution ####
-    $aux='';
-    if (!$compExeEditor || ($conf{'source-bzip2'} eq 'yes'))
-      {
-       $aux='"EXTRA_INS_OPS=';
-       $aux.='--no-compress ' unless $compExeEditor;
-       $aux.='--use-bzip2 '   if $conf{'source-bzip2'} eq 'yes';
-       $aux.='"';
-      }
     # editor
     $text.="\n\ndistrib-editor: needed\n";
-    $text.="\t\$(MAKE) -C makes distrib $aux";
+    $text.="\t\$(MAKE) -C makes distrib $extraInsVar";
     # just sources
     $text.="\n\ndistrib-source:\n";
-    $text.="\t\$(MAKE) -C makes distrib-source $aux";
+    $text.="\t\$(MAKE) -C makes distrib-source $extraInsVar";
     # infview
     if ($infview)
       {
        $text.="\n\ndistrib-infview: needed\n";
-       $text.="\t\$(MAKE) -C makes distrib-infview $aux";
+       $text.="\t\$(MAKE) -C makes distrib-infview $extraInsVar";
       }
     # all targets
     $text.="\n\ndistrib: distrib-editor";

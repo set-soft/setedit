@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../infview/version.txt') || return 0;
@@ -37,6 +37,7 @@ $nextisprefix=0; $nextisfhs=0;
 $iMode=0;  # Installation mode
 $iCompressExe=1;
 $useFHS=0;
+$ExeExtension='';
 foreach $i (@ARGV)
   {
    if ($nextisprefix)
@@ -64,6 +65,10 @@ foreach $i (@ARGV)
    elsif ($i eq '--no-compress')
      {
       $iCompressExe=0;
+     }
+   elsif ($i eq '--keep-extension')
+     {
+      $ExeExtension='.exe';
      }
    else
      {
@@ -188,7 +193,7 @@ print "done.\n\n";
 
 
 print "Copying the exe: ";
-$d=$bin_dir.'/infview';
+$d=$bin_dir.'/infview'.$ExeExtension;
 $o='../infview.exe';
 if (!(-e $d) or (-M $d > -M $o))
   {

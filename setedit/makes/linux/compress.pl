@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || die;
@@ -57,6 +57,7 @@ $useFHS=0;
 $Strip=1;
 $OnlySources=0;
 $UseVersioInSourceDir=0;
+$ExeExtension='';
 foreach $i (@ARGV)
   {
    if ($nextisprefix)
@@ -100,6 +101,10 @@ foreach $i (@ARGV)
    elsif ($i eq '--dir-version')
      {
       $UseVersioInSourceDir=1;
+     }
+   elsif ($i eq '--keep-extension')
+     {
+      $ExeExtension='.exe';
      }
    else
      {
@@ -241,7 +246,7 @@ foreach $i (@tree)
 print "done.\n\n";
 
 print "Copying the exe: ";
-$d=$bin_dir.'/setedit';
+$d=$bin_dir.'/setedit'.$ExeExtension;
 $o='../editor.exe';
 if (!(-e $d) or (-M $d > -M $o))
   {
