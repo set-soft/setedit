@@ -307,7 +307,7 @@ $ReplaceTags{'XCFLAGS'}=$conf{'XCFLAGS'};
 $ReplaceTags{'CXXFLAGS'}=$conf{'CXXFLAGS'};
 $ReplaceTags{'dyndir'}=$conf{'prefix'}.'/lib/setedit';
 $ReplaceTags{'PREFIX'}=$conf{'prefix'};
-$ReplaceTags{'MakeInfoNumbers'}=CompareVersion($ver,'4.7') ? '-N' : '';
+$ReplaceTags{'MakeInfoNumbers'}=CompareVersion(@conf{'makeinfo'},'4.7') ? '-N' : '';
 # Makefiles
 ReplaceText('gettext/Makefile.in','gettext/Makefile');
 ReplaceText('holidays/Makefile.in','holidays/Makefile');

@@ -1,4 +1,30 @@
-$Log$
+$Log$.
+Revision 1.578  2004/08/16 21:24:50  set
+* Fixed+Modified: The "paste" operation for TInputLinePiped views. Now the
+text is pasted without destroying the previous value (unless it is selected).
+The old mechanism was broken when linking to the Unicode branch of TV because
+the way it changed the "data" member was incomplete.
+* Added: [Tags] an option to regenerate the central file. Some times ctags
+fails in the generation of incremental files and lets bogus registers. They
+can be very annoying and in this case the best is to just regenerate the
+whole file from scratch.
+* Fixed: The list for word completion had a wrong vertical size when we had
+repeated tags in the list to choose. Only one was visible but the size was
+computed counting the repetitions.
+* Modified: If the list of items in the word completion list box isn't bigger
+than the list's height we no longer add a useless scroll bar.
+* Added: [Debug] Disassembler window!!! a cute one ;-) It have an editor so
+you can see the assembler with syntax highlight. If the information about
+the source code is available it also shows the source code mixed with the
+assembler.
+* Added: [Debug] Optional key for the "add with scope" in the Watches Window.
+* Modified: DynStrCat* to accept NULL pointer for initialization and take
+const char * arguments.
+* Added: Moved the newStrL function from a static place to a public header,
+that's very useful.
+* Modified: The way openEditor works when using oedNoSelect flag. It should
+be better but could affect the message window browsing.
+
 Revision 1.577  2004/08/13 20:49:21  set
 * Modified: [Debug] +/- keys in the inspector gives problems when using
 italian keyboards and Linux console. So now + can be replaced by E and -

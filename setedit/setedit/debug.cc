@@ -10,6 +10,8 @@
   The most important unimplemented features and unsolved things are:
 
   * Modify registers in disassembler window.
+  * Dsk wrapper for disassembler window.
+
   * GDB meaning of the ignore field is quite different to what I thinked. That's
 a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
 After it the breakpoint becomes "normal". It means that after a program reset it
@@ -1691,7 +1693,7 @@ void TFramesList::getText(char *dest, unsigned item, int maxLen)
                      r->file ? r->file : unknown,
                      r->line,r->addr);
  else
-    TVIntl::snprintf(dest,maxLen,__("%d: %s:%s:%d"),r->thread_id,
+    TVIntl::snprintf(dest,maxLen,"%d: %s:%s:%d",r->thread_id,
                      r->func ? r->func : unknown,
                      r->file ? r->file : unknown,
                      r->line);
@@ -8121,7 +8123,7 @@ void TSetEditorApp::DebugEvalModify(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugOptsMsgs() {}
 void TSetEditorApp::DebugWatchExp(Boolean , char *) {}
 void TSetEditorApp::DebugDeInitVars() {}
-void TSetEditorApp::DebugCloseSession(Boolean ) { return True; }
+Boolean TSetEditorApp::DebugCloseSession(Boolean ) { return True; }
 int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
 void TSetEditorApp::DebugEditBreakPts() {}
@@ -8130,9 +8132,11 @@ void TSetEditorApp::DebugInspector(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugDataWindow(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugCleanElem() {}
 void TSetEditorApp::DebugThreadSel() {}
-void TSetEditorApp::DebugTimeOut(void *) { return 0; }
-void TSetEditorApp::DebugOptionsAdv() { return 0; }
-void TSetEditorApp::DebugDisAsmWin() {};
+int  TSetEditorApp::DebugTimeOut(void *) { return 0; }
+int  TSetEditorApp::DebugOptionsAdv() { return 0; }
+void TSetEditorApp::DebugDisAsmWin() {}
+void TSetEditorApp::DebugStackWindow() {}
+void TSetEditorApp::DebugMoveBreakPts() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}
