@@ -1,0 +1,126 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+libsettv.a:: \
+	obj/diaghelp.o \
+	obj/dktclock.o \
+	obj/fileopen.o \
+	obj/fiopeaid.o \
+	obj/inputsca.o \
+	obj/ninputsc.o \
+	obj/nostatex.o \
+	obj/nprogbar.o \
+	obj/nprogres.o \
+	obj/ntnocast.o \
+	obj/ntnosost.o \
+	obj/setstack.o \
+	obj/sprogbar.o \
+	obj/sprogres.o \
+	obj/stnocast.o \
+	obj/stnonost.o \
+	obj/tdiagaid.o \
+	obj/tdiagrow.o \
+	obj/tinppipe.o \
+	obj/tnocastc.o \
+	obj/tnosostr.o \
+	obj/tprogbar.o \
+	obj/tprogdia.o \
+	obj/tprogrdi.o \
+	obj/tprogres.o \
+	obj/tstrlbox.o \
+	obj/uisarray.o \
+	obj/ussarray.o \
+	obj/viewplus.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_ARCHIVE)
+
+obj/diaghelp.o:: diaghelp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dktclock.o:: dktclock.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/fileopen.o:: fileopen.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/fiopeaid.o:: fiopeaid.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/inputsca.o:: inputsca.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ninputsc.o:: ninputsc.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nostatex.o:: nostatex.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nprogbar.o:: nprogbar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nprogres.o:: nprogres.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ntnocast.o:: ntnocast.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ntnosost.o:: ntnosost.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/setstack.o:: setstack.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sprogbar.o:: sprogbar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sprogres.o:: sprogres.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/stnocast.o:: stnocast.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/stnonost.o:: stnonost.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tdiagaid.o:: tdiagaid.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tdiagrow.o:: tdiagrow.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tinppipe.o:: tinppipe.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tnocastc.o:: tnocastc.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tnosostr.o:: tnosostr.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogbar.o:: tprogbar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogdia.o:: tprogdia.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogrdi.o:: tprogrdi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogres.o:: tprogres.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tstrlbox.o:: tstrlbox.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/uisarray.o:: uisarray.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ussarray.o:: ussarray.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/viewplus.o:: viewplus.cc  
+	$(RHIDE_COMPILE_CC)
+

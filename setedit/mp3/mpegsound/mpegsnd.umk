@@ -1,0 +1,90 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+../../makes/libmpegsnd.a:: \
+	obj/bitwindow.o \
+	obj/fileinput.o \
+	obj/fileplayer.o \
+	obj/filter.o \
+	obj/filter_2.o \
+	obj/httpinput.o \
+	obj/huffmantable.o \
+	obj/mpegtable.o \
+	obj/mpegtoraw.o \
+	obj/mpegwtoraw.o \
+	obj/mpglayr1.o \
+	obj/mpglayr2.o \
+	obj/mpglayr3.o \
+	obj/osdisk.o \
+	obj/rawplayer.o \
+	obj/rawtofile.o \
+	obj/rawtowav.o \
+	obj/soundinputstream.o \
+	obj/soundplayer.o \
+	obj/wavetoraw.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_ARCHIVE)
+
+obj/bitwindow.o:: bitwindow.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/fileinput.o:: fileinput.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/fileplayer.o:: fileplayer.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/filter.o:: filter.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/filter_2.o:: filter_2.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/httpinput.o:: httpinput.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/huffmantable.o:: huffmantable.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpegtable.o:: mpegtable.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpegtoraw.o:: mpegtoraw.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpegwtoraw.o:: mpegwtoraw.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpglayr1.o:: mpglayr1.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpglayr2.o:: mpglayr2.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mpglayr3.o:: mpglayr3.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/osdisk.o:: osdisk.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/rawplayer.o:: rawplayer.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/rawtofile.o:: rawtofile.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/rawtowav.o:: rawtowav.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/soundinputstream.o:: soundinputstream.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/soundplayer.o:: soundplayer.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/wavetoraw.o:: wavetoraw.cc  
+	$(RHIDE_COMPILE_CC)
+

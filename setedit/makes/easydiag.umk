@@ -1,0 +1,110 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+libeasyd.a:: \
+	obj/lablchek.o \
+	obj/lablradi.o \
+	obj/snostate.o \
+	obj/tcheck2.o \
+	obj/tmiclust.o \
+	obj/tsbutton.o \
+	obj/tschkarr.o \
+	obj/tschkbox.o \
+	obj/tshscrol.o \
+	obj/tshzgrp.o \
+	obj/tsinplin.o \
+	obj/tsinplpi.o \
+	obj/tslabel.o \
+	obj/tslider.o \
+	obj/tslistbo.o \
+	obj/tsradbot.o \
+	obj/tssortlb.o \
+	obj/tssosslb.o \
+	obj/tstatext.o \
+	obj/tstextsc.o \
+	obj/tstsorlb.o \
+	obj/tsvegrp.o \
+	obj/tsview.o \
+	obj/tsviewco.o \
+	obj/ttextscr.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_ARCHIVE)
+
+obj/lablchek.o:: lablchek.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/lablradi.o:: lablradi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/snostate.o:: snostate.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tcheck2.o:: tcheck2.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tmiclust.o:: tmiclust.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsbutton.o:: tsbutton.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tschkarr.o:: tschkarr.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tschkbox.o:: tschkbox.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tshscrol.o:: tshscrol.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tshzgrp.o:: tshzgrp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsinplin.o:: tsinplin.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsinplpi.o:: tsinplpi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tslabel.o:: tslabel.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tslider.o:: tslider.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tslistbo.o:: tslistbo.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsradbot.o:: tsradbot.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tssortlb.o:: tssortlb.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tssosslb.o:: tssosslb.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tstatext.o:: tstatext.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tstextsc.o:: tstextsc.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tstsorlb.o:: tstsorlb.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsvegrp.o:: tsvegrp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsview.o:: tsview.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsviewco.o:: tsviewco.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ttextscr.o:: ttextscr.cc  
+	$(RHIDE_COMPILE_CC)
+

@@ -1,0 +1,631 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+editor.exe:: \
+	obj/accehtml.o \
+	obj/advice.o \
+	obj/ampdiag.o \
+	obj/intermp3.o \
+	obj/mp3list.o \
+	obj/mp3play.o \
+	obj/ascii.o \
+	obj/boardmix.o \
+	obj/bufun.o \
+	obj/calcu.o \
+	obj/calendar.o \
+	obj/ceditor.o \
+	obj/codepage.o \
+	obj/completi.o \
+	obj/deedidia.o \
+	obj/doedidia.o \
+	obj/dskascii.o \
+	obj/dskcalen.o \
+	obj/dskclip.o \
+	obj/dskclose.o \
+	obj/dskedito.o \
+	obj/dskhelp.o \
+	obj/dskman.o \
+	obj/dskmessa.o \
+	obj/dskmp3.o \
+	obj/dskwin.o \
+	obj/dstfile.o \
+	obj/dumpfile.o \
+	libeasyd.a \
+	obj/edcolor.o \
+	obj/edconst.o \
+	obj/edfonts.o \
+	obj/editdiag.o \
+	obj/editmain.o \
+	obj/editmenu.o \
+	obj/editorfo.o \
+	obj/editpale.o \
+	obj/editwind.o \
+	obj/edkeys.o \
+	obj/edmsg.o \
+	obj/edprefs.o \
+	obj/edprint.o \
+	obj/edprj.o \
+	obj/edspecs.o \
+	obj/djmdr.o \
+	obj/dyncat.o \
+	obj/memmove.o \
+	obj/mixer.o \
+	obj/mixersb.o \
+	obj/mixoss.o \
+	obj/stackdbg.o \
+	obj/strncpyz.o \
+	obj/strndup.o \
+	obj/fstrcmp.o \
+	obj/getctxhl.o \
+	obj/gzfiles.o \
+	obj/holidays.o \
+	obj/inf.o \
+	obj/infbase.o \
+	obj/manview.o \
+	obj/nhiscoll.o \
+	obj/ninfview.o \
+	obj/ninfwind.o \
+	obj/nmanwind.o \
+	obj/sinf.o \
+	obj/sman.o \
+	obj/intgrep.o \
+	obj/keytrans.o \
+	librhuti.a \
+	obj/linelen.o \
+	obj/loadcle.o \
+	obj/loaddefl.o \
+	obj/loadfunc.o \
+	obj/loadnobkp.o \
+	obj/loadshl.o \
+	obj/loadusew.o \
+	obj/macrocom.o \
+	obj/menuload.o \
+	obj/mli.o \
+	obj/mliasimp.o \
+	obj/mlicsdg.o \
+	obj/mliediti.o \
+	obj/mliedito.o \
+	obj/mlisdg.o \
+	obj/msignal.o \
+	obj/nceditor.o \
+	obj/ndskwasc.o \
+	obj/ndskwcal.o \
+	obj/ndskwcli.o \
+	obj/ndskwclo.o \
+	obj/ndskwedi.o \
+	obj/ndskwhel.o \
+	obj/ndskwman.o \
+	obj/ndskwmes.o \
+	obj/ndskwmp3.o \
+	obj/ndskwprj.o \
+	obj/neditwin.o \
+	obj/nfileedi.o \
+	obj/nsindica.o \
+	obj/ntedcol.o \
+	obj/parser.o \
+	obj/pathlist.o \
+	obj/pathtool.o \
+	obj/pclipper.o \
+	obj/pmacros.o \
+	obj/pperl.o \
+	obj/pphp.o \
+	obj/pvarious.o \
+	obj/runprog.o \
+	obj/sceditor.o \
+	obj/scresave.o \
+	obj/sdginter.o \
+	obj/sdskasci.o \
+	obj/sdskcale.o \
+	obj/sdskclip.o \
+	obj/sdskclos.o \
+	obj/sdskedit.o \
+	obj/sdskhelp.o \
+	obj/sdskman.o \
+	obj/sdskmess.o \
+	obj/sdskmp3.o \
+	obj/sdskprj.o \
+	obj/search.o \
+	obj/sedcolle.o \
+	libsettv.a \
+	obj/slpinter.o \
+	obj/splinman.o \
+	obj/ssindica.o \
+	obj/ssyntax.o \
+	obj/tags.o \
+	obj/tedcolle.o \
+	obj/tips.o \
+	obj/tpaltext.o \
+	obj/tsindica.o \
+	obj/txhgen.o \
+	obj/winlistd.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+obj/accehtml.o:: accehtml.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/advice.o:: advice.cc  
+	$(RHIDE_COMPILE_CC)
+
+include amp3.imk
+
+obj/ascii.o:: ascii.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/boardmix.o:: boardmix.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/bufun.o:: bufun.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/calcu.o:: calcu.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/calendar.o:: calendar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ceditor.o:: ceditor.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/codepage.o:: codepage.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/completi.o:: completi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/deedidia.o:: deedidia.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/doedidia.o:: doedidia.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskascii.o:: dskascii.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskcalen.o:: dskcalen.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskclip.o:: dskclip.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskclose.o:: dskclose.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskedito.o:: dskedito.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskhelp.o:: dskhelp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskman.o:: dskman.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskmessa.o:: dskmessa.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskmp3.o:: dskmp3.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dskwin.o:: dskwin.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dstfile.o:: dstfile.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/dumpfile.o:: dumpfile.cc  
+	$(RHIDE_COMPILE_CC)
+
+include easydiag.imk
+
+obj/edcolor.o:: edcolor.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edconst.o:: edconst.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edfonts.o:: edfonts.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editdiag.o:: editdiag.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editmain.o:: editmain.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editmenu.o:: editmenu.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editorfo.o:: editorfo.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editpale.o:: editpale.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/editwind.o:: editwind.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edkeys.o:: edkeys.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edmsg.o:: edmsg.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edprefs.o:: edprefs.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edprint.o:: edprint.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edprj.o:: edprj.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/edspecs.o:: edspecs.cc  
+	$(RHIDE_COMPILE_CC)
+
+include extra.imk
+
+obj/fstrcmp.o:: fstrcmp.c  
+	$(RHIDE_COMPILE_C)
+
+obj/getctxhl.o:: getctxhl.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/gzfiles.o:: gzfiles.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/holidays.o:: holidays.cc  
+	$(RHIDE_COMPILE_CC)
+
+include inffd.imk
+
+obj/intgrep.o:: intgrep.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/keytrans.o:: keytrans.cc  
+	$(RHIDE_COMPILE_CC)
+
+include librhuti.imk
+
+obj/linelen.o:: linelen.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loadcle.o:: loadcle.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loaddefl.o:: loaddefl.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loadfunc.o:: loadfunc.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loadnobkp.o:: loadnobkp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loadshl.o:: loadshl.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/loadusew.o:: loadusew.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/macrocom.o:: macrocom.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/menuload.o:: menuload.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mli.o:: mli.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mliasimp.o:: mliasimp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mlicsdg.o:: mlicsdg.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mliediti.o:: mliediti.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mliedito.o:: mliedito.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/mlisdg.o:: mlisdg.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/msignal.o:: msignal.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nceditor.o:: nceditor.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwasc.o:: ndskwasc.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwcal.o:: ndskwcal.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwcli.o:: ndskwcli.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwclo.o:: ndskwclo.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwedi.o:: ndskwedi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwhel.o:: ndskwhel.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwman.o:: ndskwman.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwmes.o:: ndskwmes.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwmp3.o:: ndskwmp3.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ndskwprj.o:: ndskwprj.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/neditwin.o:: neditwin.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nfileedi.o:: nfileedi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nsindica.o:: nsindica.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ntedcol.o:: ntedcol.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/parser.o:: parser.c  
+	$(RHIDE_COMPILE_C)
+
+obj/pathlist.o:: pathlist.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pathtool.o:: pathtool.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pclipper.o:: pclipper.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pmacros.o:: pmacros.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pperl.o:: pperl.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pphp.o:: pphp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pvarious.o:: pvarious.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/runprog.o:: runprog.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sceditor.o:: sceditor.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/scresave.o:: scresave.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdginter.o:: sdginter.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskasci.o:: sdskasci.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskcale.o:: sdskcale.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskclip.o:: sdskclip.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskclos.o:: sdskclos.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskedit.o:: sdskedit.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskhelp.o:: sdskhelp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskman.o:: sdskman.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskmess.o:: sdskmess.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskmp3.o:: sdskmp3.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sdskprj.o:: sdskprj.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/search.o:: search.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/sedcolle.o:: sedcolle.cc  
+	$(RHIDE_COMPILE_CC)
+
+include settv.imk
+
+obj/slpinter.o:: slpinter.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/splinman.o:: splinman.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ssindica.o:: ssindica.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ssyntax.o:: ssyntax.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tags.o:: tags.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tedcolle.o:: tedcolle.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tips.o:: tips.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tpaltext.o:: tpaltext.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tsindica.o:: tsindica.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/txhgen.o:: txhgen.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/winlistd.o:: winlistd.cc  
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=\
+	obj/accehtml.o \
+	obj/advice.o \
+	obj/ampdiag.o \
+	obj/intermp3.o \
+	obj/mp3list.o \
+	obj/mp3play.o \
+	obj/ascii.o \
+	obj/boardmix.o \
+	obj/bufun.o \
+	obj/calcu.o \
+	obj/calendar.o \
+	obj/ceditor.o \
+	obj/codepage.o \
+	obj/completi.o \
+	obj/deedidia.o \
+	obj/doedidia.o \
+	obj/dskascii.o \
+	obj/dskcalen.o \
+	obj/dskclip.o \
+	obj/dskclose.o \
+	obj/dskedito.o \
+	obj/dskhelp.o \
+	obj/dskman.o \
+	obj/dskmessa.o \
+	obj/dskmp3.o \
+	obj/dskwin.o \
+	obj/dstfile.o \
+	obj/dumpfile.o \
+	obj/edcolor.o \
+	obj/edconst.o \
+	obj/edfonts.o \
+	obj/editdiag.o \
+	obj/editmain.o \
+	obj/editmenu.o \
+	obj/editorfo.o \
+	obj/editpale.o \
+	obj/editwind.o \
+	obj/edkeys.o \
+	obj/edmsg.o \
+	obj/edprefs.o \
+	obj/edprint.o \
+	obj/edprj.o \
+	obj/edspecs.o \
+	obj/djmdr.o \
+	obj/dyncat.o \
+	obj/memmove.o \
+	obj/mixer.o \
+	obj/mixersb.o \
+	obj/mixoss.o \
+	obj/stackdbg.o \
+	obj/strncpyz.o \
+	obj/strndup.o \
+	obj/fstrcmp.o \
+	obj/getctxhl.o \
+	obj/gzfiles.o \
+	obj/holidays.o \
+	obj/inf.o \
+	obj/infbase.o \
+	obj/manview.o \
+	obj/nhiscoll.o \
+	obj/ninfview.o \
+	obj/ninfwind.o \
+	obj/nmanwind.o \
+	obj/sinf.o \
+	obj/sman.o \
+	obj/intgrep.o \
+	obj/keytrans.o \
+	obj/linelen.o \
+	obj/loadcle.o \
+	obj/loaddefl.o \
+	obj/loadfunc.o \
+	obj/loadnobkp.o \
+	obj/loadshl.o \
+	obj/loadusew.o \
+	obj/macrocom.o \
+	obj/menuload.o \
+	obj/mli.o \
+	obj/mliasimp.o \
+	obj/mlicsdg.o \
+	obj/mliediti.o \
+	obj/mliedito.o \
+	obj/mlisdg.o \
+	obj/msignal.o \
+	obj/nceditor.o \
+	obj/ndskwasc.o \
+	obj/ndskwcal.o \
+	obj/ndskwcli.o \
+	obj/ndskwclo.o \
+	obj/ndskwedi.o \
+	obj/ndskwhel.o \
+	obj/ndskwman.o \
+	obj/ndskwmes.o \
+	obj/ndskwmp3.o \
+	obj/ndskwprj.o \
+	obj/neditwin.o \
+	obj/nfileedi.o \
+	obj/nsindica.o \
+	obj/ntedcol.o \
+	obj/parser.o \
+	obj/pathlist.o \
+	obj/pathtool.o \
+	obj/pclipper.o \
+	obj/pmacros.o \
+	obj/pperl.o \
+	obj/pphp.o \
+	obj/pvarious.o \
+	obj/runprog.o \
+	obj/sceditor.o \
+	obj/scresave.o \
+	obj/sdginter.o \
+	obj/sdskasci.o \
+	obj/sdskcale.o \
+	obj/sdskclip.o \
+	obj/sdskclos.o \
+	obj/sdskedit.o \
+	obj/sdskhelp.o \
+	obj/sdskman.o \
+	obj/sdskmess.o \
+	obj/sdskmp3.o \
+	obj/sdskprj.o \
+	obj/search.o \
+	obj/sedcolle.o \
+	obj/slpinter.o \
+	obj/splinman.o \
+	obj/ssindica.o \
+	obj/ssyntax.o \
+	obj/tags.o \
+	obj/tedcolle.o \
+	obj/tips.o \
+	obj/tpaltext.o \
+	obj/tsindica.o \
+	obj/txhgen.o \
+	obj/winlistd.o 
+
+LIBRARIES=\
+	libeasyd.a \
+	librhuti.a \
+	libsettv.a 
+

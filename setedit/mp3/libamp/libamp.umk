@@ -1,0 +1,70 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+../../makes/djgpp/libamp.a:: \
+	obj/audioalg.o \
+	obj/audiolib.o \
+	obj/dump.o \
+	obj/formats.o \
+	obj/getbits.o \
+	obj/getdata.o \
+	obj/guicontr.o \
+	obj/huffman.o \
+	obj/layer2.o \
+	obj/layer3.o \
+	obj/misc2.o \
+	obj/position.o \
+	obj/rtbuf.o \
+	obj/transfor.o \
+	obj/util.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_ARCHIVE)
+
+obj/audioalg.o:: audioalg.c  
+	$(RHIDE_COMPILE_C)
+
+obj/audiolib.o:: audiolib.c  
+	$(RHIDE_COMPILE_C)
+
+obj/dump.o:: dump.c  
+	$(RHIDE_COMPILE_C)
+
+obj/formats.o:: formats.c  
+	$(RHIDE_COMPILE_C)
+
+obj/getbits.o:: getbits.c  
+	$(RHIDE_COMPILE_C)
+
+obj/getdata.o:: getdata.c  
+	$(RHIDE_COMPILE_C)
+
+obj/guicontr.o:: guicontr.c  
+	$(RHIDE_COMPILE_C)
+
+obj/huffman.o:: huffman.c  
+	$(RHIDE_COMPILE_C)
+
+obj/layer2.o:: layer2.c  
+	$(RHIDE_COMPILE_C)
+
+obj/layer3.o:: layer3.c  
+	$(RHIDE_COMPILE_C)
+
+obj/misc2.o:: misc2.c  
+	$(RHIDE_COMPILE_C)
+
+obj/position.o:: position.c  
+	$(RHIDE_COMPILE_C)
+
+obj/rtbuf.o:: rtbuf.c  
+	$(RHIDE_COMPILE_C)
+
+obj/transfor.o:: transfor.c  
+	$(RHIDE_COMPILE_C)
+
+obj/util.o:: util.c  
+	$(RHIDE_COMPILE_C)
+

@@ -1,0 +1,32 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+obj/djmdr.o:: djmdr.s  
+	$(RHIDE_COMPILE_ASM_FORCE)
+
+obj/dyncat.o:: dyncat.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/memmove.o:: memmove.s  
+	$(RHIDE_COMPILE_ASM_FORCE)
+
+obj/mixer.o:: mixer.c  
+	$(RHIDE_COMPILE_C)
+
+obj/mixersb.o:: mixersb.c  
+	$(RHIDE_COMPILE_C)
+
+obj/mixoss.o:: mixoss.c  
+	$(RHIDE_COMPILE_C)
+
+obj/stackdbg.o:: stackdbg.c  
+	$(RHIDE_COMPILE_C)
+
+obj/strncpyz.o:: strncpyz.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/strndup.o:: strndup.cc  
+	$(RHIDE_COMPILE_CC)
+

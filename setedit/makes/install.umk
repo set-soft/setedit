@@ -1,0 +1,58 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+../install/install.exe:: \
+	obj/datafile.o \
+	libeasyd.a \
+	obj/install.o \
+	obj/nostatex.o \
+	obj/nprogbar.o \
+	obj/nprogres.o \
+	obj/tprogbar.o \
+	obj/tprogdia.o \
+	obj/tprogres.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+obj/datafile.o:: datafile.c  
+	$(RHIDE_COMPILE_C)
+
+include easydiag.imk
+
+obj/install.o:: install.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nostatex.o:: nostatex.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nprogbar.o:: nprogbar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/nprogres.o:: nprogres.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogbar.o:: tprogbar.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogdia.o:: tprogdia.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/tprogres.o:: tprogres.cc  
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=\
+	obj/datafile.o \
+	obj/install.o \
+	obj/nostatex.o \
+	obj/nprogbar.o \
+	obj/nprogres.o \
+	obj/tprogbar.o \
+	obj/tprogdia.o \
+	obj/tprogres.o 
+
+LIBRARIES=\
+	libeasyd.a 
+

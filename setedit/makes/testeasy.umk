@@ -1,0 +1,25 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+test.exe:: \
+	libeasyd.a \
+	libsettv.a \
+	obj/test.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+include easydiag.imk
+
+obj/test.o:: test.cc  
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=\
+	obj/test.o 
+
+LIBRARIES=\
+	libeasyd.a \
+	libsettv.a 
+

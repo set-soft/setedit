@@ -1,0 +1,106 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+infview.exe:: \
+	objinf/dyncat.o \
+	libeasyd.a \
+	objinf/fstrcmp.o \
+	objinf/gzfiles.o \
+	objinf/inf.o \
+	objinf/infbase.o \
+	objinf/infdummy.o \
+	objinf/infmain.o \
+	objinf/infmenu.o \
+	librhuti.a \
+	objinf/manview.o \
+	objinf/nhiscoll.o \
+	objinf/ninfview.o \
+	objinf/ninfwind.o \
+	objinf/nmanwind.o \
+	libsettv.a \
+	objinf/sinf.o \
+	objinf/sman.o \
+	objinf/strncpyz.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+objinf/dyncat.o:: dyncat.cc  
+	$(RHIDE_COMPILE_CC)
+
+include easydiag.imk
+
+objinf/fstrcmp.o:: fstrcmp.c  
+	$(RHIDE_COMPILE_C)
+
+objinf/gzfiles.o:: gzfiles.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/inf.o:: inf.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/infbase.o:: infbase.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/infdummy.o:: infdummy.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/infmain.o:: infmain.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/infmenu.o:: infmenu.cc  
+	$(RHIDE_COMPILE_CC)
+
+include librhuti.imk
+
+objinf/manview.o:: manview.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/nhiscoll.o:: nhiscoll.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/ninfview.o:: ninfview.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/ninfwind.o:: ninfwind.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/nmanwind.o:: nmanwind.cc  
+	$(RHIDE_COMPILE_CC)
+
+include settv.imk
+
+objinf/sinf.o:: sinf.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/sman.o:: sman.cc  
+	$(RHIDE_COMPILE_CC)
+
+objinf/strncpyz.o:: strncpyz.cc  
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=\
+	objinf/dyncat.o \
+	objinf/fstrcmp.o \
+	objinf/gzfiles.o \
+	objinf/inf.o \
+	objinf/infbase.o \
+	objinf/infdummy.o \
+	objinf/infmain.o \
+	objinf/infmenu.o \
+	objinf/manview.o \
+	objinf/nhiscoll.o \
+	objinf/ninfview.o \
+	objinf/ninfwind.o \
+	objinf/nmanwind.o \
+	objinf/sinf.o \
+	objinf/sman.o \
+	objinf/strncpyz.o 
+
+LIBRARIES=\
+	libeasyd.a \
+	librhuti.a \
+	libsettv.a 
+

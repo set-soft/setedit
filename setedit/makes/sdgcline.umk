@@ -1,0 +1,91 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+# 2003-05-23 15:40
+#
+
+sdg.exe:: \
+	objsdg/bufun2.o \
+	obj/djmdr.o \
+	obj/dyncat.o \
+	obj/memmove.o \
+	obj/mixer.o \
+	obj/mixersb.o \
+	obj/mixoss.o \
+	obj/stackdbg.o \
+	obj/strncpyz.o \
+	obj/strndup.o \
+	librhuti.a \
+	objsdg/mli.o \
+	objsdg/mliasimp.o \
+	objsdg/mlicsdg.o \
+	objsdg/mlisdg.o \
+	objsdg/ntnocast.o \
+	objsdg/setstack.o \
+	objsdg/stnocast.o \
+	objsdg/tnocastc.o \
+	objsdg/txhgen.o \
+	objsdg/txhmain.o \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+objsdg/bufun2.o:: bufun2.cc  
+	$(RHIDE_COMPILE_CC)
+
+include extra.imk
+
+objsdg/mli.o:: mli.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mliasimp.o:: mliasimp.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mlicsdg.o:: mlicsdg.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mlisdg.o:: mlisdg.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/ntnocast.o:: ntnocast.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/setstack.o:: setstack.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/stnocast.o:: stnocast.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/tnocastc.o:: tnocastc.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/txhgen.o:: txhgen.cc  
+	$(RHIDE_COMPILE_CC)
+
+objsdg/txhmain.o:: txhmain.cc  
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=\
+	objsdg/bufun2.o \
+	obj/djmdr.o \
+	obj/dyncat.o \
+	obj/memmove.o \
+	obj/mixer.o \
+	obj/mixersb.o \
+	obj/mixoss.o \
+	obj/stackdbg.o \
+	obj/strncpyz.o \
+	obj/strndup.o \
+	objsdg/mli.o \
+	objsdg/mliasimp.o \
+	objsdg/mlicsdg.o \
+	objsdg/mlisdg.o \
+	objsdg/ntnocast.o \
+	objsdg/setstack.o \
+	objsdg/stnocast.o \
+	objsdg/tnocastc.o \
+	objsdg/txhgen.o \
+	objsdg/txhmain.o 
+
+LIBRARIES=\
+	librhuti.a 
+
