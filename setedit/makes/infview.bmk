@@ -44,11 +44,15 @@ RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
 
 all: infview.exe
 
+!ifndef MKF_EXT
+MKF_EXT=.bmk
+!endif
+
 #
 # Common rules used by RHIDE.
 # It also includes rhide.env.
 #
-!include common.bmk
+!include common$(MKF_EXT)
 
 #
 # All the RHIDE data should come from here.

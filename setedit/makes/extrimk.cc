@@ -15,6 +15,7 @@ project.
 #include <limits.h>
 #include <unistd.h>
 #include <time.h>
+#include <ctype.h>
 
 #define ONE_DEP_BY_LINE 1
 
@@ -132,6 +133,8 @@ int PrConvertExt(FILE *d, const char *file)
     l+=fprintf(d,".c");
  else if (strcmp(s,".cc")==0)
     l+=fprintf(d,".cc");
+ else if (strcmp(s,".cpp")==0)
+    l+=fprintf(d,".cpp");
  else
    {
     fprintf(stderr,"Unknown extension: '%s'\n",s);
@@ -444,6 +447,8 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
  if (strcmp(ext,"c")==0)
     fputs("\t$(RHIDE_COMPILE_C)",d);
  else if (strcmp(ext,"cc")==0)
+    fputs("\t$(RHIDE_COMPILE_CC)",d);
+ else if (strcmp(ext,"cpp")==0)
     fputs("\t$(RHIDE_COMPILE_CC)",d);
  else if (strcmp(ext,"s")==0)
     fputs("\t$(RHIDE_COMPILE_ASM_FORCE)",d);
@@ -839,6 +844,11 @@ void SetUpCurDir()
 
 int main(int argc, char *argv[])
 {
+ if (argc!=2)
+   {
+    printf("Usage: %s file.mak\n",argv[0]);
+    return 1;
+   }
  stMak mak;
  memset(&mak,0,sizeof(mak));
  SetUpCurDir();
