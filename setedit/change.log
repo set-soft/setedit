@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.558  2004/08/02 12:50:45  set
+* Added: Watchpoints!!!! now we can easily hunt wild writes ;-)
+* Modified: The breakpoints are moved only if the target changed its time
+stamp.
+* Added: i18n to the debug dialogs.
+* Fixed: i18n of the project window title.
+* Updated: Spanish translation.
+
 Revision 1.557  2004/08/02 12:44:28  set
 * Fixed: When going step by step and the "match pair on the fly" was
 enabled the code to restore the highlighted pairs did a mess with the

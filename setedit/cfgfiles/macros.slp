@@ -1,4 +1,4 @@
-; Copyright 1996-2003 by Salvador E. Tropea [SET],
+; Copyright 1996-2004 by Salvador E. Tropea [SET],
 ; see copyrigh file for details
 ;
 ;;;
@@ -462,3 +462,13 @@
           )
 )
 
+; CommentIndent uses the current syntax highlight to get the comment string
+; (e.g.: "//" for C++, "#" for Perl, etc.). If the current file has no syntax
+; highlight, it does nothing. In that case, you have to call ArbitraryIndent
+; and provide the comment string yourself. This macro makes this automatic.
+
+(defmacro 'CommentIndent'
+    (if (== (GetSyntaxLang) '' )    (SendCommands cmcArbitraryIndent)
+                                    (SendCommands cmcCommentIndent)
+    )
+)
