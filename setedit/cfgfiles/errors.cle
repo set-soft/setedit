@@ -114,3 +114,16 @@ Line=2
 Description=3
 End
 
+#
+# Perl
+# Contributed by Thiago F.G. Albuquerque
+#
+# Messages format:
+# <error> at <filename> line <lineno>
+#
+Name=Perl
+Pattern=at (.+) line (\d+)
+File=1
+Line=2
+End
+
