@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-08-18 16:40-0300\n"
+"PO-Revision-Date: 2004-08-23 12:56-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,40 +14,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
 #. EN: E
-#: ../calcu/calcu.cc:83 ../setedit/debug.cc:5643 ../setedit/debug.cc:7366
+#: ../calcu/calcu.cc:83 ../setedit/debug.cc:5698 ../setedit/debug.cc:7424
 msgid "~E~xpression"
 msgstr "~E~xpresión"
 
-#: ../calcu/calcu.cc:89 ../setedit/debug.cc:1498
+#: ../calcu/calcu.cc:89 ../setedit/debug.cc:1533
 msgid "~R~esult"
 msgstr "~R~esultado"
 
-#: ../calcu/calcu.cc:93 ../setedit/debug.cc:1503
+#: ../calcu/calcu.cc:93 ../setedit/debug.cc:1538
 msgid "E~v~al"
 msgstr "E~v~aluar"
 
 #. ok->view->growMode=gfGrowAll;
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
-#: ../infview/inf.cc:2341 ../infview/inf.cc:2364 ../infview/inf.cc:2389
-#: ../infview/inf.cc:2413 ../infview/inf.cc:2468 ../infview/infmain.cc:385
+#: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
+#: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
 #: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:753
 #: ../mainsrc/deedidia.cc:132 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:269 ../mainsrc/deedidia.cc:321
 #: ../mainsrc/deedidia.cc:340 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1467 ../mainsrc/tags.cc:1695
-#: ../setedit/debug.cc:1505 ../setedit/edprefs.cc:472
+#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1475 ../mainsrc/tags.cc:1703
+#: ../setedit/debug.cc:1540 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
 #: ../setedit/winlistd.cc:143 ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Cancela"
 
-#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1506 ../setedit/editmenu.cc:78
+#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1541 ../setedit/editmenu.cc:78
 #: ../setedit/editmenu.cc:108
 msgid "~C~opy"
 msgstr "~C~opiar"
 
-#: ../calcu/calcu.cc:102 ../setedit/debug.cc:1507 ../setedit/editmenu.cc:79
+#: ../calcu/calcu.cc:102 ../setedit/debug.cc:1542 ../setedit/editmenu.cc:79
 #: ../setedit/editmenu.cc:109
 msgid "~P~aste"
 msgstr "~P~egar"
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:268 ../mainsrc/deedidia.cc:320
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
-#: ../mainsrc/tags.cc:1489 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1497 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -92,152 +92,152 @@ msgstr "InfView - Archivo: %s - Nodo: %s"
 msgid "Error copying to clipboard: %s"
 msgstr "Error al copiar al portapapeles: %s"
 
-#: ../infview/inf.cc:1612
+#: ../infview/inf.cc:1635
 msgid "Open Info"
 msgstr "Abrir Info"
 
-#: ../infview/inf.cc:1823
+#: ../infview/inf.cc:1846
 msgid "Please wait"
 msgstr "Por favor espere"
 
-#: ../infview/inf.cc:1823
+#: ../infview/inf.cc:1846
 msgid "Searching ..."
 msgstr "Buscando ..."
 
-#: ../infview/inf.cc:1941
+#: ../infview/inf.cc:1964
 msgid "Sorry can't find the string"
 msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 
-#: ../infview/inf.cc:2274
+#: ../infview/inf.cc:2297
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
-#: ../infview/inf.cc:2277 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:119
+#: ../infview/inf.cc:2300 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "P~r~óxima"
 
-#: ../infview/inf.cc:2280 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:120
+#: ../infview/inf.cc:2303 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~A~nterior"
 
-#: ../infview/inf.cc:2283
+#: ../infview/inf.cc:2306
 msgid "~U~p"
 msgstr "~A~rriba"
 
-#: ../infview/inf.cc:2286
+#: ../infview/inf.cc:2309
 msgid "Prev. ~H~ist."
 msgstr "Ant. en ~H~ist."
 
-#: ../infview/inf.cc:2289
+#: ../infview/inf.cc:2312
 msgid "Nodes ~L~ist"
 msgstr "~L~ista de temas"
 
-#: ../infview/inf.cc:2292 ../infview/infmenu.cc:58
+#: ../infview/inf.cc:2315 ../infview/infmenu.cc:58
 msgid "~B~ookmarks"
 msgstr "~M~arcadores"
 
-#: ../infview/inf.cc:2295 ../infview/infmenu.cc:56
+#: ../infview/inf.cc:2318 ../infview/infmenu.cc:56
 msgid "~C~onfiguration"
 msgstr "~C~onfiguración"
 
-#: ../infview/inf.cc:2298
+#: ../infview/inf.cc:2321
 msgid "~O~pen Info"
 msgstr "~A~brir Info"
 
-#: ../infview/inf.cc:2301
+#: ../infview/inf.cc:2324
 msgid "H~i~de"
 msgstr "Ocu~l~tar"
 
-#: ../infview/inf.cc:2308
+#: ../infview/inf.cc:2331
 msgid "Hi~s~tory"
 msgstr "Hi~s~toria"
 
-#: ../infview/inf.cc:2318
+#: ../infview/inf.cc:2341
 msgid "Inf Find"
 msgstr "Búsqueda en Infos"
 
 #. All together
-#: ../infview/inf.cc:2325 ../mainsrc/deedidia.cc:118
+#: ../infview/inf.cc:2348 ../mainsrc/deedidia.cc:118
 #: ../mainsrc/deedidia.cc:153
 msgid "~T~ext to find"
 msgstr "Texto a ~b~uscar"
 
-#: ../infview/inf.cc:2330 ../mainsrc/deedidia.cc:121
+#: ../infview/inf.cc:2353 ../mainsrc/deedidia.cc:121
 #: ../mainsrc/deedidia.cc:160 ../mainsrc/ssyntax.cc:479
 msgid "~C~ase sensitive"
 msgstr "Mayús~c~ulas y min."
 
-#: ../infview/inf.cc:2331 ../mainsrc/deedidia.cc:122
+#: ../infview/inf.cc:2354 ../mainsrc/deedidia.cc:122
 #: ../mainsrc/deedidia.cc:160
 msgid "~W~hole words only"
 msgstr "~P~alabras completas"
 
-#: ../infview/inf.cc:2334
+#: ../infview/inf.cc:2357
 msgid "In current ~t~opic"
 msgstr "En el ~i~tem actual"
 
-#: ../infview/inf.cc:2335
+#: ../infview/inf.cc:2358
 msgid "In the ~f~ile"
 msgstr "En todo el ~a~rchivo"
 
-#: ../infview/inf.cc:2336
+#: ../infview/inf.cc:2359
 msgid "In ~a~ll files"
 msgstr "En ~t~odos los archivos"
 
-#: ../infview/inf.cc:2339 ../infview/inf.cc:2362 ../infview/inf.cc:2385
-#: ../infview/inf.cc:2411 ../setedit/editdiag.cc:88 ../setedit/editdiag.cc:180
+#: ../infview/inf.cc:2362 ../infview/inf.cc:2385 ../infview/inf.cc:2408
+#: ../infview/inf.cc:2434 ../setedit/editdiag.cc:88 ../setedit/editdiag.cc:180
 #: ../setedit/editpale.cc:165 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~k"
 
-#: ../infview/inf.cc:2350
+#: ../infview/inf.cc:2373
 msgid "Go To"
 msgstr "Ir a"
 
-#: ../infview/inf.cc:2357
+#: ../infview/inf.cc:2380
 msgid "~N~ame of Node"
 msgstr "~N~ombre del Nodo"
 
 #. Make it growable
-#: ../infview/inf.cc:2376
+#: ../infview/inf.cc:2399
 msgid "Tag Table"
 msgstr "Lista de temas"
 
-#: ../infview/inf.cc:2383
+#: ../infview/inf.cc:2406
 msgid "~N~odes"
 msgstr "~N~odos"
 
-#: ../infview/inf.cc:2403
+#: ../infview/inf.cc:2426
 msgid "InfView Configuration"
 msgstr "Configuración de InfView"
 
-#: ../infview/inf.cc:2408
+#: ../infview/inf.cc:2431
 msgid "Hide '*~N~ote' word"
 msgstr "Ocultar la palabra '*~N~ode'"
 
-#: ../infview/inf.cc:2409
+#: ../infview/inf.cc:2432
 msgid "Hide real ~l~ink name"
 msgstr "Ocultar los nombres de los ~l~inks"
 
-#: ../infview/inf.cc:2452
+#: ../infview/inf.cc:2475
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
-#: ../infview/inf.cc:2460 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:163
+#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:163
 msgid "~A~dd"
 msgstr "~A~gregar"
 
-#: ../infview/inf.cc:2464 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4112
-#: ../setedit/debug.cc:4720 ../setedit/winlistd.cc:140
+#: ../infview/inf.cc:2487 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4182
+#: ../setedit/debug.cc:4789 ../setedit/winlistd.cc:140
 #: ../settvuti/tdiagaid.cc:165
 msgid "~D~elete"
 msgstr "~B~orrar"
 
-#: ../infview/inf.cc:2471
+#: ../infview/inf.cc:2494
 msgid "~G~o to"
 msgstr "I~r~ a"
 
-#: ../infview/inf.cc:2483
+#: ../infview/inf.cc:2506
 msgid "~M~arks"
 msgstr "~M~arcas"
 
@@ -470,8 +470,8 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1754 ../setedit/debug.cc:4109
-#: ../setedit/debug.cc:4717 ../setedit/editmenu.cc:70
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1762 ../setedit/debug.cc:4179
+#: ../setedit/debug.cc:4786 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~S~alir"
 
@@ -2063,8 +2063,8 @@ msgstr "Acción"
 msgid "~D~isable"
 msgstr "~D~eshabilitar"
 
-#: ../mainsrc/loaddefl.cc:264 ../setedit/debug.cc:4113
-#: ../setedit/debug.cc:4721
+#: ../mainsrc/loaddefl.cc:264 ../setedit/debug.cc:4183
+#: ../setedit/debug.cc:4790
 msgid "~E~nable"
 msgstr "~H~abilitar"
 
@@ -2082,8 +2082,8 @@ msgstr "Valor:"
 msgid "Associated string"
 msgstr "String asociado"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1324
-#: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:372
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1332
+#: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "¿Desea descartar los cambios?"
 
@@ -2140,7 +2140,7 @@ msgstr ""
 "¡Error! por favor ejecute el editor desde un directorio válido\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:8337 ../setedit/loadcle.cc:97
+#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:8403 ../setedit/loadcle.cc:97
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -2339,142 +2339,142 @@ msgid "Wrong format for tags file!"
 msgstr "Formato incorrecto para el archivo de TAGs."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:948
+#: ../mainsrc/tags.cc:956
 msgid "I can try to generate a tag file, go ahead?"
 msgstr "Puedo intentar generar un archivo de TAGS ¿lo hago?"
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:957
+#: ../mainsrc/tags.cc:965
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 "Instale Exuberant Ctags, puede obtenerlo en http://ctags.sourceforge.net"
 
-#: ../mainsrc/tags.cc:1305
+#: ../mainsrc/tags.cc:1313
 msgid "This file is automatically maintained"
 msgstr "Este archivo es mantenido automaticamente"
 
-#: ../mainsrc/tags.cc:1334
+#: ../mainsrc/tags.cc:1342
 msgid "Select tags file"
 msgstr "Seleccione el archivo de TAGs"
 
-#: ../mainsrc/tags.cc:1350
+#: ../mainsrc/tags.cc:1358
 msgid "Use relative path for the file?"
 msgstr "¿Desea usar un camino (path) relativo?"
 
-#: ../mainsrc/tags.cc:1371
+#: ../mainsrc/tags.cc:1379
 msgid "Variables"
 msgstr "Variables"
 
-#: ../mainsrc/tags.cc:1387
+#: ../mainsrc/tags.cc:1395
 msgid "Tag files"
 msgstr "Archivos de TAGs"
 
-#: ../mainsrc/tags.cc:1489
+#: ../mainsrc/tags.cc:1497
 msgid "Jump to symbol"
 msgstr "Saltar a un símbolo"
 
-#: ../mainsrc/tags.cc:1489
+#: ../mainsrc/tags.cc:1497
 msgid "List of symbols"
 msgstr "Lista de símbolos"
 
-#: ../mainsrc/tags.cc:1490
+#: ../mainsrc/tags.cc:1498
 msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
-#: ../mainsrc/tags.cc:1522
+#: ../mainsrc/tags.cc:1530
 msgid "Unknown line"
 msgstr "Línea desconocida"
 
-#: ../mainsrc/tags.cc:1567 ../mainsrc/tags.cc:1768 ../mainsrc/tags.cc:1784
+#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1776 ../mainsrc/tags.cc:1792
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1567 ../mainsrc/tags.cc:1694 ../mainsrc/tags.cc:1768
-#: ../mainsrc/tags.cc:1784
+#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1702 ../mainsrc/tags.cc:1776
+#: ../mainsrc/tags.cc:1792
 msgid "~J~ump"
 msgstr "~S~altar"
 
-#: ../mainsrc/tags.cc:1576
+#: ../mainsrc/tags.cc:1584
 msgid "Sorry, couldn't find any member"
 msgstr "Lo lamento, no puedo hallar ningún miembro"
 
-#: ../mainsrc/tags.cc:1581
+#: ../mainsrc/tags.cc:1589
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1678
+#: ../mainsrc/tags.cc:1686
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1689
+#: ../mainsrc/tags.cc:1697
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1693
+#: ../mainsrc/tags.cc:1701
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1732
+#: ../mainsrc/tags.cc:1740
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1734
+#: ../mainsrc/tags.cc:1742
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1739
+#: ../mainsrc/tags.cc:1747
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1741
+#: ../mainsrc/tags.cc:1749
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1750
+#: ../mainsrc/tags.cc:1758
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1751
+#: ../mainsrc/tags.cc:1759
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1752
+#: ../mainsrc/tags.cc:1760
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1753
+#: ../mainsrc/tags.cc:1761
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1785
+#: ../mainsrc/tags.cc:1793
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1885
+#: ../mainsrc/tags.cc:1893
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:2013
+#: ../mainsrc/tags.cc:2021
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:2018
+#: ../mainsrc/tags.cc:2026
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:2020
+#: ../mainsrc/tags.cc:2028
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:2020
+#: ../mainsrc/tags.cc:2028
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:2021
+#: ../mainsrc/tags.cc:2029
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:2035
+#: ../mainsrc/tags.cc:2043
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"
@@ -2637,8 +2637,8 @@ msgid "Return value:"
 msgstr "Valor retornado:"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1313 ../setedit/debug.cc:1692
-#: ../setedit/debug.cc:7010 ../setedit/debug.cc:8327
+#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1349 ../setedit/debug.cc:1727
+#: ../setedit/debug.cc:7070 ../setedit/debug.cc:8393
 msgid "unknown"
 msgstr "desconocido"
 
@@ -2931,79 +2931,79 @@ msgstr "Do Lu Ma Mi Ju Vi Sa"
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../setedit/debug.cc:264 ../setedit/debug.cc:8328
+#: ../setedit/debug.cc:293 ../setedit/debug.cc:8394
 msgid "Ok"
 msgstr "Todo bien"
 
-#: ../setedit/debug.cc:265
+#: ../setedit/debug.cc:294
 msgid "Can't update"
 msgstr "No puede actualizarse"
 
-#: ../setedit/debug.cc:266
+#: ../setedit/debug.cc:295
 msgid "Out of scope"
 msgstr "Fuera de ámbito"
 
-#: ../setedit/debug.cc:469
+#: ../setedit/debug.cc:508
 #, c-format
 msgid "Do you want to provide the path for: '%s'."
 msgstr "¿Desea indicar el directorio para: '%s'?"
 
 #. Bring a dialog to select it
-#: ../setedit/debug.cc:482
+#: ../setedit/debug.cc:521
 msgid "Source file"
 msgstr "Fuente"
 
 #. Failed to stat or not regular file
-#: ../setedit/debug.cc:487
+#: ../setedit/debug.cc:526
 #, c-format
 msgid "Can't use: '%s'."
 msgstr "No puedo usar: '%s'."
 
-#: ../setedit/debug.cc:497
+#: ../setedit/debug.cc:536
 #, c-format
 msgid "Add path to list: '%s'?"
 msgstr "¿Lo agrego a la lista de directorios? (%s)"
 
-#: ../setedit/debug.cc:648 ../setedit/debug.cc:688
+#: ../setedit/debug.cc:687 ../setedit/debug.cc:727
 msgid "The program is running and GDB/MI doesn't support async commands"
 msgstr ""
 "El programa se esta ejecutanfo y GDB/MI no soporta comandos asincrónicos"
 
-#: ../setedit/debug.cc:715
+#: ../setedit/debug.cc:754
 msgid "Time out in gdb response. Continue waiting?"
 msgstr "El tiempo de respuesta de gdb es excesivo ¿Sigo esperando?"
 
-#: ../setedit/debug.cc:772
+#: ../setedit/debug.cc:813
 msgid "PID (Process ID) of the running process"
 msgstr "PID (ID de proceso) del proceso a depurar"
 
 #. EN: P
-#: ../setedit/debug.cc:775
+#: ../setedit/debug.cc:816
 msgid "~P~ID:"
 msgstr "~P~ID:"
 
 #. We don't even know what to debug ;-)
-#: ../setedit/debug.cc:835
+#: ../setedit/debug.cc:876
 msgid "You must set the debug options first. Do you want to do it now?"
 msgstr "Debe indicar las opciones de depuración. ¿Desea hacerlo ahora?"
 
 #. Don't even try if the program doesn't exist
-#: ../setedit/debug.cc:850
+#: ../setedit/debug.cc:891
 #, c-format
 msgid "The '%s' file doesn't exist"
 msgstr "El archivo '%s' no existe"
 
-#: ../setedit/debug.cc:877
+#: ../setedit/debug.cc:918
 msgid "Hey! That's my PID!"
 msgstr "¡Epa! este es mi PID"
 
-#: ../setedit/debug.cc:885
+#: ../setedit/debug.cc:926
 #, c-format
 msgid "Attached to PID %d"
 msgstr "Conectado con el PID %d"
 
 #. Don't even try if nothing to try ;-)
-#: ../setedit/debug.cc:894
+#: ../setedit/debug.cc:935
 msgid ""
 "Please fill both 'Remote target options'. Try extended-remote for the type "
 "and IP:PORT for location."
@@ -3011,46 +3011,46 @@ msgstr ""
 "Por favor rellene las dos 'Opciones del objetivo remoto'. Pruebe con "
 "extended-remote para el tipo y IP:PUERTO para el destino."
 
-#: ../setedit/debug.cc:904
+#: ../setedit/debug.cc:945
 #, c-format
 msgid "At the '%s' machine run: 'gdbserver :%s program args...'"
 msgstr "En la máquina '%s' ejecute: 'gdbserver :%s programa params...'"
 
-#: ../setedit/debug.cc:910
+#: ../setedit/debug.cc:951
 msgid "Run gdbserver at the remote machine"
 msgstr "Ejecute gdbserver en la máquina remota"
 
-#: ../setedit/debug.cc:1314 ../setedit/debug.cc:1694
+#: ../setedit/debug.cc:1350 ../setedit/debug.cc:1729
 #, c-format
 msgid "%d: %s:%s:%d addr %p"
 msgstr "%d: %s:%s:%d dir. %p"
 
-#: ../setedit/debug.cc:1402
+#: ../setedit/debug.cc:1437
 msgid "Evaluate and Modify"
 msgstr "Evaluar y modificar"
 
 #. All together
-#: ../setedit/debug.cc:1497 ../setedit/debug.cc:4451
+#: ../setedit/debug.cc:1532 ../setedit/debug.cc:4518
 msgid "~E~xpression (escape \" characters: \\\")"
 msgstr "~E~xpresión (use \\\" para las \")"
 
-#: ../setedit/debug.cc:1499
+#: ../setedit/debug.cc:1534
 msgid "~N~ew value"
 msgstr "~N~uevo valor"
 
-#: ../setedit/debug.cc:1504
+#: ../setedit/debug.cc:1539
 msgid "C~h~ange"
 msgstr "C~a~mbiar"
 
-#: ../setedit/debug.cc:1508
+#: ../setedit/debug.cc:1543
 msgid "~I~nspect"
 msgstr "~I~nspeccionar"
 
-#: ../setedit/debug.cc:1543
+#: ../setedit/debug.cc:1578
 msgid "Nothing to inspect, please provide an expression"
 msgstr "Por favor indique una expresión a inspeccionar"
 
-#: ../setedit/debug.cc:1602
+#: ../setedit/debug.cc:1637
 msgid ""
 "Please confirm you really want to finish the debug session. Breakpoints and "
 "other things will be lost."
@@ -3058,715 +3058,717 @@ msgstr ""
 "Por favor confirme que realmente desea terminar la sesión. Los breakpoints y "
 "cosas similares se perderán."
 
-#: ../setedit/debug.cc:1604
+#: ../setedit/debug.cc:1639
 msgid "A debug session is active. Do you want to stop it?"
 msgstr "Una sesión de depuración sigue activa. ¿Desea detenerla?"
 
-#: ../setedit/debug.cc:1627
+#: ../setedit/debug.cc:1662
 msgid "It will kill the program you are debugging. Go ahead?"
 msgstr "Esto 'matará' el programa que está depurando. ¿Lo hago?"
 
-#: ../setedit/debug.cc:1715
+#: ../setedit/debug.cc:1750
 msgid "No threads to select"
 msgstr "No hay hilos para seleccionar"
 
-#: ../setedit/debug.cc:1724
+#: ../setedit/debug.cc:1759
 msgid "Inconsistent info from gdb"
 msgstr "Información inconsistente desde gdb"
 
 #. Create a dialog to select them
-#: ../setedit/debug.cc:1735
+#: ../setedit/debug.cc:1770
 msgid "Select Thread"
 msgstr "Seleccionar Hilo"
 
-#: ../setedit/debug.cc:1743
+#: ../setedit/debug.cc:1778
 msgid "ID"
 msgstr "ID"
 
-#: ../setedit/debug.cc:1844
+#: ../setedit/debug.cc:1878
 msgid "Code"
 msgstr "Código"
 
-#: ../setedit/debug.cc:2156
+#: ../setedit/debug.cc:2187
 msgid "Disassembler Window"
 msgstr "Ventana del Desensamblador"
 
-#: ../setedit/debug.cc:2235
+#: ../setedit/debug.cc:2278
 #, fuzzy
 msgid "Modify register"
 msgstr "Modificar breakpoint"
 
-#: ../setedit/debug.cc:2307
+#: ../setedit/debug.cc:2346
 #, fuzzy, c-format
 msgid "   Disassembler [%p-%p]"
 msgstr "Ventana del Desensamblador"
 
-#: ../setedit/debug.cc:2791
+#: ../setedit/debug.cc:2843
 msgid "Modify variable"
 msgstr "Modificar variable"
 
-#: ../setedit/debug.cc:2947 ../setedit/debug.cc:2951
+#: ../setedit/debug.cc:2999 ../setedit/debug.cc:3003
 msgid "Format"
 msgstr "Formato"
 
-#: ../setedit/debug.cc:2952
+#: ../setedit/debug.cc:3004
 msgid "~N~atural"
 msgstr "~N~atural"
 
-#: ../setedit/debug.cc:2953
+#: ../setedit/debug.cc:3005
 msgid "~B~inary"
 msgstr "~B~inario"
 
-#: ../setedit/debug.cc:2954
+#: ../setedit/debug.cc:3006
 msgid "~D~ecimal"
 msgstr "~D~ecimal"
 
-#: ../setedit/debug.cc:2955
+#: ../setedit/debug.cc:3007
 msgid "~H~exadecimal"
 msgstr "~H~exadecimal"
 
-#: ../setedit/debug.cc:2956
+#: ../setedit/debug.cc:3008
 msgid "~O~ctal"
 msgstr "~O~ctal"
 
-#: ../setedit/debug.cc:3054 ../setedit/debug.cc:3091
+#: ../setedit/debug.cc:3106 ../setedit/debug.cc:3143
 msgid "Inspector"
 msgstr "Inspector"
 
-#: ../setedit/debug.cc:3171
+#: ../setedit/debug.cc:3223
 #, c-format
 msgid "   Inspector %s"
 msgstr "   Inspector %s"
 
-#: ../setedit/debug.cc:3248
+#: ../setedit/debug.cc:3304
 msgid "Inspect variable"
 msgstr "Inspeccionar variable"
 
-#: ../setedit/debug.cc:3346
+#: ../setedit/debug.cc:3402
 msgid "None"
 msgstr "Ninguna"
 
-#: ../setedit/debug.cc:3531
+#: ../setedit/debug.cc:3598
 #, c-format
 msgid "%d breakpoints failed to apply, they are disabled now."
 msgstr "No pudieron aplicarse %d breakpoints, fueron deshabilitados."
 
 #. EN: CDEFHILNOSTUW
 #. ES: ABCDFHILORSUV
-#: ../setedit/debug.cc:3700
+#: ../setedit/debug.cc:3766
 msgid "Type"
 msgstr "Tipo"
 
-#: ../setedit/debug.cc:3701
+#: ../setedit/debug.cc:3767
 msgid "File/L~i~ne"
 msgstr "~A~rchivo/Línea"
 
-#: ../setedit/debug.cc:3702
+#: ../setedit/debug.cc:3768
 msgid "Fu~n~ction"
 msgstr "~F~unción"
 
-#: ../setedit/debug.cc:3703
+#: ../setedit/debug.cc:3769
 msgid "File/Functi~o~n"
 msgstr "A~r~chivo/Función"
 
-#: ../setedit/debug.cc:3704
+#: ../setedit/debug.cc:3770
 msgid "~A~ddress"
 msgstr "~D~irección"
 
 #. Same width
-#: ../setedit/debug.cc:3706
+#: ../setedit/debug.cc:3772
 msgid " ~F~ilename"
 msgstr "  Arc~h~ivo"
 
 #. Same width
-#: ../setedit/debug.cc:3709
+#: ../setedit/debug.cc:3775
 msgid " F~u~nction"
 msgstr "  F~u~nción"
 
 #. Same width
-#: ../setedit/debug.cc:3712
+#: ../setedit/debug.cc:3778
 msgid "     ~L~ine"
 msgstr "    ~L~ínea"
 
 #. Same width
-#: ../setedit/debug.cc:3715
+#: ../setedit/debug.cc:3781
 msgid "  Addre~s~s"
 msgstr "D~i~rección"
 
 #. Same width
-#: ../setedit/debug.cc:3718
+#: ../setedit/debug.cc:3784
 msgid "Con~d~ition"
 msgstr "~C~ondición"
 
 #. Same width
-#: ../setedit/debug.cc:3721
+#: ../setedit/debug.cc:3787
 msgid "    Coun~t~"
 msgstr "    ~V~eces"
 
-#: ../setedit/debug.cc:3723
+#: ../setedit/debug.cc:3789
 msgid "   T~h~read"
 msgstr "     Hil~o~"
 
-#: ../setedit/debug.cc:3726 ../setedit/debug.cc:4457
+#: ../setedit/debug.cc:3792 ../setedit/debug.cc:4524
 msgid "~E~nabled"
 msgstr "Ha~b~ilitado"
 
-#: ../setedit/debug.cc:3727
+#: ../setedit/debug.cc:3793
 msgid "Hard~w~are assisted"
 msgstr "A~s~istido por hardware"
 
-#: ../setedit/debug.cc:3755
+#: ../setedit/debug.cc:3819
+msgid "Sorry, you can't perform this operation right now"
+msgstr ""
+
+#: ../setedit/debug.cc:3827
 #, c-format
 msgid "Error: %s (%d) [%s]"
 msgstr "Error: %s (%d) [%s]"
 
-#: ../setedit/debug.cc:3757 ../setedit/debug.cc:6915
+#: ../setedit/debug.cc:3829 ../setedit/debug.cc:6975
 #, c-format
 msgid "Error: %s (%d)"
 msgstr "Error: %s (%d)"
 
-#. Just in case
-#: ../setedit/debug.cc:3855
+#: ../setedit/debug.cc:3925
 msgid "Modify breakpoint"
 msgstr "Modificar breakpoint"
 
-#: ../setedit/debug.cc:3894
+#: ../setedit/debug.cc:3964
 msgid "Add breakpoint"
 msgstr "Agregar breakpoint"
 
-#: ../setedit/debug.cc:4064
+#: ../setedit/debug.cc:4134
 msgid "Breakpoints"
 msgstr "Breakpoints"
 
 #. The following is quite annoying because we construct the format from its
 #. parts.
 #. Keep 1 char
-#: ../setedit/debug.cc:4086
+#: ../setedit/debug.cc:4156
 msgid "E"
 msgstr "H"
 
-#: ../setedit/debug.cc:4087
+#: ../setedit/debug.cc:4157
 msgid "Where"
 msgstr "Donde"
 
-#: ../setedit/debug.cc:4088
+#: ../setedit/debug.cc:4158
 msgid "Condition"
 msgstr "Condición"
 
 #. Keep 5 chars
-#: ../setedit/debug.cc:4090
+#: ../setedit/debug.cc:4160
 msgid "Count"
 msgstr "Veces"
 
 #. Keep 5 chars
-#: ../setedit/debug.cc:4092
+#: ../setedit/debug.cc:4162
 msgid "Thre."
 msgstr "Hilo"
 
-#: ../setedit/debug.cc:4110 ../setedit/debug.cc:4718
+#: ../setedit/debug.cc:4180 ../setedit/debug.cc:4787
 msgid "~M~odify"
 msgstr "~M~odificar"
 
-#: ../setedit/debug.cc:4111 ../setedit/debug.cc:4719 ../setedit/editmenu.cc:63
+#: ../setedit/debug.cc:4181 ../setedit/debug.cc:4788 ../setedit/editmenu.cc:63
 msgid "~N~ew"
 msgstr "~N~uevo"
 
-#: ../setedit/debug.cc:4114 ../setedit/debug.cc:4722
+#: ../setedit/debug.cc:4184 ../setedit/debug.cc:4791
 msgid "D~i~sable"
 msgstr "~D~eshabilitar"
 
-#: ../setedit/debug.cc:4115
+#: ../setedit/debug.cc:4185
 msgid "~S~how"
 msgstr "~I~r a"
 
-#: ../setedit/debug.cc:4321
+#: ../setedit/debug.cc:4389
 #, c-format
 msgid "%d watchpoints failed to apply, they are disabled now."
 msgstr "No pudieron aplicarse %d watchpoints, fueron deshabilitados."
 
-#: ../setedit/debug.cc:4453
+#: ../setedit/debug.cc:4520
 msgid "~T~ype"
 msgstr "~T~ipo"
 
-#: ../setedit/debug.cc:4454
+#: ../setedit/debug.cc:4521
 msgid "~W~rite"
 msgstr "E~s~critura"
 
-#: ../setedit/debug.cc:4455
+#: ../setedit/debug.cc:4522
 msgid "~R~ead"
 msgstr "~L~ectura"
 
-#: ../setedit/debug.cc:4456
+#: ../setedit/debug.cc:4523
 msgid "~A~ccess (read or write)"
 msgstr "~A~cceso (lectura o escritura)"
 
-#. Just in case
-#: ../setedit/debug.cc:4500
+#: ../setedit/debug.cc:4565
 msgid "Modify watchpoint"
 msgstr "Modificar watchpoint"
 
-#: ../setedit/debug.cc:4541
+#: ../setedit/debug.cc:4606
 msgid "Add watchpoint"
 msgstr "Agregar watchpoint"
 
-#: ../setedit/debug.cc:4695
+#: ../setedit/debug.cc:4764
 msgid "Watchpoints"
 msgstr "Watchpoints"
 
 # End of header
-#: ../setedit/debug.cc:4711
+#: ../setedit/debug.cc:4780
 msgid " E R/W Expression"
 msgstr " H L/E Expresión"
 
-#: ../setedit/debug.cc:4901
+#: ../setedit/debug.cc:4966
 msgid "Unaccessable memory address specified"
 msgstr "Dirección de memoria inaccesible"
 
-#: ../setedit/debug.cc:4924
+#: ../setedit/debug.cc:4989
 msgid "Error in expression, an integer is needed"
 msgstr "Error en la expresión, debe ser un entero"
 
-#: ../setedit/debug.cc:5640
+#: ../setedit/debug.cc:5695
 msgid "~N~ew Value"
 msgstr "~N~uevo Valor"
 
-#: ../setedit/debug.cc:5641
+#: ../setedit/debug.cc:5696
 msgid "~F~rom"
 msgstr "~D~esde"
 
-#: ../setedit/debug.cc:5642
+#: ../setedit/debug.cc:5697
 msgid "~T~o"
 msgstr "~H~asta"
 
-#: ../setedit/debug.cc:5644
+#: ../setedit/debug.cc:5699
 msgid "~L~ength"
 msgstr "~L~argo"
 
-#: ../setedit/debug.cc:5645
+#: ../setedit/debug.cc:5700
 msgid "~V~alue"
 msgstr "~V~alor"
 
-#: ../setedit/debug.cc:5712
+#: ../setedit/debug.cc:5767
 msgid "Write block to file"
 msgstr "Guardar bloque en un archivo"
 
-#: ../setedit/debug.cc:5712
+#: ../setedit/debug.cc:5767
 msgid "Read block from file"
 msgstr "Leer desde bloque desde un archivo"
 
-#: ../setedit/debug.cc:5926
+#: ../setedit/debug.cc:5981
 msgid "Base Address"
 msgstr "Dirección base"
 
 #. goto to a new address
-#: ../setedit/debug.cc:5953 ../setedit/debug.cc:6145
+#: ../setedit/debug.cc:6008 ../setedit/debug.cc:6200
 msgid "Data window"
 msgstr "Ventana de Datos"
 
-#: ../setedit/debug.cc:5968
+#: ../setedit/debug.cc:6023
 msgid "Fill Block"
 msgstr "Rellenar Bloque"
 
-#: ../setedit/debug.cc:5974
+#: ../setedit/debug.cc:6029
 msgid "Clear Block"
 msgstr "Borrar Bloque"
 
-#: ../setedit/debug.cc:5980
+#: ../setedit/debug.cc:6035
 msgid "Move Block"
 msgstr "Mover Bloque"
 
-#: ../setedit/debug.cc:5995
+#: ../setedit/debug.cc:6050
 msgid "Read Block"
 msgstr "Leer Bloque"
 
-#: ../setedit/debug.cc:5999
+#: ../setedit/debug.cc:6054
 #, c-format
 msgid "%u bytes read."
 msgstr "%u bytes leidos."
 
-#: ../setedit/debug.cc:6010
+#: ../setedit/debug.cc:6065
 msgid "Write Block"
 msgstr "Escribir Bloque"
 
-#: ../setedit/debug.cc:6018
+#: ../setedit/debug.cc:6073
 #, c-format
 msgid "%u bytes written."
 msgstr "%u bytes escritos."
 
-#: ../setedit/debug.cc:6173
+#: ../setedit/debug.cc:6228
 msgid ""
 "Only implemented for IA32 (i386), please help to implement for your platform"
 msgstr ""
 "Sólo implementado para IA32 (i386), por favor ayude a soportarlo para su "
 "plataforma"
 
-#: ../setedit/debug.cc:6272
+#: ../setedit/debug.cc:6327
 #, c-format
 msgid "   Data Window %s"
 msgstr "   Ventana de Datos %s"
 
-#: ../setedit/debug.cc:6595
+#: ../setedit/debug.cc:6656
 #, c-format
 msgid "   Debugger Window [%s]"
 msgstr "   Ventana del depurador [%s]"
 
-#: ../setedit/debug.cc:6695
+#: ../setedit/debug.cc:6755
 msgid "Send command to gdb"
 msgstr "Enviar un comando al gdb"
 
 #. EN: C
-#: ../setedit/debug.cc:6698
+#: ../setedit/debug.cc:6758
 msgid "~C~ommand, be careful!"
 msgstr "~C~omando a enviar ¡Tenga cuidado!"
 
-#: ../setedit/debug.cc:6736
+#: ../setedit/debug.cc:6796
 msgid "Debugger Window"
 msgstr "Ventana del Depurador"
 
-#: ../setedit/debug.cc:6829
+#: ../setedit/debug.cc:6889
 msgid "Disconnected"
 msgstr "Desconectado"
 
-#: ../setedit/debug.cc:6832
+#: ../setedit/debug.cc:6892
 msgid "Connected"
 msgstr "Conectado"
 
-#: ../setedit/debug.cc:6835
+#: ../setedit/debug.cc:6895
 msgid "Ready to Run"
 msgstr "Listo para Ejecutar"
 
-#: ../setedit/debug.cc:6838
+#: ../setedit/debug.cc:6898
 msgid "Running"
 msgstr "Ejecutando"
 
-#: ../setedit/debug.cc:6841
+#: ../setedit/debug.cc:6901
 msgid "Stopped"
 msgstr "Detenido"
 
-#: ../setedit/debug.cc:6846
+#: ../setedit/debug.cc:6906
 msgid "Not started"
 msgstr "No inicializado"
 
-#: ../setedit/debug.cc:6946
+#: ../setedit/debug.cc:7006
 msgid "default"
 msgstr "por defecto"
 
-#: ../setedit/debug.cc:6947
+#: ../setedit/debug.cc:7007
 #, c-format
 msgid "Mode: %s (%s) [%s]"
 msgstr "Modo: %s (%s) [%s]"
 
-#: ../setedit/debug.cc:6953
+#: ../setedit/debug.cc:7013
 #, c-format
 msgid "Mode: Remote (%s) [%s]"
 msgstr "Modo: Remoto (%s) [%s]"
 
-#: ../setedit/debug.cc:7002
+#: ../setedit/debug.cc:7062
 #, c-format
 msgid "Reason stopped: %s"
 msgstr "Detenido por: %s"
 
-#: ../setedit/debug.cc:7006
+#: ../setedit/debug.cc:7066
 msgid "Returned immediatly"
 msgstr "Retornó inmediatamente"
 
-#: ../setedit/debug.cc:7153
+#: ../setedit/debug.cc:7212
 #, c-format
 msgid "%s: Not yet in debugger"
 msgstr "%s: Aún no pasado al depurador"
 
-#: ../setedit/debug.cc:7172
+#: ../setedit/debug.cc:7231
 msgid "Wait until the process is stopped to delete this watch"
 msgstr "Espere a que el proceso se detenga para eliminar este visor"
 
-#: ../setedit/debug.cc:7194
+#: ../setedit/debug.cc:7253
 msgid "Error deleting variable"
 msgstr "Error eliminando una variable."
 
-#: ../setedit/debug.cc:7298
+#: ../setedit/debug.cc:7357
 #, c-format
 msgid "   Watches Window (%d watches)"
 msgstr "   Ventana de Visores (%d visores)"
 
-#: ../setedit/debug.cc:7391
+#: ../setedit/debug.cc:7449
 msgid "Add to watch list"
 msgstr "Agregar a la lista de visores"
 
-#: ../setedit/debug.cc:7425
+#: ../setedit/debug.cc:7483
 msgid "Change the expression to watch"
 msgstr "Cambiar la expresión de un visor"
 
-#: ../setedit/debug.cc:7475
+#: ../setedit/debug.cc:7533
 msgid "Watches"
 msgstr "Visores"
 
-#: ../setedit/debug.cc:7672
+#: ../setedit/debug.cc:7730
 #, fuzzy
 msgid "Choose file"
 msgstr "Elegir un nodo"
 
-#: ../setedit/debug.cc:7684
+#: ../setedit/debug.cc:7742
 #, fuzzy
 msgid "Browse"
 msgstr "~R~ecorrer"
 
-#: ../setedit/debug.cc:7725
+#: ../setedit/debug.cc:7783
 msgid "Debug Options"
 msgstr "Opciones de Depuración"
 
 #. All together
-#: ../setedit/debug.cc:7731
+#: ../setedit/debug.cc:7789
 msgid "~P~rogram to debug, with debug info"
 msgstr "~P~rograma a depurar (con info. de depuración)"
 
-#: ../setedit/debug.cc:7733
+#: ../setedit/debug.cc:7791
 msgid "~M~ode"
 msgstr "~M~odo"
 
-#: ../setedit/debug.cc:7734
+#: ../setedit/debug.cc:7792
 msgid "Local with ~e~xecutable"
 msgstr "Local con un ~e~jecutable"
 
-#: ../setedit/debug.cc:7735
+#: ../setedit/debug.cc:7793
 msgid "Local with r~u~nning process"
 msgstr "Local ~u~sando un proceso en ejecución"
 
-#: ../setedit/debug.cc:7736
+#: ../setedit/debug.cc:7794
 msgid "Remote (g~d~bserver/stub)"
 msgstr "Remoto (g~d~bserver/stub)"
 
-#: ../setedit/debug.cc:7737
+#: ../setedit/debug.cc:7795
 msgid "Local target options"
 msgstr "Opciones del objetivo local"
 
-#: ../setedit/debug.cc:7738
+#: ../setedit/debug.cc:7796
 msgid "Program ~a~rguments, not for remote mode"
 msgstr "P~a~rámetros del programa, no para el modo remoto"
 
-#: ../setedit/debug.cc:7740
+#: ../setedit/debug.cc:7798
 msgid "Forced ~t~erminal, leave blank for auto"
 msgstr "Forzar la ~t~erminal, deje en blanco para no forzarla"
 
-#: ../setedit/debug.cc:7742
+#: ../setedit/debug.cc:7800
 msgid "Remote target options"
 msgstr "Opciones para el objetivo remoto"
 
-#: ../setedit/debug.cc:7743
+#: ../setedit/debug.cc:7801
 msgid "Remote p~r~otocol type"
 msgstr "Tipo de p~r~otocolo remoto"
 
-#: ../setedit/debug.cc:7745
+#: ../setedit/debug.cc:7803
 msgid "Remote ~l~ocation"
 msgstr "Dest~i~no remoto"
 
-#: ../setedit/debug.cc:7763
+#: ../setedit/debug.cc:7821
 msgid "Your program compiled with -g"
 msgstr "Su programa compilado con -g"
 
-#: ../setedit/debug.cc:7789
+#: ../setedit/debug.cc:7847
 msgid "Advanced Debug Options"
 msgstr "Opciones Avanzadas de Depuración"
 
 #. All together
-#: ../setedit/debug.cc:7795
+#: ../setedit/debug.cc:7853
 msgid "~G~DB executable"
 msgstr "Ejecutable del ~g~db"
 
-#: ../setedit/debug.cc:7796
+#: ../setedit/debug.cc:7854
 msgid "~X~ terminal executable"
 msgstr "Ejecutable de la terminal ~X~"
 
-#: ../setedit/debug.cc:7797
+#: ../setedit/debug.cc:7855
 msgid "~M~ain function"
 msgstr "Función ~m~ain"
 
-#: ../setedit/debug.cc:7800
+#: ../setedit/debug.cc:7858
 msgid "GDB ~T~ime out [s]"
 msgstr "~T~ime out GDB [s]"
 
-#: ../setedit/debug.cc:7801
+#: ../setedit/debug.cc:7859
 msgid "Max. ~l~ines in Debug window"
 msgstr "Max. ~l~íneas vent. de Dep."
 
-#: ../setedit/debug.cc:7802
+#: ../setedit/debug.cc:7860
 msgid "M~i~scellaneous"
 msgstr "Opciones var~i~as"
 
-#: ../setedit/debug.cc:7803
+#: ../setedit/debug.cc:7861
 msgid "No gdb ~b~anner after connecting"
 msgstr "No mostrar la versión de gd~b~ al inicio"
 
-#: ../setedit/debug.cc:7804
+#: ../setedit/debug.cc:7862
 msgid "Enable MI v2 ~f~eatures"
 msgstr "H~a~bilitar MI v2"
 
-#: ../setedit/debug.cc:7805
+#: ../setedit/debug.cc:7863
 msgid "No ~s~ymbols bug workaround"
 msgstr "No evitar el bug de carga de ~s~ímbolos"
 
-#: ../setedit/debug.cc:7806
+#: ../setedit/debug.cc:7864
 msgid "No source ~c~ode in disasm. window"
 msgstr "No mostrar el ~f~uente en la vent. del des."
 
-#: ../setedit/debug.cc:7878
+#: ../setedit/debug.cc:7936
 msgid "Messages"
 msgstr "Mensajes"
 
 #. EN: ACDFLT
 #. ES: CDELRT
-#: ../setedit/debug.cc:7882
+#: ../setedit/debug.cc:7940
 msgid "~D~isplay messages related to"
 msgstr "Mostrar mensajes relaciona~d~os con"
 
-#: ../setedit/debug.cc:7883
+#: ../setedit/debug.cc:7941
 msgid "GDB ~c~onsole (CLI)"
 msgstr "La ~c~onsola de gdb (CLI)"
 
-#: ../setedit/debug.cc:7884
+#: ../setedit/debug.cc:7942
 msgid "T~a~rget (not really implemented in gdb)"
 msgstr "El obje~t~ivo (no implementado en gdb)"
 
-#: ../setedit/debug.cc:7885
+#: ../setedit/debug.cc:7943
 msgid "~L~og (gdb internal messages)"
 msgstr "~L~og (mensajes internos del gdb)"
 
-#: ../setedit/debug.cc:7886
+#: ../setedit/debug.cc:7944
 msgid "GDB/MI commands sent ~t~o gdb"
 msgstr "Comandos GDB/MI ~e~nviados a gdb"
 
-#: ../setedit/debug.cc:7887
+#: ../setedit/debug.cc:7945
 msgid "GDB/MI responses ~f~rom gdb"
 msgstr "Respuestas GDB/MI ~r~ecibidos desde gdb"
 
-#: ../setedit/debug.cc:7927
+#: ../setedit/debug.cc:7985
 msgid "Clean elements"
 msgstr "Borrar elementos"
 
-#: ../setedit/debug.cc:7931
+#: ../setedit/debug.cc:7989
 msgid "Elements"
 msgstr "Elementos"
 
-#: ../setedit/debug.cc:7932
+#: ../setedit/debug.cc:7990
 msgid "~B~reakpoints"
 msgstr "~B~reakpoints"
 
-#: ../setedit/debug.cc:7933
+#: ../setedit/debug.cc:7991
 msgid "~W~atchpoints"
 msgstr "~W~atchpoints"
 
-#: ../setedit/debug.cc:7934
+#: ../setedit/debug.cc:7992
 msgid "W~a~tches"
 msgstr "~V~isores"
 
-#: ../setedit/debug.cc:7935
+#: ../setedit/debug.cc:7993
 msgid "~I~nspectors"
 msgstr "~I~nspectores"
 
-#: ../setedit/debug.cc:7936
+#: ../setedit/debug.cc:7994
 msgid "~D~ata windows"
 msgstr "V~e~ntanas de Datos"
 
-#: ../setedit/debug.cc:8309
+#: ../setedit/debug.cc:8375
 msgid "Hit a breakpoint"
 msgstr "Breakpoint"
 
-#: ../setedit/debug.cc:8310
+#: ../setedit/debug.cc:8376
 msgid "Write watchpoint"
 msgstr "Escritura a un watchpoint"
 
-#: ../setedit/debug.cc:8311
+#: ../setedit/debug.cc:8377
 msgid "Read watchpoint"
 msgstr "Lectura de un watchpoint"
 
-#: ../setedit/debug.cc:8312
+#: ../setedit/debug.cc:8378
 msgid "Access watchpoint"
 msgstr "Acceso a un watchpoint"
 
-#: ../setedit/debug.cc:8313
+#: ../setedit/debug.cc:8379
 msgid "Watchpoint out of scope"
 msgstr "Watchpoint fuera de ámbito"
 
-#: ../setedit/debug.cc:8314
+#: ../setedit/debug.cc:8380
 msgid "Function finished"
 msgstr "Fin de la función"
 
-#: ../setedit/debug.cc:8315
+#: ../setedit/debug.cc:8381
 msgid "Location reached"
 msgstr "Llegó al punto indicado"
 
-#: ../setedit/debug.cc:8316
+#: ../setedit/debug.cc:8382
 msgid "End of stepping"
 msgstr "Fin de avance paso a paso"
 
-#: ../setedit/debug.cc:8317
+#: ../setedit/debug.cc:8383
 msgid "Exited signalled"
 msgstr "Finalizó por una señal (signal)"
 
-#: ../setedit/debug.cc:8318
+#: ../setedit/debug.cc:8384
 msgid "Exited with error"
 msgstr "Finalizó con error"
 
-#: ../setedit/debug.cc:8319
+#: ../setedit/debug.cc:8385
 msgid "Exited normally"
 msgstr "Finalizó normalmente"
 
-#: ../setedit/debug.cc:8320
+#: ../setedit/debug.cc:8386
 msgid "Signal received"
 msgstr "Recibió una señal (signal)"
 
-#: ../setedit/debug.cc:8321
+#: ../setedit/debug.cc:8387
 msgid "Unknown (temp bkp?)"
 msgstr "Desconocida (¿bkp temporal?)"
 
-#: ../setedit/debug.cc:8322
+#: ../setedit/debug.cc:8388
 msgid "natural"
 msgstr "natural"
 
-#: ../setedit/debug.cc:8323
+#: ../setedit/debug.cc:8389
 msgid "binary"
 msgstr "binario"
 
-#: ../setedit/debug.cc:8324
+#: ../setedit/debug.cc:8390
 msgid "decimal"
 msgstr "decimal"
 
-#: ../setedit/debug.cc:8325
+#: ../setedit/debug.cc:8391
 msgid "hexadecimal"
 msgstr "hexadecimal"
 
-#: ../setedit/debug.cc:8326
+#: ../setedit/debug.cc:8392
 msgid "octal"
 msgstr "octal"
 
-#: ../setedit/debug.cc:8329
+#: ../setedit/debug.cc:8395
 msgid "Out of memory"
 msgstr "No hay memoria suficiente"
 
-#: ../setedit/debug.cc:8330
+#: ../setedit/debug.cc:8396
 msgid "Pipe creation"
 msgstr "Creación de un pipe"
 
-#: ../setedit/debug.cc:8331
+#: ../setedit/debug.cc:8397
 msgid "Fork failed"
 msgstr "Fallo en fork"
 
-#: ../setedit/debug.cc:8332
+#: ../setedit/debug.cc:8398
 msgid "GDB not running"
 msgstr "GDB no activo"
 
-#: ../setedit/debug.cc:8333
+#: ../setedit/debug.cc:8399
 msgid "Parser failed"
 msgstr "Fallo en el parser"
 
-#: ../setedit/debug.cc:8334
+#: ../setedit/debug.cc:8400
 msgid "Unknown asyn response"
 msgstr "Respuesta asincrónica desconocida"
 
-#: ../setedit/debug.cc:8335
+#: ../setedit/debug.cc:8401
 msgid "Unknown result response"
 msgstr "Respuesta de resultado desconocida"
 
-#: ../setedit/debug.cc:8336
+#: ../setedit/debug.cc:8402
 msgid "Error from gdb"
 msgstr "Error desde el gdb"
 
@@ -5825,64 +5827,64 @@ msgstr "Salida es un programa ~1~"
 msgid "~C~ancel"
 msgstr "~C~ancela"
 
-#: ../setedit/edprj.cc:420
+#: ../setedit/edprj.cc:421
 msgid "File already in project"
 msgstr "El archivo ya está en el proyecto"
 
-#: ../setedit/edprj.cc:522
+#: ../setedit/edprj.cc:526
 msgid "Add File"
 msgstr "Agregar Archivo"
 
-#: ../setedit/edprj.cc:632 ../setedit/edprj.cc:673
+#: ../setedit/edprj.cc:636 ../setedit/edprj.cc:677
 msgid "Project Window"
 msgstr "Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:640
+#: ../setedit/edprj.cc:644
 msgid " 1 Project Window"
 msgstr " 1 Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:714
+#: ../setedit/edprj.cc:718
 msgid "Could not open project file"
 msgstr "No puedo abrir el archivo de proyecto"
 
-#: ../setedit/edprj.cc:721
+#: ../setedit/edprj.cc:725
 msgid "Wrong project file."
 msgstr "Archivo de proyecto incorrecto."
 
-#: ../setedit/edprj.cc:756
+#: ../setedit/edprj.cc:760
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:758 ../setedit/edprj.cc:926
+#: ../setedit/edprj.cc:762 ../setedit/edprj.cc:930
 msgid "Project: "
 msgstr "Proyecto: "
 
-#: ../setedit/edprj.cc:794
+#: ../setedit/edprj.cc:798
 msgid "Could not save the project."
 msgstr "No puedo crear el archivo de proyecto."
 
-#: ../setedit/edprj.cc:871
+#: ../setedit/edprj.cc:875
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 
-#: ../setedit/edprj.cc:1019
+#: ../setedit/edprj.cc:1023
 #, c-format
 msgid "Failed to open the file %s"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../setedit/edprj.cc:1251
+#: ../setedit/edprj.cc:1255
 msgid "Export project items"
 msgstr "Exportar los items del proyecto"
 
-#: ../setedit/edprj.cc:1288
+#: ../setedit/edprj.cc:1292
 msgid "Import project items"
 msgstr "Importar items al proyecto"
 
-#: ../setedit/edprj.cc:1296
+#: ../setedit/edprj.cc:1300
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1332
+#: ../setedit/edprj.cc:1336
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
@@ -6173,15 +6175,15 @@ msgstr "Valor de preprocesador redefinido"
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Error cargando el menú: (%d) %s en la línea %d de %s."
 
-#: ../setedit/pathlist.cc:97
+#: ../setedit/pathlist.cc:98
 msgid "Path to look for includes"
 msgstr "Directorios para buscar 'includes'"
 
-#: ../setedit/pathlist.cc:98
+#: ../setedit/pathlist.cc:99
 msgid "Path to look for sources"
 msgstr "Directorios para buscar fuentes"
 
-#: ../setedit/pathlist.cc:318
+#: ../setedit/pathlist.cc:335
 msgid "Directory"
 msgstr "Directorio"
 
