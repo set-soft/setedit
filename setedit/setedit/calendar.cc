@@ -85,6 +85,8 @@ TCalendarView::TCalendarView(TRect& r) : TView( r )
     month = curMonth = tm->tm_mon + 1;
     curDay = tm->tm_mday;
 
+    cNDays = NULL;
+
     drawView();
 }
 
@@ -122,7 +124,7 @@ the calendar. The buffer should have size+1 bytes. (SET)
 
 char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
 {
- const char *monthName=_(monthNames[month]);
+ char *monthName=TVIntl::getTextNew(monthNames[month]);
  int l=max(strlen(monthName),15)+5;
  if (addArrows)
     l+=2;
@@ -132,6 +134,7 @@ char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
     sprintf(str,"%c%15s %4d%c", upArrowChar, monthName, year, downArrowChar);
  else
     sprintf(str,"%s %4d", monthName, year);
+ DeleteArray(monthName);
 
  strncpy(buffer,str,size);
  buffer[size]=0;
@@ -158,7 +161,7 @@ void TCalendarView::draw()
     writeLine(0, 0, size.x, 1, buf);
 
     buf.moveChar(0, ' ', color, size.x);
-    buf.moveStr(1, _("Su Mo Tu We Th Fr Sa"), color);
+    buf.moveStr(1, TVIntl::getText(__("Su Mo Tu We Th Fr Sa"),cNDays), color);
     writeLine(0, 1, size.x, 1, buf);
 
     for(i = 1; i <= 6; i++)

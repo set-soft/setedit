@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.294  2003/04/21 18:07:16  set
+* Modified: No more use of strstream, now I use messageBox, easier code.
+
 Revision 1.293  2003/04/16 20:29:42  set
 * Modified: All messageBox calls to the new i18n API.
 

@@ -1062,8 +1062,10 @@ void ShowMenuLoadError(void)
 {
  if (Error && FileName)
    {
+    char *aux=TVIntl::getTextNew(ErrorNames[Error]);
     messageBox(mfError | mfOKButton,__("Error loading menu: (%d) %s in line %d of %s."),
-               Error,_(ErrorNames[Error]),Line,FileName);
+               Error,aux,Line,FileName);
+    DeleteArray(aux);
     Error=0;
     delete FileName;
     FileName=0;

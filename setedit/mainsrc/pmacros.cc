@@ -48,7 +48,11 @@ extern char *strncpyZ(char *dest, const char *orig, int size);
 void TPMCollection::getText(char *dest, unsigned item, int maxLen)
 {
  PMacroStr *s=(PMacroStr *)(at(item));
- strncpyZ(dest,s->name ? s->name : (s->str ? s->str : _("Unknown")),maxLen);
+ char *aux=NULL;
+ if (!s->name && !s->str)
+    aux=TVIntl::getTextNew(__("Unknown"));
+ strncpyZ(dest,s->name ? s->name : (s->str ? s->str : aux),maxLen);
+ DeleteArray(aux);
 }
 
 static int MeassureTriLine(char *b,unsigned &s,unsigned &e)

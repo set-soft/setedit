@@ -807,12 +807,13 @@ int TSetEditorApp::ChooseConvCPs(int &From, int &To, uint32 &ops)
 
 char *TSetEditorApp::CreateTitle(const char *title)
 {
- const char *t=_(title);
+ const char *t=TVIntl::getTextNew(title);
  const char *d=TScreen::getDriverShortName();
  char *res=new char[strlen(t)+3+strlen(d)+1];
  strcpy(res,t);
  strcat(res," - ");
  strcat(res,d);
+ DeleteArray(t);
  return res;
 }
 
@@ -1134,7 +1135,7 @@ void TSetEditorApp::FontsOptions()
       }
 
     retry=0;
-    char *title=CreateTitle(_("Fonts"));
+    char *title=CreateTitle(__("Fonts"));
     TDiaFont *d=new TDiaFont(title);
     DeleteArray(title);
     // Setup the members used to do the connection

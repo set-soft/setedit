@@ -10,8 +10,9 @@ void SDGInterfaceDialog(void) {}
 void SDGInterfaceSaveData(fpstream *) {}
 void SDGInterfaceReadData(fpstream *) {}
 #else
-#include <stdio.h>
+#define Uses_stdio
 #define Uses_string
+#define Uses_snprintf
 #include <txhgen.h>
 #define Uses_TMLISDGDefs
 #define Uses_MsgBox
@@ -68,6 +69,19 @@ void InitOps(void)
    }
 }
 
+#define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
+                             CLY_snprintf(buf,256,aux,b); \
+                             EdShowMessage(buf); \
+                             DeleteArray(aux);
+#define IntMessage2(a,b,c)   aux=TVIntl::getTextNew(a); \
+                             CLY_snprintf(buf,256,aux,b,c); \
+                             EdShowMessage(buf); \
+                             DeleteArray(aux);
+#define IntMessage3(a,b,c,d) aux=TVIntl::getTextNew(a); \
+                             CLY_snprintf(buf,256,aux,b,c,d); \
+                             EdShowMessage(buf); \
+                             DeleteArray(aux);
+                         
 void SDGInterfaceRun(void)
 {
  InitOps();
@@ -84,19 +98,18 @@ void SDGInterfaceRun(void)
  if (DskPrjSDGInit())
     return;
  // Init the Message Window
- EdShowMessage(_("Starting SDG:"),True);
+ EdShowMessageI(__("Starting SDG:"),True);
 
  int error;
  if ((error=TXHGenerateAll())!=0)
    {
     char buf[256];
-    sprintf(buf,_("Error while %s:"),TXHGetErrorSection(error));
-    EdShowMessage(buf);
+    char *aux;
+    IntMessage1(__("Error while %s:"),TXHGetErrorSection(error))
     switch (error)
       {
        case 1:
-            sprintf(buf,_("(%d) %s in line %d"),TXHError,TXHGetErrorMessage(),TXHLine);
-            EdShowMessage(buf);
+            IntMessage3(__("(%d) %s in line %d"),TXHError,TXHGetErrorMessage(),TXHLine)
             break;
        case 0:
        case 2:
@@ -104,17 +117,14 @@ void SDGInterfaceRun(void)
             EdShowMessage(buf);
             break;
        case 3:
-            sprintf(buf,_("In section %s"),TXHGetGenSect());
-            EdShowMessage(buf);
-            sprintf(buf,_("Error of type: %s"),MLISDGTypeError);
-            EdShowMessage(buf);
+            IntMessage1(__("In section %s"),TXHGetGenSect())
+            IntMessage1(__("Error of type: %s"),MLISDGTypeError)
             EdShowMessage(MLISDGErrorName);
-            sprintf(buf,_("Code: ...%s..."),MLISDGErrorCode);
-            EdShowMessage(buf);
+            IntMessage1(__("Code: ...%s..."),MLISDGErrorCode)
             break;
       }
    }
- EdShowMessage(_("End of SDG"));
+ EdShowMessageI(__("End of SDG"));
  ReLoadModifEditors();
 }
 

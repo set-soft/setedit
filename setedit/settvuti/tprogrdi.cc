@@ -23,7 +23,7 @@ void Progress_Init(const char *title, const char *comment)
  d->flags&=~wfClose;
  d->options|=ofCentered;
 
- pbar=new TProgress(TRect(3,2,l+3,3),_(comment));
+ pbar=new TProgress(TRect(3,2,l+3,3),comment);
  d->insert(pbar);
 
  TProgram::deskTop->insert(d);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -81,9 +81,9 @@ void *TDskWinMessage::read( ipstream& is )
  return this;
 }
 
-char *TDskWinMessage::GetText(char *dest, short )
+char *TDskWinMessage::GetText(char *dest, short maxLen)
 {
- sprintf(dest,_("   Message Window (%d lines)"),EdMessageCantMessages());
+ TVIntl::snprintf(dest,maxLen,__("   Message Window (%d lines)"),EdMessageCantMessages());
  return dest;
 }
 

@@ -243,7 +243,9 @@ void UpdateSilly(void)
  if (!(i%6))
    {
     k=i%60;
-    scrn->printAt(k,scrn->numRows-1,_("Screen saver, press a key"));
+    char *s=TVIntl::getTextNew(__("Screen saver, press a key"));
+    scrn->printAt(k,scrn->numRows-1,s);
+    DeleteArray(s);
    }
  scrn->scrollUp();
  scrn->draw();
@@ -757,7 +759,7 @@ static
 void InitTextStars(void)
 {
  int nI,nJ;
- cCartel=_(cCartel1);
+ cCartel=TVIntl::getTextNew(cCartel1);
 
  nFilRel=MaxRow()/2;
  nColRel=MaxCol()/2;
@@ -780,7 +782,8 @@ void InitTextStars(void)
 static
 void DeInitTextStars(void)
 {
- delete cBorra;
+ DeleteArray(cBorra);
+ DeleteArray(cCartel);
 }
 
 static
@@ -851,7 +854,7 @@ static char *cCartel2=__("That's a 'safe' screen saver. The editor have a beauti
 static
 void InitSafeSaver(void)
 {
- cCartel=_(cCartel2);
+ cCartel=TVIntl::getTextNew(cCartel2);
 
  int nLen=strlen(cCartel);
  cBorra=new char[nLen+1];
@@ -864,7 +867,8 @@ void InitSafeSaver(void)
 static
 void DeInitSafeSaver(void)
 {
- delete cBorra;
+ DeleteArray(cBorra);
+ DeleteArray(cCartel);
 }
 
 static

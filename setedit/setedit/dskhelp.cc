@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -116,19 +116,13 @@ void *TDskWinHelp::read( ipstream& is )
 
 char *TDskWinHelp::GetText(char *dest, short maxLen)
 {
- char aux[MAX_NODE_NAME*2];
-
- aux[0]='(';
- aux[1]=0;
- strcat(aux,file->NameOfFile);
- strcat(aux,")");
- strcat(aux,window->viewer->topic->Node);
-
  if (window->isTheOne)
-    strcpy(dest,_("   Main InfView "));
+    TVIntl::snprintf(dest,maxLen,__("   Main InfView (%s)%s"),file->NameOfFile,
+                     window->viewer->topic->Node);
  else
-    strcpy(dest,_("   InfView "));
- return TDskWin::GetText(dest,aux,maxLen);
+    TVIntl::snprintf(dest,maxLen,__("   InfView (%s)%s"),file->NameOfFile,
+                     window->viewer->topic->Node);
+ return dest;
 }
 
 void TDskWinHelp::Create(char *File, char *Node, Boolean TheOne)

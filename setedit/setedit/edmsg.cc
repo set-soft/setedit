@@ -568,11 +568,25 @@ void EdShowMessage(const char *msg, Boolean remove_old, Boolean resetHz)
                    (resetHz ? edsmNoHzReset : 0));
 }
 
+void EdShowMessageI(const char *msg, Boolean remove_old, Boolean resetHz)
+{
+ char *aux=TVIntl::getTextNew(msg);
+ EdShowMessage(aux,remove_old,resetHz);
+ DeleteArray(aux);
+}
+
 void EdShowMessage(const char *msg, unsigned Options)
 {
  FileInfo dummy;
  dummy.Line=-1;
  EdShowMessageFile(msg,dummy,0,Options);
+}
+
+void EdShowMessageI(const char *msg, unsigned Options)
+{
+ char *aux=TVIntl::getTextNew(msg);
+ EdShowMessage(aux,Options);
+ DeleteArray(aux);
 }
 
 void EdJumpToMessage(ccIndex item)

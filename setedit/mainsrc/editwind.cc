@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -32,6 +32,8 @@
 const int   TCEditWindow::ResumeVersion=6;
 const char *TCEditWindow::clipboardTitle=__("Clipboard");
 const char *TCEditWindow::untitled=__("Untitled");
+stTVIntl   *TCEditWindow::iClipboardTitle=NULL;
+stTVIntl   *TCEditWindow::iUntitled=NULL;
 
 TPalette & TCEditWindow::getPalette() const
 {
@@ -92,9 +94,9 @@ void TCEditWindow::close()
 const char *TCEditWindow::getTitle( short )
 {
     if( editor->isClipboard() )
-        return _(clipboardTitle);
+        return TVIntl::getText(clipboardTitle,iClipboardTitle);
     else if( *(editor->fileName) == EOS )
-        return _(untitled);
+        return TVIntl::getText(untitled,iUntitled);
     else
         return editor->fileName;
 }

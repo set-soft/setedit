@@ -264,7 +264,7 @@ long MP3Player::GetMP3Info(void)
     memcpy(Comment,buffer+97,30);
     Comment[30]=0;
     if (((unsigned char)buffer[127])>=maxKnownGenre)
-       Genre=_("Unknown");
+       Genre="Unknown";
     else
        Genre=GenreStr[(unsigned char)buffer[127]];
     ret-=128;
@@ -521,7 +521,7 @@ long MP3Player::GetMP3Info(void)
     Album[i]=0;
     strcat(Album,MP3Engine->getyear());
     memcpy(Comment,MP3Engine->getcomment(),31);
-    Genre=_(MP3Engine->getgenre());
+    Genre=MP3Engine->getgenre();
    }
  else
    {

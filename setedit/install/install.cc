@@ -795,12 +795,15 @@ const int LinesInList=12;
 
 char *AddOps2(char val, const char *title, const char *op0, const char *op1)
 {
- const char *a=_(title),*b=_(val ? op1 : op0);
+ char *a=TVIntl::getTextNew(title);
+ char *b=TVIntl::getTextNew(val ? op1 : op0);
  char *s=new char[strlen(b)+2+strlen(a)+3];
  strcpy(s,"  ");
  strcat(s,a);
  strcat(s,": ");
  strcat(s,b);
+ DeleteArray(a);
+ DeleteArray(b);
  return s;
 }
 
@@ -808,24 +811,31 @@ int ConfirmValues()
 {
  TNSCollection *strs=new TNSCollection(8,4);
  int lines=0;
+ char *aux;
 
- strs->insert((void *)_(cTypeOfInstall));
+ aux=TVIntl::getTextNew(cTypeOfInstall);
+ strs->insert((void *)aux);
+ DeleteArray(aux);
  switch (TypeInstallation)
    {
     case instNormal:
-         strs->insert((void *)_("  Normal"));
+         aux=TVIntl::getTextNew(__("  Normal"));
          break;
     case instProg:
-         strs->insert((void *)_("  For programmers"));
+         aux=TVIntl::getTextNew(__("  For programmers"));
          break;
-    case instDJGPP:
-         strs->insert((void *)_("  For djgpp programmers"));
+    default: // instDJGPP
+         aux=TVIntl::getTextNew(__("  For djgpp programmers"));
          break;
    }
+ strs->insert((void *)aux);
+ DeleteArray(aux);
  strs->insert((void *)"");
  lines+=3;
 
- strs->insert((void *)_(cDestinationDir));
+ aux=TVIntl::getTextNew(cDestinationDir);
+ strs->insert((void *)aux);
+ DeleteArray(aux);
  char *dp=(char *)alloca(strlen(Destination)+1+2);
  strcpy(dp,"  ");
  strcat(dp,Destination);
@@ -833,10 +843,14 @@ int ConfirmValues()
  strs->insert((void *)"");
  lines+=2;
 
- strs->insert((void *)_(cMiscOps));
+ aux=TVIntl::getTextNew(cMiscOps);
+ strs->insert((void *)aux);
+ DeleteArray(aux);
  lines++;
- #define I(ops) if(ops) { const char *a=_(c##ops); char *s=(char *)alloca(strlen(a)+3); \
-                          strcpy(s,"  "); strcat(s,a); strs->insert(s); lines++; }
+ #define I(ops) if(ops) { char *a=TVIntl::getTextNew(c##ops); \
+                          char *s=(char *)alloca(strlen(a)+3); \
+                          strcpy(s,"  "); strcat(s,a); strs->insert(s); lines++; \
+                          DeleteArray(a); }
  I(AddToDesktop)
  I(AddToMenu)
  I(RedmondMenu)
@@ -1579,8 +1593,10 @@ void Installer::Start()
       {
        messageBox(__("Don't forget to update your autoexec.bat later!"),mfInformation | mfOKButton);
       }
+    char *aux=TVIntl::getTextNew(__(", after rebooting your system you'll be able to use the editor"));
     messageBox(mfInformation | mfOKButton,__("Editor installed succesfully%s. Run it using e.bat"),
-               AutoExecWasOK ? "" : _(", after rebooting your system you'll be able to use the editor"));
+               AutoExecWasOK ? "" : aux);
+    DeleteArray(aux);
    }
 
  message(TProgram::application,evCommand,cmQuit,0);

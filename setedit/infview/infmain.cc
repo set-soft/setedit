@@ -307,12 +307,13 @@ TPalette& TEditorMiApp::getPalette() const
 // should be unified, but is complex.
 char *TEditorMiApp::createTitle(const char *title)
 {
- const char *t=_(title);
+ char *t=TVIntl::getTextNew(title);
  const char *d=TScreen::getDriverShortName();
  char *res=new char[strlen(t)+3+strlen(d)+1];
  strcpy(res,t);
  strcat(res," - ");
  strcat(res,d);
+ DeleteArray(t);
  return res;
 }
 

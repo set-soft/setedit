@@ -2,7 +2,8 @@
    see copyrigh file for details */
 #include <ceditint.h>
 
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_snprintf
 #define Uses_string
 #define Uses_AllocLocal
 #define Uses_TNoCaseStringCollection
@@ -258,16 +259,18 @@ Boolean TMLIEditor::SelectionExists()
  return Editor->hasVisibleSelection();
 }
 
+#define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
+                             CLY_snprintf(buf,256,aux,b); \
+                             EdShowMessage(buf); \
+                             DeleteArray(aux);
 static void SLPShowError(void)
 {
- char buf[256];
- EdShowMessage(_("Error in sLisp interpreter:"),True);
- sprintf(buf,_("Error of type: %s"),MLIEditorTypeError);
- EdShowMessage(buf);
+ char buf[256],*aux;
+ EdShowMessageI(__("Error in sLisp interpreter:"),True);
+ IntMessage1(__("Error of type: %s"),MLIEditorTypeError)
  EdShowMessage(MLIEditorErrorName);
- sprintf(buf,_("Code: ...%s..."),MLIEditorErrorCode);
- EdShowMessage(buf);
- EdShowMessage(_("End of SLP"));
+ IntMessage1(__("Code: ...%s..."),MLIEditorErrorCode)
+ EdShowMessageI(__("End of SLP"));
 }
 
 static char *slpFile=0;

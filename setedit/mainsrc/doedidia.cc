@@ -21,6 +21,7 @@ somewhere in your code to execute the dialogs.
 #define Uses_stdio
 #define Uses_string
 #define Uses_limits
+#define Uses_snprintf
 #define Uses_MsgBox
 #define Uses_fpstream
 #define Uses_TPoint
@@ -99,8 +100,8 @@ unsigned doEditDialog(int dialog, va_list arg)
          return GenericFileDialog(__("Save file as"),va_arg(arg,_charPtr),"*",
                                   hID_FileSave,fdDialogForSave);
          /*return execDialog( new TFileDialog( "*.*",
-                                             _("Save file as"),
-                                             _("~N~ame"),
+                                             __("Save file as"),
+                                             __("~N~ame"),
                                              fdOKButton,
                                              101 ), va_arg(arg,_charPtr) );*/
     case edSaveBlock:

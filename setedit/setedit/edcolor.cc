@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 #define Uses_TRect
@@ -62,9 +62,9 @@ static void addItem(TColorGroup *&group,int index, const char *name, const char 
  if (*group_name)
    {
     if (!group)
-       group=new TColorGroup(_(group_name));
+       group=new TColorGroup(group_name);
     else
-       *group=*group + *new TColorGroup(_(group_name));
+       *group=*group + *new TColorGroup(group_name);
     #ifdef EXPORT_PAL
     fprintf(f,"\\\n  SS(%02X,%s,%s,%s,%s) \\\n",index,nameColors[palData[index]&0xF],nameColors[palData[index]>>4],name,group_name);
     #endif
@@ -73,7 +73,7 @@ static void addItem(TColorGroup *&group,int index, const char *name, const char 
  else
     fprintf(f,"  S(%02X,%s,%s,%s) \\\n",index,nameColors[palData[index]&0xF],nameColors[palData[index]>>4],name);
  #endif
- *group=*group + *new TColorItem(_(name), index);
+ *group=*group + *new TColorItem(name, index);
 }
 
 #include <pal.h>

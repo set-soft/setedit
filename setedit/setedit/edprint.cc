@@ -17,6 +17,7 @@ program for my university.
 #include <time.h>
 #define Uses_stdlib
 #define Uses_unistd
+#define Uses_intl_fprintf
 
 #define Uses_MsgBox
 #define Uses_TDialog
@@ -308,7 +309,7 @@ void PrintHeader(FILE *fSal)
 {
  MandaImpre(ImpAnCab,fSal);
  PoneMargen(fSal);
- fprintf(fSal,_(Cabecera),FileName,Titulo,Autor);
+ TVIntl::fprintf(fSal,Cabecera,FileName,Titulo,Autor);
  MandaImpre(ImpDeCab,fSal);
 }
 
@@ -319,7 +320,7 @@ void PrintFooter(FILE *fSal, int iPagina, int i, int iNumLin)
  MandaImpre(ImpAnPie,fSal);
  fprintf(fSal,"\n");
  PoneMargen(fSal);
- fprintf(fSal,_(PiePagina),iPagina,i,iNumLin,Dia,Hora,"\r\f");
+ TVIntl::fprintf(fSal,PiePagina,iPagina,i,iNumLin,Dia,Hora,"\r\f");
  MandaImpre(ImpDePie,fSal);
 }
 
@@ -456,7 +457,7 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
  int  iLin,iPagina,iLargo,i,iPos,iLOr=0,isPipe=0;
 
  InitFileScan(b);
- EdShowMessage(_("Starting printing module"),True);
+ EdShowMessageI(__("Starting printing module"),True);
 
  if (iOutType==1)
    {
@@ -474,7 +475,7 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
 
  FileName=fileName;
 
- if (sprintf(Buffer,_(Cabecera),FileName,Titulo,Autor)>(iCols+2))
+ if (TVIntl::snprintf(Buffer,1024,Cabecera,FileName,Titulo,Autor)>(iCols+2))
    {
     messageBox(__("The header is too large, reduce the title and/or author lengths"),
                mfError | mfOKButton);
@@ -527,7 +528,7 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
 
  PrintFooter(fSal,iPagina,i,iNumLin);
 
- sprintf(Buffer,_("Processed: %d lines, total printed: %d lines"),iLOr,iNumLin);
+ TVIntl::snprintf(Buffer,1024,__("Processed: %d lines, total printed: %d lines"),iLOr,iNumLin);
  EdShowMessage(Buffer);
  if (isPipe)
     pclose(fSal);

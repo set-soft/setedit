@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -54,7 +54,7 @@ void *TDskWinClosed::read( ipstream& is )
 
 char *TDskWinClosed::GetText(char *dest, short maxLen)
 {
- strcpy(dest,_("   Closed: "));
+ TVIntl::snprintf(dest,maxLen,__("   Closed: "));
  return TDskWin::GetText(dest,Name,maxLen);
 }
 

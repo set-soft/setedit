@@ -97,24 +97,24 @@ void TAmpDiag::SetHeaderValues()
  char buffer[80];
 
  TProgram::deskTop->lock();
- sprintf(buffer,_("Sample Rate: %5d Hz   Bitrate: %4d Kbits/s"),
-         mp3.SampleRate,mp3.BitRate);
+ TVIntl::snprintf(buffer,80,__("Sample Rate: %5d Hz   Bitrate: %4d Kbits/s"),
+                  mp3.SampleRate,mp3.BitRate);
  SR_BR->setText(buffer);
- sprintf(buffer,_("Mode: %6s            File: MPEG %1d.0 layer %1d"),
-         mp3.Mode,mp3.MPEGVer,mp3.Layer);
+ TVIntl::snprintf(buffer,80,__("Mode: %6s            File: MPEG %1d.0 layer %1d"),
+                  mp3.Mode,mp3.MPEGVer,mp3.Layer);
  Mode_Type->setText(buffer);
- sprintf(buffer,_("Total: %3d:%02d"),mp3.TotalLen/60,mp3.TotalLen%60);
+ TVIntl::snprintf(buffer,80,__("Total: %3d:%02d"),mp3.TotalLen/60,mp3.TotalLen%60);
  total->setText(buffer);
 
- sprintf(buffer,_("Title:  %s"),mp3.Title);
+ TVIntl::snprintf(buffer,80,__("Title:  %s"),mp3.Title);
  info1->setText(buffer);
- sprintf(buffer,_("Author: %s"),mp3.Author);
+ TVIntl::snprintf(buffer,80,__("Author: %s"),mp3.Author);
  info2->setText(buffer);
- sprintf(buffer,_("Album:  %s"),mp3.Album);
+ TVIntl::snprintf(buffer,80,__("Album:  %s"),mp3.Album);
  info3->setText(buffer);
- sprintf(buffer,_("Comme.: %s"),mp3.Comment);
+ TVIntl::snprintf(buffer,80,__("Comme.: %s"),mp3.Comment);
  info4->setText(buffer);
- sprintf(buffer,_("Genre:  %s"),mp3.Genre);
+ TVIntl::snprintf(buffer,80,__("Genre:  %s"),mp3.Genre);
  info5->setText(buffer);
 
  timeBar->setParams(0,0,mp3.TotalLen,(int)(mp3.TotalLen/40.0+0.5),2);
@@ -127,12 +127,12 @@ void TAmpDiag::SetHeaderValues()
 void TAmpDiag::ReflectStatus()
 {
  if (mp3.Paused)
-    status->setText(_("[ PAUSE  ]"));
+    status->setText(__("[ PAUSE  ]"));
  else
  if (mp3.Stoped)
-    status->setText(_("[  STOP  ]"));
+    status->setText(__("[  STOP  ]"));
  else
-    status->setText(_("[  PLAY  ]"));
+    status->setText(__("[  PLAY  ]"));
  if (TView::commandEnabled(cmaMP3Prev))
    {
     if (!mp3.PlayingList || !MP3ListHavePrev())
@@ -211,7 +211,7 @@ void TAmpDiag::handleEvent(TEvent &event)
               break;
          case cmaUpdateTime:
               thisTime=*((int *)event.message.infoPtr);
-              sprintf(timestr,_("Time: %3d:%02d"),thisTime/60,thisTime%60);
+              TVIntl::snprintf(timestr,32,__("Time: %3d:%02d"),thisTime/60,thisTime%60);
               time->setText(timestr);
               lockSBTime=1;
               timeBar->setValue(thisTime);

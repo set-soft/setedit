@@ -831,7 +831,9 @@ int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
           return -1;
          }
        TProgram::deskTop->lock();
-       EdShowMessage(_("Functions:"),True);
+       char *aux=TVIntl::getTextNew(__("Functions:"));
+       EdShowMessage(aux,True);
+       DeleteArray(aux);
        int i,c=FunList->getCount();
        FileInfo fInfo;
        fInfo.Column=0; fInfo.offset=fInfo.len=-1;

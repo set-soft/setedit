@@ -36,6 +36,7 @@ void SyntaxSearch_ShutDown(void);@*
 #define Uses_TSVeGroup
 #define Uses_string
 #define Uses_ctype
+#define Uses_snprintf
 // InfView requests
 #include <infr.h>
 
@@ -197,8 +198,10 @@ void TFileEntryCollection::getText(char *dest, unsigned item, int maxLen)
    }
  if (d<maxLen && p->isOK==fileOK && p->items)
    {
-    char buf[32];
-    sprintf(buf,_(" [%d nodes]"),p->items->getCount());
+    char buf[64],*aux;
+    aux=TVIntl::getTextNew(__(" [%d nodes]"));
+    CLY_snprintf(buf,64,aux,p->items->getCount());
+    DeleteArray(aux);
     s=buf;
     while (d<maxLen && *s)
        dest[d++]=*(s++);

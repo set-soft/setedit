@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -37,9 +37,9 @@ TDskWinMP3::TDskWinMP3(TView *w)
 #endif
 }
 
-char *TDskWinMP3::GetText(char *dest, short )
+char *TDskWinMP3::GetText(char *dest, short maxLen)
 {
- sprintf(dest,_("   MP3 Control panel"));
+ TVIntl::snprintf(dest,maxLen,__("   MP3 Control panel"));
  return dest;
 }
 

@@ -463,14 +463,14 @@ void IncCleanUp()
        PendingCleanUp=1;
        if (!(OpsScrHz & opshEnd))
           op|=edsmNoHzReset;
-       EdShowMessage(_("Waiting ..."),op);
+       EdShowMessageI(__("Waiting ..."),op);
       }
     return;
    }
  // Ok, we can go on
  ParsingErrors=0;
- EdShowMessage(_(BackEd),scrlOps |
-               ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
+ EdShowMessageI(BackEd,scrlOps |
+                ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
  if (incGoBack)
    {
     if (Options & opJumpFirstError)
@@ -568,7 +568,7 @@ void RunExternalProgramStopChild()
     #endif
     PidChild=0;
    }
- EdShowMessage(_("Process interrupted"),((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
+ EdShowMessageI(__("Process interrupted"),((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
  IncCleanUp();
 }
 
@@ -653,9 +653,8 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
 
  if ((flags & repDontShowAsMessage)==0)
    {
-    int l=strlen(s)+strlen(_(Running));
-    AllocLocalStr(b,l);
-    sprintf(b,_(Running),s);
+    char b[1024];
+    TVIntl::snprintf(b,1024,Running,s);
     EdShowMessage(b,True,((OpsScrHz & opshBegin) ? False : True));
    }
 
@@ -706,7 +705,7 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
                                 IndexCLE<0 ? ParseFun : ParseFunCLE);
        SpLinesUpdate();
        ErrorFile=0;
-       EdShowMessage(_(BackEd),scrlOps | ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
+       EdShowMessageI(BackEd,scrlOps | ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
        if (goBack)
          {
           if (Options & opJumpFirstError)

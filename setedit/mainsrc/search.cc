@@ -463,7 +463,11 @@ uint32 TCEditor::MakeAPCRESearch(char *block, uint32 size, int &matchLen)
 
  PCREHitAvailable=0;
  if (hits<0 && hits!=PCRE_ERROR_NOMATCH)
-    ShowPCREError(_("PCRE Exec error"));
+   {
+    char *s=TVIntl::getTextNew(__("PCRE Exec error"));
+    ShowPCREError(s);
+    DeleteArray(s);
+   }
  else
    {
     if (hits!=PCRE_ERROR_NOMATCH)

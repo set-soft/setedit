@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_unistd
@@ -24,7 +24,7 @@ int DumpFileToMessage(char *file, const char *from, uint32 SMOps,
     fgets(buf,1000,f);
     if (!feof(f))
       {
-       EdShowMessage(_(from));
+       EdShowMessageI(from);
        do
          {
           l=strlen(buf);
@@ -75,7 +75,7 @@ static uint32 incSMOps;
 void DumpFileToMessageInit(char *file, const char *from, uint32 SMOps,
                            char *(*ParseFun)(char *buf,FileInfo &fI,char *&fileName))
 {
- EdShowMessage(_(from));
+ EdShowMessageI(from);
  incParseFun=ParseFun;
  incFile=file;
  incSMOps=SMOps;

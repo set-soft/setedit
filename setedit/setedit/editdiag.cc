@@ -61,8 +61,9 @@ int AboutStartBox(void)
 
  TRect r(2,2,52,3);
  char b[54];
- sprintf(b,_("That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),TCEDITOR_VERSION>>16,
-         (TCEDITOR_VERSION>>8) & 0xFF,TCEDITOR_VERSION & 0xFF);
+ TVIntl::snprintf(b,54,__("That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),
+                  TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
+                  TCEDITOR_VERSION & 0xFF);
  d->insert(new TStaticText(r,b));
  r.move(0,1);
  d->insert(new TStaticText(r,__("by Salvador Eduardo Tropea")));
@@ -100,8 +101,9 @@ void FullAboutBox(void)
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("About")));
 
  TSView::yDefSep=0;
- sprintf(b,_("SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),TCEDITOR_VERSION>>16,
-         (TCEDITOR_VERSION>>8) & 0xFF,TCEDITOR_VERSION & 0xFF);
+ TVIntl::snprintf(b,54,__("SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),
+                  TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
+                  TCEDITOR_VERSION & 0xFF);
  ant=new TSStaticText(b);
  col->insert(xTSCenter,2,ant);
 
@@ -121,30 +123,30 @@ void FullAboutBox(void)
  TSView::yDefSep=0;
  TNSCollection *text=new TNSCollection(12,5);
  #undef i
- #define i(a) text->insert((void *)a)
- i(_("The FSF and GNU people for such a good tools"));
- i(_("DJ Delorie and colaborators for porting it to DOS"));
- i(_("Robert H”hne for porting TVision and making RHIDE"));
- i(_("Vadim Belodorov for contributing the first port of TV to Win32"));
- i(_("Anatoli Soltan for porting to Win32 using BC++"));
- i(_("VA Linux and people that maintains Source Forge"));
- i(_("The University of California, Berkeley and its contributors"));
+ #define i(a) text->insert((void *)TVIntl::getTextNew(a));
+ i(__("The FSF and GNU people for such a good tools"));
+ i(__("DJ Delorie and colaborators for porting it to DOS"));
+ i(__("Robert H”hne for porting TVision and making RHIDE"));
+ i(__("Vadim Belodorov for contributing the first port of TV to Win32"));
+ i(__("Anatoli Soltan for porting to Win32 using BC++"));
+ i(__("VA Linux and people that maintains Source Forge"));
+ i(__("The University of California, Berkeley and its contributors"));
  #ifdef HAVE_PCRE_LIB
- i(_("The University of Cambridge for the PCRE package"));
+ i(__("The University of Cambridge for the PCRE package"));
  #endif
  #ifdef HAVE_ALLEGRO
- i(_("Shawn Hargreaves for Allegro, used as sound engine"));
+ i(__("Shawn Hargreaves for Allegro, used as sound engine"));
  # ifdef SUP_MP3
- i(_("Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"));
+ i(__("Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"));
  # endif // SUP_MP3
  #endif // HAVE_ALLEGRO
- i(_("Jean-loup Gailly and Mark Adler for the zlib"));
+ i(__("Jean-loup Gailly and Mark Adler for the zlib"));
  #ifdef HAVE_BZIP2
- i(_("Julian R. Seward for bzip2 routines included"));
+ i(__("Julian R. Seward for bzip2 routines included"));
  #endif
- i(_("Bjorn Reese for a lot of ideas about the stack debugger for UNIX"));
- i(_("All my friends that support my project (Laszlo, Marek, Ivan,"));
- i(_("Grzegorz, etc.)."));
+ i(__("Bjorn Reese for a lot of ideas about the stack debugger for UNIX"));
+ i(__("All my friends that support my project (Laszlo, Marek, Ivan,"));
+ i(__("Grzegorz, etc.)."));
  #undef i
  TSTextScroller *txt=new TSTextScroller(70,10,text,0,1,70);
  col->insert(2,yTSUnder,txt,0,ant);
@@ -153,6 +155,7 @@ void FullAboutBox(void)
  col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault),0,txt);
 
  col->exec(0);
+ destroy(text);
  delete col;
 }
 

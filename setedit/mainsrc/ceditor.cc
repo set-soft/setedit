@@ -42,6 +42,7 @@
 #define Uses_itoa
 #define Uses_getline
 #define Uses_access
+#define Uses_snprintf
 
 #define Uses_TKeys
 #define Uses_TFindCDialogRec
@@ -5695,7 +5696,7 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
       {
        if (pos==-1)
          {
-          char *s=newStr(_("No match found"));
+          char *s=TVIntl::getTextNew(__("No match found"));
           setStatusLine(s);
           DeleteArray(s);
          }
@@ -5710,7 +5711,9 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
           else
             {
              char bufaux[80];
-             sprintf(bufaux,_("Match found at line %d column %d."),YHLCC+1,XHLCC+1);
+             char *fmt=TVIntl::getTextNew(__("Match found at line %d column %d."));
+             CLY_snprintf(bufaux,80,fmt,YHLCC+1,XHLCC+1);
+             DeleteArray(fmt);
              setStatusLine(bufaux);
             }
          }
@@ -11884,7 +11887,7 @@ void TCEditor::redo(void)
             break;
 
        default:
-            messageBox(_("Unhandled redo"),mfError | mfOKButton);
+            messageBox(__("Unhandled redo"),mfError | mfOKButton);
       }
 
     Boolean newBool=((un.Flags & undoModifiedF)!=0) ? True : False;
@@ -13019,7 +13022,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
     else
       {
        struct stat s;
-       char aux[PATH_MAX+30];
+       char aux[PATH_MAX+30],*auxIntl;
 
        modified=False;
        update(ufUpdate);
@@ -13033,7 +13036,8 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
           CLY_SetFileAttributes(&ModeOfFile,fileName);
        if (stat(fileName,&s)==0)
          {
-          sprintf(aux,_("Saved: %s (%ld bytes %d lines)."),fileName,(long)s.st_size,totalLines+1);
+          auxIntl=TVIntl::getTextNew(__("Saved: %s (%ld bytes %d lines)."));
+          CLY_snprintf(aux,PATH_MAX+30,auxIntl,fileName,(long)s.st_size,totalLines+1);
           FillEditorId(&EditorId,0,&s);
           // Update it we don't know if all went OK
           GetFileMode(&ModeOfFile,&s,fileName);
@@ -13041,7 +13045,11 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
              DiskTime=s.st_mtime;
          }
        else
-          sprintf(aux,_("Stat failed."));
+         {
+          auxIntl=TVIntl::getTextNew(__("Stat failed."));
+          strcpy(aux,auxIntl);
+         }
+       DeleteArray(auxIntl);
        setStatusLine(aux);
        if (noChangeTime)
          { // Set the modif. and access time to the previous

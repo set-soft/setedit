@@ -40,12 +40,13 @@ TDskWinCalendar::TDskWinCalendar()
 
 char *TDskWinCalendar::GetText(char *dest, short max)
 {
- const char *calendar=_("   Calendar ");
+ char *calendar=TVIntl::getTextNew(__("   Calendar "));
  int lCal=strlen(calendar);
  AllocLocalStr(buffer,lCal+40+1);
  strcpy(buffer,calendar);
  ((TCalendarWindow *)view)->view->getMonthStr(buffer+lCal,40,0);
  strncpyZ(dest,buffer,max);
+ DeleteArray(calendar);
  return dest;
 }
 

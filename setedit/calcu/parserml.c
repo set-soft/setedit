@@ -164,24 +164,26 @@ yylex (void)
 
 #define R 1  /* reduce */
 #define S 0  /* shift */
-#define _(  a,b,c,d, e,f,g,h,i,j,k ) ((((((((((k*2+j)*2+i)*2+h)*2+g)*2+f)*2+e)*2+d)*2+c)*2+b)*2+a)
+#define A(  a,b,c,d, e,f,g,h,i,j,k ) ((((((((((k*2+j)*2+i)*2+h)*2+g)*2+f)*2+e)*2+d)*2+c)*2+b)*2+a)
 
 static unsigned short opprec_table[]= {
         /*        LOOK AHEAD       */
         /*  a ( ) e  | ^ & < + * P */
-/* a */ _(  R,R,R,R, R,R,R,R,R,R,R ),    /* /\ TOKEN ON   */
-/* ( */ _(  S,S,S,R, S,S,S,S,S,S,S ),    /* ][ THE TOP OF */
-/* ) */ _(  R,R,R,R, R,R,R,R,R,R,R ),    /* \/ THE STACK  */
-/* e */ _(  S,S,R,R, S,S,S,S,S,S,S ),
+/* a */ A(  R,R,R,R, R,R,R,R,R,R,R ),    /* /\ TOKEN ON   */
+/* ( */ A(  S,S,S,R, S,S,S,S,S,S,S ),    /* ][ THE TOP OF */
+/* ) */ A(  R,R,R,R, R,R,R,R,R,R,R ),    /* \/ THE STACK  */
+/* e */ A(  S,S,R,R, S,S,S,S,S,S,S ),
 
-/* | */ _(  S,S,R,R, R,S,S,S,S,S,S ),    /* lowest precedence */
-/* ^ */ _(  S,S,R,R, R,R,S,S,S,S,S ),
-/* & */ _(  S,S,R,R, R,R,R,S,S,S,S ),
-/* < */ _(  S,S,R,R, R,R,R,R,S,S,S ),
-/* + */ _(  S,S,R,R, R,R,R,R,R,S,S ),
-/* * */ _(  S,S,R,R, R,R,R,R,R,R,S ),
-/* P */ _(  S,S,R,R, R,R,R,R,R,R,S )     /* highest precedence */
+/* | */ A(  S,S,R,R, R,S,S,S,S,S,S ),    /* lowest precedence */
+/* ^ */ A(  S,S,R,R, R,R,S,S,S,S,S ),
+/* & */ A(  S,S,R,R, R,R,R,S,S,S,S ),
+/* < */ A(  S,S,R,R, R,R,R,R,S,S,S ),
+/* + */ A(  S,S,R,R, R,R,R,R,R,S,S ),
+/* * */ A(  S,S,R,R, R,R,R,R,R,R,S ),
+/* P */ A(  S,S,R,R, R,R,R,R,R,R,S )     /* highest precedence */
 };
+
+#undef A
 
 #define isoper(x) ((x&0xf000)==Y_OPER)
 

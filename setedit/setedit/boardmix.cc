@@ -147,7 +147,7 @@ void BoardMixerDisable()
 
 void BoardMixerDialog()
 {
- messageBox(_("No mixer support linked during configuration, sorry"),mfError | mfOKButton);
+ messageBox(__("No mixer support linked during configuration, sorry"),mfError | mfOKButton);
 }
 
 void BoardMixerInit()

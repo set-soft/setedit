@@ -421,7 +421,7 @@ unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *f
  else
    strcpy(b,file);
 
- return messageBox(flags,_(format),b);
+ return messageBox(flags,format,b);
 }
 
 void ShowSavePoint(const char *file)

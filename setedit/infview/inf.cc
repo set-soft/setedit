@@ -698,17 +698,15 @@ void TInfViewer::SetTitle(char *File, char *Node)
 {
  if (owner) /* is a window ? */
    {
-    char *newTitle = new char[strlen(_("InfView - File: %s - Node: %s"))
-                              +strlen(File)+strlen(Node)-3];
+    char *intlFmt=TVIntl::getTextNew(__("InfView - File: %s - Node: %s"));
+    char *newTitle=new char[strlen(intlFmt)+strlen(File)+strlen(Node)-3];
 
-    if (newTitle)
-      {
-       sprintf(newTitle,_("InfView - File: %s - Node: %s"),File,Node);
-
-       delete (char *)((TWindow *)owner)->title;
-       ((TWindow *)owner)->title = (const char *)newTitle;
-       ((TWindow *)owner)->frame->drawView();
-      }
+    sprintf(newTitle,intlFmt,File,Node);
+    DeleteArray(intlFmt);
+    
+    delete (char *)((TWindow *)owner)->title;
+    ((TWindow *)owner)->title = (const char *)newTitle;
+    ((TWindow *)owner)->frame->drawView();
    }
 }
 

@@ -213,7 +213,7 @@ void RunGrep(char *command)
  out=open_stdout();
  err=open_stderr();
  getcwd(ActualPath,PATH_MAX);
- sprintf(b,_("Running grep in: %s"),ActualPath);
+ TVIntl::snprintf(b,PATH_MAX+60,__("Running grep in: %s"),ActualPath);
  if (ActualPath[strlen(ActualPath)-1]!='/')
     strcat(ActualPath,"/");
  EdShowMessage(b);
@@ -311,7 +311,7 @@ void RunRecurseGrep(char *command, int recurse)
     if (chdir(s))
       {
        char b[PATH_MAX+60];
-       sprintf(b,_("chdir error: %s"),s);
+       TVIntl::snprintf(b,PATH_MAX+60,__("chdir error: %s"),s);
        EdShowMessage(b);
       }
     else
@@ -512,14 +512,11 @@ void grepWindow(char *patStart)
     if (ok)
       {
        SaveAllEditors();
-       EdShowMessage(_("Powered grep"),True);
+       EdShowMessageI(__("Powered grep"),True);
        if (absolute)
          {
           if (box.recurse)
-            {
-             sprintf(command,_("Recurse & dirs. ignored, using internal names"));
-             EdShowMessage(command);
-            }
+             EdShowMessageI(__("Recurse & dirs. ignored, using internal names"));
           ArrangeGrepCommand(command,param);
           RunGrep(command);
          }
@@ -528,7 +525,7 @@ void grepWindow(char *patStart)
           ArrangeGrepCommand(command,param);
           RunRecurseGrep(command,box.recurse);
          }
-       EdShowMessage(_("End of grep search"));
+       EdShowMessageI(__("End of grep search"));
        EdJumpToMessage(0);
        SpLinesUpdate();
       }

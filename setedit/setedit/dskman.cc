@@ -55,13 +55,8 @@ void *TDskWinMan::read(ipstream& is)
 
 char *TDskWinMan::GetText(char *dest, short maxLen)
 {
- const char *s=_("   Man page: ");
- if (strlen(s)<(size_t)maxLen)
-    strcpy(dest,s);
- else
-    *dest=0;
  TManWindow *mw=(TManWindow *)view;
- TDskWin::GetText(dest,(char *)mw->getFileName(),maxLen);
+ TVIntl::snprintf(dest,maxLen,__("   Man page: %s"),mw->getFileName());
  return dest;
 }
 

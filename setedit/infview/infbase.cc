@@ -1036,8 +1036,6 @@ TInfIndex::~TInfIndex()
 }
 
 
-const char *ReadingMessage=__("Reading index table for: ");
-
 TInfIndex::TInfIndex( TInfFile& o, int Indirect )
 {
  indirects=0;
@@ -1121,11 +1119,13 @@ TInfIndex::TInfIndex( TInfFile& o, int Indirect )
  if (lTable>40000)
    {
     enableProg=1;
+    char *ReadingMessage=TVIntl::getTextNew(__("Reading index table for: "));
     char *s=new char[strlen(ReadingMessage)+strlen(o.NameOfFile)+1];
-    strcpy(s,_(ReadingMessage));
+    strcpy(s,ReadingMessage);
     strcat(s,o.NameOfFile);
     ProgBar_Init(__("InfView"),lTable,s);
-    delete s;
+    DeleteArray(s);
+    DeleteArray(ReadingMessage);
    }
  stkHandler prevNode=0,curNode;
  unsigned isReference=0;
@@ -1843,10 +1843,10 @@ TInfTopic *TInfFile::getTopic(char *NameOri, int Verbose, int modeForTopic,
 TInfTopic *TInfFile::invalidTopic()
 {
  TInfTopic *topic;
- const char *invalidText=_("\n Sorry I can't find this link (press ALT-F1).\n");
+ char *invalidText=TVIntl::getTextNew(__("\n Sorry I can't find this link (press ALT-F1).\n"));
 
  topic =  new TInfTopic(0);
- topic->Text = newStr(invalidText);
+ topic->Text = invalidText;
  topic->lSize = strlen(invalidText);
  topic->iLines = 2;
  topic->Status = True;

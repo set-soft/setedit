@@ -182,7 +182,7 @@ static void ShowDialogTip(char *fileName, int &LastTip)
    
        TSTextScroller *text=new TSTextScroller(40,10,TipText,0,lines>10,40);
        char aux[40];
-       sprintf(aux,"%s %d",_("~T~ip"),LastTip);
+       TVIntl::snprintf(aux,40,__("~T~ip %d"),LastTip);
        TSLabel *Text=new TSLabel(aux,text);
        col->insert(2,1,Text);
 
@@ -253,7 +253,7 @@ void forMessageLink(char *)
 
 static void ShowMessageTip(char *fileName, int &LastTip)
 {
- EdShowMessage(_("Tip of the day"),True);
+ EdShowMessageI(__("Tip of the day"),True);
  SearchTip(forMessageLine,forMessageLink,fileName,LastTip);
  EdJumpToMessage(0);
  LastTip++;

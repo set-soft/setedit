@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -62,9 +62,9 @@ void *TDskWinClipboard::read( ipstream& is )
  return this;
 }
 
-char *TDskWinClipboard::GetText(char *dest, short )
+char *TDskWinClipboard::GetText(char *dest, short maxLen)
 {
- sprintf(dest,_("   Clipboard (%d bytes)"),edw->editor->bufLen);
+ TVIntl::snprintf(dest,maxLen,__("   Clipboard (%d bytes)"),edw->editor->bufLen);
  return dest;
 }
 

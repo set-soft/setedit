@@ -795,11 +795,11 @@ int TKeyTranslate::Load(char *name)
     return 0;
  fread(buf,sizeof(Signature),1,f);
  if (strcmp(buf,Signature))
-    GenError(_("Wrong file"));
+    GenError(__("Wrong file"));
 
  int V=fgetc(f);
  if (V>Version || V<3)
-    GenError(_("Wrong version"));
+    GenError(__("Wrong version"));
 
  ushort w;
  fread(&w,sizeof(w),1,f);
@@ -816,7 +816,7 @@ int TKeyTranslate::Load(char *name)
  if (ferror(f))
    {
     delete newBase;
-    GenError(_("Error while reading"));
+    GenError(__("Error while reading"));
    }
  if (V>=4)
    {
@@ -1132,8 +1132,10 @@ TKeyTranslate KeyTrans((KeyTTable *)&base);
 static void StoreError(const char *error,char *file)
 {
  char buf[PATH_MAX+80];
- sprintf(buf,"%s, file \"%s\"\n",error,file);
+ char *aux=TVIntl::getTextNew(error);
+ TVIntl::snprintf(buf,PATH_MAX+80,__("%s, file \"%s\"\n"),aux,file);
  Error=strdup(buf);
+ DeleteArray(aux);
 }
 
 void ShowKeyBindError(void)

@@ -71,7 +71,7 @@ char *InterpretLispEditor(char *s, Boolean print)
     if (print)
       {
        char *v=val->toStr();
-       EdShowMessage(_("Return value:"),True);
+       EdShowMessageI(__("Return value:"),True);
        EdShowMessage(v);
        delete[] v;
       }

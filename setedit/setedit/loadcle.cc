@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -97,7 +97,7 @@ void LoadCLENames()
         // Avoid name pointing to NULL
         if (strncasecmp(b,"End",3)==0 && !CLEValues[i].Name)
           {
-           char *s=newStr(_("Unknown"));
+           char *s=TVIntl::getTextNew(__("Unknown"));
            CLEValues[i].Name=s;
            CLEList->insert(s);
           }

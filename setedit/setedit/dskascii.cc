@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -34,9 +34,9 @@ TDskWinASCII::TDskWinASCII()
  helper=this;
 }
 
-char *TDskWinASCII::GetText(char *dest, short )
+char *TDskWinASCII::GetText(char *dest, short maxLen)
 {
- sprintf(dest,_("   ASCII chart"));
+ TVIntl::snprintf(dest,maxLen,__("   ASCII chart"));
  return dest;
 }
 

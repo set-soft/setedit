@@ -309,8 +309,9 @@ void TSetEditorApp::SetTitle(const char *str1, const char *str2)
  char *str0="SETEdit ";
  int len=strlen(str0)+sizeof(TCEDITOR_VERSION_STR)+3;
 
- if (!str1) str1=_("No project loaded");
- len+=strlen(str1);
+ if (!str1) str1=__("No project loaded");
+ char *istr1=TVIntl::getTextNew(str1);
+ len+=strlen(istr1);
  if (str2)
     len+=strlen(str2);
  len++;
@@ -319,12 +320,13 @@ void TSetEditorApp::SetTitle(const char *str1, const char *str2)
  strcpy(s,str0);
  strcat(s,TCEDITOR_VERSION_STR);
  strcat(s," - ");
- strcat(s,str1);
+ strcat(s,istr1);
  if (str2) strcat(s,str2);
 
  if (!OriginalWindowTitle)
     OriginalWindowTitle=(char *)TScreen::getWindowTitle();
  TScreen::setWindowTitle(s);
+ DeleteArray(istr1);
 }
 
 TSetEditorApp::~TSetEditorApp()

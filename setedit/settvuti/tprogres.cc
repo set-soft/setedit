@@ -27,7 +27,7 @@ hanged.
 
 TProgress::TProgress(const TRect& bounds, const char *aMessage) :
    TView(bounds),
-   message(newStr(aMessage)),
+   message(TVIntl::getTextNew(aMessage)),
    state(0)
 {
  len=strlen(message)+3;
@@ -35,7 +35,7 @@ TProgress::TProgress(const TRect& bounds, const char *aMessage) :
 
 TProgress::~TProgress()
 {
- delete message;
+ DeleteArray(message);
 }
 
 void TProgress::draw()

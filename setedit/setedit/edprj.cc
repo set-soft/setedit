@@ -454,7 +454,8 @@ void *TDskWinPrj::read( ipstream& is )
 
 char *TDskWinPrj::GetText(char *dest, short maxLen)
 {
- return strcpy(dest,_(" 1 Project Window"));
+ TVIntl::snprintf(dest,maxLen,__(" 1 Project Window"));
+ return dest;
 }
 
 char *TDskWinPrj::getFileName()
@@ -557,7 +558,7 @@ void LoadProject(char *name)
     if (!f)
        messageBox(__("Error reading project file"), mfOKButton | mfError);
     else
-       editorApp->SetTitle(_("Project: "),name);
+       editorApp->SetTitle(__("Project: "),name);
     f->close();
    }
  delete f;
@@ -742,7 +743,7 @@ void OpenProject(char *name, int preLoad)
       }
     CloseProject(1);
     prjWin=new TDskWinPrj(s);
-    editorApp->SetTitle(_("Project: "),s);
+    editorApp->SetTitle(__("Project: "),s);
    }
  if (prjWin && prjWin->window)
    {

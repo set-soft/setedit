@@ -21,6 +21,7 @@
 #define Uses_TWindow
 #define Uses_string
 #define Uses_TProgram
+#define Uses_snprintf
 #include <tv.h>
 
 #include <stdlib.h>
@@ -145,11 +146,20 @@ void TReport::draw()
     TDrawBuffer buf;
     char        color = getColor(6);
     char        str[80];
+    char        *ch,*de,*he;
 
-    sprintf(str, "%s%c%s%3d%s%2X  ",
-                 _("  Char: "), (asciiChar==0)?(char)0x20:(char)asciiChar,
-                 _(" Decimal: "), (int)asciiChar,
-                 _(" Hex: "), (int)asciiChar);
+    ch=TVIntl::getTextNew(__("  Char: "));
+    de=TVIntl::getTextNew(__(" Decimal: "));
+    he=TVIntl::getTextNew(__(" Hex: "));
+
+    CLY_snprintf(str, 80, "%s%c%s%3d%s%2X  ",
+                 ch, (asciiChar==0)?(char)0x20:(char)asciiChar,
+                 de, (int)asciiChar,
+                 he, (int)asciiChar);
+
+    DeleteArray(ch);
+    DeleteArray(de);
+    DeleteArray(he);
 
     buf.moveStr(0, str, color);
     writeLine(0, 0, 32, 1, buf);

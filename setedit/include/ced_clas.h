@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Class )
 
@@ -697,7 +697,9 @@ public:
 
 protected:
  static const char *clipboardTitle;
+ static stTVIntl   *iClipboardTitle;
  static const char *untitled;
+ static stTVIntl   *iUntitled;
 
  static void EnlargeSizesResume(EditorResume &r);
  static void EnlargeSizeResume(short &x, short &y, int wS, int hS);
