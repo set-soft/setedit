@@ -898,12 +898,12 @@ void TInfViewer::OSInsertRoutine1(char *b, long l)
 void TInfViewer::PasteToClipboard(void (*ir)(char *b, long l))
 {
  char b[256];
- int deltaY=selRowEnd-selRowStart+1;
+ int deltaY=selRowEnd-selRowStart;
 
- if (deltaY<1 || (deltaY==0 && selColEnd<=selColStart))
+ if (deltaY<0 || (deltaY==0 && selColEnd<=selColStart))
     return;
 
- char *d=new char[deltaY*256];
+ char *d=new char[(deltaY+1)*256];
  char *s=d;
 
  if (d==NULL)

@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.415  2003/06/23 14:21:10  set
+*** New name for release: Iguazu I ***
+* Added: now the releases will have names to identify them easier.
+* Added: revision number to the about dialogs, suggested by Ivan. The
+number will be based on my local CVS revision number. The S.F. offset could
+need adjustments. The revision number is only updated when compiling with
+the maintainer mode enabled.
+
 Revision 1.414  2003/06/18 19:55:12  set
 * Added: Now ManView window can be closed with ESC. Suggested by Thiago.
 * Added: Now you can copy from the message window to the OS clipboard.
