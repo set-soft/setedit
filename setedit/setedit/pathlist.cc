@@ -277,7 +277,7 @@ int PathListGetItem(ccIndex pos, char *buffer, int which)
  int avail=PATH_MAX-1;
  if (!var)
    {
-    int l=min(strlen(str),avail);
+    int l=min((int)strlen(str),avail);
     memcpy(buffer,str,l);
     buffer[l]=0;
    }

@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.608  2004/09/17 16:38:35  set
+* Added: [Cygwin] Workaround for bugs in Cygwin's perl. Cygwin is
+configured to use DOS files, but when parsing DOS files you must match the
+/r char. DJGPP implementation is much more cleaver about it.
+* Added: [Cygwin] libmigdb detection.
+* Note: Current status of the editor using brand new Cygwin is "compile but
+the resulting binary is useless". Note that while compiling the editor I
+got SIGSEGVs from Perl and bash. It looks like Cygwin still alpha, at least
+for Windows 98 SE.
+
 Revision 1.607  2004/09/17 16:25:59  set
 * Modified: [Config] Now the .po files are regenerated only if the user
 configures enabling the maintainer mode. This should reduce CVS collisions.
