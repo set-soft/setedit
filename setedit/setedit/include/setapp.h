@@ -89,7 +89,8 @@ const int
   cmeSavePrj        = cmeBase+69,
   cmeBoardMixer     = cmeBase+70,
   cmeStopChild      = cmeBase+71,
-  cmeEditNoBkp      = cmeBase+72;
+  cmeEditNoBkp      = cmeBase+72,
+  cmeIncludeList    = cmeBase+73;
 #endif
 
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
