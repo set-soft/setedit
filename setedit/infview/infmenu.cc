@@ -23,8 +23,6 @@
 #include <ceditor.h>
 
 #include <stdarg.h>
-#include <strstream.h>
-#include <iomanip.h>
 #include "infalone.h"
 #include "inf.h"
 

@@ -224,7 +224,7 @@ void TSetEditorApp::saveDesktop(char *fName, int makeBkp)
 
  dbprintf("Opened %s file, got %d handle\n",fName,h);
  #else
- fpstream *f=new fpstream(fName, ios::out|ios::bin);
+ fpstream *f=new fpstream(fName, CLY_std(ios::out)|CLY_IOSBin);
  #endif
 
  if (f)

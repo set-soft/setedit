@@ -6,7 +6,10 @@
 #define Uses_stdlib
 #define Uses_stdio
 #define Uses_string
+#define Uses_StrStream
+#define Uses_iomanip
 #define Uses_AllocLocal
+
 #define Uses_TDialog
 #define Uses_TDeskTop
 #define Uses_TProgram
@@ -57,8 +60,6 @@
 #include <editcoma.h>
 
 #include <stdarg.h>
-#include <strstream.h>
-#include <iomanip.h>
 
 #define Uses_SETAppConst
 #include <setapp.h>

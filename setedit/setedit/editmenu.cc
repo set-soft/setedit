@@ -37,7 +37,6 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
-#include <iomanip.h>
 
 #include <inf.h>
 #include <editcoma.h>

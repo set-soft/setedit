@@ -163,7 +163,7 @@ const int Version=0x100;
 
 void TListDiag::SaveList(char *name)
 {
- fpstream *f=new fpstream(name,ios::out|CLY_IOSBin);
+ fpstream *f=new fpstream(name,CLY_std(ios::out)|CLY_IOSBin);
 
  if (f)
    {
