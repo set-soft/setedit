@@ -1,5 +1,8 @@
 $Log$
-Revision 1.533  2002/01/02 01:09:57  root
+Revision 1.35  2002/01/04 14:54:01  set
+* Synchronized with home CVS.
+
+Revision 1.533  2002/01/02 01:09:57  set
 * Fixed: Missing TV for Linux and Win32 targets in config.pl.
 * Modified: Some headers to use Uses_* intead of including other headers.
 That's needed because a bug in glibc that enforces the declaration of
