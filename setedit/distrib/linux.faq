@@ -30,6 +30,9 @@ Q: Why delete previous word doesn't work?
 and all works OK, but as a common user the characters aren't right and I must
 select CP437. Why?
 3.2) Q: SETEdit can't open /dev/ptyX device, why?
+3.3) Q: Why capital accented characters doesn't work? I have lat1u fonts loaded.
+3.4) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
+lat1u fonts?
 
 4) sLisp macro language
 4.1) Q: How can I extend it?
@@ -248,6 +251,47 @@ my normal user account. But setedit couldn't open the pty device since it
 was owned by root.
 
 Attila Kinali"
+
+3.3) Q: Why capital accented characters doesn't work? I have lat1u fonts
+loaded.
+
+A: When the editor uses /dev/vcsa no font mapping is done. It means: if your
+document have a symbol number 192 (capital A letter with accute accent in
+ISO 8859 latin 1 encoding) the editor will send to the screen the code 192.
+The lat1u fonts are a tweacked version of the real ISO 8859 latin 1 fonts
+where capital letters are moved to other codes to get nice frames (connected
+instead of separated). This works for most programs because the kernel does a
+remapping using hash tables and converting the code into unicode and then
+back to an 8 bits value for the screen.
+If you really want to use capital accented letters just load lat1 fonts and
+not lat1u. Your frames will most probably look unconnected, if that's the
+case you must adjust the video mode to have characters of 8 pixels (width)
+and not 9. This can be achieved using SVGATextMode tool, you can use the
+following mode:
+
+"80x25x8"         25.2   640  680  776  800    400  412  414  449 font  8x16
+
+I personally use:
+
+"94x30_VGA"       28.3   752  776  840 904    480  488  490  525 font  8x16
+
+More information about it can be found in:
+
+http://www.balug.org.ar/ConfTips/Fonts/index.html
+
+The text is in spanish.
+
+3.4) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
+lat1u fonts?
+
+A: Some Linux distros included wrong fonts. An example is Debian GNU/Linux
+Potato. The package console-data (dated in 1999.08.29) have wrong lat1 fonts,
+they are in fact lat1u fonts, you can verify it using diff.
+Fixed fonts can be downloaded from:
+
+http://www.balug.org.ar/ConfTips/Fonts/index.html
+
+Look at the bottom of the page.
 
 ------------------------------------------------------------------------------
 4) sLisp macro language

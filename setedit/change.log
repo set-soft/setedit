@@ -1,4 +1,13 @@
 $Log$
+Revision 1.52  2002/02/04 20:38:41  set
+* Added: A clipboard mechanism based on a special file. This is specially
+useful for Linux where no clipboard can share data between X and the
+console. Suggested by Grzegorz. SF FR #479359.
+* Added: Documentation and entry menues for it, also grayed the copy when
+nothing is available for copying.
+* Fixed: The regular copy command (and others) wasn't grayed when a
+selection existed but was hidded.
+
 Revision 1.51  2002/02/04 19:29:13  set
 * Added: Explanation about tabs settings in DOS and Linux FAQs, also to the
 documentation. Triggered by a question of Ivan and chris <sscanf@gmx.net>.
@@ -3802,7 +3811,7 @@ of the editor.
 Revision 1.22  1999/02/12 22:52:45  set
 * Incorporated the last version of librhutil from Robert and applied the
 patches I did and forgot to tell Robert.
-.
+
 Revision 1.21  1999/02/12 22:28:19  set
 * Changed SETFindFile to FindFiles again and did it available only when using
 STANDALONE, in this way Robert can overwrite it with your own version.
