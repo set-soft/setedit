@@ -38,7 +38,7 @@
 
 static const char *cSlogan=__("\x3 A friendly text editor.");
 static const char *cFormatVersion=__("\x3Version: %lX.%lX.%lX   Revision: %d");
-static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) 1996-2003");
+static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) 1996-2004");
 static const char *cFormatPlatform=__("\x3Platform: %s  Driver: %s");
 static const char *cSET=__("\x3 by Salvador Eduardo Tropea");
 

@@ -17,8 +17,15 @@
 #define SEOS_Win32
 #define SEOS_STR "Win32"
 #define SEOSf_
-#define SEComp_BCPP
-#define SEComp_STR "BCPP"
+
+#if defined(_MSVC) || defined(__MSC_VER) || defined(_MSC_VER)
+ #define SEComp_MSC
+ #define SEComp_STR "MSC"
+#else
+ #define SEComp_BCPP
+ #define SEComp_STR "BCPP"
+#endif
+
 #define SECompf_
 #define SECPU_x86
 #define SECPU_STR "x86"

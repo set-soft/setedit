@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.551  2004/07/26 15:35:37  set
+* Modified: Once again makeinfo breaks something. This time makeinfo 4.6
+doesn't like:
+@item xxxx @il{xxxx
+yyyy}
+The @il must end in the same line or makeinfo gets confused.
+
 Revision 1.550  2004/07/26 15:09:15  set
 * Added: The first part of the "Breakpoints" dialog. Currently you can
 just see the breakpoint.
