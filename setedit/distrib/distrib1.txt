@@ -31,12 +31,6 @@ INDEX:
 
 0. IMPORTANT:
 
-  This is a major release and also a "dot zero" release. So you should expect
-big changes and also some annoying side effects. Please be patient and try to
-help me to solve any problem. I use the editor every day and compiled using
-"Electric Fence", it means that in my system the editor is really stable, but
-the editor supports too much systems and options.
-
   Changes in v@@v@@ (for more details read the change.log file):
 [taking last stable release (0.5.0) as reference]
 [40 new things and 25 fixes]

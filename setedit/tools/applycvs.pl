@@ -95,6 +95,12 @@ while ($a=<>)
          print FIL $a;
          $firstLine=1;
         }
+      elsif ($a=~/^(\*\*\*|\-\-\-) (\d*) (\*\*\*\*|\-\-\-\-)\n/)
+        {
+         $toSkip=1;
+         print FIL $a;
+         $firstLine=1;
+        }
       elsif (!$toSkip)
         {
          if (($a ne "***************\n") && ($a ne "\\ No newline at end of file\n"))

@@ -259,7 +259,7 @@ End
 
 # ----------- HTML, that's really bad!, sorry ---------------
 Name=HTML
-Files=htm,html,sht,shtml
+Files=htm,html,sht,shtml,HTM,HTML
 OpenComment1=<!--
 CloseComment1=-->
 AllowedInsideNames=/!-

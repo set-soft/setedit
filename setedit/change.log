@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.438  2003/08/15 18:51:32  set
+* Fixed: [Configuration] The configure script didn't take the CXXFLAGS
+variable, instead always used rhtv-config output (only CXXFLAGS, no CFLAGS)
+I discovered it when Ivan starter to wonder why debian/rules wasn't able to
+change the compilation options ;-)
+
 Revision 1.437  2003/08/13 18:38:07  set
 * Added: A link to the "pure DOS" fix/test release to the web page and also
 made the more visible the link to S.F. summary page.
