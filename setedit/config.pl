@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -18,7 +18,8 @@ $conf{'ToolsDistrib'}='no';
 $conf{'compressExe'}='undef';
 $TVCommandLine=0;
 
-GetCache();
+# If the script is newer discard the cache.
+GetCache() unless (-M 'config.pl' < -M 'configure.cache');
 GetVersion('');
 
 $TVVersionNeeded='2.0.2';

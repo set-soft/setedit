@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.350  2003/05/08 18:03:45  set
+* Fixed: After loading a file from a desktop file with column cursor
+enabled it wasn't visible until the cursor was moved.
+* Added: A bizarre desktop example with two fonts.
+
 Revision 1.349  2003/05/08 18:00:46  set
 * Added: Context sensitive help for the holidays configuration.
 
