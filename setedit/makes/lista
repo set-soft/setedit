@@ -163,6 +163,8 @@ extra/stackdbg.c
 extra/stackdbg.h
 extra/strncpyz.cc
 extra/strndup.cc
+fonts/10x20.cc
+-fonts/10x20.sft
 fonts/Makefile
 fonts/boxround.cc
 -fonts/boxround.sft

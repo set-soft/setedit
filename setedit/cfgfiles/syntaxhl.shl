@@ -2060,6 +2060,6 @@ Escape=\
 # Sections
 Keywords=TV,DOS,Linux,QNX,X11,XTerm,Win32,WinNT
 # Variables
-Keywords=Priority,UseVCS,UseMDA,PatchKeys,ShowCursorEver
+Keywords=Priority,UseVCS,UseMDA,PatchKeys,ShowCursorEver,Font10x20
 End
 

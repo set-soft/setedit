@@ -478,7 +478,7 @@
                       1C6   <U2577> BOX DRAWINGS LIGHT DOWN („)-1 Linux
                       1C7   <U2574> BOX DRAWINGS LIGHT LEFT (ˆ)-1 Linux
                       1C8   <Uf803> - but half way down
-                      1C9   <U2579> BOX DRAWINGS HEAVY UP (‘)-1 Linux
+                      1C9   <U2579> BOX DRAWINGS HEAVY UP (‘)-1 Linux  ATTENTION, This is a Linux error, the real unicode doesn't exist, the same is for the next three
                       1CA   <U257A> BOX DRAWINGS HEAVY RIGHT (’)-1 Linux
                       1CB   <U257B> BOX DRAWINGS HEAVY DOWN (”)-1 Linux
                       1CC   <U2578> BOX DRAWINGS HEAVY LEFT (˜)-1 Linux

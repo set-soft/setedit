@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.159  2002/07/22 19:20:38  set
+* Modified: getopt calls to use the new CLY_* methode.
+
 Revision 1.158  2002/07/19 20:45:54  set
 * Roll back of bzlib patch.
 * Modified: [MSVC] makefile to avoid command line limitations. Untested.
