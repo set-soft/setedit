@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit.
+# Automatically generated from RHIDE projects, don't edit
 #
 
 obj/djmdr.o:: djmdr.s \
@@ -8,6 +8,7 @@ obj/djmdr.o:: djmdr.s \
 	$(RHIDE_COMPILE_ASM_FORCE)
 
 obj/dyncat.o:: dyncat.cc \
+	$(EXTRA_INC_DIR)/dyncat.cc \
 	dyncat.h \
 	configed.h \
 	rhide.env \
@@ -20,6 +21,7 @@ obj/memmove.o:: memmove.s \
 	$(RHIDE_COMPILE_ASM_FORCE)
 
 obj/mixer.o:: mixer.c \
+	$(EXTRA_INC_DIR)/mixer.c \
 	mixer.h \
 	configed.h \
 	rhide.env \
@@ -27,6 +29,7 @@ obj/mixer.o:: mixer.c \
 	$(RHIDE_COMPILE_C)
 
 obj/mixersb.o:: mixersb.c \
+	$(EXTRA_INC_DIR)/mixersb.c \
 	configed.h \
 	rhide.env \
 	common.imk 
@@ -34,12 +37,14 @@ obj/mixersb.o:: mixersb.c \
 
 obj/mixoss.o:: mixoss.c \
 	mixer.h \
+	$(EXTRA_INC_DIR)/mixoss.c \
 	configed.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_C)
 
 obj/stackdbg.o:: stackdbg.c \
+	$(EXTRA_INC_DIR)/stackdbg.c \
 	stackdbg.h \
 	configed.h \
 	compatlayer.h \

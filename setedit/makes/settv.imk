@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit.
+# Automatically generated from RHIDE projects, don't edit
 #
 
 libsettv.a:: \
@@ -77,6 +77,7 @@ obj/diaghelp.o:: diaghelp.cc \
 obj/dktclock.o:: dktclock.cc \
 	ceditint.h \
 	configed.h \
+	$(MP3_PREV_DIR)/settvuti/dktclock.cc \
 	dktclock.h \
 	settvuti.h \
 	compatlayer.h \

@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit.
+# Automatically generated from RHIDE projects, don't edit
 #
 
 editor.exe:: \
@@ -305,6 +305,7 @@ obj/boardmix.o:: boardmix.cc \
 	tsviewco.h \
 	mixer.h \
 	configed.h \
+	$(MP3_PREV_DIR)/setedit/boardmix.cc \
 	setapp.h \
 	compatlayer.h \
 	tv.h \
@@ -372,6 +373,7 @@ obj/bufun.o:: bufun.cc \
 	configed.h \
 	edmsg.h \
 	splinman.h \
+	$(MP3_PREV_DIR)/mainsrc/bufun.cc \
 	setapp.h \
 	setstack.h \
 	settvuti.h \
@@ -431,6 +433,7 @@ obj/bufun.o:: bufun.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/calcu.o:: calcu.cc \
+	$(CALCU_INC_DIR)/calcu.cc \
 	calcu.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -644,6 +647,7 @@ obj/codepage.o:: codepage.cc \
 	sindicat.h \
 	tvsetuti.h \
 	mp3play.h \
+	$(MP3_PREV_DIR)/setedit/codepage.cc \
 	calendar.h \
 	setapp.h \
 	sarray.h \
@@ -794,6 +798,7 @@ obj/deedidia.o:: deedidia.cc \
 	setconst.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/deedidia.cc \
 	editcoma.h \
 	setapp.h \
 	diaghelp.h \
@@ -876,6 +881,7 @@ obj/doedidia.o:: doedidia.cc \
 	ceditor.h \
 	configed.h \
 	setconst.h \
+	$(MP3_PREV_DIR)/mainsrc/doedidia.cc \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
@@ -929,6 +935,7 @@ obj/dskascii.o:: dskascii.cc \
 	ceditint.h \
 	ceditor.h \
 	configed.h \
+	$(MP3_PREV_DIR)/setedit/dskascii.cc \
 	ascii.h \
 	dskascii.h \
 	dskwin.h \
@@ -970,6 +977,7 @@ obj/dskcalen.o:: dskcalen.cc \
 	ceditint.h \
 	ceditor.h \
 	configed.h \
+	$(MP3_PREV_DIR)/setedit/dskcalen.cc \
 	calendar.h \
 	dskcalen.h \
 	dskwin.h \
@@ -1016,6 +1024,7 @@ obj/dskclip.o:: dskclip.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/setedit/dskclip.cc \
 	dskclip.h \
 	dskwin.h \
 	setapp.h \
@@ -1080,6 +1089,7 @@ obj/dskclose.o:: dskclose.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/setedit/dskclose.cc \
 	dskclose.h \
 	dskwin.h \
 	edcollec.h \
@@ -1148,6 +1158,7 @@ obj/dskedito.o:: dskedito.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/setedit/dskedito.cc \
 	dskedito.h \
 	dskwin.h \
 	edcollec.h \
@@ -1220,6 +1231,7 @@ obj/dskhelp.o:: dskhelp.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
+	$(MP3_PREV_DIR)/setedit/dskhelp.cc \
 	dskhelp.h \
 	dskwin.h \
 	edcollec.h \
@@ -1286,6 +1298,7 @@ obj/dskman.o:: dskman.cc \
 	configed.h \
 	manview.h \
 	rhutils.h \
+	$(MP3_PREV_DIR)/setedit/dskman.cc \
 	dskman.h \
 	dskwin.h \
 	setapp.h \
@@ -1333,6 +1346,7 @@ obj/dskmessa.o:: dskmessa.cc \
 	ceditor.h \
 	configed.h \
 	edmsg.h \
+	$(MP3_PREV_DIR)/setedit/dskmessa.cc \
 	dskmessa.h \
 	dskwin.h \
 	setapp.h \
@@ -1381,6 +1395,7 @@ obj/dskmp3.o:: dskmp3.cc \
 	ceditor.h \
 	configed.h \
 	intermp3.h \
+	$(MP3_PREV_DIR)/setedit/dskmp3.cc \
 	dskmp3.h \
 	dskwin.h \
 	setapp.h \
@@ -1472,6 +1487,7 @@ obj/dstfile.o:: dstfile.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
+	$(MP3_PREV_DIR)/setedit/dstfile.cc \
 	codepage.h \
 	dskclip.h \
 	dskhelp.h \
@@ -1779,6 +1795,7 @@ obj/editdiag.o:: editdiag.cc \
 	ceditor.h \
 	configed.h \
 	edspecs.h \
+	$(MP3_PREV_DIR)/setedit/editdiag.cc \
 	advice.h \
 	setapp.h \
 	setstack.h \
@@ -2059,6 +2076,7 @@ obj/editorfo.o:: editorfo.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/editorfo.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -2106,6 +2124,7 @@ obj/editorfo.o:: editorfo.cc \
 
 obj/editpale.o:: editpale.cc \
 	configed.h \
+	$(MP3_PREV_DIR)/setedit/editpale.cc \
 	setapp.h \
 	tpaltext.h \
 	compatlayer.h \
@@ -2162,6 +2181,7 @@ obj/editwind.o:: editwind.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/editwind.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -2231,6 +2251,7 @@ obj/edkeys.o:: edkeys.cc \
 	tvsetuti.h \
 	mli.h \
 	mlieditd.h \
+	$(MP3_PREV_DIR)/setedit/edkeys.cc \
 	editcoma.h \
 	setapp.h \
 	diaghelp.h \
@@ -2314,6 +2335,7 @@ obj/edmsg.o:: edmsg.cc \
 	sindicat.h \
 	splinman.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/setedit/edmsg.cc \
 	codepage.h \
 	dskmessa.h \
 	dskwin.h \
@@ -2497,6 +2519,7 @@ obj/edprint.o:: edprint.cc \
 	ceditint.h \
 	configed.h \
 	edmsg.h \
+	$(MP3_PREV_DIR)/setedit/edprint.cc \
 	setapp.h \
 	compatlayer.h \
 	tv.h \
@@ -2747,7 +2770,7 @@ obj/gzfiles.o:: gzfiles.cc \
 	ceditint.h \
 	configed.h \
 	gzfiles.h \
-	cl/unistd.h \
+	$(MP3_PREV_DIR)/mainsrc/gzfiles.cc \
 	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
@@ -2844,6 +2867,7 @@ obj/intgrep.o:: intgrep.cc \
 	tvsetuti.h \
 	rhutils.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/intgrep.cc \
 	edhists.h \
 	sarray.h \
 	setstack.h \
@@ -2992,6 +3016,7 @@ obj/loadcle.o:: loadcle.cc \
 	ceditint.h \
 	configed.h \
 	loadcle.h \
+	$(MP3_PREV_DIR)/setedit/loadcle.cc \
 	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
@@ -3142,6 +3167,7 @@ obj/loadnobkp.o:: loadnobkp.cc \
 	loadshl.h \
 	loadnobkp.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/loadnobkp.cc \
 	setstack.h \
 	settvuti.h \
 	tdiagaid.h \
@@ -3209,6 +3235,7 @@ obj/loadshl.o:: loadshl.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/loadshl.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -3407,6 +3434,7 @@ obj/menuload.o:: menuload.cc \
 	sindicat.h \
 	tvsetuti.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/menuload.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -3668,6 +3696,7 @@ obj/msignal.o:: msignal.cc \
 	ced_inte.h \
 	ceditint.h \
 	configed.h \
+	$(MP3_PREV_DIR)/setedit/msignal.cc \
 	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
@@ -3828,6 +3857,7 @@ obj/pathlist.o:: pathlist.cc \
 	configed.h \
 	tvsetuti.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/pathlist.cc \
 	settvuti.h \
 	tdiagaid.h \
 	tdiagrow.h \
@@ -3887,6 +3917,7 @@ obj/pathtool.o:: pathtool.cc \
 	pathtool.h \
 	tvsetuti.h \
 	rhutils.h \
+	$(MP3_PREV_DIR)/mainsrc/pathtool.cc \
 	pathlist.h \
 	setapp.h \
 	settvuti.h \
@@ -4037,6 +4068,7 @@ obj/runprog.o:: runprog.cc \
 	intermp3.h \
 	loadcle.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/runprog.cc \
 	setstack.h \
 	settvuti.h \
 	compatlayer.h \
@@ -4113,6 +4145,7 @@ obj/sceditor.o:: sceditor.cc \
 	tnocastc.h \
 	tstringa.h \
 	viewplus.h \
+	$(MP3_PREV_DIR)/streams/sceditor.cc \
 	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
@@ -4168,6 +4201,7 @@ obj/scresave.o:: scresave.cc \
 	rhutils.h \
 	intermp3.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/scresave.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -4226,6 +4260,7 @@ obj/sdginter.o:: sdginter.cc \
 	ceditint.h \
 	configed.h \
 	edmsg.h \
+	$(MP3_PREV_DIR)/mainsrc/sdginter.cc \
 	mli.h \
 	mlisdgi.h \
 	txhgen.h \
@@ -4712,6 +4747,7 @@ obj/search.o:: search.cc \
 	pmcoll.h \
 	sindicat.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/search.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -4838,6 +4874,7 @@ obj/slpinter.o:: slpinter.cc \
 	sindicat.h \
 	slpinter.h \
 	tvsetuti.h \
+	$(MP3_PREV_DIR)/mainsrc/slpinter.cc \
 	mli.h \
 	mliabase.h \
 	mlibase.h \
@@ -5009,6 +5046,7 @@ obj/ssyntax.o:: ssyntax.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
+	$(MP3_PREV_DIR)/mainsrc/ssyntax.cc \
 	setapp.h \
 	setstack.h \
 	settvuti.h \
@@ -5187,6 +5225,7 @@ obj/tedcolle.o:: tedcolle.cc \
 	dskwin.h \
 	edcollec.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/tedcolle.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
@@ -5260,6 +5299,7 @@ obj/tips.o:: tips.cc \
 	edmsg.h \
 	edspecs.h \
 	setapp.h \
+	$(MP3_PREV_DIR)/setedit/tips.cc \
 	compatlayer.h \
 	tv.h \
 	tv/app.h \

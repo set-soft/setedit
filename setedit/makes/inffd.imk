@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit.
+# Automatically generated from RHIDE projects, don't edit
 #
 
 obj/inf.o:: inf.cc \
@@ -14,6 +14,7 @@ obj/inf.o:: inf.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
+	$(MP3_PREV_DIR)/infview/inf.cc \
 	diaghelp.h \
 	edhists.h \
 	fileopen.h \
@@ -99,12 +100,12 @@ obj/infbase.o:: infbase.cc \
 	tvsetuti.h \
 	infbase.h \
 	infbaser.h \
+	$(MP3_PREV_DIR)/infview/infbase.cc \
 	rhutils.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
 	tprogdia.h \
-	cl/unistd.h \
 	compatlayer.h \
 	tv.h \
 	tv/codepage.h \

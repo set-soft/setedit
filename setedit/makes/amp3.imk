@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit.
+# Automatically generated from RHIDE projects, don't edit
 #
 
 obj/ampdiag.o:: ampdiag.cc \
@@ -14,6 +14,7 @@ obj/ampdiag.o:: ampdiag.cc \
 	tsviewco.h \
 	ceditint.h \
 	configed.h \
+	$(MP3_INC_DIR)/ampdiag.cc \
 	intermp3.h \
 	mp3play.h \
 	dskmp3.h \
@@ -69,6 +70,7 @@ obj/ampdiag.o:: ampdiag.cc \
 obj/intermp3.o:: intermp3.cc \
 	ceditint.h \
 	configed.h \
+	$(MP3_INC_DIR)/intermp3.cc \
 	intermp3.h \
 	mp3play.h \
 	edhists.h \
@@ -121,13 +123,13 @@ obj/mp3list.o:: mp3list.cc \
 	configed.h \
 	tvsetuti.h \
 	intermp3.h \
+	$(MP3_INC_DIR)/mp3list.cc \
 	setapp.h \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
 	settvuti.h \
 	tnosostr.h \
-	cl/unistd.h \
 	compatlayer.h \
 	tv.h \
 	tv/app.h \
@@ -186,6 +188,7 @@ obj/mp3list.o:: mp3list.cc \
 obj/mp3play.o:: mp3play.cc \
 	ceditint.h \
 	configed.h \
+	$(MP3_INC_DIR)/mp3play.cc \
 	mp3play.h \
 	mpegsound/mpegsound.h \
 	compatlayer.h \
