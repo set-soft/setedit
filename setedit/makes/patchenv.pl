@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 #   This perl script reads the rhide.env file and replaces all the
@@ -91,13 +91,13 @@ sub PatchFile
             { # Single line
              $repl="^$name"."=(.*)";
              #FIXME: Ivan: I had to change the below IF because for example
-	     #SUPPORT_INC could appear more than one time in the same .mak
-	     #and we need to change it multiple times, maybe the first time
-	     #it has the same value but the second time it has a different
-	     #one, and this only checks the first time it appears, so I just
-	     #avoided the check. Someone with good knowledge of Perl has to
-	     #fix this The Good Way TM.
-	     #if (($r =~ /$repl/m) && ($1 ne $value))
+             #SUPPORT_INC could appear more than one time in the same .mak
+             #and we need to change it multiple times, maybe the first time
+             #it has the same value but the second time it has a different
+             #one, and this only checks the first time it appears, so I just
+             #avoided the check. Someone with good knowledge of Perl has to
+             #fix this The Good Way TM.
+             #if (($r =~ /$repl/m) && ($1 ne $value))
              if ($r =~ /$repl/m)
                {
                 $r =~ s/$repl/$name=$value/mg;
