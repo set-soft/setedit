@@ -191,7 +191,7 @@ CleanUp:
 // (RunProgram "prg1;prg2;..." [options_flags] [compiler])
 DecFun(MLIRunProgram)
 {
- int Options=0,flags=repDontFork;
+ int Options=0,flags=repDontFork|repDontShowDialog;
  char *comp="GNU";
  LocVarStr(string);
  LocVarInt(option);
@@ -225,7 +225,7 @@ DecFun(MLIRunProgramRedir)
 {
  char *s;
  int l;
- unsigned flags=repDontShowAsMessage|repDontFork;
+ unsigned flags=repDontShowAsMessage|repDontFork|repDontShowDialog;
  LocVarStr(string);
  LocVarStr(input);
 

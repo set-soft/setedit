@@ -307,12 +307,20 @@ void MLIBaseIf(TMLIBase *o,int start ,int cant)
  int boolval=o->MLIBooleanValOf(p);
  destroyFloatVar(p);
  if (boolval)
-    MLIRetObj(o->Solve(start+1));
+   {// Note that MLIRetObj is a macro and *have* side effects
+    p=o->Solve(start+1);
+    MLIRetObj(p);
+   }
  else
-   if (cant==3)
-      MLIRetObj(o->Solve(start+2));
-   else
-      MLIRetInt(0);
+   {
+    if (cant==3)
+      {
+       p=o->Solve(start+2);
+       MLIRetObj(p);
+      }
+    else
+       MLIRetInt(0);
+   }
 }
 
 DecFun(MLIBaseCond)
@@ -1065,6 +1073,11 @@ char *TMLIBase::SkipCode()
           }
        }
      else
+     if (*s==';')
+       {
+        for (s++; *s && *s!='\n'; s++);
+       }
+     else
      if (*s=='(')
         level++;
      else
@@ -1289,7 +1302,7 @@ int TMLIBase::ParseNumber()
  char *end;
  array->Push(new TLispInteger(strtol(Code,&end,0)));
  Code=end;
- return !(ucisspace(*end) || *end=='(' || *end==')');
+ return !(ucisspace(*end) || *end=='(' || *end==')' || *end==';');
 }
 
 #define maxParse 4
