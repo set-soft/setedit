@@ -180,6 +180,7 @@ fonts/cntdown.cc
 fonts/convpcf1.cc
 fonts/common1.h
 fonts/common2.h
+fonts/intcode.h
 fonts/let.txt
 -fonts/medieval.016
 -fonts/medieval.sft
