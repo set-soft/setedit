@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-12-09 13:38
+# 2004-06-14 12:16
 #
 
 test$(ExEXE):: \
@@ -16,7 +16,6 @@ obj/test$(ExOBJ):: test.cc \
 	easydia1.h \
 	easydiag.h \
 	snostate.h \
-	$(EASYDIAG_INC_DIR)/test.cc \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \

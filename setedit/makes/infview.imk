@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-12-09 13:38
+# 2004-06-14 12:16
 #
 
 infview$(ExEXE):: \
@@ -27,7 +27,6 @@ infview$(ExEXE):: \
 	$(RHIDE_COMPILE_LINK)
 
 objinf/dyncat$(ExOBJ):: dyncat.cc \
-	$(EXTRA_INC_DIR)/dyncat.cc \
 	dyncat.h \
 	configed.h \
 	$(MAKEFILE_DEPS) 
@@ -43,7 +42,6 @@ objinf/gzfiles$(ExOBJ):: gzfiles.cc \
 	ceditint.h \
 	configed.h \
 	gzfiles.h \
-	$(MP3_PREV_DIR)/mainsrc/gzfiles.cc \
 	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
@@ -74,7 +72,6 @@ objinf/inf$(ExOBJ):: inf.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	$(MP3_PREV_DIR)/infview/inf.cc \
 	diaghelp.h \
 	edhists.h \
 	fileopen.h \
@@ -159,7 +156,6 @@ objinf/infbase$(ExOBJ):: infbase.cc \
 	tvsetuti.h \
 	infbase.h \
 	infbaser.h \
-	$(MP3_PREV_DIR)/infview/infbase.cc \
 	rhutils.h \
 	setstack.h \
 	settvuti.h \
@@ -233,7 +229,6 @@ objinf/infmain$(ExOBJ):: infmain.cc \
 	infbaser.h \
 	infr.h \
 	manview.h \
-	$(MP3_PREV_DIR)/infview/infmain.cc \
 	codepage.h \
 	pal.h \
 	setstack.h \

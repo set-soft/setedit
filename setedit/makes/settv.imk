@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-12-09 13:38
+# 2004-06-14 12:16
 #
 
 libsettv$(ExLIB):: \
@@ -74,7 +74,6 @@ obj/diaghelp$(ExOBJ):: diaghelp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dktclock$(ExOBJ):: dktclock.cc \
-	$(MP3_PREV_DIR)/settvuti/dktclock.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -104,9 +103,8 @@ obj/dktclock$(ExOBJ):: dktclock.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fileopen$(ExOBJ):: fileopen.cc \
-	$(MP3_PREV_DIR)/settvuti/fileopen.cc \
-	fileopen.h \
 	compatlayer.h \
+	fileopen.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -156,12 +154,11 @@ obj/fileopen$(ExOBJ):: fileopen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
-	$(MP3_PREV_DIR)/settvuti/fiopeaid.cc \
+	compatlayer.h \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -860,7 +857,7 @@ obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/uisarray$(ExOBJ):: uisarray.cc \
-	$(SETTVUTI_INC_DIR)/sarray.cc \
+	include/sarray.cc \
 	compatlayer.h \
 	sarray.h \
 	settvuti.h \
@@ -881,7 +878,7 @@ obj/uisarray$(ExOBJ):: uisarray.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ussarray$(ExOBJ):: ussarray.cc \
-	$(SETTVUTI_INC_DIR)/sarray.cc \
+	include/sarray.cc \
 	compatlayer.h \
 	sarray.h \
 	settvuti.h \
