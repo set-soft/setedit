@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.488  2004/01/06 15:42:01  set
+* Updated: Flat Assembler syntax highlight. Contributed by Matt Childress.
+
 Revision 1.487  2003/12/15 21:21:43  set
 * Fixed: [RPM] The prereq seems to be /sbin/install-info and not
 /usr/bin/... At least that's what most specs found by Google shows ;-)
