@@ -690,6 +690,10 @@ sub GiveAdvice
    {
     print "* AA lib is not installed so you won't get a nice console screen saver\n";
    }
+ if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
+   {
+    print "* NO DEBUG SUPPORT! The migdb library isn't available, debug features disabled.\n";
+   }
 }
 
 sub LookForGettextTools

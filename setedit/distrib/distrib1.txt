@@ -6,7 +6,7 @@
 
   That's the official distribution of SET's editor v@@v@@
   The editor is Copyrighted by Salvador Eduardo Tropea <set@users.sf.net>.
-(c) 1996-2003 and distributed under the GPL license.
+(c) 1996-2004 and distributed under the GPL license.
   It's free and you don't need to pay for it. Any kind of donations are
 accepted ;-).
 
@@ -31,6 +31,9 @@ INDEX:
 
 0. IMPORTANT:
 
+  Starting with "Glaciar Perito Moreno I" release the editor can be used as
+a frontend for GDB on Linux systems. It means you can use SETEdit as
+debugger.
   Starting with "Iguazu II" release the editor changed the mechanism used to
 select a window. In previous versions the Alt+window_number was hardcoded in
 Turbo Vision library. Now this is no longer handled by TV. It have some
@@ -40,28 +43,198 @@ in your menu files, if you have a custom menu file please consult the one
 shipped with the editor and copy the new entries in the Window menu.
   Changes in v@@v@@ (for more details read the change.log file):
 [taking last stable release (0.5.2) as reference]
-[xx new things and xx fixes]
+[66 new things and 40 fixes]
 
-New [xx things]:
+New [66 things]:
 
-+ Various [x]
-+ Compilation [x]
-+ sLisp [x]
-+ Syntax highlight and pmacros [x]
-+ Linux [x]
-+ X11 [x]
-+ Cosmetic [x]
++ Debug [12] --> NEW Functionality for *Linux* <--
+
+* Dialogs to configure the debug mode (local, remote and running process), the
+command line options for the program, gdb binary, xterm binary, messages
+displayed, etc.
+* Breakpoints, simple ones and advanced options including conditional
+breakpoints, breakpoints at functions, ignore count, etc.
+* Watchpoints, they are data breakpoints.
+* Options to run, continue, step over, trace into, run upto return, etc.
+* Options to stop and kill the program.
+* Thread selection.
+* Evaluate and modify data.
+* Data Window and Satck to browse the memory (very complete and with its own
+menu).
+* Data Watches, like then ones in RHIDE and also with scope.
+* Data Inspectors, used to analyze complex data structures.
+* Disassembler Window, including syntax highlight and allowing to modify the
+registers.
+* Calling stack, with functionality to browse the call chain.
+
++ Various [15]
+
+* Alternative project sorting mode.
+* Commands to select any window, now Alt+Key is no longer hardcoded.
+* Sections in the docs to help finding what you need.
+* When asking for word completion if the word at the left looks like Class::
+then the editor looks for the class and offers the members.
+* Enhacements to the "Paste Emacs Mode" and the code to search Emacs
+variables.
+* Now if you don't specify any path to "search files under cursor" the editor
+tries to automagically fills this list using the output of cpp.
+* If the editor fails to find the file under cursor now it also looks for it
+in the project and the current directory.
+* Some rudimentary $(VARIABLE) expansion to the "File under cursor" files
+list.
+* A button to recompute window numbers in the list of windows.
+* "File open" dialogs remmembers its size and position.
+* Non interactive versions of the cmcExpandAllTabs and cmcCompactBuffer
+commands to be used from sLisp.
+* Two new commands: cmeGPushCursorPos and cmeGPopCursorPos. They are "global
+push/pop cursor pos". So they also remmember the file.
+* Options to zoom the editor windows when inserted in the desktop.
+* An option to regenerate the central tags file. Used to workaround ctags bug.
+* Modified behavior of the paste operation in input lines: Now the text is
+pasted without destroying the previous value (unless it is selected).
+
++ Menu files [4]
+
+* Context sensitive menues. Also extended the .smn file language to create
+such a thing. Currently used only for the data window and the help.
+* The conditionals in menu files can use the TV driver, CPU, OS, etc. for
+conditions.
+* More variables to check: MP3, PCRE, BZIP2, MIXER and UNIX.
+* $define and $undef and its expansion.
+
++ Compilation [2]
+
+* The posibility to override the "install" command in makefiles.
+* Unified compilation mechanism for BC++.
+
++ sLisp [9]
+
+* FindString, FindAgain, ReplaceString and ReplaceAgain for searches.
+* SelectWindowNumber used to change the focused window.
+* GetCurWindowNumber and GetMaxWindowNumber.
+* You can bind small portions of sLisp code to keys and menu entries.
+* KeyBindings and BindKey commands. With them you can change key bindings
+from sLisp.
+* prex to perform Perl regular expressions searches.
+* GetSystemInfo to know the current OS, TV driver, CPU, etc.
+* More macros examples.
+* Now you can send cme* commands.
+
++ Syntax highlight and pmacros [8]
+
+* Flat Assembler syntax.
+* Ruby syntax.
+* SPARC assembler syntax.
+* WML syntax and pmacros.
+* Errors parser for Perl.
+* C,H and CPP as valid C extensions as valid for C/C++.
+* HTML extensions as valid for HTML.
+* vbe and vst as VHDL extensions.
+
++ Cosmetic [16]
+
+* Project windows are "closed" (hided) when pressing ESC.
+* Windows are opened "zoomed" when the project window isn't visible.
+* When automatically opening a project item now its opened using the relative
+path.
+* Select the closest word when using double click and not the next.
+* History to the "arbitrary indent" and "run command" input lines.
+* To lock the screen while doing a search & replace operation to avoid
+"flashing" when doing a lot of S&R operations.
+* Modified: "Do not purge spaces" option to be "Keep trailing whitespace"
+that's more descriptive.
+* A new color scheme called "Classic Borland"
+* A new color scheme called "Midnight Commander"
+* If the Ctrl+Enter fails to find the file under cursor now that's informed
+in the "status line" of the current editor.
+* Most lists (like functions list) now centers the focused item when a match
+is selected.
+* OS/OS flavor,CPU,Compiler/Compiler flavor and Driver to the about box.
+* Configuration options to disable the calculator and calendar.
+* Now the meassure command reports the result in the status line.
+* A beep when "Run a program" finishes. Option to disable.
+* Busy indicator while we load the tags from disk.
 
 
-Fixed [xx things]:
+Fixed [40 things]:
 
-+ Fatal  [x]
-+ Not fatal [x]
-+ Compilation [x]
-+ sLisp [x]
-+ Linux [x]
-+ X11 [x]
-+ Cosmetic [x]
++ Fatal  [4]
+
+* The "Jump" button in the main window of the class browser.
+* Undo count for the first undo wasn't initialized. Unknown consequence.
+* Corrupted MP3 files could produce a crash.
+* Abort when doing word completion and the starting word was "bigger" than
+the last tag in the list.
+
++ Not fatal [17]
+
+* HTML export: missing body tag.
+* Errors in the conditionals parser for menu files.
+* Undo error when a character replaced a tab (overwrite enabled) and the
+cursor was inside the tab (not at the beggining).
+* Wrong match pair when the cursor was in the middle of a tab and the next
+character matched a pair (highlight in the middle of the tab).
+* No match pair after deleting some text and the cursor goes to a symbol.
+* When searching outside comments and the match was found in the first column
+of a line after a comment it was ignored.
+* When starting a project using a different window size the project window
+could get wrong size and even become outside the screen.
+* When aborting an overwrite (in save as) the name of the window was changed.
+* When pasting using the OS clipboard and the cursor was moved to the end of
+the selection it could go out of screen which is quite annoying.
+* When copying something from the calculator and the paste wasn't enabled
+before entering the calculator then you needed to at least move the cursor
+before you could paste.
+* Use of unitialized undo counter in some rectangular selection operations.
+* The heuristic C/C++ parser to support list of exceptions (function
+throw(...) {body}).
+* Some details in the heuristic C++ functions searcher. They address problems
+with the const and throw() attributes.
+* Various memory leaks.
+* "New" buffers shouldn't be added to the list of closed windows when closed.
+It generated a read out of bounds and a write of unitialized data to disk.
+* The menu files uses nested preprocessor directives but it wasn't supported.
+* cmcCutClipWin command not dis/enabled when selecting text.
+
++ Compilation [13]
+
+* Cygwin: Collision between strndup and calculator parser.
+* Some gcc versions needs explicit use of libstdc++ to link C++ and
+internac/getcolors didn't have it.
+* Removed two comments containing non-ASCII chars.
+* Various gcc 3.x compilation issues (including gcc 3.4.1 support).
+* Problems with newer versions of makeinfo.
+* The memcpy usage to be more portable. It worked for all supported targets,
+but now should also work for unsupported targets. Same for malloc/new/new[]
+v.s. free/delete/delete[] calls.
+* Missing va_end and abuse of va_list type. It gave problems for Linux PPC
+targets.
+* Use of "g++" in favor of "gcc -lstdc++".
+* strstr and strchr are declared different in C++ standard (compared to C
+standard). Needed to avoid BC++ compilation problems.
+* Various MSVC compilation issues.
+* --cxx-flags flag was reported as --cpp-flags in the help. Now both are
+valid.
+* Cygwin can execute the "make install" target, but it installed binaries
+without .exe extension.
+* Detection of pcre header for systems where the header is in pcre/pcre.h.
+Red Hat is an example.
+
++ Linux [3]
+
+* Code page problems when mixing console use and remote XTerm use.
+* RPM prereq for /sbin/install-info.
+* Problems to create the rpms using Fedora Core 2.
+
++ Cosmetic [3]
+
+* Some drawing variables not initialized. Could make the row/col cursor
+appear until a new redraw.
+* Now the cmc*Win (Copy,Cut,Paste) commands are called cmc*OS to reflect
+their real use. The old names remains as aliases.
+* The list for word completion had a wrong vertical size when we had repeated
+tags in the list to choose. Only one was visible but the size was computed
+counting the repetitions.
 
 
   For information about older releases and more read the change.log file.

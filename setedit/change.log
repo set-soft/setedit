@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.602  2004/09/10 19:55:06  set
+* Modified: To include libmigdb in the distro (if available).
+* Modified: [Config] To use the shipped libmigdb if none installed.
+* Modified: [Config] To detect installations where pcre header is in the
+pcre directory. Red Hat seems to use it according to Vik Heyndrickx.
+
 Revision 1.601  2004/09/10 18:11:57  set
 * Added: Debug and InfView stuff to redmond.smn. InfView stuff to
 simple.smn.
