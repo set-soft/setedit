@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.605  2004/09/16 20:59:51  set
+* Added: [Config] AMD64 and NetBSD detection. It doesn't mean they are
+supported.
+
 Revision 1.604  2004/09/15 13:10:06  set
 * Fixed: [Config] wrong pcre header selected when using shipped pcre.
 Problem introduced by the recent patch to support pcre/pcre.h.

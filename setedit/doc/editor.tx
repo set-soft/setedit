@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.4
-@set update-date 8 September 2004
+@set update-date 17 September 2004
 @set update-month September 2004
 @set name-author Salvador Eduardo Tropea
 
@@ -8431,6 +8431,30 @@ To send commands to gdb use the @kbd{Insert} key.
 When a dialog asks for an expression to watch, modify, @il{etc.@:} you can
 enter any expression that gdb can analize. This includes arithmetic
 operations and function calls.
+@p{}
+
+@section Debugging in the Linux console
+@cindex debug, console
+
+When you debug in a Linux console the editor uses a separated virtual
+terminal for the program you want to debug. The terminal is automatically
+selected but you can specify it using the debug options dialog.
+@x{Debug options}.
+@p{}
+
+One reason to specify a fixed terminal is when you have more than one video
+card. In this case you can allocate some virtual terminals in the secondary
+video board and use them to run the program to debug.
+@p{}
+
+When using only one video card the debug window should be in some visible part
+of the editor's desktop. This window indicates the current status and hence
+you can know if your program is stopped or running. @x{Debug Messages Window}.
+@p{}
+
+Remmember that when the editor is running in a Linux console you must use the
+@kbd{Ctrl} + @kbd{Alt} + @kbd{Fn} key combination to switch to another
+virtual terminal.
 @p{}
 
 @chapter Miscellaneous

@@ -17,6 +17,7 @@ General:
 * Some stop mechanism to avoid waiting for response time out.
 * Some way to revert the "don't show next time" options. Like with the
 advices. It means we must concentrate them into one place.
+* Mechanism to select a PID from the running processes.
 
 Breakpoints:
 * Detect recompilation of the target from "outside", that's without using Run
@@ -865,6 +866,19 @@ void ExtractBinReference()
     dbg->PathSources(binReference);
 }
 
+static
+const char *getCurTTY()
+{
+ const char *tty=NULL;
+ if (dOps.tty[0])
+    tty=dOps.tty;
+ if (!tty)
+    tty=dbg->GetAuxTTY();
+ if (!tty)
+    tty=TVIntl::getText(__("default"),icDefault);
+ return tty;
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -914,6 +928,8 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
            {
             localMode=modeLinux;
             res=dbg->SelectTargetLinux(dOps.program,args,tty);
+            if (res)
+               GiveAdvice(gadvDbgLinuxTTY);
            }
          break;
 
@@ -7190,13 +7206,7 @@ void DebugMsgSetMode(Boolean select)
  switch (dOps.mode)
    {
     case dmLocal:
-         tty=NULL;
-         if (dOps.tty[0])
-            tty=dOps.tty;
-         if (!tty)
-            tty=dbg->GetAuxTTY();
-         if (!tty)
-            tty=TVIntl::getText(__("default"),icDefault);
+         tty=getCurTTY();
          TVIntl::snprintf(b,maxWStatus,__("Mode: %s (%s) [%s]"),
                           localMode==modeX11 ? "X11" : "Console",tty,dOps.program);
          break;
