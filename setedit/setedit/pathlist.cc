@@ -190,7 +190,7 @@ int PathListGetItem(ccIndex pos, char *buffer)
  if (!IncludeList || pos>=IncludeList->getCount())
     return 0;
  const char *str=(const char *)IncludeList->at(pos);
- char *var=strstr(str,"$(");
+ const char *var=strstr(str,"$(");
  if (!var)
     strcpy(buffer,str);
  else

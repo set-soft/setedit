@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.513  2004/06/02 19:57:43  set
+* Added: [SHL] vbe and vst as VHDL extensions. Used by Alliance for "Vhdl
+BEhavioral" and "Vhdl STructural". Suggested by Juan Pablo.
+
 Revision 1.512  2004/05/31 14:09:22  set
 * Modified: [Debian] Applied patch #962884 S.F. submitted by Baurjan
 Ismagulov - ibr. Related to the libset package. It needs some adjustments.
