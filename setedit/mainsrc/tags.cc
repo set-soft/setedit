@@ -233,11 +233,6 @@ void *TTagFiles::keyOf(void *item)
  return (void *)p->file;
 }
 
-/*void *TTagFiles::readItem(ipstream& is)
-void TTagFiles::writeItem(void *obj, opstream& os)
-const char * const TTagFiles::name="TTagFiles";
-s(TTagFiles);*/
-
 /*****************************************************************************
  TTagCollection and TSpTagCollection classes
  The TSpTagCollection is a simple collection.
@@ -1100,10 +1095,7 @@ int AddNewItem(void)
 static
 int ShowVars(int which)
 {
- TSViewCol *col=new TSViewCol(__("Variables"));
- col->insert(xTSCenter,yTSUp,new TSStringableListBox(60,8,tsslbVertical|tsslbHorizontal,1,256));
- col->insert(xTSCenter,yTSDown,new TSButton(__("~O~k"),cmOK,bfDefault));
- TDialog *d=col->doItCenter(cmeTagFiles);
+ TDialog *d=CreateChooseDialog(0,0,__("Variables"),7,60,aidStringable|aidNoCancel);
  stTagFile *p=tags->tagFiles->atPos(which);
  TStringableListBoxRec box={p->info,0};
  execDialog(d,&box);
@@ -1157,37 +1149,6 @@ void EditTagFiles()
  Jump to tag
 *****************************************************************************/
 
-class TLThings : public TGrowDialog
-{
-public:
- TLThings( TRect r, const char *name, int extraOptions=0 ) :
-      TGrowDialog(r,name,extraOptions),
-      TWindowInit( &TLThings::initFrame ) {};
- void handleEvent(TEvent& event);
-};
-
-void TLThings::handleEvent(TEvent& event)
-{
- TDialog::handleEvent(event);
- if ( event.what == evCommand || event.what == evBroadcast)
-   {
-    switch ( event.message.command )
-      {
-       // a button
-       /*case cmListItemSelected:
-            endModal(event.message.command);
-            clearEvent(event);
-            break;*/
-       case cmeZoom:
-            event.message.command=cmZoom;
-            TDialog::handleEvent(event);
-            break;
-       default:
-           break;
-      }
-   }
-}
-
 class TTagsListBox : public TSortedListBox
 {
 public:
@@ -1212,7 +1173,7 @@ static
 TDialog *createDialogTags(const char *title, const char *label,
                           const char *okLabel, const char *yesLabel=NULL)
 {
- TLThings *d=new TLThings(TRect(1,1,1,1),title);
+ TGrowDialogZ *d=new TGrowDialogZ(TRect(1,1,1,1),title);
  TSViewCol *col=new TSViewCol(d);
 
  TRect r=TApplication::deskTop->getExtent();
@@ -1321,7 +1282,7 @@ ListBoxImplement(ClListBox)
 
 static TDialog *createDialogCl()
 {
- TLThings *d=new TLThings(TRect(1,1,1,1),__("Class list"));
+ TGrowDialogZ *d=new TGrowDialogZ(TRect(1,1,1,1),__("Class list"));
  TSViewCol *col=new TSViewCol(d);
 
  TRect r=TApplication::deskTop->getExtent();

@@ -19,6 +19,7 @@
 #define Uses_TSButton
 #define Uses_TSHzGroup
 #define Uses_TSStringableListBox
+#define Uses_TSSortedListBox
 #define Uses_TSVeGroup
 #define Uses_TSLabelRadio
 
@@ -157,26 +158,7 @@ static char *nbotOk =__("~O~k");
 static char *nbotCan=__("~C~ancel");
 static char *nbotInfo=__("~I~nfo.");
 
-static int lbotAdd=0;
-static int lbotIns;
-static int lbotDel;
-static int lbotOk;
-static int lbotCan;
-
 const int lSepb=2;
-
-static
-void InitBotLens(void)
-{
- if (!lbotAdd)
-   {
-    lbotAdd=strlen(_(nbotAdd));
-    lbotIns=strlen(_(nbotIns));
-    lbotDel=strlen(_(nbotDel));
-    lbotOk =max(strlen(_(nbotOk )),8);
-    lbotCan=strlen(_(nbotCan));
-   }
-}
 
 TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                                   int flags)
@@ -243,27 +225,64 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
 
 // That creates the dialog, is generic and is reused
 // Used to: (1) Choose a comand (2) Choose a macro
-TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w)
+TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w,
+                            unsigned options)
 {
- TDialog *d;
+ unsigned opsDiag=0;
+ if (x<=0)
+   {
+    x=1;
+    opsDiag|=ofCenterX;
+   }
+ if (y<=0)
+   {
+    y=1;
+    opsDiag|=ofCenterY;
+   }
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(x,y,1,1),name));
 
- InitBotLens();
+ unsigned scrlBars=tsslbVertical;
+ unsigned hzMax=w;
+ if (options & aidHzScroll)
+   {
+    scrlBars|=tsslbHorizontal;
+    hzMax=256;
+   }
+ TSView *slb;
+ if (options & aidStringable)
+    slb=new TSStringableListBox(w,h+1,scrlBars,1,hzMax);
+ else
+    slb=new TSSortedListBox(w,h+1,scrlBars,1,hzMax);
+ col->insert(xTSCenter,yTSUp,slb);
 
- int anBots=lbotOk+lbotCan+3*lSepb+2; // 2 for frames
- int W=max(anBots,max(strlen(_(name)),w+3));
- int H=h+5;
- int X=x+W;
- int Y=y+H;
+ TSView *bts;
+ if (options & aidNoCancel)
+    bts=new TSButton(nbotOk,cmOK,bfDefault);
+ else
+    bts=MakeHzGroup(new TSButton(nbotOk,cmOKApply,bfDefault),
+                    new TSButton(nbotCan,cmCancelApply),0);
+ col->insert(xTSCenter,yTSDown,bts);
 
- TScrollBar *sb=new TScrollBar(TRect(W-3,1,W-2,H-4));
- TSortedListBox *slb=new TSortedListBox(TRect(2,1,W-3,H-4),1,sb);
- d=new TDialog(TRect(x,y,X,Y),name);
- d->insert(sb);
- d->insert(slb);
- AddOKCancel(d);
- d->selectNext(False);
+ TDialog *d=col->doIt();
+ d->options|=opsDiag;
+
  return d;
 }
 
-
+void TGrowDialogZ::handleEvent(TEvent& event)
+{
+ TDialog::handleEvent(event);
+ if (event.what==evCommand || event.what==evBroadcast)
+   {
+    switch (event.message.command)
+      {
+       case cmeZoom:
+            event.message.command=cmZoom;
+            TDialog::handleEvent(event);
+            break;
+       default:
+           break;
+      }
+   }
+}
 

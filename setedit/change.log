@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.316  2003/04/29 12:52:11  set
+* Added: A new member to EasyDiag objects to set the growMode option in an
+easier way (setGrowMode).
+* Added: A button to the list of tag files to see the information stored by
+the tags program (format, program version, etc.).
+* Modified: Redesigned the CreateAddInsDelDialog function using EasyDiag
+and added a new option for an "Info." button. The code is much more simple
+now.
+
 Revision 1.315  2003/04/29 12:50:44  set
 * Fixed: When doing a search in/outside comments close to the first line
 and having the cursor in the line of the first hit and this line was longer

@@ -29,6 +29,8 @@ const int
       cmCancelApply=0x2246,
       cmInfoAID=0x2247;
 const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8;
+// For CreateChooseDialog
+const int aidStringable=0x1000,aidHzScroll=0x2000,aidNoCancel=0x4000;
 
 #if 1
 // Ugh! nasty, no? Fix me ... some day
@@ -41,6 +43,17 @@ const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8;
 // Used to create the dialogs
 TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                                   int flags);
-TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w);
+TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w,
+                            unsigned options=0);
+
+// Just handles cmeZoom
+class TGrowDialogZ : public TGrowDialog
+{
+public:
+ TGrowDialogZ( TRect r, const char *name, int extraOptions=0 ) :
+      TGrowDialog(r,name,extraOptions),
+      TWindowInit( &TGrowDialogZ::initFrame ) {};
+ void handleEvent(TEvent& event);
+};
 
 #endif
