@@ -966,37 +966,15 @@ void TCEditor::formatLineHighLightGeneric(void *DrawBuf, unsigned LinePtr, int W
 }
 
 // For Reserved words
-static char *RWfirstLetters=NULL;
-static int *RWlenTable;
-static int *RWfirstWithLength;
-static char **RWmainTable;
-static int *RWequalCharsInNext;
-static int RWmaxLen=0;
-
+static strSETSE stRW={NULL,NULL,NULL,NULL,NULL,0};
 // For User words
-static char *UWfirstLetters=NULL;
-static int *UWlenTable;
-static int *UWfirstWithLength;
-static char **UWmainTable;
-static int *UWequalCharsInNext;
-static int UWmaxLen=0;
-
+static strSETSE stUW={NULL,NULL,NULL,NULL,NULL,0};
 // For Pascal Reserved words
-static char *PRfirstLetters=NULL;
-static int *PRlenTable;
-static int *PRfirstWithLength;
-static char **PRmainTable;
-static int *PRequalCharsInNext;
-static int PRmaxLen=0;
-
+static strSETSE stPR={NULL,NULL,NULL,NULL,NULL,0};
 // For Clipper Reserved words
-static char *CRfirstLetters=NULL;
-static int *CRlenTable;
-static int *CRfirstWithLength;
-static char **CRmainTable;
-static int *CRequalCharsInNext;
-static int CRmaxLen=0;
+static strSETSE stCR={NULL,NULL,NULL,NULL,NULL,0};
 
+#if 0
 /*****************************************************************************
 
   Function: SETSECreateTables
@@ -1024,14 +1002,16 @@ static Boolean SETSECreateTables(char *&firstLetters,
         maxLen=thisLen;
     }
 
+ // The following is nice but missaling data, some platforms doesn't support it.
+ // Linux/PPC logs it as a warning at kernel level and Linux/SPARC64 just raise
+ // a SIGBUS signal.
  // *:-P  One allocation for the five tables.
- firstLetters=new char[total*(sizeof(char)+sizeof(char *)+sizeof(int))+(2*sizeof(int))*(maxLen+1)];
- if (firstLetters==NULL)
-    return False;
- lenTable=(int *)&firstLetters[total];
- firstWithLength=&lenTable[maxLen+1];
- mainTable=(char **)&firstWithLength[maxLen+1];
- equalCharsInNext=(int *)&mainTable[total];
+ //firstLetters=new char[total*(sizeof(char)+sizeof(char *)+sizeof(int))+(2*sizeof(int))*(maxLen+1)];
+ firstLetters    =new char[total];
+ lenTable        =new int[maxLen+1];
+ firstWithLength =new int[maxLen+1];
+ mainTable       =new char *[total];
+ equalCharsInNext=new int[total];
 
  // Fill the length table
  for (i=0; i<=maxLen; i++)
@@ -1088,6 +1068,7 @@ static Boolean SETSECreateTables(char *&firstLetters,
     }
  return True;
 }
+#endif
 
 Boolean SETSECreateTables(strSETSE &st, int CaseSens,
                           TStringCollection *TSC)
@@ -1106,14 +1087,11 @@ Boolean SETSECreateTables(strSETSE &st, int CaseSens,
         strlwr(elem);
     }
 
- // *:-P  One allocation for the five tables.
- st.firstLetters=new char[total*(sizeof(char)+sizeof(char *)+sizeof(int))+(2*sizeof(int))*(st.maxLen+1)];
- if (st.firstLetters==NULL)
-    return False;
- st.lenTable=(int *)&st.firstLetters[total];
- st.firstWithLength=&st.lenTable[st.maxLen+1];
- st.mainTable=(char **)&st.firstWithLength[st.maxLen+1];
- st.equalCharsInNext=(int *)&st.mainTable[total];
+ st.firstLetters    =new char[total];
+ st.lenTable        =new int[st.maxLen+1];
+ st.firstWithLength =new int[st.maxLen+1];
+ st.mainTable       =new char *[total];
+ st.equalCharsInNext=new int[total];
 
  // Fill the length table
  for (i=0; i<=st.maxLen; i++)
@@ -1197,22 +1175,22 @@ disaster and the algorithm is a little tricky.
 static int SETSE_RW_Search(char *s, int l)
 {
  // Is in the length range?
- if (l<=RWmaxLen)
+ if (l<=stRW.maxLen)
    {
-    int cant=RWlenTable[l];
+    int cant=stRW.lenTable[l];
     // Exist any of this length?
     if (cant)
       {
        // Take the pos of the first string of this length
-       int pos=RWfirstWithLength[l];
+       int pos=stRW.firstWithLength[l];
        do
          {
           // Search a string of this length that starts with the same character
-          if (RWfirstLetters[pos]==*s)
+          if (stRW.firstLetters[pos]==*s)
             {
              int equals=1;
              // Compare the string
-             char *aux=RWmainTable[pos]+1;
+             char *aux=stRW.mainTable[pos]+1;
              s++;
 RWProxSSearch1:
              if (--l==0) // Eureka!
@@ -1227,10 +1205,10 @@ RWProxSSearch2:
                 goto RWProxSSearch1;
                }
              // Is usefull the next string?
-             if (RWequalCharsInNext[pos]>=equals)
+             if (stRW.equalCharsInNext[pos]>=equals)
                {
                 // Yes!, use it, but don't waste the work already done
-                aux=RWmainTable[++pos]+equals;
+                aux=stRW.mainTable[++pos]+equals;
                 goto RWProxSSearch2;
                }
              return 0;
@@ -1247,22 +1225,22 @@ static
 int SETSE_UW_Search(char *s, int l)
 {
  // Is in the length range?
- if (l<=UWmaxLen)
+ if (l<=stUW.maxLen)
    {
-    int cant=UWlenTable[l];
+    int cant=stUW.lenTable[l];
     // Exist any of this length?
     if (cant)
       {
        // Take the pos of the first string of this length
-       int pos=UWfirstWithLength[l];
+       int pos=stUW.firstWithLength[l];
        do
          {
           // Search a string of this length that starts with the same character
-          if (UWfirstLetters[pos]==*s)
+          if (stUW.firstLetters[pos]==*s)
             {
              int equals=1;
              // Compare the string
-             char *aux=UWmainTable[pos]+1;
+             char *aux=stUW.mainTable[pos]+1;
              s++;
 UWProxSSearch1:
              if (--l==0) // Eureka!
@@ -1277,10 +1255,10 @@ UWProxSSearch2:
                 goto UWProxSSearch1;
                }
              // Is usefull the next string?
-             if (UWequalCharsInNext[pos]>=equals)
+             if (stUW.equalCharsInNext[pos]>=equals)
                {
                 // Yes!, use it, but don't waste the work already done
-                aux=UWmainTable[++pos]+equals;
+                aux=stUW.mainTable[++pos]+equals;
                 goto UWProxSSearch2;
                }
              return 0;
@@ -1297,23 +1275,23 @@ UWProxSSearch2:
 static int SETSE_PR_Search(char *s, int l)
 {
  // Is in the length range?
- if (l<=PRmaxLen)
+ if (l<=stPR.maxLen)
    {
-    int cant=PRlenTable[l];
+    int cant=stPR.lenTable[l];
     // Exist any of this length?
     if (cant)
       {
        // Take the pos of the first string of this length
-       int pos=PRfirstWithLength[l];
+       int pos=stPR.firstWithLength[l];
        uchar c=uctolower(*s);
        do
          {
           // Search a string of this length that starts with the same character
-          if (PRfirstLetters[pos]==c)
+          if (stPR.firstLetters[pos]==c)
             {
              int equals=1;
              // Compare the string
-             char *aux=PRmainTable[pos]+1;
+             char *aux=stPR.mainTable[pos]+1;
              s++; c=uctolower(*s);
 PRProxSSearch1:
              if (--l==0) // Eureka!
@@ -1328,10 +1306,10 @@ PRProxSSearch2:
                 goto PRProxSSearch1;
                }
              // Is usefull the next string?
-             if (PRequalCharsInNext[pos]>=equals)
+             if (stPR.equalCharsInNext[pos]>=equals)
                {
                 // Yes!, use it, but don't waste the work already done
-                aux=PRmainTable[++pos]+equals;
+                aux=stPR.mainTable[++pos]+equals;
                 goto PRProxSSearch2;
                }
              return 0;
@@ -1348,23 +1326,23 @@ PRProxSSearch2:
 static int SETSE_CR_Search(char *s, int l)
 {
  // Is in the length range?
- if (l<=CRmaxLen)
+ if (l<=stCR.maxLen)
    {
-    int cant=CRlenTable[l];
+    int cant=stCR.lenTable[l];
     // Exist any of this length?
     if (cant)
       {
        // Take the pos of the first string of this length
-       int pos=CRfirstWithLength[l];
+       int pos=stCR.firstWithLength[l];
        uchar c=uctolower(*s);
        do
          {
           // Search a string of this length that starts with the same character
-          if (CRfirstLetters[pos]==c)
+          if (stCR.firstLetters[pos]==c)
             {
              int equals=1;
              // Compare the string
-             char *aux=CRmainTable[pos]+1;
+             char *aux=stCR.mainTable[pos]+1;
              s++; c=uctolower(*s);
 CRProxSSearch1:
              if (--l==0) // Eureka!
@@ -1379,10 +1357,10 @@ CRProxSSearch2:
                 goto CRProxSSearch1;
                }
              // Is usefull the next string?
-             if (CRequalCharsInNext[pos]>=equals)
+             if (stCR.equalCharsInNext[pos]>=equals)
                {
                 // Yes!, use it, but don't waste the work already done
-                aux=CRmainTable[++pos]+equals;
+                aux=stCR.mainTable[++pos]+equals;
                 goto CRProxSSearch2;
                }
              return 0;
@@ -1501,6 +1479,19 @@ int isPartialKeyword(char *s, int l, int CaseSens, TStringCollection *keywords,
  return 1;
 }
 
+void SETSEDeleteTables(strSETSE &st)
+{
+ if (st.firstLetters)
+   {
+    delete[] st.firstLetters;
+    st.firstLetters=NULL;
+    delete[] st.lenTable;
+    delete[] st.firstWithLength;
+    delete[] st.mainTable;
+    delete[] st.equalCharsInNext;
+   }
+}
+
 /*****************************************************************************
 
   Function: Boolean CreateSHShortCutTables(void)
@@ -1513,63 +1504,39 @@ Boolean CreateSHShortCutTables(void)
 {
  if (ReservedWords)
    {
-    if (RWfirstLetters)
-      {
-       delete RWfirstLetters;
-       RWfirstLetters=NULL;
-      }
-    if (!SETSECreateTables(RWfirstLetters,RWlenTable,RWfirstWithLength,
-                           RWmainTable,RWequalCharsInNext,RWmaxLen,
-                           ReservedWords))
+    SETSEDeleteTables(stRW);
+    if (!SETSECreateTables(stRW,1,ReservedWords))
        return False;
    }
  else
-   RWmaxLen=0;
+   stRW.maxLen=0;
 
  if (UserWords)
    {
-    if (UWfirstLetters)
-      {
-       delete UWfirstLetters;
-       UWfirstLetters=NULL;
-      }
-    if (!SETSECreateTables(UWfirstLetters,UWlenTable,UWfirstWithLength,
-                           UWmainTable,UWequalCharsInNext,UWmaxLen,
-                           UserWords))
+    SETSEDeleteTables(stUW);
+    if (!SETSECreateTables(stUW,1,UserWords))
        return False;
    }
  else
-   UWmaxLen=0;
+   stUW.maxLen=0;
 
  if (PascalRWords)
    {
-    if (PRfirstLetters)
-      {
-       delete PRfirstLetters;
-       PRfirstLetters=NULL;
-      }
-    if (!SETSECreateTables(PRfirstLetters,PRlenTable,PRfirstWithLength,
-                           PRmainTable,PRequalCharsInNext,PRmaxLen,
-                           PascalRWords))
+    SETSEDeleteTables(stPR);
+    if (!SETSECreateTables(stPR,1,PascalRWords))
        return False;
    }
  else
-   PRmaxLen=0;
+   stPR.maxLen=0;
 
  if (ClipperRWords)
    {
-    if (CRfirstLetters)
-      {
-       delete CRfirstLetters;
-       CRfirstLetters=NULL;
-      }
-    if (!SETSECreateTables(CRfirstLetters,CRlenTable,CRfirstWithLength,
-                           CRmainTable,CRequalCharsInNext,CRmaxLen,
-                           ClipperRWords))
+    SETSEDeleteTables(stCR);
+    if (!SETSECreateTables(stCR,1,ClipperRWords))
        return False;
    }
  else
-   CRmaxLen=0;
+   stCR.maxLen=0;
 
  return True;
 }
@@ -1577,26 +1544,10 @@ Boolean CreateSHShortCutTables(void)
 
 void DestroySHShortCutTables(void)
 {
- if (RWfirstLetters)
-   {
-    delete RWfirstLetters;
-    RWfirstLetters=NULL;
-   }
- if (UWfirstLetters)
-   {
-    delete UWfirstLetters;
-    UWfirstLetters=NULL;
-   }
- if (PRfirstLetters)
-   {
-    delete PRfirstLetters;
-    PRfirstLetters=NULL;
-   }
- if (CRfirstLetters)
-   {
-    delete CRfirstLetters;
-    CRfirstLetters=NULL;
-   }
+ SETSEDeleteTables(stRW);
+ SETSEDeleteTables(stUW);
+ SETSEDeleteTables(stPR);
+ SETSEDeleteTables(stCR);
 }
 
 
