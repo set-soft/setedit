@@ -257,7 +257,9 @@ install/install.cc
 install/readme.txt
 internac/.cvsignore
 internac/de.po
+internac/h_de.po
 internac/es.po
+internac/h_es.po
 internac/emptymsg.cc
 internac/gnumake.in
 internac/Makefile
