@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.274  2003/01/29 12:45:58  set
+* Updated: project and makefiles because I added the PHP parser to libset
+and we are preparing for a release candidate.
+
 Revision 1.273  2003/01/28 12:56:50  set
 * Added: Last changes to distrib files in order to release the RC1.
 

@@ -2052,6 +2052,10 @@ int TCEditor::handleCommand(ushort command)
          doSearchReplace();
          break;
 
+    case cmcForceMatchPairHL:
+         SearchMatchOnTheFly();
+         break;
+ 
     default:
         lock();
         lockUndo();
@@ -2918,10 +2922,6 @@ int TCEditor::handleCommand(ushort command)
                 }
                  break;
 
-           case cmcForceMatchPairHL:
-                SearchMatchOnTheFly();
-                break;
- 
            // Ctrl+Space Full Ok level 2
            case cmcExpandCode:
                 ClearSelIfNonPers();
@@ -3803,13 +3803,13 @@ void TCEditor::RemapCodePageBuffer(int , int , unsigned , Boolean )
 
 ***************************************************************************/
 
-void TCEditor::SearchMatchOnTheFly()
+Boolean TCEditor::SearchMatchOnTheFly()
 {
  static int oldX,oldY;
  static TCEditor *old;
 
  // Don't do it again
- if (/*IsHLCOn && */old==this && curPos.x==oldX && curPos.y==oldY) return;
+ if (/*IsHLCOn && */old==this && curPos.x==oldX && curPos.y==oldY) return False;
 
  old=this;
  oldX=curPos.x;
@@ -3817,7 +3817,7 @@ void TCEditor::SearchMatchOnTheFly()
 
  if (IslineInEdition)
    { // Don't flush the line if that isn't really necesary
-    if (!*inEditPtr || !strchr("{}()[]",*inEditPtr)) return;
+    if (!*inEditPtr || !strchr("{}()[]",*inEditPtr)) return False;
    }
  int wasInEdition=0;
  if (IslineInEdition)
@@ -3861,6 +3861,7 @@ void TCEditor::SearchMatchOnTheFly()
     if (wasInEdition && ShowMatchPairNow)
        EditLine();
    }
+ return True;
 }
 
 /**[txh]********************************************************************

@@ -382,7 +382,7 @@ public:
     int SearchCloseSymbolXY(char open, char close, int &X, int &Y, char *pos=0);
     int SearchOpenSymbol(char open, char close);
     int SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *pos=0);
-    void SearchMatchOnTheFly();
+    Boolean SearchMatchOnTheFly();
     Boolean clipReplace(void);
     int GoFirstCharInLine(void);
     void SelWordUnderCursor(void);
