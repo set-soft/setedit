@@ -158,6 +158,7 @@ variable.
   0 nothing found.
   1 a word.
   2 a single character
+  3 a preprocessor line. The buffer contains the #xxx that started the line.
 
 ***************************************************************************/
 
@@ -263,6 +264,17 @@ int TakeWord(int TakeOneCharToo)
               break;
 
          case '#':
+              Used=0;
+              do
+               {
+                bfBuffer[Used++]=c;
+                c=GetAChar();
+               }
+              while (c!=EOF && Used<MaxLen && ucisalpha(c));
+              bfBuffer[Used]=0;
+              if (c==EOF || Used==0)
+                 return 0;
+              UnGetAChar(c);
               do
                {
                 do
@@ -274,7 +286,7 @@ int TakeWord(int TakeOneCharToo)
                 if (c=='\r') c=GetAChar();
                }
               while (last=='\\');
-              break;
+              return 3;
 
 
          default:
@@ -292,20 +304,43 @@ int TakeWord(int TakeOneCharToo)
  return 0;
 }
 
+const int maxPreproStates=64;
 
 static int SearchBalance(char ref, char ref2)
 {
  int r,bal=1;
+ int preproLevel=0;
+ static char preproStates[maxPreproStates];
 
+ preproStates[0]=0;
  do
   {
    r=TakeWord(1);
    if (r==2)
      {
+      if (preproStates[preproLevel]) continue;
       if (Alone==ref)
          bal--;
       else
          if (Alone==ref2) bal++;
+     }
+   else if (r==3)
+     {
+      if (strncmp(bfBuffer,"#if",3)==0)
+        {
+         preproLevel++;
+         if (preproLevel==maxPreproStates) preproLevel--;
+         preproStates[preproLevel]=0;
+        }
+      else if (strncmp(bfBuffer,"#else",5)==0 || strncmp(bfBuffer,"#elsif",6)==0)
+        {
+         preproStates[preproLevel]=1;
+        }
+      else if (strncmp(bfBuffer,"#endif",6)==0)
+        {
+         preproLevel--;
+         if (preproLevel<0) preproLevel=0;
+        }
      }
    if (!bal) break;
   }
