@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.232  2002/11/11 20:15:58  set
+* Added: Now the matchpair and the complementary element jumps are affected
+by the syntax highlight. It was in the Feature Request for a long time and
+Ivan annoyed me to add it. It should be tested but seems to work,
+complementary elements only match if they belong to the same shl context.
+
 Revision 1.231  2002/11/11 17:43:20  set
 * Added: Now if you unindent uncommenting the editor checks that at least
 the first line is already indented, if not the operation is aborted.

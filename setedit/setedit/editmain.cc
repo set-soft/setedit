@@ -2242,10 +2242,12 @@ int main(int argc, char *argv[])
  I("int");        I("char");      I("unsigned");
  I("signed");     I("float");     I("double");
  I("short");      I("long");      I("void");
+ I("bool");
 
  I("for");        I("while");     I("do");
  I("if");         I("else");      I("return");
- I("continue");   I("goto");
+ I("continue");   I("goto");      I("true");
+ I("false");
 
  I("static");     I("const");      I("enum");
  I("struct");     I("extern");     I("sizeof");
@@ -2259,8 +2261,9 @@ int main(int argc, char *argv[])
 
  I("class");      I("private");     I("protected");
  I("public");     I("this");        I("template");
- I("throw");      I("catch");       I("virtual");
- I("friend");     I("operator");    I("try");
+ I("throw");      I("typename");    I("catch");
+ I("virtual");    I("friend");      I("operator");
+ I("try");
  // namespace stuff
  I("namespace");  I("using");
  ReservedWords->setOwnerShip(False);

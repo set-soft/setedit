@@ -29,11 +29,12 @@ Escape=\
 Preprocessor=#
 PMacros=cpmacros.pmc
 Preload
-Keywords=asm,auto,break,case,catch,char,class,const,continue,default,delete
-Keywords=do,double,else,enum,except,extern,far,finally,float,for,friend,goto
-Keywords=huge,if,inline,int,long,near,new,operator,private,protected,public
-Keywords=register,return,short,signed,sizeof,static,struct,switch,template
-Keywords=this,throw,try,typedef,union,unsigned,virtual,void,volatile,while
+Keywords=asm,auto,bool,break,case,catch,char,class,const,continue,default
+Keywords=delete,do,double,else,enum,except,extern,false,far,finally,float,for
+Keywords=friend,goto,huge,if,inline,int,long,near,new,operator,private
+Keywords=protected,public,register,return,short,signed,sizeof,static,struct
+Keywords=switch,template,this,throw,true,try,typedef,typename,union,unsigned
+Keywords=using,virtual,void,volatile,while
 End
 
 # ---------------- Pascal ----------------
