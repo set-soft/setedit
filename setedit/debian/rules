@@ -26,9 +26,6 @@ build-stamp: debianbackup.tar
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" ./configure \
 		--prefix=$(shell pwd)/debian/tmp/usr --fhs --no-comp-exe
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE)
-# Compile the libraries for RHIDE. They are compiled with -DFOR_LIBSET,
-# therefore cleaning.
-	rm makes/libeasyd.a makes/libsettv.a makes/obj/*.o makes/objinf/*.o
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -C makes libset
 	touch build-stamp
 
