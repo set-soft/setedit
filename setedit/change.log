@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.85  2002/05/13 12:32:51  set
+* Fixed: Currently gettext is preconfigured only for djgpp so we should
+copy the djgpp.h to config.h header anyways.
+* Fixed: confignt.pl used winnt directory instead of WinNT.
+* Modified: Now the INSTALL.MAK file is configured to reflect the
+configured prefix (it was failing) and to support Solaris install tool.
+
 Revision 1.84  2002/05/13 12:30:28  set
 * Modified: Commented what parts of the Rawplayer class is really needed by
 the editor and what sizes are used (bytes, not samples). I also modified

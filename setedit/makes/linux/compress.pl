@@ -89,7 +89,7 @@ foreach $i (@ARGV)
      }
   }
 
-# Alternative prefix used for examples in INSTALL.LINUX
+# Alternative prefix used for examples in INSTALL
 if ($prefix eq '/usr/local')
   {
    $prefix_alt='/usr';
@@ -304,21 +304,21 @@ print "Copying other files: ";
 'default.map',
 'linux.faq',
 'ask_config.sh');
+# Here we say which files changes their name
+%frep=(
+'INSTALL.LINUX' => 'INSTALL');
 foreach $i (@fext)
   {
-   print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$i));
+   $r=$frep{$i};
+   $r=$i if !$r;
+   print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$r));
   }
-# $i=cat('../../distrib/INSTALL.MAK');
-# $i =~ s/prefix=(.*)/prefix=$prefix/;
-# open(FIL,'>'.$base.'/INSTALL.MAK');
-# print FIL ($i);
-# close(FIL);
 print "done.\n\n";
 
 if ($iMode)
   {
    chdir($base);
-   system('./INSTALL.LINUX');
+   system('./INSTALL');
    chdir('..');
    print "End of installation\n";
   }
