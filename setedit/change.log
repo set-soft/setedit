@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.191  2002/09/04 13:14:37  set
+* Added: The project windows are resized accroding to the desktop file when
+loading. Till now all the windows (from the dst) were resized but the
+project window (from the epr) wasn't. With this is quite smooth to load a
+project that was used with another desktop size.
+
 Revision 1.190  2002/09/04 13:13:48  set
 * Fixed: The TVOSClipboard::paste member returns a new[] allocated array
 and it should be freed usind delete[].

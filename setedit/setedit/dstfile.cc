@@ -58,6 +58,8 @@
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
 
+//#define DEBUG_CONFIG_TREE
+
 // Used by edprj.cc to know if we loaded the desktop file from this directory
 char DstLoadedHere=0;
 
@@ -407,8 +409,10 @@ void TSetEditorApp::displayDetectCallBack()
        TVMainConfigFile::Add(drv,"FontHeight",fH);
       }
    }
- //fprintf(stderr,"TV config:\n");
- //TVMainConfigFile::Print(stderr);
+ #ifdef DEBUG_CONFIG_TREE
+ fprintf(stderr,"TV config:\n");
+ TVMainConfigFile::Print(stderr);
+ #endif
 }
 
 /**[txh]********************************************************************
