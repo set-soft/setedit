@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.617  2004/09/24 18:59:51  set
+* Fixed: The SF Rev 1.523 patch about holidays clean-up was buggy. It
+released the loaded stuff but didn't indicate it. So when opening the
+calendar again the code used freed memory.
+
 Revision 1.616  2004/09/23 19:45:33  set
 * Fixed: [sLisp] edf* constants not working. The WinDebugger definition was
 unsorted. Reported by Thiago.

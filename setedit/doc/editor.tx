@@ -135,8 +135,10 @@ Name of the command: \command\.
 
 @ifclear text
 @ifclear html
+@ifclear tex
 Pressing F1 when selecting any item of the menu you'll get help about it.
 @paragraph{}
+@end ifclear
 @end ifclear
 @end ifclear
 

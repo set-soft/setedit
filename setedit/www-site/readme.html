@@ -1,12 +1,12 @@
 <HTML><Title>readme.1st for setedit</Title><Body><Pre>
 
-                       SET's editor "Iguazu I" release
-                             v0.5.2 rev. 947
+                       SET's editor "Glaciar P.Moreno I" release
+                             v0.5.4 rev. 1130
                                   by SET
 
-  That's the official distribution of SET's editor v0.5.2
+  That's the official distribution of SET's editor v0.5.4
   The editor is Copyrighted by Salvador Eduardo Tropea &lt;set@users.sf.net&gt;.
-(c) 1996-2003 and distributed under the GPL license.
+(c) 1996-2004 and distributed under the GPL license.
   It's free and you don't need to pay for it. Any kind of donations are
 accepted ;-).
 
@@ -31,174 +31,210 @@ INDEX:
 
 0. IMPORTANT:
 
-  This is a major release and also a "dot zero" release. So you should expect
-big changes and also some annoying side effects. Please be patient and try to
-help me to solve any problem. I use the editor every day and compiled using
-"Electric Fence", it means that in my system the editor is really stable, but
-the editor supports too much systems and options.
+  Starting with "Glaciar Perito Moreno I" release the editor can be used as
+a frontend for GDB on Linux systems. It means you can use SETEdit as
+debugger.
+  Starting with "Iguazu II" release the editor changed the mechanism used to
+select a window. In previous versions the Alt+window_number was hardcoded in
+Turbo Vision library. Now this is no longer handled by TV. It have some
+advantages: you can change the key assignment and you can bind keys to select
+as many windows as you want. But it also means you have to have some binding
+in your menu files, if you have a custom menu file please consult the one
+shipped with the editor and copy the new entries in the Window menu.
+  Changes in v0.5.4 (for more details read the change.log file):
+[taking last stable release (0.5.2) as reference]
+[66 new things and 40 fixes]
 
-  Changes in v0.5.2 (for more details read the change.log file):
-[taking last stable release (0.5.0) as reference]
-[40 new things and 25 fixes]
+New [66 things]:
 
-New [40 things]:
++ Debug [12] --&gt; NEW Functionality for *Linux* &lt;--
 
-+ Various [19]
+* Dialogs to configure the debug mode (local, remote and running process), the
+command line options for the program, gdb binary, xterm binary, messages
+displayed, etc.
+* Breakpoints, simple ones and advanced options including conditional
+breakpoints, breakpoints at functions, ignore count, etc.
+* Watchpoints, they are data breakpoints.
+* Options to run, continue, step over, trace into, run upto return, etc.
+* Options to stop and kill the program.
+* Thread selection.
+* Evaluate and modify data.
+* Data Window and Satck to browse the memory (very complete and with its own
+menu).
+* Data Watches, like then ones in RHIDE and also with scope.
+* Data Inspectors, used to analyze complex data structures.
+* Disassembler Window, including syntax highlight and allowing to modify the
+registers.
+* Calling stack, with functionality to browse the call chain.
 
-* Word completion. Based on tag files.
-* Jump to symbol (not only functions: variables, structures, etc.). Based on
-tag files.
-* Class browser. Based on tag files.
-* An option to control the size of newly opened files. When enabled the
-windows tries to avoid overlapping the message and project windows. It was
-suggested by Ivan Baldo.
-* Every 8 seconds or when we focuse a text window the editor checks if the
-copy on disk of the file we are editing changed. When the editor detects the
-copy on disk is newer asks for reload. But ...
-* If we also modified the copy in memory the editor asks for 4 options:
- 1) Load the file from disk, it discards changes in the copy we have on
- memory.
- 2) Don't do anything, the user must solve the problem.
- 3) Like 1 but the editor invokes diff -u and shows the output.
- 4) Like 2 but with diff like in 3.
-* Support to porperly display international messages even when changing the
-code page used by the editor. The messages are recoded on the fly.
-* Color scheme contributed by Juan Diego (bach) Ianelli. Is called "Dark JDI".
-* Options to export/import project items using a text file.
-* Now you can load a project located outside the current directory.
-* Holidays highlight to the calendar. Volunteers to support it for each
-country are wanted.
-* A dialog to dis/enable any advice dialog (also the Quit + delete warning).
-* Made the "Paste Emacs mode" more robust. If the first line is
-"#!..." the comment is pasted in the second. If the mode was already
-pasted by the editor it is first deleted. Suggested by Grzegorz.
-* Commands to allow configuring the editor to copy/paste the text in input
-lines to/from the OS clipboard.
-* Command called cmcJumpLastCursorPos. It works similar to cmcLastPosCur but
-uses a different mechanism. I assigned this command to ^Q-P that according to
-Alain is the WordStar command for it.
-* Command that inserts a new line without moving the cursor nor indenting.
-This is the old WordStar ^N command.
-* Option to avoid redirecting stdout when running an external program. Useful
-for interactive applications that uses stdout.
-* cmcCommentIndent/cmcCommentUnIndent now indents the current line if nothing
-is selected. Suggested by Thiago.
-* Commands to copy from the message window to the OS clipboard. Suggested by
-Thiago.
++ Various [15]
 
-+ Compilation [4]
+* Alternative project sorting mode.
+* Commands to select any window, now Alt+Key is no longer hardcoded.
+* Sections in the docs to help finding what you need.
+* When asking for word completion if the word at the left looks like Class::
+then the editor looks for the class and offers the members.
+* Enhacements to the "Paste Emacs Mode" and the code to search Emacs
+variables.
+* Now if you don't specify any path to "search files under cursor" the editor
+tries to automagically fills this list using the output of cpp.
+* If the editor fails to find the file under cursor now it also looks for it
+in the project and the current directory.
+* Some rudimentary $(VARIABLE) expansion to the "File under cursor" files
+list.
+* A button to recompute window numbers in the list of windows.
+* "File open" dialogs remmembers its size and position.
+* Non interactive versions of the cmcExpandAllTabs and cmcCompactBuffer
+commands to be used from sLisp.
+* Two new commands: cmeGPushCursorPos and cmeGPopCursorPos. They are "global
+push/pop cursor pos". So they also remmember the file.
+* Options to zoom the editor windows when inserted in the desktop.
+* An option to regenerate the central tags file. Used to workaround ctags bug.
+* Modified behavior of the paste operation in input lines: Now the text is
+pasted without destroying the previous value (unless it is selected).
 
-* The compilation process was simplified and BC++ now can be used to create
-Win32 version of the editor with the same facility than gcc.
-* Support for makeinfo 4.4 and newer (breaks the old API).
-* More detailed documentation for each target.
-* Scripts to generate RPMs.
++ Menu files [4]
 
-+ sLisp [8]
+* Context sensitive menues. Also extended the .smn file language to create
+such a thing. Currently used only for the data window and the help.
+* The conditionals in menu files can use the TV driver, CPU, OS, etc. for
+conditions.
+* More variables to check: MP3, PCRE, BZIP2, MIXER and UNIX.
+* $define and $undef and its expansion.
 
-* loop and exitloop sentences. From Bernd Becker.
-* Find command. Contributed by Bernd.
-* GetCursorX, GetCursorY and SetCursorXY commands.
-* ==, !=, ++ and -- operators.
-* (repeat times commands...) from code and ideas contributed by Bernd.
-* (= var value) as an alias for (setv ...
-* GetSyntaxLang command to find which syntax highlight is in use.
-* Two constants to be used by RunProgram. They are for the old option (use
-OS/user screen) and the new option to avoid redirecting stdout.
++ Compilation [2]
 
-+ Syntax highlight and pmacros [5]
+* The posibility to override the "install" command in makefiles.
+* Unified compilation mechanism for BC++.
 
-* More python keywords. Contributed by Grzegorz.
-* Emacs modes and shell names for CSS, Tcl, Java and Python. Suggested by
-Grzegorz.
-* SQL emacs modes and keywords. Suggested by Grzegorz.
-* Made more robust the "shell script" shl detection. It now supports:
-"#!.../env command" and "#!.../commandVERSION" (i.e. python2.2). From
-Grzegorz suggestions.
-* Errors parser for ANT Java Builder. Contributed by Grzegorz.
++ sLisp [9]
 
-+ Linux [1]
+* FindString, FindAgain, ReplaceString and ReplaceAgain for searches.
+* SelectWindowNumber used to change the focused window.
+* GetCurWindowNumber and GetMaxWindowNumber.
+* You can bind small portions of sLisp code to keys and menu entries.
+* KeyBindings and BindKey commands. With them you can change key bindings
+from sLisp.
+* prex to perform Perl regular expressions searches.
+* GetSystemInfo to know the current OS, TV driver, CPU, etc.
+* More macros examples.
+* Now you can send cme* commands.
 
-* Support for UTF-8 consoles (i.e. RedHat 8.0 and 9.0).
++ Syntax highlight and pmacros [8]
 
-+ X11 [1]
+* Flat Assembler syntax.
+* Ruby syntax.
+* SPARC assembler syntax.
+* WML syntax and pmacros.
+* Errors parser for Perl.
+* C,H and CPP as valid C extensions as valid for C/C++.
+* HTML extensions as valid for HTML.
+* vbe and vst as VHDL extensions.
 
-* The powered grep now paints the screen more often and shows the busy
-indicator.
++ Cosmetic [16]
 
-+ Cosmetic [2]
+* Project windows are "closed" (hided) when pressing ESC.
+* Windows are opened "zoomed" when the project window isn't visible.
+* When automatically opening a project item now its opened using the relative
+path.
+* Select the closest word when using double click and not the next.
+* History to the "arbitrary indent" and "run command" input lines.
+* To lock the screen while doing a search & replace operation to avoid
+"flashing" when doing a lot of S&R operations.
+* Modified: "Do not purge spaces" option to be "Keep trailing whitespace"
+that's more descriptive.
+* A new color scheme called "Classic Borland"
+* A new color scheme called "Midnight Commander"
+* If the Ctrl+Enter fails to find the file under cursor now that's informed
+in the "status line" of the current editor.
+* Most lists (like functions list) now centers the focused item when a match
+is selected.
+* OS/OS flavor,CPU,Compiler/Compiler flavor and Driver to the about box.
+* Configuration options to disable the calculator and calendar.
+* Now the meassure command reports the result in the status line.
+* A beep when "Run a program" finishes. Option to disable.
+* Busy indicator while we load the tags from disk.
 
-* Calendar windows can be closed pressing ESC.
-* ManView window can be closed with ESC. Suggested by Thiago.
 
+Fixed [40 things]:
 
++ Fatal  [4]
 
-Fixed [25 things]:
+* The "Jump" button in the main window of the class browser.
+* Undo count for the first undo wasn't initialized. Unknown consequence.
+* Corrupted MP3 files could produce a crash.
+* Abort when doing word completion and the starting word was "bigger" than
+the last tag in the list.
 
-+ Fatal  [2]
++ Not fatal [17]
 
-* When a directory contained a project with a desktop file newer
-than the current setedit version and a default desktop file from a version
-older than 0.5.0 the editor rejected the new file but preloaded it doing
-a mess at the time of loading the old file.
-* When doing a search in/outside comments close to the first line you could
-get a GPF. Reported by Bernd Becker.
+* HTML export: missing body tag.
+* Errors in the conditionals parser for menu files.
+* Undo error when a character replaced a tab (overwrite enabled) and the
+cursor was inside the tab (not at the beggining).
+* Wrong match pair when the cursor was in the middle of a tab and the next
+character matched a pair (highlight in the middle of the tab).
+* No match pair after deleting some text and the cursor goes to a symbol.
+* When searching outside comments and the match was found in the first column
+of a line after a comment it was ignored.
+* When starting a project using a different window size the project window
+could get wrong size and even become outside the screen.
+* When aborting an overwrite (in save as) the name of the window was changed.
+* When pasting using the OS clipboard and the cursor was moved to the end of
+the selection it could go out of screen which is quite annoying.
+* When copying something from the calculator and the paste wasn't enabled
+before entering the calculator then you needed to at least move the cursor
+before you could paste.
+* Use of unitialized undo counter in some rectangular selection operations.
+* The heuristic C/C++ parser to support list of exceptions (function
+throw(...) {body}).
+* Some details in the heuristic C++ functions searcher. They address problems
+with the const and throw() attributes.
+* Various memory leaks.
+* "New" buffers shouldn't be added to the list of closed windows when closed.
+It generated a read out of bounds and a write of unitialized data to disk.
+* The menu files uses nested preprocessor directives but it wasn't supported.
+* cmcCutClipWin command not dis/enabled when selecting text.
 
-+ Not fatal [12]
++ Compilation [13]
 
-* Memory leak in about dialog.
-* When jumping to a hit in the message window and the first column contained
-a matching [{( and the editor was configure to do match pair on the fly: the
-message quickly dissapear.
-* When typing at the end of the visible area the editor not always scrolled 8
-columns making it slow.
-* Tips code tried to jump to editor.inf which is no longer called like it.
-* Some problems when doing incremental searches in some list boxes.
-* Indentation problems in some pmacros.
-* "Intelligent indent" mode needed "Backspace unindents" enabled to work
-properly.
-* The list of "functions" supports things that aren't strcitly programming
-languages, like texinfo sources, for this reason the "space" key should't act
-as item selector (can be part of the name in an incremental search).
-* When switching from a window with some syntax highlight to another
-with a different shl and using Alt+F2 it was common to get a wrong result
-because the editor used the old shl.
-* The -m command line option was disabled.
-* Find whole words and out/inside comments didn't work together. Reported by
-Alain.
-* Fails in the "Export as HTML" command when some text was selected.
+* Cygwin: Collision between strndup and calculator parser.
+* Some gcc versions needs explicit use of libstdc++ to link C++ and
+internac/getcolors didn't have it.
+* Removed two comments containing non-ASCII chars.
+* Various gcc 3.x compilation issues (including gcc 3.4.1 support).
+* Problems with newer versions of makeinfo.
+* The memcpy usage to be more portable. It worked for all supported targets,
+but now should also work for unsupported targets. Same for malloc/new/new[]
+v.s. free/delete/delete[] calls.
+* Missing va_end and abuse of va_list type. It gave problems for Linux PPC
+targets.
+* Use of "g++" in favor of "gcc -lstdc++".
+* strstr and strchr are declared different in C++ standard (compared to C
+standard). Needed to avoid BC++ compilation problems.
+* Various MSVC compilation issues.
+* --cxx-flags flag was reported as --cpp-flags in the help. Now both are
+valid.
+* Cygwin can execute the "make install" target, but it installed binaries
+without .exe extension.
+* Detection of pcre header for systems where the header is in pcre/pcre.h.
+Red Hat is an example.
 
-+ Compilation [1]
++ Linux [3]
 
-* Issues with newer gcc 3.x (upto 3.3) versions and BC++ 5.6 (CBuilder 6).
+* Code page problems when mixing console use and remote XTerm use.
+* RPM prereq for /sbin/install-info.
+* Problems to create the rpms using Fedora Core 2.
 
-+ sLisp [1]
++ Cosmetic [3]
 
-* The RunProgram command was affected by the options in the configuration
-dialog.
-
-+ Linux [1]
-
-* When running an external program and using the "OS screen" the editor made
-a complete mess. Only in console.
-
-+ X11 [1]
-
-* Problems using the mouse in InfView windows.
-
-+ Cosmetic [7]
-
-* The main documentation was reviewed and a lot of errors fixed.
-* Color names now are coherent, all start with a capital letter.
-* Shortcut collision between Copy/paste to/from OS clipboard and file
-clipboard options.
-* After loading a file from a desktop file with column cursor enabled
-it wasn't visible until the cursor was moved.
-* When no project is available now the "Powered Grep" avoids using
-"search in projects" as default.
-* Now when you "Quit" and the warning dialog pops up you can press
-Escape to abort the process. Suggested by Alex Lozano.
-* + and - should change month in calendar.
+* Some drawing variables not initialized. Could make the row/col cursor
+appear until a new redraw.
+* Now the cmc*Win (Copy,Cut,Paste) commands are called cmc*OS to reflect
+their real use. The old names remains as aliases.
+* The list for word completion had a wrong vertical size when we had repeated
+tags in the list to choose. Only one was visible but the size was computed
+counting the repetitions.
 
 
   For information about older releases and more read the change.log file.

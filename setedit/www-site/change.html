@@ -1,4 +1,971 @@
-<HTML><Title>change.log for setedit</Title><Body>$Log$<br><b>Revision</b> 1.432  2003/07/22 14:52:22  set<br>
+<HTML><Title>change.log for setedit</Title><Body>$Log$<br><b>Revision</b> 1.617  2004/09/24 18:59:51  set<br>
+<li> Fixed: The SF Rev 1.523 patch about holidays clean-up was buggy. It
+released the loaded stuff but didn't indicate it. So when opening the
+calendar again the code used freed memory.<p>
+<b>Revision</b> 1.616  2004/09/23 19:45:33  set<br>
+<li> Fixed: [sLisp] edf* constants not working. The WinDebugger definition was
+unsorted. Reported by Thiago.<p>
+<b>Revision</b> 1.615  2004/09/23 19:19:07  set<br>
+<li> Fixed: [RPMs] Problems to generate the RPMs using Red Hat 9.0. The
+changes introduced by bbcat should be enough (they are for Fedora Core 2),
+but more is needed to avoid problems with RH9.0. The problems are related
+to the generation of a RPM file with debug info.<p>
+<b>Revision</b> 1.614  2004/09/23 19:05:45  set<br>
+<li> Fixed: [BC++] The last change to support pcre/pcre.h needed changes in
+the configed.h file for Win32.<p>
+<b>Revision</b> 1.613  2004/09/22 18:45:13  set<br>
+<li> Fixed: [NHP] isDisassemblerEditor not initialized when loading from disk.<p>
+<b>Revision</b> 1.612  2004/09/20 14:16:01  set<br>
+<li> Fixed: [MSVC] When you compile for "Debug" the compiler disables *all*
+the optimizations. Including the dead code. For this reason MSVC also needs
+fake references.<p>
+<b>Revision</b> 1.611  2004/09/20 14:13:03  set<br>
+<li> Added: [Config] A command line option to specify a path for includes.
+This path is used for the configuration tests and for the editor.<p>
+<b>Revision</b> 1.610  2004/09/17 20:52:41  set<br>
+<li> Added: [WWW] Some changes towards the next release.<p>
+<b>Revision</b> 1.609  2004/09/17 18:51:55  set<br>
+<li> Fixed: [MSVC] Another min/max mix. Reported by Arnold.<p>
+<b>Revision</b> 1.608  2004/09/17 16:38:35  set<br>
+<li> Added: [Cygwin] Workaround for bugs in Cygwin's perl. Cygwin is
+configured to use DOS files, but when parsing DOS files you must match the
+/r char. DJGPP implementation is much more cleaver about it.<br>
+<li> Added: [Cygwin] libmigdb detection.<br>
+<li> Note: Current status of the editor using brand new Cygwin is "compile but
+the resulting binary is useless". Note that while compiling the editor I
+got SIGSEGVs from Perl and bash. It looks like Cygwin still alpha, at least
+for Windows 98 SE.<p>
+<b>Revision</b> 1.607  2004/09/17 16:25:59  set<br>
+<li> Modified: [Config] Now the .po files are regenerated only if the user
+configures enabling the maintainer mode. This should reduce CVS collisions.<p>
+<b>Revision</b> 1.606  2004/09/17 16:09:46  set<br>
+<li> Added: [Debug] An advice dialog when debugging in the Linux console
+indicating the program will be started in another VT. Also some explanation
+about it in the docs.<p>
+<b>Revision</b> 1.605  2004/09/16 20:59:51  set<br>
+<li> Added: [Config] AMD64 and NetBSD detection. It doesn't mean they are
+supported.<p>
+<b>Revision</b> 1.604  2004/09/15 13:10:06  set<br>
+<li> Fixed: [Config] wrong pcre header selected when using shipped pcre.
+Problem introduced by the recent patch to support pcre/pcre.h.<p>
+<b>Revision</b> 1.603  2004/09/14 19:01:11  set<br>
+<li> Added: [Config] Message warning about the lack of debug support.<br>
+<li> Added: [Distrib] The list of added/fixed things. 66 new things and 40
+fixes.<p>
+<b>Revision</b> 1.602  2004/09/10 19:55:06  set<br>
+<li> Modified: To include libmigdb in the distro (if available).<br>
+<li> Modified: [Config] To use the shipped libmigdb if none installed.<br>
+<li> Modified: [Config] To detect installations where pcre header is in the
+pcre directory. Red Hat seems to use it according to Vik Heyndrickx.<p>
+<b>Revision</b> 1.601  2004/09/10 18:11:57  set<br>
+<li> Added: Debug and InfView stuff to redmond.smn. InfView stuff to
+simple.smn.<br>
+<li> Added: [i18n] Data Window menu and missing debug menu entries to
+editmenu.cc.<br>
+<li> Updated: [i18n] Spanish translation.<p>
+<b>Revision</b> 1.600  2004/09/09 20:47:22  set<br>
+<li> Fixed: [Debug] various menu entries associated to dialogs that didn't
+indicate it using "...".<br>
+<li> Added: [i18n] various debug menu entries to editmenu.cc so they can be
+translated.<p>
+<b>Revision</b> 1.599  2004/09/08 20:19:43  set<br>
+<li> Added: [DOC] More debug documentation, now the core functionality is
+documented.<br>
+<li> Added: [Help] Linked debug help contexts to the documentation.<p>
+<b>Revision</b> 1.598  2004/09/08 18:14:32  set<br>
+<li> Added: [SHL] For SPARC assembler.<br>
+<li> Added: [Debug] syntax highlight for SPARC targets. Now the code can be
+adapted to other architectures with minor changes. Also tested stack window
+on an Ultra 60 machine.<p>
+<b>Revision</b> 1.597  2004/09/07 20:00:02  set<br>
+<li> Added: [Debug] Support for the Stack Window on SPARC machines. Not
+tested.<br>
+<li> Fixed: [Debug] The disassembler window to hide tabs and use 8 as tab
+size.<p>
+<b>Revision</b> 1.596  2004/09/06 17:15:46  set<br>
+<li> Fixed: [Debug] Problems with the registers list when using gdb 6.x.
+That's a workaround for gdb bug "mi/1770".<p>
+<b>Revision</b> 1.595  2004/09/06 16:25:32  set<br>
+<li> Fixed: [RHIDE] Another name collision (InsertEnviromentVar).<p>
+<b>Revision</b> 1.594  2004/09/06 13:30:20  set<br>
+<li> Fixed: [Debug] cmInspect command collision with RHIDE's command. Reported
+by Vik Heyndrickx <v/pandora/be>.<p>
+<b>Revision</b> 1.593  2004/09/01 20:24:44  set<br>
+<li> Fixed: [Debug] cmDWGotoAddress doesn't have to validate if the address
+is valid, that's just a reference.<br>
+<li> Fixed: [Debug] cmDWFollowPointer and cmDWFollowPtnNew failed because gdb
+interpreted "*0xXXXX" as just "0xXXXX". To avoid it and also avoid the
+mechanism we use to "take the address of"<br>
+<li> Fixed: [Debug] Wrong state displayed in the Debug Window after closing
+the debug session and making it visible.<br>
+<li> Modified: [Debug] Moved Data Window commands cmDWBaseIncrement and
+cmDWBaseDecrement to the movement submenu.<br>
+<li> Added: [Debug] Documentation for all the debug commands. Help contexts
+isn't linked, yet.<p>
+<b>Revision</b> 1.592  2004/08/30 15:34:05  set<br>
+<li> Fixed: [Tags] Abort when doing word completion and the starting word was
+"bigger" than the last tag in the list. Reported by Juan Pablo.<p>
+<b>Revision</b> 1.591  2004/08/27 18:27:00  set<br>
+<li> Fixed: [Debug] Data Window commands not enabled after recycling a data
+window.<br>
+<li> Fixed: [Debug] Data Window: Fill, Clear and Move operations didn't
+update the changes.<br>
+<li> Added: [Debug] Data Window: Explicit error when trying to use a block
+of more than 1 MB. Warning about speed for more than 128 KB. Not sure if
+those limits are good.<br>
+<li> Added: [Debug] Option to don't show again to 3 of the confirmations about
+closing the debug session and killing the debuggee.<br>
+<li> Added: [Debug] Advice about setting debug options without a project.<br>
+<li> Modified: [Debug] Data Window: When entering a wrong value in the block
+operations now we go back to the dialog so the user can fix the wrong
+value instead of entering all again.<br>
+<li> Modified: [Debug] Data Window: Warning about empty fields in the dialog
+for addresses. This is much more descriptive than an error from gdb ;-)<p>
+<b>Revision</b> 1.590  2004/08/26 20:49:05  set<br>
+<li> Fixed: [MSVC] Calls to min/max with different arguments (unsigned vs
+signed). They generate errors with MSVC 6.0. Patch by Arnold.<p>
+<b>Revision</b> 1.589  2004/08/25 20:51:54  set<br>
+<li> Fixed: [Debug] Crash when gdb failed to report registers. Found because
+a bug in gdb CVS 2004-08-25.<br>
+<li> Fixed: [Debug] TDataWindow go to new address not working.<br>
+<li> Fixed: [Debug] CPU line disapearing when setting a breakpoint in other
+line.<br>
+<li> Added: [Debug] "Go to cursor" for the disassembler window.<br>
+<li> Added: [Debug] Made more robust the code that disassembles. Now we first
+try to solve the function name and if it can be solved we use it otherwise
+we disassemble from the current code. We also check if the distance
+between the start of the function and the current point isn't huge, some
+times gdb fails to detect the real function.<br>
+<li> Added: [Debug] Command to detach from "PID target".<br>
+<li> Modified: [Debug] The Run/Continue to also mean "Atach"<p>
+<b>Revision</b> 1.588  2004/08/24 21:17:53  set<br>
+<li> Added: [DOC] More documentation about debug features.<br>
+<li> Fixed: [Cosmetic] Some menu entries that opens dialogs to indicate "..."<br>
+<li> Modified: [Debug] Avoid asking for confirmation when closing a debug
+session that isn't stopped nor running.<br>
+<li> Fixed: [Debug] If gdb failed to disassembler code we shortly SIGSEGVed in
+the idle update.<br>
+<li> Fixed: [Debug] The debug options dialog didn't return success.<p>
+<b>Revision</b> 1.587  2004/08/24 13:16:38  set<br>
+<li> Fixed: [Debug] A couple of typos in new code.<p>
+<b>Revision</b> 1.586  2004/08/24 00:01:16  set<br>
+<li> Added: [config] libmigdb version detection.<p>
+<b>Revision</b> 1.585  2004/08/23 15:54:41  set<br>
+<li> Fixed: [MSVC] The way the linker is called from the makefile. Arnold
+Wiegert's patch.<br>
+<li> Fixed: [MSVC] Lack of Boolean cast in ceditor.cc. From Arnold.<br>
+<li> Fixed: [MSVC] Lack of bool definition in pphp.c. From Arnold.<br>
+<li> Fixed: [RPMs] Wrong directive in specs. Patch from bbcat.<p>
+<b>Revision</b> 1.584  2004/08/22 22:45:16  set<br>
+<li> Fixed: [Debug] Debug Window, Watches Window, Inspector Windows and
+Data Windows now saves not only its current size but also the "unzoomed"
+size.<br>
+<li> Fixed: [Debug] Inspectors can't be closed while "running".<br>
+<li> Added: [Debug] Now when we add a file to the project its path is added
+to the list of paths for sources.<br>
+<li> Added: [Debug] When we add a path to the list of sources paths the path
+is also passed to gdb.<br>
+<li> Added: [Debug] The code to enable MI v2. Currently it only helps
+inspectors making them much faster.<br>
+<li> Added: [Debug] The code to disable the psym search workaround for the bug
+in gdb. It will allow faster startup when the bug is fixed without needing
+to change the editor.<br>
+<li> Added: [Tags] Busy indicator while we load the tags from disk.
+Lamentably only the X11 driver implements it.<br>
+<li> Modified: [Debug] The way "ignore" is interpreted: it means the times
+the breakpoint will be ignored when starting the program or when modifying
+or setting the breakpoint.<br>
+<li> Modified: [Debug] Instead of reporting "OK" as an error now we explain
+the operation can't be performed.<p>
+<b>Revision</b> 1.583  2004/08/20 16:10:53  set<br>
+<li> Added: [WWW] Links to the DOS precompiled snapshots.<br>
+<li> Added: [WWW] Image showing the editor debugging itself.<br>
+<li> Fixed: [RPM] Problems to create the rpms using Fedora Core 2. Patch by
+bbcat.<p>
+<b>Revision</b> 1.582  2004/08/19 18:07:39  set<br>
+<li> Added: [InfView] Its own menu.<br>
+<li> Modified: [InfView] Alt+B and Alt+I shortcuts to avoid menu collisions.<p>
+<b>Revision</b> 1.581  2004/08/18 14:15:42  set<br>
+<li> Fixed: [BC++] Lack of sys/time.h used in debug.cc.<p>
+<b>Revision</b> 1.580  2004/08/18 14:14:47  set<br>
+<li> Fixed: [gcc] Some gcc 3.4.1 requirements:
+1) Default argument values for function pointers no longer allowed.
+2) Missing string header in one of the screen savers.
+3) Passing pointers to packed struct elements no longer supported.
+4) vsync collision with allegro, didn't annoy gcc 2.9x<p>
+<b>Revision</b> 1.579  2004/08/17 15:06:50  set<br>
+<li> Fixed: [config] wrong makeinfo 4.7 detection. Patch by Andrea.<br>
+<li> Fixed: [Debug] missing dummies to compile without debug code.<br>
+<li> Updated: [i18n] spanish translation.<p>
+<b>Revision</b> 1.578  2004/08/16 21:24:50  set<br>
+<li> Fixed+Modified: The "paste" operation for TInputLinePiped views. Now the
+text is pasted without destroying the previous value (unless it is selected).
+The old mechanism was broken when linking to the Unicode branch of TV because
+the way it changed the "data" member was incomplete.<br>
+<li> Added: [Tags] an option to regenerate the central file. Some times ctags
+fails in the generation of incremental files and lets bogus registers. They
+can be very annoying and in this case the best is to just regenerate the
+whole file from scratch.<br>
+<li> Fixed: The list for word completion had a wrong vertical size when we had
+repeated tags in the list to choose. Only one was visible but the size was
+computed counting the repetitions.<br>
+<li> Modified: If the list of items in the word completion list box isn't bigger
+than the list's height we no longer add a useless scroll bar.<br>
+<li> Added: [Debug] Disassembler window!!! a cute one ;-) It have an editor so
+you can see the assembler with syntax highlight. If the information about
+the source code is available it also shows the source code mixed with the
+assembler.<br>
+<li> Added: [Debug] Optional key for the "add with scope" in the Watches Window.<br>
+<li> Modified: DynStrCat* to accept NULL pointer for initialization and take
+const char * arguments.<br>
+<li> Added: Moved the newStrL function from a static place to a public header,
+that's very useful.<br>
+<li> Modified: The way openEditor works when using oedNoSelect flag. It should
+be better but could affect the message window browsing.<p>
+<b>Revision</b> 1.577  2004/08/13 20:49:21  set<br>
+<li> Modified: [Debug] +/- keys in the inspector gives problems when using
+italian keyboards and Linux console. So now + can be replaced by E and -<br>by C (Expand/Collapse). Both work so the user can choose.<br>
+<li> Modified: [Debug] Added more error checking to the inspectors creation.
+A bug in gdb makes it die when evaluating some expressions. So now the code
+checks it and goes to "disconnected" state. It will need much more adjusts
+before a gdb crash doesn't affect the editor.<br>
+<li> Both from Andrea's reports.<p>
+<b>Revision</b> 1.576  2004/08/13 19:01:51  set<br>
+<li> Fixed: [DOC] txt generation details when using makeinfo 4.7. From more
+info provided by Andrea.<p>
+<b>Revision</b> 1.575  2004/08/13 18:10:17  set<br>
+<li> Added: [Debug] Options to configure: gdb binary, xterm binary, main
+function, max. number of lines in debug window, gdb response time
+out and disable gdb banner.<br>
+<li> Added: [Debug] The messages in the debug window are limited in
+number and cleared when a new session is started.<br>
+<li> Added: [Debug] A dialog to ask if we want to wait more when a time
+out in gdb response is detected. Not tested.<p>
+<b>Revision</b> 1.574  2004/08/12 21:07:32  set<br>
+<li> Fixed: [Debug] if we specified a path for sources when gdb wasn't running
+the editor crashed. It was only from the dialog to specify a file.<br>
+<li> Added: The "FindFile" function now also looks for the filename alone. So
+if we look for ./examples/ex3d.c FindFile will try with it and then with
+ex3d.c alone.<br>
+<li> Added: [Debug] frames of the available threads and also selection of
+current thread by default. So it can be used to display current threads.<p>
+<b>Revision</b> 1.573  2004/08/11 21:06:29  set<br>
+<li> Added: [Debug] Select thread option. But this is quite useless. GDB
+doesn't report any info, just the ID and doesn't remove finished threads
+from the list. Which is worst: selecting a finished thread doesn't return
+any error, the message is printed in the console. Yet another bug in gdb.<br>
+<li> Added: [Debug] An option to delete all the breakpoints, watchpoints, etc.<br>
+<li> Added: [Debug] When adding a watchpoint the word under cursor is used as
+starting point.<br>
+<li> Fixed: cmcCutClipWin command not dis/enabled when selecting text.
+Reported by Arnold Wiegert.<p>
+<b>Revision</b> 1.572  2004/08/11 16:30:07  set<br>
+<li> Fixed: [DOC] More makeinfo 4.7 details. From Andrea's feedback.<p>
+<b>Revision</b> 1.571  2004/08/11 15:08:37  set<br>
+<li> Added: [Debug] Persistence to the Data Windows. Of course they need to be
+"recycled".<br>
+<li> Added: [Debug] Shortcuts for "Run/Continue", "Inspectors" and "Calling
+Stack". The first could need to be exchanged with SDG shortcut, not sure.
+The other two are the same used in RHIDE.<p>
+<b>Revision</b> 1.570  2004/08/10 19:56:45  set<br>
+<li> Added: [Debug] A dialog asking for the file location when it couldn't be
+located in the current path for sources. It have a similar behavior to what
+RHIDE does.<br>
+<li> Fixed: [Debug] The "calling stack" command crashed if the functions were
+located at different files.<br>
+<li> Fixed: [Debug] The "calling stack" to add "solved filenames", not the
+names returned by gdb.<br>
+<li> Added: [Debug] The "calling stack" to jump to the "frame 1"<br>
+<li> Fixed: [Debug] When deleting recycled inspectors we deleted the "fake"
+tree twice.<br>
+<li> Added: [Debug] Now the data window disables all its commands when they
+can't be used.<br>
+<li> Fixed: [Debug] In one of the last optimizations in the watches window I
+forgot to redraw the window, so it looked like no item changed until we
+selected it.<br>
+<li> Fixed: Leak in TPrjItemColl::addFile when trying to verify if a file
+existed.<br>
+<li> Fixed: Leak in the TMultiMenuBar when the selected menu wasn't the first
+in the list.<p>
+<b>Revision</b> 1.569  2004/08/09 23:50:42  set<br>
+<li> Modified: [Cosmetic] The multi menu bar to avoid drawing the first menu
+and quickly switch to the default one (the last in the list).<p>
+<b>Revision</b> 1.568  2004/08/09 21:21:43  set<br>
+<li> Fixed: [DOC] @xref in sdg.tx without period.<br>
+<li> Fixed: DOS' end of file in djmdr.s.<br>
+<li> Both from Oswald.<p>
+<b>Revision</b> 1.567  2004/08/09 20:59:24  set<br>
+<li> Added: Context sensitive menues. Also extended the .smn file language to
+create such a thing. Currently used only for the data window.<br>
+<li> Fixed: Problems in the data window when trying to display the ASCII 0.
+Also modified to show the full characters range, not just ASCII range.<br>
+<li> Fixed: Data Window doing 2 reads when created.<p>
+<b>Revision</b> 1.566  2004/08/09 15:14:29  set<br>
+<li> Fixed: [DOC] Problems in the HTML generation using makeinfo 4.7.<br>
+<li> Fixed: [DOC] Problems in the DVI/PS generation (macro name collision).
+Again from info sent by Andrea Mazzoleni (amadvance/users/sourceforge/net).<p>
+<b>Revision</b> 1.565  2004/08/09 12:54:47  set<br>
+<li>** Data Window stuff:<br>
+<li>** Related to the new code<br>
+<li> Fixed: isValidUL not working.<br>
+<li> Fixed: No input box when starting from a value from the "word under
+cursor"<br>
+<li> Added: Implemented the memory write.<br>
+<li> Added: Error message to indicate a memory location can't be accessed when
+validating it. No silent fail.<br>
+<li> Added: Stack Window.<br>
+<li> Added: TDskWin wrapper.<br>
+<li> Added: Update when debuggy stops.<br>
+<li> Modified: EnterAddresses to show input lines without separation.<br>
+<li>** Also related to the original code<br>
+<li> Fixed: The FIXMEs about using smaller blocks.<br>
+<li> Fixed: Buffer to hold selected file name wasn't as long as PATH_MAX
+(SIGSEGV).<br>
+<li> Fixed: Lack of update after reading from a file.<br>
+<li> Fixed: Creation of empty files if the from or length was wrong.<br>
+<li> Fixed: When debugging two programs with different endian types without
+exiting the code taked only the first. Now it should work, but is hard to
+check ;-)<br>
+<li> Fixed: The stack window first detects the target architecture, if it
+isn't x86 gives an error.<br>
+<li> Fixed: Wrong color and frame of the indicator when the window wasn't
+selected.<br>
+<li> Added: ESC closes the window.<br>
+<li> Added: An attribute to show memory changes, that's really nice because
+you can see what changed in each program step very quickly.<br>
+<li> Modified: When updating the memory modified cells are now reset to "not
+edited"<br>
+<li> Modified: Removed %#lx in favor of 0x%lx, I think that's more portable.
+I encapsulated most of these printfs in one member.<br>
+<li> Modified: All the stuff about a linked list of windows, now they update
+itself using the broadcast that indicates the debugger changed its state.
+I keep a counter of windows to avoid sending a broadcast to nobody ;-)<p>
+<b>Revision</b> 1.564  2004/08/06 21:10:36  set<br>
+<li> Added: A first part of the Molnar Laszlo's "Data Window v0.1" that he
+contributed to RHIDE. A lot of things must be solved because things are
+quite different when you can directly access the debuggy memory :-(<br>
+<li> Fixed: A couple of leaks that happened when closing a project and loading
+another. Reported by Valgrind while debugging the "Data Window" stuff.<br>
+<li> Note: The debugging stuff is quite functional, Inspectors are great for
+complex structures like trees. But the whole thing isn't stable, more
+adjusts are needed.<p>
+<b>Revision</b> 1.563  2004/08/05 19:26:28  set<br>
+<li> Fixed(?): [DOC] The complement part of the "@end menu" makeinfo 4.7
+problem. This time for the @itemize.<br>
+<li> Fixed: [DOC] newer versions of the TeX package defines "html" macro which
+collides with the one in rhidemac.*.<br>
+<li> Added: [DOC] SDH command line option to avoid numbering chapters. It
+looks like makeinfo 4.7 does it by itself (and by default!).
+From info sent by Andrea Mazzoleni (amadvance/users/sourceforge/net).<p>
+<b>Revision</b> 1.562  2004/08/05 18:14:21  set<br>
+<li> Modified: [sLisp] CommentIndent macro, enhanced version from Thiago.<p>
+<b>Revision</b> 1.561  2004/08/04 20:09:47  set<br>
+<li> Added: Inspectors!!! They are quite different to the RHIDE inspectors.
+They are suitable for complex structures and you can have various in the
+desktop.<p>
+<b>Revision</b> 1.560  2004/08/02 15:23:03  set<br>
+<li> Fixed: makeinfo 4.7 enforces the use of @pxref for (@x{...}).<br>
+<li> Fixed(?): makeinfo 4.7 no longer supports "@end xxxx" commands inside
+macros :-( so I added an aditional intermediate file to avoid them.<p>
+<b>Revision</b> 1.559  2004/08/02 13:22:41  set<br>
+<li> Added: [sLisp] CommentIndent macro contributed by Thiago.<p>
+<b>Revision</b> 1.558  2004/08/02 12:50:45  set<br>
+<li> Added: Watchpoints!!!! now we can easily hunt wild writes ;-)<br>
+<li> Modified: The breakpoints are moved only if the target changed its time
+stamp.<br>
+<li> Added: i18n to the debug dialogs.<br>
+<li> Fixed: i18n of the project window title.<br>
+<li> Updated: Spanish translation.<p>
+<b>Revision</b> 1.557  2004/08/02 12:44:28  set<br>
+<li> Fixed: When going step by step and the "match pair on the fly" was
+enabled the code to restore the highlighted pairs did a mess with the
+background color if the pair involved a "CPU line".<br>
+<li> Added: After using "Run a program" the editor updates the moved
+breakpoints. Also an option to disable it. Note: That's what made me create
+the splines, lamentably Robert never used them for RHIDE.<br>
+<li> Added: A beep when "Run a program" finishes. Option to disable.<br>
+<li> Added: Close the debug session before running the external program. An
+option to disable it. That's needed for OSs where we can't overwrite opened
+files and is also needed to woraround gdb bugs.<br>
+<li> Added: Option to ask for confirmation if the "Run program" will kill the
+current debug session.<br>
+<li> Added: [sLisp] edfRunStopDebug option to RunProgram.<p>
+<b>Revision</b> 1.556  2004/07/30 21:10:17  set<br>
+<li> Modified: Now the cmc*Win (Copy,Cut,Paste) commands are called cmc*OS to
+reflect their real use. The old names remains as aliases. From a suggestion
+by Thiago.<br>
+<li> Added: Ins,Del,+,- shortcuts in the status line for the breakpoints
+dialog.<br>
+<li> Added: [sLisp] new command GetSystemInfo to know the current OS, TV
+driver, CPU, etc. From a suggestion by Thiago.<br>
+<li> Updated: docs, not yet the debug stuff.<br>
+<li> Fixed: Error in the SpLines search that made funny things when trying to
+toggle a breakpoint (introduced during the structure change).<br>
+<li> Added: The dialog to add a "watch" now is piped to an editor and the word
+under cursor is used. It also have a history (shared with evaluate).<br>
+<li> Added: A history to the dialog to send gdb commands.<br>
+<li> Modified: The "CPU line" is centered only if we jumped to another source.
+It is less annoying.<br>
+<li> Added: The conditionals in menu files can use the TV driver, CPU, OS,
+etc. for conditions. From a suggestion by Thiago.<br>
+<li> Added: $define and $undef and its expansion in menu files. From a
+suggestion by Thiago.<br>
+<li> Fixed: The commands to select the watches and debug window are
+independent of the debugger state.<p>
+<b>Revision</b> 1.555  2004/07/29 20:33:37  set<br>
+<li> Added: The edit breakpoint dialog now disables the unneeded options. So
+if you will specify the location using file:line then you can't say the
+function or address.<p>
+<b>Revision</b> 1.554  2004/07/28 21:03:23  set<br>
+<li> Added: The second part of the "Breakpoints" dialog. Now is possible to
+add, modify, remove, enable, disable and jump to breakpoit locations. Some
+details remains to be adjusted and is lightly tested.<br>
+<li> Fixed: A leak in SpLines, the new structures needs atFree and not just
+atRemove, found using valgrind, debugged using the editor. Note: gdb is
+quite bad and is sooooo buggy, now that I'm using it from the editor I can
+verify when the problem is in gdb and that's too common :-(<p>
+<b>Revision</b> 1.553  2004/07/26 20:36:03  set<br>
+<li> Modified: Now breakpoints and frames are searched in the "path for
+sources" and not only in the binary reference.<br>
+<li> Modified: "Go To Line" now passes the full qualified name of the file to
+gdb. With both changes I debugged "rhgdb".<p>
+<b>Revision</b> 1.552  2004/07/26 16:06:40  set<br>
+<li> Modified: [MSVC] The WinNT/configed.h header to report "MSC" as compiler
+for MS compiler. Suggested by Arnold.<br>
+<li> Updated: Copyright year in main about box. Suggested by Arnold.<p>
+<b>Revision</b> 1.551  2004/07/26 15:35:37  set<br>
+<li> Modified: Once again makeinfo breaks something. This time makeinfo 4.6
+doesn't like:
+@item xxxx @il{xxxx
+yyyy}
+The @il must end in the same line or makeinfo gets confused.<p>
+<b>Revision</b> 1.550  2004/07/26 15:09:15  set<br>
+<li> Added: The first part of the "Breakpoints" dialog. Currently you can
+just see the breakpoint.<br>
+<li> Fixed: SpLineGetOldValueOf to match not only the position but also the
+spline id.<br>
+<li> Fixed: All the TCEditor::SetSpecialLines logic because it was wrong and
+it needed adjustments to the new structures.<br>
+<li> Modified: Moved all the breakpoint operations to a class so we can use
+it for a dialog.<p>
+<b>Revision</b> 1.549  2004/07/26 15:04:10  set<br>
+<li> Updated: Spanish translation.<br>
+<li> Fixed(?): The last modification to the special lines stuff had a major
+flaw. If we keep a copy in the TCEditor then is quite hard to know which
+lines were moved. I changed the insternal structures used by SpLinMan to
+solve it. The code changed too much to be considered stable.<br>
+<li> Modified: The internac/Makefile to update the translations every time a
+source that have strings to translate is modified. This will increase cvs
+traffic but will reduce collisions.<p>
+<b>Revision</b> 1.548  2004/07/23 21:22:31  set<br>
+<li> Fixed: [MSVC] The set_new_handler() function of MSVC 4.0 doesn't support
+NULL. It is possible to use _set_new_handler(), but as it is only tested
+for gcc I'm disabling this code for other compilers. From a report by
+Arnold. Note: with it Arnold compiled the editor for MSVC 4.0.<p>
+<b>Revision</b> 1.547  2004/07/23 20:53:22  set<br>
+<li> Added: Configuration options to disable the calculator and calendar.
+Suggested by Oswald.<br>
+<li> Modified: Optimized cmcMoveBlock. Suggested by Oswald. Consider it
+unstable.<br>
+<li> Modified: The meassure commanand to report the result in the status line.
+Suggested by Oswald.<br>
+<li> Modified: The insertBuffer member to support some copies from the same
+buffer.<br>
+<li> Fixed: Leak in tags code. Reported by valgrind.<br>
+<li> Added: Options to zoom the editor windows when inserted in the desktop.
+Suggested by Oswald.<br>
+<li> Fixed: Bug in stack position. Forgot to unlink the returned objects.<p>
+<b>Revision</b> 1.546  2004/07/23 13:00:50  set<br>
+<li> Fixed: [MSVC] Wrong prototype of LoadFileUnderCursor in ced_inte.h. Only
+reported by MSVC 4.0. From a report by Arnold.<p>
+<b>Revision</b> 1.545  2004/07/22 00:59:15  set<br>
+<li> Added: When using the tag search if we find a perfect match now we jump
+directly to the tag. Suggested by Thiago.<br>
+<li> Added: Two new commands: cmeGPushCursorPos and cmeGPopCursorPos. They are
+"global push/pop cursor pos". So they also remmember the file. They help to
+implement a "tag stack". From what Thiago suggested.<br>
+<li> Added: Before jumping to a tag the editor does a cmeGPushCursorPos.<p>
+<b>Revision</b> 1.544  2004/07/21 19:59:04  set<br>
+<li> Fixed: When deleting a breakpoint the editor could hang if the breakpoint
+couldn't be found.<br>
+<li> Added: Now if the program to debug (the copy with debug info) is in a
+directory other than the current one this directory becomes the reference
+for filenames. It allowed me to debug SETEdit from SETEdit and using the
+setedit.epr file which is in "../" from the point of view of the binary.<p>
+<b>Revision</b> 1.543  2004/07/20 20:45:00  set<br>
+<li> Added: Now we can attach to running processes. Nice, but it expossed more
+gdb bugs :-(<p>
+<b>Revision</b> 1.542  2004/07/20 19:33:17  set<br>
+<li> Fixed: Added dummies to allow compilation when libmigdb isn't installed.<p>
+<b>Revision</b> 1.541  2004/07/20 16:27:09  set<br>
+<li> Added: The first part of the code to support debugging using libmigdb.<br>
+<li> Synchronized some CVS details with my home CVS.<br>
+<li> Version 0.5.4 (Glaciar P.Moreno I)<p>
+<b>Revision</b> 1.540  2004/07/19 20:02:00  set<br>
+<li> Fixed: [Debian] Applied patch S.F. #993014 submitted by Baurjan Ismagulov
+(ibr): "Add an include file required by rhide".<p>
+<b>Revision</b> 1.539  2004/07/19 19:53:20  set<br>
+<li> Fixed: [config] --cxx-flags flag was reported as --cpp-flags in the help.
+Now both are valid. Reported by Ullal Devappa Kini (wmbfqj/vsnl/net).<br>
+<li> Fixed: [Win32] Cygwin can execute the "make install" target, but it
+installed binaries without .exe extension. That's quite annoying for Win32.
+I added a "--keep-extension" option to avoid it, isn't tested. Reported by
+Ullal Devappa Kini (wmbfqj/vsnl/net).<p>
+<b>Revision</b> 1.538  2004/06/29 14:27:11  set<br>
+<li> Fixed: [MSVC] The char */*name*/ sequence confused the compiler. Reported
+by Arnold.<p>
+<b>Revision</b> 1.537  2004/06/28 17:57:49  set<br>
+<li> Fixed: Corrupted MP3 files could produce a crash. It closes SF Bug
+#932091 reported by silverdirk, he sent me a file to reproduce the problem.<p>
+<b>Revision</b> 1.536  2004/06/28 17:56:48  set<br>
+<li> Fixed: The menu files uses nested preprocessor directives but it wasn't
+supported.<p>
+<b>Revision</b> 1.535  2004/06/28 17:56:07  set<br>
+<li> Fixed: [BC++] 5.5 can't really remove unreachable code. That's another
+evidence of the poor quality of Borland compilers in terms of optimization.<p>
+<b>Revision</b> 1.534  2004/06/28 17:55:02  set<br>
+<li> Fixed: Missing CleanUpHolidays() for targets that doesn't support dlopen.
+Additionaly I modified the code to use if (xxxx) instead of plain
+preprocessor.<br>
+<li> Fixed: [djgpp] Problems in calcu.cc because of unconditional definition
+of NULL in locale.h.<p>
+<b>Revision</b> 1.533  2004/06/25 19:46:21  set<br>
+<li> Fixed: SUP_PCRE could be redefined :-(, added protection.<p>
+<b>Revision</b> 1.532  2004/06/25 18:28:08  set<br>
+<li> Added: [sLisp] A new command called "prex" to perform Perl regular
+expressions searches. It is documented and I also added an example to
+macros.slp, it calls wc and shows the results in the status line.<br>
+<li> Modified: The SUP_PCRE macro to be 0 or 1 instead of un/defined. This
+could generate compilation problems for platforms where PCRE isn't
+supported, but the code is more clear now.<p>
+<b>Revision</b> 1.531  2004/06/23 20:10:00  set<br>
+<li> Fixed: Assignment of Boolean from int.<br>
+<li> Fixed: Use of bool type (instead of int or Boolean).<br>
+<li> Modified: "new" header inclusion to be selected by compatlayer.
+All from Arnold Wiegert information.<p>
+<b>Revision</b> 1.530  2004/06/23 19:33:21  set<br>
+<li> Modified: [MSVC] Use of /Tp<file> instead of /TP in makefiles. It looks
+like MSVC 4.0 only supports it. Reported by by Arnold Wiegert.<br>
+<li> Fixed: Leaks in TCEditWindow (intl stuff), List of windows and
+loadnobkp.cc. valgrind.<br>
+<li> Fixed: "New" buffers shouldn't be added to the list of closed windows
+when closed. It generated a read out of bounds and a write of unitialized
+data to disk. valgrind.<p>
+<b>Revision</b> 1.529  2004/06/22 20:34:12  set<br>
+<li> Fixed: [MSVC] References to make in the nmake files. Report and solution
+by Arnold Wiegert.<br>
+<li> Modified: [Makefiles] extrimk to generate the first dependency with
+relative path. I should allow .umk files to be used without the need of
+"vpath" or ".path" directives. That's because nmake lacks both directives.<p>
+<b>Revision</b> 1.528  2004/06/22 16:30:43  set<br>
+<li> Added: [sLisp] More macros from Thiago. They are short and quite
+interesting because they show how to add particular behaviors or
+funtionalities with small code.<p>
+<b>Revision</b> 1.527  2004/06/22 16:01:24  set<br>
+<li> Fixed: [Cosmetic] Added a ; after the ListBoxImplement(..) macros. They
+looks more "correct" and doesn't confuse my heuristic to search fro
+functions ;-)<p>
+<b>Revision</b> 1.526  2004/06/22 15:11:58  set<br>
+<li> Added: [sLisp] Experimental!!! now you can use cme* commands for
+SendCommands. They are propperly sent to the application instead of the
+current editor.<p>
+<b>Revision</b> 1.525  2004/06/18 14:21:19  set<br>
+<li> Fixed: Some details in the heuristic C++ functions searcher. They address
+problems with the const and throw() attributes.<br>
+<li> Modified: The program that extracts dependencies from the RHIDE's .mak
+files to avoid putting the creation date (I don't remmember why I needed it
+and it generates extra CVS traffic) and to sort dependencies (also reduces
+CVS traffic).<p>
+<b>Revision</b> 1.524  2004/06/17 16:50:32  set<br>
+<li> Added: Missing desktop examples. Reported as bug #974095 @ SF by Ognyan
+Kulev (ogi).<p>
+<b>Revision</b> 1.523  2004/06/14 16:40:42  set<br>- From valgrind<br>
+<li> Added: Holidays clean-up.<br>
+<li> Fixed: Memory leak in special lines.<br>
+<li> Fixed: malloc/delete missmatch in grep interface.<p>
+<b>Revision</b> 1.522  2004/06/14 14:39:20  set<br>
+<li> Added: now extrimk.cc can also solve vpath sources.<br>
+<li> Modified: valgrind command line script to report up-to 40 functions in
+the calling stack.<br>- From valgrind:<br>
+<li> Added: librhuti io and Special Lines clean-up at exit.<br>
+<li> Fixed: new[]/delete missmatches related to WordUnderCursor, errors
+parser, pathtool, special lines and Tips.<p>
+<b>Revision</b> 1.521  2004/06/14 14:34:15  set<br>- From valgrind:<br>
+<li> Fixed: duplicated keywords in syntaxhl.shl file. Additionaly now it
+doesn't leak memory.<br>
+<li> Added: PathList* clean-up.<p>
+<b>Revision</b> 1.520  2004/06/11 21:20:56  set<br>
+<li> Added: Messages in BC++ and MSVC makefiles instructing to try the new
+mechanism.<br>
+<li> Fixed: Warnings in holydays code now compiled with -Wall.<br>- From valgrind<br>
+<li> Fixed: Leak in TSetEditorApp::preLoadDesktop.<br>
+<li> Fixed: Ruby highlight lack of End.<br>
+<li> Fixed: new/delete[] missmatches in TInfIndex::TInfIndex and
+TFileEntryCollection::freeItem.<br>
+<li> Fixed: SIGKILL mask.<br>
+<li> Fixed: Potential portability problems with memcpy.<p>
+<b>Revision</b> 1.519  2004/06/09 15:40:42  set<br>
+<li> Modified: Removed from CVS various files that are generated by configure
+script. They are included in distribution but people using CVS must run
+the configure script.<p>
+<b>Revision</b> 1.518  2004/06/09 15:08:33  set<br>
+<li> Fixed: internac/gnumake.in didn't define CXX and instead replaced the
+two points where it was used. Suggested by Oswald.<br>
+<li> Added: libbzip2, libpcre and libz. Now have configurable makefiles.<br>
+<li> Modified: Now WinNT/Makefile* files are updated only in maintainer mode.<p>
+<b>Revision</b> 1.517  2004/06/09 12:29:40  set<br>
+<li> Fixed: [BC++] Wrong references to rhtv.lib instead of librhtv.lib.
+Reported by Arnold Wiegert (awiegert/telus/net).<p>
+<b>Revision</b> 1.516  2004/06/08 13:21:06  set<br>
+<li> Modified: [Debian] Applied patch #968507 S.F. submitted by Baurjan
+Ismagulov - ibr. Removes extra clean-up.<p>
+<b>Revision</b> 1.515  2004/06/04 19:19:58  set<br>
+<li> Fixed: Another strchr call.<p>
+<b>Revision</b> 1.514  2004/06/04 13:27:22  set<br>
+<li> Added: A small script to meassure the number of lines of code. Currently
+over than 108,000. It skips third party libs.<br>
+<li> Fixed: strstr and strchr are declared different in C++ standard. BC++
+does it (not gcc 2.95.4) and it generated compilation errors when using
+BC++. Reported by Arnold Wiegert.<p>
+<b>Revision</b> 1.513  2004/06/02 19:57:43  set<br>
+<li> Added: [SHL] vbe and vst as VHDL extensions. Used by Alliance for "Vhdl
+BEhavioral" and "Vhdl STructural". Suggested by Juan Pablo.<p>
+<b>Revision</b> 1.512  2004/05/31 14:09:22  set<br>
+<li> Modified: [Debian] Applied patch #962884 S.F. submitted by Baurjan
+Ismagulov - ibr. Related to the libset package. It needs some adjustments.<p>
+<b>Revision</b> 1.511  2004/05/31 13:44:16  set<br>
+<li> Added: OS/OS flavor,CPU,Compiler/Compiler flavor and Driver to the about
+box. Suggested by Arnold Wiegert (awiegert/telus/net)<br>
+<li> Added: C,H and CPP as valid C extensions for syntax highlight. C is the
+C++ extension for gcc and the others are for non-casesensitive OSs.<p>
+<b>Revision</b> 1.510  2004/05/24 14:38:27  set<br>
+<li> Modified: [config] Use of "g++" in favor of "gcc -lstdc++". This is
+because newer gcc 3.x compilers can't compile C++ code without doing a
+mess when we use the gcc frontend. From a report by Baurjan Ismagulov - ibr<p>
+<b>Revision</b> 1.509  2004/05/24 13:40:41  set<br>
+<li> Added: Applied patch #959018 Add libset-dev Debian package. Submitted by
+Baurjan Ismagulov - ibr (S.F.). It needs some adjustments but can be used.<p>
+<b>Revision</b> 1.508  2004/05/21 16:16:19  set<br>
+<li> Fixed: The heuristic C/C++ parser to support list of exceptions
+(function throw(...) {body}).<p>
+<b>Revision</b> 1.507  2004/05/17 14:06:40  set<br>
+<li> Fixed: Missing va_end and abuse of va_list type. It looks like the newer
+PPC's glibc implements things in a way that va_list variables can't be
+assigned to other va_list variables. Reported by MDaniel.<p>
+<b>Revision</b> 1.506  2004/05/12 14:21:25  set<br>
+<li> Modified: For the last changes to the TButton class.<p>
+<b>Revision</b> 1.505  2004/05/07 20:07:31  set<br>
+<li> Fixed: A couple of calls to memcpy to use CLY_memcpy. Reported by
+valgrind.<br>
+<li> Added: Avoid a no-op copy reported by Oswald.<br>
+<li> Fixed: Use of unitialized undo counter in some rectangular selection
+operations. Reported by valgrind.<p>
+<b>Revision</b> 1.504  2004/05/06 19:33:09  set<br>
+<li> Fixed: Some malloc/new/new[] v.s. free/delete/delete[] calls. Reported
+by Oswald using valgrind.<br>
+<li> Fixed: memcpy shouldn't be used if blocks overlaps, no matters the
+copying direction. That's a portability issue. Reported by Oswald using
+valgrind.<br>
+<li> Fixed: Undo count for the first undo wasn't initialized. Very dangerous.
+Reported by Oswald using valgrind.<br>
+<li> Fixed: Some drawing variables not initialized. Could make the row/col
+cursor appear until a new redraw. Reported by Oswald using valgrind.<p>
+<b>Revision</b> 1.503  2004/05/05 19:09:08  set<br>
+<li> Fixed: When copying something from the calculator and the paste wasn't
+enabled before entering the calculator then you needed to at least move the
+cursor before you could paste. Now the Paste status is updated without
+needing any extra action.<p>
+<b>Revision</b> 1.502  2004/04/22 19:09:28  set<br>
+<li> Fixed: [tools] Problems when applying patches from branches that uses new
+files and cvs marks them as from Attic.<p>
+<b>Revision</b> 1.501  2004/04/19 20:45:55  set<br>
+<li> Added: Code needed to test with the AlCon branch.<p>
+<b>Revision</b> 1.500  2004/04/13 18:21:44  set<br>
+<li> Added: [SHL] Syntax and pmacros for WML, contributed by Diego J. Brengi.<p>
+<b>Revision</b> 1.499  2004/04/12 13:17:13  set<br>
+<li> Fixed: [Holydays] bug in movement and fixed april 2 movement in
+argentinian holydays.<p>
+<b>Revision</b> 1.498  2004/04/06 19:10:48  set<br>
+<li> Fixed: Problems with some texinfo versions reported by Cosmin T. (ctruta\
+hotmail\com).<p>
+<b>Revision</b> 1.497  2004/03/30 14:54:36  set<br>
+<li> Added: Information about how to install the Red Hat 7.3 RPMs in Fedora
+Core 1. Contributed by Rohan Carly.<p>
+<b>Revision</b> 1.496  2004/03/25 20:11:29  set<br>
+<li> Added: Non interactive versions of the cmcExpandAllTabs and
+cmcCompactBuffer commands to be used from sLisp. Suggested by Grzegorz.<p>
+<b>Revision</b> 1.495  2004/03/17 20:50:23  set<br>
+<li> Updated: [SHL] Flat Assembler, contributed by Matt C.<p>
+<b>Revision</b> 1.494  2004/03/03 14:55:48  set<br>
+<li> Modified: [SHL] Flat Assembler definition. Patch by Matt.<p>
+<b>Revision</b> 1.493  2004/02/23 14:38:41  set<br>
+<li> Fixed: [DOCs] the ctags --field switch because makeinfo needs ---field.
+Reported by Grzegorz.<p>
+<b>Revision</b> 1.492  2004/02/02 16:13:50  set<br>
+<li> Added: [WWW] A note about Red Hat RPMs, a user (Jan Cnops) reported that
+the Red Hat 7.3 packages (newer than the Red Hat 8.0 packages) install OK
+on Red Hat 9.0 systems.<p>
+<b>Revision</b> 1.491  2004/02/02 14:52:50  set<br>
+<li> Added: [WWW] SuSE 9.0 release by bbcat.<p>
+<b>Revision</b> 1.490  2004/01/13 14:23:02  set<br>
+<li> Modified: [WWW] The page to be more clear about how to try the Win32
+version. Suggested by Philippe Baucour.<p>
+<b>Revision</b> 1.489  2004/01/06 15:54:37  set<br>
+<li> Fixed: [DOCs] the "strxlt" example said "sstr". Reported by Dominik
+Grzelak.<p>
+<b>Revision</b> 1.488  2004/01/06 15:42:01  set<br>
+<li> Updated: Flat Assembler syntax highlight. Contributed by Matt Childress.<p>
+<b>Revision</b> 1.487  2003/12/15 21:21:43  set<br>
+<li> Fixed: [RPM] The prereq seems to be /sbin/install-info and not
+/usr/bin/... At least that's what most specs found by Google shows ;-)
+I also added install and delete for the info files.<p>
+<b>Revision</b> 1.486  2003/12/15 14:59:16  set<br>
+<li> Fixed: When pasting using the OS clipboard and the cursor was moved to
+the end of the selection it could go out of screen which is quite annoying.<p>
+<b>Revision</b> 1.485  2003/12/15 14:58:36  set<br>
+<li> Fixed: A couple of details about the last option and when is greyed.<p>
+<b>Revision</b> 1.484  2003/12/15 14:56:46  set<br>
+<li> Fixed: Some int v.s. unsigned details related to the last patch.<br>
+<li> Modified: cmcSaveAsUNIX and cmcSaveAsDOS commands to be
+cmcSaveAsConvertEOL which is more clear.<br>
+<li> Added: A new command cmcSaveAsNoConvertEOL used to avoid automatic
+conversions when they are enabled. From a suggestion by Oswald.<p>
+<b>Revision</b> 1.483  2003/12/11 19:54:37  set<br>
+<li> Fixed: Compilation problems with gcc 3.x. Patch from Oswald:
+  - Missing \n at end of palbcc.h
+  - Missing explicit parent constructor call in mp3/ampdiag.cc
+  - Constant out of range in include/ced_exte.h (I also modified
+    edconst.cc accordingly)<p>
+<b>Revision</b> 1.482  2003/12/09 19:24:32  set<br>
+<li> Modified: The 'Compile' macro example. It was contributed by Thiago and
+now he added an example on how to choose the compiler according to the
+syntax.<p>
+<b>Revision</b> 1.481  2003/12/09 18:28:08  set<br>
+<li> Added: Errors parser for Perl. Contributed by Thiago.<p>
+<b>Revision</b> 1.480  2003/12/09 16:48:51  set<br>
+<li> Fixed: When aborting an overwrite (in save as) the name of the window
+was changed anyway :-P<p>
+<b>Revision</b> 1.479  2003/12/09 16:09:31  set<br>
+<li> Fixed: The new code needed a conditional to avoid ridiculous small sizes.<p>
+<b>Revision</b> 1.478  2003/12/09 16:07:51  set<br>
+<li> Added: "File open" dialogs remmembers its size and position. Each kind of
+dialog have its own values, so open and save as are independent. I know it
+could confuse some people but it allows better customization. From a
+suggestion by gradha.<p>
+<b>Revision</b> 1.477  2003/12/09 16:06:30  set<br>
+<li> Added: Most lists (like functions list) now centers the focused item when
+a match is selected. Suggested by gradha.<p>
+<b>Revision</b> 1.476  2003/12/03 14:44:21  set<br>
+<li> Fixed: Missing wrapper for RHIDE's version of FindFile. Reported by Kevin
+Alm.<p>
+<b>Revision</b> 1.475  2003/12/03 14:19:54  set<br>
+<li> Fixed: Removed two comments containing non-ASCII chars. It seems to annoy
+gcc 3.3.1 according to a report by Kevin Alm.<p>
+<b>Revision</b> 1.474  2003/11/24 15:54:29  set<br>
+<li> Added: A button to recompute window numbers in the list of windows.
+Suggested bt Grzegorz.<br>
+<li> Updated: The spanish traslation.<br>
+<li> Added: Documentation for the last "File under cursor" additions and the
+list of windows addition.<p>
+<b>Revision</b> 1.473  2003/11/24 15:48:19  set<br>
+<li> Added: Some rudimentary $(VARIABLE) expansion to the "File under cursor"
+files list. Suggested by Grzegorz.<br>
+<li> Added: To also search in the same directory where a file is located when
+using the "File under cursor" stuff. Suggested by Grzegorz.<p>
+<b>Revision</b> 1.472  2003/11/24 15:47:10  set<br>
+<li> Added: AltKeysSetting TV config keyword.<p>
+<b>Revision</b> 1.471  2003/11/24 15:44:19  set<br>
+<li> Fixed: Some gcc versions needs explicit use of libstdc++ to link C++ and
+intenac/getcolors didn't have it. Reported by Michel Catudal (bbcat).<p>
+<b>Revision</b> 1.470  2003/11/18 14:30:19  set<br>
+<li> Added: More cases to the code that detects "Emacs comments" at the end of
+the file. From information provided by Grzegorz.<p>
+<b>Revision</b> 1.469  2003/11/17 16:10:39  set<br>
+<li> Added: Now if you don't specify any path to "search files under cursor"
+the editor tries to automagically fills this list using the output of cpp.
+From a suggestion by Oswald.<br>
+<li> Added: If the Ctrl+Enter fails to find the file under cursor now that's
+informed in the "status line" of the current editor. Suggested by Oswald.<br>
+<li> Added: If the editor fails to find the file under cursor now it also
+looks for it in the project. From a suggestion by Oswald.<p>
+<b>Revision</b> 1.468  2003/11/17 16:09:45  set<br>
+<li> Fixed: When starting a project using a different window size the project
+window could get wrong size and even become outside the screen. Reported
+by Oswald.<p>
+<b>Revision</b> 1.467  2003/11/17 16:08:05  set<br>
+<li> Added: The posibility to override the "install" command in makefiles.
+Suggested by Oswald.<p>
+<b>Revision</b> 1.466  2003/11/12 15:03:36  set<br>
+<li> Added: More "intelligence" behind the "Paste Emacs Mode", now it only
+takes as valid entries that defines the "mode" variable.<br>
+<li> Modified: The position of "Emacs mode" insertion is now the same of a
+previous definition. Both things comes from a talk with Grzegorz.<p>
+<b>Revision</b> 1.465  2003/11/12 14:07:01  set<br>
+<li> Added: Looks like the "Emacs Mode" comments can appear more than once in
+the same file defining different variables. Now when the editor looks for
+it doesn't stop in the first match. Note that it doesn't affect the
+behavior on the "Paste Emacs Mode" which only searchs for the first
+occurrence. From a report by Grzegorz.<p>
+<b>Revision</b> 1.464  2003/11/05 18:51:11  set<br>
+<li> Fixed: I forgot that global options also mentioned "purge spaces".
+Pointed out by Oswald.<p>
+<b>Revision</b> 1.463  2003/11/03 16:19:53  set<br>
+<li> Added: When "TScreen::avoidMoire" is enabled selected tabs uses '.' to
+indicate they are selected. From a suggestion by Oswald.<p>
+<b>Revision</b> 1.462  2003/11/03 16:17:46  set<br>
+<li> Added: A new color scheme called "Midnight Commander" contributed by
+Oswald.<p>
+<b>Revision</b> 1.461  2003/11/03 16:15:52  set<br>
+<li> Added: A new color scheme called "Classic Borland" contributed by Oswald.<p>
+<b>Revision</b> 1.460  2003/10/28 21:09:42  set<br>
+<li> Added: When asking for word completion if the word at the left looks like
+Class:: then the editor looks for the class and offers the members.
+Suggested by Ivan.<p>
+<b>Revision</b> 1.459  2003/10/22 19:45:30  set<br>
+<li> Fixed: When searching outside comments and the match was found in the
+first column of a line after a comment it was ignored. Reported by Alain.<p>
+<b>Revision</b> 1.458  2003/10/20 15:33:02  set<br>
+<li> Fixed: While locking the editor in the S&R y did it wrong and the S&R
+confirmation didn't move to the correct coordinate.<p>
+<b>Revision</b> 1.457  2003/10/20 15:32:12  set<br>
+<li> Added: Now sLisp can replace things like ^K key binding even when it
+implies removing all the ^K-x assignments. It allows a complete
+replacement.<p>
+<b>Revision</b> 1.456  2003/10/20 15:31:16  set<br>
+<li> Modified: "Do not purge spaces" option to be "Keep trailing whitespace"
+that's more descriptive. Suggested by Oswald.<br>
+<li> Fixed: No match pair after deleting some text and the cursor goes to a
+symbol. Reported by Oswald.<br>
+<li> Modified: To lock the screen while doing a search & replace operation to
+avoid "flashing" when doing a lot of S&R operations. Suggested by Oswald.<br>
+<li> Fixed: Wrong match pair when the cursor was in the middle of a tab and
+the next character matched a pair (highlight in the middle of the tab).
+Reported by Oswald.<br>
+<li> Fixed: Undo error when a character replaced a tab (overwrite enabled) and
+the cursor was inside the tab (not at the beggining). Reported by Oswald.<br>
+<li> Added: History to the "arbitrary indent" and "run command" input lines.
+Suggested by Oswald.<p>
+<b>Revision</b> 1.455  2003/10/16 20:02:35  set<br>
+<li> Fixed: [Cygwin] Collision between strndup and calculator parser.
+Personally don't know mush about this issue but looks like a name space
+pollution in Cygwin.<p>
+<b>Revision</b> 1.454  2003/10/16 19:42:47  set<br>
+<li> Modified: To select the closest word when using double click and not the
+next. Suggested by Alain.<p>
+<b>Revision</b> 1.453  2003/10/16 19:41:54  set<br>
+<li> Fixed: A code page problem. A little bit complex to describe: If you
+started the editor for the first time in a Linux console and forced the
+encoding to "Latin 1u" (improperly configured system IMHO). Then you
+acessed remotly to this system using XTerm you got a messed code page and
+no way to fix it. This is because the editor tried to use Linux console
+settings but as XTerm can't change its code page you have no way to disable
+the "forced" check box for the screen code page. Now the editor avoids it.<p>
+<b>Revision</b> 1.452  2003/10/16 19:40:54  set<br>
+<li> Fixed: The "Jump" button in the main window of the class browser produced
+SIGSEGVs. I went too far reusing code ;-). Reported by Ivan.<p>
+<b>Revision</b> 1.451  2003/10/16 19:39:10  set<br>
+<li> Added: Some clarification in the docs about the meaning of the maximum
+number of R.O. copies.<br>
+<li> Added: Now when the message window (and other sources) request to open
+a file that is part of the project it is opened using the relative path
+and not an absolute path. It annoyed me for a long time and Oswald insisted
+on it ;-)<p>
+<b>Revision</b> 1.450  2003/10/16 19:38:02  set<br>
+<li> Added: Project windows are "closed" (hided) when pressing ESC. Suggested
+by Oswald Budden.<br>
+<li> Added: When opening new windows usually the editor checks if a project is
+opened, in this case windows aren't zoomed. Now if the project window isn't
+visible they are also zoomed, after all they weren't zoomed to avoid
+hidding the project window. Suggested by Oswald Budden.<p>
+<b>Revision</b> 1.449  2003/10/16 19:35:20  set<br>
+<li> Added: [sLisp] KeyBindings and BindKey commands. With them you can change
+key bindings from sLisp.<br>
+<li> Fixed: Errors in the conditionals parser for menu files.<br>
+<li> Added: More variables to check in menu files: MP3, PCRE, BZIP2, MIXER and
+UNIX. Suggested by Oswald.<br>
+<li> Added: A new chapter to the docs: Documentation guide. It can be used to
+find other chapters and sections according to the topic they are related
+to.<br>
+<li> Added: A new chapter to the docs: Menues configuration.<br>
+<li> Added: A new section to the docs: Configuration files location.<br>
+<li> Added: Now the index of the documentation also includes all the chapters,
+sections, etc.<p>
+<b>Revision</b> 1.448  2003/10/16 19:34:02  set<br>
+<li> Fixed: When the alternative sorting mode of the project window was
+enabled some internal searches failed because they expected the old sorting
+mode. Now the sorting mode is temporally changed.<br>
+<li> Fixed: When switching between sorting modes the focused item changed.<p>
+<b>Revision</b> 1.447  2003/10/16 19:12:45  set<br>
+<li> Modified: [Configuration] TV 2.0.3 dependency because I'm currently using
+a couple of additions to the API and hence users needs CVS version.<br>
+<li> Added: [sLisp] SelectWindowNumber used to change the focused window. when
+used for an edition window it also changes the sLisp target allowing to
+modify another buffer, not just the one selected when the macro was
+triggered.<br>
+<li> Added: [sLisp] GetCurWindowNumber and GetMaxWindowNumber they can be used
+to apply an operation to all the windows and also to go back to the
+original window.<br>
+<li> Modified: The Alt+window_number combination now belongs to the menues and
+isn't hardcoded in TV anymore.<br>
+<li> Added: Commands to select the project and message windows, also to select
+the first 19 editors. With the help of sLisp and last aditions now is
+possible to select any window using just a key or menu entry.<br>
+<li> Modified: To avoid status messages when running sLisp code binded to a
+key or menu entry.<br>
+<li> Added: Documented and translated to spanish.<br>
+<li> Version 0.5.3 (Iguazu II)<p>
+<b>Revision</b> 1.446  2003/10/16 19:03:29  set<br>
+<li> Added: [sLisp] now you can bind a small piece of sLisp code to a key or
+a menu entry. With it the user doesn't need to edit macros.slp for small
+stuff. It will also allow passing arguments when macros support it. I
+implemented it to solve a limitation pointed out by Alain.<p>
+<b>Revision</b> 1.445  2003/10/14 15:51:26  set<br>
+<li> Added: In the project window now you can choose between a way to display
+files that's easier to find by name and another suitable to find them by
+their directory. From suggestions by Sam Thursfield <samth@mail.ru> and
+Alain <alainm@pobox.com>, but I think others also asked for it.<p>
+<b>Revision</b> 1.444  2003/10/14 15:39:27  set<br>
+<li> Added: [sLisp] FindString, FindAgain, ReplaceString and ReplaceAgain sLisp
+commands. Based on code an ideas by Bernd.<p>
+<b>Revision</b> 1.443  2003/10/06 18:49:21  set<br>
+<li> Added: [WWW] Links to the Windows installer contributed by William.<p>
+<b>Revision</b> 1.442  2003/10/06 18:26:17  set<br>
+<li> Added: Some Ruby syntax highlighting. Contributed by William E. Cullen
+<WECullen@comcast.net>.<p>
+<b>Revision</b> 1.441  2003/09/02 13:49:37  set<br>
+<li> Updated: QNX configuration. Patch from Mike.<p>
+<b>Revision</b> 1.440  2003/09/01 13:50:58  set<br>
+<li> Fixed: Missing <body> tag when exporting as HTML, reported by Federico
+Bareilles <fede@lilen.fcaglp.unlp.edu.ar><p>
+<b>Revision</b> 1.439  2003/08/27 17:53:42  set<br>
+<li> Added: HTML as html extension.<br>
+<li> Fixed: The readme said it was a .0 release. Pointed out by Ivan.<br>
+<li> Fixed: The configure scripts to pass the arguments using "". From a
+problem reported by Ivan.<br>
+<li> Added: Nice screen shot contributed by Mike Conrad
+<conradme@email.uc.edu><br>
+<li> Fixed: An unhandled diff case in the applycvs.pl tool.<p>
+<b>Revision</b> 1.438  2003/08/15 18:51:32  set<br>
+<li> Fixed: [Configuration] The configure script didn't take the CXXFLAGS
+variable, instead always used rhtv-config output (only CXXFLAGS, no CFLAGS)
+I discovered it when Ivan starter to wonder why debian/rules wasn't able to
+change the compilation options ;-)<p>
+<b>Revision</b> 1.437  2003/08/13 18:38:07  set<br>
+<li> Added: A link to the "pure DOS" fix/test release to the web page and also
+made the more visible the link to S.F. summary page.<p>
+<b>Revision</b> 1.436  2003/08/11 01:53:33  terrible<br>
+<li> Updated: Debian version to 0.5.2-1.<p>
+<b>Revision</b> 1.435  2003/07/23 19:37:56  set<br>
+<li> Added: A small page about Iguazú to the site.<p>
+<b>Revision</b> 1.434  2003/07/23 18:12:59  set<br>
+<li> Fixed: If no tags files are present and you want to add one to the list
+now the editor doesn't suggest reading the docs.<br>
+<li> Added: Support for the tags files generated by objdump (this is my small
+contribution to GNU binutils project ;-). In these files I use some new
+"keys" not defined by ctags. It also contains prototypes.<p>
+<b>Revision</b> 1.433  2003/07/22 19:18:50  set<br>
+<li> More small adjustments for the final release. Web page and docs.<p>
+<b>Revision</b> 1.432  2003/07/22 14:52:22  set<br>
 <li> Modified: The web page to reflect the new release. I'm finishing the
 "Release Candidate" stage.<p>
 <b>Revision</b> 1.431  2003/07/16 13:33:37  set<br>
@@ -482,7 +1449,7 @@ selectable and write a mini-doc about how to write those plug-ins.<p>
 <b>Revision</b> 1.332  2003/05/05 14:06:06  set<br>
 <li> Modified: Now the dialog that shows the list of classes isn't case
 sensitive. That's why I feel that's much more intuitive and easier to use.<br>
-<li> Fixed: When searching in classes without a perefect match of the word
+<li> Fixed: When searching in classes without a perfect match of the word
 under cursor and jumping to a member the editor jumped but offered the list
 of classes again.<br>
 <li> Fixed: The list of "functions" supports things that aren't strcitly

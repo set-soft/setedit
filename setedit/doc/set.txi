@@ -200,7 +200,7 @@
 @tex
 @vskip 0pt plus 1filll
 @end tex
-Copyright @copyright{} 1996, 1997 by @value{name-author}
+Copyright @copyright{} @value{year-copyr} by @value{name-author}
 
 @end titlepage
 
