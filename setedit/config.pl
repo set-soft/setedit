@@ -1905,7 +1905,7 @@ sub LookForAA
   return 0;
  }';
  # AA lib v1.2 SuSE SLES 8 doesn't work for C++ (wrong typedef for struct)
- $test=RunGCCTest($GCC,'cc',$test,'-laa');
+ $test=RunGCCTest($GXX,'cc',$test,'-laa');
  $conf{'HAVE_AA'}=($test=~/OK$/) ? 'yes' : 'no';
 
  print "$conf{'HAVE_AA'}\n";
