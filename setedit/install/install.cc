@@ -281,7 +281,7 @@ void TryToLoadInstOpts(char *path);
 
 int CopyFile(const char *dest, void *ori, long size)
 {
- char b[PATH_MAX],bu[PATH_MAX+80],*d=b;
+ char b[PATH_MAX],*d=b;
  const char *s=dest;
  struct stat st;
  FILE *de;
@@ -296,16 +296,14 @@ int CopyFile(const char *dest, void *ori, long size)
          { // No existe
           if (mkdir(b,S_IWUSR))
             {
-             sprintf(bu,"%s %s",_("Can't create the directory:"),b);
-             messageBox(bu,mfError | mfOKButton);
+             messageBox(mfError | mfOKButton,__("Can't create the directory: %s"),b);
              return 0;
             }
          }
        else
          if (!S_ISDIR(st.st_mode))
            {
-            sprintf(bu,"%s %s",_("File name in path:"),b);
-            messageBox(bu,mfError | mfOKButton);
+            messageBox(mfError | mfOKButton,__("File name in path: %s"),b);
             return 0;
            }                      
        *d='/';
@@ -399,7 +397,7 @@ void Installer::handleEvent(TEvent &event)
 
 int ConfirmExit()
 {
- return messageBox(_("Are you sure you want to abort the installation?"),
+ return messageBox(__("Are you sure you want to abort the installation?"),
                    mfYesButton | mfNoButton | mfWarning)==cmYes;
 }
 
@@ -431,7 +429,7 @@ int SelectTypeInstall(char *djdir)
     if (AlreadyAsked)
        return retNext;
     AlreadyAsked=1;
-    return messageBox(_("Looks like djgpp isn't installed. DJGPP environment variable isn't defined or is wrong. Exit to fix it first?"),
+    return messageBox(__("Looks like djgpp isn't installed. DJGPP environment variable isn't defined or is wrong. Exit to fix it first?"),
                       mfError | mfYesButton | mfNoButton)==cmYes ?
                       retExitUn : retNext;
    }
@@ -513,19 +511,19 @@ int AskDestination(char *djdir)
     fexpand(Destination);
     if (Destination[1]==':' && !driveValid(Destination[0]))
       {
-       messageBox(_("Invalid drive"),mfError | mfOKButton);
+       messageBox(__("Invalid drive"),mfError | mfOKButton);
        ret=retStay;
       }
     else
       if (!TestCreation())
         {
-         messageBox(_("Can't create files there"),mfError | mfOKButton);
+         messageBox(__("Can't create files there"),mfError | mfOKButton);
          ret=retStay;
         }
     if (!AlreadyAsked && OldInstallation &&
         strcasecmp(OldInstallation,Destination)!=0)
       {
-       int r=messageBox(_("You already installed (or tried) the editor, but in a different place. Do you want to continue?"),
+       int r=messageBox(__("You already installed (or tried) the editor, but in a different place. Do you want to continue?"),
                         mfWarning | mfYesButton | mfNoButton);
        if (r==cmYes)
           AlreadyAsked=1;
@@ -969,7 +967,7 @@ int DoInstall()
      p=load_datafile_object(DAT_FILENAME,files[i].file);
      if (!p)
        {
-        messageBox(mfError | mfOKButton,_("Unable to uncompress %s, most probably this file is damaged"),files[i].file);
+        messageBox(mfError | mfOKButton,__("Unable to uncompress %s, most probably this file is damaged"),files[i].file);
         return 0;
        }
      strcpy(fullName,Destination);
@@ -1012,7 +1010,7 @@ int DoInstall()
  p=load_datafile_object(DAT_FILENAME,auxName);
  if (!p)
    {
-    messageBox(_("Unable to uncompress files, most probably this file is damaged"),mfError | mfOKButton);
+    messageBox(__("Unable to uncompress files, most probably this file is damaged"),mfError | mfOKButton);
     return 0;
    }
  CopyFile(fullName,p->dat,p->size);
@@ -1151,7 +1149,7 @@ void SearchOldSET_FILES()
     char *start=strstr(b,"share/setedit");
     if (!start)
       {
-       messageBox(_("You defined SET_FILES environment variable in a way that isn't compatible with the installer, be careful"),mfWarning | mfOKButton);
+       messageBox(__("You defined SET_FILES environment variable in a way that isn't compatible with the installer, be careful"),mfWarning | mfOKButton);
       }
     else
       {
@@ -1231,7 +1229,7 @@ ushort doSpecialEditDialog(int dialog, ...)
  switch (dialog)
    {
     case edSaveModify:
-         return messageBox(_("You modified the autoexec.bat, Do you want to save the changes?")
+         return messageBox(__("You modified the autoexec.bat, Do you want to save the changes?")
                            ,mfInformation | mfYesNoCancel);
    }
 
@@ -1406,7 +1404,7 @@ int DefinePath()
     FILE *f=fopen(Autoexec,"rb");
     if (!f)
       {
-       messageBox(_("Sorry, I can't find autoexec.bat"),mfError | mfOKButton);
+       messageBox(__("Sorry, I can't find autoexec.bat"),mfError | mfOKButton);
        options=0;
       }
     else
@@ -1421,7 +1419,7 @@ int DefinePath()
           if (!CopyFile(AutoexecBKP,s,l))
             {
              free(s);
-             messageBox(_("Can't backup the autoexec.bat, sorry do it by hand"),mfError|mfOKButton);
+             messageBox(__("Can't backup the autoexec.bat, sorry do it by hand"),mfError|mfOKButton);
              return 0;
             }
           // Remove any previous value we put there
@@ -1456,7 +1454,7 @@ int DefinePath()
          {
           if (!CopyFile(Autoexec,s,l))
             {
-             messageBox(_(cErrorCreate),mfError|mfOKButton);
+             messageBox(cErrorCreate,mfError|mfOKButton);
              return 0;
             }
           return 1;
@@ -1465,7 +1463,7 @@ int DefinePath()
        char *tmp=tmpnam(0);
        if (!CopyFile(tmp,s,l))
          {
-          messageBox(_("Can't create temporal copy of autoexec.bat"),mfError|mfOKButton);
+          messageBox(__("Can't create temporal copy of autoexec.bat"),mfError|mfOKButton);
           return 0;
          }
        EditAutoexec(tmp,options>1,b,lenPATH);
@@ -1478,14 +1476,14 @@ int DefinePath()
           unlink(tmp);
           if (CopyFile(Autoexec,s,l))
             {
-             messageBox(_("A copy of the original autoexec.bat was stored in autoexec.bak"),mfInformation|mfOKButton);
+             messageBox(__("A copy of the original autoexec.bat was stored in autoexec.bak"),mfInformation|mfOKButton);
              return 1;
             }
          }
        unlink(tmp);
        // Something went wrong, try to fix it
        rename(AutoexecBKP,Autoexec);
-       messageBox(_(cErrorCreate),mfError|mfOKButton);
+       messageBox(cErrorCreate,mfError|mfOKButton);
       }
    }
 
@@ -1531,7 +1529,7 @@ void Installer::Start()
  if (os_type==OSTYPE_WIN95 && !IsWindowsNT())
    {
     if (!GetWindowsInformation())
-       messageBox(_("Failed, disabling all or part of the Win9x specific stuff"),mfError | mfOKButton);
+       messageBox(__("Failed, disabling all or part of the Win9x specific stuff"),mfError | mfOKButton);
    }
  // State machine
  while (state!=staExit && state!=staInstall)
@@ -1579,9 +1577,9 @@ void Installer::Start()
    { // Ok, all is installed
     if (!DefinePath())
       {
-       messageBox(_("Don't forget to update your autoexec.bat later!"),mfInformation | mfOKButton);
+       messageBox(__("Don't forget to update your autoexec.bat later!"),mfInformation | mfOKButton);
       }
-    messageBox(mfInformation | mfOKButton,_("Editor installed succesfully%s. Run it using e.bat"),
+    messageBox(mfInformation | mfOKButton,__("Editor installed succesfully%s. Run it using e.bat"),
                AutoExecWasOK ? "" : _(", after rebooting your system you'll be able to use the editor"));
    }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -1060,13 +1060,10 @@ void UnLoadTVMenu(void)
 
 void ShowMenuLoadError(void)
 {
- char buf[PATH_MAX+100];
-
  if (Error && FileName)
    {
-    sprintf(buf,_("Error loading menu: (%d) %s in line %d of %s."),
-            Error,_(ErrorNames[Error]),Line,FileName);
-    messageBox(buf,mfError | mfOKButton);
+    messageBox(mfError | mfOKButton,__("Error loading menu: (%d) %s in line %d of %s."),
+               Error,_(ErrorNames[Error]),Line,FileName);
     Error=0;
     delete FileName;
     FileName=0;

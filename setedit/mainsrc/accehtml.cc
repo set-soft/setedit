@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 
@@ -50,7 +50,7 @@ void HTMLAcc_Entry(Boolean compact)
     e->flushUndoInfo();
    }
  else
-   messageBox(_("You must select the editor window first"),mfError | mfOKButton);
+   messageBox(__("You must select the editor window first"),mfError | mfOKButton);
 }
 
 /*****************************************************************************

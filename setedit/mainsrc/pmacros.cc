@@ -99,7 +99,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
      }
    if (strncmp(buf,"Trigger:",8)!=0)
      {
-      messageBox(_("Macro definition don't start with Trigger"),mfError | mfOKButton);
+      messageBox(__("Macro definition don't start with Trigger"),mfError | mfOKButton);
       fclose(f);
       return False;
      }
@@ -107,7 +107,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
    s=strtok(NULL,sep);
    if (s==NULL || strlen(s)!=2)
      {
-      messageBox(_("Missing Trigger sequence or too short"),mfError | mfOKButton);
+      messageBox(__("Missing Trigger sequence or too short"),mfError | mfOKButton);
       fclose(f);
       return False;
      }
@@ -125,7 +125,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
    FGets(buf,250,f);
    if (strncmp(buf,"Mode:",5)!=0)
      {
-      messageBox(_("Macro definition without mode keyword"),mfError | mfOKButton);
+      messageBox(__("Macro definition without mode keyword"),mfError | mfOKButton);
       fclose(f);
       return False;
      }
@@ -136,7 +136,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
        if (!*s) break;
        if (*s!='0' && *s!='1')
          {
-          messageBox(_("Wrong mode definition in pseudo macro."),mfError | mfOKButton);
+          messageBox(__("Wrong mode definition in pseudo macro."),mfError | mfOKButton);
           fclose(f);
           return False;
          }
@@ -146,7 +146,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
        if (!*s) break;
        if (*s!=',')
          {
-          messageBox(_("Wrong mode definition in pseudo macro."),mfError | mfOKButton);
+          messageBox(__("Wrong mode definition in pseudo macro."),mfError | mfOKButton);
           fclose(f);
           return False;
          }
@@ -198,12 +198,12 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
       switch (partial)
         {
          case -1:
-              messageBox(_("Missing start in pseudo macro"),mfError | mfOKButton);
+              messageBox(__("Missing start in pseudo macro"),mfError | mfOKButton);
               fclose(f);
               return False;
 
          case -2:
-              messageBox(_("Missing end in pseudo macro"),mfError | mfOKButton);
+              messageBox(__("Missing end in pseudo macro"),mfError | mfOKButton);
               fclose(f);
               return False;
 
@@ -212,7 +212,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
      }
    if (l==0)
      {
-      messageBox(_("Empty pseudo macro"),mfError | mfOKButton);
+      messageBox(__("Empty pseudo macro"),mfError | mfOKButton);
       fclose(f);
       return False;
      }

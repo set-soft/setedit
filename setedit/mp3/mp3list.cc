@@ -190,7 +190,7 @@ void TListDiag::SaveList(char *name)
 
     if (!f)
       {
-       messageBox(_("Could not create the list file."),mfOKButton | mfError);
+       messageBox(__("Could not create the list file."),mfOKButton | mfError);
        f->close();
        ::remove(name);
       }
@@ -240,7 +240,7 @@ void TListDiag::LoadList(char *name)
  #endif
  
  if (!f)
-    messageBox(_("Could not open the list file"),mfOKButton | mfError);
+    messageBox(__("Could not open the list file"),mfOKButton | mfError);
  else
    {
     // Check for .m3u
@@ -259,7 +259,7 @@ void TListDiag::LoadList(char *name)
        s.readString(buffer,80);
        if (strcmp(buffer,Signature)!=0)
          {
-          messageBox(_("Wrong file type."), mfOKButton | mfError);
+          messageBox(__("Wrong file type."), mfOKButton | mfError);
           return;
          }
        s >> fileVersion;
@@ -267,7 +267,7 @@ void TListDiag::LoadList(char *name)
        s >> newList;
    
        if (!f)
-          messageBox(_("Error reading the file list"),mfOKButton | mfError);
+          messageBox(__("Error reading the file list"),mfOKButton | mfError);
        else
          {
           if (newList)

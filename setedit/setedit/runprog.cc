@@ -433,7 +433,7 @@ Boolean RunExternalProgramNotRunning()
 {
  if (RunExternalProgramRunning())
    {
-    messageBox(_("We are running a child process. Please wait or stop it."),
+    messageBox(__("We are running a child process. Please wait or stop it."),
                mfError | mfOKButton);
     return False;
    }
@@ -643,7 +643,7 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
  if (!s || *s==0)
    {
     if ((flags & repDontShowDialog)==0)
-       messageBox(_("You must configure it first in the Options submenu"),mfError | mfOKButton);
+       messageBox(__("You must configure it first in the Options submenu"),mfError | mfOKButton);
     return;
    }
 

@@ -80,7 +80,7 @@ Boolean TAmpDiag::valid(ushort command)
 {
  if (mp3.Converting)
    {
-    unsigned ret=messageBox(_("You are expanding a MP3 file, do you really want to quit?"),
+    unsigned ret=messageBox(__("You are expanding a MP3 file, do you really want to quit?"),
                             mfConfirmation | mfYesButton | mfNoButton);
     if (ret==cmYes)
       {

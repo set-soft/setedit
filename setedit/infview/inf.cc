@@ -881,7 +881,7 @@ void TInfViewer::OSInsertRoutine(int clip, char *b, long l)
 {
  if (!TVOSClipboard::copy(clip,b,l))
    {
-    messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+    messageBox(mfError | mfOKButton,__("Error copying to clipboard: %s"),
                TVOSClipboard::getError());
     return;
    }
@@ -1940,7 +1940,7 @@ void TInfViewer::makeSearch(int beVerbose)
   }
  if (!Eureka && beVerbose)
    {
-    messageBox(_("Sorry can't find the string"),mfError | mfOKButton);
+    messageBox(__("Sorry can't find the string"),mfError | mfOKButton);
     SearchArmed=0;
    }
  OpenVerbose=1;

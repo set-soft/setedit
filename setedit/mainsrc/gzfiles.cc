@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -39,7 +39,7 @@ int GZFiles_CheckForGZIP(void)
     if (ret>0)
        isGZIPInstalled=1;
     else
-       messageBox(_("You must install gzip to browse compressed files!"), mfError | mfOKButton);
+       messageBox(__("You must install gzip to browse compressed files!"), mfError | mfOKButton);
    }
 
  return isGZIPInstalled;

@@ -247,10 +247,10 @@ int TInfTopic::ReadNodeInfo(TInfFile &File)
       {
        if (File.IsCompressed)
          {
-          //messageBox(_("Attention !! this file is in DOS format,"
-          //             "and is compressed, uncompress the file,"
-          //             " reopen it with the Help and then recompress it."),
-          //             mfError | mfOKButton);
+          //messageBox(__("Attention !! this file is in DOS format,"
+          //              "and is compressed, uncompress the file,"
+          //              " reopen it with the Help and then recompress it."),
+          //              mfError | mfOKButton);
           if (!File.ConvertIt(Pos))
             {
              Status=True;
@@ -261,7 +261,7 @@ int TInfTopic::ReadNodeInfo(TInfFile &File)
          }
        else
          {
-          if (messageBox(_("Attention !! this file is in DOS format,"
+          if (messageBox(__("Attention !! this file is in DOS format,"
               " Do you want convert it?,"
               " Make a backup first !!"), mfError | mfYesButton | mfNoButton)
               ==cmYes)
@@ -278,7 +278,7 @@ int TInfTopic::ReadNodeInfo(TInfFile &File)
        Status=True;
        return ret;
       }
-    messageBox(_("Error: can't find the Node info"),mfError | mfOKButton);
+    messageBox(__("Error: can't find the Node info"),mfError | mfOKButton);
     Status=True;
     return ret;
    }
@@ -1292,7 +1292,7 @@ void TInfFile::DoAll( char *Nombre, int Verbose )
  if (stream==NULL)
    {
     if (Verbose)
-       messageBox(mfError|mfOKButton,_("Attention can't open the help file '%s'."), Nombre);
+       messageBox(mfError|mfOKButton,__("Attention can't open the help file '%s'."), Nombre);
     Status=True;
     return;
    }

@@ -301,7 +301,7 @@ Boolean TManPageView::clipWinCopy(int id)
    {
     if (!TVOSClipboard::isAvailable())
       {
-       messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
        return False;
       }
     unsigned len;
@@ -310,7 +310,7 @@ Boolean TManPageView::clipWinCopy(int id)
     DeleteArray(buffer);
     if (!res)
       {
-       messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+       messageBox(mfError | mfOKButton,__("Error copying to clipboard: %s"),
                   TVOSClipboard::getError());
        return False;
       }
@@ -757,7 +757,7 @@ int CheckForMan(void)
     if (ret==1)
        isManInstalled=RET_OK;
     else
-       messageBox(_("You must install man to use it!"), mfError | mfOKButton);
+       messageBox(__("You must install man to use it!"), mfError | mfOKButton);
    }
 
  return isManInstalled;

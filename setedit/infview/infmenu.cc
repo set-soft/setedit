@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 #define Uses_TApplication
@@ -92,6 +92,6 @@ TStatusLine *TEditorMiApp::initStatusLine( TRect r )
 
 void TEditorMiApp::outOfMemory()
 {
- messageBox(_("Not enough memory for this operation."), mfError | mfOKButton );
+ messageBox(__("Not enough memory for this operation."), mfError | mfOKButton );
 }
 

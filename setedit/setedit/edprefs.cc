@@ -339,7 +339,7 @@ void SetScreenSaversOptions(void)
 {
  if (!TScreen::useScreenSaver())
    {
-    messageBox(_("The screen saver isn't useful for this terminal"),mfInformation | mfOKButton);
+    messageBox(__("The screen saver isn't useful for this terminal"),mfInformation | mfOKButton);
     return;
    }
 
@@ -1056,13 +1056,13 @@ void TSetEditorApp::FontsOptions()
  if (!so) return; // Sanity check
  if (!TScreen::canSetBFont())
    {
-    messageBox(_("This terminal doesn't support fonts"),mfInformation | mfOKButton);
+    messageBox(__("This terminal doesn't support fonts"),mfInformation | mfOKButton);
     return;
    }
  unsigned wmin,wmax,hmin,hmax;
  if (!TScreen::getFontGeometry(wmin,hmin))
    {
-    messageBox(_("Can't determine fonts geometry"),mfError | mfOKButton);
+    messageBox(__("Can't determine fonts geometry"),mfError | mfOKButton);
     return;
    }
  if (!TScreen::getFontGeometryRange(wmin,hmin,wmax,hmax))
@@ -1075,7 +1075,7 @@ void TSetEditorApp::FontsOptions()
                                        hmin,hmax);
  if (!fonts)
    {
-    messageBox(_("No fonts available for current video mode"),mfInformation | mfOKButton);
+    messageBox(__("No fonts available for current video mode"),mfInformation | mfOKButton);
     return;
    }
  // Ok, we have fonts and we can use them
@@ -1172,7 +1172,7 @@ void TSetEditorApp::FontsOptions()
           if (!sec->sizes->search((void *)s,pos))
             {
              retry=1;
-             messageBox(mfError | mfOKButton,_("The selected secondary font doesn't support the primary size (%dx%d)"),s->w,s->h);
+             messageBox(mfError | mfOKButton,__("The selected secondary font doesn't support the primary size (%dx%d)"),s->w,s->h);
             }
          }
        if (!retry)
@@ -1211,7 +1211,7 @@ void TSetEditorApp::ScreenOptions()
  if (!so) return; // Sanity check
  if (!TScreen::canSetVideoSize())
    {
-    messageBox(_("This terminal have a fixed size"),mfInformation | mfOKButton);
+    messageBox(__("This terminal have a fixed size"),mfInformation | mfOKButton);
     return;
    }
 
@@ -1273,12 +1273,12 @@ void TSetEditorApp::ScreenOptions()
        nCH=atoi(box.sizeCH);
        if (nW<80 || nW>250 || nH<25 || nH>250)
          {
-          messageBox(_("Please specify a screen size of at least 80x25 and no more than 250x250"),mfError | mfOKButton);
+          messageBox(__("Please specify a screen size of at least 80x25 and no more than 250x250"),mfError | mfOKButton);
           retry=1;
          }
        else if (nCW<5 || nCW>32 || nCH<7 || nCW>32)
          {
-          messageBox(_("Please specify a character size of at least 5x7 and no more than 32x32"),mfError | mfOKButton);
+          messageBox(__("Please specify a character size of at least 5x7 and no more than 32x32"),mfError | mfOKButton);
           retry=1;
          }
        else

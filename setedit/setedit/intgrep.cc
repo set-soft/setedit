@@ -110,7 +110,7 @@ char *SaveClipToTemp(void)
  char *name=unique_name("cl");
  if (!name || !TCEditor::clipboard || !TCEditor::clipboard->hasSelection())
    {
-    messageBox(_("The clipboard is empty"),mfOKButton);
+    messageBox(__("The clipboard is empty"),mfOKButton);
     return 0;
    }
  FILE *f=fopen(name,"wt");
@@ -196,7 +196,7 @@ int CheckForGREP(void)
     if (ok)
        isGREPInstalled=1;
     else
-       messageBox(_("You must install GNU grep to use it!"), mfError | mfOKButton);
+       messageBox(__("You must install GNU grep to use it!"), mfError | mfOKButton);
    }
 
  return isGREPInstalled;
@@ -407,7 +407,7 @@ void grepWindow(char *patStart)
    {
     if (box.dirs[0]==0)
       {
-       messageBox(_("You must provide at least one directory to search"),mfOKButton);
+       messageBox(__("You must provide at least one directory to search"),mfOKButton);
        return;
       }
     char b[12];
@@ -489,7 +489,7 @@ void grepWindow(char *patStart)
        case 1:
             if (!WriteNamesOfOpenedTo(f))
               {
-               messageBox(_("There aren't opened files"),mfOKButton);
+               messageBox(__("There aren't opened files"),mfOKButton);
                ok=0;
               }
             absolute=1;
@@ -497,7 +497,7 @@ void grepWindow(char *patStart)
        case 2:
             if (!WriteNamesOfProjectTo(f))
               {
-               messageBox(_("No files in project"),mfOKButton);
+               messageBox(__("No files in project"),mfOKButton);
                ok=0;
               }
             absolute=1;

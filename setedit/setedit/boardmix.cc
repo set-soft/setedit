@@ -75,7 +75,7 @@ void BoardMixerDialog()
 {
  if (Disabled)
    {
-    messageBox(_("Disabled by configuration"),mfError | mfOKButton);
+    messageBox(__("Disabled by configuration"),mfError | mfOKButton);
     return;
    }
  elements=0;
@@ -83,7 +83,7 @@ void BoardMixerDialog()
     elements=GetElements(&cantElements);
  if (!elements || !cantElements)
    {
-    messageBox(_("Failed to initialize mixer, sorry"),mfError | mfOKButton);
+    messageBox(__("Failed to initialize mixer, sorry"),mfError | mfOKButton);
     return;
    }
 

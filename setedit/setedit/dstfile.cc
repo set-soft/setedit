@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -513,7 +513,7 @@ Boolean TSetEditorApp::retrieveDesktop(TSetEditorApp *app, const char *name,
     if (!f)
       {
        if (!preLoad)
-          messageBox(_("Could not open desktop file"), mfOKButton | mfError);
+          messageBox(__("Could not open desktop file"), mfOKButton | mfError);
       }
     else
       {
@@ -524,7 +524,7 @@ Boolean TSetEditorApp::retrieveDesktop(TSetEditorApp *app, const char *name,
        if (!f)
          {
           if (!preLoad)
-             messageBox(_("Error reading desktop file"), mfOKButton | mfError);
+             messageBox(__("Error reading desktop file"), mfOKButton | mfError);
           ret=False;
          }
        f->close();
@@ -588,7 +588,7 @@ void TSetEditorApp::saveDesktop(const char *fName, int makeBkp)
     TSetEditorApp::storeDesktop(*f);
     if (!f)
       {
-       messageBox(mfOKButton | mfError,_("Could not create %s."),fName);
+       messageBox(mfOKButton | mfError,__("Could not create %s."),fName);
        f->close();
        ::remove(fName);
       }
@@ -856,18 +856,18 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  s.readString(buffer,80);
  if (strcmp(buffer,Signature)!=0)
    {
-    messageBox(_("Wrong desktop file."), mfOKButton | mfError);
+    messageBox(__("Wrong desktop file."), mfOKButton | mfError);
     return False;
    }
  s >> deskTopVersion;
  if (deskTopVersion<0x300)
    {
-    messageBox(_("The desktop file is too old."), mfOKButton | mfError);
+    messageBox(__("The desktop file is too old."), mfOKButton | mfError);
     return False;
    }
  if (deskTopVersion>TCEDITOR_VERSION)
    {
-    messageBox(_("You need a newer editor for this desktop file."), mfOKButton | mfError);
+    messageBox(__("You need a newer editor for this desktop file."), mfOKButton | mfError);
     return False;
    }
 

@@ -363,7 +363,7 @@ void SLPInterfaceRun(TCEditor *ed)
          SLPShowError();
          break;
     case SLP_NO_MACROS:
-         messageBox(_("No macros defined"),mfWarning | mfOKButton);
+         messageBox(__("No macros defined"),mfWarning | mfOKButton);
          break;
    }
  // Is better to redraw it because in some cases is needed, for example when the

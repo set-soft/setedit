@@ -269,12 +269,10 @@ static char RegExHitAvailable=0;
 static
 void ShowRegexError(int retval)
 {
- const char *s=_("Regular expression error: %s");
- int l=strlen(s);
- AllocLocalStr(b,200+l);
+ char b[200];
 
  regerror(retval,&CompiledRegEx,b,200);
- messageBox(mfError | mfOKButton,s,b);
+ messageBox(mfError | mfOKButton,__("Regular expression error: %s"),b);
  RegExIsCompiled=0;
 }
 
@@ -384,12 +382,7 @@ static char PCREHitAvailable=0;
 static
 void ShowPCREError(const char *error)
 {
- const char *s=_("Regular expression error: %s");
- int l=strlen(s)+strlen(error);
- AllocLocalStr(b,l+1);
-
- sprintf(b,s,error);
- messageBox(b,mfError | mfOKButton);
+ messageBox(mfError | mfOKButton,__("Regular expression error: %s"),error);
  PCREIsCompiled=0;
 }
 

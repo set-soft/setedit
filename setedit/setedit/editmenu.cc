@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -209,7 +209,7 @@ TStatusLine *TSetEditorApp::initStatusLine( TRect r )
 
 void TSetEditorApp::outOfMemory()
 {
- messageBox(_("Not enough memory for this operation."), mfError | mfOKButton);
+ messageBox(__("Not enough memory for this operation."), mfError | mfOKButton);
 }
 
 #if 0

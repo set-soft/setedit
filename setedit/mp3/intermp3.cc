@@ -74,7 +74,7 @@ void Convert()
  switch (mp3.ConvertSelectedFile(fileName))
    {
     case 1:
-         messageBox(_("First select a file"),mfError | mfOKButton);
+         messageBox(__("First select a file"),mfError | mfOKButton);
          break;
     case 2:
          message(TProgram::deskTop,evBroadcast,cmaUpdateFile,0);
@@ -90,7 +90,7 @@ void Start()
  switch (mp3.PlaySelectedFile())
    {
     case 1:
-         messageBox(_("First select a file"),mfError | mfOKButton);
+         messageBox(__("First select a file"),mfError | mfOKButton);
          break;
     case 2:
          message(TProgram::deskTop,evBroadcast,cmaUpdateFile,0);
@@ -255,7 +255,7 @@ int MP3ProcessCommand(int command)
    m(Stop)
    m(PlayList)
    m(StopList)
-     messageBox(_("The MP3 routines aren't linked in the editor"),mfError | mfOKButton);
+     messageBox(__("The MP3 routines aren't linked in the editor"),mfError | mfOKButton);
      break;
    default:
         return 0;

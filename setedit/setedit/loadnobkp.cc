@@ -210,7 +210,7 @@ static
 int CancelConfirm(void)
 {
  if (listChanged)
-    return messageBox(_("Do you want to discard the changes?"),
+    return messageBox(__("Do you want to discard the changes?"),
                       mfWarning | mfYesButton | mfNoButton)==cmYes;
  return 1;
 }

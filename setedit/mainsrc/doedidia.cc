@@ -61,7 +61,7 @@ unsigned doEditDialog(int dialog, va_list arg)
  switch(dialog)
    {
     case edOutOfMemory:
-         return messageBox(_("Not enough memory for this operation"),
+         return messageBox(__("Not enough memory for this operation"),
                            mfError | mfOKButton);
     case edReadError:
         {
@@ -88,7 +88,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
         }
     case edCreateTMPError:
-         return messageBox(_("Error creating temporal file, operation aborted"),mfError | mfOKButton);
+         return messageBox(__("Error creating temporal file, operation aborted"),mfError | mfOKButton);
     case edSaveModify:
         {
         os << va_arg(arg,_charPtr)
@@ -97,7 +97,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         return messageBox(GetStrStream(os,buf),mfInformation | mfYesNoCancel);
         }
     case edSaveUntitled:
-        return messageBox( _("Save untitled file?"),
+        return messageBox( __("Save untitled file?"),
                            mfInformation | mfYesNoCancel );
     case edSaveAs:
          return GenericFileDialog(__("Save file as"),va_arg(arg,_charPtr),"*",
@@ -122,7 +122,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
  
     case edSearchFailed:
-        return messageBox( _("Search string not found."),
+        return messageBox( __("Search string not found."),
                            mfError | mfOKButton );
     case edReplace:
         {
@@ -206,15 +206,15 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
  
     case edLineOverflow:
-         return messageBox(_("Line too long, cut it?"),
+         return messageBox(__("Line too long, cut it?"),
                            mfError | mfYesButton | mfNoButton);
 
     case edLineTooLong:
-         return messageBox(_("Line extremely long, can't handle it reliably, sorry"),
+         return messageBox(__("Line extremely long, can't handle it reliably, sorry"),
                            mfError | mfOKButton);
  
     case edNotFromDisk:
-         return messageBox(_("This file isn't in disk!"),
+         return messageBox(__("This file isn't in disk!"),
                            mfInformation | mfOKButton);
  
     case edIsReadOnly:
@@ -224,11 +224,11 @@ unsigned doEditDialog(int dialog, va_list arg)
                 __("The file %s is read-only, try to revert it?"),file);
         }
     case edStillReadOnly:
-         return messageBox(_("Failed to revert the read-only status, you won't be able to overwrite this file"),
+         return messageBox(__("Failed to revert the read-only status, you won't be able to overwrite this file"),
                            mfError | mfOKButton);
 
     case edActionWOUndo:
-         return messageBox(_("This action doesn't have undo, are you sure?"),
+         return messageBox(__("This action doesn't have undo, are you sure?"),
                            mfWarning | mfYesButton | mfNoButton);
 
     case edFileExists:
@@ -244,10 +244,10 @@ unsigned doEditDialog(int dialog, va_list arg)
          return messageBox(GetStrStream(os,buf),mfYesButton | mfNoButton | mfWarning);
 
     case edCantBkp:
-         return messageBox(_("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);
+         return messageBox(__("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);
 
     case edRectOutside:
-         messageBox(_("You can't paste a rectangle crossing the end of the file"),mfError | mfOKButton);
+         messageBox(__("You can't paste a rectangle crossing the end of the file"),mfError | mfOKButton);
          break;
 
     case edExportHTMLOps:
@@ -258,7 +258,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
 
     case edNoPMacrosAvail:
-         return messageBox(_("No pseudo macros available"),mfError | mfOKButton);
+         return messageBox(__("No pseudo macros available"),mfError | mfOKButton);
 
     case edChoosePMacro:
         {
@@ -275,7 +275,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
 
     case edFileCompMant:
-         return messageBox(_("The file is compressed. Do you want to save compressing?"),mfInformation | mfYesNoCancel);
+         return messageBox(__("The file is compressed. Do you want to save compressing?"),mfInformation | mfYesNoCancel);
    }
  return 0;
 }

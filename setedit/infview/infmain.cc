@@ -455,7 +455,7 @@ void TEditorMiApp::saveDesktop(const char *fName)
     storeDesktop(*f);
     if (!f)
       {
-       messageBox(mfOKButton | mfError,_("Could not create %s."),fName);
+       messageBox(mfOKButton | mfError,__("Could not create %s."),fName);
        f->close();
        ::remove(fName);
       }
@@ -502,18 +502,18 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
     #endif
 
     if (!f)
-       messageBox(_("Could not open desktop file"), mfOKButton | mfError);
+       messageBox(__("Could not open desktop file"), mfOKButton | mfError);
     else
       {
        char *s=f->readString();
        if (s && strcmp(s,Signature)!=0)
-          messageBox(_("Wrong desktop file"), mfOKButton | mfError);
+          messageBox(__("Wrong desktop file"), mfOKButton | mfError);
        else
          {
           if (s)
              loadDesktop(*f,loadWindows);
           if (!s || !f)
-             messageBox(_("Error reading desktop file"), mfOKButton | mfError);
+             messageBox(__("Error reading desktop file"), mfOKButton | mfError);
          }
        delete[] s;
        f->close();
@@ -912,7 +912,7 @@ int main(int argc, char *argv[])
               // Try with the node name instead of the visible name:
               !startInfo->viewer->jumpXRefPartial(argv[CLY_optind],jmpXRSubStr))
             {
-             messageBox(mfOKButton | mfError,_("Could not find '%s'."),argv[CLY_optind]);
+             messageBox(mfOKButton | mfError,__("Could not find '%s'."),argv[CLY_optind]);
              break;
             }
          }

@@ -921,7 +921,7 @@ int SyntaxSearch_Search(char *word, char *&FileName, char *&NodeName,
  int numFiles=entries->getCount(),numFile;
  if (numFiles==0)
    {
-    messageBox(_("No INFO files for syntax help defined"),mfError|mfOKButton);
+    messageBox(__("No INFO files for syntax help defined"),mfError|mfOKButton);
     return 0;
    }
  entryInfo *file;

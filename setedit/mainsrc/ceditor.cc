@@ -447,14 +447,14 @@ Boolean TCEditor::clipWinCopy(int id)
    {
     if (!TVOSClipboard::isAvailable())
       {
-       messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
        return False;
       }
     flushLine();
     res=TVOSClipboard::copy(id,buffer+selStart,selEnd-selStart) ? True : False;
     if (!res)
       {
-       messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+       messageBox(mfError | mfOKButton,__("Error copying to clipboard: %s"),
                   TVOSClipboard::getError());
        return False;
       }
@@ -517,7 +517,7 @@ void TCEditor::clipWinPaste(int id)
     return;
  if (!TVOSClipboard::isAvailable())
    {
-    messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+    messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
     return;
    }
  flushLine();
@@ -538,7 +538,7 @@ void TCEditor::clipWinPaste(int id)
        DeleteArray(p);
       }
     else
-       messageBox(mfError | mfOKButton,_("Error pasting from clipboard: %s"),
+       messageBox(mfError | mfOKButton,__("Error pasting from clipboard: %s"),
                   TVOSClipboard::getError());
    }
 }
@@ -4063,7 +4063,7 @@ void TCEditor::ProfileEditor(void)
 {
  if (limit.y<1000)
    {
-    messageBox(_("Use a file with 1000 lines or more for that"),mfError | mfOKButton);
+    messageBox(__("Use a file with 1000 lines or more for that"),mfError | mfOKButton);
     return;
    }
 #if 0
@@ -4082,8 +4082,7 @@ void TCEditor::ProfileEditor(void)
     y++;
    }
  t2=uclock();
- sprintf(buf,_("Speed: %f lines/second"),(y/((t2-t1)/(double)UCLOCKS_PER_SEC)));
- messageBox(buf,mfOKButton);
+ messageBox(mfOKButton,__("Speed: %f lines/second"),(y/((t2-t1)/(double)UCLOCKS_PER_SEC)));
  delta.y=oldDeltaY;
  update(ufView);
 #else
@@ -4105,7 +4104,7 @@ void TCEditor::ProfileEditor(void)
    }
  t2=clock();
  secs=(t2-t1)/(double)CLOCKS_PER_SEC;
- messageBox(mfOKButton,_("Time: %f seconds\nSpeed: %f lines/second\n%f chars/sec"),
+ messageBox(mfOKButton,__("Time: %f seconds\nSpeed: %f lines/second\n%f chars/sec"),
             secs,y/secs*size.y,y/secs*size.y*size.x);
  delta.y=oldDeltaY;
  update(ufView);
@@ -4139,7 +4138,7 @@ void TCEditor::ProfileEditor(void)
     T2.tv_usec-=T1.tv_usec;
  secs=T2.tv_sec+T2.tv_usec/1e6;
  secs2=(t2-t1)/(double)CLOCKS_PER_SEC;
- messageBox(mfOKButton,_("Time: %f seconds\nSpeed: %f lines/second\n%5.2f%% Editor\n%f chars/sec"),
+ messageBox(mfOKButton,__("Time: %f seconds\nSpeed: %f lines/second\n%5.2f%% Editor\n%f chars/sec"),
             secs,y/secs*size.y,secs2/secs*100,y/secs*size.y*size.x);
  delta.y=oldDeltaY;
  update(ufView);
@@ -9988,7 +9987,7 @@ void TCEditor::setBufLen( uint32 length )
     }
 
  if (haveASCII0)
-    messageBox(_("This file contains ASCII 0 values, all the characters after it in this line becomes invisible. Be careful."),mfWarning | mfOKButton);
+    messageBox(__("This file contains ASCII 0 values, all the characters after it in this line becomes invisible. Be careful."),mfWarning | mfOKButton);
 
  if (bufLen)
    {
@@ -10071,8 +10070,7 @@ void TCEditor::setBufLen( uint32 length )
       }
     t3=clock();
 
-    sprintf(buf,"Tiempo para la de C: %u Tiempo para la generica: %u",t1-t0,t3-t2);
-    messageBox(buf,mfError | mfOKButton);
+    messageBox(mfError | mfOKButton,"Tiempo para la de C: %u Tiempo para la generica: %u",t1-t0,t3-t2);
 #endif
    }
  else
@@ -10733,7 +10731,7 @@ void TCEditor::SetHighlightTo(shlState sHL, int subSHL)
             RecalculateLineAttributes();
            }
          break;
-    default: messageBox(_("Unhandled syntax highlight"),mfError | mfOKButton);
+    default: messageBox(__("Unhandled syntax highlight"),mfError | mfOKButton);
    }
 }
 
@@ -11675,7 +11673,7 @@ void TCEditor::undoOneAction()
             break;
 
        default:
-            messageBox(_("Unhandled undo"),mfError | mfOKButton);
+            messageBox(__("Unhandled undo"),mfError | mfOKButton);
       }
 
     Boolean newBool=((un.Flags & undoModified)!=0) ? True : False;

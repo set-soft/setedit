@@ -803,7 +803,7 @@ int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
 
  if (!funcs)
    {
-    messageBox(_("Hmmm ... I can't find any function, are you sure?"),mfError | mfOKButton);
+    messageBox(__("Hmmm ... I can't find any function, are you sure?"),mfError | mfOKButton);
     delete FunList;
     return -1;
    }

@@ -238,7 +238,7 @@ int OkApply(void)
 {
  if (Modified)
    {
-    if (messageBox(_("Accepting that you'll change the SET's editor behavior"),mfOKCancel)==cmOK)
+    if (messageBox(__("Accepting that you'll change the SET's editor behavior"),mfOKCancel)==cmOK)
       {
        ApplyChanges();
        return 1;
@@ -254,7 +254,7 @@ int CancelApply(void)
 {
  if (Modified)
    {
-    if (messageBox(_("Do you really want to discard the changes?"),mfOKCancel)==cmOK)
+    if (messageBox(__("Do you really want to discard the changes?"),mfOKCancel)==cmOK)
        return 1;
    }
  else
@@ -317,7 +317,7 @@ int addKey(TKeySeqCol *sKeys, void *data, int Type)
  int ret=KeyTrans.addKey(sKeys,data,Type);
  if (ret>=0)
    {
-    if (messageBox(_("This key is already in use, do you want to replace it?"),mfYesButton | mfNoButton)==cmYes)
+    if (messageBox(__("This key is already in use, do you want to replace it?"),mfYesButton | mfNoButton)==cmYes)
       {
        KeyTrans.deleteKey(ret);
        KeyTrans.addKey(sKeys,data,Type);
@@ -329,7 +329,7 @@ int addKey(TKeySeqCol *sKeys, void *data, int Type)
  else
    if (ret==-1)
      {
-      messageBox(_("This sequence is used for more than one key, delete these assignments first"),mfOKButton);
+      messageBox(__("This sequence is used for more than one key, delete these assignments first"),mfOKButton);
       return 0;
      }
  Modified=1;

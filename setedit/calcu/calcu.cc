@@ -116,10 +116,7 @@ void Eval(char *input_buffer, char **ret)
  #else
  int err=eval(input_buffer,ret);
  if (err)
-   {
-    sprintf(input_buffer,_("Error in expression (%d)"),err);
-    messageBox(input_buffer,mfError | mfOKButton);
-   }
+    messageBox(mfError | mfOKButton,__("Error in expression (%d)"),err);
  #endif
 
  setlocale(LC_ALL,saved_locale);

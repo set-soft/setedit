@@ -367,7 +367,7 @@ unsigned doEditDialogLocal(int dialog, ...)
          flags=va_arg(localArg,int);
          if (!flags && IsAlreadyOnDesktop(str))
            {
-            messageBox(_("This file is already opened, first close it."),mfError | mfOKButton);
+            messageBox(__("This file is already opened, first close it."),mfError | mfOKButton);
             return cmNo;
            }
          break;
@@ -462,7 +462,7 @@ void TSetEditorApp::fileOpenCopy()
     maxOpenEditorsSame--;
    }
  else
-   messageBox(_("You must select an editor window for this operation"),mfError | mfOKButton);
+   messageBox(__("You must select an editor window for this operation"),mfError | mfOKButton);
 }
 
 void TSetEditorApp::fileNew()
@@ -649,7 +649,7 @@ void PrintEditor(void)
     PrintSource(e->buffer,s,e->tabSize);
    }
  else
-   messageBox(_("This window can't be printed select an editor"),mfError | mfOKButton);
+   messageBox(__("This window can't be printed select an editor"),mfError | mfOKButton);
 }
 
 #define T(a) \
@@ -807,7 +807,7 @@ void TSetEditorApp::handleEvent( TEvent& event )
               switch (SyntaxSearch_Search(word,FileName,NodeName,VisibleName))
                 {
                  case 0:
-                      messageBox(_("Couldn't find any matching help"),mfOKButton);
+                      messageBox(__("Couldn't find any matching help"),mfOKButton);
                       break;
                  case 1:
                       InfManager->Goto(FileName,NodeName,
@@ -976,7 +976,7 @@ void TSetEditorApp::handleEvent( TEvent& event )
          case cmeQuit:
               if (RunExternalProgramRunning())
                 {
-                 if (messageBox(_("We still running a background task, exit anyways?"),
+                 if (messageBox(__("We still running a background task, exit anyways?"),
                      mfYesButton | mfNoButton | mfConfirmation)==cmNo)
                    {
                     DeleteFilesOnExit=0;
@@ -1303,7 +1303,7 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len)
 {
  if (!line)
    {
-    messageBox(_("This line no longer exists"),mfOKButton);
+    messageBox(__("This line no longer exists"),mfOKButton);
     return 0;
    }
  TCEditWindow *edw=editorApp->openEditor(file,True,NULL,oedDontOpenEmpty);
@@ -1600,7 +1600,7 @@ void ShowAboutStartBox(void)
 
     if (!edTestForFile(Name))
       {
-       messageBox(_("I can't find the readme.1st file, please look for it the .ZIP and read the file."),mfOKButton);
+       messageBox(__("I can't find the readme.1st file, please look for it the .ZIP and read the file."),mfOKButton);
        //messageBox(Name,mfOKButton);
        return;
       }
@@ -1745,7 +1745,7 @@ static void mynewhandler(void)
  delete [] safetypool;
  safetypool=NULL;
  set_new_handler(NULL);
- messageBox(_("Memory is nearly full. Please exit, and restart."), mfOKButton | mfError);
+ messageBox(__("Memory is nearly full. Please exit, and restart."), mfOKButton | mfError);
 }
 
 static void InitSafetyPool()
@@ -2436,7 +2436,7 @@ int main(int argc, char *argv[])
 
  if (TSetEditorApp::DeleteFilesOnExit)
    {
-    int ret=messageBoxDSA(_("Do you want to delete all the .BKP, desktop and project files?"),
+    int ret=messageBoxDSA(__("Do you want to delete all the .BKP, desktop and project files?"),
         mfYesButton | mfNoButton | mfWarning,"SET_CONFQUIT",cmYes);
     if (ret!=cmYes)
        TSetEditorApp::DeleteFilesOnExit=0;

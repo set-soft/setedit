@@ -298,7 +298,7 @@ void TEditorProjectListBox::addFile(char *name)
     if (strcmp(relName,st->name)==0 || ProjectList->search(relName,pos))
       {
        string_free(relName);
-       messageBox(_("File already in project"),mfOKButton | mfError);
+       messageBox(__("File already in project"),mfOKButton | mfError);
        return;
       }
     string_free(relName);
@@ -526,14 +526,14 @@ void LoadProject(char *name)
  #endif
 
  if (!f)
-    messageBox(_("Could not open project file"), mfOKButton | mfError);
+    messageBox(__("Could not open project file"), mfOKButton | mfError);
  else
    {
     char buffer[80];
    
     f->readString(buffer,80);
     if (strcmp(buffer,Signature)!=0)
-       messageBox(_("Wrong project file."), mfOKButton | mfError);
+       messageBox(__("Wrong project file."), mfOKButton | mfError);
     else
       {
        *f >> LoadingPrjVersion;
@@ -555,7 +555,7 @@ void LoadProject(char *name)
           prjWin->setFileName(name);
       }
     if (!f)
-       messageBox(_("Error reading project file"), mfOKButton | mfError);
+       messageBox(__("Error reading project file"), mfOKButton | mfError);
     else
        editorApp->SetTitle(_("Project: "),name);
     f->close();
@@ -591,7 +591,7 @@ static void SaveOnlyProject(void)
     SDGInterfaceSaveData(f);
     if (!f)
       {
-       messageBox(_("Could not save the project."), mfOKButton | mfError);
+       messageBox(__("Could not save the project."), mfOKButton | mfError);
        ::remove(prjWin->getFileName());
       }
     else
@@ -801,7 +801,6 @@ char *DskPrjGetNextFile(int &l, int &MustBeDeleted, char *FileName)
  FILE *f;
  char *buffer,*pos,*name;
  TCEditWindow *ed;
- char aux[PATH_MAX+30];
 
  if (CountFiles<CantFiles)
    {
@@ -820,8 +819,7 @@ char *DskPrjGetNextFile(int &l, int &MustBeDeleted, char *FileName)
        f=fopen(name,"rt");
        if (!f)
          {
-          sprintf(aux,"Failed to open the file %s\n",name);
-          messageBox(aux, mfOKButton | mfError);
+          messageBox(mfOKButton | mfError,__("Failed to open the file %s"),name);
           return NULL;
          }
       

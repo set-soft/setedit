@@ -336,7 +336,7 @@ void TSOSListBoxMsg::selectNext(int offset)
  if (opsBeep)
     MakeBeep();
  if (opsEnd==lbmReachedMsg)
-    messageBox(_("Last message in the list"),mfInformation | mfOKButton);
+    messageBox(__("Last message in the list"),mfInformation | mfOKButton);
  else if (opsEnd==lbmWrap)
     {// Go to the first
      focused=0;
@@ -368,7 +368,7 @@ void TSOSListBoxMsg::selectPrev(int offset)
  if (opsBeep)
     MakeBeep();
  if (opsEnd==lbmReachedMsg)
-    messageBox(_("First message in the list"),mfInformation | mfOKButton);
+    messageBox(__("First message in the list"),mfInformation | mfOKButton);
  else if (opsEnd==lbmWrap)
     {// Go to the first
      focused=range;

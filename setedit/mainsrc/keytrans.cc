@@ -1138,12 +1138,9 @@ static void StoreError(const char *error,char *file)
 
 void ShowKeyBindError(void)
 {
- char buf[PATH_MAX+160];
-
  if (Error)
    {
-    sprintf(buf,"%s: %s",_("Error while loading the keyboard binding"),Error);
-    messageBox(buf,mfError | mfOKButton);
+    messageBox(mfError | mfOKButton,__("Error while loading the keyboard binding: %s"),Error);
     Error=0;
    }
 }
@@ -1180,7 +1177,7 @@ int KeyBackToDefault(Boolean ask)
     return 0;
 
  if (ask)
-    if (messageBox(_("You'll lose all the changes"),mfOKCancel)==cmCancel)
+    if (messageBox(__("You'll lose all the changes"),mfOKCancel)==cmCancel)
        return 0;
 
  KeyTrans.ChangeTable((KeyTTable *)&base);

@@ -468,7 +468,7 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
 
  if (fSal==NULL)
    {
-    messageBox(_("Can't open output file for printing"),mfError | mfOKButton);
+    messageBox(__("Can't open output file for printing"),mfError | mfOKButton);
     return 1;
    }
 
@@ -476,10 +476,10 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
 
  if (sprintf(Buffer,_(Cabecera),FileName,Titulo,Autor)>(iCols+2))
    {
-    messageBox(_("The header is too large, reduce the title and/or author lengths"),
+    messageBox(__("The header is too large, reduce the title and/or author lengths"),
                mfError | mfOKButton);
     EdShowMessage(Buffer);
-    sprintf(Buffer,_("Header length: %d Columns: %d"),(int)strlen(Buffer),iCols);
+    sprintf(Buffer,__("Header length: %d Columns: %d"),(int)strlen(Buffer),iCols);
     EdShowMessage(Buffer);
     if (isPipe)
        pclose(fSal);
