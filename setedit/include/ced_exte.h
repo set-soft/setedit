@@ -350,5 +350,6 @@ TDialog *createReplaceDialog(void *regexBox);
 TDialog *createHTMLExportOps();
 TDialog *createPMChoose();
 TDialog *createArbitraryIndent(int len);
+void     ShowSavePoint(const char *file);
 
 #endif
