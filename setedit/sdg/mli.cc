@@ -55,7 +55,8 @@ TLispString::TLispString(char *s, tlsMode mode)
           switch (*s)
             {// OS dependant
              case 'n':
-                  #ifdef __DJGPP__
+                  #if defined(TVOS_DOS) || \
+                      (defined(TVOS_Win32) && !defined(TVCompf_Cygwin))
                   str[i++]='\r';
                   str[i]='\n';
                   len++;

@@ -88,7 +88,7 @@ TDskWinMan::~TDskWinMan()
 /*
   This routine checks if man is there. If we can't find it we must put a warning
 */
-#ifdef __TURBOC__
+#ifdef TVComp_BCPP
 //$todo: Check it better (to SAA)
 #define RET_OK 0
 #else
