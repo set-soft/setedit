@@ -1,20 +1,30 @@
 $Log$
+Revision 1.567  2002/02/20 01:13:21  set
+* Fixed?: A potential source of reported SIGSEGVs in Tool&Ops|Options|Run
+program. If no desktop is loaded is possible to have CurrentParser==0 and
+it generates a GPF. Could fix a report by David Z Kil
+<zosodk69@fuckmicrosoft.com>.
+
+Revision 1.566  2002/02/20 01:55:39  set
 Revision 1.59  2002/02/15 18:19:46  set
 * Fixed: Missing functions in rhideint.cc and unused variable in dstfile.cc.
 Patch by Andris needed to compile last CVS of RHIDE.
 
-Revision 1.58  2002/02/08 00:33:59  terrible
+Revision 1.565  2002/02/20 01:52:15  set
+Revision 1.58 SF 2002/02/08 00:33:59  terrible
 * Modified: made distrib/ask_config.sh Unix bourne shell script based on
 distrib/ask_config.pl Perl script as Salvador wanted and removed the Perl
 script. I will reindent it if Salvador likes.
 
-Revision 1.57  2002/02/06 20:08:09  set
+Revision 1.564  2002/02/20 01:46:24  set
+Revision 1.57 SF 2002/02/06 20:08:09  set
 * Added: Configuration questions to the DOS installer. Closes SF FR #510516.
 * Modified: Now the options are stored in install.log (already used by the
 DOS installer to store installation data).
 * Updated: Spanish translation and german file.
 
-Revision 1.56  2002/02/06 15:49:25  set
+Revision 1.563  2002/02/20 01:40:15  set
+Revision 1.56 SF 2002/02/06 15:49:25  set
 * Added: Now if no desktop file can be found the editor looks for a plain
 text file containing some options to configure: 1) Creation of one central
 desktop or one each dir, 2) Use of tabs or spaces for indentation and 3)
@@ -22,18 +32,22 @@ Backup files creation. Currently this file is created by a simple perl
 script called by INSTALL.LINUX but I'll incorporate it to DOS/Win32
 installer and maybe Ivan will add it to the .deb options. Suggested by Ivan
 
-Revision 1.55  2002/02/06 14:54:05  set
+Revision 1.562  2002/02/20 01:34:47  set
+Revision 1.55 SF 2002/02/06 14:54:05  set
 * Fixed: The code to use last patched TV 1.1.4 that solves gcc 3.x issues.
 
-Revision 1.54  2002/02/05 14:16:16  set
+Revision 1.561  2002/02/20 01:26:54  set
+Revision 1.54 SF 2002/02/05 14:16:16  set
 * Added: Now when the editor warms about a R.O. file the dialog says the
 name of the file.
 
-Revision 1.53  2002/02/05 13:56:13  set
+Revision 1.560  2002/02/20 01:24:37  set
+Revision 1.53 SF 2002/02/05 13:56:13  set
 * Added: Explanation about the difference between lat1 and lat1u fonts,
 also about the damaged lat1 fonts to Linux FAQ.
 
-Revision 1.52  2002/02/04 20:38:41  set
+Revision 1.559  2002/02/04 23:58:22  set
+Revision 1.52 SF 2002/02/04 20:38:41  set
 * Added: A clipboard mechanism based on a special file. This is specially
 useful for Linux where no clipboard can share data between X and the
 console. Suggested by Grzegorz. SF FR #479359.
@@ -42,61 +56,81 @@ nothing is available for copying.
 * Fixed: The regular copy command (and others) wasn't grayed when a
 selection existed but was hidded.
 
-Revision 1.51  2002/02/04 19:29:13  set
+Revision 1.558  2002/02/04 23:54:20  set
+Revision 1.51 SF 2002/02/04 19:29:13  set
 * Added: Explanation about tabs settings in DOS and Linux FAQs, also to the
 documentation. Triggered by a question of Ivan and chris <sscanf@gmx.net>.
 
-Revision 1.50  2002/02/04 19:08:33  set
+Revision 1.557  2002/02/04 23:52:07  set
+Revision 1.50 SF 2002/02/04 19:08:33  set
 * Added: Now when the user sets the "Use Tabs" option the editor checks if
 other options commonly used with tabs are also coherent. If not an advice
 dialog is created. Suggeste by Ivan. SF FR # 510514.
 
-Revision 1.49  2002/02/04 15:32:08  set
+Revision 1.556  2002/02/04 23:45:18  set
+Revision 1.49 SF 2002/02/04 15:32:08  set
 * Fixed: ncurses 5.2 collision in intgrep.cc. Patch by Andris.
 
-Revision 1.48  2002/02/04 15:23:29  set
+Revision 1.555  2002/02/04 23:43:26  set
+Revision 1.48 SF 2002/02/04 15:23:29  set
 * Fixed: The use of tmpnam and mktemp is currently deprecated so I changed
 it to use mkstemp. Pointed out by Andris (last Linux tools reports it).
 
-Revision 1.47  2002/02/04 14:16:54  set
+Revision 1.554  2002/02/04 23:39:11  set
+Revision 1.47 SF 2002/02/04 14:16:54  set
 * Fixed: compilation problems with gcc 3.0.x in mixoss.c. Patch by Andris.
 
-Revision 1.46  2002/02/01 19:04:25  set
+Revision 1.553  2002/02/04 23:35:58  set
+Revision 1.46 SF 2002/02/01 19:04:25  set
 * Added: Options to avoid reseting the horizontal position of the message
 window when new entries are added. Suggested by David A. Capello
 <dacap@users.sourceforge.net>. SF FR # 513607.
 * Changed to v0.4.55 to store new settings.
 
-Revision 1.45  2002/02/01 15:26:51  set
+Revision 1.552  2002/02/04 23:30:54  set
+Revision 1.45 SF 2002/02/01 15:26:51  set
 * Added: Lua syntax highlight. Contributed by David A. Capello
 <dacap@users.sourceforge.net>.
 
-Revision 1.44  2002/01/29 18:05:29  set
+Revision 1.551  2002/02/04 23:24:45  set
+------------------------------------------------------------------------------
+v0.4.54 1st stable release after 0.4.41
+* Synchronized home with v0.4.54 release.
+
+Revision 1.550  2002/02/04 23:15:54  set
+Revision 1.44 SF 2002/01/29 18:05:29  set
 * Updated: Man page version and ~/* paths (now ~/.setedit/*).
 
-Revision 1.43  2002/01/29 17:53:33  set
+Revision 1.549  2002/02/04 23:15:37  set
+Revision 1.43 SF 2002/01/29 17:53:33  set
 * Updated: Documentation version.
 
-Revision 1.42  2002/01/29 17:50:03  set
+Revision 1.548  2002/02/04 23:15:20  set
+Revision 1.42 SF 2002/01/29 17:50:03  set
 * Fixed: Now the distrib-* targets depends on needed. It allows to use "make
 distrib" even without doing make first.
 
-Revision 1.41  2002/01/29 17:46:40  set
+Revision 1.547  2002/02/04 23:14:52  set
+Revision 1.41 SF 2002/01/29 17:46:40  set
 * Modified: The compression scripts to generate more descriptive name for
 the debug files.
 
-Revision 1.40  2002/01/29 17:42:43  set
+Revision 1.546  2002/02/04 23:14:29  set
+Revision 1.40 SF 2002/01/29 17:42:43  set
 * Modified: Included libamp in Linux sources distro again.
 
-Revision 1.39  2002/01/29 17:39:08  set
+Revision 1.545  2002/02/04 23:14:05  set
+Revision 1.39 SF 2002/01/29 17:39:08  set
 * Fixed: asm51.pmc and html.frt wasn't marked as files that must be
 converted to native EOL by fromdos/unix scripts.
 
-Revision 1.38  2002/01/29 04:38:07  terrible
+Revision 1.544  2002/02/04 23:13:45  set
+Revision 1.38 SF 2002/01/29 04:38:07  terrible
 * Updated: Debian packaging to the "Brothers of Argentina have problems, I
   hope they can get through it soon!" release version 0.4.54-1.
 
-Revision 1.37  2002/01/28 15:40:39  set
+Revision 1.543  2002/02/04 23:13:14  set
+Revision 1.37 SF 2002/01/28 15:40:39  set
 * Synchronized with home CVS.
 * Added: rel and rev keywords to HTML, suggested by Ivan.
 
@@ -146,7 +180,7 @@ Revision 1.36 SF 2002/01/09 03:42:23  terrible
 
 Revision 1.35 SF 2002/01/04 14:54:01  set
 * Synchronized with home CVS.
-
+  
 Revision 1.533  2002/01/02 01:09:57  set
 * Fixed: Missing TV for Linux and Win32 targets in config.pl.
 * Modified: Some headers to use Uses_* intead of including other headers.
@@ -1727,7 +1761,7 @@ Revision 1.330  2000/06/06 00:41:40  set
 * Added: A check for xgettext in the configuration script and a warning if
 recode isn't installed.
 
-Revision 1.329  2000/06/06 00:19:36 set
+Revision 1.329  2000/06/06 00:19:36  set
 * Fixed: Now the configure tells if recode wasn't found.
 * Fixed: Warning in menuload.cc with gcc 2.7.2.3.
 * Ignored doc/Makefile in the CVS.

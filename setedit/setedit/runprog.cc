@@ -104,6 +104,8 @@ void ConfigureRunCommand(void)
  int validList=box.tl.items && list->getCount()!=0;
  if (validList)
    {
+    if (!CurrentParser)
+       CurrentParser=newStr("GNU");
     if (!list->search((void *)CurrentParser,box.tl.selection))
        box.tl.selection=0;
    }
