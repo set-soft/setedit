@@ -35,7 +35,7 @@ libset.gpr?
 3. Changing versions:
 --------------------
 
-* Change ./version.txt and include/ced_inte.h
+* Change ./version.txt and include/ced_inte.h.
 * The debian stuff is automatically changed by the scripts and Ivan changes
 it as soon as I put the changes in the CVS.
 
