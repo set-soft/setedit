@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit
+# Automatically generated from RHIDE projects, don't edit.
 #
 
 editor.exe:: \
@@ -503,6 +503,7 @@ obj/calcu.o:: calcu.cc \
 
 obj/calendar.o:: calendar.cc \
 	datetools.h \
+	$(MP3_PREV_DIR)/setedit/calendar.cc \
 	calendar.h \
 	editcoma.h \
 	compatlayer.h \
@@ -557,6 +558,7 @@ obj/ceditor.o:: ceditor.cc \
 	slpinter.h \
 	tvsetuti.h \
 	rhutils.h \
+	$(MP3_PREV_DIR)/mainsrc/ceditor.cc \
 	advice.h \
 	codepage.h \
 	edhists.h \
@@ -1974,6 +1976,7 @@ obj/editmenu.o:: editmenu.cc \
 	infbase.h \
 	infbaser.h \
 	infr.h \
+	$(MP3_PREV_DIR)/setedit/editmenu.cc \
 	editcoma.h \
 	setapp.h \
 	sarray.h \
@@ -2559,6 +2562,7 @@ obj/edprj.o:: edprj.cc \
 	tags.h \
 	tvsetuti.h \
 	rhutils.h \
+	$(MP3_PREV_DIR)/setedit/edprj.cc \
 	advice.h \
 	codepage.h \
 	dskprj.h \
@@ -2776,6 +2780,7 @@ obj/holidays.o:: holidays.cc \
 	ceditint.h \
 	configed.h \
 	edspecs.h \
+	$(MP3_PREV_DIR)/setedit/holidays.cc \
 	editcoma.h \
 	setapp.h \
 	compatlayer.h \
@@ -5091,6 +5096,7 @@ obj/tags.o:: tags.cc \
 	tags.h \
 	tvsetuti.h \
 	rhutils.h \
+	$(MP3_PREV_DIR)/mainsrc/tags.cc \
 	advice.h \
 	setapp.h \
 	edhists.h \

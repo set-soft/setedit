@@ -1,5 +1,5 @@
 #!/usr/bin/make
-# Automatically generated from RHIDE projects, don't edit
+# Automatically generated from RHIDE projects, don't edit.
 #
 
 obj/ampdiag.o:: ampdiag.cc \

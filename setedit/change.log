@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.384  2003/05/22 19:24:45  set
+* Fixed: It was wrong again ;-), if the source was newer than imks and the
+.exe didn't exist it failed. Thanks Kevin for the patience.
+
 Revision 1.383  2003/05/21 21:13:45  set
 * Fixed: Wrong dependencies for genimk and extrimk again! Hope this time
 they are ok. Reported by Kevin.

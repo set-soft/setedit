@@ -1096,8 +1096,8 @@ sub ExtractItemsMak
  # I know the next can be achieved with /PROJECT_ITEMS=(((.+)\\?\n)+(.+)\n)/
  # but if I use it perl crashes violating the VMM code of W95, and sometimes
  # just reseting the computer. DJGPP perl v5.004_02 and v5.005_02.
- if ($mak=~ /PROJECT_ITEMS=(((.+)\\\n)+(.+)\n)/ ||
-     $mak=~ /PROJECT_ITEMS=((.+)\n)/)
+ if ($mak=~ /PROJECT_ITEMS=(((.+)\\\r?\n)+(.+)\r?\n)/ ||
+     $mak=~ /PROJECT_ITEMS=((.+)\r?\n)/)
    {
     if ($isLib)
       {
