@@ -56,6 +56,7 @@ while ($a=<>)
         {
          $estado=3;
          $toPatch=$3;
+         $toPatch=~s/Attic\///;
         }
       else
         {

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.501  2004/04/19 20:45:55  set
+* Added: Code needed to test with the AlCon branch.
+
 Revision 1.500  2004/04/13 18:21:44  set
 * Added: [SHL] Syntax and pmacros for WML, contributed by Diego J. Brengi.
 
