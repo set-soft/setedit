@@ -10087,7 +10087,7 @@ void TCEditor::setBufLen( uint32 length )
     free(bufEdit);
     bufEdit=0;
    }
- limit.x=max(maxLen,MinLineLen);
+ limit.x=max(maxLen,(uint32)MinLineLen);
  if (!bufEdit)
    {
     bufEditLen=limit.x;
