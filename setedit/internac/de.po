@@ -5,8 +5,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.4.52\n"
-"PO-Revision-Date: 2002-01-01 19:29-000,\n"
+"Project-Id-Version: setedit 0.4.53\n"
+"PO-Revision-Date: 2002-01-01 19:47-000,\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
