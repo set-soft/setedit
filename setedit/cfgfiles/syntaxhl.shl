@@ -261,7 +261,7 @@ Name=HTML
 Files=htm,html,sht,shtml
 OpenComment1=<!--
 CloseComment1=-->
-AllowedInsideNames=/
+AllowedInsideNames=/!-
 CanStartAName=<
 String1="
 Escape=\
@@ -270,7 +270,7 @@ NoCheckNumbers=1
 PMacros=htmlmac.pmc
 Keywords=break,case,continue,default
 Keywords=do,else,for,goto,if,return,switch,this,while
-Keywords=<a,<script,</script,href,<img,src,<pre,<p,</p,</a,<br,<b
+Keywords=<a,<script,</script,href,<img,src,<pre,<p,</p,</a,<br,<b,http-equiv
 Keywords=</b,</pre,<xmp,</xmp,<table,</table,<table,<center,</center,<i,</i
 Keywords=<h1,</h1,<h2,</h2,<h3,</h3,<h4,</h4,<h5,</h5,<h6,</h6
 Keywords=<td,</td,<tr,</tr,<li,</li,<menu,</menu,<u,</u,<font,</font,<hr
@@ -278,7 +278,7 @@ Keywords=<title,</title,<html,</html,<head,</head,<meta,width,height,<body,</bod
 Keywords=align,valign,<applet,<param,name,value,archive,code,codebase
 Keywords=</applet,alt,ismap,border,face,size,target,cellspacing,hspace,vspace
 Keywords=cellpadding,bgcolor,color,nowrap,center,bottom,left,right,colspan
-Keywords=<form,</form,methode,post,action,<input,type,top,_top,<tt,</tt
+Keywords=<form,</form,methode,post,action,<input,type,top,_top,<tt,</tt,class
 Keywords=content,<map,</map,<area,shape,coords,nohref,onclick,onmouseover
 Keywords=rowspan,<blockquote,</blockquote,<em,</em,text,link,vlink,<ul,</ul
 Keywords=<ol,</ol,method,enctype,maxlength,<textarea,rows,cols,</textarea
@@ -288,7 +288,7 @@ Keywords=<div,</div,<frameset,</frameset,<noframes,</noframes,<frame,</frame
 Keywords=<strong,</strong,<dd,<base,<cite,</cite,<code,</code,</option,<nobr
 Keywords=http-equiv,<sub,</sub,<th,</th,<blink,</blink,<noscript,</noscript
 Keywords=style,clear,<link,<style,</style,<col,<colgroup,</colgroup
-Keywords=<tbody,</tbody,<thead,</thead,<tfoot,</tfoot,rel,rev
+Keywords=<tbody,</tbody,<thead,</thead,<tfoot,</tfoot,rel,rev,<!doctype
 End
 
 # ---------------- SDG Format files ----------------

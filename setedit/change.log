@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.228  2002/11/08 12:40:44  set
+* Added: A very limited XML syntax highlight, I'm trying to learn about it
+so it currently highlights what I know ;-)
+
 Revision 1.227  2002/11/06 16:17:04  set
 * Added: An option to generate HTML 4.01 + CSS in the HTML export.
 
