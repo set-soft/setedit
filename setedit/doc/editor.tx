@@ -1332,6 +1332,8 @@ of available symbols. You can make incremental searches in the list and
 pressing @key{Enter} the editor will jump to the symbol.
 @p{}
 
+More about tags? @x{TAGS files}.
+
 @refMenu{cmeSearchTag,Ctrl+F2}
 
 @c --------------------------------------------------------------------------
@@ -1382,6 +1384,8 @@ Selecting a class from those lists and pressing the corresponding button you
 can browse the selected class.
 @p{}
 
+More about tags? @x{TAGS files}.
+
 @refMenu1{cmeClassBrowser}
 
 @c --------------------------------------------------------------------------
@@ -1402,6 +1406,8 @@ continue typing until you reach the desired symbol. When you type
 @key{Enter}, @key{Space} or any symbol the select word will be inserted
 completing the word. Pressing @key{Esc} or @key{Tab} will abort the process.
 @p{}
+
+More about tags? @x{TAGS files}.
 
 @refMenu{cmeWordCompletion,Alt+Right}
 
@@ -2574,7 +2580,7 @@ This list is stored in the desktop file.
 @refMenu1{cmeIncludeList}
 
 @c --------------------------------------------------------------------------
-@subsubsection Tag files (list to use)
+@subsubsection List of tag files
 @cindex tags, list of files
 
 This dialog controls which tag files are loaded to search for symbols. To
@@ -2594,6 +2600,39 @@ desktop file I recommend using relative paths, but it depends on your needs.
 @p{}
 
 @refMenu1{cmeTagFiles}
+
+@c --------------------------------------------------------------------------
+@subsubsection Tag files options
+
+To maintain the tag files updated you should usually use a makefile. This
+makefile will update the tag files when any of your sources changes.
+@p{}
+
+To make things easier the editor provides an option to automatically maintain
+the tag files updated. This option can be enabled from this dialog and only
+works if you are using a project.
+@p{}
+
+When this option is enabled and you perform a search that involves tags the
+editor will automatically check if any of the files included in your project
+is newer than the tags files. If newer files were found the editor will
+invoke ctags to update the tags. If you delete the tags files the editor will
+create a new one.
+@p{}
+
+This option works with a tags file called @file{tags} located in same
+directory as the project. Please don't remove this file from the list of tag
+files to use or this option won't work. If you did it accidentally just
+disable and then enable this option.
+@p{}
+
+When new items are added to the project they are marked in a way that they
+symbols will be added to the tags file, but when you remove items symbols
+from this file aren't removed. If this is annoying just remove the
+@file{tags} file and let the editor create a new one.
+@p{}
+
+@refMenu1{cmeTagsOps}
 
 @c --------------------------------------------------------------------------
 @subsection Calculator (command/menu)
@@ -5528,7 +5567,7 @@ using this program to generate the tag files. You can find this program at
 Source Forge (http://ctags.sourceforge.net).
 @p{}
 
-@section How should I generate the tags files?
+@section How should I generate the tags?
 @cindex tags, how to generate
 
 It depends on your project and how do you compile the project. It also
@@ -5552,6 +5591,43 @@ containing tag, implementation information and kind of tag.
 Without the @code{+i} and @code{+z} option you won't be able to use the class
 browser.
 @p{}
+
+@section Can these files be created and updated by the editor?
+@cindex tags, how to maintain
+
+I recommend using makefiles to maintain tags files because then you have all
+the control over when and how they are updated. But if you are using a fast
+machine and want to simplify the processyou can let the editor to create and
+maintain a tags file for your project. You'll find options for it in the
+Tool&Ops | Options | Tag files menu option. @x{Tag files options}.
+
+@section What's the easiest way to use tags?
+@cindex tags, easy way
+
+Here is an explanation about how to quickly use tag files:
+@p{}
+
+@enumerate
+@item Install @il{Exuberant Ctags} (http://ctags.sourceforge.net).
+@item Create a project (Project | Open). @x{Open (Project)}.
+@item Add all the files you want to include to the project. You can import
+the list of files from a text file. @x{Import project items}.
+@item Enable automatic tags generation using a central file (Tool&Ops |
+Options | Tag files | Options). @x{Tag files options}.
+@item Perform a search, the tags file will be generated during this process
+so be patient if your system is slow or your project is huge.
+@end enumerate
+
+@section What can I do with tags?
+
+With the tag files you can:
+@p{}
+
+@enumerate
+@item Jump to any defined symbol. @x{Jump to symbol}.
+@item Browse C++ class hierarchy. @x{Class browser}.
+@item Ask the editor to complete a partially typed symbol. @x{Word completion}.
+@end enumerate
 
 @section Technical details about tags
 

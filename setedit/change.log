@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.320  2003/04/30 14:23:02  set
+* Added: When you add an item to the project it doesn't have to be newer
+than the TAGs file. For this reason I created a new filed in project items
+to indicate the item is new and that it wasn't yet included in the tags
+file. The concept currently allows the same for other 31 targets.
+* Updated: Web page.
+
 Revision 1.319  2003/04/30 13:18:25  set
 * Added: An option to maintain a central tags file using the project items.
 This option checks if any of the project files is newer than the file
