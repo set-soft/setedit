@@ -205,12 +205,12 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #include <dyncat.h>
 #include <inf.h>
 
-#ifndef TVOSf_Linux
-# include <io.h>
-# include <fcntl.h>
-#else
+#ifdef TVOS_UNIX
 # include <stdlib.h>
 # define _USE_LFN 1
+#else
+# include <io.h>
+# include <fcntl.h>
 #endif
 
 
