@@ -32,6 +32,6 @@
 
 #define SEOS_UNIX
 #define SEOSf_Linux
-#define SECPU_x86
+#define SECPU_
 #define SEComp_GCC
 #define SECompf_
