@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-11-29 13:12-0300\n"
+"PO-Revision-Date: 2004-11-29 13:30-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "~A~uswerten"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:753
+#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:754
 #: ../mainsrc/deedidia.cc:132 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:269 ../mainsrc/deedidia.cc:321
 #: ../mainsrc/deedidia.cc:340 ../mainsrc/sdginter.cc:193
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:752
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:753
 #: ../mainsrc/deedidia.cc:131 ../mainsrc/deedidia.cc:174
 #: ../mainsrc/deedidia.cc:268 ../mainsrc/deedidia.cc:320
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
@@ -1429,43 +1429,43 @@ msgstr "Einschubtext"
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/bufun.cc:738
+#: ../mainsrc/bufun.cc:739
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:748
+#: ../mainsrc/bufun.cc:749
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:754 ../settvuti/tdiagaid.cc:169
+#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:169
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
 
-#: ../mainsrc/bufun.cc:783
+#: ../mainsrc/bufun.cc:784
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:785
+#: ../mainsrc/bufun.cc:786
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:787
+#: ../mainsrc/bufun.cc:788
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:788
+#: ../mainsrc/bufun.cc:789
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:823
+#: ../mainsrc/bufun.cc:824
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:851
+#: ../mainsrc/bufun.cc:852
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"

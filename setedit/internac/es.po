@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-11-29 13:12-0300\n"
+"PO-Revision-Date: 2004-11-29 13:30-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:753
+#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:754
 #: ../mainsrc/deedidia.cc:132 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:269 ../mainsrc/deedidia.cc:321
 #: ../mainsrc/deedidia.cc:340 ../mainsrc/sdginter.cc:193
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:752
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:753
 #: ../mainsrc/deedidia.cc:131 ../mainsrc/deedidia.cc:174
 #: ../mainsrc/deedidia.cc:268 ../mainsrc/deedidia.cc:320
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
@@ -1372,39 +1372,39 @@ msgstr "Texto subrayado"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:738
+#: ../mainsrc/bufun.cc:739
 msgid "Jump to function"
 msgstr "Saltar a una función"
 
-#: ../mainsrc/bufun.cc:748
+#: ../mainsrc/bufun.cc:749
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:754 ../settvuti/tdiagaid.cc:169
+#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:169
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:783
+#: ../mainsrc/bufun.cc:784
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:785
+#: ../mainsrc/bufun.cc:786
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:787
+#: ../mainsrc/bufun.cc:788
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:788
+#: ../mainsrc/bufun.cc:789
 msgid "by ~L~ine"
 msgstr "por ~L~ínea"
 
-#: ../mainsrc/bufun.cc:823
+#: ../mainsrc/bufun.cc:824
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 
-#: ../mainsrc/bufun.cc:851
+#: ../mainsrc/bufun.cc:852
 msgid "Functions:"
 msgstr "Funciones:"
 
