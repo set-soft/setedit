@@ -32,6 +32,8 @@ $AllegroVersionNeeded='3.0.1';
 $AllegroNotNeeded='5.0.0';
 # I never tested with an older version, you can try reducing it.
 $GPMVersionNeeded='1.10';
+# It doesn't work:
+$BrokenMakeinfo='4.5';
 unlink $ErrorLog;
 
 SeeCommandLine();
@@ -531,6 +533,11 @@ sub GiveAdvice
    {
     print "* The 'makeinfo' tool isn't installed documentation can't be created.\n";
    }
+ if (@conf{'makeinfo'} eq 'broken')
+   {
+    print "* The 'makeinfo' tool is an unsupported version (broken?).\n";
+    print "  Do you want to help solving it? contact me.\n";
+   }
  if (@conf{'GNU_Make'} ne 'make')
    {
     print "* Please use $conf{'GNU_Make'} instead of make command.\n";
@@ -572,10 +579,10 @@ sub LookForGettextTools
 
 sub LookForMakeinfo
 {
- my $test;
+ my ($test,$ver);
 
  print 'Looking for makeinfo: ';
- if (@conf{'makeinfo'})
+ if (@conf{'makeinfo'} && (@conf{'makeinfo'} ne 'no') && (@conf{'makeinfo'} ne 'broken'))
    {
     print @conf{'makeinfo'}." (cached)\n";
     return;
@@ -583,18 +590,28 @@ sub LookForMakeinfo
  $test=RunRedirect('makeinfo --version',$ErrorLog);
  if ($test=~/(\d+\.\d+(\.\d+)?)(.*)(\d+\.\d+(\.\d+)?)/)
    {
-    print "$4\n";
-    $conf{'makeinfo'}=$4;
+    $ver=$4;
    }
  elsif ($test=~/(\d+\.\d+(\.\d+)?)/)
    {
-    print "$1\n";
-    $conf{'makeinfo'}=$1;
+    $ver=$1;
    }
  else
    {
     print "no\n";
     $conf{'makeinfo'}='no';
+    return;
+   }
+ print "$ver";
+ if (CompareVersion($ver,$BrokenMakeinfo))
+   {
+    $conf{'makeinfo'}='broken';
+    print " Broken!\n";
+   }
+ else
+   {
+    $conf{'makeinfo'}=$ver;
+    print " OK\n";
    }
 }
 
@@ -1203,7 +1220,7 @@ sub GenerateMakefile
  $installer=@conf{'ToolsInstaller'} eq 'yes';
  $distrib=@conf{'ToolsDistrib'} eq 'yes';
  $internac=@conf{'xgettext'} ne 'no';
- $docbasic=@conf{'makeinfo'} ne 'no';
+ $docbasic=(@conf{'makeinfo'} ne 'no') && (@conf{'makeinfo'} ne 'broken');
  $holidays=@conf{'dl'} eq 'yes';
 
  if (@conf{'compressExe'} eq 'undef')

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.365  2003/05/14 16:23:19  set
+* Modified: Moved the libset target to makes/Makefile so it is cleaner and
+includes the "makes" dependency.
+
 Revision 1.364  2003/05/14 16:01:48  set
 * Fixed: For some reason S.F. CVS had a configure script that didn't use
 libset.mkf (used the .mak).
