@@ -1,5 +1,19 @@
 $Log$
-Revision 1.449  2001/10/09 22:37:54  root
+Revision 1.452  2001/10/12 02:50:38  root
+* Fixed: When opening the readme.1st the editor tried to make it read-only
+but it didn't prevent the editor for issuing a warning if the file was
+really read-only. Now the class takes isReadOnly as parameter in the
+constructor.
+* Fixed: [Linux] When using hidden desktop files and projects the editor
+failed to load the desktop file.
+
+Revision 1.451  2001/10/11 23:55:39  set
+* Updated the changes and fixes since 0.4.41 upto last revision.
+
+Revision 1.450  2001/10/11 23:46:36  set
+* Synchronized CVS with Source Forge.
+
+Revision 1.449  2001/10/09 22:37:54  set
 * Updated: Spanish translation.
 
 Revision 1.448  2001/10/09 22:32:20  set
