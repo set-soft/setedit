@@ -183,6 +183,7 @@ TAsciiChart::TAsciiChart() :
 
     flags &= ~(wfGrow | wfZoom);
     palette = wpGrayWindow;
+    growMode = 0;
 
     TRect r = getExtent();
     r.grow(-1, -1);

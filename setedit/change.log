@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.170  2002/08/12 16:22:27  set
+* Added: Copyright information about the fonts and convpcf1.cc
+* Modified: The fonts dialog to keep the sizes well sorted, the
+alphabetical way is useless. Now is sorted by width and height (in this
+order).
+
 Revision 1.169  2002/08/12 16:18:20  set
 * Added: Three incomplete SFT files and a simple program to generate them
 from raw fonts. They just contain the first 256 symbols (CP 437) and in
