@@ -69,7 +69,7 @@ LookForPrefix();
 # Only gnu make have the command line and commands we use.
 LookForGNUMake();
 # Same for ar, it could be `gar'
-LookForGNUar();
+$GAR=LookForGNUar();
 # Check if gcc can compile C++
 $GXX=CheckGXX();
 
@@ -170,10 +170,9 @@ else
 # Take out the CFLAGS and CPPFLAGS variables
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
-$MakeDefsRHIDE[8]='RHIDE_AR='.$conf{'GNU_AR'};
 if ($Compf eq 'MinGW')
   {
-   $MakeDefsRHIDE[9]='SPECIAL_LDFLAGS=-mconsole';
+   $MakeDefsRHIDE[8]='SPECIAL_LDFLAGS=-mconsole';
   }
 CreateRHIDEenvs('makes/rhide.env','+mp3/libamp/rhide.env',
                 '+mp3/mpegsound/rhide.env');
@@ -1030,7 +1029,15 @@ sub CreateConfigH
  $text.="#define SECompf_$Compf\n";
 
  $old=cat('include/configed.h');
- replace('include/configed.h',$text) unless $text eq $old;
+ if ($text eq $old)
+   {
+    print "no changes\n";
+   }
+ else
+   {
+    print "created new header\n";
+    replace('include/configed.h',$text);
+   }
 }
 
 sub GenerateMakefile
