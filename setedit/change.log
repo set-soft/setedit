@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.495  2004/03/17 20:50:23  set
+* Updated: [SHL] Flat Assembler, contributed by Matt C.
+
 Revision 1.494  2004/03/03 14:55:48  set
 * Modified: [SHL] Flat Assembler definition. Patch by Matt.
 

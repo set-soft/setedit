@@ -189,8 +189,8 @@ public:
     void update( uchar );
     void checkScrollBar( const TEvent&, TScrollBar *, int& );
     unsigned LenWithoutCRLF(unsigned yInFile,char *lineStart);
-    void ExpandAllTabs(void);
-    void CompactBuffer();
+    void ExpandAllTabs(Boolean interactive);
+    void CompactBuffer(Boolean interactive);
     void SourceToHTML(FILE *f, unsigned *pal, unsigned flags);
     void SourceToHTML_Old(FILE *f, unsigned *pal, unsigned flags);
     void SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Commands ) && !defined( __TCEditor_Commands__ )
 #define __TCEditor_Commands__
@@ -164,8 +164,10 @@ const int
   cmbJumpLastCursorPos = 153,
   cmbInsertNewLine     = 154,
   cmbSaveAsNoConvertEOL= 155,
+  cmbExpandAllTabsNi   = 156,
+  cmbCompactBufferNi   = 157,
   
-  cmbLastCommand       = 156;
+  cmbLastCommand       = 158;
 
 
 const int
@@ -326,7 +328,9 @@ const int
   cmcEditorGotFocus    = cmbEditorGotFocus+cmbBaseNumber,
   cmcJumpLastCursorPos = cmbJumpLastCursorPos+cmbBaseNumber,
   cmcInsertNewLine     = cmbInsertNewLine+cmbBaseNumber,
-  cmcSaveAsNoConvertEOL= cmbSaveAsNoConvertEOL+cmbBaseNumber;
+  cmcSaveAsNoConvertEOL= cmbSaveAsNoConvertEOL+cmbBaseNumber,
+  cmcExpandAllTabsNi   = cmbExpandAllTabsNi+cmbBaseNumber,
+  cmcCompactBufferNi   = cmbCompactBufferNi+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #define Uses_TCEditor_Commands
@@ -38,6 +38,7 @@ static edCList List[] =
 { "CommentIndent", 143 },
 { "CommentUnIndent", 144 },
 { "CompactBuffer", 88 },
+{ "CompactBufferNi", 157 },
 { "Copy", 73 },
 { "CopyBlock", 94 },
 { "CopyClipFile", 150 },
@@ -53,6 +54,7 @@ static edCList List[] =
 { "DelWord", 63 },
 { "EndSelect", 13 },
 { "ExpandAllTabs", 87 },
+{ "ExpandAllTabsNi", 156 },
 { "ExpandCode", 11 },
 { "Find", 79 },
 { "FirstLineInScreen", 3 },

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -3311,11 +3311,19 @@ int TCEditor::handleCommand(ushort command)
                 break;
  
            case cmcExpandAllTabs:
-                ExpandAllTabs();
+                ExpandAllTabs(True);
+                break;
+ 
+           case cmcExpandAllTabsNi:
+                ExpandAllTabs(False);
                 break;
  
            case cmcCompactBuffer:
-                CompactBuffer();
+                CompactBuffer(True);
+                break;
+ 
+           case cmcCompactBufferNi:
+                CompactBuffer(False);
                 break;
  
            case cmcRecordMacro:
@@ -5464,14 +5472,16 @@ void TCEditor::ResetCursorPosition(void)
 
 ****************************************************************************/
 
-void TCEditor::ExpandAllTabs(void)
+void TCEditor::ExpandAllTabs(Boolean interactive)
 {
  char *s,*end;
  int x,aux;
  long l;
  FILE *f;
 
- if (isReadOnly || editorDialog(edActionWOUndo)!=cmYes)
+ if (isReadOnly)
+    return;
+ if (interactive && editorDialog(edActionWOUndo)!=cmYes)
     return;
 
  char *n=unique_name("tb");
@@ -5540,14 +5550,16 @@ void TCEditor::ExpandAllTabs(void)
 
 ****************************************************************************/
 
-void TCEditor::CompactBuffer(void)
+void TCEditor::CompactBuffer(Boolean interactive)
 {
  int y,x,x1,x2;
  char *s,*r,*end;
  int inString=0,inComment=0,inCppComment;
  int /*extString=0,*/extCppComment=0;
 
- if (isReadOnly || editorDialog(edActionWOUndo)!=cmYes)
+ if (isReadOnly)
+    return;
+ if (interactive && editorDialog(edActionWOUndo)!=cmYes)
     return;
 
  if (IslineInEdition) // I forgot it and I saw it with a report of Leon
