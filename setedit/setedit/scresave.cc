@@ -305,16 +305,16 @@ static int *sin_table;
 extern __inline__ void RPF_SetAllPal(unsigned char *_pal_ptr)
 {//Sets all 768 6bit color component entries on the VGA.
  int dummy;
- InlineAsm ("
-     movl $0x3c8, %%edx
-     xorl %%eax, %%eax
-     outb %%al, %%dx
-     incl %%edx
-     movl $768, %%ecx
-     cli
-     rep
-     outsb
-     sti"
+ InlineAsm (
+"     movl $0x3c8, %%edx         \n"
+"     xorl %%eax, %%eax          \n"
+"     outb %%al, %%dx            \n"
+"     incl %%edx                 \n"
+"     movl $768, %%ecx           \n"
+"     cli                        \n"
+"     rep                        \n"
+"     outsb                      \n"
+"     sti                        \n"
  : "=S" (dummy) : "S" (_pal_ptr) : "%eax", "%ecx", "%edx");
 }
 
@@ -546,45 +546,44 @@ void ShutDownInferno1(void)
 void DibujarInferno1(uchar *screen)
 {
  InlineAsm
- ("
-   movl $320,%%esi
-   addl %0,%%esi
-   movl %1,%%ecx
+ (
+"   movl $320,%%esi         \n"
+"   addl %0,%%esi           \n"
+"   movl %1,%%ecx           \n"
 
-   movl $0,%%ebx
+"   movl $0,%%ebx           \n"
 
 // Smooth
-0:
-   movl $0,%%eax
+"0:                         \n"
+"   movl $0,%%eax           \n"
    // Current byte and increment
-   lodsb
+"   lodsb                   \n"
    // Next
-   movb (%%esi),%%bl
-   addl %%ebx,%%eax
+"   movb (%%esi),%%bl       \n"
+"   addl %%ebx,%%eax        \n"
    // Y+1
-   movb 319(%%esi),%%bl
-   addl %%ebx,%%eax
+"   movb 319(%%esi),%%bl    \n"
+"   addl %%ebx,%%eax        \n"
    // Previous
-   movb -2(%%esi),%%bl
-   addl %%ebx,%%eax
+"   movb -2(%%esi),%%bl     \n"
+"   addl %%ebx,%%eax        \n"
    // Average
-   shrl $2,%%eax
+"   shrl $2,%%eax           \n"
    // Put it in Y-1
-   movb %%al,-321(%%esi)
-   loop 0b
+"   movb %%al,-321(%%esi)   \n"
+"   loop 0b                 \n"
 
-   movl %1,%%edi
-   addl %0,%%edi
-   movl $320,%%ecx
+"   movl %1,%%edi           \n"
+"   addl %0,%%edi           \n"
+"   movl $320,%%ecx         \n"
 
 // Randline
-1:
-   mull (%%edi)
-   incl %%eax
-   stosw
-   decl %%edi
-   loop 1b
- "
+"1:                         \n"
+"   mull (%%edi)            \n"
+"   incl %%eax              \n"
+"   stosw                   \n"
+"   decl %%edi              \n"
+"   loop 1b                 \n"
  :
  : "qm" (screen), "i" (SIZE_INFERNO)
  : "edi","esi","eax","ebx","ecx","edx","memory"
@@ -597,26 +596,26 @@ void UpdateInferno1(void)
  int d1,d2,d3;
  DibujarInferno1(Inferno1VScreen);
  vsync();
- InlineAsm("
- pushl %%es
+ InlineAsm(
+" pushl %%es                      \n"
  
- movw  %%ax,%%es
- movl  $100,%%edx
-0:
- movl  $80,%%ecx
-1:
- movl  (%%esi),%%eax
- movl  %%eax,%%es:(%%edi)
- movl  %%eax,%%es:320(%%edi)
- addl  $4,%%esi
- addl  $4,%%edi
- loop  1b
- addl  $320,%%edi
- decl  %%edx
- jnz   0b
+" movw  %%ax,%%es                 \n"
+" movl  $100,%%edx                \n"
+"0:                               \n"
+" movl  $80,%%ecx                 \n"
+"1:                               \n"
+" movl  (%%esi),%%eax             \n"
+" movl  %%eax,%%es:(%%edi)        \n"
+" movl  %%eax,%%es:320(%%edi)     \n"
+" addl  $4,%%esi                  \n"
+" addl  $4,%%edi                  \n"
+" loop  1b                        \n"
+" addl  $320,%%edi                \n"
+" decl  %%edx                     \n"
+" jnz   0b                        \n"
 
- popl  %%es
- " : "=S" (d1), "=D" (d2), "=a" (d3)
+" popl  %%es                      \n"
+   : "=S" (d1), "=D" (d2), "=a" (d3)
    : "a" (_dos_ds), "S" (Inferno1VScreen), "D" (0xA0000)
    : "ecx", "edx" );
 }
