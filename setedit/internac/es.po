@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2004-12-02 17:00-0300\n"
+"PO-Revision-Date: 2004-12-02 17:23-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -5478,6 +5478,14 @@ msgstr "Como usar la ~a~yuda"
 #: ../setedit/editmenu.cc:454
 msgid "Con~t~rol dialog..."
 msgstr "Panel de con~t~rol ..."
+
+#: ../setedit/editmenu.cc:455
+msgid "S~e~arch selection forward"
+msgstr "Buscar la selección ~h~acia adelante"
+
+#: ../setedit/editmenu.cc:456
+msgid "Search selection ~b~ackward"
+msgstr "Buscar la selección hacia a~t~rás"
 
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2004-12-02 17:00-0300\n"
+"PO-Revision-Date: 2004-12-02 17:23-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -5821,6 +5821,15 @@ msgstr ""
 #, fuzzy
 msgid "Con~t~rol dialog..."
 msgstr "~K~onfiguration"
+
+#: ../setedit/editmenu.cc:455
+#, fuzzy
+msgid "S~e~arch selection forward"
+msgstr "Suchtext nicht gefunden."
+
+#: ../setedit/editmenu.cc:456
+msgid "Search selection ~b~ackward"
+msgstr ""
 
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"
