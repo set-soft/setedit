@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -19,6 +19,7 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_TMLIArrayBase
 #define Uses_TMLIEditor
 #define Uses_TLispSDGstring
+#define Uses_MsgBox
 #include <mli.h>
 #define Uses_TNoCaseStringCollection
 #include <settvuti.h>
@@ -208,18 +209,28 @@ CleanUp:
  destroyFloatVar(option);
 }
 
-// (RunProgramRedir "prg1;prg2;...")
+// (RunProgramRedir "prg1;prg2;..." [input_string])
 DecFun(MLIRunProgramRedir)
 {
  char *s;
  int l;
+ unsigned flags=repDontShowAsMessage|repDontFork;
  LocVarStr(string);
+ LocVarStr(input);
 
- CheckNumParams(cant!=1);
+ CheckNumParams(cant!=1 && cant!=2);
 
  GetString(0,string);
+ if (cant==2)
+   {
+    GetString(1,input);
+    RunExternalProgramSetInRedir(input->str,input->len);
+    flags|=repRedirIn;
+   }
  // Even when strings are stored as char * + len they are ASCIIZ
- RunExternalProgram(string->str,repDontShowAsMessage);
+ RunExternalProgram(string->str,flags);
+ if (cant==2)
+    RunExternalProgramRemoveInRedir();
 
  // Ok now we have the redirected result in a file, get it
  l=0x100000;
@@ -228,6 +239,7 @@ DecFun(MLIRunProgramRedir)
 
 CleanUp:
  destroyFloatVar(string);
+ destroyFloatVar(input);
 }
 
 //
@@ -503,6 +515,28 @@ CleanUp:
  destroyFloatVar(file);
 }
 
+DecFun(MLIMessageBox)
+{
+ unsigned ops=mfError|mfOKButton;
+ LocVarStr(message);
+ LocVarInt(options);
+
+ CheckNumParams(cant!=1 && cant!=2);
+
+ GetString(0,message);
+ if (cant>1)
+   {
+    GetInteger(1,options);
+    ops=options->val;
+   }
+
+ MLIRetInt(messageBox(message->str,ops));
+
+CleanUp:
+ destroyFloatVar(message);
+ destroyFloatVar(options);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -520,7 +554,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "GetSyntaxAtCursor",
  "ForceUpdate",
  "AskString",
- "OpenFile"
+ "OpenFile",
+ "MessageBox"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -540,7 +575,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetSyntaxAtCursor,
  MLIForceUpdate,
  MLIAskString,
- MLIOpenFile
+ MLIOpenFile,
+ MLIMessageBox
 };
 
 

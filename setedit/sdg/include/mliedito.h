@@ -1,8 +1,8 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=15;
+const int MLIEditorCommands=16;
 class TNoCaseStringCollection;
 
 class TMLIEditor : public TMLIBase
