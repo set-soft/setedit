@@ -33,4 +33,5 @@ hcExpPrjItems =0x221A;
 
 // This flag allows to select various files without living the dialog
 const unsigned fdMultipleSel=0x10000,fdDialogForSave=0x80000000;
+const unsigned fdNoMask     =0x20000;
 #endif

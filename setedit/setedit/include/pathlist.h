@@ -7,5 +7,6 @@ void PathListSave(fpstream& s);
 void PathListLoad(fpstream& s);
 int  PathListGetItem(ccIndex pos, char *buffer, int which);
 void PathListUnLoad();
+void PathListAdd(int which, const char *path);
 
 const int paliInclude=0, paliSource=1, paliLists=2;

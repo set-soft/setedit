@@ -437,7 +437,7 @@ file is already part of the collection.
 int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags, char **test)
 {
  char *sName=GetShortName(name);
- char *relName;
+ char *relName=NULL;
  int oldSortMode=sortMode, ret=1;
 
  if (sortMode!=prjShortName)
@@ -464,6 +464,8 @@ int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags, char **test)
       }
     else
        atInsert(pos,name,flags);
+    // Not returned, free it
+    string_free(relName);
    }
  else
    {// Already there

@@ -209,6 +209,7 @@ public:
   TMenuBar(bounds,aMenu) { menuList=aMenu; helpCtx=(unsigned)-1; };
  TMultiMenuBar(const TRect &bounds, TMultiMenu *aMenu, TMultiMenu *cur) :
   TMenuBar(bounds,cur) { menuList=aMenu; helpCtx=(unsigned)-1; };
+ ~TMultiMenuBar();
  void update();
  void findMenu();
  static TMultiMenuBar *createMultiMenuBar(const TRect &bounds,

@@ -37,6 +37,11 @@ const int
       cmRecycle       =0x22AE,
       cmModifyIns     =0x22AF,
       cmFormatIns     =0x22B0,
+      //----------------------------
+      // Data Window commands.
+      //----------------------------
+      cmDWFirstCommand =0x2300,
+      //----------------------------
       cmDWUp           =0x2300,
       cmDWDown         =0x2301,
       cmDWRight        =0x2302,
@@ -65,7 +70,12 @@ const int
       cmDWMoreLines    =0x2319,
       cmDWUpdateMemory =0x231A,
       cmDWRead         =0x231B,
-      cmDWWrite        =0x231C;
+      cmDWWrite        =0x231C,
+      //----------------------------
+      cmDWLastCommand  =0x231D;
+      //----------------------------
+      // End of Data Window commands.
+      //----------------------------
 
 const int
       hcListWin            =0x2110,

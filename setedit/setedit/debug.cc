@@ -101,6 +101,7 @@ directories to look for sources.
 #define Uses_TDeskTop
 #define Uses_TNoStaticText
 #define Uses_AllocLocal
+#define Uses_TFileDialog
 
 // Watches
 #define Uses_TStringableListBox
@@ -317,7 +318,7 @@ char *SolveFileName(const char *s)
     dbgPr("Found source in cache: %s\n",p->real);
     return p->real;
    }
- // Nope, so we must do a search
+ // Nope, so we must do a deep search
  char *fullName, *retName;
  if (FindFile(s,fullName,binReference))
    {
@@ -326,7 +327,49 @@ char *SolveFileName(const char *s)
     delete[] fullName;
     return retName;
    }
- // TODO: Bring a dialog like in RHIDE?
+ // Ask the user what to do
+ if (messageBox(mfWarning|mfYesButton|mfNoButton,
+                __("Do you want to provide the path for: '%s'."),s)==cmYes)
+   {
+    char buf[PATH_MAX];
+
+    // The file with * appended
+    const char *start=strrchr(s,'/');
+    if (start)
+       start++;
+    else
+       start=s;
+    CLY_snprintf(buf,PATH_MAX,"%s*",start);
+
+    // Bring a dialog to select it
+    if (GenericFileDialog(__("Source file"),buf,NULL,hID_FileOpen,
+        fdNoMask)!=cmCancel)
+      {
+       if (!edTestForFile(buf))
+          // Failed to stat or not regular file
+          messageBox(mfError|mfOKButton,__("Can't use: '%s'."),s);
+       else
+         {// Add to cache
+          sourcesCache->insert(s,buf,retName);
+          // May be also to the list of paths
+          char *last=strrchr(buf,'/');
+          if (last && last!=buf)
+            {
+             *last=0;
+             if (messageBox(mfConfirmation|mfYesButton|mfNoButton,
+                 __("Add path to list: '%s'?"),buf)==cmYes)
+               {
+                PathListAdd(paliSource,buf);
+                dbg->PathSources(buf);
+               }
+            }
+          return retName;
+         }
+      }
+   }
+ else
+    // The user is lazy or doesn't have the source code, don't bother again
+    sourcesCache->insert(s,NULL,retName);
  dbgPr("Can't find %s file\n",s);
  return NULL;
 }
@@ -1080,19 +1123,18 @@ void TSetEditorApp::DebugCallStack()
  unsigned options;
  FileInfo fI;
  char b[maxWStatus];
+ int cnt;
  DynStrCatStruct msg;
  fI.Column=1;
  fI.offset=-1;
  fI.len=0;
 
- for (r=f; r; r=r->next)
+ for (cnt=0, r=f; r; r=r->next, cnt++)
     {
      options=0;
      if (r==f) // First
         options|=edsmRemoveOld;
-     if (!r->next) // Last
-        options|=edsmUpdateSpLines;
-     else
+     if (r->next)
         options|=edsmDontUpdate;
      fI.Line=r->line;
      // Convert the frame into something "human readable"
@@ -1127,10 +1169,17 @@ void TSetEditorApp::DebugCallStack()
           }
         DynStrCat(&msg,")",1);
        }
-     EdShowMessageFile(msg.str,fI,r->file,options);
+     EdShowMessageFile(msg.str,fI,SolveFileName(r->file),options);
      free(msg.str);
     }
  mi_free_frames(f);
+ if (cnt)
+   {
+    // Important note: we can't play with the edsmUpdateSpLines flag because
+    // not all splines will belong to the same file.
+    SpLinesUpdate();
+    EdJumpToFirstError();
+   }
 }
 
 /**[txh]********************************************************************
@@ -1910,6 +1959,8 @@ void TInspector::recycle()
        delete[] tstate; tstate=NULL;
        outOfScope=0;
        theLBox->newList(tree);
+       // It was released by newList, don't try to release again
+       fake=NULL;
        updateCommands();
       }
     else
@@ -3911,6 +3962,8 @@ public:
 
 protected:
  static int cDataViewers;
+
+ static void setCommands(Boolean enable);
 };
 
 int TDataViewer::cDataViewers=0;
@@ -4554,9 +4607,14 @@ void TDataViewer::setState(ushort aState, Boolean enable)
     vs->setState(sfVisible,enable);
     indi->setState(sfActive,enable);
     indi->drawView();
+    if (enable)
+      {// Check if we have to dis/enable the commands
+       setCommands(dbg && dbg->GetState()==MIDebugger::stopped ? True : False);
+      }
    }
+ // TODO SET: Why? I don't think that's needed
  //if (aState & sfFocused)
- //   drawView(); // TODO SET: Why?
+ //   drawView();
 }
 
 #define cpDataViewer "\x06\x07\x08\x09\x0A\x0B"
@@ -4692,6 +4750,26 @@ void TDataViewer::printCursorAddress(char *buf, Boolean deref)
  sprintf(buf,deref ? "*0x%lx" : "0x%lx",curs2memo()-memo+memStart);
 }
 
+void TDataViewer::setCommands(Boolean enable)
+{
+ if (enable)
+   {
+    if (!TView::curCommandSet.has(cmDWFirstCommand))
+      {// Enable all
+       TView::commandSetChanged=True;
+       TView::curCommandSet.enableCmd(cmDWFirstCommand,cmDWLastCommand);
+      }
+   }
+ else
+   {
+    if (TView::curCommandSet.has(cmDWFirstCommand))
+      {// Disable all
+       TView::commandSetChanged=True;
+       TView::curCommandSet.disableCmd(cmDWFirstCommand,cmDWLastCommand);
+      }
+   }
+}
+
 void TDataViewer::handleEvent(TEvent & event)
 {
  char buf[PATH_MAX];
@@ -4777,7 +4855,14 @@ void TDataViewer::handleEvent(TEvent & event)
             break;
        case cmDbgChgState:
             if (dbg && dbg->GetState()==MIDebugger::stopped)
+              {
+               setCommands(True);
                update(memStart,True);
+              }
+            else
+              {// Any other state is useless
+               setCommands(False);
+              }
             break;
       }
    }
@@ -6331,8 +6416,11 @@ void DebugUpdateWatches()
         withScope++;
     }
  if (!withScope && !TInspector::getCountInspectors())
-    // Don't bother if we aren't using them
+   {// Don't bother if we aren't using them
+    if (changedVars)
+       WtList->drawView();
     return;
+   }
  // Now find which variables changed
  mi_gvar_chg *changed;
  if (!dbg->ListChangedgVar(changed))

@@ -168,7 +168,7 @@ int GenericFileDialog(const char *title, char *file, char *mask, int id, unsigne
    {
     dir=aso->dir;
     ctx=aso->helpCtx;
-    if (aso->mask)
+    if (aso->mask && !(flags & fdNoMask))
        mask=aso->mask;
    }
  if (Initialize() || !dir)

@@ -1258,6 +1258,13 @@ void TMultiMenuBar::update()
    }
 }
 
+TMultiMenuBar::~TMultiMenuBar()
+{// Delete all of them
+ delete menuList;
+ // Prevent farther deletions in ~TMenuBar
+ menu=NULL;
+}
+
 /*****************************************************************************
   Helpers to construct a TMultiMenu
 *****************************************************************************/

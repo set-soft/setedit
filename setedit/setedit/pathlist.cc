@@ -391,3 +391,16 @@ void PathListEdit(int which, unsigned hCtx)
  CLY_destroy(backup);
 }
 
+void PathListAdd(int which, const char *path)
+{
+ lEdited=lists[which];
+ if (!lEdited)
+   {
+    PathListPopulate(which);
+    lEdited=lists[which];
+    if (!lEdited)
+       return;
+   }
+ lEdited->insert(newStr(path));
+}
+
