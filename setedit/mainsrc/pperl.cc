@@ -94,7 +94,7 @@ int GetNextValue()
             GetEndOfStr('`');
             break;
        case '\\': // Escape sequence, mostly in search patterns
-            Index++;
+            Index+=2;
             break;
        case '$': // Scalar
             AddToWord('$');

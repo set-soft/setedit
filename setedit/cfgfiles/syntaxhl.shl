@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Syntax highlight file for SET's editor
@@ -2066,7 +2066,8 @@ Keywords=ScreenWidth,ScreenHeight,FontWidth,FontHeight,UseSecondaryFont
 Keywords=ScreenPalette,zHideCursorWhenNoFocus,ExtProgVideoMode,VideoMode
 Keywords=DontResizeToCells,BIOSKey,UseShellScreen,InternalBusyCursor
 Keywords=VGABIOSState,SaveVGAState,DontMoveHiddenCursor,AppCP,ScrCP,InpCP
-Keywords=PollMouse,BrokenCursorShape
+Keywords=PollMouse,BrokenCursorShape,Unicode16,UnicodeFont,UseX11Fonts
+Keywords=X11Font
 End
 
 #--------------------------------- XML ------------------------------------
