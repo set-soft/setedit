@@ -118,33 +118,33 @@ Available Keys:
 @paragraph{}
 
 @table2{Key,Action}
-@titem_{Arrows,Moves the cursor. Holding shift selects the text.}
-@titem_{Page Up,Previous page of the topic. Holding shift selects the text.}
-@titem_{Page Down,Next page of the topic. Holding shift selects the text.}
-@titem_{Home,Move cursor to the first column. Holding shift selects the text.}
-@titem_{End,Move cursor to the last character in the line. Holding shift selects the text.}
-@titem_{Ctrl+Right arrow,Next word. Holding shift selects the text.}
-@titem_{Ctrl+Left arrow,Previous word. Holding shift selects the text.}
-@titem_{Tab,Move to the next link (from the cursor position).}
-@titem_{Shift+Tab,Move to the previous link (from the cursor position).}
-@titem_{Alt+F1,Go to the last viewed topic.}
-@titem_{Ctrl+s,\@x\{Searching\,Search\}.}
-@titem_{Ctrl+l,Repeat the last search.}
-@titem_{Alt+F10,InfView \@x\{Control dialog\,control\}. dialog window.}
-@titem_{Ctrl+p,Go to the "previous" link.}
-@titem_{Ctrl+n,Go to the "next" link.}
-@titem_{Ctrl+u,Go to the "up" link.}
-@titem_{Ctrl+t,Go to the "top" link.}
-@titem_{Ctrl+d,Go to the directory.}
-@titem_{Ctrl+h,This help.}
-@titem_{Ctrl+g,\@x\{Jumping to any file or node\,GoTo\}.}
-@titem_{Ctrl+o,\@x\{Jumping to any node in the current file\,Jump to node\}.}
-@titem_{Alt+b,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog.}
-@titem_{Ctrl+f,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog.}
-@titem_{Alt+i,Copies the include name to the clipboard (for the libc help).}
-@titem_{1-9,Take the link 1 to 9.}
-@titem_{0,Take the last link available in that topic.}
-@titem_{a-z A-Z,Select the next link that starts with this letter. The editor uses
+@titemR{Arrows,Moves the cursor. Holding shift selects the text.}
+@titemR{Page Up,Previous page of the topic. Holding shift selects the text.}
+@titemR{Page Down,Next page of the topic. Holding shift selects the text.}
+@titemR{Home,Move cursor to the first column. Holding shift selects the text.}
+@titemR{End,Move cursor to the last character in the line. Holding shift selects the text.}
+@titemR{Ctrl+Right arrow,Next word. Holding shift selects the text.}
+@titemR{Ctrl+Left arrow,Previous word. Holding shift selects the text.}
+@titemR{Tab,Move to the next link (from the cursor position).}
+@titemR{Shift+Tab,Move to the previous link (from the cursor position).}
+@titemR{Alt+F1,Go to the last viewed topic.}
+@titemR{Ctrl+s,\@x\{Searching\,Search\}.}
+@titemR{Ctrl+l,Repeat the last search.}
+@titemR{Alt+F10,InfView \@x\{Control dialog\,control\}. dialog window.}
+@titemR{Ctrl+p,Go to the "previous" link.}
+@titemR{Ctrl+n,Go to the "next" link.}
+@titemR{Ctrl+u,Go to the "up" link.}
+@titemR{Ctrl+t,Go to the "top" link.}
+@titemR{Ctrl+d,Go to the directory.}
+@titemR{Ctrl+h,This help.}
+@titemR{Ctrl+g,\@x\{Jumping to any file or node\,GoTo\}.}
+@titemR{Ctrl+o,\@x\{Jumping to any node in the current file\,Jump to node\}.}
+@titemR{Alt+b,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog.}
+@titemR{Ctrl+f,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog.}
+@titemR{Alt+i,Copies the include name to the clipboard (for the libc help).}
+@titemR{1-9,Take the link 1 to 9.}
+@titemR{0,Take the last link available in that topic.}
+@titemR{a-z A-Z,Select the next link that starts with this letter. The editor uses
 an incremental search so you can type various letters until you reach the
 desired item}
 @endtable_{}
@@ -181,15 +181,15 @@ following buttons:
 @paragraph{}
 
 @table2{Button,Action}
-@titem_{Next,Moves to the next node in the help}
-@titem_{Previous,Moves to the previous node in the help}
-@titem_{Up,Moves one node up in the help's hierarchy}
-@titem_{Prev. Hist.,Goes to the previously visited node}
-@titem_{Nodes List,Shows a list of all the nodes to choose one}
-@titem_{Bookmarks,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog}
-@titem_{Configuration,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog}
-@titem_{Open Info,Opens a dialog to browse the disk and choose any file to load}
-@titem_{Hide,Hides the control dialog}
+@titemR{Next,Moves to the next node in the help}
+@titemR{Previous,Moves to the previous node in the help}
+@titemR{Up,Moves one node up in the help's hierarchy}
+@titemR{Prev. Hist.,Goes to the previously visited node}
+@titemR{Nodes List,Shows a list of all the nodes to choose one}
+@titemR{Bookmarks,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog}
+@titemR{Configuration,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog}
+@titemR{Open Info,Opens a dialog to browse the disk and choose any file to load}
+@titemR{Hide,Hides the control dialog}
 @endtable_{}
 
 Additionally the dialog contains a list with the last 40 nodes visited, you

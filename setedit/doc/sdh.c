@@ -1273,9 +1273,12 @@ void GenerateTeX(void)
     chdir(OutPathOrig);
    }
  sprintf(s,"tex %s",inf);
+ puts(s);
  system(s);
+ puts(s);
  sprintf(s,"texindex %s.??",inf);
  system(s);
+ puts(s);
  sprintf(s,"tex %s",inf);
  system(s);
  if (OutPathOrig)

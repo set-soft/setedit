@@ -39,7 +39,7 @@
 @table2{\title1\,\title2\}
 @end macro
 
-@macro titem_{col1,col2,col3,col4}
+@macro titemR{col1,col2,col3,col4}
 @item \col1\@*
 - @value{table-title2}: \col2\
 @ifset table-title3
@@ -222,7 +222,7 @@ is left intact on all copies.
 @sp 2
 @end macro
 
-@macro i{valor}
+@macro il{valor}
 `\valor\'
 @end macro
 

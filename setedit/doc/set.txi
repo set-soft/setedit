@@ -40,7 +40,7 @@
 @end macro
 
 @ifclear dvi
-@macro titem_{col1,col2,col3,col4}
+@macro titemR{col1,col2,col3,col4}
 @item \col1\
 @*- @value{table-title2}: \col2\
 @ifset table-title3
@@ -53,7 +53,7 @@
 @end ifclear
 
 @ifset dvi
-@macro titem_{col1,col2,col3,col4}
+@macro titemR{col1,col2,col3,col4}
 @item \col1\
 @itemize @minus
 @item @value{table-title2}: \col2\
@@ -306,10 +306,17 @@ including all the indices.
 @end macro
 
 @ifclear dvi
-@macro i{valor}
+@macro il{valor}
 `\valor\'
 @end macro
 @end ifclear
+
+@ifclear tex
+@macro il{valor}
+@i{\valor\}
+@end macro
+@end ifclear
+
 
 @macro p{}
 @c @sp 1

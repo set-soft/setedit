@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.266  2003/01/06 13:54:09  set
+* Updated: Grzegorz example on how to use macros to externally process
+portions of text.
+
 Revision 1.265  2002/12/30 15:28:22  set
 * Updated: POVRay SHL, from Martijn.
 

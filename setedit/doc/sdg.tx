@@ -162,14 +162,14 @@ The following table shows how these fields work.
 @table3{Variable,Meaning,Behavior}
 @c ----- makeinfo is too weak! and TeX is totally idiot, I can put a cross
 @c       reference in a parameter.
-   @titem_{@code{Function},Is the name of the function,Automatic (type 5)}
-   @titem_{@code{Class},Used for member functions,Automatic (type 4)}
-   @titem_{@code{Include},Is the file that contains the prototype,Semiautomatic (type 2)}
-   @titem_{@code{Module},The module@comma{} library or category of the function,Semiautomatic (type 2)}
-   @titem_{@code{Prototype},The prototype of the function,Automatic (type 3)}
-   @titem_{@code{Description},How the function works,Manual (type 1)}
-   @titem_{@code{Return},Value returned; type and meaning,Manual (type 1)}
-   @titem_{@code{Example},How to use it,Manual (type 1)}
+   @titemR{@code{Function},Is the name of the function,Automatic (type 5)}
+   @titemR{@code{Class},Used for member functions,Automatic (type 4)}
+   @titemR{@code{Include},Is the file that contains the prototype,Semiautomatic (type 2)}
+   @titemR{@code{Module},The module@comma{} library or category of the function,Semiautomatic (type 2)}
+   @titemR{@code{Prototype},The prototype of the function,Automatic (type 3)}
+   @titemR{@code{Description},How the function works,Manual (type 1)}
+   @titemR{@code{Return},Value returned; type and meaning,Manual (type 1)}
+   @titemR{@code{Example},How to use it,Manual (type 1)}
 @endtable_{}
 
 As you can see most of the fields are filled automatically. The @code{/t} macro is
@@ -587,9 +587,9 @@ Additionally there are some special variables created internally:
 
 @table2{Number,Meaning}
 @clear table-set-center
-  @titem_{@code{90},Name of the file}
-  @titem_{@code{91},Line number of the end of the comment}
-  @titem_{@code{92},Name of the var 0 in the format: ~0 ~~Distinguish@ocb{}(~Distinguish)~@ccb{} (node name)}
+  @titemR{@code{90},Name of the file}
+  @titemR{@code{91},Line number of the end of the comment}
+  @titemR{@code{92},Name of the var 0 in the format: ~0 ~~Distinguish@ocb{}(~Distinguish)~@ccb{} (node name)}
 @endtable_{}
 @paragraph{}
 
