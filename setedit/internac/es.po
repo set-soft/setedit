@@ -5,8 +5,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-10-14 13:36-0300\n"
+"Project-Id-Version: setedit 0.5.3\n"
+"PO-Revision-Date: 2003-10-16 16:05-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,10 +32,10 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:580 ../mainsrc/tags.cc:1458 ../mainsrc/tags.cc:1642
+#: ../mainsrc/slpinter.cc:613 ../mainsrc/tags.cc:1458 ../mainsrc/tags.cc:1642
 #: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
 #: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
-#: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
+#: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:137
 #: ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Cancela"
@@ -66,7 +66,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:579
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:612
 #: ../mainsrc/tags.cc:1480 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:680
@@ -219,7 +219,7 @@ msgstr "Marcas del InfView"
 msgid "~A~dd"
 msgstr "~A~gregar"
 
-#: ../infview/inf.cc:2461 ../mp3/mp3list.cc:335 ../setedit/winlistd.cc:125
+#: ../infview/inf.cc:2461 ../mp3/mp3list.cc:335 ../setedit/winlistd.cc:135
 #: ../settvuti/tdiagaid.cc:156
 msgid "~D~elete"
 msgstr "~B~orrar"
@@ -317,7 +317,7 @@ msgstr "InfView v"
 # msgstr "~C~olores ..."
 # msgid "~C~olors ..."
 # msgstr "~C~olores ..."
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2380
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2454
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -333,7 +333,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2382
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2456
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
@@ -923,7 +923,7 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acción)"
 
-#: ../install/install.cc:1327 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:504
+#: ../install/install.cc:1327 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:549
 #: ../setedit/edprint.cc:708 ../settvuti/tdiagaid.cc:157
 msgid "~O~k"
 msgstr "~O~k"
@@ -2170,12 +2170,12 @@ msgstr "(%d) %s en la línea %d"
 msgid "In section %s"
 msgstr "En la sección %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:425
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:451
 #, c-format
 msgid "Type of error: %s"
 msgstr "Tipo de error: %s"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:427
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:453
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Código: ...%s..."
@@ -2217,27 +2217,27 @@ msgstr "Error en la expresión regular: %s"
 msgid "PCRE Exec error"
 msgstr "Error de ejecución del a ExpReg"
 
-#: ../mainsrc/slpinter.cc:424
+#: ../mainsrc/slpinter.cc:450
 msgid "Error in sLisp interpreter:"
 msgstr "Error en el intérprete de sLisp:"
 
-#: ../mainsrc/slpinter.cc:428
+#: ../mainsrc/slpinter.cc:454
 msgid "End of SLP"
 msgstr "Fin de SLP"
 
-#: ../mainsrc/slpinter.cc:491
+#: ../mainsrc/slpinter.cc:528
 msgid "Enter sLisp code to interprete"
 msgstr "Ingrese código sLisp a ser interpretado"
 
-#: ../mainsrc/slpinter.cc:524
+#: ../mainsrc/slpinter.cc:557
 msgid "No macros defined"
 msgstr "No hay macros definidos"
 
-#: ../mainsrc/slpinter.cc:567
+#: ../mainsrc/slpinter.cc:600
 msgid "sLisp macros"
 msgstr "Macros sLisp"
 
-#: ../mainsrc/slpinter.cc:577
+#: ../mainsrc/slpinter.cc:610
 msgid "~M~acros"
 msgstr "~M~acros"
 
@@ -2616,74 +2616,78 @@ msgstr "~C~argar"
 msgid "Return value:"
 msgstr "Valor retornado:"
 
-#: ../sdg/mli.cc:1558
+#: ../sdg/mli.cc:1563
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1563
+#: ../sdg/mli.cc:1568
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1564
+#: ../sdg/mli.cc:1569
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1569
+#: ../sdg/mli.cc:1574
 msgid "string not closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1570
+#: ../sdg/mli.cc:1575
 msgid "no ) at end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1571
+#: ../sdg/mli.cc:1576
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1572
+#: ../sdg/mli.cc:1577
 msgid "wrong number"
 msgstr "número erróneo"
 
-#: ../sdg/mli.cc:1573
+#: ../sdg/mli.cc:1578
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1574
+#: ../sdg/mli.cc:1579
 msgid "stack overflow"
 msgstr "desborde de pila (stack)"
 
-#: ../sdg/mli.cc:1579
+#: ../sdg/mli.cc:1584
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un parámetro"
 
-#: ../sdg/mli.cc:1580
+#: ../sdg/mli.cc:1585
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1581
+#: ../sdg/mli.cc:1586
 msgid "parameter after command"
 msgstr "parámetro luego de un comando"
 
-#: ../sdg/mli.cc:1582
+#: ../sdg/mli.cc:1587
 msgid "wrong number of parameters"
 msgstr "número equivocado de parámetros"
 
-#: ../sdg/mli.cc:1583
+#: ../sdg/mli.cc:1588
 msgid "wrong parameter type"
 msgstr "tipo de parámetro equivocado"
 
-#: ../sdg/mli.cc:1584
+#: ../sdg/mli.cc:1589
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1585
+#: ../sdg/mli.cc:1590
 msgid "undefined symbol"
 msgstr "símbolo no definido"
 
-#: ../sdg/mli.cc:1586
+#: ../sdg/mli.cc:1591
 msgid "operation not defined"
 msgstr "operación no definida"
+
+#: ../sdg/mli.cc:1592
+msgid "invalid character for a name"
+msgstr ""
 
 #: ../setedit/advice.cc:46
 msgid ""
@@ -3042,64 +3046,64 @@ msgstr "Agradecimientos para:"
 msgid "Made in Argentina"
 msgstr "Hecho en Argentina"
 
-#: ../setedit/editmain.cc:127
+#: ../setedit/editmain.cc:126
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "¿Desea borrar todos los archivos de respaldo y escritorio?"
 
-#: ../setedit/editmain.cc:417
+#: ../setedit/editmain.cc:416
 msgid "No project loaded"
 msgstr "No hay proyecto cargado"
 
-#: ../setedit/editmain.cc:477
+#: ../setedit/editmain.cc:476
 msgid "This file is already open, close it first."
 msgstr "Este archivo ya esta abierto, primero ciérrelo."
 
-#: ../setedit/editmain.cc:559
+#: ../setedit/editmain.cc:558
 msgid "Open File"
 msgstr "Abrir Archivo"
 
-#: ../setedit/editmain.cc:574
+#: ../setedit/editmain.cc:573
 msgid "You must select an editor window for this operation"
 msgstr "Ud. debe seleccionar una ventana de esitor para esta operación"
 
-#: ../setedit/editmain.cc:709
+#: ../setedit/editmain.cc:708
 msgid "Export file as"
 msgstr "Exportar archivo como"
 
-#: ../setedit/editmain.cc:786
+#: ../setedit/editmain.cc:785
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Esta ventana no puede imprimirse, seleccione un editor"
 
-#: ../setedit/editmain.cc:944
+#: ../setedit/editmain.cc:943
 msgid "Couldn't find any matching help"
 msgstr "No pude encontrar ninguna ayuda"
 
-#: ../setedit/editmain.cc:1121
+#: ../setedit/editmain.cc:1120
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 "Estamos ejecutando una tarea en segundo plano. ¿Salir de todas maneras?"
 
-#: ../setedit/editmain.cc:1500
+#: ../setedit/editmain.cc:1574
 msgid "This line no longer exists"
 msgstr "Esta línea ya no existe"
 
-#: ../setedit/editmain.cc:1651
+#: ../setedit/editmain.cc:1725
 msgid "Error creating the difference, aborting"
 msgstr "Error al buscar los cambios, operación abortada"
 
-#: ../setedit/editmain.cc:1727
+#: ../setedit/editmain.cc:1801
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es más nueva, ¿la cargo?"
 
-#: ../setedit/editmain.cc:1951
+#: ../setedit/editmain.cc:2025
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
 "the file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, búsquelo en el paquete que instaló."
 
-#: ../setedit/editmain.cc:2086
+#: ../setedit/editmain.cc:2160
 #, c-format
 msgid ""
 "\n"
@@ -3108,7 +3112,7 @@ msgstr ""
 "\n"
 "¡Instalación errónea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:2087
+#: ../setedit/editmain.cc:2161
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -3116,7 +3120,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribución.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2091
+#: ../setedit/editmain.cc:2165
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3125,7 +3129,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2093
+#: ../setedit/editmain.cc:2167
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3134,11 +3138,11 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2098
+#: ../setedit/editmain.cc:2172
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:2107
+#: ../setedit/editmain.cc:2181
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3148,15 +3152,15 @@ msgstr ""
 "Ud. definió SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2136
+#: ../setedit/editmain.cc:2210
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2380
+#: ../setedit/editmain.cc:2454
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2381
+#: ../setedit/editmain.cc:2455
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3164,7 +3168,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2383
+#: ../setedit/editmain.cc:2457
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3181,11 +3185,11 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2387
+#: ../setedit/editmain.cc:2461
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2388
+#: ../setedit/editmain.cc:2462
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3199,7 +3203,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:2393
+#: ../setedit/editmain.cc:2467
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -3211,7 +3215,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:2397
+#: ../setedit/editmain.cc:2471
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3220,7 +3224,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:2399
+#: ../setedit/editmain.cc:2473
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3228,34 +3232,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2401
+#: ../setedit/editmain.cc:2475
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:2403
+#: ../setedit/editmain.cc:2477
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:2405
+#: ../setedit/editmain.cc:2479
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2406
+#: ../setedit/editmain.cc:2480
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2407
+#: ../setedit/editmain.cc:2481
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:2410
+#: ../setedit/editmain.cc:2484
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:2412
+#: ../setedit/editmain.cc:2486
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3264,7 +3268,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:2414
+#: ../setedit/editmain.cc:2488
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3272,7 +3276,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:2417
+#: ../setedit/editmain.cc:2491
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -3280,12 +3284,12 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:2419
+#: ../setedit/editmain.cc:2493
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:2420
+#: ../setedit/editmain.cc:2494
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
@@ -3976,6 +3980,90 @@ msgstr "Saltar a la última posición de ~d~eshacer"
 msgid "Insert ~n~ew line (don't move)"
 msgstr "Insertar una ~n~ueva línea (no mover)"
 
+#: ../setedit/editmenu.cc:327
+msgid "Pro~j~ect Window"
+msgstr "Ventana del ~P~royecto"
+
+#: ../setedit/editmenu.cc:328
+msgid "~M~essage Window"
+msgstr "Ventana de Me~n~sajes"
+
+#: ../setedit/editmenu.cc:329
+msgid "~E~dition Windows"
+msgstr "Ventanas de Ed~i~ción"
+
+#: ../setedit/editmenu.cc:330
+msgid "Window  ~2~"
+msgstr "Ventana  ~2~"
+
+#: ../setedit/editmenu.cc:331
+msgid "Window  ~3~"
+msgstr "Ventana  ~3~"
+
+#: ../setedit/editmenu.cc:332
+msgid "Window  ~4~"
+msgstr "Ventana  ~4~"
+
+#: ../setedit/editmenu.cc:333
+msgid "Window  ~5~"
+msgstr "Ventana  ~5~"
+
+#: ../setedit/editmenu.cc:334
+msgid "Window  ~6~"
+msgstr "Ventana  ~6~"
+
+#: ../setedit/editmenu.cc:335
+msgid "Window  ~7~"
+msgstr "Ventana  ~7~"
+
+#: ../setedit/editmenu.cc:336
+msgid "Window  ~8~"
+msgstr "Ventana  ~8~"
+
+#: ../setedit/editmenu.cc:337
+msgid "Window  ~9~"
+msgstr "Ventana  ~9~"
+
+#: ../setedit/editmenu.cc:338
+msgid "Window 10"
+msgstr "Ventana 10"
+
+#: ../setedit/editmenu.cc:339
+msgid "Window 11"
+msgstr "Ventana 11"
+
+#: ../setedit/editmenu.cc:340
+msgid "Window 12"
+msgstr "Ventana 12"
+
+#: ../setedit/editmenu.cc:341
+msgid "Window 13"
+msgstr "Ventana 13"
+
+#: ../setedit/editmenu.cc:342
+msgid "Window 14"
+msgstr "Ventana 14"
+
+#: ../setedit/editmenu.cc:343
+msgid "Window 15"
+msgstr "Ventana 15"
+
+#: ../setedit/editmenu.cc:344
+msgid "Window 16"
+msgstr "Ventana 16"
+
+#: ../setedit/editmenu.cc:345
+msgid "Window 17"
+msgstr "Ventana 17"
+
+#: ../setedit/editmenu.cc:346
+msgid "Window 18"
+msgstr "Ventana 18"
+
+#: ../setedit/editmenu.cc:347
+msgid "Window 19"
+msgstr "Ventana 19"
+
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"
 msgstr "Paleta del editor"
@@ -4004,90 +4092,102 @@ msgstr "~O~riginal"
 msgid "The hardware doesn't support this."
 msgstr "Este sistema no soporta esto."
 
-#: ../setedit/edkeys.cc:187
+#: ../setedit/edkeys.cc:191
 msgid "Key assignment"
 msgstr "Asignación de teclas"
 
-#: ../setedit/edkeys.cc:242
+#: ../setedit/edkeys.cc:247
 msgid "Accepting that you'll change the SET's editor behavior"
 msgstr "Aceptando ud. modificará el comportamiento del editor"
 
-#: ../setedit/edkeys.cc:258
+#: ../setedit/edkeys.cc:263
 msgid "Do you really want to discard the changes?"
 msgstr "¿Verdaderamente desea descartar los cambios?"
 
-#: ../setedit/edkeys.cc:271
+#: ../setedit/edkeys.cc:276
 msgid "Sequence of keys"
 msgstr "Secuencia de teclas"
 
-#: ../setedit/edkeys.cc:321
+#: ../setedit/edkeys.cc:299
+msgid "sLisp code"
+msgstr "Código sLisp"
+
+#: ../setedit/edkeys.cc:303
+msgid ""
+"Enter the sLisp code, it must start with (\n"
+"and end with )"
+msgstr ""
+"Ingrese el código sLisp, debe comenzar con (\n"
+"y terminar con )"
+
+#: ../setedit/edkeys.cc:366
 msgid "This key is already in use, do you want to replace it?"
 msgstr "Esta tecla ya está en uso, ¿desea reemplazarla?"
 
-#: ../setedit/edkeys.cc:333
+#: ../setedit/edkeys.cc:378
 msgid ""
 "This sequence is used for more than one key, delete these assignments first"
 msgstr ""
 "Esta secuencia es usada por más de una tecla, primero elimine esas "
 "asignaciones"
 
-#: ../setedit/edkeys.cc:353
+#: ../setedit/edkeys.cc:398
 msgid "Key selector"
 msgstr "Selector de teclas"
 
-#: ../setedit/edkeys.cc:356
+#: ../setedit/edkeys.cc:401
 msgid "Press a key"
 msgstr "Presione una tecla"
 
-#: ../setedit/edkeys.cc:403
+#: ../setedit/edkeys.cc:448
 msgid "Macros"
 msgstr "Macros"
 
-#: ../setedit/edkeys.cc:419
+#: ../setedit/edkeys.cc:464
 msgid "Commands"
 msgstr "Comandos"
 
-#: ../setedit/edkeys.cc:448
+#: ../setedit/edkeys.cc:493
 msgid "A command"
 msgstr "Un comando"
 
-#: ../setedit/edkeys.cc:498
+#: ../setedit/edkeys.cc:543
 msgid "Scan Viewer"
 msgstr "Visor de códigos scan"
 
-#: ../setedit/edkeys.cc:511
+#: ../setedit/edkeys.cc:556
 msgid "Alt keys settings"
 msgstr "Seteo de las teclas Alt"
 
-#: ../setedit/edkeys.cc:513
+#: ../setedit/edkeys.cc:558
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~eclas usadas por menúes, etc."
 
-#: ../setedit/edkeys.cc:514
+#: ../setedit/edkeys.cc:559
 msgid "~L~eft Alt"
 msgstr "Alt ~I~zquierdo"
 
-#: ../setedit/edkeys.cc:514
+#: ../setedit/edkeys.cc:559
 msgid "~R~ight Alt"
 msgstr "Alt ~D~erecho"
 
-#: ../setedit/edkeys.cc:515
+#: ../setedit/edkeys.cc:560
 msgid "~B~oth Alt"
 msgstr "Am~b~os Alt"
 
-#: ../setedit/edkeys.cc:537
+#: ../setedit/edkeys.cc:582
 msgid "Key Pad behavior"
 msgstr "Comportamiento del teclado numérico"
 
-#: ../setedit/edkeys.cc:539
+#: ../setedit/edkeys.cc:584
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: ../setedit/edkeys.cc:539
+#: ../setedit/edkeys.cc:584
 msgid "Use the ~B~IOS default"
 msgstr "Mantener el valor del ~B~IOS"
 
-#: ../setedit/edkeys.cc:540
+#: ../setedit/edkeys.cc:585
 msgid "Always interprete shift+arrow as ~m~ovement"
 msgstr "Siempre interpretar shift+flecha como ~m~ovimiento"
 
@@ -4748,24 +4848,24 @@ msgstr "No puedo crear el archivo de proyecto."
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 
-#: ../setedit/edprj.cc:939
+#: ../setedit/edprj.cc:941
 #, c-format
 msgid "Failed to open the file %s"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../setedit/edprj.cc:1156
+#: ../setedit/edprj.cc:1158
 msgid "Export project items"
 msgstr "Exportar los items del proyecto"
 
-#: ../setedit/edprj.cc:1193
+#: ../setedit/edprj.cc:1195
 msgid "Import project items"
 msgstr "Importar items al proyecto"
 
-#: ../setedit/edprj.cc:1201
+#: ../setedit/edprj.cc:1203
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1237
+#: ../setedit/edprj.cc:1239
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
@@ -4943,103 +5043,103 @@ msgstr "No crear archivos de respaldo para"
 msgid "Perl regular expression"
 msgstr "Expresión regular Perl"
 
-#: ../setedit/menuload.cc:63
+#: ../setedit/menuload.cc:65
 msgid "No error"
 msgstr "Sin errores"
 
-#: ../setedit/menuload.cc:64
+#: ../setedit/menuload.cc:66
 msgid "String expected"
 msgstr "Se esperaba una cadena de caracteres"
 
-#: ../setedit/menuload.cc:65
+#: ../setedit/menuload.cc:67
 msgid "String not closed"
 msgstr "Cadena de caracteres no cerrada"
 
-#: ../setedit/menuload.cc:66
+#: ../setedit/menuload.cc:68
 msgid "No key for SubMenu"
 msgstr "Falta la tecla a usar para el `SubMenu'"
 
-#: ../setedit/menuload.cc:67
+#: ../setedit/menuload.cc:69
 msgid "Wrong key name"
 msgstr "Nombre de tecla erróneo"
 
-#: ../setedit/menuload.cc:68
+#: ../setedit/menuload.cc:70
 msgid "Extra characters in line"
 msgstr "Caracteres extra en la línea"
 
-#: ../setedit/menuload.cc:69
+#: ../setedit/menuload.cc:71
 msgid "No number for a context"
 msgstr "Falta el número para el contexto"
 
-#: ../setedit/menuload.cc:70
+#: ../setedit/menuload.cc:72
 msgid "Syntax error"
 msgstr "Error de sintaxis"
 
-#: ../setedit/menuload.cc:71
+#: ../setedit/menuload.cc:73
 msgid "Empty submenu"
 msgstr "Submenú vacío"
 
-#: ../setedit/menuload.cc:72
+#: ../setedit/menuload.cc:74
 msgid "SubMenu not closed "
 msgstr "Sub-menú sin cerrar"
 
-#: ../setedit/menuload.cc:73
+#: ../setedit/menuload.cc:75
 msgid "Missing command value"
 msgstr "Falta el nombre del comando"
 
-#: ../setedit/menuload.cc:74
+#: ../setedit/menuload.cc:76
 msgid "Wrong command name"
 msgstr "Nombre de comando erróneo"
 
-#: ../setedit/menuload.cc:75
+#: ../setedit/menuload.cc:77
 msgid "No menu definition"
 msgstr "No se definió el menú"
 
-#: ../setedit/menuload.cc:76
+#: ../setedit/menuload.cc:78
 msgid "Wrong context name"
 msgstr "Nombre de contexto equivocado"
 
-#: ../setedit/menuload.cc:77
+#: ../setedit/menuload.cc:79
 msgid "Unfinished macro name"
 msgstr "Nombre de un macro no terminado"
 
-#: ../setedit/menuload.cc:78
+#: ../setedit/menuload.cc:80
 msgid "Unable to register macro"
 msgstr "No puedo resgistrar el macro"
 
-#: ../setedit/menuload.cc:79
+#: ../setedit/menuload.cc:81
 msgid "No status line definition"
 msgstr "No se definió la línea de estado"
 
-#: ../setedit/menuload.cc:80
+#: ../setedit/menuload.cc:82
 msgid "No `from' value in range"
 msgstr "Falta el valor desde donde comienza el rango"
 
-#: ../setedit/menuload.cc:81
+#: ../setedit/menuload.cc:83
 msgid "No `quantity' value in range"
 msgstr "Falta indicar el tamaño del rango"
 
-#: ../setedit/menuload.cc:82
+#: ../setedit/menuload.cc:84
 msgid "Number expected"
 msgstr "Se esperaba un número"
 
-#: ../setedit/menuload.cc:83
+#: ../setedit/menuload.cc:85
 msgid "Invalid range"
 msgstr "Rango inválido"
 
-#: ../setedit/menuload.cc:84
+#: ../setedit/menuload.cc:86
 msgid "StatusRange not closed"
 msgstr "No se ha cerrado el `StatusRange`"
 
-#: ../setedit/menuload.cc:85
+#: ../setedit/menuload.cc:87
 msgid "Empty status line"
 msgstr "Definición de la línea de estado vacía"
 
-#: ../setedit/menuload.cc:86
+#: ../setedit/menuload.cc:88
 msgid "Wrong help context name or number"
 msgstr "Número o nombre de contexto erróneo"
 
-#: ../setedit/menuload.cc:1066
+#: ../setedit/menuload.cc:1082
 #, c-format
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Error cargando el menú: (%d) %s en la línea %d de %s."
@@ -5207,11 +5307,11 @@ msgstr "Lista de Ventanas"
 msgid "You can't delete this file"
 msgstr "No puede ser borrado del disco"
 
-#: ../setedit/winlistd.cc:124
+#: ../setedit/winlistd.cc:134
 msgid "~G~o"
 msgstr "~I~r a"
 
-#: ../setedit/winlistd.cc:126
+#: ../setedit/winlistd.cc:136
 msgid "~O~pen"
 msgstr "~A~brir"
 
@@ -5242,6 +5342,10 @@ msgstr "Asi~g~nación"
 #: ../settvuti/tdiagaid.cc:187
 msgid "Command~s~"
 msgstr "Comando~s~"
+
+#: ../settvuti/tdiagaid.cc:188
+msgid "s~L~isp code"
+msgstr "Código s~L~isp"
 
 #~ msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
 #~ msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
@@ -5422,9 +5526,6 @@ msgstr "Comando~s~"
 
 #~ msgid "Dec"
 #~ msgstr "Dic"
-
-#~ msgid "Invalid character in input"
-#~ msgstr "Ingresó un caracter inválido"
 
 #~ msgid "<empty>"
 #~ msgstr "<vacío>"

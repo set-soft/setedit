@@ -20,11 +20,13 @@ public:
  ccIndex searchEditorName(char *name, int *cant);
  ccIndex searchEditorbyINode(char *name, int *cant);
  ccIndex searchEditorbyINode(stEditorId *id, char *name, int *cant);
+ TDskWin *searchByNumber(int num);
  void forEachEditor(void (*func)(TCEditWindow *));
  void saveEditors(void);
  void redrawEditors(void);
  void reIdEditors(void);
  void sortClosed(void);
+ int  GetMaxWindowNumber(void);
  int Editors;
  int Closed;
  int nonEditors;

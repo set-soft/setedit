@@ -31,168 +31,37 @@ INDEX:
 
 0. IMPORTANT:
 
+  Starting with "Iguazu II" release the editor changed the mechanism used to
+select a window. In previous versions the Alt+window_number was hardcoded in
+Turbo Vision library. Now this is no longer handled by TV. It have some
+advantages: you can change the key assignment and you can bind keys to select
+as many windows as you want. But it also means you have to have some binding
+in your menu files, if you have a custom menu file please consult the one
+shipped with the editor and copy the new entries in the Window menu.
   Changes in v@@v@@ (for more details read the change.log file):
-[taking last stable release (0.5.0) as reference]
-[40 new things and 25 fixes]
+[taking last stable release (0.5.2) as reference]
+[xx new things and xx fixes]
 
-New [40 things]:
+New [xx things]:
 
-+ Various [19]
-
-* Word completion. Based on tag files.
-* Jump to symbol (not only functions: variables, structures, etc.). Based on
-tag files.
-* Class browser. Based on tag files.
-* An option to control the size of newly opened files. When enabled the
-windows tries to avoid overlapping the message and project windows. It was
-suggested by Ivan Baldo.
-* Every 8 seconds or when we focuse a text window the editor checks if the
-copy on disk of the file we are editing changed. When the editor detects the
-copy on disk is newer asks for reload. But ...
-* If we also modified the copy in memory the editor asks for 4 options:
- 1) Load the file from disk, it discards changes in the copy we have on
- memory.
- 2) Don't do anything, the user must solve the problem.
- 3) Like 1 but the editor invokes diff -u and shows the output.
- 4) Like 2 but with diff like in 3.
-* Support to porperly display international messages even when changing the
-code page used by the editor. The messages are recoded on the fly.
-* Color scheme contributed by Juan Diego (bach) Ianelli. Is called "Dark JDI".
-* Options to export/import project items using a text file.
-* Now you can load a project located outside the current directory.
-* Holidays highlight to the calendar. Volunteers to support it for each
-country are wanted.
-* A dialog to dis/enable any advice dialog (also the Quit + delete warning).
-* Made the "Paste Emacs mode" more robust. If the first line is
-"#!..." the comment is pasted in the second. If the mode was already
-pasted by the editor it is first deleted. Suggested by Grzegorz.
-* Commands to allow configuring the editor to copy/paste the text in input
-lines to/from the OS clipboard.
-* Command called cmcJumpLastCursorPos. It works similar to cmcLastPosCur but
-uses a different mechanism. I assigned this command to ^Q-P that according to
-Alain is the WordStar command for it.
-* Command that inserts a new line without moving the cursor nor indenting.
-This is the old WordStar ^N command.
-* Option to avoid redirecting stdout when running an external program. Useful
-for interactive applications that uses stdout.
-* cmcCommentIndent/cmcCommentUnIndent now indents the current line if nothing
-is selected. Suggested by Thiago.
-* Commands to copy from the message window to the OS clipboard. Suggested by
-Thiago.
-
-+ Compilation [4]
-
-* The compilation process was simplified and BC++ now can be used to create
-Win32 version of the editor with the same facility than gcc.
-* Support for makeinfo 4.4 and newer (breaks the old API).
-* More detailed documentation for each target.
-* Scripts to generate RPMs.
-
-+ sLisp [8]
-
-* loop and exitloop sentences. From Bernd Becker.
-* Find command. Contributed by Bernd.
-* GetCursorX, GetCursorY and SetCursorXY commands.
-* ==, !=, ++ and -- operators.
-* (repeat times commands...) from code and ideas contributed by Bernd.
-* (= var value) as an alias for (setv ...
-* GetSyntaxLang command to find which syntax highlight is in use.
-* Two constants to be used by RunProgram. They are for the old option (use
-OS/user screen) and the new option to avoid redirecting stdout.
-
-+ Syntax highlight and pmacros [5]
-
-* More python keywords. Contributed by Grzegorz.
-* Emacs modes and shell names for CSS, Tcl, Java and Python. Suggested by
-Grzegorz.
-* SQL emacs modes and keywords. Suggested by Grzegorz.
-* Made more robust the "shell script" shl detection. It now supports:
-"#!.../env command" and "#!.../commandVERSION" (i.e. python2.2). From
-Grzegorz suggestions.
-* Errors parser for ANT Java Builder. Contributed by Grzegorz.
-
-+ Linux [1]
-
-* Support for UTF-8 consoles (i.e. RedHat 8.0 and 9.0).
-
-+ X11 [1]
-
-* The powered grep now paints the screen more often and shows the busy
-indicator.
-
-+ Cosmetic [2]
-
-* Calendar windows can be closed pressing ESC.
-* ManView window can be closed with ESC. Suggested by Thiago.
++ Various [x]
++ Compilation [x]
++ sLisp [x]
++ Syntax highlight and pmacros [x]
++ Linux [x]
++ X11 [x]
++ Cosmetic [x]
 
 
+Fixed [xx things]:
 
-Fixed [25 things]:
-
-+ Fatal  [2]
-
-* When a directory contained a project with a desktop file newer
-than the current setedit version and a default desktop file from a version
-older than 0.5.0 the editor rejected the new file but preloaded it doing
-a mess at the time of loading the old file.
-* When doing a search in/outside comments close to the first line you could
-get a GPF. Reported by Bernd Becker.
-
-+ Not fatal [12]
-
-* Memory leak in about dialog.
-* When jumping to a hit in the message window and the first column contained
-a matching [{( and the editor was configure to do match pair on the fly: the
-message quickly dissapear.
-* When typing at the end of the visible area the editor not always scrolled 8
-columns making it slow.
-* Tips code tried to jump to editor.inf which is no longer called like it.
-* Some problems when doing incremental searches in some list boxes.
-* Indentation problems in some pmacros.
-* "Intelligent indent" mode needed "Backspace unindents" enabled to work
-properly.
-* The list of "functions" supports things that aren't strcitly programming
-languages, like texinfo sources, for this reason the "space" key should't act
-as item selector (can be part of the name in an incremental search).
-* When switching from a window with some syntax highlight to another
-with a different shl and using Alt+F2 it was common to get a wrong result
-because the editor used the old shl.
-* The -m command line option was disabled.
-* Find whole words and out/inside comments didn't work together. Reported by
-Alain.
-* Fails in the "Export as HTML" command when some text was selected.
-
-+ Compilation [1]
-
-* Issues with newer gcc 3.x (upto 3.3) versions and BC++ 5.6 (CBuilder 6).
-
-+ sLisp [1]
-
-* The RunProgram command was affected by the options in the configuration
-dialog.
-
-+ Linux [1]
-
-* When running an external program and using the "OS screen" the editor made
-a complete mess. Only in console.
-
-+ X11 [1]
-
-* Problems using the mouse in InfView windows.
-
-+ Cosmetic [7]
-
-* The main documentation was reviewed and a lot of errors fixed.
-* Color names now are coherent, all start with a capital letter.
-* Shortcut collision between Copy/paste to/from OS clipboard and file
-clipboard options.
-* After loading a file from a desktop file with column cursor enabled
-it wasn't visible until the cursor was moved.
-* When no project is available now the "Powered Grep" avoids using
-"search in projects" as default.
-* Now when you "Quit" and the warning dialog pops up you can press
-Escape to abort the process. Suggested by Alex Lozano.
-* + and - should change month in calendar.
++ Fatal  [x]
++ Not fatal [x]
++ Compilation [x]
++ sLisp [x]
++ Linux [x]
++ X11 [x]
++ Cosmetic [x]
 
 
   For information about older releases and more read the change.log file.

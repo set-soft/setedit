@@ -22,7 +22,7 @@ $TVCommandLine=0;
 #GetCache() unless (-M 'config.pl' < -M 'configure.cache');
 GetVersion('');
 
-$TVVersionNeeded='2.0.2';
+$TVVersionNeeded='2.0.3';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';

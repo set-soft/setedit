@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TDskWinEditor : public TDskWin
 {
@@ -11,6 +11,7 @@ public:
  int  DeleteAction(ccIndex i, Boolean fromDiskToo=False);
  char *GetText(char *dest, short maxLen);
  int  Compare(void *p,int t) { return (t==dktEditor) && (p==edw); };
+ int  GetNumber();
 
  TCEditWindow *edw;
  int number;

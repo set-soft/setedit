@@ -95,7 +95,6 @@ static void PrintEditor(void);
 static void ExportAsHTML(void);
 int  AskForClosedResume(EditorResume *r,char *fileName);
 extern int  AskForProjectResume(EditorResume *r,char *fileName);
-void BringListOfWindows(void);
 void InitEditorSignals(char aStrategy, const char *prgName, const char *errFile);
 void ShowMenuLoadError(void);
 void UnLoadTVMenu(void);
@@ -1222,6 +1221,36 @@ void TSetEditorApp::handleEvent( TEvent& event )
               AdviceManager();
               break;
 
+         case cmeSelWinPrj:
+              SelectWindowNumber(-dktPrj);
+              break;
+
+         case cmeSelWinMessage:
+              SelectWindowNumber(-dktMessage);
+              break;
+
+         case cmeSelWindow1:
+         case cmeSelWindow2:
+         case cmeSelWindow3:
+         case cmeSelWindow4:
+         case cmeSelWindow5:
+         case cmeSelWindow6:
+         case cmeSelWindow7:
+         case cmeSelWindow8:
+         case cmeSelWindow9:
+         case cmeSelWindow10:
+         case cmeSelWindow11:
+         case cmeSelWindow12:
+         case cmeSelWindow13:
+         case cmeSelWindow14:
+         case cmeSelWindow15:
+         case cmeSelWindow16:
+         case cmeSelWindow17:
+         case cmeSelWindow18:
+         case cmeSelWindow19:
+              SelectWindowNumber(event.message.command-cmeSelWindow1+1);
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)
@@ -1419,6 +1448,29 @@ int SearchInHelper(int type, void *p)
  return TSetEditorApp::edHelper->search(p,type)>=0;
 }
 
+/*Boolean View2WindowNumber(void *view, int &number)
+{
+ ccIndex pos=TSetEditorApp::edHelper->searchByView(view);
+ if (pos==-1)
+    return False;
+ number=((TDskWinClosed *)TSetEditorApp::edHelper->at(pos))->GetNumber();
+ return True;
+}*/
+
+/**[txh]********************************************************************
+
+  Description:
+  Used to know the biggest number of editor window
+  
+  Return: The biggest number or 0 if no editors.
+  
+***************************************************************************/
+
+int GetMaxWindowNumber()
+{
+ return TSetEditorApp::edHelper->GetMaxWindowNumber();
+}
+
 void AddNonEditorToHelper(TDskWin *p)
 {
  if (p)
@@ -1436,6 +1488,28 @@ void EdPrintName(void *p, void *f)
     fprintf((FILE *)f," \"%s\" ",((TDskWinEditor *)p)->edw->editor->fileName);
     NamesPrinted++;
    }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Selects the window that matchs the provided number. The number can be
+negative indicating a type of DskWin object, in this case the first match
+is returned.
+  
+  Return: !=0 if the window was selected.
+  
+***************************************************************************/
+
+int SelectWindowNumber(int number)
+{
+ TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
+ if (p)
+   {
+    p->GoAction(0);
+    FinishFocusChange();
+   }
+ return p!=0;
 }
 
 /**[txh]********************************************************************
@@ -2559,6 +2633,8 @@ void InitPCRELibrary()
 int main(int argc, char *argv[])
 {
  TSetEditorApp::oldCPCallBack=TVCodePage::SetCallBack(TSetEditorApp::cpCallBack);
+ // Avoid handling Alt+N for window selection in TV core.
+ TProgram::doNotHandleAltNumber=1;
  
  ParseCommandLine(argc,argv);
  CheckIfCurDirValid();

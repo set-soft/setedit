@@ -114,7 +114,7 @@ int isAMacroInMenu(unsigned command)
  else
    target=((TCEditWindow *)p)->editor;
 
- SLPSearchMacro(target,s);
+ SLPSearchMacro(target,s,False);
  return 1;
 }
 

@@ -877,6 +877,7 @@ void OpenProject(char *name, int preLoad)
     editorApp->enableCommand(cmeImportPrj);
     editorApp->enableCommand(cmeExportPrj);
     editorApp->enableCommand(cmeSDG);
+    editorApp->enableCommand(cmeSelWinPrj);
    }
  else
     prjWin=NULL;
@@ -890,6 +891,7 @@ void CloseProject(int openDesktop)
  editorApp->disableCommand(cmeImportPrj);
  editorApp->disableCommand(cmeExportPrj);
  editorApp->disableCommand(cmeSDG);
+ editorApp->disableCommand(cmeSelWinPrj);
  if (PrjExists())
    {
     // Save the actual state

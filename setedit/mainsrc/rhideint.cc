@@ -205,3 +205,34 @@ int GiveAdvice (int)
 {
   return 0;
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Selects the window that matchs the provided number. The number can be
+negative indicating a type of DskWin object, in this case the first match
+is returned.
+  
+  Return: !=0 if the window was selected.
+  
+***************************************************************************/
+
+int SelectWindowNumber(int number)
+{
+ return 0;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Used to know the biggest number of editor window
+  
+  Return: The biggest number or 0 if no editors.
+  
+***************************************************************************/
+
+int GetMaxWindowNumber()
+{
+ return 0;
+}
+

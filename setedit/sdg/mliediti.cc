@@ -149,7 +149,7 @@ int ReRunLastChooseLispEditor(void)
  return InterpretLispEditor(m->start)==NULL ? SLP_ERROR : SLP_OK;
 }
 
-int MLIEdSeachAndRunCom(char *name)
+int MLIEdSeachAndRunCom(char *name, Boolean verbose)
 {
  if (!okInit)
     return SLP_NO_INIT;
@@ -161,7 +161,7 @@ int MLIEdSeachAndRunCom(char *name)
     {
      MLIMacro *m=(MLIMacro *)(Col->at(i));
      if (strcmp(m->Name,name)==0)
-        return InterpretLispEditor(m->start)==NULL ? SLP_ERROR : SLP_OK;
+        return InterpretLispEditor(m->start,verbose)==NULL ? SLP_ERROR : SLP_OK;
     }
  return SLP_NO_CHOOSE;
 }

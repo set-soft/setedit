@@ -110,6 +110,16 @@ void TListWindowsDiag::handleEvent(TEvent &event)
    }
 }
 
+void FinishFocusChange()
+{
+ if (focusChanged)
+   {
+    setFocusTo->select();
+    setFocusTo->show();
+    TProgram::deskTop->unlock();
+   }
+}
+
 void BringListOfWindows(void)
 {
  TRect r=TApplication::deskTop->getExtent();
@@ -148,10 +158,6 @@ void BringListOfWindows(void)
  while (i==cmDelete || i==cmDelFile);
  delete d;
 
- if (focusChanged)
-   {
-    setFocusTo->select();
-    setFocusTo->show();
-    TProgram::deskTop->unlock();
-   }
+ FinishFocusChange();
 }
+

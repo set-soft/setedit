@@ -1925,7 +1925,7 @@ void TCEditor::handleKey(TEvent &event)
             break;
        case kbtIsMacro:
             lock();
-            SLPSearchMacro(this,node.d.macro);
+            SLPSearchMacro(this,node.d.macro,False);
             unlock();
             break;
        case kbtIsSeq:

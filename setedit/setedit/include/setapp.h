@@ -105,7 +105,28 @@ const int
   cmeTagsOps        = cmeBase+85,
   cmeHolidaysConf   = cmeBase+86,
   cmeSetModiCkOps   = cmeBase+87,
-  cmeAdviceDiagConf = cmeBase+88;
+  cmeAdviceDiagConf = cmeBase+88,
+  cmeSelWindow1     = cmeBase+89,
+  cmeSelWindow2     = cmeBase+90,
+  cmeSelWindow3     = cmeBase+91,
+  cmeSelWindow4     = cmeBase+92,
+  cmeSelWindow5     = cmeBase+93,
+  cmeSelWindow6     = cmeBase+94,
+  cmeSelWindow7     = cmeBase+95,
+  cmeSelWindow8     = cmeBase+96,
+  cmeSelWindow9     = cmeBase+97,
+  cmeSelWindow10    = cmeBase+98,
+  cmeSelWindow11    = cmeBase+99,
+  cmeSelWindow12    = cmeBase+100,
+  cmeSelWindow13    = cmeBase+101,
+  cmeSelWindow14    = cmeBase+102,
+  cmeSelWindow15    = cmeBase+103,
+  cmeSelWindow16    = cmeBase+104,
+  cmeSelWindow17    = cmeBase+105,
+  cmeSelWindow18    = cmeBase+106,
+  cmeSelWindow19    = cmeBase+107,
+  cmeSelWinPrj      = cmeBase+108,
+  cmeSelWinMessage  = cmeBase+109;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -371,6 +392,7 @@ extern void  ShowHelpTopic(char *file, char *node);
 extern void ShowTips(char *fileName, int forceDialog=0);
 extern int IsAnEditor(void *p);
 extern TCEditor *GetCurrentIfEditor();
+extern int SelectWindowNumber(int number);
 extern void HTMLAcc_Entry(Boolean compact);
 TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant=0, stEditorId *id=0);
 extern void ASCIIWindow();
@@ -378,6 +400,9 @@ extern void CalendarWindow();
 //extern void RemoveFromEditorsHelper(TView *p, int type);
 extern void AddNonEditorToHelper(TDskWin *p);
 extern unsigned doEditDialogLocal(int dialog, ...);
+extern void BringListOfWindows(void);
+extern void FinishFocusChange();
+extern int  GetMaxWindowNumber();
 
 extern char *TranslateCommandToMacro(unsigned command);
 extern int RegisterMacroCommand(char *name);

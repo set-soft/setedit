@@ -149,8 +149,8 @@ SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "To l~o~wer",  cmcSelRectToLower, kbUnknown
 EndSubMenu
 
-# English: ACDLNPRSTUZ
-# Spanish: ABDECLMRSUZ
+# English: ACDEJLMNPRSTUZ0123456789
+# Spanish: ABCDEILMNPRSUZ0123456789
 SubMenu: "~W~indows", kbAlW
  MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
  MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
@@ -161,6 +161,28 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
  MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
  MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
+ MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
+ MenuItemC: "~M~essage Window", cmeSelWinMessage
+ SubMenu: "~E~dition Windows", kbAlE
+   MenuItemC: "Window  ~2~", cmeSelWindow2, kbAl2, "Alt+2"
+   MenuItemC: "Window  ~3~", cmeSelWindow3, kbAl3, "Alt+3"
+   MenuItemC: "Window  ~4~", cmeSelWindow4, kbAl4, "Alt+4"
+   MenuItemC: "Window  ~5~", cmeSelWindow5, kbAl5, "Alt+5"
+   MenuItemC: "Window  ~6~", cmeSelWindow6, kbAl6, "Alt+6"
+   MenuItemC: "Window  ~7~", cmeSelWindow7, kbAl7, "Alt+7"
+   MenuItemC: "Window  ~8~", cmeSelWindow8, kbAl8, "Alt+8"
+   MenuItemC: "Window  ~9~", cmeSelWindow9, kbAl9, "Alt+9"
+   MenuItemC: "Window 10", cmeSelWindow10
+   MenuItemC: "Window 11", cmeSelWindow11
+   MenuItemC: "Window 12", cmeSelWindow12
+   MenuItemC: "Window 13", cmeSelWindow13
+   MenuItemC: "Window 14", cmeSelWindow14
+   MenuItemC: "Window 15", cmeSelWindow15
+   MenuItemC: "Window 16", cmeSelWindow16
+   MenuItemC: "Window 17", cmeSelWindow17
+   MenuItemC: "Window 18", cmeSelWindow18
+   MenuItemC: "Window 19", cmeSelWindow19
+ EndSubMenu
  MenuSeparator
  MenuItemC: "Sc~r~oll Up", cmcScrollUp, kbCtZ, "Ctrl+Z"
  MenuItemC: "Scroll ~D~own", cmcScrollDown, kbCtW, "Ctrl+W"

@@ -4758,6 +4758,25 @@ zero.
 @p{}
 
 @c --------------------------------------------------------------
+@subsection GetCurWindowNumber
+
+  (GetCurWindowNumber)
+@p{}
+
+  Returns the window number for the currently selected edition window.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetMaxWindowNumber
+
+  (GetMaxWindowNumber)
+@p{}
+
+  Returns the window number for the edition window with the biggest window
+number. The lowest number is two.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection getenv
 
   (getenv @var{name})
@@ -4999,6 +5018,36 @@ filter in the @file{macros.slp} file.
   Returns 1 if some text is selected and the selection is visible.
 @p{}
    
+@c --------------------------------------------------------------
+@subsection SelectWindowNumber
+
+  (SelectWindowNumber @var{number})
+@p{}
+
+  Selects the indicated window. Positive numbers are reserved for edition
+windows, except window number one that's the project window. Negative numbers
+are used for special windows. The function returns a boolean value indicating
+if the desired window was selected.
+@p{}
+
+  When you select an edition window it becomes the target of all sLisp
+operations.
+@p{}
+
+  The available constants for special windows are:
+@p{}
+
+@itemize @bullet
+ @item edfWinASCII
+ @item edfWinCalendar
+ @item edfWinClipboard
+ @item edfWinHelp
+ @item edfWinMP3
+ @item edfWinMan
+ @item edfWinMessage
+ @item edfWinPrj
+@end itemize
+
 @c --------------------------------------------------------------
 @subsection SendCommands
 

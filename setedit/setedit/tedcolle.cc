@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]**********************************************************************
 
@@ -643,7 +643,7 @@ void TEditorCollection::removeWindow(void *p)
   Searchs an editor by name. For more details @x{::searchEditorbyINode}.
 
   Return:
-  The index in the collection or -1 is not there.
+  The index in the collection or -1 if not there.
 
   Example:
 
@@ -697,6 +697,19 @@ ccIndex TEditorCollection::searchEditorName(char *name, int *cant)
  if (cant)
     *cant=Cant;
  return indFound;
+}
+
+static
+Boolean compareNumber(void *item, void *arg)
+{
+ TDskWin *p=(TDskWin *)item;
+ int number=*((int *)arg);
+ return p->GetNumber()==number ? True : False;
+}
+
+TDskWin *TEditorCollection::searchByNumber(int num)
+{
+ return (TDskWin *)firstThat(compareNumber,&num);
 }
 
 /**[txh]**********************************************************************
@@ -867,6 +880,24 @@ the TDskWin object pointed by item.
 void TEditorCollection::freeItem(void *item)
 {
  delete (TDskWin *)item;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Used to know the biggest number of editor window
+  
+  Return: The biggest number or 0 if no editors.
+  
+***************************************************************************/
+
+int TEditorCollection::GetMaxWindowNumber()
+{
+ if (!Editors)
+    return 0;
+ TDskWinEditor *st=(TDskWinEditor *)at(Editors-1);
+
+ return st->number;
 }
 
 int  TEditorCollection::maxClosedToRemember;

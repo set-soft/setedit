@@ -37,6 +37,7 @@
 class TSOSListBox;
 #include <edmsg.h>
 #define Uses_SETAppDialogs
+#define Uses_SETAppVarious
 #include <setapp.h>
 #include <completi.h>
 #include <edhists.h>
@@ -414,6 +415,31 @@ const char *TMLIEditor::GetSyntaxLang()
  return Editor->SyntaxHL!=shlNoSyntax ? Editor->strC.Name : "";
 }
 
+int TMLIEditor::SelectWindowNumber(int num)
+{
+ int ret=::SelectWindowNumber(num);
+ if (ret)
+   {// Change the sLisp target editor if that's an editor
+    TCEditor *p=GetCurrentIfEditor();
+    if (p)
+      {
+       Editor->update(ufView);
+       Editor=p;
+      }
+   }
+ return ret;
+}
+
+int TMLIEditor::GetCurWindowNumber()
+{
+ return ((TWindow *)Editor->owner)->number;
+}
+
+int TMLIEditor::GetMaxWindowNumber()
+{
+ return ::GetMaxWindowNumber();
+}
+
 #define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
                              CLY_snprintf(buf,256,aux,b); \
                              EdShowMessage(buf); \
@@ -476,17 +502,17 @@ void SLPInterfaceRunSelection(TCEditor *ed)
       {
        memcpy(s,ed->buffer+ed->selStart,l);
        s[l]=0;
-       SLPInterfaceRunString(ed,s);
+       SLPInterfaceRunString(ed,s,True);
        free(s);
       }
    }
 }
 
-int SLPInterfaceRunString(TCEditor *ed, char *code)
+int SLPInterfaceRunString(TCEditor *ed, char *code, Boolean verbose)
 {
  int ret=SLP_OK;
  TMLIEditor::Editor=ed;
- if (!InterpretLispEditor(code,True))
+ if (!InterpretLispEditor(code,verbose))
    {
     SLPShowError();
     ret=SLP_ERROR;
@@ -512,7 +538,7 @@ void SLPInterfaceRunAsk(TCEditor *ed, char *code)
  if (execDialog(d,b)!=cmCancel)
    {
     b[maxRunAskCode-1]=0;
-    SLPInterfaceRunString(ed,b);
+    SLPInterfaceRunString(ed,b,True);
    }
 }
 
@@ -607,18 +633,18 @@ ccIndex SLPChoose(TNoCaseStringCollection *Col)
  return br.selection;
 }
 
-int SLPSearchMacro(TCEditor *ed,char *name)
+int SLPSearchMacro(TCEditor *ed, char *name, Boolean verbose)
 {
  if (!name)
     return SLP_NO_CHOOSE;
 
  // Macro names can't start with (, it must be a piece of code
  if (*name=='(')
-    return SLPInterfaceRunString(ed,name);
+    return SLPInterfaceRunString(ed,name,verbose);
 
  TMLIEditor::Editor=ed;
 
- int ret=MLIEdSeachAndRunCom(name);
+ int ret=MLIEdSeachAndRunCom(name,verbose);
  if (ret==SLP_ERROR)
     SLPShowError();
 

@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=27;
+const int MLIEditorCommands=30;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -53,6 +53,9 @@ public:
  static int  GetCursorY();
  static void SetCursorXY(int x, int y);
  static const char *GetSyntaxLang();
+ static int  SelectWindowNumber(int num);
+ static int  GetCurWindowNumber();
+ static int  GetMaxWindowNumber();
 
  static TCEditor *Editor;
 

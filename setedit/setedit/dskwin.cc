@@ -175,6 +175,21 @@ int TDskWin::DeleteAction(ccIndex, Boolean)
  return 0;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Used to know the number of the window associated with it.
+  
+  Return: The number of the window or a negative value if it doesn't have
+a number. The negative value is -type.
+  
+***************************************************************************/
+
+int TDskWin::GetNumber()
+{
+ return -type;
+}
+
 /**[txh]*******
 
   Function:  Compare

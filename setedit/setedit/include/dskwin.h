@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TDskWin : public TStreamable
 {
@@ -14,6 +14,7 @@ public:
  virtual int  DeleteAction(ccIndex i, Boolean fromDiskToo);
  virtual int  Compare(void *,int) = 0;
  virtual char *GetText(char *dest, short maxLen) = 0;
+ virtual int  GetNumber();
  char *GetText(char *dest, char *s, short maxLen);
 };
 

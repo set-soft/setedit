@@ -10,7 +10,7 @@ extern char *InterpretLispEditor(char *s, Boolean print=False);
 extern int   ChooseAndRunLispEditor(void);
 extern int   InterpretLispEditorFile(char *s);
 extern int   ReRunLastChooseLispEditor(void);
-extern int   MLIEdSeachAndRunCom(char *name);
+extern int   MLIEdSeachAndRunCom(char *name, Boolean verbose);
 extern TNoCaseStringCollection *GetMacrosList(void);
 extern int   MLIEdIsolateCode(char *start, char *&end);
 

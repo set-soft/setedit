@@ -83,3 +83,8 @@ TDskWinEditor::~TDskWinEditor()
  edw=0;*/
 }
 
+int TDskWinEditor::GetNumber()
+{
+ return number;
+}
+

@@ -750,6 +750,30 @@ DecFun(MLIGetSyntaxLang)
  MLIRetString(TMLIEditor::GetSyntaxLang());
 }
 
+DecFun(MLISelectWindowNumber)
+{
+ LocVarInt(n);
+
+ CheckNumParams(cant<1);
+ GetInteger(0,n);
+ MLIRetInt(TMLIEditor::SelectWindowNumber(n->val));
+
+CleanUp:
+ destroyFloatVar(n);
+}
+
+DecFun(MLIGetCurWindowNumber)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(TMLIEditor::GetCurWindowNumber());
+}
+
+DecFun(MLIGetMaxWindowNumber)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(TMLIEditor::GetMaxWindowNumber());
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -779,7 +803,10 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "GetSyntaxLang",
  "FindAgain",
  "ReplaceString",
- "ReplaceAgain"
+ "ReplaceAgain",
+ "SelectWindowNumber",
+ "GetCurWindowNumber",
+ "GetMaxWindowNumber"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -811,7 +838,10 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetSyntaxLang,
  MLIFindAgain,
  MLIReplaceString,
- MLIReplaceAgain
+ MLIReplaceAgain,
+ MLISelectWindowNumber,
+ MLIGetCurWindowNumber,
+ MLIGetMaxWindowNumber
 };
 
 
