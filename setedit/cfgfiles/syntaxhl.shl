@@ -363,13 +363,13 @@ Escape=\
 Case=1
 HexMarker=0x
 Symbols1=()
-Symbols2=+-&|~
+Symbols2=+-&|~=!
 Keywords=InsertText,SendCommands,SendCommSel,defmacro,eval,CR,RunProgram,not
 Keywords=WhichEditor,GetSelection,left,right,substr,sstr,gstr,setv,strxlt,if
 Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
 Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
 Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
-Keywords=cond,ShowInMessageWindow,SelectionExists,tostr
+Keywords=cond,ShowInMessageWindow,SelectionExists,tostr,loop,exitloop
 End
 
 # ---------------- Menu File ------------------

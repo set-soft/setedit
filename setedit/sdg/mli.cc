@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -20,6 +20,7 @@ code is inflated in some cases ... I moved mlivar.cc to this code.
 #define Uses_stdlib
 #define Uses_string
 #define Uses_stdio
+#define Uses_snprintf
 
 #define Uses_TLispVariableCol
 #define Uses_TLispBaseVars
@@ -550,6 +551,39 @@ CleanUp:
  return;
 }
 
+// It just evaluates the parameters until an exitloop is executed.
+DecFun(MLIBaseLoop)
+{
+ int i;
+ LocVar(Variable);
+ CheckNumParams(cant<1);
+
+ Boolean ExitLoop=o->ExitLoop;
+ o->ExitLoop=False;
+
+ while (!o->ExitLoop)
+   {
+    for (i=0; i<cant; i++)
+       {
+        GetVar(i,Variable);
+        if (o->ExitLoop)
+           MLIRetObj(Variable);
+        else
+           destroyFloatVar(Variable);
+       }
+   }
+CleanUp:
+ o->ExitLoop=ExitLoop;
+ return;
+}
+
+DecFun(MLIBaseExitLoop)
+{
+ CheckNumParams(cant!=0);
+ o->ExitLoop=True;
+ return;
+}
+
 static void AddStrings(TLispString *str,TMLIBase *o,int start ,int cant, int startret)
 {
  DynStrCatStruct cat;
@@ -567,7 +601,7 @@ static void AddStrings(TLispString *str,TMLIBase *o,int start ,int cant, int sta
              DynStrCat(&cat,((TLispString *)Variable)->str,((TLispString *)Variable)->len);
              break;
         case MLIGInteger:
-             l=sprintf(b,"%d",((TLispInteger *)Variable)->val);
+             l=CLY_snprintf(b,32,"%d",((TLispInteger *)Variable)->val);
              DynStrCat(&cat,b,l);
              break;
         default:
@@ -846,6 +880,74 @@ CleanUp:
  destroyFloatVar(File);
 }
 
+static
+void MLIBaseEqualFunc(TMLIBase *o,int start ,int cant, int type)
+{
+ int t1,t2,ret;
+ LocVar(v1);
+ LocVar(v2);
+
+ // Right now we don't suport (== v1 v2 v3 ...)
+ CheckNumParams(cant!=2);
+ GetVar(0,v1);
+ GetVar(1,v2);
+ t1=GroupTypeOf(v1);
+ t2=GroupTypeOf(v2);
+ if (t1==MLIGString && t2==MLIGString)
+   {
+    TLispString *s1=(TLispString *)v1;
+    TLispString *s2=(TLispString *)v2;
+    ret=!strcmp(s1->str,s2->str);
+    MLIRetInt(type ? ret : !ret);
+   }
+ else if (t1==MLIGInteger && t2==MLIGInteger)
+   {
+    TLispInteger *i1=(TLispInteger *)v1;
+    TLispInteger *i2=(TLispInteger *)v2;
+    ret=(i1->val==i2->val);
+    MLIRetInt(type ? ret : !ret);
+   }
+ else
+   {// Right now we don't support mixed types
+    o->Error=MLIUndefOp;
+    MLIRetNULL();
+   }
+
+CleanUp:
+ destroyFloatVar(v1);
+ destroyFloatVar(v2);
+}
+
+DecFun(MLIBaseEqual)
+{
+ MLIBaseEqualFunc(o,start,cant,1);
+}
+
+DecFun(MLIBaseNotEqual)
+{
+ MLIBaseEqualFunc(o,start,cant,0);
+}
+
+DecFun(MLIBaseInc)
+{
+ LocVarInt(Val);
+ CheckNumParams(cant!=1);
+ GetInteger(0,Val);
+ MLIRetInt(Val->val+1);
+CleanUp:
+ destroyFloatVar(Val);
+}
+
+DecFun(MLIBaseDec)
+{
+ LocVarInt(Val);
+ CheckNumParams(cant!=1);
+ GetInteger(0,Val);
+ MLIRetInt(Val->val-1);
+CleanUp:
+ destroyFloatVar(Val);
+}
+
 // (tostr <object>)
 // converts a Lisp object into its "printed representation"
 DecFun(MLIBaseToStr)
@@ -892,7 +994,9 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "length",
  "progn",
  "cond",
- "tostr"/*,
+ "tostr",
+ "loop",
+ "exitloop"/*,
  "for"*/
 };
 
@@ -918,7 +1022,9 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseLength,
  MLIBaseEval,
  MLIBaseCond,
- MLIBaseToStr/*,
+ MLIBaseToStr,
+ MLIBaseLoop,
+ MLIBaseExitLoop/*,
  MLIBaseFor*/
 };
 
@@ -928,7 +1034,11 @@ char *TMLIBase::sNames[MLIBaseSymbols]=
  "&",
  "|",
  "-",
- "~"
+ "~",
+ "==",
+ "!=",
+ "++",
+ "--"
 };
 
 Command TMLIBase::sComms[MLIBaseSymbols]=
@@ -937,7 +1047,11 @@ Command TMLIBase::sComms[MLIBaseSymbols]=
  MLIBaseAndB,
  MLIBaseOrB,
  MLIBaseSub,
- MLIBaseNotB
+ MLIBaseNotB,
+ MLIBaseEqual,
+ MLIBaseNotEqual,
+ MLIBaseInc,
+ MLIBaseDec
 };
 
 TLispConstString CRConstant("\r\n",2,0,2);
@@ -961,6 +1075,7 @@ TMLIBase::TMLIBase(TMLIArrayBase *a, TLispVariableCol *v, FILE *out)
  EndCode=0;
  Vars=v;
  ErrorReported=1;
+ ExitLoop=False;
 }
 
 TMLIBase::~TMLIBase()

@@ -1,10 +1,10 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIBase) && !defined(__TMLIBase__)
 #define __TMLIBase__
-const int MLIBaseCommands=21;
+const int MLIBaseCommands=23;
 const int MLIBaseConstants=1;
-const int MLIBaseSymbols=5;
+const int MLIBaseSymbols=9;
 
 class TMLIBase
 {
@@ -33,6 +33,7 @@ public:
  TLispVariableCol *Vars;
  char *EndCode;
  char *Code;
+ Boolean ExitLoop;  // Used to indicate we found an exitloop sentence
 
 private:
  char *CopyCodeError();

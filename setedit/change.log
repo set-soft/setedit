@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.400  2003/06/05 20:12:29  set
+* Added: Menu entries for cmcLastPosCur.
+* Added: Documentation for both commands (new one and the older).
+* Fixed: Need of flushLine in both commands to avoid messing the line under
+edition.
+* Updated: Spanish translation.
+
 Revision 1.399  2003/06/05 20:11:20  set
 * Fixed: When genimk fails it must delete the partially generated .imk and
 .umk to force a new generation after fixing the problems.

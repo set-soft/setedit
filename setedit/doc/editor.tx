@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.2
-@set update-date 4 June 2003
+@set update-date 9 June 2003
 @set update-month June 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -4842,7 +4842,7 @@ returned and the rest isn't evaluated.
 @paragraph{}
 
 @c --------------------------------------------------------------
-@subsection Operator &
+@subsection Operator & (bitwise and)
 
   (& @var{exp1} @var{exp2} ...)
 @paragraph{}
@@ -4879,6 +4879,64 @@ expression. If all conditions are false it returns 0.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection Operator -- (decrement)
+
+ (-- @var{expression})
+@p{}
+
+  Returns the integer expression decremented by one. Currently only
+integer values are supported.
+@p{}
+
+  (-- 8)@*
+  Returns 7.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection Operator != (different)
+
+  (!= @var{exp1} @var{exp2})
+@p{}
+
+  Returns  zero if both expressions represent the same value. Currently
+both expressions must be of the same type.
+@p{}
+
+  (== 1 2)@*
+  Returns 1
+@p{}
+
+  (== 2 (+ 1 1))@*
+  Returns 0
+@p{}
+
+  (== "Hello" "Hello")@*
+  Returns 0
+@p{}
+
+@c --------------------------------------------------------------
+@subsection Operator == (equal)
+
+  (== @var{exp1} @var{exp2})
+@p{}
+
+  Returns an integer different than zero if both expressions represent the
+same value. Currently both expressions must be of the same type.
+@p{}
+
+  (== 1 2)@*
+  Returns 0
+@p{}
+
+  (== 2 (+ 1 1))@*
+  Returns 1
+@p{}
+
+  (== "Hello" "Hello")@*
+  Returns 1
+@p{}
+
+@c --------------------------------------------------------------
 @subsection eval
 
   (eval @var{expression} ...)
@@ -4889,6 +4947,15 @@ Additionally you could write sLisp code in a string and then evaluate it. The
 expressions are evaluated from left to right, the last evaluated result is returned.
 @paragraph{}
 
+@c --------------------------------------------------------------
+@subsection exitloop
+
+  (exitloop )
+@p{}
+
+  Exits from a loop. @x{loop}.
+@p{}
+  
 @c --------------------------------------------------------------
 @subsection gstr
 
@@ -4929,6 +4996,20 @@ value is 0.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection Operator ++ (increment)
+
+ (++ @var{expression})
+@p{}
+
+  Returns the integer expression incremented by one. Currently only
+integer values are supported.
+@p{}
+
+  (++ 8)@*
+  Returns 9.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection left
 
   (left @var{string} @var{number})
@@ -4955,6 +5036,45 @@ value is 0.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection loop
+
+  (loop @var{expression} ...)
+@p{}
+
+  Evaluates the expressions until an @code{exitloop} command is found.
+@p{}
+
+  (setv "i" 0)@*
+  (loop@*
+   (InsertText (tostr i))@*
+   (if (== i 5) (exitloop))@*
+   (setv "i" (++ i))@*
+  )@*
+  Inserts "012345" text.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection Operator ~ (negated)
+
+  (~ @var{value})
+@paragraph{}
+
+  Returns the @var{value} negated (at bit level).
+@paragraph{}
+
+  (~ "hello")@*
+  Returns 0.
+@paragraph{}
+
+  (~ "")@*
+  Returns 0xFFFFFFFF.
+@paragraph{}
+
+  (~ 1)@*
+  Returns -2.
+@paragraph{}
+
+@c --------------------------------------------------------------
 @subsection not
 
   (not @var{value})
@@ -4976,27 +5096,6 @@ value is 0.
 @paragraph{}
 
 @c --------------------------------------------------------------
-@subsection Operator ~
-
-  (~ @var{value})
-@paragraph{}
-
-  Returns the @var{value} negated (at bit level).
-@paragraph{}
-
-  (~ "hello")@*
-  Returns 0.
-@paragraph{}
-
-  (~ "")@*
-  Returns 0xFFFFFFFF.
-@paragraph{}
-
-  (~ 1)@*
-  Returns -2.
-@paragraph{}
-
-@c --------------------------------------------------------------
 @subsection or
 
   (or @var{exp1} @var{exp2} ...)
@@ -5012,7 +5111,7 @@ non-zero and the rest isn't evaluated.
 @paragraph{}
 
 @c --------------------------------------------------------------
-@subsection Operator |
+@subsection Operator | (bitwise or)
 
   (| @var{exp1} @var{exp2} ...)
 @paragraph{}
@@ -5027,7 +5126,7 @@ the values isn't evaluated.
 @paragraph{}
 
 @c --------------------------------------------------------------
-@subsection Operator +
+@subsection Operator + (plus)
 
   (+ @var{value1} @var{value2} ...)
 @paragraph{}
@@ -5177,7 +5276,7 @@ returned. The first character is at 0.
 @paragraph{}
 
 @c --------------------------------------------------------------
-@subsection Operator -
+@subsection Operator - (substraction)
 
   (- @var{value1} @var{value2})
 @paragraph{}

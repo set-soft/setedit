@@ -360,4 +360,16 @@
 ;   (InsertText "    ")
 ;  )
 ; )
+;
+; (defmacro 'Test_Loop'
+;  (eval
+;   (setv "i" 0)
+;   (loop
+;    (InsertText (tostr i))
+;    (if (== i 5) (exitloop))
+;    (setv "i" (++ i))
+;   )
+;  )
+; )
+; 
 
