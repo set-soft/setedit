@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.370  2003/05/16 12:53:29  set
+* Fixed: Missing C++ lib for extrimk.cc and genimk.cc. Reported by Kevin
+Alm <kevinalm@shenessex.heartland.net>.
+
 Revision 1.369  2003/05/16 12:41:30  set
 * Modified: To ever include stdc++ as library in the worst case it will be
 listed twice.
