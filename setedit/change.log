@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.307  2003/04/28 13:53:33  set
+* Added: When adding a tag file to list now the editor asks if we want to
+add it using a relative path.
+* Modified: The dialog to select a tag file now uses "tags*".
+* Added: The list of selected tag files is stored in the desktop file.
+* Version 0.5.1
+
 Revision 1.306  2003/04/25 18:41:43  set
 * Fixed: When typing at the end of the visible area and a horizontal scroll
 is forced the editor have to draw the whole window. To minimize the impact

@@ -1308,8 +1308,8 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
     return False;
    }
  s >> deskTopVersion;
- if (deskTopVersion<0x300)
-   { // The desktop file is too old
+ if (deskTopVersion<0x300 || deskTopVersion>TCEDITOR_VERSION)
+   { // The desktop file is too old or new
     return False;
    }
  if (deskTopVersion<0x500)
