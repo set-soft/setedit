@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.366  2003/05/14 19:54:09  set
+* Added: A check for makeinfo 4.5. It doesn't work and generates
+compilation problems. So now if that's detected the configuration assumes
+makeinfo isn't usable.
+
 Revision 1.365  2003/05/14 16:23:19  set
 * Modified: Moved the libset target to makes/Makefile so it is cleaner and
 includes the "makes" dependency.

@@ -23,6 +23,8 @@
 
 require "miscperl.pl";
 
+#$simulate=1;
+
 $estado=0;
 $LogMessage='';
 $toPatch;
@@ -91,6 +93,7 @@ while ($a=<>)
         {
          $toSkip=$3-$2+1;
          print FIL $a;
+         $firstLine=1;
         }
       elsif (!$toSkip)
         {
@@ -98,7 +101,7 @@ while ($a=<>)
            {
             $estado=0;
             close(FIL);
-            $ret=system("patch -p0 -i /tmp/parche");
+            $ret=RunCommand("patch -p0 -i /tmp/parche");
             print "Patch result: $ret\n";
             if ($ret) { $errors++; }
             $applied++;
@@ -113,6 +116,20 @@ while ($a=<>)
         {
          print FIL $a;
          $toSkip--;
+         if ($firstLine)
+           {
+            $firstLine=0;
+            if ($a eq "\n")
+              {
+               $estado=0;
+               close(FIL);
+               $ret=RunCommand("patch -p0 -i /tmp/parche");
+               print "Patch result: $ret\n";
+               if ($ret) { $errors++; }
+               $applied++;
+               $files.=$toPatch.' ';
+              }
+           }
         }
      }
    elsif ($a=~/^Index\: (.*)/)
@@ -156,17 +173,30 @@ if (!$errors && $applied)
    print "Successful process, doing a check-in\n";
    if ($newFiles)
      {
-      system("cvs add $newFiles");
+      RunCommand("cvs add $newFiles");
      }
    $a=cat('change.log');
    $a=~s/\$Log\: (.*),v \$/\$Log\: $1,v \$\./;
-   replace('change.log',$a);
-   system("cvs ci -F /tmp/mensaje $files $newFiles");
+   replace('change.log',$a) unless $simulate;
+   RunCommand("cvs ci -F /tmp/mensaje $files $newFiles");
    unlink('/tmp/mensaje','/tmp/parche');
   }
 elsif ($applied)
   {
    print "Errors while patching, reverting patched files\n";
-   system("rm $files");
-   system("cvs update $files");
+   RunCommand("rm $files");
+   RunCommand("cvs update $files");
   }
+
+sub RunCommand
+{
+ my ($command)=@_;
+
+ if ($simulate)
+   {
+    print "Ejecutes: $command\n";
+    return 0;
+   }
+ return system($command);
+}
+
