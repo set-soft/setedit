@@ -1,0 +1,238 @@
+@c  set.htm: -*- Texinfo -*-
+
+@c -------------------------------------------------------------------------
+@c
+@c Macros for making SET's documentation in HTML format.
+@c
+@c Author: Salvador Eduardo Tropea (salvador@inti.gov.ar)
+@c         July 1997.
+@c
+@c It includes the rhidemac.txi file from Robert H”hne, Eli Zaretskii and
+@c Brian J. Fox.
+@c
+@c -------------------------------------------------------------------------
+
+@include rhidemac.htm
+
+@macro table4{title1,title2,title3,title4}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@set table-title4 \title4\
+@set table-set-center
+<center><table border cellpadding=5 width=80%>@*
+<tr><th>\title1\</th><th>\title2\</th><th>\title3\</th><th>\title4\</th></tr>@*
+@end macro
+
+@macro table3{title1,title2,title3}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@clear table-title4
+@set table-set-center
+<center><table border cellpadding=5 width=80%>@*
+<tr><th>\title1\</th><th>\title2\</th><th>\title3\</th></tr>@*
+@end macro
+
+@macro table2{title1,title2}
+@set table-title2 \title2\
+@clear table-title3
+@clear table-title4
+@set table-set-center
+<center><table border cellpadding=5 width=80%>@*
+<tr><th>\title1\</th><th>\title2\</th></tr>@*
+@end macro
+
+@macro table2_auto{title1,title2}
+@set table-title2 \title2\
+@clear table-title3
+@clear table-title4
+@set table-set-center
+<center><table border cellpadding=5>@*
+<tr><th>\title1\</th><th>\title2\</th></tr>@*
+@end macro
+
+@macro titem_{c1,c2,c3,c4}
+@ifset table-set-center
+<tr align=center>
+@end ifset
+@ifclear table-set-center
+<tr>
+@end ifclear
+<td>\c1\</td><td>\c2\</td>
+@ifset table-title3
+<td>\c3\</td>
+@ifset table-title4
+<td>\c4\</td>
+@end ifset
+@end ifset
+</tr>@*
+@end macro
+
+@macro endtable_{}
+</table></center><p></p>@*
+@end macro
+
+@unmacro copyright
+@macro copyright{}
+&copy;
+@end macro
+
+@set aacute &aacute;
+@set eacute &eacute;
+@set iacute &iacute;
+@set oacute &oacute;
+@set uacute &uacute;
+@set ntilde &ntilde;
+@set Ntilde &Ntilde;
+@macro exclamdown
+&iexcl;
+@end macro
+@macro questiondown
+&iquest;
+@end macro
+@set auml &auml;
+@set euml &euml;
+@set iuml &iuml;
+@set ouml &ouml;
+@set uuml &uuml;
+@set Uuml &Uuml;
+@set agrave &agrave;
+@set egrave &egrave;
+@set igrave &igrave;
+@set ograve &ograve;
+@set ugrave &ugrave;
+
+@macro lt
+&lt;
+@end macro
+@macro gt
+&gt;
+@end macro
+
+@c --- Local crossrefences are @x
+@c Does anybody knows how to do it more clean?
+@macro x{node,name}
+@set name_provided__
+@ifeq{"\name\","", @clear name_provided__}
+@ifset name_provided__
+@w{<A HREF="#\node\">\name\</A>}
+@end ifset
+@ifclear name_provided__
+@w{<A HREF="#\node\">\node\</A>}
+@end ifclear
+@end macro
+
+@c --- Entries for menues
+@unmacro mitem
+@macro mitem2{node,name}
+<LI>@w{<A HREF="#\node\">\name\</A>}@*
+@end macro
+@macro mitem{node}
+<LI>@w{<A HREF="#\node\">\node\</A>}@*
+@end macro
+
+@macro node_{this, next, prev, up}
+<A NAME="\this\">
+@end macro
+
+@c --- Workaround for a bug
+@set open-curly @{
+@set close-curly @}
+@macro ocb
+@value{open-curly}
+@end macro
+@macro ccb
+@value{close-curly}
+@end macro
+
+@c --- to put a comma in a parameter
+@set comma-val ,
+@macro comma
+@value{comma-val}
+@end macro
+
+@c --- Header of the text
+@macro HeaderPage1
+@finalout
+@setchapternewpage odd
+
+<html>
+
+<head>@*
+<title>@value{title-printed} documentation for Version @value{version}</title>@*
+</head>@*
+<H1>@value{title-printed} documentation for Version @value{version}</H1>@*
+<H2>@value{update-month}</H2>@*
+<ADDRESS>by @value{name-author}</ADDRESS>@*
+@paragraph{}
+This is the documentation for @value{title-printed}.
+@paragraph{}
+
+Copyright @copyright{} @value{year-copyr} @value{name-author}
+@paragraph{}
+
+@paragraph{}
+
+This documentation may be freely distributed, provided this copyright notice
+is left intact on all copies.
+
+@end macro
+
+@macro HeaderPage2
+  The following master menu lists the major topics in this documentation,
+including all the indices.
+@end macro
+
+@macro EOFTOC
+@end macro
+
+@c --- Make the code fixed width + strong
+@unmacro code
+@macro code{val}
+<code><b>\val\</b></code>
+@end macro
+
+@c That looks great on Netscape 3
+@macro my_flag
+<p>@*
+<table BGCOLOR="#A0D0FF" width="100%" border=0 cellspacing=0 cellpading=0><tr><td>&nbsp;</td></tr></table>@*
+<table BGCOLOR="#FFFFFF" width="100%" border=0 cellspacing=0 cellpading=0><tr><td>&nbsp;</td></tr></table>@*
+<table BGCOLOR="#A0D0FF" width="100%" border=0 cellspacing=0 cellpading=0><tr><td>&nbsp;</td></tr></table>@*
+</p>@*
+@end macro
+
+@macro crossparam{a,b}
+@set temporal @x{Variables type 5,Automatic}.
+@end macro
+
+@macro code2{a}
+@code{\a\}
+@end macro
+
+@macro varindex{h,t}
+<p>@*
+<ul>@*
+@include \h\
+@*
+</ul>@*
+@end macro
+
+@macro conindex{h,t}
+<p>@*
+<ul>@*
+@include \h\
+@*
+</ul>@*
+@end macro
+
+@macro keyindex{h,t}
+<p>@*
+<ul>@*
+@include \h\
+@*
+</ul>@*
+@end macro
+
+@macro p{}
+<p>
+@end macro
+

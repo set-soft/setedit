@@ -1,0 +1,71 @@
+# Makefile for building SETEDIT's documentation
+# Created by Anatoli Soltan
+# Adapted from Makefile by SET
+
+PATH = $(PATH);..\WinNT\makeinfo
+
+# define here the wanted doc's
+targets=editor+ sdg+ infeng+
+targets_inf = $(targets:+=.inf)
+targets_html = $(targets:+=.html)
+targets_txt = $(targets:+=.txt)
+all_targets = $(targets_inf) $(targets_html) $(targets_txt)
+
+# define here for each target the index commandline for
+# sdh which is then used in $(sdh_ops) with $(index_$*)
+# by replacing $* with the actual target
+index_editor=-n "Index of key commands" kindex.idx kindex.tdx
+index_sdg=-n "Index of variables and commands" vindex.idx vindex.tdx
+
+srcdir = .
+incdir = ..\..\tvision\include
+
+# set the commandline options for sdh
+sdh_ops=-c -n Index cindex.idx cindex.tdx \
+	-I $(srcdir) -I $(incdir)
+
+all: sdh.exe $(all_targets)
+
+sdh.exe: sdh.c
+	bcc32 -I$(incdir) sdh.c
+
+	
+editor.inf: editor.tx
+	sdh.exe -oi $(sdh_ops) $(index_editor) -i $*
+
+editor.txt: editor.tx
+	sdh.exe -ot $(sdh_ops) $(index_editor) -i $*
+
+editor.html: editor.tx
+	sdh.exe -oh $(sdh_ops) $(index_editor) -i $*
+
+sdg.inf: sdg.tx
+	sdh.exe -oi $(sdh_ops) $(index_sdg) -i $*
+
+sdg.txt: sdg.tx
+	sdh.exe -ot $(sdh_ops) $(index_sdg) -i $*
+
+sdg.html: sdg.tx
+	sdh.exe -oh $(sdh_ops) $(index_sdg) -i $*
+
+infeng.inf: infeng.tx
+	sdh.exe -oi $(sdh_ops) -i $*
+
+infeng.txt: infeng.tx
+	sdh.exe -ot $(sdh_ops) -i $*
+
+infeng.html: infeng.tx
+	sdh.exe -oh $(sdh_ops) -i $*
+	
+install:
+	-mkdir $(DEST_SET_DIR)\info
+	copy editor.inf $(DEST_SET_DIR)\info\setedit.inf
+	copy infeng.inf $(DEST_SET_DIR)\info\infview.inf
+	copy sdg.inf $(DEST_SET_DIR)\info\sdg.inf
+
+clean:
+	-del $(all_targets)
+	-del *.num
+	-del *.tx1
+	-del sdh.exe sdh.obj sdh.tds
+	

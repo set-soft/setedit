@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# This script should be used, to install the binaries from
+# the SETEdit binary distribution on your system.
+#
+# DO NOT USE IT TO INSTALL SETEdit AFTER A REBUILD FROM THE
+# SOURCES. FOR THIS RUN 'make install' INSTEAD, WITH AN
+# OPTIONALLY 'prefix=YOUR_WANTED_PREFIX' ARGUMENT, WHICH
+# DEFAULTS TO '@@pref@@'.
+#
+#
+# This script will install SETEdit on your system using
+# a prefix as the root for the installed programs. This
+# prefix is as default '@@pref@@' but you can change
+# it by giving this script on commandline your
+# wanted prefix. If you want for instance to install
+# SETEdit in '@@pref_alt@@' and not in '@@pref@@' run this script
+# like
+#
+# INSTALL.LINUX prefix=@@pref_alt@@
+#
+# As already written in the docs, SETEdit will run and
+# look the best, if it is installed as a root setuid
+# program. (It will give up the root rights after opening
+# the connections to the screen and the keyboard).
+# The programs which need this is 'setedit'.
+#
+# For security reasons by default we DON'T
+# use the setuid permissions when installing SETEdit.
+# But you can tell this script to use it with the
+# option 'setuid=USER_ID' which installs the executable
+# as setuid program of user 'USER_ID'.
+#
+# If you have executed the script VCSA.SH, you can use
+# also the setgid=GROUP_ID' option, which installs
+# the executables as a setgid program of group 'GROUP_ID'.
+#
+# After installing SETEdit you will find all the files,
+# which are in the subdirectories of this directory
+# (where this script is) relative to the directory
+# wich is pointed to by the prefix.
+#
+# Note: I taked this script from RHIDE because I think is
+# good for the editor too. So say thanks to Robert for the
+# script and make file ;-).
+#
+
+./REMOVE_UNNEEDED
+
+# Because I'm not so familar with shell scripts, I use
+# a makefile, which I know how to write.
+
+make -f INSTALL.MAK install $*

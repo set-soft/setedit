@@ -1,0 +1,114 @@
+# 'make languages' will build the language files
+# 'make install.languages' installs the language files at the correct place
+
+RECODE=@recode@
+RECODE_SEP=@recode_sep@
+COPY_RECODE=@copy_recode@
+
+ifneq ($(strip $(DJDIR)),)
+export editor_OS:=DJGPP
+endif
+
+# If not DOS then just Linux, no other supported by now
+ifeq ($(strip $(editor_OS)),)
+export editor_OS:=Linux
+endif
+
+srcdir=.
+LANGUAGES=es gr de
+PACKAGE=setedit
+prefix=$(DJDIR)
+locale_dir=$(prefix)/share/locale
+
+ifeq ($(editor_OS),DJGPP)
+po_list_l=@po_list
+update_p=update
+else
+po_list_l=`cat po_list`
+update_p=cp
+endif
+
+po_subdirs=
+
+CFLAGS=-O
+
+all: $(addsuffix .mo,$(LANGUAGES)) es_iso.mo de_iso.mo
+
+es_iso.mo: es_iso.po
+
+es_iso.po: es.po
+	$(COPY_RECODE) es.po es_iso.po
+	$(RECODE) 850$(RECODE_SEP)iso88591 es_iso.po
+
+de_iso.mo: de_iso.po
+
+de_iso.po: de.po
+	$(COPY_RECODE) de.po de_iso.po
+	$(RECODE) 850$(RECODE_SEP)iso88591 de_iso.po
+
+ifeq ($(xgettext),)
+xgettext=xgettext
+endif
+
+ifeq ($(msgmerge),)
+msgmerge=msgmerge
+endif
+
+ifeq ($(msgfmt),)
+msgfmt=msgfmt
+endif
+
+ifeq ($(libintl),)
+libintl=libintl.a
+endif
+
+po_list:
+	perl makelist.pl
+
+clean:
+	rm -f potfiles.po
+	rm -f $(addsuffix .mo,$(LANGUAGES))
+	rm -f $(addsuffix .po,$(LANGUAGES))
+
+potfiles.po: po_list
+	@echo "*** Ignore warnings about unterminated strings, is a bug in gettext."
+	@echo "*** Ulrich Drepper, the maintainer, refuses to fix it."
+	$(xgettext) --default-domain=dummy --add-comments --keyword=_ \
+	  --keyword=__ --directory=$(srcdir) --omit-header \
+	  --add-location $(po_list_l)
+	touch dummy.po
+	$(update_p) dummy.po $@
+	rm dummy.po
+
+T=$(subst /,\,$@)
+
+$(addsuffix .po,$(LANGUAGES)): potfiles.po
+#if not exist $(T) cp $^ $@
+	touch $@
+	-$(msgmerge) --force-po -o __.pon $@ $^
+	-$(update_p) __.pon $@
+	rm -f __.pon
+	
+#$(addsuffix .mo,$(LANGUAGES)): $(msgfmt)
+
+%.mo: %.po
+	-$(msgfmt) -o $@ $<
+
+
+languages: $(addsuffix .mo,$(LANGUAGES))
+
+# This creates the .po files for each language from $(LANGUAGES)
+# See the sample translated file de.po, how to translate
+languages.src: $(addsuffix .po,$(LANGUAGES))
+
+#if you don't have the fileutils 3.13, you must copy the files manually
+%.ins: %.mo
+	ginstall -d $(locale_dir)/$*/LC_MESSAGES
+	-ginstall $< $(locale_dir)/$*/LC_MESSAGES/$(PACKAGE).mo
+
+install.languages.start:
+	rm -f languages.log
+
+install: languages install.languages.start \
+			$(addsuffix .ins,$(LANGUAGES))
+

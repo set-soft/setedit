@@ -1,0 +1,73 @@
+# Makefile for for compiling PCRE library by Borland C++ 5.5
+
+!ifndef _SUBMAKE
+
+CC       = bcc32
+LD       = bcc32
+
+!ifdef DEBUG
+CDEBUGFLAGS = -v -vi -y -6 -Od
+!else
+CDEBUGFLAGS = -O2 -6 -T -DNDEBUG
+!endif
+
+!ifdef DYNRTL
+DYNRTLFLAGS = -WR
+!endif
+
+CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLFLAGS) -WC -X -q $(CDEBUGFLAGS)
+LDFLAGS  = $(DYNRTLDFLAGS) -WC
+
+!endif
+
+O        = .obj
+
+OBJ = maketables$(O) pcre$(O) study$(O) get$(O)
+
+all:  pcre.lib
+
+dftables.exe: dftables.c internal.h maketables.c
+	$(CC) $(CFLAGS) $*.c
+	
+chartables.c: dftables.exe
+	dftables >chartables.c
+
+maketables.obj: maketables.c internal.h chartables.c
+	$(CC) -c $(CFLAGS) $*.c
+	
+get.obj: get.c internal.h
+	$(CC) -c $(CFLAGS) $*.c
+
+study.obj: study.c internal.h
+	$(CC) -c $(CFLAGS) $*.c
+
+pcre.obj: pcre.c internal.h
+	$(CC) -c $(CFLAGS) $*.c
+
+pcre.lib: $(OBJ)
+	del $@
+	tlib /E $@ @&&!
++$(**: = &^
++)
+!
+
+pcreposix.lib: pcreposix.obj
+	del $@
+	tlib /E $@ @&&!
++$(**: = &^
++)
+!
+
+pcretest.obj: pcretest.c
+	$(CC) -c $(CFLAGS) $*.c
+
+pcretest.exe: pcretest.obj
+	$(LD) $(LDFLAGS) pcretest.obj pcre.lib pcreposix.lib
+
+clean:
+	-del chartables.c
+	-del *.obj
+	-del *.exe
+	-del *.dll
+	-del *.lib
+	-del *.tds

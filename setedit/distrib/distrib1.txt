@@ -1,0 +1,617 @@
+
+
+                            SET's editor v@@v@@
+                                  by SET
+
+  That's the official distribution of SET's editor v@@v@@
+  The editor is Copyrighted by Salvador Eduardo Tropea. (c) 1996-2001 and
+distributed under the GPL license.
+  The editor is free and you don't need to pay for it. Any kind of donations
+are accepted ;-). One good way of cooperation is buying one of my djgpp CDs,
+they have more than 500Mb of fresh djgpp stuff and costs less than the
+Walnut Creek CD.
+
+INDEX:
+
+0.  IMPORTANT (modifications and fixes in this release and the previous)
+1.  REQUIREMENTS
+2.  INSTALL
+3.  MORE INFO
+4.  MP3 player
+5.  EXAMPLES (SDG, and others)
+6.  LEGAL ISSUE
+7.  KEYBOARD PREFERENCES
+8.  KEYBOARD EXTENDER [DOS version only]
+9.  KEYBOARD FEATURES UNDER X [Linux version only]
+10. DOWNLOAD
+11. MAILING LIST
+12. DONATIONS
+13. THANKS TO
+
+
+
+0. IMPORTANT:
+
+  Like the old releases I'm testing new features and bug fixes, some of them
+will be part of RHIDE so I need them tested.
+
+  Changes in v@@v@@ (for more details read the change.log file):
+
+New [23 things]:
+
+* Configurable mechanism to parse the errors collected from an external
+application. It uses Perl RegEx to do the job. Suggested by Gregorio.
+* Now you can pass extra command line options using an environment variable
+called SET_CMDLINE.
+* Menu option to save the project manually. Suggested by Jeremy W.
+Murphy <jwm@amc.com.au>
+* Project window also says the name of the project file. Suggested by Jeremy
+W. Murphy <jwm@amc.com.au>.
+* Command line option +[line number], like in VI. Suggested by Ivan.
+* When calling the man page viewer the editor offers the word under cursor
+as man page.
+* Shl flag "EscapeAnywhere" this switch makes the editor parse the escape
+character outside strings.
+* Syntax highlight for PLM/51 contributed by Jari Korhonen
+<jari.korhonen@ponsse.fi>. (Intel's long-gone not-so-highlevel language for
+8051 CPUs).
+* Command line switch to specify files to load from an external list of files
+where each line is a file. Suggested by SpaZe.
+* Three command line switches: --tile-vert, --tile-horiz and --cascade
+to make these operations after loading the files from the desktop file or
+named in the command line. Suggested by Spaze.
+* The reverse operation for "HTML accents". Suggested by Gregorio.
+* Now the file open dialog is resizeble. Suggested by Gregorio.
+* Yet another tab mode. "Tab indents", it is by default enabled because
+that's what the editor ever did. Disabling it the editor will behave like
+when using tabs but will insert spaces instead of tabs.
+
++ Linux
+
+* Debian package for InfView.
+* ISO-8859-1 spanish messages.
+* InfView man page. Pointed out by Ivan,
+* Now the convert HTML accents feature also works in Linux, was just matter
+of enabling it.
+* Now the editor disables the Xon/Xoff mode of the terminal so ^Q/^S aren't
+used for it. It enables the use of ^Q and ^S when running in an Xterm, Eterm,
+etc.
+
++ DOS
+
+* Now the editor also looks for HOME and HOMEDIR when loading configuration
+files. Also: the directory where the exe is located is the one looked at last.
+
++ Cosmetic:
+
+* Now the message window shows ^M if the line contains /r.
+* Changed the way the INFOPATH is guessed under DOS. A djgpp user installed
+the editor outside the djgpp tree and then the editor used INFOPATH but
+failed to find the setedit.inf file. Now the editor also adds your tree even
+if INFOPATH is defined. Reported by Sylvia <smlew@ifocus.com.sg>.
+* Now if you use "load only specified files" the editor doesn't really load
+the files to then close'm like before. It makes things faster.
+* Now the new option to search the word when you press ^F1 inside
+the node takes the visible name you choose from the list and not the word
+under cursor. Suggested by Gregorio.
+
+
+Fixed [10 things]:
+
+* Problems with info files created with the new Texinfo 4.0 package.
+* Abort when pressing ENTER in the message window without items.
+* Bug in sLisp when handling strings with escape sequences (\n, \t, etc.).
+Reported by Uwe Steinmann <steinm@majestix.fernuni-hagen.de>.
+* GPF/SIGSEGV when using BackSpace in the functions list to delete the first
+letter in the incremental search. Reported by Gregorio.
+* Crashes when starting the editor and it was playing an MP3 file that doesn't
+exist anymore.
+
++ Linux:
+
+* Problems when saving files in DOS format. Reported by Gregorio.
+* When switching from hidden to normal desktop files the editor left the
+hidden version of the desktop file generating potential confusions. Now the
+hidden file is removed.
+
++ DOS:
+
+* Problems with project files. Reported by Ryan Owen <ryan@eyring.com>.
+
++ Cosmetic:
+
+* The ~K~eep short-cut in the SDG options was used for O~K~. Reported
+by Gregorio.
+* When inserting items to the project the editor used the *.epr mask instead
+of the one used to open regular files. Reported by Gregorio.
+
+
+
+  Changes in v0.4.39 (v.s. 0.4.35)
+
+New [43 things]:
+
+* Now the pseudo macros can be selected from the menu. It helps people to
+learn what pmacros are available.
+* An option to export the text as HTML but without using colors.
+* A check to see if the current directory is valid. Using bash you can
+easilly delete the current directory and be "in the land of nowhere".
+* A configure/make/make install mechanism.
+* cmcPushCursorPos and cmcPopCursorPos. They use a 12 levels (11 usable)
+circular stack.
+* cmcToggleCharCase "This is vi's '~' command -- it toggles the case of
+the char under the cursor". Added to menu, also added block to upper/lower.
+Both additions were suggested by Thiago F.G. Albuquerque
+<thiagofga@ambr.com.br>.
+* Now the file dialog stores the path in the history even if you abort. It
+also remmembers the last mask used. Suggested by Pavlos.
+* Full list of Spanish messages. Also fixed some menu and dialog messages
+while testing the Spanish messages (cosmetic stuff).
+* Now the editor pass to external screen savers a file handle for a
+file that contains the screen contents. It allows external screen savers
+based on the current screen contents. Suggested by Gregorio.
+* Now is possible to indicate that EOLComment1 must be in the first column
+and EOLComment2 don't.
+* Now is also possible to tell to the editor that an EOLComment is valid if
+it's located in the first non-blank character. Seems to be needed for TCL.
+Suggested by "FireEgl (Philip)" <FireEgl@EMail.com>.
+* Now is possible to associate a SHL with a file name using regular
+expressions (PCREs). You can give regex to match the file name or the whole
+path+name. It is needed for things like makefiles and was asked by Ivan and
+Gregorio. (NameMatch and FullNameMatch).
+* A rudimentary SHL for Makefiles.
+* Jump to prototype command. That's very similar to jump to function.
+Suggested by Pavlos.
+* Now if you double click over name(section) construction in a man page
+window the editor jumps to this manpage. Suggested by Ivan.
+* Code page remaping. It should work for all the supported code pages. Also:
+The code page remapping routines converts symbols not found in the
+destination code page to similar ones.
+* Basic TeX syntax highlight, contributed by Alexander Bokovoy.
+* TCL syntax highlight, contributed by FireEgl <FireEgl@EMail.com>.
+* Wrapper example for collecting Turbo Pascal 7.0 errors. Contributed
+by Andreas Leidner <leidner@gmx.net>.
+* DOS Greek keyboard support (code page 737). Requested by Pavlos to make
+accelerators work in both, english and greek, modes.
+* Support for the following code pages: Latin: DOS 775, 857, 861; UNIX 8859-3,
+8859-4, 8859-9, 8859-14, 8859-15; Windows 1250, 1252, 1254, 1257 Cyrillic:
+KOI-8 CRL, ISO-IR-111/153/146/147, Mac CP10007 (and Ukraininan variant),
+U-Code R, KOI-7, Osnovnoj Variant Russian, Alternativnyj Variant RU. Greek:
+DOS 737, 869; Windows 1253 and UNIX 8859-7 A total of 27 code pages!
+Pavlos and Alexander Bokovoy provided information for greek and cyrillic
+code pages.
+* Now when jumping to a line with errors the editor ever highlights it and
+also shows the error in the status line.
+* When an external program returns errors the editor jumps to the first line
+in the message window. Also, the editor adds a message to know the control
+is back again in the editor.
+* Now the example of macro from menu is now more useful, it pop-ups a
+dialog and you can enter a command, the output of this command is inserted at
+the cursor position. Ivan asked for such an option from the menu.
+* Redraw command to the editor (in menu and documented).
+* Now kextend license to Public Domain so Debian purist can't complain.
+* Now the linux.faq is also installed in the docs directory as faq.txt.
+* A new command to decode "quoted printable" text. I need it to demangle
+spanish mails in MIME format.
+* A new indentation command that allows to indent with any arbitrary text.
+I need it to quote parts of mails (usually using "> ").
+* An option to make InfView search the word under cursor when you did a
+syntax search, but inside the selected topic. Hmmm... how to explain it,
+just use ^F1 and see. Suggested by Grzegorz Adam Hankiewicz <gradha@iname.com>
+* Now you can use double click to select an item in the ^F1 list of hints.
+Suggested by Jeremy W. Murphy <jwm@amc.com.au>
+* Now the Alt+F2 functions search can search C++ operators too. I hope it
+didn't break other thing ;-). Asked by Andris.
+
++ DOS:
+* MP3's ID3 genre field to the MP3 dialog. "Pavlos" <gtoub@otenet.gr>
+provided the first 100 names and I added another 42 from WinAmp 1.90.
+* The emu387.dxe emulator so the editor can be installed in systems without
+coprocessor. Suggested and tested by "Eathan Clark" <eathan@cableone.net>.
+* A new editor command called cmcCutClipWin to cut text to Windows clipboard.
+Suggested by Spaze. I also mention it in the documentation and give an
+example in redmond.smn about how to use the Windows clipboard instead of the
+internal one.
+
++ Linux:
+* Some documentation about the mouse. Suggested by Ivan.
+* The no/overwrite status is showed in the indicator (at the right of the
+modified star). Suggested by Dean Limbaugh <edl@ns1.co.alachua.fl.us>.
+
++ sLisp:
+* Constants for WhichEditor to avoid "magic numbers", documented.
+* GetSyntaxAtCursor command to know if the cursor is inside a comment,
+a preprocessor line or a string. Suggested by Endlisnis.
+* New command: ForceUpdate asked by Endlisnis.
+* New command: ShortFileName. Needed to pass SFNs to external programs.
+Requested by Andreas Leidner <leidner@gmx.net> to pass files to Turbo Pascal
+7.0.
+* New command: AskString, it pop-up a dialog asking for user input.
+* Now the sLisp InsertText function doesn't allow the insertion of text with
+\n and not \r\n under DOS (not well tested).
+
+
+Fixed [38 things]:
+
++ Serious:
+* The calendar object was pretending to be an ASCII table so when its
+window was closed it didn't remove yourself from the list making Alt+0 to
+crash. Reported by "Jeremy W. Murphy" <jwm@amc.com.au> and "Pavlos"
+<gtoub@otenet.gr>.
+* The Info and Help buttons of the Screen Savers setup window were ever
+enabled and generated SIGSEGVs if used for internal screen savers.
+Reported by Gregorio. Also by Ilker Aksen <Ilker.Aksen@astrazeneca.com>.
+* A crash when a file failed to load [only seen in Linux]. Reported by
+Steve Wagor <stevew@uis.net>.
+* One bug in the code page/fonts handling. Deleting a font twice.
+
++ Not so serious:
+* A couple of bugs in the "delete file from disk" feature of the windows
+list.
+* Preprocessor lines that included a comment were drawn with an ASCII 0 at
+the end of the line. That's usually invisible, but not when using ISO-LAT1U
+fonts.
+* The editor was trying a partial match for a reserved word before to check
+for a full match with a user reserved word. It could be experimented only
+with the Texinfo shl; I noticed it while updating the docs.
+* InfView didn't paint the first match in a search across a file that forced
+a node switch, other matchs in the same node were painted.
+* InfView left the match selection on after a node switch and was visible
+until the cursor was moved.
+* InfView was giving the same priority to partial matchs and perfect matchs
+when the partial appears first. (in search best match member).
+* The cmcForceMatchPairHL command was recorded when recording macros from
+keyboard so the length of the macro was enlarged without gaining any
+functionallity, now is filtered.
+* When Alt+F2 didn't find any function it said No instead of Ok in the dialog.
+Reported by Jeremy.
+* When Match Pair and Wrap Columns were enabled and the match happened in the
+wrap column the editor did really stupid things.
+* The "Test" button in screen savers dialog only worked if the screen
+saver was ON before entering in the dialog. Reported by Spaze.
+* When adding new user words they wasn't visible until the next redraw,
+that's forced now.
+* It was posible to save a block with the name of an opened file. Even when
+the editor issued a warning about overwriting a file it could have bad
+side effects.
+* When pasting in input lines not all the text was selected and the cursor
+wasn't well positioned.
+* The new special character shl feature wasn't parsed by the
+multilines parser, only for the painting parser. Reported by "FireEgl
+(Philip)" <FireEgl@EMail.com>.
+* Now if the message window is outside the screen that's fixed at load
+time. I don't really know the reason for it but Gregorio and me experimented
+it. Is something related with running the editor with different screen
+resolutions. Reported by Gregorio.
+* When using a central tcedit.dst file was possible to get the cursor
+unsynchronized with the no/overwrite mode. Reported by Grzegorz Adam
+Hankiewicz <gradha@iname.com>.
+* I forgot to add infview.mak to the list of makefiles to patch.
+
++ Linux:
+* Now ^C and ^/ are disabled.
+* Errors converting DOS files to UNIX format. The result was mixed style
+files!
+* Save files as DOS could fail.
+* The editor didn't read the right keybind.dat file. So defining/undefining
+keys under Linux was quite hard.
+* If the file had less than 2 bytes it was reported as a read error. Reported
+by Steve Wagor <stevew@uis.net>.
+* The editor was creating userwords.txt and default settings in
+/usr/share/setedit instead of user's home. Reported by Ilker Aksen
+<Ilker.Aksen@astrazeneca.com>.
+* SIGSEGVs when using hidden desktop files. Reported by Ilker Aksen
+<Ilker.Aksen@astrazeneca.com>.
+* debian/doc-base was missing in the distribution.
+* The editor was creating a tcedit.dst file in /usr/share/setedit if you
+selected to save only one centralized file. That isn't correct, this
+directory could be read-only. If you want default options to be global for all
+the users you can copy tcedit.dst to /usr/share/setedit, but the editor won't
+save there; the HOME directory will be used instead. Reported by Ivan.
+* Paste in input lines failed. Reported by Ivan.
+
++ DOS:
+* A bug in djgpp v2.02 libc system() function that left child exes opened
+leaking file handles and preventing external compilers to overwrite the file.
+It only happened for non-djgpp programs. "Andreas Leidner" <leidner@gmx.net>.
+
++ Cosmetic:
+* Various typos in the web page, thanks to Steve Wagor <stevew@uis.net>
+* One define in windoldap.h file. Reported by Pavlos.
+* An egcs warning (egcs bug) reported by Ilker Aksen
+<Ilker.Aksen@astrazeneca.com>.
+* Two typos (asigNment). Reported by Spaze.
+* Wrong width of the dialog to choose a command. Reported by Spaze.
+* A lot of warnings from gcc 2.95, don't know if all (const missing type,
+char * not const, assembler clobber lists, etc.).
+
+  For information about older releases and more read the change.log file.
+
+Note for DOS users:
+  %DJDIR% == The content of the enviroment variable %DJDIR%, that's the
+  place where you installed djgpp. You don't need to set this variable,
+  setting DJGPP is enough.
+
+
+
+1. REQUIREMENTS:
+
+* PC 386 compatible or superior computer.
+* 2 Mb of memory or more.
+* 2.4 Mb of free disk during installation and about 1.5 Mb once installed.
+* DOS version 5.0 or posterior or any compatible OS (Win '95, Win 3.1, OS/2,
+MS-DOS, etc.). The NT platform isn't fully supported, I don't have NT, if you
+need support for NT send me a licensed copy of NT ;-). I did my best to
+support it, but as I don't have one at home I can't do more.
+* Linux with ELF support for the Linux version. For console use you need gpm
+1.14, older versions are incompatible.
+* A VGA card.
+* DJGPP users normally have it.
+
+
+
+2. INSTALL:
+
+  *Important* To use the powered grep you need the grep program installed in
+your system. To use the man page viewer you need the man program installed in
+your system. Both are found in all Linux systems but not in all DOS systems.
+  Starting with v0.4.26 the DOS version of the editor is distributed with an
+installer, if you have it just run install.exe and follow the instructions.
+If you only have a .zip file that contains a lot of files continue reading
+this chapter.
+  The following cases are explained:
+  
+A) Installing in DOS for djgpp users.
+B) Installing in DOS for non-djgpp users.
+C) Installing in Linux.
+
+A) Installing in DOS for djgpp users:
+1) Uncompress the file over your djgpp installation in the same way you did
+   with the rest of packages.
+2) If you installed the editor preserving the directory structure you
+   won't need to do it so the following is usually optional:
+   Add the following to your autoexec.bat:
+
+   SET SET_FILES=c:/djgpp/share/setedit
+
+   Replacing c:/djgpp with the place where you installed djgpp.
+
+B) Installing in DOS for non-djgpp users:
+   Attention: If you don't use the installer you must have some basic DOS
+   knowledge, including: how to set an environment variable, modify your
+   PATH and what is autoexec.bat. If you don't know it use the installer or
+   ask a friend.
+1) Uncompress the file in any directory you like preserving the directory
+   structure. Examples:
+    
+   unzip edi0426b.zip
+    or
+   pkunzip -d edi0426b.zip
+    or
+   using WinZip
+   
+   For the other sections I'll give examples assuming you uncompressed the
+   files in c:/setedit.
+2) If you installed the editor preserving the directory structure you
+   won't need to do it so the following is usually optional:
+   Add the following to your autoexec.bat:
+
+   SET SET_FILES=c:/setedit/share/setedit
+
+   Replacing c:/setedit by the place where you uncompressed the editor.
+3) Add the c:\setedit\bin (don't forget to replace c:/setedit by the name
+   you used in 1) to the PATH in autoexec.bat.
+   Example:
+
+   PATH=.... <= Line already existent in your autoexec.bat
+   SET PATH=c:\setedit\bin;%PATH%
+
+C) Installing in Linux:
+1) Uncompress the files in /tmp and run ./INSTALL_LINUX. If you want to setup
+   the destination directory read the INSTALL_LINUX script.
+   Also: the script contains useful information about access rights needed
+   to run the editor.
+2) If you installed the editor in /usr or /usr/local the following is
+   optional:
+    
+   Define the following environment variable (bash syntax):
+
+   export SET_FILES="/usr/share/setedit"
+
+   Replacing /usr by the prefix you used, example: prefix /opt then the
+   editor is in /opt/bin and you must define:
+   
+   export SET_FILES="/opt/share/setedit"
+3) Be sure the directory where setedit binary file is located is included in
+   your PATH environment variable.
+
+Note for bash users: the file where (2) and (3) should be defined is normally
+called .bash_profile or .bashrc in your home directory.
+
+
+
+3. MORE INFO:
+
+  From v0.4.0 the editor doesn't need external files to configure the
+keyboard so forget about the old xxx.txt files used in RHIDE 1.4.
+  You will need to customize the colors from Various|Options|Colors, the ones
+used by default aren't pretty.
+  To save the default colors and settings go to the %SET_FILES% (examples:
+c:/setedit/share/setedit, c:/djgpp/share/setedir, /usr/share/setedit)
+directory, start the editor and set all the options (colors and settings
+with Alt-G). Just exit and the editor will save a file called tcedit.dst.
+Each time you start the editor in a directory where there isn't any *.dst
+file the editor will load this default.
+  If you are annoyed with the back-up files and .dst files created by the
+editor in all the places just exit with Alt+Q and the editor will delete
+these files. Also see the options available in Tool&Ops|Options|Editor
+General.
+
+
+
+4. MP3: [Only in the DOS version]
+
+  The editor supports the Allegro mixing routines with 16 bits of resolution
+(I contributed it to the Allegro project because I needed it for the editor).
+  If you want to enable it create a file called allegro.cfg with the following
+contents:
+
+-------- cut here --------
+[sound]
+sb_freq = 45454
+quality = 1
+-------- cut here --------
+
+  Put the file in the same directory where the editor is located.
+  It will enable the 16 bits routines and mix with the maximun mixing
+frequency.
+  Enable it only if you are a fanatic because it will eat your CPU ;-).
+
+
+
+5. EXAMPLES:
+
+  SDG Example:
+
+  To test the SDG tool you can uncompress the example.zip file in an empty
+directory. Then call the editor with e and follow these steps:
+
+1) Select the menu Project|Open and type test and enter. You'll get a new
+project.
+2) Press Insert and select the three .cc files pressing enter in each one,
+the press ESC. Now you have the project filled.
+3) Select Various|Options|SDG Options, and take a look to the selected
+options, if you have SET_FILES right all must be Ok, so just press ENTER.
+4) Press F9. The message window will appear with some messages.
+5) Open the file out.html, it was generated when you pressed F9 (look the
+syntax highlight).
+
+  Load the file with any web browser and look the results. If you like it
+for your code read the sdg.inf file (from the editor, if you don't know how
+press F1 and then Ctrl-H to learn more about the help system).
+
+  sLisp macros examples:
+
+  In addition to the macros included in macros.slp (you can access these
+macros from the Macros|Choose menu option) I included another, more simple,
+examples in a file called examples.slp. It is located in the same directory
+as the rest of the configuration files (/usr/share/setedit,
+c:/djgpp/share/setedit, etc.).
+
+  Turbo Pascal 7, also for other non-gnu compilers:
+
+  Andreas Leidner <leidner@gmx.net> contributed some wrapper to call TPC7
+from the editor and convert the errors into the FSF format so you can jump to
+the function that originated the error from inside of the editor. This
+examples is included in the directory where other .zip files are located
+(contrib/setedit.bin or texts) and is called calltpc7.zip.
+
+
+
+6. LEGAL ISSUE:
+
+  The editor is free software.  It may be used or distributed in any manner
+you wish, as long as you do not violate the GPL license.  You can't remove
+any copyrigth included in the editor and you can't distribute it without any
+of the original files. You will also distribute the sources if you distribute
+the binaries. The GPL license is included in the package so read it before
+distributing the editor.
+
+  The editor comes with ABSOLUTELY NO WARRANTY; excluding any and all implied
+warranties, including warranties of merchantability and fitness for a
+particular purpose.  There is no warranty or representation, either express
+or implied, with respect to this program, its quality, performance,
+merchantability, or fitness for a particular purpose.  The entire risk
+of using this program is with you.  There will be no liability for special,
+incidental, or consequential damages arising out of or resulting from the use
+or modification of this program.
+
+
+
+7. KEYBOARD PREFERENCES
+
+  The keyboard is fully configurable from the Tool&Ops|Options|Keyboard|Key
+assignment menu option. But this configures the keys used only by the editor
+windows. The menu keys are defined in a text file with the .smn extension.
+The file loaded by the editor for this purpose is called menubind.smn. An
+example of how you can alter it to change some stuff is provided and called
+redmond.smn, I think you can guess what's the effect of this menu
+configuration ;-).
+  If you used the installer one of the options offered was about changing
+redmond.smn by menubind.smn.
+
+
+
+8. KEYBOARD EXTENDER [DOS version only]
+
+  In the contrib/setedit directory you'll find a small program called kextend
+that's a very simple TSR (only needs 432 bytes of memory in my system) to
+extend the BIOS functionallity.
+
+
+
+9.  KEYBOARD FEATURES UNDER X [Linux version only]
+
+  If you want to use the editor under X I recommend installing Eterm 0.8.10
+(or the lastest CVS snapshot available of 0.8.9) and follow the instruction
+of the readme.txt file located in the eterm directory of the configuration
+files (example: /usr/share/setedit/eterm/readme.txt). Using it you'll get all
+the available keyboard combinations (some of them are used by the Window
+Manager and aren't accesible, I recommend Enlightenment where all the
+keyboards are complex and also configured so they doesn't interfere).
+  If you use xterm you'll have some limitations imposed by common UNIX
+terminal, example: Shift+Arrows reported as just arrows.
+
+
+
+10. DOWNLOAD:
+
+ http://members.xoom.com/stropea/
+ http://setsoft.webjump.com/
+ or any Simtelnet mirror, example:
+ ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/edi*.zip
+
+
+
+11. MAILING LIST
+
+ To subscribe send an e-mail to:
+ setedit-subscribe@topica.com
+ To post:
+ setedit@topica.com
+ To consult the list from the web, post or subscribe:
+ http://www.topica.com/lists/setedit
+
+
+
+12. DONATIONS:
+
+  If you really like the editor and/or the SET's Documentation Generator
+included on it you can send me anything as feedback.
+  If you want to send money I'll be happy, but if you don't have it and
+want to show your gratitude you can send me a postal card from your city
+or some of the things I collect (train tickets, cigarette envelopes and
+boxes, stamps, old money and coins).
+  For more information about how to contact me press F1 in the editor, select
+"Introduction" and then select "About the author".
+
+
+
+13. THANKS TO:
+
+  Ivan Baldo: My Debian packager and friend.
+  Molnar Laszlo: He reported a lot of the fixed bugs and sugested a lot of
+things that I added in the first releases of the 0.4.x serie.
+  Alexander Bokovoy: For the information on the russian code pages.
+  Marek Habersack & Martijn Versteegh: For sugestions about the mode that
+doesn't create .dst files in all the dirs.
+  Shawn Hargreaves: For Allegro, the best gaming library. I use the sound
+engine from Allegro.
+  Tomislav Uzelac: For AMP the MP3 engine.
+  Ove Kaaven: For LibAmp, an adaptation of AMP to Allegro.
+  The University of Cambridge: For the Perl Regular expressions package.
+  The University of California, Berkeley and its contributors: after all I
+used your malloc upto v0.4.23, and perhaps I still using some libc function
+from Berkeley.
+
+SET

@@ -1,0 +1,72 @@
+
+Documentation for the calculator built in RHIDE v1.1
+----------------------------------------------------
+
+Author:    Laszlo Molnar <s0052mol@sun10.vsz.bme.hu>
+Copying:   parser.c is free software, you can use it anywhere you want
+Warranty:  as usual: none
+
+
+ The purpose of this program, to provide a simple but powerful
+'calculator' for programmers, to help with coding and debugging, where GDB's
+expression evaluator is not enough.
+
+ You may say "Hey, I can write a better one with flex & bison", and you
+may be right. I can make a better one too. But it'll be 4-5 times longer!
+This calculator is only 10 kbytes of C code, what I think it's not that bad.
+
+ The parser algorithm I use is called 'Operator Precedence Parsing'
+(I translated this from hungarian, so I may be wrong ;-). It
+works with 'operator precedence grammars' (a subset of LR(1) grammars),
+which means that there can't be 2 non terminating token next to each other
+on the right side of your grammar rules. It's ideal for expression
+evaluation.
+
+ With this parser you can use numbers, operators, parentheses and functions
+like in C.
+
+Here are the operators in decreasing precedence:
+
+   ~ unary not
+   - unary minus
+-------
+  ** power
+-------
+   * multiplication
+   / division
+   % modulo
+-------
+   + plus
+   - binary minus
+-------
+  << shift left
+  >> shift right
+-------
+   & logical and
+-------
+   ^ logical xor
+-------
+   | logical or
+
+And here are the functions you can use:
+
+ sin,cos,tan,sinh,cosh,tanh,asin,acos,atan  \ They works as you expected.
+ log,log10,exp,abs,sqrt,ceil,floor          /
+ bin,oct,dec,hex                            - Radix conversion.
+
+ The calculator uses doubles, but you can use numbers in the usual integer
+formats also: 0x... for base 16, 0b... for base 2 and 0... for base 8.
+The result of the calculation is displayed as a double for base 10, and
+converted to long long format for the other radixes.
+
+ Error codes:
+
+ -1     yylex()   failed e.g.  '1+#'
+ -3     yyparse() failed e.g.  '1+2)'
+ -4     floating point exception e.g. 'sqrt(-1)'
+
+
+
+
+
+

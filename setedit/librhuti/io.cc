@@ -1,0 +1,126 @@
+/* Copyright (C) 1996-1998 Robert H”hne, see COPYING.RH for details */
+/* This file is part of RHIDE. */
+#include <rhutils.h>
+
+#define Uses_string
+#define Uses_unistd
+#define Uses_stdio
+#define Uses_stdlib
+#define Uses_sys_stat
+#define Uses_fcntl
+#define Uses_free
+#include <compatlayer.h>
+
+#define STDOUT 1
+#define STDERR 2
+
+static char *errname = NULL;
+static char *outname = NULL;
+static char *erroutname = NULL;
+static int h_out,h_outbak;
+static int h_err,h_errbak;
+
+#if defined(__DJGPP__) || defined(__MSDOS__) || defined(_WIN32)
+#define IsSlash(a) (a=='/' || a=='\\')
+#else
+#define IsSlash(a) (a=='/')
+#endif
+
+/* returns a malloced unique tempname in $TMPDIR */
+char *unique_name(char *before,char *retval)
+{
+  char *name,*tmp = getenv("TMPDIR");
+  FILE *f;
+  // SET: The next 2 fallbacks aren't usually needed because RHIDE and SETEdit
+  // defines TMPDIR. SAA added them and I keep it because they make more
+  // robust the code if anybody uses the library in another project.
+  if (!tmp) tmp = getenv("TEMP");
+  if (!tmp) tmp = getenv("TMP");
+  if (!tmp) tmp = ".";
+  int l=strlen(tmp);
+  if (retval)
+  {
+    strcpy(retval,tmp);
+    if (!IsSlash(tmp[l-1]))
+       strcat(retval,"/");
+    strcat(retval,before);
+    strcat(retval,"XXXXXX");
+    name = string_dup(retval);
+  }
+  else
+  {
+    string_dup(name,tmp);
+    if (!IsSlash(tmp[l-1]))
+       string_cat(name,"/");
+    string_cat(name,before);
+    string_cat(name,"XXXXXX");
+  }
+  mktemp(name);
+  f = fopen(name, "w+b");
+  if (f)
+     fclose(f);
+  return name;
+}
+
+char *open_stderr(void)
+{
+  if (errname) free(errname);
+  errname = unique_name("er");
+  h_err = open (errname,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,
+                        S_IREAD | S_IWRITE);
+  h_errbak = dup (STDERR);
+  fflush(stderr);  /* so any buffered chars will be written out */
+  dup2 (h_err, STDERR);
+  return errname;
+}
+
+void close_stderr(void)
+{
+  dup2 (h_errbak, STDERR);
+  close (h_err);
+  close (h_errbak);
+}
+
+char *open_stdout(void)
+{
+  if (outname) free(outname);
+  outname = unique_name("ou");
+  h_out = open (outname,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,
+                        S_IREAD | S_IWRITE);
+  h_outbak = dup (STDOUT);
+  fflush(stdout);  /* so any buffered chars will be written out */
+  dup2 (h_out, STDOUT);
+  return outname;
+}
+
+void close_stdout(void)
+{
+  dup2 (h_outbak, STDOUT);
+  close (h_out);
+  close (h_outbak);
+}
+
+char *open_stderr_out(void)
+{
+ if (erroutname) free(erroutname);
+ erroutname = unique_name("eo");
+ h_err = open (erroutname,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,
+                       S_IREAD | S_IWRITE);
+ h_errbak = dup(STDERR);
+ h_outbak = dup(STDOUT);
+ fflush(stderr);  /* so any buffered chars will be written out */
+ fflush(stdout);  /* so any buffered chars will be written out */
+ dup2(h_err,STDERR);
+ dup2(h_err,STDOUT);
+ return erroutname;
+}
+
+void close_stderr_out(void)
+{
+ dup2(h_errbak,STDERR);
+ dup2(h_outbak,STDOUT);
+ close (h_err);
+ close (h_errbak);
+ close (h_outbak);
+}
+

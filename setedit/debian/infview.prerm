@@ -1,0 +1,8 @@
+#!/bin/sh
+# The following isn't necessary for an upgrade...
+if [ $1 != "upgrade" ] ; then
+    update-alternatives --remove /usr/bin/infobrowser /usr/bin/infview
+    install-info --quiet --remove infview
+fi
+
+#DEBHELPER#

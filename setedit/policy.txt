@@ -1,0 +1,40 @@
+This file contains some guidelines for myself (SET) or any other developer.
+
+1. Adding a new file.
+2. Removing a file.
+3. Changing versions.
+
+
+1. Adding a new file:
+--------------------
+
+* If the file is binary and cvs doesn't know it yet: add it in cvswrappers.
+* Run "cvs add file" in the directory where the file is.
+* Add the file to the "lista" file in the "makes" directory. Use '-' preffix
+for binary files, '+' for files that need "chmod +x file" and '*' for files
+that must be converted to DOS format while passing from unix to dos (.bat, a
+copyright file or some readme.1st).
+* Add it to the right .gpr file. Remmember:
+  Is this file dependant of FOR_LIBSET? If yes: Is in gpr included by
+libset.gpr?
+* Add the file to libset.gpr if it will be needed by RHIDE.
+
+
+2. Removing a file:
+------------------
+
+* Delete the file.
+* Run "cvs remove file".
+* Remove the name from the:
+  gpr
+  libset.gpr
+  lista
+  listaxtr
+
+
+3. Changing versions:
+--------------------
+
+* Change ./version.txt and include/ced_inte.h
+* The debian stuff is a lost case ;-)
+

@@ -1,0 +1,178 @@
+setedit (0.4.45-0.1-1) unstable; urgency=low
+
+  * Personal use unofficial version
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun,  4 Jun 2000 17:31:52 -0300
+
+setedit (0.4.43-0.1-1) unstable; urgency=low
+
+  * Personal use unofficial version
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 12 Apr 2000 21:31:34 -0300
+
+setedit (0.4.42-0.1-1) unstable; urgency=low
+
+  * Personal use unofficial version
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 12 Apr 2000 21:31:07 -0300
+
+setedit (0.4.39-4) unstable; urgency=low
+
+  * Applied patch from upstream author that allows the documentation to
+    be created on systems with a new incompatible version of makeinfo.
+    I have made further modifications to the file doc/set.txt because
+    it was creating the table of contents twice.
+    Also I have commented out the line saying @contents in the files
+    doc/editor.tx and doc/sdg.tx because it was doing weird things to
+    the table of contents.
+    Closes: #53277.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu, 30 Dec 1999 04:25:08 -0300
+
+setedit (0.4.39-3) unstable; urgency=low
+
+  * Now builds the standalone InfoViewer and puts it in a different
+    package called infview.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue, 21 Dec 1999 16:11:56 -0300
+
+setedit (0.4.39-2) unstable; urgency=low
+
+  * Standards version 3.1.0.
+  * Added Build-Depends.
+  * Architecture set to "any" instead of "i386" as requested by
+    Roman Hodek. This program isn't tested on other architectures other
+    than i386, so, testing is needed and reports of success or failures
+    will be apreciated.
+    Closes: #50319.
+  * Instead of suggesting tetex-bin and tetex-base, now suggests
+    texinfo, since the makeinfo program moved from tetex-bin to the
+    package texinfo.
+  * Call dh_clean without the -k flag in the install target.
+  * Don't use install-stamp (in rules file) anymore, to avoid possible
+    duplicate strings in maintainer script fragment files (see
+    debhelper changelog of version 2.0.56).
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed,  1 Dec 1999 13:12:30 -0300
+
+setedit (0.4.39-1) unstable; urgency=low
+
+  * New upstream version:
+    - Code page remaping.
+    - Man page viewer follows links to other manpages.
+    - New Tex and TCL syntax highlights.
+    - new 27 code pages supported!
+    - Various bugfixes and other enhancements.
+  * Now uses new upstream makefile clean target for cleaning.
+  * We prevent building of infoviewer to prevent problems by now.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue, 26 Oct 1999 15:07:28 -0300
+
+setedit (0.4.36-2) unstable; urgency=low
+
+  * Better descriptions for the editor (thanks Salvador!).
+  * Now Recommends: man.
+  * Now has manpage for the "e" symlink (lintian complained).
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 29 Sep 1999 20:35:49 -0300
+
+setedit (0.4.36-1) unstable; urgency=low
+
+  * New upstream version:
+    - Various bugfixes and enhancements.
+    - New building system!
+  * Modified building system for upstream new building system and FHS
+    move.
+  * Now requires DEBHelpers 2.0.40.
+  * DOC-Base support was not working, now works and also registers INFO
+    files.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 22 Sep 1999 15:05:37 -0300
+
+setedit (0.4.25-2) unstable; urgency=low
+
+  * Applied patch from upstream author to correct the patchenv.pl perl
+    script that was preventing correct compilation.
+  * Initial support for docbase (just plain text documentation, more
+    will follow), untested.
+  * Worked around bug related to the set_new_handler() function that
+    was preventing linkage.
+  * Now in the rhide.env file, we define SUPPORT_INC to none, to avoid
+    linkage of support libraries provided by upstream author and use
+    the Debian ones. Removed a little hack on the rules makefile
+    because of this.
+  * Better maintainer.notes file.
+  * Better README.Debian file.
+  * Added upstream download information in the copyright file.
+  * Added Suggests: grep, doc-base, tetex-bin, tetex-base.
+  * Added dh_testversion 1.2.9, because I use dh_links now.
+  * The /usr/bin/e symlink was set incorrectly.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue,  1 Jun 1999 15:27:33 -0300
+
+setedit (0.4.25-1) unstable; urgency=low
+
+  * New upstream version:
+    - Various bugfixes (a lot due to memory problems reported by the
+      YAMD tool).
+    - Uses the new version 2 of the PCRE library.
+    - Now incorporates the Debian building files.
+    - The binary executables are compressed with UPX now (not in Debian
+      tough).
+    - Updated documentation.
+    - Enhanced and killed bugs in the building scripts (partly because
+      of the Debian packaging).
+    - Added syntax highlight for Python.
+    - Now the executable in Linux is called "setedit" instead of "e"
+      and "e" is now a symlink to "setedit".
+    - Renamed the editor info file from "editor.info" to
+      "setedit.info".
+    - Renamed the language file from "editor.mo" to "setedit.mo".
+    - Now the editor searches for its files in the /usr hierarchy
+      instead of only in /usr/local (so, the setting of an environment
+      variable is not necessary now).
+    - Other minor enhancements.
+  * Changed the Debian build scripts to acomodate upstream changes.
+  * Now the executable is suid root because this makes significant
+    improvements on speed and upstream author says it is safe.
+  * Now the Debian build scripts doesn't do a copy and restore of all
+    the "makes" directory, instead it just copies and restores after
+    compilation the files that change only, so, it builds faster now.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu, 27 May 1999 20:15:24 -0300
+
+setedit (0.4.24-3) unstable; urgency=low
+
+  * Now -pipe option to gcc passed (faster compilation).
+  * Dummy gpr2mak script not required anymore.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue, 30 Mar 1999 14:55:13 -0300
+
+setedit (0.4.24-2) unstable; urgency=low
+
+  * Now the executable of the editor is SUID root registered (much more
+    faster!).
+  * The mp3/libamp/libamp.mak file was not restored to the original on
+    the clean-debian target.
+  * Now the editor info file is registered in the dir main menu
+    info page (I was trying to register it using the debian/info file
+    but it doesn't work that way, I am doing it manually but keep the
+    debian/info file I was trying to use as debian/info.ex in case
+    someone else wants to look in it to see what is wrong with it).
+  * The upstream changelog was called change.log.gz, now it is renamed
+    to changelog.gz to suit Debian policy (Lintian complained).
+  * Now the clean target doesn't depend on clean-debian anymore.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 24 Mar 1999 18:23:54 -0300
+
+setedit (0.4.24-1) unstable; urgency=low
+
+  * Initial Release.
+  * First early alpha packaging sent to upstream author.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue, 16 Mar 1999 17:18:48 -0300
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "lubaldo@adinet.com.uy"
+End:

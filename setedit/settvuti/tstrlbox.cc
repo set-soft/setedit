@@ -1,0 +1,80 @@
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+#define Uses_TStringableListBox
+#include <settvuti.h>
+
+/* List Box used in the keybinding, I think that Borland was wrong in your
+   design, using it the list box isn't limited to collections and can be
+   applied to arrays, lists, etc. */
+TStringableListBox::TStringableListBox( const TRect& bounds,
+                    ushort aNumCols,
+                    TScrollBar *aScrollBar ) :
+    TListViewer(bounds, aNumCols, 0, aScrollBar),
+    items(0)
+{
+ setRange(0);
+}
+
+TStringableListBox::TStringableListBox( const TRect& bounds,
+                    ushort aNumCols,
+                    TScrollBar *aHScrollBar,
+                    TScrollBar *aVScrollBar ) :
+    TListViewer(bounds, aNumCols, aHScrollBar, aVScrollBar),
+    items(0)
+{
+ setRange(0);
+}
+
+TStringableListBox::~TStringableListBox()
+{
+}
+
+uint32 TStringableListBox::dataSize()
+{
+ return sizeof(TStringableListBoxRec);
+}
+
+void TStringableListBox::getData( void * rec )
+{
+ TStringableListBoxRec *p = (TStringableListBoxRec *)rec;
+ p->items = items;
+ p->selection = focused;
+}
+
+void TStringableListBox::getText( char *dest, ccIndex item, short maxChars )
+{
+ if (items)
+   {
+    items->getText(dest,item,maxChars);
+    dest[maxChars]=EOS;
+   }
+ else
+   *dest=EOS;
+}
+
+void TStringableListBox::newList( TStringable *aList )
+{
+ delete items;
+ items=aList;
+ if (aList!=0)
+    setRange(aList->GetCount());
+ else
+    setRange(0);
+ if (range>0)
+    focusItem(0);
+ drawView();
+}
+
+void TStringableListBox::setData( void *rec )
+{
+ TStringableListBoxRec *p = (TStringableListBoxRec *)rec;
+ newList(p->items);
+ focusItem(p->selection);
+ drawView();
+}
+
+void TStringableListBox::Update(void)
+{
+ setRange(items->GetCount());
+ drawView();
+}

@@ -1,0 +1,208 @@
+  Here I'll put some common and not so common questions about the editor
+running under DOS.
+
+1. Video questions.
+1.1 Screen goes black (or green or any strange option) when I exit the
+editor or call a shell.
+1.2 Running in a Win9x window rather than full screen.
+
+2. Incompatibilities with other programs and TSRs
+2.1 Problems with antivirus TSRs.
+
+3. Miscellaneous
+3.1 Do you really think your screen saver can be called screen saver?
+3.2 Why I can't access files in a directory called c:\dev?
+
+4. Mouse problems
+4.1 I don't get a mouse pointer while I'm in DOS, why?
+4.2 I can see both mouse pointers (graphical and text) when the editor is
+running windowed under W9x, why?
+4.3 The mouse works, but I can't see the mouse pointer!
+
+5. Sound problems
+5.1 The sound is too noisy (crispy), why?
+
+=============================================================================
+1. Video questions.
+
+1.1 Q: My screen goes black (or green or any strange option) when I exit the
+editor or call a shell, what's up?
+
+A: I found that some video boards have a bug in the implementation of the VGA
+save/restore state (service 0x1C interrupt 0x10). Some Matrox boards have
+this problem.
+  You can try starting the editor with the --low-vga-save command line
+option. In this case the editor uses a low level routine (just in and outs)
+to do the job, it should work for any board that is 100% compatible with the
+IBM's VGA standard.
+  I found this solution thanks to the help of Anders Blom
+<blom@teorfys.lu.se>, he tested some programs I sent him until we found where
+the problem was. Also Nate Eldredge <nate@cartsys.com> tested some stuff in
+your Matrox video board using a brand new model and video drivers and all
+works ok, so perhaps you can just upgrade your BIOS/video drivers if you have
+one of these problematic boards.
+  Additionally Maurice Lombardi <Maurice.Lombardi@ujf-grenoble.fr> reported
+the problems with your Matrox Millenium II went away after upgrading
+BIOS/video drivers.
+
+-----------------------------------------------------------------------------
+1.2 Q: Is a good idea run the editor in a Win9x window? Should I use full
+screen?
+Q: If I use a graphic screen saver and it starts when the editor is windowed
+my Win95 hangs, what's wrong in your program?
+
+[Note: also see 1.1, could be the solution]
+A: In Win9x the windowed DOS tasks are emulated with the help of the video
+driver. Not all the video drivers works well, that's because:
+a) The drivers from Microsoft are poorly tested, they only test in your test
+bed machines.
+b) The drivers from the manufacturer have bugs because Microsoft development
+kits are cryptic.
+  So "your mileage may vary".
+  With my video board (Trident TGUI9440AGi) all works OK, but I know that
+people using old drivers for this board had problems.
+  Also I know that Diamond boards equiped with some S3 chips doesn't support
+the screen saver of the editor. In this boards if a windowed application
+calls BIOS to set the video mode 0x13 (320x200x256) Windows simply hangs. I
+saw it in one machine at work that uses a "Diamond Stealth 64" board with S3
+chipset.
+  Endlisnis <s257m@unb.ca> reported problems with the following setup:
+
+Name: ATI 3D Expression+
+Chip Type:  Mach64: Rage II
+Software Version:  5.21-C9N-WEB
+Hardware Version: 065
+No VESA TSR loaded.
+
+  Using this board and changing the characters height to 12 (to get around 34
+lines) the DOS box crashes generating a GPF after the editor exits. The same
+happens if you are in full screen, exit the editor, wait some seconds and
+then press ALT+ENTER.
+
+  James Bunting <james@aic.co.uk> reported:
+
+"When I run programs through RHIDE my user screen background goes green and
+all of the character attributes get messed up.  I know that this problem is
+been caused by my video card because I have tested it with another."
+
+Name: 8MB Matrox Productiva AGP
+
+  Similar reports were done by Matrox Millenium II users.
+
+  M. Heumann <manfred.heumann@uni-bielefeld.de> had problems running the
+applications windowed, but not in full screen. Card: Diamond Stealth 3D 2000
+Turbo.
+  Anders Blom <blom@lufysik.fysik.lu.se> kindly tested some small programs I
+wrote in one of these Matrox boards and the video drivers fails to restore
+the video when calling int 0x10 service AX=0x1c02. See question 1.1 for a
+solution.
+  Alexei A. Frounze <alex.fru@mtu-net.ru> reported that:
+
+Win95 OSR2 Rus (4.0  Build 1212 B) DirectX (4.06.00.0318)
+Cirrus Logic 5436 PCI gfx card (CL-GD5436 Rev 0, 4.10.00.1555 "4.10.00.1555"
+English Final Retail).
+
+  Shows problems if you change from full screen to windowed and then exit. He
+solved your problems using a PIF that runs RHIDE (same case as editor) full
+screen and disables the keys to make it windowed.
+  Hans Yperman <hyperman@eduserv1.rug.ac.be> reports similar problems using
+the Cirrus CL-GD5446.
+
+  The GeForce BIOSes seems to have problems very similar to the ones Anders
+found in Matrox cards. Andy <Bitland@aol.com> found a workaround and is
+looking for testers. He have a GeForce based card:
+
+Guillemot/Hercules 3D Prophet II MX
+BIOS-version 3.11.00.08 (coming with b3dpmx-do-08.exe 19/Oct/2000)
+NVIDIA Win-drivers 4.12.01.0635 (Guillemot-Version from 13/Oct/2000)
+
+  The workaround is based in the code that 1.1 question describes. Please
+read 1.1.
+
+  Why it happends with setedit and RHIDE but not with other software? I'm not
+sure about the answer but I'm almost sure is something related to the fact
+that we use the save/restore VGA state services not commonly used by other
+applications. In the future I'll make it optional, but by now we need it to
+debug applications that works at register level with the VGA card.
+=============================================================================
+2. Incompatibilities with other programs and TSRs
+
+2.1 Q: The editor and/or RHIDE makes conflict with my system, and even crash
+my computer.
+
+A: We found that some antivirus like old versions of NAV (Norton AntiVirus)
+and the VShield v3.2.0 doesn't really support our programs. We don't know why
+but these active antivirus are hooking some interrupt used by our programs
+that makes troubles when called from a protected mode application. I think
+they assume something that is clearly wrong when a DPMI application is
+working.
+
+"R.H." <rogerh40@aa.net> says: I am using McAfee Vshield 3.2.0 with scan
+engine 3.2.2. If I compile and run a simple hello program and then exit
+rhide, my system crashes. I know that it is caused by my Mcafee virus scanner
+as if I boot into my fat32 Win98 without the virus scanner, everything works
+fine.
+
+=============================================================================
+3. Miscellaneous
+
+3.1 Q: Do you really think your screen saver can be called screen saver?
+
+A: No. Look in "Tool&Ops|Options|Editor General", I put a question mark after
+the "Screen saver" label. Some of these screen savers aren't really screen
+savers, the best screen saver is a blanker (it just clears the screen), but
+I like the plasma a pseudo smoke ;-).
+  Also: Color monitors doesn't need real screen savers, monochrome does.
+  Plus: I added a blanker to the list.
+
+-----------------------------------------------------------------------------
+3.2 Q: Why I can't access files in a directory called c:\dev?
+
+A: Even when SETEdit is a DOS application uses the djgpp library which
+emulates a lot of UNIX details. In UNIX the /dev directory contains devices
+mapped to files, djgpp emulates it, so files in c:\dev, d:\dev, etc. have
+special meaning. Avoid using files en these directories.
+  
+=============================================================================
+4. Mouse problems
+
+4.1 Q: I don't get a mouse pointer while I'm in full screen, why?
+
+A: Be sure the mouse driver is loaded. That isn't needed when the Windows 9x
+GUI is loaded but is needed for pure DOS or Windows 3.1. If the mouse driver
+is loaded keep reading.
+   The Turbo Vision library currently needs a relative modern mouse driver. I
+know some old drivers doesn't provide all the mouse functions needed.
+   I know that the 7.83 version from Ultima Electronics dated in 1994 doesn't
+work, the Agile Mouse version 7.03 dated in 1992 works and modern Genius
+mouse drivers also works OK.
+
+-----------------------------------------------------------------------------
+4.2 Q: I can see both mouse pointers (graphical and text) when the editor is
+running windowed under W9x, why?
+
+A: If you are running with a non-standard (like 90x30) that's impossible to
+avoid. When running in this mode the mouse pointer must be controlled by the
+application because the mouse driver doesn't know how to do it. For this
+reason the editor draws the pointer. Lamentably there is no way to know if
+the program is windowed or not.
+
+-----------------------------------------------------------------------------
+4.3 Q: The mouse works, but I can't see the mouse pointer!
+
+A: Try with the --no-mouse-hook command line options.
+
+=============================================================================
+5. Sound problems
+
+5.1 The sound is too noisy (crispy), why?
+
+A: Most PCI cards have problems to emulate the Sound Blaster when a djgpp
+program is running.
+   I saw it using a Creative 128 PCI card and Andreas Martin
+<Bastardizer@t-online.de> reported similar problems with Creative Ensoniq
+AudioPCI (Soundblaster) card. This topic was also discussed in the Allegro
+mailing list.
+=============================================================================
+End of file
+

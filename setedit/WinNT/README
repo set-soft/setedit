@@ -1,0 +1,38 @@
+  This directory contains the files needed to create the Windows NT version
+of SETEdit.
+  Most of the work of this port was done by Anatoli Soltan <anatoli@iname.com>
+  This readme is temporary.
+  Here is a modified version of the text he sent me (updated by me):
+
+Compiler:
+---------
+I used Borland C++ Builder 5 for debugging.  If you do not have it
+you can use the free Borland command line tools that can be downloaded
+from Borland's web site. They include Borland C++ 5.5 compiler that is the
+same as in Builder 5.
+Porting to Visual C++ and mingw32 can be trivial.
+[SET Note: I used the free command line tools]
+
+Versions:
+---------
+Linux versions of TurboVision and SETEDIT were used:
+	TurboVision 1.0.10
+	SETEDIT     0.4.41
+[SET Note: I merged the code with 1.0.11 and 0.4.44]
+
+Brief compilation instructions:
+-------------------------------
+Be sure Turbo Vision is installed and compiled in the ../../tvision
+directory.
+Just run make in this directory.
+  
+Known problems:
+---------------
+- Installation program has not been ported.
+- Sound support has not been ported.
+
+Additionally:
+_____________
+To reconfigure the make files you need Perl. The script is located in the
+root directory of the distribution. Run "perl confignt.pl --help" to get
+help.

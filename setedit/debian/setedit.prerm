@@ -1,0 +1,8 @@
+#!/bin/sh
+# The following isn't necessary for an upgrade...
+if [ $1 != "upgrade" ] ; then
+    update-alternatives --remove editor /usr/bin/setedit
+    install-info --quiet --remove setedit
+fi
+
+#DEBHELPER#

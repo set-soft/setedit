@@ -1,0 +1,100 @@
+# Makefile for zlib for compiling by Borland C++ 5.5
+
+!ifndef _SUBMAKE
+
+CC       = bcc32
+LD       = bcc32
+
+!ifdef DEBUG
+CDEBUGFLAGS = -v -vi -y -6 -Od
+!else
+CDEBUGFLAGS = -O2 -6 -T -DNDEBUG
+!endif
+
+!ifdef DYNRTL
+DYNRTLFLAGS = -WR
+!endif
+
+CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLFLAGS) -WC -X -q $(CDEBUGFLAGS)
+LDFLAGS  = $(DYNRTLDFLAGS) -WC
+
+!endif
+
+O        = .obj
+
+
+# variables
+OBJ1 = gzio$(O) deflate$(O) adler32$(O) compress$(O) crc32$(O) uncompr$(O) \
+  trees$(O)
+OBJ2 = zutil$(O) inflate$(O) infblock$(O) inftrees$(O) infcodes$(O) \
+  infutil$(O) inffast$(O)
+
+all:  zlib.lib
+
+adler32.obj: adler32.c zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+compress.obj: compress.c zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+crc32.obj: crc32.c zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+deflate.obj: deflate.c deflate.h zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+gzio.obj: gzio.c zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+infblock.obj: infblock.c zutil.h zlib.h zconf.h infblock.h inftrees.h\
+   infcodes.h infutil.h
+	$(CC) -c $(CFLAGS) $*.c
+
+infcodes.obj: infcodes.c zutil.h zlib.h zconf.h inftrees.h infutil.h\
+   infcodes.h inffast.h
+	$(CC) -c $(CFLAGS) $*.c
+
+inflate.obj: inflate.c zutil.h zlib.h zconf.h infblock.h
+	$(CC) -c $(CFLAGS) $*.c
+
+inftrees.obj: inftrees.c zutil.h zlib.h zconf.h inftrees.h
+	$(CC) -c $(CFLAGS) $*.c
+
+infutil.obj: infutil.c zutil.h zlib.h zconf.h inftrees.h infutil.h
+	$(CC) -c $(CFLAGS) $*.c
+
+inffast.obj: inffast.c zutil.h zlib.h zconf.h inftrees.h infutil.h inffast.h
+	$(CC) -c $(CFLAGS) $*.c
+
+trees.obj: trees.c deflate.h zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+uncompr.obj: uncompr.c zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+zutil.obj: zutil.c zutil.h zlib.h zconf.h
+	$(CC) -c $(CFLAGS) $*.c
+
+zlib.lib: $(OBJ1) $(OBJ2)
+	del $@
+	tlib /E $@ @&&!
++$(**: = &^
++)
+!
+
+example.exe: example.obj zlib.lib
+	$(LD) $(LDFLAGS) example.obj zlib.lib
+
+minigzip.exe: minigzip.obj zlib.lib
+	$(LD) $(LDFLAGS) minigzip.obj zlib.lib
+
+test: example.exe minigzip.exe
+	example
+	echo hello world | minigzip | minigzip -d 
+
+clean:
+	del *.obj
+	del *.exe
+	del *.dll
+	del *.lib
+	del *.tds

@@ -1,0 +1,300 @@
+\input texinfo  @c -*-texinfo-*-
+@c Copyright (C) 1996-1998,1999,2000 by Salvador Eduardo Tropea.
+@c The first 75 lines configures all, the rest is the real doc.
+
+@comment %**start of header
+
+@setfilename infeng.info
+@set version 0.2.3
+@set update-date 10 June 1999
+@set update-month Jane 1999
+@set name-author Salvador Eduardo Tropea
+
+@set rh Robert H@value{ouml}hne
+@macro RH{}
+@value{rh}
+@end macro
+
+@settitle InfView v @value{version}
+@footnotestyle separate
+@paragraphindent asis
+@iftex
+@afourpaper
+@end iftex
+
+@comment %**end of header
+
+@c ---- Includes according to the output format
+@ifset html
+@include set.htm
+@clear text
+@end ifset
+
+@ifset text
+@include set.txt
+@clear html
+@end ifset
+
+@ifclear html
+@ifclear text
+@include set.txi
+@end ifclear
+@end ifclear
+
+@macro SSET{}
+@mail{@value{name-author},salvador@@inti.gov.ar}
+@end macro
+@set title-printed InfView
+@set minidesc-printed An info viewer
+@set year-copyr 1996, 1997, 1998, 1999, 2000
+@set info-file  infeng.info
+
+@c --------------------------------------------------------------
+@c Now we have 3 different headers:
+@c 1) For the printed manual, is called titlepage
+@c 2) For Info files
+@c 3) For HTML files
+@c I tried to automate it.
+@c --------------------------------------------------------------
+
+@set text-pre1 @ @ @ This document describes the use of InfView; this is a documentation browser designed to navigate info style docs.
+
+@set text-pre2 @ @ @ This documentation may be freely distributed with the InfView or the RHIDE package or any part thereof, provided this copyright notice is left intact on all copies.
+
+@set text-pre3 @ @ @ Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.
+
+@HeaderPage1{}
+@ifinfo
+@ifset html
+@include infeng.ctx
+@end ifset
+@top INFVIEW
+@end ifinfo
+Use the cursor arrows to move the cursor over the link (yellow words) that
+you want and press @key{ENTER}.
+@paragraph{}
+Press @key{F5} to use all the available screen.
+@paragraph{}
+@HeaderPage2{}
+
+@chapter Features and motivation
+
+First time I used the info viewer from GNU I really hated it. I don't doubt
+that info is a powerful browser, but isn't so easy to use. The interface is
+unclear and isn't intuitive at all.
+@paragraph{}
+My first solution was to create a converter to translate the info files to the
+Norton Guides format. The program can be found in SimTelnet, but the problem
+is that this format have some limitations and you need a browser for it.
+Even when there are shareware browsers that's a problem.
+@paragraph{}
+So my next attempt was to make a browser like the one used by the Turbo Vision
+library. And the result was InfView. InfView provides a very easy to use
+interface without loosing power.
+@paragraph{}
+The main features of InfView are:
+@paragraph{}
+
+@itemize @bullet
+@item Free cursor movement with the keyboard arrows, page-up, etc.
+@item Mouse support.
+@item Highlighted cross references.
+@item Hide of the @code{*Note} and other confusing things of the info format.
+@item Previous, Next and Up node support.
+@item History support.
+@item Incremental search just typing the first letters of the cross reference.
+@item The same for the whole nodes list.
+@item Support for compressed info files. See @x{Compressed files,compressed files}.
+@item Search in the current node, the whole file or all the files.
+@item Bookmarks.
+@item History of the last 40 nodes visited.
+@item Dialog to browse the files on disk.
+@item and more
+@end itemize
+
+@chapter How to use InfView
+
+Available Keys:
+@paragraph{}
+
+@table2{Key,Action}
+@titem_{Tab,Move to the next link (from the cursor position).}
+@titem_{Shift+Tab,Move to the previous link (from the cursor position).}
+@titem_{Alt+F1,Go to the last viewed topic.}
+@titem_{Ctrl+s,\@x\{Searching\,Search\}.}
+@titem_{Ctrl+l,Repeat the last search.}
+@titem_{Alt+F10,InfView \@x\{Control dialog\,control\}. dialog window.}
+@titem_{Ctrl+p,Go to the "previous" link.}
+@titem_{Ctrl+n,Go to the "next" link.}
+@titem_{Ctrl+u,Go to the "up" link.}
+@titem_{Ctrl+t,Go to the "top" link.}
+@titem_{Ctrl+d,Go to the directory.}
+@titem_{Ctrl+h,This help.}
+@titem_{Ctrl+g,\@x\{Jumping to any file or node\,GoTo\}.}
+@titem_{Ctrl+o,\@x\{Jumping to any node in the current file\,Jump to node\}.}
+@titem_{Alt+b,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog.}
+@titem_{Ctrl+f,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog.}
+@titem_{Alt+i,Copies the include name to the clipboard (for the libc help).}
+@titem_{1-9,Take the link 1 to 9.}
+@titem_{0,Take the last link available in that topic.}
+@titem_{a-z A-Z,Select the next link that starts with this letter. The editor uses
+an incremental search so you can type various letters until you reach the
+desired item}
+@endtable_{}
+
+@section Jumping to any file or node
+
+Go To Window:
+@paragraph{}
+
+You must enter the exact name of the topic that you want in the following
+format:
+@paragraph{}
+
+@example
+(file)node
+@end example
+
+For example: @code{(libc)printf} will go to the printf help.
+
+@section Jumping to any node in the current file
+
+This option will show you a window with all the nodes available in the
+current help file. You'll be able to select any of them and pressing @key{ENTER}
+you'll jump to that node.
+@paragraph{}
+The names are alphabetically sorted and pressing the first letters of the
+name of the node you'll be guided to the desired node.
+@paragraph{}
+
+@section Control dialog
+
+This dialog controls the navigation in InfView. The dialog contains the
+following buttons:
+@paragraph{}
+
+@table2{Button,Action}
+@titem_{Next,Moves to the next node in the help}
+@titem_{Previous,Moves to the previous node in the help}
+@titem_{Up,Moves one node up in the help's hierarchy}
+@titem_{Prev. Hist.,Goes to the previously visited node}
+@titem_{Nodes List,Shows a list of all the nodes to choose one}
+@titem_{Bookmarks,Goes to the \@x\{Bookmarks dialog\,Bookmarks\}. dialog}
+@titem_{Configuration,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog}
+@titem_{Open Info,Opens a dialog to browse the disk and choose any file to load}
+@titem_{Hide,Hides the control dialog}
+@endtable_{}
+
+Additionally the dialog contains a list with the last 40 nodes visited, you
+can choose any of them with the mouse of the cursors.
+@paragraph{}
+
+@section Bookmarks dialog
+
+This dialog allows to save the names of the nodes that you use frequently. You
+can save as many node positions as you want and they will be restored next
+time you run the editor. The marks can be deleted from this window too.
+
+@section Configuration dialog
+
+This dialog configures how InfView shows the text in screen.
+@paragraph{}
+Currently there are two settings:
+@paragraph{}
+@enumerate
+@item
+Hide '*Note' word: It hides the note tag used make makeinfo to indicate a
+cross reference.
+@item
+Hide real link name: It makes visible only the comment about the node and no
+the real name of the node.
+@end enumerate
+
+By default both are enabled and gives a cleaner text.
+
+@section Searching
+
+InfView have various search options, these options are grouped in two
+sections. The first indicates how the search will be make:
+@paragraph{}
+
+@itemize @bullet
+@item Case sensitive: Makes the search sensitive to the upper/lower case characters.
+@item Whole words only: Force to match only if the whole word matchs.
+@end itemize
+
+The second indicates where to search:
+@paragraph{}
+
+@itemize @bullet
+@item In current topic: Only in the text of the current node.
+@item In the file: In all the nodes of the current help file.
+@item In all files: In all the files located in the INFO directory.
+@end itemize
+
+@chapter Compressed files
+
+InfView supports compressed info files. For that they must have one of the
+following extentions @code{igz}, @code{gz}, @code{info.gz} or @code{inz}.
+Additionally they must be compressed with GNU's gzip and gzip must be
+installed in your system and in your search path.
+@paragraph{}
+Compressing the files under Linux or Windows 95 (with LFN=Y) is relative easy
+because you only need to compress the files and they will have the @code{gz}
+extention added. Under plain DOS is a little  harder because a file called
+@code{file.i10} will become @code{file.i1z} and will have the same name as
+a compressed file that had the following name @code{file.i1}. To fix that you
+must first rename the files to have the following format: @code{file.nn}.
+Then you must edit the first file to fix the @code{Indirect} table to reflect
+the changes.
+@paragraph{}
+
+@chapter About the Author
+
+@my_flag{}
+
+InfView was made by Salvador Eduardo Tropea (SET), with the help of Robert
+H@value{ouml}hne.
+@paragraph{}
+
+@display
+E-Mail: @SSET{}
+
+Telephone: (+5411) 4759-0013
+Postal Address:
+Salvador E. Tropea
+Curapalig@value{uuml}e 2124
+(1678) Caseros - 3 de Febrero
+Prov: Buenos Aires
+Argentina
+@end display
+@paragraph{}
+
+@my_flag{}
+
+@chapter Greetings
+@itemize @bullet
+@item
+To all the people who have contributed with DJGPP and GNU projects.
+@item
+Specially to:
+@itemize @bullet
+@item
+DJ Delorie       (DJGPP's motor).
+@item
+Robert H@value{ouml}hne     (RHIDE).
+@item
+Eli Zaretskii    (FAQ's maintainer and djgpp patchman).
+@item
+Charles Sandsman (CWSDPMI's author).
+@item
+Laszlo Molnar    (UPX's author sorry ML for the reverse order ;-).
+@item
+Marek Habersack  (don't worry the position was random).
+@end itemize
+@item
+To all the people of DJGPP's list.
+@end itemize
+
+@bye
+

@@ -1,0 +1,13 @@
+$Log$
+Revision 1.2  1999/07/18 19:30:43  root
+* Fixed: The main class wasn't destroyed at exit so the temporal files of
+InfView weren't deleted.
+
+Revision 1.1  1999/07/18 16:09:11  set
+* Modified: Now a lot of actions can be triggered by commands.
+* Added: All the commands to the menu so the user can see them.
+* Added: About.
+* Added: Now the search of cross references is done first with the visible
+names and if it fails with the node names (when searching command line
+specified stuff).
+.

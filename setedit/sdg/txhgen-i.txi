@@ -1,0 +1,312 @@
+@c  rhidemac.txi: -*- Texinfo -*-
+
+@c -------------------------------------------------------------------------
+@c
+@c Macros for making RHIDE documentation in TeX and INFO format.
+@c
+@iftex
+@immediate@write17{-------------------------------------------------------------------}
+@immediate@write17{---------IGNORE THE FOLLOWING ERROR ABOUT THE INVALID CHARACTER----}
+@immediate@write17{-------------------------BY SIMPLY PRESSING ENTER------------------}
+@immediate@write17{-------------------------------------------------------------------}
+@end iftex
+@c
+@c Author: Salvador Eduardo Tropea (salvador@inti.edu.ar), is a modified
+@c         version of the one created by (July, 1997):
+@c
+@c Author: Robert Hîhne (robert.hoehne@mathematik.tu-chemitz.de)
+@c         November 1996.
+@c
+@c Derived from 'faqmacros.txi', which is part of DJGPP FAQ written
+@c by Eli Eli Zaretskii (eliz@is.elta.co.il)
+@c
+@c Many ideas taken from files `multifmt.texi' and html.texi'
+@c written by Brian J. Fox and distributed with GNU Texinfo archive:
+@c
+@c Author: Brian J. Fox  (bfox@ua.com)	       Sun Apr  2 07:56:23 1995.
+@c
+@c -------------------------------------------------------------------------
+
+
+@macro html
+@end macro
+
+@macro htmltitle{line}
+@end macro
+
+@macro htmlsubtitle{line}
+@end macro
+
+@macro htmlauthor{line}
+@end macro
+
+@macro bye
+@end macro
+
+@macro anchor{text, link}
+\text\, \link\
+@end macro
+
+@macro TeX
+@TeX{}
+@end macro
+
+@macro paragraph{}
+@c @sp 1
+@end macro
+
+@macro mail{name, address}
+@sc{\name\}
+@c @iftex
+@c @par
+@c @end iftex
+@t{<\address\>}
+@end macro
+
+@macro ftp{desc, path}
+\desc\, e.g. ftp://\path\
+@end macro
+
+@macro ftpdir{host, dir}
+\host\, directory \dir\
+@end macro
+
+@macro ftpusr{desc, host, login, passwd}
+\desc\ (FTP to \host\, login as \login\, give \passwd\ as password)
+@end macro
+
+@macro www{desc, path}
+\desc\, at this URL:
+@sp 1
+@display
+http://\path\
+@end display
+@sp 1
+@end macro
+
+@macro gopher{desc, path}
+\desc\, gopher://\path\
+@end macro
+
+@macro news{name}
+\name\ Newsgroup
+@end macro
+
+@macro titem{line}
+@item \line\
+
+@end macro
+@macro titemx{line}
+@itemx \line\
+
+@end macro
+@macro titeml{line}
+@itemx \line\
+@end macro
+
+@macro quest{stuff}
+@quote-arg
+@emph{@strong{Question}: \stuff\}
+@end macro
+
+@macro ans
+@strong{Answer}:
+@end macro
+
+@macro mxref{node, desc, title, file, doc}
+see @ref{\node\,\desc\,\title\,\file\,documentation for \doc\}
+@end macro
+
+@macro extref{node, desc, file, title, url}
+see @ref{\node\,\desc\,,\file\,\title\},
+@end macro
+
+@c To keep it compatible with html.
+@macro mitem{visible, node}
+* \visible\: \node\.
+@end macro
+
+@c Idem.
+@macro end_menu
+@end menu
+@end macro
+
+@macro node{this, next, prev, up}
+@node \this\, \next\, \prev\, \up\
+@end macro
+
+@macro end_example
+@end example
+@end macro
+
+@iftex
+@set tex
+@macro aacute
+@'a
+@end macro
+@macro eacute
+@'e
+@end macro
+@macro iacute
+@'i
+@end macro
+@macro oacute
+@'o
+@end macro
+@macro uacute
+@'u
+@end macro
+@macro ntilde
+@~n
+@end macro
+@macro Ntilde
+@~N
+@end macro
+@macro auml
+@"a
+@end macro
+@macro euml
+@"e
+@end macro
+@macro iuml
+@"i
+@end macro
+@macro ouml
+@"o
+@end macro
+@macro uuml
+@"u
+@end macro
+@macro Uuml
+@"U
+@end macro
+@macro agrave
+@`a
+@end macro
+@macro egrave
+@`e
+@end macro
+@macro igrave
+@`i
+@end macro
+@macro ograve
+@`o
+@end macro
+@macro ugrave
+@`u
+@end macro
+@end iftex
+
+@ifclear tex
+@macro aacute
+†
+@end macro
+@macro eacute
+Ç
+@end macro
+@macro iacute
+°
+@end macro
+@macro oacute
+¢
+@end macro
+@macro uacute
+£
+@end macro
+@macro ntilde
+§
+@end macro
+@macro Ntilde
+•
+@end macro
+@macro exclamdown
+≠
+@end macro
+@macro questiondown
+®
+@end macro
+@macro auml
+Ñ
+@end macro
+@macro euml
+â
+@end macro
+@macro iuml
+ã
+@end macro
+@macro ouml
+î
+@end macro
+@macro uuml
+Å
+@end macro
+@macro Uuml
+ö
+@end macro
+@macro agrave
+Ö
+@end macro
+@macro egrave
+ä
+@end macro
+@macro igrave
+ç
+@end macro
+@macro ograve
+ï
+@end macro
+@macro ugrave
+ó
+@end macro
+@end ifclear
+
+@macro lessthan
+<
+@end macro
+@macro greaterthan
+>
+@end macro
+
+@macro _subheading{a}
+@subheading \a\
+@end macro
+
+@macro separatenode
+@end macro
+
+@macro table4{title1,title2,title3,title4}
+@itemize @bullet
+@end macro
+
+@macro table3{title1,title2,title3}
+@itemize @bullet
+@end macro
+
+@macro titem4{NOM,COM,KEY,ALT}
+@item \NOM\@*
+@itemize @minus
+  @item Editor command: @code{\COM\}@*
+  @item Key: @key{\KEY\}@*
+  @item Alternative: @key{\ALT\}
+@end itemize
+@c @key{\KEY\}
+@kindex \COM\ @key{\KEY\}
+@kindex \NOM\ @key{\KEY\}
+@end macro
+
+@macro titem3{NOM,COM,KEY}
+@item \NOM\@*
+@itemize @minus
+  @item Editor command: @code{\COM\}@*
+  @item Key: @key{\KEY\}
+@end itemize
+@c @key{\KEY\}
+@kindex \COM\ @key{\KEY\}
+@kindex \NOM\ @key{\KEY\}
+@end macro
+
+
+@macro endtable4{}
+@end itemize
+@end macro
+

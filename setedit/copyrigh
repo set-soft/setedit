@@ -1,0 +1,434 @@
+This program is copyrighted by Salvador Eduardo Tropea.
+Copyright (c) 1996,1997,1998,1999,2000
+For contact information see at the bottom of the file.
+
+  SET's editor is a very complex program. It currently have more than 1.45Mb
+of source code and uses various libraries. It makes the copyright and terms
+of distribution very complex.
+  Here is a description of the copyrights of each part:
+  [Each of these parts are independent so have independent copyrights]
+  [For a summary read the end of the file]
+
+----------- Editor classes --------------------------------------------------
+  The editor itself can be distributed under the terms of the GNU GPL
+license:
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+  For more details please read the copying.gpl file.
+  If you want to use these sources for an application that can't be
+distributed under these terms contact me.
+  It covers the InfView classes too and other files not covered by the next
+sections.
+
+----------- LibRHUtil -------------------------------------------------------
+  This library is copyrighted by Robert Hîhne.
+  Copyright (C) 1996,1997
+
+  Is freely distributable.
+  For more information read copying.rh.
+  It covers all the files in the librhuti directory.
+
+----------- SETTVUtil -------------------------------------------------------
+  This library is copyrighted by Salvador Eduardo Tropea.
+  Copyright (C) 1997,1998
+
+  This library is distributed under the terms of the GNU LGPL license.
+
+     This library is free software; you can redistribute it and/or
+     modify it under the terms of the GNU Library General Public
+     License as published by the Free Software Foundation; either
+     version 2 of the License, or (at your option) any later version.
+     
+     This library is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+     Library General Public License for more details.
+     
+     You should have received a copy of the GNU Library General Public
+     License along with this library; if not, write to the
+     Free Software Foundation, Inc., 59 Temple Place - Suite 330, Cambridge,
+     MA 02139, USA.
+
+  It covers all the files in the settvuti directory.
+  For other uses contact me.
+
+----------- EasyDiag -------------------------------------------------------
+  This library is copyrighted by Salvador Eduardo Tropea.
+  Copyright (C) 1998
+
+  This library is distributed under the same terms as SETTVUtil.
+
+---------- Calculator ------------------------------------------------------
+  Author:    Laszlo Molnar
+  Copying:   parser.c is free software, you can use it anywhere you want.
+  Warranty:  as usual: none
+
+---------- Files in extra directory ----------------------------------------
+  Some files in the extra directory are copyrigthed by DJ Delorie.
+  Read copying.dj for more information. Basically these files are under the
+GNU GPL license, DJ puts some extra conditions that I think are already
+covered by the GPL license.
+
+---------- PCRE ------------------------------------------------------------
+  Copyright (c) 1998 University of Cambridge
+
+Permission is granted to anyone to use this software for any purpose on any
+computer system, and to redistribute it freely, subject to the following
+restrictions:
+
+1. This software is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+2. The origin of this software must not be misrepresented, either by
+   explicit claim or by omission.
+
+3. Altered versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+
+---------- ZLib -------------------------------------------------------------
+ (C) 1995-1998 Jean-loup Gailly and Mark Adler
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+  Jean-loup Gailly        Mark Adler
+  jloup@gzip.org          madler@alumni.caltech.edu
+
+---------- LibBZIP2 ---------------------------------------------------------
+I included the sources to avoid problems, they aren't so big.
+
+This program, "bzip2" and associated library "libbzip2", are
+copyright (C) 1996-1999 Julian R Seward.  All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. The origin of this software must not be misrepresented; you must 
+   not claim that you wrote the original software.  If you use this 
+   software in a product, an acknowledgment in the product 
+   documentation would be appreciated but is not required.
+
+3. Altered source versions must be plainly marked as such, and must
+   not be misrepresented as being the original software.
+
+4. The name of the author may not be used to endorse or promote 
+   products derived from this software without specific prior written 
+   permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Julian Seward, Cambridge, UK.
+jseward@acm.org
+bzip2/libbzip2 version 0.9.5 of 24 May 1999
+
+---------- LibAMP -----------------------------------------------------------
+NOT INCLUDED IN THE LINUX DISTRIBUTION!
+The original library:
+
+  (C) Tomislav Uzelac  1996,1997
+
+This software can be used freely for any purpose. It can be distributed
+freely, as long as it is not sold commercially without permission from
+Tomislav Uzelac <tuzelac@rasip.fer.hr>. However, including this software
+on CD_ROMs containing other free software is explicitly permitted even 
+when a modest distribution fee is charged for the CD, as long as this
+software is not a primary selling argument for the CD.
+
+Building derived versions of this software is permitted, as long as they
+are not sold commercially without permission from Tomislav Uzelac 
+<tuzelac@rasip.fer.hr>. Any derived versions must be clearly marked as
+such, and must be called by a name other than amp. Any derived versions
+must retain this copyright notice.
+
+/* This license is itself copied from Tatu Ylonen's ssh package. It does 
+ * not mention being copyrighted itself :)
+ */
+
+THERE IS NO WARRANTY FOR THIS PROGRAM - whatsoever. You use it entirely
+at your risk, and neither Tomislav Uzelac, nor FER will be liable for
+any damages that might occur to your computer, software, etc. in
+consequence of you using this freeware program.
+
+LibAMP itself:
+LibAmp 0.2
+Ported to DJGPP/Allegro and turned into library form by Ove Kaaven
+ <ovek@arcticnet.no>
+
+---------- CWSDPMI ----------------------------------------------------------
+CWSDPMI is Copyright (C) 1995-1997  Charles W Sandmann (sandmann@clio.rice.edu)
+                                    1206 Braelinn, Sugar Land, TX 77479
+
+This is release 4.  The files in this binary distribution may be redistributed
+under the GPL (with source) or without the source code provided:
+
+* CWSDPMI.EXE or CWSDPR0.EXE are not modified in any way except via CWSPARAM
+
+* Notice to users that they have the right to receive the source code and/or
+  binary updates for CWSDPMI.  Distributors should indicate a site for the 
+  source in their documentation.
+
+Note: I'm including cwsdpmi.exe and cwsdpmi.doc in the installer version.
+---------- PMODEDJ ----------------------------------------------------------
+PMODE 3.07 is Copyright (c) 1994, by Tran (a.k.a. Thomas Pytel).
+PMODE/DJ modifications are Copyright (c) 1996, by Matthias Grimrath.
+PMSTUB.ASM is Copyright (c) 1995, by DJ Delorie, distributed with permission.
+
+License Information
+-------------------
+
+PMODE/DJ is free software.  It may be used or distributed in any manner you
+wish, as long as you do not try to sell an extender based on PMODE.  You
+may use this software in for profit productions.  If you use this software
+in any package, you MUST give credit to Thomas Pytel and Matthias Grimrath.
+
+PMODE/DJ comes with ABSOLUTELY NO WARRANTY; excluding any and all implied
+warranties, including warranties of merchantability and fitness for a
+particular purpose.  There is no warranty or representation, either express
+or implied, with respect to this code, its quality, performance,
+merchantability, or fitness for a particular purpose.  The entire risk
+of using this program is with you.  There will be no liability for special,
+incidental, or consequential damages arising out of or resulting from the use
+or modification of this code.
+
+Note: I use the pmodedj stub for the installer.
+-----------------------------------------------------------------------------
+Not included in this package but needed to create the editor:
+-----------------------------------------------------------------------------
+
+---------- TurboVision v2.0 -------------------------------------------------
+
+  Copyright (c) 1994 by Borland International
+  All Rights Reserved.
+
+  This library is freely available from (original):
+  ftp://ftp.borland.com/pub/borlandcpp/devsupport/archive/turbovision/tv.zip
+
+  The port was done by Robert Hîhne and currently I'm the maintainer, you
+can get the port (under the GPL license)
+  http://www.geocities.com/SiliconValley/Vista/6552/tvision.html
+
+
+---------- GetText ----------------------------------------------------------
+
+  When you compile the patched TurboVision with international support (you
+can avoid it) you must link with this library covered by the LGPL license.
+
+
+---------- Allegro ----------------------------------------------------------
+
+  Copyright (c) by Shawn Hargreaves, 1994/99
+
+   Allegro is gift-ware. It was created by a number of people working in 
+   cooperation, and is given to you freely as a gift. You may use, modify, 
+   redistribute, and generally hack it about in any way you like, and you do 
+   not have to give us anything in return. However, if you like this product 
+   you are encouraged to thank us by making a return gift to the Allegro 
+   community. This could be by writing an add-on package, providing a useful 
+   bug report, making an improvement to the library, or perhaps just 
+   releasing the sources of your program so that other people can learn from 
+   them. If you redistribute parts of this code or make a game using it, it 
+   would be nice if you mentioned Allegro somewhere in the credits, but you 
+   are not required to do this. We trust you not to abuse our generosity.
+
+Note: Shawn knows I did my part ;-), from the authors file of Allegro:
+   Salvador Eduardo Tropea (salvador@inti.edu.ar).
+   Improved the keyboard routines (better handling of extended scancodes, 
+   keyboard LED support, capslock and numlock, and alt+numpad input), 
+   contributed the 320x100 VGA graphics mode, added support for proper 16 
+   bit sample mixing, and made numerous other useful suggestions, 
+   contributions and bugfixes.
+
+---------- LibIOStream and LibStdCxx ----------------------------------------
+
+Licensing terms for `libio'
+===========================
+
+   Since the `iostream' classes are so fundamental to standard C++, the
+Free Software Foundation has agreed to a special exception to its
+standard license, when you link programs with `libio.a':
+
+     As a special exception, if you link this library with files
+     compiled with a GNU compiler to produce an executable, this does
+     not cause the resulting executable to be covered by the GNU
+     General Public License.  This exception does not however
+     invalidate any other reasons why the executable file might be
+     covered by the GNU General Public License.
+
+   The code is under the GNU General Public License (version 2) for all
+other purposes than linking with this library; that means that you can
+modify and redistribute the code as usual, but remember that if you do,
+your modifications, and anything you link with the modified code, must
+be available to others on the same terms.
+
+   These functions are also available as part of the `libg++' library;
+if you link with that library instead of `libio', the GNU Library
+General Public License applies.
+
+
+---------- ncurses ---------------------------------------------------------
+library and terminfo utilities. ncurses/terminfo was written by Pavel
+Curtis and Zeyd M. Ben-Halim <zmbenhal@netcom.com>. Ncurses is
+copyright (C) 1992, 1993, 1994, 1995 by Zeyd M. Ben-Halim.
+
+Pavel Curtis released his original copyright on this software to the
+public domain, but Zeyd M. Ben-Halim has retained the copyright on his
+version of this software.
+
+	Permission is hereby granted to reproduce and distribute ncurses
+	by any means and for any fee, whether alone or as part of a
+	larger distribution, in source or in binary form, PROVIDED
+	this notice is included with any such distribution, not removed
+	from header files, and is reproduced in any documentation
+	accompanying it or the applications linked with it.
+
+	ncurses comes AS IS with no warranty, implied or expressed.
+
+Note: Only used for Linux version.
+---------- gpm ---------------------------------------------------------
+gpm - General Purpose Mouse Interface is copyrighted:
+
+Copyright 1993        ajh@gec-mrc.co.uk (Andrew Haylett)
+Copyright 1994-1997   alessandro.rubini@linux.it (Alessandro Rubini)
+                      rubini@pop.systemy.it (faster e-mail)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 dated June, 1991.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Note: Only used for Linux version.
+---------- libwin ----------------------------------------------------------
+libwin Copyright 1997-1999 by Richard Dawe
+Portions Copyright (C) 1997-1998 by the RegDos Group
+
+License Details
+===============
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+    The registry access code is from The RegDos Group's Regdos library.
+Alfons Hoogervorst <alfons@hoogervorst.demon.nl> is the maintainer of
+this. I think RegDos can be obtained from http://www.hoogervorst.demon.nl.
+
+Note: Also used in the installer.
+-----------------------------------------------------------------------------
+
+*****************************************************************************
+*****************************************************************************
+                                 Summary
+*****************************************************************************
+*****************************************************************************
+
+  As you can see the stuff is very complex. As I'm using LGPL libraries
+(gettext and some of my own libraries) the resulting editor is covered by
+the GNU GPL license.
+  But it doesn't go in the reverse, I mean: it doesn't force me to distribute
+copyrighted libraries like Turbo Vision.
+  Additionally even when I release my work I reserve my rights to use it in a
+commercial project and don't distribute this particular version. It doesn't
+imposse any special restriction to the currently available version that is
+covered by the GPL license.
+  Here is a summary of what the GPL implies:
+
+* You can use the source.
+* You can modify the source.
+* You can distribute the source.
+* You can make a commercial program and charge for it.
+* You must make the derivative work available for all the people, you can
+only charge the costs to distribute it.
+* You can not delete the original copyright.
+* If you modify a source you must put it clear.
+
+  Read the license carefully, the above is just an inaccurate summary.
+  Note that even when you can use the code for a commercial application you
+must make the sources available so the things becomes a little bit complex
+for you.
+
+ Even when isn't strictly needed I ask the following:
+
+* If you include it in a CD ROM please let me know. If you are a big company
+you could send me a copy.
+* If you use it for any purpose let me know so I'll be able to include this
+information in my curriculum.
+* If you really like the editor and/or the SET's Documentation Generator
+included on it you can send me anything as feedback.
+  If you want to send money I'll be happy, but if you don't have it and
+want to show your gratitude you can send me a postal card from your city
+or some of the things I collect (train tickets, cigarette envelopes and
+boxes, stamps, old money and coins).
+
+-----------------------------------------------------------------------------
+
+Contact information:
+
+ E-Mail: salvador@inti.gov.ar or set-soft@bigfoot.com or set@computer.org
+ 
+ Telephone: (+5411) 4759-0013
+ 
+ Postal Address:
+ Salvador E. Tropea
+ CurapaligÅe 2124
+ (1678) Caseros - 3 de Febrero
+ Prov: Buenos Aires
+ Argentina
+
+ Web:
+ http://www.geocities.com/SiliconValley/Vista/6552/setedit.html
+

@@ -1,0 +1,232 @@
+@c  set.txt: -*- Texinfo -*-
+
+@c -------------------------------------------------------------------------
+@c
+@c Macros for making SET's documentation in txt format.
+@c
+@c Author: Salvador Eduardo Tropea (salvador@inti.gov.ar)
+@c         July 1997.
+@c
+@c It includes the rhidemac.txi file from Robert Hîhne, Eli Zaretskii and
+@c Brian J. Fox.
+@c
+@c -------------------------------------------------------------------------
+
+@include rhidemac.txt
+
+@macro table4{title1,title2,title3,title4}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@set table-title4 \title4\
+@itemize @bullet
+@end macro
+
+@macro table3{title1,title2,title3}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@clear table-title4
+@itemize @bullet
+@end macro
+
+@macro table2{title1,title2}
+@set table-title2 \title2\
+@clear table-title3
+@clear table-title4
+@itemize @bullet
+@end macro
+
+@macro table2_auto{title1,title2}
+@table2{\title1\,\title2\}
+@end macro
+
+@macro titem_{col1,col2,col3,col4}
+@item \col1\@*
+- @value{table-title2}: \col2\
+@ifset table-title3
+@*- @value{table-title3}: \col3\
+@end ifset
+@ifset table-title4
+@*- @value{table-title4}: \col4\
+@end ifset
+@sp 1
+@end macro
+
+@macro endtable_{}
+@end itemize
+@sp 2
+@end macro
+
+@c --- The following are because HTML replaces it
+@macro end_format
+@end format
+@end macro
+@macro end_table
+@end table
+@end macro
+@macro end_itemize
+@end itemize
+@end macro
+@macro end_enumerate
+@end enumerate
+@end macro
+@macro end_example
+@end example
+@end macro
+@macro end_smallexample
+@end smallexample
+@end macro
+@macro end_display
+@end display
+@end macro
+@macro end_quotation
+@end quotation
+@end macro
+@macro end_menu
+@end menu
+@end macro
+
+@c --- Entries for menues
+@c @unmacro mitem
+@macro mitem2{node,name}
+* \node\:: \name\.
+@end macro
+@macro mitem{node}
+* \node\::
+@end macro
+
+@macro node_{name,prox,prev,up}
+@node \name\
+@end macro
+
+@set aacute †
+@set eacute Ç
+@set iacute °
+@set oacute ¢
+@set uacute £
+@set ntilde §
+@set Ntilde •
+@macro exclamdown
+≠
+@end macro
+@macro questiondown
+®
+@end macro
+@set auml Ñ
+@set euml â
+@set iuml ã
+@set ouml î
+@set uuml Å
+@set Uuml ö
+@set agrave Ö
+@set egrave ä
+@set igrave ç
+@set ograve ï
+@set ugrave ó
+
+@macro lt
+<
+@end macro
+@macro gt
+>
+@end macro
+
+@c --- Local crossrefences are @x
+@c @set name_provided__
+@c @ifeq{"\name\","", @clear name_provided__}
+@c @ifset name_provided__
+@macro x{node,name}
+\name\ (\node\)
+@end macro
+@c @end ifset
+@c @ifclear name_provided__
+@c @w{\node\}
+@c @end ifclear
+
+@c --- Workaround for a bug
+@set open-curly @{
+@set close-curly @}
+@macro ocb
+@value{open-curly}
+@end macro
+@macro ccb
+@value{close-curly}
+@end macro
+
+@c --- to put a comma in a parameter
+@set comma-val ,
+@macro comma
+@value{comma-val}
+@end macro
+
+
+@c --- Header of the text
+@macro HeaderPage1
+
+@finalout
+@setchapternewpage odd
+
+This is the documentation for @value{title-printed}.
+@paragraph{}
+
+Copyright @copyright{} @value{year-copyr} @value{name-author}
+@paragraph{}
+
+This documentation may be freely distributed, provided this copyright notice
+is left intact on all copies.
+@end macro
+
+@macro HeaderPage2
+
+@format
+@ @ Table of Contents
+@ @ *****************
+
+@include contents.idx
+@end format
+@*
+
+@end macro
+
+@macro EOFTOC
+@end macro
+
+@macro my_flag
+@end macro
+
+@macro crossparam{a,b}
+@set temporal @x{Variables type 5,Automatic}.
+@end macro
+
+@macro code2{a}
+@code{\a\}
+@end macro
+
+@macro varindex{h,t}
+@format
+@include \t\
+@end format
+@sp 2
+@end macro
+
+@macro conindex{h,t}
+@format
+@include \t\
+@end format
+@sp 2
+@end macro
+
+@macro keyindex{h,t}
+@format
+@include \t\
+@end format
+@sp 2
+@end macro
+
+@macro i{valor}
+`\valor\'
+@end macro
+
+@macro p{}
+@sp 1
+@end macro
+

@@ -1,0 +1,95 @@
+.\" Process this file with
+.\" groff -man -Tascii infview.man
+.\"
+.TH INFVIEW 1 "AUGUST 1999" "v0.2.4"
+.SH NAME
+infview \- an info files viewer
+.SH SYNOPSIS
+.B "infview ["
+.I options
+.B "]... ["
+.I info_file
+.B [
+.I menu_item
+.B "...] ]"
+.SH DESCRIPTION
+.B InfView
+is a good replacement for the info-stantalone program. The main
+objetive of InfView is to give to the user a friendly and easy to learn tool
+to browse the documentation found in info format. This format is used by the
+FSF for all the major tools and of course is used by djgpp.
+.PP
+This man page just describes the command line options for
+.B InfView
+for more details consult the on\-line help.
+.PP
+The command line options are intentionally similar to the ones provided by
+.BR info (1).
+The first argument, if present, is the name of the Info file to read.
+Any remaining arguments are treated as the names of menu items in the
+initial node visited.
+.PP
+.B InfView
+saves the position of the windows, which info files are open, the history of
+visited nodes, bookmarks, etc. in a desktop file. If you invoke the program
+again without specifying any info file in the command line the desktop file
+is loaded recreating the last session. If you specify an info file the
+desktop file won't be loaded. In any case the current situation is stored at
+exit.
+.SH OPTIONS
+.IP "-d, --directory DIR"
+Adds a directory to the list of directories to search. In other words adds
+DIR to INFOPATH.
+.IP "-f, --file FILENAME"
+Load FILENAME info file. When you provide a file name in the command line
+only this file is loaded, otherwise the program remmembers what file/s were
+opened and opens these files again.
+.IP "-k, --use-rh-52-keys"
+.B "[Only for Linux]"
+Enables the Red Hat 5.2 style keyboard mapping. That's needed if you are
+experimenting some strange function keys behavior. Some keyboard mapping
+files redefines the function key numbers in a good way but really
+incompatible with the old way. I first found it in Red Hat 5.2.
+.IP "-l, --force-no-lfn"
+.B "[Only for DOS]"
+Avoids the use of long file names under W9x. Even if the
+.B LFN
+environment variable says the reverse.
+.IP "-L, --force-lfn"
+.B "[Only for DOS]"
+Forces the use of long file names under W9x. Even if the
+.B LFN
+environment variable says the reverse.
+.IP "-n, --node NODE"
+Automatically jumps to this node.
+.IP "-r, --read-dkt FILENAME"
+If no info file is specified use this desktop file. In this way you can
+retreive the exact configuration you were using before. It includes: opened
+files, history of visited nodes, bookmarks, etc.
+.IP "-s, --save-dkt FILENAME"
+Saves the configuration at exit to the specified file. You can use the
+.I \-r
+option to load it next time.
+.IP "-h, --help"
+Displays the command line options of the editor.
+.SH EXAMPLES
+.SB Linux
+.IP "info libc 'function index' printf"
+Moves to the node `Function Index' and then to `printf' in the info file
+called `libc'.
+.PP
+.SB DOS
+.IP "info libc alpha printf"
+Moves to the node `Alphabetical list' and then to `printf' in the info file
+called `libc'.
+.SH FILES
+.I "./.desktop.dkt ~/.desktop.dkt ./desktop.dkt /usr/share/infview"
+.I %DJDIR%/share/infview
+.RS
+Default desktop file.
+.SH ENVIRONMENT
+.IP INFOPATH
+Indicates where help files in info format are located. If not defined the
+program will guess the location.
+.SH AUTHOR
+Salvador Eduardo Tropea <salvador@inti.gov.ar>

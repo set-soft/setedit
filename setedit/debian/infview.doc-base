@@ -1,0 +1,13 @@
+Document: infview
+Title: SET's InfoViewer documentation
+Author: Salvador Eduardo Tropea
+Abstract: This is the documentation for SET's InfoViewer, a friendly GNU Info documentation viewer.
+Section: Help
+
+Format: text
+Files: /usr/share/doc/infview/infview.txt.gz
+
+Format: info
+Index: /usr/share/info/infview.info.gz
+Files: /usr/share/info/infview.*
+

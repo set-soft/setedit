@@ -1,0 +1,89 @@
+# Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
+# see copyrigh file for details
+#
+# Command line errors description file for SET's editor
+#
+# Name must be the first.
+#
+
+#
+# GNU programs
+# Note: The `Internal' version is faster and also supports
+# internationalization.
+#
+Name=GNU
+Pattern=((\w:[^:]+)|([^:]+)):(\d+): (.+)
+File=1
+Line=4
+Description=5
+EnterDirPat=[Ee]ntering dir(.+)`(.+)'
+EnterDirDir=2
+LeaveDir=[Ll]eaving dir
+UseInternal
+End
+
+#
+# Clipper 5.x
+#
+Name=Clipper
+Pattern=(.+)\((.+)\) +(Error|Warning) (.+)
+File=1
+Line=2
+Severity=3
+Description=4
+End
+
+#
+# Visual C 5.0
+#
+# Textual description by Grzegorz Adam Hankiewicz <gradha@iname.com>
+# Not tested.
+#
+Name=Visual C
+Pattern=(.+)\((.+)\) :(.+):(.+)
+File=1
+Line=2
+Description=4
+End
+
+#
+# Borland C 5.5
+#
+# Textual description by Grzegorz Adam Hankiewicz <gradha@iname.com>
+# SET: I tested it and fixed some details. I used the free command line tools
+#
+Name=Borland C
+Pattern=(Error|Warning) (.+) (.+) (.+): (.+)
+Severity=1
+# 2 is the number od the error/warning
+File=3
+Line=4
+Description=5
+End
+
+#
+# Turbo Pascal 7.0
+#
+# Textual description by Grzegorz Adam Hankiewicz <gradha@iname.com>
+# Not tested.
+#
+Name=Turbo Pascal
+Pattern=(.+)\((.+)\):(.+):(.+)
+File=1
+Line=2
+Description=4
+End
+
+#
+# Watcom 11
+#
+# Textual description by Grzegorz Adam Hankiewicz <gradha@iname.com>
+# Not tested.
+#
+Name=Watcom
+Pattern=(.+)\((.+)\) : (.+) : (.+)
+File=1
+Line=2
+Description=4
+End
+

@@ -1,0 +1,77 @@
+; Copyright 1996,1997,1998,1999,2000 by Salvador E. Tropea [SET],
+; see copyrigh file for details
+;
+;  This file contains some small examples of how to write sLisp macros.
+;  To test any of these macros just copy/paste the macro in the macros.slp
+; file and restart the editor, then go to Macro|Choose menu option and
+; select the macro you want to test.
+;
+
+(defmacro 'Delete last char'
+ (SendCommands cmcLineEnd cmcBackSpace cmcLineStart cmcLineDown)
+)
+
+(defmacro 'Simple new line'
+ (InsertText CR)
+)
+
+(defmacro 'Testing 1 2 3 ;-)'
+ (eval
+  (SendCommands cmcLineEnd)
+  (InsertText (+ 'Hi!' CR 'How are you?'))
+  (SendCommands cmcLineUp cmcLineEnd)
+ )
+)
+
+(defmacro 'Recorded macro'
+ (eval
+  (SendCommands cmcWordRight cmcWordRight
+                cmcSelectOn cmcWordRight cmcSelectOff
+                cmcCopy cmcLineEnd cmcNewLine cmcPaste)
+ )
+)
+
+(defmacro 'Insert new line, no move'
+ (eval
+  (InsertText CR)
+  (SendCommands cmcLineUp cmcLineEnd)
+ )
+)
+
+;
+; Note: See how I can add a number to a string. In this case the integer is
+; converted to a string first and then concatenated.
+;
+(defmacro 'Test'
+ (eval
+  (setv "testVar" (+ "Hola" 1))
+  (InsertText (left testVar 2))
+  (InsertText "\n")
+  (InsertText (right testVar 2))
+  (InsertText "\n")
+  (InsertText (substr testVar 1 2))
+  (InsertText "\n")
+  (sstr testVar 3 (gstr testVar 0))
+  (InsertText testVar)
+  (InsertText "\n")
+ )
+)
+
+(defmacro 'Chooser'
+ (eval
+  (ShowInStatusLine (ComplChoose "first\nsecond\nthird\nlast" "\n"))
+ )
+)
+
+(defmacro 'Test getenv'
+ (eval
+  (ShowInStatusLine (+ "DJGPP directory is: " (getenv "DJDIR")))
+ )
+)
+
+; Nasty example, it calls another editor ;-)))
+(defmacro 'Test strxlt'
+ (eval
+  (RunProgram (strxlt (+ "edit " (WhichEditor)) "/" "\\") 1)
+ )
+)
