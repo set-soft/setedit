@@ -5638,6 +5638,9 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
  if ((delta.x+size.x-1)<curPos.x)
    {
     delta.x=curPos.x-size.x+8;
+    // Adjust the limit or the scroll bar will neutralize the increment
+    if (limit.x<delta.x+size.x)
+       limit.x=delta.x+size.x;
     update(ufView);
    }
  if (curPos.x<delta.x || curPos.y>=delta.y+size.y || curPos.y<delta.y)

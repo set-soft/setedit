@@ -1,4 +1,9 @@
 $Log$.
+Revision 1.305  2003/04/25 18:15:10  set
+* Fixed: When jumping to a hit in the message window and the first column
+contained a matching [{( and the editor was configure to do match pair on
+the fly: the message quickly dissapear.
+
 Revision 1.304  2003/04/25 15:02:23  set
 * Fixed: TSCheckBoxes computed the with using untranslated messages. Same
 for TSRadioButtons.
