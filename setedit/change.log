@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.471  2003/11/24 15:44:19  set
+* Fixed: Some gcc versions needs explicit use of libstdc++ to link C++ and
+intenac/getcolors didn't have it. Reported by Michel Catudal (bbcat).
+
 Revision 1.470  2003/11/18 14:30:19  set
 * Added: More cases to the code that detects "Emacs comments" at the end of
 the file. From information provided by Grzegorz.

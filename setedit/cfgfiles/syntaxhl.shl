@@ -2094,7 +2094,7 @@ Keywords=ScreenPalette,zHideCursorWhenNoFocus,ExtProgVideoMode,VideoMode
 Keywords=DontResizeToCells,BIOSKey,UseShellScreen,InternalBusyCursor
 Keywords=VGABIOSState,SaveVGAState,DontMoveHiddenCursor,AppCP,ScrCP,InpCP
 Keywords=PollMouse,BrokenCursorShape,Unicode16,UnicodeFont,UseX11Fonts
-Keywords=X11Font,UseUpdateThread,AvoidMoire
+Keywords=X11Font,UseUpdateThread,AvoidMoire,AltKeysSetting
 End
 
 #--------------------------------- XML ------------------------------------
