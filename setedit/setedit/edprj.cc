@@ -672,7 +672,7 @@ void InsertInOrder(TDeskTop *dsk,TDskWin *win)
    dsk->insert(win->view);
 }
 
-void OpenProject(char *name)
+void OpenProject(char *name, int preLoad)
 {
  char *s,fname[PATH_MAX];
 
@@ -693,20 +693,35 @@ void OpenProject(char *name)
 
  if (edTestForFile(s))
    { // Load it
-    CloseProject(0);
+    if (!preLoad) CloseProject(0);
     ReplaceExtension(s,DeskTopFileExt,ProjectFileExt);
     char *hidden=0;
-    if (!edTestForFile(s) && (hidden=MakeItHiddenName(s))!=NULL)
+    Boolean loaded=False;
+    if (!edTestForFile(s))
       {
-       editorApp->retrieveDesktop(hidden,True);
-       delete[] hidden;
+       hidden=MakeItHiddenName(s);
+       if (hidden)
+         {
+          if (edTestForFile(hidden))
+             loaded=editorApp->retrieveDesktop(hidden,True,preLoad);
+          delete[] hidden;
+         }
       }
     else
-       editorApp->retrieveDesktop(s,True);
+       loaded=editorApp->retrieveDesktop(s,True,preLoad);
+    if (!loaded)
+       LoadEditorDesktop(0);
+    if (preLoad)
+       return;
     LoadProject(ReplaceExtension(s,ProjectFileExt,DeskTopFileExt));
    }
  else
    { // Is a new one
+    if (preLoad)
+      {
+       LoadEditorDesktop(0);
+       return;
+      }
     CloseProject(1);
     prjWin=new TDskWinPrj(s);
     editorApp->SetTitle(_("Project: "),s);

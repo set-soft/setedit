@@ -166,11 +166,58 @@ void LoadInstallationDefaults()
 /**[txh]********************************************************************
 
   Description:
-  Looks for a desktop file and loads it.
+  Helper function that looks for projects in the current directory. The name
+of the last found is stored in prjName.
+  
+  Return: The number of projects found.
+  
+***************************************************************************/
+
+static
+int LookForProjects(char *prjName)
+{
+ DIR *d;
+ d=opendir(".");
+
+ if (d)
+   {
+    struct dirent *de;
+    int c=0;
+    while ((de=readdir(d))!=0)
+      {
+       if (fnmatch("*" ProjectFileExt,de->d_name,0))
+          continue;
+       if (c==0)
+         {
+          strcpy(prjName,de->d_name);
+          c++;
+         }
+       else
+         {
+          c++;
+          break;
+         }
+      }
+    closedir(d);
+    return c;
+   }
+ return 0;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Looks for a desktop file and loads it. The @var{LoadPrj} argument says if
+we are also looking for a project (0 when loaded the desktop associated to
+a desktop), the suggestedName is tested before trying to load. The
+@var{haveFilesCL} argument indicates if we have files specified listed in
+the command line. The @var{preLoad} argument indicates if we are pre-loading
+a desktop file to determine default screen options.
 
 ***************************************************************************/
 
-void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
+void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
+                       int preLoad)
 {
  TEditorCollection::HaveFilesCL=haveFilesCL;
  DstLoadedHere=0;
@@ -178,48 +225,24 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  // 0) If the user forces a project load it or if that's impossible create it
  if (suggestedName && CLY_ValidFileName(suggestedName))
    {
-    OpenProject(suggestedName);
+    OpenProject(suggestedName,preLoad);
     return;
    }
  // 1) Look for project files.
  if (LoadPrj)
    {
-    DIR *d;
-    d=opendir(".");
     char prjName[PATH_MAX];
-   
-    if (d)
-      {
-       struct dirent *de;
-       int c=0;
-       while ((de=readdir(d))!=0)
-         {
-          if (fnmatch("*" ProjectFileExt,de->d_name,0))
-             continue;
-          if (c==0)
-            {
-             strcpy(prjName,de->d_name);
-             c++;
-            }
-          else
-            {
-             c++;
-             break;
-            }
-         }
-       closedir(d);
-       // If there are only one project
-       if (c==1)
-         {// Look again for the desktop
-          OpenProject(prjName);
-          return;
-         }
+    // If there are only one project
+    if (LookForProjects(prjName)==1)
+      {// Look again for the desktop
+       OpenProject(prjName,preLoad);
+       return;
       }
    }
  // 2) Try with the desktop file here
  if (edTestForFile(cDeskTopFileName))
    {
-    if (editorApp->retrieveDesktop(cDeskTopFileName,True))
+    if (editorApp->retrieveDesktop(cDeskTopFileName,True,preLoad))
       {
        DstLoadedHere=1;
        return;
@@ -229,7 +252,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  // 2.2) Same for hidden version
  if (edTestForFile(cDeskTopFileNameHidden))
    {
-    if (editorApp->retrieveDesktop(cDeskTopFileNameHidden,True))
+    if (editorApp->retrieveDesktop(cDeskTopFileNameHidden,True,preLoad))
       {
        DstLoadedHere=1;
        return;
@@ -240,7 +263,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  char *s=ExpandHome(cDeskTopFileName);
  if (edTestForFile(s))
    {
-    if (editorApp->retrieveDesktop((const char *)s,False))
+    if (editorApp->retrieveDesktop((const char *)s,False,preLoad))
        return;
    }
  #ifdef HIDDEN_DIFFERENT
@@ -248,22 +271,25 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  s=ExpandHome(cDeskTopFileNameHidden);
  if (edTestForFile(s))
    {
-    if (editorApp->retrieveDesktop((const char *)s,False))
+    if (editorApp->retrieveDesktop((const char *)s,False,preLoad))
        return;
    }
  #endif
- editorApp->retrieveDesktop(NULL,False);
+ editorApp->retrieveDesktop(NULL,False,preLoad);
  LoadInstallationDefaults();
 }
 
 /**[txh]********************************************************************
 
   Description:
-  Restores the previously stored Desktop
+  Restores the previously stored Desktop. The @var{preLoad} argument
+indicates if we just want to load the information needed before starting the
+application (screen options).
 
 ***************************************************************************/
 
-Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
+Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal,
+                                       int preLoad)
 {
  Boolean ret=False;
  if (name)
@@ -277,20 +303,28 @@ Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
     #endif
 
     if (!f)
-       messageBox(_("Could not open desktop file"), mfOKButton | mfError);
+      {
+       if (!preLoad)
+          messageBox(_("Could not open desktop file"), mfOKButton | mfError);
+      }
     else
       {
-       if (TSetEditorApp::loadDesktop(*f,isLocal))
-          ret=True;
+       if (preLoad)
+          ret=TSetEditorApp::preLoadDesktop(*f);
+       else
+          ret=TSetEditorApp::loadDesktop(*f,isLocal);
        if (!f)
          {
-          messageBox(_("Error reading desktop file"), mfOKButton | mfError);
+          if (!preLoad)
+             messageBox(_("Error reading desktop file"), mfOKButton | mfError);
           ret=False;
          }
        f->close();
       }
     delete f;
    }
+ if (preLoad)
+    return ret;
 
  // Create all the necesary things if there is no desktop file
  if (!edHelper)
@@ -837,6 +871,113 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  return True;
 }
 #undef L
+
+/**[txh]********************************************************************
+
+  Description:
+  Loads settings for fonts from desktops older than 0.5.0.
+  
+***************************************************************************/
+void TSetEditorApp::loadOldFontInfo(fpstream& s)
+{
+ char version,aux;
+ s >> version;
+ int cp1,cp2;
+
+ if (version && version<=3)
+   {// versions 1, 2 and 3
+    char *namePrim=s.readString();
+    if (version>=3)
+      {
+       s >> cp1;
+       so.enForceScr=1;
+       so.enScr=cp1;
+      }
+    char *nameSeco=0;
+
+    if (version>=2)
+      {
+       s >> aux;
+       if (aux)
+         {
+          nameSeco=s.readString();
+          if (version>=3)
+            {
+             s >> cp2;
+             so.enForceSnd=1;
+             so.enSnd=cp2;
+            }
+         }
+      }
+    if (namePrim && namePrim[0])
+      {
+       so.foPriName=namePrim;
+       so.foPriLoad=1;
+      }
+    if (nameSeco && nameSeco[0])
+      {
+       so.foSecName=nameSeco;
+       so.foSecLoad=1;
+      }
+   }
+ else
+ if (version>=4)
+   {// version 4
+    char *namePrim=NULL;
+    char *nameSeco=NULL;
+    s >> cp1 >> cp2;
+    s >> aux;
+    if (aux)
+      {
+       namePrim=s.readString();
+       s >> aux;
+       if (aux)
+          nameSeco=s.readString();
+      }
+    so.enForceScr=1;
+    so.enScr=cp1;
+    so.enForceSnd=1;
+    so.enSnd=cp2;
+    if (namePrim)
+      {
+       so.foPriName=namePrim;
+       so.foPriLoad=1;
+      }
+    if (nameSeco)
+      {
+       so.foSecName=nameSeco;
+       so.foSecLoad=1;
+      }
+   }
+}
+
+// Ojo!!! si todas fallan hay que crear algo por defecto o tolerarlo!!!
+Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
+{
+ char buffer[80];
+// unsigned auxUN;
+// int auxINT;
+
+ s.readString(buffer,80);
+ if (strcmp(buffer,Signature)!=0)
+   { // Wrong desktop file.
+    return False;
+   }
+ s >> deskTopVersion;
+ if (deskTopVersion<0x300)
+   { // The desktop file is too old
+    return False;
+   }
+ //if (deskTopVersion>TCEDITOR_VERSION)
+ // You need a newer editor for this desktop file.
+ // No creo que sea necesario, esto va a tener una versión por separado.
+ if (deskTopVersion<0x500)
+   {// The preLoad was introduced in the 0.4.x to 0.5.x change.
+    // We have to extract the information from the old structure.
+    loadOldFontInfo(s);
+   }
+ return True;
+}
 /******************** End of save/retrieve desktop functions ****************/
 
 void TSetEditorApp::createClipBoard(void)
@@ -848,4 +989,8 @@ void TSetEditorApp::createClipBoard(void)
     TCEditor::clipboard->canUndo=False;
    }
 }
+
+TScOptsCol *TSetEditorApp::soCol=NULL;
+
+//void TSetEditorApp::readScreenOptions()
 

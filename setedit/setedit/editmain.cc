@@ -118,6 +118,8 @@ unsigned TSetEditorApp::geFlags=0;
 int      TSetEditorApp::widthVertWindows=24;
 TVCodePageCallBack
          TSetEditorApp::oldCPCallBack=NULL;
+unsigned long
+         TSetEditorApp::deskTopVersion;
 
 const char *KeyBindFName="keybind.dat";
 // Name specified by the user
@@ -2390,9 +2392,15 @@ int main(int argc, char *argv[])
  // It just disable some commands
  MP3Initialize;
 
+ // This is a pre-load pass. It just retrieves information that's useful before
+ // starting the application. A good example is the window size, is much better
+ // to create a window of the desired size than creating an 80x25 window and
+ // the resize.
+ LoadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc,1);
+
  editorApp=new TSetEditorApp();
 
- /* Set's the window title for owr application (W9x,X,etc.) */
+ // Set's the window title for our application (W9x,X,etc.)
  editorApp->SetTitle();
 
  LoadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc);

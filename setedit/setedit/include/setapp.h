@@ -97,6 +97,21 @@ const int
   cmeFonts          = cmeBase+77;
 #endif
 
+// TScOptsCol used to hold the screen options for each video driver.
+#if defined(Uses_TScOptsCol) && !defined(Defined_TScOptsCol)
+#define Defined_TScOptsCol 1
+
+class TScOptsCol : public TSortedCollection
+{
+public:
+ TScOptsCol() : TSortedCollection(8,2) {};
+ virtual void *keyOf(void *item);
+ virtual int compare(void *key1, void *key2);
+ SetDefStreamMembers(TScOptsCol,TSortedCollection);
+};
+SetDefStreamOperators(TScOptsCol)
+#endif
+
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
 #define __TSetEditorApp__
 class TMenuBar;
@@ -112,11 +127,15 @@ class TVFontCollection;
 struct EditorResume;
 struct TScreenFont256;
 struct TVBitmapFontSize;
+#ifndef Defined_TScOptsCol
+class TScOptsCol;
+#endif
 
 const int extscrsParMxLen=80;
 
 struct stScreenOptions
 {
+ char *driverName;
  // Encoding options
  // !=0 if the encoding is forced. App=Application, Scr=Screen, Snd=Second Font
  // Inp=Input.
@@ -170,10 +189,12 @@ public:
     TCEditWindow *openEditor(char *fileName, Boolean visible, EditorResume *res=NULL,
                              int options=0);
 
-    Boolean retrieveDesktop(const char *name, Boolean isLocal);
+    Boolean retrieveDesktop(const char *name, Boolean isLocal, int preLoad);
     void saveDesktop(const char *fName, int makeBkp);
     void storeDesktop(fpstream& s);
     Boolean loadDesktop(fpstream& s, Boolean isLocal);
+    static Boolean preLoadDesktop(fpstream &s);
+    static void    loadOldFontInfo(fpstream& s);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();
@@ -193,7 +214,7 @@ public:
                                TVBitmapFontSize *priSize,
                                uchar secUse, char *secName, char *secFile);
 
-    unsigned long deskTopVersion;
+    static unsigned long deskTopVersion;
 
     static char ShowClock;
     static char UseScreenSaver;
@@ -204,6 +225,7 @@ public:
     static int  screenSaverTimeMouse;
     static char ExternalPrgMode[80];
     static struct stScreenOptions so;
+    static TScOptsCol *soCol;
     void KillClock();
 
     void   ShowHelpTopic(char *file, char *node);
@@ -336,11 +358,12 @@ extern char DstLoadedHere;
 #endif
 
 #ifdef Uses_SETAppProject
-extern void OpenProject(char *name=NULL);
+extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
 extern int  IsPrjOpened(void);
-extern void LoadEditorDesktop(int LoadPrj, char *name=0, int haveFilesCL=0);
+extern void LoadEditorDesktop(int LoadPrj, char *name=0, int haveFilesCL=0,
+                              int preLoad=0);
 extern void SaveDesktopHere(void);
 #endif
 

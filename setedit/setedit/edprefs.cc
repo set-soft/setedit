@@ -1121,6 +1121,8 @@ char *CreateTitle(const char *title)
 
 stScreenOptions TSetEditorApp::so=
 {
+ NULL, // Driver name
+
  // Encoding options
  //uchar enForceApp, enForceScr, enForceSnd, enForceInp;
  0,0,0,0,
@@ -1150,7 +1152,7 @@ stScreenOptions TSetEditorApp::so=
  80,25,
  //unsigned scCharWidth, scCharHeight;
  8,16,
- //unsigned so.scModeNumber;
+ //unsigned scModeNumber;
  3,
  //char *scCommand;
  NULL
