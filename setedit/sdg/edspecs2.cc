@@ -7,14 +7,14 @@
 #include <stdlib.h>
 #include <dir.h>
 #include <stdio.h>
-#ifndef __TURBOC__
+#include <compatlayer.h>
+#ifndef TVComp_BCPP
 extern char **environ;
 #endif
-#include <compatlayer.h>
 
 static char *default_variables[] =
 {
-#if defined(__DJGPP__) || defined(__TURBOC__)
+#if defined(TVCompf_djgpp) || defined(TVComp_BCPP)
  // In DOS is common to have C:
  "SET_FILES",
  "c:/etc",
@@ -95,7 +95,7 @@ const char * GetVariable(const char *variable)
 // when declared inline won't be inlined. The following pragma disables it.
 #pragma option push -w-inl
 
-#ifdef __GNUC__
+#ifdef TVComp_GCC
 static __attribute__ ((__constructor__))
 void init_variables(void)
 #else
@@ -129,7 +129,7 @@ __init_edspecs_t()
     }
   }
 }
-#ifndef __GNUC__
+#ifndef TVComp_GCC
 } __init_edspecs;
 #endif
 

@@ -11,8 +11,9 @@
 the program.
 
 *****************************************************************************/
+#include <ceditint.h>
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <io.h>
 #endif
 #include <stdio.h>

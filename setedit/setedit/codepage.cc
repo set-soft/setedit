@@ -11,7 +11,6 @@ fonts than the BIOS ones.@p
 
 ***************************************************************************/
 
-//#ifdef __DJGPP__
 #define Uses_TStringCollection
 // For the text constants
 #define Uses_TScreen
@@ -921,7 +920,7 @@ TStringCollection *GetCodePagesList(void)
  return CodePages;
 }
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <dpmi.h>
 
 int GetCurrentOSCodePage(void)

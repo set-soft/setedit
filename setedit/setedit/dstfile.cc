@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -7,7 +7,7 @@
 #include <sys/stat.h> /* for mode definitions */
 #define Uses_dirent
 #define Uses_fnmatch
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <dir.h>
 #endif
 
@@ -468,7 +468,7 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  if (deskTopVersion>=0x404)
     LoadFontLoadedInfo(s);
 
- #ifdef __DJGPP__
+ #ifdef TVCompf_djgpp
  if (deskTopVersion>=0x405)
     LoadPaletteSystem(s);
  #else
@@ -651,7 +651,7 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  if (deskTopVersion>=0x438)
    {
     s >> auxINT;
-    #ifdef __DJGPP__
+    #ifdef TVCompf_djgpp
     TGKey::SetKbdMapping(auxINT);
     #endif
    }
