@@ -50,15 +50,29 @@ struct MsgRec
 };
 */
 
-void EdShowMessage(const char *msg,Boolean /*remove_old*/)
+void EdShowMessage(const char *msg, Boolean /*remove_old*/)
 {
  show_message(msg,NULL,0,0,2);
 }
 
-void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
+void EdShowMessageI(const char *msg, unsigned /*Options*/)
+{
+ char *aux=TVIntl::getTextNew(msg);
+ show_message(aux,NULL,0,0,2);
+ DeleteArray(aux);
+}
+
+void EdShowMessageI(const char *msg, Boolean , Boolean )
+{
+ char *aux=TVIntl::getTextNew(msg);
+ show_message(aux,NULL,0,0,2);
+ DeleteArray(aux);
+}
+
+void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
                        unsigned /*Options*/)
 {
- show_message((const char *)msg,fileName,fInfo.Line,fInfo.Column,0);
+ show_message(msg,fileName,fInfo.Line,fInfo.Column,0);
 }
 
 void EdJumpToMessage(ccIndex )

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.362  2003/05/13 12:51:18  set
+* Fixed: More documentation details. Patch from Bernd.
+
 Revision 1.361  2003/05/12 19:31:18  set
 * Modified: Made the "Paste Emacs mode" more robust. If the first line is
 "#!..." the comment is pasted in the second. If the mode was already
