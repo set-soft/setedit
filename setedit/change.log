@@ -1,4 +1,9 @@
-$Log$..
+$Log$
+Revision 1.163  2002/07/22 20:39:13  set
+* Fixed: [MSVC] makefile. Patch by WintiX.
+* Modifed: [MSVC] the screensaver sources to investigate the sources of
+problems when linking with MSVC.
+
 Revision 1.162  2002/07/22 19:41:13  set
 * Added: Connected the primary font collection with the available sizes.
 
