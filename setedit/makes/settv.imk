@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 libsettv$(ExLIB):: \
@@ -37,8 +37,8 @@ libsettv$(ExLIB):: \
 	$(RHIDE_COMPILE_ARCHIVE)
 
 obj/diaghelp$(ExOBJ):: diaghelp.cc \
-	edspecs.h \
 	compatlayer.h \
+	edspecs.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -74,12 +74,12 @@ obj/diaghelp$(ExOBJ):: diaghelp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dktclock$(ExOBJ):: dktclock.cc \
-	ceditint.h \
-	configed.h \
 	$(MP3_PREV_DIR)/settvuti/dktclock.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	dktclock.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -104,9 +104,9 @@ obj/dktclock$(ExOBJ):: dktclock.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fileopen$(ExOBJ):: fileopen.cc \
-	fileopen.h \
 	cl/unistd.h \
 	compatlayer.h \
+	fileopen.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -156,11 +156,11 @@ obj/fileopen$(ExOBJ):: fileopen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
+	compatlayer.h \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialog.h \
@@ -194,9 +194,9 @@ obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/inputsca$(ExOBJ):: inputsca.cc \
+	compatlayer.h \
 	inputsca.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -231,9 +231,9 @@ obj/ninputsc$(ExOBJ):: ninputsc.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/nostatex$(ExOBJ):: nostatex.cc \
+	compatlayer.h \
 	nostatex.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialogs.h \
@@ -288,9 +288,9 @@ obj/ntnosost$(ExOBJ):: ntnosost.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/setstack$(ExOBJ):: setstack.cc \
+	compatlayer.h \
 	setstack.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -308,10 +308,9 @@ obj/setstack$(ExOBJ):: setstack.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/sprogbar$(ExOBJ):: sprogbar.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tprogbar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -334,15 +333,15 @@ obj/sprogbar$(ExOBJ):: sprogbar.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sprogres$(ExOBJ):: sprogres.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tprogrdi.h \
 	tprogres.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -365,14 +364,14 @@ obj/sprogres$(ExOBJ):: sprogres.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/stnocast$(ExOBJ):: stnocast.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -399,14 +398,14 @@ obj/stnocast$(ExOBJ):: stnocast.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/stnonost$(ExOBJ):: stnonost.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tnosostr.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -433,30 +432,31 @@ obj/stnonost$(ExOBJ):: stnonost.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tdiagaid$(ExOBJ):: tdiagaid.cc \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	compatlayer.h \
+	diaghelp.h \
 	easydia1.h \
 	easydiag.h \
+	settvuti.h \
+	tdiagaid.h \
+	tdiagrow.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
 	tslistbo.h \
 	tssortlb.h \
 	tssortva.h \
+	tstringa.h \
+	tstrlbox.h \
 	tstsorlb.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	diaghelp.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tstringa.h \
-	tstrlbox.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -505,9 +505,9 @@ obj/tdiagaid$(ExOBJ):: tdiagaid.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tdiagrow$(ExOBJ):: tdiagrow.cc \
+	compatlayer.h \
 	settvuti.h \
 	tdiagrow.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialog.h \
@@ -540,17 +540,15 @@ obj/tinppipe$(ExOBJ):: tinppipe.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tinppipe.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -588,15 +586,16 @@ obj/tinppipe$(ExOBJ):: tinppipe.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tnocastc$(ExOBJ):: tnocastc.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -633,14 +632,14 @@ obj/tnocastc$(ExOBJ):: tnocastc.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tnosostr$(ExOBJ):: tnosostr.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tnosostr.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -667,14 +666,14 @@ obj/tnosostr$(ExOBJ):: tnosostr.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogbar$(ExOBJ):: tprogbar.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tprogbar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -702,17 +701,17 @@ obj/tprogbar$(ExOBJ):: tprogbar.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogdia$(ExOBJ):: tprogdia.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
-	tvsetuti.h \
 	nostatex.h \
 	settvuti.h \
 	tprogbar.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -743,16 +742,16 @@ obj/tprogdia$(ExOBJ):: tprogdia.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogrdi$(ExOBJ):: tprogrdi.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	nostatex.h \
 	settvuti.h \
 	tprogrdi.h \
 	tprogres.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -783,15 +782,15 @@ obj/tprogrdi$(ExOBJ):: tprogrdi.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogres$(ExOBJ):: tprogres.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tprogrdi.h \
 	tprogres.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -819,14 +818,15 @@ obj/tprogres$(ExOBJ):: tprogres.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
+	compatlayer.h \
 	settvuti.h \
 	tstringa.h \
 	tstrlbox.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -855,9 +855,9 @@ obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
 
 obj/uisarray$(ExOBJ):: uisarray.cc \
 	$(SETTVUTI_INC_DIR)/sarray.cc \
+	compatlayer.h \
 	sarray.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -876,9 +876,9 @@ obj/uisarray$(ExOBJ):: uisarray.cc \
 
 obj/ussarray$(ExOBJ):: ussarray.cc \
 	$(SETTVUTI_INC_DIR)/sarray.cc \
+	compatlayer.h \
 	sarray.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -896,7 +896,6 @@ obj/ussarray$(ExOBJ):: ussarray.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/viewplus$(ExOBJ):: viewplus.cc \
-	viewplus.h \
 	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
@@ -923,6 +922,7 @@ obj/viewplus$(ExOBJ):: viewplus.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

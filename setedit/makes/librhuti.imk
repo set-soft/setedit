@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 librhuti$(ExLIB):: \
@@ -34,23 +34,23 @@ obj/basename$(ExOBJ):: basename.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fexpand$(ExOBJ):: fexpand.cc \
-	rhutils.h \
 	compatlayer.h \
+	rhutils.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/io$(ExOBJ):: io.cc \
-	rhutils.h \
 	cl/unistd.h \
 	compatlayer.h \
+	rhutils.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/specs$(ExOBJ):: specs.cc \
-	rhutils.h \
 	compatlayer.h \
+	rhutils.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)

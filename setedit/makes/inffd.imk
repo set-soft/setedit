@@ -1,32 +1,31 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 obj/inf$(ExOBJ):: inf.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/infview/inf.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	tvsetuti.h \
+	diaghelp.h \
+	dyncat.h \
+	edhists.h \
+	fileopen.h \
+	fiopeaid.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	$(MP3_PREV_DIR)/infview/inf.cc \
-	diaghelp.h \
-	edhists.h \
-	fileopen.h \
-	fiopeaid.h \
 	setstack.h \
 	settvuti.h \
 	tdiagrow.h \
 	tnocastc.h \
 	tprogrdi.h \
 	tprogres.h \
-	compatlayer.h \
 	tv.h \
 	tv/button.h \
 	tv/checkbox.h \
@@ -89,24 +88,24 @@ obj/inf$(ExOBJ):: inf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/infbase$(ExOBJ):: infbase.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/infview/infbase.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
 	gzfiles.h \
-	tvsetuti.h \
 	infbase.h \
 	infbaser.h \
-	$(MP3_PREV_DIR)/infview/infbase.cc \
 	rhutils.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
 	tprogdia.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -144,27 +143,28 @@ obj/infbase$(ExOBJ):: infbase.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/manview$(ExOBJ):: manview.cc \
+	ced_coma.h \
+	ceditor.h \
+	codepage.h \
+	compatlayer.h \
+	diaghelp.h \
+	dyncat.h \
 	easydia1.h \
 	easydiag.h \
+	manview.h \
+	rhutils.h \
+	settvuti.h \
 	tsbutton.h \
 	tsinplin.h \
 	tslabel.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	dyncat.h \
-	ced_coma.h \
-	ceditor.h \
-	manview.h \
-	rhutils.h \
-	codepage.h \
-	diaghelp.h \
-	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -216,8 +216,8 @@ obj/manview$(ExOBJ):: manview.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/nhiscoll$(ExOBJ):: nhiscoll.cc \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -235,8 +235,8 @@ obj/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ninfview$(ExOBJ):: ninfview.cc \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -254,8 +254,8 @@ obj/ninfview$(ExOBJ):: ninfview.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ninfwind$(ExOBJ):: ninfwind.cc \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -273,8 +273,8 @@ obj/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/nmanwind$(ExOBJ):: nmanwind.cc \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -292,7 +292,7 @@ obj/nmanwind$(ExOBJ):: nmanwind.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/sinf$(ExOBJ):: sinf.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
@@ -300,7 +300,6 @@ obj/sinf$(ExOBJ):: sinf.cc \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -340,13 +339,13 @@ obj/sinf$(ExOBJ):: sinf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sman$(ExOBJ):: sman.cc \
-	tvsetuti.h \
-	manview.h \
 	compatlayer.h \
+	manview.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -375,6 +374,7 @@ obj/sman$(ExOBJ):: sman.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 editor$(ExEXE):: \
@@ -1755,8 +1755,20 @@ obj/edfonts$(ExOBJ):: edfonts.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/editdiag$(ExOBJ):: editdiag.cc \
+	$(MP3_PREV_DIR)/setedit/editdiag.cc \
+	advice.h \
+	ced_inte.h \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edspecs.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	tnocastc.h \
 	tsbutton.h \
 	tschkbox.h \
 	tstatext.h \
@@ -1765,19 +1777,6 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	tsview.h \
 	tsviewco.h \
 	ttextscr.h \
-	ced_inte.h \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
-	edspecs.h \
-	vername.h \
-	$(MP3_PREV_DIR)/setedit/editdiag.cc \
-	advice.h \
-	setapp.h \
-	setstack.h \
-	settvuti.h \
-	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1824,6 +1823,7 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	vername.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

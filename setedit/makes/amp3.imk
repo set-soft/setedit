@@ -1,11 +1,22 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 obj/ampdiag$(ExOBJ):: ampdiag.cc \
+	$(MP3_INC_DIR)/ampdiag.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
+	dskmp3.h \
+	dskwin.h \
 	easydia1.h \
 	easydiag.h \
+	intermp3.h \
+	mp3play.h \
+	nostatex.h \
+	setapp.h \
+	settvuti.h \
 	snostate.h \
 	tsbutton.h \
 	tshscrol.h \
@@ -13,17 +24,6 @@ obj/ampdiag$(ExOBJ):: ampdiag.cc \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	$(MP3_INC_DIR)/ampdiag.cc \
-	intermp3.h \
-	mp3play.h \
-	dskmp3.h \
-	dskwin.h \
-	setapp.h \
-	nostatex.h \
-	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -68,16 +68,16 @@ obj/ampdiag$(ExOBJ):: ampdiag.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/intermp3$(ExOBJ):: intermp3.cc \
-	ceditint.h \
-	configed.h \
 	$(MP3_INC_DIR)/intermp3.cc \
-	intermp3.h \
-	mp3play.h \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
+	intermp3.h \
+	mp3play.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -109,8 +109,19 @@ obj/intermp3$(ExOBJ):: intermp3.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/mp3list$(ExOBJ):: mp3list.cc \
+	$(MP3_INC_DIR)/mp3list.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edhists.h \
+	fileopen.h \
+	fiopeaid.h \
+	intermp3.h \
+	setapp.h \
+	settvuti.h \
+	tnosostr.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
@@ -118,18 +129,6 @@ obj/mp3list$(ExOBJ):: mp3list.cc \
 	tssortva.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	tvsetuti.h \
-	intermp3.h \
-	$(MP3_INC_DIR)/mp3list.cc \
-	setapp.h \
-	edhists.h \
-	fileopen.h \
-	fiopeaid.h \
-	settvuti.h \
-	tnosostr.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -180,16 +179,17 @@ obj/mp3list$(ExOBJ):: mp3list.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mp3play$(ExOBJ):: mp3play.cc \
-	ceditint.h \
-	configed.h \
 	$(MP3_INC_DIR)/mp3play.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	mp3play.h \
 	mpegsound/mpegsound.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \

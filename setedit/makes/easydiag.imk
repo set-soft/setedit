@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-24 16:01
+# 2003-07-23 14:29
 #
 
 libeasyd$(ExLIB):: \
@@ -33,13 +33,13 @@ libeasyd$(ExLIB):: \
 	$(RHIDE_COMPILE_ARCHIVE)
 
 obj/lablchek$(ExOBJ):: lablchek.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tschkbox.h \
 	tslabel.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/checkbox.h \
@@ -79,13 +79,13 @@ obj/lablchek$(ExOBJ):: lablchek.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/lablradi$(ExOBJ):: lablradi.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tslabel.h \
 	tsradbot.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/cluster.h \
@@ -125,14 +125,14 @@ obj/lablradi$(ExOBJ):: lablradi.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/snostate$(ExOBJ):: snostate.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	nostatex.h \
+	settvuti.h \
 	snostate.h \
 	tsview.h \
 	tsviewco.h \
-	nostatex.h \
-	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -168,11 +168,11 @@ obj/snostate$(ExOBJ):: snostate.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tcheck2$(ExOBJ):: tcheck2.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tcheck2.h \
 	tmiclust.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -197,10 +197,10 @@ obj/tcheck2$(ExOBJ):: tcheck2.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tmiclust$(ExOBJ):: tmiclust.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tmiclust.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -240,13 +240,13 @@ obj/tmiclust$(ExOBJ):: tmiclust.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsbutton$(ExOBJ):: tsbutton.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -282,13 +282,13 @@ obj/tsbutton$(ExOBJ):: tsbutton.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tschkarr$(ExOBJ):: tschkarr.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tcheck2.h \
 	tmiclust.h \
 	tschkarr.h \
 	tsview.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialog.h \
@@ -318,12 +318,12 @@ obj/tschkarr$(ExOBJ):: tschkarr.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tschkbox$(ExOBJ):: tschkbox.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tschkbox.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/checkbox.h \
@@ -361,12 +361,12 @@ obj/tschkbox$(ExOBJ):: tschkbox.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tshscrol$(ExOBJ):: tshscrol.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tshscrol.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -402,12 +402,12 @@ obj/tshscrol$(ExOBJ):: tshscrol.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tshzgrp$(ExOBJ):: tshzgrp.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tshzgrp.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -442,12 +442,12 @@ obj/tshzgrp$(ExOBJ):: tshzgrp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsinplin$(ExOBJ):: tsinplin.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsinplin.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -484,14 +484,14 @@ obj/tsinplin$(ExOBJ):: tsinplin.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsinplpi$(ExOBJ):: tsinplpi.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	settvuti.h \
+	tinppipe.h \
 	tsinplpi.h \
 	tsview.h \
 	tsviewco.h \
-	settvuti.h \
-	tinppipe.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -528,12 +528,12 @@ obj/tsinplpi$(ExOBJ):: tsinplpi.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tslabel$(ExOBJ):: tslabel.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tslabel.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -570,11 +570,11 @@ obj/tslabel$(ExOBJ):: tslabel.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tslider$(ExOBJ):: tslider.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tslider.h \
 	tsview.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialog.h \
@@ -606,13 +606,13 @@ obj/tslider$(ExOBJ):: tslider.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tslistbo$(ExOBJ):: tslistbo.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
 	tssortva.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -650,12 +650,12 @@ obj/tslistbo$(ExOBJ):: tslistbo.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsradbot$(ExOBJ):: tsradbot.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsradbot.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/cluster.h \
@@ -693,6 +693,7 @@ obj/tsradbot$(ExOBJ):: tsradbot.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tssortlb$(ExOBJ):: tssortlb.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -700,7 +701,6 @@ obj/tssortlb$(ExOBJ):: tssortlb.cc \
 	tssortva.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -739,17 +739,17 @@ obj/tssortlb$(ExOBJ):: tssortlb.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tssosslb$(ExOBJ):: tssosslb.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	setstack.h \
+	settvuti.h \
+	tnocastc.h \
 	tslistbo.h \
 	tssortva.h \
 	tssosslb.h \
 	tsview.h \
 	tsviewco.h \
-	setstack.h \
-	settvuti.h \
-	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -788,12 +788,12 @@ obj/tssosslb$(ExOBJ):: tssosslb.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tstatext$(ExOBJ):: tstatext.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tstatext.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -829,13 +829,13 @@ obj/tstatext$(ExOBJ):: tstatext.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tstextsc$(ExOBJ):: tstextsc.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tstextsc.h \
 	tsview.h \
 	tsviewco.h \
 	ttextscr.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -874,17 +874,17 @@ obj/tstextsc$(ExOBJ):: tstextsc.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tstsorlb$(ExOBJ):: tstsorlb.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	settvuti.h \
 	tslistbo.h \
 	tssortva.h \
+	tstringa.h \
+	tstrlbox.h \
 	tstsorlb.h \
 	tsview.h \
 	tsviewco.h \
-	settvuti.h \
-	tstringa.h \
-	tstrlbox.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -922,12 +922,12 @@ obj/tstsorlb$(ExOBJ):: tstsorlb.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsvegrp$(ExOBJ):: tsvegrp.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -962,10 +962,10 @@ obj/tsvegrp$(ExOBJ):: tsvegrp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsview$(ExOBJ):: tsview.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsview.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/dialog.h \
@@ -995,11 +995,11 @@ obj/tsview$(ExOBJ):: tsview.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tsviewco$(ExOBJ):: tsviewco.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	tsview.h \
 	tsviewco.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1037,10 +1037,10 @@ obj/tsviewco$(ExOBJ):: tsviewco.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ttextscr$(ExOBJ):: ttextscr.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	ttextscr.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
