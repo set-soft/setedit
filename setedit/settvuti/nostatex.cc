@@ -27,7 +27,7 @@ void TNoStaticText::setText(const char *s)
     memcpy((char *)text,s,copy);
     int rest=startLen-copy;
     if (rest)
-       memset((char *)text+copy,' ',rest);*/
+       memset((char *)text+copy,' ',rest);
    }
  else
    {// New behavior, the draw() member will limit the size and also pad with
