@@ -683,6 +683,7 @@ void ShutDownPlasmaRB1AA(void)
  delete sin_table;
  if (context)
     aa_close(context);
+ TScreen::setCursorType(TScreen::cursorLines);
 }
 
 

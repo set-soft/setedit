@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.219  2002/10/02 12:59:50  set
+* Added: Documentation for the new Screen, Encodings and Fonts options.
+
 Revision 1.218  2002/09/23 12:45:07  set
 * Fixed?: The TDskWin wrappers for InfView and the Clipboard deleted the
 windows intead of closing them. This can originate the use of already
