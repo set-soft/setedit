@@ -7,7 +7,7 @@
 
 const int
 hID_Start             = 120,
-hID_Cant              = 23;
+hID_Cant              = 30;
 
 const int
 hID_TextSearchEditor  = hID_Start,
@@ -33,5 +33,12 @@ hID_sLispKeyCode      = hID_Start+19,
 hID_ArbitraryIndent   = hID_Start+20,
 hID_RunProgram        = hID_Start+21,
 hID_DbgEvalModifyExp  = hID_Start+22,
-hID_DbgEvalModifyNewV = hID_Start+23;
+hID_DbgEvalModifyNewV = hID_Start+23,
+hID_DbgBkFilename     = hID_Start+24,
+hID_DbgBkFunction     = hID_Start+25,
+hID_DbgBkLine         = hID_Start+26,
+hID_DbgBkAddress      = hID_Start+27,
+hID_DbgBkCondition    = hID_Start+28,
+hID_DbgBkCount        = hID_Start+29,
+hID_DbgBkThread       = hID_Start+30;
 #endif

@@ -58,6 +58,7 @@ public:
  static void refreshBinRef();
  static mi_bkpt *getItem(int num);
  static void releaseAll();
+ static void replace(mi_bkpt *old, mi_bkpt *n);
 
  static void save(opstream &os);
  static void load(ipstream &is);
@@ -67,6 +68,8 @@ protected:
  static int count;
 
  static void updateAbs(mi_bkpt *b);
+
+ friend class TDiagBrk;
 };
 #endif // Uses_TBreakpoints
 

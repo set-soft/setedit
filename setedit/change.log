@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.553  2004/07/26 20:36:03  set
+* Modified: Now breakpoints and frames are searched in the "path for
+sources" and not only in the binary reference.
+* Modified: "Go To Line" now passes the full qualified name of the file to
+gdb. With both changes I debugged "rhgdb".
+
 Revision 1.552  2004/07/26 16:06:40  set
 * Modified: [MSVC] The WinNT/configed.h header to report "MSC" as compiler
 for MS compiler. Suggested by Arnold.

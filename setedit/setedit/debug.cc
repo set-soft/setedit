@@ -16,6 +16,13 @@ generates an error result record. But it doesn't generate an stopped info.
 So we thing the program is running (gdb told it) but it isn't true. What's
 worst is what happends when we send SIGINT ... finally we hang at exit waiting
 for replies.
+  A workaround for a similar was implemented, must be tested on this scenario.
+
+  * GDB meaning of the ignore field is quite different to what I thinked. That's
+a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
+After it the breakpoint becomes "normal". It means that after a program reset it
+won't ignore is the "times" reached the ignore count in the previous pass. So
+may be we should "refresh" the ignores before running.
 
   * When a new item is added to the project try to add its path to the
   sources path.
@@ -94,6 +101,7 @@ directories to look for sources.
 
 // Breakpoints
 #define Uses_TSStringableListBox
+#define Uses_TSCheckBoxes
 
 // Config
 // EasyDiag requests
@@ -137,7 +145,7 @@ directories to look for sources.
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
 const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
-const char bkptsVersion=1;
+const char bkptsVersion=2;
 const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
@@ -707,6 +715,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgTraceInto,True);
          TSetEditorApp::setCmdState(cmeDbgGoToCursor,True);
          TSetEditorApp::setCmdState(cmGDBCommand,True);
+         TSetEditorApp::setCmdState(cmeDbgEditBreakPts,True);
          TSetEditorApp::setCmdState(cmeDbgStop,False);
          TSetEditorApp::setCmdState(cmeDbgGoReadyToRun,False);
          if (st!=MIDebugger::stopped)
@@ -727,6 +736,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgKill,True);
          TSetEditorApp::setCmdState(cmeDbgCallStack,False);
          TSetEditorApp::setCmdState(cmGDBCommand,False);
+         TSetEditorApp::setCmdState(cmeDbgEditBreakPts,False);
          break;
    }
 }
@@ -1342,8 +1352,11 @@ void TSetEditorApp::DebugCloseSession()
 
 /*****************************************************************************
   TBreakpoints class
-  RHIDE:
+
+ RHIDE:
  E/D file | line/function | Condition | Count
+ Buttons: ~M~odify ~N~ew" ~D~elete ~E~nable D~i~sable ~S~how
+
 
 *****************************************************************************/
 
@@ -1411,17 +1424,17 @@ void TBreakpoints::getText(char *dest, unsigned item, int maxLen)
    }
 
  char format[wFormat];
- CLY_snprintf(format,wFormat,"%%-%ds",wThread);
+ CLY_snprintf(format,wFormat,"%%%dd",wThread);
  char thread[wThread+1];
  if (p->thread>=0)
     CLY_snprintf(thread,wThread+1,format,p->thread);
  else
     strcpy(thread,eThread);
 
- CLY_snprintf(format,wFormat,"%%-%ds",wTimes);
+ CLY_snprintf(format,wFormat,"%%%dd",wTimes);
  char times[wTimes+1];
- if (p->times>0)
-    CLY_snprintf(times,wTimes+1,format,p->times);
+ if (p->ignore>0)
+    CLY_snprintf(times,wTimes+1,format,p->ignore);
  else
     strcpy(times,eTimes);
 
@@ -1508,6 +1521,32 @@ void TBreakpoints::remove(mi_bkpt *b)
  dbgPr("Oops! can't find bkp TBreakpoints::remove\n");
 }
 
+void TBreakpoints::replace(mi_bkpt *old, mi_bkpt *b)
+{
+ mi_bkpt *e=first, *ant=NULL;
+
+ while (e)
+   {
+    if (e==old)
+      {
+       if (ant)
+          ant->next=b;
+       else
+          first=b;
+       if (!old->next)
+          last=b;
+       b->next=old->next;
+       old->next=NULL;
+       mi_free_bkpt(old);
+       return;
+      }
+    ant=e;
+    e=e->next;
+   }
+ // TODO: Remove
+ dbgPr("Oops! can't find bkp TBreakpoints::replace\n");
+}
+
 int TBreakpoints::set(const char *source, int line)
 {
  mi_bkpt *b=dbg->Breakpoint(source,line);
@@ -1555,11 +1594,9 @@ void TBreakpoints::apply()
     killIt=0;
     if (b->enabled) // Avoid disabled ones.
       {
-       // TODO: b->type currently ignored, is that HW assisted?
        // TODO: I'm quite sure we will lose something in the transfer, make
        // sure it doesn't.
-       mi_bkpt *nb=dbg->BreakpointFull(b->file,b->line,b->disp==d_del,b->cond,
-                                       b->times,b->thread,false);
+       mi_bkpt *nb=dbg->Breakpoint(b);
        if (!nb)
          {
           b->enabled=0;
@@ -1594,9 +1631,7 @@ void TBreakpoints::apply()
 }
 
 void TBreakpoints::save(opstream &os)
-{
- // CAUTION!!! update the dummy
- // Save them
+{// Save them
  os << bkptsVersion << (int32)count;
  dbgPr("%d Breakpoints\n",count);
  mi_bkpt *p=first;
@@ -1604,8 +1639,12 @@ void TBreakpoints::save(opstream &os)
    {
     os.writeString(p->file);
     os.writeString(p->cond);
-    os << (int32)p->line << p->enabled << (int32)p->times
+    os << (int32)p->line << p->enabled << (int32)p->ignore
        << (char)p->type << (char)p->disp;
+    // v2
+    os.writeString(p->func);
+    os.write64((uint64)p->addr);
+    os << (char)p->mode << (int32)p->thread;
     p=p->next;
    }
 }
@@ -1656,9 +1695,16 @@ void TBreakpoints::load(ipstream &is)
         b->cond=ReadStringC(is);
         b->line=ReadInt32(is);
         is >> b->enabled;
-        b->times=ReadInt32(is);
+        b->ignore=ReadInt32(is);
         b->type=(enum mi_bkp_type)ReadChar(is);
         b->disp=(enum mi_bkp_disp)ReadChar(is);
+        if (version>=2)
+          {// v2
+           b->func=ReadStringC(is);
+           b->addr=(void *)is.read64();
+           b->mode=(enum mi_bkp_mode)ReadChar(is);
+           b->thread=ReadInt32(is);
+          }
         if (b->file)
           {
            add(b);
@@ -1682,12 +1728,421 @@ TBreakpoints::~TBreakpoints()
  releaseAll();
 }
 
+const int wVisible=50, wInt=32, wLabels=9,
+          wFilename=PATH_MAX,
+          wFunction=256,
+          wLine=wInt,
+          wAddress=wInt,
+          wCondition=256,
+          wCount=wInt,
+          wThreadB=wInt;
+
+struct stBrkEdit
+{
+ uint32 type;
+ char filename[wFilename],
+      function[wFunction],
+      line[wLine],
+      address[wAddress],
+      condition[wCondition],
+      count[wCount],
+      thread[wThreadB];
+ uint32 enabled;
+ uint32 hw;
+};
+
+
 class TDiagBrk : public TDialog
 {
 public:
  TDiagBrk(const TRect &aR);
 
+ virtual void handleEvent(TEvent &event);
+
+ int Modify();
+ int Add();
+ int Delete();
+ int Enable();
+ int Disable();
+ int Go();
+ static void UpdateCommadsForCount(int c);
+
+ static const char *file;
+ static int line;
+
+protected:
+ int focusedB;
+ TStringableListBox *theLBox;
+
+ TDialog *createEdit(const char *title);
+ static mi_bkpt *CreateBktFromBox(stBrkEdit &box);
+ static int DeleteFromGDBandSpLines(mi_bkpt *b);
+ static int ApplyBkt(mi_bkpt *nb, mi_bkpt *old, int enabled);
+ void UpdateCommandsFocused();
 };
+
+const char *TDiagBrk::file=NULL;
+int TDiagBrk::line=0;
+
+void TDiagBrk::UpdateCommadsForCount(int c)
+{
+ TSetEditorApp::setCmdState(cmBkModify,c ? True : False);
+ TSetEditorApp::setCmdState(cmBkDel,c ? True : False);
+ TSetEditorApp::setCmdState(cmBkGo,c ? True : False);
+}
+
+TDialog *TDiagBrk::createEdit(const char *title)
+{
+ TSViewCol *col=new TSViewCol(title);
+
+ // EN: CDEFHILNOSTUW
+ TSLabel *type=TSLabelRadio(__("Type"),
+                            __("File/L~i~ne"),
+                            __("Fu~n~ction"),
+                            __("File/Functi~o~n"),
+                            __("~A~ddress"),0);
+ // Same width
+ TSHzLabel *file=new TSHzLabel(__(" ~F~ilename"),
+                  new TSInputLine(wFilename,1,hID_DbgBkFilename,wVisible));
+ // Same width
+ TSHzLabel *func=new TSHzLabel(__(" F~u~nction"),
+                  new TSInputLine(wFunction,1,hID_DbgBkFunction,wVisible));
+ // Same width
+ TSHzLabel *line=new TSHzLabel(__("     ~L~ine"),
+                  new TSInputLine(wLine,1,hID_DbgBkLine,wVisible));
+ // Same width
+ TSHzLabel *addr=new TSHzLabel(__("  Addre~s~s"),
+                  new TSInputLine(wAddress,1,hID_DbgBkAddress,wVisible));
+ // Same width
+ TSHzLabel *cond=new TSHzLabel(__("Con~d~ition"),
+                  new TSInputLine(wCondition,1,hID_DbgBkCondition,wVisible));
+ // Same width
+ TSHzLabel *coun=new TSHzLabel(__("    Coun~t~"),
+                  new TSInputLine(wCount,1,hID_DbgBkCount,(wVisible-wLabels)/2));
+ TSHzLabel *thre=new TSHzLabel(__("   T~h~read"),
+                  new TSInputLine(wThreadB,1,hID_DbgBkThread,(wVisible-wLabels)/2));
+ TSHzGroup *c_t=MakeHzGroup(coun,thre,0);
+ TSCheckBoxes *enable=new TSCheckBoxes(new TSItem(__("~E~nabled"),0));
+ TSCheckBoxes *hw=new TSCheckBoxes(new TSItem(__("Hard~w~are assisted"),0));
+
+ TSVeGroup *all=MakeVeGroup(0,type,file,func,line,addr,cond,c_t,enable,hw,0);
+ all->makeSameW();
+
+ col->insert(xTSLeft,yTSUp,all);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(hcEditBkpt);
+ delete col;
+ return d;
+}
+
+static
+void ShowErrorInMsgBox()
+{
+ const char *cErr=MIDebugger::GetErrorStr();
+ int iErr=MIDebugger::GetErrorNumber();
+
+ if (iErr==MI_FROM_GDB)
+    messageBox(mfOKButton | mfError,
+               __("Error: %s (%d) [%s]"),cErr,iErr,MIDebugger::GetGDBError());
+ else
+    messageBox(mfOKButton | mfError,__("Error: %s (%d)"),cErr,iErr);
+}
+
+mi_bkpt *TDiagBrk::CreateBktFromBox(stBrkEdit &box)
+{
+ // Create an structure to specify the new one
+ mi_bkpt *nb=mi_alloc_bkpt();
+ nb->mode=(enum mi_bkp_mode)box.type;
+ char *end;
+ switch (box.type)
+   {
+    case m_file_line:
+         nb->file=strdup(box.filename);
+         nb->line=atoi(box.line);
+         break;
+    case m_function:
+         nb->func=strdup(box.function);
+         break;
+    case m_file_function:
+         nb->file=strdup(box.filename);
+         nb->func=strdup(box.function);
+         break;
+    case m_address:
+         nb->addr=(void *)strtol(box.address,&end,0);
+         break;
+   }
+ if (!IsEmpty(box.count))
+    nb->ignore=atoi(box.count);
+ if (!IsEmpty(box.thread))
+    nb->thread=atoi(box.thread);
+ if (box.hw)
+    nb->type=t_hw;
+ if (!IsEmpty(box.condition))
+    nb->cond=strdup(box.condition);
+ TBreakpoints::updateAbs(nb);
+ nb->enabled=1;
+
+ return nb;
+}
+
+int TDiagBrk::DeleteFromGDBandSpLines(mi_bkpt *p)
+{
+ if (p->enabled)
+   {
+    if (!dbg->BreakDelete(p))
+      {
+       ShowErrorInMsgBox();
+       return 0;
+      }
+    // Update splines
+    if (p->file_abs)
+       SpLinesDeleteForId(idsplBreak,p->file_abs,True,p->line);
+   }
+ return 1;
+}
+
+int TDiagBrk::ApplyBkt(mi_bkpt *nb, mi_bkpt *old, int enabled)
+{
+ mi_bkpt *nb_gdb=dbg->Breakpoint(nb);
+ if (nb!=old)
+    mi_free_bkpt(nb);
+ if (!nb_gdb)
+   {
+    ShowErrorInMsgBox();
+    // Recover the old breakpoint
+    if (old->enabled)
+      {
+       nb_gdb=dbg->Breakpoint(old);
+       if (nb_gdb)
+         {
+          bkpts.updateAbs(nb_gdb);
+          bkpts.replace(old,nb_gdb);
+          if (nb_gdb->file_abs)
+             SpLinesAdd(nb_gdb->file_abs,nb_gdb->line,idsplBreak,True);
+         }
+      }
+    return 0;
+   }
+ // Ok, we succeed to apply the breakpoint.
+ // Update our list:
+ nb_gdb->enabled=enabled;
+ bkpts.updateAbs(nb_gdb);
+ bkpts.replace(old,nb_gdb);
+ // If this breakpoint is disabled remove it.
+ if (!nb_gdb->enabled)
+    dbg->BreakDelete(nb_gdb);
+ else
+    if (nb_gdb->file_abs)
+       SpLinesAdd(nb_gdb->file_abs,nb_gdb->line,idsplBreak,True);
+
+ return 1;
+}
+
+int TDiagBrk::Modify()
+{
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+ TDialog *d=createEdit(__("Modify breakpoint"));
+
+ stBrkEdit box;
+ mi_bkpt *p=bkpts.getItem(focusedB);
+
+ box.type=p->mode;
+ #define C(a,b,c) if (a) strncpyZ(b,a,c); else b[0]=0;
+ C(p->file,box.filename,wFilename);
+ C(p->func,box.function,wFunction);
+ C(p->cond,box.condition,wCondition);
+ #undef C
+ CLY_snprintf(box.line,wLine,"%d",p->line);
+ CLY_snprintf(box.address,wAddress,"%p",p->addr);
+ if (p->ignore>0)
+    CLY_snprintf(box.count,wCount,"%d",p->ignore);
+ else
+    box.count[0]=0;
+ if (p->thread>=0)
+    CLY_snprintf(box.thread,wThreadB,"%d",p->thread);
+ else
+    box.thread[0]=0;
+ box.enabled=p->enabled ? 1 : 0;
+ box.hw=p->type==t_breakpoint ? 0 : 1;
+
+ if (execDialog(d,&box)==cmOK)
+   {// Note: We know gdb is there. But this is complex.
+    // Delete the current breakpoint
+    if (!DeleteFromGDBandSpLines(p))
+       return 0;
+    // Create a structure to specify the new one
+    mi_bkpt *nb=CreateBktFromBox(box);
+    // Try to apply it
+    return ApplyBkt(nb,p,box.enabled);
+   }
+ return 0;
+}
+
+int TDiagBrk::Add()
+{
+ TDialog *d=createEdit(__("Add breakpoint"));
+
+ stBrkEdit box;
+ // TODO: Could we use current file and function?
+ memset(&box,0,sizeof(box));
+
+ if (execDialog(d,&box)==cmOK)
+   {// Note: We know gdb is there.
+    // Create a structure to specify the new one
+    mi_bkpt *nb=CreateBktFromBox(box);
+    // Try to apply it
+    mi_bkpt *nb_gdb=dbg->Breakpoint(nb);
+    mi_free_bkpt(nb);
+    if (!nb_gdb)
+      {
+       ShowErrorInMsgBox();
+       return 0;
+      }
+    // Ok, we succeed to apply the breakpoint.
+    // Update our list:
+    nb_gdb->enabled=box.enabled;
+    bkpts.add(nb_gdb);
+    // If this breakpoint is disabled remove it.
+    if (!nb_gdb->enabled)
+       dbg->BreakDelete(nb_gdb);
+    else
+       if (nb_gdb->file_abs)
+          SpLinesAdd(nb_gdb->file_abs,nb_gdb->line,idsplBreak,True);
+    return 1;
+   }
+ return 0;
+}
+
+int TDiagBrk::Delete()
+{
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+ mi_bkpt *p=bkpts.getItem(focusedB);
+ // Delete the current breakpoint
+ if (!DeleteFromGDBandSpLines(p))
+    return 0;
+ bkpts.remove(p);
+ return 1;
+}
+
+int TDiagBrk::Enable()
+{
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+
+ mi_bkpt *p=bkpts.getItem(focusedB);
+ if (p->enabled)
+    return 0;
+ p->enabled=1;
+
+ return ApplyBkt(p,p,1);
+}
+
+int TDiagBrk::Disable()
+{
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+
+ mi_bkpt *p=bkpts.getItem(focusedB);
+ if (!p->enabled)
+    return 0;
+
+ if (DeleteFromGDBandSpLines(p))
+   {
+    p->enabled=0;
+    return 1;
+   }
+ return 0;
+}
+
+void TDiagBrk::UpdateCommandsFocused()
+{
+ mi_bkpt *p=bkpts.getItem(focusedB);
+ TSetEditorApp::setCmdState(cmBkEnable,!p || p->enabled ? False : True);
+ TSetEditorApp::setCmdState(cmBkDisable,!p || !p->enabled ? False : True);
+}
+int TDiagBrk::Go()
+{
+ // TODO: looks like all actions checks it, move to the caller.
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+
+ mi_bkpt *p=bkpts.getItem(focusedB);
+ if (p->file_abs)
+   {
+    file=p->file_abs;
+    line=p->line;
+    return 1;
+   }
+
+ return 0;
+}
+
+void TDiagBrk::handleEvent(TEvent &event)
+{
+ int range=0, drawV=0;
+
+ TDialog::handleEvent(event);
+ if (event.what==evCommand)
+   {
+    switch (event.message.command)
+      {
+       case cmBkModify:
+            if (Modify())
+               drawV=1;
+            break;
+       case cmBkAdd:
+            if (Add())
+               drawV=range=1;
+            break;
+       case cmBkDel:
+            if (Delete())
+               drawV=range=1;
+            break;
+       case cmBkEnable:
+            if (Enable())
+              drawV=1;
+            break;
+       case cmBkDisable:
+            if (Disable())
+              drawV=1;
+            break;
+       case cmBkGo:
+            if (Go())
+               endModal(cmBkGo);
+            break;
+       default:
+            return;
+      }
+    if (range)
+      {
+       int c=bkpts.GetCount();
+       UpdateCommadsForCount(c);
+       theLBox->setRange(c);
+      }
+    if (drawV)
+      {
+       theLBox->drawView();
+       UpdateCommandsFocused();
+      }
+    clearEvent(event);
+   }
+ else if (event.what==evBroadcast)
+   {
+    switch (event.message.command)
+      {
+       case cmListItemFocused:
+            focusedB=((TListViewer *)event.message.infoPtr)->focused;
+            UpdateCommandsFocused();
+            break;
+       default:
+            return;
+      }
+    clearEvent(event);
+   }
+}
 
 TDiagBrk::TDiagBrk(const TRect &r) :
     TWindowInit(TDiagBrk::initFrame),
@@ -1695,6 +2150,10 @@ TDiagBrk::TDiagBrk(const TRect &r) :
 {
  flags=wfMove | wfClose;
  growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+ focusedB=0;
+
+ TSetEditorApp::setCmdState(cmBkEnable,False);
+ TSetEditorApp::setCmdState(cmBkDisable,False);
 
  TSViewCol *col=new TSViewCol(this);
 
@@ -1711,10 +2170,18 @@ TDiagBrk::TDiagBrk(const TRect &r) :
 
  int height=r.b.y-r.a.y-3;
  TSStringableListBox *lbox=new TSStringableListBox(width,height,tsslbVertical);
+ theLBox=(TStringableListBox *)(lbox->view);
  TSLabel *lb=new TSLabel(cols,lbox);
 
  col->insert(xTSLeft,yTSUp,lb);
- EasyInsertOKCancel(col);
+ col->insert(xTSCenter,yTSDown,MakeHzGroup(
+             new TSButton(__("E~x~it")   ,cmOK,bfDefault),
+             new TSButton(__("~M~odify") ,cmBkModify),
+             new TSButton(__("~N~ew")    ,cmBkAdd),
+             new TSButton(__("~D~elete") ,cmBkDel),
+             new TSButton(__("~E~nable") ,cmBkEnable),
+             new TSButton(__("D~i~sable"),cmBkDisable),
+             new TSButton(__("~S~how")   ,cmBkGo),0));
 
  col->doItCenter(cmeDbgEditBreakPts);
  delete col;
@@ -1722,14 +2189,22 @@ TDiagBrk::TDiagBrk(const TRect &r) :
 
 void TSetEditorApp::DebugEditBreakPts()
 {
+ // Currently we allow editing breakpoints only if we can get feadback from
+ // gdb. I think its possible to avoid it, but I don't see the point and
+ // the consequences can be quite confusing.
+ if (!DebugCheckStopped())
+    return;
+
  TRect r=GetDeskTopSize();
  TDiagBrk *d=new TDiagBrk(TRect(0,0,r.b.x,r.b.y-3));
+ TDiagBrk::UpdateCommadsForCount(bkpts.GetCount());
 
  TStringableListBoxRec box;
  box.items=&bkpts;
  box.selection=0;
 
- execDialog(d,&box);
+ if (execDialog(d,&box)==cmBkGo)
+    GotoFileLine(TDiagBrk::line,(char *)TDiagBrk::file);
 }
 
 /*****************************************************************************

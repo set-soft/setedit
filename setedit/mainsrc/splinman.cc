@@ -281,7 +281,7 @@ void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
              // Not a particular line or the line we want
              (!aLine || st->oline==oLine))
            {
-            p->NewSpLines->atRemove(j);
+            p->NewSpLines->atFree(j);
             c2--;
             deleted=True;
             // If it was the line we wanted stop searching

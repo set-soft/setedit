@@ -22,7 +22,13 @@ const int
 // Debug Watches & other debug
       cmEditWatch     =0x22A0,
       cmInsertWScope  =0x22A1,
-      cmGDBCommand    =0x22A2;
+      cmGDBCommand    =0x22A2,
+      cmBkModify      =0x22A3,
+      cmBkAdd         =0x22A4,
+      cmBkDel         =0x22A5,
+      cmBkEnable      =0x22A6,
+      cmBkDisable     =0x22A7,
+      cmBkGo          =0x22A8;
 
 const int
       hcListWin            =0x2110,
@@ -37,5 +43,6 @@ const int
       hcEditKeysLisp       =0x2244,
       hcDebugMsgWin        =0x2250,
       hcWatchesWin         =0x2260,
-      hcWatchesWinEdit     =0x2261;
+      hcWatchesWinEdit     =0x2261,
+      hcEditBkpt           =0x2270;
 
