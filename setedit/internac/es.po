@@ -5,8 +5,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.4.53\n"
-"PO-Revision-Date: 2002-01-04 11:18-0300\n"
+"Project-Id-Version: setedit 0.4.54\n"
+"PO-Revision-Date: 2002-01-29 11:16-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,14 +26,14 @@ msgid "E~v~al"
 msgstr "E~v~aluar"
 
 #: ../calcu/calcu.cc:86 ../easydiag/tsbutton.cc:57 ../easydiag/tsbutton.cc:66
-#: ../infview/inf.cc:2285 ../infview/inf.cc:2308 ../infview/inf.cc:2333
-#: ../infview/inf.cc:2357 ../infview/inf.cc:2412 ../install/install.cc:398
-#: ../install/install.cc:406 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:615
-#: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
-#: ../mainsrc/deedidia.cc:267 ../mainsrc/deedidia.cc:318
-#: ../mainsrc/deedidia.cc:338 ../mainsrc/sdginter.cc:183
-#: ../mainsrc/slpinter.cc:369 ../setedit/edprefs.cc:768
-#: ../setedit/edprefs.cc:909 ../setedit/intgrep.cc:393
+#: ../infview/inf.cc:2295 ../infview/inf.cc:2318 ../infview/inf.cc:2343
+#: ../infview/inf.cc:2367 ../infview/inf.cc:2422 ../install/install.cc:398
+#: ../install/install.cc:406 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:666
+#: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
+#: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
+#: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:183
+#: ../mainsrc/slpinter.cc:421 ../setedit/edprefs.cc:770
+#: ../setedit/edprefs.cc:914 ../setedit/intgrep.cc:393
 #: ../setedit/winlistd.cc:124 ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Cancela"
@@ -48,12 +48,12 @@ msgstr "~C~opiar"
 msgid "~P~aste"
 msgstr "~P~egar"
 
-#: ../calcu/calcu.cc:116
+#: ../calcu/calcu.cc:114
 #, c-format
 msgid "Error in expression (%d)"
 msgstr "Error en la expresi¢n (%d)"
 
-#: ../calcu/calcu.cc:141
+#: ../calcu/calcu.cc:158
 msgid "Calculator"
 msgstr "Calculadora"
 
@@ -62,173 +62,173 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:56 ../easydiag/tsbutton.cc:64
-#: ../internac/tvision.cc:59 ../mainsrc/bufun.cc:614
-#: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
-#: ../mainsrc/deedidia.cc:266 ../mainsrc/deedidia.cc:317
-#: ../mainsrc/loaddefl.cc:649 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:182 ../mainsrc/slpinter.cc:368
+#: ../internac/tvision.cc:59 ../mainsrc/bufun.cc:665
+#: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:177
+#: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
+#: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
+#: ../mainsrc/sdginter.cc:182 ../mainsrc/slpinter.cc:420
 #: ../setedit/advice.cc:110 ../setedit/boardmix.cc:116
-#: ../setedit/edprefs.cc:543 ../setedit/edprefs.cc:767
-#: ../setedit/edprefs.cc:908 ../setedit/intgrep.cc:392 ../setedit/tips.cc:213
+#: ../setedit/edprefs.cc:543 ../setedit/edprefs.cc:769
+#: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:392 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~k~"
 
-#: ../infview/inf.cc:701 ../infview/inf.cc:706
+#: ../infview/inf.cc:704 ../infview/inf.cc:709
 #, c-format
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Archivo: %s - Nodo: %s"
 
-#: ../infview/inf.cc:1558
+#: ../infview/inf.cc:1561
 msgid "Open Info"
 msgstr "Abrir Info"
 
-#: ../infview/inf.cc:1770
+#: ../infview/inf.cc:1773
 msgid "Please wait"
 msgstr "Por favor espere"
 
-#: ../infview/inf.cc:1770
+#: ../infview/inf.cc:1773
 msgid "Searching ..."
 msgstr "Buscando ..."
 
-#: ../infview/inf.cc:1888
+#: ../infview/inf.cc:1891
 msgid "Sorry can't find the string"
 msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 
-#: ../infview/inf.cc:2217
+#: ../infview/inf.cc:2227
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
-#: ../infview/inf.cc:2221 ../infview/infmenu.cc:67 ../internac/tvision.cc:88
+#: ../infview/inf.cc:2231 ../infview/infmenu.cc:67 ../internac/tvision.cc:88
 #: ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "P~r~¢xima"
 
-#: ../infview/inf.cc:2224 ../infview/infmenu.cc:68 ../internac/tvision.cc:89
+#: ../infview/inf.cc:2234 ../infview/infmenu.cc:68 ../internac/tvision.cc:89
 #: ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~A~nterior"
 
-#: ../infview/inf.cc:2227
+#: ../infview/inf.cc:2237
 msgid "~U~p"
 msgstr "~A~rriba"
 
-#: ../infview/inf.cc:2230
+#: ../infview/inf.cc:2240
 msgid "Prev. ~H~ist."
 msgstr "Ant. en ~H~ist."
 
-#: ../infview/inf.cc:2233
+#: ../infview/inf.cc:2243
 msgid "Nodes ~L~ist"
 msgstr "~L~ista de temas"
 
-#: ../infview/inf.cc:2236 ../infview/infmenu.cc:58
+#: ../infview/inf.cc:2246 ../infview/infmenu.cc:58
 msgid "~B~ookmarks"
 msgstr "~M~arcadores"
 
-#: ../infview/inf.cc:2239 ../infview/infmenu.cc:56
+#: ../infview/inf.cc:2249 ../infview/infmenu.cc:56
 msgid "~C~onfiguration"
 msgstr "~C~onfiguraci¢n"
 
-#: ../infview/inf.cc:2242
+#: ../infview/inf.cc:2252
 msgid "~O~pen Info"
 msgstr "~A~brir Info"
 
-#: ../infview/inf.cc:2245
+#: ../infview/inf.cc:2255
 msgid "H~i~de"
 msgstr "Ocu~l~tar"
 
-#: ../infview/inf.cc:2252
+#: ../infview/inf.cc:2262
 msgid "Hi~s~tory"
 msgstr "Hi~s~toria"
 
-#: ../infview/inf.cc:2262
+#: ../infview/inf.cc:2272
 msgid "Inf Find"
 msgstr "B£squeda en Infos"
 
 #. All together
-#: ../infview/inf.cc:2269 ../internac/tvision.cc:56 ../mainsrc/deedidia.cc:120
-#: ../mainsrc/deedidia.cc:155
+#: ../infview/inf.cc:2279 ../internac/tvision.cc:56 ../mainsrc/deedidia.cc:121
+#: ../mainsrc/deedidia.cc:156
 msgid "~T~ext to find"
 msgstr "Texto a ~b~uscar"
 
-#: ../infview/inf.cc:2274 ../internac/tvision.cc:57 ../mainsrc/deedidia.cc:123
-#: ../mainsrc/deedidia.cc:162 ../mainsrc/ssyntax.cc:474
+#: ../infview/inf.cc:2284 ../internac/tvision.cc:57 ../mainsrc/deedidia.cc:124
+#: ../mainsrc/deedidia.cc:163 ../mainsrc/ssyntax.cc:475
 msgid "~C~ase sensitive"
 msgstr "May£s~c~ulas y min."
 
-#: ../infview/inf.cc:2275 ../internac/tvision.cc:58 ../mainsrc/deedidia.cc:124
-#: ../mainsrc/deedidia.cc:162
+#: ../infview/inf.cc:2285 ../internac/tvision.cc:58 ../mainsrc/deedidia.cc:125
+#: ../mainsrc/deedidia.cc:163
 msgid "~W~hole words only"
 msgstr "~P~alabras completas"
 
-#: ../infview/inf.cc:2278
+#: ../infview/inf.cc:2288
 msgid "In current ~t~opic"
 msgstr "En el ~i~tem actual"
 
-#: ../infview/inf.cc:2279
+#: ../infview/inf.cc:2289
 msgid "In the ~f~ile"
 msgstr "En todo el ~a~rchivo"
 
-#: ../infview/inf.cc:2280
+#: ../infview/inf.cc:2290
 msgid "In ~a~ll files"
 msgstr "En ~t~odos los archivos"
 
-#: ../infview/inf.cc:2283 ../infview/inf.cc:2306 ../infview/inf.cc:2329
-#: ../infview/inf.cc:2355 ../internac/tvision.cc:11 ../setedit/editdiag.cc:77
+#: ../infview/inf.cc:2293 ../infview/inf.cc:2316 ../infview/inf.cc:2339
+#: ../infview/inf.cc:2365 ../internac/tvision.cc:11 ../setedit/editdiag.cc:77
 #: ../setedit/editpale.cc:163 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~k"
 
-#: ../infview/inf.cc:2294
+#: ../infview/inf.cc:2304
 msgid "Go To"
 msgstr "Ir a"
 
-#: ../infview/inf.cc:2301
+#: ../infview/inf.cc:2311
 msgid "~N~ame of Node"
 msgstr "~N~ombre del Nodo"
 
 #. Make it growable
-#: ../infview/inf.cc:2320
+#: ../infview/inf.cc:2330
 msgid "Tag Table"
 msgstr "Lista de temas"
 
-#: ../infview/inf.cc:2327
+#: ../infview/inf.cc:2337
 msgid "~N~odes"
 msgstr "~N~odos"
 
-#: ../infview/inf.cc:2347
+#: ../infview/inf.cc:2357
 msgid "InfView Configuration"
 msgstr "Configuraci¢n de InfView"
 
-#: ../infview/inf.cc:2352
+#: ../infview/inf.cc:2362
 msgid "Hide '*~N~ote' word"
 msgstr "Ocultar la palabra '*~N~ode'"
 
-#: ../infview/inf.cc:2353
+#: ../infview/inf.cc:2363
 msgid "Hide real ~l~ink name"
 msgstr "Ocultar los nombres de los ~l~inks"
 
-#: ../infview/inf.cc:2395
+#: ../infview/inf.cc:2405
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
-#: ../infview/inf.cc:2404 ../mp3/mp3list.cc:328 ../settvuti/tdiagaid.cc:140
+#: ../infview/inf.cc:2414 ../mp3/mp3list.cc:328 ../settvuti/tdiagaid.cc:140
 msgid "~A~dd"
 msgstr "~A~gregar"
 
-#: ../infview/inf.cc:2408 ../mp3/mp3list.cc:330 ../setedit/winlistd.cc:122
+#: ../infview/inf.cc:2418 ../mp3/mp3list.cc:330 ../setedit/winlistd.cc:122
 #: ../settvuti/tdiagaid.cc:142
 msgid "~D~elete"
 msgstr "~B~orrar"
 
-#: ../infview/inf.cc:2415
+#: ../infview/inf.cc:2425
 msgid "~G~o to"
 msgstr "I~r~ a"
 
-#: ../infview/inf.cc:2427
+#: ../infview/inf.cc:2437
 msgid "~M~arks"
 msgstr "~M~arcas"
 
-#: ../infview/infbase.cc:260
+#: ../infview/infbase.cc:262
 msgid ""
 "Attention !! this file is in DOS format, Do you want convert it?, Make a "
 "backup first !!"
@@ -236,24 +236,24 @@ msgstr ""
 "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga una "
 "copia primero"
 
-#: ../infview/infbase.cc:277
+#: ../infview/infbase.cc:279
 msgid "Error: can't find the Node info"
 msgstr "Error: no puedo hallar el Nodo"
 
-#: ../infview/infbase.cc:1044
+#: ../infview/infbase.cc:1046
 msgid "Reading index table for: "
 msgstr "Leyendo el ¡ndice de: "
 
-#: ../infview/infbase.cc:1132
+#: ../infview/infbase.cc:1134
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1300
+#: ../infview/infbase.cc:1302
 #, c-format
 msgid "Attention can't open the help file '%s'."
 msgstr "Atenci¢n no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1844
+#: ../infview/infbase.cc:1846
 msgid ""
 "\n"
 " Sorry I can't find this link (press ALT-F1).\n"
@@ -261,41 +261,41 @@ msgstr ""
 "\n"
 " Lo lamento no puedo encontrar este nodo (presione ALT-F1).\n"
 
-#: ../infview/infmain.cc:301 ../setedit/edprefs.cc:85
+#: ../infview/infmain.cc:302 ../setedit/edprefs.cc:85
 #: ../setedit/edprefs.cc:151
 msgid "Screen Options"
 msgstr "Opciones de Pantalla"
 
-#: ../infview/infmain.cc:303 ../setedit/edprefs.cc:76
+#: ../infview/infmain.cc:304 ../setedit/edprefs.cc:76
 msgid "Primary ~e~ncoding"
 msgstr "Co~d~ificaci¢n primaria"
 
-#: ../infview/infmain.cc:336 ../setedit/edprefs.cc:114
+#: ../infview/infmain.cc:337 ../setedit/edprefs.cc:114
 msgid "This terminal have a fixed code page"
 msgstr "Esta terminal no soporta cambios de p gina de caracteres"
 
-#: ../infview/infmain.cc:367 ../setedit/dstfile.cc:227
+#: ../infview/infmain.cc:368 ../setedit/dstfile.cc:235
 #, c-format
 msgid "Could not create %s."
 msgstr "No puedo crear %s."
 
-#: ../infview/infmain.cc:408 ../setedit/dstfile.cc:163
+#: ../infview/infmain.cc:409 ../setedit/dstfile.cc:171
 msgid "Could not open desktop file"
 msgstr "No puedo abrir el archivo del escritorio"
 
-#: ../infview/infmain.cc:413
+#: ../infview/infmain.cc:414
 msgid "Wrong desktop file"
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../infview/infmain.cc:418 ../setedit/dstfile.cc:168
+#: ../infview/infmain.cc:419 ../setedit/dstfile.cc:176
 msgid "Error reading desktop file"
 msgstr "Error al leer el archivo de escritorio"
 
-#: ../infview/infmain.cc:540
+#: ../infview/infmain.cc:546
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:541
+#: ../infview/infmain.cc:547
 msgid ""
 "infview [option]... [info_file [menu_item...]]\n"
 "\n"
@@ -303,11 +303,11 @@ msgstr ""
 "infview [opci¢n]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:542 ../setedit/editmain.cc:1887
+#: ../infview/infmain.cc:548 ../setedit/editmain.cc:1926
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
-#: ../infview/infmain.cc:543
+#: ../infview/infmain.cc:549
 msgid ""
 "-d, --directory DIR      adds a directory to the list of directories to "
 "search\n"
@@ -316,40 +316,40 @@ msgstr ""
 "-d, --directorio DIR     agrega el directorio especificado a la lista de\n"
 "                         directorios a buscar (DIR a INFOPATH)\n"
 
-#: ../infview/infmain.cc:545
+#: ../infview/infmain.cc:551
 msgid "-f, --file FILENAME      load FILENAME info file.\n"
 msgstr "-f, --file NOMBRE_ARCH   abre la ayuda NOMBRE_ARCH.\n"
 
-#: ../infview/infmain.cc:547
+#: ../infview/infmain.cc:553
 msgid "-l, --force-no-lfn       avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../infview/infmain.cc:548
+#: ../infview/infmain.cc:554
 msgid "-L, --force-lfn          forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn          fuerza el uso de nombres largos en W9x.\n"
 
-#: ../infview/infmain.cc:550
+#: ../infview/infmain.cc:556
 msgid ""
 "-k, --use-rh-52-keys     enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     habilita el mapeo de teclado usado en Red Hat 5.2.\n"
 
-#: ../infview/infmain.cc:552
+#: ../infview/infmain.cc:558
 msgid "-n, --node NODE          jumps to this node.\n"
 msgstr "-n, --node NODO          salta a este nodo.\n"
 
-#: ../infview/infmain.cc:553
+#: ../infview/infmain.cc:559
 msgid "-r, --read-dkt FILENAME  if no file is opened use this desktop file.\n"
 msgstr ""
 "-r, --read-dkt NOMBREAR  si no se especific¢ abrir ninguna ayuda abrir el\n"
 "                         archivo de escritorio NOMBREAR\n"
 
-#: ../infview/infmain.cc:554
+#: ../infview/infmain.cc:560
 msgid "-s, --save-dkt FILENAME  save the desktop to this file at exit.\n"
 msgstr ""
 "-s, --save-dkt NOMBREAR  grabar el archivo de escritorio como NOMBREAR.\n"
 
-#: ../infview/infmain.cc:555
+#: ../infview/infmain.cc:561
 msgid ""
 "-h, --help               displays this text ;-).\n"
 "\n"
@@ -357,7 +357,7 @@ msgstr ""
 "-h, --help               muestra este texto ;-).\n"
 "\n"
 
-#: ../infview/infmain.cc:556
+#: ../infview/infmain.cc:562
 msgid ""
 "The first argument, if present, is the name of the Info file to read.\n"
 "Any remaining arguments are treated as the names of menu items in the "
@@ -366,7 +366,7 @@ msgstr ""
 "El primer par metro, si fue indicado, es el nombre del .info a leer.\n"
 "Los par metros siguientes indican el nombre de opciones del men£ de los\n"
 
-#: ../infview/infmain.cc:559
+#: ../infview/infmain.cc:565
 msgid ""
 "node visited.  For example, `infview libc \"function index\" printf' moves "
 "to the\n"
@@ -378,7 +378,7 @@ msgstr ""
 "el nodo `Function Index' y luego a `printf' del .info `libc'.\n"
 "\n"
 
-#: ../infview/infmain.cc:562
+#: ../infview/infmain.cc:568
 msgid ""
 "node visited.  For example, `infview libc alpha printf' moves to the node\n"
 "`Alphabetical list' and then to `printf' in the info file `libc'.\n"
@@ -388,7 +388,7 @@ msgstr ""
 "`Alphabetical list' y luego al `printf' del .info `libc'.\n"
 "\n"
 
-#: ../infview/infmain.cc:565
+#: ../infview/infmain.cc:571
 msgid ""
 "Also note that info files are searched in the INFOPATH directories. To load "
 "a\n"
@@ -399,7 +399,7 @@ msgstr ""
 "Para cargar uno del directorio actual agregue ./ al comienzo del nombre.\n"
 "Reporte errores a salvador@inti.gov.ar o djgpp@delorie.com.\n"
 
-#: ../infview/infmain.cc:799
+#: ../infview/infmain.cc:805
 #, c-format
 msgid "Could not find '%s'."
 msgstr "No pude encontrar '%s'."
@@ -562,23 +562,23 @@ msgstr "~F10~ Men£"
 msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operaci¢n."
 
-#: ../infview/manview.cc:491
+#: ../infview/manview.cc:504
 msgid "You must install man to use it!"
 msgstr "­Debe instalar el programa man para usar esto!"
 
-#: ../infview/manview.cc:520
+#: ../infview/manview.cc:533
 msgid "Man page to view"
 msgstr "Visor de p ginas del manual"
 
-#: ../infview/manview.cc:523
+#: ../infview/manview.cc:536
 msgid "~M~an page for ..."
 msgstr "~P~ gina del manual para ..."
 
-#: ../infview/manview.cc:524
+#: ../infview/manview.cc:537
 msgid "~S~ection"
 msgstr "~S~ecci¢n"
 
-#: ../infview/manview.cc:525
+#: ../infview/manview.cc:538
 msgid "~E~xtra options"
 msgstr "Opciones ~e~xtra"
 
@@ -665,12 +665,12 @@ msgid "> ~N~ext"
 msgstr "> P~r~¢xima"
 
 #: ../install/install.cc:404 ../internac/tvision.cc:110
-#: ../mainsrc/deedidia.cc:335 ../setedit/advice.cc:99 ../setedit/advice.cc:106
+#: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:99 ../setedit/advice.cc:106
 msgid "~Y~es"
 msgstr "~S~i"
 
 #: ../install/install.cc:405 ../internac/tvision.cc:111
-#: ../mainsrc/deedidia.cc:336 ../setedit/advice.cc:100
+#: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:100
 #: ../setedit/advice.cc:105
 msgid "~N~o"
 msgstr "~N~o"
@@ -959,24 +959,24 @@ msgstr "Discos"
 msgid "Invalid directory"
 msgstr "Directorio inv lido"
 
-#: ../internac/tvision.cc:17 ../mainsrc/deedidia.cc:367
+#: ../internac/tvision.cc:17 ../mainsrc/deedidia.cc:372
 msgid "Colors"
 msgstr "Colores"
 
 #. Colors Window
-#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:294
+#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:299
 msgid "~G~roup"
 msgstr "~G~rupo"
 
-#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:295
+#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:300
 msgid "~I~tem"
 msgstr "O~b~jeto"
 
-#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:296
+#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:301
 msgid "~F~oreground"
 msgstr "Prim. ~p~lano"
 
-#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:297
+#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:302
 msgid "~B~ackground"
 msgstr "~F~ondo"
 
@@ -988,7 +988,7 @@ msgstr "Texto "
 msgid "Color"
 msgstr "Color"
 
-#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:298
+#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:303
 msgid "~T~ry"
 msgstr "P~r~obar"
 
@@ -1107,23 +1107,23 @@ msgstr "Valor fuera del rango %li a %li"
 msgid "Type EXIT to return..."
 msgstr "Tipee EXIT para volver ..."
 
-#: ../internac/tvision.cc:55 ../mainsrc/deedidia.cc:116
+#: ../internac/tvision.cc:55 ../mainsrc/deedidia.cc:117
 msgid "Find"
 msgstr "Buscar"
 
-#: ../internac/tvision.cc:60 ../mainsrc/deedidia.cc:152
+#: ../internac/tvision.cc:60 ../mainsrc/deedidia.cc:153
 msgid "Replace"
 msgstr "Reemplazar"
 
-#: ../internac/tvision.cc:61 ../mainsrc/deedidia.cc:158
+#: ../internac/tvision.cc:61 ../mainsrc/deedidia.cc:159
 msgid "~N~ew text"
 msgstr "~N~uevo texto"
 
-#: ../internac/tvision.cc:62 ../mainsrc/deedidia.cc:165
+#: ../internac/tvision.cc:62 ../mainsrc/deedidia.cc:166
 msgid "~P~rompt on replace"
 msgstr "Pr~e~guntar"
 
-#: ../internac/tvision.cc:63 ../mainsrc/deedidia.cc:165
+#: ../internac/tvision.cc:63 ../mainsrc/deedidia.cc:166
 msgid "~R~eplace all"
 msgstr "~R~eemplazar todo"
 
@@ -1147,7 +1147,7 @@ msgstr "G~u~ardar como ..."
 msgid "~C~hange dir..."
 msgstr "~C~ambiar directorio ..."
 
-#: ../internac/tvision.cc:72 ../mainsrc/loaddefl.cc:648
+#: ../internac/tvision.cc:72 ../mainsrc/loaddefl.cc:712
 #: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
 msgid "~E~dit"
 msgstr "~E~ditar"
@@ -1193,31 +1193,31 @@ msgstr "~F3~ Abrir"
 msgid "~Alt+F3~ Close"
 msgstr "~Alt+F3~ Cerrar"
 
-#: ../internac/tvision.cc:98 ../mainsrc/doedidia.cc:57
+#: ../internac/tvision.cc:98 ../mainsrc/doedidia.cc:60
 msgid "Not enough memory for this operation"
 msgstr "No hay suficiente memoria para esta operaci¢n"
 
-#: ../internac/tvision.cc:99 ../mainsrc/doedidia.cc:61
+#: ../internac/tvision.cc:99 ../mainsrc/doedidia.cc:64
 msgid "Error reading file "
 msgstr "Error al leer el archivo "
 
-#: ../internac/tvision.cc:100 ../mainsrc/doedidia.cc:68
+#: ../internac/tvision.cc:100 ../mainsrc/doedidia.cc:72
 msgid "Error writing file "
 msgstr "Error al escribir el archivo "
 
-#: ../internac/tvision.cc:101 ../mainsrc/doedidia.cc:75
+#: ../internac/tvision.cc:101 ../mainsrc/doedidia.cc:79
 msgid "Error creating file "
 msgstr "Error al crear el archivo "
 
-#: ../internac/tvision.cc:102 ../mainsrc/doedidia.cc:83
+#: ../internac/tvision.cc:102 ../mainsrc/doedidia.cc:88
 msgid " has been modified. Save?"
 msgstr " ha sido modificado. ¨Grabo?"
 
-#: ../internac/tvision.cc:103 ../mainsrc/doedidia.cc:88
+#: ../internac/tvision.cc:103 ../mainsrc/doedidia.cc:93
 msgid "Save untitled file?"
 msgstr "¨Grabo el archivo sin t¡tulo?"
 
-#: ../internac/tvision.cc:104 ../mainsrc/doedidia.cc:91
+#: ../internac/tvision.cc:104 ../mainsrc/doedidia.cc:96
 msgid "Save file as"
 msgstr "Grabar como"
 
@@ -1225,11 +1225,11 @@ msgstr "Grabar como"
 msgid "~N~ame"
 msgstr "~N~ombre"
 
-#: ../internac/tvision.cc:106 ../mainsrc/doedidia.cc:113
+#: ../internac/tvision.cc:106 ../mainsrc/doedidia.cc:118
 msgid "Search string not found."
 msgstr "No se pudo hallar el texto."
 
-#: ../internac/tvision.cc:107 ../mainsrc/deedidia.cc:334
+#: ../internac/tvision.cc:107 ../mainsrc/deedidia.cc:339
 msgid "Replace this occurence?"
 msgstr "¨Reemplazo aqu¡?"
 
@@ -1263,52 +1263,52 @@ msgstr "No avisar la pr¢xima vez"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:601
+#: ../mainsrc/bufun.cc:652
 msgid "Jump to function"
 msgstr "Saltar a una funci¢n"
 
-#: ../mainsrc/bufun.cc:610
+#: ../mainsrc/bufun.cc:661
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:616
+#: ../mainsrc/bufun.cc:667
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:644
+#: ../mainsrc/bufun.cc:696
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:646
+#: ../mainsrc/bufun.cc:698
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:648
+#: ../mainsrc/bufun.cc:700
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:649
+#: ../mainsrc/bufun.cc:701
 msgid "by ~L~ine"
 msgstr "por ~L~¡nea"
 
-#: ../mainsrc/bufun.cc:684
+#: ../mainsrc/bufun.cc:736
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna funci¢n ¨est  seguro?"
 
-#: ../mainsrc/bufun.cc:713
+#: ../mainsrc/bufun.cc:765
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:3840
+#: ../mainsrc/ceditor.cc:3913
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 l¡neas"
 
-#: ../mainsrc/ceditor.cc:3859
+#: ../mainsrc/ceditor.cc:3932
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f l¡neas/segundo"
 
-#: ../mainsrc/ceditor.cc:3882
+#: ../mainsrc/ceditor.cc:3955
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1319,7 +1319,7 @@ msgstr ""
 "Velocidad: %f l¡neas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:3916
+#: ../mainsrc/ceditor.cc:3989
 msgid ""
 "Time: %f seconds\n"
 "Speed: %f lines/second\n"
@@ -1331,16 +1331,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5302
+#: ../mainsrc/ceditor.cc:5385
 msgid "No match found"
 msgstr "No encontr‚ el complemento"
 
-#: ../mainsrc/ceditor.cc:5314
+#: ../mainsrc/ceditor.cc:5397
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la l¡nea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:9445
+#: ../mainsrc/ceditor.cc:9528
 msgid ""
 "This file contains ASCII 0 values, all the characters after it in this line "
 "becomes invisible. Be careful."
@@ -1348,402 +1348,413 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podr n ver en esa l¡nea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:9460
+#: ../mainsrc/ceditor.cc:9543
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10186
+#: ../mainsrc/ceditor.cc:10269
 msgid "Unhandled syntax highlight"
 msgstr "­Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11112
+#: ../mainsrc/ceditor.cc:11208
 msgid "Unhandled undo"
 msgstr "­Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11317
+#: ../mainsrc/ceditor.cc:11419
 msgid "Unhandled redo"
 msgstr "­Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:12432
+#: ../mainsrc/ceditor.cc:12559
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d l¡neas)."
 
-#: ../mainsrc/ceditor.cc:12440
+#: ../mainsrc/ceditor.cc:12567
 msgid "Stat failed."
 msgstr "­Fallo al usar 'stat'!"
 
-#: ../mainsrc/deedidia.cc:77
+#: ../mainsrc/deedidia.cc:78
 msgid "Regular Expressions Options"
 msgstr "Opciones de Expresiones Regulares"
 
-#: ../mainsrc/deedidia.cc:79
+#: ../mainsrc/deedidia.cc:80
 msgid "RegEx style"
 msgstr "Tipo de ExpReg"
 
-#: ../mainsrc/deedidia.cc:79
+#: ../mainsrc/deedidia.cc:80
 msgid "~B~asic POSIX"
 msgstr "POSIX ~B~ sicas"
 
-#: ../mainsrc/deedidia.cc:80
+#: ../mainsrc/deedidia.cc:81
 msgid "~E~xtended POSIX"
 msgstr "POSIX ~E~xtendidas"
 
-#: ../mainsrc/deedidia.cc:82
+#: ../mainsrc/deedidia.cc:83
 msgid "~P~erl Compatible"
 msgstr "Compatibles con ~P~erl"
 
-#: ../mainsrc/deedidia.cc:86
+#: ../mainsrc/deedidia.cc:87
 msgid "Replace text"
 msgstr "Texto a reemplazar"
 
-#: ../mainsrc/deedidia.cc:86
+#: ../mainsrc/deedidia.cc:87
 msgid "~N~ormal text"
 msgstr "Es texto ~n~ormal"
 
-#: ../mainsrc/deedidia.cc:87
+#: ../mainsrc/deedidia.cc:88
 msgid "~D~olar tags"
 msgstr "Son ~s~ubexpresiones con $n"
 
-#: ../mainsrc/deedidia.cc:88
+#: ../mainsrc/deedidia.cc:89
 msgid "Optimize"
 msgstr "Optimizar"
 
-#: ../mainsrc/deedidia.cc:88
+#: ../mainsrc/deedidia.cc:89
 msgid "~T~ry to use normal search"
 msgstr "In~t~entar usar una b£squeda com£n"
 
-#: ../mainsrc/deedidia.cc:89
+#: ../mainsrc/deedidia.cc:90
 msgid "E~v~er use RegEx"
 msgstr "Siempre usar E~x~pReg"
 
-#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:162
-#: ../mainsrc/deedidia.cc:286 ../setedit/tips.cc:210
+#: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:290 ../setedit/tips.cc:210
 msgid "Options"
 msgstr "Opc~i~ones"
 
-#: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:164
 msgid "Regular e~x~pressions"
 msgstr "E~x~presiones regulares"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:164
 msgid "Only ~i~nside comments"
 msgstr "So~l~o dentro de comentarios"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:164
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:165
 msgid "Only o~u~tside comments"
 msgstr "Solo ~f~uera de comentarios"
 
-#: ../mainsrc/deedidia.cc:126
+#: ../mainsrc/deedidia.cc:127
 msgid "S~h~ow function name"
 msgstr "~M~ostrar el nombre de la funci¢n"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:168
+#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:169
 msgid "Scope"
 msgstr "Ambito"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:168
+#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:169
 msgid "~G~lobal"
 msgstr "~G~lobal"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:169
+#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:170
 msgid "~S~elected text"
 msgstr "Texto ~s~eleccionado"
 
-#: ../mainsrc/deedidia.cc:128
+#: ../mainsrc/deedidia.cc:129
 msgid "Origin"
 msgstr "Origen"
 
-#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:172
+#: ../mainsrc/deedidia.cc:129 ../mainsrc/deedidia.cc:173
 msgid "~F~rom cursor"
 msgstr "~D~esde el cursor"
 
-#: ../mainsrc/deedidia.cc:129 ../mainsrc/deedidia.cc:173
+#: ../mainsrc/deedidia.cc:130 ../mainsrc/deedidia.cc:174
 msgid "~E~ntire scope"
 msgstr "~T~odo"
 
-#: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
+#: ../mainsrc/deedidia.cc:136 ../mainsrc/deedidia.cc:180
 msgid "RegEx ~O~ps"
 msgstr "~O~ps ExpReg"
 
-#: ../mainsrc/deedidia.cc:164
+#: ../mainsrc/deedidia.cc:165
 msgid "S~h~ow function ~n~ame"
 msgstr "Mostrar el nombre de la f~u~nci¢n"
 
-#: ../mainsrc/deedidia.cc:172
+#: ../mainsrc/deedidia.cc:173
 msgid "Or~i~gin"
 msgstr "Origen"
 
-#: ../mainsrc/deedidia.cc:177
+#: ../mainsrc/deedidia.cc:178
 msgid "Replace ~A~ll"
 msgstr "Ree~m~plazar Todo"
 
-#: ../mainsrc/deedidia.cc:198
+#: ../mainsrc/deedidia.cc:199
 msgid "Goto Line"
 msgstr "Ir a l¡nea"
 
-#: ../mainsrc/deedidia.cc:201
+#: ../mainsrc/deedidia.cc:202
 msgid "Desired line"
 msgstr "L¡nea deseada"
 
-#: ../mainsrc/deedidia.cc:217
+#: ../mainsrc/deedidia.cc:218
 msgid "Syntax Highlight"
 msgstr "Resaltado de Sintaxis"
 
-#: ../mainsrc/deedidia.cc:222
+#: ../mainsrc/deedidia.cc:223
 msgid "Off ~1~"
 msgstr "Apa~g~ado"
 
-#: ../mainsrc/deedidia.cc:223
+#: ../mainsrc/deedidia.cc:224
 msgid "C++ st~y~le"
 msgstr "Estilo C~+~+"
 
-#: ../mainsrc/deedidia.cc:224
+#: ../mainsrc/deedidia.cc:225
 msgid "Pa~s~cal style"
 msgstr "Estilo Pascal ~1~"
 
-#: ../mainsrc/deedidia.cc:225
+#: ../mainsrc/deedidia.cc:226
 msgid "C~l~ipper style"
 msgstr "Estilo Clipper ~5~"
 
-#: ../mainsrc/deedidia.cc:226
+#: ../mainsrc/deedidia.cc:227
 msgid "User ~d~efined"
 msgstr "~D~efinido por el usuario"
 
-#. English: ABCDEFGHIKLMNOPRSTUWYZ 123
+#. English: ABCDEFGHIKLMNOPRSTUWYZ 1234
 #. BEGJQVXZ
-#: ../mainsrc/deedidia.cc:247
+#: ../mainsrc/deedidia.cc:248
 msgid "Local Options"
 msgstr "Opciones locales"
 
-#: ../mainsrc/deedidia.cc:250
+#: ../mainsrc/deedidia.cc:251
 msgid "Options ~3~"
 msgstr "Opciones ~3~"
 
-#: ../mainsrc/deedidia.cc:250
+#: ../mainsrc/deedidia.cc:251
 msgid "~O~verwrite"
 msgstr "S~o~breescritura"
 
-#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:287
+#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:291
 msgid "~A~utoindent"
 msgstr "~A~utoindentar"
 
-#: ../mainsrc/deedidia.cc:251
+#: ../mainsrc/deedidia.cc:252
 msgid "~U~se real tabs (ASCII 9)"
 msgstr "~U~sar tabs reales (ASCII 9)"
 
-#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:289
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:293
 msgid "~P~ersistent blocks"
 msgstr "Bloques ~p~ersistentes"
 
-#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:290
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:294
 msgid "~I~ntelligent C indent"
 msgstr "~I~ndentado de C inteligente"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:291
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:295
 msgid "~C~olumn cursor"
 msgstr "Cursor de ~C~olumna"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:292
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:296
 msgid "~R~ow cursor"
 msgstr "Cursor de ~L~¡nea"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:293
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:297
 msgid "~M~atch pair highlight"
 msgstr "~R~esaltar el par complementario"
 
-#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:294
+#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:298
 msgid "Match pair on the fl~y~"
 msgstr "Resaltar el par `al vuelo' ~4~"
 
-#: ../mainsrc/deedidia.cc:253
+#: ../mainsrc/deedidia.cc:254
 msgid "Don't wait to search the pair ~1~"
 msgstr "No esperar para resaltar ~1~"
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:297
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:301
 msgid "Tra~n~sparent Blocks"
 msgstr "Bloques Tran~s~parentes"
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:298
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:302
 msgid "Optimal ~F~ill"
 msgstr "Rell~e~nado ¢ptimo"
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:299
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:303
 msgid "~W~rap words"
 msgstr "Cortar l¡~n~eas"
 
-#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:301
+#: ../mainsrc/deedidia.cc:256 ../mainsrc/deedidia.cc:305
 msgid "S~e~e tabs"
 msgstr "~V~er los tabuladores"
 
-#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:302
+#: ../mainsrc/deedidia.cc:256 ../mainsrc/deedidia.cc:306
 msgid "Don't move inside ta~b~s"
 msgstr "No moverse dentro de los ta~b~s"
 
-#: ../mainsrc/deedidia.cc:256
+#: ../mainsrc/deedidia.cc:257
 msgid "Tab ~s~mart indents"
 msgstr "El tab indenta buscando ~h~uecos"
 
-#: ../mainsrc/deedidia.cc:256
+#: ../mainsrc/deedidia.cc:257
 msgid "Use in~d~ent size"
 msgstr "Usar el valor de 'indentado' ~6~"
 
-#: ../mainsrc/deedidia.cc:257 ../mainsrc/deedidia.cc:305
+#: ../mainsrc/deedidia.cc:258 ../mainsrc/deedidia.cc:309
 msgid "Don't pur~g~e spaces"
 msgstr "No borrar espacios extra ~3~"
 
-#: ../mainsrc/deedidia.cc:257
+#: ../mainsrc/deedidia.cc:258
 msgid "Backspace unindents ~2~"
 msgstr "La tecla <- desindenta ~5~"
 
-#: ../mainsrc/deedidia.cc:260 ../mainsrc/deedidia.cc:310
+#: ../mainsrc/deedidia.cc:259
+msgid "Column markers ~4~"
+msgstr "Marcadores de columna ~2~"
+
+#: ../mainsrc/deedidia.cc:262 ../mainsrc/deedidia.cc:314
 msgid "~T~ab size"
 msgstr "~T~ama¤o del tab"
 
-#: ../mainsrc/deedidia.cc:261 ../mainsrc/deedidia.cc:311
+#: ../mainsrc/deedidia.cc:263 ../mainsrc/deedidia.cc:315
 msgid "Indent si~z~e"
 msgstr "Indentad~o~"
 
-#: ../mainsrc/deedidia.cc:262 ../mainsrc/deedidia.cc:312
+#: ../mainsrc/deedidia.cc:264 ../mainsrc/deedidia.cc:316
 msgid "Wrap co~l~umn"
 msgstr "Colu~m~na l¡mite"
 
-#: ../mainsrc/deedidia.cc:268
+#: ../mainsrc/deedidia.cc:266 ../mainsrc/deedidia.cc:318
+msgid "Column markers"
+msgstr "Marcadores de columna"
+
+#: ../mainsrc/deedidia.cc:273
 msgid "Syntax ~H~L Options"
 msgstr "Ops. res. de sinta~x~is"
 
-#: ../mainsrc/deedidia.cc:284
+#: ../mainsrc/deedidia.cc:288
 msgid "Global Options"
 msgstr "Opciones Globales"
 
-#: ../mainsrc/deedidia.cc:288
+#: ../mainsrc/deedidia.cc:292
 msgid "~U~se tabs"
 msgstr "~U~sar tabs"
 
-#: ../mainsrc/deedidia.cc:295
+#: ../mainsrc/deedidia.cc:299
 msgid "Don't wait to searc~h~ the pair"
 msgstr "No esperar para resaltar ~1~"
 
-#: ../mainsrc/deedidia.cc:296
+#: ../mainsrc/deedidia.cc:300
 msgid "~D~on't move the cursor on Paste"
 msgstr "No mover el cursor al pe~g~ar"
 
-#: ../mainsrc/deedidia.cc:300
+#: ../mainsrc/deedidia.cc:304
 msgid "~S~croll Lock centers"
 msgstr "Blo~q~ Despl centra"
 
-#: ../mainsrc/deedidia.cc:303
+#: ../mainsrc/deedidia.cc:307
 msgid "Tab smart indents ~5~"
 msgstr "El tab indenta buscando ~h~uecos"
 
-#: ../mainsrc/deedidia.cc:304
+#: ../mainsrc/deedidia.cc:308
 msgid "Use indent size ~6~"
 msgstr "Usar el valor de 'indentado' ~6~"
 
-#: ../mainsrc/deedidia.cc:306
+#: ../mainsrc/deedidia.cc:310
 msgid "Backspace unindents ~8~"
 msgstr "La tecla <- desindenta ~5~"
 
-#. Inputs->ySep=0;
-#: ../mainsrc/deedidia.cc:316
+#: ../mainsrc/deedidia.cc:311
+msgid "Column markers ~9~"
+msgstr "Marcadores de columna ~2~"
+
+#: ../mainsrc/deedidia.cc:322
 msgid "T~o~ all"
 msgstr "a To~d~os"
 
-#: ../mainsrc/deedidia.cc:332
+#: ../mainsrc/deedidia.cc:337
 msgid "Search hit"
 msgstr "Valor encontrado"
 
-#: ../mainsrc/deedidia.cc:337
+#: ../mainsrc/deedidia.cc:342
 msgid "~A~ll"
 msgstr "~T~odos"
 
 #. BCDFLMO
-#: ../mainsrc/deedidia.cc:359
+#: ../mainsrc/deedidia.cc:364
 msgid "Export Options"
 msgstr "Opciones para exportar"
 
-#: ../mainsrc/deedidia.cc:362 ../setedit/intgrep.cc:390
-#: ../setedit/runprog.cc:109
+#: ../mainsrc/deedidia.cc:367 ../setedit/intgrep.cc:390
+#: ../setedit/runprog.cc:110
 msgid "~O~ptions"
 msgstr "~O~pciones"
 
-#: ../mainsrc/deedidia.cc:363
+#: ../mainsrc/deedidia.cc:368
 msgid "~F~ile name as title"
 msgstr "~N~ombre del archivo como t¡tulo"
 
-#: ../mainsrc/deedidia.cc:364
+#: ../mainsrc/deedidia.cc:369
 msgid "Same ~b~ackground color as the editor"
 msgstr "Mismo color de ~f~ondo que en el editor"
 
-#: ../mainsrc/deedidia.cc:365
+#: ../mainsrc/deedidia.cc:370
 msgid "~M~onospacied font"
 msgstr "Letras ~m~onoespaciadas"
 
-#: ../mainsrc/deedidia.cc:366
+#: ../mainsrc/deedidia.cc:371
 msgid "Bo~l~d attribute"
 msgstr "Letras en n~e~grita"
 
-#: ../mainsrc/deedidia.cc:367
+#: ../mainsrc/deedidia.cc:372
 msgid "Use ~c~olors"
 msgstr "Usar ~c~olores"
 
-#: ../mainsrc/deedidia.cc:368
+#: ../mainsrc/deedidia.cc:373
 msgid "~D~on't use colors"
 msgstr "No ~u~sar colores"
 
 #. BFLMO
-#: ../mainsrc/deedidia.cc:383
+#: ../mainsrc/deedidia.cc:388
 msgid "Pseudo Macros"
 msgstr "Pseudo Macros"
 
-#: ../mainsrc/deedidia.cc:395
+#: ../mainsrc/deedidia.cc:400
 msgid "Arbitrary indent"
 msgstr "Indentado arbitrario"
 
-#: ../mainsrc/deedidia.cc:397
+#: ../mainsrc/deedidia.cc:402
 msgid "Indentation text"
 msgstr "Texto a usar para indentar"
 
-#: ../mainsrc/deedidia.cc:423
+#: ../mainsrc/deedidia.cc:428
 #, c-format
 msgid "Data saved to file: %s"
 msgstr "Datos guardados en: %s"
 
-#: ../mainsrc/doedidia.cc:99
+#: ../mainsrc/doedidia.cc:104
 msgid "Write to file"
 msgstr "Guardar a un archivo"
 
-#: ../mainsrc/doedidia.cc:102
+#: ../mainsrc/doedidia.cc:107
 msgid "Read from file"
 msgstr "Leer desde un archivo"
 
-#: ../mainsrc/doedidia.cc:133
+#: ../mainsrc/doedidia.cc:138
 msgid " bytes selected, in "
 msgstr " caracteres seleccionados en "
 
-#: ../mainsrc/doedidia.cc:133
+#: ../mainsrc/doedidia.cc:138
 msgid " lines"
 msgstr " l¡neas"
 
-#: ../mainsrc/doedidia.cc:196
+#: ../mainsrc/doedidia.cc:202
 msgid "Line too long, cut it?"
 msgstr "L¡nea demasiado larga, ¨la corto?"
 
-#: ../mainsrc/doedidia.cc:200
+#: ../mainsrc/doedidia.cc:206
 msgid "Line extremely long, can't handle it reliably, sorry"
 msgstr ""
 "L¡nea extremadamente larga, no puede ser manejado correctamente, lo lamento"
 
-#: ../mainsrc/doedidia.cc:204
+#: ../mainsrc/doedidia.cc:210
 msgid "This file isn't in disk!"
 msgstr "­Este archivo no se encuentra en disco!"
 
-#: ../mainsrc/doedidia.cc:208
+#: ../mainsrc/doedidia.cc:214
 msgid "The file is read-only, try to revert it?"
 msgstr "El archivo es de solo lectura, ¨revierto esto?"
 
-#: ../mainsrc/doedidia.cc:211
+#: ../mainsrc/doedidia.cc:217
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -1751,31 +1762,31 @@ msgstr ""
 "No pude revertir el atributo de solo lectura, ud. no podr  sobreescribir "
 "este archivo"
 
-#: ../mainsrc/doedidia.cc:215
+#: ../mainsrc/doedidia.cc:221
 msgid "This action doesn't have undo, are you sure?"
 msgstr "Esta acci¢n no puede deshacerse, ¨est  seguro?"
 
-#: ../mainsrc/doedidia.cc:219
+#: ../mainsrc/doedidia.cc:225
 msgid " already exist, overwrite?"
 msgstr " ya existe, ¨lo sobreescribo?"
 
-#: ../mainsrc/doedidia.cc:224
+#: ../mainsrc/doedidia.cc:231
 msgid " isn't a file, probably a device, go ahead?"
 msgstr " no es un archivo, probablemente un dispositivo, ¨continuo?"
 
-#: ../mainsrc/doedidia.cc:229
+#: ../mainsrc/doedidia.cc:237
 msgid "Can't make a back up file, continue saving?"
 msgstr "No puedo crear un archivo de respaldo, ¨continuo?"
 
-#: ../mainsrc/doedidia.cc:232
+#: ../mainsrc/doedidia.cc:240
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "No se puede pegar un rect ngulo que cruce el fin del archivo"
 
-#: ../mainsrc/doedidia.cc:243
+#: ../mainsrc/doedidia.cc:251
 msgid "No pseudo macros available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/doedidia.cc:260
+#: ../mainsrc/doedidia.cc:268
 msgid "The file is compressed. Do you want to save compressing?"
 msgstr "El archivo est  comprimido. ¨Desea guardarlo comprimido?"
 
@@ -1799,54 +1810,59 @@ msgstr "Error al leer"
 msgid "Error while loading the keyboard binding"
 msgstr "Error al cargar la configuraci¢n de teclado"
 
-#: ../mainsrc/keytrans.cc:1173
+#: ../mainsrc/keytrans.cc:1178
 msgid "You'll lose all the changes"
 msgstr "Perder  todos los cambios"
 
-#: ../mainsrc/loaddefl.cc:223
+#: ../mainsrc/loaddefl.cc:248
 msgid "Available"
 msgstr "Disponible"
 
 #. Ask if is enable or disable.
-#: ../mainsrc/loaddefl.cc:238
+#: ../mainsrc/loaddefl.cc:263
 msgid "What to do"
 msgstr "Que hacer"
 
-#: ../mainsrc/loaddefl.cc:239
+#: ../mainsrc/loaddefl.cc:264
 msgid "Action"
 msgstr "Acci¢n"
 
-#: ../mainsrc/loaddefl.cc:239
+#: ../mainsrc/loaddefl.cc:264
 msgid "~D~isable"
 msgstr "~D~eshabilitar"
 
-#: ../mainsrc/loaddefl.cc:239
+#: ../mainsrc/loaddefl.cc:264
 msgid "~E~nable"
 msgstr "~H~abilitar"
 
 #. Ask the value
-#: ../mainsrc/loaddefl.cc:255
+#: ../mainsrc/loaddefl.cc:280
 msgid "Associated value"
 msgstr "Valor asociado"
 
-#: ../mainsrc/loaddefl.cc:256
+#: ../mainsrc/loaddefl.cc:281 ../mainsrc/loaddefl.cc:301
 msgid "Value:"
 msgstr "Valor:"
 
-#: ../mainsrc/loaddefl.cc:498 ../setedit/loadnobkp.cc:213
+#. Ask the value
+#: ../mainsrc/loaddefl.cc:300
+msgid "Associated string"
+msgstr "String asociado"
+
+#: ../mainsrc/loaddefl.cc:550 ../setedit/loadnobkp.cc:213
 #: ../setedit/pathlist.cc:179
 msgid "Do you want to discard the changes?"
 msgstr "¨Desea descartar los cambios?"
 
-#: ../mainsrc/loaddefl.cc:505
+#: ../mainsrc/loaddefl.cc:557
 msgid "Settings"
 msgstr "Seteos"
 
-#: ../mainsrc/loaddefl.cc:597
+#: ../mainsrc/loaddefl.cc:661
 msgid "Default global options"
 msgstr "Opciones globales por defecto"
 
-#: ../mainsrc/loaddefl.cc:650
+#: ../mainsrc/loaddefl.cc:714
 msgid "~N~o SHL"
 msgstr "~S~in SHL"
 
@@ -1866,7 +1882,7 @@ msgstr "Lista de palabras"
 msgid "User words"
 msgstr "Palabras de usuario"
 
-#: ../mainsrc/pathtool.cc:729
+#: ../mainsrc/pathtool.cc:755
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -1928,12 +1944,12 @@ msgstr "(%d) %s en la l¡nea %d"
 msgid "In section %s"
 msgstr "En la secci¢n %s"
 
-#: ../mainsrc/sdginter.cc:109 ../mainsrc/slpinter.cc:257
+#: ../mainsrc/sdginter.cc:109 ../mainsrc/slpinter.cc:264
 #, c-format
 msgid "Error of type: %s"
 msgstr "Error de tipo: %s"
 
-#: ../mainsrc/sdginter.cc:112 ../mainsrc/slpinter.cc:260
+#: ../mainsrc/sdginter.cc:112 ../mainsrc/slpinter.cc:267
 #, c-format
 msgid "Code: ...%s..."
 msgstr "C¢digo: ...%s..."
@@ -1975,94 +1991,98 @@ msgstr "Error en la expresi¢n regular: %s"
 msgid "PCRE Exec error"
 msgstr "Error de ejecuci¢n del a ExpReg"
 
-#: ../mainsrc/slpinter.cc:256
+#: ../mainsrc/slpinter.cc:263
 msgid "Error in sLisp interpreter:"
 msgstr "Error en el int‚rprete de sLisp:"
 
-#: ../mainsrc/slpinter.cc:262
+#: ../mainsrc/slpinter.cc:269
 msgid "End of SLP"
 msgstr "Fin de SLP"
 
-#: ../mainsrc/slpinter.cc:313
+#: ../mainsrc/slpinter.cc:332
+msgid "Enter sLisp code to interpret"
+msgstr "Ingrese c¢digo sLisp a ser interpretado"
+
+#: ../mainsrc/slpinter.cc:365
 msgid "No macros defined"
 msgstr "No hay macros definidos"
 
-#: ../mainsrc/slpinter.cc:356
+#: ../mainsrc/slpinter.cc:408
 msgid "sLisp macros"
 msgstr "Macros sLisp"
 
-#: ../mainsrc/slpinter.cc:366
+#: ../mainsrc/slpinter.cc:418
 msgid "~M~acros"
 msgstr "~M~acros"
 
-#: ../mainsrc/ssyntax.cc:199
+#: ../mainsrc/ssyntax.cc:200
 #, c-format
 msgid " [%d nodes]"
 msgstr " [%d nodos]"
 
-#: ../mainsrc/ssyntax.cc:366
+#: ../mainsrc/ssyntax.cc:367
 msgid "New node for search"
 msgstr "Nuevo nodo a buscar"
 
-#: ../mainsrc/ssyntax.cc:369
+#: ../mainsrc/ssyntax.cc:370
 msgid "Name of the info file"
 msgstr "Nombre del archivo .info"
 
-#: ../mainsrc/ssyntax.cc:371
+#: ../mainsrc/ssyntax.cc:372
 msgid "Name of the node (leave blank for all)"
 msgstr "Nombre del nodo (dejar en blanco para usar todos)"
 
-#: ../mainsrc/ssyntax.cc:430
+#: ../mainsrc/ssyntax.cc:431
 msgid "Nodes for syntax help"
 msgstr "Nodos para ayuda de sintaxis"
 
-#: ../mainsrc/ssyntax.cc:468
+#: ../mainsrc/ssyntax.cc:469
 msgid "Options for syntax help"
 msgstr "Opciones para la ayuda de sintaxis"
 
 #. I think that's easiest way! The following 5 lines are equivalent to 20 lines
 #. of cryptic stuff if you don't use EasyDiag! (I can write it in 1 too ;-)
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "Search ~m~ethod"
 msgstr "~M~‚todo de b£squeda"
 
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "E~x~act"
 msgstr "E~x~acto"
 
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "~S~ubstring"
 msgstr "~P~arcial"
 
-#: ../mainsrc/ssyntax.cc:473
+#: ../mainsrc/ssyntax.cc:474
 msgid "~F~uzzy"
 msgstr "~D~ifuso"
 
-#: ../mainsrc/ssyntax.cc:474
+#: ../mainsrc/ssyntax.cc:475
 msgid "Search O~p~tions"
 msgstr "~O~pciones de B£squeda"
 
-#: ../mainsrc/ssyntax.cc:475
+#: ../mainsrc/ssyntax.cc:476
 msgid "So~r~t by score"
 msgstr "O~r~denar por puntaje"
 
-#: ../mainsrc/ssyntax.cc:479
+#: ../mainsrc/ssyntax.cc:480
 msgid "Fu~z~zy value [1..1000]"
 msgstr "Valor `dif~u~so' [1..1000]"
 
-#: ../mainsrc/ssyntax.cc:481
+#: ../mainsrc/ssyntax.cc:482
 msgid "Other options"
 msgstr "Otras opciones"
 
-#: ../mainsrc/ssyntax.cc:481
+#: ../mainsrc/ssyntax.cc:482
 msgid "Search word in the ~t~opic"
 msgstr "Buscar la palabra en ~n~odo"
 
-#: ../mainsrc/ssyntax.cc:870
+#: ../mainsrc/ssyntax.cc:871
 msgid "Choose a node"
 msgstr "Elegir un nodo"
 
-#: ../mainsrc/ssyntax.cc:922
+#: ../mainsrc/ssyntax.cc:923
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
@@ -2155,19 +2175,19 @@ msgstr "Reproductor de MP3s"
 msgid "MP3 support not linked"
 msgstr "Soporte para MP3s no incluido"
 
-#: ../mp3/intermp3.cc:54
+#: ../mp3/intermp3.cc:55
 msgid "MP3 Open"
 msgstr "Abrir MP3"
 
-#: ../mp3/intermp3.cc:69
+#: ../mp3/intermp3.cc:70
 msgid "Output WAV file"
 msgstr "Generar un .WAV"
 
-#: ../mp3/intermp3.cc:76 ../mp3/intermp3.cc:92
+#: ../mp3/intermp3.cc:77 ../mp3/intermp3.cc:93
 msgid "First select a file"
 msgstr "Primero seleccione un archivo"
 
-#: ../mp3/intermp3.cc:257
+#: ../mp3/intermp3.cc:258
 msgid "The MP3 routines aren't linked in the editor"
 msgstr "Las rutinas MP3 no fueron incluidas al compilar el editor"
 
@@ -2215,68 +2235,77 @@ msgstr "~I~nsertar"
 msgid "~L~oad"
 msgstr "~C~argar"
 
-#: ../sdg/mli.cc:1213
+#: ../sdg/mliediti.cc:74
+#, fuzzy
+msgid "Return value:"
+msgstr "valor desconocido"
+
+#: ../sdg/mli.cc:1359
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1218
+#: ../sdg/mli.cc:1364
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1219
+#: ../sdg/mli.cc:1365
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1224
+#: ../sdg/mli.cc:1370
 msgid "string no closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1225
+#: ../sdg/mli.cc:1371
 msgid "no ) end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1226
+#: ../sdg/mli.cc:1372
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1227
+#: ../sdg/mli.cc:1373
 msgid "wrong number"
 msgstr "n£mero err¢neo"
 
-#: ../sdg/mli.cc:1228
+#: ../sdg/mli.cc:1374
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1233
+#: ../sdg/mli.cc:1375
+msgid "stack overflow"
+msgstr ""
+
+#: ../sdg/mli.cc:1380
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un par metro"
 
-#: ../sdg/mli.cc:1234
+#: ../sdg/mli.cc:1381
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1235
+#: ../sdg/mli.cc:1382
 msgid "parameter after command"
 msgstr "par metro luego de un comando"
 
-#: ../sdg/mli.cc:1236
+#: ../sdg/mli.cc:1383
 msgid "wrong number of parameters"
 msgstr "n£mero equivocado de par metros"
 
-#: ../sdg/mli.cc:1237
+#: ../sdg/mli.cc:1384
 msgid "wrong parameter type"
 msgstr "tipo de par metro equivocado"
 
-#: ../sdg/mli.cc:1238
+#: ../sdg/mli.cc:1385
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1239
+#: ../sdg/mli.cc:1386
 msgid "undefined symbol"
 msgstr "s¡mbolo no definido"
 
-#: ../sdg/mli.cc:1240
+#: ../sdg/mli.cc:1387
 msgid "operation not defined"
 msgstr "operaci¢n no definida"
 
@@ -2456,11 +2485,11 @@ msgstr "   Portapapeles (%d bytes)"
 msgid "   Closed: "
 msgstr "   Cerrado: "
 
-#: ../setedit/dskhelp.cc:126
+#: ../setedit/dskhelp.cc:127
 msgid "   Main InfView "
 msgstr "   InfView principal "
 
-#: ../setedit/dskhelp.cc:128
+#: ../setedit/dskhelp.cc:129
 msgid "   InfView "
 msgstr "   InfView "
 
@@ -2477,15 +2506,15 @@ msgstr "   P gina del manual: "
 msgid "   MP3 Control panel"
 msgstr "   Panel de control MP3"
 
-#: ../setedit/dstfile.cc:458
+#: ../setedit/dstfile.cc:481
 msgid "Wrong desktop file."
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../setedit/dstfile.cc:465
+#: ../setedit/dstfile.cc:487
 msgid "The desktop file is too old."
 msgstr "El archivo de escritorio es de una version muy vieja."
 
-#: ../setedit/dstfile.cc:470
+#: ../setedit/dstfile.cc:492
 msgid "You need a newer editor for this desktop file."
 msgstr ""
 "Ud. necesita una nueva versi¢n del editor para este archivo de escritorio."
@@ -2499,8 +2528,8 @@ msgid "About"
 msgstr "Acerca de"
 
 #: ../setedit/editdiag.cc:64
-#, c-format
-msgid "That's SET's Editor v%lX.%lX.%lX, (c) 1996-2001"
+#, fuzzy, c-format
+msgid "That's SET's Editor v%lX.%lX.%lX, (c) 1996-2002"
 msgstr "Este es el editor de SET v%lX.%lX.%lX, (c) 1996-2001"
 
 #: ../setedit/editdiag.cc:68 ../setedit/editdiag.cc:111
@@ -2508,8 +2537,8 @@ msgid "by Salvador Eduardo Tropea"
 msgstr "hecho por Salvador Eduardo Tropea"
 
 #: ../setedit/editdiag.cc:103
-#, c-format
-msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2001"
+#, fuzzy, c-format
+msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2002"
 msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2001"
 
 #: ../setedit/editdiag.cc:115
@@ -2542,92 +2571,96 @@ msgid "Anatoli Soltan for porting to Win32 using BC++"
 msgstr "Anatoli Soltan por portar a Win32 usando BC++"
 
 #: ../setedit/editdiag.cc:130
+msgid "VA Linux and people that maintains Source Forge"
+msgstr "El equipo de VA Linux que mantiene Source Forge"
+
+#: ../setedit/editdiag.cc:131
 msgid "The University of California, Berkeley and its contributors"
 msgstr "La Universidad de California, Berkeley y sus colaboradores"
 
-#: ../setedit/editdiag.cc:132
+#: ../setedit/editdiag.cc:133
 msgid "The University of Cambridge for the PCRE package"
 msgstr "La University of Cambridge por la librer¡a PCRE"
 
-#: ../setedit/editdiag.cc:135
+#: ../setedit/editdiag.cc:136
 msgid "Shawn Hargreaves for Allegro, used as sound engine"
 msgstr "Shawn Hargreaves por Allegro, usado como motor de sonido"
 
-#: ../setedit/editdiag.cc:137
+#: ../setedit/editdiag.cc:138
 msgid ""
 "Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"
 msgstr "Tomislav Uzelac por AMP, motor MP3 y Ove Kaaven por adapt. p/Allegro"
 
-#: ../setedit/editdiag.cc:140
+#: ../setedit/editdiag.cc:141
 msgid "Jean-loup Gailly and Mark Adler for the zlib"
 msgstr "Jean-loup Gailly and Mark Adler por la biblioteca zlib"
 
-#: ../setedit/editdiag.cc:142
+#: ../setedit/editdiag.cc:143
 msgid "Julian R. Seward for bzip2 routines included"
 msgstr "Julian R. Seward por las rutinas bzip2 usadas"
 
-#: ../setedit/editdiag.cc:144
+#: ../setedit/editdiag.cc:145
 msgid "Bjorn Reese for a lot of ideas about the stack debugger for UNIX"
 msgstr "Bjorn Reese por varias ideas para el `stack debugger' para UNIX"
 
-#: ../setedit/editdiag.cc:145
+#: ../setedit/editdiag.cc:146
 msgid "All my friends that support my project (Laszlo, Marek, Ivan,"
 msgstr "Todos mis amigos que soportaron mi proyecto (Laszlo, Marek,"
 
-#: ../setedit/editdiag.cc:146
+#: ../setedit/editdiag.cc:147
 msgid "Grzegorz, etc.)."
 msgstr "Ivan, Grzegorz, etc.)."
 
-#: ../setedit/editmain.cc:294
+#: ../setedit/editmain.cc:302
 msgid "No project loaded"
 msgstr "No hay proyecto cargado"
 
-#: ../setedit/editmain.cc:352
+#: ../setedit/editmain.cc:360
 msgid "This file is already opened, first close it."
 msgstr "Este archivo ya esta abierto, primero ci‚rrelo."
 
-#: ../setedit/editmain.cc:427
+#: ../setedit/editmain.cc:435
 msgid "File Open"
 msgstr "Abrir archivo"
 
-#: ../setedit/editmain.cc:442
+#: ../setedit/editmain.cc:450
 msgid "You must select an editor window for this operation"
 msgstr "Ud. debe seleccionar una ventana de esitor para esta operaci¢n"
 
-#: ../setedit/editmain.cc:547
+#: ../setedit/editmain.cc:555
 msgid "Export file as"
 msgstr "Exportar archivo como"
 
-#: ../setedit/editmain.cc:600
+#: ../setedit/editmain.cc:608
 msgid "This window can't be printed select an editor"
 msgstr "Esta ventana no puede imprimirse, selecciona un editor"
 
-#: ../setedit/editmain.cc:759
+#: ../setedit/editmain.cc:767
 msgid "Couldn't find any matching help"
 msgstr "No pude encontrar ninguna ayuda"
 
-#: ../setedit/editmain.cc:923
+#: ../setedit/editmain.cc:931
 msgid "We still running a background task, exit anyways?"
 msgstr ""
 "Estamos ejecutando una tarea en segundo plano, ¨salir de todas maneras?"
 
-#: ../setedit/editmain.cc:1238
+#: ../setedit/editmain.cc:1246
 msgid "This line no longer exists"
 msgstr "Esta l¡nea ya no existe"
 
-#: ../setedit/editmain.cc:1313
+#: ../setedit/editmain.cc:1321
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es m s nueva, ¨la cargo?"
 
-#: ../setedit/editmain.cc:1522
+#: ../setedit/editmain.cc:1536
 msgid ""
 "I can't find the readme.1st file, please look for it the .ZIP and read the "
 "file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, b£squelo en el paquete que instal¢."
 
-#: ../setedit/editmain.cc:1597
+#: ../setedit/editmain.cc:1631
 #, c-format
 msgid ""
 "\n"
@@ -2636,7 +2669,7 @@ msgstr ""
 "\n"
 "­Instalaci¢n err¢nea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:1598
+#: ../setedit/editmain.cc:1632
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -2644,7 +2677,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribuci¢n.\n"
 "\n"
 
-#: ../setedit/editmain.cc:1602
+#: ../setedit/editmain.cc:1636
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -2653,7 +2686,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1604
+#: ../setedit/editmain.cc:1638
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -2662,11 +2695,11 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1609
+#: ../setedit/editmain.cc:1643
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:1618
+#: ../setedit/editmain.cc:1652
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -2676,15 +2709,15 @@ msgstr ""
 "Ud. defini¢ SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:1645
+#: ../setedit/editmain.cc:1681
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:1885
+#: ../setedit/editmain.cc:1924
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:1886
+#: ../setedit/editmain.cc:1925
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -2692,7 +2725,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:1888
+#: ../setedit/editmain.cc:1927
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -2709,25 +2742,26 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:1893
+#: ../setedit/editmain.cc:1932
 #, fuzzy
-msgid "-b, --bios-keyb:         use BIOS for the keyboard [safer, default].\n"
+msgid "-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"
 msgstr ""
 "-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, "
 "limitado].\n"
 
-#: ../setedit/editmain.cc:1894
+#: ../setedit/editmain.cc:1933
 #, fuzzy
-msgid "-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster].\n"
+msgid ""
+"-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster, default].\n"
 msgstr ""
 "-B, --no-bios-keyb:      no usar el BIOS para el teclado [r pido, "
 "p/defecto].\n"
 
-#: ../setedit/editmain.cc:1896
+#: ../setedit/editmain.cc:1935
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:1897
+#: ../setedit/editmain.cc:1936
 msgid ""
 "-d, --stack-dbg=n:       indicates which methode will be used in the event "
 "of a\n"
@@ -2741,7 +2775,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecuci¢n.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:1902
+#: ../setedit/editmain.cc:1941
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Finally die.\n"
@@ -2753,7 +2787,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:1906
+#: ../setedit/editmain.cc:1945
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -2762,7 +2796,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada l¡nea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:1908
+#: ../setedit/editmain.cc:1947
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -2770,34 +2804,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:1910
+#: ../setedit/editmain.cc:1949
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:1912
+#: ../setedit/editmain.cc:1951
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:1914
+#: ../setedit/editmain.cc:1953
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:1915
+#: ../setedit/editmain.cc:1954
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:1916
+#: ../setedit/editmain.cc:1955
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupci¢n del mouse.\n"
 
-#: ../setedit/editmain.cc:1919
+#: ../setedit/editmain.cc:1958
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:1921
+#: ../setedit/editmain.cc:1960
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -2806,7 +2840,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:1923
+#: ../setedit/editmain.cc:1962
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -2814,7 +2848,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuraci¢n del programa.\n"
 
-#: ../setedit/editmain.cc:1926
+#: ../setedit/editmain.cc:1965
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -2822,19 +2856,19 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:1928
+#: ../setedit/editmain.cc:1967
 msgid ""
 "-t, --tile-vert:         arranges the windows using vertical tile style.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:1929
+#: ../setedit/editmain.cc:1968
 msgid ""
 "-T, --tile-horiz:        arranges the windows using horizontal tile style.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
 
-#: ../setedit/editmain.cc:2286
+#: ../setedit/editmain.cc:2358
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "¨Desea borrar todos los archivos de respaldo y escritorio?"
 
@@ -3097,252 +3131,272 @@ msgid "Jump to ~p~rototype"
 msgstr "Saltar al ~p~rototipo"
 
 #: ../setedit/editmenu.cc:231
+msgid "~N~ame current function"
+msgstr "~N~ombre de la funci¢n actual"
+
+#: ../setedit/editmenu.cc:232
 msgid "~C~hoose ..."
 msgstr "~E~legir ..."
 
-#: ../setedit/editmenu.cc:232
+#: ../setedit/editmenu.cc:233
 msgid "R~e~peat"
 msgstr "Repe~t~ir"
 
-#: ../setedit/editmenu.cc:233
+#: ../setedit/editmenu.cc:234
 msgid "~G~enerate Code"
 msgstr "Generar ~c~¢digo"
 
-#: ../setedit/editmenu.cc:234
+#: ../setedit/editmenu.cc:235
+msgid "Ru~n~ selected code"
+msgstr "E~j~ecutar c¢digo seleccionado"
+
+#: ../setedit/editmenu.cc:236
+msgid "Enter c~o~de to run"
+msgstr "I~n~gresar c¢digo a ejecutar"
+
+#: ../setedit/editmenu.cc:237
 msgid "Pse~u~do macros ..."
 msgstr "Pse~u~do Macros ..."
 
-#: ../setedit/editmenu.cc:235
+#: ../setedit/editmenu.cc:238
 msgid "To ~u~pper"
 msgstr "A ma~y~£sculas"
 
-#: ../setedit/editmenu.cc:236
+#: ../setedit/editmenu.cc:239
 msgid "To l~o~wer"
 msgstr "A min£sc~u~las"
 
-#: ../setedit/editmenu.cc:237
+#: ../setedit/editmenu.cc:240
 msgid "Poc~k~et calculator"
 msgstr "Calculadora de ~B~olsillo"
 
-#: ../setedit/editmenu.cc:238
+#: ../setedit/editmenu.cc:241
 msgid "~R~un program"
 msgstr "E~j~ecutar programa"
 
-#: ../setedit/editmenu.cc:239
+#: ../setedit/editmenu.cc:242
 msgid "~A~SCII Chart"
 msgstr "Tabla ~A~SCII"
 
-#: ../setedit/editmenu.cc:240
+#: ../setedit/editmenu.cc:243
 msgid "Ca~l~endar"
 msgstr "Ca~l~endario"
 
-#: ../setedit/editmenu.cc:241
+#: ../setedit/editmenu.cc:244
 msgid "~M~P3 songs"
 msgstr "Sonidos ~M~P3"
 
-#: ../setedit/editmenu.cc:242
+#: ../setedit/editmenu.cc:245
 msgid "~S~elect a song"
 msgstr "~S~eleccionar una canci¢n"
 
-#: ../setedit/editmenu.cc:243
+#: ../setedit/editmenu.cc:246
 msgid "~P~lay selected"
 msgstr "Re~p~roducir"
 
-#: ../setedit/editmenu.cc:244
+#: ../setedit/editmenu.cc:247
 msgid "S~t~op selected"
 msgstr "De~t~ener"
 
-#: ../setedit/editmenu.cc:245
+#: ../setedit/editmenu.cc:248
 msgid "~C~onvert to WAV"
 msgstr "~C~onvertir a WAV"
 
-#: ../setedit/editmenu.cc:246
+#: ../setedit/editmenu.cc:249
 msgid "~E~dit/Create list"
 msgstr "~E~ditar/Crear lista"
 
-#: ../setedit/editmenu.cc:247
+#: ../setedit/editmenu.cc:250
 msgid "P~l~ay list"
 msgstr "Reproducir ~L~ista"
 
-#: ../setedit/editmenu.cc:248
+#: ../setedit/editmenu.cc:251
 msgid "St~o~p list"
 msgstr "Dete~n~er lista"
 
-#: ../setedit/editmenu.cc:249
+#: ../setedit/editmenu.cc:252
 msgid "~H~TML Accents"
 msgstr "Acentos ~H~TML"
 
-#: ../setedit/editmenu.cc:250
+#: ../setedit/editmenu.cc:253
 msgid "Convert ~a~ccents to tags"
 msgstr "Convertir ~a~centos en marcadores"
 
-#: ../setedit/editmenu.cc:251
+#: ../setedit/editmenu.cc:254
 msgid "Convert ~t~ags to accents"
 msgstr "Convertir ~m~arcadores en acentos"
 
-#: ../setedit/editmenu.cc:252
+#: ../setedit/editmenu.cc:255
 msgid "E~x~port as HTML ..."
 msgstr "E~x~portar como HTML ..."
 
-#: ../setedit/editmenu.cc:253
+#: ../setedit/editmenu.cc:256
 msgid "Re~m~ap code page ..."
 msgstr "Camb~i~ar la codificaci¢n ..."
 
-#: ../setedit/editmenu.cc:254
+#: ../setedit/editmenu.cc:257
 msgid "~B~lock quoted printable decode"
 msgstr "~D~ecodificar bloque quoted printable"
 
-#: ../setedit/editmenu.cc:255
+#: ../setedit/editmenu.cc:258
 msgid "Un/~I~ndent block"
 msgstr "Des/indentar blo~q~ue"
 
-#: ../setedit/editmenu.cc:256
+#: ../setedit/editmenu.cc:259
 msgid "Indent ~o~ne space"
 msgstr "Indentar ~u~n espacio"
 
-#: ../setedit/editmenu.cc:257
+#: ../setedit/editmenu.cc:260
 msgid "Unindent o~n~e character"
 msgstr "Desindentar u~n~ espacio"
 
-#: ../setedit/editmenu.cc:258
+#: ../setedit/editmenu.cc:261
 msgid "Indent one ~t~ab/gap"
 msgstr "Indentar un ~t~ab o hueco"
 
-#: ../setedit/editmenu.cc:259
+#: ../setedit/editmenu.cc:262
 msgid "~U~nindent one tab/gap"
 msgstr "~D~esindentar un tab o hueco"
 
-#: ../setedit/editmenu.cc:260
+#: ../setedit/editmenu.cc:263
 msgid "~C~omment indent"
 msgstr "~I~ndentar comentando"
 
-#: ../setedit/editmenu.cc:261
+#: ../setedit/editmenu.cc:264
 msgid "Comment unin~d~ent"
 msgstr "Indentar desco~m~entando"
 
-#: ../setedit/editmenu.cc:262
+#: ../setedit/editmenu.cc:265
 msgid "~A~rbitrary indent"
 msgstr "Indentado ~a~rbitrario"
 
-#: ../setedit/editmenu.cc:263
+#: ../setedit/editmenu.cc:266
 msgid "Paste ~E~macs mode"
 msgstr "Pegar el modo ~E~macs"
 
-#: ../setedit/editmenu.cc:264
+#: ../setedit/editmenu.cc:267
 msgid "Test of macro from menu"
 msgstr "Prueba de macro desde el men£"
 
-#: ../setedit/editmenu.cc:265
+#: ../setedit/editmenu.cc:268
 msgid "~D~elete memorized backups"
 msgstr "Borrar arch. de respaldo memori~z~ados"
 
-#: ../setedit/editmenu.cc:266
+#: ../setedit/editmenu.cc:269
 msgid "Redra~w~ screen"
 msgstr "~R~edibujar la pantalla"
 
-#: ../setedit/editmenu.cc:267
+#: ../setedit/editmenu.cc:270
 msgid "~C~olors ..."
 msgstr "~C~olores ..."
 
-#: ../setedit/editmenu.cc:268
+#: ../setedit/editmenu.cc:271
 msgid "Color ~P~alette ..."
 msgstr "~P~aleta de colores ..."
 
-#: ../setedit/editmenu.cc:269
+#: ../setedit/editmenu.cc:272
 msgid "~L~ocal edition ..."
 msgstr "~L~ocales de edici¢n ..."
 
-#: ../setedit/editmenu.cc:270
+#: ../setedit/editmenu.cc:273
 msgid "Glo~b~al edition ..."
 msgstr "Glo~b~ales de edici¢n ..."
 
-#: ../setedit/editmenu.cc:271
+#: ../setedit/editmenu.cc:274
 msgid "Editor ~G~eneral ..."
 msgstr "~G~enerales del editor ..."
 
-#: ../setedit/editmenu.cc:272
+#: ../setedit/editmenu.cc:275
 msgid "Scr~e~en saver ..."
 msgstr "~S~alvapantallas ..."
 
-#: ../setedit/editmenu.cc:273
+#: ../setedit/editmenu.cc:276
 msgid "S~D~G Options ..."
 msgstr "Opciones del S~D~G ..."
 
-#: ../setedit/editmenu.cc:274
+#: ../setedit/editmenu.cc:277
 msgid "~R~un program (which one) ..."
 msgstr "P~r~ograma a ejecutar (cu l) ..."
 
-#: ../setedit/editmenu.cc:275
+#: ../setedit/editmenu.cc:278
 msgid "~K~eyboard"
 msgstr "~T~eclado"
 
-#: ../setedit/editmenu.cc:276
+#: ../setedit/editmenu.cc:279
 msgid "~K~ey assignment"
 msgstr "~A~signaci¢n de teclas"
 
-#: ../setedit/editmenu.cc:277
+#: ../setedit/editmenu.cc:280
 msgid "~S~etup Alt keys"
 msgstr "~C~onfiguraci¢n teclas Alt"
 
-#: ../setedit/editmenu.cc:278
+#: ../setedit/editmenu.cc:281
 msgid "Key ~p~ad behavior"
 msgstr "Comportamiento del teclado ~n~um‚rico"
 
-#: ../setedit/editmenu.cc:279
+#: ../setedit/editmenu.cc:282
 msgid "~B~ack to defaults"
 msgstr "~V~alores originales"
 
-#: ../setedit/editmenu.cc:280
+#: ../setedit/editmenu.cc:283
 msgid "Consult ~s~can codes"
 msgstr "Consultar c¢digos de ~t~eclas"
 
-#: ../setedit/editmenu.cc:281
+#: ../setedit/editmenu.cc:284
 msgid "~S~creen Options ..."
 msgstr "P~a~ntalla ..."
 
-#: ../setedit/editmenu.cc:282
+#: ../setedit/editmenu.cc:285
 msgid "~U~ser words ..."
 msgstr "Palabras reservadas de ~u~suario ..."
 
-#: ../setedit/editmenu.cc:283
+#: ../setedit/editmenu.cc:286
 msgid "De~f~ault global edition ..."
 msgstr "Globales por de~f~ecto p/edici¢n ..."
 
-#: ../setedit/editmenu.cc:284
+#: ../setedit/editmenu.cc:287
 msgid "File ~o~pen dialog ..."
 msgstr "D~e~l di logo `Abrir Archivo' ..."
 
-#: ../setedit/editmenu.cc:285
+#: ../setedit/editmenu.cc:288
 msgid "Do~n~'t create backups for ..."
 msgstr "~N~o crear respaldos para ..."
 
-#: ../setedit/editmenu.cc:286
+#: ../setedit/editmenu.cc:289
 msgid "~T~ip of the day"
 msgstr "~C~oncejo del d¡a"
 
-#: ../setedit/editmenu.cc:287
+#: ../setedit/editmenu.cc:290
 msgid "~S~yntax help"
 msgstr "Ayuda de ~s~intaxis"
 
-#: ../setedit/editmenu.cc:288
+#: ../setedit/editmenu.cc:291
 msgid "~F~iles to search"
 msgstr "Archivo~s~ a buscar"
 
-#: ../setedit/editmenu.cc:289
+#: ../setedit/editmenu.cc:292
 msgid "~M~an page View"
 msgstr "Visor de p ginas del ~m~anual"
 
-#: ../setedit/editmenu.cc:290
+#: ../setedit/editmenu.cc:293
 msgid "A~b~out"
 msgstr "~A~cerca de"
 
-#: ../setedit/editmenu.cc:291
+#: ../setedit/editmenu.cc:294
 msgid "Searc~h~ files under cursor in ..."
 msgstr "Buscar arch. baj~o~ el cursor en ..."
 
-#: ../setedit/editmenu.cc:292
+#: ../setedit/editmenu.cc:295
 msgid "Insert key ~n~ame"
 msgstr "I~n~sertar el nombre de una tecla"
+
+#: ../setedit/editmenu.cc:296
+msgid "Sc~r~oll Up"
+msgstr "~D~esplazar Arriba"
+
+#: ../setedit/editmenu.cc:297
+msgid "Scroll ~D~own"
+msgstr "Desplazar A~b~ajo"
 
 #: ../setedit/editpale.cc:107
 msgid "Palette editor"
@@ -3471,7 +3525,7 @@ msgstr "~T~eclados norteamericanos y otros"
 msgid "~G~reek keyboard (CP 737)"
 msgstr "Teclado ~g~riego (CP 737)"
 
-#: ../setedit/edmsg.cc:378
+#: ../setedit/edmsg.cc:384
 msgid "Message Window"
 msgstr "Ventana de Mensajes"
 
@@ -3666,7 +3720,7 @@ msgstr "Tie~m~po"
 msgid "mouse sec."
 msgstr "rat¢n seg."
 
-#. ABCDEHIKLMOPSTUVWY
+#. ABCDEHIKLMOPRSTUVWY
 #: ../setedit/edprefs.cc:727
 msgid "General editor options"
 msgstr "Opciones generales del editor"
@@ -3719,116 +3773,120 @@ msgstr "No recordar la ~p~osici¢n del cursor"
 msgid "Don't ~w~arn about read-only files"
 msgstr "~N~o avisar acerca de archivos de s¢lo lectura"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:754
+msgid "Open ~r~ead-only files as R.O. buffers"
+msgstr "Abrir archivos ~s~¢lo lect. como s¢lo lect."
+
+#: ../setedit/edprefs.cc:758
 msgid "~C~lock"
 msgstr "Relo~j~"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:758
 msgid "OFF"
 msgstr "Apagado"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:758
 msgid "ON"
 msgstr "Encendido"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "St~y~le"
 msgstr "Es~t~ilo"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "AM/PM"
 msgstr "AM/PM"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "24 hs"
 msgstr "24 hs"
 
-#: ../setedit/edprefs.cc:759
+#: ../setedit/edprefs.cc:761
 msgid "~M~ax. editor copies"
 msgstr "~M~ ximo n£mero de copias abiertas"
 
-#: ../setedit/edprefs.cc:760
+#: ../setedit/edprefs.cc:762
 msgid "Max. c~l~osed to remember"
 msgstr "Max. de ventanas ~c~erradas a recordar"
 
-#: ../setedit/edprefs.cc:769
+#: ../setedit/edprefs.cc:771
 msgid "+ Desk~t~op"
 msgstr "+ Escrit~o~rio"
 
 #. CEKLMNORVY
-#: ../setedit/edprefs.cc:897
+#: ../setedit/edprefs.cc:902
 msgid "More desktop options"
 msgstr "M s opciones del escritorio"
 
-#: ../setedit/edprefs.cc:899
+#: ../setedit/edprefs.cc:904
 msgid "Remmember editor windows"
 msgstr "Recordar ventanas de edici¢n"
 
-#: ../setedit/edprefs.cc:900
+#: ../setedit/edprefs.cc:905
 msgid "~E~ver"
 msgstr "S~i~empre"
 
-#: ../setedit/edprefs.cc:900
+#: ../setedit/edprefs.cc:905
 msgid "~O~nly if no file specified"
 msgstr "S¢~l~o si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:900 ../setedit/runprog.cc:115
+#: ../setedit/edprefs.cc:905 ../setedit/runprog.cc:116
 msgid "~N~ever"
 msgstr "~N~unca"
 
-#: ../setedit/edprefs.cc:901
+#: ../setedit/edprefs.cc:906
 msgid "Remmember other windows"
 msgstr "Recordar otras ventanas"
 
-#: ../setedit/edprefs.cc:902 ../setedit/runprog.cc:115
+#: ../setedit/edprefs.cc:907 ../setedit/runprog.cc:116
 msgid "E~v~er"
 msgstr "~S~iempre"
 
-#: ../setedit/edprefs.cc:902
+#: ../setedit/edprefs.cc:907
 msgid "On~l~y if no file specified"
 msgstr "S¢l~o~ si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:902
+#: ../setedit/edprefs.cc:907
 msgid "Neve~r~"
 msgstr "N~u~nca"
 
-#: ../setedit/edprefs.cc:903
+#: ../setedit/edprefs.cc:908
 msgid "Remmember ~c~losed windows"
 msgstr "Recordar ventanas cerradas"
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 msgid "Ever"
 msgstr "Sie~m~pre"
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 msgid "Onl~y~ if no file specified"
 msgstr "S¢lo si no s~e~ indicaron archivos"
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 msgid "Never"
 msgstr "Nun~c~a"
 
-#: ../setedit/edprefs.cc:910
+#: ../setedit/edprefs.cc:915
 msgid "~M~ain options"
 msgstr "~P~rincipales"
 
-#: ../setedit/edprefs.cc:996
+#: ../setedit/edprefs.cc:1001
 msgid "~F~rom code page"
 msgstr "Codificaci¢n ~o~riginal"
 
-#: ../setedit/edprefs.cc:998
+#: ../setedit/edprefs.cc:1003
 msgid "~T~o code page"
 msgstr "~N~ueva codificaci¢n"
 
-#: ../setedit/edprefs.cc:1002
+#: ../setedit/edprefs.cc:1007
 msgid "~D~on't remap codes under 32"
 msgstr "No ~a~lterar los c¢digos menores que 32"
 
-#: ../setedit/edprefs.cc:1003
+#: ../setedit/edprefs.cc:1008
 msgid "~O~nly selected text"
 msgstr "S¢lo el texto ~s~eleccionado"
 
-#: ../setedit/edprefs.cc:1006
+#: ../setedit/edprefs.cc:1011
 msgid "Code page remap"
 msgstr "Cambio de codificaci¢n"
 
@@ -3970,7 +4028,7 @@ msgstr "Archivo de proyecto incorrecto."
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:539 ../setedit/edprj.cc:678
+#: ../setedit/edprj.cc:539 ../setedit/edprj.cc:686
 msgid "Project: "
 msgstr "Proyecto: "
 
@@ -4236,81 +4294,81 @@ msgstr "Directorios para buscar archivos bajo el cursor"
 msgid "Directory"
 msgstr "Directorio"
 
-#: ../setedit/runprog.cc:70
+#: ../setedit/runprog.cc:71
 #, c-format
 msgid "Running %s"
 msgstr "Ejecutando %s"
 
-#: ../setedit/runprog.cc:71
+#: ../setedit/runprog.cc:72
 msgid "Back in the editor"
 msgstr "Nuevamente en el editor"
 
-#: ../setedit/runprog.cc:72
+#: ../setedit/runprog.cc:73
 msgid "From program:"
 msgstr "Desde el programa:"
 
-#: ../setedit/runprog.cc:105
+#: ../setedit/runprog.cc:106
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
 #. ADEFJKLNPSVU
-#: ../setedit/runprog.cc:107
+#: ../setedit/runprog.cc:108
 msgid "~E~nter the program name"
 msgstr "~I~ngrese el nombre del programa"
 
-#: ../setedit/runprog.cc:110
+#: ../setedit/runprog.cc:111
 msgid "~U~se OS screen to run the program"
 msgstr "~U~sar la pantalla del SO"
 
-#: ../setedit/runprog.cc:111
+#: ../setedit/runprog.cc:112
 msgid "~D~on't try to run in background"
 msgstr "No intentar correr en segundo ~p~lano"
 
-#: ../setedit/runprog.cc:112
+#: ../setedit/runprog.cc:113
 msgid "~A~lways parse in background"
 msgstr "Siempre en segundo pl~a~no"
 
-#: ../setedit/runprog.cc:113
+#: ../setedit/runprog.cc:114
 msgid "~J~ump to the first error"
 msgstr "Sal~t~ar al primer error"
 
-#: ../setedit/runprog.cc:114
+#: ../setedit/runprog.cc:115
 msgid "Message window ~s~croll"
 msgstr "Despla~z~amiento de la ventana de mensajes"
 
-#: ../setedit/runprog.cc:115
+#: ../setedit/runprog.cc:116
 msgid "Only if not ~f~ocused"
 msgstr "S¢~l~o si seleccionada"
 
-#: ../setedit/runprog.cc:116
+#: ../setedit/runprog.cc:117
 msgid "~L~ines per pass"
 msgstr "~L~¡neas por pasada"
 
-#: ../setedit/runprog.cc:123
+#: ../setedit/runprog.cc:124
 msgid "Errors ~p~arser"
 msgstr "Int‚rprete de ~e~rrores para"
 
-#: ../setedit/runprog.cc:178
+#: ../setedit/runprog.cc:179
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
-#: ../setedit/runprog.cc:201
+#: ../setedit/runprog.cc:202
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:420
+#: ../setedit/runprog.cc:421
 msgid "We are running a child process. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o det‚ngalo."
 
-#: ../setedit/runprog.cc:447
+#: ../setedit/runprog.cc:448
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:548
+#: ../setedit/runprog.cc:549
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:582
+#: ../setedit/runprog.cc:624
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el men£ de opciones"
 
@@ -4399,42 +4457,6 @@ msgstr "Asi~g~naci¢n"
 #~ msgstr ""
 #~ ". Copyright (c) 1996-2001 por Salvador E. Tropea\n"
 #~ "\n"
-
-#~ msgid "Column markers ~4~"
-#~ msgstr "Marcadores de columna ~2~"
-
-#~ msgid "Column markers"
-#~ msgstr "Marcadores de columna"
-
-#~ msgid "Column markers ~9~"
-#~ msgstr "Marcadores de columna ~2~"
-
-#~ msgid "Associated string"
-#~ msgstr "String asociado"
-
-#~ msgid "Enter sLisp code to interpret"
-#~ msgstr "Ingrese c¢digo sLisp a ser interpretado"
-
-#~ msgid "VA Linux and people that maintains Source Forge"
-#~ msgstr "El equipo de VA Linux que mantiene Source Forge"
-
-#~ msgid "~N~ame current function"
-#~ msgstr "~N~ombre de la funci¢n actual"
-
-#~ msgid "Ru~n~ selected code"
-#~ msgstr "E~j~ecutar c¢digo seleccionado"
-
-#~ msgid "Enter c~o~de to run"
-#~ msgstr "I~n~gresar c¢digo a ejecutar"
-
-#~ msgid "Sc~r~oll Up"
-#~ msgstr "~D~esplazar Arriba"
-
-#~ msgid "Scroll ~D~own"
-#~ msgstr "Desplazar A~b~ajo"
-
-#~ msgid "Open ~r~ead-only files as R.O. buffers"
-#~ msgstr "Abrir archivos ~s~¢lo lect. como s¢lo lect."
 
 #~ msgid "Attention can't open the help file."
 #~ msgstr "­Atenci¢n no puedo abrir el archivo de ayuda!"
