@@ -28,15 +28,12 @@ somewhere in your code to execute the dialogs.
 #define Uses_TDeskTop
 #define Uses_TCEditor_Commands
 #define Uses_TCEditor_External
+#define Uses_StrStream
 #include <ceditor.h>
 #include <bufun.h>
-
 #define Uses_FileOpenAid
 #include <settvuti.h>
-
 #include <setconst.h>
-
-#include <strstream.h>
 #include <errno.h>
 
 typedef char *_charPtr;
@@ -49,8 +46,7 @@ void ApplyBroadcast(TView *p, void *e)
 
 unsigned doEditDialog(int dialog, va_list arg)
 {
- char buf[PATH_MAX+80];
- ostrstream os(buf,sizeof(buf));
+ CreateStrStream(os,buf,PATH_MAX+80);
  switch(dialog)
    {
     case edOutOfMemory:
@@ -61,28 +57,28 @@ unsigned doEditDialog(int dialog, va_list arg)
         os << _("Error reading file ") << va_arg(arg,_charPtr)
            << ". " << sys_errlist[errno] << " (" << errno << ")" << ends;
         va_end(arg);
-        return messageBox( buf, mfError | mfOKButton );
+        return messageBox(GetStrStream(buf),mfError | mfOKButton);
         }
     case edWriteError:
         {
         os << _("Error writing file ") << va_arg(arg,_charPtr)
            << "." << ends;
         va_end(arg);
-        return messageBox( buf, mfError | mfOKButton );
+        return messageBox(GetStrStream(buf),mfError | mfOKButton);
         }
     case edCreateError:
         {
         os << _("Error creating file ") << va_arg(arg,_charPtr)
            << ". " << sys_errlist[errno] << " (" << errno << ")" << ends;
         va_end(arg);
-        return messageBox(buf, mfError | mfOKButton);
+        return messageBox(GetStrStream(buf),mfError | mfOKButton);
         }
     case edSaveModify:
         {
         os << va_arg(arg,_charPtr)
            << _(" has been modified. Save?") << ends;
         va_end(arg);
-        return messageBox(buf, mfInformation | mfYesNoCancel);
+        return messageBox(GetStrStream(buf),mfInformation | mfYesNoCancel);
         }
     case edSaveUntitled:
         return messageBox( _("Save untitled file?"),
@@ -131,7 +127,7 @@ unsigned doEditDialog(int dialog, va_list arg)
          uint32 bytes=va_arg(arg,uint32);
          uint32 lines=va_arg(arg,uint32);
          os << bytes << _(" bytes selected, in ") << lines << _(" lines") << ends;
-         return messageBox(buf,mfInformation | mfOKButton);
+         return messageBox(GetStrStream(buf),mfInformation | mfOKButton);
         }
  
     case edGotoLine:
@@ -141,9 +137,9 @@ unsigned doEditDialog(int dialog, va_list arg)
          p=va_arg(arg,int *);
          os << *p << ends;
  
-         if (execDialog(createGotoLineDialog(),buf)==cmOK)
+         if (execDialog(createGotoLineDialog(),GetStrStream(buf))==cmOK)
            {
-            sscanf(buf,"%d",p);
+            sscanf(GetStrStream(buf),"%d",p);
             return 1;
            }
          return 0;
@@ -218,12 +214,12 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edFileExists:
          os << va_arg(arg,_charPtr) << _(" already exist, overwrite?") << ends;
          va_end(arg);
-         return messageBox(buf,mfYesButton | mfNoButton | mfWarning);
+         return messageBox(GetStrStream(buf),mfYesButton | mfNoButton | mfWarning);
 
     case edFileNoFile:
          os << va_arg(arg,_charPtr) << _(" isn't a file, probably a device, go ahead?") << ends;
          va_end(arg);
-         return messageBox(buf,mfYesButton | mfNoButton | mfWarning);
+         return messageBox(GetStrStream(buf),mfYesButton | mfNoButton | mfWarning);
 
     case edCantBkp:
          return messageBox(_("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);
@@ -251,9 +247,9 @@ unsigned doEditDialog(int dialog, va_list arg)
 
     case edArbitraryIndent:
         {
-         char *buf=va_arg(arg,char *);
+         char *Buf=va_arg(arg,char *);
          int len=va_arg(arg,int);
-         return execDialog(createArbitraryIndent(len),buf);
+         return execDialog(createArbitraryIndent(len),Buf);
         }
 
     case edFileCompMant:
