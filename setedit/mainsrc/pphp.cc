@@ -29,11 +29,11 @@ to skip*.
 //The following is as defined in bufun.h:
 typedef void (*tAddFunc)(char *name, int len, int lineStart, int lineEnd);
 const int MaxLenWith0=256;
+char bfBuffer[MaxLenWith0];
 char bfNomFun[MaxLenWith0];
 
 
-int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode /*FIXME: WTF?*/,
-    tAddFunc addFunc);
+int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode, tAddFunc addFunc);
 
 static void printFunc(char *name, int len, int lineStart, int lineEnd)
 {
@@ -87,7 +87,8 @@ static void goEndOfIdentifier();
 static void processFunc(const char *className=NULL,
     const unsigned classNameSize=0);
 static void processClass();
-static void goMatching(const char startChar, const char endChar);
+static void goMatching(const char startChar, const char endChar,
+    const bool copy=false);
 static void registerFunc(const char *funcName, const unsigned funcNameSize,
     const char *param, const unsigned paramSize, const unsigned funcStartLine,
     const char *className=NULL, unsigned classNameSize=0);
@@ -257,9 +258,9 @@ inline static int min(int value1, int value2)
 /*** DEFINITIONS ***/
 
 //The entry point:
-int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode /*FIXME: WTF?*/,
-    tAddFunc addFunc)
+int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode, tAddFunc addFunc)
 {
+    //we ignore "mode" since we only have definitions and not prototypes.
     srcBufStart = srcBuffer;
     srcBufEnd = srcBufStart + len + 1; //Note: 1 past the end!
     curBufPtr = srcBufStart;
@@ -336,9 +337,9 @@ static void processFunc(const char *className=NULL,
     const unsigned funcNameSize = curBufPtr-funcNameStartPtr;
     eatBlanksOrComments();
     if(*curBufPtr != '(') return; //Must be the parameters declaration!
-    const char *paramStartPtr = curBufPtr;
-    goMatching('(',')');
-    const unsigned paramSize = curBufPtr-paramStartPtr;
+    goMatching('(',')', true);
+    const char *paramStartPtr = bfBuffer;
+    const unsigned paramSize = strlen(bfBuffer);
     eatBlanksOrComments();
     if(*curBufPtr != '{') return; //Must be the function body!
     goMatching('{','}');
@@ -385,23 +386,38 @@ static void processClass()
     Position curBufPtr after the matching endChar, balancing the startChar's
 and endChar's between.
     You should be positioned just over the startChar.
+    If copy==true, then it stores the text of the subexpresion in bfBuffer
+substituting comments and blanks by just a space.
 */
-static void goMatching(const char startChar, const char endChar)
+static void goMatching(const char startChar, const char endChar,
+    const bool copy=false)
 {
+    int idx=copy ? 1 : MaxLenWith0;
     unsigned int level=1;
+    if(copy) bfBuffer[0] = *curBufPtr;
     ++curBufPtr;
     while(!atEndOfBuf()) {
-        eatBlanksOrCommentsOrStrings();
-        if(*curBufPtr==startChar)
-            ++level;
-        else if(*curBufPtr==endChar) {
-            --level;
-            if(level==0) {
-                ++curBufPtr;
-                return;
-            }
+        if(eatBlanksOrComments()) {
+            if(idx < MaxLenWith0-2)
+                bfBuffer[idx++]=' '; //Only add a space...
+            continue;                //and skip them!
         }
-        ++curBufPtr;
+        const char *startPtr = curBufPtr;
+        if(!eatString()) {
+            if(*curBufPtr==startChar) {
+                ++level;
+            } else if(*curBufPtr==endChar) {
+                --level;
+            }
+            ++curBufPtr;
+        }
+        //Add the word to the temporary buffer:
+        for(; idx < MaxLenWith0-2 && startPtr < curBufPtr; startPtr++, idx++)
+            bfBuffer[idx]=*startPtr;
+        if(level==0) {
+            bfBuffer[idx]=0;
+            return;
+        }
     }
 }
 
