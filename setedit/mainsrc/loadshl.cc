@@ -978,6 +978,11 @@ int SHLSelect(TCEditor &e, char *buffer, int lenBuf)
     e.indentSize=dflOps->indentSize;
  if (dflOps->wrapCol)
     e.WrapCol=dflOps->wrapCol;
+ if (dflOps->colMarkers)
+   {
+    delete[] e.colMarkers;
+    e.colMarkers=TCEditor::CopyColMarkers(dflOps->colMarkers);
+   }
 
  if (tab_width>0 && tab_width!=oldTab)
    {

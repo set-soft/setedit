@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /******************************************************************************
 
@@ -72,8 +72,8 @@ void SyntaxFormatLineGeneric(TCEditor * editor,char *DrawBuf,uint32 LinePtr,
                              int Width, uint32 Attr, unsigned lineLength,
                              int seeTabs);
 
-#define CALL(a)  if (!call10(buffer,(char *)DrawBuf,color,count,offset,LinePtr,Width,tabSize,SeeTabs,a)) return
-#define CALL2 if (!call10(buffer,(char *)DrawBuf,color,count,offset,LinePtr,Width,tabSize,SeeTabs)) goto paint
+#define CALL(a)  if (!call10(buffer,(char *)DrawBuf,color,count,offset,LinePtr,Width,tabSize,SeeTabs,a)) goto paint
+//#define CALL2 if (!call10(buffer,(char *)DrawBuf,color,count,offset,LinePtr,Width,tabSize,SeeTabs)) goto paint
 #define CALL3 call30(buffer,(char *)DrawBuf,bufLen,LinePtr,Width,tabSize,color,normalColor,SeeTabs,TabChar)
 #define CALL4 call20(buffer,(char *)DrawBuf,bufLen,LinePtr,Width,tabSize,color)
 
@@ -144,6 +144,7 @@ void TCEditor::CacheColors()
 #define HexColor     GetColor(cHex)
 #define OddTabColor  GetColor(cOddTab)
 #define EvenTabColor GetColor(cEvenTab)
+#define ColMarkColor GetColor(cColMark)
 
 inline
 static void ToggleTabColor()
@@ -355,6 +356,20 @@ static unsigned call30(char *buffer,char *drawBuf,int bytesAvail, unsigned linep
  return offset;
 }
 
+static
+void PaintMarkers(char *db, char Color, unsigned Width, uint32 *colMarkers)
+{
+ int marker=0;
+ unsigned nextCol=colMarkers[marker]-1;
+ char color=Color & 0xF0;   // Only the background
+
+ while (nextCol<Width)
+   {
+    db[nextCol*2+1]=(db[nextCol*2+1] & 0xF) | color;
+    nextCol=colMarkers[++marker]-1;
+   }
+}
+
 #define normalColor (Colors & 0xff)
 #define selectColor (Colors >> 8)
 
@@ -403,14 +418,11 @@ void TCEditor::formatLine( void *DrawBuf,
 }
 */
 
-void TCEditor::formatLine( void *DrawBuf,
-			  unsigned LinePtr,
-			  int Width,
-			  unsigned short Colors,
-                          unsigned , // lineLen
-                          uint32 ,
-                          unsigned   // LineNo needed for RHIDE
-			)
+void TCEditor::formatLine(void *DrawBuf, unsigned LinePtr, int Width, ushort Colors,
+       unsigned , // lineLen
+       uint32 ,   // shl attributes
+       unsigned , // LineNo needed for RHIDE
+       uint32 *colMarkers)
 {
  unsigned offset;
  int count; // must be signed
@@ -452,6 +464,11 @@ void TCEditor::formatLine( void *DrawBuf,
      ((char *)(DrawBuf))[fl_bufptr+1]=color;
      fl_bufptr+=2;
     }
+
+paint:
+ // Column markers over the selection
+ if (colMarkers)
+    PaintMarkers((char *)DrawBuf,ColMarkColor,Width,colMarkers);
 }
 
 static void PaintPreproNoSel(unsigned offset,char *db,char *buffer,unsigned lineLen,
@@ -589,7 +606,7 @@ static void PaintSelection(unsigned selStart,unsigned selEnd,unsigned lineStart,
  color = oldColor & 0xF0;   // Only the background
  char colFor = ((unsigned char)color) >> 4;
 
- // Preapare a pointer in the buffer
+ // Prepare a pointer in the buffer
  char *db2=db+((offset<<1)+1);
 
  // Adjust count
@@ -694,7 +711,7 @@ static void PaintSelection(unsigned selStart,unsigned selEnd,unsigned lineStart,
       }
 }
 
-#define 	FillRestOfLine() \
+#define FillRestOfLine() \
  { \
   count = Width-offset;  \
   if (count>0)           \
@@ -708,14 +725,8 @@ static void PaintSelection(unsigned selStart,unsigned selEnd,unsigned lineStart,
     }                    \
  }
 
-void TCEditor::formatLineHighLight( void *DrawBuf,
-			  unsigned LinePtr,
-			  int Width,
-			  unsigned short Colors,
-                          unsigned lineLen,
-                          uint32 Attr,
-                          unsigned
-			)
+void TCEditor::formatLineHighLight(void *DrawBuf, unsigned LinePtr, int Width,
+        ushort Colors, unsigned lineLen, uint32 Attr, unsigned , uint32 *colMarkers)
 {
   unsigned offset;
   int count;
@@ -766,18 +777,16 @@ void TCEditor::formatLineHighLight( void *DrawBuf,
   if (!selHided && selStart<selEnd && selStart<=lineLen+lineStart && selEnd>lineStart)
      PaintSelection(selStart,selEnd,lineStart,db,selectColor,
                     lineLen,buffer,tabSize,Width,TransparentSel,SeeTabs,TabChar);
+
+  // Column markers over the selection
+  if (colMarkers)
+     PaintMarkers(db,ColMarkColor,Width,colMarkers);
 }
 
 
 
-void TCEditor::formatLineHighLightPascal( void *DrawBuf,
-			  unsigned LinePtr,
-			  int Width,
-			  unsigned short Colors,
-                          unsigned lineLen,
-                          uint32 Attr,
-                          unsigned
-			)
+void TCEditor::formatLineHighLightPascal(void *DrawBuf, unsigned LinePtr, int Width,
+       ushort Colors, unsigned lineLen, uint32 Attr, unsigned , uint32 *colMarkers)
 {
   unsigned offset;
   int count;
@@ -829,18 +838,16 @@ void TCEditor::formatLineHighLightPascal( void *DrawBuf,
   if (!selHided && selStart<selEnd && selStart<=lineLen+lineStart && selEnd>lineStart)
      PaintSelection(selStart,selEnd,lineStart,db,selectColor,
                     lineLen,buffer,tabSize,Width,TransparentSel,SeeTabs,TabChar);
+
+  // Column markers over the selection
+  if (colMarkers)
+     PaintMarkers(db,ColMarkColor,Width,colMarkers);
 }
 
 
 
-void TCEditor::formatLineHighLightClipper( void *DrawBuf,
-			  unsigned LinePtr,
-			  int Width,
-			  unsigned short Colors,
-                          unsigned lineLen,
-                          uint32 Attr,
-                          unsigned
-			)
+void TCEditor::formatLineHighLightClipper(void *DrawBuf, unsigned LinePtr, int Width,
+       ushort Colors, unsigned lineLen, uint32 Attr, unsigned, uint32 *colMarkers)
 {
   unsigned offset;
   int count;
@@ -892,17 +899,15 @@ void TCEditor::formatLineHighLightClipper( void *DrawBuf,
   if (!selHided && selStart<selEnd && selStart<=lineLen+lineStart && selEnd>lineStart)
      PaintSelection(selStart,selEnd,lineStart,db,selectColor,
                     lineLen,buffer,tabSize,Width,TransparentSel,SeeTabs,TabChar);
+
+  // Column markers over the selection
+  if (colMarkers)
+     PaintMarkers(db,ColMarkColor,Width,colMarkers);
 }
 
 
-void TCEditor::formatLineHighLightGeneric( void *DrawBuf,
-			  unsigned LinePtr,
-			  int Width,
-			  unsigned short Colors,
-                          unsigned lineLen,
-                          uint32 Attr,
-                          unsigned
-			)
+void TCEditor::formatLineHighLightGeneric(void *DrawBuf, unsigned LinePtr, int Width,
+       ushort Colors, unsigned lineLen, uint32 Attr, unsigned, uint32 *colMarkers)
 {
   unsigned offset;
   int count;
@@ -954,6 +959,10 @@ void TCEditor::formatLineHighLightGeneric( void *DrawBuf,
   if (!selHided && selStart<selEnd && selStart<=lineLen+lineStart && selEnd>lineStart)
      PaintSelection(selStart,selEnd,lineStart,db,selectColor,
                     lineLen,buffer,tabSize,Width,TransparentSel,SeeTabs,TabChar);
+
+  // Column markers over the selection
+  if (colMarkers)
+     PaintMarkers(db,ColMarkColor,Width,colMarkers);
 }
 
 // For Reserved words

@@ -315,7 +315,9 @@ void TSetEditorApp::storeDesktop(fpstream& s)
    << uchar(TCEditor::staticShowMatchPairNow)
    << uchar(TCEditor::staticUseIndentSize)
    << uchar(TCEditor::staticDontPurgeSpaces)
-   << TCEditor::staticWrapCol
+   << uchar(TCEditor::staticColumnMarkers);
+ TCEditor::SaveColMarkers(s,TCEditor::staticColMarkers);
+ s << TCEditor::staticWrapCol
    << TCEditor::editorFlags;
 
  // Save the histories
@@ -425,6 +427,18 @@ void LoadPalette(int what, fpstream& s, int v)
             break;
        default:
             palOld[0x3D]=0x38;
+      }
+   }
+ if (v<0x450 && palOld[0x7B]==0)
+   {
+    switch (what)
+      {
+       case apMonochrome:
+       case apBlackWhite:
+            palOld[0x7B]=0x70;
+            break;
+       default:
+            palOld[0x7B]=0x20;
       }
    }
 
@@ -555,6 +569,13 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     L(staticUseIndentSize);
     L(staticDontPurgeSpaces);
    }
+ if (deskTopVersion>=0x450)
+   {
+    L(staticColumnMarkers);
+    delete[] TCEditor::staticColMarkers;
+    TCEditor::staticColMarkers=TCEditor::LoadColMarkers(s);
+   }
+
  if (deskTopVersion>0x401)
     s >> TCEditor::staticWrapCol;
  if (deskTopVersion>=0x406)

@@ -35,7 +35,7 @@
 
 static const char *DefaultOptsFileName="deflopts.txt";
 static const char *noSHL="None";
-static const int   maxDefaultOptLen=80;
+static const int   maxDefaultOptLen=80+256;
 static const int   stateLookingName=0,stateCollecting=1,stateExitLoop=2;
 static char       *destFile=0;
 static unsigned    localCtxHelp;
@@ -60,6 +60,7 @@ typedef struct
 {
  setting st;
  unsigned value;
+ char str[colMarkersStrLen+1];
 } editSetting;
 
 typedef struct
@@ -68,11 +69,13 @@ typedef struct
  ccIndex f;
 } boxCol;
 
-const uint32 tyFlag=0,tyInt=1,loTabSize=1,loWrapCol=2,loIndentSize=3;
+const uint32 tyFlag=0,tyInt=1,tyStr=2,loTabSize=1,loWrapCol=2,loIndentSize=3,loColArM=1;
 
 setting Settings[]=
 {
 {"AutoIndent",       10, tyFlag, loAutoIndent},
+{"ColMarkersArray",  15, tyStr,  loColArM},
+{"ColumnMarkers",    13, tyFlag, loColumnMarkers},
 {"CrossCursorInCol", 16, tyFlag, loCrossCursorInCol},
 {"CrossCursorInRow", 16, tyFlag, loCrossCursorInRow},
 {"DontPurgeSpaces",  15, tyFlag, loDontPurgeSpaces},
@@ -113,7 +116,7 @@ void ParseIt(char *s, dflOptions *shl, int set)
     else
        shl->resetOpts&=~Settings[i].mask;
    }
- else
+ else if (Settings[i].type==tyInt)
    {
     s+=Settings[i].len;
     // Some small parsing:
@@ -133,6 +136,27 @@ void ParseIt(char *s, dflOptions *shl, int set)
             break;
        case loWrapCol:
             shl->wrapCol=val;
+            break;
+      }
+   }
+ else if (Settings[i].type==tyStr)
+   {
+    s+=Settings[i].len;
+    // Some small parsing:
+    for (;*s!='=' && *s; s++);
+    if (!*s) return;
+    for (s++; ucisspace(*s) && *s; s++);
+    if (!*s || *s!='"') return;
+    s++;
+    char *e;
+    for (e=s; *e && *e!='"'; e++);
+    if (*e!='"') return;
+    *e=0;
+
+    switch (Settings[i].mask)
+      {
+       case loColArM:
+            shl->colMarkers=TCEditor::Str2ColMarkers(s);
             break;
       }
    }
@@ -235,7 +259,7 @@ editSetting *EnterNewSetting()
  editSetting *ret;
  if (Settings[sel].type==tyFlag)
    {// Ask if is enable or disable.
-    TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("What to do")));
+    TSViewCol *col=new TSViewCol(__("What to do"));
     TSLabel *p=TSLabelRadio(__("Action"),__("~D~isable"),__("~E~nable"),0);
     p->Flags|=wSpan;
     col->insert(2,1,p);
@@ -250,9 +274,9 @@ editSetting *EnterNewSetting()
     ret=new editSetting;
     ret->value=ops;
    }
- else
+ else if (Settings[sel].type==tyInt)
    { // Ask the value
-    TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Associated value")));
+    TSViewCol *col=new TSViewCol(__("Associated value"));
     TSHzLabel *p=new TSHzLabel(_("Value:"),new TSInputLine(6));
     p->Flags|=wSpan;
     col->insert(2,2,p);
@@ -270,6 +294,23 @@ editSetting *EnterNewSetting()
     ret=new editSetting;
     ret->value=value;
    }
+ else
+   { // Ask the value
+    TSViewCol *col=new TSViewCol(__("Associated string"));
+    TSHzLabel *p=new TSHzLabel(_("Value:"),new TSInputLine(256,30));
+    p->Flags|=wSpan;
+    col->insert(2,2,p);
+    EasyInsertOKCancel(col);
+    TDialog *d=col->doIt(); delete col;
+    d->options|=ofCentered; d->helpCtx=localCtxHelp;
+
+    char val[colMarkersStrLen]="";
+    if (execDialog(d,&val)!=cmOK || *val==0)
+       return 0;
+
+    ret=new editSetting;
+    strcpy(ret->str,val);
+   }
  ret->st=Settings[sel];
  return ret;
 }
@@ -284,7 +325,7 @@ public:
 
  virtual void getText(char *dest, unsigned item, int maxLen);
  virtual unsigned GetCount(void) { return getCount(); };
- void insert(uint16 mask, uint16 type, unsigned value);
+ void insert(uint32 mask, uint16 type, unsigned value, char *str=0);
  void insert(editSetting *p) { TStringCollection::insert((void *)p); };
  editSetting *at(ccIndex pos) { return (editSetting *)TStringCollection::at(pos); };
  virtual int compare(void *s1,void *s2);
@@ -316,25 +357,30 @@ void TSetting::getText(char *dest, unsigned item, int maxLen)
  AllocLocalStr(buf,l);
  if (s->st.type==tyFlag)
     sprintf(buf,"%c%s",s->value ? '+' : '-',s->st.name);
- else
+ else if (s->st.type==tyInt)
     sprintf(buf,"+%s=%d",s->st.name,s->value);
+ else
+    sprintf(buf,"+%s=\"%s\"",s->st.name,s->str);
 
  strncpy(dest,buf,maxLen);
  dest[maxLen]=EOS;
 }
 
-void TSetting::insert(uint16 mask, uint16 type, unsigned value)
+void TSetting::insert(uint32 mask, uint16 type, unsigned value, char *str)
 {
  int i;
  editSetting *s=0;
 
  for (i=0; i<cantSettings; i++)
     {
-     if (Settings[i].type==type && Settings[i].mask==(uint32)mask)
+     if (Settings[i].type==type && Settings[i].mask==mask)
        {
         s=new editSetting;
         s->st=Settings[i];
-        s->value=value;
+        if (str)
+           strcpy(s->str,str);
+        else
+           s->value=value;
         break;
        }
     }
@@ -348,8 +394,13 @@ int TSetting::compare(void *s1, void *s2)
 {
  editSetting *v1=(editSetting *)s1,*v2=(editSetting *)s2;
  int ret=strcasecmp(v1->st.name,v2->st.name);
- if (!ret && v1->value!=v2->value)
-    ret=v1->value<v2->value ? -1 : 1;
+ if (!ret)
+   {
+    if (v1->st.type==tyStr)
+       return strcmp(v1->str,v2->str);
+    if (v1->value!=v2->value)
+       ret=v1->value<v2->value ? -1 : 1;
+   }
  return ret;
 }
 
@@ -461,15 +512,15 @@ static TSetting *settingsCol;
 static int listChanged;
 
 static
-int DeleteSetting(int wich)
+int DeleteSetting(int which)
 {
  // Make it available to choose
- editSetting *s=settingsCol->at(wich);
+ editSetting *s=settingsCol->at(which);
  ccIndex pos;
  if (!listSettings->search((void *)s->st.name,pos))
     listSettings->atInsert(pos,(void *)s->st.name);
  // Remove from the list
- settingsCol->atRemove(wich);
+ settingsCol->atRemove(which);
  listChanged++;
  return 1;
 }
@@ -522,6 +573,13 @@ void EditList(dflOptions *ops, char *name)
     settingsCol->insert(loIndentSize,tyInt,ops->indentSize);
  if (ops->wrapCol)
     settingsCol->insert(loWrapCol,tyInt,ops->wrapCol);
+ if (ops->colMarkers)
+   {
+    char b[colMarkersStrLen];
+    TCEditor::ColMarkers2Str(ops->colMarkers,b,colMarkersStrLen);
+    settingsCol->insert(loColArM,tyStr,0,newStr(b));
+   }
+
 
  // Create a list of settings to choose
  listSettings=new TNoCaseStringCollection(cantSettings,1);
@@ -563,7 +621,7 @@ void EditList(dflOptions *ops, char *name)
            else
               ops->resetOpts&=~st->st.mask;
           }
-        else
+        else if (st->st.type==tyInt)
           {
            switch (st->st.mask)
              {
@@ -577,6 +635,11 @@ void EditList(dflOptions *ops, char *name)
                    ops->wrapCol=st->value;
                    break;
              }
+          }
+        else
+          {
+           delete[] ops->colMarkers;
+           ops->colMarkers=TCEditor::Str2ColMarkers(st->str);
           }
        }
     UpdateFile(name,settingsCol);

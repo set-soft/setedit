@@ -139,6 +139,7 @@ typedef struct
  uint16 tabSize;   // 0 means none
  uint16 indentSize;
  uint16 wrapCol;   // 0 means none
+ uint32 *colMarkers;
 } dflOptions;
 
 #ifndef SUP_PCRE
@@ -265,34 +266,38 @@ const int
 /************************* End of UNDO types and constants *****************/
 
 // ***************** Various Structures
+const int colMarkersStrLen=256;
+#define LocalOptionsRect GlobalOptionsRect
 struct GlobalOptionsRect
 {
  uint32 t1;
  char tab[3];
  char ind[3];
  char wcol[4];
+ char colMarkers[colMarkersStrLen];
 };
 const uint32
- goAutoIndent       =0x00001,
- goUseTabs          =0x00002,
- goPersistentBlocks =0x00004,
- goIntelIndent      =0x00008,
- goCrossCursorInCol =0x00010,
- goCrossCursorInRow =0x00020,
- goShowMatchPair    =0x00040,
- goShowMatchPairFly =0x00080,
- goShowMatchPairNow =0x00100,
- goNoMoveToEndPaste =0x00200,
- goTransparentSel   =0x00400,
- goOptimalFill      =0x00800,
- goWrapLine         =0x01000,
- goScrollLock       =0x02000,
- goSeeTabs          =0x04000,
- goNoInsideTabs     =0x08000,
- goTabIndents       =0x10000,
- goUseIndentSize    =0x20000,
- goDontPurgeSpaces  =0x40000,
- goBackSpUnindents  =0x80000;
+ goAutoIndent       =0x000001,
+ goUseTabs          =0x000002,
+ goPersistentBlocks =0x000004,
+ goIntelIndent      =0x000008,
+ goCrossCursorInCol =0x000010,
+ goCrossCursorInRow =0x000020,
+ goShowMatchPair    =0x000040,
+ goShowMatchPairFly =0x000080,
+ goShowMatchPairNow =0x000100,
+ goNoMoveToEndPaste =0x000200,
+ goTransparentSel   =0x000400,
+ goOptimalFill      =0x000800,
+ goWrapLine         =0x001000,
+ goScrollLock       =0x002000,
+ goSeeTabs          =0x004000,
+ goNoInsideTabs     =0x008000,
+ goTabIndents       =0x010000,
+ goUseIndentSize    =0x020000,
+ goDontPurgeSpaces  =0x040000,
+ goBackSpUnindents  =0x080000,
+ goColumnMarkers    =0x100000;
 
 const uint32
  loOverwrite        =0x00001,
@@ -313,7 +318,8 @@ const uint32
  loTabIndents       =0x08000,
  loUseIndentSize    =0x10000,
  loDontPurgeSpaces  =0x20000,
- loBackSpUnindents  =0x40000;
+ loBackSpUnindents  =0x40000,
+ loColumnMarkers    =0x80000;
 
 
 typedef unsigned (*TEditorDialog)( int, ... );
