@@ -553,7 +553,7 @@ TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
  r.grow(-1,-1);
  scrollbar = standardScrollBar(sbVertical | sbHandleKeyboard);
  list = new TEditorProjectListBox(r,(TSetEditorApp::geFlags & geVertWindows) ? 1 : 3,scrollbar);
- growMode = gfGrowLoY | gfGrowHiX | gfGrowHiY;
+ growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
  list->growMode = gfGrowHiX | gfGrowHiY;
  list->newList(ProjectList);
  insert(list);
@@ -943,7 +943,11 @@ void OpenProject(char *name, int preLoad)
     if (dS.x!=0 || dS.y!=0)
       {
        TRect  r;
-       prjWin->view->calcBounds(r,dS);
+       r=prjWin->view->getBounds();
+       r.a.y+=dS.y;
+       r.b.y+=dS.y;
+       r.b.x+=dS.x;
+       if (r.a.y<0) r.a.y=0;
        prjWin->view->changeBounds(r);
       }
     editorApp->deskTop->unlock();
