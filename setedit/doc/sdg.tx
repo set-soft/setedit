@@ -863,7 +863,8 @@ Will generate:
 @end example
 
 
-Read the @x{More about macros} section for more information about it.
+Read the "More about macros" section for more information about it.
+@x{More about macros}.
 @paragraph{}
 
 @subsection ASCIIConvert
