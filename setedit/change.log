@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.372  2003/05/16 19:25:08  set
+* Fixed: clean target of holidays directory didn't ignore errors.
+* Fixed: extra \n at the end of distribution lists produced problems.
+* Fixed: missing .mkf files in distro.
+* Note: compiled (not tested) for Mandrake 9.1 and Red Hat 9.0. Compiled
+and tested for Solaris.
+
 Revision 1.371  2003/05/16 15:30:32  set
 * Fixed: Wrong dependencies for the .imk files. They depends on the imk
 generator, but the source, not the exe. The exe will be always newer than
