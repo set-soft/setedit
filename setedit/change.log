@@ -1,4 +1,8 @@
 $Log$
+Revision 1.41  2002/01/29 17:46:40  set
+* Modified: The compression scripts to generate more descriptive name for
+the debug files.
+
 Revision 1.40  2002/01/29 17:42:43  set
 * Modified: Included libamp in Linux sources distro again.
 
@@ -2872,7 +2876,7 @@ Endlisnis.
 * Added: A new editor's command: cmcGoEndOfWord. (see docs).
 * Note: These modifications are to give better support to the Lemur v0.1a
 prototype completion macro+program created by Endlisnis.
-.
+
 Revision 1.148  1999/07/09 15:22:29  set
 * Fixed: G was used twice as short-cut in the Find Dialog. Reported by
 Jeremy W. Murphy <jwm@amc.com.au>.

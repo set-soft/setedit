@@ -1252,14 +1252,13 @@ sub GenerateMakefile
    {
     #### Distribution ####
     # editor
-    $text.="\n\ndistrib-editor:\n";
-    $text.="\t\$(MAKE) -C internac\n" unless @conf{'xgettext'} eq 'no';
+    $text.="\n\ndistrib-editor: needed\n";
     $text.="\t\$(MAKE) -C makes distrib";
     $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeEditor);
     # infview
     if ($infview)
       {
-       $text.="\n\ndistrib-infview:\n";
+       $text.="\n\ndistrib-infview: needed\n";
        $text.="\t\$(MAKE) -C makes distrib-infview";
        $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeInfview);
       }
