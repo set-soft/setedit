@@ -734,7 +734,7 @@ void InitInternacSup()
     else
       {
        // if DJDIR doesn't exists use SET_FILES
-       locale_dir=(char *)GetVariable("SET_FILES");
+       locale_dir=(char *)getenv("SET_FILES");
        if (locale_dir)
           strcpy(localedir,locale_dir);
        else
