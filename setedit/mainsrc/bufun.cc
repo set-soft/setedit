@@ -557,6 +557,8 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
 static TNoCaseSOSStringCollection *glFunList;
 static SOStack *glStk;
 
+// A copy of this function is used in txhgen.cc, any update here should be
+// reflected there until I find a better solution.
 inline
 void AlignLen(int &len)
 {

@@ -1123,6 +1123,13 @@ static void FillAssociations(int num, char *var)
    }
 }
 
+inline
+void AlignLen(int &len)
+{
+ if (len & 3)
+    len+=4-(len & 3);
+}
+
 static char *SearchInfList(int line)
 {
  ccIndex i,c;
@@ -1133,8 +1140,9 @@ static char *SearchInfList(int line)
  for (i=0; i<c; i++)
     {
      char *s=fList->atStr(i);
-     int length=strlen(s);
-     l=*(int *)(s+length+1);
+     int length=strlen(s)+1;
+     AlignLen(length);
+     l=*(int *)(s+length);
      dif=abs(l-line);
      if (dif<min)
        {
