@@ -2,8 +2,13 @@
    see copyrigh file for details */
 #include <tv.h>
 #define Uses_EditorId
+#define Uses_stdio
+#define Uses_unistd
+#define Uses_stdlib
 #include <ced_exte.h>
 #include <edmsg.h>
+#include "rhutils.h"
+
 /**[txh]********************************************************************
 
   Comments:
