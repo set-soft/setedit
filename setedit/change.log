@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.512  2004/05/31 14:09:22  set
+* Modified: [Debian] Applied patch #962884 S.F. submitted by Baurjan
+Ismagulov - ibr. Related to the libset package. It needs some adjustments.
+
 Revision 1.511  2004/05/31 13:44:16  set
 * Added: OS/OS flavor,CPU,Compiler/Compiler flavor and Driver to the about
 box. Suggested by Arnold Wiegert (awiegert/telus/net)
