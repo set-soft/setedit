@@ -1,0 +1,176 @@
+DEST_BIN_DIR = c:\setedit
+DEST_SET_DIR = c:\setedit
+
+TV_LIB   = ..\..\tvision\winnt\libtv.lib
+
+#clean default extension list
+.SUFFIXES:
+#append extensions to list
+.SUFFIXES: .cc .cpp .c
+
+all:: setedit.exe
+
+# MSVC
+
+CC       = cl /nologo
+CXX      = $(CC) /TP
+LD       = $(CXX)
+INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
+	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
+	-I..\infview\include -I..\librhuti -I..\sdg\include -I..\mp3 -I..\extra \
+	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2
+
+CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
+CXXFLAGS = $(CFLAGS)
+LDFLAGS  = -link $(TV_LIB) user32.lib
+OBJDIR   = objs
+
+{..\setedit}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\setedit\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\librhuti}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\easydiag}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\calcu}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\sdg}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\extra}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\mp3}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\mainsrc}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+
+{..\mainsrc}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+{..\calcu}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+{..\extra}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+	
+$(OBJDIR)\edspecs.o: ..\mainsrc\edspecs.cc
+$(OBJDIR)\bufun.o: ..\mainsrc\bufun.cc
+
+EDITOR_OBJS =  $(OBJDIR)/accehtml.o $(OBJDIR)/advice.o $(OBJDIR)/ampdiag.o $(OBJDIR)/intermp3.o $(OBJDIR)/mp3list.o\
+	$(OBJDIR)/mp3play.o $(OBJDIR)/ascii.o $(OBJDIR)/boardmix.o $(OBJDIR)/bufun.o $(OBJDIR)/calcu.o $(OBJDIR)/calendar.o\
+	$(OBJDIR)/ceditor.o $(OBJDIR)/codepage.o $(OBJDIR)/completi.o $(OBJDIR)/deedidia.o $(OBJDIR)/doedidia.o\
+	$(OBJDIR)/dskascii.o $(OBJDIR)/dskcalen.o $(OBJDIR)/dskclip.o $(OBJDIR)/dskclose.o $(OBJDIR)/dskedito.o $(OBJDIR)/dskhelp.o\
+	$(OBJDIR)/dskman.o $(OBJDIR)/dskmessa.o $(OBJDIR)/dskmp3.o $(OBJDIR)/dskwin.o $(OBJDIR)/dstfile.o $(OBJDIR)/dumpfile.o\
+	$(OBJDIR)/lablchek.o $(OBJDIR)/lablradi.o $(OBJDIR)/snostate.o $(OBJDIR)/tcheck2.o $(OBJDIR)/tmiclust.o\
+	$(OBJDIR)/tsbutton.o $(OBJDIR)/tschkarr.o $(OBJDIR)/tschkbox.o $(OBJDIR)/tshscrol.o $(OBJDIR)/tshzgrp.o\
+	$(OBJDIR)/tsinplin.o $(OBJDIR)/tsinplpi.o $(OBJDIR)/tslabel.o $(OBJDIR)/tslider.o $(OBJDIR)/tslistbo.o $(OBJDIR)/tsradbot.o\
+	$(OBJDIR)/tssortlb.o $(OBJDIR)/tssosslb.o $(OBJDIR)/tstatext.o $(OBJDIR)/tstextsc.o $(OBJDIR)/tstsorlb.o\
+	$(OBJDIR)/tsvegrp.o $(OBJDIR)/tsview.o $(OBJDIR)/tsviewco.o $(OBJDIR)/ttextscr.o $(OBJDIR)/edcolor.o $(OBJDIR)/edconst.o\
+	$(OBJDIR)/edfonts.o $(OBJDIR)/editdiag.o $(OBJDIR)/editmain.o $(OBJDIR)/editmenu.o $(OBJDIR)/editorfo.o\
+	$(OBJDIR)/editpale.o $(OBJDIR)/editwind.o $(OBJDIR)/edkeys.o $(OBJDIR)/edmsg.o $(OBJDIR)/edprefs.o $(OBJDIR)/edprint.o\
+	$(OBJDIR)/edprj.o $(OBJDIR)/edspecs.o  $(OBJDIR)/dyncat.o  $(OBJDIR)/mixer.o \
+	 $(OBJDIR)/stackdbg.o $(OBJDIR)/strncpyz.o $(OBJDIR)/strndup.o $(OBJDIR)/fstrcmp.o $(OBJDIR)/getctxhl.o\
+	$(OBJDIR)/gzfiles.o $(OBJDIR)/inf.o $(OBJDIR)/infbase.o $(OBJDIR)/manview.o $(OBJDIR)/nhiscoll.o $(OBJDIR)/ninfview.o\
+	$(OBJDIR)/ninfwind.o $(OBJDIR)/nmanwind.o $(OBJDIR)/sinf.o $(OBJDIR)/sman.o $(OBJDIR)/intgrep.o $(OBJDIR)/keytrans.o\
+	$(OBJDIR)/abstorel.o $(OBJDIR)/back2sl.o $(OBJDIR)/basename.o $(OBJDIR)/fexpand.o $(OBJDIR)/io.o $(OBJDIR)/specs.o\
+	$(OBJDIR)/splitfn.o $(OBJDIR)/stricat.o $(OBJDIR)/stridown.o $(OBJDIR)/stridup.o $(OBJDIR)/strifree.o $(OBJDIR)/linelen.o\
+	$(OBJDIR)/loadcle.o $(OBJDIR)/loaddefl.o $(OBJDIR)/loadfunc.o $(OBJDIR)/loadnobkp.o $(OBJDIR)/loadshl.o\
+	$(OBJDIR)/loadusew.o $(OBJDIR)/macrocom.o $(OBJDIR)/menuload.o $(OBJDIR)/mli.o $(OBJDIR)/mliasimp.o $(OBJDIR)/mlicsdg.o\
+	$(OBJDIR)/mliediti.o $(OBJDIR)/mliedito.o $(OBJDIR)/mlisdg.o $(OBJDIR)/msignal.o $(OBJDIR)/nceditor.o $(OBJDIR)/ndskwasc.o\
+	$(OBJDIR)/ndskwcal.o $(OBJDIR)/ndskwcli.o $(OBJDIR)/ndskwclo.o $(OBJDIR)/ndskwedi.o $(OBJDIR)/ndskwhel.o\
+	$(OBJDIR)/ndskwman.o $(OBJDIR)/ndskwmes.o $(OBJDIR)/ndskwmp3.o $(OBJDIR)/ndskwprj.o $(OBJDIR)/neditwin.o\
+	$(OBJDIR)/nfileedi.o $(OBJDIR)/nsindica.o $(OBJDIR)/ntedcol.o $(OBJDIR)/parser.o $(OBJDIR)/pathlist.o $(OBJDIR)/pathtool.o\
+	$(OBJDIR)/pclipper.o $(OBJDIR)/pmacros.o $(OBJDIR)/pperl.o $(OBJDIR)/pvarious.o $(OBJDIR)/runprog.o $(OBJDIR)/sceditor.o\
+	$(OBJDIR)/scresave.o $(OBJDIR)/sdginter.o $(OBJDIR)/sdskasci.o $(OBJDIR)/sdskcale.o $(OBJDIR)/sdskclip.o\
+	$(OBJDIR)/sdskclos.o $(OBJDIR)/sdskedit.o $(OBJDIR)/sdskhelp.o $(OBJDIR)/sdskman.o $(OBJDIR)/sdskmess.o $(OBJDIR)/sdskmp3.o\
+	$(OBJDIR)/sdskprj.o $(OBJDIR)/search.o $(OBJDIR)/sedcolle.o $(OBJDIR)/diaghelp.o $(OBJDIR)/dktclock.o $(OBJDIR)/fileopen.o\
+	$(OBJDIR)/fiopeaid.o $(OBJDIR)/inputsca.o $(OBJDIR)/ninputsc.o $(OBJDIR)/nostatex.o $(OBJDIR)/nprogbar.o\
+	$(OBJDIR)/nprogres.o $(OBJDIR)/ntnocast.o $(OBJDIR)/ntnosost.o $(OBJDIR)/setstack.o $(OBJDIR)/sprogbar.o\
+	$(OBJDIR)/sprogres.o $(OBJDIR)/stnocast.o $(OBJDIR)/stnonost.o $(OBJDIR)/tdiagaid.o $(OBJDIR)/tdiagrow.o\
+	$(OBJDIR)/tinppipe.o $(OBJDIR)/tnocastc.o $(OBJDIR)/tnosostr.o $(OBJDIR)/tprogbar.o $(OBJDIR)/tprogdia.o\
+	$(OBJDIR)/tprogrdi.o $(OBJDIR)/tprogres.o $(OBJDIR)/tstrlbox.o $(OBJDIR)/uisarray.o $(OBJDIR)/ussarray.o\
+	$(OBJDIR)/viewplus.o $(OBJDIR)/slpinter.o $(OBJDIR)/splinman.o $(OBJDIR)/ssindica.o $(OBJDIR)/ssyntax.o\
+	$(OBJDIR)/tedcolle.o $(OBJDIR)/tips.o $(OBJDIR)/tpaltext.o $(OBJDIR)/tsindica.o $(OBJDIR)/txhgen.o $(OBJDIR)/winlistd.o
+
+EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
+
+EXTRALIB_MAKE_ARGS = _SUBMAKE=1 CC="$(CC)" LD="$(LD)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" -f Makefile.nmk
+
+libs: $(EXTRA_LIBS)
+
+..\libz\zlib.lib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+..\libpcre\pcre.lib:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+..\libbzip2\bzip2.lib:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+clean-zlib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-pcre:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-bzip2:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-libs: clean-zlib clean-pcre clean-bzip2
+
+setedit.exe: $(EXTRA_LIBS) $(EDITOR_OBJS)
+	$(LD) -o setedit.exe $(EDITOR_OBJS) $(LDFLAGS) $(EXTRA_LIBS)
+
+install: setedit.exe doc
+	echo dummy >a.exe
+	xcopy /I *.exe $(DEST_BIN_DIR)
+	-del a.exe
+	-del $(DEST_BIN_DIR)\a.exe
+	xcopy /I /S /E ..\cfgfiles\*.* $(DEST_SET_DIR)
+	cd ..\doc
+	make -f Makefile.nmk DEST_SET_DIR=$(DEST_SET_DIR) install
+	cd ..\winnt
+
+doc:
+	cd ..\doc
+	make -f Makefile.nmk
+	cd ..\winnt
+
+clean-doc:
+	cd ..\doc
+	make -f Makefile.nmk clean
+	cd ..\winnt
+
+clean:
+	-del $(OBJDIR)\*.o
+	-del *.exe
+	-del *.o
+	-del *.lib
+	
+clean-all: clean clean-libs clean-doc

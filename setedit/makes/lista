@@ -341,6 +341,7 @@ libz/zutil.c
 libz/zutil.h
 libz/Makefile
 libz/Makefile.bcc
+libz/Makefile.nmk
 mainsrc/accehtml.cc
 mainsrc/bufun.cc
 mainsrc/ceditor.cc
@@ -748,5 +749,7 @@ WinNT/configed.h
 -WinNT/makeinfo/makeinfo.exe
 WinNT/bccmake.in
 WinNT/Makefile
+WinNT/Makefile.nmk
+WinNT/msvcmake.in
 WinNT/README
 WinNT/objs/delete.me

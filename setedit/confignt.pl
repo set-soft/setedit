@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -14,9 +14,14 @@ $a=~s/mixersb\.c//;
 $a=~s/mixoss\.c//;
 $a=~s/djmdr.s//;
 $a=~s/memmove\.s//;
+$b=$a;
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 
 $ReplaceTags{'EDITOR_OBJS'}=$a;
+
+$b=~s/(\w+)\.(\w+)/\$\(OBJDIR\)\/$1\.o/g;
+$ReplaceTags{'EDITOR_OBJS_MS'}=$b;
+$b=0;
 
 $col=14;
 $a=ExtractItemsMak('makes/easydiag.mak',$col);
@@ -44,6 +49,7 @@ $ReplaceTags{'DEST_SET_DIR'} = $conf{'setdir'};
 $ReplaceTags{'DYNRTL'} = $conf{'dynrtl'} ? "DYNRTL = 1" : "";
 
 ReplaceText('WinNT/bccmake.in','WinNT/Makefile');
+ReplaceText('WinNT/msvcmake.in','WinNT/Makefile.nmk');
 $a='';
 
 sub SeeCommandLine

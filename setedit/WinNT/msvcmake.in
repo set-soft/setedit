@@ -1,0 +1,142 @@
+DEST_BIN_DIR = @DEST_BIN_DIR@
+DEST_SET_DIR = @DEST_SET_DIR@
+
+TV_LIB   = ..\..\tvision\winnt\libtv.lib
+
+#clean default extension list
+.SUFFIXES:
+#append extensions to list
+.SUFFIXES: .cc .cpp .c
+
+all:: setedit.exe
+
+# MSVC
+
+CC       = cl /nologo
+CXX      = $(CC) /TP
+LD       = $(CXX)
+INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
+	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
+	-I..\infview\include -I..\librhuti -I..\sdg\include -I..\mp3 -I..\extra \
+	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2
+
+CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
+CXXFLAGS = $(CFLAGS)
+LDFLAGS  = -link $(TV_LIB) user32.lib
+OBJDIR   = objs
+
+{..\setedit}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\setedit\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\librhuti}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\easydiag}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\infview\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\calcu}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti\streams}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\settvuti\names}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\sdg}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\extra}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\mp3}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+{..\mainsrc}.cc{$(OBJDIR)}.o:
+	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+
+{..\mainsrc}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+{..\calcu}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+{..\extra}.c{$(OBJDIR)}.o:
+	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o
+	
+$(OBJDIR)\edspecs.o: ..\mainsrc\edspecs.cc
+$(OBJDIR)\bufun.o: ..\mainsrc\bufun.cc
+
+EDITOR_OBJS = @EDITOR_OBJS_MS@
+
+EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
+
+EXTRALIB_MAKE_ARGS = _SUBMAKE=1 CC="$(CC)" LD="$(LD)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" -f Makefile.nmk
+
+libs: $(EXTRA_LIBS)
+
+..\libz\zlib.lib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+..\libpcre\pcre.lib:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+..\libbzip2\bzip2.lib:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+clean-zlib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-pcre:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-bzip2:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+
+clean-libs: clean-zlib clean-pcre clean-bzip2
+
+setedit.exe: $(EXTRA_LIBS) $(EDITOR_OBJS)
+	$(LD) -o setedit.exe $(EDITOR_OBJS) $(LDFLAGS) $(EXTRA_LIBS)
+
+install: setedit.exe doc
+	echo dummy >a.exe
+	xcopy /I *.exe $(DEST_BIN_DIR)
+	-del a.exe
+	-del $(DEST_BIN_DIR)\a.exe
+	xcopy /I /S /E ..\cfgfiles\*.* $(DEST_SET_DIR)
+	cd ..\doc
+	make -f Makefile.nmk DEST_SET_DIR=$(DEST_SET_DIR) install
+	cd ..\winnt
+
+doc:
+	cd ..\doc
+	make -f Makefile.nmk
+	cd ..\winnt
+
+clean-doc:
+	cd ..\doc
+	make -f Makefile.nmk clean
+	cd ..\winnt
+
+clean:
+	-del $(OBJDIR)\*.o
+	-del *.exe
+	-del *.o
+	-del *.lib
+	
+clean-all: clean clean-libs clean-doc
