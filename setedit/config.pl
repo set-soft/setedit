@@ -1319,6 +1319,9 @@ sub GenerateMakefile
  $text.="  MPREFIX=\$(prefix)\n";
  $text.="else\n";
  $text.="  MPREFIX=$conf{'prefix'}\n";
+ $text.="endif\n";
+ $text.="ifeq (\$(INSTALL),)\n";
+ $text.="  INSTALL=install\n";
  $text.="endif";
  $text.="\nlibdir=\$(MPREFIX)/lib";
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
@@ -1489,8 +1492,8 @@ sub GenerateMakefile
  if ($libset)
    {
     $text.="\n\ninstall-libset: libset\n";
-    $text.="\tinstall -d -m 0755 \$(libdir)\n";
-    $text.="\tinstall -m 0644 makes/libset.a \$(libdir)";
+    $text.="\t\$(INSTALL) -d -m 0755 \$(libdir)\n";
+    $text.="\t\$(INSTALL) -m 0644 makes/libset.a \$(libdir)";
    }
  # infview
  if ($infview)
