@@ -7019,7 +7019,7 @@ Boolean TCEditor::insertBuffer( char *p,
  // To allow copying from the same buffer (only works if the insertion point
  // is greater than p+offtset+length).
  // When we do a realloc we know we need to re-compute the pointer.
- Boolean copyFromItself=p==buffer;
+ Boolean copyFromItself=(Boolean)(p==buffer);
 
  if (bufLen==0 && bufSize==0)
    { // It's a new buffer?

@@ -1,4 +1,26 @@
-$Log$
+$Log$.
+Revision 1.584  2004/08/22 22:45:16  set
+* Fixed: [Debug] Debug Window, Watches Window, Inspector Windows and
+Data Windows now saves not only its current size but also the "unzoomed"
+size.
+* Fixed: [Debug] Inspectors can't be closed while "running".
+* Added: [Debug] Now when we add a file to the project its path is added
+to the list of paths for sources.
+* Added: [Debug] When we add a path to the list of sources paths the path
+is also passed to gdb.
+* Added: [Debug] The code to enable MI v2. Currently it only helps
+inspectors making them much faster.
+* Added: [Debug] The code to disable the psym search workaround for the bug
+in gdb. It will allow faster startup when the bug is fixed without needing
+to change the editor.
+* Added: [Tags] Busy indicator while we load the tags from disk.
+Lamentably only the X11 driver implements it.
+* Modified: [Debug] The way "ignore" is interpreted: it means the times
+the breakpoint will be ignored when starting the program or when modifying
+or setting the breakpoint.
+* Modified: [Debug] Instead of reporting "OK" as an error now we explain
+the operation can't be performed.
+
 Revision 1.583  2004/08/20 16:10:53  set
 * Added: [WWW] Links to the DOS precompiled snapshots.
 * Added: [WWW] Image showing the editor debugging itself.

@@ -22,6 +22,7 @@ to skip*.
 #include <string.h>
 #ifndef STANDALONE
     #include <bufun.h>
+    #include <tv.h>  // bool definition for compilers without it
 #endif
 
 #ifndef EXTRA_INLINE
