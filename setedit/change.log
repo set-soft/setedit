@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.327  2003/05/05 13:45:13  set
+* Modified: Now the tags file automagically maintained by the editor can't
+be removed manually from the list of tag files. Also: it isn't saved to the
+desktop file. Instead when you load a project the file is automatically
+inserted.
+* Fixed: What Exuberant Ctags claims to be a regex isn't such a thing. For
+this reaso any "regex" containing a pointer type (*) fails. For this reason
+I changed the way it is used. Now I do a simple search but specifying
+"whole words", it can fail, but I think it won't be usual to get a fail.
+
 Revision 1.326  2003/05/02 19:39:40  set
 * Modified: Now is possible to load projects outside the current working
 directory. From a report by Grzegorz. Note it was tested only for Linux

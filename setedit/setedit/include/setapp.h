@@ -396,7 +396,7 @@ extern void ExportProjectItems();
 extern void ImportProjectItems();
 const unsigned wnopEspaceSep=0, wnopLineSep=1;
 extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=wnopEspaceSep);
-extern int WriteNamesOfProjectTo(FILE *f, time_t timeT, uint32 targetMask=0);
+extern int WriteNamesOfProjectToTime(FILE *f, time_t timeT, uint32 targetMask=0);
 extern int ClearForceTargetBits(uint32 bits);
 extern int SetForceTargetBits(uint32 bits);
 extern void ProjectInsertAutoTagFiles();

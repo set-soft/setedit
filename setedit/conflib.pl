@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Common configuration routines.
@@ -706,8 +706,18 @@ sub FindXCXXFLAGS
 
 sub DetectOS
 {
- my ($os,$OS);
+ my ($os,$OS,$pwd);
+ $pwd=`pwd`;
  $os=`uname`;
+ if (!$os || !$pwd)
+   {
+    print "\n";
+    print "* -------------------------------------------- *\n";
+    print " Please install the `uname' and `pwd' commands.\n";
+    print " DJGPP users: That's part of shell utils.\n";
+    print "* -------------------------------------------- *\n\n";
+    die;
+   }
  print 'Determining OS: ';
 
  $OSpr=0;

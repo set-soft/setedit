@@ -2155,7 +2155,7 @@ extern char **__crt0_argv;
 // DJGPP share options
 extern int __djgpp_share_flags;
 
-static __attribute__ ((constructor))
+static //__attribute__ ((constructor)) Fails for gcc 3.2.2
 void initProgram(void)
 {
  // MUST BE ON or some frt files will fail
@@ -2164,6 +2164,14 @@ void initProgram(void)
  __djgpp_share_flags=SH_DENYWR;
  ParseCommandLine(__crt0_argc,__crt0_argv);
 }
+
+// This trick is needed to call the initProgram() function
+class WrapperClassToCallConstructor
+{
+public:
+ WrapperClassToCallConstructor() {initProgram();};
+};
+static WrapperClassToCallConstructor theInitCaller;
 #endif
 
 /**[txh]********************************************************************

@@ -1071,7 +1071,7 @@ int WriteNamesOfProjectTo(FILE *f, unsigned mode)
  return st.c;
 }
 
-int WriteNamesOfProjectTo(FILE *f, time_t timeT, uint32 targetMask)
+int WriteNamesOfProjectToTime(FILE *f, time_t timeT, uint32 targetMask)
 {
  struct FileTm st;
  st.f=f;

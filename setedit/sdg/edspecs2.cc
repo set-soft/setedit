@@ -95,14 +95,9 @@ const char * GetVariable(const char *variable)
 // when declared inline won't be inlined. The following pragma disables it.
 #pragma option push -w-inl
 
-#ifdef TVComp_GCC
-static __attribute__ ((__constructor__))
-void init_variables(void)
-#else
-struct __init_edspecs_t
+struct init_edspecs_t
 {
-__init_edspecs_t()
-#endif
+init_edspecs_t()
 {
   char *variable,*contents;
   int i=0;
@@ -129,8 +124,6 @@ __init_edspecs_t()
     }
   }
 }
-#ifndef TVComp_GCC
-} __init_edspecs;
-#endif
+} init_edspecs;
 
 #pragma option pop
