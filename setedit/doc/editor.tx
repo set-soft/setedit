@@ -2621,9 +2621,9 @@ create a new one.
 @p{}
 
 This option works with a tags file called @file{tags} located in same
-directory as the project. Please don't remove this file from the list of tag
-files to use or this option won't work. If you did it accidentally just
-disable and then enable this option.
+directory as the project. This file will be listed in the list of tag files
+to search but marked with @code{automatic}. You won't be able to remove this
+entry from the list manually.
 @p{}
 
 When new items are added to the project they are marked in a way that they

@@ -399,6 +399,7 @@ extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=wnopEspaceSep);
 extern int WriteNamesOfProjectTo(FILE *f, time_t timeT, uint32 targetMask=0);
 extern int ClearForceTargetBits(uint32 bits);
 extern int SetForceTargetBits(uint32 bits);
+extern void ProjectInsertAutoTagFiles();
 
 // The forceTarget is a bitmap for each target suported by the project.
 // Currently the only target is the TAGs file.

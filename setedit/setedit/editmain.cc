@@ -1401,7 +1401,7 @@ int GotoFileText(char *search, char *file, char *msg, int off, int len)
    {
     TCEditor *ed=edw->editor;
     ed->lock();
-    ed->SearchAndJump(search,efCaseSensitive | efRegularEx);
+    ed->SearchAndJump(search,efCaseSensitive | efWholeWordsOnly);
     ed->trackCursor(True);
     ed->update(ufView); // Be sure we cleared the last hit
     if (msg)

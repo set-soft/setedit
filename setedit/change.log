@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.326  2003/05/02 19:39:40  set
+* Modified: Now is possible to load projects outside the current working
+directory. From a report by Grzegorz. Note it was tested only for Linux
+(don't tested using drive letters).
+
 Revision 1.325  2003/05/02 12:45:16  set
 * Fixed: The modified CreateChooseDialog used cmOKApply and cmCancelApply
 commands instead of cmOK and cmCancel. Reported by Grzegorz.
