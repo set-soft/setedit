@@ -3608,7 +3608,7 @@ void TCEditor::SearchMatchOnTheFly()
 
  if (IslineInEdition)
    { // Don't flush the line if that isn't really necesary
-    if (!strchr("{}()[]",*inEditPtr)) return;
+    if (!*inEditPtr || !strchr("{}()[]",*inEditPtr)) return;
    }
  flushLine();
  int Pos;
