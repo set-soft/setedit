@@ -858,12 +858,12 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 196 keys defined
-const int NormalSize=90,CtrlQSize=49,CtrlKSize=61;
-#define NormalTable KeyTTable90
+// 194 keys defined
+const int NormalSize=88,CtrlQSize=49,CtrlKSize=61;
+#define NormalTable KeyTTable88
 #define CtrlQTable  KeyTTable49
 #define CtrlKTable  KeyTTable61
-DeclareTable(90);
+DeclareTable(88);
 DeclareTable(49);
 DeclareTable(61);
 
@@ -899,7 +899,7 @@ NormalTable base=
   { kbShEnd, kbtIsSeq, {pSeq(ShEnd)} }, // 74
   { kbShDown, kbtIsSeq, {pSeq(ShDn)} }, // 75
   { kbShPgDn, kbtIsSeq, {pSeq(ShPgDn)} }, // 76
-  // Control 48
+  // Control 46
   { kbCtA, kbtIsComm, {cmcWordLeft} }, // 1
   { kbCtC, kbtIsComm, {cmcPageDown} }, // 3
   { kbCtD, kbtIsComm, {cmcCharRight} }, // 4
@@ -920,10 +920,10 @@ NormalTable base=
   { kbCtT, kbtIsComm, {cmcDelWord} }, // 20
   { kbCtU, kbtIsComm, {cmcUndo} }, // 21
   { kbCtV, kbtIsComm, {cmcInsMode} }, // 22
-  { kbCtW, kbtIsComm, {cmcScrollDown} }, // 23
+  // Moved to menues { kbCtW, kbtIsComm, {cmcScrollDown} }, // 23
   { kbCtX, kbtIsComm, {cmcLineDown} }, // 24
   { kbCtY, kbtIsComm, {cmcDelLine} }, // 25
-  { kbCtZ, kbtIsComm, {cmcScrollUp} }, // 26
+  // Moved to menues { kbCtZ, kbtIsComm, {cmcScrollUp} }, // 26
   { kbCtOpenBrace, kbtIsComm, {cmcSearchStart} }, // 27
   { kbCtCloseBrace, kbtIsComm, {cmcSearchEnd} }, // 29
   { kbCt0, kbtIsComm, {cmcGotoMark0} }, // 32
