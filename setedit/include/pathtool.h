@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef PATHTOOL_H_INCLUDED
 #define PATHTOOL_H_INCLUDED
@@ -7,8 +7,8 @@ class TStringCollectionW;
 int   edTestForFile(const char *name);
 char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 int   FindFile(const char * name,char * & fullName);
-char *ReplaceExtension(char *name, char *ext, char *old);
-char *ReplaceExtension(char *name, char *ext);
+char *ReplaceExtension(char *name, const char *ext, const char *old);
+char *ReplaceExtension(char *name, const char *ext);
 char *AddToNameOfFile(char *fname, char *add);
 int   DeleteWildcard(char *mask);
 char *GetPathRelativeToRunPoint(char *dest, const char *binReplace, char *file);

@@ -93,6 +93,7 @@ class TSIndicator;
 class TIndicator;
 class TEvent;
 class TSubMenu;
+struct stEditorId;
 
 const int MaxRecMacroLen=250;
 const int MaxXYRingStack=12;
@@ -390,6 +391,7 @@ public:
     void UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP, unsigned lastLine);
     // File handle members
     Boolean loadFile(Boolean setSHL=False);
+    Boolean reLoadFile();
     Boolean save();
     Boolean saveAs(Boolean Unix=False);
     Boolean saveAsUNIX() { return saveAs(True); };
@@ -526,8 +528,7 @@ public:
     // 0 if the file isn't in disk
     time_t DiskTime;
     // device and starting inode of the file. 0 on new files.
-    dev_t  DeviceOfFile;
-    ino_t  INodeOfFile;
+    stEditorId EditorId;
     // attributes of the file from stat under Linux or _chmod in DOS
     CLY_mode_t ModeOfFile;
 

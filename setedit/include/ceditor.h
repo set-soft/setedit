@@ -1,28 +1,30 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_TCEditWindow
 #define _INCL_CED_CLAS_
 #define Uses_TCEditor
 #define Uses_TWindow
+#define Uses_stdio
 #endif
 
 #if defined(Uses_TCEditor) || defined(Uses_TCFileEditor)
 #define _INCL_CED_CLAS_
-#define	_INCL_TVSETUTI
-//#define _INCL_DIR
+#define _INCL_TVSETUTI
 #define Uses_TRect
 #define Uses_TScrollBar
 #define Uses_TSIndicator
 #define Uses_TEvent
 #define Uses_TCEditor_External
+#define Uses_EditorId
 #define Uses_LineLengthArray
-#define	Uses_SOStack
-#define	Uses_TViewPlus
+#define Uses_SOStack
+#define Uses_TViewPlus
 #define Uses_TPMCollection
 #define Uses_TSArray_Def
 #define _INCL_TIME_H_
 #define Uses_limits
 #define Uses_CLYFileAttrs
+#define Uses_stdio
 #endif
 
 #ifdef Uses_TSIndicator
@@ -36,12 +38,12 @@
 
 #ifdef Uses_TFindCDialogRec
 #define _INCL_CED_CLAS_
-#define _INCL_STRING
+#define Uses_string
 #endif
 
 #ifdef Uses_TReplaceCDialogRec
 #define _INCL_CED_CLAS_
-#define _INCL_STRING
+#define Uses_string
 #endif
 
 #ifdef Uses_TCEditor_Internal
@@ -138,7 +140,6 @@
 
 #ifdef _INCL_CED_CLAS_
 #define Uses_TCEditor_Class
-#include <stdio.h>
 #include <ced_clas.h>
 #endif
 
