@@ -475,6 +475,8 @@ sub GenerateSourceDistro
 {
  my $dir;
 
+ mkdir('result',00755) unless -d 'result';
+
  print "\n\nCreating source distribution\n";
  
  chdir('../../..');
