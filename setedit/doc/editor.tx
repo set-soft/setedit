@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.57
-@set update-date 17 May 2002
-@set update-month May 2002
+@set version 0.5.0
+@set update-date 1 Oct 2002
+@set update-month Oct 2002
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1679,8 +1679,12 @@ This menu contains all the configuration submenues and some usefull tools.
 @c --------------------------------------------------------------------------
 @subsection Options
 
-This submenu contains the configuration submenues.
-@paragraph{}
+This submenu contains the configuration submenues. You can find the local and
+global edition options in the Edit menu. @x{Edit}.
+@p{}
+Some deep submenues are explained here because the documentation tools limits
+how deep sub sections can be nested.
+@p{}
 
 @c --------------------------------------------------------------------------
 @subsubsection Customize Colors
@@ -2136,47 +2140,173 @@ Used to consult the keyboard scan codes: @x{Consulting scan codes}.
 @subsubsection Screen Options
 
 This command po-ups the screen options configuration dialog. Here you can
-customize the video mode, the fonts and the characters encoding. If you are
-looking for the screen saver: @x{Editor General}.
-@paragraph{}
+customize the video mode or window size. This dialog is available only when
+you are running in a terminal that can control the screen size. If you are
+looking for the screen saver: @x{Screen Saver}.
+@p{}
 
-The @i{Screen Mode} group allows you to select the video mode. The radio
-buttons shows the modes fully supported by the editor. If you want to try
-an special mode of your video card just enter the number of mode in the
-input line located under the modes list. Finally you can choose to set the
-mode using an external program. To make that enable the
-@i{Use external program} option and enter the name of the program. I use
-SVGA Text Mode to setup 108x30 from time to time.
-@paragraph{}
+Not all hardware drivers supports it and not all the options are usable for
+all the drivers. Some times you can't control the screen size, like in
+@b{Linux}, in other cases you have total control, like when you run the
+editor in @b{X11}, and in others you have limited control, like in @b{DOS}.
+@p{}
 
-The @i{Primary font} and @i{Secondary font} groups are used to indicate the
-fonts used by the editor. If you don't know what a secondary font is:
-@x{Text mode attributes}. For the primary font you can choose between using
-the ROM BIOS fonts or one of the provided fonts. If you choose the ROM BIOS
-fonts then the encoding doesn't have any effect and you can't use a secondary
-font. For the secondary font you can choose if you want to use it or not.
-@paragraph{}
+The first group of options selects how the editor will try to set the video
+mode. The available options are:
+@p{}
 
-The provided fonts works well with the list of supported video modes and
-normally can be used with any video mode, but if you choose a very strange
-video mode the editor won't be able to set the font and will use the ROM
-BIOS fonts.
-@paragraph{}
+@itemize @bullet
+  @item Don't force: The editor won't try to change the screen size.
+  @item Same as last run: The editor will remmember the last size used and
+will try to restore the closest posible size.
+  @item External program: It curently have sense only for @b{DOS}. It can be
+used when you have an external program that can set the video mode as you
+want. In this case you must also indicate the command line for it in the
+@b{External program} box.
+  @item Closest to specified size: The editor will try to select a screen
+size that's closer to the values indicated in @b{Width}, @b{Height},
+@b{Chars width} and @b{Chars height} boxes. Note that some drivers supports
+only a small set of fixed values and others have silly limitations imposed by
+the operating system.
+  @item Specified mode number: This is mainly for @b{DOS}. Use it if you know
+about a video mode supported by your video card that isn't known by the
+editor. In this case you must indicate the video mode number in the
+@b{Mode number} box.
+@end itemize
 
-The @i{Primary encoding} and @i{Secondary encoding} options allows to select
-the code page (encoding) used by the editor. Currently the editor supports
-twelve encodings. That's usefull if you need to look files with a different
-encoding and the encoding isn't supported by DOS or you just don't want to
-reconfigure your machine for it. As an example in my country the DOS uses the
-CP850 as default, as this code page destroys some graphic chars I never use
-it, but there are people using it so if I want to look text written by this
-people in the right way I must choose this encoding. Something similar
-happends with Windows and Linux texts, they use ISO Latin 1 and that's
-totally unsuported by DOS, so if I want to see the accents in the text I
-must use this encoding.
-@paragraph{}
+Even when the video mode mechanism is for @b{DOS} you can use one of the video
+modes known by the editor even when running on @b{X11} or other terminals
+where the screen size can be changed at will. The following is a list of
+known video modes:
+@p{}
+
+@table3{Mode,Width x Height,Char Cell}
+@titem3{0x0003, 80 x 25,9 x 16}
+@titem3{0x0103, 80 x 28,9 x 14}
+@titem3{0x0703, 80 x 30,9 x 16}
+@titem3{0x0803, 80 x 34,9 x 14}
+@titem3{0x0203, 80 x 35,9 x 10}
+@titem3{0x0303, 80 x 40,9 x 10}
+@titem3{0x0403, 80 x 43,9 x  8}
+@titem3{0x0503, 80 x 50,9 x  8}
+@titem3{0x0108, 80 x 60,9 x  8}
+@titem3{0x0D03, 82 x 25,8 x 16}
+@titem3{0x0903, 90 x 30,9 x 16}
+@titem3{0x0A03, 90 x 34,9 x 14}
+@titem3{0x0B03, 94 x 30,9 x 16}
+@titem3{0x0C03, 94 x 34,9 x 14}
+@titem3{0x0109,132 x 25,9 x 14}
+@titem3{0x010A,132 x 43,9 x 11}
+@titem3{0x010B,132 x 50,9 x 10}
+@titem3{0x010C,132 x 60,9 x  8}
+@endtable_{}
 
 @refMenu1{cmeSetScreenOps}
+
+@c --------------------------------------------------------------------------
+@subsubsection Encodings
+
+This dialog is used to select the encodings used by the editor. This is a
+complex topic and you'll have to play a little bit with these options before
+you can get all the funtionality. Usually you won't need to use it unless you
+deal with more than one encoding.
+@p{}
+
+Currently the editor can only use files where one letter correspond to just
+one character. It limits the editor to 256 different symbols. This is the
+common case for most operating systems and environments. Which symbols are
+represented by these 256 values is what we call an encoding.
+@p{}
+
+The encodings are also known as code pages. An example of code page is the
+@b{DOS} code page 437 used by PC VGA boards or the ISO 8859-1 encoding used
+by most POSIX systems as a default encoding. Currently more than 47 encodings
+are supported. These encodings cover the latin, cyrillic and greek alphabets.
+If your alphabet or favorite encoding isn't supported please consider
+contributing.
+@p{}
+
+In most cases the editor will detect the encoding currently used by the
+operating system without problems. A special case is the @b{GNU/Linux} OS
+where the concept of code page doesn't really exist and you can find all kind
+of errors in the fonts and unicode maps.
+@p{}
+
+This dialog can have two, three or four encodings to select they are:
+@p{}
+
+@itemize @bullet
+  @item Application: how is encoded the application itself, select the
+encoding used in your documents.
+  @item Input: how is encoded the data from the keyboard. It is usually the
+same encoding used by the screen. If the application and input code pages
+doesn't match the editor will translate the data from the keyboard to the
+application encoding.
+  @item Screen: how is encoded the screen. Not all hardware drivers supports
+it because some of them works with a fixed code page and this value is known.
+Here you indicate how is encoded the font used by your hardware or OS. If
+this value doesn't match the application code page the editor will translate
+the data before sending it to the screen.
+  @item Second font: how the secondary font is encoded. This is available
+only when the driver supports more than one font at the same time,
+@end itemize
+
+If any of these settings doesn't have the @b{Force encoding} option selected
+then the editor will use what was detected.
+@p{}
+
+If you force the screen encoding the selected value must match the OS
+encoding. The exception is when you select a font in the @b{Fonts} dialog. In
+this case the editor will recode the selected font to match your selection.
+Don't forget this interaction with the @b{Fonts} dialog. @x{Fonts}.
+@p{}
+
+Note that you can easilly edit documents encoded in a code page different
+than the one used by the OS without doing any specific recoding. Example: if
+you are using @b{X11} and the ISO 8859-1 encoding but you want to edit a DOS
+file encoded using the 850 code page you just need to select the application
+encoding as @b{PC 850} and force it. Your keyboard will generate ISO 8859-1
+values, they will be translated into 850 encoding and put in your document.
+At the same time the text encoded using 850 code page will be translated to
+ISO 8859-1 before displaying it.
+@p{}
+
+@refMenu1{cmeEncodings}
+
+@c --------------------------------------------------------------------------
+@subsubsection Fonts
+
+This dialog is used to select the fonts used by the editor. Not all hardware
+drivers supports custom fonts and some only supports only one font. The
+editor can handle upto two fonts at the same time. The use of two fonts is
+complex.
+@p{}
+
+Only the fonts marked with @b{Load font} are used, don't forget to enable it
+before leaving this dialog.
+@p{}
+
+The size of the fonts must be the same, that's why even on systems that
+supports two fonts only one size can be selected.
+@p{}
+
+The offered fonts are the provided by the editor and not the OS. This is
+because some systems doesn't provide fonts and the systems that provides
+fonts usually provides only a few fixed width fonts. The format used by the
+fonts is documented in the Turbo Vision library.
+@p{}
+
+The fonts marked with @i{limited} doesn't cover all the encodings supported
+by the editor. @x{Encodings}.
+@p{}
+
+When you load a font the encoding for this font will be the value indicated
+by the screen encoding option selected in the @b{Encodings} dialog. If you
+change this encoding the editor will automatically change the encoding of the
+font.
+@p{}
+
+@refMenu1{cmeFonts}
 
 @c --------------------------------------------------------------------------
 @subsubsection User Words

@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.218  2002/09/23 12:45:07  set
+* Fixed?: The TDskWin wrappers for InfView and the Clipboard deleted the
+windows intead of closing them. This can originate the use of already
+deleted objects because they remain inserted in the desktop. I saw it with
+efence, but I wonder why it wasn't exposed before, that's why I'm not sure
+about this fix.
+* Fixed: The TDskWinPrj() objects didn't set the wS and hS members when a
+new project was created giving crazy window sizes when loading the desktop.
+
 Revision 1.217  2002/09/23 12:43:30  set
 * Added: More TV configuration file keywords.
 

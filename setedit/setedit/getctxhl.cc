@@ -104,6 +104,8 @@ static helpNode helpList[]=
  He(NextMessage),
  He(PrevMessage),
  HHe(SetScreenOps,"Screen Options"),
+ HHe(Encodings,"Encodings"),
+ HHe(Fonts,"Fonts"),
  HHe(EditUserWords,"User Words"),
  HHe(EditDeflOpts,"Default global edition"),
  HHe(EditPalette,"Color Palette"),
