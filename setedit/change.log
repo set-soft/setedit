@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.135  2002/06/28 12:37:20  set
+* Fixed: A read out of bounds in the input line of the calculator. I must
+check it better because I think that's a bug in Turbo Vision. It isn't
+really important but isn't correct and efence SIGSEGVs.
+
 Revision 1.134  2002/06/28 12:36:29  set
 * Modified: The editor now checks if the screen saver is suitable for the
 current driver.

@@ -223,8 +223,9 @@ public:
     int selColStart,selColEnd,selColStartPoint;
     Boolean selecting;
     static void (*InsertRoutine)(char *b, long l);
-    static void (*InsertRoutineSecondary)(char *b, long l); // i.e. GUI clipboard
-    void PasteToClipboard(void);
+    //static void (*InsertRoutineSecondary)(char *b, long l); // i.e. GUI clipboard
+    static void OSInsertRoutine(char *b, long l);
+    void PasteToClipboard(void (*ir)(char *b, long l));
     void PasteInclude(void);
     int modeFlags;
 
@@ -293,8 +294,7 @@ class TInfWindow : public TWindow
 public:
 
  TInfWindow( TInfFile*, char *context, char *match=0,
-             void (*ir)(char *b, long l)=NULL, Boolean IsTheOne=False,
-             void (*ir2)(char *b, long l)=NULL );
+             void (*ir)(char *b, long l)=NULL, Boolean IsTheOne=False );
 
  virtual TPalette& getPalette() const;
  virtual void close();

@@ -63,6 +63,7 @@
 #define Uses_TSubMenu
 #define Uses_TMenuBox
 #define Uses_TStringableListBox
+#define Uses_TVOSClipboard
 
 #define Uses_TCEditor
 #define Uses_LineLengthArray
@@ -84,7 +85,6 @@
 
 #include <setconst.h>
 
-#include <winoldap.h>
 #include <loadkbin.h>
 #include <sys/types.h>
 #define Uses_GZInterfaceOnly
@@ -203,7 +203,6 @@ int InitTCEditor(char *s,Boolean force)
        TCEditor::PMColl=new TPMCollection(32,8);
     if (LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s),*TCEditor::PMColl)==False)
        ret|=1;
-    WINOLDAP_Init();
     TView::getCommands(TCEditor::cmdsAux);
     DisableCommands(TCEditor::cmdsAux);
 #ifdef STANDALONE
@@ -436,20 +435,32 @@ Boolean TCEditor::clipCopy()
 /**[txh]********************************************************************
 
   Description:
-  Copies the selection to the Windows clipboard.
+  Copies the selection to the OS clipboard. Originally designed to be used
+for Windows.
 
   Return:
   Boolean True if all was OK.
 
 ***************************************************************************/
 
-Boolean TCEditor::clipWinCopy()
+Boolean TCEditor::clipWinCopy(int id)
 {
  Boolean res=False;
  if (hasSelection())
    {
+    if (!TVOSClipboard::isAvailable())
+      {
+       messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       return False;
+      }
     flushLine();
-    res=WINOLDAP_SetClipboard(buffer+selStart,selEnd-selStart) ? True : False;
+    res=TVOSClipboard::copy(id,buffer+selStart,selEnd-selStart) ? True : False;
+    if (!res)
+      {
+       messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+                  TVOSClipboard::getError());
+       return False;
+      }
     selecting=False;
    }
  return res;
@@ -499,19 +510,24 @@ void TCEditor::clipPaste()
   Pastes the Windows clipboard in the editor. If not persistent deletes
 the selection. The pasted text is selected only if persistent blocks are
 enabled. This behavior is what a windows user spect and was modified by
-sugestion of the Win32 porter (Anatoli Soltan).
+suggestion of Anatoli Soltan (Win32 porter).
 
 ***************************************************************************/
 
-void TCEditor::clipWinPaste()
+void TCEditor::clipWinPaste(int id)
 {
  if (isReadOnly)
     return;
+ if (!TVOSClipboard::isAvailable())
+   {
+    messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+    return;
+   }
  flushLine();
  if (curPos.x<(MaxLineLen-1))
    {
-    unsigned long size;
-    char *p=WINOLDAP_GetClipboard(&size);
+    unsigned size;
+    char *p=TVOSClipboard::paste(id,size);
     if (p)
       {
        if (!PersistentBlocks && hasSelection())
@@ -524,6 +540,9 @@ void TCEditor::clipWinPaste()
        insertBuffer(p,0,size,canUndo,PersistentBlocks,False);
        delete p;
       }
+    else
+       messageBox(mfError | mfOKButton,_("Error pasting from clipboard: %s"),
+                  TVOSClipboard::getError());
    }
 }
 
@@ -1943,6 +1962,13 @@ void TCEditor::handleMouse(TEvent &event)
     return;
    }
 
+ if (event.mouse.buttons==mbMiddleButton && TVOSClipboard::isAvailable()>1)
+   {
+    MoveToMouse(event.mouse.where,smDontSel);
+    clipWinPaste(1);
+    return;
+   }
+
  if (event.mouse.doubleClick)
     selectMode|=smDouble;
  do
@@ -1952,25 +1978,27 @@ void TCEditor::handleMouse(TEvent &event)
       {
        TPoint mouse = makeLocal( event.mouse.where );
        TPoint d = delta;
-       if( mouse.x < 0 )
-           d.x--;
-       if( mouse.x >= size.x )
-           d.x++;
-       if( mouse.y < 0 )
-           d.y--;
-       if( mouse.y >= size.y )
-           d.y++;
+       if (mouse.x<0)
+          d.x--;
+       if (mouse.x>=size.x)
+          d.x++;
+       if (mouse.y<0)
+          d.y--;
+       if (mouse.y>=size.y)
+          d.y++;
        scrollTo(d.x, d.y);
       }
     MoveToMouse(event.mouse.where,selectMode);
     //setCurPtr(getMousePtr(event.mouse.where), selectMode);
-    selectMode |= smExtend;
+    selectMode|=smExtend;
     if (ShowMatchPairFly && ShowMatchPairNow)
        SearchMatchOnTheFly();
     unlock();
    }
- while( mouseEvent(event, evMouseMove + evMouseAuto) );
+ while (mouseEvent(event,evMouseMove+evMouseAuto));
  clearEvent(event);
+ if (TVOSClipboard::isAvailable()>1)
+    clipWinCopy(1);
 }
 
 
@@ -3404,16 +3432,15 @@ int TCEditor::handleCommand(ushort command)
                 break;
  
            case cmcCopyClipWin:
-                clipWinCopy();
+                clipWinCopy(0);
                 break;
  
            case cmcPasteClipWin:
-                clipWinPaste();
+                clipWinPaste(0);
                 break;
 
            case cmcCutClipWin:
-                clipWinCopy();
-                if (!isReadOnly)
+                if (clipWinCopy(0) && !isReadOnly)
                    deleteSelect();
                 break;
                 
@@ -8028,6 +8055,9 @@ void TCEditor::UpdateSelecting(void)
     selStart=bufLen;
  if (selEnd>bufLen)
     selEnd=bufLen;
+
+ if (TVOSClipboard::isAvailable()>1)
+    clipWinCopy(1);
 }
 
 /****************************************************************************
@@ -10178,9 +10208,10 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcCut,hs);
     setCmdState(cmcCopy,hs);
     setCmdState(cmcCopyClipFile,hs);
-    setCmdState(cmcCopyClipWin,hs);
+    setCmdState(cmcCopyClipWin,hs && TVOSClipboard::isAvailable());
     setCmdState(cmcClear,hs);
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
+    setCmdState(cmcPasteClipWin,TVOSClipboard::isAvailable());
    }
 }
 

@@ -157,11 +157,11 @@ public:
     virtual void updateRectCommands();
 
     Boolean clipCopy();
-    Boolean clipWinCopy();
+    Boolean clipWinCopy(int id);
     Boolean clipFileCopy();
     void clipCut();
     void clipPaste();
-    void clipWinPaste();
+    void clipWinPaste(int id);
     void clipFilePaste();
     void deleteRange( unsigned , unsigned, Boolean );
     void doUpdate();

@@ -74,7 +74,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <loadkbin.h>
-#include <winoldap.h>
 #include <runprog.h>
 #include <loadcle.h>
 #include <mixer.h>
@@ -543,11 +542,6 @@ void CopyHelp2Clip(char *b, long l)
 {
  if (clipWindow)
     clipWindow->editor->insertBuffer( b,0,(unsigned)l,False,True);
-}
-
-void CopyHelp2ClipGUI(char *b, long l)
-{
- WINOLDAP_SetClipboard(b,l);
 }
 
 static

@@ -30,8 +30,13 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "S~e~t Local options", cmcSetLocalOptions, kbAlL, "Alt+L"
  MenuItemC: "Set ~G~lobal options", cmcSetGlobalOptions, kbAlG, "Alt+G"
  MenuSeparator
+ $if DOS or WIN32
  MenuItemC: "Copy to ~W~indows Clip.", cmcCopyClipWin
  MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteClipWin
+ $else
+ MenuItemC: "Cop~y~ to OS Clipboard", cmcCopyClipWin
+ MenuItemC: "Past~e~ from OS Clipboard", cmcPasteClipWin
+ $endif
  SubMenu: "Re~c~tangle", kbAlR
   MenuItemC: "~S~tart", cmcSelRectStart, kbUnknown, "Ctrl+K-Shift+B"
   MenuItemC: "~E~nd",   cmcSelRectEnd, kbUnknown, "Ctrl+K-Shift+K"

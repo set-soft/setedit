@@ -102,7 +102,6 @@ void *TDskWinHelp::read( ipstream& is )
    
     // Set-Up the paste
     window->viewer->InsertRoutine=CopyHelp2Clip;
-    window->viewer->InsertRoutineSecondary=CopyHelp2ClipGUI;
    
     if (window->isTheOne)
        SetInfManager(this);
@@ -133,7 +132,7 @@ char *TDskWinHelp::GetText(char *dest, short maxLen)
 void TDskWinHelp::Create(char *File, char *Node, Boolean TheOne)
 {
  file = new TInfFile(File);
- window = new TInfWindow(file,Node,NULL,CopyHelp2Clip,TheOne,CopyHelp2ClipGUI);
+ window = new TInfWindow(file,Node,NULL,CopyHelp2Clip,TheOne);
  if ((window=(TInfWindow *)editorApp->validView(window))!=0)
     window->hide();
  view=window;
@@ -142,7 +141,7 @@ void TDskWinHelp::Create(char *File, char *Node, Boolean TheOne)
 void TDskWinHelp::CreateModal(char *File, char *Node)
 {
  TInfFile *aFile = new TInfFile(File);
- TInfWindow *aWindow = new TInfWindow(aFile,Node,NULL,CopyHelp2Clip,False,CopyHelp2ClipGUI);
+ TInfWindow *aWindow = new TInfWindow(aFile,Node,NULL,CopyHelp2Clip,False);
  if ((aWindow=(TInfWindow *)editorApp->validView(aWindow))!=0)
     TProgram::deskTop->execView(aWindow);
  destroy(aWindow);

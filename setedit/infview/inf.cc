@@ -187,6 +187,7 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #define Uses_TSortedListBox
 #define Uses_TFileDialog
 #define Uses_TCommandSet
+#define Uses_TVOSClipboard
 
 #define Uses_TCEditor_External
 #define Uses_TCEditor_Commands
@@ -516,7 +517,7 @@ void TInfViewer::updateCommands(int full)
 
  int deltaY=selRowEnd-selRowStart+1;
  int haveSel=deltaY>1 || (deltaY==1 && selColEnd>selColStart);
- setCmdState(cmcCopyClipWin,(InsertRoutineSecondary && haveSel) ? True : False);
+ setCmdState(cmcCopyClipWin,(TVOSClipboard::isAvailable() && haveSel) ? True : False);
  setCmdState(cmcCopy,(InsertRoutine && haveSel) ? True : False);
  setCmdState(cmInfPasteIn,InsertRoutine ? True : False);
  setCmdState(cmcSearchAgain,Boolean(SearchArmed));
@@ -880,9 +881,17 @@ char *TInfViewer::TakeFromHistory(TPoint& Pos)
  return h->Name;
 }
 
+void TInfViewer::OSInsertRoutine(char *b, long l)
+{
+ if (!TVOSClipboard::copy(0,b,l))
+   {
+    messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+               TVOSClipboard::getError());
+    return;
+   }
+}
 
-
-void TInfViewer::PasteToClipboard(void)
+void TInfViewer::PasteToClipboard(void (*ir)(char *b, long l))
 {
  char b[256];
  int deltaY=selRowEnd-selRowStart+1;
@@ -954,7 +963,7 @@ void TInfViewer::PasteToClipboard(void)
     }
 
  if (lTotal)
-    InsertRoutine(d,lTotal);
+    ir(d,lTotal);
 
  delete d;
 }
@@ -1183,17 +1192,12 @@ void TInfViewer::handleEvent( TEvent& event )
 
               case cmcCopy:
                    if (InsertRoutine)
-                      PasteToClipboard();
+                      PasteToClipboard(InsertRoutine);
                    break;
 
               case cmcCopyClipWin:
-                   if (InsertRoutineSecondary)
-                     { // Nasty trick ;-)
-                      void (*p)(char *b, long l)=InsertRoutine;
-                      InsertRoutine=InsertRoutineSecondary;
-                      PasteToClipboard();
-                      InsertRoutine=p;
-                     }
+                   if (TVOSClipboard::isAvailable())
+                      PasteToClipboard(OSInsertRoutine);
                    break;
 
               case cmInfPasteIn:
@@ -1424,7 +1428,7 @@ void TInfViewer::handleEvent( TEvent& event )
 
              case kbCtInsert:
                   if (InsertRoutine)
-                     PasteToClipboard();
+                     PasteToClipboard(InsertRoutine);
                   break;
 
              case kbEnd:
@@ -2084,7 +2088,6 @@ TInfViewer::TInfViewer( StreamableInit ) : TScroller( streamableInit )
 }
 
 void (*TInfViewer::InsertRoutine)(char *b, long l)=NULL;
-void (*TInfViewer::InsertRoutineSecondary)(char *b, long l)=NULL;
 
 
 static TRect defaultSizeWindow;
@@ -2106,9 +2109,8 @@ TRect &getDefaultSizeWindow()
 
 ***************************************************************/
 
-TInfWindow::TInfWindow( TInfFile *hFile, char *context, char *match,
-                        void (*ir)(char *b, long l),Boolean IsTheOne,
-                        void (*ir2)(char *b, long l)):
+TInfWindow::TInfWindow(TInfFile *hFile, char *context, char *match,
+                       void (*ir)(char *b, long l), Boolean IsTheOne) :
        TWindow( getDefaultSizeWindow(), "InfView", wnNoNumber ),
        TWindowInit( &TInfWindow::initFrame)
 {
@@ -2120,7 +2122,6 @@ TInfWindow::TInfWindow( TInfFile *hFile, char *context, char *match,
    standardScrollBar(sbVertical | sbHandleKeyboard), hFile, context,
    match);
  viewer->InsertRoutine=ir;
- viewer->InsertRoutineSecondary=ir2;
  insert(viewer);
  helpCtx = hcInfView;
  isTheOne=IsTheOne;
