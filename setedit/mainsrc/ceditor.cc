@@ -787,8 +787,8 @@ Boolean TCEditor::doSearchReplace()
          i=cmYes;
          if (editorFlags & efPromptOnReplace)
            {
-            TPoint c=makeGlobal(cursor);
             unlock();
+            TPoint c=makeGlobal(cursor);
             i=editorDialog(edReplacePrompt,&c);
             lock();
            }

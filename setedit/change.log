@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.457  2003/10/20 15:32:12  set
+* Added: Now sLisp can replace things like ^K key binding even when it
+implies removing all the ^K-x assignments. It allows a complete
+replacement.
+
 Revision 1.456  2003/10/20 15:31:16  set
 * Modified: "Do not purge spaces" option to be "Keep trailing whitespace"
 that's more descriptive. Suggested by Oswald.
