@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.455  2003/10/16 20:02:35  set
+* Fixed: [Cygwin] Collision between strndup and calculator parser.
+Personally don't know mush about this issue but looks like a name space
+pollution in Cygwin.
+
 Revision 1.454  2003/10/16 19:42:47  set
 * Modified: To select the closest word when using double click and not the
 next. Suggested by Alain.

@@ -50,6 +50,7 @@
 #include <intermp3.h>
 #include <runprog.h>
 #include <loadcle.h>
+#include <edhists.h>
 
 #ifdef TVOS_UNIX
 #include <sys/wait.h>
@@ -118,7 +119,7 @@ void ConfigureRunCommand(void)
  // EN: ABDEFHJKLMNPRSTUW
  // ES: ACEFKIJLNOPRSTUZ
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
-         new TSInputLine(maxCommand,40));
+         new TSInputLine(maxCommand,1,hID_RunProgram,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
          __("~U~se OS screen to run the program"),
          __("~D~on't try to run in background"),

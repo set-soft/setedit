@@ -344,8 +344,6 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     // If the file is in the project open it using the relative path as if
     // the file came from the project
     char *relName=GetRelIfFileInPrj(fileName);
-    if (relName)
-       printf("Using %s instead of %s\n",relName,fileName);
     ain=new TCEditWindow(r,relName ? relName : fileName,wnNoNumber,openAsReadOnly);
     string_free(relName);
     if ((options & oedDontOpenEmpty) && ain->editor->FailedToLoad)

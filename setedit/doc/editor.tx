@@ -4384,8 +4384,9 @@ spaces pressing tab. In this situation you must enable this option and
 configure the indentation amount in the @il{Indent size} box.
 @paragraph{}
 
-@section Do not purge spaces
+@section Keep trailing whitespace
 @cindex Spaces, purging at the end of line
+@cindex Spaces, removing trailing
 
   Normally the editor purges any space after the last visible character in a
 line. That's very useful to save disk space and to avoid problems with end of

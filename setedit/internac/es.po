@@ -1721,8 +1721,8 @@ msgid "Use in~d~ent size"
 msgstr "Usar el valor de 'indentado' ~6~"
 
 #: ../mainsrc/deedidia.cc:257 ../mainsrc/deedidia.cc:308
-msgid "Don't pur~g~e spaces"
-msgstr "No borrar espacios extra ~3~"
+msgid "Keep trailin~g~ whitespace"
+msgstr "No borrar espacios al final ~3~"
 
 #: ../mainsrc/deedidia.cc:257
 msgid "Backspace unindents ~2~"

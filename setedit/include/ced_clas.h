@@ -253,6 +253,7 @@ public:
     static Boolean staticShowMatchPair;     // the static version
     Boolean ShowMatchPairFly;
     static Boolean staticShowMatchPairFly;
+    static TCEditor *showMatchPairFlyCache;
     Boolean ShowMatchPairNow;
     static Boolean staticShowMatchPairNow;
     static Boolean staticNoMoveToEndPaste;  //  True if the cursor is moved to the end of

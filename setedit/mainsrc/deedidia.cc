@@ -254,7 +254,7 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
          __("Tra~n~sparent Blocks"),__("Optimal ~F~ill"),__("~W~rap words"),
          __("S~e~e tabs"),__("Don't move inside ta~b~s"),
          __("Tab ~s~mart indents"),__("Use in~d~ent size"),
-         __("Don't pur~g~e spaces"),__("Backspace unindents ~2~"),
+         __("Keep trailin~g~ whitespace"),__("Backspace unindents ~2~"),
          __("Column markers ~4~"),0);
 
  TSHzGroup *Inputs=MakeHzGroup(3,
@@ -399,7 +399,8 @@ TDialog *createArbitraryIndent(int len)
 {
  TSViewCol *col=new TSViewCol(__("Arbitrary indent"));
 
- TSLabel *label=new TSLabel(__("Indentation text"),new TSInputLinePiped(len,GetDeskTopCols()-20));
+ TSLabel *label=new TSLabel(__("Indentation text"),
+                  new TSInputLinePiped(len,1,hID_ArbitraryIndent,GetDeskTopCols()-20));
  col->insert(xTSCenter,yTSUp,label);
  EasyInsertOKCancel(col);
 

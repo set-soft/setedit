@@ -765,12 +765,16 @@ Boolean TCEditor::doSearchReplace()
 {
  int i;
  int oldPromptOnReplace=editorFlags & efPromptOnReplace;
- Boolean ret=False;
+ Boolean ret=False, needsUnlock=True;
+
+ lock();
  do
   {
    i=cmCancel;
    if (!search(findStr,editorFlags))
      {
+      needsUnlock=False;
+      unlock();
       if (!(editorFlags & efNoFindFailMsg) &&
           (editorFlags & (efReplaceAll | efDoReplace))!=(efReplaceAll | efDoReplace))
          editorDialog(edSearchFailed);
@@ -784,7 +788,9 @@ Boolean TCEditor::doSearchReplace()
          if (editorFlags & efPromptOnReplace)
            {
             TPoint c=makeGlobal(cursor);
+            unlock();
             i=editorDialog(edReplacePrompt,&c);
+            lock();
            }
          if (i==cmOK)
            { // Used to signal ALL
@@ -793,7 +799,6 @@ Boolean TCEditor::doSearchReplace()
            }
          if (i==cmYes)
            {
-            lock();
             lockUndo();
             int mustDelete;
             uint32 l;
@@ -809,7 +814,6 @@ Boolean TCEditor::doSearchReplace()
             trackCursor(False);
             StartOfSearch=selStartF+l;
             unlockUndo();
-            unlock();
             ret=True;
            }
          else
@@ -821,6 +825,8 @@ Boolean TCEditor::doSearchReplace()
   }
  while(i!=cmCancel && (editorFlags & efReplaceAll)!=0);
 
+ if (needsUnlock)
+    unlock();
  // Restore it in case the ALL changed the value
  editorFlags|=oldPromptOnReplace;
  return ret;
@@ -2467,6 +2473,7 @@ int TCEditor::handleCommand(ushort command)
            case cmcDelChar:
                 if (isReadOnly)
                    break;
+                showMatchPairFlyCache=NULL;
                 if (!PersistentBlocks && hasSelection())
                   {
                    if (command==cmcDelChar)
@@ -3884,12 +3891,11 @@ void TCEditor::RemapCodePageBuffer(int , int , unsigned , Boolean )
 Boolean TCEditor::SearchMatchOnTheFly()
 {
  static int oldX,oldY;
- static TCEditor *old;
 
- // Don't do it again
- if (/*IsHLCOn && */old==this && curPos.x==oldX && curPos.y==oldY) return False;
+ // Don't do it again /*IsHLCOn && */
+ if (showMatchPairFlyCache==this && curPos.x==oldX && curPos.y==oldY) return False;
 
- old=this;
+ showMatchPairFlyCache=this;
  oldX=curPos.x;
  oldY=curPos.y;
 
@@ -3903,8 +3909,11 @@ Boolean TCEditor::SearchMatchOnTheFly()
     MakeEfectiveLineInEdition();
     wasInEdition=1;
    }
- int Pos;
- char *s=ColToPointer();
+ int Pos, dif;
+ char *s=ColToPointer(dif);
+ // Outside the line or inside a tab
+ if (dif)
+    return False;
  switch (*s)
    { // Note: s+1 because the routines are designed assuming the cursor is passing the char
     case '}':
@@ -5644,7 +5653,8 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
  if (!IslineInEdition)
     return;
  // Tab in indent mode
- if (cVal=='\t' && !UseTabs)
+ // Note: If we are in undo mode (!allowUndo) tabs are realtabs
+ if (cVal=='\t' && !UseTabs && allowUndo)
    {
     int X;
     if (TabIndents)
@@ -5685,18 +5695,23 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
 
  if (overwrite)
    {
+    char vals[2];
     if (allowUndo)
       {
-       char vals[2];
        vals[0]=cVal;
        vals[1]=*inEditPtr;
-       addToUndo(undoOvrPutChar,(void *)&vals[0]);
+       // Don't add to the undo yet, we could need a move
+       lockUndo();
       }
 
     if (*inEditPtr)
       {
        if (*inEditPtr=='\t') // Is over a Tab?
+         {
+          if (allowUndo)
+             addToUndo(undoInMov);
           curPos.x=LineWidth(bufEdit,inEditPtr);
+         }
        *inEditPtr++=cVal;
        restCharsInLine--; // Why?!, if we advance a char we have one less in the line
        //return;
@@ -5707,6 +5722,11 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
           return;
        *inEditPtr++=cVal;
        *inEditPtr=0;
+      }
+    if (allowUndo)
+      {
+       addToUndo(undoOvrPutChar,(void *)&vals[0]);
+       unlockUndo();
       }
    }
  else
@@ -7253,6 +7273,7 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
  if (isReadOnly || from>=to)
     return;
  CacheSyntaxHLData(GenericSHL);
+ showMatchPairFlyCache=NULL;
 
  // Fix to pointer if that's outside the buffer
  if ((unsigned)(to-buffer)>bufLen)
@@ -12177,7 +12198,7 @@ void TCEditor::addToUndo(UndoState st, void *p)
    {
     switch (st) // Grouped things
       {
-       case undoInMov: // The cursor mov is grouped
+       case undoInMov: // The cursor movement is grouped
             return;
        // The chars inserted one by one are stored in one cell
        case undoDelCharDel:
@@ -13555,6 +13576,7 @@ int      TCEditor::MacroCount=0;
 int      TCEditor::staticWrapCol=78;
 int      TCEditor::DontPurge=0;
 int      TCEditor::DontLoadFile=0;
+TCEditor *TCEditor::showMatchPairFlyCache=NULL;
 TSubMenu *TCEditor::RightClickMenu=0;
 TPMCollection *TCEditor::PMColl=NULL;
 TStringCollection *TCEditor::SHLGenList=NULL;
