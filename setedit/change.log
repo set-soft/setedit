@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.368  2003/05/15 18:10:26  set
+* Modified: configset to wait for ENTER instead of sleeping 2 seconds. As
+suggested by Ivan.
+
 Revision 1.367  2003/05/15 18:04:42  set
 * Fixed: The tool to transport patches from my home to SF CVS skipped some
 patches :-( I think it was the source for various misterious missing

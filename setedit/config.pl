@@ -140,6 +140,7 @@ if ($OS eq 'DOS')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=$(DJDIR)/include $(DJDIR)/lang/cxx $(DJDIR)/lib/gcc-lib';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
+   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ';
    $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='iconv ' if (@conf{'iconv'} eq 'yes');
    if ((@conf{'mp3'} eq 'yes') && (@conf{'HAVE_ALLEGRO'} eq 'yes'))
@@ -154,7 +155,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
    # RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
    # be added for things like FreeBSD or SunOS.
-   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSf eq 'Linux');
+   $MakeDefsRHIDE[1].=substr($stdcxx,2).' '; # unless ($OSf eq 'Linux');
    $MakeDefsRHIDE[1].='ncurses m ';
    # No for UNIX!! $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
