@@ -483,20 +483,6 @@ void FullResumeScreen()
  ResetVideoMode(TScreen::screenMode); // It resumes the palette too
 }
 
-void TSetEditorApp::dosShell()
-{
- SaveAllEditors(); // To avoid crashes and inconsistences
- FullSuspendScreen();
- dup2(StdErrOri,fileno(stderr)); // Restore stderr
- // Stop the playing engine
- MP3Suspend;
- TV_System(CLY_GetShellName());
- MP3Resume;
- dup2(StdErrNew,fileno(stderr)); // Redirected again
- FullResumeScreen();
- ReLoadModifEditors();
-}
-
 void TSetEditorApp::showClip()
 {
  clipWindow->select();
@@ -1589,8 +1575,6 @@ static
 void ShowInstallError(char *var, const char *suggest, int end)
 {
  TScreen::suspend();
- StopStdErrRedirection();
- if (TemporalStdErr) unlink(TemporalStdErr);
  fprintf(stderr,_("\nWrong installation! You must define the %s environment variable.\n"),var);
  fprintf(stderr,_("Read the readme.1st file included in the .zip distribution file.\n\n"));
  #ifdef NoHomeOrientedOS
@@ -1612,8 +1596,6 @@ static
 void ShowErrorSET_FILES()
 {
  TScreen::suspend();
- StopStdErrRedirection();
- if (TemporalStdErr) unlink(TemporalStdErr);
  fputs(_("\nYou defined SET_FILES wrongly, it doesn't point to a directory.\n\n"),stderr);
  fflush(stderr);
  exit(1);
@@ -1907,6 +1889,23 @@ void ParseCommandLine(int argc, char *argv[])
 /******* End of Command line parsing *******/
 
 
+void TSetEditorApp::dosShell()
+{
+ SaveAllEditors(); // To avoid crashes and inconsistences
+ FullSuspendScreen();
+ if (RedirectStderr && StdErrNew!=-1)
+   dup2(StdErrOri,STDERR_FILENO); // Restore stderr
+ // Stop the playing engine
+ MP3Suspend;
+ TV_System(CLY_GetShellName());
+ MP3Resume;
+ if (RedirectStderr && StdErrNew!=-1)
+    dup2(StdErrNew,STDERR_FILENO); // Redirected again
+ FullResumeScreen();
+ ReLoadModifEditors();
+}
+
+
 #ifdef SEOSf_djgpp
 // Command line options from crt0 module
 extern int   __crt0_argc;
@@ -1972,7 +1971,7 @@ void LoadSpecifiedFile(char *name)
 
 void StopStdErrRedirection()
 {
- if (RedirectStderr)
+ if (RedirectStderr && StdErrNew!=-1)
    {
     dup2(StdErrOri,STDERR_FILENO);
     close(StdErrNew);
@@ -1985,10 +1984,23 @@ int main(int argc, char *argv[])
  ParseCommandLine(argc,argv);
  CheckIfCurDirValid();
 
+ //  That's a new policy, after releasing v0.4.1 and saw that nobody bothers about
+ //  reading the readme.1st (mainly because of the distribution structure) now the
+ //  editor assumes that:
+ //  [In 0.4.14 I added a guess to help fools]
+ char *set_files=getenv("SET_FILES");
+ if (set_files && !IsADirectory(set_files) && GuessSET_FILES())
+    ShowErrorSET_FILES();
+ if (!set_files && GuessSET_FILES())
+    ShowInstallError("SET_FILES",OSShareDir1,1);
+
  // Redirect stderr to a unique file to catch any kind of errors.
+ // We want it as soon as possible so any errors can be dumped there.
+ // Note: We need SET_FILES to redirect under DOS, so it comes after SET_FILES stuff
  if (RedirectStderr)
     TemporalStdErr=RedirectStdErrToATemp(StdErrOri,StdErrNew);
-
+ // After redirecting the error we can enable the routines that
+ // traps signals and dumps important information.
  InitEditorSignals(StackDbgStrategy,argv[0],TemporalStdErr);
 
  // That's better for me, easier for incremental searchs
@@ -1998,18 +2010,6 @@ int main(int argc, char *argv[])
  //  The point where the exe was loaded is a reference. Before SET_FILES because I use
  //  it to guess.
  SetReferencePath(Argv[0]);
-
- /*
-   That's a new policy, after releasing v0.4.1 and saw that nobody bothers about
-   reading the readme.1st (mainly because of the distribution structure) now the
-   editor assumes that:
-   [In 0.4.14 I added a guess to help fools]
- */
- char *set_files=getenv("SET_FILES");
- if (set_files && !IsADirectory(set_files) && GuessSET_FILES())
-    ShowErrorSET_FILES();
- if (!set_files && GuessSET_FILES())
-    ShowInstallError("SET_FILES",OSShareDir1,1);
 
  //  After SET_FILES because it needs SET_FILES.
  InitEnvirVariables();
