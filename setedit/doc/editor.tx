@@ -6973,6 +6973,115 @@ the man pages. They also lack some important information, like what type
 a variable (int, float, @il{etc.}) is.
 @p{}
 
+@chapter Debugging
+
+Important! 2004/08/17 version 0.5.4: Currently this chapter is incomplete and
+the debugging features of the editor are considered unstable.
+@p{}
+
+Only C and C++ program can be debugged. If you use another language supported
+by gdb and want to help supporting it please contact me. Languages not
+supported by gdb needs more work to get supported, even if the debugger used
+for them is similar to gdb.
+@p{}
+
+@section Supported platforms for debugging
+@cindex debugging, platforms supported
+
+Currently only Linux for IA32 (x86) CPUs is fully supported. Support for
+other OSs where gdb (The GNU debuger) is available and that provides a
+complete POSIX interface should be easy to obtain. If you want to help
+adding support for your platform please contact the author.
+@x{How to contact me}.
+@p{}
+
+Architectures other than IA32 are partially supported. If that's your case
+you can help testing and providing information about it. The two most
+important things you can help to fix are: the stack window and the syntax
+highlight of the disassembler window. You just need to know a little bit
+about the native assembler.
+@p{}
+
+DOS and any other target where the fork/exec mechanism and pipes
+communication isn't implemented aren't supported. To support them I need a
+lot of help. In particular I need to make some code to handle the gdb/MI
+protocol using libgdb.a. If you think you can help with it contact me.
+@p{}
+
+The support for Linux is for X and for the real console. You can't debug
+programs if you don't have access to the real console of the local machine.
+@p{}
+
+Only programs that can be debugged by gdb can be debugged using the editor.
+@p{}
+
+@section Mechanism used to debug
+@cindex debugging, mechanism used
+
+The editor doesn't include a built-in debugger like RHIDE does. Instead you
+have to install the GNU Debuger (gdb). Only versions of gdb that implements
+the MI protocol are usable. The version 5 implements MI version 1 and the
+version 6 implements MI version 2.
+@p{}
+
+To debug the editor starts gdb and communicates with the debugger using a
+POSIX mechanism called pipe. It means that the editor can just send commands
+to gdb like a you could do manually. The consequence is that you all the
+power of gdb, but also all the problems and bugs found in gdb. During the
+development of the debug features I found more than two bugs in gdb each
+week.
+@p{}
+
+The editor uses a special mode of gdb called MI. MI stands for Machine
+Interface. In this mode the gdb responses are specially designed to be parsed
+by another program instead of read by a human bean. This makes the
+communication much more robust but this mode is less tested than the usual
+mode (CLI Command Line Interface).
+@p{}
+
+The MI mode allows to send CLI commands to gdb. So you can send your own
+commands to gdb. This should be used only if the editor doesn't provide any
+way to achieve the same result. If you need to do it very often please
+consider commenting it in the editor's mailing list. We could add the propper
+user interface for what you need.
+@p{}
+
+@section Quick start to debugging
+@cindex debugging, quick start
+
+The following is a very short explanation of how to start debugging your
+program. It assumes you already know what's a debugger and you are
+familiarized with the user interface. The user interface is quite similar to
+the RHIDE's user interface and that's almost the same used by Borland
+debuggers.
+@p{}
+
+@enumerate
+@item Create a new project. All the debugging options will be stored in the
+project file. @x{Open (Project)}.
+@item Add your source files to the project. You can do it pressing the
+@kbd{Insert} key when the project window is selected or importing a list of
+files. @x{Import project items}.
+@item Compile your program with debug information. For @code{gcc} you should
+use the @code{-g} command line option and avoid using the @code{-s} option.
+You'll get better integration if you compile your program using the internal
+features of the editor to run external programs. @x{Run program (which one)}.
+@item Select the @il{Debug|Step over} menu option. If you didn't set the
+debug options the editor will ask to do it. The most important option is the
+name of the program you want to debug.
+@item If the editor can't find the source file you'll be asked to indicate
+its location.
+@item If all goes as spected you'll see your source file and the first line
+of the main function highlighted. You are debugging your program. Now you'll
+want to consult the sections about breakpoints, stepping in your code and
+displaying data.
+@end enumerate
+
+@section Supported debug targets
+@cindex debugging, supported targets
+
+
+
 @chapter Miscellaneous
 
 @section Configuration files location

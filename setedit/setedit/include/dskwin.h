@@ -48,11 +48,12 @@ const int
       dktMP3       = 7,
       dktASCII     = 8,
       dktCalendar  = 9,
-      dktMan       = 10,
-      dktDbgMsg    = 11,
-      dktDbgWt     = 12,
-      dktDbgIns    = 13,
-      dktDbgDataWin= 14;
+      dktMan       =10,
+      dktDbgMsg    =11,
+      dktDbgWt     =12,
+      dktDbgIns    =13,
+      dktDbgDataWin=14,
+      dktDbgDisasm =15;
 
 class TDeskTop;
 void InsertInOrder(TDeskTop *dsk,TDskWin *win);

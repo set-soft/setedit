@@ -9,9 +9,6 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * Modify registers in disassembler window.
-  * Dsk wrapper for disassembler window.
-
   * GDB meaning of the ignore field is quite different to what I thinked. That's
 a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
 After it the breakpoint becomes "normal". It means that after a program reset it
@@ -29,24 +26,22 @@ option.
   * Mechanism to disable the slow workaround for bugs in look-up symbols in gdb.
 We already have the option.
 
-  * Use other context for selecting a path for file, not open file.
-
   * Advices (only project, ...).
-  * Add the menubind.smn options to the redmond.smn
   * Don't show again in the confirmation for exit while debugging.
-  * Detect recompilations (target time stamp), then ask to the user if we
-should "move" the breakpoints to their new locations. That's tricky.
-Note: currently we do it if the user used "run program".
-  * A widget to get a filename that also have a "Browse" button.
+  * Add the menubind.smn options to the redmond.smn
 
 -----------------------------------------------
 Low priority:
 
 General:
 * Some stop mechanism to avoid waiting for response time out.
+* Detect recompilation of the target from "outside", that's without using Run
+program. A good moment could be when we are restarting. In this case move the
+breakpoints.
 
 Inspectors:
 * Highlight changed values.
+* Add "graphic lines" to the tree.
 
 Watches:
 * Highlight changed values.
@@ -207,10 +202,18 @@ const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
 const int widthPID=32;
 const int dmLocal=0, dmPID=1, dmRemote=2;
 const int wTimeOut=8, wLinesMsg=8;
+const int wVisible=50, wInt=32, wLabels=9,
+          wFilename=PATH_MAX,
+          wFunction=256,
+          wLine=wInt,
+          wAddress=wInt,
+          wCondition=256,
+          wCount=wInt,
+          wThreadB=wInt;
 
 struct DebugOptionsStruct
 {
- char program[widthFiles];
+ char program[wFilename];
  uint32 mode;
  char args[widthFiles];
  char tty[widthShort];
@@ -476,7 +479,7 @@ char *SolveFileName(const char *s)
     CLY_snprintf(buf,PATH_MAX,"%s*",start);
 
     // Bring a dialog to select it
-    if (GenericFileDialog(__("Source file"),buf,NULL,hID_FileOpen,
+    if (GenericFileDialog(__("Source file"),buf,NULL,hID_DbgSourceLoc,
         fdNoMask)!=cmCancel)
       {
        if (!edTestForFile(buf))
@@ -2158,7 +2161,7 @@ TDisAsmWin::TDisAsmWin(const TRect &aR) :
  // Code
  TRect r=getExtent();
  int rbx=r.b.x;
- r.a.x+=2; r.a.y++; r.b.y-=2; r.b.x/=2;
+ r.a.x++; r.a.y++; r.b.y-=2; r.b.x/=2;
  edw=new TDisAsmEdWin(r);
  // An editor inside a dialog!!
  // That's the meaning of code reuse ;-)
@@ -2208,11 +2211,43 @@ TDisAsmWin::TDisAsmWin(const TRect &aR) :
  // Select the code window
  selectNext(True);
  theDisAsmWin=this;
+ helpCtx=hcDisassembler;
 }
 
 TDisAsmWin::~TDisAsmWin()
 {
  delete regs;
+}
+
+void TDisAsmWin::handleEvent(TEvent &event)
+{
+ TDialog::handleEvent(event);
+ if (bRegs &&
+     ((event.what==evBroadcast && event.message.command==cmListItemSelected) ||
+     (event.what==evCommand && event.message.command==cmModifyReg)))
+   {
+    char b[widthWtExp];
+    mi_chg_reg *r=regs->getItem(bRegs->focused);
+    if (r->val)
+       strncpyZ(b,r->val,widthWtExp);
+    else
+       b[0]=0;
+    if (r->name && execDialog(createEditExp(__("Modify register")),b)==cmOK)
+      {
+       char e[widthWtExp];
+       CLY_snprintf(e,widthWtExp,"$%s=%s",r->name,b);
+       // TODO: May be a function to do this, is quite useful
+       free(TSetEditorApp::DebugEvalExpression(e));
+       if (MIDebugger::GetErrorNumber()!=MI_OK)
+          ShowErrorInMsgBox();
+       else
+         {
+          regs->update();
+          bRegs->drawView();
+         }
+      }
+    clearEvent(event);
+   }
 }
 
 int IsDisAsmWinCurrent()
@@ -2250,6 +2285,31 @@ void TDisAsmWin::upCodeInfo()
    }
 }
 
+class TDskDbgDisasm : public TDskWin
+{
+public:
+ TDskDbgDisasm(TView *w);
+
+ char *GetText(char *dest, short maxLen);
+};
+
+TDskDbgDisasm::TDskDbgDisasm(TView *w)
+{
+ view=w;
+ type=dktDbgDisasm;
+ CanBeDeletedFromDisk=0;
+ CanBeSaved=0;
+ ZOrder=-1;
+}
+
+char *TDskDbgDisasm::GetText(char *dest, short maxLen)
+{
+ TVIntl::snprintf(dest,maxLen,__("   Disassembler [%p-%p]"),
+                  TDisAsmWin::getFrom(),
+                  TDisAsmWin::getTo());
+ return dest;
+}
+
 static
 void DisAsmWin()
 {
@@ -2259,9 +2319,11 @@ void DisAsmWin()
     return;
    }
  TRect re=GetDeskTopSize();
- re.grow(-6,-6);
- TDisAsmWin *w=new TDisAsmWin(re);
- TProgram::deskTop->insert(w);
+ re.grow(-4,-2);
+ TDskDbgDisasm *dsk=new TDskDbgDisasm(new TDisAsmWin(re));
+ // TODO: Join them in a function
+ AddNonEditorToHelper(dsk);
+ InsertInOrder(TProgram::deskTop,dsk);
 }
 
 void TSetEditorApp::DebugDisAsmWin()
@@ -3568,15 +3630,6 @@ TBreakpoints::~TBreakpoints()
  releaseAll();
  TVIntl::freeSt(icNone);
 }
-
-const int wVisible=50, wInt=32, wLabels=9,
-          wFilename=PATH_MAX,
-          wFunction=256,
-          wLine=wInt,
-          wAddress=wInt,
-          wCondition=256,
-          wCount=wInt,
-          wThreadB=wInt;
 
 struct stBrkEdit
 {
@@ -7591,7 +7644,83 @@ void DebugUpdateWatches()
   Configuration dialog
 *****************************************************************************/
 
-TDialog *createDebugOpsDialog()
+// Special TSView to select a file
+class TSChooseFile : public TSView
+{
+public:
+ TSChooseFile(const char *aText, unsigned anId, int wForce, const char *aMask);
+ virtual ~TSChooseFile() { delete linked; delete[] mask; };
+ virtual void insert(TDialog *);
+ virtual void setWidth(int aW);
+ virtual void setGrowMode(unsigned val);
+ unsigned getId() { return id; }
+ void setFileName(char *s) { linked->view->setData(s); }
+ char *mask;
+
+protected:
+ TSInputLine *linked;
+ TSButton *bt;
+ unsigned id;
+};
+
+static
+int ButtonCallBack(unsigned , void *data)
+{
+ TSChooseFile *cf=(TSChooseFile *)data;
+ char buf[wFilename];
+ strcpy(buf,cf->mask);
+ if (GenericFileDialog(__("Choose file"),buf,NULL,cf->getId(),fdNoMask)
+     !=cmCancel)
+   {
+    cf->setFileName(buf);
+   }
+ return btcbGoOn;
+}
+
+TSChooseFile::TSChooseFile(const char *aText, unsigned anId, int wForce,
+                           const char *aMask) :
+   TSView()
+{
+ bt=new TSButton(__("Browse"),cmYes,bfNormal,ButtonCallBack,this);
+ linked=new TSInputLine(wFilename,1,anId,wForce-bt->w);
+ id=anId;
+ mask=newStr(aMask);
+
+ stTVIntl *cache=NULL;
+ const char *str=TVIntl::getText(aText,cache);
+ w=max(cstrlen(str)+1+bt->w,wForce);
+ h=2;
+ view=new TLabel(TRect(0,0,w,1),aText,linked->view,cache);
+}
+
+void TSChooseFile::insert(TDialog *d)
+{
+ TRect r(x-1,y,x-1+w-bt->w,y+1);
+ view->locate(r);
+ d->insert(view);
+ linked->x=x;
+ linked->y=y+1;
+ linked->insert(d);
+ bt->x=x+linked->w;
+ bt->y=y;
+ bt->insert(d);
+}
+
+void TSChooseFile::setWidth(int aW)
+{
+ w=aW-bt->w;
+ linked->setWidth(w);
+}
+
+void TSChooseFile::setGrowMode(unsigned val)
+{
+ view->growMode=val;
+ linked->setGrowMode(val);
+ bt->setGrowMode(val);
+}
+
+
+TDialog *createDebugOpsDialog(TSViewCol *&cl)
 {
  TSViewCol *col=new TSViewCol(__("Debug Options"));
 
@@ -7599,30 +7728,30 @@ TDialog *createDebugOpsDialog()
  // ES: ADEIMPRTU
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
-             new TSLabel(__("~P~rogram to debug, with debug info"),
-                 new TSInputLine(widthFiles,maxWBox)),
-             TSLabelRadio(__("~M~ode"),
-                          __("Local with ~e~xecutable"),
-                          __("Local with r~u~nning process"),
-                          __("Remote (g~d~bserver/stub)"),0),
-             new TSStaticText(__("Local target options")),
-             new TSLabel(__("Program ~a~rguments, not for remote mode"),
-                 new TSInputLine(widthFiles,maxWBox)),
-             new TSLabel(__("Forced ~t~erminal, leave blank for auto"),
-                 new TSInputLine(widthShort,maxWBox)),
-             new TSStaticText(__("Remote target options")),
-             new TSLabel(__("Remote p~r~otocol type"),
-                 new TSInputLine(widthShort,maxWBox)),
-             new TSLabel(__("Remote ~l~ocation"),
-                 new TSInputLine(widthShort,maxWBox)),
-             0);
+   new TSChooseFile(__("~P~rogram to debug, with debug info"),
+                    hID_DbgBinary,maxWBox,"*"),
+   TSLabelRadio(__("~M~ode"),
+                __("Local with ~e~xecutable"),
+                __("Local with r~u~nning process"),
+                __("Remote (g~d~bserver/stub)"),0),
+   new TSStaticText(__("Local target options")),
+   new TSLabel(__("Program ~a~rguments, not for remote mode"),
+       new TSInputLine(widthFiles,maxWBox)),
+   new TSLabel(__("Forced ~t~erminal, leave blank for auto"),
+       new TSInputLine(widthShort,maxWBox)),
+   new TSStaticText(__("Remote target options")),
+   new TSLabel(__("Remote p~r~otocol type"),
+       new TSInputLine(widthShort,maxWBox)),
+   new TSLabel(__("Remote ~l~ocation"),
+       new TSInputLine(widthShort,maxWBox)),
+   0);
  o1->makeSameW();
 
  col->insert(xTSLeft,yTSUp,o1);
  EasyInsertOKCancel(col);
 
- TDialog *d=col->doItCenter(cmeDebugOptions);
- delete col;
+ TDialog *d=col->doItCenter(hcDebugOps);
+ cl=col;
  return d;
 }
 
@@ -7644,15 +7773,18 @@ int TSetEditorApp::DebugOptionsEdit()
  DebugOptionsStruct edit;
  memcpy(&edit,&dOps,sizeof(DebugOptionsStruct));
 
- if (execDialog(createDebugOpsDialog(),&edit)==cmOK)
+ TSViewCol *cl;
+ int ret=0;
+ if (execDialog(createDebugOpsDialog(cl),&edit)==cmOK)
    {
     memcpy(&dOps,&edit,sizeof(DebugOptionsStruct));
-    return 1;
+    ret=1;
    }
+ delete cl;
  return 0;
 }
 
-TDialog *createDebugOpsAdvDialog()
+TDialog *createDebugOpsAdvDialog(TSViewCol *&cl)
 {
  TSViewCol *col=new TSViewCol(__("Advanced Debug Options"));
 
@@ -7660,10 +7792,8 @@ TDialog *createDebugOpsAdvDialog()
  // ES:
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
-   new TSLabel(__("~G~DB executable"),
-       new TSInputLine(wFilename,1,hID_DbgGDB,wVisible)),
-   new TSLabel(__("~X~ terminal executable"),
-       new TSInputLine(wFilename,1,hID_DbgXTerm,wVisible)),
+   new TSChooseFile(__("~G~DB executable"),hID_DbgGDB,wVisible,"gdb*"),
+   new TSChooseFile(__("~X~ terminal executable"),hID_DbgXTerm,wVisible,"xterm*"),
    new TSLabel(__("~M~ain function"),
        new TSInputLine(wFunction,1,hID_DbgMainFunc,wVisible)),
    new TSHzGroup(
@@ -7679,8 +7809,12 @@ TDialog *createDebugOpsAdvDialog()
  col->insert(xTSLeft,yTSUp,o1);
  EasyInsertOKCancel(col);
 
- TDialog *d=col->doItCenter(cmeDebugOptions);
- delete col;
+ TDialog *d=col->doItCenter(hcDebugAdvOps);
+ // Hack: the TSChooseFile object have important data needed during the
+ // execution of the dialog. We can't release this data right now and we
+ // have to wait until the dialog is destroyed.
+ //delete col;
+ cl=col;
  return d;
 }
 
@@ -7713,8 +7847,9 @@ int TSetEditorApp::DebugOptionsAdv()
  CLY_snprintf(box.lines,wLinesMsg,"%d",lines);
  box.misc=misc;
 
+ TSViewCol *cl;
  // Edit
- if (execDialog(createDebugOpsAdvDialog(),&box)==cmOK)
+ if (execDialog(createDebugOpsAdvDialog(cl),&box)==cmOK)
    {// Set the changed values
     if (strcmp(box.gdb,gdb))
        SetGDBExe(box.gdb);
@@ -7734,6 +7869,7 @@ int TSetEditorApp::DebugOptionsAdv()
        SetGDBMisc(box.misc);
     return 1;
    }
+ delete cl;
  return 0;
 }
 

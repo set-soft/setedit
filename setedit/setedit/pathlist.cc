@@ -44,6 +44,7 @@ comparing it with the simple string used in RHIDE]
 #include <rhutils.h>
 #include <pathlist.h>
 #include <edspecs.h>
+#include <fileopen.h>
 
 class TPathList : public TCollection, public TStringable
 {
@@ -344,6 +345,19 @@ int AddItem(void)
 }
 
 static
+int AddDir(void)
+{
+ char *s=ChooseDir();
+ if (s)
+   {
+    lEdited->insert(s);
+    listChanged++;
+    return 1;
+   }
+ return 0;
+}
+
+static
 int DeleteItem(int which)
 {
  lEdited->atRemove(which);
@@ -371,11 +385,12 @@ void PathListEdit(int which, unsigned hCtx)
        return;
    }
  tEdited=Titles[which];
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,tEdited,12,50,aidOKEnabled);
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,tEdited,12,50,aidOKEnabled | aidBrowse);
  d->helpCtx=hCtxEdited=hCtx;
  d->DelAction=DeleteItem;
  d->AddAction=AddItem;
  d->CancelAction=CancelConfirm;
+ d->BrowseAction=AddDir;
 
  TStringableListBoxRec box;
  box.items=lEdited;

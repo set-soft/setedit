@@ -566,6 +566,7 @@ static edCList Simple[] =
  C(Inspect),
  C(Menu),
  C(ModifyIns),
+ C(ModifyReg),
  C(Recycle),
  C(Zoom),
 #undef C
@@ -609,6 +610,7 @@ static edCList HelpCtx[] =
  C(Calculator),
  C(DataViewer),
  C(DebugMsgWin),
+ C(Disassembler),
  C(EditKeys),
  C(EditKeysCom),
  C(EditKeysMac),

@@ -15,20 +15,22 @@ public:
  int (*OkAction)(void);
  int (*CancelAction)(void);
  int (*InfoAction)(int);
+ int (*BrowseAction)(void);
  TStringableListBox *List;
  unsigned flags;
 };
 
 const int
-      cmAddKey=0x2240,
-      cmDeleteKey=0x2241,
-      cmInsertKey=0x2242,
-      cmAddCommand=0x2243,
-      cmAddMacro=0x2244,
-      cmOKApply=0x2245,
+      cmAddKey     =0x2240,
+      cmDeleteKey  =0x2241,
+      cmInsertKey  =0x2242,
+      cmAddCommand =0x2243,
+      cmAddMacro   =0x2244,
+      cmOKApply    =0x2245,
       cmCancelApply=0x2246,
-      cmInfoAID=0x2247;
-const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8;
+      cmInfoAID    =0x2247,
+      cmBrowseAID  =0x2248;
+const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8, aidBrowse=16;
 // For CreateChooseDialog
 const int aidStringable=0x1000,aidHzScroll=0x2000,aidNoCancel=0x4000;
 

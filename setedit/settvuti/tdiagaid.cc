@@ -140,6 +140,15 @@ void TDialogAID::handleEvent(TEvent& event)
             if (InfoAction)
                InfoAction(List->focused);
             break;
+       case cmBrowseAID:
+            if (BrowseAction)
+              {
+               if (BrowseAction())
+                  List->Update();
+               if ((List->list())->GetCount())
+                  EnableComms();
+              }
+            break;
        case cmeZoom:
             event.message.command=cmZoom;
             TDialog::handleEvent(event);
@@ -157,6 +166,7 @@ static char *nbotDel=__("~D~elete");
 static char *nbotOk =__("~O~k");
 static char *nbotCan=__("~C~ancel");
 static char *nbotInfo=__("~I~nfo.");
+static char *nbotBrowse=__("~B~rowse");
 
 const int lSepb=2;
 
@@ -192,11 +202,16 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
    }
  upper->Flags=wSpan;
 
- TSButton *btInfo=NULL;
+ TSButton *exBts[2];
+ exBts[0]=exBts[1]=NULL;
+ int idxEx=0;
  if (flags & aidInfo)
-    btInfo=new TSButton(nbotInfo,cmInfoAID);
+    exBts[idxEx++]=new TSButton(nbotInfo,cmInfoAID);
+ if (flags & aidBrowse)
+    exBts[idxEx++]=new TSButton(nbotBrowse,cmBrowseAID);
  TSHzGroup *bt1=MakeHzGroup(new TSButton(nbotOk,cmOKApply,bfDefault),
-                            new TSButton(nbotCan,cmCancelApply),btInfo,0);
+                            new TSButton(nbotCan,cmCancelApply),
+                            exBts[0],exBts[1],NULL);
  bt1->setGrowMode(gfMoveAccording);
  bt1->ySep=0;
  TSHzGroup *bt2;

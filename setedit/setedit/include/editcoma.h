@@ -37,6 +37,7 @@ const int
       cmRecycle       =0x22AE,
       cmModifyIns     =0x22AF,
       cmFormatIns     =0x22B0,
+      cmModifyReg     =0x22B1,
       //----------------------------
       // Data Window commands.
       //----------------------------
@@ -96,6 +97,10 @@ const int
       hcBkptDialog         =0x2280,
       hcWpDialog           =0x2281,
       hcInspector          =0x2290,
-      hcDataViewer         =0x22A0;
+      hcDataViewer         =0x22A0,
+      hcDisassembler       =0x22B0,
+      hcSourceLoc          =0x22C0,
+      hcDebugAdvOps        =0x22D0,
+      hcDebugOps           =0x22D1;
 
 

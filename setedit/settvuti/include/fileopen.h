@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef FILEOPEN_H_INCLUDED
 #define FILEOPEN_H_INCLUDED
@@ -13,6 +13,7 @@ extern void SetDirForOpen(char *s);
 extern void SetDirForSave(char *s);
 extern char *GetLastMaskUsed();
 extern void SetConfigDialogFunc(int (*func)());
+extern char *ChooseDir(const char *startDir=NULL);
 
 const int cmFileDialogFileSelected=0x2210;
 const int cmHomeDir=0x2211;

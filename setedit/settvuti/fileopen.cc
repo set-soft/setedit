@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -118,11 +118,46 @@ TFileDialogHome::TFileDialogHome(const char *aWildCard, const char *aTitle,
  returnSize=&dialogSize;
 }
 
+
+char *ChooseDir(const char *startDir)
+{
+ char buf[PATH_MAX],buf2[PATH_MAX];
+
+ if (!getcwd(buf,PATH_MAX) || (startDir && !chdir(startDir)))
+    return NULL;
+
+ TChDirDialog *d=new TChDirDialog(cdNormal | cdHelpButton,0);
+ d->helpCtx=hcGenChDir;
+ unsigned ret=0;
+ TView *p=TProgram::application->validView(d);
+ if (p)
+   {
+    ret=TProgram::deskTop->execView(p);
+    TObject::CLY_destroy(p);
+   }
+ char *retVal=NULL;
+ if (ret==cmOK && getcwd(buf2,PATH_MAX))
+   {
+    if (strcmp(buf,buf2)!=0)
+      {
+       int l=strlen(buf2);
+       if (buf2[l-1]!='/' && l<PATH_MAX-2)
+         {
+          buf2[l]='/';
+          buf2[l+1]=0;
+         }
+       retVal=newStr(buf2);
+      }
+   }
+ chdir(buf);
+ return retVal;
+}
+
 void TFileDialogHome::handleEvent(TEvent& event)
 {
  char buf[PATH_MAX],buf2[PATH_MAX];
  char endIt=0,cancelIt=0,advance=1;
- TChDirDialog *d;
+ char *newDir;
 
  if (event.what==evBroadcast)
    {
@@ -149,33 +184,12 @@ void TFileDialogHome::handleEvent(TEvent& event)
             clearEvent(event);
             return;
        case cmChangeDir:
-            if (getcwd(buf,PATH_MAX) && chdir(directory)==0)
+            newDir=ChooseDir(directory);
+            if (newDir)
               {
-               d=new TChDirDialog(cdNormal | cdHelpButton,0);
-               d->helpCtx=hcGenChDir;
-               unsigned ret=0;
-               TView *p=TProgram::application->validView(d);
-               if (p)
-                 {
-                  ret=TProgram::deskTop->execView(p);
-                  TObject::CLY_destroy(p);
-                 }
-               if (ret==cmOK && getcwd(buf2,PATH_MAX))
-                 {
-                  if (strcmp(buf,buf2)!=0)
-                    {
-                     int l=strlen(buf2);
-                     if (buf2[l-1]!='/' && l<PATH_MAX-2)
-                       {
-                        buf2[l]='/';
-                        buf2[l+1]=0;
-                       }
-                     DeleteArray(directory);
-                     directory=newStr(buf2);
-                     fileList->readDirectory(buf2,wildCard);
-                    }
-                 }
-               chdir(buf);
+               DeleteArray(directory);
+               directory=newDir;
+               fileList->readDirectory(newDir,wildCard);
               }
             clearEvent(event);
             return;

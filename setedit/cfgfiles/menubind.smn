@@ -635,6 +635,16 @@ StatusEntry: "~Ctrl+Y~ Recycle", cmRecycle, kbCtY
 EndStatusRange
 
 #
+# Disassembler Windows
+#
+StatusRange: hcDisassembler, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~ENTER~ Modify register", cmModifyReg, kbEnter
+StatusHiddenEntry: cmClose, kbEsc
+EndStatusRange
+
+#
 # Deafault for the rest
 #
 StatusRange: 0, 0xFFFF

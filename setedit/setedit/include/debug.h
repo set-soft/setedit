@@ -173,6 +173,8 @@ public:
   return curLine->file;
  }
  char *getCodeInfo(char *b, int l);
+ void *getFrom() { return from; }
+ void *getTo() { return to; }
 
 protected:
  mi_asm_insns *lines;
@@ -203,6 +205,7 @@ public:
 
  virtual TPalette &getPalette() const;
  virtual void close(void);
+ virtual void handleEvent(TEvent &);
 
  static int  windowCreated() { return theDisAsmWin!=NULL; }
  static void beSelected() { theDisAsmWin->select(); }
@@ -221,6 +224,10 @@ public:
   { return theDisAsmWin->edw->getFileLine(line); }
  static void updateCodeInfo()
   { if (theDisAsmWin) theDisAsmWin->upCodeInfo(); }
+ static void *getFrom()
+  { return theDisAsmWin ? theDisAsmWin->edw->getFrom() : NULL; }
+ static void *getTo()
+  { return theDisAsmWin ? theDisAsmWin->edw->getTo() : NULL; }
 
 protected:
  static TDisAsmWin *theDisAsmWin;

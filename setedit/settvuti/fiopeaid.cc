@@ -23,6 +23,7 @@ the same time. To avoid overheads the buffers are dynamically allocated.
 #define Uses_TApplication  // To get desktop size
 #define Uses_TDeskTop
 #include <settvuti.h>
+#include <editcoma.h>
 
 static
 AsoID Convert[]={
@@ -46,6 +47,12 @@ AsoID Convert[]={
 {hID_SelectTagFile,0,0,hcSelTagFile,0,0,0,0},
 // Used to import/export the project items
 {hID_ExportProjectItems,0,0,hcExpPrjItems,0,0,0,0},
+// Used by the debugger code to indicate where is a file
+{hID_DbgSourceLoc,0,0,hcSourceLoc,0,0,0,0},
+// File choosers in the debug options
+{hID_DbgGDB,0,0,hcDebugAdvOps,0,0,0,0},
+{hID_DbgXTerm,0,0,hcDebugAdvOps,0,0,0,0},
+{hID_DbgBinary,0,0,hcDebugOps,0,0,0,0},
 {0,0}
 };
 
