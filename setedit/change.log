@@ -1,4 +1,8 @@
 $Log$
+Revision 1.53  2002/02/05 13:56:13  set
+* Added: Explanation about the difference between lat1 and lat1u fonts,
+also about the damaged lat1 fonts to Linux FAQ.
+
 Revision 1.52  2002/02/04 20:38:41  set
 * Added: A clipboard mechanism based on a special file. This is specially
 useful for Linux where no clipboard can share data between X and the
@@ -3791,7 +3795,7 @@ distribution.
 Revision 1.25  1999/02/14 15:23:32  set
 * Updated the copyright year (1999).
 * Updated my telephone number, ugh! now is huge.
-.
+
 Revision 1.24  1999/02/14 14:11:38  set
 * Added help for the new edition modes, the file open dialog and other things.
 * Fixed some typos in the help and menues.

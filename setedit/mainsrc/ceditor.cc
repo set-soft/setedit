@@ -12219,7 +12219,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
        if (CLY_FileAttrIsRO(&ModeOfFile))
          {
           if (!isReadOnly && !(editorFlags & efDoNotWarnRO) &&
-              editorDialog(edIsReadOnly)==cmYes)
+              editorDialog(edIsReadOnly,fileName)==cmYes)
             {
              // Close it, DOS 6 fails if we change the mode while opened
              fclose(f);
@@ -12559,7 +12559,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
     // Check if it was a RO and the user asked not to warn.
     if ((editorFlags & efDoNotWarnRO) && CLY_FileAttrIsRO(&ModeOfFile))
       {// Ok, we will most probably fail to replace the file
-       if (editorDialog(edIsReadOnly)==cmYes)
+       if (editorDialog(edIsReadOnly,fileName)==cmYes)
          {
           CLY_FileAttrReadWrite(&ModeOfFile);
           if (!CLY_SetFileAttributes(&ModeOfFile,fileName))

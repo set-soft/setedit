@@ -214,8 +214,11 @@ unsigned doEditDialog(int dialog, va_list arg)
                            mfInformation | mfOKButton);
  
     case edIsReadOnly:
-         return messageBox(_("The file is read-only, try to revert it?"),
-                           mfWarning | mfYesButton | mfNoButton);
+        {
+         char *file=va_arg(arg,_charPtr);
+         return LimitedFileNameDialog(mfWarning | mfYesButton | mfNoButton,
+                __("The file %s is read-only, try to revert it?"),file);
+        }
     case edStillReadOnly:
          return messageBox(_("Failed to revert the read-only status, you won't be able to overwrite this file"),
                            mfError | mfOKButton);
