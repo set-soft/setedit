@@ -10,6 +10,8 @@
   This module is used to interface with RHIDE.@p
   Here is the interface with the message window of RHIDE. The module is
 100% untested so Robert must check it, I simply can't.@p
+  Note that from time to time I add new functions here that are just dummies
+to compile RHIDE but they need to be implemented propperly in RHIDE.
 
 ***************************************************************************/
 
@@ -59,7 +61,7 @@ void EdJumpToMessage(ccIndex )
 }
 
 // It should reload a file from disk
-int EdReloadIfOpened(char *name, stEditorId *id)
+int EdReloadIfOpened(const char *name, stEditorId *id)
 {
  return 0;
 }
@@ -73,6 +75,15 @@ extern int RunProgram(const char *cmd,
   Description:
   This function is needed for sLisp, it must call an external program using
 system. In the editor the stderr is redirected and I parse the errors.
+  IMPORTANT! one flag passed to it can indicate we want to redirect the
+input stream of the child process:
+
+ if ((flags & repRedirIn) && RedirInputFile && strlen(RedirInputFile)+
+     strlen(s)+4<PATH_MAX)
+
+ This should be implemented in RHIDE. I already copied the support functions
+that stores/remove the data into a temporal file whose name is pointed by
+RedirInputFile.
 
 ***************************************************************************/
 
@@ -99,6 +110,47 @@ char *RunExternalProgramGetFile(int &len)
  return s;
 }
 
+static char    *RedirInputFile=0;
+
+/**[txh]********************************************************************
+
+  Description:
+  Saves the indicated data to a temporal file. It can be used to redirect
+the input of a program when calling RunExternalProgram with the repRedirIn
+option. Use RunExternalProgramRemoveInRedir to release the used resources.
+@x{RunExternalProgramRemoveInRedir}.
+  
+***************************************************************************/
+
+void RunExternalProgramSetInRedir(const char *buffer, unsigned len)
+{
+ free(RedirInputFile);
+ RedirInputFile=unique_name("in",0);
+ FILE *f=fopen(RedirInputFile,"wb");
+ if (f)
+   {
+    fwrite(buffer,len,1,f);
+    fclose(f);
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Releases all the resourses allocated by RunExternalProgramSetInRedir.
+@x{RunExternalProgramSetInRedir}.
+  
+***************************************************************************/
+
+void RunExternalProgramRemoveInRedir()
+{
+ if (RedirInputFile)
+   {
+    unlink(RedirInputFile);
+    free(RedirInputFile);
+    RedirInputFile=0;
+   }
+}
 
 /**[txh]********************************************************************
 
