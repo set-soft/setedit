@@ -1,12 +1,12 @@
 # Este es el archivo de traducci¢n a espa¤ol.
-# Copyright (C) 2001-2002 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001-2002.
+# Copyright (C) 2001 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.4.57\n"
-"PO-Revision-Date: 2002-05-17 12:11-0300\n"
+"PO-Revision-Date: 2002-06-24 15:29-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,12 +28,12 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:86 ../easydiag/tsbutton.cc:57 ../easydiag/tsbutton.cc:66
 #: ../infview/inf.cc:2359 ../infview/inf.cc:2382 ../infview/inf.cc:2407
 #: ../infview/inf.cc:2431 ../infview/inf.cc:2486 ../install/install.cc:441
-#: ../install/install.cc:449 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:666
+#: ../install/install.cc:449 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:715
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:183
 #: ../mainsrc/slpinter.cc:421 ../setedit/edprefs.cc:774
-#: ../setedit/edprefs.cc:919 ../setedit/edprefs.cc:977
+#: ../setedit/edprefs.cc:919 ../setedit/edprefs.cc:978
 #: ../setedit/intgrep.cc:398 ../setedit/winlistd.cc:124
 #: ../settvuti/diaghelp.cc:41
 msgid "Cancel"
@@ -63,14 +63,14 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:56 ../easydiag/tsbutton.cc:64
-#: ../internac/tvision.cc:59 ../mainsrc/bufun.cc:665
+#: ../internac/tvision.cc:59 ../mainsrc/bufun.cc:714
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:177
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:182 ../mainsrc/slpinter.cc:420
 #: ../setedit/advice.cc:112 ../setedit/boardmix.cc:116
 #: ../setedit/edprefs.cc:547 ../setedit/edprefs.cc:773
-#: ../setedit/edprefs.cc:918 ../setedit/edprefs.cc:976
+#: ../setedit/edprefs.cc:918 ../setedit/edprefs.cc:977
 #: ../setedit/intgrep.cc:397 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~k~"
@@ -176,7 +176,7 @@ msgstr "En ~t~odos los archivos"
 
 #: ../infview/inf.cc:2357 ../infview/inf.cc:2380 ../infview/inf.cc:2403
 #: ../infview/inf.cc:2429 ../internac/tvision.cc:11 ../setedit/editdiag.cc:77
-#: ../setedit/editpale.cc:163 ../settvuti/diaghelp.cc:38
+#: ../setedit/editpale.cc:164 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~k"
 
@@ -213,11 +213,11 @@ msgstr "Ocultar los nombres de los ~l~inks"
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
-#: ../infview/inf.cc:2478 ../mp3/mp3list.cc:328 ../settvuti/tdiagaid.cc:140
+#: ../infview/inf.cc:2478 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:140
 msgid "~A~dd"
 msgstr "~A~gregar"
 
-#: ../infview/inf.cc:2482 ../mp3/mp3list.cc:330 ../setedit/winlistd.cc:122
+#: ../infview/inf.cc:2482 ../mp3/mp3list.cc:335 ../setedit/winlistd.cc:122
 #: ../settvuti/tdiagaid.cc:142
 msgid "~D~elete"
 msgstr "~B~orrar"
@@ -263,41 +263,41 @@ msgstr ""
 "\n"
 " Lo lamento no puedo encontrar este nodo (presione ALT-F1).\n"
 
-#: ../infview/infmain.cc:308 ../setedit/edprefs.cc:89
+#: ../infview/infmain.cc:312 ../setedit/edprefs.cc:89
 #: ../setedit/edprefs.cc:155
 msgid "Screen Options"
 msgstr "Opciones de Pantalla"
 
-#: ../infview/infmain.cc:310 ../setedit/edprefs.cc:80
+#: ../infview/infmain.cc:314 ../setedit/edprefs.cc:80
 msgid "Primary ~e~ncoding"
 msgstr "Co~d~ificaci¢n primaria"
 
-#: ../infview/infmain.cc:343 ../setedit/edprefs.cc:118
+#: ../infview/infmain.cc:347 ../setedit/edprefs.cc:118
 msgid "This terminal have a fixed code page"
 msgstr "Esta terminal no soporta cambios de p gina de caracteres"
 
-#: ../infview/infmain.cc:374 ../setedit/dstfile.cc:334
+#: ../infview/infmain.cc:378 ../setedit/dstfile.cc:348
 #, c-format
 msgid "Could not create %s."
 msgstr "No puedo crear %s."
 
-#: ../infview/infmain.cc:415 ../setedit/dstfile.cc:270
+#: ../infview/infmain.cc:423 ../setedit/dstfile.cc:279
 msgid "Could not open desktop file"
 msgstr "No puedo abrir el archivo del escritorio"
 
-#: ../infview/infmain.cc:420
+#: ../infview/infmain.cc:428
 msgid "Wrong desktop file"
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../infview/infmain.cc:425 ../setedit/dstfile.cc:275
+#: ../infview/infmain.cc:433 ../setedit/dstfile.cc:286
 msgid "Error reading desktop file"
 msgstr "Error al leer el archivo de escritorio"
 
-#: ../infview/infmain.cc:552
+#: ../infview/infmain.cc:560
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:553
+#: ../infview/infmain.cc:561
 msgid ""
 "infview [option]... [info_file [menu_item...]]\n"
 "\n"
@@ -305,11 +305,11 @@ msgstr ""
 "infview [opci¢n]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:554 ../setedit/editmain.cc:1965
+#: ../infview/infmain.cc:562 ../setedit/editmain.cc:1965
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
-#: ../infview/infmain.cc:555
+#: ../infview/infmain.cc:563
 msgid ""
 "-d, --directory DIR      adds a directory to the list of directories to "
 "search\n"
@@ -318,40 +318,40 @@ msgstr ""
 "-d, --directorio DIR     agrega el directorio especificado a la lista de\n"
 "                         directorios a buscar (DIR a INFOPATH)\n"
 
-#: ../infview/infmain.cc:557
+#: ../infview/infmain.cc:565
 msgid "-f, --file FILENAME      load FILENAME info file.\n"
 msgstr "-f, --file NOMBRE_ARCH   abre la ayuda NOMBRE_ARCH.\n"
 
-#: ../infview/infmain.cc:559
+#: ../infview/infmain.cc:567
 msgid "-l, --force-no-lfn       avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../infview/infmain.cc:560
+#: ../infview/infmain.cc:568
 msgid "-L, --force-lfn          forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn          fuerza el uso de nombres largos en W9x.\n"
 
-#: ../infview/infmain.cc:562
+#: ../infview/infmain.cc:570
 msgid ""
 "-k, --use-rh-52-keys     enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     habilita el mapeo de teclado usado en Red Hat 5.2.\n"
 
-#: ../infview/infmain.cc:564
+#: ../infview/infmain.cc:572
 msgid "-n, --node NODE          jumps to this node.\n"
 msgstr "-n, --node NODO          salta a este nodo.\n"
 
-#: ../infview/infmain.cc:565
+#: ../infview/infmain.cc:573
 msgid "-r, --read-dkt FILENAME  if no file is opened use this desktop file.\n"
 msgstr ""
 "-r, --read-dkt NOMBREAR  si no se especific¢ abrir ninguna ayuda abrir el\n"
 "                         archivo de escritorio NOMBREAR\n"
 
-#: ../infview/infmain.cc:566
+#: ../infview/infmain.cc:574
 msgid "-s, --save-dkt FILENAME  save the desktop to this file at exit.\n"
 msgstr ""
 "-s, --save-dkt NOMBREAR  grabar el archivo de escritorio como NOMBREAR.\n"
 
-#: ../infview/infmain.cc:567
+#: ../infview/infmain.cc:575
 msgid ""
 "-h, --help               displays this text ;-).\n"
 "\n"
@@ -359,7 +359,7 @@ msgstr ""
 "-h, --help               muestra este texto ;-).\n"
 "\n"
 
-#: ../infview/infmain.cc:568
+#: ../infview/infmain.cc:576
 msgid ""
 "The first argument, if present, is the name of the Info file to read.\n"
 "Any remaining arguments are treated as the names of menu items in the "
@@ -368,7 +368,7 @@ msgstr ""
 "El primer par metro, si fue indicado, es el nombre del .info a leer.\n"
 "Los par metros siguientes indican el nombre de opciones del men£ de los\n"
 
-#: ../infview/infmain.cc:571
+#: ../infview/infmain.cc:579
 msgid ""
 "node visited.  For example, `infview libc \"function index\" printf' moves "
 "to the\n"
@@ -380,7 +380,7 @@ msgstr ""
 "el nodo `Function Index' y luego a `printf' del .info `libc'.\n"
 "\n"
 
-#: ../infview/infmain.cc:574
+#: ../infview/infmain.cc:582
 msgid ""
 "node visited.  For example, `infview libc alpha printf' moves to the node\n"
 "`Alphabetical list' and then to `printf' in the info file `libc'.\n"
@@ -390,7 +390,7 @@ msgstr ""
 "`Alphabetical list' y luego al `printf' del .info `libc'.\n"
 "\n"
 
-#: ../infview/infmain.cc:577
+#: ../infview/infmain.cc:585
 msgid ""
 "Also note that info files are searched in the INFOPATH directories. To load "
 "a\n"
@@ -401,7 +401,7 @@ msgstr ""
 "Para cargar uno del directorio actual agregue ./ al comienzo del nombre.\n"
 "Reporte errores a salvador@inti.gov.ar o djgpp@delorie.com.\n"
 
-#: ../infview/infmain.cc:816
+#: ../infview/infmain.cc:822
 #, c-format
 msgid "Could not find '%s'."
 msgstr "No pude encontrar '%s'."
@@ -904,7 +904,7 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acci¢n)"
 
-#: ../install/install.cc:1283 ../mp3/mp3list.cc:333 ../setedit/edkeys.cc:507
+#: ../install/install.cc:1283 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:507
 #: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:143
 msgid "~O~k"
 msgstr "~O~k"
@@ -1058,7 +1058,7 @@ msgstr "~F~ondo"
 msgid "Text "
 msgstr "Texto "
 
-#: ../internac/tvision.cc:23 ../setedit/editpale.cc:153
+#: ../internac/tvision.cc:23 ../setedit/editpale.cc:154
 msgid "Color"
 msgstr "Color"
 
@@ -1111,7 +1111,7 @@ msgstr "Mar"
 msgid "Apr"
 msgstr "Abr"
 
-#: ../internac/tvision.cc:37 ../setedit/calendar.cc:34
+#: ../internac/tvision.cc:37 ../setedit/calendar.cc:40
 msgid "May"
 msgstr "May"
 
@@ -1209,7 +1209,7 @@ msgstr "~A~brir"
 msgid "~N~ew"
 msgstr "~N~uevo"
 
-#: ../internac/tvision.cc:67 ../mp3/mp3list.cc:331 ../setedit/editmenu.cc:64
+#: ../internac/tvision.cc:67 ../mp3/mp3list.cc:336 ../setedit/editmenu.cc:64
 msgid "~S~ave"
 msgstr "~G~uardar"
 
@@ -1337,52 +1337,52 @@ msgstr "No avisar la pr¢xima vez"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:652
+#: ../mainsrc/bufun.cc:701
 msgid "Jump to function"
 msgstr "Saltar a una funci¢n"
 
-#: ../mainsrc/bufun.cc:661
+#: ../mainsrc/bufun.cc:710
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:667
+#: ../mainsrc/bufun.cc:716
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:696
+#: ../mainsrc/bufun.cc:745
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:698
+#: ../mainsrc/bufun.cc:747
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:700
+#: ../mainsrc/bufun.cc:749
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:701
+#: ../mainsrc/bufun.cc:750
 msgid "by ~L~ine"
 msgstr "por ~L~¡nea"
 
-#: ../mainsrc/bufun.cc:736
+#: ../mainsrc/bufun.cc:785
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna funci¢n ¨est  seguro?"
 
-#: ../mainsrc/bufun.cc:765
+#: ../mainsrc/bufun.cc:813
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:4023
+#: ../mainsrc/ceditor.cc:4024
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 l¡neas"
 
-#: ../mainsrc/ceditor.cc:4042
+#: ../mainsrc/ceditor.cc:4043
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f l¡neas/segundo"
 
-#: ../mainsrc/ceditor.cc:4065
+#: ../mainsrc/ceditor.cc:4066
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1393,7 +1393,7 @@ msgstr ""
 "Velocidad: %f l¡neas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4099
+#: ../mainsrc/ceditor.cc:4100
 msgid ""
 "Time: %f seconds\n"
 "Speed: %f lines/second\n"
@@ -1405,16 +1405,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5507
+#: ../mainsrc/ceditor.cc:5508
 msgid "No match found"
 msgstr "No encontr‚ el complemento"
 
-#: ../mainsrc/ceditor.cc:5519
+#: ../mainsrc/ceditor.cc:5520
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la l¡nea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:9650
+#: ../mainsrc/ceditor.cc:9651
 msgid ""
 "This file contains ASCII 0 values, all the characters after it in this line "
 "becomes invisible. Be careful."
@@ -1422,29 +1422,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podr n ver en esa l¡nea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:9665
+#: ../mainsrc/ceditor.cc:9666
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10397
+#: ../mainsrc/ceditor.cc:10403
 msgid "Unhandled syntax highlight"
 msgstr "­Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11336
+#: ../mainsrc/ceditor.cc:11342
 msgid "Unhandled undo"
 msgstr "­Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11547
+#: ../mainsrc/ceditor.cc:11553
 msgid "Unhandled redo"
 msgstr "­Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:12688
+#: ../mainsrc/ceditor.cc:12694
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d l¡neas)."
 
-#: ../mainsrc/ceditor.cc:12696
+#: ../mainsrc/ceditor.cc:12702
 msgid "Stat failed."
 msgstr "­Fallo al usar 'stat'!"
 
@@ -1971,7 +1971,7 @@ msgstr ""
 "­Error! por favor ejecute el editor desde un directorio v lido\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:51 ../mp3/mp3play.cc:256 ../setedit/loadcle.cc:100
+#: ../mainsrc/pmacros.cc:51 ../mp3/mp3play.cc:266 ../setedit/loadcle.cc:100
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -2286,31 +2286,31 @@ msgstr "Cargar la lista de archivos"
 msgid "Could not create the list file."
 msgstr "No puedo crear la lista de archivos."
 
-#: ../mp3/mp3list.cc:239
+#: ../mp3/mp3list.cc:243
 msgid "Could not open the list file"
 msgstr "No puedo abrir la lista de archivos"
 
-#: ../mp3/mp3list.cc:257
+#: ../mp3/mp3list.cc:262
 msgid "Wrong file type."
 msgstr "Tipo de archivo incorrecto."
 
-#: ../mp3/mp3list.cc:265
+#: ../mp3/mp3list.cc:270
 msgid "Error reading the file list"
 msgstr "Error al leer la lista de archivos"
 
-#: ../mp3/mp3list.cc:321
+#: ../mp3/mp3list.cc:326
 msgid "Play List"
 msgstr "Lista de MP3s"
 
-#: ../mp3/mp3list.cc:325
+#: ../mp3/mp3list.cc:330
 msgid "List of files"
 msgstr "Lista de archivos"
 
-#: ../mp3/mp3list.cc:329 ../settvuti/tdiagaid.cc:141
+#: ../mp3/mp3list.cc:334 ../settvuti/tdiagaid.cc:141
 msgid "~I~nsert"
 msgstr "~I~nsertar"
 
-#: ../mp3/mp3list.cc:332
+#: ../mp3/mp3list.cc:337
 msgid "~L~oad"
 msgstr "~C~argar"
 
@@ -2507,55 +2507,55 @@ msgstr "~G~rabar a disco"
 msgid "No mixer support linked during configuration, sorry"
 msgstr "Lo lamento, no se incluy¢ soporte para el mezclador al compilar"
 
-#: ../setedit/calendar.cc:34
+#: ../setedit/calendar.cc:40
 msgid "January"
 msgstr "Enero"
 
-#: ../setedit/calendar.cc:34
+#: ../setedit/calendar.cc:40
 msgid "February"
 msgstr "Febrero"
 
-#: ../setedit/calendar.cc:34
+#: ../setedit/calendar.cc:40
 msgid "March"
 msgstr "Marzo"
 
-#: ../setedit/calendar.cc:34
+#: ../setedit/calendar.cc:40
 msgid "April"
 msgstr "Abril"
 
-#: ../setedit/calendar.cc:35
+#: ../setedit/calendar.cc:41
 msgid "June"
 msgstr "Junio"
 
-#: ../setedit/calendar.cc:35
+#: ../setedit/calendar.cc:41
 msgid "July"
 msgstr "Julio"
 
-#: ../setedit/calendar.cc:35
+#: ../setedit/calendar.cc:41
 msgid "August"
 msgstr "Agosto"
 
-#: ../setedit/calendar.cc:35
+#: ../setedit/calendar.cc:41
 msgid "September"
 msgstr "Septiembre"
 
-#: ../setedit/calendar.cc:35
+#: ../setedit/calendar.cc:41
 msgid "October"
 msgstr "Octubre"
 
-#: ../setedit/calendar.cc:36
+#: ../setedit/calendar.cc:42
 msgid "November"
 msgstr "Noviembre"
 
-#: ../setedit/calendar.cc:36
+#: ../setedit/calendar.cc:42
 msgid "December"
 msgstr "Diciembre"
 
-#: ../setedit/calendar.cc:155
+#: ../setedit/calendar.cc:161
 msgid "Su Mo Tu We Th Fr Sa"
 msgstr "Do Lu Ma Mi Ju Vi Sa"
 
-#: ../setedit/calendar.cc:244
+#: ../setedit/calendar.cc:250
 msgid "Calendar"
 msgstr "Calendario"
 
@@ -2597,15 +2597,15 @@ msgstr "   P gina del manual: "
 msgid "   MP3 Control panel"
 msgstr "   Panel de control MP3"
 
-#: ../setedit/dstfile.cc:581
+#: ../setedit/dstfile.cc:595
 msgid "Wrong desktop file."
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../setedit/dstfile.cc:587
+#: ../setedit/dstfile.cc:601
 msgid "The desktop file is too old."
 msgstr "El archivo de escritorio es de una version muy vieja."
 
-#: ../setedit/dstfile.cc:592
+#: ../setedit/dstfile.cc:606
 msgid "You need a newer editor for this desktop file."
 msgstr ""
 "Ud. necesita una nueva versi¢n del editor para este archivo de escritorio."
@@ -2960,7 +2960,7 @@ msgid ""
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
 
-#: ../setedit/editmain.cc:2407
+#: ../setedit/editmain.cc:2404
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "¨Desea borrar todos los archivos de respaldo y escritorio?"
 
@@ -3510,29 +3510,33 @@ msgstr "Pegar desde el Pota. de arc~h~ivo"
 msgid "Save ~d~esktop here"
 msgstr "Grabar ~e~scritorio aqu¡"
 
-#: ../setedit/editpale.cc:107
+#: ../setedit/editpale.cc:108
 msgid "Palette editor"
 msgstr "Paleta del editor"
 
-#: ../setedit/editpale.cc:115
+#: ../setedit/editpale.cc:116
 msgid "Color RGB composition"
 msgstr "Composici¢n de colores RVA"
 
-#: ../setedit/editpale.cc:121
+#: ../setedit/editpale.cc:122
 msgid "Red"
 msgstr "Rojo"
 
-#: ../setedit/editpale.cc:127
+#: ../setedit/editpale.cc:128
 msgid "Green"
 msgstr "Verde"
 
-#: ../setedit/editpale.cc:133
+#: ../setedit/editpale.cc:134
 msgid "Blue"
 msgstr "Azul"
 
-#: ../setedit/editpale.cc:164
+#: ../setedit/editpale.cc:165
 msgid "~D~efault"
 msgstr "~O~riginal"
+
+#: ../setedit/editpale.cc:297
+msgid "This hardware doesn't support it."
+msgstr ""
 
 #: ../setedit/edkeys.cc:186
 msgid "Key assignment"
@@ -3990,63 +3994,63 @@ msgstr "S¢lo si no s~e~ indicaron archivos"
 msgid "Never"
 msgstr "Nun~c~a"
 
-#: ../setedit/edprefs.cc:920 ../setedit/edprefs.cc:978
+#: ../setedit/edprefs.cc:920 ../setedit/edprefs.cc:979
 msgid "~M~ain options"
 msgstr "~P~rincipales"
 
-#: ../setedit/edprefs.cc:961
+#: ../setedit/edprefs.cc:962
 msgid "At the end of errors in message window"
 msgstr "Al finalizar los errores de la ventana de mensajes"
 
-#: ../setedit/edprefs.cc:962
+#: ../setedit/edprefs.cc:963
 msgid "~J~ust stop"
 msgstr "~S~¢lo detenerse"
 
-#: ../setedit/edprefs.cc:963
+#: ../setedit/edprefs.cc:964
 msgid "~I~ndicate with a message"
 msgstr "~I~ndicar con un mensaje"
 
-#: ../setedit/edprefs.cc:964
+#: ../setedit/edprefs.cc:965
 msgid "Wrap (~c~ircular list)"
 msgstr "Volver al p~r~incipio"
 
-#: ../setedit/edprefs.cc:965
+#: ../setedit/edprefs.cc:966
 msgid "Make a beep"
 msgstr "Hacer un sonido"
 
-#: ../setedit/edprefs.cc:966
+#: ../setedit/edprefs.cc:967
 msgid "When creating message and similar windows"
 msgstr "Cuando se crea la ventana de mensajes y similares"
 
-#: ../setedit/edprefs.cc:968
+#: ../setedit/edprefs.cc:969
 msgid "Use the ~v~ertical direction"
 msgstr "Usar el sentido ~v~ertical"
 
-#: ../setedit/edprefs.cc:969
+#: ../setedit/edprefs.cc:970
 msgid "Use the ~r~ight side"
 msgstr "Usar el lado ~d~erecho"
 
-#: ../setedit/edprefs.cc:970
+#: ../setedit/edprefs.cc:971
 msgid "Reserved ~w~idth"
 msgstr "~A~ncho reservado"
 
-#: ../setedit/edprefs.cc:1075
+#: ../setedit/edprefs.cc:1076
 msgid "~F~rom code page"
 msgstr "Codificaci¢n ~o~riginal"
 
-#: ../setedit/edprefs.cc:1077
+#: ../setedit/edprefs.cc:1078
 msgid "~T~o code page"
 msgstr "~N~ueva codificaci¢n"
 
-#: ../setedit/edprefs.cc:1081
+#: ../setedit/edprefs.cc:1082
 msgid "~D~on't remap codes under 32"
 msgstr "No ~a~lterar los c¢digos menores que 32"
 
-#: ../setedit/edprefs.cc:1082
+#: ../setedit/edprefs.cc:1083
 msgid "~O~nly selected text"
 msgstr "S¢lo el texto ~s~eleccionado"
 
-#: ../setedit/edprefs.cc:1085
+#: ../setedit/edprefs.cc:1086
 msgid "Code page remap"
 msgstr "Cambio de codificaci¢n"
 
@@ -4106,7 +4110,7 @@ msgstr "~M~argen izq.:"
 
 #: ../setedit/edprint.cc:691
 msgid "Print line numbers"
-msgstr "~I~mprimir n£meros de p gina"
+msgstr "~I~mprimir n£meros de l¡nea"
 
 #: ../setedit/edprint.cc:692
 msgid "~T~ime format:"
@@ -4176,27 +4180,27 @@ msgstr "Ventana del Proyecto"
 msgid " 1 Project Window"
 msgstr " 1 Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:528
+#: ../setedit/edprj.cc:532
 msgid "Could not open project file"
 msgstr "No puedo abrir el archivo de proyecto"
 
-#: ../setedit/edprj.cc:535
+#: ../setedit/edprj.cc:539
 msgid "Wrong project file."
 msgstr "Archivo de proyecto incorrecto."
 
-#: ../setedit/edprj.cc:545
+#: ../setedit/edprj.cc:549
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:547 ../setedit/edprj.cc:706
+#: ../setedit/edprj.cc:551 ../setedit/edprj.cc:710
 msgid "Project: "
 msgstr "Proyecto: "
 
-#: ../setedit/edprj.cc:580
+#: ../setedit/edprj.cc:584
 msgid "Could not save the project."
 msgstr "No puedo crear el archivo de proyecto."
 
-#: ../setedit/edprj.cc:676
+#: ../setedit/edprj.cc:680
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 

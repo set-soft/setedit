@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.138  2002/07/01 13:12:21  set
+* Fixed: Crash in InfView when no desktop file was available.
+
 Revision 1.137  2002/07/01 13:10:53  set
 * Fixed: A read out of bounds in the InfView draw routine. Detected by
 efence (of by 1).
