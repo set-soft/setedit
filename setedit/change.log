@@ -1,4 +1,41 @@
-$Log$
+$Log$.
+Revision 1.565  2004/08/09 12:54:47  set
+*** Data Window stuff:
+*** Related to the new code
+* Fixed: isValidUL not working.
+* Fixed: No input box when starting from a value from the "word under
+cursor"
+* Added: Implemented the memory write.
+* Added: Error message to indicate a memory location can't be accessed when
+validating it. No silent fail.
+* Added: Stack Window.
+* Added: TDskWin wrapper.
+* Added: Update when debuggy stops.
+* Modified: EnterAddresses to show input lines without separation.
+*** Also related to the original code
+* Fixed: The FIXMEs about using smaller blocks.
+* Fixed: Buffer to hold selected file name wasn't as long as PATH_MAX
+(SIGSEGV).
+* Fixed: Lack of update after reading from a file.
+* Fixed: Creation of empty files if the from or length was wrong.
+* Fixed: When debugging two programs with different endian types without
+exiting the code taked only the first. Now it should work, but is hard to
+check ;-)
+* Fixed: The stack window first detects the target architecture, if it
+isn't x86 gives an error.
+* Fixed: Wrong color and frame of the indicator when the window wasn't
+selected.
+* Added: ESC closes the window.
+* Added: An attribute to show memory changes, that's really nice because
+you can see what changed in each program step very quickly.
+* Modified: When updating the memory modified cells are now reset to "not
+edited"
+* Modified: Removed %#lx in favor of 0x%lx, I think that's more portable.
+I encapsulated most of these printfs in one member.
+* Modified: All the stuff about a linked list of windows, now they update
+itself using the broadcast that indicates the debugger changed its state.
+I keep a counter of windows to avoid sending a broadcast to nobody ;-)
+
 Revision 1.564  2004/08/06 21:10:36  set
 * Added: A first part of the Molnar Laszlo's "Data Window v0.1" that he
 contributed to RHIDE. A lot of things must be solved because things are

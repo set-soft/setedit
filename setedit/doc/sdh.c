@@ -484,12 +484,12 @@ int HTMLInMenu;
 void HTMLPrep(char *s,FILE *f)
 {
  char *p,*s1;
-
-#define c(x) (strncmp(s,"@"x,sizeof(x))==0)
-#define r(x) if (strncmp(s,"@end "#x,sizeof(#x)+4)==0) fputs("@end-"#x"\n",f); else
+ #define c(x) (strncmp(s,"@"x,sizeof(x))==0)
+ #define r(x) if (strncmp(s,"@end "#x,sizeof(#x)+4)==0) fputs("@end-"#x"\n",f); else
  if (c("menu"))
    {
     HTMLInMenu=1;
+    //fputs("@menu-\n",f);
     fputs(s,f);
    }
  else
@@ -534,8 +534,8 @@ void HTMLPrep(char *s,FILE *f)
  r(quotation)
  r(menu)
  fputs(s,f);
-#undef r
-#undef s
+ #undef r
+ #undef s
 }
 
 void ReplaceEndTable(char *b, FILE *f)
@@ -1109,7 +1109,7 @@ void GenerateHTML(void)
 {
  int error;
  char s[6*PATH_MAX];
- sprintf(s,"makeinfo %s --no-split --fill-column 200 --no-headers --no-split --no-validate -Dhtml -o %s%s.html %s%s.num",Include,OutPath,inf,OutPath,inf);
+ sprintf(s,"makeinfo %s --no-split --fill-column 200 --no-headers --no-split --no-validate -Dhtml -o %s%s.html %s%s.tx3",Include,OutPath,inf,OutPath,inf);
  error=system(s);
  if (error)
    {
@@ -1225,6 +1225,32 @@ void GenerateTX1(void)
           fputs(s,fo);
       }
     while(pos);
+   }
+ while(!feof(fi));
+ fclose(fo);
+}
+
+void GenerateTX3(void)
+{
+ char *pos,*end,*s,v;
+ int i=0;
+
+ CreateFile(".tx3");
+ do
+   {
+    ReadLine();
+    if (feof(fi))
+       break;
+    s=bl;
+    #define t(x) if (strncmp(s,"@"#x,sizeof(#x))==0) fputs("@"#x"-\n",fo); else
+    t(format)
+    t(example)
+    t(smallexample)
+    t(display)
+    t(quotation)
+    t(menu)
+    fputs(s,fo);
+    #undef t
    }
  while(!feof(fi));
  fclose(fo);
@@ -1384,6 +1410,10 @@ int main(int argc, char *argv[])
     GenerateCTX();
     // Create the indices requested
     GenerateIDX(0);
+    // Makeinfo 4.7 crazyness
+    fclose(fi);
+    fi=OpenInFile(".num");
+    GenerateTX3();
     // Make the .html from the .num using makeinfo
     GenerateHTML();
    }
@@ -1416,6 +1446,7 @@ int main(int argc, char *argv[])
     DeleteFile(".txi");
     DeleteFile(".tx1");
     DeleteFile(".tx2");
+    DeleteFile(".tx3");
     DeleteFile("");
     DeleteFileName("contents.idx");
     // TeX standard index files
