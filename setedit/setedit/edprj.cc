@@ -81,7 +81,7 @@ protected:
   char *bufTitle;
 };
 
-const int TEditorProjectWindow::Version=4;
+const int TEditorProjectWindow::Version=5;
 
 typedef struct
 {
@@ -540,7 +540,19 @@ void LoadProject(char *name)
        messageBox(_("Wrong project file."), mfOKButton | mfError);
     else
       {
-       *f >> LoadingPrjVersion >> prjWin;
+       *f >> LoadingPrjVersion;
+       ushort wS, hS;
+       if (LoadingPrjVersion>4)
+          *f >> wS >> hS;
+       else
+         {
+          wS=TScreen::getCols();
+          hS=TScreen::getRows();
+         }
+       *f >> prjWin;
+       prjWin->wS=wS;
+       prjWin->hS=hS;
+
        if (LoadingPrjVersion>1)
           SDGInterfaceReadData(f);
        if (prjWin)
@@ -578,7 +590,8 @@ static void SaveOnlyProject(void)
     // Save a signature to identify the file
     f->writeString(Signature);
     // Save the version & project
-    *f << TEditorProjectWindow::Version << prjWin;
+    ushort wS=TScreen::getCols(), hS=TScreen::getRows();
+    *f << TEditorProjectWindow::Version << wS << hS << prjWin;
     SDGInterfaceSaveData(f);
     if (!f)
       {
@@ -727,7 +740,20 @@ void OpenProject(char *name, int preLoad)
    }
  if (prjWin && prjWin->window)
    {
+    editorApp->deskTop->lock();
     InsertInOrder(editorApp->deskTop,prjWin);
+    // prjWin coordinates correction
+    TPoint dS;
+    dS.x=TScreen::getCols()-prjWin->wS;
+    dS.y=TScreen::getRows()-prjWin->hS;
+    if (dS.x!=0 || dS.y!=0)
+      {
+       TRect  r;
+       prjWin->view->calcBounds(r,dS);
+       prjWin->view->changeBounds(r);
+      }
+    editorApp->deskTop->unlock();
+
     TSetEditorApp::edHelper->addNonEditor(prjWin);
     editorApp->enableCommand(cmeClosePrj);
     editorApp->enableCommand(cmeSavePrj);

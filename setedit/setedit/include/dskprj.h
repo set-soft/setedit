@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TEditorProjectWindow;
 
@@ -21,6 +21,8 @@ public:
 
  void write( opstream& os );
  void *read(ipstream& is);
+
+ ushort wS, hS;
 
  const char *streamableName() const
      { return name; }
