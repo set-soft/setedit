@@ -214,7 +214,7 @@ void RunGrep(char *command)
  if (ActualPath[strlen(ActualPath)-1]!='/')
     strcat(ActualPath,"/");
  EdShowMessage(b);
- #ifdef SEOSf_djgpp
+ #ifdef SECompf_djgpp
  // Force the command.com because bash fails
  // Is this use of putenv correct? I think not.
  char *envShell=getenv("SHELL");

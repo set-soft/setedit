@@ -1,14 +1,14 @@
 /* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
+#include <ceditint.h>
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <conio.h>
 #include <io.h>
 #include <dpmi.h>
 #endif
 
-#include <ceditint.h>
 #define Uses_TCEditWindow
 #define Uses_TCEditor_Commands
 #define Uses_TCEditor_Internal
@@ -36,7 +36,7 @@
 #define Uses_getopt
 #define Uses_ctype
 #define Uses_unistd
-#ifndef SEOSf_djgpp
+#ifndef SECompf_djgpp
 #define Uses_TGKey
 #endif
 #include <ceditor.h>
@@ -1030,7 +1030,7 @@ void DumpEditors(void)
 static
 void WaitForKeyDown(TEvent &event)
 {
- #ifdef SEOSf_djgpp
+ #ifdef SECompf_djgpp
  do
    {
     editorApp->idle();
@@ -1396,7 +1396,7 @@ void TSetEditorApp::setCmdState( uint16 command, Boolean enable )
     disableCommand(command);
 }
 
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 const int clockResolution=CLOCKS_PER_SEC;
 #elif defined(SEOS_UNIX)
 const int clockResolution=100;
@@ -1657,7 +1657,7 @@ static char  UseRH52=0;
 extern int   use_mouse_handler;
 // By default dump the stack
 static char StackDbgStrategy=DBGST_DUMP_STACK;
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 extern char useBIOS_VGA_State;
 #endif
 
@@ -1823,7 +1823,7 @@ void ParseCommandLine(int argc, char *argv[])
             RedirectStderr=0;
             break;
        case 'S':
-            #ifdef SEOSf_djgpp
+            #ifdef SECompf_djgpp
             useBIOS_VGA_State=0;
             #endif
             break;
@@ -1862,7 +1862,7 @@ void ParseCommandLine(int argc, char *argv[])
             PrintHelp(_("-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"));
             #endif
             PrintHelp(_("-K, --keybind file_name: uses the specified name as keybinding file.\n"));
-            #ifdef SEOSf_djgpp // Don't name it under Linux
+            #ifdef SECompf_djgpp // Don't name it under Linux
             PrintHelp(_("-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"));
             PrintHelp(_("-L, --force-lfn:         forces the use of long file names under W9x.\n"));
             PrintHelp(_("-m, --no-mouse-hook:     don't hook the mouse.\n"));
@@ -1874,7 +1874,7 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         the editor creates a new one\n"));
             PrintHelp(_("-r, --no-redirect:       disables the stderr redirection. Only used during\n"
                         "                         debugging.\n"));
-            #ifdef SEOSf_djgpp // Don't name it under Linux
+            #ifdef SECompf_djgpp // Don't name it under Linux
             PrintHelp(_("-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"));
             #endif
             PrintHelp(_("-t, --tile-vert:         arranges the windows using vertical tile style.\n"));
@@ -1906,7 +1906,7 @@ void TSetEditorApp::dosShell()
 }
 
 
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 // Command line options from crt0 module
 extern int   __crt0_argc;
 extern char **__crt0_argv;
@@ -2127,7 +2127,7 @@ int main(int argc, char *argv[])
  PrintSetDefaults();
 
  LoadKeysForTCEditor(GetKeyBindFName(0));
- #ifdef __linux__
+ #ifdef TVOSf_Linux
  if (UseRH52)
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
  #endif

@@ -379,12 +379,12 @@ void PrintSetDefaults(void)
  strcpy(Autor,"Salvador E. Tropea (SET)");
  CopyDefault(Epson);
  // Output file.
- #ifdef __DJGPP__
- strcpy(Output,"prn");
- iOutType=0;
- #else
+ #ifdef TVOS_UNIX
  strcpy(Output,"lpr");
  iOutType=1;
+ #else
+ strcpy(Output,"prn");
+ iOutType=0;
  #endif
 }
 

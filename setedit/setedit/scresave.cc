@@ -128,7 +128,7 @@ void TAllScreen::scrollUp(void)
 TAllScreen *scrn;
 
 //#define HIDE_MOUSE
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 extern int emulate_mouse;
 #define EmulateMouse(a) emulate_mouse=a
 #else
@@ -221,7 +221,7 @@ void TSetEditorApp::screenSaver()
     if (h>=0)
       {
        ::write(h,buf,len);
-       #ifndef __DJGPP__
+       #ifdef TVOS_UNIX
        // In UNIX we can delete the file so nobody will know about it.
        unlink(name);
        #endif
@@ -283,7 +283,7 @@ ScrSaver Blanker=
 };
 
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 
 /***************************** Red and Blue plasma ***********************************/
 // This code is relative compact under DOS
@@ -738,7 +738,7 @@ ScrSaver TextStars=
 };
 /************************** End Text Stars saver *****************************/
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 /************************** Safe saver *****************************/
 static char *cCartel2=__("That's a 'safe' screen saver. The editor have a beautiful "
                          "plasma screen saver but currently isn't the default "
@@ -807,7 +807,7 @@ ScrSaver SafeSaver=
 #endif
 
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <dos.h> // get_dos_version
 static
 void CreateScrSaversList(void)

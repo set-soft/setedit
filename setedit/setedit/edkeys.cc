@@ -559,7 +559,7 @@ int KeyPadSetUp(void)
  return 0;
 }
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 int KeyboardModeSetUp(void)
 {
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Keyboard setup")));
