@@ -44,7 +44,8 @@ class TFileDialogHome : public TFileDialog
 public:
  TFileDialogHome(const char *aWildCard, const char *aTitle,
                  const char *inputName, ushort aOptions, uchar histId,
-                 const char *aHomeDir, unsigned aFlags, char *aSelDir);
+                 const char *aHomeDir, unsigned aFlags, char *aSelDir,
+                 TRect &dialogSize);
  virtual void handleEvent(TEvent& event);
  const char *homeDirectory;
 
@@ -52,6 +53,7 @@ public:
  unsigned flags;
  char letHistoryPass;
  char *selDir;
+ TRect *returnSize;
  static int (*ConfDiag)();
 };
 
@@ -69,7 +71,8 @@ TButton *AddButton(TRect &r, const char *label, unsigned command)
 TFileDialogHome::TFileDialogHome(const char *aWildCard, const char *aTitle,
                                  const char *inputName, ushort aOptions,
                                  uchar histId, const char *aHomeDir,
-                                 unsigned aFlags, char *aSelDir) :
+                                 unsigned aFlags, char *aSelDir,
+                                 TRect &dialogSize) :
    TWindowInit(&TFileDialogHome::initFrame),
    TFileDialog(aWildCard,aTitle,inputName,aOptions,histId)
 {
@@ -98,12 +101,21 @@ TFileDialogHome::TFileDialogHome(const char *aWildCard, const char *aTitle,
  flags=aFlags;
  letHistoryPass=0;
  selDir=aSelDir;
+
+ if (dialogSize.a.x || dialogSize.b.x)
+   {
+    changeBounds(dialogSize);
+    options&=~ofCentered;
+   }
+ else
+    dialogSize=getBounds();
+ returnSize=&dialogSize;
 }
 
 void TFileDialogHome::handleEvent(TEvent& event)
 {
  char buf[PATH_MAX],buf2[PATH_MAX];
- char endIt=0,advance=1;
+ char endIt=0,cancelIt=0,advance=1;
  TChDirDialog *d;
 
  if (event.what==evBroadcast)
@@ -228,6 +240,7 @@ void TFileDialogHome::handleEvent(TEvent& event)
             link->setData(buf2);
             event.what=evBroadcast;
             event.message.command=cmRecordHistory;
+            cancelIt=1;
             break;
        // Configuration dialog
        case cmFileOpenOptions:
@@ -243,12 +256,15 @@ void TFileDialogHome::handleEvent(TEvent& event)
  TDialog::handleEvent(event);
  if (endIt)
     link->setData(buf);
+ // Store the current size in the rectangle provided by the caller
+ if (endIt || cancelIt)
+    *returnSize=getBounds();
 }
 
 static char *LastMaskUsed=0;
 
 int GenericFileDialog(const char *title, char *file, char *mask, int histID, int buttons,
-                      char *dir, unsigned flags, int ctx)
+                      char *dir, unsigned flags, int ctx, TRect &dialogSize)
 {
  char curDir[PATH_MAX];
  char dirChanged=0;
@@ -266,7 +282,7 @@ int GenericFileDialog(const char *title, char *file, char *mask, int histID, int
  if ((!mask || !mask[0]) && CLY_IsWild(file))
     fgButtons|=fdNoLoadDir;
  TFileDialogHome *d=new TFileDialogHome(mask,title,__("~N~ame"),fgButtons,histID,curDir,
-                                        flags,dir);
+                                        flags,dir,dialogSize);
  d->helpCtx=ctx;
 
  int result=cmCancel;

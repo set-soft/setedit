@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.477  2003/12/09 16:06:30  set
+* Added: Most lists (like functions list) now centers the focused item when
+a match is selected. Suggested by gradha.
+
 Revision 1.476  2003/12/03 14:44:21  set
 * Fixed: Missing wrapper for RHIDE's version of FindFile. Reported by Kevin
 Alm.

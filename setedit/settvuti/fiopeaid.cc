@@ -13,37 +13,41 @@ the same time. To avoid overheads the buffers are dynamically allocated.
 
 ***************************************************************************/
 
-#include <limits.h>
 #define Uses_string
-#include <stdlib.h>
+#define Uses_stdlib
+#define Uses_limits
+
+#define Uses_stdio // remove me
 
 #define Uses_FileOpenAid
-#define Uses_TFileDialog  // For the buttons' constants
-#define Uses_fpstream     // To save/load the dirs
+#define Uses_TFileDialog   // For the buttons' constants
+#define Uses_fpstream      // To save/load the dirs
+#define Uses_TApplication  // To get desktop size
+#define Uses_TDeskTop
 #include <settvuti.h>
 
 static
 AsoID Convert[]={
 // Used by the standalone editor to open the files to edit
-{hID_FileOpen,0,0,hcFileOpen},
+{hID_FileOpen,0,0,hcFileOpen,0,0,0,0},
 // Used by the editmenu.cc to store the files under edition
-{hID_FileSave,0,0,hcFileSave},
+{hID_FileSave,0,0,hcFileSave,0,0,0,0},
 // Used by InfView to open a .info file
-{hID_OpenInfo,0,0,hcOpenInfo},
+{hID_OpenInfo,0,0,hcOpenInfo,0,0,0,0},
 // Used by the editor class to store/retreive blocks
-{hID_SaveBlock,0,0,hcSaveBlock},
+{hID_SaveBlock,0,0,hcSaveBlock,0,0,0,0},
 // Used by the standalone editor to store/retreive configuration files
-{hID_ConfigFiles,0,0,hcConfigFiles},
+{hID_ConfigFiles,0,0,hcConfigFiles,0,0,0,0},
 // Used by the standalone editor to store/retreive project files
-{hID_ProjectFiles,0,0,hcProjectFiles},
+{hID_ProjectFiles,0,0,hcProjectFiles,0,0,0,0},
 // Used by the standalone editor to load MP3 files
-{hID_OpenMP3,0,0,hcOpenMP3},
+{hID_OpenMP3,0,0,hcOpenMP3,0,0,0,0},
 // Used by the standalone editor to store WAV converted MP3 files
-{hID_SaveMP3,0,0,hcSaveMP3},
+{hID_SaveMP3,0,0,hcSaveMP3,0,0,0,0},
 // Used by the standalone editor to select TAG files
-{hID_SelectTagFile,0,0,hcSelTagFile},
+{hID_SelectTagFile,0,0,hcSelTagFile,0,0,0,0},
 // Used to import/export the project items
-{hID_ExportProjectItems,0,0,hcExpPrjItems},
+{hID_ExportProjectItems,0,0,hcExpPrjItems,0,0,0,0},
 {0,0}
 };
 
@@ -189,7 +193,28 @@ int GenericFileDialog(const char *title, char *file, char *mask, int id, unsigne
  if (!mask)
     mask=file;
 
- int ret=GenericFileDialog(title,file,mask,id,buttons,dir,flags,ctx);
+ TRect r(0,0,0,0);
+ TRect dsz=TApplication::deskTop->getExtent();
+ if (aso->ax || aso->bx)
+   {// Size isn't the default
+    // Scale down to the desktop size
+    double scale=(dsz.b.x-dsz.a.x)/2e9;
+    r.a.x=int(aso->ax*scale+0.5);
+    r.b.x=int(aso->bx*scale+0.5);
+    scale=(dsz.b.y-dsz.a.y)/2e9;
+    r.a.y=int(aso->ay*scale+0.5);
+    r.b.y=int(aso->by*scale+0.5);
+   }
+ //printf("Antes %d;%d %d;%d\n",r.a.x,r.a.y,r.b.x,r.b.y);
+ int ret=GenericFileDialog(title,file,mask,id,buttons,dir,flags,ctx,r);
+ //printf("Después %d;%d %d;%d\n",r.a.x,r.a.y,r.b.x,r.b.y);
+ // Store the size abstracting the desktop size
+ double scale=2e9/(dsz.b.x-dsz.a.x);
+ aso->ax=int(r.a.x*scale+0.5);
+ aso->bx=int(r.b.x*scale+0.5);
+ scale=2e9/(dsz.b.y-dsz.a.y);
+ aso->ay=int(r.a.y*scale+0.5);
+ aso->by=int(r.b.y*scale+0.5);
 
  delete[] aso->mask;
  aso->mask=GetLastMaskUsed();
@@ -197,7 +222,7 @@ int GenericFileDialog(const char *title, char *file, char *mask, int id, unsigne
  return ret;
 }
 
-const int Version=2;
+const int Version=3;
 
 void SaveFileIDDirs(fpstream &s)
 {
@@ -218,6 +243,8 @@ void SaveFileIDDirs(fpstream &s)
        s.writeString(p);
     else
        s.writeString("");
+    s << (int32)Convert[i].ax << (int32)Convert[i].ay <<
+         (int32)Convert[i].bx << (int32)Convert[i].by;
     i++;
    }
  s << 0;
@@ -256,6 +283,14 @@ void LoadFileIDDirs(fpstream &s, Boolean isLocal)
           s.readString(aux,PATH_MAX);
           if (version>1)
              s.readString(aux,PATH_MAX);
+         }
+       if (version>=3)
+         {
+          int32 aux;
+          s >> aux; p->ax=aux;
+          s >> aux; p->ay=aux;
+          s >> aux; p->bx=aux;
+          s >> aux; p->by=aux;
          }
       }
     s >> i;

@@ -10,6 +10,7 @@ typedef struct
  char *dir;
  char *mask;
  int helpCtx;
+ int ax,ay,bx,by;
 } AsoID;
 
 AsoID *GetFileIDDirBuffer(int id);
