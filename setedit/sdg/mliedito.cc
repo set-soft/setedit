@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -35,6 +35,8 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_TKeySeqCol
 #define Uses_TComSeqCol
 #include <keytrans.h>
+#define Uses_SETAppConst
+#include <setapp.h>
 
 // Open a file and insert it in the desktop
 // This function should be defined by RHIDE and is already needed
@@ -86,6 +88,12 @@ TLispVar *TMLIEditor::WhatConstant(char *s)
     int command=SearchEdCommand(s+3);
     if (command>=0)
        return new TLispInteger(command+cmbBaseNumber);
+   }
+ if (*s=='c' && *(s+1)=='m' && *(s+2)=='e')
+   {
+    int command=SearchEditCommand(s+3);
+    if (command>=0)
+       return new TLispInteger(command+cmeBase);
    }
  // Editor Flags
  if (*s=='e' && *(s+1)=='d' && *(s+2)=='f')

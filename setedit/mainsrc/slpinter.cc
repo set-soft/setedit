@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -10,6 +10,7 @@
 #define Uses_TCEditor
 #define Uses_TCEditor_Commands
 #define Uses_TCEditor_Internal
+#define Uses_TProgram
 // EasyDiag requests
 #define Uses_TSButton
 #define Uses_TSInputLinePiped
@@ -88,12 +89,23 @@ char *TMLIEditor::GetSelection(int &len)
 
 int TMLIEditor::SendCommand(int command)
 {
- if (Editor)
-   {
+ if (command>=cmbBaseNumber && command<=cmbBaseNumber+cmbLastCommand)
+   {// Editor commands
+    if (Editor)
+      {
+       TEvent event;
+       event.what=evCommand;
+       event.message.command=command;
+       Editor->handleEvent(event);
+       return event.what==evNothing;
+      }
+   }
+ else
+   {// Application commands
     TEvent event;
     event.what=evCommand;
     event.message.command=command;
-    Editor->handleEvent(event);
+    TProgram::application->handleEvent(event);
     return event.what==evNothing;
    }
  return 0;
