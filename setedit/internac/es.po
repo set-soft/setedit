@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.0\n"
-"PO-Revision-Date: 2003-04-19 10:49-0300\n"
+"PO-Revision-Date: 2003-04-19 11:46-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -464,7 +464,7 @@ msgid "~D~OS shell"
 msgstr "Ir a ~D~OS"
 
 #: ../infview/infmenu.cc:38 ../internac/tvision.cc:86
-#: ../setedit/editmenu.cc:71 ../setedit/editmenu.cc:315
+#: ../setedit/editmenu.cc:71 ../setedit/editmenu.cc:317
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
@@ -778,13 +778,13 @@ msgstr "< ~A~nterior"
 msgid "> ~N~ext"
 msgstr "> P~r~óxima"
 
-#: ../install/install.cc:449 ../internac/tvision.cc:152
+#: ../install/install.cc:449 ../internac/tvision.cc:143
 #: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:101
 #: ../setedit/advice.cc:108
 msgid "~Y~es"
 msgstr "~S~i"
 
-#: ../install/install.cc:450 ../internac/tvision.cc:153
+#: ../install/install.cc:450 ../internac/tvision.cc:144
 #: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:102
 #: ../setedit/advice.cc:107
 msgid "~N~o"
@@ -1792,96 +1792,76 @@ msgstr "la ioctl VT_SETMODE falló"
 
 #: ../internac/tvision.cc:128
 msgid ""
-"that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n"
+"that's an interactive application, don't redirect stdout. If you want to "
+"collect information redirect stderr like this: program 2> file"
 msgstr ""
-"esta es una aplicación interactiva, no redireccione la salida.\r\n"
-"Si quiere colectar información redireccione la salida de error así:\r\n"
-"\r\n"
-"programa 2> archivo\r\n"
+"esta es una aplicación interactiva, no redireccione la salida. Si quiere "
+"colectar información redireccione la salida de error así: programa 2> archivo"
 
-#: ../internac/tvision.cc:133
+#: ../internac/tvision.cc:131
 msgid "failed to get the name of the current terminal used for output"
 msgstr "fallo al obtener el nombre de la terminal usada como salida"
 
-#: ../internac/tvision.cc:134
+#: ../internac/tvision.cc:132
 msgid "failed to open the output terminal"
 msgstr "fallo al abrir la terminal de salida"
 
-#: ../internac/tvision.cc:135
+#: ../internac/tvision.cc:133
 msgid "can't get output terminal information"
 msgstr "no pude obtener información de la terminal de salida"
 
-#: ../internac/tvision.cc:136
+#: ../internac/tvision.cc:134
 msgid "can't configure terminal mode"
 msgstr "no pude configurar el modo de la terminal"
 
-#: ../internac/tvision.cc:137
+#: ../internac/tvision.cc:135
 #, c-format
-msgid "Error! %s\r\n"
-msgstr "¡Error! %s\r\n"
+msgid "Error! %s"
+msgstr "¡Error! %s"
 
-#: ../internac/tvision.cc:138
-msgid ""
-"\r\n"
-"Error! that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n"
-"\r\n"
-msgstr ""
-"\r\n"
-"¡Error! esta es una aplicación interactiva, no redireccione la salida.\r\n"
-"Si quiere colectar información redireccione la salida de error así:\r\n"
-"\r\n"
-"programa 2> archivo\r\n"
-"\r\n"
-
-#: ../internac/tvision.cc:145
+#: ../internac/tvision.cc:136
 msgid "No available selection"
 msgstr "No hay nada seleccionado"
 
-#: ../internac/tvision.cc:146
+#: ../internac/tvision.cc:137
 msgid "Unsupported data type"
 msgstr "Tipo de datos no soportado"
 
-#: ../internac/tvision.cc:147
+#: ../internac/tvision.cc:138
 msgid "No data"
 msgstr "No hay datos"
 
-#: ../internac/tvision.cc:148
+#: ../internac/tvision.cc:139
 msgid "X11 error"
 msgstr "Error de X11"
 
-#: ../internac/tvision.cc:149
+#: ../internac/tvision.cc:140
 msgid "Another application holds the clipboard"
 msgstr "Otra aplicación retiene el portapapeles"
 
 # c-format
-#: ../internac/tvision.cc:150
+#: ../internac/tvision.cc:141
 #, c-format
 msgid "Could not open '%s' for reading"
 msgstr "No puede abrir '%s' para leerlo"
 
-#: ../internac/tvision.cc:151
+#: ../internac/tvision.cc:142
 msgid "Save to file"
 msgstr "Grabar"
 
-#: ../internac/tvision.cc:154
+#: ../internac/tvision.cc:145
 msgid "Warning"
 msgstr "Atención"
 
-#: ../internac/tvision.cc:155 ../setedit/edprefs.cc:304
+#: ../internac/tvision.cc:146 ../setedit/edprefs.cc:304
 msgid "Information"
 msgstr "Información"
 
-#: ../internac/tvision.cc:156
+#: ../internac/tvision.cc:147
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: ../internac/tvision.cc:157
+#: ../internac/tvision.cc:148
 msgid "Don't warn you next time"
 msgstr "No avisar la próxima vez"
 
@@ -4091,10 +4071,18 @@ msgid "Paste ~f~rom file Clipboard"
 msgstr "Pegar desde el Porta. de arc~h~ivo"
 
 #: ../setedit/editmenu.cc:313
+msgid "Copy to OS Clipboar~d~"
+msgstr "Copi~a~r al Porta. del SO"
+
+#: ../setedit/editmenu.cc:314
+msgid "Paste from OS Clip~b~oard"
+msgstr "Pegar desde e~l~ Porta. del SO"
+
+#: ../setedit/editmenu.cc:315
 msgid "Save ~d~esktop here"
 msgstr "Grabar ~e~scritorio aquí"
 
-#: ../setedit/editmenu.cc:314
+#: ../setedit/editmenu.cc:316
 msgid "Sa~v~e as DOS..."
 msgstr "Guardar en formato ~D~OS ..."
 

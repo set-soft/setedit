@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.0\n"
-"PO-Revision-Date: 2003-04-19 10:49-0300\n"
+"PO-Revision-Date: 2003-04-19 11:46-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -454,7 +454,7 @@ msgid "~D~OS shell"
 msgstr "~D~OS Shell"
 
 #: ../infview/infmenu.cc:38 ../internac/tvision.cc:86
-#: ../setedit/editmenu.cc:71 ../setedit/editmenu.cc:315
+#: ../setedit/editmenu.cc:71 ../setedit/editmenu.cc:317
 #, fuzzy
 msgid "S~h~ell"
 msgstr "~A~lles"
@@ -777,13 +777,13 @@ msgstr "< ~V~orherige"
 msgid "> ~N~ext"
 msgstr "> ~N~ächste"
 
-#: ../install/install.cc:449 ../internac/tvision.cc:152
+#: ../install/install.cc:449 ../internac/tvision.cc:143
 #: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:101
 #: ../setedit/advice.cc:108
 msgid "~Y~es"
 msgstr "~J~a"
 
-#: ../install/install.cc:450 ../internac/tvision.cc:153
+#: ../install/install.cc:450 ../internac/tvision.cc:144
 #: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:102
 #: ../setedit/advice.cc:107
 msgid "~N~o"
@@ -1861,89 +1861,77 @@ msgstr ""
 
 #: ../internac/tvision.cc:128
 msgid ""
-"that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n"
+"that's an interactive application, don't redirect stdout. If you want to "
+"collect information redirect stderr like this: program 2> file"
 msgstr ""
 
-#: ../internac/tvision.cc:133
+#: ../internac/tvision.cc:131
 msgid "failed to get the name of the current terminal used for output"
 msgstr ""
 
-#: ../internac/tvision.cc:134
+#: ../internac/tvision.cc:132
 #, fuzzy
 msgid "failed to open the output terminal"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../internac/tvision.cc:135
+#: ../internac/tvision.cc:133
 #, fuzzy
 msgid "can't get output terminal information"
 msgstr "Konnte Ausgabedatei nicht zum Drucken öffnen"
 
-#: ../internac/tvision.cc:136
+#: ../internac/tvision.cc:134
 msgid "can't configure terminal mode"
 msgstr ""
 
-#: ../internac/tvision.cc:137
+#: ../internac/tvision.cc:135
 #, fuzzy, c-format
-msgid "Error! %s\r\n"
+msgid "Error! %s"
 msgstr "Fehler"
 
-#: ../internac/tvision.cc:138
-msgid ""
-"\r\n"
-"Error! that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n"
-"\r\n"
-msgstr ""
-
-#: ../internac/tvision.cc:145
+#: ../internac/tvision.cc:136
 msgid "No available selection"
 msgstr ""
 
-#: ../internac/tvision.cc:146
+#: ../internac/tvision.cc:137
 msgid "Unsupported data type"
 msgstr ""
 
-#: ../internac/tvision.cc:147
+#: ../internac/tvision.cc:138
 msgid "No data"
 msgstr ""
 
-#: ../internac/tvision.cc:148
+#: ../internac/tvision.cc:139
 #, fuzzy
 msgid "X11 error"
 msgstr "Kein Fehler"
 
-#: ../internac/tvision.cc:149
+#: ../internac/tvision.cc:140
 msgid "Another application holds the clipboard"
 msgstr ""
 
-#: ../internac/tvision.cc:150
+#: ../internac/tvision.cc:141
 #, fuzzy, c-format
 msgid "Could not open '%s' for reading"
 msgstr "Konnte Desktopdatei nicht finden."
 
-#: ../internac/tvision.cc:151
+#: ../internac/tvision.cc:142
 #, fuzzy
 msgid "Save to file"
 msgstr "Speicher Datei als"
 
-#: ../internac/tvision.cc:154
+#: ../internac/tvision.cc:145
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../internac/tvision.cc:155 ../setedit/edprefs.cc:304
+#: ../internac/tvision.cc:146 ../setedit/edprefs.cc:304
 msgid "Information"
 msgstr "Information"
 
-#: ../internac/tvision.cc:156
+#: ../internac/tvision.cc:147
 msgid "Confirm"
 msgstr "Bestätigung"
 
-#: ../internac/tvision.cc:157
+#: ../internac/tvision.cc:148
 #, fuzzy
 msgid "Don't warn you next time"
 msgstr "Nicht beim nächsten Mal anzeigen"
@@ -4177,10 +4165,20 @@ msgstr "Füge von Windows Zwischenablage ein"
 
 #: ../setedit/editmenu.cc:313
 #, fuzzy
+msgid "Copy to OS Clipboar~d~"
+msgstr "~Z~wischenablage anzeigen"
+
+#: ../setedit/editmenu.cc:314
+#, fuzzy
+msgid "Paste from OS Clip~b~oard"
+msgstr "Füge von Windows Zwischenablage ein"
+
+#: ../setedit/editmenu.cc:315
+#, fuzzy
 msgid "Save ~d~esktop here"
 msgstr "Desktopdateien versteckt sc~h~reiben"
 
-#: ../setedit/editmenu.cc:314
+#: ../setedit/editmenu.cc:316
 #, fuzzy
 msgid "Sa~v~e as DOS..."
 msgstr "Speichern ~a~ls..."

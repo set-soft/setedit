@@ -82,8 +82,8 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "Copy to ~W~indows Clip.", cmcCopyClipWin
  MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteClipWin
  $else
- MenuItemC: "Cop~y~ to OS Clipboard", cmcCopyClipWin
- MenuItemC: "Past~e~ from OS Clipboard", cmcPasteClipWin
+ MenuItemC: "Copy to OS Clipboar~d~", cmcCopyClipWin
+ MenuItemC: "Paste from OS Clip~b~oard", cmcPasteClipWin
  MenuItemC: "Cop~y~ to file Clipboard", cmcCopyClipFile
  MenuItemC: "Paste ~f~rom file Clipboard", cmcPasteClipFile
  $endif

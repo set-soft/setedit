@@ -126,22 +126,13 @@ __("can't get input terminal attributes")
 __("can't set input terminal attributes")
 __("ioctl VT_SETMODE failed")
 __(""
-"that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n")
+"that's an interactive application, don't redirect stdout. If you want to "
+"collect information redirect stderr like this: program 2> file")
 __("failed to get the name of the current terminal used for output")
 __("failed to open the output terminal")
 __("can't get output terminal information")
 __("can't configure terminal mode")
-__("Error! %s\r\n")
-__(""
-"\r\n"
-"Error! that's an interactive application, don't redirect stdout\r\n"
-"If you want to collect information redirect stderr like this:\r\n"
-"\r\n"
-"program 2> file\r\n"
-"\r\n")
+__("Error! %s")
 __("No available selection")
 __("Unsupported data type")
 __("No data")
