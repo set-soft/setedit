@@ -48,10 +48,10 @@ scrnsave:
 distrib-all: distrib distrib-infview installer
 
 distrib: editor scrnsave
-	cd djgpp; compress.bat; cd ..
+	cd djgpp; compress.bat $(EXTRA_INS_OPS) ; cd ..
 
 distrib-infview: infview
-	cd djgpp; perl compinf.pl; cd ..
+	cd djgpp; perl compinf.pl $(EXTRA_INS_OPS) ; cd ..
 
 installer: distrib
 	$(MAKE) -f install.mak
@@ -91,10 +91,10 @@ else
 endif
 
 distrib: editor
-	cd linux; perl ./compress.pl --prefix $(inst_prefix) --fhs $(SET_USE_FHS); cd ..
+	cd linux; perl ./compress.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --fhs $(SET_USE_FHS); cd ..
    
 distrib-infview: infview
-	cd linux; perl ./compinf.pl --prefix $(inst_prefix) --fhs $(SET_USE_FHS); cd ..
+	cd linux; perl ./compinf.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --fhs $(SET_USE_FHS); cd ..
 
 install: editor
 	cd linux; perl ./compress.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install --fhs $(SET_USE_FHS); cd ..

@@ -1087,23 +1087,16 @@ sub GenerateMakefile
  $internac=@conf{'xgettext'} ne 'no';
  $docbasic=@conf{'makeinfo'} ne 'no';
 
- if(@conf{'compressExe'} eq 'undef')
- {
- 	if($OS eq 'UNIX')
-	{
-		$compExeEditor=0;
-    }
-    else
-	{
-		$compExeEditor=1;
-    }
-	$compExeInfview=1;
- }
+ if (@conf{'compressExe'} eq 'undef')
+   {# Default is to compress InfView and the editor only for non-UNIX targets
+    $compExeEditor=$OS ne 'UNIX';
+    $compExeInfview=1;
+   }
  else
- {
- 	$compExeEditor=@conf{'compressExe'} eq 'yes';
- 	$compExeInfview=@conf{'compressExe'} eq 'yes';
- }
+   {# The user specified an option
+    $compExeEditor=@conf{'compressExe'} eq 'yes';
+    $compExeInfview=@conf{'compressExe'} eq 'yes';
+   }
  
  $text.="\n\n.PHONY: needed";
  $text.=" infview" if ($infview);
@@ -1241,11 +1234,13 @@ sub GenerateMakefile
     $text.="\n\ndistrib-editor:\n";
     $text.="\t\$(MAKE) -C internac\n" unless @conf{'xgettext'} eq 'no';
     $text.="\t\$(MAKE) -C makes distrib";
+    $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeEditor);
     # infview
     if ($infview)
       {
        $text.="\n\ndistrib-infview:\n";
        $text.="\t\$(MAKE) -C makes distrib-infview";
+       $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeInfview);
       }
     # all targets
     $text.="\n\ndistrib: distrib-editor";
