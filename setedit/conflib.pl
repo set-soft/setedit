@@ -133,6 +133,17 @@ sub RunRedirect
  $ret;
 }
 
+sub AddIncludes
+{
+ my (@dirs)=split(' ',$conf{'EXTRA_INCLUDE_DIRS'});
+ my ($res)='';
+ for (@dirs)
+    {
+     $res.=" -I$_";
+    }
+ return $res;
+}
+
 ###[txh]####################################################################
 #
 # Prototype: RunGCCTest($gcc,$extension,$prog,$flags)
@@ -160,8 +171,9 @@ sub RunGCCTest
  replace($file,$test."\n");
  $flags=$CFLAGS if ($ext eq 'c');
  $flags=$CXXFLAGS if ($ext eq 'cc');
+ $flags.=AddIncludes();
  $command="$cc -o test.exe $flags $file $switchs";
- #print "Running: $command\n";
+ #print "\nRunning: $command\n";
  $label=$command.":\n";
  `echo $label >> $ErrorLog`;
 
@@ -543,7 +555,7 @@ sub FindCFLAGS
        $ret.=' -pipe' if ($OS eq 'UNIX');
        # Looks like that's common and some sysadmins doesn't configure gcc to
        # look there:
-       $ret.=' -I/usr/local/include' if ($OSf eq 'FreeBSD');
+       $conf{'EXTRA_INCLUDE_DIRS'}.=' /usr/local/include' if ($OSf eq 'FreeBSD');
       }
    }
  print "$ret\n";
@@ -615,7 +627,8 @@ sub FindCXXFLAGS
       {
        $ret='-O2'; # -gstabs+3';
        $ret.=' -pipe' if ($OS eq 'UNIX');
-       $ret.=' -I/usr/local/include -L/usr/local/include' if ($OSf eq 'FreeBSD');
+       $ret.=' -L/usr/local/include' if ($OSf eq 'FreeBSD');
+       $conf{'EXTRA_INCLUDE_DIRS'}.=' /usr/local/include' if ($OSf eq 'FreeBSD');
       }
    }
  print "$ret\n";

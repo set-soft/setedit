@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.610  2004/09/17 20:52:41  set
+* Added: [WWW] Some changes towards the next release.
+
 Revision 1.609  2004/09/17 18:51:55  set
 * Fixed: [MSVC] Another min/max mix. Reported by Arnold.
 

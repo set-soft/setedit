@@ -246,6 +246,7 @@ $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
 $test.=' ../libmigdb/src' if (@conf{'migdbShipped'} eq 'yes');
+$test.=$conf{'EXTRA_INCLUDE_DIRS'};
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
 
 # The support libraries shouldn't generate dependencies
@@ -553,6 +554,10 @@ sub SeeCommandLine
       {
        $conf{'HAVE_CALENDAR'}='no';
       }
+    elsif ($i=~'--include=(.*)')
+      {
+       $conf{'EXTRA_INCLUDE_DIRS'}.=" $1";
+      }
     else
       {
        ShowHelp();
@@ -579,6 +584,7 @@ sub ShowHelp
  print "--tv-include=pat: path for Turbo Vision includes\n";
  print "  Note: if you use --tv-include you should also use --tv-lib\n";
  print "--tv-lib=path   : path for Turbo Vision libraries\n";
+ print "--include=path  : Add this path for includes. Repeat for each dir.\n";
  # Libs
  print "\nLibraries and optional support:\n";
  print "--no-intl       : don't use international support.\n";
