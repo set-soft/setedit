@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.437  2003/08/13 18:38:07  set
+* Added: A link to the "pure DOS" fix/test release to the web page and also
+made the more visible the link to S.F. summary page.
+
 Revision 1.436  2003/08/11 01:53:33  terrible
 * Updated: Debian version to 0.5.2-1.
 

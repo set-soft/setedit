@@ -610,15 +610,18 @@ sub FindCXXFLAGS
     return $ret;
    }
  $ret=@ENV{'CXXFLAGS'};
- $ret=TVConfigOption('cppflags');
- chop $ret if $ret;
- $ret=@conf{'CFLAGS'} unless $ret;
- $ret=@ENV{'CFLAGS'} unless $ret;
- if (!$ret)
+ if (!ret)
    {
-    $ret='-O2'; # -gstabs+3';
-    $ret.=' -pipe' if ($OS eq 'UNIX');
-    $ret.=' -I/usr/local/include -L/usr/local/include' if ($OSf eq 'FreeBSD');
+    $ret=TVConfigOption('cppflags');
+    chop $ret if $ret;
+    $ret=@conf{'CFLAGS'} unless $ret;
+    $ret=@ENV{'CFLAGS'} unless $ret;
+    if (!$ret)
+      {
+       $ret='-O2'; # -gstabs+3';
+       $ret.=' -pipe' if ($OS eq 'UNIX');
+       $ret.=' -I/usr/local/include -L/usr/local/include' if ($OSf eq 'FreeBSD');
+      }
    }
  print "$ret\n";
  $conf{'CXXFLAGS'}=$ret;
