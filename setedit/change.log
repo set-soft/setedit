@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.606  2004/09/17 16:09:46  set
+* Added: [Debug] An advice dialog when debugging in the Linux console
+indicating the program will be started in another VT. Also some explanation
+about it in the docs.
+
 Revision 1.605  2004/09/16 20:59:51  set
 * Added: [Config] AMD64 and NetBSD detection. It doesn't mean they are
 supported.

@@ -34,6 +34,14 @@ po_subdirs=
 
 CFLAGS=-O
 
+ifdef MAINTAINER_MODE
+PO_DEPS=potfiles.po fix.exe $(addprefix h_,$(addsuffix .po,$(LANGUAGES)))
+POTFILES_DEPS=po_list $(po_list_l)
+else
+PO_DEPS=
+POTFILES_DEPS=
+endif
+
 all: $(addsuffix .mo,$(LANGUAGES))
 
 ifeq ($(xgettext),)
@@ -67,7 +75,7 @@ clean:
 	rm -f $(addsuffix .po,$(LANGUAGES))
 	rm -f po_list
 
-potfiles.po: po_list $(po_list_l)
+potfiles.po: $(POTFILES_DEPS)
 #@echo "*** Ignore warnings about unterminated strings, is a bug in gettext."
 #@echo "*** Ulrich Drepper, the maintainer, refuses to fix it."
 	$(xgettext) --default-domain=dummy --add-comments --keyword=_ \
@@ -82,7 +90,7 @@ T=$(subst /,\,$@)
 fix.exe: fix.c
 	$(CXX) -o fix.exe -s $(CXXFLAGS) fix.c
 
-$(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe $(addprefix h_,$(addsuffix .po,$(LANGUAGES)))
+$(addsuffix .po,$(LANGUAGES)): $(PO_DEPS)
 #if not exist $(T) cp $^ $@
 	touch $@
 	./fix.exe $(addprefix h_,$@) $< __.pot
