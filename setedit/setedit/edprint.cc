@@ -479,7 +479,7 @@ int PrintSource(char *b, char *fileName, unsigned tabSize)
     messageBox(_("The header is too large, reduce the title and/or author lengths"),
                mfError | mfOKButton);
     EdShowMessage(Buffer);
-    sprintf(Buffer,_("Header length: %d Columns: %d"),strlen(Buffer),iCols);
+    sprintf(Buffer,_("Header length: %d Columns: %d"),(int)strlen(Buffer),iCols);
     EdShowMessage(Buffer);
     if (isPipe)
        pclose(fSal);
