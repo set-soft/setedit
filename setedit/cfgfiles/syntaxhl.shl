@@ -1640,7 +1640,7 @@ Files=php,phtm,phtml
 EOLComment1=//
 EOLComment2=#
 HexMarker=0x
-Symbols1=!&*+-:<=>?^|$~@\
+Symbols1=!&*/+-:<=>?^|$~@\
 Symbols2=(){}[],;
 Escape=\
 EscapeAnywhere=1

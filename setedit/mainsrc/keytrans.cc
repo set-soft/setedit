@@ -196,11 +196,7 @@ void TCEditor_MakeKeyName(char *s, unsigned short key)
  A(kbAltLCode,'A','l')
  #undef A
  *s=0;
- #if TV_MAJOR_VERSION==2
- strcat(b,TGKey::NumberToKeyName(key));
- #else
- strcat(b,TGKey::KeyNames[key & kbKeyMask]);
- #endif
+ strcat(b,TGKey::NumberToKeyName(key & kbKeyMask));
 }
 
 int InterpretKeyName(char *s, ushort &code)

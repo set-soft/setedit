@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.221  2002/10/04 01:01:10  terrible
+* Updated: Debian packaging to version 0.5.0-0.4.
+
 Revision 1.220  2002/10/02 13:08:30  set
 * Added: A cursor restore after closing AAlib. That's just to test if it
 solves the SF issue #617251 submitted by Grzegorz. But I think this is a
