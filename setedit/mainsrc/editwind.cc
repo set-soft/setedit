@@ -167,16 +167,16 @@ void TCEditWindow::EnlargeSizeResume(short &x, short &y, int wS, int hS)
 {
  int max=2*wS-1;
  if (x>max) x=max;
- x=x*0x4000/wS;
+ x=(x*0x4000+wS/2)/wS;
  max=2*hS-1;
  if (y>max) y=max;
- y=y*0x4000/hS;
+ y=(y*0x4000+hS/2)/hS;
 }
 
 void TCEditWindow::ReduceSizeResume(short &x, short &y, int wS, int hS)
 {
- x=x*wS/0x4000;
- y=y*hS/0x4000;
+ x=(x*wS+0x2000)/0x4000;
+ y=(y*hS+0x2000)/0x4000;
 }
 
 void TCEditWindow::FillResume(EditorResume &r)

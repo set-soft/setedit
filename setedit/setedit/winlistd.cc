@@ -52,8 +52,10 @@ void TListWindowsDiag::handleEvent(TEvent &event)
  TDialog::handleEvent(event);
  if (event.what==evCommand || event.what==evBroadcast)
    {
-    ccIndex pos = tl->focused;
-    TDskWin *obj = (TDskWin *)(TSetEditorApp::edHelper->at(pos));
+    ccIndex pos=tl->focused;
+    if (pos>=TSetEditorApp::edHelper->getCount())
+       return;
+    TDskWin *obj=(TDskWin *)(TSetEditorApp::edHelper->at(pos));
  
     switch( event.message.command )
       {

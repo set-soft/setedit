@@ -12330,9 +12330,11 @@ Boolean TCEditor::loadFile(Boolean setSHL)
                isReadOnly=True;
          }
 
+       Boolean oldBusy=TScreen::showBusyState(True);
        f=ExpandToTempIfNeeded(f,wasCompressed,fileName,IsaCompressedFile);
        if (!f)
          {
+          TScreen::showBusyState(oldBusy);
           editorDialog(edReadError,fileName);
           return False;
          }
@@ -12403,37 +12405,41 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              fseek(f,0,SEEK_SET);
          #endif
         }
-        unsigned long fSize=filelength( fileno(f) );
-        if( !setBufSize(fSize) )
-            {
-             editorDialog( edOutOfMemory );
-             RemoveTemporal();
-             return False;
-            }
+        unsigned long fSize=filelength(fileno(f));
+        if (!setBufSize(fSize))
+          {
+           TScreen::showBusyState(oldBusy);
+           editorDialog(edOutOfMemory);
+           RemoveTemporal();
+           return False;
+          }
         else
-            {
-             unsigned long real_read;
-             /* On linux you can (like I) mount an MS-DOS filesystem with
-                conv=auto, which converts CR/LF to LF. In that case
-                real_read < fSize [Robert] */
-             real_read = fread( buffer, 1, fSize, f );
-             fclose(f);
-             if (real_read==0 && fSize!=0) // 1999/04/08: fSize=0 is not an error ;-)
-               {
-                editorDialog( edReadError, fileName );
-                RemoveTemporal();
-                return False;
-               }
-             else
-               {
-                if (setSHL)
-                   SHLSelect(*this,buffer,real_read);
-                isValid=True;
-                setBufLen(real_read);
-                RemoveTemporal();
-                return isValid;
-               }
-            }
+          {
+           unsigned long real_read;
+           /* On linux you can (like I) mount an MS-DOS filesystem with
+              conv=auto, which converts CR/LF to LF. In that case
+              real_read < fSize [Robert] */
+           real_read=fread(buffer,1,fSize,f);
+           fclose(f);
+           if (real_read==0 && fSize!=0) // 1999/04/08: fSize=0 is not an error ;-)
+             {
+              TScreen::showBusyState(oldBusy);
+              editorDialog(edReadError,fileName);
+              RemoveTemporal();
+              return False;
+             }
+           else
+             {
+              if (setSHL)
+                 SHLSelect(*this,buffer,real_read);
+              isValid=True;
+              setBufLen(real_read);
+              TScreen::showBusyState(oldBusy);
+              RemoveTemporal();
+              return isValid;
+             }
+           TScreen::showBusyState(oldBusy);
+          }
         }
 }
 

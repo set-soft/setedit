@@ -373,6 +373,11 @@ item. See: @x{TDskWin::GetText}.
 
 void TEditorCollection::getText(char *dest, ccIndex item, short maxLen)
 {
+ if (item>=getCount())
+   {
+    *dest=0;
+    return;
+   }
  TDskWin *p=(TDskWin *)at(item);
  p->GetText(dest,maxLen);
 }

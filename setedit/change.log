@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.193  2002/09/04 18:16:48  set
+* Modified: Now editor "resumes" stores coordinates in a relative way. The
+screen is 100% == 16384. When restoring the values they are computed
+according to the current screen size. In this way closed windows that were
+opened using another screen size are restored correctly.
+
 Revision 1.192  2002/09/04 15:46:21  set
 * Updated: Spanish translation.
 
