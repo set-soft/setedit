@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.117  2002/06/10 13:11:19  set
+* Modified: When the editor fails to load a desktop file (wrong version,
+corrupted file, wrong access rights, ect.) the editor tries to load the
+global desktop file.
+
 Revision 1.116  2002/06/10 13:09:45  set
 * Fixed: When browsing the list of errors and selecting an error reported
 in a non-existant file the editor opened an empty buffer.

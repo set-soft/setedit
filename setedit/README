@@ -5,9 +5,8 @@ Hi! That's the readme file for the sources.
 2.  What do you need
 2.1 For the DOS version
 2.2 For the Linux version
-2.3 For the Windows 95/8 version
-2.4 For the Windows NT version
-2.5 Additional requirements
+2.3 For the Windows 95/8/Me and Windows NT,2k,XP version
+2.4 Additional requirements
 3.  How to compile
 3.1 How to create the DOS installer
 4.  DJGPP v2.02 optional patch
@@ -128,32 +127,32 @@ run it you'll need a lot of UNIX tools (shell utils, file utils, Perl, etc.).
 porting to a system similar to Linux you'll need this information:
 
 * Linux 2.0.X, Robert uses 2.0.29 and I use 2.0.34/5/6/8. I guess other 2.0.x
-versions should do the work OK. I use Debian 2.0/1/2 to do the work. I also
-used 2.2.10 for distributions.
-* GCC 2.7.x/2.8.x/2.9.x or EGCS 1.x. Currently I use gcc 2.7.2.3, but also
-2.95.2 for Win32 and 2.8.1 for DOS. You'll need the C++ stuff.
+versions should do the work OK. I use Debian 2.0/1/2 and 3.0 to do the work.
+I also used 2.2.10 and 2.2.17/18 for distributions.
+* GCC 2.7.x/2.8.x/2.9.x/3.0/3.1 or EGCS 1.x. Currently I use gcc 2.95.3, but
+also 2.95.2 for Win32 and 2.8.1 for DOS. You'll need the C++ stuff.
 * GLibc 2.x. The projects are for glibc 2, if you don't have it try using
 libc5 and adding gettext as library. See the rhide.env file for adding
 "magical" libraries without touching the projects. The configure script
 doesn't detect it because I don't have any system with libc5 at hand.
-* RHIDE 1.4.9, a previous version won't work and 1.4 will probably crash if
+* RHIDE 1.5, a previous version won't work and 1.4 will probably crash if
 you try to load the project files included here. Or just use make instead.
 Download from http://www.rhide.com/
 * The last release of Turbo Vision. As I'm the maintainer I release a version
 each time I release the editor.
-* ZLib 1.1.2 or compatible. Sources are included in libz directory, compile
+* ZLib 1.1.2/3 or compatible. Sources are included in libz directory, compile
 it if you don't use the configure script. If you use the makefile it will
 compile this library.
 * If you want to compile the documentations you'll need Texinfo 3.12 (I think
-3.9 works too), additionally if you want postscript you'll need TeX. Note:
-I found that makeinfo (the program needed to create the docs) is located in
-a very strange package in Debian distributions, I think is inside the Tetex
+3.9 and 4.0 works too), additionally if you want postscript you'll need TeX.
+Note: I found that makeinfo (the program needed to create the docs) is located
+in a very strange package in Debian distributions, I think is inside the Tetex
 package, as that's huge I just extracted the needed file.
 * If you want to run some scripts floating around you'll need Perl 5.x. The
 scripts are needed to install or create the distribution. The configure
 script needs Perl.
 * NCurses, I use v4.2, I used v3.4 and works too even when you lose some
-small features.
+small features. The 5.0 and 5.2 also works.
 * GPM, I use 1.17. Compiling with 1.13 works but be careful 1.13 and 1.14+
 are incompatible at binary level.
 * gzip and tar are needed to create the distribution and install the package.
@@ -177,18 +176,20 @@ this directory. Be sure debian/rules is executable ;-)
 
 
 
-2.3 For the Windows 95/8 version:
+2.3 For the Windows 95/8/Me and Windows NT,2k,XP version:
 
-  That's a little bit tricky. You'll need MingW32 with gcc 2.95.2 and
-the 19991107 runtime or newer. Read the readmes located in the Turbo Vision
-package, in the win32 directory. The rest of the requirements are similar to
-the DOS ones.
-  If you install perl from djgpp and some Cygwin tools (rm.exe, cp.exe,
-mv.exe, uname.exe, cygwin1.dll, sh.exe and install.exe) you'll be able to use
-the configure/make/make install mechanism described in the 0 chapter.
-
-2.4 For the Windows NT version:
-
+  Currently you can use Cygwin, MinGW or BC++ 5.5. In the near future you'll
+be able to use MSVC also.
+  Cygwin:
+  You'll need to install the base tools plus Perl. I also recommend libz,
+libpcre and libbzip2. You can use the configure script located in the root
+directory of the distribution.
+  MinGW:
+  Last test was with MinGW 1.1+MSys 1.0.7+SiePerl as described in the win32
+directory of Turbo Vision distribution. Also use the configure mechanism.
+Attention!!! never run the editor from the MSys prompt, at least in v1.0.7 it
+doesn't support Win32 console applications (redirects stdin/stdout).
+  BC++:
   Currently this port requires BC++ 5.5, it can be freely downloaded from
 Borland's site. For more information read the WinNT\README file. Lamentably
 you can't use the configure script for it.
@@ -200,9 +201,11 @@ patient not all will work in the first try and perhaps you'll need to write
 me an e-mail to get help. The configure script helps a lot so try to get it
 running.
 * A good machine with a lot of memory or you'll need to wait a lot to compile
-I use an AMD K6-2 of 300 MHz with 64 Mb of SDRAM and an UltraDMA 2 disk. In
-the past I used a Cyrix 5x86 of 120 MHz with 32 Mb of DRAM and an ATA-2 disk
-and the difference of time is huge (2.5 or 3 times).
+I used an AMD K6-2 of 300 MHz with 64 Mb of SDRAM and an UltraDMA 2 disk and
+even a Cyrix 5x86 of 120 MHz with 32 Mb of DRAM and an ATA-2 disk and the
+difference of time is huge (2.5 or 3 times). Currently I use an AMD K7 XP
+running at 1533 MHz (XP 1800+) with 256 Mb of SDRAM and ATA100 HDs, I also
+avoid using gcc 3.x, this makes compilation really fast.
 * In DOS I work in a directory called e:/dj/contrib/setedit, I think any
 directory will work but TVision should be at the same level than setedit
 directory in the tree because I use relative paths for it. Under Linux I use

@@ -12,7 +12,9 @@
 // Just to avoid errors
 typedef void pcre;
 #else
+#define STATIC
 #include <pcre.h>
+#undef STATIC
 #endif
 
 struct strCLE

@@ -168,6 +168,7 @@ $MakeDefsRHIDE[1].='z ';
 $MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
 $MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[1].='efence ' if @conf{'efence'} eq 'yes';
+$MakeDefsRHIDE[1].='tvfintl ' if $conf{'tvfintl'} eq 'yes';
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib $LDExtraDirs";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
@@ -1055,6 +1056,7 @@ sub LookForIntlSupport
 
  print 'Checking for international support: ';
  $conf{'intlShipped'}='no';
+ $conf{'tvfintl'}='no';
  if ((@conf{'force-intlShipped'} eq 'yes') && ($OS eq 'DOS'))
    {
     print "using shipped one by user request.\n";
@@ -1121,9 +1123,20 @@ int main(void)
          }
        else
          {
-          print "not found\n";
-          $conf{'intl'}='no';
-          $conf{'iconv'}='no';
+          $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude -L$TVLib -ltvfintl");
+          if ($test ne "OK\n")
+            {
+             print "not found\n";
+             $conf{'intl'}='no';
+             $conf{'iconv'}='no';
+            }
+          else
+            {
+             print "not found, using fake dummy version\n";
+             $conf{'intl'}='no';
+             $conf{'iconv'}='no';
+             $conf{'tvfintl'}='yes';
+            }
          }
       }
     else
@@ -1143,7 +1156,8 @@ int main(void)
 
 sub CreateConfigH
 {
- my $text="/* Generated automatically by the configure script */",$old;
+ my ($a,$old);
+ my $text="/* Generated automatically by the configure script */";
 
  print "Generating configuration header: ";
 
@@ -1161,7 +1175,9 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
 
  $text.="\n\n#define CONFIG_PREFIX \"";
- $text.=$conf{'prefix'} unless $conf{'no-prefix-h'};
+ $a=$conf{'prefix'};
+ $a=~s/\\/\\\\/g;
+ $text.=$a unless $conf{'no-prefix-h'};
  $text.="\"\n";
 
  $text.="\n\n";

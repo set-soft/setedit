@@ -9,6 +9,7 @@
 #define Uses_sys_stat
 #define Uses_fcntl
 #define Uses_free
+#define Uses_mkstemp
 #include <compatlayer.h>
 
 #define STDOUT 1

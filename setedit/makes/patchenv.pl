@@ -32,6 +32,7 @@ PatchFile(0,1);
 sub PatchFile
 {
  my $TVsp=$_[0],$NoWall=$_[1];
+ my $toRep;
 
  # Patch the environment variables
  foreach $i (@files)
@@ -66,8 +67,24 @@ sub PatchFile
          { # That's very special because affects the dependencies
           # Search the original definition
           $repl="^$name"."=(.+)";
-          die "Can't find original TVISION_INC!" if (!($r =~ /$repl/m));
-          if ($1 ne $value)
+          if ($r =~ /$repl/m)
+            {
+             $toRep=$1;
+            }
+          else
+            {# Robert screwed-up the projects in 1.5
+             # and the gprexp tool makes things even worst.
+             if ($r =~ /(\S+)\/tv\.h/)
+               {
+                $toRep=$1;
+               }
+             else
+               {
+                #die "Can't find original TVISION_INC, nor tv.h path! ($i)";
+                $toRep=$value;
+               }
+            }
+          if ($toRep ne $value)
             {
              # Ok, now replace any dependency
              $dep=$1;
