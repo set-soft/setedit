@@ -187,13 +187,12 @@ $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' '.$conf{'X11LibPath'} if ($conf{'HAVE_X11'} eq 'yes');
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
-$test='';
+$test='../holidays';
 $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
-$test.=' ../holidays' if (@conf{'dl'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
 # The support libraries shouldn't generate dependencies
 $MakeDefsRHIDE[0].=$test;

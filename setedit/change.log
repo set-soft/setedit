@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.342  2003/05/07 12:33:57  set
+* Added: Some people to the list of contributors to the docs.
+
 Revision 1.341  2003/05/07 12:33:16  set
 * Fixed: Second lot of changes to docs from Bernd Becker
 <munin@munin.inka.de>.
