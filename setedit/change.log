@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.626  2004/10/10 21:13:16  terrible
+* [Debian] Updated to 0.5.4-2, just small cosmetic changes.
+
 Revision 1.625  2004/10/08 21:23:16  set
 * Fixed: [Config][Solaris] modified to avoid the holidays plug-in creation.
 They need more work to detect native ld.
