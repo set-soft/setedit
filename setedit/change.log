@@ -1,4 +1,9 @@
 $Log$
+Revision 1.167  2002/07/30 17:46:54  terrible
+* Updated: Debian packaging to 0.4.57-0.4.
+* Modified: my email changed from lubaldo to ibaldo.
+* Broked: everything, this is a sabotage!, SET is on vacations!!!
+
 Revision 1.166  2002/07/25 17:25:49  set
 * Fixed: InfView changed to use unique_name, but as it was working it
 didn't copy the real file name to the referenced buffer and it made InfView

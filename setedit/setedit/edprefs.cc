@@ -1333,14 +1333,16 @@ void SetEditorFontsEncoding(int priChanged, int enPri, int sndChanged, int enSec
     seC=1;
    }
  if (prC || seC)
+   {
     TScreen::setFont(prC,prF,seC,seF);
+    if (prF) DeleteArray(prF->data);
+    if (seF) DeleteArray(seF->data);
+   }
 }
 
 
 TScreenFont256 *FontRequestCallBack(int which, unsigned w, unsigned h)
 {
- static TScreenFont256 f;
-
  foPriW=w;
  foPriH=h;
  TVFontCollection *col=which ? foSec : foPri;
@@ -1349,8 +1351,9 @@ TScreenFont256 *FontRequestCallBack(int which, unsigned w, unsigned h)
  uchar *data=col->GetFont(foPriW,foPriH);
  if (!data)
     return NULL;
- f.data=data;
- return &f;
+ TScreenFont256 *f=new TScreenFont256;
+ f->data=data;
+ return f;
 }
 
 void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priSize,
@@ -1461,6 +1464,8 @@ void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priS
        foCallBackSet=1;
       }
    }
+ if (prF) DeleteArray(prF->data);
+ if (seF) DeleteArray(seF->data);
 }
 
 void FontsOptions()
