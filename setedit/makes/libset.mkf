@@ -28,6 +28,7 @@ INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 	$(SDG_INC_DIR) $(INFVIEW_INC_DIR) $(TVISION_INC) $(EXTRA_INC_DIR) \
 	$(EASYDIAG_INC_DIR) $(LIBRHUTI_INC_DIR) $(SUPPORT_INC) \
 	$(MP3_INC_DIR) $(CALCU_INC_DIR)
+C_EXTRA_FLAGS=-DFOR_LIBSET
 
 ##########################################################################################
 #
