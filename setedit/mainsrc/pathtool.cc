@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
    
@@ -44,8 +44,11 @@
 
 extern const char *GetVariable(const char *variable);
 static char PathOrig[PATH_MAX];
-static char FileNameToLoad[PATH_MAX];
 static char *PathOrigPos;
+
+#if !defined(NoHomeOrientedOS) || defined(STANDALONE)
+static char FileNameToLoad[PATH_MAX];
+#endif
 
 int IsADirectory(const char *name);
 

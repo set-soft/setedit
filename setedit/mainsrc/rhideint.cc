@@ -1,10 +1,10 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#include <tv.h>
-#define Uses_EditorId
 #define Uses_stdio
 #define Uses_unistd
 #define Uses_stdlib
+#include <tv.h>
+#define Uses_EditorId
 #include <ced_exte.h>
 #include <edmsg.h>
 #include "rhutils.h"
