@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-07-29 16:48-0300\n"
+"PO-Revision-Date: 2004-07-30 17:47-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
 #. EN: E
-#: ../calcu/calcu.cc:83 ../setedit/debug.cc:3189
+#: ../calcu/calcu.cc:83 ../setedit/debug.cc:3192
 msgid "~E~xpression"
 msgstr "~A~usdruck"
 
@@ -328,7 +328,7 @@ msgstr "Fehler beim Lesen der Desktopdatei"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2704
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2709
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -342,7 +342,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2706
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2711
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -3033,52 +3033,52 @@ msgstr "So Mo Di Mi Do Fr Sa"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../setedit/debug.cc:412 ../setedit/debug.cc:452
+#: ../setedit/debug.cc:414 ../setedit/debug.cc:454
 msgid "The program is running and GDB/MI doesn't support async commands"
 msgstr ""
 
-#: ../setedit/debug.cc:507
+#: ../setedit/debug.cc:509
 msgid "PID (Process ID) of the running process"
 msgstr ""
 
 #. EN: P
-#: ../setedit/debug.cc:510
+#: ../setedit/debug.cc:512
 msgid "~P~ID:"
 msgstr ""
 
 #. We don't even know what to debug ;-)
-#: ../setedit/debug.cc:577
+#: ../setedit/debug.cc:579
 msgid "You must set the debug options first. Do you want to do it now?"
 msgstr ""
 
 #. Don't even try if the program doesn't exist
-#: ../setedit/debug.cc:591
+#: ../setedit/debug.cc:593
 #, fuzzy, c-format
 msgid "The '%s' file doesn't exist"
 msgstr "Diese Datei ist nicht auf Festplatte!"
 
-#: ../setedit/debug.cc:618
+#: ../setedit/debug.cc:620
 msgid "Hey! That's my PID!"
 msgstr ""
 
-#: ../setedit/debug.cc:627
+#: ../setedit/debug.cc:629
 #, c-format
 msgid "Attached to PID %d"
 msgstr ""
 
 #. Don't even try if nothing to try ;-)
-#: ../setedit/debug.cc:636
+#: ../setedit/debug.cc:638
 msgid ""
 "Please fill both 'Remote target options'. Try extended-remote for the type "
 "and IP:PORT for location."
 msgstr ""
 
-#: ../setedit/debug.cc:646
+#: ../setedit/debug.cc:648
 #, c-format
 msgid "At the '%s' machine run: 'gdbserver :%s program args...'"
 msgstr ""
 
-#: ../setedit/debug.cc:652
+#: ../setedit/debug.cc:654
 msgid "Run gdbserver at the remote machine"
 msgstr ""
 
@@ -3360,107 +3360,107 @@ msgstr "Fehler beim Erstellen von "
 msgid "   Watches Window (%d watches)"
 msgstr "   Nachrichtenfenster (%d Zeilen)"
 
-#: ../setedit/debug.cc:3211
+#: ../setedit/debug.cc:3217
 msgid "Add to watch list"
 msgstr ""
 
-#: ../setedit/debug.cc:3245
+#: ../setedit/debug.cc:3251
 msgid "Change the expression to watch"
 msgstr ""
 
-#: ../setedit/debug.cc:3295
+#: ../setedit/debug.cc:3301
 #, fuzzy
 msgid "Watches"
 msgstr "Ersetzen"
 
-#: ../setedit/debug.cc:3444
+#: ../setedit/debug.cc:3451
 #, fuzzy
 msgid "Debug Options"
 msgstr "Einstellungen"
 
 #. All together
-#: ../setedit/debug.cc:3450
+#: ../setedit/debug.cc:3457
 msgid "~P~rogram to debug, with debug info"
 msgstr ""
 
-#: ../setedit/debug.cc:3452
+#: ../setedit/debug.cc:3459
 #, fuzzy
 msgid "~M~ode"
 msgstr "~B~ewegen"
 
-#: ../setedit/debug.cc:3453
+#: ../setedit/debug.cc:3460
 msgid "Local with ~e~xecutable"
 msgstr ""
 
-#: ../setedit/debug.cc:3454
+#: ../setedit/debug.cc:3461
 msgid "Local with r~u~nning process"
 msgstr ""
 
-#: ../setedit/debug.cc:3455
+#: ../setedit/debug.cc:3462
 msgid "Remote (g~d~bserver/stub)"
 msgstr ""
 
-#: ../setedit/debug.cc:3456
+#: ../setedit/debug.cc:3463
 #, fuzzy
 msgid "Local target options"
 msgstr "Lokale Einstellungen"
 
-#: ../setedit/debug.cc:3457
+#: ../setedit/debug.cc:3464
 msgid "Program ~a~rguments, not for remote mode"
 msgstr ""
 
-#: ../setedit/debug.cc:3459
+#: ../setedit/debug.cc:3466
 msgid "Forced ~t~erminal, leave blank for auto"
 msgstr ""
 
-#: ../setedit/debug.cc:3461
+#: ../setedit/debug.cc:3468
 #, fuzzy
 msgid "Remote target options"
 msgstr "Andere Optionen"
 
-#: ../setedit/debug.cc:3462
+#: ../setedit/debug.cc:3469
 #, fuzzy
 msgid "Remote p~r~otocol type"
 msgstr "Gehe zu ~P~rototyp"
 
-#: ../setedit/debug.cc:3464
+#: ../setedit/debug.cc:3471
 #, fuzzy
 msgid "Remote ~l~ocation"
 msgstr "Andere Optionen"
 
 #. TODO: i18n
-#: ../setedit/debug.cc:3483
+#: ../setedit/debug.cc:3490
 msgid "Your program compiled with -g"
 msgstr ""
 
-#: ../setedit/debug.cc:3504
+#: ../setedit/debug.cc:3511
 #, fuzzy
 msgid "Messages"
 msgstr "Nachrichtenfenster"
 
 #. EN: ACDFLT
 #. ES: CDELRT
-#: ../setedit/debug.cc:3508
+#: ../setedit/debug.cc:3515
 msgid "~D~isplay messages related to"
 msgstr ""
 
-#: ../setedit/debug.cc:3509
+#: ../setedit/debug.cc:3516
 msgid "GDB ~c~onsole (CLI)"
 msgstr ""
 
-#: ../setedit/debug.cc:3510
+#: ../setedit/debug.cc:3517
 msgid "T~a~rget (not really implemented in gdb)"
 msgstr ""
 
-#: ../setedit/debug.cc:3511
+#: ../setedit/debug.cc:3518
 msgid "~L~og (gdb internal messages)"
 msgstr ""
 
-#: ../setedit/debug.cc:3512
+#: ../setedit/debug.cc:3519
 msgid "GDB/MI commands sent ~t~o gdb"
 msgstr ""
 
-#: ../setedit/debug.cc:3513
+#: ../setedit/debug.cc:3520
 msgid "GDB/MI responses ~f~rom gdb"
 msgstr ""
 
@@ -3674,17 +3674,17 @@ msgstr ""
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:1971
+#: ../setedit/editmain.cc:1976
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:2047
+#: ../setedit/editmain.cc:2052
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2275
+#: ../setedit/editmain.cc:2280
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -3693,7 +3693,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2410
+#: ../setedit/editmain.cc:2415
 #, c-format
 msgid ""
 "\n"
@@ -3702,7 +3702,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2411
+#: ../setedit/editmain.cc:2416
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -3711,7 +3711,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2415
+#: ../setedit/editmain.cc:2420
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3720,7 +3720,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2417
+#: ../setedit/editmain.cc:2422
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3729,11 +3729,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2422
+#: ../setedit/editmain.cc:2427
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2431
+#: ../setedit/editmain.cc:2436
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3743,15 +3743,15 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2460
+#: ../setedit/editmain.cc:2465
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2704
+#: ../setedit/editmain.cc:2709
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2705
+#: ../setedit/editmain.cc:2710
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3759,7 +3759,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2707
+#: ../setedit/editmain.cc:2712
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3769,11 +3769,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2711
+#: ../setedit/editmain.cc:2716
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2712
+#: ../setedit/editmain.cc:2717
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3782,14 +3782,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2717
+#: ../setedit/editmain.cc:2722
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2721
+#: ../setedit/editmain.cc:2726
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3798,7 +3798,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2723
+#: ../setedit/editmain.cc:2728
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3806,36 +3806,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2725
+#: ../setedit/editmain.cc:2730
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2727
+#: ../setedit/editmain.cc:2732
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2729
+#: ../setedit/editmain.cc:2734
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2730
+#: ../setedit/editmain.cc:2735
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2731
+#: ../setedit/editmain.cc:2736
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2734
+#: ../setedit/editmain.cc:2739
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2736
+#: ../setedit/editmain.cc:2741
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3844,7 +3844,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2738
+#: ../setedit/editmain.cc:2743
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3852,19 +3852,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2741
+#: ../setedit/editmain.cc:2746
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2743
+#: ../setedit/editmain.cc:2748
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2744
+#: ../setedit/editmain.cc:2749
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -5863,120 +5863,124 @@ msgstr "~K~eine Desktopdateien erstellen"
 msgid "Perl regular expression"
 msgstr "Reguläre Ausd~r~ücke"
 
-#: ../setedit/menuload.cc:67
+#: ../setedit/menuload.cc:71
 msgid "No error"
 msgstr "Kein Fehler"
 
-#: ../setedit/menuload.cc:68
+#: ../setedit/menuload.cc:72
 msgid "String expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:69
+#: ../setedit/menuload.cc:73
 #, fuzzy
 msgid "String not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:70
+#: ../setedit/menuload.cc:74
 msgid "No key for SubMenu"
 msgstr "Keine Taste für `SubMenu'"
 
-#: ../setedit/menuload.cc:71
+#: ../setedit/menuload.cc:75
 msgid "Wrong key name"
 msgstr "Falsche Schlüsselname."
 
-#: ../setedit/menuload.cc:72
+#: ../setedit/menuload.cc:76
 msgid "Extra characters in line"
 msgstr "Extra Zeichen in Zeile"
 
-#: ../setedit/menuload.cc:73
+#: ../setedit/menuload.cc:77
 msgid "No number for a context"
 msgstr "Keine Nummer für einen Kontext"
 
-#: ../setedit/menuload.cc:74
+#: ../setedit/menuload.cc:78
 msgid "Syntax error"
 msgstr "Syntaxfehler"
 
-#: ../setedit/menuload.cc:75
+#: ../setedit/menuload.cc:79
 msgid "Empty submenu"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:76
+#: ../setedit/menuload.cc:80
 #, fuzzy
 msgid "SubMenu not closed "
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:77
+#: ../setedit/menuload.cc:81
 #, fuzzy
 msgid "Missing command value"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:78
+#: ../setedit/menuload.cc:82
 msgid "Wrong command name"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:79
+#: ../setedit/menuload.cc:83
 msgid "No menu definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:80
+#: ../setedit/menuload.cc:84
 msgid "Wrong context name"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:81
+#: ../setedit/menuload.cc:85
 msgid "Unfinished macro name"
 msgstr "Nicht beendeter Makroname"
 
-#: ../setedit/menuload.cc:82
+#: ../setedit/menuload.cc:86
 msgid "Unable to register macro"
 msgstr "Kann Makro nicht registrieren"
 
-#: ../setedit/menuload.cc:83
+#: ../setedit/menuload.cc:87
 #, fuzzy
 msgid "No status line definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:84
+#: ../setedit/menuload.cc:88
 msgid "No `from' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:85
+#: ../setedit/menuload.cc:89
 msgid "No `quantity' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:86
+#: ../setedit/menuload.cc:90
 #, fuzzy
 msgid "Number expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:87
+#: ../setedit/menuload.cc:91
 #, fuzzy
 msgid "Invalid range"
 msgstr "Ungültiges Laufwerk"
 
-#: ../setedit/menuload.cc:88
+#: ../setedit/menuload.cc:92
 #, fuzzy
 msgid "StatusRange not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:89
+#: ../setedit/menuload.cc:93
 #, fuzzy
 msgid "Empty status line"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:90
+#: ../setedit/menuload.cc:94
 #, fuzzy
 msgid "Wrong help context name or number"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:91
+#: ../setedit/menuload.cc:95
 msgid "Too much conditionals nested"
 msgstr ""
 
-#: ../setedit/menuload.cc:92
+#: ../setedit/menuload.cc:96
 msgid "Unmatched $endif"
 msgstr ""
 
-#: ../setedit/menuload.cc:1151
+#: ../setedit/menuload.cc:97
+msgid "Preprocessor value redefined"
+msgstr ""
+
+#: ../setedit/menuload.cc:1380
 #, c-format
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Fehler beim Laden von Menü: (%d) %s in Zeile %d von %s."
