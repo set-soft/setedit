@@ -9053,7 +9053,7 @@ Boolean TCEditor::SearchAndJump(char *text, unsigned flags)
  CompileSearch(text);
  SearchInSel=0;
  FromWhere=1;
- RegExStyle=0;
+ RegExStyle=efBasicRegEx;
  StartOfSearch=0;
  Boolean ret=search(text,flags);
 

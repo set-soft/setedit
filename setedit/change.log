@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.323  2003/04/30 19:34:19  set
+* Added: A button to search for members of a class, struct, enum or union
+to the jump to tag dialog.
+
 Revision 1.322  2003/04/30 18:00:19  set
 * Fixed: TSortedListBox using SOStacks have a special incremental search,
 it had some bugs fixed in TV but not copied there.

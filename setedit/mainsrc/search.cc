@@ -311,7 +311,7 @@ int TCEditor::CompileRegEx(char *searchStr)
     return -1;
 
  int flags=REG_NEWLINE;
- if (editorFlags & efExtendedRegEx)
+ if (RegExStyle==efExtendedRegEx)
     flags|=REG_EXTENDED;
  if (!(editorFlags & efCaseSensitive))
     flags|=REG_ICASE;

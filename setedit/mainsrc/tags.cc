@@ -468,15 +468,15 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
    {
     s++;
     e=toSl(s);
-    p->regex=newStrN(s+1,e-s-2);
+    p->regex=newStrN(s,e-s);
     e++;
     //printf("Regex: %s\n",p->regex);
    }
  else if (*s=='?')
-   {
+   { // Hmm... this is wrong, how to implement it?
     s++;
     e=toQuestion(s);
-    p->regex=newStrN(s+1,e-s-2);
+    p->regex=newStrN(s,e-s);
     e++;
     //printf("Backwards Regex: %s\n",p->regex);
    }
@@ -765,12 +765,14 @@ int TTagCollection::refresh()
          }
        else
          {// Nope?
-          if (CheckForCTAGS() && // Ask to generate a new one
-              messageBox(__("I can try to generate a tag file, go ahead?"),
-                         mfInformation | mfYesButton | mfNoButton)==cmYes)
-            { // Try doing it
-             TScreen::System("ctags -R --fields=+i+l+m+z");
-             loadTagsFromFile(p);
+          if (CheckForCTAGS())
+            {// Ask to generate a new one
+             if (messageBox(__("I can try to generate a tag file, go ahead?"),
+                 mfInformation | mfYesButton | mfNoButton)==cmYes)
+               {// Try doing it
+                TScreen::System("ctags -R --fields=+i+l+m+z");
+                loadTagsFromFile(p);
+               }
             }
           else
              // Not installed explain how to get it.
