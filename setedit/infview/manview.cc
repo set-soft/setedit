@@ -15,6 +15,8 @@
 #define Uses_TEvent
 #define Uses_TFrame
 #define Uses_TScrollBar
+#define Uses_TKeys
+#define Uses_TKeys_Extended
 
 #define Uses_TSLabel
 #define Uses_TSVeGroup
@@ -229,6 +231,17 @@ void TManPageView::handleEvent( TEvent& event )
                }
             }
          }
+      }
+   }
+ else if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
+   {
+    if (owner->state & sfModal)
+       endModal(cmCancel);
+    else
+      {
+       event.what = evCommand;
+       event.message.command = cmClose;
+       putEvent(event);
       }
    }
 }
