@@ -626,6 +626,7 @@ setedit/include/edprint.h
 setedit/include/loadcle.h
 setedit/include/loadnobkp.h
 setedit/include/pal.h
+setedit/include/pathlist.cc
 setedit/include/setapp.h
 setedit/include/tpaltext.h
 setedit/intgrep.cc
@@ -633,6 +634,7 @@ setedit/loadcle.cc
 setedit/loadnobkp.cc
 setedit/menuload.cc
 setedit/msignal.cc
+setedit/pathlist.cc
 setedit/runprog.cc
 setedit/scresave.cc
 setedit/streams/sdskasci.cc
