@@ -355,7 +355,7 @@ TCEditor::TCEditor( const TRect& bounds,
 TCEditor::~TCEditor()
 {
  if (bufEdit)
-    delete bufEdit;
+    free(bufEdit);
  flushUndoInfo();
  delete selRectClip;
  delete[] colMarkers;
@@ -652,7 +652,7 @@ void TCEditor::deleteSelect()
 
 void TCEditor::doneBuffer()
 {
- delete buffer;
+ free(buffer);
 }
 
 /****************************************************************************
@@ -6235,7 +6235,7 @@ void TCEditor::MoveLinesDown(int i)
 
 void TCEditor::initBuffer()
 {
- buffer = new char[bufSize];
+ buffer=(char *)malloc(bufSize);
  if (bufSize>6)
    {
     /* That's a test to initialize the buffer and catch bugs */
@@ -9627,14 +9627,14 @@ void TCEditor::setBufLen( uint32 length )
  // Allocate the Edition buffer
  if (bufEdit && (maxLen>(uint32)bufEditLen))
    {
-    delete bufEdit;
+    free(bufEdit);
     bufEdit=0;
    }
  limit.x=max(maxLen,MinLineLen);
  if (!bufEdit)
    {
     bufEditLen=limit.x;
-    bufEdit=new char[bufEditLen+4];
+    bufEdit=(char *)malloc(bufEditLen+4);
    }
 
  selLineStart=selLineEnd=selNewStart=selNewEnd=0;
@@ -9704,16 +9704,16 @@ Boolean TCEditor::setBufSize( uint32 newSize )
     // Make all in a way that allow a fail without loosing the data
     unsigned DeltaCl=(unsigned)(curLinePtr-buffer);
     char *temp;
-    if ( (temp = new char[newSize]) == 0 )
+    if ((temp=(char *)malloc(newSize))==0)
       {
        //delete temp; Why I put that?
        editorDialog( edOutOfMemory );
        return False;
       }
     memcpy( temp, buffer, min( newSize, bufSize ) );
-    delete buffer;
+    free(buffer);
     buffer=temp;
-    bufSize = newSize;
+    bufSize=newSize;
     curLinePtr=buffer+DeltaCl;
    }
  _mstats("Despues");
@@ -9731,7 +9731,7 @@ Boolean TCEditor::setBufSize( uint32 newSize )
     // Make all in a way that allow a fail without loosing the data
     unsigned DeltaCl=(unsigned)(curLinePtr-buffer);
     char *temp;
-    if ( (temp = (char *)realloc(buffer,newSize)) == 0 )
+    if ((temp=(char *)realloc(buffer,newSize))==0)
       {
        // Here I'm taking a risk, the pointer was passed to free but still
        // having the text so the user can save but the behavior of the
@@ -9740,7 +9740,7 @@ Boolean TCEditor::setBufSize( uint32 newSize )
        return False;
       }
     buffer=temp;
-    bufSize = newSize;
+    bufSize=newSize;
     curLinePtr=buffer+DeltaCl;
    }
  //_mstats("Despues");

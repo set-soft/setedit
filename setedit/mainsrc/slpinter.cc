@@ -301,7 +301,7 @@ void SLPInterfaceInit(char *file)
 void SLPInterfaceDeInit(void)
 {
  DeInitLispEditor();
- delete slpFile;
+ delete[] slpFile;
  slpFile=0;
 }
 

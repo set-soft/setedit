@@ -574,6 +574,7 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
  ConvTable=0;
  // PCRE compiler memory
  PCREInitCompiler(shlPCRE);
+ delete[] nameSHLFile;
 }
 
 #define MaxExtension 80

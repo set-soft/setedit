@@ -31,6 +31,7 @@
 #define Uses_TNoSortedStringCollection
 #define Uses_TStreamableClass
 #define Uses_TGKey
+#define Uses_TSubMenu
 #define Uses_string
 #define Uses_alloca
 #define Uses_stdlib
@@ -1664,7 +1665,9 @@ extern void RestoreScreen();
 #define InitSafetyPool()
 #define DeInitSafetyPool()
 #else
+#include <tv/no_mss.h>
 #include <new>
+#include <tv/yes_mss.h>
 
 static char *safetypool;
 
@@ -2063,6 +2066,35 @@ void StopStdErrRedirection()
    }
 }
 
+#ifdef SUP_PCRE
+// This helps to use memory debuggers like MSS. In this way we don't need to
+// compile libpcre with the memory debugger nor see spureous reports about
+// memory allocated by libpcre and freed by the editor.
+static
+void *My_pcre_malloc(size_t a)
+{
+ return malloc(a);
+}
+
+static
+void My_pcre_free(void *p)
+{
+ free(p);
+}
+
+static
+void InitPCRELibrary()
+{
+ pcre_malloc=My_pcre_malloc;
+ pcre_free=My_pcre_free;
+}
+#else
+static
+void InitPCRELibrary()
+{
+}
+#endif
+
 int main(int argc, char *argv[])
 {
  ParseCommandLine(argc,argv);
@@ -2089,6 +2121,8 @@ int main(int argc, char *argv[])
  // After redirecting the error we can enable the routines that
  // traps signals and dumps important information.
  InitEditorSignals(StackDbgStrategy,argv[0],TemporalStdErr);
+
+ InitPCRELibrary();
 
  // That's better for me, easier for incremental searchs
  TFileCollection::sortOptions=fcolAlphabetical | fcolCaseInsensitive;
@@ -2364,8 +2398,10 @@ int main(int argc, char *argv[])
  UnloadCLEFile();
  UnloadNBKP();
  UnLoadTVMenu();
+ if (TCEditor::RightClickMenu)
+    delete TCEditor::RightClickMenu;
  destroy(editorApp);
- delete TSetEditorApp::WhichScrSaver; // static member
+ delete[] TSetEditorApp::WhichScrSaver; // static member
  UnLoadEditorFonts();
  SLPInterfaceDeInit();
  destroy(ReservedWords);
@@ -2377,6 +2413,8 @@ int main(int argc, char *argv[])
  delete[] KeyBindFNameUser;
  DestroyCMDLine();
  DestroyFunctionList();
+ RunExternalProgramFreeMemory();
+ LoadKeysForTCEditorFreeMemory();
 
  return 0;
 }

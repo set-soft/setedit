@@ -445,7 +445,7 @@ void LoadPalette(int what, fpstream& s, int v)
 
  TPalette paletteNew(palOld,lenOld);
  TProgram::application->getPalette()=paletteNew;
- delete(palOld);
+ delete[] palOld;
 
  // Restore the mode
  TProgram::appPalette=oldMode;
@@ -611,7 +611,7 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
            {
             str=s.readString();
             historyAdd(thisHist,str);
-            delete str;
+            delete[] str;
            }
        }
    }
@@ -640,7 +640,7 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     s >> TSetEditorApp::UseScreenSaver >> TSetEditorApp::screenSaverTime;
     if (deskTopVersion>=0x430)
        s >> TSetEditorApp::screenSaverTimeMouse;
-    delete TSetEditorApp::WhichScrSaver;
+    delete[] TSetEditorApp::WhichScrSaver;
     TSetEditorApp::WhichScrSaver=s.readString();
     if (deskTopVersion>=0x434)
        s.readString(TSetEditorApp::ExtScrSaverOpts,extscrsParMxLen);

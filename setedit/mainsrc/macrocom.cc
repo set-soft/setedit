@@ -45,7 +45,7 @@ int TCommToMacroCol::compare(void *key1, void *key2)
 void TCommToMacroCol::freeItem(void *item)
 {
  stCommToMacro *p=(stCommToMacro *)item;
- delete p->macro;
+ delete[] p->macro;
  delete p;
 }
 

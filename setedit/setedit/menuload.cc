@@ -936,7 +936,7 @@ int LoadTVMenuAndStatus(char *fileName)
  f=fopen(fileName,"rt");
  if (!f)
     return 0;
- FileName=strdup(fileName);
+ FileName=newStr(fileName);
  TStringCollection *defs=new TStringCollection(1,1);
  #if   defined(SEOS_DOS)
  defs->insert(newStr("DOS"));
@@ -1044,7 +1044,7 @@ TStatusLine *GetTVStatusLine(char *fileName, TRect &rect)
 
 void UnLoadTVMenu(void)
 {
- delete FileName;
+ delete[] FileName;
  FileName=0;
  UnRegisterMacroCommands();
 }

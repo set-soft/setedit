@@ -863,9 +863,9 @@ void TInfTopic::ReadCrossRefs( void )
 TInfTopic::~TInfTopic()
 {
  if (crossRefs != 0)
-    delete crossRefs;
+    delete[] crossRefs;
  if (Text!=NULL)
-    delete Text;
+    delete[] Text;
 }
 
 void TInfTopic::getCrossRef( int i, TPoint& loc, uchar& length, char *& ref,
