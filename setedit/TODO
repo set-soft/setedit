@@ -1,9 +1,6 @@
 That's a list of things to do in the project:
 
-* Add test to ensure the tags file have the right format.
 * Add option to see the tag files variables when browsing the list of files.
-* Add to explain what are tag files if none found.
-* Add to generate tags if none available.
 * Fix problems with the code pages in Windows versions. Reference report:
 0001.txt.
 * Check what can be removed from:
