@@ -1,3 +1,5 @@
+/* Copyright (C) 1997-2001 by Salvador E. Tropea (SET),
+   see copying file for details */
 /**[txh]********************************************************************
 
   Description:
@@ -44,31 +46,31 @@ void end_if_user_ready(void)
 void PrintHelp(void)
 {
  printf(
-"
-Plasma 3 test (c) 1997-1999 by Salvador E. Tropea (SET)
-e-mail: salvador@inti.gov.ar
-
-Use: ps3 [-s] [-h] [-i] [-n]
-
-s: Don't wait for vertical retrace, smooth but you can't meassure the
-   frame rate.
-h: Shows this help.
-i: Shows information.
-n: Descriptive name.
-");
+"\n"
+"Plasma 3 test (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"e-mail: salvador@inti.gov.ar\n"
+"\n"
+"Use: ps3 [-s] [-h] [-i] [-n]\n"
+"\n"
+"s: Don't wait for vertical retrace, smooth but you can't meassure the\n"
+"   frame rate.\n"
+"h: Shows this help.\n"
+"i: Shows information.\n"
+"n: Descriptive name.\n"
+);
 }
 
 void ShowInfo(void)
 {
 printf(
-"
-Name:        Plasma 3
-Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)
-Author:      Designed and Programmed By Salvador Eduardo Tropea SET.
-             Original plasma idea By JCL-software (Jezza). (c) 1994.
-Description: A sequence of nice plasma effects based the addition of
-             surfaces.
-");
+"\n"
+"Name:        Plasma 3\n"
+"Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"Author:      Designed and Programmed By Salvador Eduardo Tropea SET.\n"
+"             Original plasma idea By JCL-software (Jezza). (c) 1994.\n"
+"Description: A sequence of nice plasma effects based the addition of\n"
+"             surfaces.\n"
+);
 }
 
 #define Blit() blit(BMPAuxScreen)

@@ -1,4 +1,4 @@
-/* Copyright (C) 1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1997-2001 by Salvador E. Tropea (SET),
    see copying file for details */
 /**[txh]********************************************************************
 
@@ -51,34 +51,34 @@ int end_if_user_ready(void)
 void PrintHelp(void)
 {
  printf(
-"
-Plasma 2 test (c) 1997 by Salvador E. Tropea (SET)
-e-mail: salvador@inti.gov.ar
-
-Use: ps2 [-s] [-h] [-g] [-k float] [-i] [-n]
-
-s: Don't wait for vertical retrace, smooth but you can't meassure the
-   frame rate.
-g: Use the slow algorithm to calculate the surfaces (needed for -k).
-k: Constant for the plasma sine period. Default: 18.334.
-h: Shows this help.
-i: Shows information.
-n: Descriptive name.
-");
+"\n"
+"Plasma 2 test (c) 1997 by Salvador E. Tropea (SET)\n"
+"e-mail: salvador@inti.gov.ar\n"
+"\n"
+"Use: ps2 [-s] [-h] [-g] [-k float] [-i] [-n]\n"
+"\n"
+"s: Don't wait for vertical retrace, smooth but you can't meassure the\n"
+"   frame rate.\n"
+"g: Use the slow algorithm to calculate the surfaces (needed for -k).\n"
+"k: Constant for the plasma sine period. Default: 18.334.\n"
+"h: Shows this help.\n"
+"i: Shows information.\n"
+"n: Descriptive name.\n"
+);
 }
 
 
 void ShowInfo(void)
 {
 printf(
-"
-Name:        Plasma 2
-Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)
-Author:      Designed and Programmed By Salvador Eduardo Tropea SET.
-             Original plasma idea By Jan MÅller & Erik Hansen.
-Description: A sequence of nice plasma effects based the addition of
-             surfaces.
-");
+"\n"
+"Name:        Plasma 2\n"
+"Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"Author:      Designed and Programmed By Salvador Eduardo Tropea SET.\n"
+"             Original plasma idea By Jan MÅller & Erik Hansen.\n"
+"Description: A sequence of nice plasma effects based the addition of\n"
+"             surfaces.\n"
+);
 }
 
 #define Blit() if (WaitSync) \
