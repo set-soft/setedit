@@ -78,9 +78,7 @@ TDialog *createRegExOpsDialog()
  // EN: ABDENPT
  TSLabel *Style=TSLabelRadio(__("RegEx style"),__("~B~asic POSIX"),
                              __("~E~xtended POSIX"),
- #ifdef SUP_PCRE
-                             __("~P~erl Compatible"),
- #endif
+                             SUP_PCRE ? __("~P~erl Compatible") : 0,
                              0);
 
  TSLabel *Replace=TSLabelRadio(__("Replace text"),__("~N~ormal text"),

@@ -2635,7 +2635,6 @@ void StopStdErrRedirection()
    }
 }
 
-#ifdef SUP_PCRE
 // This helps to use memory debuggers like MSS. In this way we don't need to
 // compile libpcre with the memory debugger nor see spureous reports about
 // memory allocated by libpcre and freed by the editor.
@@ -2654,15 +2653,12 @@ void My_pcre_free(void *p)
 static
 void InitPCRELibrary()
 {
- pcre_malloc=My_pcre_malloc;
- pcre_free=My_pcre_free;
+ if (SUP_PCRE)
+   {
+    pcre_malloc=My_pcre_malloc;
+    pcre_free=My_pcre_free;
+   }
 }
-#else
-static
-void InitPCRELibrary()
-{
-}
-#endif
 
 int main(int argc, char *argv[])
 {

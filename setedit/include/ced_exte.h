@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_External ) && !defined( __TCEditor_External__ )
 #define __TCEditor_External__
@@ -161,14 +161,7 @@ typedef struct
  uint32 *colMarkers;
 } dflOptions;
 
-#ifndef SUP_PCRE
-// Just to avoid errors
-typedef void pcre;
-#else
-#define STATIC
-#include <pcre.h>
-#undef STATIC
-#endif
+#include <ced_pcre.h>
 
 struct strSHL
 {

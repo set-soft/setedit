@@ -13,9 +13,7 @@
 #include <ceditor.h>
 #include <loadshl.h>
 
-#ifdef SUP_PCRE
-#include <pcre.h>
-#endif
+#include <ced_pcre.h>
 #include <dyncat.h>
 
 static char *nameSHLFile;
@@ -1195,7 +1193,6 @@ char *SHLConstructEmacsModeComment(TCEditor &e, int &sizeSt, int &sizeEnd)
 PMacroStr *SHLSearchPMTrigger(char *trg);
 
 /************************ Regular expressions file matching stuff *******************/
-#ifdef SUP_PCRE
 /**[txh]********************************************************************
 
   Description:
@@ -1206,6 +1203,8 @@ expressions.
 
 void PCREInitCompiler(PCREData &p)
 {
+ if (!SUP_PCRE)
+    return;
  p.PCREMaxMatchs=0;
  DeleteArray(p.PCREMatchs);
  p.PCREMatchs=0;
@@ -1221,6 +1220,8 @@ expressions and before executing any of them.
 
 void PCREStopCompiler(PCREData &p)
 {
+ if (!SUP_PCRE)
+    return;
  p.PCREMatchs=new int[p.PCREMaxMatchs];
 }
 
@@ -1235,11 +1236,13 @@ void PCREStopCompiler(PCREData &p)
 
 pcre *PCRECompileRegEx(char *text, PCREData &p)
 {
+ if (!SUP_PCRE)
+    return NULL;
  const char *error;
  int   errorOffset;
  pcre *ret=pcre_compile(text,0,&error,&errorOffset,0);
  if (!ret)
-    return 0;
+    return NULL;
 
  int matchs=(pcre_info(ret,0,0)+1)*3;
  if (matchs>p.PCREMaxMatchs)
@@ -1250,16 +1253,23 @@ pcre *PCRECompileRegEx(char *text, PCREData &p)
 
 int PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p)
 {
- int hits=pcre_exec(CompiledPCRE,0,search,len,PCRE206 0,p.PCREMatchs,p.PCREMaxMatchs);
+ if (!SUP_PCRE)
+    return 0;
+ p.PCREHits=pcre_exec(CompiledPCRE,0,search,len,PCRE206 0,p.PCREMatchs,p.PCREMaxMatchs);
 
- return hits>0;
+ return p.PCREHits>0;
 }
-#else
-// Dummies
-void PCREInitCompiler(PCREData &) {}
-void PCREStopCompiler(PCREData &) {}
-static pcre *PCRECompileRegEx(char *, PCREData &) { return 0; }
-static int PCREDoSearch(char *, int , pcre *, PCREData &) {}
-#endif
+
+void PCREGetMatch(int match, int &offset, int &len, PCREData &p)
+{
+ if (!SUP_PCRE || match<0 || match>=p.PCREHits)
+   {
+    offset=-1; len=0;
+    return;
+   }
+ offset=p.PCREMatchs[match*2];
+ int end=p.PCREMatchs[match*2+1];
+ len=end-offset;
+}
 /********************** End Regular expressions file matching stuff *****************/
 

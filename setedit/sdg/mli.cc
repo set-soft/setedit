@@ -16,6 +16,7 @@ code is inflated in some cases ... I moved mlivar.cc to this code.
 
 *****************************************************************************/
 
+#include <configed.h> // To know about PCRE support
 #define Uses_ctype
 #define Uses_stdlib
 #define Uses_string
@@ -32,6 +33,7 @@ code is inflated in some cases ... I moved mlivar.cc to this code.
 
 #include <dyncat.h>
 #include <pathtool.h>
+#include <loadshl.h>
 
 // Declaring the destructor here instead of in the header
 // seems to save more than 1Kb in the EXE. Is because the
@@ -1033,6 +1035,52 @@ CleanUp:
  return;
 }
 
+// (prex <string> <str_regex>)
+// performs a Perl regex search
+DecFun(MLIBasePRex)
+{
+ LocVarStr(String);
+ LocVarStr(Search);
+ PCREData prexS={0,NULL};
+ pcre *prexC=NULL;
+
+ CheckForError(!SUP_PCRE,MLINoPCRE);
+ CheckNumParams(cant!=2);
+
+ GetString(0,String);
+ GetString(1,Search);
+
+ PCREInitCompiler(prexS);
+ prexC=PCRECompileRegEx(Search->str,prexS);
+ CheckForError(!prexC,MLIPCRE);
+ PCREStopCompiler(prexS);
+ if (PCREDoSearch(String->str,String->len,prexC,prexS))
+   {// Get the matches
+    char b[32];
+    int offset, len;
+    for (int i=0; i<prexS.PCREHits; i++)
+       {
+        PCREGetMatch(i,offset,len,prexS);
+        if (offset>=0)
+          {
+           CLY_snprintf(b,32,"_%d",i);
+           o->AddVariable(b,new TLispString(String->str+offset,len));
+          }
+       }
+    MLIRetInt(prexS.PCREHits);
+   }
+ else
+   {
+    MLIRetInt(0);
+   }
+
+CleanUp:
+ destroyFloatVar(String);
+ destroyFloatVar(Search);
+ PCREDataDestroy(prexS);
+ free(prexC);
+}
+
 // C like for(inic;condition;increment) code; => (inic cond inc code for)
 /*DecFun(MLIBaseFor)
 {
@@ -1063,7 +1111,8 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "tostr",
  "loop",
  "exitloop",
- "repeat"/*,
+ "repeat",
+ "prex"/*,
  "for"*/
 };
 
@@ -1092,7 +1141,8 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseToStr,
  MLIBaseLoop,
  MLIBaseExitLoop,
- MLIBaseRepeat/*,
+ MLIBaseRepeat,
+ MLIBasePRex/*,
  MLIBaseFor*/
 };
 
@@ -1407,7 +1457,7 @@ TLispVar *TMLIBase::InterpretNoClean(char *s)
             while (*Code!='\n' && *Code) Code++;
             break;
        default:
-            if (TVCodePage::isAlpha(*Code))
+            if (TVCodePage::isAlpha(*Code) || *Code=='_')
               { // That could be a var or a command
                if (ParseVarOrCommand(Params,Commands))
                   return NULL;
@@ -1558,7 +1608,7 @@ int TMLIBase::ParseNumber()
 }
 
 #define maxParse 6
-#define maxSyntax 9
+#define maxSyntax 11
 
 static char *UnkErr=__("unknown");
 
@@ -1590,7 +1640,9 @@ char *TMLIBase::SyntaxError[]=
  __("undefined symbol"),
  __("operation not defined"),
  __("invalid character for a name"),
- __("invalid key sequence")
+ __("invalid key sequence"),
+ __("PCRE not available"),
+ __("PCRE compile error")
 };
 
 char *TMLIBase::GetTypeError()

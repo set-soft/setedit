@@ -16,9 +16,7 @@ search, RegEx and PCRE is a little complex and messy.
 #define Uses_TVCodePage
 #include <stdio.h>
 
-#ifdef SUP_PCRE
-#include <pcre.h>
-#endif
+#include <ced_pcre.h>
 #define Uses_AllocLocal
 #define Uses_MsgBox
 #define Uses_TCEditor
@@ -36,9 +34,7 @@ search, RegEx and PCRE is a little complex and messy.
 
 *****************************************************************************/
 
-#ifdef SUP_PCRE
 static char *GetPCREHit(int hit, int &len);
-#endif
 static char *GetRegExHit(int hit, int &len);
 static char *GetNormalHit(int hit, int &len);
 
@@ -59,11 +55,9 @@ int TCEditor::CompileSearch(char *searchStr, char *replaceStr)
 
  if (editorFlags & efRegularEx)
    {
-    #ifdef SUP_PCRE
-    if (RegExStyle==efPerlRegEx)
+    if (SUP_PCRE && RegExStyle==efPerlRegEx)
        return CompilePCRE(searchStr);
     else
-    #endif
        return CompileRegEx(searchStr);
    }
  return CompileNormal(searchStr);
@@ -74,11 +68,9 @@ uint32 TCEditor::MakeASearch(char *text, uint32 len, int &matchLen)
 {
  if ((editorFlags & efRegularEx) && !(editorFlags & efOptimizedRegex))
    {
-    #ifdef SUP_PCRE
-    if (RegExStyle==efPerlRegEx)
+    if (SUP_PCRE && RegExStyle==efPerlRegEx)
        return MakeAPCRESearch(text,len,matchLen);
     else
-    #endif
        return MakeARegExSearch(text,len,matchLen);
    }
  return MakeANormalSearch(text,len,matchLen);
@@ -92,11 +84,9 @@ char *TCEditor::GetTheReplace(int &mustDelete, uint32 &len)
    }
  if ((editorFlags & efRegularEx) && !(editorFlags & efOptimizedRegex))
    {
-    #ifdef SUP_PCRE
-    if (RegExStyle==efPerlRegEx)
+    if (SUP_PCRE && RegExStyle==efPerlRegEx)
        return GetSpecialReplace(mustDelete,len,GetPCREHit);
     else
-    #endif
        return GetSpecialReplace(mustDelete,len,GetRegExHit);
    }
  return GetSpecialReplace(mustDelete,len,GetNormalHit);
@@ -362,7 +352,6 @@ char *GetRegExHit(int hit, int &len)
 }
 
 
-#ifdef SUP_PCRE
 /*****************************************************************************
 
  Perl-Compatible Regular Expressions (PCRE) interface
@@ -390,6 +379,8 @@ void ShowPCREError(const char *error)
 static
 void FreePCRELastSearch()
 {
+ if (!SUP_PCRE)
+    return;
  if (PCREIsCompiled)
    {
     PCREIsCompiled=0;
@@ -403,6 +394,8 @@ void FreePCRELastSearch()
 
 int TCEditor::CompilePCRE(char *searchStr)
 {
+ if (!SUP_PCRE)
+    return -1;
  // Free the memory of the last search
  FreePCRELastSearch();
 
@@ -455,7 +448,7 @@ int TCEditor::CompilePCRE(char *searchStr)
 
 uint32 TCEditor::MakeAPCRESearch(char *block, uint32 size, int &matchLen)
 {
- if (!size || !PCREIsCompiled)
+ if (!SUP_PCRE || !size || !PCREIsCompiled)
     return sfSearchFailed;
 
  PCREText=block;
@@ -484,14 +477,11 @@ uint32 TCEditor::MakeAPCRESearch(char *block, uint32 size, int &matchLen)
 static
 char *GetPCREHit(int hit, int &len)
 {
- if (hit>=PCREHitAvailable || PCREMatchs[2*hit]<0)
-    return 0;
+ if (!SUP_PCRE || hit>=PCREHitAvailable || PCREMatchs[2*hit]<0)
+    return NULL;
  len=PCREMatchs[2*hit+1]-PCREMatchs[2*hit];
  return PCREText+PCREMatchs[2*hit];
 }
-#else  // SUP_PCRE
-#define FreePCRELastSearch()
-#endif // SUP_PCRE
 
 void TCEditor::FreeRegExMemory(void)
 {

@@ -84,7 +84,7 @@ extra widgets (progress bar): 3176
 #include <settvuti.h>
 #include <easydiag.h>
 
-#ifndef SUP_PCRE
+#if !SUP_PCRE
 #error Can not compile the installer without PCRE support
 #endif
 

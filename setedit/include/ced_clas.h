@@ -539,10 +539,8 @@ public:
     static int    CompileNormal(char *searchStr);
     static uint32 MakeANormalSearch(char *block, uint32 size, int &matchLen);
     static uint32 MakeARegExSearch(char *block, uint32 size, int &matchLen);
-    #ifdef SUP_PCRE
     static int    CompilePCRE(char *searchStr);
     static uint32 MakeAPCRESearch(char *block, uint32 size, int &matchLen);
-    #endif
     static void   FreeRegExMemory(void);
     Boolean       SearchAndJump(char *search, unsigned flags);
 

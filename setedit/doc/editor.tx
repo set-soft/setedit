@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 13 April 2004
-@set update-month April 2004
+@set update-date 25 June 2004
+@set update-month June 2004
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -6063,6 +6063,39 @@ enough I'll add it. Adding strings means concatenation.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection prex
+
+  (prex @var{text} @var{regex})
+@p{}
+
+  Performes a search using the @var{regex} Perl regular expression in the
+specified @var{text}.
+@p{}
+
+  Returns the number of matchs. This value is 0 if the search failed and at
+least one if succeed. To retreive the results of the matches you can use
+internal variables called @code{_X}, where X is the number of the match. The
+match number 0 is the main result, the others correspond to the
+subexpressions contained in @var{regex}. Note that variables with numbers
+above the bigest subexpression number are undefined or could contain the
+result of a previous search.
+@p{}
+
+  A very important detail is that back slash characters are escape characters
+in sLisp string. It means that @code{"\\d"} is equivalent to @code{\d}.
+@p{}
+
+  The following example shows @code{123} in the status line of the current
+edition window:
+@p{}
+
+  (eval
+   (prex "Hi 123 bye 456 nope" "i (\\d*) b")
+   (ShowInStatusLine _1)
+  )
+@p{}
+
+@c --------------------------------------------------------------
 @subsection repeat
 
   (repeat @var{times} @var{expression} ...)
@@ -6097,22 +6130,26 @@ enough I'll add it. Adding strings means concatenation.
 @subsection setv
 
   (setv @var{variable} @var{value})
-@paragraph{}
+@p{}
 
   Assigns @var{value} to the @var{variable}. If the @var{variable} wasn't yet defined
 the variable is created. The @var{variable} parameter must be a string representing
 the name of the variable, it may also be an expression. This command have a
 shortcut. @x{Operator = (assign)}.
-@paragraph{}
+@p{}
+
+  Variable names can contain underscores, but the names starting with
+underscores are reserver for internal use.
+@p{}
 
   (setv "counter" 1)@*
   Assigns 1 to the @var{counter} variable, if @var{counter} doesn't exist counter is created.
-@paragraph{}
+@p{}
 
   (setv (+ "counter" "1") 1)@*
   Assigns 1 to the @var{counter1} variable, if @var{counter1} doesn't exist counter1 is
 created.
-@paragraph{}
+@p{}
 
 @c --------------------------------------------------------------
 @subsection ShortFileName

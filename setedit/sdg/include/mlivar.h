@@ -42,7 +42,9 @@ const int
       MLIUndefSymbol=0x2006,
       MLIUndefOp    =0x2007,
       MLIInvaForName=0x2008,
-      MLIInvaKeySeq =0x2009;
+      MLIInvaKeySeq =0x2009,
+      MLINoPCRE     =0x200a,
+      MLIPCRE       =0x200b;
 
 // Just an arbitrary limit to stop infinite recursion that will end in a crash
 const int maxNestedsLisp=1024;

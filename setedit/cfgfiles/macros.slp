@@ -151,6 +151,38 @@
 
 ;*******************************************************************
 ;
+; MACRO:   Word Count
+;
+; DESCRIPTION: Example to show how to execute an external tool and
+; parse the output using regex.
+;
+;*******************************************************************/
+
+(defmacro 'Word Count'
+ (eval
+  (setv "input" (GetSelection))
+  (if (length input)
+   (eval
+    (setv "output" (RunProgramRedir "wc" input))
+    (if (length output)
+     (eval
+      (if (prex output "\\s*(\\d+)\\s*(\\d+)\\s*(\\d+)")
+       (ShowInStatusLine (+ "Lines: " _1 " Words: " _2 " Characters: " _3))
+      )
+     )
+     ; Inform we didn't get text
+     (MessageBox "No output from wc")
+    )
+   )
+   ; Ask the user to select something firt
+   (MessageBox "Please select a text first")
+  )
+ )
+)
+
+
+;*******************************************************************
+;
 ; These macro were created by Rolf Campbell (Endlisnis)
 ; email: s257m@unb.ca Endlisnis@hotmail.com
 ; and uses an external program provided by him.

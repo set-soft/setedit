@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -8,14 +8,7 @@
 
 *****************************************************************************/
 
-#ifndef SUP_PCRE
-// Just to avoid errors
-typedef void pcre;
-#else
-#define STATIC
-#include <pcre.h>
-#undef STATIC
-#endif
+#include <ced_pcre.h>
 
 struct strCLE
 {
@@ -52,3 +45,4 @@ extern int CLEGetIndexOfLoad(const char *name);
 extern int CLEDoSearch(char *search, int len, pcre *CompiledPCRE);
 extern void CLEGetMatch(int match, char *buf, int maxLen);
 extern void CLEGetMatch(int match, int &offset, int &len);
+extern pcre *CLECompileRegEx(char *text, int &subX);

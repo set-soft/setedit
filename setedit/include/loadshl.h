@@ -1,12 +1,15 @@
-/* Copyright (C) 2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef LOADSHL_H_INCLUDED
 #define LOADSHL_H_INCLUDED
+
+#include <ced_pcre.h>
 
 typedef struct
 {
  int PCREMaxMatchs;
  int *PCREMatchs;
+ int PCREHits;
 } PCREData;
 
 void  PCREInitCompiler(PCREData &p);
@@ -14,6 +17,7 @@ void  PCREStopCompiler(PCREData &p);
 pcre *PCRECompileRegEx(char *text, PCREData &p);
 int   PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p);
 #define PCREDataDestroy(p) PCREInitCompiler(p)
+void  PCREGetMatch(int match, int &offset, int &len, PCREData &p);
 
 #define MaxExtension 80
 

@@ -22,12 +22,7 @@
 #include <ceditor.h>
 #include <easydiag.h>
 
-#ifdef SUP_PCRE
-#include <pcre.h>
-#else
-// Just to avoid errors
-typedef void pcre;
-#endif
+#include <ced_pcre.h>
 #include <loadshl.h>
 #include <loadnobkp.h>
 #define Uses_SETAppVarious // EdReloadIfOpened

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -9,10 +9,7 @@
 #define Uses_TStringCollection
 #include <tv.h>
 
-#ifdef SUP_PCRE
-#include <pcre.h>
-static pcre *PCRECompileRegEx(char *text, int &subX);
-#endif
+#include <ced_pcre.h>
 #include <dyncat.h>
 #include <loadcle.h>
 
@@ -148,7 +145,7 @@ int CLEGetIndexOf(const char *name)
        { \
         pos=MoveAfterEqual(b); \
         ReplaceCRby0(pos); \
-        CLEValues[i].##a=PCRECompileRegEx(pos,subExp); \
+        CLEValues[i].##a=CLECompileRegEx(pos,subExp); \
         if (subExp>subExpMax) \
            subExpMax=subExp; \
        }
@@ -166,7 +163,7 @@ int CLEGetIndexOf(const char *name)
        { \
         pos=MoveAfterEqual(b); \
         ReplaceCRby0(pos); \
-        CLEValues[i].a=PCRECompileRegEx(pos,subExp); \
+        CLEValues[i].a=CLECompileRegEx(pos,subExp); \
         if (subExp>subExpMax) \
            subExpMax=subExp; \
        }
@@ -175,9 +172,8 @@ int CLEGetIndexOf(const char *name)
 static
 void LoadOneCLE(const char *name)
 {
- #ifndef SUP_PCRE
- return;
- #else
+ if (!SUP_PCRE)
+    return;
  FILE *f;
  int i,eureka,subExp,subExpMax=0,index;
  char *pos;
@@ -262,7 +258,6 @@ void LoadOneCLE(const char *name)
    }
 
  fclose(f);
- #endif
 }
 
 int CLEGetIndexOfLoad(const char *name)
@@ -312,7 +307,6 @@ TStringCollection *CLEGetList()
  return CLEList;
 }
 
-#ifdef SUP_PCRE
 /**[txh]********************************************************************
 
   Description:
@@ -322,9 +316,10 @@ TStringCollection *CLEGetList()
 
 ***************************************************************************/
 
-static
-pcre *PCRECompileRegEx(char *text, int &subX)
+pcre *CLECompileRegEx(char *text, int &subX)
 {
+ if (!SUP_PCRE)
+    return NULL;
  const char *error;
  int   errorOffset;
  pcre *ret=pcre_compile(text,0,&error,&errorOffset,0);
@@ -343,6 +338,8 @@ static char *BufSearch;
 
 int CLEDoSearch(char *search, int len, pcre *CompiledPCRE)
 {
+ if (!SUP_PCRE)
+    return 0;
  LastHits=pcre_exec(CompiledPCRE,0,search,len,PCRE206 0,PCREMatchs,CLEMaxSubEx);
  BufSearch=search;
 
@@ -351,6 +348,8 @@ int CLEDoSearch(char *search, int len, pcre *CompiledPCRE)
 
 void CLEGetMatch(int match, char *buf, int maxLen)
 {
+ if (!SUP_PCRE)
+    return;
  if (match<0 || match>LastHits)
    {
     *buf=0;
@@ -367,7 +366,7 @@ void CLEGetMatch(int match, char *buf, int maxLen)
 
 void CLEGetMatch(int match, int &offset, int &len)
 {
- if (match<0 || match>LastHits)
+ if (!SUP_PCRE || match<0 || match>LastHits)
    {
     offset=-1; len=0;
     return;
@@ -376,11 +375,4 @@ void CLEGetMatch(int match, int &offset, int &len)
  int end=PCREMatchs[match*2+1];
  len=end-offset;
 }
-#else
-static pcre *PCRECompileRegEx(char *, int&) {return 0;}
-int CLEDoSearch(char *, int , pcre *) {return 0;}
-void CLEGetMatch(int , char *, int ) {;}
-void CLEGetMatch(int match, int &offset, int &len)
-{ if (match) match=0; offset=-1; len=0; }
-#endif
 

@@ -258,6 +258,7 @@ include/ced_clas.h
 include/ced_coma.h
 include/ced_exte.h
 include/ced_inte.h
+include/ced_pcre.h
 include/completi.h
 include/configed.h
 include/edmsg.h

@@ -46,7 +46,9 @@
 
 // PCRE support
 #if defined(HAVE_PCRE_LIB)
- #define SUP_PCRE
+ #define SUP_PCRE 1
+#else
+ #define SUP_PCRE 0
 #endif
 
 #ifdef HAVE_PCRE206

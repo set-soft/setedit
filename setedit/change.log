@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.531  2004/06/23 20:10:00  set
+* Fixed: Assignment of Boolean from int.
+* Fixed: Use of bool type (instead of int or Boolean).
+* Modified: "new" header inclusion to be selected by compatlayer.
+All from Arnold Wiegert information.
+
 Revision 1.530  2004/06/23 19:33:21  set
 * Modified: [MSVC] Use of /Tp<file> instead of /TP in makefiles. It looks
 like MSVC 4.0 only supports it. Reported by by Arnold Wiegert.
