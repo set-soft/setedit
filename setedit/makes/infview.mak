@@ -248,7 +248,7 @@ SOURCE_NAME=$<
 OUTFILE=$@
 SPECIAL_CFLAGS=
 SPECIAL_LDFLAGS=
-PROG_ARGS=
+PROG_ARGS=libc
 SRC_DIRS=../infview ../settvuti ../extra ../../tvision/classes\
 	../infview/names ../infview/streams ../mainsrc ../setedit
 WUC=
@@ -442,6 +442,7 @@ DEPS_6=inf.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/button.h\
 	../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
+	../../tvision/include/tv/cmdset.h\
 	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
@@ -488,6 +489,7 @@ DEPS_6=inf.cc ../../tvision/include/compatlayer.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
+	../infview/include/infbaser.h ../infview/include/infr.h\
 	../settvuti/include/diaghelp.h ../settvuti/include/edhists.h\
 	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
@@ -526,8 +528,9 @@ DEPS_7=infbase.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
 	../include/ceditint.h ../include/configed.h ../include/gzfiles.h\
 	../include/tvsetuti.h ../infview/include/infbase.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tprogdia.h
+	../infview/include/infbaser.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tprogdia.h
 objinf/infbase.o:: $(DEPS_7)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_8=infdummy.cc
@@ -585,9 +588,11 @@ DEPS_9=infmain.cc ../../tvision/include/compatlayer.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tslabel.h\
 	../easydiag/tslistbo.h ../easydiag/tssortlb.h\
 	../easydiag/tssortva.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
-	../include/ced_coma.h ../include/ceditor.h ../include/tvsetuti.h\
+	../include/ced_coma.h ../include/ceditint.h ../include/ceditor.h\
+	../include/configed.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infalone.h\
-	../infview/include/infbase.h ../infview/include/manview.h\
+	../infview/include/infbase.h ../infview/include/infbaser.h\
+	../infview/include/infr.h ../infview/include/manview.h\
 	../setedit/include/codepage.h ../setedit/include/pal.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h
@@ -642,6 +647,7 @@ DEPS_10=infmenu.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/yes_mss.h ../include/ced_coma.h\
 	../include/ceditor.h ../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infalone.h ../infview/include/infbase.h\
+	../infview/include/infbaser.h ../infview/include/infr.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h
 objinf/infmenu.o:: $(DEPS_10)
@@ -675,6 +681,7 @@ DEPS_12=manview.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/streambl.h\
 	../../tvision/include/tv/sttctext.h\
 	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tkeyext.h ../../tvision/include/tv/tkeys.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
@@ -781,6 +788,7 @@ DEPS_18=sinf.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
+	../infview/include/infbaser.h ../infview/include/infr.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h
 objinf/sinf.o:: $(DEPS_18)

@@ -1,4 +1,7 @@
 $Log$
+Revision 1.16  2001/10/22 04:29:07  terrible
+Modified: Updated Debian packaging to version 0.4.51-1.
+
 Revision 1.468  2001/10/20 16:45:08  set
 * Fixed: [Win32] I forgot to put CONFIG_PREFIX in the BC++ 5.5 configuration
 file.
