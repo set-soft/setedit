@@ -1,4 +1,134 @@
 $Log$
+Revision 1.449  2001/10/09 22:37:54  root
+* Updated: Spanish translation.
+
+Revision 1.448  2001/10/09 22:32:20  set
+* Added: Column markers. That's another edition option and can be used to
+highlight columns. This is useful for languages that needs text in
+particular columns (Fortran and Cobol I think). I tested global and local
+settings and default global options. Documented. Suggested by Martijn
+Versteegh.
+* Modified: version to 0.4.50.
+
+Revision 1.447  2001/10/09 17:56:52  set
+* Updated: Tcl/Tk syntax highlight. Patch by Philip Moore <FireEgl@EMail.com>
+* Added: Fortran syntax highlight. Contributed by Martijn Versteegh
+<versteegh@kvi.nl>.
+
+Revision 1.446  2001/10/09 16:54:49  set
+* Tested the editor with PCRE 3.2, all works OK, I don't include it because
+now uses autotools and fails to be configured for djgpp needing tricks.
+* Fixed the allegro 3.9.38 headers to compile with gcc 3.1, will send patches
+to list.
+
+Revision 1.445  2001/10/09 14:05:21  set
+* Fixed: Typo in C/C++ parser (#elif)
+* Bad news: The editor compiled with gcc 3.1 runs slower than compiled with
+2.8.1 and is bigger: 11 % slower 20 % bigger. At least for my K6-2 CPU using
+-O2 optimization. That's really bad.
+
+Revision 1.444  2001/10/08 22:09:33  set
+* Added: Support for gcc 3.1. The code compiled OK, but I was forced to
+disable some part of Allegro's header :-(
+
+Revision 1.443  2001/10/08 19:30:01  set
+* Added: Support for gcc 3.1 in the configuration scripts.
+* Added: Support for string streams in doedidia.cc (str streams doesn't exist
+anymore).
+* Added: Support for "namespace" and "using" C++ keywords to the internal
+syntax highlight.
+
+Revision 1.11  2001/10/07 23:46:19  terrible
+* Modified: updated Debian files to version 0.4.49-1.
+* Fixed: unnecesary compile of shipped libbzip2 because of typo in config.pl.
+
+Revision 1.442  2001/10/07 20:31:28  set
+* Added: a small script to create the .debs as a regular user
+(debian/builpackage).
+
+Revision 1.441  2001/10/07 19:30:37  set
+* Added: More mechanisms to make gettext work with the .po files. The main
+problem is that old tools destroys the information needed for the new ones.
+Now the scripts also updates version and revision time.
+* Fixed: When running suid root the stderr redirected files were owned by
+root. Reported by Ivan.
+* Fixed: When using a central dst file and loading another in a directory
+the settings were transferred to the central one. Reported by Ivan.
+
+Revision 1.440  2001/10/07 14:30:57  set
+* Added: A command line option called --debug to the configuration script.
+It selects switches that can be used for debug and testing purposes. They
+are generic and could not match with the ones used to compile TV. Suggested
+by Grzegorz.
+
+Revision 1.439  2001/10/07 14:07:49  set
+* Added: Now if SET_FILES wasn't defined the editor also tries to guess
+using the prefix indicated during configuration. I also added an option to
+the configuration script to disabled it because I compile the editor in
+e:/... for DOS and it could be the CD-ROM in some sytems producing a test
+for the CD which is slow and annoying. Under UNIX I use /usr which is
+already in the list to search, so my prefix isn't needed either.
+
+Revision 1.438  2001/10/06 23:15:01  set
+* Modified: Now is possible to set the number of closed windows to
+something less than 3. Suggested by Thiago.
+* Added: Now ESC closes the man pages viewer. Suggested by Thiago.
+
+Revision 1.437  2001/10/06 22:42:34  set
+* Enhanced: Now the heuristic parser for C sources takes only one part of
+#if #elsif #else #endif sequences when they are inside a function. It
+solves a well known limitation. I hope it doesn't break all ;-) I did it
+after a report by Grzegorz, the funny thing is that limitation was clearly
+documented (RTFD).
+
+Revision 1.436  2001/10/06 19:58:10  set
+* Added: A couple of command to execute sLisp from the editor (selected
+text) or entering it in an input line. Documented. Suggested by Thiago.
+* Updated: Spanish traslation.
+* Modified: Now the Macros collection (list of sLisp macros defined by
+user) holds a copy of the macro code. It makes possible to define macros
+with the new mechanism without risking to lose them or leak memory.
+* Added: Support for commands with _ in their names to the meuload
+mechanism. The new commands have it.
+
+Revision 1.435  2001/10/06 17:22:41  set
+* Fixed: Calculator parsers aren't "locale aware" but libc is so it
+generated a mess. Now the locale is set to C before running them. Reported
+by Ivan.
+* Added: Some code to make the stackdbg module more robust when using
+strong optimizations.
+* Modified: Debian release version used by the editor to -0.1 and not -1.
+* Fixed: SIGSEGVs when using the -b command line option.
+
+Revision 1.434  2001/10/06 16:04:40  set
+* Fixed: [sLisp] The RunProgramRedir command was forking and hence didn't
+collect the external program output. Reported by Grzegorz.
+* Added: [sLisp] A new optional parameter to RunProgramRedir. If provided
+is used for the stdin of the external program. Documented. Suggested by
+Grzegorz.
+* Added: [sLisp] MessageBox command to communicate things to the user.
+Documented.
+* Added: [sLisp] An example of how to use the new RunProgramRedir to run an
+external filter program. I tested it with "recode ISO8859-1..html".
+
+Revision 1.433  2001/10/06 14:27:58  set
+* Added: Now the files listed in the "no back-ups" list aren't remmebered
+in the closed list. They are usually temporal files that won't exist
+anymore. Documented.
+
+Revision 1.432  2001/10/06 14:16:43  set
+* Added: Support for "Jump to function" in assembler files. It takes the
+labels excluding local gcc labels (they start with .). Documented.
+* Fixed: The syntax highlight for .s files didn't separate strings starting
+with " and '.
+
+Revision 1.431  2001/10/06 13:30:49  set
+* Added: New option to open R.O. files as R.O. buffers.
+* Documented: New option "Open R.O. as R.O." plus all the new stuff in the
+editor's general options.
+* Documented: Addition to menu: "Name current function"
+* Synchronized Source Forge CVS, tag sf0449_2.
+
 Revision 1.10  2001/10/05 13:13:08  set
 +
 

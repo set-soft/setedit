@@ -279,6 +279,10 @@ sub SeeCommandLine
       {
        $conf{'prefix'}=$1;
       }
+    elsif ($i eq '--no-prefix-h')
+      {
+       $conf{'no-prefix-h'}=1;
+      }
     elsif ($i eq '--static')
       {
        $conf{'static'}='yes';
@@ -361,6 +365,13 @@ sub SeeCommandLine
       {
        $conf{'CXXFLAGS'}=$1;
       }
+    elsif ($i eq '--debug')
+      {
+       $conf{'XCFLAGS'}=
+       $conf{'XCXXFLAGS'}='-O3 -fomit-frame-pointer -ffast-math -gstabs+3';
+       $conf{'CFLAGS'}=
+       $conf{'CXXFLAGS'}='-O2 -Wall -Werror -gstabs+3';
+      }
     elsif ($i eq '--with-mixer')
       {
        $conf{'HAVE_MIXER'}='yes';
@@ -416,11 +427,13 @@ sub ShowHelp
  print "--cppflags=val : normal C++ flags [default is env. CXXFLAGS]\n";
  print "--Xcflags=val  : special C flags used for MP3 libraries\n";
  print "--Xcppflags=val: special C++ flags used for MP3 libraries\n";
+ print "--debug        : selects C/C++ switches for debugging\n";
  print "--with-mixer   : include code to control the mixer [default]\n";
  print "--without-mixer: don't include code to control the mixer\n";
  print "--shipped-intl : force to use the shipped gettext library [DOS only]\n";
  print "--tv-include=pa: path for Turbo Vision includes\n";
  print "--tv-lib=path  : path for Turbo Vision libraries\n";
+ print "--no-prefix-h  : don't define the prefix in the configuration header\n";
  print "  Note: if you use --tv-include you should also use --tv-lib\n";
 }
 
@@ -1004,6 +1017,11 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_BZIP2PRE1','old bzip2 version before 1.0') if(@conf{'HAVE_BZIP2'} eq 'yes');
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
+
+ $text.="\n\n#define CONFIG_PREFIX \"";
+ $text.=$conf{'prefix'} unless $conf{'no-prefix-h'};
+ $text.="\"\n";
+
  $text.="\n\n";
  $text.="#define SEOS_$OS\n";
  $text.="#define SEOSf_$OSf\n";
