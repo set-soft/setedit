@@ -28,7 +28,7 @@ INSTALL_BIN=install $(EXEC_MODE) $(SETUID) $(SETGID)
 INSTALL_DATA=install $(DATA_MODE)
 INSTALL_DIR=install -d -m 0755
 
-prefix=/usr
+prefix=@@pref@@
 bin_dir=bin
 data_dir=share
 info_dir=info
@@ -41,7 +41,7 @@ ALL_FILES=$(addprefix $(prefix)/,$(files))
 
 $(prefix)/$(bin_dir)/%: $(bin_dir)/%
 	$(INSTALL_DIR) $(dir $@)
-	$(INSTALL_BIN) $< $@
+	@@install_bin@@
 
 $(prefix)/$(bin_dir)/e:
 	# IVAN: Create a RELATIVE symlink:
@@ -52,6 +52,6 @@ $(prefix)/share/setedit/install.log:
 
 $(prefix)/%: %
 	$(INSTALL_DIR) $(dir $@)
-	$(INSTALL_DATA) $< $@
+	@@install_data@@
 
 all install: $(ALL_FILES) $(prefix)/$(bin_dir)/e

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.84  2002/05/13 12:30:28  set
+* Modified: Commented what parts of the Rawplayer class is really needed by
+the editor and what sizes are used (bytes, not samples). I also modified
+Solaris code to implement things this way.
+
 Revision 1.83  2002/05/08 13:48:54  set
 * Added: A new color scheme contributed by Thiago. It is dark (console
 style) plus some VIM like SHL.

@@ -118,6 +118,19 @@ else
      }
   }
 
+# Adjust install tool
+$os=`uname`;
+if ($os=~/SunOS/)
+  { # Solaris install is quite different
+   $inst_bin='$(INSTALL_BIN) -f $(@D) $<';
+   $inst_data='$(INSTALL_DATA) -f $(@D) $<';
+  }
+else
+  {
+   $inst_bin='$(INSTALL_BIN) $< $@';
+   $inst_data='$(INSTALL_DATA) $< $@';
+  }
+
 @files=('../../distrib/distrib1.txt','../../distrib/distrib2.txt');
 
 # Check for gzip
@@ -285,6 +298,7 @@ print "done.\n\n";
 print "Copying other files: ";
 @fext=(
 'INSTALL.LINUX',
+'INSTALL.MAK',
 'REMOVE_UNNEEDED',
 'VCSA.SH',
 'default.map',
@@ -294,11 +308,11 @@ foreach $i (@fext)
   {
    print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$i));
   }
-$i=cat('../../distrib/INSTALL.MAK');
-$i =~ s/prefix=(.*)/prefix=$prefix/;
-open(FIL,'>'.$base.'/INSTALL.MAK');
-print FIL ($i);
-close(FIL);
+# $i=cat('../../distrib/INSTALL.MAK');
+# $i =~ s/prefix=(.*)/prefix=$prefix/;
+# open(FIL,'>'.$base.'/INSTALL.MAK');
+# print FIL ($i);
+# close(FIL);
 print "done.\n\n";
 
 if ($iMode)
@@ -421,6 +435,8 @@ sub CopyIfRpl
     $a =~ s/\@\@v1\@\@/$version1/g;
     $a =~ s/\@\@pref\@\@/$prefix/g;
     $a =~ s/\@\@pref_alt\@\@/$prefix_alt/g;
+    $a =~ s/\@\@install_bin\@\@/$inst_bin/g;
+    $a =~ s/\@\@install_data\@\@/$inst_data/g;
     replace($d,$a);
     if (-x $o)
       {

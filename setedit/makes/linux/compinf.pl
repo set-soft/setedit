@@ -101,6 +101,19 @@ else
      }
   }
 
+# Adjust install tool
+$os=`uname`;
+if ($os=~/SunOS/)
+  { # Solaris install is quite different
+   $inst_bin='$(INSTALL_BIN) -f $(@D) $<';
+   $inst_data='$(INSTALL_DATA) -f $(@D) $<';
+  }
+else
+  {
+   $inst_bin='$(INSTALL_BIN) $< $@';
+   $inst_data='$(INSTALL_DATA) $< $@';
+  }
+  
 # Check for gzip
 $i=`which gzip`;
 if (!length($i))
@@ -242,11 +255,12 @@ foreach $i (@fext)
   }
 # Use a special remover for InfView to avoid deleting editor files.
 print 'REMOVE_UNNEEDED ' if (CopyIfRpl('../../distrib/infREMOVE_UNNEEDED',$base.'/REMOVE_UNNEEDED'));
-$i=cat('../../distrib/infINSTALL.MAK');
-$i =~ s/prefix=(.*)/prefix=$prefix/;
-open(FIL,'>'.$base.'/INSTALL.MAK');
-print FIL ($i);
-close(FIL);
+print 'INSTALL.MAK ' if (CopyIfRpl('../../distrib/infINSTALL.MAK',$base.'/INSTALL.MAK'));
+# $i=cat('../../distrib/infINSTALL.MAK');
+# $i =~ s/prefix=(.*)/prefix=$prefix/;
+# open(FIL,'>'.$base.'/INSTALL.MAK');
+# print FIL ($i);
+# close(FIL);
 print "done.\n\n";
 
 if ($iMode)
@@ -330,6 +344,8 @@ sub CopyIfRpl
     $a =~ s/\@\@v1\@\@/$version1/g;
     $a =~ s/\@\@pref\@\@/$prefix/g;
     $a =~ s/\@\@pref_alt\@\@/$prefix_alt/g;
+    $a =~ s/\@\@install_bin\@\@/$inst_bin/g;
+    $a =~ s/\@\@install_data\@\@/$inst_data/g;
     replace($d,$a);
     if (-x $o)
       {

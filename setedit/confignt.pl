@@ -43,7 +43,7 @@ $ReplaceTags{'DEST_SET_DIR'} = $conf{'setdir'};
 
 $ReplaceTags{'DYNRTL'} = $conf{'dynrtl'} ? "DYNRTL = 1" : "";
 
-ReplaceText('winnt/bccmake.in','winnt/Makefile');
+ReplaceText('WinNT/bccmake.in','WinNT/Makefile');
 $a='';
 
 sub SeeCommandLine

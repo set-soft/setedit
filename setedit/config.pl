@@ -247,7 +247,7 @@ $ReplaceTags{'CC'}=$GCC;
 $ReplaceTags{'AR'}=$conf{'GNU_AR'};
 $ReplaceTags{'CFLAGS'}=$conf{'CFLAGS'};
 ReplaceText('gettext/Makefile.in','gettext/Makefile');
-`cp gettext/djgpp.h gettext/config.h` if $OS eq 'DOS';
+`cp gettext/djgpp.h gettext/config.h`; # Currently only DOS config is available if $OS eq 'DOS';
 
 #
 # BC++ Makefile
