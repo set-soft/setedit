@@ -4709,7 +4709,8 @@ def reformat_lines(lines):
 
 
 if __name__ == "__main__":
-   lines = map(initial_scan, map(string.rstrip, map(string.expandtabs, sys.stdin.readlines())))
+   lines = map(initial_scan, map(string.rstrip, map(string.expandtabs,
+           sys.stdin.readlines())))
    
    f = 0
    while f < len(lines):
@@ -4893,7 +4894,7 @@ This values are the same used by the @code{strftime} function of the standard
 @titem_{@code{%A},The full weekday name (@code{Friday})}
 @titem_{@code{%a},The abbreviated weekday name (@code{Fri})}
 @titem_{@code{%B},The full month name (@code{October})}
-@titem_{@code{%b, %h},The abbreviated month name (@code{Oct})}
+@titem_{@code{%b\, %h},The abbreviated month name (@code{Oct})}
 @titem_{@code{%C},Short for @code{%a %b %e %H:%M:%S %Y}
 (@code{Fri Oct  1 15:30:34 1993})}
 @titem_{@code{%c},Short for @code{%m/%d/%y %H:%M:%S} (@code{10/01/93
@@ -4918,7 +4919,7 @@ This values are the same used by the @code{strftime} function of the standard
 @titem_{@code{%R},Short for @code{%H:%M} (@code{15:30})}
 @titem_{@code{%r},Short for @code{%I:%M:%S %p} (@code{03:30:35 PM})}
 @titem_{@code{%S},The seconds, zero padded to two characters (@code{35})}
-@titem_{@code{%T, %X},Short for @code{%H:%M:%S} (@code{15:30:35})}
+@titem_{@code{%T\, %X},Short for @code{%H:%M:%S} (@code{15:30:35})}
 @titem_{@code{%t},A tab (@code{\t})}
 @titem_{@code{%U},The week of the year, with the first week defined by the
 first Sunday of the year, zero padded to two characters (@code{39})}
@@ -5423,8 +5424,8 @@ feedback.
 
 @section Passing extra command line options
 
-You can pass extra command line options defining an environment variable
-called @var{SET_CMDLINE}. The editor will parse this variable and add it to
+You can pass extra command line options defining an environment variable.
+It's called @var{SET_CMDLINE}. The editor will parse this variable and add it to
 the options passed in the command line. These options will be interpreted
 before the options passed in the command line.
 @paragraph{}
