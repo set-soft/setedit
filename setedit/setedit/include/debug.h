@@ -28,6 +28,7 @@ void DebugMsgSetError();
 void DebugMsgSetStopped();
 int  DebugMsgJumpToFrame(mi_frames_struct *f, char *msg, int l=0);
 int  DebugMsgFillReason(mi_frames_struct *f, char *b, Boolean stop);
+int  DebugGetErrorSt();
 void DebugClearCPULine();
 void DebugSetCPULine(int line, char *file);
 void DebugUpdateWatches();

@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.576  2004/08/13 19:01:51  set
+* Fixed: [DOC] txt generation details when using makeinfo 4.7. From more
+info provided by Andrea.
+
 Revision 1.575  2004/08/13 18:10:17  set
 * Added: [Debug] Options to configure: gdb binary, xterm binary, main
 function, max. number of lines in debug window, gdb response time

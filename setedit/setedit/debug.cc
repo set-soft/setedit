@@ -26,6 +26,8 @@ option.
   * Mechanism to disable the slow workaround for bugs in look-up symbols in gdb.
 We already have the option.
 
+  * Use other context for selecting a path for file, not open file.
+
   * Advices (only project, ...).
   * Disassembler window.
   * Add the menubind.smn options to the redmond.smn
@@ -1904,15 +1906,12 @@ mi_gvar *TPVarTree::init(const char *anExp)
  if (dbg && dbg->GetState()==MIDebugger::stopped)
    {
     v=dbg->AddgVar(anExp);
-    if (v)
+    if (v && dbg->EvalgVar(v))
       {
-       dbg->EvalgVar(v);
        if (v->numchild)
-         {
-          dbg->GetChildgVar(v);
-          dbg->FillTypeVal(v->child);
-         }
-       ok=1;
+          ok=dbg->GetChildgVar(v) && dbg->FillTypeVal(v->child);
+       else
+          ok=1;
        if (!exp)
           exp=newStr(anExp);
        Count=1+v->numchild;
@@ -3166,7 +3165,7 @@ static
 void ShowErrorInMsgBox()
 {
  char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
- int iErr=MIDebugger::GetErrorNumber();
+ int iErr=DebugGetErrorSt();
 
  if (iErr==MI_FROM_GDB)
     messageBox(mfOKButton | mfError,
@@ -4327,7 +4326,7 @@ int isValidUL(const char *exp, unsigned long &val)
  if (!dbg)
     return 0;
  char *res=dbg->EvalExpression(exp);
- if (!res || dbg->GetErrorNumber())
+ if (!res || MIDebugger::GetErrorNumber())
    {
     ShowErrorInMsgBox();
     return 0;
@@ -6263,6 +6262,19 @@ void DebugMsgSetState()
  DebugMsgUpdate(edsmDontSelect);
 }
 
+int DebugGetErrorSt()
+{
+ if (!dbg)
+    return MIDebugger::GetErrorNumber();
+
+ MIDebugger::eState st=dbg->GetState();
+ int e=dbg->GetErrorNumberSt();
+ // This is a trick to detect gdb died
+ if (st!=dbg->GetState())
+    DebugMsgSetState();
+ return e;
+}
+
 void DebugMsgSetError()
 {
  DebugMsgInit();
@@ -6270,7 +6282,7 @@ void DebugMsgSetError()
  char b[maxWStatus];
 
  char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
- int iErr=MIDebugger::GetErrorNumber();
+ int iErr=DebugGetErrorSt();
 
  int l=TVIntl::snprintf(b,maxWStatus,__("Error: %s (%d)"),cErr,iErr);
  delete[] cErr;
