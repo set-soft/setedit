@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-26 11:10
+# 2003-06-09 16:48
 #
 
 editor$(ExEXE):: \
