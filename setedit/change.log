@@ -1,8 +1,17 @@
 $Log$
+Revision 1.261  2002/12/14 23:00:14  terrible
+* Modified: PHP Functions Parser: added benchmark results and a EXTRA_INLINE
+macro to activate the inlines that cause bloat but speed things (yes! because
+they are on the hot path and used very often), the default is to not inline
+those extra functions when compiling for the editor but inlining when
+compiling standalone. The default parameters on the function definitions are
+commented out instead of just not being there, I prefer that for code
+clarity.
+
 Revision 1.260  2002/12/12 19:05:39  set
 * Removed the cmeKeyboardSetUp option, it no longer exists. Now this is
 controlled by the input code page.
-.
+
 Revision 1.259  2002/12/12 19:04:31  set
 * Modified: The greek keyboard tweak no longer compiles. Removed the code
 that prevented compilation.

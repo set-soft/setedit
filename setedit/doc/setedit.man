@@ -187,6 +187,8 @@ manual to understand how it works.
 .IP SET_FILES
 Indicates where the configuration files are located. If not defined the
 editor will guess the location.
+.IP SET_LOCALEDIR
+Indicates where the internationalization files for the editor are located.
 .IP SET_STACKDBG
 Indicates the default value for the
 .B --stack-dbg
@@ -194,5 +196,8 @@ command line option.
 .IP INFOPATH
 Indicates where help files in info format are located. If not defined the
 editor will guess the location.
+.IP MANPATH
+The editor uses man command to parse manpages. For this reason MANPATH also
+affects setedit.
 .SH AUTHOR
 Salvador Eduardo Tropea <salvador@inti.gov.ar>

@@ -4,6 +4,8 @@ SET's Editor under Linux FAQ:
 0.1) Q: I type e in the shell and the editor doesn't start, why?
 0.2) Q: The editor complains about something related to SET_FILES not defined
 0.3) Q: I get "wrong command name at line NN of menubind.smn", what's up?
+0.4) Q: Can I install in my home dir? how can I tell the editor where to look
+for configuration files?
 
 1) Keyboard problems
 1.1) Q: Why the right Alt key doesn't work for menues?
@@ -63,6 +65,20 @@ Note: This syntax is for bash, I don't use other shell in UNIX.
 system. I changed the default installation directory from /usr/local/bin to
 /usr/bin so perhaps you have the old copy and it is *first* in your path so
 you are loading the new menu files with the old version of the binary.
+
+-----------------------------------------------------------------------------
+0.4) Q: Can I install in my home dir? how can I tell the editor where to look
+for configuration files?
+
+  You can indicate to the editor where to look special files, here is how:
+A) Configuration files: Define the SET_FILES environment variable to point
+to the directory where configuration files are located.
+B) Help files: Define or modify the INFOPATH environment variable. That's a
+path so you can put as a first directory one located at your home and the
+rest separated with :
+C) Man pages: Define or modify MANPATH, read man manpage for more info.
+D) Internationalization files: Define SET_LOCALEDIR pointing to the directory
+where i18n files for the editor are installed.
 
 =============================================================================
 1) Keyboard problems

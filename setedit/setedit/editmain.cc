@@ -2328,7 +2328,8 @@ int main(int argc, char *argv[])
  char *locale_dir,localedir[PATH_MAX];
  setlocale(LC_ALL, "");
  // Use the LOCALEDIR var for the directory
- locale_dir=getenv("LOCALEDIR");
+ locale_dir=getenv("SET_LOCALEDIR");
+ if (!locale_dir) locale_dir=getenv("LOCALEDIR");
 
  if (!locale_dir)
    {

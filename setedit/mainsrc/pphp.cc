@@ -15,7 +15,6 @@ fooled, but is fast and small.
     - normalize some names, maybe translate go* to seek* or search* and eat*
 to skip*.
 ***************************************************************************/
-
 //#define STANDALONE
 
 #include <stdio.h>
