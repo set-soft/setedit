@@ -37,9 +37,7 @@ int main(int argc, char *argv[])
        {
         char *gpr=argv[i];
         char *mak=strdup(gpr);
-        char *imk=strdup(gpr);
         ChangeExt(mak,".mak");
-        ChangeExt(imk,".imk");
 
         struct stat stGpr;
         if (stat(gpr,&stGpr)!=0)
@@ -60,6 +58,19 @@ int main(int argc, char *argv[])
               return 21;
              }
           }
+
+        free(mak);
+       }
+    }
+ for (i=2; i<argc; i++)
+    {
+     if (strstr(argv[i],".gpr"))
+       {
+        char *gpr=argv[i];
+        char *mak=strdup(gpr);
+        char *imk=strdup(gpr);
+        ChangeExt(mak,".mak");
+        ChangeExt(imk,".imk");
 
         struct stat stImk;
         printf("%s => %s\n",mak,imk);
