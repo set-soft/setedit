@@ -8891,12 +8891,11 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
  // Search backwards from the cursor
  here=offCursor;
  y=curPos.y;
- do
+ while (y>0 && here>offset);
    {
-    thisLine=lenLines[y--];
+    thisLine=lenLines[--y];
     here-=thisLine;
    }
- while (here>offset);
  rest=offset-here;
  return y+1;
 }

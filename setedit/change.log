@@ -1,4 +1,15 @@
-$Log$.
+$Log$
+Revision 1.314  2003/04/28 19:42:28  set
+* Added: An advice dialog to warn about using tag files in format 1. And
+a button to jump to docs.
+* Added: If the tags file to load is the default and couldn't be loaded
+an advice about it with option to read the docs is used. If the user
+doesn't go to the docs we detect if ctags is installed, if installed we
+offer to generate a new tags files. If not installed we indicate the URL
+of the homepage.
+* Fixed: Tips code tried to jump to editor.inf which is no longer called
+like it. Does anybody read the tips?
+
 Revision 1.313  2003/04/28 16:44:12  set
 * Fixed: The tags code to support: original tags format (FORMAT=1), wrong
 tags files (Emacs tag files for example), backwards regex, etc. without
