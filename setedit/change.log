@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.541  2004/07/20 16:27:09  set
+* Added: The first part of the code to support debugging using libmigdb.
+* Synchronized some CVS details with my home CVS.
+* Version 0.5.4 (Glaciar P.Moreno I)
+
 Revision 1.540  2004/07/19 20:02:00  set
 * Fixed: [Debian] Applied patch S.F. #993014 submitted by Baurjan Ismagulov
 (ibr): "Add an include file required by rhide".
