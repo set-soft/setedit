@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -185,7 +185,7 @@ void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned c, unsigned wich)
     }
 }
 
-static void MakeKeyName(char *s, unsigned short key)
+void TCEditor_MakeKeyName(char *s, unsigned short key)
 {
  char *b=s;
 
@@ -220,9 +220,9 @@ void TKeyTranslate::CatFullNameKey(KeyTNode *node, DynStrCatStruct *cat)
 {
  assert(type==kbtExpanded);
  int i;
- char b[40]; // must be enough for any key name
+ char b[tktMaxKeyName]; // must be enough for any key name
 
- MakeKeyName(b,node->key);
+ TCEditor_MakeKeyName(b,node->key);
  if (node->flags==kbtIsSComm)
     strcat(b," ");
  else
@@ -583,8 +583,8 @@ void TKeyTranslate::DeleteTree(KeyTTable *t)
 
 void TKeySeqCol::getText(char *dest, unsigned item, int maxLen)
 {
- char b[40];
- MakeKeyName(b,(unsigned short)((unsigned)at(item)));
+ char b[tktMaxKeyName];
+ TCEditor_MakeKeyName(b,(unsigned short)((unsigned)at(item)));
  strncpy(dest,b,maxLen);
  dest[maxLen]=EOS;
 }

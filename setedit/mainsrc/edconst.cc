@@ -71,6 +71,7 @@ static edCList List[] =
 { "IndentBlkOne", 5 },
 { "IndentMode", 70 },
 { "InsMode", 67 },
+{ "InsertKeyName", 147 },
 { "InsertText", 45 },
 { "IntelIndentMode", 112 },
 { "InvertCase", 145 },
