@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2004-12-01 15:08-0300\n"
+"PO-Revision-Date: 2004-12-02 17:00-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1048,7 +1048,7 @@ msgstr "Tecla del seleccionado"
 
 #: ../internac/colors.cc:12 ../internac/colors.cc:22 ../internac/colors.cc:32
 #: ../internac/colors.cc:42 ../internac/colors.cc:148
-#: ../internac/colors.cc:160
+#: ../internac/colors.cc:160 ../internac/colors.cc:175
 msgid "Frame disabled"
 msgstr "Marco deshabilitado"
 
@@ -1058,25 +1058,25 @@ msgstr "Ventanas Azules"
 
 #: ../internac/colors.cc:15 ../internac/colors.cc:25 ../internac/colors.cc:35
 #: ../internac/colors.cc:45 ../internac/colors.cc:151
-#: ../internac/colors.cc:163
+#: ../internac/colors.cc:163 ../internac/colors.cc:178
 msgid "Frame"
 msgstr "Marco"
 
 #: ../internac/colors.cc:16 ../internac/colors.cc:26 ../internac/colors.cc:36
 #: ../internac/colors.cc:46 ../internac/colors.cc:152
-#: ../internac/colors.cc:164
+#: ../internac/colors.cc:164 ../internac/colors.cc:179
 msgid "Frame icons"
 msgstr "Iconos marcos"
 
 #: ../internac/colors.cc:17 ../internac/colors.cc:27 ../internac/colors.cc:37
 #: ../internac/colors.cc:47 ../internac/colors.cc:153
-#: ../internac/colors.cc:165
+#: ../internac/colors.cc:165 ../internac/colors.cc:180
 msgid "Scroll bar page"
 msgstr "Pág. barra desplazamiento"
 
 #: ../internac/colors.cc:18 ../internac/colors.cc:28 ../internac/colors.cc:38
 #: ../internac/colors.cc:48 ../internac/colors.cc:154
-#: ../internac/colors.cc:166
+#: ../internac/colors.cc:166 ../internac/colors.cc:181
 msgid "Scroll bar icons"
 msgstr "Iconos barra desplazamiento"
 
@@ -1099,11 +1099,10 @@ msgid "Cyan Windows"
 msgstr "Ventanas Cian"
 
 #: ../internac/colors.cc:31 ../internac/colors.cc:41 ../internac/colors.cc:75
-#: ../internac/colors.cc:93 ../internac/colors.cc:94 ../internac/colors.cc:113
-#: ../internac/colors.cc:114 ../internac/colors.cc:133
-#: ../internac/colors.cc:134 ../internac/colors.cc:145
-#: ../internac/colors.cc:146 ../internac/colors.cc:147
-#: ../internac/colors.cc:171
+#: ../internac/colors.cc:145 ../internac/colors.cc:146
+#: ../internac/colors.cc:147 ../internac/colors.cc:171
+#: ../internac/colors.cc:172 ../internac/colors.cc:173
+#: ../internac/colors.cc:174 ../internac/colors.cc:187
 msgid "Reserved"
 msgstr "Reservado"
 
@@ -1294,6 +1293,16 @@ msgstr "Valores incorrectos"
 msgid "User defined words"
 msgstr "Palabras definidas usuario"
 
+#: ../internac/colors.cc:93 ../internac/colors.cc:113
+#: ../internac/colors.cc:133
+msgid "CPU line"
+msgstr "Línea de CPU"
+
+#: ../internac/colors.cc:94 ../internac/colors.cc:114
+#: ../internac/colors.cc:134
+msgid "Breakpoint"
+msgstr "Breakpoint"
+
 #: ../internac/colors.cc:95 ../internac/colors.cc:115
 #: ../internac/colors.cc:135
 msgid "Symbol2"
@@ -1368,6 +1377,30 @@ msgstr "Texto negrita"
 msgid "Underlined text"
 msgstr "Texto subrayado"
 
+#: ../internac/colors.cc:177
+msgid "DataWindow"
+msgstr "Ventana de Datos"
+
+#: ../internac/colors.cc:182
+msgid "Normal Text(active)"
+msgstr "Texto normal(activo)"
+
+#: ../internac/colors.cc:183
+msgid "Normal Text(inactive)"
+msgstr "Texto normal(inactivo)"
+
+#: ../internac/colors.cc:184
+msgid "Focused Text"
+msgstr "Texto apuntado"
+
+#: ../internac/colors.cc:185
+msgid "Selected Text"
+msgstr "Texto seleccionado"
+
+#: ../internac/colors.cc:186
+msgid "Changed text"
+msgstr "Texto con cambios"
+
 #: ../mainsrc/accehtml.cc:53
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
@@ -1415,25 +1448,25 @@ msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4062
+#: ../mainsrc/ceditor.cc:4200
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4109 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4247 ../mainsrc/doedidia.cc:143
 #, c-format
 msgid "%d bytes selected, in %d"
 msgstr "%d caracteres seleccionados en %d"
 
-#: ../mainsrc/ceditor.cc:4270
+#: ../mainsrc/ceditor.cc:4408
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4289
+#: ../mainsrc/ceditor.cc:4427
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4311
+#: ../mainsrc/ceditor.cc:4449
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1444,7 +1477,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4345
+#: ../mainsrc/ceditor.cc:4483
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1457,16 +1490,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5940
+#: ../mainsrc/ceditor.cc:6078
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5955
+#: ../mainsrc/ceditor.cc:6093
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10305
+#: ../mainsrc/ceditor.cc:10443
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1474,29 +1507,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10320
+#: ../mainsrc/ceditor.cc:10458
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11062
+#: ../mainsrc/ceditor.cc:11202
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12011
+#: ../mainsrc/ceditor.cc:12151
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12222
+#: ../mainsrc/ceditor.cc:12362
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13415
+#: ../mainsrc/ceditor.cc:13555
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13425
+#: ../mainsrc/ceditor.cc:13565
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2024,6 +2057,19 @@ msgstr "El archivo está comprimido. ¿Desea guardarlo comprimido?"
 #: ../mainsrc/doedidia.cc:278
 msgid "Searching inside a selection but nothing is selected"
 msgstr "Búsqueda dentro de una selección pero no hay nada seleccionado"
+
+#: ../mainsrc/doedidia.cc:282
+msgid "You must select some text for this operation"
+msgstr "Debe seleccionar algún texto para esta operación"
+
+#: ../mainsrc/doedidia.cc:289
+#, c-format
+msgid "You must select less than %d characters"
+msgstr "Debe seleccionar menos de %d caracteres"
+
+#: ../mainsrc/doedidia.cc:294
+msgid "The selection can't contain more than one line"
+msgstr "El texto seleccionado no puede contenet más de una línea"
 
 #: ../mainsrc/editwind.cc:33
 msgid "Clipboard"
@@ -7042,9 +7088,6 @@ msgstr "Código s~L~isp"
 #~ msgid "normal text"
 #~ msgstr "texto normal"
 
-#~ msgid "marked text"
-#~ msgstr "texto marcado"
-
 #~ msgid "hex"
 #~ msgstr "hexadecimales"
 
@@ -7059,9 +7102,6 @@ msgstr "Código s~L~isp"
 
 #~ msgid " has been modified. Save?"
 #~ msgstr " ha sido modificado. ¿Grabo?"
-
-#~ msgid " lines"
-#~ msgstr " líneas"
 
 #~ msgid "Screen Options"
 #~ msgstr "Opciones de Pantalla"

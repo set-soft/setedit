@@ -1,3 +1,9 @@
+setedit (0.5.5-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Wed,  1 Dec 2004 14:22:21 -0300
+
 setedit (0.5.4-3) unstable; urgency=low
 
   * Salvador says this is it!, this is the version that will be officially
