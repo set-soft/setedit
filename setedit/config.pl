@@ -193,6 +193,7 @@ $test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
+$test.=' ../holidays' if (@conf{'dl'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
 # The support libraries shouldn't generate dependencies
 $MakeDefsRHIDE[0].=$test;
@@ -258,6 +259,8 @@ $ReplaceTags{'CC'}=$GCC;
 $ReplaceTags{'AR'}=$conf{'GNU_AR'};
 $ReplaceTags{'CFLAGS'}=$conf{'CFLAGS'};
 ReplaceText('gettext/Makefile.in','gettext/Makefile');
+$ReplaceTags{'dyndir'}=$conf{'prefix'}.'/lib/setedit';
+ReplaceText('holidays/Makefile.in','holidays/Makefile');
 `cp gettext/djgpp.h gettext/config.h`; # Currently only DOS config is available if $OS eq 'DOS';
 
 #
@@ -1038,6 +1041,7 @@ sub LookForDL
  if ($ver eq 'OK')
    {
     $conf{'dl'}='yes';
+    $conf{'dl_header'}=$header;
    }
  else
    {
@@ -1160,6 +1164,7 @@ sub CreateConfigH
  print "Generating configuration header: ";
 
  $conf{'FORCE_INTL_SUPPORT'}=$conf{'intlShipped'};
+ $conf{'HAVE_DL_LIB'}=$conf{'dl'};
  $text.=ConfigIncDefYes('HAVE_ALLEGRO','Allegro library is available');
  $text.=ConfigIncDefYes('WITH_MP3','Enable MP3 support');
  $text.=ConfigIncDefYes('HAVE_AMP','MP3 support from libamp');
@@ -1172,6 +1177,8 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  $text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
  $text.=ConfigIncDefYes('HAVE_AA','AA lib');
+ $text.=ConfigIncDefYes('HAVE_DL_LIB','Support for runtime dynamic libs');
+ $text.="\n#define DL_HEADER_NAME <".$conf{'dl_header'}.".h>\n";
 
  $text.="\n\n#define CONFIG_PREFIX \"";
  $a=$conf{'prefix'};
@@ -1203,7 +1210,7 @@ sub GenerateMakefile
 {
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
- my ($installer,$distrib,$compExeEditor,$compExeInfview);
+ my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays);
 
  print "Generating Makefile\n";
 
@@ -1228,6 +1235,7 @@ sub GenerateMakefile
  $distrib=@conf{'ToolsDistrib'} eq 'yes';
  $internac=@conf{'xgettext'} ne 'no';
  $docbasic=@conf{'makeinfo'} ne 'no';
+ $holidays=@conf{'dl'} eq 'yes';
 
  if (@conf{'compressExe'} eq 'undef')
    {# Default is to compress InfView and the editor only for non-UNIX targets
@@ -1252,6 +1260,7 @@ sub GenerateMakefile
  $text.=" installer" if ($installer);
  $text.=" internac" if ($internac);
  $text.=" doc-basic" if ($docbasic);
+ $text.=" holidays" if ($holidays);
  # all targets
  $text.="\n\nall: editor";
  $text.=" libset" if ($libset);
@@ -1314,6 +1323,7 @@ sub GenerateMakefile
  $text.=" libz" if ($libz);
  $text.=" libpcre" if ($libpcre);
  $text.=" libintl" if ($libintl);
+ $text.=" holidays" if ($holidays);
  #
  # MinGW tools I tested are broken and can't generate these targets
  #
@@ -1345,6 +1355,12 @@ sub GenerateMakefile
    {
     $text.="\n\ninstaller: editor\n";
     $text.="\t\$(MAKE) -C makes installer";
+   }
+ # holidays plug-ins
+ if ($holidays)
+   {
+    $text.="\n\nholidays:\n";
+    $text.="\t\$(MAKE) -C holidays";
    }
 
  #### Installations ####
@@ -1408,6 +1424,7 @@ sub GenerateMakefile
  $text.="\t\$(MAKE) -C libbzip2 clean\n" if ($libbzip2);
  $text.="\t\$(MAKE) -C libz clean\n" if ($libz);
  $text.="\t\$(MAKE) -C libpcre clean\n" if ($libpcre);
+ $text.="\t\$(MAKE) -C holidays clean\n" if ($holidays);
 
  replace('Makefile',$text);
 }

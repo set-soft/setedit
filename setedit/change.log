@@ -1,4 +1,22 @@
-$Log$.
+$Log$
+Revision 1.332  2003/05/05 14:06:06  set
+* Modified: Now the dialog that shows the list of classes isn't case
+sensitive. That's why I feel that's much more intuitive and easier to use.
+* Fixed: When searching in classes without a perefect match of the word
+under cursor and jumping to a member the editor jumped but offered the list
+of classes again.
+* Fixed: The list of "functions" supports things that aren't strcitly
+programming languages, like texinfo sources, for this reason the "space"
+key should't act as item selector (can be part of the name in an
+incremental search).
+* Fixed: When switching from a window with some syntax highlight to another
+with a different shl and using Alt+F2 it was common to get a wrong result
+because the editor used the old shl. Now the cmcJumpTo... ensures the shl
+cache is filled with the proper values.
+* Added: A warning to the configset script as I did for DOS. BTW: What's
+the shell command to wait for a keystroke? I just put a sleep 2 but this
+isn't the best.
+
 Revision 1.331  2003/05/05 14:03:21  set
 * Added: A new option to control the size of newly opened files. When
 enabled the windows tries to avoid overlapping the message and project

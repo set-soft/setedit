@@ -1,0 +1,25 @@
+CC=@CC@
+dyndir=@dyndir@
+dynversion=.1.0.0
+
+LIBS=argentina datetools
+
+all: $(addsuffix .so,$(LIBS))
+
+libs: $(addsuffix .so,$(LIBS))
+
+%.o: %.c
+	$(CC) -c -fPIC -O2 $<
+
+%.so: %.o
+	$(CC) -o $@ $< -shared -Wl,-soname,$(basename $@).so$(dynversion)
+
+%.ins: %.so
+	install -d $(dyndir)
+	-install $< $(dyndir)/$@
+
+install: libs $(addsuffix .ins,$(LIBS))
+
+clean:
+	rm *.o *.so
+

@@ -169,6 +169,9 @@ $spLocale =$spLocale1.'/LC_MESSAGES';
 $deLocale1=$Locale2.'/de';
 $deLocale =$deLocale1.'/LC_MESSAGES';
 
+$libdir1=$base.'/lib';
+$libdir =$libdir1.'/setedit';
+
 $baseFHS=$base;
 $baseFHS.='/share' if $useFHS;
 $doc_dir1=$baseFHS.'/doc';
@@ -193,6 +196,7 @@ $man_dir,
 $Locale2,
 $spLocale1,$spLocale,
 $deLocale1,$deLocale,
+$libdir1,$libdir,
 'result');
 
 foreach $i (@tree)
@@ -291,6 +295,12 @@ CopyIfRpl('../../distrib/distrib1.txt',$cfg_dir.'/readme.1st');
 CopyIf('../../distrib/linux.faq',$doc_dir.'/faq.txt');
 CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo');
 CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo');
+print "done.\n\n";
+
+
+print "Copying calendar plug-ins: ";
+CopyIf('../../holidays/datetools.so',$libdir.'/datetools.so');
+CopyIf('../../holidays/argentina.so',$libdir.'/argentina.so');
 print "done.\n\n";
 
 

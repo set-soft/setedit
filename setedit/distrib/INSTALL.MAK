@@ -34,8 +34,9 @@ data_dir=share
 info_dir=info
 doc_dir=doc
 man_dir=man
+lib_dir=lib
 
-files:=$(shell find $(bin_dir) $(data_dir) $(info_dir) $(doc_dir) $(man_dir)\
+files:=$(shell find $(bin_dir) $(data_dir) $(info_dir) $(doc_dir) $(man_dir) $(lib_dir)\
 	! -type d -print)
 ALL_FILES=$(addprefix $(prefix)/,$(files))
 

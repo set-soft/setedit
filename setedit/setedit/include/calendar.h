@@ -29,6 +29,8 @@ public:
 
 private:
 
+    void updateYear();
+    Boolean isHoliday(int day, int month);
     unsigned days, month, year;
     unsigned curDay, curMonth, curYear;
     stTVIntl *cNDays;

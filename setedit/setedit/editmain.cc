@@ -1857,6 +1857,46 @@ int GuessSET_FILES()
  return ret;
 }
 
+static
+int GuessOneSET_LIBS(const char *OSShareDir, char isAbsolute)
+{
+ char Name[PATH_MAX];
+ char *end;
+
+ if (isAbsolute)
+   {
+    strcpy(Name,OSShareDir);
+    strcat(Name,"/lib/setedit");
+    end=Name+strlen(Name);
+    strcat(Name,"/datetools.so");
+   }
+ else
+   end=GetPathRelativeToRunPoint(Name,OSShareDir,"datetools.so");
+
+ if (!edTestForFile(Name))
+    // Bad luck guessing
+    return 1;
+
+ *end=0;
+ char *b=new char[12+strlen(Name)];
+ sprintf(b,"SET_LIBS=%s",Name);
+ putenv(b);
+ return 0;
+}
+
+static
+int GuessSET_LIBS()
+{
+ int ret=1,i=0;
+ do
+   {
+    if (OSShareDir[i][0])
+       ret=GuessOneSET_LIBS(OSShareDir[i],OSShareDirT[i]);
+   }
+ while (ret && OSShareDir[++i]);
+ return ret;
+}
+
 #ifdef NoHomeOrientedOS
 static
 int GuessINFOPATH(void)
@@ -2373,6 +2413,10 @@ int main(int argc, char *argv[])
     ShowErrorSET_FILES();
  if (!set_files && GuessSET_FILES())
     ShowInstallError("SET_FILES",OSShareDir[1],1);
+
+ char *set_libs=getenv("SET_LIBS");
+ if (!set_libs)
+    GuessSET_LIBS();
 
  // Redirect stderr to a unique file to catch any kind of errors.
  // We want it as soon as possible so any errors can be dumped there.

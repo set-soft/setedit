@@ -8,6 +8,7 @@
 
 /* Modified by Robert Hoehne to be used with RHIDE */
 /* Modified by Salvador E. Tropea (SET) for SETEdit */
+#include <ceditint.h>
 
 #define Uses_TRect
 #define Uses_TEvent
@@ -28,7 +29,10 @@
 #include <stdio.h>
 
 #include <calendar.h>
+#include <datetools.h>
 
+static struct dayMonth *listOfHolidays=NULL;
+static int              numOfHolidays;
 
 char TCalendarView::upArrowChar  ='\036';
 char TCalendarView::oupArrowChar ='\036';
@@ -67,6 +71,79 @@ void GetTime(time_t *tt)
 }
 #endif
 
+#ifdef HAVE_DL_LIB
+#include DL_HEADER_NAME
+
+static int plugInLoaded=0;
+static struct dayMonth *(*getlist)(int , int *);
+
+int GetHolidays(int year)
+{
+ if (listOfHolidays)
+   {
+    free(listOfHolidays);
+    listOfHolidays=NULL;
+   }
+
+ if (!plugInLoaded)
+   {
+    char *dlpath=getenv("SET_LIBS");
+    if (!dlpath)
+      {
+       printf("No va SET_LIBS\n");
+       return 1;
+      }
+   
+    int l=strlen(dlpath);
+    AllocLocalStr(b,l+2+12);
+    memcpy(b,dlpath,l+1);
+    if (!CLY_IsValidDirSep(dlpath[l-1]))
+      {
+       b[l++]=DIRSEPARATOR;
+       b[l]=0;
+      }
+    char *name=b+l;
+   
+    void *dlhGen,*dlh;
+   
+    strcpy(name,"datetools.so");
+    dlhGen=dlopen(b,RTLD_NOW | RTLD_GLOBAL);
+    if (!dlhGen)
+      {
+       printf("Error: %s\n",dlerror());
+       return 2;
+      }
+    strcpy(name,"argentina.so");
+    dlh=dlopen(b,RTLD_NOW);
+    if (!dlh)
+      {
+       printf("Error: %s\n",dlerror());
+       return 3;
+      }
+    getlist=(dayMonth *(*)(int , int *))dlsym(dlh,"GetListOfHolidays");
+    if (!getlist)
+      {
+       printf("Error: %s\n",dlerror());
+       return 4;
+      }
+    plugInLoaded=1;
+   }
+
+ listOfHolidays=getlist(year,&numOfHolidays);
+ /*int i;
+ printf("%d\n\n",numOfHolidays);
+ for (i=0; i<numOfHolidays; i++)
+     printf("%d/%d\n",listOfHolidays[i].day,listOfHolidays[i].month);*/
+
+ return 0;
+}
+#else
+int GetHolidays()
+{
+ return 1;
+}
+#endif
+
 //
 // TCalendarView functions
 //
@@ -82,6 +159,7 @@ TCalendarView::TCalendarView(TRect& r) : TView( r )
     GetTime(&tt);
     tm = localtime(&tt);
     year = curYear = 1900 + tm->tm_year;
+    updateYear();
     month = curMonth = tm->tm_mon + 1;
     curDay = tm->tm_mday;
 
@@ -90,6 +168,10 @@ TCalendarView::TCalendarView(TRect& r) : TView( r )
     drawView();
 }
 
+void TCalendarView::updateYear()
+{
+    GetHolidays(year);
+}
 
 unsigned dayOfWeek(unsigned day, unsigned month, unsigned year)
 {
@@ -141,17 +223,29 @@ char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
  return buffer;
 }
 
+Boolean TCalendarView::isHoliday(int d, int m)
+{
+ if (!listOfHolidays)
+    return False;
+ int i;
+ for (i=0; i<numOfHolidays; i++)
+     if (listOfHolidays[i].day==d && listOfHolidays[i].month==m)
+        return True;
+ return False;
+}
+
 void TCalendarView::draw()
 {
     AllocLocalStr(str,size.x+1);
     unsigned current = 1 - dayOfWeek(1, month, year);
     unsigned days = daysInMonth[month] + ((year % 4 == 0 && month == 2) ? 1 : 0);
-    char color, boldColor;
+    char color, boldColor, holidayColor;
     int  i, j;
     TDrawBuffer buf;
 
     color = getColor(6);
     boldColor = getColor(7);
+    holidayColor = getColor(5);
 
     buf.moveChar(0, ' ', color, size.x);
 
@@ -174,8 +268,10 @@ void TCalendarView::draw()
             else
                 {
                 sprintf(str, "%2d", (int)current);
-                if(year == curYear && month == curMonth && current == curDay)
+                if (year == curYear && month == curMonth && current == curDay)
                     buf.moveStr(1+j*3, str, boldColor);
+                else if (isHoliday(current,month))
+                    buf.moveStr(1+j*3, str, holidayColor);
                 else
                     buf.moveStr(1+j*3, str, color);
                 }
@@ -202,6 +298,7 @@ void TCalendarView::handleEvent(TEvent& event)
                 if (month > 12)
                     {
                     ++year;
+                    updateYear();
                     month = 1;
                     }
                 drawView();
@@ -212,6 +309,7 @@ void TCalendarView::handleEvent(TEvent& event)
                 if (month < 1)
                     {
                     --year;
+                    updateYear();
                     month = 12;
                     }
                 drawView();
@@ -226,6 +324,7 @@ void TCalendarView::handleEvent(TEvent& event)
                 if (month > 12)
                     {
                     ++year;
+                    updateYear();
                     month = 1;
                     }
                 }
@@ -236,6 +335,7 @@ void TCalendarView::handleEvent(TEvent& event)
                 if (month < 1)
                     {
                     --year;
+                    updateYear();
                     month = 12;
                     }
                 }
