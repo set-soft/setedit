@@ -65,8 +65,6 @@
 
 #include <locale.h>
 #include <stdarg.h>
-#include <strstream.h>
-#include <iomanip.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fcntl.h>

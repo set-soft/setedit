@@ -556,7 +556,7 @@ static void UpdateResume(void *p, void *)
 
 static void SaveOnlyProject(void)
 {
- fpstream *f = new fpstream(prjWin->getFileName(), ios::out|IOS_BIN);
+ fpstream *f=new fpstream(prjWin->getFileName(),CLY_std(ios::out)|CLY_IOSBin);
 
  if (f)
    {

@@ -32,8 +32,8 @@
 #define Uses_alloca
 #define Uses_ctype
 #define Uses_AllocLocal
-#include <time.h>
-#include <fstream.h>
+#define Uses_time
+#define Uses_fstream
 #define Uses_fcntl
 #define Uses_sys_stat
 #define Uses_unistd

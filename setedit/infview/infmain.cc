@@ -42,8 +42,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <strstream.h>
-#include <iomanip.h>
 #include "inf.h"
 #define Uses_TManWindow
 #include <manview.h>
@@ -358,7 +356,7 @@ const char *Signature="InfView desktop file\x1A";
 
 void TEditorMiApp::saveDesktop(const char *fName)
 {
- fpstream *f=new fpstream(fName,ios::out | IOS_BIN);
+ fpstream *f=new fpstream(fName,CLY_std(ios::out) | CLY_IOSBin);
 
  if (f)
    {
