@@ -33,6 +33,8 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{ver}
 %build
 rm -f Makefile
 perl config.pl --libset
+touch $RPM_BUILD_DIR/%{name}-%{ver}/debugfiles.list
+touch $RPM_BUILD_DIR/%{name}-%{ver}/debugsources.list
 make
 
 %install
