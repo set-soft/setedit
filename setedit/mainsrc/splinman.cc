@@ -358,7 +358,7 @@ That's optional.
 
 ***************************************************************************/
 
-int SpLineGetOldValueOf(int line, char *fName, Boolean *found)
+int SpLineGetOldValueOf(int line, char *fName, int type, Boolean *found)
 {
  if (found)
     *found=False;
@@ -379,7 +379,7 @@ int SpLineGetOldValueOf(int line, char *fName, Boolean *found)
     for (i=0; i<c; i++)
        {
         stSpLine *st=p->At(Pos);
-        if (st->nline==line)
+        if (st->nline==line && (type==idsplAny || st->id==type))
           {
            if (found)
               *found=True;

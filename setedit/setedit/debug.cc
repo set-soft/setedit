@@ -92,6 +92,9 @@ directories to look for sources.
 // Watches
 #define Uses_TStringableListBox
 
+// Breakpoints
+#define Uses_TSStringableListBox
+
 // Config
 // EasyDiag requests
 #define Uses_TSButton
@@ -103,6 +106,8 @@ directories to look for sources.
 #define Uses_TSHzGroup
 #define Uses_TSLabelRadio
 #define Uses_TSLabelCheck
+
+#define Uses_TDialogAID
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -117,11 +122,16 @@ directories to look for sources.
 #include <splinman.h>
 #include <editcoma.h>
 #include <edmsg.h>
+#ifdef HAVE_GDB_MI
+ #include <mi_gdb.h>
+ #define Uses_TBreakpoints
+#endif
 #include <debug.h>
 #include <dyncat.h>
 #include <edhists.h>
 #include <dskwin.h>
 #include <pathlist.h>
+#include <diaghelp.h>
 
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
@@ -131,9 +141,7 @@ const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
 
-#include <mi_gdb.h>
-
-#define DEBUG_ME 0
+#define DEBUG_ME 1
 #if DEBUG_ME
  #define dbgPr(format, args...) printf(format , ## args)
 #else
@@ -197,7 +205,7 @@ void TSetEditorApp::DebugToggleBreakpoint()
     strcpy(s,e->fileName);
     CLY_fexpand(s);
 
-    ol=SpLineGetOldValueOf(l,s,&found);
+    ol=SpLineGetOldValueOf(l,s,idsplBreak,&found);
     if (found)
       {
        if (DBG_RemoveBreakpoint(s,ol))
@@ -546,9 +554,9 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
    {
     DebugMsgSetState();
     DebugMsgSetMode(showConnect);
+    ExtractBinReference();
     // Apply breakpoints.
     DBG_ApplyBkpts();
-    ExtractBinReference();
    }
 
  return res;
@@ -1228,44 +1236,151 @@ void TSetEditorApp::DebugCloseSession()
 *****************************************************************************/
 
 /*****************************************************************************
-  GDB/MI interface
+  TBreakpoints class
+  RHIDE:
+ E/D file | line/function | Condition | Count
+
 *****************************************************************************/
 
-static mi_bkpt *firstB=NULL, *lastB=NULL;
+mi_bkpt *TBreakpoints::first=NULL;
+mi_bkpt *TBreakpoints::last=NULL;
+int TBreakpoints::count=0;
+static TBreakpoints bkpts;
 
-static
-void DBG_AddBkpt(mi_bkpt *b)
+
+mi_bkpt *TBreakpoints::getItem(int num)
 {
- if (firstB)
-    lastB->next=b;
- else
-    firstB=b;
- lastB=b;
+ mi_bkpt *p=first;
+ while (num && p)
+   {
+    num--;
+    p=p->next;
+   }
+ return num ? NULL : p;
 }
 
-static
-mi_bkpt *DBG_SearchBkpt(const char *source, int line)
+const int wThread=5, wTimes=5, wFormat=28;
+const char *eThread="  *  ";
+const char *eTimes ="  -  ";
+
+static inline
+void ComputeBreakW(int &wWhere, int &wCond, int maxLen)
 {
- mi_bkpt *b=firstB;
+ int rest;
+
+ rest=maxLen-(7+wThread+wTimes);
+ wWhere=rest*60/100;
+ wCond=rest-wWhere;
+ //printf("wWhere: %d wCond: %d\n",wWhere,wCond);
+ // Add EOS
+ wWhere++; wCond++;
+}
+
+void TBreakpoints::getText(char *dest, unsigned item, int maxLen)
+{
+ mi_bkpt *p=getItem(item);
+ if (!p)
+   {
+    *dest=0;
+    dbgPr("Oops! item %d gives NULL\n",item);
+    return;
+   }
+ int wWhere, wCond;
+ ComputeBreakW(wWhere,wCond,maxLen);
+
+ AllocLocalStr(where,wWhere);
+ switch (p->mode)
+   {
+    case m_file_line:
+         CLY_snprintf(where,wWhere,"%s:%d",p->file,p->line);
+         break;
+    case m_function:
+         CLY_snprintf(where,wWhere,"%s",p->func);
+         break;
+    case m_file_function:
+         CLY_snprintf(where,wWhere,"%s:%s",p->file,p->func);
+         break;
+    case m_address:
+         CLY_snprintf(where,wWhere,"%p",p->addr);
+         break;
+   }
+
+ char format[wFormat];
+ CLY_snprintf(format,wFormat,"%%-%ds",wThread);
+ char thread[wThread+1];
+ if (p->thread>=0)
+    CLY_snprintf(thread,wThread+1,format,p->thread);
+ else
+    strcpy(thread,eThread);
+
+ CLY_snprintf(format,wFormat,"%%-%ds",wTimes);
+ char times[wTimes+1];
+ if (p->times>0)
+    CLY_snprintf(times,wTimes+1,format,p->times);
+ else
+    strcpy(times,eTimes);
+
+ CLY_snprintf(format,wFormat,"%%-%ds",wCond-1);
+ AllocLocalStr(cond,wCond);
+ // TODO: i18n
+ CLY_snprintf(cond,wCond,format,p->cond ? p->cond : __("None"));
+
+ CLY_snprintf(format,wFormat,"%%c|%%-%ds|%%s|%%s|%%s",wWhere-1);
+ CLY_snprintf(dest,maxLen,format,p->enabled ? '*' : ' ',where,cond,times,
+              thread);
+}
+
+void TBreakpoints::add(mi_bkpt *b)
+{
+ if (first)
+    last->next=b;
+ else
+    first=b;
+ last=b;
+ // Solve the absolute name and cache it.
+ updateAbs(b);
+ count++;
+}
+
+void TBreakpoints::updateAbs(mi_bkpt *b)
+{
+ //if (!b || !b->file)
+ //   return;
  char n[2*PATH_MAX];
+ if (binReference)
+    memcpy(n,binReference,binReferenceLen);
+ strcpy(n+binReferenceLen,b->file);
+ CLY_fexpand(n);
+ free(b->file_abs);
+ b->file_abs=strdup(n);
+}
+
+void TBreakpoints::refreshBinRef()
+{
+ mi_bkpt *p=first;
+ while (p)
+   {
+    updateAbs(p);
+    p=p->next;
+   }
+}
+
+mi_bkpt *TBreakpoints::search(const char *source, int line)
+{
+ mi_bkpt *b=first;
 
  while (b)
    {
-    if (binReference)
-       memcpy(n,binReference,binReferenceLen);
-    strcpy(n+binReferenceLen,b->file);
-    CLY_fexpand(n);
-    if (strcmp(n,source)==0 && b->line==line)
+    if (strcmp(b->file_abs,source)==0 && b->line==line)
        return b;
     b=b->next;
    }
  return b;
 }
 
-static
-void DBG_RemoveBkpt(mi_bkpt *b)
+void TBreakpoints::remove(mi_bkpt *b)
 {
- mi_bkpt *e=firstB, *ant=NULL;
+ mi_bkpt *e=first, *ant=NULL;
 
  while (e)
    {
@@ -1274,35 +1389,36 @@ void DBG_RemoveBkpt(mi_bkpt *b)
        if (ant)
           ant->next=b->next;
        else
-          firstB=b->next;
+          first=b->next;
        if (!b->next)
-          lastB=ant;
+          last=ant;
        b->next=NULL;
        mi_free_bkpt(b);
+       count--;
        return;
       }
     ant=e;
     e=e->next;
    }
  // TODO: Remove
- dbgPr("Oops! can't find bkp DBG_RemoveBkpt()\n");
+ dbgPr("Oops! can't find bkp TBreakpoints::remove\n");
 }
 
-int DBG_SetBreakpoint(const char *source, int line)
+int TBreakpoints::set(const char *source, int line)
 {
  mi_bkpt *b=dbg->Breakpoint(source,line);
  if (b)
    {
-    DBG_AddBkpt(b);
+    add(b);
     return 1;
    }
  DebugMsgSetError();
  return 0;
 }
 
-int DBG_RemoveBreakpoint(const char *source, int line)
+int TBreakpoints::unset(const char *source, int line)
 {
- mi_bkpt *b=DBG_SearchBkpt(source,line);
+ mi_bkpt *b=search(source,line);
  if (!b)
    {// TODO: Remove
     dbgPr("Oops! where is bkpt %s:%d\n",source,line);
@@ -1313,7 +1429,7 @@ int DBG_RemoveBreakpoint(const char *source, int line)
     DebugMsgSetError();
     return 0;
    }
- DBG_RemoveBkpt(b);
+ remove(b);
  return 1;
 }
 
@@ -1332,23 +1448,17 @@ void AddSpLineBinRef(const char *file, int line)
  SpLinesAdd(n,line,idsplBreak,False);
 }
 
-/**[txh]********************************************************************
-
-  Description:
-  Transfer our list to gdb and set the lines as special ones.
-  
-***************************************************************************/
-
-void DBG_ApplyBkpts()
+void TBreakpoints::apply()
 {
  if (!dbg)
     return;
  if (DEBUG_BREAKPOINTS_UPDATE)
-    dbgPr("DBG_ApplyBkpts: Deleting all splines\n");
+    dbgPr("TBreakpoints::apply: Deleting all splines\n");
  SpLinesDeleteForId(idsplBreak); // Ensure no previous bkpt survived ;-)
- mi_bkpt *b=firstB, *aux;
+ mi_bkpt *b=first, *aux;
  // Disconnect current list, we will be creating a new one.
- firstB=lastB=NULL;
+ first=last=NULL;
+ count=0;
  int disabledBkpts=0, killIt, applied=0;
 
  while (b)
@@ -1364,12 +1474,12 @@ void DBG_ApplyBkpts()
        if (!nb)
          {
           b->enabled=0;
-          DBG_AddBkpt(b);
+          add(b);
           disabledBkpts++;
          }
        else
          {
-          DBG_AddBkpt(nb);
+          add(nb);
           killIt=1;
           AddSpLineBinRef(nb->file,nb->line);
           applied++;
@@ -1377,7 +1487,7 @@ void DBG_ApplyBkpts()
       }
     else
        // Pass unchanged
-       DBG_AddBkpt(b);
+       add(b);
     aux=b->next;
     if (killIt)
       {
@@ -1394,21 +1504,13 @@ void DBG_ApplyBkpts()
                disabledBkpts);
 }
 
-void DBG_SaveBreakpoints(opstream &os)
+void TBreakpoints::save(opstream &os)
 {
- int32 count=0;
- // Count them
- mi_bkpt *p=firstB;
- while (p)
-   {
-    count++;
-    p=p->next;
-   }
  // CAUTION!!! update the dummy
  // Save them
- os << bkptsVersion << count;
+ os << bkptsVersion << (int32)count;
  dbgPr("%d Breakpoints\n",count);
- p=firstB;
+ mi_bkpt *p=first;
  while (p)
    {
     os.writeString(p->file);
@@ -1446,16 +1548,17 @@ char ReadChar(ipstream &is)
  return aux;
 }
 
-void DBG_ReadBreakpoints(ipstream &is)
+void TBreakpoints::load(ipstream &is)
 {
- int32 count;
  char version;
+ int32 cnt;
 
- is >> version >> count;
+ is >> version >> cnt;
  // TODO:
- if (firstB)
+ if (first)
     dbgPr("Oops! loading breakpoints when we already have!!!\n");
- for (int32 i=0; i<count; i++)
+ dbgPr("%d breakpoints\n",cnt);
+ for (int32 i=0; i<cnt; i++)
     {
      mi_bkpt *b=mi_alloc_bkpt();
      if (b)
@@ -1467,12 +1570,117 @@ void DBG_ReadBreakpoints(ipstream &is)
         b->times=ReadInt32(is);
         b->type=(enum mi_bkp_type)ReadChar(is);
         b->disp=(enum mi_bkp_disp)ReadChar(is);
-        DBG_AddBkpt(b);
-        AddSpLineBinRef(b->file,b->line);
+        if (b->file)
+          {
+           add(b);
+           AddSpLineBinRef(b->file,b->line);
+          }
        }
     }
  if (count)
     SpLinesUpdate();
+}
+
+void TBreakpoints::releaseAll()
+{
+ mi_free_bkpt(first);
+ first=last=NULL;
+ count=0;
+}
+
+TBreakpoints::~TBreakpoints()
+{
+ releaseAll();
+}
+
+class TDiagBrk : public TDialog
+{
+public:
+ TDiagBrk(const TRect &aR);
+
+};
+
+TDiagBrk::TDiagBrk(const TRect &r) :
+    TWindowInit(TDiagBrk::initFrame),
+    TDialog(r,__("Breakpoints"))
+{
+ flags=wfMove | wfClose;
+ growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+
+ TSViewCol *col=new TSViewCol(this);
+
+ int wWhere, wCond;
+ int width=r.b.x-r.a.x-4;
+ ComputeBreakW(wWhere,wCond,width);
+ char format[wFormat];
+ CLY_snprintf(format,wFormat," %%s %%-%ds %%-%ds %%-%ds %%-%ds",wWhere-1,
+              wCond-1,wTimes,wThread);
+ AllocLocalStr(cols,width+1);
+ // TODO: i18n
+ CLY_snprintf(cols,width+1,format,__("E"),__("Where"),__("Condition"),
+              __("Count"),__("Thre."));
+
+ int height=r.b.y-r.a.y-3;
+ TSStringableListBox *lbox=new TSStringableListBox(width,height,tsslbVertical);
+ TSLabel *lb=new TSLabel(cols,lbox);
+
+ col->insert(xTSLeft,yTSUp,lb);
+ EasyInsertOKCancel(col);
+
+ col->doItCenter(cmeDbgEditBreakPts);
+ delete col;
+}
+
+void TSetEditorApp::DebugEditBreakPts()
+{
+ TRect r=GetDeskTopSize();
+ TDiagBrk *d=new TDiagBrk(TRect(0,0,r.b.x,r.b.y-3));
+
+ TStringableListBoxRec box;
+ box.items=&bkpts;
+ box.selection=0;
+
+ execDialog(d,&box);
+}
+
+/*****************************************************************************
+  End of TBreakpoints class
+*****************************************************************************/
+
+/*****************************************************************************
+  GDB/MI interface
+*****************************************************************************/
+
+int DBG_SetBreakpoint(const char *source, int line)
+{
+ return bkpts.set(source,line);
+}
+
+int DBG_RemoveBreakpoint(const char *source, int line)
+{
+ return bkpts.unset(source,line);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Transfer our list to gdb and set the lines as special ones.
+  
+***************************************************************************/
+
+void DBG_ApplyBkpts()
+{
+ bkpts.apply();
+}
+
+void DBG_SaveBreakpoints(opstream &os)
+{
+ bkpts.save(os);
+}
+
+void DBG_ReadBreakpoints(ipstream &is)
+{
+ bkpts.load(is);
 }
 
 static
@@ -1505,8 +1713,7 @@ void DBG_SetCallBacks()
 
 void DBG_ReleaseMemory()
 {
- mi_free_bkpt(firstB);
- firstB=lastB=NULL;
+ bkpts.releaseAll();
 }
 
 /*****************************************************************************

@@ -1403,6 +1403,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               DebugCheckStopped(True);
               break;
 
+         case cmeDbgEditBreakPts:
+              DebugEditBreakPts();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

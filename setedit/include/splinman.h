@@ -32,9 +32,10 @@ void SpLinesUpdate(void);
 TSpCollection *SpLinesGetFor(char *fName);
 void SpLinesDeleteForId(int id, const char *file=NULL, Boolean aLine=False, int oLine=0);
 int SpLineGetNewValueOf(int line, char *fileName, Boolean *found=NULL);
-int SpLineGetOldValueOf(int line, char *fileName, Boolean *found=NULL);
+int SpLineGetOldValueOf(int line, char *fName, int type, Boolean *found);
 void SpLinesCleanUp();
 
-const int idsplError=1,
+const int idsplAny=0,
+          idsplError=1,
           idsplBreak=2,
           idsplRunLine=3;

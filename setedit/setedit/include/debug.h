@@ -36,3 +36,37 @@ int  DebugConfirmEndSession();
 
 // Configuration dialog
 void DebugOptionsEdit();
+
+#if defined(Uses_TBreakpoints) && !defined(TBreakpoints_Defined)
+#define TBreakpoints_Defined
+class TBreakpoints : public TStringable
+{
+public:
+ TBreakpoints() :
+   TStringable() {}
+ ~TBreakpoints();
+
+ virtual unsigned GetCount() { return count; };
+ virtual void getText(char *dest, unsigned item, int maxLen);
+
+ static void add(mi_bkpt *);
+ static void remove(mi_bkpt *b);
+ static int  set(const char *source, int line);
+ static int  unset(const char *source, int line);
+ static mi_bkpt *search(const char *source, int line);
+ static void apply();
+ static void refreshBinRef();
+ static mi_bkpt *getItem(int num);
+ static void releaseAll();
+
+ static void save(opstream &os);
+ static void load(ipstream &is);
+
+protected:
+ static mi_bkpt *first, *last;
+ static int count;
+
+ static void updateAbs(mi_bkpt *b);
+};
+#endif // Uses_TBreakpoints
+

@@ -1424,6 +1424,7 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
                             colFg=(colFg+1) & 0xF;
                          bc[off*2+1]=colFg | color;
                         }
+                     break;
                     }
                  }
               }
@@ -13571,19 +13572,24 @@ void TCEditor::SetSpecialLines(TSpCollection *nLines)
  int y1=delta.y, y2=delta.y+size.y, y, i, j, type;
  TSpCollection *oLines;
 
+ if (DEBUG_SPLINES_UPDATE)
+    printf("\n\nTCEditor::SetSpecialLines\n");
+
  oLines=SpecialLines;
  SpecialLines=NULL;
 
- if (DEBUG_SPLINES_UPDATE)
-    printf("\n\nTCEditor::SetSpecialLines\n");
  if (oLines)
    {// We already have them redraw the affected lines
     int cnt=oLines->getCount();
+    if (DEBUG_SPLINES_UPDATE)
+       printf("Processing %d old splines\n",cnt);
     for (i=0; i<cnt; i++)
        {
         stSpLine *st=oLines->At(i);
         y=st->nline;
         type=st->id;
+        if (DEBUG_SPLINES_UPDATE)
+           printf("%d) y=%d type=%d\n",i+1,y,type);
         if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
           {// This line is visible
            // Check if it will change
@@ -13594,19 +13600,25 @@ void TCEditor::SetSpecialLines(TSpCollection *nLines)
               for (j=0; !found && j<cnt; j++)
                  {
                   stSpLine *st=nLines->At(j);
-                  if (st->nline==y && st->id==type)
+                  if (st->nline==y && st->id!=idsplError)
+                     // It was painted
                      found=1;
                  }
              }
            if (!found)
              {// This line is no longer special or changed its type
               if (DEBUG_SPLINES_UPDATE)
-                 printf("Painting %d as normal\n",y);
+                 printf("%d) Painting %d as normal\n",i+1,y);
               unsigned p=drawPtr;
               int ya;
               for (ya=y1; ya<y; ya++)
                   p+=lenLines.safeLen(ya);
               drawLines(y,1,p);
+             }
+           else
+             {
+              if (DEBUG_SPLINES_UPDATE)
+                 printf("%d) Found %d skipping\n",i+1,y);
              }
           }
        }
@@ -13616,34 +13628,65 @@ void TCEditor::SetSpecialLines(TSpCollection *nLines)
  if (nLines)
    {// We got a new set, draw the affected lines
     int cnt=nLines->getCount();
+    if (DEBUG_SPLINES_UPDATE)
+       printf("Processing %d new splines\n",cnt);
     for (i=0; i<cnt; i++)
        {
         stSpLine *st=nLines->At(i);
         y=st->nline;
         type=st->id;
+        if (DEBUG_SPLINES_UPDATE)
+           printf("%d) y=%d type=%d\n",i+1,y,type);
         if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
           {// This line is visible
-           // Check if it's changing
            int found=0;
-           if (oLines)
+           // 1) If another will be painted over it just skip
+           for (j=i-1; j>=0; j--)
+              {
+               stSpLine *st=nLines->At(j);
+               if (st->nline==y)
+                 {
+                  found=1;
+                  if (DEBUG_SPLINES_UPDATE)
+                     printf("%d) Skip because %d is over (y=%d)\n",i+1,j+1,y);
+                  break;
+                 }
+              }
+           // 2) Check if it's changing
+           if (!found && oLines)
              {
               int cnt=oLines->getCount();
-              for (j=0; !found && j<cnt; j++)
+              // From the last, that's the one visible
+              for (j=0; j<cnt; j++)
                  {
-                  stSpLine *st=oLines->At(i);
-                  if (st->nline==y && st->id==type)
-                     found=1;
+                  stSpLine *st=oLines->At(j);
+                  if (st->nline==y && st->id!=idsplError)
+                    {// We found an spline there
+                     if (st->id==type)
+                       {
+                        if (DEBUG_SPLINES_UPDATE)
+                           printf("%d) Skip because old %d was the same (y=%d)\n",i+1,j+1,y);
+                        // Same type, skip
+                        found=1;
+                       }
+                     break;
+                    }
                  }
              }
            if (!found)
              {// This line is no longer special or changed its type
               if (DEBUG_SPLINES_UPDATE)
-                 printf("Painting %d as special\n",y);
+                 printf("%d) Painting %d as special\n",i+1,y);
               unsigned p=drawPtr;
               int ya;
               for (ya=y1; ya<y; ya++)
                   p+=lenLines.safeLen(ya);
               drawLines(y,1,p);
+             }
+           else
+             {
+              if (DEBUG_SPLINES_UPDATE)
+                 printf("%d) Found %d skipping\n",i+1,y);
              }
           }
        }

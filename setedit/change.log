@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.549  2004/07/26 15:04:10  set
+* Updated: Spanish translation.
+* Fixed(?): The last modification to the special lines stuff had a major
+flaw. If we keep a copy in the TCEditor then is quite hard to know which
+lines were moved. I changed the insternal structures used by SpLinMan to
+solve it. The code changed too much to be considered stable.
+* Modified: The internac/Makefile to update the translations every time a
+source that have strings to translate is modified. This will increase cvs
+traffic but will reduce collisions.
+
 Revision 1.548  2004/07/23 21:22:31  set
 * Fixed: [MSVC] The set_new_handler() function of MSVC 4.0 doesn't support
 NULL. It is possible to use _set_new_handler(), but as it is only tested

@@ -152,8 +152,9 @@ const int
   cmeDbgCloseSession= cmeBase+128,
   cmeDbgGoConnected = cmeBase+129,
   cmeDbgGoReadyToRun= cmeBase+130,
+  cmeDbgEditBreakPts= cmeBase+131,
   // That isn't a command, is to know the last+1.
-  cmeDbgLastCommand = cmeBase+131,
+  cmeDbgLastCommand = cmeBase+132,
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
@@ -398,6 +399,7 @@ public:
     static void DebugCloseSession();
     static void DebugCommandsForDisc();
     static void DebugCommonCleanUp();
+    static void DebugEditBreakPts();
 
 protected:
 
