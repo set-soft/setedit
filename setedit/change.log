@@ -1,4 +1,7 @@
 $Log$
+Revision 1.43  2002/01/29 17:53:33  set
+* Updated: Documentation version.
+
 Revision 1.42  2002/01/29 17:50:03  set
 * Fixed: Now the distrib-* targets depends on needed. It allows to use "make
 distrib" even without doing make first.
@@ -2888,7 +2891,7 @@ Jeremy W. Murphy <jwm@amc.com.au>.
 
 Revision 1.147  1999/07/07 23:59:42  set
 * Added: Help for the "Open Read-only copy" option (documentation and F1).
-.
+
 Revision 1.146  1999/07/07 23:50:48  set
 * Added: An option to open a read only copy of the current file we are
 editing from disk.
