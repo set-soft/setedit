@@ -1,4 +1,8 @@
 $Log$
+Revision 1.38  2002/01/29 04:38:07  terrible
+* Updated: Debian packaging to the "Brothers of Argentina have problems, I
+  hope they can get through it soon!" release version 0.4.54-1.
+
 Revision 1.37  2002/01/28 15:40:39  set
 * Synchronized with home CVS.
 * Added: rel and rev keywords to HTML, suggested by Ivan.
@@ -787,7 +791,7 @@ Revision 1.7  2001/10/01 15:18:46  set
 
 Revision 1.6  2001/10/01 13:33:14  set
 * Removed: tcedit.dst file from CVS, it was there by accident.
-.
+
 Revision 1.5  2001/10/01 02:51:07  terrible
 Fixed: if we are not using shipped libbzip2 then use the system include files
 and not the shipped ones.
