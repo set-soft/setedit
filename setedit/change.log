@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.154  2002/07/16 19:40:09  set
+* Fixed: [MSVC] 3 more errors sent by WintiX (ceditor.cc).
+
 Revision 1.153  2002/07/16 19:31:18  set
 * Modified: MP3 dialog buttons to behave better after a recode.
 * Added: TSButtonRef wrapper for TButtonRef.

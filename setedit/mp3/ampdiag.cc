@@ -438,7 +438,7 @@ public:
  virtual void close() { hide(); };
 };
 
-TView *MP3ReadInfo(ipstream &is, int &zorder, TDskWinMP3 */*manager*/)
+TView *MP3ReadInfo(ipstream &is, int &zorder, TDskWinMP3 * /*manager*/)
 {
  TPoint pos;
  int iAux;
