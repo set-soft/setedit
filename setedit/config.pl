@@ -49,6 +49,11 @@ if ($OS eq 'Win32')
    $conf{'HAVE_MIXER'}='no';
    $conf{'mp3lib'}='';
   }
+if (($OS ne 'UNIX') && ($conf{'HAVE_AA'} eq 'yes'))
+  {
+   print "Currently AA-lib is usable only for UNIX version, please tell me if you think it should be changed.\n";
+   $conf{'HAVE_AA'}='no';
+  }
 
 LookForBasicTools();
 $supportDir='makes/'.$supportDir;
@@ -116,6 +121,8 @@ LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
 LookForXlib() if (($OS eq 'UNIX') && ($tvMajor>=2));
 # Needed by X libraries in some systems
 LookForDL() if ($OS eq 'UNIX');
+# An option to display screen savers ;-)
+LookForAA() if ($OS eq 'UNIX');
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
@@ -158,6 +165,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
    $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
+   $MakeDefsRHIDE[1].='aa ' if ($conf{'HAVE_AA'} eq 'yes');
   }
 else # Win32
   {
@@ -468,6 +476,14 @@ sub SeeCommandLine
       {
        $conf{'X11LibPath'}=$1;
       }
+    elsif ($i eq '--with-aa')
+      {
+       $conf{'HAVE_AA'}='yes';
+      }
+    elsif ($i eq '--without-aa')
+      {
+       $conf{'HAVE_AA'}='no';
+      }
     else
       {
        ShowHelp();
@@ -518,6 +534,8 @@ sub ShowHelp
  print "--without-efence: compiles without Electric Fence [default].\n";
  print "--x-include=path: X11 include path [/usr/X11R6/lib].\n";
  print "--x-lib=path    : X11 library path [/usr/X11R6/include].\n";
+ print "--with-aa       : support for AA-lib [used for UNIX].\n";
+ print "--without-aa    : without AA-lib support.\n";
 }
 
 sub GiveAdvice
@@ -1189,6 +1207,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  $text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
+ $text.=ConfigIncDefYes('HAVE_AA','AA lib');
 
  $text.="\n\n#define CONFIG_PREFIX \"";
  $a=$conf{'prefix'};
@@ -1664,5 +1683,31 @@ int main(void)
     $conf{'HAVE_X11'}='no';
     print "no, disabling X11 version\n";
    }
+}
+
+sub LookForAA
+{
+ my ($test);
+
+ print 'Looking for AA library: ';
+ $test=@conf{'HAVE_AA'};
+ if ($test eq 'yes')
+   {
+    print "$test (cached) OK\n";
+    return;
+   }
+ $test='
+ #include <stdio.h>
+ #include <aalib.h>
+ int main(void)
+ {
+  if (aa_autoinit(&aa_defparams))
+     printf("OK\n");
+  return 0;
+ }';
+ $test=RunGCCTest($GCC,'c',$test,'-laa');
+ $conf{'HAVE_AA'}=($test eq "OK\n") ? 'yes' : 'no';
+
+ print "$conf{'HAVE_AA'}\n";
 }
 

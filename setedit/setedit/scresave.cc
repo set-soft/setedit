@@ -1,22 +1,5 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-/* Note about gettext warnings on this file:
-According to Bruno Haible <haible@clisp.cons.org>:
-
-"C and C++ strings cannot contain newline characters (except if you
-write them as "\n"). See ISO C 99 section 6.4.5 and ISO/ANSI C++
-section 2.13.4.
-
-Some compilers understand newline characters in strings, but xgettext
-does not, because it would negatively affect the reliability of
-xgettext in general."
-
-Now:
-As the strings are in fact inline assembler code and:
-1) That's gcc specific.
-2) Cutting the string makes it less readable.
-I won't change it.
-*/
 #include <ceditint.h>
 #include <stdio.h>
 #define Uses_unistd
@@ -283,17 +266,9 @@ ScrSaver Blanker=
 };
 
 
-#ifdef TVCompf_djgpp
+#if defined(TVCompf_djgpp) || defined(HAVE_AA)
 
-/***************************** Red and Blue plasma ***********************************/
-// This code is relative compact under DOS
-#include <dpmi.h>
-#include <sys/movedata.h>
-#include <sys/segments.h>
-#include <math.h>
-#include <pc.h>
-#include <go32.h>
-
+/***************************** Common plasma code ***********************************/
 // 0.5 degrees of resolution, 256==360 is faster but the resolution is too bad :-(
 #define TrigTableSize  (360*2)
 #define TamReal (TrigTableSize*2+TrigTableSize/4) // 2*360+90 degrees
@@ -302,21 +277,7 @@ static int *sin_table;
 //static uchar *screen_buffer; to the stack
 #define IncWithWrap(a)   if (++a==TrigTableSize) a=0
 
-extern __inline__ void RPF_SetAllPal(unsigned char *_pal_ptr)
-{//Sets all 768 6bit color component entries on the VGA.
- int dummy;
- InlineAsm (
-"     movl $0x3c8, %%edx         \n"
-"     xorl %%eax, %%eax          \n"
-"     outb %%al, %%dx            \n"
-"     incl %%edx                 \n"
-"     movl $768, %%ecx           \n"
-"     cli                        \n"
-"     rep                        \n"
-"     outsb                      \n"
-"     sti                        \n"
- : "=S" (dummy) : "S" (_pal_ptr) : "%eax", "%ecx", "%edx");
-}
+static int dsI7=0,dsX7=0,dsY7=0,direction7=1;
 
 typedef unsigned char RawPal[768];
 
@@ -351,7 +312,36 @@ void RPF_MakeBlueGreen_RedBars(unsigned char *Pal)
     }
 }
 
-static int dsI7=0,dsX7=0,dsY7=0,direction7=1;
+#endif // defined(TVCompf_djgpp) || defined(HAVE_AA)
+
+
+
+#ifdef TVCompf_djgpp
+
+/***************************** Red and Blue plasma ***********************************/
+// This code is relative compact under DOS
+#include <dpmi.h>
+#include <sys/movedata.h>
+#include <sys/segments.h>
+#include <math.h>
+#include <pc.h>
+#include <go32.h>
+
+extern __inline__ void RPF_SetAllPal(unsigned char *_pal_ptr)
+{//Sets all 768 6bit color component entries on the VGA.
+ int dummy;
+ InlineAsm (
+"     movl $0x3c8, %%edx         \n"
+"     xorl %%eax, %%eax          \n"
+"     outb %%al, %%dx            \n"
+"     incl %%edx                 \n"
+"     movl $768, %%ecx           \n"
+"     cli                        \n"
+"     rep                        \n"
+"     outsb                      \n"
+"     sti                        \n"
+ : "=S" (dummy) : "S" (_pal_ptr) : "%eax", "%ecx", "%edx");
+}
 
 static
 void StartPlasmaRB1(void)
@@ -633,7 +623,113 @@ ScrSaver Smoker1=
  UpdateInferno1,StartSmoker1,ShutDownInferno1,
  scrsvNeedsResetVideoMode
 };
-#endif
+#endif // TVCompf_djgpp
+
+
+#ifdef HAVE_AA
+
+/************************ Red and Blue plasma adapted for AA-lib **************************/
+#include <aalib.h>
+#include <math.h>
+
+static aa_context *context=NULL;
+static unsigned aaW,aaH;
+static aa_palette pal;
+
+static
+void RPF_SetAllPalAA(unsigned char *pal_ptr)
+{
+ int i,j;
+ for (i=0,j=0; i<256; i++,j+=3)
+     aa_setpalette(pal,i,pal_ptr[j]*4,pal_ptr[j+1]*4,pal_ptr[j+2]*4);
+}
+
+static
+void StartPlasmaRB1AA(void)
+{
+ aa_defparams.supported|=AA_EXTENDED;
+ context=aa_autoinit(&aa_defparams);
+ if (!context)
+    return;
+ aaW=aa_imgwidth(context);
+ aaH=aa_imgheight(context);
+   
+ dsI7=0;
+ dsX7=0;
+ dsY7=0;
+ direction7=1;
+ sin_table=new int[TamReal];
+ //screen_buffer=new uchar[64000];
+
+ unsigned int i;
+ double temp;
+
+ for (i=0; i<TamReal; i++)
+    {
+     temp = sin((double)(i*M_PI/(180*(TrigTableSize/360)) ));
+     temp *= 255;
+     sin_table[i] = (int)temp;
+    }
+
+ RawPal BlueP1;
+ RPF_MakeBlueGreen_RedBars(BlueP1);
+ RPF_SetAllPalAA(BlueP1);
+}
+
+static
+void ShutDownPlasmaRB1AA(void)
+{
+ delete sin_table;
+ if (context)
+    aa_close(context);
+}
+
+
+static
+void PLA1_Step_7(unsigned char *screen_buffer)
+{
+ int X,Y;
+ unsigned char *s=screen_buffer;
+ int dsIl=sin_table[dsI7]+256;
+
+ for (Y=aaH; Y; Y--)
+    {
+     int temp=dsIl;
+     for (X=aaW; X; s++,X--)
+        {
+         IncWithWrap(temp);
+         *s=cos_table[X+dsX7]+sin_table[Y+dsY7]+sin_table[temp];
+        }
+     IncWithWrap(dsIl);
+    }
+ IncWithWrap(dsI7);
+ if (dsY7==(TrigTableSize-200))
+    direction7=-1;
+ else
+   if (dsY7==0 && direction7==-1)
+      direction7=1;
+ dsY7+=direction7;
+ dsX7=(cos_table[dsI7]+256)>>1;
+}
+
+static
+void UpdatePlasmaRB1AA()
+{
+ if (!context) return;
+ PLA1_Step_7(aa_image(context));
+ //aa_fastrender(context,0,0,aa_scrwidth(context),aa_scrheight(context));
+ aa_renderpalette(context,pal,&aa_defrenderparams,0,0,aa_scrwidth(context),aa_scrheight(context));
+ aa_flush(context);
+}
+
+
+ScrSaver PlasmaRB1AA=
+{
+ "AA-Plasma (Red/Blue)",
+ UpdatePlasmaRB1AA,StartPlasmaRB1AA,ShutDownPlasmaRB1AA,
+ scrsvNeedsResetVideoMode
+};
+#endif // HAVE_AA
 
 
 /************************** Text Stars saver *****************************/
@@ -836,7 +932,10 @@ char *GetDefaultScreenSaver(void)
 static
 void CreateScrSaversList(void)
 {
- ScrSavers=new TStringCollection(2,1);
+ ScrSavers=new TStringCollection(3,1);
+ #ifdef HAVE_AA
+ ScrSavers->insert(&PlasmaRB1AA);
+ #endif
  ScrSavers->insert(&Silly);
  ScrSavers->insert(&TextStars);
  ScrSavers->setOwnerShip(False);
@@ -845,7 +944,11 @@ void CreateScrSaversList(void)
 
 char *GetDefaultScreenSaver(void)
 {
+ #ifdef HAVE_AA
+ return strdup(PlasmaRB1AA.Name);
+ #else
  return strdup(Silly.Name);
+ #endif
 }
 #endif
 

@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.150  2002/07/12 16:48:42  set
+* Modified: [MSVC] avoided the inclusion of bzlib.h from ceditor.cc because
+it includes windows.h and this hence collides. Also removed _WIN32 from
+bzlib compilation, it doesn't have any sense for static link. Problem
+found from cl preprocessor output sent by WintiX.
+
 Revision 1.149  2002/07/11 19:14:00  set
 * Fixed: [MSVC] Small details to get it compiled. Most of them just
 involves proper use of compatlayer. From output sent by WintiX.
