@@ -121,13 +121,13 @@ int main(int argc, char *argv[])
            if (isalpha(b[0]) && (sep=strchr(b,':'))!=0)
              {
               char *ext=sep-1;
-              for (;*ext!='.' && ext>b; ext--);
-              if (*ext!='.')
+              for (;*ext!='$' && ext>b; ext--);
+              if (*ext!='$')
                 {
                  fprintf(stderr,"%s: Parser error (ext): %s\n",argv[0],b);
                  return 25;
                 }
-              if (ext[1]=='o')
+              if (ext[4]=='O')
                 {// That's an object, only the first is relevant.
                  for (;*sep && *sep!='\\'; sep++);
                  if (*sep) *sep=' ';

@@ -20,6 +20,10 @@ LDFLAGS  = $(DYNRTLDFLAGS) -WC
 
 !endif
 
+# This clashes:
+#CFLAGS_L=$(CFLAGS) -D__inline__=inline
+CFLAGS_L=$(CFLAGS)
+
 O        = .obj
 
 # variables
@@ -29,25 +33,25 @@ OBJ = blocksort$(O) huffman$(O) crctable$(O) randtable$(O) compress$(O) \
 all:  bzip2.lib
 
 blocksort.obj: blocksort.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 huffman.obj: huffman.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 crctable.obj: crctable.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 randtable.obj: randtable.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 compress.obj: compress.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 decompress.obj: decompress.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 bzlib.obj: bzlib.c
-	$(CC) -c $(CFLAGS) $*.c
+	$(CC) -c $(CFLAGS_L) $*.c
 
 bzip2.lib: $(OBJ)
 	del $@

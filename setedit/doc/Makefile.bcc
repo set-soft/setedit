@@ -29,7 +29,7 @@ all: sdh.exe $(all_targets)
 sdh.exe: sdh.c
 	bcc32 -I$(incdir) sdh.c
 
-	
+
 editor.inf: editor.tx
 	sdh.exe -oi $(sdh_ops) $(index_editor) -i $*
 
@@ -56,7 +56,7 @@ infeng.txt: infeng.tx
 
 infeng.html: infeng.tx
 	sdh.exe -oh $(sdh_ops) -i $*
-	
+
 install:
 	-mkdir $(DEST_SET_DIR)\info
 	copy editor.inf $(DEST_SET_DIR)\info\setedit.inf
@@ -64,8 +64,18 @@ install:
 	copy sdg.inf $(DEST_SET_DIR)\info\sdg.inf
 
 clean:
-	-del $(all_targets)
+	-del editor.txt
+	-del sdg.txt
+	-del infeng.txt
+	-del editor.html
+	-del sdg.html
+	-del infeng.html
+	-del editor.inf
+	-del sdg.inf
+	-del infeng.inf
 	-del *.num
 	-del *.tx1
-	-del sdh.exe sdh.obj sdh.tds
-	
+	-del *.exe
+	-del *.obj
+	-del *.tds
+

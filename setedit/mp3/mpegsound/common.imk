@@ -6,6 +6,14 @@ vpath %.cc $(vpath_src)
 vpath_obj=obj
 vpath %.o $(vpath_obj)
 
+# These files changes the compilation process so they are important
+# dependencies.
+MAKEFILE_DEPS=rhide.env common.imk
+# Extensions used by GNU tools
+ExOBJ=.o
+ExEXE=.exe
+ExLIB=.a
+
 RHIDE_AS=$(RHIDE_GCC)
 SOURCE_NAME=$<
 OUTFILE=$@

@@ -1,11 +1,24 @@
 #!/usr/bin/make
 
+#
+# Any configurable detail should come from here.
+#
+include rhide.env
+
 vpath %.c $(vpath_src)
 vpath %.s $(vpath_src)
 vpath %.cc $(vpath_src)
 vpath_obj=obj
 vpath %.o $(vpath_obj)
 vpath %.h $(INCLUDE_DIRS)
+
+# These files changes the compilation process so they are important
+# dependencies.
+MAKEFILE_DEPS=rhide.env common.imk
+# Extensions used by GNU tools
+ExOBJ=.o
+ExEXE=.exe
+ExLIB=.a
 
 RHIDE_AS=$(RHIDE_GCC)
 SOURCE_NAME=$<
@@ -19,3 +32,4 @@ LIB_DIRS=$(RHIDE_OS_LIBS_PATH) -L.
 RHIDE_ARFLAGS=rcs
 RHIDE_COMPILE_ARCHIVE=$(RHIDE_AR) $(RHIDE_ARFLAGS) $(OUTFILE)\
 	$(ALL_PREREQ)
+   

@@ -1182,10 +1182,11 @@ sub ExtractItemsImk
     @items=split(/[\\\s]+/,$2);
     foreach $file (@items)
       {
-       if ($file=~/\.o$/)
+       if ($file=~/\$\(ExOBJ\)/)
          {
           $file=~/((.+)\/+)(.*)/;
           $file=$3;
+          $file=~s/\$\(ExOBJ\)/\.o/;
           #print "$file\n";
           if ($$col!=0)
             {

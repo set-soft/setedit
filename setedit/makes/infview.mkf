@@ -34,12 +34,8 @@ C_EXTRA_FLAGS=-DFOR_EDITOR
 ##########################################################################################
 
 #
-# Any configurable detail should come from here.
-#
-include rhide.env
-
-#
 # Common rules used by RHIDE.
+# It also includes rhide.env.
 #
 include common.imk
 
@@ -47,8 +43,14 @@ include common.imk
 # All the RHIDE data should come from here.
 #
 ifdef MAINTAINER_MODE
- include infview.imk
+ ExIMK=.imk
 else
- include infview.umk
+ ExIMK=.umk
 endif
+include infview$(ExIMK)
+
+#
+# This file pulls all the .imk
+#
+include includer.imk
 

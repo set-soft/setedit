@@ -34,23 +34,25 @@ INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 ##########################################################################################
 
 #
-# Any configurable detail should come from here.
-#
-include rhide.env
-# This is specific for this project
-RHIDE_OS_LIBS:=$(RHIDE_OS_LIBS) -lwin
-
-#
 # Common rules used by RHIDE.
+# It also includes rhide.env.
 #
 include common.imk
+# This is specific for this project
+RHIDE_OS_LIBS:=$(RHIDE_OS_LIBS) -lwin
 
 #
 # All the RHIDE data should come from here.
 #
 ifdef MAINTAINER_MODE
- include install.imk
+ ExIMK=.imk
 else
- include install.umk
+ ExIMK=.umk
 endif
+include install$(ExIMK)
+
+#
+# This file pulls all the .imk
+#
+include includer.imk
 

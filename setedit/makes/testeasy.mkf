@@ -36,12 +36,8 @@ INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 ##########################################################################################
 
 #
-# Any configurable detail should come from here.
-#
-include rhide.env
-
-#
 # Common rules used by RHIDE.
+# It also includes rhide.env.
 #
 include common.imk
 
@@ -49,8 +45,14 @@ include common.imk
 # All the RHIDE data should come from here.
 #
 ifdef MAINTAINER_MODE
- include testeasy.imk
+ ExIMK=.imk
 else
- include testeasy.umk
+ ExIMK=.umk
 endif
+include testeasy$(ExIMK)
+
+#
+# This file pulls all the .imk
+#
+include includer.imk
 

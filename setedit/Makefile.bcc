@@ -1,0 +1,119 @@
+#!/usr/bin/make
+#
+# Copyright (c) 2003 by Salvador E. Tropea
+# Covered by the GPL license.
+#
+# That's the makefile for Borland C++ compiler.
+# I used BC++ 5.5 free command line tools for testing.
+#
+
+#
+# Used for a rudimentary install target.
+#
+DEST_BIN_DIR=c:\setedit
+DEST_SET_DIR=c:\setedit
+
+#
+# This file contains the definitions that configure the compilation.
+# i.e. CFLAGS
+# The path for TV includes and headers is configured in this file.
+#
+!ifndef FOR_NMAKE
+!include makes\config.bcc
+!else
+!include makes\config.nmk
+!endif
+
+#
+# Main targets
+#
+all: editor infview
+
+editor: libs
+	-cd makes
+	make MKF_EXT="$(MKF_EXT)" -f editor.bmk
+	-cd ..
+
+infview: libs
+	-cd makes
+	make MKF_EXT="$(MKF_EXT)" -f infview.bmk
+	-cd ..
+
+#
+# Support libraries
+#
+
+libs: libz\zlib.lib libpcre\pcre.lib libbzip2\bzip2.lib
+
+libz\zlib.lib:
+	cd libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..
+
+libpcre\pcre.lib:
+	cd libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..
+
+libbzip2\bzip2.lib:
+	cd libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..
+
+
+#
+# These are various targets I copied from the original make file.
+#
+
+install: editor.exe doc
+	cd makes
+	echo dummy >a.exe
+	xcopy /I *.exe $(DEST_BIN_DIR)
+	-del a.exe
+	-del $(DEST_BIN_DIR)\a.exe
+	xcopy /I /S /E ..\cfgfiles\*.* $(DEST_SET_DIR)
+	cd ..\doc
+	make -f Makefile$(MK_EXT) DEST_SET_DIR=$(DEST_SET_DIR) install
+	cd ..
+
+doc:
+	cd doc
+	make -f Makefile$(MK_EXT)
+	cd ..
+
+#
+# Clean targets
+#
+
+clean:
+	-del makes\obj\*.obj
+	-del makes\objinf\*.obj
+	-del makes\*.exe
+	-del makes\*.obj
+	-del makes\*.lib
+	-del makes\*.tds
+
+clean-zlib:
+	cd libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..
+
+clean-pcre:
+	cd libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..
+
+clean-bzip2:
+	cd libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..
+
+clean-libs: clean-zlib clean-pcre clean-bzip2
+
+clean-doc:
+	cd doc
+	make -f Makefile$(MK_EXT) clean
+	cd ..
+
+clean-all: clean clean-libs clean-doc
+

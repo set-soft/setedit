@@ -24,6 +24,7 @@ unsigned maxCol=78;
 struct node;
 static char *projectBase;
 static int   projectBaseL;
+static int   IncludeCounter=0;
 
 struct stMak
 {
@@ -82,6 +83,38 @@ void AddFileName(const char *name, stMak &mk)
  mk.last->name=strdup(name);
  mk.last->next=mk.last->deps=mk.last->ldep=NULL;
  mk.last->subprj=NULL;
+}
+
+static
+int PrConvertExt(FILE *d, const char *file)
+{
+ char *s=strrchr(file,'.');
+ if (!s)
+    return fprintf(d,"%s",file);
+ int l=s-file;
+ fwrite(file,l,1,d);
+ if (strcmp(s,".o")==0)
+    l+=fprintf(d,"$(ExOBJ)");
+ else if (strcmp(s,".exe")==0)
+    l+=fprintf(d,"$(ExEXE)");
+ else if (strcmp(s,".a")==0)
+    l+=fprintf(d,"$(ExLIB)");
+ else if (strcmp(s,".env")==0)
+    l+=fprintf(d,".env");
+ else if (strcmp(s,".imk")==0)
+    l+=fprintf(d,".imk");
+ else if (strcmp(s,".h")==0)
+    l+=fprintf(d,".h");
+ else if (strcmp(s,".c")==0)
+    l+=fprintf(d,".c");
+ else if (strcmp(s,".cc")==0)
+    l+=fprintf(d,".cc");
+ else
+   {
+    fprintf(stderr,"Unknown extension: '%s'\n",s);
+    exit(15);
+   }
+ return l;
 }
 
 static
@@ -186,7 +219,8 @@ int PrintDep(FILE *d, int l, const char *s)
  if (ONE_DEP_BY_LINE)
    {
     fputs("\\\n\t",d);
-    l=8+fprintf(d,"%s ",s);
+    l=8+PrConvertExt(d,s)+1;
+    fputc(' ',d);
    }
  else
    {
@@ -195,7 +229,8 @@ int PrintDep(FILE *d, int l, const char *s)
        fputs("\\\n\t",d);
        l=8;
       }
-    l+=fprintf(d,"%s ",s);
+    l+=PrConvertExt(d,s)+1;
+    fputc(' ',d);
    }
  return l;
 }
@@ -206,7 +241,8 @@ int PrintDepDir(FILE *d, int l, const char *s,int lenDir, const char *dir)
  if (ONE_DEP_BY_LINE)
    {
     fputs("\\\n\t",d);
-    l=8+fprintf(d,"%s/%s ",dir,s);
+    l=8+fprintf(d,"%s/",dir)+PrConvertExt(d,s)+1;
+    fputc(' ',d);
    }
  else
    {
@@ -215,7 +251,8 @@ int PrintDepDir(FILE *d, int l, const char *s,int lenDir, const char *dir)
        fputs("\\\n\t",d);
        l=8;
       }
-    l+=fprintf(d,"%s/%s ",dir,s);
+    l+=fprintf(d,"%s/",dir)+PrConvertExt(d,s)+1;
+    fputc(' ',d);
    }
  return l;
 }
@@ -223,8 +260,9 @@ int PrintDepDir(FILE *d, int l, const char *s,int lenDir, const char *dir)
 static
 int AddFixedDeps(FILE *d, int l)
 {
- l=PrintDep(d,l,"rhide.env");
- l=PrintDep(d,l,"common.imk");
+ //l=PrintDep(d,l,"rhide.env");
+ //l=PrintDep(d,l,"common.imk");
+ l=PrintDep(d,l,"$(MAKEFILE_DEPS)");
  return l;
 }
 
@@ -240,7 +278,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
  if (strcmp(ext,"o")==0 || strcmp(ext,"a")==0)
     return;
 
- int l=fprintf(d,"%s/%s.o:: %s ",mk.objDir,baseName,p->name);
+ int l=fprintf(d,"%s/%s$(ExOBJ):: %s ",mk.objDir,baseName,p->name);
  node *c=p->deps;
  while (c)
    {
@@ -451,7 +489,8 @@ void GenerateTarget(FILE *d, stMak &mk)
 {
  if (!*mk.mainTarget)
     return;
- int l=fprintf(d,"%s:: ",mk.mainTarget);
+ int l=PrConvertExt(d,mk.mainTarget)+3;
+ fputs(":: ",d);
  l=ListTargetItems(d,l,mk);
  l=AddFixedDeps(d,l);
  char *ext=strrchr(mk.mainTarget,'.')+1;
@@ -483,8 +522,8 @@ void GenerateAll(FILE *f, stMak &mk)
          {
           char *s=strdup(p->name);
           char *ext=strrchr(s,'.');
-          strcpy(ext,".imk");
-          fprintf(f,"include %s\n\n",s);
+          *ext=0;
+          fprintf(f,"INCLUDE%02d=%s$(ExIMK)\n\n",IncludeCounter++,s);
           free(s);
          }
       }

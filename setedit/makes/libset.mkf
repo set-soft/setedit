@@ -38,12 +38,8 @@ C_EXTRA_FLAGS=-DFOR_LIBSET
 ##########################################################################################
 
 #
-# Any configurable detail should come from here.
-#
-include rhide.env
-
-#
 # Common rules used by RHIDE.
+# It also includes rhide.env.
 #
 include common.imk
 
@@ -51,8 +47,14 @@ include common.imk
 # All the RHIDE data should come from here.
 #
 ifdef MAINTAINER_MODE
- include libset.imk
+ ExIMK=.imk
 else
- include libset.umk
+ ExIMK=.umk
 endif
+include libset$(ExIMK)
+
+#
+# This file pulls all the .imk
+#
+include includer.imk
 

@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.391  2003/05/26 14:03:14  set
+* Modified: The makefiles to maintain the .imk and .umk files only when
+the "Maintainer Mode" is enabled.
+* Added: --no-prefix-h to configset because I use /usr as prefix and this
+is already in the list.
+
 Revision 1.390  2003/05/23 20:19:45  set
 * Modified: Sorted the configure options by category so people can find the
 needed option faster.
