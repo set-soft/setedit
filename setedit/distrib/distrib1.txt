@@ -774,12 +774,32 @@ terminal, example: Shift+Arrows reported as just arrows.
 
 10. DOWNLOAD:
 
+ All the OSs:
  Stable and beta releases, mailing list, cvs, etc.:
  http://setedit.sourceforge.net/
- or any Simtelnet mirror, example:
- (only stable releases)
- ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/inf*.zip
 
+ DOS: (only stable releases)
+ Any Simtelnet mirror, example:
+ ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/edi*.zip
+
+ Linux:
+ The Linux tarballs can be found in Source Forge.
+
+ Debian GNU/Linux: (only stable releases)
+ An experimental repository is maintained by Ivan in Source Forge.
+ To access the repository, just add the following line to your
+/etc/apt/sources.list:
+
+deb http://setedit.sourceforge.net/debian unstable main
+
+ That's for unstable branch of Debian (currently Sid) for the stable branch
+use:
+
+deb http://setedit.sourceforge.net/debian stable main
+
+ Note that Ivan will upload stable editor releases. For betas look in the
+Source Forge pages.
+ 
 
 
 11. MAILING LIST
