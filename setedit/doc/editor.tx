@@ -1225,6 +1225,7 @@ Currently only a few languages are supported, they are:
 @item Clipper 5.x
 @item Syntax Highlight Files
 @item Texinfo sources (chapters, sections, @i{etc.})
+@item Assembler files (labels)
 @end itemize
 
 In C sources fails are common if your code have an unbalanced number of
