@@ -288,7 +288,8 @@ print "Copying other files: ";
 'REMOVE_UNNEEDED',
 'VCSA.SH',
 'default.map',
-'linux.faq');
+'linux.faq',
+'ask_config.sh');
 foreach $i (@fext)
   {
    print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$i));
