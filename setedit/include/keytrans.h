@@ -59,9 +59,9 @@ public:
 protected:
  // Inline methodes to symplify the indirections
  // When the table is compacted (relative pointers)
- KeyTSeq *GetTSeqC(KeyTNode *node) { return (KeyTSeq *)(int(base)+node->d.offset); };
- KeyTTable *GetTableC(KeyTNode *node) { return (KeyTTable *)(int(base)+node->d.offset); };
- char *GetMNameC(KeyTNode *node) { return (char *)(int(base)+node->d.offset); };
+ KeyTSeq *GetTSeqC(KeyTNode *node) { return (KeyTSeq *)(long(base)+node->d.offset); };
+ KeyTTable *GetTableC(KeyTNode *node) { return (KeyTTable *)(long(base)+node->d.offset); };
+ char *GetMNameC(KeyTNode *node) { return (char *)(long(base)+node->d.offset); };
  // Whe the table is expanded
  KeyTSeq *GetTSeqE(KeyTNode *node)  { return (KeyTSeq *)(node->d.data); };
  KeyTTable *GetTableE(KeyTNode *node) { return (KeyTTable *)(node->d.data); };
@@ -70,17 +70,17 @@ protected:
  KeyTSeq *GetTSeq(KeyTNode *node)
  { if (type==kbtExpanded)
       return (KeyTSeq *)(node->d.data);
-  return (KeyTSeq *)(int(base)+node->d.offset);
+  return (KeyTSeq *)(long(base)+node->d.offset);
  };
  KeyTTable *GetTable(KeyTNode *node)
  { if (type==kbtExpanded)
       return (KeyTTable *)(node->d.data);
-  return (KeyTTable *)(int(base)+node->d.offset);
+  return (KeyTTable *)(long(base)+node->d.offset);
  };
  char *GetMName(KeyTNode *node)
  { if (type==kbtExpanded)
       return (char *)(node->d.data);
-  return (char *)(int(base)+node->d.offset);
+  return (char *)(long(base)+node->d.offset);
  };
 
  KeyTNode *InsertKey(unsigned key);
