@@ -13,7 +13,7 @@
 #include <ced_inte.h>
 #include <edspecs.h>
 
-#ifndef __TURBOC__
+#ifndef TVComp_BCPP
 // BC++ defines it in stdlib.h
 extern char **environ;
 #endif

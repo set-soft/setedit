@@ -38,7 +38,7 @@ void TSIndicator::draw()
    if (editor->modified)
       b.putChar(0,modifiedStar);
 
- #ifdef __linux__
+ #ifdef TVOSf_Linux
  // I don't know how to change the cursor shape so an user suggested
  // putting it in the indicator
  b.putChar(1,editor->overwrite ? 'O' : 'I');

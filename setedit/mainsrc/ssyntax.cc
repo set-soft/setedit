@@ -328,7 +328,7 @@ int SyntaxSearch_InitWithDefaults(void)
  entries=new TFileEntryCollection(4,2);
  if (!entries)
     return 1;
- #ifdef __DJGPP__
+ #ifdef TVCompf_djgpp
  entries->insertCopy("libc","Alphabetical List");
  entries->insertCopy("allegro","Index");
  #else
@@ -768,7 +768,7 @@ extern "C" double fstrcmp(const char *,const char *);
 // added by me:
 extern "C" void fstrcmp_free_memory(void);
 
-#ifndef __DJGPP__
+#ifndef TVCompf_djgpp
 extern "C" void *xrealloc(void *ptr,int new_size)
 {
  return realloc(ptr,new_size);

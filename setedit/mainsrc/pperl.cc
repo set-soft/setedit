@@ -54,7 +54,7 @@ void AddToWord(char val)
 static
 int isWordChar()
 {
- return (isalpha(Buffer[Index]) || Buffer[Index]=='_');
+ return (isalnum(Buffer[Index]) || Buffer[Index]=='_');
 }
 
 static
