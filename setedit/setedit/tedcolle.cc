@@ -503,7 +503,9 @@ void TEditorCollection::removeEditor(TCEditWindow *p, Boolean dontAddClosed)
  atRemove(pos);
  Editors--;
 
- if (dontAddClosed)
+ if (dontAddClosed ||
+     (p->editor->MakeBkpForIt!=0 &&  // Exclude files that doesn't have back-up
+     !p->editor->MakeBkpForIt(p->editor->fileName)))
    {
     delete st;
     return;
