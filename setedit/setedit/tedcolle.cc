@@ -543,13 +543,26 @@ void TEditorCollection::removeEditor(TCEditWindow *p, Boolean dontAddClosed)
 
 void TEditorCollection::sortClosed(void)
 {
- ccIndex pos;
  // Don't keep more than 40 closed, Laci needs much ;-)
  while (Closed>maxClosedToRemember)
    {
-    pos=Editors+nonEditors+--Closed;
-    TDskWin *p=(TDskWin *)at(pos);
-    atRemove(pos);
+    ccIndex posOlder, i, total;
+    posOlder=i=Editors+nonEditors;
+    total=i+Closed;
+    TDskWinClosed *p=(TDskWinClosed *)at(i);
+    time_t older=p->resume.dateResume;
+    for (i++; i<total; i++)
+       {
+        p=(TDskWinClosed *)at(i);
+        if (p->resume.dateResume<older)
+          {
+           older=p->resume.dateResume;
+           posOlder=i;
+          }
+       }
+    Closed--;
+    p=(TDskWinClosed *)at(posOlder);
+    atRemove(posOlder);
     delete p;
    }
  //   That's a modified version of the Laszlo's idea to keep the closed windows

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.237  2002/11/26 12:50:17  set
+* Fixed: The GetSelection sLisp command read one extra character in a
+string copy. Only detectable thanks to efence (not harmful).
+
 Revision 1.236  2002/11/20 17:33:51  terrible
 * Fixed: the editor didn't like the carriage returns, tabs, etc. that the PHP
 parser was giving to him which is something very understandable, so we

@@ -29,7 +29,7 @@
                          "\x6B\x6C\x6D\x6E\x6F\x70\x71\x72\x73\x74\x75\x76"\
                          "\x77\x78\x79\x7A\x7B\x7C"
 
-const int   TCEditWindow::ResumeVersion=5;
+const int   TCEditWindow::ResumeVersion=6;
 const char *TCEditWindow::clipboardTitle=__("Clipboard");
 const char *TCEditWindow::untitled=__("Untitled");
 
@@ -196,6 +196,9 @@ void TCEditWindow::FillResume(EditorResume &r)
  r.wrapCol=editor->WrapCol;
 
  EnlargeSizesResume(r);
+
+ r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
+ time(&r.dateResume);
 }
 
 void TCEditWindow::ApplyResume(EditorResume &r)
@@ -266,8 +269,14 @@ void TCEditWindow::ReadResume(EditorResume &r, ipstream& is)
        // v3
        is.readBytes(((char *)&r)+1,sizeof(EditorResumeV3)-1);
     else
-       // v4 & v5
-       is.readBytes(((char *)&r)+1,sizeof(EditorResume)-1);
+      {// v4 & v5
+       is.readBytes(((char *)&r)+1,sizeof(EditorResumeV5)-1);
+       if (version>=6)
+         {
+          is >> r.extraSize;
+          is.readBytes(&r.dateResume,r.extraSize);
+         }
+      }
    }
  if (r.version==3)
    {
@@ -280,6 +289,12 @@ void TCEditWindow::ReadResume(EditorResume &r, ipstream& is)
    {
     r.version=5;
     EnlargeSizesResume(r);
+   }
+ if (r.version==5)
+   {
+    r.version=6;
+    r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
+    time(&r.dateResume);
    }
 }
 
