@@ -10,6 +10,7 @@ extern void Easter(int nY, int *nThursday, int *nFriday);
 struct dayMonth
 {
  int day,month;
+ const char *description;
 };
 
 #ifdef __cplusplus

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.334  2003/05/05 14:34:35  set
+* Added: yield to Python keywords (introduced in 2.2). Contributed by
+Grzegorz.
+
 Revision 1.333  2003/05/05 14:08:41  set
 * Added: The first step towards support for plug-ins to highlight holidays
 in the calendar. Currently is only supported for systems implementing

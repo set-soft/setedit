@@ -2,7 +2,7 @@ CC=@CC@
 dyndir=@dyndir@
 dynversion=.1.0.0
 
-LIBS=argentina datetools
+LIBS=argentina datetools defholidays
 
 all: $(addsuffix .so,$(LIBS))
 

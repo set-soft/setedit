@@ -4,7 +4,10 @@
   Covered by the GPL license, see the see copyrigh file for details.
 
   Description:
-  Module to find the holidays for Argentina.
+  Module to find the holidays for Argentina.@*
+  Note that some holidays are moved to make "long weekends", this is a
+little bit tricky.@*
+  Supports the changes introduced in 1996 and 2002.
   
 ***************************************************************************/
 
@@ -21,9 +24,24 @@ static char SeCorre[nFeriados]=
   {    0,    0,    0,     0,     1,     1,    0,     1,      1,     0,     0};
 static char ADonde[nFeriados]=
   {    0,    0,    0,     0,     1,     2,    0,     2,      1,     0,     0};
+static const char *Descripciones[nFeriados]=
+{
+ "Primer día del año",
+ "Día de las Malvinas",
+ "Día del trabajador",
+ "Revolución de Mayo",
+ "Día de la Soberanía",
+ "Día de la bandera",
+ "Día de la Independencia",
+ "Aniversario de San Martín",
+ "Día de la Raza",
+ "Día de la Virgen",
+ "Navidad"
+};
 
 static
-int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem)
+int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem,
+                   const char **desc)
 {
  int nDiaSem1ro,nDia,nMes;
 
@@ -58,6 +76,7 @@ int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem)
        *nDiaSem=2;
       }
    }
+ *desc=Descripciones[nFeriado];
  return 1;
 }
 
@@ -69,7 +88,7 @@ struct dayMonth *GetListOfHolidays(int anio, int *feriados)
 
  for (i=0,k=0; i<nFeriados; i++)
     {
-     if (CalculaFeriado(i,anio,&nD,&nS))
+     if (CalculaFeriado(i,anio,&nD,&nS,&ret[k].description))
        {
         Number2Day(nD,&ret[k].day,&ret[k].month,&a);
         k++;
@@ -77,8 +96,8 @@ struct dayMonth *GetListOfHolidays(int anio, int *feriados)
     }
 
  Easter(anio,&j,&v);
- Number2Day(j,&ret[k].day,&ret[k].month,&a); k++;
- Number2Day(v,&ret[k].day,&ret[k].month,&a); k++;
+ Number2Day(j,&ret[k].day,&ret[k].month,&a); ret[k++].description="Jueves Santo";
+ Number2Day(v,&ret[k].day,&ret[k].month,&a); ret[k++].description="Viernes Santo";
 
  *feriados=k;
  return ret;

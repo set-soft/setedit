@@ -10,6 +10,7 @@
 /* Modified by Salvador E. Tropea (SET) for SETEdit */
 #include <ceditint.h>
 
+#define Uses_ctype
 #define Uses_TRect
 #define Uses_TEvent
 #define Uses_TKeys
@@ -74,8 +75,84 @@ void GetTime(time_t *tt)
 #ifdef HAVE_DL_LIB
 #include DL_HEADER_NAME
 
-static int plugInLoaded=0;
+static char plugInLoaded=0;
+static char holidaysConfLoaded=0;
 static struct dayMonth *(*getlist)(int , int *);
+static char *forcedCountry=NULL;
+static int  numCountries;
+const int maxLine=120;
+struct countryEntry
+{
+ char *lang;
+ char *country;
+ char *module;
+};
+static countryEntry *countries;
+
+static
+const char *LookUpCountry(const char *lang, char *buffer, char *name)
+{
+ int i;
+ if (!holidaysConfLoaded)
+   {
+    char b[maxLine];
+    strcpy(name,"holidays.conf");
+    FILE *f=fopen(buffer,"rt");
+    if (f)
+      {
+       if (fscanf(f,"%d\n",&numCountries)==1)
+         {
+          countries=new countryEntry[numCountries];
+          memset(countries,0,sizeof(countryEntry)*numCountries);
+          for (i=0; i<numCountries; i++)
+             {
+              fgets(b,maxLine,f);
+              char *s=b;
+              for (;*s && !ucisspace(*s); s++);
+              if (*s)
+                {
+                 *s=0; s++;
+                 countries[i].lang=newStr(b);
+                 for (; *s && *s!='"'; s++);
+                 if (*s=='"')
+                   {
+                    s++;
+                    char *e;
+                    for (e=s; *e && *e!='"'; e++);
+                    if (*e=='"')
+                      {
+                       *e=0;
+                       countries[i].country=newStr(s);
+                       for (s=e+1; *s && ucisspace(*s); s++);
+                       if (*s)
+                         {
+                          for (e=s+1; *e && !ucisspace(*e); e++);
+                          *e=0;
+                          countries[i].module=newStr(s);
+                         }
+                      }
+                   }
+                }
+              //printf("%s %s %s\n",countries[i].lang,countries[i].country,countries[i].module);
+             }
+         }
+       fclose(f);
+       holidaysConfLoaded=1;
+      }
+   }
+ if (holidaysConfLoaded)
+   {
+    if (!lang)
+       lang="*";
+    for (i=0; i<numCountries; i++)
+        if (countries[i].lang && countries[i].module && strcmp(countries[i].lang,lang)==0)
+           return countries[i].module;
+    i--;
+    if (countries[i].module)
+       return countries[i].module;
+   }
+ return "defholidays.so";
+}
 
 int GetHolidays(int year)
 {
@@ -113,7 +190,14 @@ int GetHolidays(int year)
        printf("Error: %s\n",dlerror());
        return 2;
       }
-    strcpy(name,"argentina.so");
+
+    const char *country;
+    // Determine which one
+    country=LookUpCountry(forcedCountry ? forcedCountry : getenv("LANG"),
+                          b,name);
+
+    //printf("Country: %s\n",country);
+    strcpy(name,country);
     dlh=dlopen(b,RTLD_NOW);
     if (!dlh)
       {
@@ -130,10 +214,14 @@ int GetHolidays(int year)
    }
 
  listOfHolidays=getlist(year,&numOfHolidays);
- /*int i;
- printf("%d\n\n",numOfHolidays);
- for (i=0; i<numOfHolidays; i++)
-     printf("%d/%d\n",listOfHolidays[i].day,listOfHolidays[i].month);*/
+ if (0)
+   {
+    int i;
+    printf("%d\n\n",numOfHolidays);
+    for (i=0; i<numOfHolidays; i++)
+        printf("%d/%d %s\n",listOfHolidays[i].day,listOfHolidays[i].month,
+               listOfHolidays[i].description);
+   }
 
  return 0;
 }

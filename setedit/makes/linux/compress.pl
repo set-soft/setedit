@@ -299,8 +299,10 @@ print "done.\n\n";
 
 
 print "Copying calendar plug-ins: ";
+CopyIf('../../holidays/holidays.conf',$libdir.'/holidays.conf');
 CopyIf('../../holidays/datetools.so',$libdir.'/datetools.so');
 CopyIf('../../holidays/argentina.so',$libdir.'/argentina.so');
+CopyIf('../../holidays/defholidays.so',$libdir.'/defholidays.so');
 print "done.\n\n";
 
 
