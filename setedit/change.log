@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.245  2002/12/03 12:34:18  set
+* Modified: Removed all the conditionals for TV<2 and modified the
+configure script to request TV>=2.0.1.
+
 Revision 1.244  2002/12/03 12:32:44  set
 * Fixed: The special lines that doesn't exist are 0 and not -1.
 
