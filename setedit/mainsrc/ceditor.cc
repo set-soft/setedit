@@ -2941,10 +2941,10 @@ int TCEditor::handleCommand(ushort command)
                     if (line>limit.y)
                        line=limit.y;
                     MoveCursorTo(0,--line);
-                    selStart=(uint32)(curLinePtr-buffer);
-                    selEnd=selStart+LenWithoutCRLF(line,curLinePtr);
+                    selStartF=(uint32)(curLinePtr-buffer);
+                    selEndF=selStartF+LenWithoutCRLF(line,curLinePtr);
                     centerCursor=True;
-                    update(ufUpdate);
+                    update(ufUpdate|ufFound|ufLine);
                    }
                  delete Word;
                  break;
