@@ -1965,8 +1965,9 @@ void TCEditor::handleMouse(TEvent &event)
    }
 
  if (event.mouse.buttons==mbMiddleButton && TVOSClipboard::isAvailable()>1)
-   {
-    MoveToMouse(event.mouse.where,smDontSel);
+   {// Uncommenting the next line the text is pasted at the mouse position.
+    // It looks a good idea, but isn't good in practice.
+    //MoveToMouse(event.mouse.where,smDontSel);
     clipWinPaste(1);
     return;
    }
