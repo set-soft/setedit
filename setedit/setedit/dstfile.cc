@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -43,6 +43,7 @@
 #define Uses_SETAppFiles
 #include <setapp.h>
 
+#include <errno.h>
 #include <dskwin.h>
 #include <dskclip.h>
 #include <dskhelp.h>
@@ -523,7 +524,7 @@ Boolean TSetEditorApp::retrieveDesktop(TSetEditorApp *app, const char *name,
     #else
     fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
     #endif
-
+ 
     if (!f)
       {
        if (!preLoad)
@@ -872,7 +873,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  s.readString(buffer,80);
  if (strcmp(buffer,Signature)!=0)
    {
-    messageBox(__("Wrong desktop file."), mfOKButton | mfError);
+    messageBox(__("Wrong desktop file. May be owned by other user."),mfOKButton | mfError);
     return False;
    }
  s >> deskTopVersion;

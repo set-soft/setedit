@@ -1,4 +1,4 @@
-# Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Command line errors description file for SET's editor
@@ -125,5 +125,19 @@ Name=Perl
 Pattern=at (.+) line (\d+)
 File=1
 Line=2
+End
+
+#
+# Xilinx tools, in particular xst
+#
+# Messages format:
+# <error|warning>:<program>:<error_code> - <filename> line <lineno>: <description>
+#
+Name=Xilinx
+Pattern=(WARNING|ERROR):([^:]+):(\d+) - (.+) line (\d+): (.+)
+Severity=1
+File=4
+Line=5
+Description=6
 End
 

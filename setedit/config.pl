@@ -719,6 +719,7 @@ sub GiveAdvice
  if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
    {
     print "* NO DEBUG SUPPORT! The migdb library isn't available, debug features disabled.\n";
+    print "  You can download it from: http://sourceforge.net/projects/libmigdb\n";
    }
 }
 

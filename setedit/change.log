@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.649  2004/12/13 15:45:52  set
+* Added: When configuring the keyboard the dialog to create a key sequence
+now shows information about what's currently assigned to the sequence we
+are creating. Suggested by Thiago.
+
 Revision 1.648  2004/12/07 14:35:46  set
 * Fixed: A bug in Ctrl+K-V (may be also in other places). Under some
 situations it could unsynchrnonize the drawing pointer making the text look

@@ -6,7 +6,7 @@
 
   Description:
   Parses a .py file looking for function and class definitions.
-  It can be compiled as an standalone program by defining STANDALONE.
+  It can be compiled as an standalone program by defining STANDALONE_TEST.
 
 ***************************************************************************/
 
@@ -18,8 +18,6 @@
 
 #include <bufun.h>
 #include <assert.h>
-
-#define STANDALONE
 
 #define STATE_NOTHING               0
 #define STATE_PARAGRAPH_QUOTE       1

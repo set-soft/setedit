@@ -28,8 +28,12 @@ int DumpFileToMessage(char *file, const char *from, uint32 SMOps,
        do
          {
           l=strlen(buf);
-          if (buf[l-1]=='\n')
+          if (l && buf[l-1]=='\n')
+            {
              buf[l-1]=0;
+             if (l>1 && buf[l-2]=='\r')
+                buf[l-2]=0;
+            }
           if (ParseFun)
             {
              char *s=ParseFun(buf,fInfo,fileName);
@@ -140,8 +144,12 @@ int  DumpFileToMessageParseMore(int Lines, int *goBack)
     // Add it
     lines++;
     int l=strlen(buf);
-    if (buf[l-1]=='\n')
+    if (l && buf[l-1]=='\n')
+      {
        buf[l-1]=0;
+       if (l>1 && buf[l-2]=='\r')
+          buf[l-2]=0;
+      }
     if (incParseFun)
       {
        FileInfo fInfo;
