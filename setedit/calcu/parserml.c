@@ -16,9 +16,10 @@
 #define Uses_string
 #define Uses_alloca
 #define Uses_stdlib
+#define Uses_stdio
+#define CLY_DoNotDefineUTypes
 #include <compatlayer.h>
 
-#include <stdio.h>
 #include <math.h>
 #include <setjmp.h>
 #include <signal.h>
