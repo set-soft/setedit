@@ -9,6 +9,8 @@
 #include <edmsg.h>
 #include "rhutils.h"
 
+class TCEditor;
+
 /**[txh]********************************************************************
 
   Comments:
@@ -220,6 +222,12 @@ is returned.
 int SelectWindowNumber(int number)
 {
  return 0;
+}
+
+// The following doesn't have to be implemented by RHIDE.
+TCEditor *GetCurrentIfEditor()
+{
+ return NULL;
 }
 
 /**[txh]********************************************************************

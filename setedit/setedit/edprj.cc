@@ -1352,7 +1352,7 @@ Boolean ProjectGetSize(TRect &r)
 
 char *GetRelIfFileInPrj(char *name)
 {
- if (!prjWin)
+ if (!prjWin || !name)
     return NULL;
  ccIndex pos;
  char *relName;
