@@ -1,4 +1,7 @@
 $Log$
+Revision 1.15  2001/10/15 13:57:48  set
++
+
 Revision 1.454  2001/10/14 22:27:26  set
 * Fixed: The detected CPU wasn't restored from the configure.cache
 producing a wrong configuration header.
@@ -64,7 +67,7 @@ Revision 1.445  2001/10/09 14:05:21  set
 
 Revision 1.444  2001/10/08 22:09:33  set
 * Added: Support for gcc 3.1. The code compiled OK, but I was forced to
-disable some part of Allegro's header :-(
+disable some part of Allegro's header :-(.
 
 Revision 1.443  2001/10/08 19:30:01  set
 * Added: Support for gcc 3.1 in the configuration scripts.

@@ -9,7 +9,7 @@ will loose the configuration of the editor if you install an older version...
 but I think this is not a problem.
     More documentation is in info format, called setedit.info. You can view this
 documentation from inside the editor (just press F1) or using the standalone
-info viewer (executing "info setedit").    
+GNU info viewer (executing "info setedit").
     The editor is set user id (SUID) root, because it is much faster that way.
 The upstream author says it is safe. This is necessary so the editor can access
 the /dev/vcsa devices.
@@ -23,6 +23,44 @@ author, contact me and I will contact him).
 	Remember: THIS IS AN UNOFFICIAL DEBIAN PACKAGE AND IS NOT PART OF THE
 DEBIAN DISTRIBUTION. Please, do NOT send bug reports to the DEBIAN BUG
 TRACKING SYSTEM!!!
+
+Debian specific FAQ
+-------------------
+Q.: Why is the editor and the info viewer suid root?
+A.: Because by default in Debian the /dev/vcsa or /dev/vcc/a* device nodes are
+accessible by root only. If RHTVision based programs (SETEdit and INFView use
+the RHTVision library for their user interfase) have access to this device
+files, they run faster and better. This programs are designed to be used this
+way and they drop root privileges as soon as possible, so it shouldn't be a
+security risk.
+
+Q.: Why is INFView Debian version numbering scheme so ugly?
+A.: Well, I will try to explain: currently the versioning scheme is like this:
+infview_0.2.7-0.4.51-1_i386.deb, that means that the package is called
+"infview", that the version number of INFView is 0.2.7, that the version
+number of the editor that contains it is 0.4.51, that the Debian revision is 1
+and that it is compiled for the i386 architecture. The source package from
+where the INFView package is generated is SETEdit, so everytime I generate the
+SETEdit package, I generate also the INFView package. So given the following
+example:
+version:	SETEdit	INFView
+			0.4.50	0.2.7
+			0.4.51	0.2.7
+Notice that the Debian revision for the packages generated is -1 since it
+starts from 1 wherever the SETEdit package changes its version number and that
+the packages generated are these: setedit_0.4.50-1_i386.deb,
+setedit_0.4.51-1_i386.deb and in both cases infview_0.2.7-1_i386.deb.
+Now suppose that I have fixed a grave packaging bug in the 0.4.51 version of
+SETEdit with Debian revision 1, for dpkg, APT, DSelect and other tools, the
+INFView package didn't change, so your system will not be updated and also you
+won't notice that indeed there is a new version of INFView! There could be
+other problems as well like library incompatibilities and your sistem won't
+upgrade since it wouldn't realize that the version of INFView is different.
+
+Q.: Why the editor and the info viewer aren't available on the official Debian
+distribution?
+A.: Because the RHTVision package they depend on can't be at the moment
+on the Debian distribution. See RHTVision's package documentation to know why.
 
 Ivan Baldo <lubaldo@adinet.com.uy>, Tue, 16 Mar 1999 17:18:48 -0300
 
