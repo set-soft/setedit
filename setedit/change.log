@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.254  2002/12/09 13:23:11  set
+* Modified: Removed a lot of inline declarations in pphp.cc. They aren't
+good candidates for inline functions (no speed gain and code bloated).
+BC++ 5.5 made warnings about them.
+* Fixed: un/signed comparisson in editmain.cc.
+* Modified: BC++ 5.5 doesn't like empty declarations produced by 2
+consecutive ;.
+
 Revision 1.253  2002/12/09 13:21:39  set
 * Fixed: [Win32] gdi32 is needed to link. (new WinGr driver)
 * Fixed: configuration library to output less error messages during tests.

@@ -109,6 +109,7 @@ inline static bool atStartOfString()
     return false;
 }
 
+#if 0
 static bool atStartOfComment()
 {
     if(atEndOfBuf()) return false;
@@ -119,6 +120,7 @@ static bool atStartOfComment()
             return true;
     return false;
 }
+#endif
 
 //Skip blanks leaving curBufPtr after the blanks.
 //Returns true if it has skipped something.
