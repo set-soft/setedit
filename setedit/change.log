@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.509  2004/05/24 13:40:41  set
+* Added: Applied patch #959018 Add libset-dev Debian package. Submitted by
+Baurjan Ismagulov - ibr (S.F.). It needs some adjustments but can be used.
+
 Revision 1.508  2004/05/21 16:16:19  set
 * Fixed: The heuristic C/C++ parser to support list of exceptions
 (function throw(...) {body}).
