@@ -1501,6 +1501,8 @@ void OpenFileFromEditor(char *fullName)
 }
 
 
+#define README_1ST "readme.1st"
+
 static
 void ShowAboutStartBox(void)
 {
@@ -1513,11 +1515,13 @@ void ShowAboutStartBox(void)
     // Load the readme.1st
     #ifdef NoHomeOrientedOS
     char Name[PATH_MAX];
-    GetPathRelativeToRunPoint(Name,"contrib/setedit.bin/","readme.1st");
+    GetPathRelativeToRunPoint(Name,"contrib/setedit.bin/",README_1ST);
     if (!edTestForFile(Name)) // The simplified distribution have a more simple name
-       GetPathRelativeToRunPoint(Name,"texts/","readme.1st");
+       GetPathRelativeToRunPoint(Name,"texts/",README_1ST);
     #else
-    char *Name=ExpandFileNameToThePointWhereTheProgramWasLoaded("readme.1st");
+    char *Name=ExpandFileNameToThePointWhereTheProgramWasLoaded(README_1ST);
+    if (!edTestForFile(Name))
+       Name=ExpandFileNameToThePointWhereTheProgramWasLoaded(README_1ST ".gz");
     #endif
 
     if (!edTestForFile(Name))
