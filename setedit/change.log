@@ -1,4 +1,8 @@
 $Log$
+Revision 1.625  2004/10/08 21:23:16  set
+* Fixed: [Config][Solaris] modified to avoid the holidays plug-in creation.
+They need more work to detect native ld.
+
 Revision 1.624  2004/10/08 21:15:55  set
 * Fixed: [Config][Solaris] native ar is usable.
 
@@ -11,7 +15,7 @@ there have some major bugs, so you can't compile all.
 Revision 1.622  2004/10/04 20:24:51  set
 * Fixed: [Config] Typo in last patch, sorry.
 
-Revision 1.621  2004/10/03 22:29:00  terrible
+Revision 1.621  2004/10/03 22:29:01  terrible
 * [Debian] Updated packaging to version 0.5.4-1.
 
 Revision 1.620  2004/10/02 20:51:23  set

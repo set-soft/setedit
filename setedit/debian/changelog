@@ -1,3 +1,14 @@
+setedit (0.5.4-2) unstable; urgency=low
+
+  * A new version of Lintian detected that we are build depending on essential
+    packages so I have removed them: tar and gzip.
+  * The new lintian also detected that we are suggesting grep which it is an
+    essential package too, so removed from the Suggests.
+  * Lintian also detected that this changelog is not UTF-8, to fix it I will
+    not use international characters instead of using UTF-8 for simplicity.
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Sun, 10 Oct 2004 19:02:40 -0200
+
 setedit (0.5.4-1) unstable; urgency=low
 
   * New upstream version!!!
@@ -210,7 +221,7 @@ setedit (0.4.52-2) unstable; urgency=low
 
 setedit (0.4.52-1) unstable; urgency=low
 
-  * The "Arriba Uruguay nomá!!!" release, Uruguay goes to the Fifa
+  * The "Arriba Uruguay noma!!!" release, Uruguay goes to the Fifa
     World Soccer Championship Korea-Japan 2002, it was hard but our
     team made it!
   * Yes!!! New stable version of the editor!!!
