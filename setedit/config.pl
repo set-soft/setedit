@@ -292,7 +292,7 @@ CreateConfigH();
 GenerateMakefile();
 UpdateSpec();
 $ReplaceTags{'TVInclude'}=$TVInclude;
-$ReplaceTags{'cpp_compiler'}=$GXX;
+$ReplaceTags{'cpp_compiler'}=$GXX.' '.$stdcxx;
 ReplaceText('doc/gnumake.in','doc/Makefile');
 ReplaceText('internac/gnumake.in','internac/Makefile');
 # Shipped gettext:

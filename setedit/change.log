@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.470  2003/11/18 14:30:19  set
+* Added: More cases to the code that detects "Emacs comments" at the end of
+the file. From information provided by Grzegorz.
+
 Revision 1.469  2003/11/17 16:10:39  set
 * Added: Now if you don't specify any path to "search files under cursor"
 the editor tries to automagically fills this list using the output of cpp.
