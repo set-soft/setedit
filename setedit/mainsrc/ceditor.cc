@@ -5965,6 +5965,8 @@ void TCEditor::ExpandMacro(void)
    }
 }
 
+const unsigned MaxAuxMarker=3;
+
 /**[txh]********************************************************************
 
   Description:
@@ -5975,8 +5977,8 @@ know that's safe and know what to expand.
 
 void TCEditor::ExpandPMacro(void *pm, char *s)
 {
- unsigned AuxMarkers[3];
- int i;
+ unsigned AuxMarkers[MaxAuxMarker];
+ unsigned i;
  PMacroStr *d=(PMacroStr *)pm;
 
  if (d)
@@ -5989,7 +5991,7 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
     uint32 oldFlags=CompactFlags();
     ExpandFlags(d->flags);
  
-    memset(AuxMarkers,0,3*sizeof(unsigned));
+    memset(AuxMarkers,0,MaxAuxMarker*sizeof(unsigned));
     NotExpandingMacro=False;
     if (!s)
        s=ColToPointer();
@@ -6021,7 +6023,11 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
                         Pos=(unsigned)(ColToPointer()-buffer);
                      Val=*++s-0x30;
                      if (Val)
-                        AuxMarkers[Val-1]=Pos;
+                       {
+                        Val--;
+                        if (Val<MaxAuxMarker)
+                           AuxMarkers[Val]=Pos;
+                       }
                      else
                        {
                         XCur=curPos.x;
@@ -6042,7 +6048,7 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
        addToUndo(undoInMov);
        MoveCursorTo(XCur,YCur);
       }
-    for (i=0; i<3; i++)
+    for (i=0; i<MaxAuxMarker; i++)
         if (AuxMarkers[i])
            Markers[i+7]=AuxMarkers[i];
  
