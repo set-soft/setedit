@@ -846,7 +846,7 @@ Keywords=SUFFIXES,TANGLE,TEX,TEXI2DVI,VPATH,WEAVE,YACC,YACCR,YFLAGS
 Keywords=addprefix,addsuffix,basename,define,dir,else,endef,endif,export
 Keywords=filter,filter-out,findstring,firstword,foreach,ifdef,ifeq,ifndef
 Keywords=ifneq,include,join,notdir,origin,override,patsubst,shell,sort,strip
-Keywords=subst,suffix,unexport,vpath,vpath,wildcard,word,wordlist,words
+Keywords=subst,suffix,unexport,vpath,wildcard,word,wordlist,words
 End
 
 # -------------------------------- TCL/Tk scripts -----------------------------
