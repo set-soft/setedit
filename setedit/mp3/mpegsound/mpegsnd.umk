@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:03
 #
 
 ../../makes/libmpegsnd$(ExLIB):: \
