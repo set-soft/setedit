@@ -664,7 +664,7 @@ String2='
 Escape=\
 Keywords=and,assert,break,class,continue,def,del,elif,else,except,exec
 Keywords=finally,for,from,global,if,import,in,is,lambda,not,or,pass
-Keywords=print,raise,return,try,while,None,Ellipsis
+Keywords=print,raise,return,try,while,None,Ellipsis,yield
 #Special method names
 #Basic customization
 Keywords=__init__,__del__,__repr__,__str__,__cmp__,__hash__,__nonzero__

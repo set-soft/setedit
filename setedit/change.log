@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.333  2003/05/05 14:08:41  set
+* Added: The first step towards support for plug-ins to highlight holidays
+in the calendar. Currently is only supported for systems implementing
+dlopen() and I have a plug-in only for my country ;-). I'll soon make it
+selectable and write a mini-doc about how to write those plug-ins.
+
 Revision 1.332  2003/05/05 14:06:06  set
 * Modified: Now the dialog that shows the list of classes isn't case
 sensitive. That's why I feel that's much more intuitive and easier to use.
