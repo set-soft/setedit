@@ -28,6 +28,7 @@ $TVVersionNeeded='2.0.3';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
+$LibMIVersionNeeded='0.8.5';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
 # 5.0 will change the API, or maybe 6.0 but an API change is discussed
@@ -143,7 +144,7 @@ LookForDL() if ($OS eq 'UNIX');
 # An option to display screen savers ;-)
 LookForAA() if ($OS eq 'UNIX');
 # GDB/MI interface
-LookForMI() if ($OS eq 'UNIX');
+LookForMI($LibMIVersionNeeded) if ($OS eq 'UNIX');
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
@@ -1872,14 +1873,14 @@ sub LookForAA
 
 sub LookForMI()
 {
- my ($test);
+ my $vNeed=$_[0];
+ my ($ver,$test);
 
  print 'Looking for GDB/MI library: ';
- $test=$conf{'HAVE_GDB_MI'};
- if ($test eq 'yes')
+ $ver=$conf{'HAVE_GDB_MI'};
+ if ($ver)
    {
-    print "$test ";
-    print " OK\n";
+    print "$ver (cached) OK\n";
     return;
    }
  $test='
@@ -1888,12 +1889,25 @@ sub LookForMI()
  int main(void)
  {
   mi_set_gdb_exe("none");
-  printf("OK\n");
+  printf("%s\n",MI_VERSION_STR);
   return 0;
  }';
- $test=RunGCCTest($GCC,'c',$test,'-lmigdb');
- $conf{'HAVE_GDB_MI'}=($test=~/OK$/) ? 'yes' : 'no';
-
- print "$conf{'HAVE_GDB_MI'}\n";
+ $ver=RunGCCTest($GCC,'c',$test,'-lmigdb');
+ chop($ver);
+ if (length($ver))
+   {
+    if (CompareVersion($ver,$vNeed))
+      {
+       print "$ver OK\n";
+       $conf{'HAVE_GDB_MI'}='yes';
+       return;
+      }
+    print "no $vNeed+\n";
+   }
+ else
+   {
+    print "not installed\n";
+   }
+ $conf{'HAVE_GDB_MI'}='no';
 }
 

@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.585  2004/08/23 15:54:41  set
+* Fixed: [MSVC] The way the linker is called from the makefile. Arnold
+Wiegert's patch.
+* Fixed: [MSVC] Lack of Boolean cast in ceditor.cc. From Arnold.
+* Fixed: [MSVC] Lack of bool definition in pphp.c. From Arnold.
+* Fixed: [RPMs] Wrong directive in specs. Patch from bbcat.
+
 Revision 1.584  2004/08/22 22:45:16  set
 * Fixed: [Debug] Debug Window, Watches Window, Inspector Windows and
 Data Windows now saves not only its current size but also the "unzoomed"
