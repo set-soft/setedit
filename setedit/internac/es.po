@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-10-04 17:18-0300\n"
+"PO-Revision-Date: 2004-10-12 12:32-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1478,25 +1478,25 @@ msgstr ""
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11039
+#: ../mainsrc/ceditor.cc:11042
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11988
+#: ../mainsrc/ceditor.cc:11991
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12199
+#: ../mainsrc/ceditor.cc:12202
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13392
+#: ../mainsrc/ceditor.cc:13395
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13402
+#: ../mainsrc/ceditor.cc:13405
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
