@@ -30,8 +30,11 @@
 /* Gettext included with editor */
 /*#define FORCE_INTL_SUPPORT 1*/
 
+#define CONFIG_PREFIX "/usr"
+
+
 #define SEOS_UNIX
 #define SEOSf_Linux
-#define SECPU_
+#define SECPU_x86
 #define SEComp_GCC
 #define SECompf_
