@@ -1,4 +1,47 @@
 $Log$
+Revision 1.533  2002/01/02 01:09:57  root
+* Fixed: Missing TV for Linux and Win32 targets in config.pl.
+* Modified: Some headers to use Uses_* intead of including other headers.
+That's needed because a bug in glibc that enforces the declaration of
+_GNU_SOURCE before any standard header is included so compatlayer *must*
+include the standard headers.
+* Fixed: Need of ./ in internac makefile.
+
+Revision 1.532  2002/01/02 00:46:35  set
+* Modified: Moved getline replacement to TV compatlayer.
+* Modified: Wow! we are in 2002, so I changed some dates to reflect it.
+
+Revision 1.531  2002/01/02 00:08:03  set
+* Modified: version to 0.4.53 for a new release.
+
+Revision 1.530  2002/01/02 00:02:09  set
+* Modified: At least in my Win98 SE box some calls to internac/fix.pl just
+reboots my system. I guess that's just some memory corruption on the Perl
+interpreter triggered by one of the regular expressions. I changed it by a
+small C program.
+* Fixed: Lack of locale.h inclusion in infmain.cc hidded by the inclusion of
+libintl.h.
+* Fixed: Another /n missing at the end of a file reported by gcc 3.1.
+
+Revision 1.529  2001/12/31 22:02:19  set
+* Fixed: A couple of printf format missmatches that gcc started to report
+after some changes in TV (don't ask me why).
+
+Revision 1.528  2001/12/31 00:13:37  set
+* Modified: Moved rhtv and z libraries to .env/configuration.
+* Fixed: pcre library was mandatory.
+* Added: MSS 1.2.1 support --with-mss configuration option.
+* Modified: configuration batch files to support long command lines.
+* Fixed: A doubly defined vpath keyword in syntaxhl.shl (MSS reported).
+* Added: Some routines to free memory at exit, they help to reduce the
+ammount of problems reported by memory debuggers.
+* Fixed: A lot of new/new[]/malloc/delete/delete[]/free missmatches reported
+by MSS.
+
+Revision 1.527  2001/12/30 15:55:25  set
+* Added: A pmc file fox x51 assembler and updated the syntax highlight for
+it. Contributed by Alex Lozano <alex@inti.gov.ar>
+
 Revision 1.526  2001/12/17 00:08:16  set
 * Fixed: SDG determined the line number of a function using an old methode,
 now modified to work in machines where data must be aligned. Reported by
@@ -62,10 +105,10 @@ available for the public. I also added some macros contributed by Thiago.
 They are good examples but most of them are commented because they eat
 memory and aren't 100% generic.
 
-Revision 1.31  2001/12/04 13:57:13  set
+Revision 1.31 SF 2001/12/04 13:57:13  set
 * Synchronized with my personal CVS.
 
-Revision 1.30  2001/12/04 05:54:16  terrible
+Revision 1.30 SF 2001/12/04 05:54:16  terrible
 * Updated: Debian packaging to 0.4.52-2, no changes, just new debs.
 
 Revision 1.513  2001/12/04 03:12:56  set
@@ -96,6 +139,9 @@ up. Reported by David J. Hughes <David.J.Hughes@nokia.com>.
 * Added: Some notes about errors in xterm description shipped with Mandrake
 8.1 to Linux FAQ. From a report by ZhiJie <zhi4jie2@yahoo.com>.
 
+Revision 1.29 SF 2001/11/29 17:59:50  set
+* Synchronized with my personal CVS.
+
 Revision 1.510  2001/11/29 00:10:33  set
 * Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
 by David J. Hughes <David.J.Hughes@nokia.com>.
@@ -111,7 +157,7 @@ exists on Linux too.
 * Fixed: _S macro in pal.h (collides on Solaris). Never use _* ...
 * Fixed: Missing getopt in Solaris (must go to compatlayer).
 
-Revision 1.28  2001/11/28 13:56:30  set
+Revision 1.28 SF 2001/11/28 13:56:30  set
 * Synchronized with my personal CVS.
 
 Revision 1.507  2001/11/28 00:40:45  set
@@ -3578,7 +3624,7 @@ trying to use Allegro 3.0.
 * Added a check in the DOS' compress.pl to see if the make of the docs
 was successful.
 .
-Revision 1.30  1999/02/15 22:33:11  root (set)
+Revision 1.30  1999/02/15 22:33:11  set
 * Fixed fromunix.pl and added a cp call to copy the djgppenv.env file as
 rhide.env. Similar change in the fromdos.pl.
 * Some clarifications in the readme.src (Perl needed for installation).
