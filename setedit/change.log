@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.518  2004/06/09 15:08:33  set
+* Fixed: internac/gnumake.in didn't define CXX and instead replaced the
+two points where it was used. Suggested by Oswald.
+* Added: libbzip2, libpcre and libz. Now have configurable makefiles.
+* Modified: Now WinNT/Makefile* files are updated only in maintainer mode.
+
 Revision 1.517  2004/06/09 12:29:40  set
 * Fixed: [BC++] Wrong references to rhtv.lib instead of librhtv.lib.
 Reported by Arnold Wiegert (awiegert/telus/net).

@@ -212,6 +212,7 @@ fonts/thin.cc
 -fonts/thin.sft
 fromdos.pl
 fromunix.pl
+gettext/.cvsignore
 gettext/Makefile
 gettext/Makefile.in
 gettext/bindtextdom.c
@@ -249,6 +250,7 @@ holidays/holidays.conf
 holidays/Makefile
 holidays/Makefile.in
 holidays/README
+include/.cvsignore
 include/bufun.h
 include/ceditint.h
 include/ceditor.h
@@ -319,6 +321,7 @@ internac/Makefile
 internac/makelist.pl
 internac/po_list
 internac/utod.pl
+libbzip2/.cvsignore
 libbzip2/Makefile
 libbzip2/Makefile.bcc
 libbzip2/Makefile.nmk
@@ -329,12 +332,15 @@ libbzip2/bzlib_private.h
 libbzip2/compress.c
 libbzip2/crctable.c
 libbzip2/decompress.c
+libbzip2/gnumake.in
 libbzip2/huffman.c
 libbzip2/license
 libbzip2/randtable.c
 libbzip2/readme
+libpcre/.cvsignore
 libpcre/dftables.c
 libpcre/get.c
+libpcre/gnumake.in
 libpcre/internal.h
 libpcre/licence
 libpcre/Makefile
@@ -358,11 +364,13 @@ librhuti/stricat.cc
 librhuti/stridown.cc
 librhuti/stridup.cc
 librhuti/strifree.cc
+libz/.cvsignore
 libz/adler32.c
 libz/compress.c
 libz/crc32.c
 libz/deflate.c
 libz/deflate.h
+libz/gnumake.in
 libz/gzio.c
 libz/infblock.c
 libz/infblock.h
