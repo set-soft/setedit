@@ -9603,7 +9603,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  if (in_string)
    {
     attr|=StartString;
-    if (*s=='\n') // That's a particular case where lines are empty
+    if (s==end || *s=='\n') // That's a particular case where lines are empty
       {
        attr|=ExtString;
        if (in_prepro)
@@ -9613,7 +9613,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  if (in_string2)
    {
     attr|=StartString2;
-    if (*s=='\n')
+    if (s==end || *s=='\n')
       {
        attr|=ExtString2;
        if (in_prepro)
@@ -9623,7 +9623,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  if (in_string3)
    {
     attr|=StartString3;
-    if (*s=='\n')
+    if (s==end || *s=='\n')
       {
        attr|=ExtString3;
        if (in_prepro)
