@@ -344,6 +344,7 @@ public:
     int  prevWord(Boolean moveCursor=True);
     void MoveCursor(char *ori,char *dest);
     void EditLine();
+    int  ComputeXLineInEdition();
     void deleteRange(char *from,char *to,Boolean allowUndo=True);
     void deleteRangeLineInEdition(char *from,char *to,int x);
     int  LineWidth();

@@ -5433,7 +5433,7 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
        if (*inEditPtr=='\t') // Is over a Tab?
           curPos.x=LineWidth(bufEdit,inEditPtr);
        *inEditPtr++=cVal;
-       restCharsInLine--;
+       //restCharsInLine--; Why?!
        //return;
       }
     else
@@ -8409,6 +8409,23 @@ int TCEditor::AdjustBufEditFor(int lar)
  return 0;
 }
 
+/**[txh]********************************************************************
+  Description:
+  Computes inEditPtr value for the current curPos.x value.
+***************************************************************************/
+
+int TCEditor::ComputeXLineInEdition()
+{
+ int i;
+ // Calculate the position inside the buffer
+ for (inEditPtr=bufEdit, i=0; i<curPos.x && *inEditPtr;
+      inEditPtr++)
+    {
+     AdvanceWithTab(*inEditPtr,i);
+    }
+ if (i>curPos.x) // Only when the cursor is over a tab
+    inEditPtr--;
+}
 
 /****************************************************************************
 
@@ -8460,16 +8477,9 @@ void TCEditor::EditLine()
  IslineInEdition=True;
  memcpy(bufEdit,curLinePtr,lar);
  bufEdit[lar]=0;
- // Calculate the position inside the buffer
- for (inEditPtr=bufEdit, i=0; i<curPos.x && *inEditPtr;
-      inEditPtr++)
-    {
-     AdvanceWithTab(*inEditPtr,i);
-    }
- if (i>curPos.x) // Only when the cursor is over a tab
-    inEditPtr--;
+ i=ComputeXLineInEdition();
 
- // Is enough large to hold the cursor pos?
+ // Is large enough to hold the cursor pos?
  int added=0;
  if (i<curPos.x)
    { // Nop, insert spaces
@@ -11272,6 +11282,7 @@ void TCEditor::undoOneAction()
                  InsertCharInLine(un.s2.s[i],False);
             }
             MoveCursorTo(un.X,un.Y);
+            ComputeXLineInEdition();
             update(ufLine);
             break;
 
