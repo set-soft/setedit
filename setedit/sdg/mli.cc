@@ -315,6 +315,34 @@ void MLIBaseIf(TMLIBase *o,int start ,int cant)
       MLIRetInt(0);
 }
 
+DecFun(MLIBaseCond)
+{ 
+ CheckNumParams(cant<2 || (cant%2));
+ 
+ LocVar(If); 
+ LocVar(Then); 
+ 
+ for (int i=0; i < cant; i += 2) 
+    {
+     GetVar(i,If);
+     bool b = o->MLIBooleanValOf(If);
+     destroyFloatVar(If);
+ 
+     if (b)
+       {
+        GetVar(i+1,Then);
+        MLIRetObj(Then);
+        return;
+       }
+    } 
+ 
+ MLIRetInt(0); 
+ 
+CleanUp: 
+ return; 
+} 
+
+
 DecFun(MLIBaseLeft)
 {
  int l;
@@ -834,7 +862,8 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "strcmp",
  "strcasecmp",
  "length",
- "progn"/*,
+ "progn",
+ "cond"/*,
  "for"*/
 };
 
@@ -858,7 +887,8 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseStrCmp,
  MLIBaseStrCaseCmp,
  MLIBaseLength,
- MLIBaseEval/*,
+ MLIBaseEval,
+ MLIBaseCond/*,
  MLIBaseFor*/
 };
 
