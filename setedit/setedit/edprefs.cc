@@ -857,8 +857,8 @@ unsigned SetGeneralEditorOptionsMain(void)
     TDeskTopClock::mode=box.clk_mode;
     TSetEditorApp::maxOpenEditorsSame=atoi(box.editors);
     TEditorCollection::maxClosedToRemember=atoi(box.closed);
-    if (TEditorCollection::maxClosedToRemember<3)
-       TEditorCollection::maxClosedToRemember=3;
+    if (TEditorCollection::maxClosedToRemember<0)
+       TEditorCollection::maxClosedToRemember=0;
     if (TEditorCollection::maxClosedToRemember>200)
        TEditorCollection::maxClosedToRemember=200;
     /* Avoid dangerous values */
