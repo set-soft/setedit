@@ -1884,7 +1884,7 @@ int TInfFile::ConvertIt(long Pos)
  int ret=0,i;
  char *s;
  FILE *f;
- char Tempo[L_tmpnam],Ori[PATH_MAX];
+ char Tempo[PATH_MAX],Ori[PATH_MAX];
  Boolean wasCompressed;
 
  wasCompressed=IsCompressed;

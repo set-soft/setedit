@@ -1997,7 +1997,7 @@ int TXHGenerateAll(void)
  SOStack stk,stkL;
  char FileName[PATH_MAX];
  char LineB[PATH_MAX];
- char tmp1[L_tmpnam],tmp2[L_tmpnam];
+ char tmp1[PATH_MAX],tmp2[PATH_MAX];
  int ret=0;
 
  TXHError=0;

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.64  2002/04/08 14:11:53  set
+* Fixed: Buffer overflow in temporary names created by infview. Patch by
+Andris.
+
 Revision 1.63  2002/03/26 13:40:55  set
 * Fixed: use of popen(...,"rt") that fails for glibc 2.2.5. Patch by Andris.
 
