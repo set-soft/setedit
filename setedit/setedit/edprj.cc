@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -596,7 +596,7 @@ void SaveProject(void)
    }
  if (!s)
    {
-    if (DesktopFilesOptions & dstCreate)
+    if ((DesktopFilesOptions & dstCreate) || DstLoadedHere)
        s=(char *)cDeskTopFileName;
     else
       {// When we use just one desktop file try to back-up it
