@@ -175,8 +175,6 @@ directories to look for sources.
 #include <edspecs.h>
 #include <loadshl.h> // SHLNumberOf
 
-#include <sys/time.h> // Profile
-
 // TODO: remove
 #include <assert.h>
 
@@ -190,6 +188,8 @@ const char dwVersion=1;
 const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
+
+#include <sys/time.h> // Profile
 
 #define DEBUG_ME 0
 #if DEBUG_ME

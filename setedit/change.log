@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.580  2004/08/18 14:14:47  set
+* Fixed: [gcc] Some gcc 3.4.1 requirements:
+1) Default argument values for function pointers no longer allowed.
+2) Missing string header in one of the screen savers.
+3) Passing pointers to packed struct elements no longer supported.
+4) vsync collision with allegro, didn't annoy gcc 2.9x
+
 Revision 1.579  2004/08/17 15:06:50  set
 * Fixed: [config] wrong makeinfo 4.7 detection. Patch by Andrea.
 * Fixed: [Debug] missing dummies to compile without debug code.
