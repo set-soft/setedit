@@ -225,6 +225,21 @@ struct dayMonth *GetHolidays(int year, int &cant)
  return listOfHolidays;
 }
 
+void CleanUpHolidays()
+{
+ UnloadPlugIn();
+ if (countries)
+   {
+    for (int i=0; i<numCountries; i++)
+       {
+        delete[] countries[i].lang;
+        delete[] countries[i].country;
+        delete[] countries[i].module;
+       }
+    delete[] countries;
+   }
+}
+
 static
 void BroadcastChange()
 {

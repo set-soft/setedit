@@ -267,7 +267,7 @@ void look_in(char *command)
 
  // Keep record of our current location
  getcwd(TempDirName,PATH_MAX);
- pwdHere=strdup(TempDirName);
+ pwdHere=newStr(TempDirName);
  if (Visited->search(pwdHere,pos))
    { // Hey we already scanned it!
     delete pwdHere;

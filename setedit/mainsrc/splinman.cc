@@ -55,7 +55,7 @@ class TSpLAsoc : public TStringCollection
 {
 public:
  TSpLAsoc(ccIndex aLimit, ccIndex aDelta) :
-   TStringCollection(aLimit,aDelta) {}
+   TStringCollection(aLimit,aDelta) { }
  virtual void *keyOf(void *item) { return ((NodeCol *)item)->file; };
  virtual void freeItem( void *item );
 };
@@ -67,6 +67,7 @@ void TSpLAsoc::freeItem( void *item )
  CLY_destroy(p->SpecialLines);
  CLY_destroy(p->OriginalLines);
  CLY_destroy(p->idSources);
+ delete p;
 }
 
 static TSpLAsoc *SpLines=0;

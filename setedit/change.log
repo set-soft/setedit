@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.522  2004/06/14 14:39:20  set
+* Added: now extrimk.cc can also solve vpath sources.
+* Modified: valgrind command line script to report up-to 40 functions in
+the calling stack.
+- From valgrind:
+* Added: librhuti io and Special Lines clean-up at exit.
+* Fixed: new[]/delete missmatches related to WordUnderCursor, errors
+parser, pathtool, special lines and Tips.
+
 Revision 1.521  2004/06/14 14:34:15  set
 - From valgrind:
 * Fixed: duplicated keywords in syntaxhl.shl file. Additionaly now it

@@ -104,6 +104,7 @@ void TCalendarView::updateYear()
 TCalendarView::~TCalendarView()
 {
     TVIntl::freeSt(cNDays);
+    CleanUpHolidays();
     ::free(listOfHolidays);
 }
 

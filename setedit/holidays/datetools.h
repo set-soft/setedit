@@ -20,5 +20,6 @@ struct dayMonth
 extern struct dayMonth *GetHolidays(int year, int &cant);
 extern char *HolidaysGetLastError();
 extern void  ConfigureHolidays();
+extern void  CleanUpHolidays();
 #endif
 
