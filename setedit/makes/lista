@@ -164,8 +164,9 @@ extra/stackdbg.h
 extra/strncpyz.cc
 extra/strndup.cc
 fonts/.cvsignore
-fonts/10x20.cc
--fonts/10x20.sft
+-fonts/BTerminus.sft
+-fonts/Terminus.sft
+-fonts/XFont.sft
 fonts/Makefile
 -fonts/antique.016
 -fonts/antique.sft
@@ -175,6 +176,7 @@ fonts/boxroun0.000
 fonts/cntdown0.000
 fonts/cntdown.cc
 -fonts/cntdown.sft
+fonts/convpcf1.cc
 fonts/common1.h
 fonts/common2.h
 fonts/let.txt
