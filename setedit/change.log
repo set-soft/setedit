@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.337  2003/05/06 12:32:41  set
+* Fixed: A lot of typos and errors in docs. Revision by Bernd Becker
+<munin@munin.inka.de>.
+
 Revision 1.336  2003/05/06 12:31:49  set
 * Added: Conditional to compute statistics about the tags. Reports really
 interesting info.

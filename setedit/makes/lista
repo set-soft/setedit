@@ -226,11 +226,15 @@ gettext/ngettext.c
 gettext/plural.c
 gettext/plural.y
 gettext/textdomain.c
-holidays/Makefile
-holidays/Makefile.in
+holidays/.cvsignore
 holidays/argentina.c
 holidays/datetools.c
 holidays/datetools.h
+holidays/defholidays.c
+holidays/holidays.conf
+holidays/Makefile
+holidays/Makefile.in
+holidays/README
 include/bufun.h
 include/ceditint.h
 include/ceditor.h

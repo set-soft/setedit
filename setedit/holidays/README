@@ -1,0 +1,124 @@
+This document explains how to write a "holiday plug-in".
+
+1. Introduction
+2. The holidays.conf file
+3. Writing the plug-in
+4. Available functions
+5. The complex easter
+6. Adding the plug-in to the make process
+7. Adding the plug-in to the install process
+
+
+1. Introduction
+
+  The purpose of the plug-ins is just highlight certain dates in the
+calendar. I think the best is to indicate which days are holidays, but it
+can be used for other important dates.
+  As the dates depends on the country this is implemented using external
+modules. At least in my country, Argentina, we have some complex rules to
+move some holidays so a simple table isn't enough. For this reason the
+plug-ins are binaries and not simple text files.
+  To determine which plug-in will be used the editor scans the
+`holidays.conf' file using the content of the LANG environment variable.
+This variable usually holds the language plus the local variant. In my case
+this variable have the following value: es_AR
+  It means my language is ES (ISO code for Spain => spanish) and the
+variant is AR (ISO code for Argentina).
+
+
+2. The holidays.conf file
+
+  This file contains entries like it:
+
+LANG         "Country name"         plug-in
+
+  The first field should match the LANG environment variable, the last
+entry in the list should use `*' and is considered the default. The rest
+are self-explanatory.
+  So the first thing you must do is add an entry here. In my case is:
+
+es_AR        "Argentina"            argentina.so
+
+  If you are in the USA it could be:
+
+en_US        "United States of America"     usa.so
+
+
+3. Writing the plug-in
+
+  The plug-in must be coded in C, if you use C++ you must export the
+GetListOfHolidays as a C function (extern "C" ...).
+  An example of a very simple plug-in is defholidays.c, it is used to
+highlight the most common holidays for the christian world and should be
+the deafult entry in the holidays.conf.
+  The plug-in is just a dynamic library and it must export a function
+called GetListOfHolidays with the following protype:
+
+struct dayMonth *GetListOfHolidays(int year, int *cant);
+
+  This function receives the year you must use to compute the holidays and
+a pointer to an integer to return the number of holidays.
+  The funtion must return a newly allocated block of memory (using malloc)
+containing an array of dayMonth structs. It must contain at least `cant'
+elements.
+  The fields in the dayMonth struct are:
+
+int day:    The day of the holiday. That's the day of the month and you
+            usually see in the calendar.
+int month:  The number of month (1=january ... 12=december).
+const char *description: A pointer to a string containing a brief
+                         description of the holiday. The string should be a
+                         constant (won't be freed).
+
+
+4. Available functions
+
+  You can use any standard C routine additionally you have access to the
+functions defined in datetools.h and implemented in datetools.c
+(datetools.so). The most important are:
+
+int  Day2Number(int d, int m, int y);
+Converts a day into an abstract number suitable to additions and
+substractions.
+
+void Number2Day(int nNumber, int *day, int *month, int *year);
+Converts the abstract number back into a date.
+
+int  WeekDay(int d, int m, int y);
+Finds which day of the week corresponds to certain date.
+
+  You can find more information in datetools.c.
+
+
+5. The complex easter
+
+  Easter sunday isn't easy to compute for this reason I provide a function:
+
+void Easter(int nY, int *nThursday, int *nFriday);
+
+  It computes the number of day for the thurday and friday before easter
+sunday. Use Number2Day to convert the numbers into dates. See the
+defholidays.c for an example.
+
+
+6. Adding the plug-in to the make process
+
+  You have to modify the files Makefile and Makefile.in (or just
+Makefile.in and then run the configure script). You just need to add the
+name of the plug-in (without extension) to the line that says LIBS=
+
+
+7. Adding the plug-in to the install process
+
+  You have to add the plug-in source file name to the file ../makes/lista
+This file is alphabetically sorted.
+  You also have to add a line to ../makes/linux/compress.pl. Search for a
+line containing:
+
+CopyIf('../../holidays/holidays.conf',$libdir.'/holidays.conf');
+
+  And then add a line like it:
+
+CopyIf('../../holidays/plug-in_name',$libdir.'/plug-in_name');
+
+
