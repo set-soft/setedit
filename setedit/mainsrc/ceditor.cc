@@ -2076,6 +2076,21 @@ void TCEditor::ScrollLinesDown(int lines)
  update(ufView);
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Used to show something in the status line from a function that knows
+nothing about TCEditors.
+  
+***************************************************************************/
+
+static
+void CallBackStatusLine(const char *msg, void *obj)
+{
+ TCEditor *e=(TCEditor *)obj;
+ e->setStatusLine((char *)msg);
+}
+
 int TCEditor::handleCommand(ushort command)
 {
  Boolean centerCursor=(!cursorVisible()) ? True : False;
@@ -3465,7 +3480,8 @@ int TCEditor::handleCommand(ushort command)
  
            case cmcLoadFileUnderCur:
                 flushLine();
-                LoadFileUnderCursor(curLinePtr,ColToPointer(),LenWithoutCRLF(curPos.y,curLinePtr));
+                LoadFileUnderCursor(curLinePtr,ColToPointer(),LenWithoutCRLF(curPos.y,curLinePtr),
+                                    CallBackStatusLine,this);
                 break;
  
            // ------ From the File -------

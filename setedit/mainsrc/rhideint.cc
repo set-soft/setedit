@@ -244,3 +244,18 @@ int GetMaxWindowNumber()
  return 0;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Look for a file name in the project. If the file is there return the full
+name of the file (with path).
+  This is also used by the function that looks for a file under the cursor.
+  
+  Return: A newly allocated file name or NULL.
+  
+***************************************************************************/
+
+char *GetAbsForNameInPrj(const char */*name*/)
+{
+ return NULL;
+}

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #define Uses_string
@@ -6,6 +6,7 @@
 #define Uses_alloca
 #define Uses_ctype
 #define Uses_TVCodePage
+#define Uses_snprintf
 #ifdef DEBUG
  #define Uses_MsgBox
 #endif
@@ -16,20 +17,30 @@
 int isValidForFile(char *c, char *start);
 extern void OpenFileFromEditor(char *fullName);
 
-/**********************************************************************************
+#define NoFile() NoFileNameUnderCursor(Message,data)
 
-   Function: void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
+static
+void NoFileNameUnderCursor(void (*Message)(const char *msg, void *data),
+                           void *data)
+{
+ const char *msg=TVIntl::getTextNew(__("No file name under cursor"));
+ Message(msg,data);
+ DeleteArray(msg);
+}
 
-   Type: Normal.
+/**[txh]********************************************************************
 
-   Objetive: Try to separate the name of the file under the cursor and pass it
-             to the editor to load this file.
+  Description:
+  Try to separate the name of the file under the cursor and pass it to the
+editor to load this file.
+  
+  Return: True if loaded.
+  
+***************************************************************************/
 
-   by SET.
-
-**********************************************************************************/
-
-void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
+Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
+                            void (*Message)(const char *msg, void *data),
+                            void *data)
 {
  char *end=lineStart+l;
  char *startWord,*endWord,*name,*fullName;
@@ -38,7 +49,10 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
  // eat all the white spaces at the start
  for (;lineStart<end && ucisspace(*lineStart); lineStart++);
  if (lineStart>=end)
-    return;
+   {
+    NoFile();
+    return False;
+   }
 
  if (strncmp(lineStart,"#include",8)==0)
    { // Is #include, so is easy to parse
@@ -47,12 +61,18 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
     for (;lineStart<end && *lineStart!='\"' && *lineStart!='<'; lineStart++);
     for (lineStart++;lineStart<end && ucisspace(*lineStart); lineStart++);
     if (lineStart>=end)
-       return;
+      {
+       NoFile();
+       return False;
+      }
     startWord=lineStart;
     // Search for " or < or space
     for (;lineStart<end && *lineStart!='\"' && *lineStart!='>' && !ucisspace(*lineStart); lineStart++);
     if (lineStart>=end)
-       return;
+      {
+       NoFile();
+       return False;
+      }
     endWord=lineStart;
    }
  else
@@ -68,7 +88,10 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
        // If isn't in a word walk forward
        for (;cursor<end && !isValidForFile(cursor,lineStart); ++cursor);
        if (!isValidForFile(cursor,lineStart))
-          return;
+         {
+          NoFile();
+          return False;
+         }
       }
     startWord=cursor;
     // Now forward to the end
@@ -78,7 +101,10 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
  // Now we have a file name enclosed
  lname=endWord-startWord;
  if (!lname)
-    return;
+   {
+    NoFile();
+    return False;
+   }
  name=(char *)alloca(lname+1);
  strncpy(name,startWord,lname);
  name[lname]=0;
@@ -90,7 +116,18 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
    {
     OpenFileFromEditor(fullName);
     free(fullName);
+    return True;
    }
+
+ // Generate a message indicating we couldn't load it
+ const char *msg=TVIntl::getTextNew(__("Can't find \"%s\" file"));
+ int len=strlen(msg)+lname+1;
+ char *msgF=(char *)alloca(len);
+ CLY_snprintf(msgF,len,msg,name);
+ Message(msgF,data);
+ DeleteArray(msg);
+
+ return False;
 }
 
 int isValidForFile(char *c, char *start)

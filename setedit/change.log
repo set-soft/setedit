@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.468  2003/11/17 16:09:45  set
+* Fixed: When starting a project using a different window size the project
+window could get wrong size and even become outside the screen. Reported
+by Oswald.
+
 Revision 1.467  2003/11/17 16:08:05  set
 * Added: The posibility to override the "install" command in makefiles.
 Suggested by Oswald.

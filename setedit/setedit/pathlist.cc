@@ -14,11 +14,14 @@ more memory and disk space but is much more easy to setup.
 #define Uses_string
 #define Uses_limits
 #define Uses_stdlib
+#define Uses_stdio
+#define Uses_unistd
 // TV
 #define Uses_TCollection
 #define Uses_TStreamableClass
 #define Uses_fpstream
 #define Uses_MsgBox
+#define Uses_TScreen
 // EasyDiag
 #define Uses_TSHzLabel
 #define Uses_TSInputLine
@@ -34,6 +37,7 @@ more memory and disk space but is much more easy to setup.
 #define Uses_SETAppDialogs
 #define Uses_SETAppConst
 #include <setapp.h>
+#include <rhutils.h>
 
 class TPathList : public TCollection, public TStringable
 {
@@ -103,27 +107,86 @@ void PathListLoad(fpstream& s)
     s >> IncludeList;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Fill the list of directories with the include directories. We use the
+output of cpp or a guess.
+  
+  Return: !=0 if we got something from cpp
+  
+***************************************************************************/
+
+int PathListPopulate()
+{
+ static int called=0;
+
+ called=1;
+ IncludeList=new TPathList();
+
+ // 1) Try invoking the GNU preprocessor
+ char *err=open_stderr_out();
+ TScreen::System("cpp -x c++ -v /dev/null");
+ close_stderr_out();
+ // Check what we got
+ FILE *f=fopen(err,"r");
+ if (f)
+   {
+    char resp[PATH_MAX];
+    int state=0;
+    while (!feof(f) && state!=2)
+      {
+       fgets(resp,PATH_MAX,f);
+       switch (state)
+         {
+          case 0:
+               if (strncmp(resp,"#include <",10)==0)
+                  state=1;
+               break;
+          case 1:
+               if (resp[0]!=' ')
+                  state=2;
+               else
+                 {// Insert the path
+                  int l=1;
+                  char *s=resp;
+                  for (; s[l] && CLY_IsntEOL(s[l]); l++);
+                  s[l]=0;
+                  char *path=new char[l];
+                  memcpy(path,s+1,l);
+                  IncludeList->insert(path);
+                  printf("Agregando <%s>\n",path);
+                 }
+               break;
+         }
+      }
+    fclose(f);
+   }
+ unlink(err);
+
+ if (IncludeList->getCount())
+    return 1;
+
+ char buffer[PATH_MAX];
+ #ifdef SECompf_djgpp
+ char *djdir=getenv("DJDIR");
+ if (!djdir)
+    djdir="c:/djgpp";
+ strcpy(buffer,djdir);
+ strcat(buffer,"/include");
+ #else
+ strcpy(buffer,"/usr/include");
+ #endif
+ IncludeList->insert(newStr(buffer));
+
+ return 0;
+}
+
 int PathListGetItem(ccIndex pos, char *buffer)
 {
  if (!IncludeList)
-   {
-    if (!pos)
-      {
-       // If none defined try to guess
-       #ifdef SECompf_djgpp
-       char *djdir=getenv("DJDIR");
-       if (!djdir)
-          djdir="c:/djgpp";
-       strcpy(buffer,djdir);
-       strcat(buffer,"/include");
-       #else
-       strcpy(buffer,"/usr/include");
-       #endif
-       return 1;
-      }
-    return 0;
-   }
- if (pos>=IncludeList->getCount())
+    PathListPopulate();
+ if (!IncludeList || pos>=IncludeList->getCount())
     return 0;
  strcpy(buffer,(const char *)IncludeList->at(pos));
  return 1;
@@ -185,7 +248,7 @@ void PathListEdit(void)
 {
  if (!IncludeList)
    {
-    IncludeList=new TPathList();
+    PathListPopulate();
     if (!IncludeList)
        return;
    }

@@ -1366,3 +1366,13 @@ char *GetRelIfFileInPrj(char *name)
  return relName;
 }
 
+char *GetAbsForNameInPrj(const char *name)
+{
+ ccIndex pos;
+
+ if (PrjExists() && ProjectList->Search((char *)name,pos))
+    return ((PrjItem *)(ProjectList->at(pos)))->name;
+ return NULL;
+}
+
+

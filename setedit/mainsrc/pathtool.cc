@@ -31,6 +31,7 @@
 
 // Get HIDDEN_DIFFERENT, it should be moved to CLY
 #define Uses_SETAppFiles
+#define Uses_SETAppProject
 #include <setapp.h>
 
 #ifdef SEOS_Win32
@@ -221,7 +222,7 @@ char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s)
  return PathOrig;
 }
 
-int FindFile(const char * name,char * & fullName)
+int FindFile(const char *name, char *&fullName)
 {
  if (strlen(name)>=PATH_MAX)
     return 0;
@@ -247,8 +248,14 @@ int FindFile(const char * name,char * & fullName)
       }
     if (!found)
       {
-       delete fullName;
-       return 0;
+       // Try with the project
+       char *prjName=GetAbsForNameInPrj(name);
+       if (!prjName)
+         {
+          DeleteArray(fullName);
+          return 0;
+         }
+       strcpy(fullName,prjName);
       }
    }
  CLY_fexpand(fullName);

@@ -423,6 +423,8 @@ extern char DstLoadedHere;
 #endif
 
 #ifdef Uses_SETAppProject
+class TRect;
+
 extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
@@ -439,6 +441,7 @@ extern int SetForceTargetBits(uint32 bits);
 extern void ProjectInsertAutoTagFiles();
 extern Boolean ProjectGetSize(TRect &r);
 extern char *GetRelIfFileInPrj(char *name);
+extern char *GetAbsForNameInPrj(const char *name);
 
 // The forceTarget is a bitmap for each target suported by the project.
 // Currently the only target is the TAGs file.
