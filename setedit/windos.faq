@@ -1,5 +1,5 @@
   Here I'll put some common and not so common questions about the editor
-running under DOS.
+running under DOS and Windows.
 
 1. Video questions.
 1.1 Screen goes black (or green or any strange option) when I exit the
@@ -25,6 +25,9 @@ running windowed under W9x, why?
 6. Keyboard problems
 6.1 The editor doesn't catch all the keyboard combinations, why?
 6.2 I get random keys pressed all the time, why?
+
+7. sLisp macro language
+7.1 How can I extend it?
 =============================================================================
 1. Video questions.
 
@@ -206,6 +209,7 @@ program is running.
 <Bastardizer@t-online.de> reported similar problems with Creative Ensoniq
 AudioPCI (Soundblaster) card. This topic was also discussed in the Allegro
 mailing list.
+
 =============================================================================
 6. Keyboard problems
 
@@ -221,6 +225,7 @@ resident (TSR) program included in the kextend.zip file of this distribution.
 detect if a key was pressed and extract it). If you use the -b option you'll
 lose some keyboard combinations.
 
+-----------------------------------------------------------------------------
 6.2 I get random keys pressed all the time, why?
 
 A: We use special routines to extract keys directly from the BIOS queue, but
@@ -230,6 +235,174 @@ force the editor to use BIOS to extract keys. You'll lose some keyboard
 combinations.
   We need volunteers that have this problem to help as find the problem, so,
 if you experiment it please send me an e-mail.
+
+=============================================================================
+7. sLisp macro language
+
+7.1 How can I extend it?
+
+A: You must have C++ skills. The important source files are located in the
+sdg directory and are prefixed with "mli". The header files are located in
+sdg/include. Here is a small text I wrote for a user (Thiago) that
+contributed an sLisp command. It helped Thiago so it could help you too:
+
+<---------------------
+> I've been reading the code of the sLisp interpreter, because I am
+> trying to implement 'cond'. But I am having a hard time trying to
+> understand it. Can you help me?
+
+Of course but be patient I don't have long amounts of time.
+
+> Can you give an overview of how is works?
+> How is the sLisp code stored in memory after it is read?
+
+There is a variable type for code, is basically some kind of string
+variable that holds a function.
+
+> I noticed that there is a "main" function in mli.cc. Is it possible
+> to make a stand-alone version of the interpreter? How?
+
+I think it was created for the first tests and trying to compile it
+now could be a challenge.
+
+> What is the difference between TLispCode and TLispCommand?
+
+When you define a macro you are creating some kind of function. This
+is stored in a code variable.
+A code variable is like a string that contains a sLisp function.
+When the parser tries to reduce a one statement like it (command ....)
+uses a Command variable. That's just like an integer that indicates
+which command must be applied to the arguments list.
+
+I think the most important thing you must know to achieve your
+objetive is how to extend the language.
+sLisp have a group of core functions, they are defined in mli.cc look
+for TMLIBase::cNames[MLIBaseCommands] and Command
+TMLIBase::cComms[MLIBaseCommands]. The MLIBaseCommands value is
+defined in mlibase.h, to add a new command or operator you must first
+increment the counter and then add the name and function that
+implements it to the arrays (char *TMLIBase::sNames[MLIBaseSymbols]
+and Command TMLIBase::sComms[MLIBaseSymbols] for operators).
+The core functionallity is extended by derived classes. One
+specializes sLisp for SDG and the other for the editor. Commands that
+only works for an edition buffer are defined in mliedito.cc (see char
+*TMLIEditor::cNames[MLIEditorCommands]) The number of defined commands
+is in mliedito.h.
+To reduce the ammount of typing sLisp commands implementations relies
+on some cleaver macros.
+One important detail is that Lisp language is evaluated just like a
+stack, things are ever nested. For this reason you'll see every
+function will release your arguments from this stack at exit.
+[Note: It applies to local copies of the arguments, the real arguments
+are automatically released].
+Let me show you a simple function:
+
+DecFun(MLIBaseLeft)
+{
+ int l;
+ LocVarStr(string);
+ LocVarInt(left);
+ 
+ CheckNumParams(cant!=2);
+ GetString(0,string);
+ GetInteger(1,left);
+ 
+ l=left->val;
+ if (l>string->len)
+    l=string->len;
+ 
+ MLIRetStrLen(string->str,l);
+ 
+ CleanUp:
+ destroyFloatVar(string);
+ destroyFloatVar(left);
+}
+
+DecFun macro declares the C arguments list for this function, all
+sLisp commands have the same so this macro abstracts it.
+LocVarStr(string); declares a sLisp variable of type String called
+string. That's just a pointer to object declaration.
+In a similar way LocVarInt(left); declares an integer variable called
+left.
+Those are just pointers and doesn't have any value, in fact they are
+null pointers.
+To check we got the right number of arguments we use:
+CheckNumParams(cant!=2); here if the number of arguments is !=2 a
+parser error is generated. Some arguments could be optional and is
+possible to implement functiona that takes a arbitrary number of
+arguments. The cant variable says how many arguments we got.
+To retrieve the arguments we use: GetString(0,string) and
+GetInteger(1,left) the first takes a string that is the first argument
+in the list (index 0) and the second takes an integer. They assign
+their value to the variables we defined at the beginning of the
+function. If the argument tipe doesn't match the code generates a
+syntax error (or something like that). You can retreive just a
+variable without speciying the type and act according the type.
+The next 3 lines implements the function core.
+To return a new string we use MLIRetStrLen(string->str,l).
+And finally comes a clean up. This is a label because the above
+mentioned macros jumps here in case of error.
+Here you must release any variable used.
+Take a look at mlibase.h to know about the available macros.
+As you can see the code is simple and clean thanks to the macros.
+
+Here is an interesting example: eval
+
+DecFun(MLIBaseEval)
+{
+ int i;
+ LocVar(Variable);
+ 
+ for (i=0; i<cant; i++)
+    {
+     GetVar(i,Variable);
+     if (i+1==cant)
+        MLIRetObj(Variable);
+     else
+        destroyFloatVar(Variable);
+    }
+ CleanUp:
+ return;
+}
+
+Looks quite simple and could be even confusing. The first interesting
+thing here is that we use LocVar and GetVar, they takes just a
+variable. It doesn't matter what type. When you take a variable it
+could be just a variable (string, integer, etc.) or it could be a Code
+variable. The GetVar applied to a Code variable evaluates it to reduce
+the Code into a simple variable. So here just getting each variable is
+enough to evaluate all the statements. The number of arguments is
+arbitrary and we just use a for. The code returns the last object we
+evaluated, not a copy, and that's why we destroy all but the last.
+And here is the if example. I don't remmember why but it is
+implemented without all the macros:
+
+void MLIBaseIf(TMLIBase *o,int start ,int cant)
+{
+ if (cant<2 || cant>3)
+   {
+    o->Error=MLINumParam;
+    MLIRetNULL();
+    return;
+   }
+ TLispVar *p=o->Solve(start);
+ int boolval=o->MLIBooleanValOf(p);
+ destroyFloatVar(p);
+ if (boolval)
+    MLIRetObj(o->Solve(start+1));
+ else
+   if (cant==3)
+      MLIRetObj(o->Solve(start+2));
+   else
+      MLIRetInt(0);
+}
+
+Here you can see what's inside the usual macros like GetxxxVar, the
+->Solve is needed to evaluate an argument.
+<---------------------
+
+If you need more information just e-mail me.
+
 =============================================================================
 End of file
 
