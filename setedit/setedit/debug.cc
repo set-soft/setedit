@@ -2417,7 +2417,7 @@ protected:
 
 Boolean TPVarTree::canBeDestroyed()
 {
- if (!dbg || tree->outOfScope)
+ if (!dbg || outOfScope)
     return True;
  // We can't delete the variable while running
  return dbg->GetState()==MIDebugger::running ? False : True;
@@ -6330,7 +6330,7 @@ char *TDskDataWin::GetText(char *dest, short maxLen)
 
 void TDskDataWin::Insert(TDataWindow *w)
 {
- AddAndInsertDskWin(new TDskDataWin(w))
+ AddAndInsertDskWin(new TDskDataWin(w));
 }
 
 void TDskDataWin::saveData(opstream &os)

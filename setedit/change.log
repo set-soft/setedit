@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.586  2004/08/24 00:01:16  set
+* Added: [config] libmigdb version detection.
+
 Revision 1.585  2004/08/23 15:54:41  set
 * Fixed: [MSVC] The way the linker is called from the makefile. Arnold
 Wiegert's patch.
