@@ -1,4 +1,7 @@
 $Log$
+Revision 1.29  2001/11/29 17:59:50  set
++
+
 Revision 1.510  2001/11/29 00:10:33  set
 * Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
 by David J. Hughes <David.J.Hughes@nokia.com>.
@@ -15,7 +18,7 @@ exists on Linux too.
 Revision 1.28  2001/11/28 13:56:30  set
 +
 
-Revision 1.507  2001/11/28 00:40:45  root
+Revision 1.507  2001/11/28 00:40:45  set
 * Added: Now is possible to execute a selected sLisp code even if it have
 spaces at the beggining. Patch by Thiago.
 * Added: When running a selected sLisp code the result is shown in the
