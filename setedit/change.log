@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.601  2004/09/10 18:11:57  set
+* Added: Debug and InfView stuff to redmond.smn. InfView stuff to
+simple.smn.
+* Added: [i18n] Data Window menu and missing debug menu entries to
+editmenu.cc.
+* Updated: [i18n] Spanish translation.
+
 Revision 1.600  2004/09/09 20:47:22  set
 * Fixed: [Debug] various menu entries associated to dialogs that didn't
 indicate it using "...".

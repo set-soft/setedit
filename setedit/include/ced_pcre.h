@@ -17,7 +17,7 @@
  extern void  (*pcre_free)(void *p);
 #else
  #define STATIC
- #include <pcre.h>
+ #include PCRE_HEADER_NAME
  #undef STATIC
 #endif
 

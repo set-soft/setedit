@@ -28,7 +28,7 @@ $TVVersionNeeded='2.0.3';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
-$LibMIVersionNeeded='0.8.5';
+$LibMIVersionNeeded='0.8.6';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
 # 5.0 will change the API, or maybe 6.0 but an API change is discussed
@@ -233,6 +233,7 @@ $MakeDefsRHIDE[2].=' '.$libs;
 $MakeDefsRHIDE[2].=' -L../libz'     if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libpcre'  if (@conf{'PCREShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' -L../libmigdb/src' if (@conf{'migdbShipped'} eq 'yes');
 # Subprojects generates libraries in the makes directory
 $MakeDefsRHIDE[2].=' -L.';
 
@@ -244,6 +245,7 @@ $test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
+$test.=' ../libmigdb/src' if (@conf{'migdbShipped'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
 
 # The support libraries shouldn't generate dependencies
@@ -841,7 +843,7 @@ sub TVConfigOption
 
 sub LookForPCRE
 {
- my ($test205,$test206,$t2,$test,$dir);
+ my ($test205,$test206,$t2,$test,$dir,$subpcre);
 
  print 'Looking for PCRE library: ';
  $test=@conf{'HAVE_PCRE_LIB'};
@@ -853,7 +855,11 @@ sub LookForPCRE
  $test205='
 #include <stdio.h>
 #include <stdlib.h>
-#include <pcre.h>
+#ifdef SUBPCRE
+ #include <pcre/pcre.h>
+#else
+ #include <pcre.h>
+#endif
 int main(void)
 {
  pcre *compiled;
@@ -875,24 +881,38 @@ int main(void)
  $test205.=$t2;
 
  # See if 2.0.6+ is installed
+ $subpcre=0;
  $test=RunGCCTest($GCC,'c',$test206,"-lpcre");
+ if ($test ne "OK\n")
+   {
+    $test=RunGCCTest($GCC,'c',$test206,"-lpcre -DSUBPCRE");
+    $subpcre=1;
+   }
  if ($test eq "OK\n")
    {
     print "v2.0.6 or better OK\n";
     $conf{'HAVE_PCRE_LIB'}='yes';
     $conf{'HAVE_PCRE206'}='yes';
     $conf{'PCREShipped'}='no';
+    $conf{'PCRE_HEADER'}=$subpcre ? '<pcre/pcre.h>' : '<pcre.h>';
     return;
    }
  print 'no 2.0.6+, ';
  # See if 2.0+ is installed
+ $subpcre=0;
  $test=RunGCCTest($GCC,'c',$test205,"-lpcre");
+ if ($test ne "OK\n")
+   {
+    $test=RunGCCTest($GCC,'c',$test205,"-lpcre -DSUBPCRE");
+    $subpcre=1;
+   }
  if ($test eq "OK\n")
    {
     print "v2.0 or better OK\n";
     $conf{'HAVE_PCRE_LIB'}='yes';
     $conf{'HAVE_PCRE206'}='no';
     $conf{'PCREShipped'}='no';
+    $conf{'PCRE_HEADER'}=$subpcre ? '<pcre/pcre.h>' : '<pcre.h>';
     return;
    }
  print 'no 2.0+, ';
@@ -910,6 +930,7 @@ int main(void)
  $conf{'HAVE_PCRE_LIB'}='yes';
  $conf{'HAVE_PCRE206'}='yes';
  $conf{'PCREShipped'}='yes';
+ $conf{'PCRE_HEADER'}='<pcre/pcre.h>';
  print "using shipped one.\n";
 }
 
@@ -1314,6 +1335,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_CALENDAR','Calendar');
  $text.=ConfigIncDefYes('HAVE_DL_LIB','Support for runtime dynamic libs');
  $text.="\n#define DL_HEADER_NAME <".$conf{'dl_header'}.".h>\n";
+ $text.="#define PCRE_HEADER_NAME ".$conf{'PCRE_HEADER'}."\n";
 
  $text.="\n\n#define CONFIG_PREFIX \"";
  $a=$conf{'prefix'};
@@ -1351,7 +1373,7 @@ sub GenerateMakefile
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
  my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays,$mantmode);
- my ($aux,$extraIns,$extraInsVar);
+ my ($aux,$extraIns,$extraInsVar,$libmigdb);
 
  print "Generating Makefile\n";
 
@@ -1387,6 +1409,7 @@ sub GenerateMakefile
  $internac=@conf{'xgettext'} ne 'no';
  $docbasic=(@conf{'makeinfo'} ne 'no') && (@conf{'makeinfo'} ne 'broken');
  $holidays=@conf{'dl'} eq 'yes';
+ $libmigdb=@conf{'migdbShipped'} eq 'yes';
 
  if (@conf{'compressExe'} eq 'undef')
    {# Default is to compress InfView and the editor only for non-UNIX targets
@@ -1412,6 +1435,7 @@ sub GenerateMakefile
  $text.=" internac"   if ($internac);
  $text.=" doc-basic"  if ($docbasic);
  $text.=" holidays"   if ($holidays);
+ $text.=" libmigdb"   if ($libmigdb);
  # all targets
  $text.="\n\nall: Makefile editor";
  $text.=" libset"    if ($libset);
@@ -1459,6 +1483,12 @@ sub GenerateMakefile
     $text.="\n\nlibintl:\n";
     $text.="\t\$(MAKE) -C gettext";
    }
+ # libmigdb
+ if ($libmigdb)
+   {
+    $text.="\n\nlibmigdb:\n";
+    $text.="\t\$(MAKE) -C libmigdb";
+   }
  # i8n
  if ($internac)
    {
@@ -1479,6 +1509,7 @@ sub GenerateMakefile
  $text.=" libpcre"    if ($libpcre);
  $text.=" libintl"    if ($libintl);
  $text.=" holidays"   if ($holidays);
+ $text.=" libmigdb"   if ($libmigdb);
  $text.=" include/vername.h" if ($mantmode);
  #
  # MinGW tools I tested are broken and can't generate these targets
@@ -1599,6 +1630,7 @@ sub GenerateMakefile
  $text.="\t\$(MAKE) -C libz clean\n" if ($libz);
  $text.="\t\$(MAKE) -C libpcre clean\n" if ($libpcre);
  $text.="\t\$(MAKE) -C holidays clean\n" if ($holidays);
+ $text.="\t\$(MAKE) -C libmigdb clean\n" if ($libmigdb);
 
  replace('Makefile',$text);
 }
@@ -1883,6 +1915,7 @@ sub LookForMI()
     print "$ver (cached) OK\n";
     return;
    }
+ $conf{'migdbShipped'}='no';
  $test='
  #include <stdio.h>
  #include <mi_gdb.h>
@@ -1902,12 +1935,20 @@ sub LookForMI()
        $conf{'HAVE_GDB_MI'}='yes';
        return;
       }
-    print "no $vNeed+\n";
+    print "no $vNeed+";
    }
  else
    {
-    print "not installed\n";
+    print "not installed";
    }
+ if (-d 'libmigdb')
+   {
+    print ", using shipped one\n";
+    $conf{'migdbShipped'}='yes';
+    $conf{'HAVE_GDB_MI'}='yes';
+    return;
+   }
+ print "\n";
  $conf{'HAVE_GDB_MI'}='no';
 }
 

@@ -556,9 +556,19 @@ sub GenerateSourceDistro
  foreach $i (@files)
    {
     chop($i);
-    if (length($i))
+    $r.=' '.join(' ',glob($dir.'/'.$i)) if length($i);
+   }
+ # libmigdb sources, optional
+ if (-d 'libmigdb')
+   {
+    open(FIL,'libmigdb/files');
+    @files=<FIL>;
+    close(FIL);
+    `ln -s ../libmigdb $dir/libmigdb`;
+    foreach $i (@files)
       {
-       $r.=' '.join(' ',glob($dir.'/'.$i));
+       chop($i);
+       $r.=' '.join(' ',glob($dir.'/'.$i)) if length($i);
       }
    }
  
@@ -568,10 +578,8 @@ sub GenerateSourceDistro
  system("tar cvf - $r | gzip -9c > $dir/makes/linux/result/$srcdist.gz")   unless $UseBzip2;
  system("tar cvf - $r | bzip2 -9c > $dir/makes/linux/result/$srcdist.bz2") if     $UseBzip2;
  #replace('pp',$r);
- if ($UseVersioInSourceDir)
-   {
-    `mv setedit-$version setedit`;
-   }
+ `mv setedit-$version setedit` if $UseVersioInSourceDir;
+ unlink 'setedit/libmigdb' if -d 'libmigdb';
  
  chdir('setedit/makes/linux');
 }
