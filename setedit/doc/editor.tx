@@ -290,8 +290,8 @@ but I wanted to make that clear to avoid problems ;-).
 @titem3{Delete line,cmcDelLine,^Y}
 @titem4{Delete to end of line,cmcDelEnd,^Q-Y,Shift+^Y}
 @titem3{Delete to start of line,cmcDelStart,^Q-H}
-@titem3{Delete word at left,cmcDelWord,^T}
-@titem3{Delete word at right,cmcDelPrevWord,^Backspace}
+@titem3{Delete word at right,cmcDelWord,^T}
+@titem3{Delete word at left,cmcDelPrevWord,^Backspace}
 @titem4{Insert line,cmcNewLine,Enter,^N}
 @titem4{Insert mode on/off,cmcInsMode,Ins,^V}
 @endtable_{}

@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.187  2002/09/03 13:45:32  set
+* Fixed: Now old desktop file information is also loaded translating to
+the new structure when isn't preloaded. Complex, no? :-P
+* Modified: I reworked most of the palette stuff to adapt to the new
+scheme. Now the palettes are stored in disk only if changed.
+
 Revision 1.186  2002/09/02 13:58:40  set
 * Added: Now the driver dependent settings are stored in the desktop file.
 For this reason the desktop file format changed and I'm switching to
