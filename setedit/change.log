@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.210  2002/09/12 18:15:27  set
+* Modified: Removed code that used cmcUpdateCodePage, no longer needed.
+* Fixed: When loading a desktop that used fonts the code didn't indicate
+the font was loaded and hence encoding changes didn't change the font
+encoding.
+
 Revision 1.209  2002/09/12 18:14:17  set
 * Fixed: When the desktop file for a project was missing the loading
 routine didn't signal the "pre-load" state skipping the screen data

@@ -5,8 +5,9 @@
 #define Uses_stdlib
 #define Uses_alloca
 #define Uses_ctype
+#define Uses_TVCodePage
 #ifdef DEBUG
-#define Uses_MsgBox
+ #define Uses_MsgBox
 #endif
 #include <tv.h>
 

@@ -2350,6 +2350,7 @@ int main(int argc, char *argv[])
       }
     else
       {
+       #if 0
        // if DJDIR doesn't exists use SET_FILES
        locale_dir=(char *)GetVariable("SET_FILES");
        if (locale_dir)
@@ -2361,6 +2362,9 @@ int main(int argc, char *argv[])
           localedir[0]='.';
           localedir[1]=0;
          }
+       #else
+       GetPathRelativeToRunPoint(localedir,"share/locale","");
+       #endif
       }
     #else
     strcpy(localedir,"/usr/share/locale");
