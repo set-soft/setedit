@@ -4,9 +4,10 @@
 
 #ifdef SUP_MP3
 
-#include <limits.h>
-#include <stdio.h>
-#include <string.h>
+#define Uses_limits
+#define Uses_stdio
+#define Uses_string
+#include <tv.h>
 
 #ifdef HAVE_ALLEGRO
 #include <allegro.h>

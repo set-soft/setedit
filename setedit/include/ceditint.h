@@ -1,16 +1,20 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#ifndef __CEDITINT_H_SET_
-#define __CEDITINT_H_SET_
+#ifndef CEDITINT_H_SET
+#define CEDITINT_H_SET
 
-// Editor configuration (can modify #include <tv/intl.h>), must be first.
+// Editor configuration (can modify the next test), must be first.
 #include <configed.h>
 
 // International support from TV
-#include <tv/intl.h>
+#ifdef FORCE_INTL_SUPPORT
+ #define HAVE_INTL_SUPPORT 1
+#else
+ #include <tv/configtv.h>
+#endif
 
 #ifndef HAVE_INTL_SUPPORT
-#define NO_INTL_SUP
+ #define NO_INTL_SUP
 #endif
 
 // Configuration for the Editor:
@@ -29,50 +33,49 @@
 #define SUP_GZ
 
 #ifndef FOR_LIBSET
-# define STANDALONE
-# define SUP_SDG
-#else
+ #define STANDALONE
+ #define SUP_SDG
 #endif
 
 // Starting with 0.4.36 I have a small configure script to determine the
 // following:
 // MP3 support only for standalone
 #if defined(WITH_MP3) && defined(STANDALONE)
-#define SUP_MP3
+ #define SUP_MP3
 #endif
 
 // PCRE support
 #if defined(HAVE_PCRE_LIB)
-#define SUP_PCRE
+ #define SUP_PCRE
 #endif
 
 #ifdef HAVE_PCRE206
-#define PCRE206 0,
+ #define PCRE206 0,
 #else
-#define PCRE206
+ #define PCRE206
 #endif
 
 // Tabs setings
 
 #ifdef Tabs8
-#define AdvanceWithTab(a,b)     if (a==9) b|=7; b++
-#define NextTabPos(x)           (((x/8)+1)*8)
-#define MoveWithTab(b)          b|=7; b++
-#define IsATabPos(a)            (a%8)==0
+ #define AdvanceWithTab(a,b)     if (a==9) b|=7; b++
+ #define NextTabPos(x)           (((x/8)+1)*8)
+ #define MoveWithTab(b)          b|=7; b++
+ #define IsATabPos(a)            (a%8)==0
 #else
-#define AdvanceWithTab(a,b)     if (a==9) b+=tabSize-(b%tabSize); else b++
-#define NextTabPos(x)           (((x/tabSize)+1)*tabSize)
-#define MoveWithTab(b)          b+=tabSize-(b%tabSize)
-#define IsATabPos(a)            (a%tabSize)==0
+ #define AdvanceWithTab(a,b)     if (a==9) b+=tabSize-(b%tabSize); else b++
+ #define NextTabPos(x)           (((x/tabSize)+1)*tabSize)
+ #define MoveWithTab(b)          b+=tabSize-(b%tabSize)
+ #define IsATabPos(a)            (a%tabSize)==0
 #endif
 #define NextIndentPos(x)        (((x/indentSize)+1)*indentSize)
 
 // Non standard libc stuff
 
 #if defined(SECompf_djgpp) || defined(SEOS_Win32)
-#define IDLE_SLEEP 0
+ #define IDLE_SLEEP 0
 #else
-#define IDLE_SLEEP 1000
+ #define IDLE_SLEEP 1000
 #endif
 
 //
@@ -121,10 +124,10 @@
 #endif
 
 #if defined(SEOS_DOS) || (defined(SEOS_Win32) && !defined(SECompf_Cygwin))
-// This definition controls how the editor behaves when dealing with
-// file locations. In DOS/Win32 you don't log as an user with a home
-// directory.
-#define NoHomeOrientedOS
+ // This definition controls how the editor behaves when dealing with
+ // file locations. In DOS/Win32 you don't log as an user with a home
+ // directory.
+ #define NoHomeOrientedOS
 #endif
 
-#endif // __CEDITINT_H_SET_
+#endif // CEDITINT_H_SET

@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.286  2003/04/03 19:57:28  set
+* Fixed: Even when gettext (intl library) returns a char * it should be
+used as a const char *. When I enforced it using the _() macro one wrong
+use was detected and this change allows compilations for const char * as
+return value.
+
 Revision 1.285  2003/04/02 13:40:10  set
 * Fixed: [MinGW] The configuration script shown the error messages created
 when running non-existent programs appear in the screen generating
