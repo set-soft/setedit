@@ -311,7 +311,7 @@ void SLPInterfaceRunSelection(TCEditor *ed)
        memcpy(s,ed->buffer+ed->selStart,l);
        s[l]=0;
        Editor=ed;
-       if (!InterpretLispEditor(s))
+       if (!InterpretLispEditor(s,True))
           SLPShowError();
        free(s);
        ed->update(ufView);
