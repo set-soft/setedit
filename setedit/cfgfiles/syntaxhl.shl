@@ -366,7 +366,7 @@ Keywords=InsertText,SendCommands,SendCommSel,defmacro,eval,CR,RunProgram,not
 Keywords=WhichEditor,GetSelection,left,right,substr,sstr,gstr,setv,strxlt,if
 Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
 Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
-Keywords=strcasecmp,length,strstr,OpenFile,print
+Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox
 End
 
 # ---------------- Menu File ------------------
