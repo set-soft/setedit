@@ -161,36 +161,159 @@
 ; prototype, even when partially typed.
 ;
 ; http://www.geocities.com/CollegePark/Quad/1974/LEMUR02.ZIP
+; As Lemur is currently unavailable I commented these macros.
 ;
 ;*******************************************************************/
 
-(defmacro 'List Members'
+; (defmacro 'List Members'
+;  (eval
+;   (RunProgram (+ "lemur " (WhichEditor) " -s " (WordUnderCursor 256 1)))
+;   (SendCommands cmcGoEndOfWord)
+;  )
+; )
+; 
+; (defmacro 'Prototype'
+;  (eval
+;   (ShowInStatusLine
+;    (RunProgramRedir
+;     (+ "lemur " (WhichEditor) " " (WordUnderCursor 256 1))
+;    )
+;   )
+;  )
+; )
+; 
+; (defmacro 'Prototype Complete'
+;  (eval
+;   (setv "proto"
+;    (RunProgramRedir
+;     (+ "lemur " (WhichEditor) " -c " (WordUnderCursor 256 1))
+;    )
+;   )
+;   (SendCommands cmcGoEndOfWord)
+;   (InsertText (+ proto "(") 1)
+;   (ShowInStatusLine (+ "Added: " proto))
+;  )
+; )
+
+;*******************************************************************
+;
+;    These examples were contributed by Thiago F.G. Albuquerque
+;  <tfga@terra.com.br>.
+;    I added them commented to save memory, you can uncoment them
+;  using the "Indent uncommenting" editor command found in Tool&Ops|
+;  Un/Indent block menu.
+;
+;*******************************************************************
+
+(defmacro 'DuplicateLine'
  (eval
-  (RunProgram (+ "lemur " (WhichEditor) " -s " (WordUnderCursor 256 1)))
-  (SendCommands cmcGoEndOfWord)
+  (SendCommands cmcLineStart cmcSelectOn cmcLineEnd
+   cmcSelectOff cmcCopy cmcLineEnd cmcNewLine
+   cmcLineStart cmcPaste)
  )
 )
 
-(defmacro 'Prototype'
- (eval
-  (ShowInStatusLine
-   (RunProgramRedir
-    (+ "lemur " (WhichEditor) " " (WordUnderCursor 256 1))
-   )
-  )
- )
-)
-
-(defmacro 'Prototype Complete'
- (eval
-  (setv "proto"
-   (RunProgramRedir
-    (+ "lemur " (WhichEditor) " -c " (WordUnderCursor 256 1))
-   )
-  )
-  (SendCommands cmcGoEndOfWord)
-  (InsertText (+ proto "(") 1)
-  (ShowInStatusLine (+ "Added: " proto))
- )
-)
+; (defmacro 'Compile'
+;  (eval
+;   (RunProgram
+;    (+ "make obj/" (WhichEditor edfWENameNoExt) ".o")
+;   )
+;  )
+; )
+; 
+; (defmacro 'Make'
+;  (eval
+;   (RunProgram "make")
+;  )
+; )
+; 
+; (defmacro 'Switch-cpp-h'
+;  (eval
+;   (setv "name" (WhichEditor edfWENameNoExt)) ; name without extension
+;   (setv "ext"  (WhichEditor edfWEExtension)) ; extension
+; 
+;   (cond (not (strcmp ext ".cpp"))  (OpenFile (+ name ".h"))
+;         (not (strcmp ext ".h"))    (OpenFile (+ name ".cpp"))
+;   )
+;  )
+; )
+; 
+; (defmacro 'pmacro'
+;  (progn
+;   (SendCommands cmcSelectOn cmcCharLeft cmcCharLeft cmcSelectOff)
+;   (setv "str" (GetSelection))
+;   (SendCommands cmcCut)
+;   (cond (not (strcmp str "#I"))    (progn  (InsertText '#include ".h"')
+;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
+;                                    )
+; 
+;         (not (strcmp str "#i"))    (progn  (InsertText '#include <.h>')
+;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
+;                                    )
+; 
+;         (not (strcmp str "pr"))    (progn  (InsertText 'printf("");')
+;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
+;                                    )
+; 
+;         (not (strcmp str "re"))    (progn  (InsertText 'return ;')
+;                                            (SendCommands cmcCharLeft)
+;                                    )
+; 
+;         (not (strcmp str "{}"))    (progn  (InsertText "{}")
+;                                            (SendCommands cmcCharLeft cmcNewLine cmcNewLine cmcLineUp)
+;                                            (InsertText "    ")
+;                                    )
+; 
+;         (not (strcmp str "//"))    (progn (InsertText "///////////////////////////////////////////////////////////////////////////")
+;                                           (SendCommands cmcNewLine)
+;                                    )
+; 
+;         (not (strcmp str "/*"))    (progn (InsertText "/****************************************************************************")
+;                                           (SendCommands cmcNewLine cmcNewLine)
+;                                           (InsertText "*****************************************************************************/")
+;                                           (SendCommands cmcNewLine cmcLineUp cmcLineUp)
+;                                    )
+; 
+;         (not (strcmp str "in"))    (progn (InsertText "#ifndef _____\n")
+;                                           (InsertText "#define _____\n")
+;                                           (InsertText "\n")
+;                                           (InsertText "#endif")
+;                                           (SendCommands cmcLineUp cmcLineUp cmcLineUp cmcLineEnd)
+;                                    )
+; 
+;         (not (strcmp str "fo"))    (progn (InsertText "for (int i=0; i<; i++)")
+;                                           (SendCommands cmcNewLine)
+;                                           (InsertText "{}")
+;                                           (SendCommands cmcCharLeft cmcNewLine cmcNewLine cmcLineUp)
+;                                           (InsertText "    ")
+;                                    )
+; 
+;         (not (strcmp str "ma"))    (progn (InsertText "int main(int argc, char *argv[])\n")
+;                                           (InsertText "{\n")
+;                                           (InsertText "\n")
+;                                           (InsertText "    return 0;\n")
+;                                           (InsertText "}")
+;                                           (SendCommands cmcLineUp cmcLineUp
+;                                                         cmcCharRight cmcCharRight cmcCharRight)
+;                                    )
+; 
+;         (not (strcmp str "cl"))    (progn (InsertText "class\n")
+;                                           (InsertText "{\n")
+;                                           (InsertText " public:\n")
+;                                           (InsertText " // Data\n")
+;                                           (InsertText " \n")
+;                                           (InsertText " // Construction\n")
+;                                           (InsertText " \n")
+;                                           (InsertText " // Methods\n")
+;                                           (InsertText " \n")
+;                                           (InsertText " // Operators\n")
+;                                           (InsertText "};")
+;                                           (SendCommands cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp cmcLineUp
+;                                                         cmcLineEnd cmcCharRight)
+;                                    )
+; 
+;         1                          (InsertText str)
+;   )
+;  )
+; )
 
