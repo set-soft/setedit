@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.511  2004/05/31 13:44:16  set
+* Added: OS/OS flavor,CPU,Compiler/Compiler flavor and Driver to the about
+box. Suggested by Arnold Wiegert (awiegert/telus/net)
+* Added: C,H and CPP as valid C extensions for syntax highlight. C is the
+C++ extension for gcc and the others are for non-casesensitive OSs.
+
 Revision 1.510  2004/05/24 14:38:27  set
 * Modified: [config] Use of "g++" in favor of "gcc -lstdc++". This is
 because newer gcc 3.x compilers can't compile C++ code without doing a

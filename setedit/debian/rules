@@ -26,7 +26,9 @@ build-stamp: debianbackup.tar
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" ./configure \
 		--prefix=$(shell pwd)/debian/tmp/usr --fhs --no-comp-exe
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE)
-# Compile libset:
+# Compile the libraries for RHIDE. They are compiled with -DFOR_LIBSET,
+# therefore cleaning.
+	rm makes/libeasyd.a makes/libsettv.a makes/obj/*.o makes/objinf/*.o
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -C makes libset
 	touch build-stamp
 
@@ -87,11 +89,34 @@ install: build
 # Install libset files:
 	mkdir -p debian/libset-dev/usr/include/setedit \
 		debian/libset-dev/usr/lib
-# XXX: Determine which ones are really needed.
-	find . -name \*.h \
-		|xargs tar c \
+	tar c \
+		calcu/calcu.h \
+		include/ceditor.h \
+		include/sindicat.h \
+		include/tvsetuti.h \
+		include/pmcoll.h \
+		include/ced_exte.h \
+		include/ced_clas.h \
+		include/ced_inte.h \
+		include/ced_coma.h \
+		include/loadkbin.h \
+		include/slpinter.h \
+		include/loadshl.h \
+		infview/include/inf.h \
+		infview/include/infbase.h \
+		setedit/include/editcoma.h \
+		setedit/include/edprint.h \
+		settvuti/include/settvuti.h \
+		settvuti/include/tstringa.h \
+		settvuti/include/sarray.h \
+		settvuti/include/setstack.h \
+		settvuti/include/tnocastc.h \
+		settvuti/include/viewplus.h \
+		settvuti/include/tinppipe.h \
+		settvuti/include/edhists.h \
 		|tar xC debian/libset-dev/usr/include/setedit
-	cp makes/libset.a debian/libset-dev/usr/lib
+	cp makes/libset.a makes/libeasyd.a makes/libsettv.a \
+		debian/libset-dev/usr/lib
 
 
 # Build the packages for a specific architecture:
@@ -108,8 +133,7 @@ binary-arch: build install
 #	dh_installmanpages
 #	dh_undocumented e.1 setedit.1
 	dh_installchangelogs
-# XXX: dh_strip fails to strip libset.a, don't know why.
-	dh_strip -Xlibset.a
+	dh_strip -Xlibset.a -Xlibeasyd.a -Xlibsettv.a
 	dh_compress
 	dh_fixperms
 	chmod 4755 debian/tmp/usr/bin/setedit
