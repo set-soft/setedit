@@ -79,12 +79,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
 #undef bind_textdomain_codeset
 
 
-char *
+/*char *
 gettext (msgid)
      const char *msgid;
 {
   return gettext__ (msgid);
-}
+}*/
 
 
 char *
