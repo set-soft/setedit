@@ -2146,11 +2146,13 @@ void TSetEditorApp::cpCallBack(ushort *map)
  int i;
 
  #define C(cla,name) TVCodePage::RemapString((uchar *)cla::name,(uchar *)cla::o##name,map)
+ #ifdef SUP_MP3
  C(MP3Player,butRew);
  C(MP3Player,butStop);
  C(MP3Player,butPlay);
  C(MP3Player,butPause);
  C(MP3Player,butFfw);
+ #endif
  #undef C
  #define C(cla,name) cla::name=TVCodePage::RemapChar(cla::o##name,map)
  C(TCEditor,TabChar);

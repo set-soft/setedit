@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.155  2002/07/17 17:27:32  set
+* Fixed: [MSVC] The following sequence: type */* comment */ doesn't confuse
+gcc nor SETEdit, but makes MSC emit a warning. From output by WintiX.
+
 Revision 1.154  2002/07/16 19:40:09  set
 * Fixed: [MSVC] 3 more errors sent by WintiX (ceditor.cc).
 
