@@ -5,7 +5,6 @@
 #   This script adds a propper header to the .po files.
 #
 require "../miscperl.pl";
-use POSIX qw(strftime);
 
 $header=$ARGV[0];
 $input =$ARGV[1];
@@ -22,9 +21,9 @@ $i=~s/(\#((.*)\n)+\# End of header\n)//;
 # Update header
 GetVersion('../');
 $h=~s/\@\@VERSION\@\@/$Version/;
-# Perl needs modules for it
-#$Now=`date '+%Y-%m-%d %H:%m%z'`;
-$Now=strftime "%Y-%m-%d %H:%M%z", localtime;
+# Use GMT time because in Perl is hard to know the time zone! (modules needed)
+($seg,$min,$hora,$dmes,$mes,$ano,$dsem,$dano,$flg)=gmtime;
+$Now=sprintf "%d-%02d-%02d %02d:%02d-0000",$ano+1900,$mes+1,$dmes,$hora,$min;
 $h=~s/\@\@DATE\@\@/$Now/;
 
 $h.=$i;
