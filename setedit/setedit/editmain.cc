@@ -2436,7 +2436,7 @@ extern void RestoreScreen();
    Memory full protection, I hope it will be usefull with djgpp v2.02
 *************************************************************************************/
 
-#if defined(SEComp_GCC) && __GNUC__>=3
+#if (defined(SEComp_GCC) && __GNUC__>=3) || !defined(SEComp_GCC)
 // Not present in gcc 3.0.1
 #define InitSafetyPool()
 #define DeInitSafetyPool()

@@ -1,4 +1,18 @@
-$Log$
+$Log$.
+Revision 1.547  2004/07/23 20:53:22  set
+* Added: Configuration options to disable the calculator and calendar.
+Suggested by Oswald.
+* Modified: Optimized cmcMoveBlock. Suggested by Oswald. Consider it
+unstable.
+* Modified: The meassure commanand to report the result in the status line.
+Suggested by Oswald.
+* Modified: The insertBuffer member to support some copies from the same
+buffer.
+* Fixed: Leak in tags code. Reported by valgrind.
+* Added: Options to zoom the editor windows when inserted in the desktop.
+Suggested by Oswald.
+* Fixed: Bug in stack position. Forgot to unlink the returned objects.
+
 Revision 1.546  2004/07/23 13:00:50  set
 * Fixed: [MSVC] Wrong prototype of LoadFileUnderCursor in ced_inte.h. Only
 reported by MSVC 4.0. From a report by Arnold.
