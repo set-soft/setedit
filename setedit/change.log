@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.114  2002/06/10 13:07:28  set
+* Added: A script to apply the synmail patches to my CVS copy at home.
+
 Revision 1.113  2002/06/07 19:03:34  set
 * Modified: [UNIX] the configuration to test if the X11 include directory
 is really needed. It looks like gcc 3.1 gives a warning if this is manually

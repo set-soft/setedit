@@ -45,6 +45,7 @@ or the user choose cancel the routine returns -1.
 #define Uses_ctype
 #define Uses_string
 #define Uses_stdlib
+#define Uses_itoa
 
 #define Uses_MsgBox
 #define Uses_TLabel
@@ -418,7 +419,7 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
   {
    r=TakeWord();
    if (!r) break;
-   if (strcmp(bfBuffer,"operator")==0)
+   if (strcmp(bfBuffer,"operator")==0 || (Used>10 && strcmp(bfBuffer+Used-10,"::operator")==0))
      { // C++ operators are a special case.
       // Here we collect the name of the operator, that's symbols until
       // the ( [We can't get fooled by () operator because we always skip
@@ -446,7 +447,7 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
       while(r==1);
       if (!r) break;
      }
-   // Ok, we shoulf have the name in Buffer and Alone should be (
+   // Ok, we should have the name in Buffer and Alone should be (
    if (Alone=='(')
      {
       strcpy(bfNomFun,bfBuffer);
@@ -467,7 +468,7 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
       r=TakeWord(1);
       if (!r) break;
 
-      int SearchOpen=0;
+      int SearchOpen=0,SkipCatch=0;
       int Eureka=0,isProto=0;
 
       if (mode==modeBFPrototypes && r==2 && Alone==';')
@@ -490,6 +491,9 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
            { // Another special case for C++ const member atributes
             if (strcmp(bfBuffer,"const")==0)
                SearchOpen=Eureka=1;
+            // A bizarre case: try/catch not inside the body
+            else if (strcmp(bfBuffer,"try")==0)
+               SkipCatch=SearchOpen=Eureka=1;
            }
         }
       if (Eureka)
@@ -514,6 +518,36 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
             // Skip the body of the function
             r=SearchBalance('}','{');
             if (!r) break;
+           }
+         // We found a `try', we should find a `catch'.
+         // If found skip it adding to the function body these lines.
+         if (SkipCatch)
+           {
+            unsigned pIndexB=IndexB;
+            int pLine=Line;
+            do
+              {
+               r=TakeWord(0);
+              }
+            while (r==3);
+            if (r==1 && (strcmp(bfBuffer,"catch")==0))
+              {
+               r=TakeWord(1);
+               if (r==2 && Alone=='(')
+                 {
+                  if (SearchBalance(')','('))
+                    {
+                     r=TakeWord(1);
+                     if (r==2 && Alone=='{')
+                        SearchBalance('}','{');
+                    }
+                 }
+              }
+            else
+              {
+               IndexB=pIndexB;
+               Line=pLine;
+              }
            }
 
          // Now insert it
@@ -570,12 +604,26 @@ static
 void StrDup(char *s, int len, int line, int lineEnd)
 {
  stkHandler h;
- char *d;
+ char *d,b[64];
+ ccIndex ind;
+ int differentiate=0;
+
+ if (glFunList->Search(s,ind))
+   {// Already there
+    itoa(line,b,10);
+    len+=strlen(b)+1;
+    differentiate=1;
+   }
 
  AlignLen(len);
  h=glStk->alloc(len+sizeof(int)*2);
  d=glStk->GetStrOf(h);
  strcpy(d,s);
+ if (differentiate)
+   {
+    strcat(d," ");
+    strcat(d,b);
+   }
  int *l=(int *)&d[len];
  l[0]=line;
  l[1]=lineEnd;
@@ -605,6 +653,7 @@ int SearchFuncs(char *b, unsigned l, TNoCaseSOSStringCollection *FunList,
  glFunList=FunList;
  glStk=stk;
  int i=0;
+ //FunList->duplicates=True;
  while (FuncsAvail[i].shl)
    {
     if (!strcmp(FuncsAvail[i].shl,shl))
@@ -741,8 +790,7 @@ int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
    {
     if (word)
       {
-       stkHandler hStk=stk.addStr(word);
-       FunList->search((void *)hStk,br.selection);
+       FunList->Search(word,br.selection);
        if (br.selection>=FunList->getCount())
           br.selection=FunList->getCount()-1;
       }
