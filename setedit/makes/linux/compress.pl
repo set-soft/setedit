@@ -5,6 +5,8 @@
 open(FIL,'../../version.txt') || die;
 $version=<FIL>;
 chop($version);
+# Cygwin's Perl bug workaround
+$version=~ s/\r//;
 close(FIL);
 $version1=$version;
 $version1=~ s/\.//g;

@@ -5,6 +5,8 @@
 open(FIL,'../../infview/version.txt') || return 0;
 $version=<FIL>;
 chop($version);
+# Cygwin's Perl bug workaround
+$version=~ s/\r//;
 close(FIL);
 $version1=$version;
 $version1=~ s/\.//g;

@@ -144,7 +144,7 @@ LookForDL() if ($OS eq 'UNIX');
 # An option to display screen savers ;-)
 LookForAA() if ($OS eq 'UNIX');
 # GDB/MI interface
-LookForMI($LibMIVersionNeeded) if ($OS eq 'UNIX');
+LookForMI($LibMIVersionNeeded) if (($OS eq 'UNIX') || ($Compf eq 'Cygwin'));
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.607  2004/09/17 16:25:59  set
+* Modified: [Config] Now the .po files are regenerated only if the user
+configures enabling the maintainer mode. This should reduce CVS collisions.
+
 Revision 1.606  2004/09/17 16:09:46  set
 * Added: [Debug] An advice dialog when debugging in the Linux console
 indicating the program will be started in another VT. Also some explanation
