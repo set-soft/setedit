@@ -305,7 +305,7 @@ TDialog *createSetGlobalOptions()
           __("Don't move inside ta~b~s"),
           __("Tab smart indents ~5~"),
           __("Use indent size ~6~"),
-          __("Don't pur~g~e spaces"),
+          __("Keep trailin~g~ whitespace"),
           __("Backspace unindents ~8~"),
           __("Column markers ~9~"),
          0);
