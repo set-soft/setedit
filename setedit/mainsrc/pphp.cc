@@ -25,6 +25,14 @@ to skip*.
     #include <bufun.h>
 #endif
 
+#ifndef EXTRA_INLINE
+    #ifdef STANDALONE
+        #define EXTRA_INLINE inline
+    #else
+        #define EXTRA_INLINE /*inline*/
+    #endif
+#endif
+
 #ifdef STANDALONE
 //The following is as defined in bufun.h:
 typedef void (*tAddFunc)(char *name, int len, int lineStart, int lineEnd);
@@ -110,7 +118,7 @@ inline static bool atStartOfString()
 }
 
 #if 0
-static bool atStartOfComment()
+EXTRA_INLINE static bool atStartOfComment()
 {
     if(atEndOfBuf()) return false;
     if(*curBufPtr=='#')
@@ -124,7 +132,7 @@ static bool atStartOfComment()
 
 //Skip blanks leaving curBufPtr after the blanks.
 //Returns true if it has skipped something.
-static bool eatBlanks()
+EXTRA_INLINE static bool eatBlanks()
 {
     const char * const p = curBufPtr;
     for(; !atEndOfBuf() && isspace(*curBufPtr); curBufPtr++)
@@ -133,7 +141,7 @@ static bool eatBlanks()
 }
 
 //Skip the rest of a line leaving curBufPtr at the beginning of the new line.
-static void eatLine()
+EXTRA_INLINE static void eatLine()
 {
     for(; !atEndOfBuf(); curBufPtr++)
         if(*curBufPtr=='\n') {
@@ -145,7 +153,7 @@ static void eatLine()
 
 //Skip a comment, leaving curBufPtr after it.
 //Returns true if it has skipped something.
-static bool eatComment()
+EXTRA_INLINE static bool eatComment()
 {
     if(atEndOfBuf()) return false;
     if(*curBufPtr=='#') {
@@ -175,7 +183,7 @@ character). You should be positioned at the starting character of the string.
 for that.
     Returns true if it has found the string and skipped it.
 */
-static bool eatString()
+EXTRA_INLINE static bool eatString()
 {
     if(!atStartOfString()) return false;
     const char endChar=*curBufPtr;
@@ -195,7 +203,7 @@ static bool eatString()
 
 //Skip blanks or comments leaving curBufPtr after them.
 //Returns true if it has skipped something.
-static bool eatBlanksOrComments()
+EXTRA_INLINE static bool eatBlanksOrComments()
 {
     const char * const p = curBufPtr;
     const char *lastBufPtr=0;
@@ -209,7 +217,7 @@ static bool eatBlanksOrComments()
 
 //Skip blanks, comments or strings, leaving curBufPtr after them.
 //Returns true if it has skipped something.
-static bool eatBlanksOrCommentsOrStrings()
+EXTRA_INLINE static bool eatBlanksOrCommentsOrStrings()
 {
     const char * const p = curBufPtr;
     const char *lastBufPtr=0;
@@ -228,7 +236,7 @@ case insensitively.
     This functions avoid calling the strncasecmp libc function and speed up
 things, while at the same time not crossing the end of the buffer.
 */
-static bool saysFunction()
+EXTRA_INLINE static bool saysFunction()
 {
     if(*curBufPtr!='f' && *curBufPtr!='F') return false;
     if(*(curBufPtr+1)!='u' && *(curBufPtr+1)!='U') return false;
@@ -241,7 +249,7 @@ static bool saysFunction()
     if(*(curBufPtr+7)!='n' && *(curBufPtr+7)!='N') return false;
     return true;
 }
-static bool saysClass()
+EXTRA_INLINE static bool saysClass()
 {
     if(*curBufPtr!='c' && *curBufPtr!='C') return false;
     if(*(curBufPtr+1)!='l' && *(curBufPtr+1)!='L') return false;
@@ -331,8 +339,8 @@ the first letter of the identifier (after eating the blanks following the
 of the name of the class and its length in characters, without counting the
 null character or other characters (real length of the word).
 */
-static void processFunc(const char *className,
-    const unsigned classNameSize)
+static void processFunc(const char *className/*=NULL*/,
+    const unsigned classNameSize/*=0*/)
 {
     const char *funcNameStartPtr = curBufPtr;
     const unsigned funcStartLine = curLine;
@@ -393,7 +401,7 @@ and endChar's between.
 substituting comments and blanks by just a space.
 */
 static void goMatching(const char startChar, const char endChar,
-    const bool copy)
+    const bool copy/*=false*/)
 {
     int idx=copy ? 1 : MaxLenWith0;
     unsigned int level=1;
@@ -444,7 +452,7 @@ function found.
 */
 static void registerFunc(const char *funcName, const unsigned funcNameSize,
     const char *param, const unsigned paramSize, const unsigned funcStartLine,
-    const char *className, unsigned classNameSize)
+    const char *className/*=NULL*/, unsigned classNameSize/*=0*/)
 {
     ++curFuncNum;
     int tsz=funcNameSize+paramSize+1+1+classNameSize+1;
@@ -466,4 +474,37 @@ static void registerFunc(const char *funcName, const unsigned funcNameSize,
     funcAddPtr(bfNomFun, p-bfNomFun /*Length including ending 0!*/,
         funcStartLine, curLine);
 }
+
+
+/*
+BENCHMARKS (last updated: 2002/12/14)
+=====================================
+cat $(locate '*.php') > prueba.php
+wc prueba.php:
+87584 287427 2890866 (that's lines, words and bytes, respectively).
+
+Compile command: gcc -pipe -O2 -s -Wall -DSTANDALONE -lstdc++ \
+    -DEXTRA_INLINE='' -o pphp pphp.cc
+I tested compiling with gcc 2.95.4 and gcc 3.0.4 and with EXTRA_INLINE and
+without (four combinations).
+
+wc -c pphp pphp.30 pphp.ei pphp.30.ei:
+   7264 pphp
+   6652 pphp.30
+   8960 pphp.ei
+   7292 pphp.30.ei
+
+Then benchmarked with: sync; time ./pphp prueba.php > /dev/null
+The results:
+pphp:       real 0m0.349s
+pphp.30:    real 0m0.349s
+pphp.ei:    real 0m0.236s (32% less time)
+pphp.30.ei: real 0m0.281s (19% less time)
+
+That's on my AMD Athlon K7 750 Mhz (real Mhz), PC133 CAS 3, Kernel 2.4.20,
+GLIBC 2.3.1.
+
+Can someone explain why the result with GCC 3.0.4 is slower than 2.95.4 and
+know if 3.2.x is any better? Benchmarks welcome!!!
+*/
 

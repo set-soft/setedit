@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.260  2002/12/12 19:05:39  set
+* Removed the cmeKeyboardSetUp option, it no longer exists. Now this is
+controlled by the input code page.
+.
 Revision 1.259  2002/12/12 19:04:31  set
 * Modified: The greek keyboard tweak no longer compiles. Removed the code
 that prevented compilation.
@@ -2646,7 +2650,7 @@ reference. Sugested by Thiago.
 after removing the comments in the block.
 * Fixed: The undo of the arbitrary indent used the starting selection instead
 of the final one generating problems for long blocks.
-.
+
 Revision 1.339  2001/08/10 02:50:36  set
 * Added: sLisp commands:
   OpenFile: opens a file as a new window. (Asked by "Thiago F.G. Albuquerque"
