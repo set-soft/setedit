@@ -46,7 +46,7 @@ protected:
 
 public:
 
-    static const char *name;
+    static const char * const name;
     static TStreamable *build();
 };
 
