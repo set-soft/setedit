@@ -2,9 +2,9 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIBase) && !defined(__TMLIBase__)
 #define __TMLIBase__
-const int MLIBaseCommands=23;
+const int MLIBaseCommands=24;
 const int MLIBaseConstants=1;
-const int MLIBaseSymbols=9;
+const int MLIBaseSymbols=10;
 
 class TMLIBase
 {
@@ -25,8 +25,9 @@ public:
  virtual char *GetTypeError();
  virtual char *GetError();
  char *GetCodeError();
- void addVariable(char *name, TLispVar *Value);
+ void AddVariable(char *name, TLispVar *Value);
  int  DuplicateVar(TLispVar *&aux,TLispVar *Value);
+ TLispVar *SearchVar(char *name);
 
  int Error;
  TMLIArrayBase *array;
@@ -108,6 +109,16 @@ void MLIRetString(TMLIBase *o,int stkPos,char *str);
     { o->Error=MLINumParam; \
       MLIRetNULL(); \
       return; } }
+#define CheckForError(cond,error) \
+{ if (cond) \
+    { o->Error=error; \
+      MLIRetNULL(); \
+      goto CleanUp; } }
+
+#define MLIAsInt(var) ((TLispInteger *)var)
+#define MLIAsStr(var) ((TLispString *)var)
+#define MLIAsIntVal(var) (((TLispInteger *)var)->val)
+#define MLIAsStrVal(var) (((TLispString *)var)->str)
 
 #define DecFun(a) void a(TMLIBase *o,int start ,int cant)
 #define LocVarStr(a) TLispString *a=NULL

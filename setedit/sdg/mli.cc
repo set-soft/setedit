@@ -526,7 +526,7 @@ DecFun(MLIBaseSetV)
  CheckNumParams(cant!=2);
  GetString(0,name);
  GetVar(1,Variable);
- o->addVariable(name->str,Variable);
+ o->AddVariable(name->str,Variable);
  MLIRetObj(Variable);
 
 CleanUp:
@@ -567,10 +567,53 @@ DecFun(MLIBaseLoop)
        {
         GetVar(i,Variable);
         if (o->ExitLoop)
+          {
            MLIRetObj(Variable);
+           break;
+          }
         else
            destroyFloatVar(Variable);
        }
+   }
+CleanUp:
+ o->ExitLoop=ExitLoop;
+ return;
+}
+
+// It just evaluates the parameters until an exitloop is executed or the
+// maximum number of iterations is reached.
+DecFun(MLIBaseRepeat)
+{
+ int i, loopCount, maxLoop;
+ LocVar(Variable);
+ LocVarInt(oMaxLoop);
+ CheckNumParams(cant<2);
+
+ Boolean ExitLoop=o->ExitLoop;
+ o->ExitLoop=False;
+
+ GetInteger(0,oMaxLoop);
+ maxLoop=oMaxLoop->val;
+ destroyFloatVar(oMaxLoop);
+
+ loopCount=0;
+ while (!o->ExitLoop && loopCount<maxLoop)
+   {
+    for (loopCount++, i=1; i<cant; i++)
+       {
+        GetVar(i,Variable);
+        if (o->ExitLoop)
+          {
+           MLIRetObj(Variable);
+           break;
+          }
+        else
+           destroyFloatVar(Variable);
+       }
+   }
+ if (!o->ExitLoop)
+   {// We must return something:
+    MLIRetInt(loopCount);
    }
 CleanUp:
  o->ExitLoop=ExitLoop;
@@ -928,24 +971,47 @@ DecFun(MLIBaseNotEqual)
  MLIBaseEqualFunc(o,start,cant,0);
 }
 
-DecFun(MLIBaseInc)
+static
+void MLIBaseIncDec(TMLIBase *o, int start, int cant, int delta)
 {
- LocVarInt(Val);
+ LocVar(targetVar);
+ LocVar(Val);
  CheckNumParams(cant!=1);
- GetInteger(0,Val);
- MLIRetInt(Val->val+1);
+
+ GetVar(0,Val);
+ switch (GroupTypeOf(Val))
+   {
+    case MLIGString:
+         // Something that was reduced to a string. Look-up a variable.
+         targetVar=o->SearchVar(MLIAsStrVal(Val));
+         CheckForError(!targetVar,MLIUndefVar);
+         CheckForError(GroupTypeOf(targetVar)!=MLIGInteger,MLIUndefOp);
+         MLIAsIntVal(targetVar)+=delta;
+         MLIRetInt(MLIAsIntVal(targetVar));
+         break;
+    case MLIGInteger:
+         // Something that was reduced to an int, just increment the value and return it
+         MLIRetInt(MLIAsIntVal(Val)+delta);
+         break;
+    default:
+         CheckForError(1,MLITypeParam)
+   }
+
 CleanUp:
  destroyFloatVar(Val);
 }
 
+
+// (++ value) | (++ "var_name")
+DecFun(MLIBaseInc)
+{
+ MLIBaseIncDec(o,start,cant,1);
+}
+
+// (-- value) | (-- "var_name")
 DecFun(MLIBaseDec)
 {
- LocVarInt(Val);
- CheckNumParams(cant!=1);
- GetInteger(0,Val);
- MLIRetInt(Val->val-1);
-CleanUp:
- destroyFloatVar(Val);
+ MLIBaseIncDec(o,start,cant,-1);
 }
 
 // (tostr <object>)
@@ -996,7 +1062,8 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "cond",
  "tostr",
  "loop",
- "exitloop"/*,
+ "exitloop",
+ "repeat"/*,
  "for"*/
 };
 
@@ -1024,7 +1091,8 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseCond,
  MLIBaseToStr,
  MLIBaseLoop,
- MLIBaseExitLoop/*,
+ MLIBaseExitLoop,
+ MLIBaseRepeat/*,
  MLIBaseFor*/
 };
 
@@ -1038,7 +1106,8 @@ char *TMLIBase::sNames[MLIBaseSymbols]=
  "==",
  "!=",
  "++",
- "--"
+ "--",
+ "="
 };
 
 Command TMLIBase::sComms[MLIBaseSymbols]=
@@ -1051,7 +1120,8 @@ Command TMLIBase::sComms[MLIBaseSymbols]=
  MLIBaseEqual,
  MLIBaseNotEqual,
  MLIBaseInc,
- MLIBaseDec
+ MLIBaseDec,
+ MLIBaseSetV
 };
 
 TLispConstString CRConstant("\r\n",2,0,2);
@@ -1105,7 +1175,7 @@ int  TMLIBase::DuplicateVar(TLispVar *&aux,TLispVar *Value)
  return 0;
 }
 
-void TMLIBase::addVariable(char *name, TLispVar *Value)
+void TMLIBase::AddVariable(char *name, TLispVar *Value)
 {
  ccIndex ind;
  TLispVariable *v;
@@ -1132,6 +1202,19 @@ void TMLIBase::addVariable(char *name, TLispVar *Value)
     v->type|=2;
     Vars->atInsert(ind,v);
    }
+}
+
+TLispVar *TMLIBase::SearchVar(char *name)
+{
+ ccIndex ind;
+ TLispVariable *v;
+
+ if (Vars->search(name,ind))
+   {
+    v=(TLispVariable *)(Vars->at(ind));
+    return v->val;
+   }
+ return NULL;
 }
 
 TLispVar *TMLIBase::Solve(int i)

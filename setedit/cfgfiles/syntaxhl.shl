@@ -370,7 +370,7 @@ Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
 Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
 Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
 Keywords=cond,ShowInMessageWindow,SelectionExists,tostr,loop,GetCursorX,Find
-Keywords=GetCursorY,SetCursorXY,exitloop
+Keywords=GetCursorY,SetCursorXY,exitloop,repeat
 # Flags
 Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
 Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom

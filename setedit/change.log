@@ -1,4 +1,19 @@
-$Log$.
+$Log$
+Revision 1.404  2003/06/12 21:10:05  set
+* Added: A new option to avoid redirecting stdout when running an external
+program. Useful for interactive applications that uses stdout. Documented.
+Translated to spanish.
+* Fixed: [UNIX] When running an external program and using the "OS screen"
+the editor made a complete mess because the routine redirected stdout and
+then suspended. It made the UNIX/Linux console drivers to try to use the
+file as a console 8-P
+* Fixed: [sLisp] The RunProgram command was affected by the options in the
+configuration dialog. Now they are independent.
+* Added: [sLisp] Two constants to be used by RunProgram. They are for the
+old option (use OS/user screen) and the new option to avoid redirecting
+stdout.
+* Added: The new sLisp commands and all the constants to syntaxhl.shl.
+
 Revision 1.403  2003/06/12 21:07:53  set
 * Added: [sLisp] GetCursorX, GetCursorY and SetCursorXY commands.
 Documented.

@@ -4899,6 +4899,15 @@ returned and the rest isn't evaluated.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection Operator = (assign)
+
+  (= @var{variable} @var{value})
+@p{}
+
+  This is a shortcut for the @code{setv} command. @x{setv}.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection Operator & (bitwise and)
 
   (& @var{exp1} @var{exp2} ...)
@@ -4945,8 +4954,18 @@ expression. If all conditions are false it returns 0.
 integer values are supported.
 @p{}
 
+  If the @var{expression} is an string and it corresponds to the name of a
+defined integer variable the variable is decremented and the resulting value
+is returned.
+@p{}
+
   (-- 8)@*
   Returns 7.
+@p{}
+
+  (setv "a_var" 4)
+  (++ "a_var")@*
+  Returns 3.
 @p{}
 
 @c --------------------------------------------------------------
@@ -5062,8 +5081,18 @@ value is 0.
 integer values are supported.
 @p{}
 
+  If the @var{expression} is an string and it corresponds to the name of a
+defined integer variable the variable is incremented and the resulting value
+is returned.
+@p{}
+
   (++ 8)@*
   Returns 9.
+@p{}
+
+  (setv "a_var" 4)
+  (++ "a_var")@*
+  Returns 5.
 @p{}
 
 @c --------------------------------------------------------------
@@ -5101,11 +5130,11 @@ integer values are supported.
   Evaluates the expressions until an @code{exitloop} command is found.
 @p{}
 
-  (setv "i" 0)@*
+  (= "i" 0)@*
   (loop@*
    (InsertText (tostr i))@*
    (if (== i 5) (exitloop))@*
-   (setv "i" (++ i))@*
+   (++ "i")@*
   )@*
   Inserts "012345" text.
 @p{}
@@ -5206,6 +5235,24 @@ enough I'll add it. Adding strings means concatenation.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection repeat
+
+  (repeat @var{times} @var{expression} ...)
+@p{}
+
+  Evaluates the expressions until an @code{exitloop} command is found or the
+@var{times} number of iterations is reached.
+@p{}
+
+  (= "i" 0)@*
+  (repeat 6@*
+   (InsertText (tostr i))@*
+   (++ "i")@*
+  )@*
+  Inserts "012345" text.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection right
 
   (right @var{string} @var{number})
@@ -5226,7 +5273,8 @@ enough I'll add it. Adding strings means concatenation.
 
   Assigns @var{value} to the @var{variable}. If the @var{variable} wasn't yet defined
 the variable is created. The @var{variable} parameter must be a string representing
-the name of the variable, it may also be an expression.
+the name of the variable, it may also be an expression. This command have a
+shortcut. @x{Operator = (assign)}.
 @paragraph{}
 
   (setv "counter" 1)@*
