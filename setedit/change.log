@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.287  2003/04/07 13:46:32  set
+* Modified: To adapt to the new TVIntl class, just compilation details.
+More will come soon ;-)
+
 Revision 1.286  2003/04/03 19:57:28  set
 * Fixed: Even when gettext (intl library) returns a char * it should be
 used as a const char *. When I enforced it using the _() macro one wrong

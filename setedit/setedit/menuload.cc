@@ -372,7 +372,7 @@ TMenuItem *GetMenuItem(char *s,int copyContext)
     extra=s+1;
    }
 
- return new TMenuItem(_(name),command,key,context,extra);
+ return new TMenuItem(name,command,key,context,extra);
 }
 
 static
@@ -399,7 +399,7 @@ TSubMenu *GetSubMenu(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
  if (Error) return 0;
 
  // We had luck ;-)
- TSubMenu *sub=new TSubMenu(_(name),key,context);
+ TSubMenu *sub=new TSubMenu(name,key,context);
  TMenuItem *firstMenu=0;
  TMenuItem *lastMenu=0;
  TMenuItem *newMenu;
@@ -507,7 +507,7 @@ TStatusItem *GetStatusItem(char *s, int hidden)
  s=GetKey(s,key,errMLExtraCharsInLine);
  if (Error) return 0;
 
- return new TStatusItem(name ? _(name) : 0,key,command);
+ return new TStatusItem(name ? name : 0,key,command);
 }
 
 
