@@ -5,55 +5,55 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.5.1\n"
-"PO-Revision-Date: 2003-05-07 11:28-0300\n"
+"Project-Id-Version: setedit 0.5.2\n"
+"PO-Revision-Date: 2003-10-14 13:36-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
-#: ../calcu/calcu.cc:79
+#: ../calcu/calcu.cc:80
 msgid "~E~xpression"
 msgstr "~A~usdruck"
 
-#: ../calcu/calcu.cc:85
+#: ../calcu/calcu.cc:86
 msgid "~R~esult"
 msgstr "~R~esultat"
 
-#: ../calcu/calcu.cc:89
+#: ../calcu/calcu.cc:90
 msgid "E~v~al"
 msgstr "~A~uswerten"
 
-#: ../calcu/calcu.cc:92 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
+#: ../calcu/calcu.cc:93 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
 #: ../infview/inf.cc:2338 ../infview/inf.cc:2361 ../infview/inf.cc:2386
 #: ../infview/inf.cc:2410 ../infview/inf.cc:2465 ../infview/infmain.cc:385
-#: ../install/install.cc:443 ../install/install.cc:451 ../mainsrc/bufun.cc:737
+#: ../install/install.cc:474 ../install/install.cc:482 ../mainsrc/bufun.cc:737
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:425 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
-#: ../setedit/edprefs.cc:471 ../setedit/edprefs.cc:616
-#: ../setedit/edprefs.cc:680 ../setedit/edprefs.cc:906
-#: ../setedit/intgrep.cc:396 ../setedit/winlistd.cc:127
+#: ../mainsrc/slpinter.cc:580 ../mainsrc/tags.cc:1458 ../mainsrc/tags.cc:1642
+#: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
+#: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
+#: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
 #: ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: ../calcu/calcu.cc:95 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
+#: ../calcu/calcu.cc:96 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
 msgid "~C~opy"
 msgstr "~K~opieren"
 
-#: ../calcu/calcu.cc:98 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
+#: ../calcu/calcu.cc:99 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
 msgid "~P~aste"
 msgstr "~E~infügen"
 
-#: ../calcu/calcu.cc:119
+#: ../calcu/calcu.cc:120
 #, c-format
 msgid "Error in expression (%d)"
 msgstr "Fehler in Ausdruck (%d)"
 
-#: ../calcu/calcu.cc:161
+#: ../calcu/calcu.cc:162
 msgid "Calculator"
 msgstr "Rechner"
 
@@ -66,12 +66,11 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:424
-#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:116 ../setedit/boardmix.cc:118
-#: ../setedit/editdiag.cc:155 ../setedit/edprefs.cc:238
-#: ../setedit/edprefs.cc:470 ../setedit/edprefs.cc:615
-#: ../setedit/edprefs.cc:679 ../setedit/edprefs.cc:905
-#: ../setedit/intgrep.cc:395 ../setedit/tips.cc:213
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:579
+#: ../mainsrc/tags.cc:1480 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
+#: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
+#: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:680
+#: ../setedit/edprefs.cc:906 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~K"
 
@@ -80,7 +79,7 @@ msgstr "O~K"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Datei: %s - Knoten: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:457
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:458
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr ""
@@ -102,7 +101,7 @@ msgid "Sorry can't find the string"
 msgstr "Sorry, kann den Text nicht finden"
 
 # unclear
-#: ../infview/inf.cc:2270
+#: ../infview/inf.cc:2271
 msgid "Help Control"
 msgstr "Hilfe Kontrolle"
 
@@ -179,8 +178,8 @@ msgid "In ~a~ll files"
 msgstr "In ~a~llen Dateien"
 
 #: ../infview/inf.cc:2336 ../infview/inf.cc:2359 ../infview/inf.cc:2382
-#: ../infview/inf.cc:2408 ../setedit/editdiag.cc:78 ../setedit/editpale.cc:165
-#: ../settvuti/diaghelp.cc:38
+#: ../infview/inf.cc:2408 ../setedit/editdiag.cc:86 ../setedit/editdiag.cc:162
+#: ../setedit/editpale.cc:165 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~K"
 
@@ -213,7 +212,7 @@ msgstr "Verstecke `*~N~ode' Wort"
 msgid "Hide real ~l~ink name"
 msgstr "Verstecke ~L~inknamen"
 
-#: ../infview/inf.cc:2448
+#: ../infview/inf.cc:2449
 msgid "InfView Bookmarks"
 msgstr "InfView Lesezeichen"
 
@@ -269,34 +268,34 @@ msgstr ""
 "\n"
 " Sorry, kann diesen Link nicht finden (drücken Sie ALT-F1).\n"
 
-#: ../infview/infmain.cc:352 ../setedit/edprefs.cc:862
+#: ../infview/infmain.cc:352 ../setedit/edprefs.cc:863
 #, fuzzy
 msgid "~A~pplication"
 msgstr "~O~ptionen"
 
 #: ../infview/infmain.cc:352 ../infview/infmain.cc:358
-#: ../infview/infmain.cc:369 ../setedit/edprefs.cc:862
-#: ../setedit/edprefs.cc:868 ../setedit/edprefs.cc:879
-#: ../setedit/edprefs.cc:887
+#: ../infview/infmain.cc:369 ../setedit/edprefs.cc:863
+#: ../setedit/edprefs.cc:869 ../setedit/edprefs.cc:880
+#: ../setedit/edprefs.cc:888
 #, fuzzy
 msgid "Force encoding"
 msgstr "Sekundär encoding"
 
-#: ../infview/infmain.cc:358 ../setedit/edprefs.cc:868
+#: ../infview/infmain.cc:358 ../setedit/edprefs.cc:869
 #, fuzzy
 msgid "~I~nput"
 msgstr "~E~infügen"
 
-#: ../infview/infmain.cc:369 ../setedit/edprefs.cc:879
+#: ../infview/infmain.cc:369 ../setedit/edprefs.cc:880
 #, fuzzy
 msgid "~S~creen"
 msgstr "Bildschirm~m~odus"
 
-#: ../infview/infmain.cc:377 ../setedit/edprefs.cc:898
+#: ../infview/infmain.cc:377 ../setedit/edprefs.cc:899
 msgid "Encodings"
 msgstr ""
 
-#: ../infview/infmain.cc:386 ../setedit/edprefs.cc:907
+#: ../infview/infmain.cc:386 ../setedit/edprefs.cc:908
 #, fuzzy
 msgid "Set ~D~efaults"
 msgstr "~O~riginal"
@@ -322,7 +321,7 @@ msgstr "Fehler beim Lesen der Desktopdatei"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2223
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2380
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -336,7 +335,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2225
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2382
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -455,7 +454,7 @@ msgstr "~D~OS Shell"
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1617 ../setedit/editmenu.cc:72
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1701 ../setedit/editmenu.cc:72
 msgid "E~x~it"
 msgstr "~B~eenden"
 
@@ -588,28 +587,28 @@ msgstr "~F10~ Menü"
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:450
-#: ../mainsrc/ceditor.cc:520
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:451
+#: ../mainsrc/ceditor.cc:521
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
-#: ../infview/manview.cc:760
+#: ../infview/manview.cc:751
 msgid "You must install man to use it!"
 msgstr "Sie müssen man installieren, um dies zu benutzen!"
 
-#: ../infview/manview.cc:789
+#: ../infview/manview.cc:780
 msgid "Man page to view"
 msgstr "Man Seite zum Anzeigen"
 
-#: ../infview/manview.cc:792
+#: ../infview/manview.cc:783
 msgid "~M~an page for ..."
 msgstr "~M~an-Seite für..."
 
-#: ../infview/manview.cc:793
+#: ../infview/manview.cc:784
 msgid "~S~ection"
 msgstr "~S~ektion"
 
-#: ../infview/manview.cc:794
+#: ../infview/manview.cc:785
 msgid "~E~xtra options"
 msgstr "~E~xtraeinstellungen"
 
@@ -707,48 +706,48 @@ msgstr "Nov"
 msgid "Yes, create backup files"
 msgstr "~K~eine Desktopdateien erstellen"
 
-#: ../install/install.cc:299
+#: ../install/install.cc:330
 #, fuzzy, c-format
 msgid "Can't create the directory: %s"
 msgstr "Kann Verzeichnis nicht erstellen:"
 
-#: ../install/install.cc:306
+#: ../install/install.cc:337
 #, fuzzy, c-format
 msgid "File name in path: %s"
 msgstr "Dateiname im Pfad:"
 
-#: ../install/install.cc:357
+#: ../install/install.cc:388
 #, fuzzy
 msgid ""
 "~Ctrl-F4~ Finish editing, or click on the button found in the top left corner"
 msgstr ""
 "~Strg-F4~ Bearbeitung beenden, oder Knopf in der linken, oberen Ecke klicken"
 
-#: ../install/install.cc:360
+#: ../install/install.cc:391
 msgid "~ESC~ Aborts installation"
 msgstr "~ESC~ Bricht Installation ab"
 
-#: ../install/install.cc:400
+#: ../install/install.cc:431
 msgid "Are you sure you want to abort the installation?"
 msgstr "Sind Sie sich sicher, daß Sie die Installation abbrechen wollen?"
 
-#: ../install/install.cc:404
+#: ../install/install.cc:435
 msgid "Select the type"
 msgstr "Typ auswählen"
 
-#: ../install/install.cc:405 ../internac/colors.cc:4
+#: ../install/install.cc:436 ../internac/colors.cc:4
 msgid "Normal"
 msgstr "Normal"
 
-#: ../install/install.cc:406
+#: ../install/install.cc:437
 msgid "For programmers"
 msgstr "Für Programmierer"
 
-#: ../install/install.cc:407
+#: ../install/install.cc:438
 msgid "For djgpp programmers"
 msgstr "Für djgpp Programmierer"
 
-#: ../install/install.cc:432
+#: ../install/install.cc:463
 msgid ""
 "Looks like djgpp isn't installed. DJGPP environment variable isn't defined "
 "or is wrong. Exit to fix it first?"
@@ -756,37 +755,37 @@ msgstr ""
 "Sieht so aus, als ob djgpp nicht installiert ist. DJGPP Umgebungsvariable "
 "ist nicht gesetzt bzw. falsch. Wollen Sie beenden, um es zu reparieren?"
 
-#: ../install/install.cc:441
+#: ../install/install.cc:472
 msgid "< ~P~rev"
 msgstr "< ~V~orherige"
 
-#: ../install/install.cc:442
+#: ../install/install.cc:473
 msgid "> ~N~ext"
 msgstr "> ~N~ächste"
 
-#: ../install/install.cc:449 ../mainsrc/deedidia.cc:339
-#: ../setedit/advice.cc:105 ../setedit/advice.cc:112
+#: ../install/install.cc:480 ../mainsrc/deedidia.cc:339
+#: ../setedit/advice.cc:115 ../setedit/advice.cc:122
 msgid "~Y~es"
 msgstr "~J~a"
 
-#: ../install/install.cc:450 ../mainsrc/deedidia.cc:340
-#: ../setedit/advice.cc:106 ../setedit/advice.cc:111
+#: ../install/install.cc:481 ../mainsrc/deedidia.cc:340
+#: ../setedit/advice.cc:116 ../setedit/advice.cc:121
 msgid "~N~o"
 msgstr "~N~ein"
 
-#: ../install/install.cc:485
+#: ../install/install.cc:516
 msgid "Where do you want to install the editor?"
 msgstr "Wo wollen Sie den Editor installieren?"
 
-#: ../install/install.cc:514
+#: ../install/install.cc:545
 msgid "Invalid drive"
 msgstr "Ungültiges Laufwerk"
 
-#: ../install/install.cc:520
+#: ../install/install.cc:551
 msgid "Can't create files there"
 msgstr "Kann dort keine Dateien erstellen"
 
-#: ../install/install.cc:526
+#: ../install/install.cc:557
 #, fuzzy
 msgid ""
 "You already installed the editor (or tried to), but in a different place. Do "
@@ -795,11 +794,11 @@ msgstr ""
 "Sie haben den Editor bereits installiert, jedoch in einem anderen "
 "Verzeichnis. Wollen Sie fortfahren?"
 
-#: ../install/install.cc:616
+#: ../install/install.cc:647
 msgid "Searching Windows information"
 msgstr "Suche Windows-Information"
 
-#: ../install/install.cc:618
+#: ../install/install.cc:649
 msgid ""
 "Windows 9x or similar detected, wait while\n"
 "finding information about your system"
@@ -807,70 +806,70 @@ msgstr ""
 "Windows 9x oder ähnliches entdeckt. Warten Sie eine\n"
 "Weile, während ich Informationen über Ihr System sammle"
 
-#: ../install/install.cc:619 ../install/install.cc:636
+#: ../install/install.cc:650 ../install/install.cc:667
 msgid "Looking in registry       "
 msgstr "Lese die Registrierung            "
 
-#: ../install/install.cc:631
+#: ../install/install.cc:662
 msgid "Searching programs dir"
 msgstr "Suche `Programme'-Verzeichnis"
 
-#: ../install/install.cc:639
+#: ../install/install.cc:670
 msgid "Searching desktop and menu"
 msgstr "Suche Desktop und Menü"
 
-#: ../install/install.cc:822
+#: ../install/install.cc:852
 msgid "  Normal"
 msgstr "  Normal"
 
-#: ../install/install.cc:825
+#: ../install/install.cc:855
 msgid "  For programmers"
 msgstr "  Für Programmierer"
 
 #. instDJGPP
-#: ../install/install.cc:828
+#: ../install/install.cc:858
 msgid "  For djgpp programmers"
 msgstr "  Für djgpp-Programmierer"
 
-#: ../install/install.cc:872
+#: ../install/install.cc:899
 msgid "Are these options correct?"
 msgstr "Sind diese Einstellungen richtig?"
 
 #. Put some message to left space for the file names
-#: ../install/install.cc:974
+#: ../install/install.cc:1002
 msgid "Installing"
 msgstr "Installiere"
 
-#: ../install/install.cc:974
+#: ../install/install.cc:1002
 msgid "Installing files for the editor"
 msgstr "Installiere Dateien für den Editor"
 
-#: ../install/install.cc:984
+#: ../install/install.cc:1012
 #, c-format
 msgid "Unable to uncompress %s, most probably this file is damaged"
 msgstr "Kann `%s' nicht entpacken. Die Datei ist möglicherweise beschädigt"
 
-#: ../install/install.cc:1014
+#: ../install/install.cc:1042
 msgid "Replacing default menu"
 msgstr "Ersetze Standardmenü"
 
-#: ../install/install.cc:1027
+#: ../install/install.cc:1055
 msgid "Unable to uncompress files, most probably this file is damaged"
 msgstr "Kann Datei nicht entpacken. Sie ist höchstwahrscheinlich beschädigt"
 
-#: ../install/install.cc:1075
+#: ../install/install.cc:1103
 msgid "Adding icon to desktop"
 msgstr "Füge dem Desktop Symbol hinzu"
 
-#: ../install/install.cc:1090
+#: ../install/install.cc:1118
 msgid "Adding icon to menu"
 msgstr "Füge dem Menü Symbol hinzu"
 
-#: ../install/install.cc:1106
+#: ../install/install.cc:1134
 msgid "Simplifying configuration"
 msgstr "Vereinfache Konfiguration"
 
-#: ../install/install.cc:1166
+#: ../install/install.cc:1194
 msgid ""
 "You defined SET_FILES environment variable in a way that isn't compatible "
 "with the installer, be careful"
@@ -878,17 +877,17 @@ msgstr ""
 "Vorsicht! Die Umgebungsvariable `SET_FILES' wurde in einer Art definiert, "
 "mit der der Installer nicht kompatibel ist."
 
-#: ../install/install.cc:1246
+#: ../install/install.cc:1274
 #, fuzzy
 msgid "You modified the autoexec.bat. Do you want to save the changes?"
 msgstr "Sie haben autoexec.bat geändert. Änderungen speichern?"
 
-#: ../install/install.cc:1282
+#: ../install/install.cc:1310
 #, fuzzy
 msgid "Instructions for editing"
 msgstr "Einweisungen für Bearbeitung"
 
-#: ../install/install.cc:1283
+#: ../install/install.cc:1311
 #, fuzzy
 msgid ""
 "Now I'll give you the opportunity to edit the autoexec.bat. To finish click "
@@ -899,7 +898,7 @@ msgstr ""
 "oder drücken Sie Strg+F4"
 
 # unclear (fuckin' english)
-#: ../install/install.cc:1288
+#: ../install/install.cc:1316
 #, fuzzy
 msgid ""
 "I added the needed command, it is marked with a comment. Please don't remove "
@@ -909,11 +908,11 @@ msgstr ""
 "markiert. Bitte entfernen Sie den Kommentar nicht, er benötigt, um zu "
 "wissen, wo der Installer Text angefügt hat."
 
-#: ../install/install.cc:1293
+#: ../install/install.cc:1321
 msgid "The text I suggest to add is currently in the clipboard."
 msgstr "Der Text, den ich hinzuzufügen vorschlage, ist in der Zwischenablage"
 
-#: ../install/install.cc:1296
+#: ../install/install.cc:1324
 msgid ""
 "You can move lines using:\n"
 "Shift + arrows keys: Select text\n"
@@ -931,42 +930,42 @@ msgstr ""
 "Umsch+Löschen: Auswahl kopieren und dann löschen\n"
 "Strg+U: Rückgängig (nur eine Aktion)"
 
-#: ../install/install.cc:1299 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:507
+#: ../install/install.cc:1327 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:504
 #: ../setedit/edprint.cc:708 ../settvuti/tdiagaid.cc:157
 msgid "~O~k"
 msgstr "~O~k"
 
-#: ../install/install.cc:1362
+#: ../install/install.cc:1390
 msgid "Edit autoexec.bat yourself later"
 msgstr ""
 
 # msgstr "Sie ändern autoexec.bat selbst später"
-#: ../install/install.cc:1363
+#: ../install/install.cc:1391
 msgid "Do it yourself but now"
 msgstr "Sie machen es selber, aber jetzt."
 
-#: ../install/install.cc:1364
+#: ../install/install.cc:1392
 msgid "Let me do it and show you the result"
 msgstr "Sie Lassen mich es tun und sehen Ergebnisse"
 
-#: ../install/install.cc:1365
+#: ../install/install.cc:1393
 msgid "Let me do it and don't show you the result"
 msgstr "Sie Lassen mich es tun und sehen keine Ergebnisse"
 
 # # shitty
-#: ../install/install.cc:1366
+#: ../install/install.cc:1394
 msgid "Select how to do it"
 msgstr "Wählen Sie, wie es zu tun ist"
 
-#: ../install/install.cc:1372
+#: ../install/install.cc:1400
 msgid "Error creating autoexec.bat"
 msgstr "Fehler beim Erstellen von autoexec.bat"
 
-#: ../install/install.cc:1389
+#: ../install/install.cc:1417
 msgid "Configuring the system"
 msgstr "Konfiguriere das System"
 
-#: ../install/install.cc:1391
+#: ../install/install.cc:1419
 msgid ""
 "The editor was succesfully installed, now you must add the directory\n"
 "where the editor was installed to your PATH, like this:"
@@ -974,44 +973,44 @@ msgstr ""
 "Der Editor wurde erfolgreich installiert. Sie müssen nun das Installations-\n"
 "verzeichnis wie folgt zu Ihrer PATH-Variablen hinzufügen:"
 
-#: ../install/install.cc:1421
+#: ../install/install.cc:1449
 msgid "Sorry, I can't find autoexec.bat"
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../install/install.cc:1436
+#: ../install/install.cc:1464
 #, fuzzy
 msgid "Can't backup autoexec.bat. You'll have to do it by yourself"
 msgstr ""
 "Konnte keine Kopie der autoexec.bat erstellen. Sorry, Sie müssen das wohl "
 "manuell erledigen..."
 
-#: ../install/install.cc:1480
+#: ../install/install.cc:1508
 msgid "Can't create temporal copy of autoexec.bat"
 msgstr "Konnte keine temporäre Kopie der autoexec.bat erstellen"
 
-#: ../install/install.cc:1493
+#: ../install/install.cc:1521
 msgid "A copy of the original autoexec.bat was stored in autoexec.bak"
 msgstr ""
 "Eine Kopie von autoexec.bat wurde unter den Namen autoexec.bak gespeichert"
 
-#: ../install/install.cc:1541
+#: ../install/install.cc:1569
 msgid "SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea"
 msgstr ""
 
-#: ../install/install.cc:1546
+#: ../install/install.cc:1574
 msgid "Failed, disabling all or part of the Win9x specific stuff"
 msgstr "Fehler! Stelle Teile oder alles der Win9x-Unterstützung aus"
 
-#: ../install/install.cc:1594
+#: ../install/install.cc:1622
 #, fuzzy
 msgid "Don't forget to update your autoexec.bat later!"
 msgstr "Vergessen Sie nicht, Ihre autoexec.bat später zu aktualisieren!"
 
-#: ../install/install.cc:1596
+#: ../install/install.cc:1624
 msgid ", after rebooting your system you'll be able to use the editor"
 msgstr ", nach einem Neustart können Sie den Editor benutzen"
 
-#: ../install/install.cc:1597
+#: ../install/install.cc:1625
 #, fuzzy, c-format
 msgid "Editor installed successfully%s. Run it using e.bat"
 msgstr "Editor erfolgreich installiert. Starten Sie ihn mit e.bat"
@@ -1461,21 +1460,26 @@ msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:541
+#: ../mainsrc/ceditor.cc:542
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4076
+#. Nope, is too risky to silently delete it.
+#: ../mainsrc/ceditor.cc:3957
+msgid "Emacs mode already pasted without this editor"
+msgstr ""
+
+#: ../mainsrc/ceditor.cc:4156
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4095
+#: ../mainsrc/ceditor.cc:4175
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4117
+#: ../mainsrc/ceditor.cc:4197
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1486,7 +1490,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4151
+#: ../mainsrc/ceditor.cc:4231
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1499,16 +1503,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:5711
+#: ../mainsrc/ceditor.cc:5794
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:5726
+#: ../mainsrc/ceditor.cc:5809
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10046
+#: ../mainsrc/ceditor.cc:10126
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1517,29 +1521,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10061
+#: ../mainsrc/ceditor.cc:10141
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:10790
+#: ../mainsrc/ceditor.cc:10866
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11732
+#: ../mainsrc/ceditor.cc:11808
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:11943
+#: ../mainsrc/ceditor.cc:12019
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13092
+#: ../mainsrc/ceditor.cc:13206
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13102
+#: ../mainsrc/ceditor.cc:13216
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1878,8 +1882,8 @@ msgstr "~A~lles"
 msgid "Export Options"
 msgstr "Export Optionen"
 
-#: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:393
-#: ../setedit/runprog.cc:120
+#: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:416
+#: ../setedit/runprog.cc:122
 msgid "~O~ptions"
 msgstr "~O~ptionen"
 
@@ -1933,6 +1937,33 @@ msgstr "Einschubtext"
 #, fuzzy, c-format
 msgid "Data saved to file: %s"
 msgstr "Speicher Datei als"
+
+#: ../mainsrc/deedidia.cc:433
+msgid "Solve collision"
+msgstr ""
+
+#: ../mainsrc/deedidia.cc:437
+msgid ""
+"Problem:\n"
+"The copy in memory is also modified\n"
+msgstr ""
+
+#: ../mainsrc/deedidia.cc:438
+msgid "~L~oad file from disk (discard changes)"
+msgstr ""
+
+#: ../mainsrc/deedidia.cc:439
+#, fuzzy
+msgid "~A~bort operation"
+msgstr "~E~xtraeinstellungen"
+
+#: ../mainsrc/deedidia.cc:440
+msgid "Load and ~s~how differences"
+msgstr ""
+
+#: ../mainsrc/deedidia.cc:441
+msgid "~D~on't load and show differences"
+msgstr ""
 
 #: ../mainsrc/doedidia.cc:64
 msgid "Not enough memory for this operation"
@@ -2072,17 +2103,17 @@ msgstr "Falsche Version"
 msgid "Error while reading"
 msgstr "Fehler während des Lesens"
 
-#: ../mainsrc/keytrans.cc:1136
+#: ../mainsrc/keytrans.cc:1137
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr ""
 
-#: ../mainsrc/keytrans.cc:1145
+#: ../mainsrc/keytrans.cc:1146
 #, fuzzy, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
-#: ../mainsrc/keytrans.cc:1182
+#: ../mainsrc/keytrans.cc:1183
 msgid "You'll lose all the changes"
 msgstr "Sie werden alle Änderungen verlieren"
 
@@ -2122,7 +2153,7 @@ msgstr "Wert:"
 msgid "Associated string"
 msgstr "Verbundener Wert"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1244
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1316
 #: ../setedit/loadnobkp.cc:213 ../setedit/pathlist.cc:179
 msgid "Do you want to discard the changes?"
 msgstr "Wollen Sie die Änderungen verwerfen?"
@@ -2131,7 +2162,7 @@ msgstr "Wollen Sie die Änderungen verwerfen?"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../mainsrc/loaddefl.cc:661
+#: ../mainsrc/loaddefl.cc:662
 msgid "Default global options"
 msgstr "Standardeinstellungen (global)"
 
@@ -2156,7 +2187,7 @@ msgstr "Wort:"
 msgid "List of words"
 msgstr "Wortliste"
 
-#: ../mainsrc/loadusew.cc:349
+#: ../mainsrc/loadusew.cc:350
 msgid "User words"
 msgstr "Benutzerwörter"
 
@@ -2224,12 +2255,12 @@ msgstr "(%d) %s in Zeile %d"
 msgid "In section %s"
 msgstr "In Sektion %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:270
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:425
 #, fuzzy, c-format
 msgid "Type of error: %s"
 msgstr "Tastaturtyp"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:272
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:427
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Code: ...%s..."
@@ -2272,28 +2303,28 @@ msgstr "Fehler im regulären Ausdruck: %s"
 msgid "PCRE Exec error"
 msgstr "PCRE Exec Fehler"
 
-#: ../mainsrc/slpinter.cc:269
+#: ../mainsrc/slpinter.cc:424
 msgid "Error in sLisp interpreter:"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:273
+#: ../mainsrc/slpinter.cc:428
 msgid "End of SLP"
 msgstr "Ende von SLP"
 
-#: ../mainsrc/slpinter.cc:336
+#: ../mainsrc/slpinter.cc:491
 #, fuzzy
 msgid "Enter sLisp code to interprete"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:369
+#: ../mainsrc/slpinter.cc:524
 msgid "No macros defined"
 msgstr "Keine macros definiert"
 
-#: ../mainsrc/slpinter.cc:412
+#: ../mainsrc/slpinter.cc:567
 msgid "sLisp macros"
 msgstr "sLisp Makros"
 
-#: ../mainsrc/slpinter.cc:422
+#: ../mainsrc/slpinter.cc:577
 msgid "~M~acros"
 msgstr "~M~akros"
 
@@ -2352,7 +2383,7 @@ msgstr "Nach Punkten so~r~tieren"
 msgid "Fu~z~zy value [1..1000]"
 msgstr "Fu~z~zy Wert [1..1000]"
 
-#: ../mainsrc/ssyntax.cc:486 ../setedit/edprefs.cc:655
+#: ../mainsrc/ssyntax.cc:486 ../setedit/edprefs.cc:656
 msgid "Other options"
 msgstr "Andere Optionen"
 
@@ -2368,162 +2399,167 @@ msgstr "Wählen Sie einen Knoten"
 msgid "No INFO files for syntax help defined"
 msgstr "Keine INFO Dateien für Syntaxsuche angegeben"
 
-#: ../mainsrc/tags.cc:693
+#: ../mainsrc/tags.cc:765
 #, fuzzy
 msgid "Wrong format for tags file!"
 msgstr "Falsche Projektdatei."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:868
+#: ../mainsrc/tags.cc:940
 msgid "I can try to generate a tag file, go ahead?"
 msgstr ""
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:877
+#: ../mainsrc/tags.cc:949
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1225
+#: ../mainsrc/tags.cc:1297
 msgid "This file is automatically maintained"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1254
+#: ../mainsrc/tags.cc:1326
 #, fuzzy
 msgid "Select tags file"
 msgstr "Datei aussuchen"
 
-#: ../mainsrc/tags.cc:1270
+#: ../mainsrc/tags.cc:1342
 msgid "Use relative path for the file?"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1291
+#: ../mainsrc/tags.cc:1363
 #, fuzzy
 msgid "Variables"
 msgstr "Verfügbar"
 
-#: ../mainsrc/tags.cc:1306
+#: ../mainsrc/tags.cc:1379
 #, fuzzy
 msgid "Tag files"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/tags.cc:1407
+#: ../mainsrc/tags.cc:1480
 #, fuzzy
 msgid "Jump to symbol"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/tags.cc:1407
+#: ../mainsrc/tags.cc:1480
 #, fuzzy
 msgid "List of symbols"
 msgstr "Wortliste"
 
-#: ../mainsrc/tags.cc:1408
+#: ../mainsrc/tags.cc:1481
 #, fuzzy
 msgid "~S~earch members"
 msgstr "~S~uche"
 
-#: ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1631 ../mainsrc/tags.cc:1647
+#: ../mainsrc/tags.cc:1500
+#, fuzzy
+msgid "Unknown line"
+msgstr "Unbekannt"
+
+#: ../mainsrc/tags.cc:1544 ../mainsrc/tags.cc:1715 ../mainsrc/tags.cc:1731
 #, fuzzy
 msgid "Members"
 msgstr "Dezember"
 
-#: ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1557 ../mainsrc/tags.cc:1631
-#: ../mainsrc/tags.cc:1647
+#: ../mainsrc/tags.cc:1544 ../mainsrc/tags.cc:1641 ../mainsrc/tags.cc:1715
+#: ../mainsrc/tags.cc:1731
 #, fuzzy
 msgid "~J~ump"
 msgstr "~G~ruppe"
 
-#: ../mainsrc/tags.cc:1469
+#: ../mainsrc/tags.cc:1553
 #, fuzzy
 msgid "Sorry, couldn't find any member"
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:1474
+#: ../mainsrc/tags.cc:1558
 msgid "I don't know any members for this type"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1541
+#: ../mainsrc/tags.cc:1625
 #, fuzzy
 msgid "Class list"
 msgstr "Spiel~l~iste"
 
-#: ../mainsrc/tags.cc:1552
+#: ../mainsrc/tags.cc:1636
 #, fuzzy
 msgid "List of classes"
 msgstr "Dateiliste"
 
-#: ../mainsrc/tags.cc:1556
+#: ../mainsrc/tags.cc:1640
 #, fuzzy
 msgid "~V~iew"
 msgstr "~N~eu"
 
-#: ../mainsrc/tags.cc:1595
+#: ../mainsrc/tags.cc:1679
 #, fuzzy
 msgid "P~a~rents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1597
+#: ../mainsrc/tags.cc:1681
 msgid "Browse ~p~arent"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1602
+#: ../mainsrc/tags.cc:1686
 msgid "Chil~d~ren"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1604
+#: ../mainsrc/tags.cc:1688
 msgid "Browse ~c~hild"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1613
+#: ../mainsrc/tags.cc:1697
 #, fuzzy
 msgid "View"
 msgstr "InfView"
 
-#: ../mainsrc/tags.cc:1614
+#: ../mainsrc/tags.cc:1698
 msgid "~T~his class"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1615
+#: ../mainsrc/tags.cc:1699
 msgid "This & Pa~r~ents"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1616
+#: ../mainsrc/tags.cc:1700
 #, fuzzy
 msgid "~S~orted"
 msgstr "~S~ortierungsart"
 
-#: ../mainsrc/tags.cc:1648
+#: ../mainsrc/tags.cc:1732
 msgid "View ~C~lass"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1747
+#: ../mainsrc/tags.cc:1831
 #, fuzzy
 msgid "Sorry, but I can't find any class."
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:1815
+#: ../mainsrc/tags.cc:1902
 msgid "This option is only available when using projects"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1907
 #, fuzzy
 msgid "Tags options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/tags.cc:1822
+#: ../mainsrc/tags.cc:1909
 msgid "Automatic generation"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1822
+#: ../mainsrc/tags.cc:1909
 #, fuzzy
 msgid "~D~isabled"
 msgstr "~A~usschalten"
 
-#: ../mainsrc/tags.cc:1823
+#: ../mainsrc/tags.cc:1910
 #, fuzzy
 msgid "~U~sing central file"
 msgstr "Falsche Desktopdatei."
 
-#: ../mainsrc/tags.cc:1837
+#: ../mainsrc/tags.cc:1924
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 
@@ -2682,82 +2718,82 @@ msgstr "~S~peichern"
 msgid "~L~oad"
 msgstr "~L~aden"
 
-#: ../sdg/mliediti.cc:74
+#: ../sdg/mliediti.cc:76
 #, fuzzy
 msgid "Return value:"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1360
+#: ../sdg/mli.cc:1558
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../sdg/mli.cc:1365
+#: ../sdg/mli.cc:1563
 msgid "parser"
 msgstr "parser"
 
-#: ../sdg/mli.cc:1366
+#: ../sdg/mli.cc:1564
 msgid "syntax"
 msgstr "Syntax"
 
-#: ../sdg/mli.cc:1371
+#: ../sdg/mli.cc:1569
 #, fuzzy
 msgid "string not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../sdg/mli.cc:1372
+#: ../sdg/mli.cc:1570
 #, fuzzy
 msgid "no ) at end of code"
 msgstr "kein ) Befehlsende"
 
-#: ../sdg/mli.cc:1373
+#: ../sdg/mli.cc:1571
 msgid "no starting ("
 msgstr "keine beginnende ("
 
-#: ../sdg/mli.cc:1374
+#: ../sdg/mli.cc:1572
 msgid "wrong number"
 msgstr "Falsche Nummer"
 
-#: ../sdg/mli.cc:1375
+#: ../sdg/mli.cc:1573
 msgid "unknown value"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1376
+#: ../sdg/mli.cc:1574
 msgid "stack overflow"
 msgstr ""
 
-#: ../sdg/mli.cc:1381
+#: ../sdg/mli.cc:1579
 msgid "command where a parameter was expected"
 msgstr "Befehl, wo Parameter erwartet war"
 
-#: ../sdg/mli.cc:1382
+#: ../sdg/mli.cc:1580
 msgid "command expected"
 msgstr "Befehl erwartet"
 
-#: ../sdg/mli.cc:1383
+#: ../sdg/mli.cc:1581
 msgid "parameter after command"
 msgstr "Parameter nach Befehl"
 
-#: ../sdg/mli.cc:1384
+#: ../sdg/mli.cc:1582
 msgid "wrong number of parameters"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../sdg/mli.cc:1385
+#: ../sdg/mli.cc:1583
 msgid "wrong parameter type"
 msgstr "Falscher Parametertyp"
 
-#: ../sdg/mli.cc:1386
+#: ../sdg/mli.cc:1584
 msgid "undefined variable"
 msgstr "Undefinierte Variable"
 
-#: ../sdg/mli.cc:1387
+#: ../sdg/mli.cc:1585
 msgid "undefined symbol"
 msgstr "Undefiniertes Symbol"
 
-#: ../sdg/mli.cc:1388
+#: ../sdg/mli.cc:1586
 msgid "operation not defined"
 msgstr "Operation nicht definiert"
 
-#: ../setedit/advice.cc:38
+#: ../setedit/advice.cc:46
 #, fuzzy
 msgid ""
 "You are about to switch to the user screen\n"
@@ -2766,7 +2802,7 @@ msgstr ""
 "Sie werden gleich den Benutzerbildschirm sehen\n"
 "Drücken Sie ENTER, um zurückzukehren"
 
-#: ../setedit/advice.cc:40
+#: ../setedit/advice.cc:48
 #, fuzzy
 msgid ""
 "Avoid using files that aren't in a directory that isn't relative to the "
@@ -2777,7 +2813,7 @@ msgstr ""
 "sind (z.B. auf einem anderen Laufwerk). Sollten Sie es dennoch tun, könnten "
 "Probleme auftauchen, nachdem die Dateien umbewegt wurden."
 
-#: ../setedit/advice.cc:42
+#: ../setedit/advice.cc:50
 msgid ""
 "Do you really want to delete\n"
 "this file from disk?"
@@ -2785,7 +2821,7 @@ msgstr ""
 "Wollen Sie diese Datei wirklich\n"
 "von der Festplatte löschen?"
 
-#: ../setedit/advice.cc:44
+#: ../setedit/advice.cc:52
 #, fuzzy
 msgid ""
 "Keep in mind that SHIFT and CAPS-LOCK will affect the case of the letters "
@@ -2794,7 +2830,7 @@ msgstr ""
 "Mit diesen Einstellungen beeinflusst `Umschalt'/`CapsLock' die "
 "Inkrementsuche. Vergessen Sie das nicht."
 
-#: ../setedit/advice.cc:46
+#: ../setedit/advice.cc:54
 #, fuzzy
 msgid ""
 "Keep in mind that incremental searches aren't very intuitive, especially "
@@ -2803,7 +2839,7 @@ msgstr ""
 "Mit diesen Einstellungen sind Inkrementsuchen nicht sehr intuitiv, "
 "besonders, wenn Sie `Shift' drücken. Vergessen Sie das nicht."
 
-#: ../setedit/advice.cc:48
+#: ../setedit/advice.cc:56
 #, fuzzy
 msgid ""
 "Keep in mind that while holding SHIFT the incremental search is done for "
@@ -2812,7 +2848,7 @@ msgstr ""
 "Beim Gedrückthalten von `Umschalt' wird nach Verzeichnissen gesucht. "
 "Ansonsten nur nach Dateien. Vergessen Sie das nicht."
 
-#: ../setedit/advice.cc:50
+#: ../setedit/advice.cc:58
 msgid ""
 "When using real tabs the following options are usually desired: Autoindent "
 "ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, "
@@ -2820,129 +2856,144 @@ msgid ""
 "I see not all of them are set this way."
 msgstr ""
 
-#: ../setedit/advice.cc:52
+#: ../setedit/advice.cc:60
 #, fuzzy
 msgid ""
 "Tags file has incorrect format.\n"
 "Do you want to read more about it?"
 msgstr "Diese Taste ist bereits benutzt. Wollen Sie sie ersetzen?"
 
-#: ../setedit/advice.cc:54
+#: ../setedit/advice.cc:62
 #, fuzzy
 msgid ""
 "This option needs a tags file.\n"
 "Do you want to read more about it?"
 msgstr "Diese Taste ist bereits benutzt. Wollen Sie sie ersetzen?"
 
-#: ../setedit/advice.cc:82
+#: ../setedit/advice.cc:64
+msgid ""
+"GNU diff isn't installed.\n"
+"For this reason I can't offer some options."
+msgstr ""
+
+#: ../setedit/advice.cc:92
 msgid "Advice"
 msgstr "Hinweis"
 
-#: ../setedit/advice.cc:97 ../setedit/editdiag.cc:73
+#: ../setedit/advice.cc:107 ../setedit/editdiag.cc:85
 msgid "Don't show it next time"
 msgstr "Nicht beim nächsten Mal anzeigen"
 
-#: ../setedit/ascii.cc:151
+#: ../setedit/advice.cc:231
+#, fuzzy
+msgid "Advice dialogs"
+msgstr "Hinweis"
+
+#: ../setedit/advice.cc:237
+msgid "Select which advice dialogs are enabled"
+msgstr ""
+
+#: ../setedit/ascii.cc:152
 msgid "  Char: "
 msgstr "  Zeichen: "
 
-#: ../setedit/ascii.cc:152
+#: ../setedit/ascii.cc:153
 msgid " Decimal: "
 msgstr " Dezimal: "
 
-#: ../setedit/ascii.cc:153
+#: ../setedit/ascii.cc:154
 msgid " Hex: "
 msgstr " Hex: "
 
-#: ../setedit/ascii.cc:189
+#: ../setedit/ascii.cc:191
 msgid "ASCII Chart"
 msgstr "ASCII Tabelle"
 
-#: ../setedit/boardmix.cc:78
+#: ../setedit/boardmix.cc:79
 #, fuzzy
 msgid "Disabled by configuration"
 msgstr "Vereinfache Konfiguration"
 
-#: ../setedit/boardmix.cc:86
+#: ../setedit/boardmix.cc:87
 msgid "Failed to initialize mixer. Sorry"
 msgstr ""
 
 #. gcc 2.95.2 doesn't like the _() call in the inlined constructor, I wonder why
 #. because 2.7.2.3 and 2.8.1 allows it as spected.
-#: ../setedit/boardmix.cc:92
+#: ../setedit/boardmix.cc:93
 msgid "Hardward Mixer Settings"
 msgstr ""
 
-#: ../setedit/boardmix.cc:94
+#: ../setedit/boardmix.cc:95
 msgid "Mixer model:"
 msgstr ""
 
-#: ../setedit/boardmix.cc:116
+#: ../setedit/boardmix.cc:117
 msgid "~L~ock channels"
 msgstr ""
 
-#: ../setedit/boardmix.cc:116
+#: ../setedit/boardmix.cc:117
 #, fuzzy
 msgid "~S~ave to disk"
 msgstr "~S~peichere Desktopeinstellungen"
 
-#: ../setedit/boardmix.cc:150
+#: ../setedit/boardmix.cc:151
 msgid "No mixer support linked in during configuration, sorry"
 msgstr ""
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "January"
 msgstr "Januar"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "February"
 msgstr "Februar"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "March"
 msgstr "März"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "April"
 msgstr "April"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "May"
 msgstr "Mai"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "June"
 msgstr "Juni"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "July"
 msgstr "Juli"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "August"
 msgstr "August"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "September"
 msgstr "September"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "October"
 msgstr "Oktober"
 
-#: ../setedit/calendar.cc:42
+#: ../setedit/calendar.cc:44
 msgid "November"
 msgstr "November"
 
-#: ../setedit/calendar.cc:42
+#: ../setedit/calendar.cc:44
 msgid "December"
 msgstr "Dezember"
 
-#: ../setedit/calendar.cc:190
+#: ../setedit/calendar.cc:192
 msgid "Su Mo Tu We Th Fr Sa"
 msgstr "So Mo Di Mi Do Fr Sa"
 
-#: ../setedit/calendar.cc:292
+#: ../setedit/calendar.cc:295
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -2987,15 +3038,15 @@ msgstr "   Man Seite: "
 msgid "   MP3 Control panel"
 msgstr "   MP3 Kontrollpult"
 
-#: ../setedit/dstfile.cc:861
+#: ../setedit/dstfile.cc:862
 msgid "Wrong desktop file."
 msgstr "Falsche Desktopdatei."
 
-#: ../setedit/dstfile.cc:867
+#: ../setedit/dstfile.cc:868
 msgid "The desktop file is too old."
 msgstr "Die Desktopdatei ist zu alt."
 
-#: ../setedit/dstfile.cc:872
+#: ../setedit/dstfile.cc:873
 msgid "You need a newer editor for this desktop file."
 msgstr "Sie benötigen einen neueren Editor für diese Desktopdatei."
 
@@ -3004,153 +3055,164 @@ msgstr "Sie benötigen einen neueren Editor für diese Desktopdatei."
 msgid "Color Themes"
 msgstr "Farben"
 
-#: ../setedit/editdiag.cc:35
-msgid "A friendly text editor."
+#: ../setedit/editdiag.cc:38
+#, fuzzy
+msgid " A friendly text editor."
 msgstr "Ein freundlicher Text-Editor."
 
-#: ../setedit/editdiag.cc:59 ../setedit/editdiag.cc:101
+#: ../setedit/editdiag.cc:39
+#, c-format
+msgid "Version: %lX.%lX.%lX   Revision: %d"
+msgstr ""
+
+#: ../setedit/editdiag.cc:40
+#, fuzzy, c-format
+msgid "That's SET's Editor \"%s\", (c) 1996-2003"
+msgstr "Das ist SET's Editor v%lX.%lX.%lX, (c) 1996-1999"
+
+#: ../setedit/editdiag.cc:41
+#, fuzzy
+msgid " by Salvador Eduardo Tropea"
+msgstr "von Salvador Eduardo Tropea"
+
+#: ../setedit/editdiag.cc:67 ../setedit/editdiag.cc:109
 msgid "About"
 msgstr "Über"
 
-#: ../setedit/editdiag.cc:64
-#, fuzzy, c-format
-msgid "That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
-msgstr "Das ist SET's Editor v%lX.%lX.%lX, (c) 1996-1999"
-
-#: ../setedit/editdiag.cc:69 ../setedit/editdiag.cc:113
-msgid "by Salvador Eduardo Tropea"
-msgstr "von Salvador Eduardo Tropea"
-
-# c-format
-#: ../setedit/editdiag.cc:104
-#, fuzzy, c-format
-msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
-msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2000"
-
-#: ../setedit/editdiag.cc:117
-msgid "Made in Argentina"
-msgstr "Hergstellt in Argentinien (übersetzt in Deutschland)"
-
-#: ../setedit/editdiag.cc:122
-msgid "Thanks to:"
-msgstr "Danksagungen an:"
-
-#: ../setedit/editdiag.cc:127
+#: ../setedit/editdiag.cc:126
 #, fuzzy
 msgid "The FSF and GNU people for such good tools"
 msgstr "Die Leute von FSF und GNU für solch großartige Tools"
 
 # About dialog
-#: ../setedit/editdiag.cc:128
+#: ../setedit/editdiag.cc:127
 #, fuzzy
 msgid "DJ Delorie and collaborators for porting it to DOS"
 msgstr "DJ Delorie und Mitarbeiter, weil sie sie zu DOS geportet haben"
 
-#: ../setedit/editdiag.cc:129
+#: ../setedit/editdiag.cc:128
 #, fuzzy
 msgid "Robert Hoehne for porting TVision and making RHIDE"
 msgstr "Robert Höhne für das Porten von TV and für RHIDE"
 
-#: ../setedit/editdiag.cc:130
+#: ../setedit/editdiag.cc:129
 msgid "Vadim Belodorov for contributing the first port of TV to Win32"
 msgstr ""
 
-#: ../setedit/editdiag.cc:131
+#: ../setedit/editdiag.cc:130
 msgid "Anatoli Soltan for porting to Win32 using BC++"
 msgstr ""
 
-#: ../setedit/editdiag.cc:132
+#: ../setedit/editdiag.cc:131
 msgid "VA Linux and the people who maintain Source Forge"
 msgstr ""
 
-#: ../setedit/editdiag.cc:133
+#: ../setedit/editdiag.cc:132
 msgid "The University of California, Berkeley and its contributors"
 msgstr "Die Universität Kalifornien, Berkeley und deren Mitarbeiter"
 
-#: ../setedit/editdiag.cc:135
+#: ../setedit/editdiag.cc:134
 msgid "The University of Cambridge for the PCRE package"
 msgstr "Der Unversität Cambridge für das PCRE Paket"
 
-#: ../setedit/editdiag.cc:138
+#: ../setedit/editdiag.cc:137
 #, fuzzy
 msgid "Shawn Hargreaves for Allegro; used as the sound engine"
 msgstr "Shawn Hargreaves für Allegro, als Sound-Engine benutzt"
 
-#: ../setedit/editdiag.cc:140
+#: ../setedit/editdiag.cc:139
 #, fuzzy
 msgid ""
 "Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"
 msgstr "Tomislav Uzelac für AMP, the MP3-Engine"
 
-#: ../setedit/editdiag.cc:143
+#: ../setedit/editdiag.cc:142
 msgid "Jean-loup Gailly and Mark Adler for the zlib"
 msgstr ""
 
-#: ../setedit/editdiag.cc:145
+#: ../setedit/editdiag.cc:144
 msgid "Julian R. Seward for bzip2 routines included"
 msgstr ""
 
-#: ../setedit/editdiag.cc:147
+#: ../setedit/editdiag.cc:146
 msgid "Bjorn Reese for a lot of ideas about the stack debugger of UNIX"
 msgstr ""
 
-#: ../setedit/editdiag.cc:148
+#: ../setedit/editdiag.cc:147
 #, fuzzy
 msgid "All my friends that support my project (Laszlo, Marek, Ivan,"
 msgstr ""
 "Allen meinen Freunden, die diese Projekt unterstützen (Laszlo, Marek, Ivan, "
 "etc)"
 
-#: ../setedit/editdiag.cc:149
-msgid "Grzegorz, etc.)."
+#: ../setedit/editdiag.cc:148
+msgid "Grzegorz, Andris, etc.)."
 msgstr ""
 
-#: ../setedit/editmain.cc:412
+#: ../setedit/editdiag.cc:154
+msgid "Thanks to:"
+msgstr "Danksagungen an:"
+
+#: ../setedit/editdiag.cc:160
+#, fuzzy
+msgid "Made in Argentina"
+msgstr "Hergstellt in Argentinien (übersetzt in Deutschland)"
+
+#: ../setedit/editmain.cc:127
+msgid "Do you want to delete all the .BKP, desktop and project files?"
+msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
+
+#: ../setedit/editmain.cc:417
 #, fuzzy
 msgid "No project loaded"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/editmain.cc:472
+#: ../setedit/editmain.cc:477
 #, fuzzy
 msgid "This file is already open, close it first."
 msgstr "Die Datei ist bereits geöffnet. Schließen Sie sie zuerst."
 
-#: ../setedit/editmain.cc:554
+#: ../setedit/editmain.cc:559
 #, fuzzy
 msgid "Open File"
 msgstr "Ö~f~fne Info"
 
-#: ../setedit/editmain.cc:569
+#: ../setedit/editmain.cc:574
 msgid "You must select an editor window for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../setedit/editmain.cc:703
+#: ../setedit/editmain.cc:709
 msgid "Export file as"
 msgstr "Exportiere Datei als"
 
-#: ../setedit/editmain.cc:780
+#: ../setedit/editmain.cc:786
 #, fuzzy
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Diese Fenster kann nicht gedruckt werden, wählen Sie einen Editor"
 
-#: ../setedit/editmain.cc:938
+#: ../setedit/editmain.cc:944
 msgid "Couldn't find any matching help"
 msgstr "Konnte keine passende Hilfe finden"
 
-#: ../setedit/editmain.cc:1115
+#: ../setedit/editmain.cc:1121
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1466
+#: ../setedit/editmain.cc:1500
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:1572
+#: ../setedit/editmain.cc:1651
+#, fuzzy
+msgid "Error creating the difference, aborting"
+msgstr "Fehler beim Lesen der Dateiliste"
+
+#: ../setedit/editmain.cc:1727
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:1794
+#: ../setedit/editmain.cc:1951
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -3159,7 +3221,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:1929
+#: ../setedit/editmain.cc:2086
 #, c-format
 msgid ""
 "\n"
@@ -3168,7 +3230,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:1930
+#: ../setedit/editmain.cc:2087
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -3177,7 +3239,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:1934
+#: ../setedit/editmain.cc:2091
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3186,7 +3248,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1936
+#: ../setedit/editmain.cc:2093
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3195,11 +3257,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1941
+#: ../setedit/editmain.cc:2098
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:1950
+#: ../setedit/editmain.cc:2107
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3209,15 +3271,15 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:1979
+#: ../setedit/editmain.cc:2136
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2223
+#: ../setedit/editmain.cc:2380
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2224
+#: ../setedit/editmain.cc:2381
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3225,7 +3287,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2226
+#: ../setedit/editmain.cc:2383
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3235,11 +3297,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2230
+#: ../setedit/editmain.cc:2387
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2231
+#: ../setedit/editmain.cc:2388
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3248,14 +3310,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2236
+#: ../setedit/editmain.cc:2393
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2240
+#: ../setedit/editmain.cc:2397
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3264,7 +3326,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2242
+#: ../setedit/editmain.cc:2399
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3272,36 +3334,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2244
+#: ../setedit/editmain.cc:2401
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2246
+#: ../setedit/editmain.cc:2403
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2248
+#: ../setedit/editmain.cc:2405
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2249
+#: ../setedit/editmain.cc:2406
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2250
+#: ../setedit/editmain.cc:2407
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2253
+#: ../setedit/editmain.cc:2410
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2255
+#: ../setedit/editmain.cc:2412
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3310,7 +3372,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2257
+#: ../setedit/editmain.cc:2414
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3318,26 +3380,22 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2260
+#: ../setedit/editmain.cc:2417
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2262
+#: ../setedit/editmain.cc:2419
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2263
+#: ../setedit/editmain.cc:2420
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
-
-#: ../setedit/editmain.cc:2649
-msgid "Do you want to delete all the .BKP, desktop and project files?"
-msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 
 #. E: ACHNOSUX
 #: ../setedit/editmenu.cc:64 ../setedit/editmenu.cc:140
@@ -3468,7 +3526,7 @@ msgstr "~L~iste"
 msgid "~U~ser Screen"
 msgstr "Ben~u~tzerbildschirm"
 
-#: ../setedit/editmenu.cc:127 ../setedit/edprefs.cc:360
+#: ../setedit/editmenu.cc:127 ../setedit/edprefs.cc:361
 msgid "~H~elp"
 msgstr "~H~ilfe"
 
@@ -3722,7 +3780,8 @@ msgid "Ca~l~endar"
 msgstr "Ka~l~ender"
 
 #: ../setedit/editmenu.cc:247
-msgid "~M~P3 songs"
+#, fuzzy
+msgid "MP~3~ songs"
 msgstr "~M~P3 Lieder"
 
 #: ../setedit/editmenu.cc:248
@@ -4050,7 +4109,30 @@ msgstr "Speicher Datei als"
 msgid "Calendar (holida~y~s)..."
 msgstr ""
 
-#: ../setedit/editpale.cc:109
+#: ../setedit/editmenu.cc:322
+msgid "Checking for ~m~odified files..."
+msgstr ""
+
+#: ../setedit/editmenu.cc:323
+#, fuzzy
+msgid "Advice dialogs..."
+msgstr "`Datei öffnen' Dial~o~g..."
+
+#: ../setedit/editmenu.cc:324
+#, fuzzy
+msgid "Jump to ~l~ast cursor position"
+msgstr "Cursorposition speichern"
+
+#: ../setedit/editmenu.cc:325
+#, fuzzy
+msgid "Jump to last ~u~ndo position"
+msgstr "Gehe zu Funktion"
+
+#: ../setedit/editmenu.cc:326
+msgid "Insert ~n~ew line (don't move)"
+msgstr ""
+
+#: ../setedit/editpale.cc:110
 msgid "Palette editor"
 msgstr "Paletteneditor"
 
@@ -4078,610 +4160,635 @@ msgstr "~O~riginal"
 msgid "The hardware doesn't support this."
 msgstr ""
 
-#: ../setedit/edkeys.cc:186
+#: ../setedit/edkeys.cc:187
 msgid "Key assignment"
 msgstr "Tasten zuweisen"
 
-#: ../setedit/edkeys.cc:241
+#: ../setedit/edkeys.cc:242
 msgid "Accepting that you'll change the SET's editor behavior"
 msgstr "Wollen Sie die Änderungen in SET's Verhalten beibehalten?"
 
-#: ../setedit/edkeys.cc:257
+#: ../setedit/edkeys.cc:258
 msgid "Do you really want to discard the changes?"
 msgstr "Wollen Sie die Änderungen wirklich verwerfen?"
 
-#: ../setedit/edkeys.cc:270
+#: ../setedit/edkeys.cc:271
 msgid "Sequence of keys"
 msgstr "Tastenfolge"
 
-#: ../setedit/edkeys.cc:320
+#: ../setedit/edkeys.cc:321
 #, fuzzy
 msgid "This key is already in use, do you want to replace it?"
 msgstr "Diese Taste ist bereits benutzt. Wollen Sie sie ersetzen?"
 
-#: ../setedit/edkeys.cc:332
+#: ../setedit/edkeys.cc:333
 msgid ""
 "This sequence is used for more than one key, delete these assignments first"
 msgstr ""
 "Diese Reihenfolge wird bereits für mehr als eine Taste benutzt. Löschen Sie "
 "diese Zuweisungen vorher"
 
-#: ../setedit/edkeys.cc:350
-msgid "Press a key"
-msgstr "Eine Taste drücken"
-
-#: ../setedit/edkeys.cc:354
+#: ../setedit/edkeys.cc:353
 msgid "Key selector"
 msgstr "Bitte eine Tasten drücken"
 
-#: ../setedit/edkeys.cc:406
+#: ../setedit/edkeys.cc:356
+msgid "Press a key"
+msgstr "Eine Taste drücken"
+
+#: ../setedit/edkeys.cc:403
 msgid "Macros"
 msgstr "Makros"
 
-#: ../setedit/edkeys.cc:422
+#: ../setedit/edkeys.cc:419
 msgid "Commands"
 msgstr "Befehle"
 
-#: ../setedit/edkeys.cc:451
+#: ../setedit/edkeys.cc:448
 msgid "A command"
 msgstr "Ein Befehl"
 
-#: ../setedit/edkeys.cc:501
+#: ../setedit/edkeys.cc:498
 msgid "Scan Viewer"
 msgstr "Scan Betrachter"
 
-#: ../setedit/edkeys.cc:514
+#: ../setedit/edkeys.cc:511
 msgid "Alt keys settings"
 msgstr "Alt Tasteneinstellungen"
 
-#: ../setedit/edkeys.cc:516
+#: ../setedit/edkeys.cc:513
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~asten von Menüs, etc. benutzt"
 
-#: ../setedit/edkeys.cc:517
+#: ../setedit/edkeys.cc:514
 msgid "~L~eft Alt"
 msgstr "~L~inke Alt"
 
-#: ../setedit/edkeys.cc:517
+#: ../setedit/edkeys.cc:514
 msgid "~R~ight Alt"
 msgstr "~R~echte Alt"
 
-#: ../setedit/edkeys.cc:518
+#: ../setedit/edkeys.cc:515
 msgid "~B~oth Alt"
 msgstr "~B~eide Alt"
 
-#: ../setedit/edkeys.cc:540
+#: ../setedit/edkeys.cc:537
 msgid "Key Pad behavior"
 msgstr "KeyPad Verhalten"
 
-#: ../setedit/edkeys.cc:542
+#: ../setedit/edkeys.cc:539
 msgid "Behavior"
 msgstr "Verhalten"
 
-#: ../setedit/edkeys.cc:542
+#: ../setedit/edkeys.cc:539
 #, fuzzy
 msgid "Use the ~B~IOS default"
 msgstr "Behalte ~B~IOS Standard"
 
-#: ../setedit/edkeys.cc:543
+#: ../setedit/edkeys.cc:540
 #, fuzzy
 msgid "Always interprete shift+arrow as ~m~ovement"
 msgstr "U~m~schalt+Pfeil immer als Bewegung"
 
-#: ../setedit/edmsg.cc:340
+#: ../setedit/edmsg.cc:353
 #, fuzzy
 msgid "Last message in the list"
 msgstr "Erster in der ~L~iste"
 
-#: ../setedit/edmsg.cc:372
+#: ../setedit/edmsg.cc:385
 #, fuzzy
 msgid "First message in the list"
 msgstr "Erster in der ~L~iste"
 
-#: ../setedit/edmsg.cc:429
+#: ../setedit/edmsg.cc:442
 msgid "Message Window"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/edprefs.cc:93
+#: ../setedit/edprefs.cc:95
 #, fuzzy
 msgid "Open File options"
 msgstr "Bildschirmeinstellungen"
 
 #. ACDEFGIKLNPRSW
-#: ../setedit/edprefs.cc:146
+#: ../setedit/edprefs.cc:147
 msgid "~S~ort type"
 msgstr "~S~ortierungsart"
 
-#: ../setedit/edprefs.cc:146
+#: ../setedit/edprefs.cc:147
 msgid "~A~lphabetical"
 msgstr "~A~lphabetisch"
 
-#: ../setedit/edprefs.cc:147
+#: ../setedit/edprefs.cc:148
 msgid "~D~irectories first"
 msgstr "~V~erzeichnisse zuerst"
 
-#: ../setedit/edprefs.cc:147
+#: ../setedit/edprefs.cc:148
 msgid "~F~iles first"
 msgstr "D~a~teien zuerst"
 
-#: ../setedit/edprefs.cc:149
+#: ../setedit/edprefs.cc:150
 msgid "Case style"
 msgstr "Groß-/Kleinschreibung"
 
-#: ../setedit/edprefs.cc:149
+#: ../setedit/edprefs.cc:150
 #, fuzzy
 msgid "~C~apital letters go first"
 msgstr "~G~roßbuchstaben zuerst"
 
-#: ../setedit/edprefs.cc:150
+#: ../setedit/edprefs.cc:151
 msgid "Case ~i~nsensitive"
 msgstr "~N~icht wichtig"
 
-#: ../setedit/edprefs.cc:151
+#: ../setedit/edprefs.cc:152
 msgid "Parent directory (..)"
 msgstr "Übergeordnetes Verzeichnis (..)"
 
-#: ../setedit/edprefs.cc:151
+#: ../setedit/edprefs.cc:152
 msgid "First in the ~l~ist"
 msgstr "Erster in der ~L~iste"
 
-#: ../setedit/edprefs.cc:152
+#: ../setedit/edprefs.cc:153
 msgid "At the ~e~nd of the list"
 msgstr "Am ~E~nde der Liste"
 
-#: ../setedit/edprefs.cc:162
+#: ../setedit/edprefs.cc:163
 msgid "Files starting with a dot"
 msgstr ""
 
-#: ../setedit/edprefs.cc:162
+#: ../setedit/edprefs.cc:163
 #, fuzzy
 msgid "~N~ormally sorted"
 msgstr "~n~ormaler Text"
 
-#: ../setedit/edprefs.cc:163
+#: ../setedit/edprefs.cc:164
 #, fuzzy
 msgid "After the ~r~est"
 msgstr "Nach ~F~ußnote"
 
-#: ../setedit/edprefs.cc:164
+#: ../setedit/edprefs.cc:165
 msgid "Exclude files"
 msgstr ""
 
-#: ../setedit/edprefs.cc:164
+#: ../setedit/edprefs.cc:165
 msgid "Ending ~w~ith tilde"
 msgstr ""
 
-#: ../setedit/edprefs.cc:165
+#: ../setedit/edprefs.cc:166
 msgid "Ending with .bk~p~"
 msgstr ""
 
-#: ../setedit/edprefs.cc:165
+#: ../setedit/edprefs.cc:166
 #, fuzzy
 msgid "Startin~g~ with ."
 msgstr "Starte SDG:"
 
-#: ../setedit/edprefs.cc:220
+#: ../setedit/edprefs.cc:222
 msgid "Screen saver"
 msgstr "Bildschirmschoner"
 
-#: ../setedit/edprefs.cc:304
+#: ../setedit/edprefs.cc:305
 msgid "Information"
 msgstr "Information"
 
-#: ../setedit/edprefs.cc:310
+#: ../setedit/edprefs.cc:311
 msgid "Help for screen saver"
 msgstr "Hilfe zum Bildschirmschoner"
 
-#: ../setedit/edprefs.cc:342
+#: ../setedit/edprefs.cc:343
 msgid "The screen saver can't be used on this terminal"
 msgstr ""
 
-#: ../setedit/edprefs.cc:354
+#: ../setedit/edprefs.cc:355
 msgid "E~x~ternal options"
 msgstr "E~x~terne Einstellungen"
 
-#: ../setedit/edprefs.cc:356
+#: ../setedit/edprefs.cc:357
 msgid "Sc~r~een saver (?)"
 msgstr "Bildschirm~s~choner (?)"
 
-#: ../setedit/edprefs.cc:356
+#: ../setedit/edprefs.cc:357
 msgid "OF~F~"
 msgstr "~A~US"
 
-#: ../setedit/edprefs.cc:356
+#: ../setedit/edprefs.cc:357
 msgid "O~N~"
 msgstr "Ein"
 
 #. First 3 joined
-#: ../setedit/edprefs.cc:358
+#: ../setedit/edprefs.cc:359
 msgid "T~e~st"
 msgstr "~T~est"
 
-#: ../setedit/edprefs.cc:359
+#: ../setedit/edprefs.cc:360
 msgid "~I~nfo"
 msgstr "~I~nfo"
 
-#: ../setedit/edprefs.cc:363
+#: ../setedit/edprefs.cc:364
 msgid "~T~ime"
 msgstr "Zei~t~"
 
-#: ../setedit/edprefs.cc:364
+#: ../setedit/edprefs.cc:365
 msgid "seconds"
 msgstr "Sekunden"
 
-#: ../setedit/edprefs.cc:368
+#: ../setedit/edprefs.cc:369
 msgid "Ti~m~e"
 msgstr "Zeit"
 
-#: ../setedit/edprefs.cc:369
+#: ../setedit/edprefs.cc:370
 msgid "mouse sec."
 msgstr "Maus Sek."
 
 #. ABCDEHIKLMOPRSTUVWY
-#: ../setedit/edprefs.cc:428
+#: ../setedit/edprefs.cc:429
 msgid "General editor options"
 msgstr "Allgemeine Editoreinstellungen"
 
-#: ../setedit/edprefs.cc:430
+#: ../setedit/edprefs.cc:431
 msgid "~S~ave/Desktop options"
 msgstr "~S~peichere Desktopeinstellungen"
 
-#: ../setedit/edprefs.cc:431
+#: ../setedit/edprefs.cc:432
 msgid "Make ~b~ackups"
 msgstr "Erstelle ~B~ackups"
 
-#: ../setedit/edprefs.cc:433
+#: ../setedit/edprefs.cc:434
 #, fuzzy
 msgid "~U~NIX-style backups"
 msgstr "Backups im ~U~NIX-Stil"
 
-#: ../setedit/edprefs.cc:435
+#: ../setedit/edprefs.cc:436
 msgid "H~i~dden backups"
 msgstr "Versteckte S~i~cherheitskopie"
 
-#: ../setedit/edprefs.cc:437
+#: ../setedit/edprefs.cc:438
 #, fuzzy
 msgid "R~e~member bkps to delete"
 msgstr "~E~rinnern, backups zu löschen"
 
-#: ../setedit/edprefs.cc:439
+#: ../setedit/edprefs.cc:440
 msgid "~D~on't create desktop files"
 msgstr "~K~eine Desktopdateien erstellen"
 
-#: ../setedit/edprefs.cc:441
+#: ../setedit/edprefs.cc:442
 msgid "Save desktop files ~h~idden"
 msgstr "Desktopdateien versteckt sc~h~reiben"
 
-#: ../setedit/edprefs.cc:443
+#: ../setedit/edprefs.cc:444
 msgid "Tile windows ~v~ertically first"
 msgstr "Fenster erst ~v~ertikal teilen"
 
-#: ../setedit/edprefs.cc:446
+#: ../setedit/edprefs.cc:447
 msgid "Save UNIX files ~a~s UNIX"
 msgstr "UNIX Dateien als UNIX speichern"
 
-#: ../setedit/edprefs.cc:448
+#: ../setedit/edprefs.cc:449
 msgid "Save DOS files ~a~s DOS"
 msgstr "DOS Dateien ~a~ls DOS speichern"
 
-#: ../setedit/edprefs.cc:451
+#: ../setedit/edprefs.cc:452
 #, fuzzy
 msgid "Don't remember cursor ~p~osition"
 msgstr "Cursorpos~i~tion laden"
 
-#: ../setedit/edprefs.cc:453
+#: ../setedit/edprefs.cc:454
 #, fuzzy
 msgid "Don't ~w~arn about read-only files"
 msgstr "Nicht beim nächsten Mal anzeigen"
 
-#: ../setedit/edprefs.cc:455
+#: ../setedit/edprefs.cc:456
 msgid "Open ~r~ead-only files as R.O. buffers"
 msgstr ""
 
-#: ../setedit/edprefs.cc:459
+#: ../setedit/edprefs.cc:460
 msgid "~C~lock"
 msgstr "~U~hr"
 
-#: ../setedit/edprefs.cc:459
+#: ../setedit/edprefs.cc:460
 msgid "OFF"
 msgstr "AUS"
 
-#: ../setedit/edprefs.cc:459
+#: ../setedit/edprefs.cc:460
 msgid "ON"
 msgstr "EIN"
 
-#: ../setedit/edprefs.cc:460
+#: ../setedit/edprefs.cc:461
 msgid "St~y~le"
 msgstr "St~i~l"
 
-#: ../setedit/edprefs.cc:460
+#: ../setedit/edprefs.cc:461
 msgid "AM/PM"
 msgstr "AM/PM"
 
-#: ../setedit/edprefs.cc:460
+#: ../setedit/edprefs.cc:461
 msgid "24 hs"
 msgstr "24 Std"
 
-#: ../setedit/edprefs.cc:462
+#: ../setedit/edprefs.cc:463
 msgid "~M~ax. editor copies"
 msgstr "~M~ax. Editorkopien"
 
-#: ../setedit/edprefs.cc:463
+#: ../setedit/edprefs.cc:464
 #, fuzzy
 msgid "Max. c~l~osed to remember"
 msgstr "Anzahl geschlossener Fenster"
 
-#: ../setedit/edprefs.cc:472
+#: ../setedit/edprefs.cc:473
 msgid "+ Desk~t~op"
 msgstr ""
 
-#: ../setedit/edprefs.cc:473
+#: ../setedit/edprefs.cc:474
 #, fuzzy
 msgid "+ Others"
 msgstr "andere"
 
 #. CEKLMNORVY
-#: ../setedit/edprefs.cc:604
+#: ../setedit/edprefs.cc:605
 #, fuzzy
 msgid "More desktop options"
 msgstr "~S~peichere Desktopeinstellungen"
 
-#: ../setedit/edprefs.cc:606
+#: ../setedit/edprefs.cc:607
 #, fuzzy
 msgid "Remember editor windows"
 msgstr "Allgemeine Editoreinstellungen"
 
-#: ../setedit/edprefs.cc:607
+#: ../setedit/edprefs.cc:608
 #, fuzzy
 msgid "~A~lways"
 msgstr "Ab~s~pielen"
 
-#: ../setedit/edprefs.cc:607
+#: ../setedit/edprefs.cc:608
 msgid "~O~nly if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:607 ../setedit/runprog.cc:126
+#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:129
 #, fuzzy
 msgid "~N~ever"
 msgstr "Ü~b~erschreiben"
 
-#: ../setedit/edprefs.cc:608
+#: ../setedit/edprefs.cc:609
 #, fuzzy
 msgid "Remember other windows"
 msgstr "Allgemeine Editoreinstellungen"
 
-#: ../setedit/edprefs.cc:609 ../setedit/runprog.cc:126
+#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:129
 msgid "Al~w~ays"
 msgstr ""
 
-#: ../setedit/edprefs.cc:609
+#: ../setedit/edprefs.cc:610
 msgid "On~l~y if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:609
+#: ../setedit/edprefs.cc:610
 #, fuzzy
 msgid "Neve~r~"
 msgstr "Ü~b~erschreiben"
 
-#: ../setedit/edprefs.cc:610
+#: ../setedit/edprefs.cc:611
 #, fuzzy
 msgid "Remember ~c~losed windows"
 msgstr "Allgemeine Editoreinstellungen"
 
-#: ../setedit/edprefs.cc:611
+#: ../setedit/edprefs.cc:612
 msgid "Alway~s~"
 msgstr ""
 
-#: ../setedit/edprefs.cc:611
+#: ../setedit/edprefs.cc:612
 msgid "Onl~y~ if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:611
+#: ../setedit/edprefs.cc:612
 #, fuzzy
 msgid "Ne~v~er"
 msgstr "Ü~b~erschreiben"
 
-#: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:681
+#: ../setedit/edprefs.cc:618 ../setedit/edprefs.cc:682
 #, fuzzy
 msgid "~M~ain options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../setedit/edprefs.cc:660
+#: ../setedit/edprefs.cc:661
 #, fuzzy
 msgid "At the end of error list in message window"
 msgstr "I~m~ Nachrichtenfenster anzeigen"
 
-#: ../setedit/edprefs.cc:661
+#: ../setedit/edprefs.cc:662
 msgid "~J~ust stop"
 msgstr ""
 
-#: ../setedit/edprefs.cc:662
+#: ../setedit/edprefs.cc:663
 msgid "~I~ndicate with a message"
 msgstr ""
 
-#: ../setedit/edprefs.cc:663
+#: ../setedit/edprefs.cc:664
 msgid "Wrap (~c~ircular list)"
 msgstr ""
 
-#: ../setedit/edprefs.cc:664
+#: ../setedit/edprefs.cc:665
 msgid "Make a beep"
 msgstr ""
 
-#: ../setedit/edprefs.cc:665
+#: ../setedit/edprefs.cc:666
 msgid "When creating message and similar windows"
 msgstr ""
 
-#: ../setedit/edprefs.cc:667
+#: ../setedit/edprefs.cc:668
 #, fuzzy
 msgid "Use the ~v~ertical direction"
 msgstr "Auswahl der Zwis~c~henablage benutzen"
 
-#: ../setedit/edprefs.cc:668
+#: ../setedit/edprefs.cc:669
 msgid "Use the ~r~ight side"
 msgstr ""
 
-#: ../setedit/edprefs.cc:669
+#: ../setedit/edprefs.cc:670
 #, fuzzy
 msgid "When opening files"
 msgstr "Es sind keine Dateien geöffnet"
 
-#: ../setedit/edprefs.cc:671
+#: ../setedit/edprefs.cc:672
 msgid "~U~se reserved width or 7 (hz dir)"
 msgstr ""
 
-#: ../setedit/edprefs.cc:672
+#: ../setedit/edprefs.cc:673
 msgid "~A~void message and project windows"
 msgstr ""
 
-#: ../setedit/edprefs.cc:673
+#: ../setedit/edprefs.cc:674
 msgid "Reserved ~w~idth"
 msgstr ""
 
-#: ../setedit/edprefs.cc:790
+#: ../setedit/edprefs.cc:791
 msgid "~F~rom code page"
 msgstr "Von ~C~odepage"
 
-#: ../setedit/edprefs.cc:792
+#: ../setedit/edprefs.cc:793
 msgid "~T~o code page"
 msgstr "~Z~ur Codepage"
 
-#: ../setedit/edprefs.cc:796
+#: ../setedit/edprefs.cc:797
 #, fuzzy
 msgid "~D~on't remap codes below 32"
 msgstr "Co~d~es unter 32 nicht ~u~mwandeln"
 
-#: ../setedit/edprefs.cc:797
+#: ../setedit/edprefs.cc:798
 #, fuzzy
 msgid "~O~nly selected text"
 msgstr "Ausge~w~ählter Text"
 
-#: ../setedit/edprefs.cc:800
+#: ../setedit/edprefs.cc:801
 msgid "Code page remap"
 msgstr "Code page ändern"
 
-#: ../setedit/edprefs.cc:887
+#: ../setedit/edprefs.cc:888
 #, fuzzy
 msgid "Second ~f~ont"
 msgstr "~S~ekundäre Schrift"
 
-#: ../setedit/edprefs.cc:1068
+#: ../setedit/edprefs.cc:1069
 msgid "This terminal doesn't support changing fonts"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1074
+#: ../setedit/edprefs.cc:1075
 msgid "Can't determine fonts geometry"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1087
+#: ../setedit/edprefs.cc:1088
 msgid "No fonts available for current video mode"
 msgstr ""
 
 #. Primary font label, check box and list
-#: ../setedit/edprefs.cc:1127
+#: ../setedit/edprefs.cc:1128
 #, fuzzy
 msgid "~P~rimary"
 msgstr "Ab~s~pielen"
 
-#: ../setedit/edprefs.cc:1127
+#: ../setedit/edprefs.cc:1128
 #, fuzzy
 msgid "~L~oad font"
 msgstr "~L~aden"
 
-#: ../setedit/edprefs.cc:1134
+#: ../setedit/edprefs.cc:1135
 #, fuzzy
 msgid "S~i~ze"
 msgstr "~V~erbergen"
 
-#: ../setedit/edprefs.cc:1140
+#: ../setedit/edprefs.cc:1141
 #, fuzzy
 msgid "~S~econdary"
 msgstr "~S~ekundäre Schrift"
 
-#: ../setedit/edprefs.cc:1140
+#: ../setedit/edprefs.cc:1141
 #, fuzzy
 msgid "Lo~a~d font"
 msgstr "Andere ~S~chrift"
 
-#: ../setedit/edprefs.cc:1146
+#: ../setedit/edprefs.cc:1147
 msgid "Fonts"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1184
+#: ../setedit/edprefs.cc:1185
 #, c-format
 msgid "The selected secondary font doesn't support the primary size (%dx%d)"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1223
+#: ../setedit/edprefs.cc:1224
 msgid "This terminal has a fixed size"
 msgstr ""
 
 #. CDEGHIMNSWX
-#: ../setedit/edprefs.cc:1244
+#: ../setedit/edprefs.cc:1245
 #, fuzzy
 msgid "Screen size options"
 msgstr "Bildschirmeinstellungen"
 
-#: ../setedit/edprefs.cc:1245
+#: ../setedit/edprefs.cc:1246
 #, fuzzy
 msgid "~D~on't force"
 msgstr "~N~icht benutzen"
 
-#: ../setedit/edprefs.cc:1246
+#: ../setedit/edprefs.cc:1247
 msgid "~S~ame as last run"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1247
+#: ../setedit/edprefs.cc:1248
 #, fuzzy
 msgid "~E~xternal program"
 msgstr "Externes Programm benutzen"
 
-#: ../setedit/edprefs.cc:1248
+#: ../setedit/edprefs.cc:1249
 #, fuzzy
 msgid "~C~losest to specified size"
 msgstr "Nur s~p~ezifizierte Dateien öffnen"
 
-#: ../setedit/edprefs.cc:1249
+#: ../setedit/edprefs.cc:1250
 msgid "Specified ~m~ode number"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1252
+#: ../setedit/edprefs.cc:1253
 msgid "~W~idth "
 msgstr ""
 
-#: ../setedit/edprefs.cc:1253
+#: ../setedit/edprefs.cc:1254
 #, fuzzy
 msgid "~H~eight"
 msgstr "~R~echte Alt"
 
-#: ../setedit/edprefs.cc:1254
+#: ../setedit/edprefs.cc:1255
 msgid "Chars w~i~dth "
 msgstr ""
 
-#: ../setedit/edprefs.cc:1255
+#: ../setedit/edprefs.cc:1256
 msgid "Chars hei~g~ht"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1258
+#: ../setedit/edprefs.cc:1259
 #, fuzzy
 msgid "E~x~ternal program"
 msgstr "Externes Programm benutzen"
 
-#: ../setedit/edprefs.cc:1261
+#: ../setedit/edprefs.cc:1262
 #, fuzzy
 msgid "Mode ~n~umber"
 msgstr "Falsche Nummer"
 
-#: ../setedit/edprefs.cc:1266
+#: ../setedit/edprefs.cc:1267
 #, fuzzy
 msgid "Screen size"
 msgstr "Bildschirmschoner"
 
-#: ../setedit/edprefs.cc:1285
+#: ../setedit/edprefs.cc:1286
 msgid "Please specify a screen size of at least 80x25 and no more than 250x250"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1290
+#: ../setedit/edprefs.cc:1291
 msgid "Please specify a character size of at least 5x7 and no more than 32x32"
+msgstr ""
+
+#: ../setedit/edprefs.cc:1314
+msgid "Checking for modified files"
+msgstr ""
+
+#: ../setedit/edprefs.cc:1318
+msgid "When a file on disk is newer than a file in edition:\n"
+msgstr ""
+
+#: ../setedit/edprefs.cc:1319
+msgid "Seconds between checks"
+msgstr ""
+
+#: ../setedit/edprefs.cc:1320
+#, fuzzy
+msgid "Related options"
+msgstr "Andere Optionen"
+
+#: ../setedit/edprefs.cc:1321
+msgid "~D~on't check after executing an external program"
+msgstr ""
+
+#: ../setedit/edprefs.cc:1322
+msgid "Don't check while ~i~dle"
 msgstr ""
 
 #. "P gina: %d L¡neas: %d a %d  D¡a: %s  Hora: %s\xD\xC"
@@ -4794,231 +4901,239 @@ msgstr "Ausgabe ist ein Programm"
 msgid "~C~ancel"
 msgstr "~A~bbruch"
 
-#: ../setedit/edprj.cc:358
+#: ../setedit/edprj.cc:377
 #, fuzzy
 msgid "File already in project"
 msgstr "Keine Dateien im Projekt"
 
-#: ../setedit/edprj.cc:428
+#: ../setedit/edprj.cc:447
 msgid "Add File"
 msgstr "Datei hinzufügen"
 
-#: ../setedit/edprj.cc:525 ../setedit/edprj.cc:566
+#: ../setedit/edprj.cc:548 ../setedit/edprj.cc:589
 msgid "Project Window"
 msgstr "Projektfenster"
 
-#: ../setedit/edprj.cc:533
+#: ../setedit/edprj.cc:556
 msgid " 1 Project Window"
 msgstr " 1 Projektfenster"
 
-#: ../setedit/edprj.cc:607
+#: ../setedit/edprj.cc:630
 msgid "Could not open project file"
 msgstr "Konnte Projektdatei nicht öffnen"
 
-#: ../setedit/edprj.cc:614
+#: ../setedit/edprj.cc:637
 msgid "Wrong project file."
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:638
+#: ../setedit/edprj.cc:668
 msgid "Error reading project file"
 msgstr "Fehler beim Lesen der Projektdatei"
 
-#: ../setedit/edprj.cc:640 ../setedit/edprj.cc:825
+#: ../setedit/edprj.cc:670 ../setedit/edprj.cc:856
 #, fuzzy
 msgid "Project: "
 msgstr "~P~rojekt"
 
-#: ../setedit/edprj.cc:674
+#: ../setedit/edprj.cc:705
 msgid "Could not save the project."
 msgstr "Konnte das Projekt nicht speichern."
 
-#: ../setedit/edprj.cc:770
+#: ../setedit/edprj.cc:801
 msgid "Open Project"
 msgstr "Projekt öffnen"
 
-#: ../setedit/edprj.cc:908
+#: ../setedit/edprj.cc:939
 #, fuzzy, c-format
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1125
+#: ../setedit/edprj.cc:1156
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1162
+#: ../setedit/edprj.cc:1193
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1170
+#: ../setedit/edprj.cc:1201
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1198
+#: ../setedit/edprj.cc:1237
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""
 
-#: ../setedit/holidays.cc:144
+#: ../setedit/holidays.cc:145
 #, fuzzy
 msgid "Can't find plug-ins directory"
 msgstr "Zielverzeichnis"
 
-#: ../setedit/holidays.cc:240
+#: ../setedit/holidays.cc:241
 msgid "Failed to load holidays.conf"
 msgstr ""
 
-#: ../setedit/holidays.cc:244
+#: ../setedit/holidays.cc:245
 msgid "Holidays country"
 msgstr ""
 
-#: ../setedit/holidays.cc:261
+#: ../setedit/holidays.cc:262
 msgid "Country"
 msgstr ""
 
-#: ../setedit/holidays.cc:261
+#: ../setedit/holidays.cc:262
 #, fuzzy
 msgid "Force country"
 msgstr "Sekundär encoding"
 
-#: ../setedit/intgrep.cc:113
+#: ../setedit/holidays.cc:308
+msgid "Holidays plug-ins not supported. Sorry."
+msgstr ""
+
+#: ../setedit/intgrep.cc:114
 msgid "The clipboard is empty"
 msgstr "Die Zwischenablage ist leer"
 
-#: ../setedit/intgrep.cc:199
+#: ../setedit/intgrep.cc:200
 #, fuzzy
 msgid "You must install GNU grep to use it!"
 msgstr "Sie müssen grep installieren, um dies zu benutzen!"
 
-#: ../setedit/intgrep.cc:216
+#: ../setedit/intgrep.cc:220
 #, c-format
 msgid "Running grep in: %s"
 msgstr "Starte grep in: %s"
 
-#: ../setedit/intgrep.cc:245
+#: ../setedit/intgrep.cc:252
 msgid "From stderr:"
 msgstr ""
 
-#: ../setedit/intgrep.cc:246
+#: ../setedit/intgrep.cc:253
 msgid "From stdout:"
 msgstr ""
 
-#: ../setedit/intgrep.cc:314
+#: ../setedit/intgrep.cc:333
 #, c-format
 msgid "chdir error: %s"
 msgstr "Fehler beim Wechsel in Verzeichnis: %s"
 
 # unclear
-#: ../setedit/intgrep.cc:354
+#: ../setedit/intgrep.cc:377
 msgid "Powered Grep by SET"
 msgstr "Powered Grep by SET"
 
 #. ACDEFGIJKLNORPSTUWX
 #. Pattern section
-#: ../setedit/intgrep.cc:360
+#: ../setedit/intgrep.cc:383
 msgid "~P~attern box"
 msgstr "~M~uster (Pattern-) box"
 
-#: ../setedit/intgrep.cc:361
+#: ../setedit/intgrep.cc:384
 msgid "Files to ~s~earch"
 msgstr "Zu durchsuchende Dateien"
 
-#: ../setedit/intgrep.cc:362
+#: ../setedit/intgrep.cc:385
 msgid "~D~irectories to search"
 msgstr "~V~erzeichnisse zum Durchsuchen"
 
-#: ../setedit/intgrep.cc:365
+#: ../setedit/intgrep.cc:388
 msgid "`Pattern box' is the pa~t~tern"
 msgstr "`Pattern box' ist das ~M~uster"
 
-#: ../setedit/intgrep.cc:366
+#: ../setedit/intgrep.cc:389
 msgid "`Pattern box' is a fi~l~e name"
 msgstr "`Pattern box' ist ein ~D~ateiname"
 
-#: ../setedit/intgrep.cc:367
+#: ../setedit/intgrep.cc:390
 msgid "Use the ~c~lipboard selection"
 msgstr "Auswahl der Zwis~c~henablage benutzen"
 
-#: ../setedit/intgrep.cc:369
+#: ../setedit/intgrep.cc:392
 msgid "Source of Pattern"
 msgstr "Musterquelle"
 
-#: ../setedit/intgrep.cc:372
+#: ../setedit/intgrep.cc:395
 msgid "Basic regular expression (-~G~)"
 msgstr "Einfacher regulärer Ausdruck (-~G~)"
 
-#: ../setedit/intgrep.cc:373
+#: ../setedit/intgrep.cc:396
 msgid "~E~xtended regular expression (-E)"
 msgstr "~E~rweiterte reguläre Ausdrücke (-E)"
 
-#: ../setedit/intgrep.cc:374
+#: ../setedit/intgrep.cc:397
 msgid "~F~ixed separated by CR (-F)"
 msgstr "~F~est durch CR getrennt (-F)"
 
-#: ../setedit/intgrep.cc:376
+#: ../setedit/intgrep.cc:399
 msgid "Type of Pattern"
 msgstr "Mustertyp"
 
-#: ../setedit/intgrep.cc:379
+#: ../setedit/intgrep.cc:402
 msgid "~U~se `Files to search'"
 msgstr "~B~enutze `zu suchende Dateien'"
 
-#: ../setedit/intgrep.cc:380
+#: ../setedit/intgrep.cc:403
 msgid "Search in ope~n~ed windows"
 msgstr "Suche in geöff~n~eten Fenstern"
 
-#: ../setedit/intgrep.cc:381
+#: ../setedit/intgrep.cc:404
 msgid "Search in pro~j~ect"
 msgstr "Suche im Pro~j~ekt"
 
-#: ../setedit/intgrep.cc:383
+#: ../setedit/intgrep.cc:406
 msgid "Pl~a~ces to search"
 msgstr "Such~p~lätze"
 
-#: ../setedit/intgrep.cc:385
+#: ../setedit/intgrep.cc:408
 msgid "~R~ecurse in subdirs"
 msgstr "In Unterverz. ~e~intauchen"
 
-#: ../setedit/intgrep.cc:388
+#: ../setedit/intgrep.cc:411
 msgid "~I~gnore case (-i)"
 msgstr "~G~rop/Klein nicht beachten (-i)"
 
-#: ../setedit/intgrep.cc:389
+#: ../setedit/intgrep.cc:412
 msgid "~W~hole words only (-w)"
 msgstr "Nur ~g~anze Wörter (-w)"
 
-#: ../setedit/intgrep.cc:390
+#: ../setedit/intgrep.cc:413
 msgid "Whole line (-~x~)"
 msgstr "Ganze Zeile (-~x~)"
 
-#: ../setedit/intgrep.cc:391
+#: ../setedit/intgrep.cc:414
 msgid "In~v~erse matching (-v)"
 msgstr "umgekehrte Übereinstimmung (-~v~)"
 
-#: ../setedit/intgrep.cc:410
+#: ../setedit/intgrep.cc:437
 msgid "You must provide at least one directory to search"
 msgstr "Sie müssen mindestens ein Verzeichnis für die Suche angeben"
 
-#: ../setedit/intgrep.cc:492
+#: ../setedit/intgrep.cc:519
 #, fuzzy
 msgid "There aren't any files open"
 msgstr "Es sind keine Dateien geöffnet"
 
-#: ../setedit/intgrep.cc:500
+#: ../setedit/intgrep.cc:527
 msgid "No files in project"
 msgstr "Keine Dateien im Projekt"
 
-#: ../setedit/intgrep.cc:515
+#: ../setedit/intgrep.cc:542
 msgid "Powered grep"
 msgstr "Besseres grep"
 
-#: ../setedit/intgrep.cc:519
+#: ../setedit/intgrep.cc:547
 msgid "Recurse & dirs. ignored, using internal names"
 msgstr "Rekursive und Verzeichnisse ignoriert, benutze interne Namen"
 
-#: ../setedit/intgrep.cc:528
+#: ../setedit/intgrep.cc:557
+msgid "Grep search aborted"
+msgstr ""
+
+#: ../setedit/intgrep.cc:559
 msgid "End of grep search"
 msgstr "Ende der grep Suche"
 
@@ -5151,103 +5266,108 @@ msgstr ""
 msgid "Directory"
 msgstr "Kann Verzeichnis nicht erstellen:"
 
-#: ../setedit/runprog.cc:79
+#: ../setedit/runprog.cc:80
 #, c-format
 msgid "Running %s"
 msgstr "Führe aus: %s"
 
-#: ../setedit/runprog.cc:80
+#: ../setedit/runprog.cc:81
 msgid "Back in the editor"
 msgstr "Zurück im Editor"
 
-#: ../setedit/runprog.cc:81
+#: ../setedit/runprog.cc:82
 #, fuzzy
 msgid "From program:"
 msgstr "Für Programmierer"
 
-#: ../setedit/runprog.cc:116
+#: ../setedit/runprog.cc:117
 msgid "Command to run"
 msgstr "auzuführender Befehl"
 
-#. ABDEFHJKLMNPSTUW
-#: ../setedit/runprog.cc:118
+#. EN: ABDEFHJKLMNPRSTUW
+#. ES: ACEFKIJLNOPRSTUZ
+#: ../setedit/runprog.cc:120
 msgid "~E~nter the program name"
 msgstr "~P~rogrammname eingeben"
 
-#: ../setedit/runprog.cc:121
+#: ../setedit/runprog.cc:123
 msgid "~U~se OS screen to run the program"
 msgstr "~B~enutze OS Bildschirm, um Programm zu starten"
 
-#: ../setedit/runprog.cc:122
+#: ../setedit/runprog.cc:124
 msgid "~D~on't try to run in background"
 msgstr ""
 
-#: ../setedit/runprog.cc:123
+#: ../setedit/runprog.cc:125
 msgid "~A~lways parse in background"
 msgstr ""
 
-#: ../setedit/runprog.cc:124
+#: ../setedit/runprog.cc:126
 #, fuzzy
 msgid "~J~ump to the first error"
 msgstr "~G~ehe zu Funktion"
 
-#: ../setedit/runprog.cc:125
+#: ../setedit/runprog.cc:127
+msgid "Don't ~r~edirect stdout"
+msgstr ""
+
+#: ../setedit/runprog.cc:128
 #, fuzzy
 msgid "Message window ~s~croll"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/runprog.cc:126
+#: ../setedit/runprog.cc:129
 msgid "Only if not ~f~ocused"
 msgstr ""
 
-#: ../setedit/runprog.cc:127
+#: ../setedit/runprog.cc:130
 msgid "~H~orizontal reset"
 msgstr ""
 
-#: ../setedit/runprog.cc:128
+#: ../setedit/runprog.cc:131
 msgid "At ~b~eggining"
 msgstr ""
 
-#: ../setedit/runprog.cc:129
+#: ../setedit/runprog.cc:132
 msgid "For each ~m~essage"
 msgstr ""
 
-#: ../setedit/runprog.cc:130
+#: ../setedit/runprog.cc:133
 msgid "At ~t~he end"
 msgstr ""
 
-#: ../setedit/runprog.cc:131
+#: ../setedit/runprog.cc:134
 #, fuzzy
 msgid "~L~ines per pass"
 msgstr "Gesamte Zeilen pro Seite:"
 
-#: ../setedit/runprog.cc:138
+#: ../setedit/runprog.cc:141
 #, fuzzy
 msgid "Error ~p~arser"
 msgstr "Fehler"
 
-#: ../setedit/runprog.cc:194
+#: ../setedit/runprog.cc:197
 msgid "ntering dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:217
+#: ../setedit/runprog.cc:220
 msgid "eaving dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:436
+#: ../setedit/runprog.cc:439
 msgid "A child process is running. Please wait or stop it."
 msgstr ""
 
-#: ../setedit/runprog.cc:466
+#: ../setedit/runprog.cc:469
 #, fuzzy
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:571
+#: ../setedit/runprog.cc:574
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:646
+#: ../setedit/runprog.cc:653
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 
@@ -5301,7 +5421,7 @@ msgstr "I~m~ Nachrichtenfenster anzeigen"
 msgid "~N~ext tip"
 msgstr "~N~ächster Tip"
 
-#: ../setedit/winlistd.cc:45
+#: ../setedit/winlistd.cc:46
 msgid "Windows List"
 msgstr "Fensterliste"
 
@@ -5347,6 +5467,11 @@ msgstr "Zuweisun~g~"
 #: ../settvuti/tdiagaid.cc:187
 msgid "Command~s~"
 msgstr "Befehl~e~"
+
+# c-format
+#, fuzzy
+#~ msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
+#~ msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2000"
 
 #~ msgid "Error of type: %s"
 #~ msgstr "Typfehler: %s"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-06-21 17:35-0300\n"
+"PO-Revision-Date: 2003-10-14 13:36-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:93 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
 #: ../infview/inf.cc:2338 ../infview/inf.cc:2361 ../infview/inf.cc:2386
 #: ../infview/inf.cc:2410 ../infview/inf.cc:2465 ../infview/infmain.cc:385
-#: ../install/install.cc:443 ../install/install.cc:451 ../mainsrc/bufun.cc:737
+#: ../install/install.cc:474 ../install/install.cc:482 ../mainsrc/bufun.cc:737
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:462 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
+#: ../mainsrc/slpinter.cc:580 ../mainsrc/tags.cc:1458 ../mainsrc/tags.cc:1642
 #: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
 #: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
 #: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
@@ -66,8 +66,8 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:461
-#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:579
+#: ../mainsrc/tags.cc:1480 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:680
 #: ../setedit/edprefs.cc:906 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -461,7 +461,7 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1617 ../setedit/editmenu.cc:72
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1701 ../setedit/editmenu.cc:72
 msgid "E~x~it"
 msgstr "~S~alir"
 
@@ -705,47 +705,47 @@ msgstr "No"
 msgid "Yes, create backup files"
 msgstr "Si, crear archivos de respaldo"
 
-#: ../install/install.cc:299
+#: ../install/install.cc:330
 #, c-format
 msgid "Can't create the directory: %s"
 msgstr "No puedo crear el directorio: %s"
 
-#: ../install/install.cc:306
+#: ../install/install.cc:337
 #, c-format
 msgid "File name in path: %s"
 msgstr "Nombre de archivo en la ruta: %s"
 
-#: ../install/install.cc:357
+#: ../install/install.cc:388
 msgid ""
 "~Ctrl-F4~ Finish editing, or click on the button found in the top left corner"
 msgstr ""
 "~Ctrl-F4~ Terminar, o haga click en el botón del ángulo superior izquierdo"
 
-#: ../install/install.cc:360
+#: ../install/install.cc:391
 msgid "~ESC~ Aborts installation"
 msgstr "~ESC~ Aborta la instalación"
 
-#: ../install/install.cc:400
+#: ../install/install.cc:431
 msgid "Are you sure you want to abort the installation?"
 msgstr "¿Esta seguro que desea abortar la instalación?"
 
-#: ../install/install.cc:404
+#: ../install/install.cc:435
 msgid "Select the type"
 msgstr "Seleccione el tipo"
 
-#: ../install/install.cc:405 ../internac/colors.cc:4
+#: ../install/install.cc:436 ../internac/colors.cc:4
 msgid "Normal"
 msgstr "Normal"
 
-#: ../install/install.cc:406
+#: ../install/install.cc:437
 msgid "For programmers"
 msgstr "Para programadores"
 
-#: ../install/install.cc:407
+#: ../install/install.cc:438
 msgid "For djgpp programmers"
 msgstr "Para programadores con djgpp"
 
-#: ../install/install.cc:432
+#: ../install/install.cc:463
 msgid ""
 "Looks like djgpp isn't installed. DJGPP environment variable isn't defined "
 "or is wrong. Exit to fix it first?"
@@ -753,37 +753,37 @@ msgstr ""
 "Parece que djgpp no está instalado. La variable de entorno DJGPP no está "
 "definida o está mal definida. ¿Desea arreglar esto antes de instalar?"
 
-#: ../install/install.cc:441
+#: ../install/install.cc:472
 msgid "< ~P~rev"
 msgstr "< ~A~nterior"
 
-#: ../install/install.cc:442
+#: ../install/install.cc:473
 msgid "> ~N~ext"
 msgstr "> P~r~óxima"
 
-#: ../install/install.cc:449 ../mainsrc/deedidia.cc:339
+#: ../install/install.cc:480 ../mainsrc/deedidia.cc:339
 #: ../setedit/advice.cc:115 ../setedit/advice.cc:122
 msgid "~Y~es"
 msgstr "~S~i"
 
-#: ../install/install.cc:450 ../mainsrc/deedidia.cc:340
+#: ../install/install.cc:481 ../mainsrc/deedidia.cc:340
 #: ../setedit/advice.cc:116 ../setedit/advice.cc:121
 msgid "~N~o"
 msgstr "~N~o"
 
-#: ../install/install.cc:485
+#: ../install/install.cc:516
 msgid "Where do you want to install the editor?"
 msgstr "¿Donde desea instalar el editor?"
 
-#: ../install/install.cc:514
+#: ../install/install.cc:545
 msgid "Invalid drive"
 msgstr "Disco inválido"
 
-#: ../install/install.cc:520
+#: ../install/install.cc:551
 msgid "Can't create files there"
 msgstr "No puedo crear archivos en ese lugar"
 
-#: ../install/install.cc:526
+#: ../install/install.cc:557
 msgid ""
 "You already installed the editor (or tried to), but in a different place. Do "
 "you want to continue?"
@@ -791,11 +791,11 @@ msgstr ""
 "Ud. ya ha instalado el editor (o al menos intentó), pero en un lugar "
 "diferente. ¿Desea continuar?"
 
-#: ../install/install.cc:616
+#: ../install/install.cc:647
 msgid "Searching Windows information"
 msgstr "Buscando información de Windows"
 
-#: ../install/install.cc:618
+#: ../install/install.cc:649
 msgid ""
 "Windows 9x or similar detected, wait while\n"
 "finding information about your system"
@@ -803,71 +803,71 @@ msgstr ""
 "Windows 9x o similar fue detectado, por favor\n"
 "espere mientras busco información sobre su sistema"
 
-#: ../install/install.cc:619 ../install/install.cc:636
+#: ../install/install.cc:650 ../install/install.cc:667
 msgid "Looking in registry       "
 msgstr "Buscando en el registro            "
 
-#: ../install/install.cc:631
+#: ../install/install.cc:662
 msgid "Searching programs dir"
 msgstr "Buscando el directorio de programas"
 
-#: ../install/install.cc:639
+#: ../install/install.cc:670
 msgid "Searching desktop and menu"
 msgstr "Buscando el escritorio y el menú   "
 
-#: ../install/install.cc:822
+#: ../install/install.cc:852
 msgid "  Normal"
 msgstr "  Normal"
 
-#: ../install/install.cc:825
+#: ../install/install.cc:855
 msgid "  For programmers"
 msgstr "  Para programadores"
 
 #. instDJGPP
-#: ../install/install.cc:828
+#: ../install/install.cc:858
 msgid "  For djgpp programmers"
 msgstr "  Para programadores con djgpp"
 
-#: ../install/install.cc:872
+#: ../install/install.cc:899
 msgid "Are these options correct?"
 msgstr "¿Son correctas estas opciones?"
 
 #. Put some message to left space for the file names
-#: ../install/install.cc:974
+#: ../install/install.cc:1002
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../install/install.cc:974
+#: ../install/install.cc:1002
 msgid "Installing files for the editor"
 msgstr "Instalando archivos del editor"
 
-#: ../install/install.cc:984
+#: ../install/install.cc:1012
 #, c-format
 msgid "Unable to uncompress %s, most probably this file is damaged"
 msgstr ""
 "No puedo descomprimir %s, lo más probable es que el archivo este dañado"
 
-#: ../install/install.cc:1014
+#: ../install/install.cc:1042
 msgid "Replacing default menu"
 msgstr "Reemplazando el menú original"
 
-#: ../install/install.cc:1027
+#: ../install/install.cc:1055
 msgid "Unable to uncompress files, most probably this file is damaged"
 msgstr "No puedo descomprimir archivos, probablemente esten dañados"
 
-#: ../install/install.cc:1075
+#: ../install/install.cc:1103
 msgid "Adding icon to desktop"
 msgstr "Agregando un ícono al escritorio"
 
-#: ../install/install.cc:1090
+#: ../install/install.cc:1118
 msgid "Adding icon to menu"
 msgstr "Agregando un ícono al menú"
 
-#: ../install/install.cc:1106
+#: ../install/install.cc:1134
 msgid "Simplifying configuration"
 msgstr "Simplificando la configuración"
 
-#: ../install/install.cc:1166
+#: ../install/install.cc:1194
 msgid ""
 "You defined SET_FILES environment variable in a way that isn't compatible "
 "with the installer, be careful"
@@ -875,15 +875,15 @@ msgstr ""
 "Ud. definió la variable de entorno SET_FILES de una manera que es "
 "incompatible con el instalador, ¡tenga cuidado!"
 
-#: ../install/install.cc:1246
+#: ../install/install.cc:1274
 msgid "You modified the autoexec.bat. Do you want to save the changes?"
 msgstr "El autoexec.bat fue modificado. ¿Desea guardar los cambios?"
 
-#: ../install/install.cc:1282
+#: ../install/install.cc:1310
 msgid "Instructions for editing"
 msgstr "Instrucciones para editar"
 
-#: ../install/install.cc:1283
+#: ../install/install.cc:1311
 msgid ""
 "Now I'll give you the opportunity to edit the autoexec.bat. To finish click "
 "in the small rectangle found in the top-left corner or press Ctrl+F4."
@@ -892,7 +892,7 @@ msgstr ""
 "pequeño rectángulo hubicado en el el ángulo superior izquierdo o presione "
 "Ctrl+F4"
 
-#: ../install/install.cc:1288
+#: ../install/install.cc:1316
 msgid ""
 "I added the needed command, it is marked with a comment. Please don't remove "
 "the comment it's used to know where the text was added by the installer."
@@ -901,11 +901,11 @@ msgstr ""
 "favor no quite este comentario ya que es necesario para saber donde está "
 "hubicado."
 
-#: ../install/install.cc:1293
+#: ../install/install.cc:1321
 msgid "The text I suggest to add is currently in the clipboard."
 msgstr "El texto que le sugiero agregar se encuentra en el porta papeles."
 
-#: ../install/install.cc:1296
+#: ../install/install.cc:1324
 msgid ""
 "You can move lines using:\n"
 "Shift + arrows keys: Select text\n"
@@ -923,40 +923,40 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acción)"
 
-#: ../install/install.cc:1299 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:504
+#: ../install/install.cc:1327 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:504
 #: ../setedit/edprint.cc:708 ../settvuti/tdiagaid.cc:157
 msgid "~O~k"
 msgstr "~O~k"
 
-#: ../install/install.cc:1362
+#: ../install/install.cc:1390
 msgid "Edit autoexec.bat yourself later"
 msgstr "Hacerlo ud. editando el autoexec.bat luego"
 
-#: ../install/install.cc:1363
+#: ../install/install.cc:1391
 msgid "Do it yourself but now"
 msgstr "Hacerlo ud. ahora"
 
-#: ../install/install.cc:1364
+#: ../install/install.cc:1392
 msgid "Let me do it and show you the result"
 msgstr "Dejar que yo lo haga y le muestre el resultado"
 
-#: ../install/install.cc:1365
+#: ../install/install.cc:1393
 msgid "Let me do it and don't show you the result"
 msgstr "Dejar que yo lo haga sin mostrarselo"
 
-#: ../install/install.cc:1366
+#: ../install/install.cc:1394
 msgid "Select how to do it"
 msgstr "Seleccione como hacerlo"
 
-#: ../install/install.cc:1372
+#: ../install/install.cc:1400
 msgid "Error creating autoexec.bat"
 msgstr "Error al crear el autoexec.bat"
 
-#: ../install/install.cc:1389
+#: ../install/install.cc:1417
 msgid "Configuring the system"
 msgstr "Configurando el sistema"
 
-#: ../install/install.cc:1391
+#: ../install/install.cc:1419
 msgid ""
 "The editor was succesfully installed, now you must add the directory\n"
 "where the editor was installed to your PATH, like this:"
@@ -964,42 +964,42 @@ msgstr ""
 "El editor fue exitosamente instalado, ahora debe agregar el directorio\n"
 "donde el editor fue instalado a su PATH de esta manera:"
 
-#: ../install/install.cc:1421
+#: ../install/install.cc:1449
 msgid "Sorry, I can't find autoexec.bat"
 msgstr "Lo lamento, no puedo hallar el autoexec.bat"
 
-#: ../install/install.cc:1436
+#: ../install/install.cc:1464
 msgid "Can't backup autoexec.bat. You'll have to do it by yourself"
 msgstr ""
 "No puedo crear una copia de resplado del autoexec.bat, deberá hacer los "
 "cambios manualmente"
 
-#: ../install/install.cc:1480
+#: ../install/install.cc:1508
 msgid "Can't create temporal copy of autoexec.bat"
 msgstr "No puedo crear una copia temporal del autoexec.bat"
 
-#: ../install/install.cc:1493
+#: ../install/install.cc:1521
 msgid "A copy of the original autoexec.bat was stored in autoexec.bak"
 msgstr "Una copia del autoexec.bat original fue guardada como autoexec.bak"
 
-#: ../install/install.cc:1541
+#: ../install/install.cc:1569
 msgid "SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea"
 msgstr ""
 "Instalador de SET Edit v1.10, copyright (c) 1999-2003 by Salvador E. Tropea"
 
-#: ../install/install.cc:1546
+#: ../install/install.cc:1574
 msgid "Failed, disabling all or part of the Win9x specific stuff"
 msgstr "Error, deshabilitando todo o parte del soporte específico para Win9x"
 
-#: ../install/install.cc:1594
+#: ../install/install.cc:1622
 msgid "Don't forget to update your autoexec.bat later!"
 msgstr "¡No olvide actualizar su autoexec.bat más tarde!"
 
-#: ../install/install.cc:1596
+#: ../install/install.cc:1624
 msgid ", after rebooting your system you'll be able to use the editor"
 msgstr ", luego de reinicializar su sistem ud. podrá usarlo"
 
-#: ../install/install.cc:1597
+#: ../install/install.cc:1625
 #, c-format
 msgid "Editor installed successfully%s. Run it using e.bat"
 msgstr "Editor instalado con éxito%s. Invóquelo usando e.bat"
@@ -1404,20 +1404,20 @@ msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
-#: ../mainsrc/ceditor.cc:3951
+#: ../mainsrc/ceditor.cc:3957
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4150
+#: ../mainsrc/ceditor.cc:4156
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4169
+#: ../mainsrc/ceditor.cc:4175
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4191
+#: ../mainsrc/ceditor.cc:4197
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1428,7 +1428,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4225
+#: ../mainsrc/ceditor.cc:4231
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1441,16 +1441,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5785
+#: ../mainsrc/ceditor.cc:5794
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5800
+#: ../mainsrc/ceditor.cc:5809
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10117
+#: ../mainsrc/ceditor.cc:10126
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1458,29 +1458,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10132
+#: ../mainsrc/ceditor.cc:10141
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10857
+#: ../mainsrc/ceditor.cc:10866
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11799
+#: ../mainsrc/ceditor.cc:11808
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12010
+#: ../mainsrc/ceditor.cc:12019
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13197
+#: ../mainsrc/ceditor.cc:13206
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13207
+#: ../mainsrc/ceditor.cc:13216
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2070,7 +2070,7 @@ msgstr "Valor:"
 msgid "Associated string"
 msgstr "String asociado"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1244
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1316
 #: ../setedit/loadnobkp.cc:213 ../setedit/pathlist.cc:179
 msgid "Do you want to discard the changes?"
 msgstr "¿Desea descartar los cambios?"
@@ -2170,12 +2170,12 @@ msgstr "(%d) %s en la línea %d"
 msgid "In section %s"
 msgstr "En la sección %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:307
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:425
 #, c-format
 msgid "Type of error: %s"
 msgstr "Tipo de error: %s"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:309
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:427
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Código: ...%s..."
@@ -2217,27 +2217,27 @@ msgstr "Error en la expresión regular: %s"
 msgid "PCRE Exec error"
 msgstr "Error de ejecución del a ExpReg"
 
-#: ../mainsrc/slpinter.cc:306
+#: ../mainsrc/slpinter.cc:424
 msgid "Error in sLisp interpreter:"
 msgstr "Error en el intérprete de sLisp:"
 
-#: ../mainsrc/slpinter.cc:310
+#: ../mainsrc/slpinter.cc:428
 msgid "End of SLP"
 msgstr "Fin de SLP"
 
-#: ../mainsrc/slpinter.cc:373
+#: ../mainsrc/slpinter.cc:491
 msgid "Enter sLisp code to interprete"
 msgstr "Ingrese código sLisp a ser interpretado"
 
-#: ../mainsrc/slpinter.cc:406
+#: ../mainsrc/slpinter.cc:524
 msgid "No macros defined"
 msgstr "No hay macros definidos"
 
-#: ../mainsrc/slpinter.cc:449
+#: ../mainsrc/slpinter.cc:567
 msgid "sLisp macros"
 msgstr "Macros sLisp"
 
-#: ../mainsrc/slpinter.cc:459
+#: ../mainsrc/slpinter.cc:577
 msgid "~M~acros"
 msgstr "~M~acros"
 
@@ -2312,143 +2312,148 @@ msgstr "Elegir un nodo"
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
-#: ../mainsrc/tags.cc:693
+#: ../mainsrc/tags.cc:765
 msgid "Wrong format for tags file!"
 msgstr "Formato incorrecto para el archivo de TAGs."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:868
+#: ../mainsrc/tags.cc:940
 msgid "I can try to generate a tag file, go ahead?"
 msgstr "Puedo intentar generar un archivo de TAGS ¿lo hago?"
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:877
+#: ../mainsrc/tags.cc:949
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 "Instale Exuberant Ctags, puede obtenerlo en http://ctags.sourceforge.net"
 
-#: ../mainsrc/tags.cc:1225
+#: ../mainsrc/tags.cc:1297
 msgid "This file is automatically maintained"
 msgstr "Este archivo es mantenido automaticamente"
 
-#: ../mainsrc/tags.cc:1254
+#: ../mainsrc/tags.cc:1326
 msgid "Select tags file"
 msgstr "Seleccione el archivo de TAGs"
 
-#: ../mainsrc/tags.cc:1270
+#: ../mainsrc/tags.cc:1342
 msgid "Use relative path for the file?"
 msgstr "¿Desea usar un camino (path) relativo?"
 
-#: ../mainsrc/tags.cc:1291
+#: ../mainsrc/tags.cc:1363
 msgid "Variables"
 msgstr "Variables"
 
-#: ../mainsrc/tags.cc:1306
+#: ../mainsrc/tags.cc:1379
 msgid "Tag files"
 msgstr "Archivos de TAGs"
 
-#: ../mainsrc/tags.cc:1407
+#: ../mainsrc/tags.cc:1480
 msgid "Jump to symbol"
 msgstr "Saltar a un símbolo"
 
-#: ../mainsrc/tags.cc:1407
+#: ../mainsrc/tags.cc:1480
 msgid "List of symbols"
 msgstr "Lista de símbolos"
 
-#: ../mainsrc/tags.cc:1408
+#: ../mainsrc/tags.cc:1481
 msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
-#: ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1631 ../mainsrc/tags.cc:1647
+#: ../mainsrc/tags.cc:1500
+#, fuzzy
+msgid "Unknown line"
+msgstr "Desconocido"
+
+#: ../mainsrc/tags.cc:1544 ../mainsrc/tags.cc:1715 ../mainsrc/tags.cc:1731
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1557 ../mainsrc/tags.cc:1631
-#: ../mainsrc/tags.cc:1647
+#: ../mainsrc/tags.cc:1544 ../mainsrc/tags.cc:1641 ../mainsrc/tags.cc:1715
+#: ../mainsrc/tags.cc:1731
 msgid "~J~ump"
 msgstr "~S~altar"
 
-#: ../mainsrc/tags.cc:1469
+#: ../mainsrc/tags.cc:1553
 msgid "Sorry, couldn't find any member"
 msgstr "Lo lamento, no puedo hallar ningún miembro"
 
-#: ../mainsrc/tags.cc:1474
+#: ../mainsrc/tags.cc:1558
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1541
+#: ../mainsrc/tags.cc:1625
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1552
+#: ../mainsrc/tags.cc:1636
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1556
+#: ../mainsrc/tags.cc:1640
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1595
+#: ../mainsrc/tags.cc:1679
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1597
+#: ../mainsrc/tags.cc:1681
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1602
+#: ../mainsrc/tags.cc:1686
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1604
+#: ../mainsrc/tags.cc:1688
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1613
+#: ../mainsrc/tags.cc:1697
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1614
+#: ../mainsrc/tags.cc:1698
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1615
+#: ../mainsrc/tags.cc:1699
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1616
+#: ../mainsrc/tags.cc:1700
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1648
+#: ../mainsrc/tags.cc:1732
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1747
+#: ../mainsrc/tags.cc:1831
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:1815
+#: ../mainsrc/tags.cc:1902
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1907
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:1822
+#: ../mainsrc/tags.cc:1909
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:1822
+#: ../mainsrc/tags.cc:1909
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:1823
+#: ../mainsrc/tags.cc:1910
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:1837
+#: ../mainsrc/tags.cc:1924
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"
@@ -2563,7 +2568,8 @@ msgid "Select a file"
 msgstr "Seleccione un archivo"
 
 #: ../mp3/mp3list.cc:120
-msgid "Save files list"
+#, fuzzy
+msgid "Save file list"
 msgstr "Grabar la lista de archivos"
 
 #: ../mp3/mp3list.cc:126
@@ -2606,7 +2612,7 @@ msgstr "~G~uardar"
 msgid "~L~oad"
 msgstr "~C~argar"
 
-#: ../sdg/mliediti.cc:74
+#: ../sdg/mliediti.cc:76
 msgid "Return value:"
 msgstr "Valor retornado:"
 
@@ -4702,64 +4708,64 @@ msgstr "Salida es un programa ~1~"
 msgid "~C~ancel"
 msgstr "~C~ancela"
 
-#: ../setedit/edprj.cc:358
+#: ../setedit/edprj.cc:377
 msgid "File already in project"
 msgstr "El archivo ya está en el proyecto"
 
-#: ../setedit/edprj.cc:428
+#: ../setedit/edprj.cc:447
 msgid "Add File"
 msgstr "Agregar Archivo"
 
-#: ../setedit/edprj.cc:525 ../setedit/edprj.cc:566
+#: ../setedit/edprj.cc:548 ../setedit/edprj.cc:589
 msgid "Project Window"
 msgstr "Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:533
+#: ../setedit/edprj.cc:556
 msgid " 1 Project Window"
 msgstr " 1 Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:607
+#: ../setedit/edprj.cc:630
 msgid "Could not open project file"
 msgstr "No puedo abrir el archivo de proyecto"
 
-#: ../setedit/edprj.cc:614
+#: ../setedit/edprj.cc:637
 msgid "Wrong project file."
 msgstr "Archivo de proyecto incorrecto."
 
-#: ../setedit/edprj.cc:638
+#: ../setedit/edprj.cc:668
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:640 ../setedit/edprj.cc:825
+#: ../setedit/edprj.cc:670 ../setedit/edprj.cc:856
 msgid "Project: "
 msgstr "Proyecto: "
 
-#: ../setedit/edprj.cc:674
+#: ../setedit/edprj.cc:705
 msgid "Could not save the project."
 msgstr "No puedo crear el archivo de proyecto."
 
-#: ../setedit/edprj.cc:770
+#: ../setedit/edprj.cc:801
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 
-#: ../setedit/edprj.cc:908
+#: ../setedit/edprj.cc:939
 #, c-format
 msgid "Failed to open the file %s"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../setedit/edprj.cc:1125
+#: ../setedit/edprj.cc:1156
 msgid "Export project items"
 msgstr "Exportar los items del proyecto"
 
-#: ../setedit/edprj.cc:1162
+#: ../setedit/edprj.cc:1193
 msgid "Import project items"
 msgstr "Importar items al proyecto"
 
-#: ../setedit/edprj.cc:1170
+#: ../setedit/edprj.cc:1201
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1206
+#: ../setedit/edprj.cc:1237
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
