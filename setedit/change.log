@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.130  2002/06/24 16:03:27  set
+* Fixed: [BC++] The sutil difference between struct Name and a typedef for
+it under C++. GCC treats both same way, but BC++ don't.
+
 Revision 1.129  2002/06/24 16:02:14  set
 * Fixed: Patchen.pl script.
 

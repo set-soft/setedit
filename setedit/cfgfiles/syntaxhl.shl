@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Syntax highlight file for SET's editor
@@ -1631,4 +1631,419 @@ Keywords=label,virual,at,end,macro,if,in,else,local,forward,reverse
 Keywords=common,invoke,struc,purge,org,format,segment,section,entry
 Keywords=stack,heap,data,load,repeat,display
 End
+
+#---------------------------------- PHP -------------------------------------
+# Contributed by: Richard Vrijhof <R.J.Vrijhof@bigfoot.com>.
+#
+Name=PHP
+Files=php,phtm,phtml
+EOLComment1=//
+EOLComment2=#
+HexMarker=0x
+Symbols1=!&*+-:<=>?^|$~@\
+Symbols2=(){}[],;
+Escape=\
+EscapeAnywhere=1
+String1="
+String2='
+String3=`
+OpenComment1=/*
+CloseComment1=*/
+#Preload
+# Pre-defined Variables
+Keywords=_SERVER,HTTP_SERVER_VARS,_ENV,HTTP_ENV_VARS,_COOKIE
+Keywords=HTTP_COOKIE_VARS,_GET,HTTP_GET_VARS,_POST,HTTP_POST_VARS
+Keywords=_FILES,HTTP_POST_FILES,_REQUEST,_SESSION,HTTP_SESSION_VARS
+Keywords=GLOBALS
+# $_SERVER and/or $HTTP_SERVER_VARS Elements
+Keywords=PHP_SELF,argv,argc,GATEWAY_INTERFACE,SERVER_NAME,SERVER_SOFTWARE
+Keywords=SERVER_PROTOCOL,REQUEST_METHOD,QUERY_STRING,DOCUMENT_ROOT
+Keywords=HTTP_ACCEPT,HTTP_ACCEPT_CHARSET,HTTP_ACCEPT_ENCODING
+Keywords=HTTP_ACCEPT_LANGUAGE,HTTP_CONNECTION,HTTP_HOST,HTTP_REFERER
+Keywords=HTTP_USER_AGENT,REMOTE_ADDR,REMOTE_PORT,SCRIPT_FILENAME,SERVER_ADMIN
+Keywords=SERVER_PORT,SERVER_SIGNATURE,PATH_TRANSLATED,SCRIPT_NAME,REQUEST_URI
+############################
+# Pre-defined Classes
+# Standard Defined Classes
+Keywords=Directory,stdClass
+# Ming Defined Classes
+Keywords=swfshape,swffill,swfgradient,swfbitmap,swftext,swftextfield,swffont
+Keywords=swfdisplayitem,swfmovie,swfbutton,swfaction,swfmorph,swfsprite
+# Oracle 8 Defined Classes
+Keywords=OCI-Lob,OCI-Collection
+# qtdom Defined Classes
+Keywords=QDomDocument,QDomNode
+############################
+# Pre-defined Constants
+# Core Pre-defined Constants
+Keywords=__FILE__,__LINE__,NULL,TRUE,FALSE,PHP_VERSION,PHP_OS
+Keywords=DEFAULT_INCLUDE_PATH,PEAR_INSTALL_DIR,PEAR_EXTENSION_DIR
+Keywords=PHP_EXTENSION_DIR,PHP_BINDIR,PHP_LIBDIR,PHP_DATADIR,PHP_SYSCONFDIR
+Keywords=PHP_LOCALSTATEDIR,PHP_CONFIG_FILE_PATH,PHP_OUTPUT_HANDLER_START
+Keywords=PHP_OUTPUT_HANDLER_CONT,PHP_OUTPUT_HANDLER_END,E_ERROR,E_WARNING
+Keywords=E_PARSE,E_NOTICE,E_CORE_ERROR,E_CORE_WARNING,E_COMPILE_ERROR
+Keywords=E_COMPILE_WARNING,E_USER_ERROR,E_USER_WARNING,E_USER_NOTICE,E_ALL
+# Pre-defined Constants for Standard Functions
+Keywords=EXTR_OVERWRITE,EXTR_SKIP,EXTR_PREFIX_SAME,EXTR_PREFIX_ALL
+Keywords=EXTR_PREFIX_INVALID,EXTR_PREFIX_IF_EXISTS,EXTR_IF_EXISTS,SORT_ASC
+Keywords=SORT_DESC,SORT_REGULAR,SORT_NUMERIC,SORT_STRING,CASE_LOWER
+Keywords=CASE_UPPER,COUNT_NORMAL,COUNT_RECURSIVE,ASSERT_ACTIVE
+Keywords=ASSERT_CALLBACK,ASSERT_BAIL,ASSERT_WARNING,ASSERT_QUIET_EVAL
+Keywords=CONNECTION_ABORTED,CONNECTION_NORMAL,CONNECTION_TIMEOUT,INI_USER
+Keywords=INI_PERDIR,INI_SYSTEM,INI_ALL,M_E,M_LOG2E,M_LOG10E,M_LN2,M_LN10,M_PI
+Keywords=M_PI_2,M_PI_4,M_1_PI,M_2_PI,M_2_SQRTPI,M_SQRT2,M_SQRT1_2
+Keywords=CRYPT_SALT_LENGTH,CRYPT_STD_DES,CRYPT_EXT_DES,CRYPT_MD5
+Keywords=CRYPT_BLOWFISH,DIRECTORY_SEPARATOR,SEEK_SET,SEEK_CUR,SEEK_END
+Keywords=LOCK_SH,LOCK_EX,LOCK_UN,LOCK_NB,HTML_SPECIALCHARS,HTML_ENTITIES
+Keywords=ENT_COMPAT,ENT_QUOTES,ENT_NOQUOTES,INFO_GENERAL,INFO_CREDITS
+Keywords=INFO_CONFIGURATION,INFO_MODULES,INFO_ENVIRONMENT,INFO_VARIABLES
+Keywords=INFO_LICENSE,INFO_ALL,CREDITS_GROUP,CREDITS_GENERAL,CREDITS_SAPI
+Keywords=CREDITS_MODULES,CREDITS_DOCS,CREDITS_FULLPAGE,CREDITS_QA,CREDITS_ALL
+Keywords=STR_PAD_LEFT,STR_PAD_RIGHT,STR_PAD_BOTH,PATHINFO_DIRNAME
+Keywords=PATHINFO_BASENAME,PATHINFO_EXTENSION,CHAR_MAX,LC_CTYPE,LC_NUMERIC
+Keywords=LC_TIME,LC_COLLATE,LC_MONETARY,LC_ALL,LC_MESSAGES,ABDAY_1,ABDAY_2
+Keywords=ABDAY_3,ABDAY_4,ABDAY_5,ABDAY_6,ABDAY_7,DAY_1,DAY_2,DAY_3,DAY_4
+Keywords=DAY_5,DAY_6,DAY_7,ABMON_1,ABMON_2,ABMON_3,ABMON_4,ABMON_5,ABMON_6
+Keywords=ABMON_7,ABMON_8,ABMON_9,ABMON_10,ABMON_11,ABMON_12,MON_1,MON_2,MON_3
+Keywords=MON_4,MON_5,MON_6,MON_7,MON_8,MON_9,MON_10,MON_11,MON_12,AM_STR
+Keywords=PM_STR,D_T_FMT,D_FMT,T_FMT,T_FMT_AMPM,ERA,ERA_YEAR,ERA_D_T_FMT
+Keywords=ERA_D_FMT,ERA_T_FMT,ALT_DIGITS,INT_CURR_SYMBOL,CURRENCY_SYMBOL
+Keywords=CRNCYSTR,MON_DECIMAL_POINT,MON_THOUSANDS_SEP,MON_GROUPING
+Keywords=POSITIVE_SIGN,NEGATIVE_SIGN,INT_FRAC_DIGITS,FRAC_DIGITS
+Keywords=P_CS_PRECEDES,P_SEP_BY_SPACE,N_CS_PRECEDES,N_SEP_BY_SPACE
+Keywords=P_SIGN_POSN,N_SIGN_POSN,DECIMAL_POINT,RADIXCHAR,THOUSANDS_SEP,
+Keywords=THOUSEP,GROUPING,YESEXPR,NOEXPR,YESSTR,NOSTR,CODESET,LOG_EMERG
+Keywords=LOG_ALERT,LOG_CRIT,LOG_ERR,LOG_WARNING,LOG_NOTICE,LOG_INFO,LOG_DEBUG
+Keywords=LOG_KERN,LOG_USER,LOG_MAIL,LOG_DAEMON,LOG_AUTH,LOG_SYSLOG,LOG_LPR
+Keywords=LOG_NEWS,LOG_UUCP,LOG_CRON,LOG_AUTHPRIV,LOG_LOCAL0,LOG_LOCAL1
+Keywords=LOG_LOCAL2,LOG_LOCAL3,LOG_LOCAL4,LOG_LOCAL5,LOG_LOCAL6,LOG_LOCAL7
+Keywords=LOG_PID,LOG_CONS,LOG_ODELAY,LOG_NDELAY,LOG_NOWAIT,LOG_PERROR
+# Pre-defined Constants for Array Function array_change_key_case()
+Keywords=CASE_UPPER,CASE_LOWER
+# Pre-defined Constants for Calendar Functions
+Keywords=CAL_GREGORIAN,CAL_JULIAN,CAL_JEWISH,CAL_FRENCH,CAL_NUM_CALS
+Keywords=CAL_DOW_DAYNO,CAL_DOW_SHORT,CAL_DOW_LONG,CAL_MONTH_GREGORIAN_SHORT
+Keywords=CAL_MONTH_GREGORIAN_LONG,CAL_MONTH_JULIAN_SHORT
+Keywords=CAL_MONTH_JULIAN_LONG,CAL_MONTH_JEWISH,CAL_MONTH_FRENCH
+# Pre-defined Constants for FTP Functions
+Keywords=FTP_ASCII,FTP_BINARY,FTP_TEXT,FTP_IMAGE,FTP_TIMEOUT_SEC
+# Pre-defined Constants for LDAP Functions
+Keywords=LDAP_DEREF_NEVER,LDAP_DEREF_SEARCHING,LDAP_DEREF_FINDING
+Keywords=LDAP_DEREF_ALWAYS,LDAP_OPT_DEREF,LDAP_OPT_SIZELIMIT
+Keywords=LDAP_OPT_TIMELIMIT,LDAP_OPT_PROTOCOL_VERSION,LDAP_OPT_ERROR_NUMBER
+Keywords=LDAP_OPT_REFERRALS,LDAP_OPT_RESTART,LDAP_OPT_HOST_NAME
+Keywords=LDAP_OPT_ERROR_STRING,LDAP_OPT_MATCHED_DN,LDAP_OPT_SERVER_CONTROLS
+Keywords=LDAP_OPT_CLIENT_CONTROLS,LDAP_OPT_DEBUG_LEVEL,GSLC_SSL_NO_AUTH
+Keywords=GSLC_SSL_ONEWAY_AUTH,GSLC_SSL_TWOWAY_AUTH
+# Pre-defined Constants for Mathematical Functions
+Keywords=M_PI,M_E,M_LOG2E,M_LOG10E,M_LN2,M_LN10,M_PI_2,M_PI_4,M_1_PI,M_2_PI
+Keywords=M_SQRTPI,M_2_SQRTPI,M_SQRT2,M_SQRT3,M_SQRT1_2,M_LNPI,M_EULER
+# Pre-defined Constants for MySQL Functions
+Keywords=MYSQL_ASSOC,MYSQL_BOTH,MYSQL_NUM,MYSQL_STORE_RESULT,MYSQL_USE_RESULT
+# Pre-defined Constants for ODBC Functions
+Keywords=ODBC_TYPE,ODBC_BINMODE_PASSTHRU,ODBC_BINMODE_RETURN
+Keywords=ODBC_BINMODE_CONVERT,SQL_ODBC_CURSORS,SQL_CUR_USE_DRIVER
+Keywords=SQL_CUR_USE_IF_NEEDED,SQL_CUR_USE_ODBC,SQL_CONCURRENCY
+Keywords=SQL_CONCUR_READ_ONLY,SQL_CONCUR_LOCK,SQL_CONCUR_ROWVER
+Keywords=SQL_CONCUR_VALUES,SQL_CURSOR_TYPE,SQL_CURSOR_FORWARD_ONLY
+Keywords=SQL_CURSOR_KEYSET_DRIVEN,SQL_CURSOR_DYNAMIC,SQL_CURSOR_STATIC
+Keywords=SQL_KEYSET_SIZE,SQL_CHAR,SQL_VARCHAR,SQL_LONGVARCHAR,SQL_DECIMAL
+Keywords=SQL_NUMERIC,SQL_BIT,SQL_TINYINT,SQL_SMALLINT,SQL_INTEGER,SQL_BIGINT
+Keywords=SQL_REAL,SQL_FLOAT,SQL_DOUBLE,SQL_BINARY,SQL_VARBINARY
+Keywords=SQL_LONGVARBINARY,SQL_DATE,SQL_TIME,SQL_TIMESTAMP,SQL_TYPE_DATE
+Keywords=SQL_TYPE_TIME,SQL_TYPE_TIMESTAMP,SQL_BEST_ROWID,SQL_ROWVER
+Keywords=SQL_SCOPE_CURROW,SQL_SCOPE_SESSION,SQL_NO_NULLS,SQL_NULLABLE
+Keywords=SQL_INDEX_UNIQUE,SQL_INDEX_ALL,SQL_ENSURE,SQL_QUICK
+# Pre-defined Constants for Oracle Functions
+Keywords=ORA_BIND_INOUT,ORA_BIND_IN,ORA_BIND_OUT,ORA_FETCHINTO_ASSOC
+Keywords=ORA_FETCHINTO_NULLS
+# Pre-defined Constants for Perl-compatible Regexp Functions
+Keywords=PREG_PATTERN_ORDER,PREG_SET_ORDER,PREG_SPLIT_NO_EMPTY
+Keywords=PREG_SPLIT_DELIM_CAPTURE,PREG_GREP_INVERT
+# Pre-defined Constants for PostgreSQL Functions
+Keywords=PQSQL_ASSOC,PQSQL_NUM,PQSQL_BOTH,PQSQL_CONNECTION_BAD
+Keywords=PQSQL_CONNECTION_OK,PQSQL_SEEK_SET,PQSQL_SEEK_CUR,PQSQL_SEEK_END
+Keywords=PQSQL_ESCAPE_STRING,PQSQL_ESCAPE_BYTEA,PQSQL_EMPTY_QUERY
+Keywords=PQSQL_COMMAND_OK,PQSQL_TUPLES_OK,PQSQL_COPY_OUT,PQSQL_COPY_IN
+Keywords=PQSQL_BAD_RESPONSE,PQSQL_NONFATAL_ERROR,PQSQL_FATAL_ERROR
+# Pre-defined constants for Process Control Functions
+Keywords=SIGFPE,SIGCONT,SIGKILL,SIGSTOP,SIGUSR1,SIGTSTP,SIGHUP,SIGUSR2
+Keywords=SIGTTIN,SIGINT,SIGSEGV,SIGTTOU,SIGQUIT,SIGPIPE,SIGURG,SIGILL,SIGALRM
+Keywords=SIBXCPU,SIGTRAP,SIGTERM,SIGXFSZ,SIGABRT,SIGSTKFLT,SIGVTALRM,SIGIOT
+Keywords=SIGCHLD,SIGPROF,SIGBUS,SIGCLD,SIGWINCH,SIGPOLL,SIGIO,SIGPWR,SIGSYS
+# Pre-defined Constants for Pspell Functions
+Keywords=PSPELL_FAST,PSPELL_NORMAL,PSPELL_BAD_SPELLERS,PSPELL_RUN_TOGETHER
+# Pre-defined Constants for Session Functions
+Keywords=SID
+# Pre-defined Constants for XML Functions
+Keywords=XML_ERROR_NONE,XML_ERROR_NO_MEMORY,XML_ERROR_SYNTAX
+Keywords=XML_ERROR_NO_ELEMENTS,XML_ERROR_INVALID_TOKEN
+Keywords=XML_ERROR_UNCLOSED_TOKEN,XML_ERROR_PARTIAL_CHAR
+Keywords=XML_ERROR_TAG_MISMATCH,XML_ERROR_DUPLICATE_ATTRIBUTE
+Keywords=XML_ERROR_JUNK_AFTER_DOC_ELEMENT,XML_ERROR_PARAM_ENTITY_REF
+Keywords=XML_ERROR_UNDEFINED_ENTITY,XML_ERROR_RECURSIVE_ENTITY_REF
+Keywords=XML_ERROR_ASYNC_ENTITY,XML_ERROR_BAD_CHAR_REF
+Keywords=XML_ERROR_BINARY_ENTITY_REF,XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF
+Keywords=XML_ERROR_MISPLACED_XML_PI,XML_ERROR_UNKNOWN_ENCODING
+Keywords=XML_ERROR_INCORRECT_ENCODING,XML_ERROR_UNCLOSED_CDATA_SECTION
+Keywords=XML_ERROR_EXTERNAL_ENTITY_HANDLING
+# Pre-defined Constants for Zlib Functions
+Keywords=FORCE_GZIP,FORCE_DEFLATE
+############################
+# Official Keywords. Cannot be used as name for constant, class or function.
+Keywords=and,as,break,case,cfunction,class,const,continue,declare,default,die
+Keywords=do,echo,else,elseif,empty,enddeclare,endfor,endforeach,endif
+Keywords=endswitch,endwhile,eval,exit,extends,for,foreach,function,global,if
+Keywords=include,include_once,isset,list,new,old_function,print,require
+Keywords=require_once,return,static,switch,unset,use,var,while
+# Apache-specific Functions
+Keywords=apache_child_terminate,apache_lookup_uri,apache_note,apache_setenv
+Keywords=ascii2ebcdic,ebcdic2ascii,getallheaders,virtual
+# Array Functions
+Keywords=array,array_change_key_case,array_chunk,array_count_values
+Keywords=array_diff,array_fill,array_filter,array_flip,array_intersect
+Keywords=array_key_exists,array_keys,array_map,array_merge
+Keywords=array_merge_recursive,array_multisort,array_pad,array_pop,array_push
+Keywords=array_rand,array_reduce,array_reverse,array_search,array_shift
+Keywords=array_slice,array_splice,array_sum,array_unique,array_unshift
+Keywords=array_values,array_walk,arsort,asort,compact,count,current,each,end
+Keywords=extract,in_array,key,krsort,ksort,list,natcasesort,natsort,next,pos
+Keywords=prev,range,reset,rsort,shuffle,sizeof,sort,uasort,uksort,usort
+# Aspell Functions
+Keywords=aspell_check,aspell_check_raw,aspell_new,aspell_suggest
+# BCMath Arbitrary Precision Mathematics Functions
+Keywords=bcadd,bccomp,bcdiv,bcmod,bcmul,bcpow,bcscale,bcsqrt,bcsub
+# Bzip2 Compression Functions
+Keywords=bzclose,bzcompress,bzdecompress,bzerrno,bzerror,bzerrstr,bzflush
+Keywords=bzopen,bzread,bzwrite
+# Calendar Functions
+Keywords=cal_days_in_month,cal_from_jd,cal_info,cal_to_jd,easter_date
+Keywords=easter_days,FrenchToJD,GregorianToJD,JDDayOfWeek,JDMonthName
+Keywords=JDToFrench,JDToGregorian,JDToJewish,JDToJulian,jdtounix,JewishToJD
+Keywords=JulianToJD,unixtojd
+# Class/Object Functions
+Keywords=call_user_method,call_user_method_array,class_exists,get_class
+Keywords=get_class_methods,get_class_vars,get_declared_classes
+Keywords=get_object_vars,get_parent_class,is_a,is_subclass_of,method_exists
+# Date and Time Functions
+Keywords=checkdate,date,getdate,gettimeofday,gmdate,gmmktime,gmstrftime
+Keywords=localtime,microtime,mktime,strftime,strtotime,time
+# Directory Functions
+Keywords=chdir,chroot,dir,closedir,getcwd,opendir,readdir,rewinddir
+# Error Handling and Logging Functions
+Keywords=error_log,error_reporting,restore_error_handler,set_error_handler
+Keywords=trigger_error,user_error
+# Filesystem Functions
+Keywords=basename,chgrp,chmod,chown,clearstatcache,copy,delete,dirname
+Keywords=disk_free_space,disk_total_space,diskfreespace,fclose,feof,fflush
+Keywords=fgetc,fgetcsv,fgets,fgetss,file,file,file_exists,file_get_contents
+Keywords=file_get_wrapper_data,file_register_wrapper,fileatime,filectime
+Keywords=filegroup,fileinode,filemtime,fileowner,fileperms,filesize,filetype
+Keywords=flock,fopen,fpassthru,fputs,fread,fscanf,fseek,fstat,ftell,ftruncate
+Keywords=fwrite,is_dir,is_executable,is_file,is_link,is_readable
+Keywords=is_uploaded_file,is_writable,is_writeable,link,linkinfo,lstat,mkdir
+Keywords=move_uploaded_file,parse_ini_file,pathinfo,pclose,popen,readfile
+Keywords=readlink,realpath,rename,rewind,rmdir,set_file_buffer,stat,symlink
+Keywords=tempnam,tmpfile,touch,umask,unlink
+# FTP Functions
+Keywords=ftp_cdup,ftp_chdir,ftp_close,ftp_connect,ftp_delete,ftp_exec
+Keywords=ftp_fget,ftp_fput,ftp_get,ftp_get_options,ftp_login,ftp_mdtm
+Keywords=ftp_mkdir,ftp_nlist,ftp_pasv,ftp_put,ftp_pwd,ftp_quit,ftp_rawlist
+Keywords=ftp_rename,ftp_rmdir,ftp_set_option,ftp_site,ftp_size,ftp_systype
+# Function-handling Functions
+Keywords=call_user_func,call_user_func_array,create_function,func_get_arg
+Keywords=func_get_args,func_num_args,functions_exists,get_defined_functions
+Keywords=register_shutdown_function,register_tick_function
+Keywords=unregister_tick_function
+# HTTP Functions
+Keywords=header,headers_sent,setcookie
+# Image Functions
+Keywords=exif_imagetype,exif_read_date,exif_thumbnail,getimagesize,image2wbmp
+Keywords=imagealphablending,imagearc,imagechar,imagecharup,imagecolorallocate
+Keywords=imagecolorat,imagecolorclosest,imagecolorclosestalpha
+Keywords=imagecolorclosesthwb,imagecolordeallocate,imagecolorexact
+Keywords=imagecolorexactalpha,imagecolorresolve,imagecolorresolvealpha
+Keywords=imagecolorset,imagecolorsforindex,imagecolorstotal
+Keywords=imagecolortransparent,imagecopy,imagecopymerge,imagecopymergegray
+Keywords=imagecopyresampled,imagecopyresized,imagecreate,imagecreatefromgd
+Keywords=imagecreatefromgd2,imagecreatefromgd2part,imagecreatefromgif
+Keywords=imagecreatefromjpeg,imagecreatefrompng,imagecreatefromstring
+Keywords=imagecreatefromwbmp,imagecreatefromxbm,imagecreatefromxpm
+Keywords=imagecreatetruecolor,imagedashedline,imagedestroy,imageellipse
+Keywords=imagefill,imagefilledarc,imagefilledellipse,imagefilledpolygon
+Keywords=imagefilledrectangle,imagefilltoborder,imagefontheight
+Keywords=imagefontwidth,imageftbbox,imagefttext,imagegammacorrect,imagegd
+Keywords=imagegd2,imagegif,imageinterlace,imagejpeg,imageline,imageloadfont
+Keywords=imagepalettecopy,imagepng,imagepolygon,imagepsbbox,ImagePSCopyFont
+Keywords=imagepsencodefont,imagepsextendfont,imagepsfreefont,imagepsloadfont
+Keywords=imagepsslantfont,imagepstext,imagerectangle,imagesetbrush
+Keywords=imagesetpixel,imagesetstyle,imagesetthickness,imagesettile
+Keywords=imagestring,imagestringup,imagesx,imagesy,imagetruecolortopalette
+Keywords=imagettfbbox,imagettftext,imagetypes,imagewbmp,iptcembed,jpeg2wbmp
+Keywords=png2wbmp,read_exif_data
+# LDAP Functions
+Keywords=ldap_8859_to_t61,ldap_add,ldap_bind,ldap_close,ldap_compare
+Keywords=ldap_connect,ldap_count_entries,ldap_delete,ldap_dn2ufn,ldap_err2str
+Keywords=ldap_errno,ldap_error,ldap_explode_dn,ldap_first_attribute
+Keywords=ldap_first_entry,ldap_first_reference,ldap_free_result
+Keywords=ldap_get_attributes,ldap_get_dn,ldap_get_entries,ldap_get_option
+Keywords=ldap_get_values,ldap_get_values_len,ldap_list,ldap_mod_add
+Keywords=ldap_mod_del,ldap_mod_replace,ldap_modify,ldap_next_attribute
+Keywords=ldap_next_entry,ldap_next_reference,ldap_parse_reference
+Keywords=ldap_parse_result,ldap_read,ldap_rename,ldap_search,ldap_set_option
+Keywords=ldap_set_rebind_proc,ldap_sort,ldap_start_tls,ldap_t61_to_8859
+Keywords=ldap_unbind
+# Mail Functions
+Keywords=ezmlm_hash,mail
+# Mathematical Functions
+Keywords=abs,acos,acosh,asin,asinh,atan,atan2,atanh,base_convert,bindec,ceil
+Keywords=cos,cosh,decbin,dechex,decoct,deg2rad,exp,expm1,floor,getrandmax
+Keywords=hexdec,hypot,is_finite,is_infinite,is_nan,log_value,log,log10,log1p
+Keywords=max,min,mt_getrandmax,mt_rand,mt_srand,number_format,octdec,pi,pow
+Keywords=rad2deg,rand,round,sin,sinh,sqrt,srand,tan,tanh
+# Miscellaneous Functions
+Keywords=connection_aborted,connection_status,connection_timeout,constant
+Keywords=define,defined,eval,get_browser,highlight_file,highlight_string
+Keywords=ignore_user_abort,iptcparse,leak,pack,show_source,sleep,uniqid
+Keywords=unpack,usleep
+# MySQL Functions
+Keywords=mysql_affected_rows,mysql_change_user,mysql_character_set_name
+Keywords=mysql_close,mysql_connect,mysql_create_db,mysql_data_seek
+Keywords=mysql_db_name,mysql_db_query,mysql_drop_db,mysql_errno,mysql_error
+Keywords=mysql_escape_string,mysql_fetch_array,mysql_fetch_assoc
+Keywords=mysql_fetch_field,mysql_fetch_lengths,mysql_fetch_object
+Keywords=mysql_fetch_row,mysql_field_flags,mysql_field_len,mysql_field_name
+Keywords=mysql_field_seek,mysql_field_table,mysql_field_type
+Keywords=mysql_free_result,mysql_get_client_info,mysql_get_host_info
+keywords=mysql_get_proto_info,mysql_get_server_info,mysql_info
+Keywords=mysql_insert_id,mysql_list_dbs,mysql_list_fields
+Keywords=mysql_list_processes,mysql_list_tables,mysql_num_fields
+Keywords=mysql_num_rows,mysql_pconnect,mysql_ping,mysql_query
+Keywords=mysql_real_escape_string,mysql_result,mysql_select_db,mysql_stat
+Keywords=mysql_tablename,mysql_thread_id,mysql_unbuffered_query
+# Network Functions
+Keywords=checkdnsrr,closelog,debugger_off,debugger_on,define_syslog_variables
+Keywords=fsockopen,gethostbyaddr,gethostbyname,gethostbynamel,getmxrr
+Keywords=getprotobyname,getprotobynumber,getservbyname,getservbyport,ip2long
+Keywords=long2ip,openlog,pfsockopen,socket_get_status,socket_set_blocking
+Keywords=socket_set_timeout,syslog
+# Output Control Functions
+Keywords=flush,ob_clean,ob_end_clean,ob_end_flush,ob_flush,ob_get_contents
+Keywords=ob_get_length,ob_get_level,ob_gzhandler,ob_implicit_flush,ob_start
+# PHP Options & Information Functions
+Keywords=assert,assert_options,dl,extension_loaded,get_cfg_var
+Keywords=get_current_user,get_defined_constants,get_extension_funcs
+Keywords=get_included_files,get_loaded_extensions,get_magic_quotes_gpc
+Keywords=get_magic_quotes_runtime,get_required_files,getenv,getlastmod
+Keywords=getmygid,getmyinode,getmypid,getmyuid,getrusage,ini_alter,ini_get
+Keywords=ini_get_all,ini_restore,ini_set,php_logo_guid,php_sapi_name
+Keywords=php_uname,phpcredits,phpinfo,phpversion,putenv
+Keywords=set_magic_quotes_runtime,set_time_limit,version_compare
+Keywords=zend_logo_guid,zend_version
+# PostgreSQL Functions for PHP < 4.2.0
+Keywords=pg_exec,pg_getlastoid,pg_cmdtuples,pg_numrows,pg_numfields
+Keywords=pg_fieldname,pg_fieldsize,pg_fieldnum,pg_fieldprtlen,pg_fieldisnull
+Keywords=pg_freeresult,pg_result,pg_loreadall,pg_locreate,pg_lounlink
+Keywords=pg_loopen,pg_loclose,pg_loread,pg_lowrite,pg_loimport,pg_loexport
+# PostgreSQL Functions for PHP >= 4.2.0 or unchanged in PHP >= 4.2.0
+Keywords=pg_affected_rows,pg_cancel_query,pg_client_encoding,pg_close
+Keywords=pg_connect,pg_connection_busy,pg_connection_reset
+Keywords=pg_connection_status,pg_convert,pg_copy_from,pg_copy_to,pg_dbname
+Keywords=pg_delete,pg_end_copy,pgescape,bytea,pg_escape_string,pg_fetch_array
+Keywords=pg_fetch_object,pg_fetch_result,pg_fetch_row,pg_field_is_null
+Keywords=pg_field_name,pg_field_num,pg_field_prtlen,pg_field_size
+Keywords=pg_field_type,pg_free_result,pg_get_result,pg_host,pg_insert
+Keywords=pg_last_error,pg_last_notice,pg_last_oid,pg_lo_close,pg_lo_create
+Keywords=pg_lo_export,pg_lo_import,pg_lo_open,pg_lo_read,pg_lo_read_all
+Keywords=pg_lo_seek,pg_lo_tell,pg_lo_unlink,pg_lo_write,pg_metadata
+Keywords=pg_num_fields,pg_num_rows,pg_options,pg_pconnect,pg_port,pg_put_line
+Keywords=pg_query,pg_result_error,pg_result_status,pg_select,pg_send_query
+Keywords=pg_set_client_encoding,pg_trace,pg_tty,pg_untrace,pg_update
+# Process Control Functions
+Keywords=pcntl_exec,pcntl_fork,pcntl_signal,pcntl_waitpid,pcntl_wexitstatus
+Keywords=pcntl_wifexited,pcntl_wifsignaled,pcntl_wifstopped,pcntl_wstopsig
+Keywords=pcntl_wtermsig
+# Program Execution Functions
+Keywords=escapeshellarg,escapeshellcmd,exec,passthru,proc_close,proc_open
+Keywords=shell_exec,system
+# Printer Functions
+Keywords=printer_abort,printer_close,printer_create_brush,printer_create_dc
+Keywords=printer_create_font,printer_create_pen,printer_delete_brush
+Keywords=printer_delete_dc,printer_delete_font,printer_delete_pen
+Keywords=printer_draw_bmp,printer_draw_chord,printer_draw_elipse
+Keywords=printer_draw_line,printer_draw_pie,printer_draw_rectangle
+Keywords=printer_draw_roundrect,printer_draw_text,printer_end_doc
+Keywords=printer_end_page,printer_get_option,printer_list
+Keywords=printer_logical_fontheight,printer_open,printer_select_brush
+Keywords=printer_select_font,printer_select_pen,printer_set_option
+Keywords=printer_start_doc,printer_start_page,printer_write
+# Pspell Functions
+Keywords=pspell_add_to_personal,pspell_add_to_session,pspell_check
+Keywords=pspell_clear_session,pspell_config_create,pspell_config_ignore
+Keywords=pspell_config_mode,pspell_config_personal,pspell_config_repl
+Keywords=pspell_config_runtogether,pspell_config_save_repl,pspell_new
+Keywords=pspell_new_config,pspell_new_personal,pspell_save_wordlist
+Keywords=pspell_store_replacement,pspell_suggest
+# GNU Readline Functions
+Keywords=readline,readline_add_history,readline_clear_history
+Keywords=readline_completion_function,readline_info,readline_list_history
+Keywords=readline_read_history,readline_write_history
+# GNU Recode Functions
+Keywords=recode,recode_file,recode_string
+# Regular Expression Functions (Perl-compatible)
+Keywords=preg_grep,preg_match,preg_match_all,preg_quote,preg_replace
+Keywords=preg_replace_callback,preg_split
+# Regular Expression Functions (POSIX Extended)
+Keywords=ereg,ereg_replace,eregi,eregi_replace,split,spliti,sql_regcase
+# Session Handling Functions
+Keywords=session_cache_expire,session_cache_limiter,session_decode
+Keywords=session_destroy,session_encode,session_get_cookie_params,session_id
+Keywords=session_is_registered,session_module_name,session_name
+Keywords=session_readonly,session_register,session_save_path
+Keywords=session_set_cookie_params,session_set_save_handler,session_start
+Keywords=session_unregister,session_unset,session_write_close
+# SNMP Functions
+Keywords=snmp_get_quick_print,snmp_set_quick_print,snmpget,snmprealwalk
+Keywords=snmpset,snmpwalk,snmpwalkoid
+# String Functions
+Keywords=addcslashes,addslashes,bin2hex,chop,chr,chunk_split
+Keywords=convert_cyr_string,count_chars,crc32,crypt,explode
+Keywords=get_html_translation_table,get_meta_tags,hebrev,hebrevc,htmlentities
+Keywords=htmlspecialchars,implode,join,levenshtein,localeconv,ltrim,md5
+Keywords=md5_file,metaphone,nl_langinfo,nl2br,ord,parse_str,print,printf
+Keywords=quoted_printable_decode,quotemeta,rtrim,setlocale,similar_text
+Keywords=soundex,sprintf,sscanf,str_pad,str_repeat,str_replace,str_rot13
+Keywords=strcasecmp,strchr,strcmp,strcoll,strcspn,strip_tags,stripcslashes
+Keywords=stripslashes,stristr,strlen,strnatcasecmp,strnatcmp,strncasecmp
+Keywords=strncmp,strpos,strrchr,strrev,strrpos,strspn,strstr,strtok
+Keywords=strtolower,strtoupper,strtr,substr,substr_count,substr_replace,trim
+Keywords=ucfirst,ucwords,vprintf,vsprintf,wordwrap
+# URL Functions
+Keywords=base64_decode,base64_encode,parse_url,rawurldecode,rawurlencode
+Keywords=urldecode,urlencode
+# Variable Functions
+Keywords=doubleval,empty,floatval,get_defined_vars,get_resource_type,gettype
+Keywords=import_request_variables,intval,is_array,is_bool,is_callable
+Keywords=is_double,is_float,is_int,is_integer,is_long,is_null,is_numeric
+Keywords=is_object,is_real,is_resource,is_scalar,is_string,isset,print_r
+Keywords=serialize,settype,strval,unserialize,unset,var_dump,var_export
+# XML Parser Functions
+Keywords=utf8_decode,utf8_encode,xml_error_string,xml_get_current_byte_index
+Keywords=xml_get_current_column_number,xml_get_current_line_number
+Keywords=xml_parse,xml_parser_create,xml_parser_create_ns,xml_parser_free
+Keywords=xml_parser_get_option,xml_parser_set_option
+Keywords=xml_set_character_data_handler,xml_set_default_handler
+Keywords=xml_set_element_handler,xml_set_end_namespace_decs_handler
+Keywords=xml_set_edternal_entity_ref_handler,xml_set_notation_decl_handler
+Keywords=xml_set_object,xml_set_processing_instruction_handler
+Keywords=xml_set_start_namespace_decl_handler
+Keywords=xml_set_unparsed_entity_decl_handler
+# XSLT Functions
+Keywords=xslt_create,xslt_errno,xslt_error,xslt_free,xslt_process
+Keywords=xslt_set_base,xslt_set_encoding,xslt_set_error_handler,xslt_set_log
+Keywords=xslt_set_sax_handler,xslt_set_sax_handlers,xslt_set_scheme_handler
+Keywords=xslt_set_scheme_handlers
+End
+#------------------------ end of PHP shl definition -------------------------
+
 
