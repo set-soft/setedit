@@ -204,6 +204,7 @@ $doc_dir0.='/share' if ($os=~/FreeBSD/ && !$useFHS);
 $doc_dir1=$doc_dir0.'/doc';
 $doc_dir =$doc_dir1.'/setedit';
 $xmp_dir=$doc_dir.'/examples';
+$tag_doc=$doc_dir.'/tag_imgs';
 $man_dir1=$baseFHS.'/man';
 $man_dir=$man_dir1.'/man1';
 $inf_dir=$baseFHS.'/info';
@@ -220,6 +221,7 @@ $doc_dir0,
 $doc_dir1,
 $doc_dir,
 $xmp_dir,
+$tag_doc,
 $man_dir1,
 $man_dir,
 $Locale2,
@@ -318,6 +320,15 @@ CopyIf('copying.gpl','makes/linux/'.$doc_dir.'/copying.gpl');
 CopyIf('copying.lgp','makes/linux/'.$doc_dir.'/copying.lgp');
 CopyIf('copying.rh','makes/linux/'.$doc_dir.'/copying.rh');
 CopyIfCpr('change.log','makes/linux/'.$doc_dir.'/change.log');
+# Tags stuff
+CopyIf('www-site/tags.html','makes/linux/'.$doc_dir.'/tags.html');
+@a=glob('www-site/tag_imgs/*.png');
+foreach $o (@a)
+  {
+   $o =~ /.*\/(.*)/;
+   $d = 'makes/linux/'.$tag_doc.'/'.$1;
+   CopyIf($o,$d);
+  }
 chdir('makes/linux');
 CopyIfRpl('../../distrib/distrib1.txt',$doc_dir.'/readme.1st');
 CopyIfRpl('../../distrib/distrib1.txt',$cfg_dir.'/readme.1st');

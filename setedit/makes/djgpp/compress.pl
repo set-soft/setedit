@@ -119,6 +119,7 @@ if ($iMode)
    $contrib1  =$prefix.'/contrib';
    $contrib   =$contrib1.'/setedit.bin';
    $contribX  =$contrib.'/examples';
+   $contribTg =$contrib.'/tag_imgs';
    $info      =$prefix.'/info';
    $share1    =$prefix.'/share';
    $share     =$share1.'/setedit';
@@ -134,6 +135,7 @@ if ($iMode)
    $contrib1,
    $contrib,
    $contribX,
+   $contribTg,
    $info,
    $share1,
    $share,
@@ -152,6 +154,7 @@ else
    $contrib1  =$distPrefix.'/contrib';
    $contrib   =$contrib1.'/setedit.bin';
    $contribX  =$contrib.'/examples';
+   $contribTg =$contrib.'/tag_imgs';
    $info      =$distPrefix.'/info';
    $share1    =$distPrefix.'/share';
    $share     =$share1.'/setedit';
@@ -169,6 +172,7 @@ else
    $contrib1,
    $contrib,
    $contribX,
+   $contribTg,
    $info,
    $share1,
    $share,
@@ -282,6 +286,14 @@ print 'Examples '     if (CopyIf('../../distrib/examples/tvrc',$contribX.'tvrc',
                           CopyIf('../../distrib/examples/examp1.epr',$contribX.'examp1.epr',$binManifest) ||
                           CopyIf('../../distrib/examples/examp1.dst',$contribX.'examp1.dst',$binManifest) ||
                           CopyIf('../../distrib/examples/test1.cc',$contribX.'test1.cc',$binManifest));
+print 'Tags tutorial ' if (CopyIf('../../www-site/tags.html',$contrib.'/tags.html',$binManifest));
+@a=glob('../../www-site/tag_imgs/*.png');
+foreach $o (@a)
+  {
+   $o =~ /.*\/(.*)/;
+   $d = $contrib.'/'.$1;
+   CopyIf($o,$d,$binManifest);
+  }
 print "done.\n\n";
 
 

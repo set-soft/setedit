@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.426  2003/07/01 13:05:39  set
+* Added: Errors parser for ANT Java Builder. Cotributed by Grzegorz.
+* Added: Java emacs modes and throw keyword. Cotributed by Grzegorz.
+
 Revision 1.425  2003/06/30 13:10:18  set
 * Added: List of new and fixed stuff to the readme. Also the release name
 and revision.
