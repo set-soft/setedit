@@ -38,7 +38,7 @@
    precedence over _conio_gettext.  */
 #ifdef __DJGPP__
 # undef gettext
-# define gettext gettext
+/*# define gettext gettext*/
 #endif
 
 #ifndef PARAMS
