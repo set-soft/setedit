@@ -339,7 +339,7 @@ void ParseCommandLine(int argc, char *argv[])
             fprintf(stderr,_("-d, --directory DIR      adds a directory to the list of directories to search\n"
                              "                         (DIR to INFOPATH)\n"));
             fprintf(stderr,_("-f, --file FILENAME      load FILENAME info file.\n"));
-            #ifdef __DJGPP__ // Don't name it under Linux
+            #ifdef TVCompf_djgpp // Don't name it under Linux
             fprintf(stderr,_("-l, --force-no-lfn       avoids the use of long file names under W9x.\n"));
             fprintf(stderr,_("-L, --force-lfn          forces the use of long file names under W9x.\n"));
             #else
@@ -351,7 +351,7 @@ void ParseCommandLine(int argc, char *argv[])
             fprintf(stderr,_("-h, --help               displays this text ;-).\n\n"));
             fprintf(stderr,"The first argument, if present, is the name of the Info file to read.\n"
                            "Any remaining arguments are treated as the names of menu items in the initial\n"
-                           #ifdef __linux__
+                           #ifdef TVOSf_Linux
                            "node visited.  For example, `infview libc \"function index\" printf' moves to the\n"
                            "node `Function Index' and then to `printf' in the info file `libc'.\n\n"
                            #else
@@ -378,7 +378,7 @@ char *TryFileName(const char *path, const char *file)
  struct stat st;
 
  strcpy(aux,path);
- #ifndef __DJGPP__
+ #ifdef TVOS_UNIX
  strcat(aux,".");
  #endif
  strcat(aux,file);
@@ -421,7 +421,7 @@ void CreateDesktopNames(char *file)
     strncpy(Share,file,pos-file-3);
     Share[pos-file-3]=0;
    }
- #ifdef __DJGPP__
+ #ifdef TVCompf_djgpp
  else
  if ((pos=getenv("DJDIR"))!=0)
    {
@@ -433,7 +433,7 @@ void CreateDesktopNames(char *file)
     strcpy(Share,"./");
  strcat(Share,"share/infview/");
 
- #ifndef __DJGPP__
+ #if defined(TVOS_UNIX) || defined(TVCompf_Cygwin)
  char Home[PATH_MAX];
  pos=getenv("HOME");
  if (!pos)
@@ -451,7 +451,7 @@ void CreateDesktopNames(char *file)
  if (!desktopIn)
    {// Here
     desktopIn=TryFileName("./",cDktName);
-    #ifndef __DJGPP__
+    #if defined(TVOS_UNIX) || defined(TVCompf_Cygwin)
     // User's home
     if (!desktopIn)
        desktopIn=TryFileName(Home,cDktName);
@@ -464,7 +464,7 @@ void CreateDesktopNames(char *file)
  if (!desktopIn)
    {// Here
     desktopIn=TryFileName("./",cDktNameOld);
-    #ifndef __DJGPP__
+    #if defined(TVOS_UNIX) || defined(TVCompf_Cygwin)
     // User's home
     if (!desktopIn)
        desktopIn=TryFileName(Home,cDktNameOld);
@@ -479,7 +479,7 @@ void CreateDesktopNames(char *file)
  // Solve the write point
  if (!desktopOut)
    {
-    #ifndef __DJGPP__
+    #if defined(TVOS_UNIX) || defined(TVCompf_Cygwin)
     // Home
     desktopOut=StringCat(Home,".",cDktName,0);
     #else
@@ -513,7 +513,7 @@ int main(int argc, char *argv[])
  ParseCommandLine(argc,argv);
 
  editorApp=new TEditorMiApp();
- #ifdef __linux__
+ #ifdef TVOSf_Linux
  if (UseRH52)
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
  #endif

@@ -73,11 +73,11 @@
 
 #define IsntEOL(a) (a!='\r' && a!='\n')
 #define IsEOL(a)   (a=='\r' || a=='\n')
-#if defined(__DJGPP__) || defined(_WIN32)
+#if defined(SECompf_djgpp) || defined(SEOS_Win32)
  #define LenEOL     2
  #define USE_CRLF
  #define IsTrueEOL(a) (a=='\r' || a=='\n')
- #ifdef __GNUC__
+ #ifdef SEComp_GCC
   const char crlf[] = "\r\n";
  #else
   #define crlf "\r\n"
@@ -90,16 +90,16 @@
 
 // Non standard libc stuff
 
-#if defined(__DJGPP__) || defined(_WIN32)
+#if defined(SECompf_djgpp) || defined(SEOS_Win32)
 #define IDLE_SLEEP 0
 #else
 #define IDLE_SLEEP 1000
-#endif // !__DJGPP__ && !_WIN32
+#endif
 
 //
 // Debug printf. Defining DEBUG the program prints to stderr.
 //
-#ifdef __GNUC__
+#ifdef SEComp_GCC
  #ifndef DEBUG
   #define dbprintf(a...)
  #else // DEBUG
@@ -109,17 +109,17 @@
    #define dbprintf(a...) printf(a)
   #endif // else TO_STDOUT
  #endif // else DEBUG
-#else // __GNUC__
+#else // GCC
  inline void dbprintf(...) {};
-#endif // else __GNUC__
+#endif // else GCC
 
-#ifdef __TURBOC__
+#ifdef TVComp_BCPP
  #define popen(command, mode) _popen(command, mode)
  #define pclose(stream) _pclose(stream)
 #endif
 
 #ifdef Uses_BestWrite
- #if defined(SEOSf_djgpp)
+ #if defined(SECompf_djgpp)
   #define BestWrite(a,b) _write(STDERR_FILENO,a,b)
   #define Uses_io
  #elif defined(SEOS_UNIX)

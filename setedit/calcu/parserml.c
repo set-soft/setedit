@@ -22,20 +22,20 @@
 #include <math.h>
 #include <setjmp.h>
 #include <signal.h>
-#ifdef   __MSDOS__
+#ifdef   TVCompf_djgpp
  #include <float.h>  /* for _clear87() */
 #endif
 
-#ifdef __GNUC__
+#ifdef TVComp_GCC
  #define ltype   long long
  #define ltypes  "ll"
- #ifdef __DJGPP__
+ #ifdef TVCompf_djgpp
   #define strtol  strtoll
  #else
   #define strtol  strtoq
  #endif 
 #else
- #if defined(__TURBOC__) || defined(_MSC_VER)
+ #if defined(TVComp_BCPP) || defined(TVComp_MSC)
   #define ltype   __int64
   #define ltypes  "i64"
  #else
@@ -295,9 +295,9 @@ static int yyparse (unsigned *mondat)
 static void 
 fperrhandle (int x)
 {
-#ifdef __MSDOS__
+    #ifdef TVCompf_djgpp
     _clear87 ();           /* hmm... we need this! */
-#endif    
+    #endif
     longjmp (fperror,-4);
 }
 /********************************/

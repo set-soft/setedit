@@ -265,7 +265,7 @@ void WriteHex(int fd, unsigned long value)
   Core routines.
 *****************************************************************************/
 
-#if defined(SECPU_x86) && defined(__GNUC__)
+#if defined(TVCPU_x86) && defined(TVComp_GCC)
 /**[txh]********************************************************************
 
   Description:

@@ -13,4 +13,7 @@
 #define HAVE_BZIP2 1
 
 #define SEOS_Win32
-#define SEOSf_NT
+#define SEOSf_
+#define SEComp_BCPP
+#define SECompf_
+#define SECPU_x86

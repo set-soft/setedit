@@ -153,11 +153,6 @@ adjustments, for example I didn't take care about names crossing lines.
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
 
-/*#if defined(__GNUC__) && !defined(__DJGPP__)
-extern "C" char *strupr(char *);
-#define NO_DOUBLE_CLICK
-#endif*/
-
 #ifdef FOR_EDITOR
 // Is from codepage.h
 extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned short *map, int len);
@@ -191,7 +186,6 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #define Uses_TStringCollection
 #define Uses_TSortedListBox
 #define Uses_TFileDialog
-//#include <tv.h>
 
 #define Uses_TCEditor_External
 #define Uses_TCEditor_Commands
@@ -209,7 +203,7 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 
 #include <ctype.h>
 
-#ifndef __linux__
+#ifndef TVOSf_Linux
 # include <io.h>
 # include <fcntl.h>
 #else
@@ -877,14 +871,13 @@ void TInfViewer::PasteToClipboard(void)
                 lTotal=lLine-Xs;
                 memcpy(s,b+Xs,lTotal);
                 s+=lTotal;
-#ifdef __DJGPP__
-                s[0]='\r';
-                s++;
-                lTotal++;
-#endif
-                s[0]='\n';
-                s++;
-                lTotal++;
+                const char *p=crlf;
+                for (int i=0; i<LenEOL; i++)
+                  {
+                   s[0]=p[i];
+                   s++;
+                   lTotal++;
+                  }
                }
             }
           else
@@ -901,14 +894,13 @@ void TInfViewer::PasteToClipboard(void)
        {
         lLine=topic->getLine(i,s);
         s+=lLine;
-#ifdef __DJGPP__
-        s[0]='\r';
-        s++;
-        lTotal++;
-#endif
-        s[0]='\n';
-        s++;
-        lTotal++;
+        const char *p=crlf;
+        for (int i=0; i<LenEOL; i++)
+          {
+           s[0]=p[i];
+           s++;
+           lTotal++;
+          }
         lTotal+=lLine;
        }
     }

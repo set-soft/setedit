@@ -29,7 +29,7 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
 {
  TSubMenu& sub1 = *new TSubMenu( "~F~ile", kbAltF ) +
    *new TMenuItem( "~O~pen info file", cmInfOpen, kbF3, hcNoContext, "F3" ) +
-   #ifdef __DJGPP__
+   #ifdef TVOS_DOS
    *new TMenuItem( "~D~OS shell", cmDosShell, kbNoKey ) +
    #endif
    *new TMenuItem( "E~x~it", cmQuit, kbAltX, hcNoContext, "Alt+X" );

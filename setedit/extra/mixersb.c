@@ -10,7 +10,7 @@
 
 #include <configed.h>
 
-#if defined(SEOSf_djgpp) && defined(HAVE_MIXER)
+#if defined(SECompf_djgpp) && defined(HAVE_MIXER)
 #include <stdlib.h>
 #include <string.h>
 #include <pc.h>
@@ -529,4 +529,4 @@ int main(int argc, char *argv[])
 }
 #endif
 
-#endif // SEOSf_djgpp && HAVE_MIXER
+#endif // djgpp && HAVE_MIXER

@@ -20,12 +20,12 @@
 #define	isexpr(STR) (!isintvar (STR))
 #define	opsdo(NAME, EXPR) if (matchops (NAME)) EXPR
 
-#ifdef __GNUC__
+#ifdef TVComp_GCC
 #define ltype long long
 #define lprint "ll"
 #endif
 
-#if defined(__TURBOC__) || defined(_MSC_VER)
+#if defined(TVComp_BCPP) || defined(TVComp_MSC)
 #define ltype   __int64
 #define lprint  "i64"
 #endif

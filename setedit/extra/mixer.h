@@ -59,7 +59,7 @@ typedef struct BOARD_MIXER
 extern "C" {
 #endif
 
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 int  SBMixerInit();
 void SBMixerDeInit();
 int  SBSetMixerValue(int id, int left, int right);
