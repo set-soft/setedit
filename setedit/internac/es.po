@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-09-22 11:26-0300\n"
+"PO-Revision-Date: 2004-09-29 16:51-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -6228,23 +6228,23 @@ msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
 msgid "Can't find plug-ins directory"
 msgstr "No pude encontrar el directorio de plug-ins"
 
-#: ../setedit/holidays.cc:288
+#: ../setedit/holidays.cc:290
 msgid "Holidays plug-ins not supported. Sorry."
 msgstr "Lo lamento, no hay soporte para plug-ins de feriados."
 
-#: ../setedit/holidays.cc:295
+#: ../setedit/holidays.cc:297
 msgid "Failed to load holidays.conf"
 msgstr "Error al cargar holidays.conf"
 
-#: ../setedit/holidays.cc:299
+#: ../setedit/holidays.cc:301
 msgid "Holidays country"
 msgstr "País para los feriados"
 
-#: ../setedit/holidays.cc:316
+#: ../setedit/holidays.cc:318
 msgid "Country"
 msgstr "País"
 
-#: ../setedit/holidays.cc:316
+#: ../setedit/holidays.cc:318
 msgid "Force country"
 msgstr "Forzar el país"
 

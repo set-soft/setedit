@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-09-22 11:26-0300\n"
+"PO-Revision-Date: 2004-09-29 16:51-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -6606,23 +6606,23 @@ msgstr ""
 msgid "Can't find plug-ins directory"
 msgstr "Zielverzeichnis"
 
-#: ../setedit/holidays.cc:288
+#: ../setedit/holidays.cc:290
 msgid "Holidays plug-ins not supported. Sorry."
 msgstr ""
 
-#: ../setedit/holidays.cc:295
+#: ../setedit/holidays.cc:297
 msgid "Failed to load holidays.conf"
 msgstr ""
 
-#: ../setedit/holidays.cc:299
+#: ../setedit/holidays.cc:301
 msgid "Holidays country"
 msgstr ""
 
-#: ../setedit/holidays.cc:316
+#: ../setedit/holidays.cc:318
 msgid "Country"
 msgstr ""
 
-#: ../setedit/holidays.cc:316
+#: ../setedit/holidays.cc:318
 #, fuzzy
 msgid "Force country"
 msgstr "Sekundär encoding"
