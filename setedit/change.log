@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.427  2003/07/07 15:29:41  set
+* Added: The TAGs tutorial to the distribution. It is a big (because of the
+images) but I think it could help users to quickly start using these
+features.
+
 Revision 1.426  2003/07/01 13:05:39  set
 * Added: Errors parser for ANT Java Builder. Cotributed by Grzegorz.
 * Added: Java emacs modes and throw keyword. Cotributed by Grzegorz.
