@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef EDHISTS_H_INCLUDED
 #define EDHISTS_H_INCLUDED
@@ -7,7 +7,7 @@
 
 const int
 hID_Start             = 120,
-hID_Cant              = 16;
+hID_Cant              = 17;
 
 const int
 hID_TextSearchEditor  = hID_Start,
@@ -25,5 +25,6 @@ hID_ConfigFiles       = hID_Start+11,
 hID_ProjectFiles      = hID_Start+12,
 hID_OpenMP3           = hID_Start+13,
 hID_SaveMP3           = hID_Start+14,
-hID_GotoLine          = hID_Start+15;
+hID_GotoLine          = hID_Start+15,
+hID_sLispMacros       = hID_Start+16;
 #endif

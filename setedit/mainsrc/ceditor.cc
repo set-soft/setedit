@@ -3342,6 +3342,14 @@ int TCEditor::handleCommand(ushort command)
                 InsertKeyName();
                 break;
  
+           case cmcRunSel_sLisp:
+                SLPInterfaceRunSelection(this);
+                break;
+
+           case cmcRunEnter_sLisp:
+                SLPInterfaceRunAsk(this);
+                break;                
+
            default:
                unlock();
                unlockUndo();

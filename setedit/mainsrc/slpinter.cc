@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -37,6 +37,7 @@ class TSOSListBox;
 #define Uses_SETAppDialogs
 #include <setapp.h>
 #include <completi.h>
+#include <edhists.h>
 
 static TCEditor *Editor;
 
@@ -296,6 +297,45 @@ void SLPInterfaceDeInit(void)
  DeInitLispEditor();
  delete slpFile;
  slpFile=0;
+}
+
+void SLPInterfaceRunSelection(TCEditor *ed)
+{
+ if (ed->hasVisibleSelection())
+   {
+    unsigned l=ed->selEnd-ed->selStart;
+    char *s=(char *)malloc(l+1);
+    if (s)
+      {
+       memcpy(s,ed->buffer+ed->selStart,l);
+       s[l]=0;
+       Editor=ed;
+       if (!InterpretLispEditor(s))
+          SLPShowError();
+       free(s);
+       ed->update(ufView);
+       Editor=0;
+      }
+   }
+}
+
+void SLPInterfaceRunAsk(TCEditor *ed)
+{
+ TSViewCol *col=new TSViewCol(__("Enter sLisp code to interpret"));
+ TSInputLinePiped *inp=new TSInputLinePiped(1023,1,hID_sLispMacros,60);
+ col->insert(xTSCenter,yTSUp,inp);
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doIt(); delete col; d->options|=ofCentered;
+ char b[1024]; *b=0;
+ if (execDialog(d,b)!=cmCancel)
+   {
+    b[1023]=0;
+    Editor=ed;
+    if (!InterpretLispEditor(b))
+       SLPShowError();
+    ed->update(ufView);
+    Editor=0;
+   }
 }
 
 void SLPInterfaceRun(TCEditor *ed)

@@ -122,6 +122,8 @@ static edCList List[] =
 { "RepeatMacro", 117 },
 { "Replace", 78 },
 { "ReplaceSelect", 16 },
+{ "RunEnter_sLisp", 149 },
+{ "RunSel_sLisp", 148 },
 { "Save", 114 },
 { "SaveAs", 115 },
 { "SaveAsDOS", 93 },
