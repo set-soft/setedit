@@ -902,6 +902,8 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeCalculator:
               executeCalc(GetWordUnderCursor(250));
+              // In case the user copied to the clipboard.
+              UpdateEditorCommands();
               break;
 
          case cmePocketCalc:
@@ -1087,8 +1089,7 @@ void TSetEditorApp::handleEvent( TEvent& event )
               {
                SetGeneralEditorOptions();
                // The save-as-is option affects some commands.
-               TCEditor *e=GetCurrentIfEditor();
-               if (e) e->updateCommands(1);
+               UpdateEditorCommands();
               }
               break;
 
@@ -1433,6 +1434,13 @@ TCEditor *GetCurrentIfEditor()
  if (IsAnEditor(p))
     return ((TCEditWindow *)p)->editor;
  return 0;
+}
+
+void UpdateEditorCommands()
+{
+ TCEditor *e=GetCurrentIfEditor();
+ if (e)
+    e->updateCommands(1);
 }
 
 TCEditWindow *GetCurrentIfEditorWindow()

@@ -392,6 +392,7 @@ extern void  ShowHelpTopic(char *file, char *node);
 extern void ShowTips(char *fileName, int forceDialog=0);
 extern int IsAnEditor(void *p);
 extern TCEditor *GetCurrentIfEditor();
+extern void UpdateEditorCommands();
 extern int SelectWindowNumber(int number);
 extern void HTMLAcc_Entry(Boolean compact);
 TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant=0, stEditorId *id=0);

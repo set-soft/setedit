@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.502  2004/04/22 19:09:28  set
+* Fixed: [tools] Problems when applying patches from branches that uses new
+files and cvs marks them as from Attic.
+
 Revision 1.501  2004/04/19 20:45:55  set
 * Added: Code needed to test with the AlCon branch.
 
