@@ -1554,7 +1554,7 @@ Keywords=return,break,for,in,function,local,and,or,not
 End
 
 #----------------------- Fasm V1.50 (Tomasz Grysztar) -------------------------
-#---------------Website: http://flatassembler.net -----------
+#---------------Website: http://omega.im.uj.edu.pl/~grysztar/ -----------
 # Contributed by: "Matt C." <talktomatt@egl.net>
 #
 Name=Flat Assembler
@@ -1599,7 +1599,7 @@ Keywords=fisub,fisubr,fld,fld1,fldcw,fldenv,fldl2e,fldl2t,fldlg2,fldln2
 Keywords=fldpi,fldz,fmul,fmulp,fnop,fpatan,fprem,fprem1,fptan,frndint
 Keywords=frstor,fsave,fscale,fsin,fsincos,fsqrt,fst,fstcw,fstenv,fstp
 Keywords=fstsw,fsub,fsubp,fsubr,fsubrp,fist,fucom,fucomp,fucompp,fucomi
-Keywords=fucomip,fxam,fxch,fxtract,fyl2x,fyl2xp1,fwait
+Keywords=fucomip,fxam,fxch,fxtract,fyl2x,fyl2xp1,fwait,ftst
 #Intel MMX instructions
 Keywords=emms,movd,movq,packssdw,packsswb,packuswb,padd,padds,paddus,pand
 Keywords=pandn,pcmpeq,pcmpgt,pmadd,pmulh,pmull,por,psll,psra,psrl,psub
