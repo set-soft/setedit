@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.1
-@set update-date 4 May 2003
+@set update-date 6 May 2003
 @set update-month May 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -932,7 +932,7 @@ Deletes the selected text. It isn't copied to the clipboard.
 @c --------------------------------------------------------------------------
 @subsection Set Local
 
-This option pop ups the local configuration dialog. The values in this
+This option pops up the local configuration dialog. The values in this
 dialog are valid only for the current editor window.
 @paragraph{}
 
@@ -953,7 +953,7 @@ the wrap cuts the lines.
 @c --------------------------------------------------------------------------
 @subsection Set Global
 
-This option pop ups the global configuration dialog. The values in this
+This option pops up the global configuration dialog. The values in this
 dialog are used as default values. If you exit the dialog using the
 @il{Ok} button these values @b{aren't} applied to any of the editor windows,
 they just act as default values for newly opened and created
@@ -1309,7 +1309,7 @@ it nonetheless.
 @c --------------------------------------------------------------------------
 @subsection Jump to prototype
 
-This option pop ups a dialog with the list of C function prototypes in your
+This option pops up a dialog with the list of C function prototypes in your
 source file. You can then choose one to jump to. The prototypes are
 searched in the source file so you don't need to compile it. As the parser
 uses an heuristic approach it may fail, especially if your code has an
@@ -1738,7 +1738,7 @@ if you want to.
 @c --------------------------------------------------------------------------
 @subsection List
 
-Pop ups the List of Windows dialog. This dialog contains the list of all the
+Pops up the List of Windows dialog. This dialog contains the list of all the
 editor windows, the special windows and the closed windows.
 @paragraph{}
 
@@ -1982,8 +1982,8 @@ the list is reached.
 
 @itemize @bullet
 @item Just stop: nothing particular is done, the editor just stops.
-@item Indicate with a message: a message indicating you reached the last
-pop-up.
+@item Indicate with a message: a message indicating you reached the first
+or last pops up.
 @item Wrap (circular list): the list becomes a circular list. So when you
 reach the last message the editor jumps to the first and @il{vice versa}.
 @item Make a beep: a sound is generated.
@@ -2033,23 +2033,23 @@ These settings are stored in the desktop file. @x{Desktop Files}.
 @subsubsection Screen Saver
 @cindex screen saver
 
-This dialog customize the screen saver. Note the question mark at the end of
-the words "screen saver" I did it because the plasma screen saver isn't too
-good to be used as a real saver for your screen. You can enable and disable
-it, choose the time the editor will wait before starting the screen saver
-and the screen saver style. The @b{Test} button can be used to see how the
-screen saver looks like.
+This dialog customizes the screen saver. Note the question mark at the end of
+the term "screen saver" I did it because the plasma screen saver isn't too
+good to be used as a real saver for your screen.
+You can enable or disable, choose the time the editor will wait before
+starting the screen saver and the screen saver style. The @b{Test} button can
+be used to see how the screen saver looks like.
 @paragraph{}
 
-If you left the mouse pointer in the upper right corner of the screen for
-some seconds the screen saver is activated. This time is three seconds by
+If you leave the mouse pointer in the upper right corner of the screen for
+a few seconds the screen saver is activated. This time is three seconds by
 default and can be configured entering the amount of seconds in the second
 box labeled @il{Time}.
 @paragraph{}
 
 Two types of screen savers are supported: internal and external. Internal
 screen savers are hardcoded in the editor. External screen savers are
-external programs started from the editor. If you select an external screen
+external programs started by the editor. If you select an external screen
 saver from the list the @b{Info} and @b{Help} buttons are enabled. Pressing
 these buttons you can get more information about the screen saver. You can
 pass additional parameters to the external screen saver filling the
@@ -2059,7 +2059,7 @@ pass additional parameters to the external screen saver filling the
 If you want to write your own screen saver please download the sources of the
 editor and read the explanations found in the @il{scrnsave} directory. An
 external screen saver is basically a simple program that supports some
-special command line options and returns with some specified return values.
+special command line options and returns some specified return values.
 @paragraph{}
 
 @refMenu1{cmeScreenSaverOpts}
@@ -2075,12 +2075,12 @@ These options customize the SDG module (SET's Documentation Generator).
 @item Format file: Indicates the name of the format file used to generate
 the documentation.
 @item Intermediate file: The name of the temporal file used in the process.
-@item Base output: The base name of the output file. Don't include the
+@item Base output: The base name of the output file. Doesn't include the
 extension.
 @item Directory of formats: The place where the editor will search for the
 format file.
-@item Keep intermediate: When enabled the temporal file isn't deleted so
-you can see possible errors on it.
+@item Keep intermediate: When enabled the temporal file isn't deleted, so
+you can see possible errors in it.
 @end itemize
 
 The SDG module uses the files listed in the project to collect the
@@ -2096,7 +2096,7 @@ These settings are stored in the desktop file. @x{Desktop Files}.
 @subsubsection Run program (which one)
 
 The editor can run an external program and collect the errors reported by it
-just pressing a key (@kbd{^F9}). A good example is the make program. Here
+if you press the shortcut (@kbd{^F9}). A good example is the make program. Here
 you can select the name of the program. If you need to run more than one
 command separate it with @code{;}.
 @paragraph{}
@@ -2109,79 +2109,80 @@ or just fine tune any of them @x{Error messages from an external application}.
 @paragraph{}
 
 The other options found in this dialog are a little bit complex. Here I'll
-try to explain each of these options but I recommend just try them to see
+try to explain each of these options but I recommend to just try them to see
 how they work.
 @paragraph{}
 
 Option @il{Use OS screen to run the program}: The editor will try to restore
-the contents of the screen. So it will looks like it was before running the
-editor. Then the program will be executed and finally the editor will redraw
-all the contents of the desktop and windows. This mechanism is useful when
-the program you want to run is interactive or doesn't use the standard
-output. Is important to understand that on some platforms and terminals the
-editor can't restore the contents of the screen and will just clean it to the
-grey over black color. Is also important to understand that when this option
-is enabled the program can't be executed in multitasking mode; it means the
-option @il{Don't try to run in background} will be implicitly selected.
+the contents of the screen. So it will look like as it was before running the
+editor. Meaning the program will be executed and the editor will redraw
+all the contents of the desktop and windows afterwards. This mechanism is
+useful when the program you want to run is interactive or doesn't use the
+standard output. Is important to understand that on some platforms and
+terminals the editor can't restore the contents of the screen and will just
+clean it to the grey over black color. It's also important to understand that
+when this option is enabled the program can't be executed in multitasking
+mode; it means the option @il{Don't try to run in background} will be
+implicitly selected.
 @paragraph{}
 
-Option @il{Don't try to run in background}: In some platforms (currently only
+Option @il{Don't try to run in background}: On some platforms (currently only
 Linux) the editor can execute the external program as a child process. It
 means the program will execute in parallel with the editor (in background).
-When the editor does it you'll see the message window will indicate the
-program is running but won't say you are back in the editor. Instead the
+When the editor does this you'll see the message window indicate the
+program is running but won't say when you are back in the editor. Instead the
 output of the external program will start to fill the message window. You can
 select any other window and continue working while the external program runs.
 When the external program ends the editor will also collect the rest of the
-messages and errors in background. While the editor is running the external
+messages and errors in the background. While the editor is running the external
 program and/or parsing the remaining messages the status bar will show an
 option @code{Ctrl+C Stop}; clicking on it or pressing the indicated key the
 editor will stop the background process and will also stop collecting
-messages. Now you know it I can explain the purpose of this option. When this
+messages. The purpose of this option: When this
 option is enabled the editor won't try to run the external program in
 parallel even if the platform supports it. That's faster, but if the
-external program is slow you'll be forced to wait until it finish and you
+external program is slow you'll be forced to wait until it finishes and you
 won't be able to stop the program from the editor.
 @paragraph{}
 
 Option @il{Always parse in background}: If enabled the editor will collect the
-messages and errors in background even if the platform doesn't support the
-execution of the external program in background. In platforms that doesn't
-support the execution of the external program in background the editor will
+messages and errors in the background even if the platform doesn't support the
+execution of the external program in the background. On platforms that don't
+support the execution of the external program as a thread the editor will
 block until the external program ends and then will parse the messages and
-errors in background. This is useful when the amount of messages and errors
+errors in the background. This is useful when the amount of messages and errors
 is big and the parsing will take a long time. In this way you can continue
 working while the editor does this job. You must understand that's even
-slower but you can use this time for reading or editing text.
+slower but you can at least use the time for reading or editing text.
 @paragraph{}
 
 The @il{Message window scroll} group of options are mutually exclusive and
-gives some control over the behavior of the message window. When you start
+give some control over the behavior of the message window. When you start
 executing the external program the message window will automatically get the
 focus. As messages and errors are added to this window the window scrolls
-and shows the last message. When the external program finish and the editor
+and shows the last message. When the external program finishes and the editor
 parses all the messages and errors the message window will get the focus
-again. Finally if the editor found errors the message window will scroll to
+again. Finally, if the editor found errors, the message window will scroll to
 the first line. This is the default behavior and you'll be able to see each
-of this steps only if the editor is running the external program in
-background and/or parsing the messages and errors in background. This
-behavior corresponds to the @il{Ever} option. If you select the @il{Never}
-option the editor won't scroll the message window. In this case you can
+of this steps only if the editor is running the external program in the
+background and/or parsing the messages and errors in the background. This
+behavior corresponds to the @il{Ever} (always) option. If you select the
+@il{Never} option the editor won't scroll the message window. In this case you can
 browse the messages even while the editor is collecting them. Finally you can
 choose @il{Only if not focused}. In this case you'll be able to browse the
-messages when the message window is selected, but if you select other window
+messages when the message window is selected, but if you select an other window
 the editor will start to scroll the message window. The fastest option is
 @il{Never} but then you won't see if the external program finished executing,
 unless you have the message window selected all the time.
 @paragraph{}
 
 The @il{Lines per pass} option is associated with the speed of parsing. This
-option takes effect only when the messages and errors are parsed in
+option takes effect only when the messages and errors are parsed in the
 background. What this option indicates is how many lines of messages and
 errors will be parsed before releasing the CPU. A bigger value will make the
 parsing faster but will make the editor slower and you'll start having
 problems to select windows and write text. You must experiment with this
-parameter. In my machine a value of 20 is acceptable.
+parameter. On my machine a value of 20 is acceptable.
 @paragraph{}
 
 All of these settings are stored in the desktop file. @x{Desktop Files}.
@@ -2243,9 +2244,9 @@ that's very common in DOS applications so that's the default.
 @c --------------------------------------------------------------------------
 @subsubsection Back to defaults
 
-This option restore the default keys assignment of the editor. Use it if you
-did a real dissaster in the keyboard configuration and you want to go back
-to the original values.
+This option restores the default key assignments of the editor. Use it if you
+messed up the keyboard configuration and you want to get back
+the original values.
 @paragraph{}
 
 @refMenu1{cmeKbBackDefault}
@@ -2254,6 +2255,7 @@ to the original values.
 @subsubsection Consult scan codes
 
 Used to consult the keyboard scan codes: @x{Consulting scan codes}.
+(Ed.: Can only be closed with the mouse ??)
 @paragraph{}
 
 @refMenu1{cmeSeeScanCodes}
@@ -2261,35 +2263,35 @@ Used to consult the keyboard scan codes: @x{Consulting scan codes}.
 @c --------------------------------------------------------------------------
 @subsubsection Screen Options
 
-This command po-ups the screen options configuration dialog. Here you can
+This command opens the screen options configuration dialog. Here you can
 customize the video mode or window size. This dialog is available only when
 you are running in a terminal that can control the screen size. If you are
 looking for the screen saver: @x{Screen Saver}.
 @p{}
 
-Not all hardware drivers supports it and not all the options are usable for
-all the drivers. Some times you can't control the screen size, like in
+Not all hardware drivers support it and not all the options are usable for
+all the drivers. With some you can't control the screen size, like in
 @b{Linux}, in other cases you have total control, like when you run the
 editor in @b{X11}, and in others you have limited control, like in @b{DOS}.
 @p{}
 
-The first group of options selects how the editor will try to set the video
+The first group of options defines how the editor will try to set the video
 mode. The available options are:
 @p{}
 
 @itemize @bullet
   @item Don't force: The editor won't try to change the screen size.
   @item Same as last run: The editor will remember the last size used and
-will try to restore the closest posible size.
-  @item External program: It curently have sense only for @b{DOS}. It can be
-used when you have an external program that can set the video mode as you
-want. In this case you must also indicate the command line for it in the
+will try to restore the closest possible size.
+  @item External program: It currently makes only sense in @b{DOS}. It can be
+used when you have an external program that can set the video mode for you.
+In this case you must also indicate the command line for it in the
 @b{External program} box.
   @item Closest to specified size: The editor will try to select a screen
-size that's closer to the values indicated in @b{Width}, @b{Height},
-@b{Chars width} and @b{Chars height} boxes. Note that some drivers supports
-only a small set of fixed values and others have silly limitations imposed by
-the operating system.
+size that's as close to the values indicated in @b{Width}, @b{Height},
+@b{Chars width} and @b{Chars height} boxes as possible. Note that some drivers
+support only a small set of fixed values and others have silly limitations
+imposed by the operating system.
   @item Specified mode number: This is mainly for @b{DOS}. Use it if you know
 about a video mode supported by your video card that isn't known by the
 editor. In this case you must indicate the video mode number in the
@@ -2334,13 +2336,13 @@ you can get all the funtionality. Usually you won't need to use it unless you
 deal with more than one encoding.
 @p{}
 
-Currently the editor can only use files where one letter correspond to just
+Currently the editor can only use files where one letter corresponds to just
 one character. It limits the editor to 256 different symbols. This is the
 common case for most operating systems and environments. Which symbols are
-represented by these 256 values is what we call an encoding.
+represented by these 256 values is called an encoding.
 @p{}
 
-The encodings are also known as code pages. An example of code page is the
+The encodings are also known as code pages. An example of a code page is the
 @b{DOS} code page 437 used by PC VGA boards or the ISO 8859-1 encoding used
 by most POSIX systems as a default encoding. Currently more than 47 encodings
 are supported. These encodings cover the latin, cyrillic and greek alphabets.
@@ -2350,27 +2352,27 @@ contributing.
 
 In most cases the editor will detect the encoding currently used by the
 operating system without problems. A special case is the @b{GNU/Linux} OS
-where the concept of code page doesn't really exist and you can find all kind
+where the concept of code page doesn't really exist and you can find all kinds
 of errors in the fonts and unicode maps.
 @p{}
 
-This dialog can have two, three or four encodings to select they are:
+This dialog can have two, three or four encodings to select, they are:
 @p{}
 
 @itemize @bullet
-  @item Application: how is encoded the application itself, select the
-encoding used in your documents.
-  @item Input: how is encoded the data from the keyboard. It is usually the
+  @item Application: which encoding the application uses, ie. used in your
+documents.
+  @item Input: how the data from the keyboard is encoded. It is usually the
 same encoding used by the screen. If the application and input code pages
-doesn't match the editor will translate the data from the keyboard to the
+don't match the editor will translate the data from the keyboard to the
 application encoding.
-  @item Screen: how is encoded the screen. Not all hardware drivers supports
-it because some of them works with a fixed code page and this value is known.
-Here you indicate how is encoded the font used by your hardware or OS. If
+  @item Screen: the encoding if the screen. Not all hardware drivers support
+it because some of them work with a fixed code page and this value is known.
+Here you indicate how the font used by your hardware or OS is encoded. If
 this value doesn't match the application code page the editor will translate
 the data before sending it to the screen.
   @item Second font: how the secondary font is encoded. This is available
-only when the driver supports more than one font at the same time,
+only when the driver supports more than one font at the same time.
 @end itemize
 
 If any of these settings doesn't have the @b{Force encoding} option selected
@@ -2379,11 +2381,11 @@ then the editor will use what was detected.
 
 If you force the screen encoding the selected value must match the OS
 encoding. The exception is when you select a font in the @b{Fonts} dialog. In
-this case the editor will recode the selected font to match your selection.
+this case the editor will recode the selected font to match the encoding.
 Don't forget this interaction with the @b{Fonts} dialog. @x{Fonts}.
 @p{}
 
-Note that you can easilly edit documents encoded in a code page different
+Note that you can easily edit documents encoded in a code page different
 than the one used by the OS without doing any specific recoding. Example: if
 you are using @b{X11} and the ISO 8859-1 encoding but you want to edit a DOS
 file encoded using the 850 code page you just need to select the application
@@ -2399,9 +2401,9 @@ ISO 8859-1 before displaying it.
 @subsubsection Fonts
 
 This dialog is used to select the fonts used by the editor. Not all hardware
-drivers supports custom fonts and some only supports only one font. The
-editor can handle upto two fonts at the same time. The use of two fonts is
-complex.
+drivers support custom fonts and some only support only one font. The
+editor can handle up to two fonts at the same time. However, the use of two
+fonts is complex.
 @p{}
 
 Only the fonts marked with @b{Load font} are used, don't forget to enable it
@@ -2412,13 +2414,13 @@ The size of the fonts must be the same, that's why even on systems that
 supports two fonts only one size can be selected.
 @p{}
 
-The offered fonts are the provided by the editor and not the OS. This is
-because some systems doesn't provide fonts and the systems that provides
-fonts usually provides only a few fixed width fonts. The format used by the
-fonts is documented in the Turbo Vision library.
+The offered fonts are the ones provided by the editor and not the OS. This is
+because some systems doesn't provide fonts and the systems that provide
+fonts usually provides only a few fixed width fonts. The font format used
+is documented in the Turbo Vision library.
 @p{}
 
-The fonts marked with @il{limited} doesn't cover all the encodings supported
+The fonts marked with @il{limited} don't cover all the encodings supported
 by the editor. @x{Encodings}.
 @p{}
 
@@ -2441,8 +2443,8 @@ color different than the color used for reserved words.
 @paragraph{}
 
 The first dialog is used to select the language, the names are the ones
-defined in the syntax highlight file (@x{Syntax Highlight}). Selecting one of
-the names and pressing @key{ENTER} the second dialog pop ups.
+defined in the syntax highlighting file (@x{Syntax Highlight}). Selecting one of
+the names and pressing @key{ENTER} pops up the second dialog.
 @paragraph{}
 
 The next dialog is used to add or remove words to the list. Pressing
@@ -2450,13 +2452,13 @@ The next dialog is used to add or remove words to the list. Pressing
 with @key{ESC} the old list is preserved.
 @paragraph{}
 
-The user words are stored in a file called @file{userword.txt} in the same
-place where the rest of the configuration files are stored. The editor
-doesn't include this file in the distribution because these values must be
-defined by the user. You can edit the file by hand if you want, the format is
+The user words are stored in a file called @file{userword.txt}, in the same
+directory all other configuration files are stored. Such a file isn't
+included in the distribution because those words must be defined by the
+user. You can edit the file by hand if you want, the format is
 very simple. The start of a list is marked with @code{.} followed by the name
 of the language. The items of the list are marked with @code{+}. Any line
-starting with other character will be ignored during the parsing.
+starting with a different character will be ignored during the parsing.
 @paragraph{}
 
 Note: The menu option is "Tool&Ops|Options|User Words".
@@ -2475,69 +2477,67 @@ The global options are good, but sometimes you want to make some small
 differences depending on the kind of file you are editing. For example: I
 want the @il{Intelligent C indent} mode enabled for C, but not for most of the
 files, I also want to wrap lines for Texinfo files and files without syntax
-highlight. That's impossible to achieve just using the global options, here
-is when this option is used.
+highlighting. That's impossible to achieve just using the global options,
+that's when this option comes into play.
 @paragraph{}
 
 The mechanism is like this: each time you open a new file the editor will
-copy the default global options to it and select the syntax highlight
-according to various things, mainly using the extension. Ones the editor
-select the syntax highlight the next step is to transfer some options that
-applies only to the selected syntax highlight. By default the list of options
-to apply is empty but you can add options using this menu option.
+copy the default global options to it and select the syntax highlighting
+according to various things, mainly the extension. Once the editor
+selects the syntax highlighting the next step is to transfer some options that
+apply only to the selected syntax highlighting. By default the list of options
+to apply is empty but you can add some using this menu option.
 @paragraph{}
 
-The options are associated with a particular syntax highlight and the values
-are stored in a file called @file{deflopts.txt}. The list of options
-indicates which settings will be enabled, or disabled, in addition to the
-global options. That's something very important you must to note, the list
-acts in addition to the global options, not instead. So the list will say
-things like "also enable the intelligent C indent", "disable the wrap lines",
-@il{etc.}
+The list of options indicates which settings will be enabled, or disabled,
+in addition to the global options. That's something very important to keep
+in mind, the list does not replace the global options, it modifies them. So
+the list will say things like "also enable the intelligent C indent",
+"disable the wrap lines", @il{etc.}
 @paragraph{}
 
-The first dialog shows the list of syntax highlight defined in the
-@file{syntaxhl.shl} and have three buttons. The @code{Edit} button is the
+The first dialog shows the list of syntax highlighting defined in the
+@file{syntaxhl.shl} and has three buttons. The @code{Edit} button is the
 default button, so pressing @key{ENTER} you'll edit the settings for the
-selected syntax highlight. The @code{No SHL} button is used to edit the
-options that will be applied for files that doesn't have any syntax highlihgt
-applied.
+selected syntax highlighting. The @code{No SHL} button is used to edit the
+options that will be applied for files with no syntax highlighting
+associated to.
 @paragraph{}
 
-Once you selected one syntax highlight a dialog with the list of the settings
-associated to it will appear. The first time it will be empty because these
-values are filled only by the user, no defaults are provided. In this list
+Once you selected a syntax highlighting a dialog with the list of the settings
+for it will appear. The first time it will be empty because those are defined
+by the user, and therefore no defaults are provided. In this list
 the settings that will be enabled in addition to the global options are
 marked with a @code{+} before the name of the option. The options that will
 be disabled are marked with a @code{-}. The options are the same described
 in the editing modes section. @x{Editing Modes}.
 @paragraph{}
 
-The dialog contains an @code{Add} and a @code{Delete} button as other
+The dialog contains an @code{Add} and a @code{Delete} button like other
 dialogs. You can also use the @key{Insert} and @key{Delete} keys. When adding
 a new setting to the list a dialog containing the list of available settings
-is displayed. Note this list contains all the settings that are available,
+is displayed. Note that this list contains all the settings that are available,
 once you add one of them to the previous dialog it is removed from this list.
 @paragraph{}
 
 After selecting one setting to add a new dialog will be displayed. This
 dialog will ask information related to this setting. Most settings are flags
-that can be @il{added} or @il{substracted} from the global options, but some of
+that can be @il{added} or @il{removed} from the global options, but some of
 them are just values that will overwrite the global options. Examples of the
-last type are the tabs size and the wrap column, in this case the dialog will
-ask the value.
+last type are the tab size and the wrap column; in this case the dialog will
+ask for the value.
 @paragraph{}
 
 The values are stored in a very simple format in the @file{deflopts.txt}
 file. You can edit this file by hand, but in this case you'll need to know
 the names of the settings. The format is very simple, a line starting with
-@code{.} starts a section, the stop is followed by the name of the highlight
-affected. Flags that will be added (enabled or ored) are marked with a
-@code{+} as in the dialog, flags that will be substracted (disabled or anded)
-are marked with a @code{-} again like in the dialog, in fact the dialog shows
-the same string that is then stored in the file. If the setting is numeric it
-will ever start with @code{+} and after the name follows an @code{=} and the
-asigned value. Just play a little bit and see the resulting file.
+@code{.} starts a section, the full stop is followed by the name of the
+highlighting affected. Flags that will be added (enabled or ored) are marked
+with a @code{+} as in the dialog, flags that will be substracted (disabled
+or anded) are marked with a @code{-} again like in the dialog, in fact the
+dialog shows the same string as those in the file. If the setting is numeric
+it will ever start with @code{+} and after the name a @code{=} and the
+asigned value will follow. Just play a little bit and see the resulting file.
 @paragraph{}
 
 @refMenu1{cmeEditDeflOpts}
@@ -2554,15 +2554,15 @@ This command is used to configure some details of the file open dialog.
 @subsubsection Do not create backups for
 @cindex backups, selective
 
-Some times you don't know to create backups for some particular files. In my
-case I use a tool called @il{cvs}, it generates some temporal files and calls
+Sometimes you don't want to create backups for some particular files. In my
+case I use a tool called @il{cvs}. It generates some temporal files and calls
 the editor so I can write some information. Those files are short and
-temporal, creating backups for them doesn't have any sense.
+temporal, creating backups for them doesn't make any sense.
 @p{}
 
 This command shows a configuration dialog where you can enter a list of
 regular expressions. If any of these regular expressions match with the file
-name of the file you are about saving then the editor won't create a backup
+name of the file you are about to save then the editor won't create a backup
 file for it. The regular expressions are Perl style because I think they are
 much more intuitive than POSIX regex.
 @p{}
@@ -2573,7 +2573,7 @@ by the editor.
 @p{}
 
 Note that files listed here aren't remembered in the list of closed editors.
-That's because the editor assumes these files are temporal and you won't need
+That's because the editor assumes those files are temporal and you won't need
 to use them again.
 @p{}
 
@@ -2603,14 +2603,14 @@ This list is stored in the desktop file.
 @cindex tags, list of files
 
 This dialog controls which tag files are loaded to search for symbols. To
-lear more about tags please read the corresponding chapter. @x{TAGS files}.
+learn more about tags please read the corresponding chapter. @x{TAGS files}.
 @p{}
 
-When you add a file the editor tries to load it and shows how many symbols
-contained.
+When you add a file the editor tries to load it and shows how many symbols it
+contains.
 @p{}
 
-After selecting a new tag file a dialog will ask if you want to add this name
+After selecting a new tag file a dialog will ask if you want to add it
 using a relative path. This is a very important question. If you are using
 one centralized desktop file and you have just a few projects you can add a
 list of tag files in this desktop file, but the list must contain absolute
@@ -2623,11 +2623,11 @@ desktop file I recommend using relative paths, but it depends on your needs.
 @c --------------------------------------------------------------------------
 @subsubsection Tag files options
 
-To maintain the tag files updated you should usually use a makefile. This
+To maintain the tag files you should use a makefile. This
 makefile will update the tag files when any of your sources changes.
 @p{}
 
-To make things easier the editor provides an option to automatically maintain
+To make things easier the editor provides an option to automatically keep
 the tag files updated. This option can be enabled from this dialog and only
 works if you are using a project.
 @p{}
@@ -2639,13 +2639,13 @@ invoke ctags to update the tags. If you delete the tags files the editor will
 create a new one.
 @p{}
 
-This option works with a tags file called @file{tags} located in same
+This option works with a tags file called @file{tags} located in the same
 directory as the project. This file will be listed in the list of tag files
 to search but marked with @code{automatic}. You won't be able to remove this
 entry from the list manually.
 @p{}
 
-When new items are added to the project they are marked in a way that they
+When new items are added to the project they are marked in a way that their
 symbols will be added to the tags file, but when you remove items symbols
 from this file aren't removed. If this is annoying just remove the
 @file{tags} file and let the editor create a new one.
@@ -2674,7 +2674,7 @@ To configure the SDG module: @x{SDG Options}.
 @c --------------------------------------------------------------------------
 @subsection Run program
 
-Runs the desired program. To customize what program to run:
+Runs the desired program. To customize which program to run:
 @x{Run program (which one)}.
 @paragraph{}
 
@@ -2683,41 +2683,41 @@ Runs the desired program. To customize what program to run:
 @c --------------------------------------------------------------------------
 @subsection Grep
 
-This command pop ups the @il{Powered Grep} dialog. Grep is a very powerfull
+This command pops up the @il{Powered Grep} dialog. Grep is a very powerful
 tool to search text in files. To be able to use it you @b{must} have the
-grep tool installed in your system. It isn't shipped with the editor.
+grep tool installed and in the path. It isn't shipped with the editor.
 @paragraph{}
 
 @itemize @bullet
 @item Pattern Box: The text you want to search for. You can use regular
 expressions here. @x{Regular Expressions}.
-@item Files to search: The mask used to select the files where grep will
-make the search. Wildcards and some limited basic regular expressions
+@item Files to search: The mask used to select the files grep will
+search through. Wildcards and some limited basic regular expressions
 are supported here.
 @item Directories to search: The list of directories where the search will
 be performed.
 @end itemize
 
-The @il{Source of pattern} options are used to select what text will be
-searched:
+The @il{Source of pattern} options are used to define the text that will be
+searched for:
 @paragraph{}
 
 @itemize @bullet
 @item Pattern box is the pattern: grep will search the text indicated in the
 pattern box.
-@item Pattern box is a file name: To search words contained in a text file.
-@item Use clipboard selection: Use it to use the clipboard selection instead
+@item Pattern box is a file name: to search words contained in a text file.
+@item Use clipboard selection: use the clipboard selection instead
 of the pattern box text. @x{Clipboard}.
 @end itemize
 
-The @il{Type of pattern} option selects how the pattern is interpreted the
-options are directly related to the grep switchs @code{-G}, @code{-E} and
+The @il{Type of pattern} option selects how the pattern is interpreted. The
+options are directly related to the grep switches @code{-G}, @code{-E} and
 @code{-F}. You can select basic regular expressions, extended regular
 expressions or just a list of matching values separated by carriage returns.
 @x{Regular Expressions}.
 @paragraph{}
 
-The @il{Place to search} group is used to select what files are examined in
+The @il{Place to search} group is used to select which files are examined in
 the search:
 @paragraph{}
 
@@ -2727,18 +2727,18 @@ the search:
 text files.
 @item Search in project: The search is performed in all the project files.
 @x{Project}.
-@item Recurse in subdirs: When enabled the editor will run search not only
-in the indicated directories but in any subdirectory contained by these
-directories. That's the main reason because I call it @b{Powered} Grep.
+@item Recurse in subdirs: When enabled the editor will run grep not only
+in the indicated directories but in any subdirectory contained therein
+as well. That's the main reason because I call it @b{Powered} Grep.
 @end itemize
 
 The @il{Options} group contains various options that are self-explanatory.
 They include: case sensitive search, whole word and whole line matching and
-inverse matching. The last reports the lines that doesn't match, be careful.
+inverse matching. The last reports the lines that don't match, so be careful.
 @paragraph{}
 
 After the search the matched lines are displayed in the message window and
-pressing @kbd{Alt+F7} and @kbd{Alt+F8} you can examine the matchings.
+by pressing @kbd{Alt+F7} and @kbd{Alt+F8} you can examine them.
 @paragraph{}
 
 To learn more about the message window @x{Message Window}.
@@ -2756,7 +2756,7 @@ HTML code. Even when the current code page is different than ISO Latin 1.
 
 It converts all the accents in the text to ISO-Latin-1 HTML tags. That's
 useful when editing html files because you can type accents naturally and
-when finished you simply use this option to generate the right tags. It works
+can simply use this option to generate the right tags. It works
 for any code page selected.
 @paragraph{}
 
@@ -2765,7 +2765,7 @@ for any code page selected.
 @subsubsection Convert tags to accents
 
 It converts all the ISO-Latin-1 HTML tags into accents. That's useful when
-reading html files because you can convert the tags in symbols. It works
+reading html files because you can convert the tags to symbols. It works
 for any code page selected.
 @paragraph{}
 
@@ -2776,7 +2776,7 @@ for any code page selected.
 
 This option is used to export the current text file as HTML. The default
 options generates a very good WYSIWYG result. This option works for any
-syntax highlight mode and for any color configuration you want.
+syntax highlighting mode and for any color configuration you want.
 @paragraph{}
 
 Under DOS you can customize the editor's palette, this feature will export
@@ -2784,7 +2784,7 @@ the customized colors too.
 @paragraph{}
 
 Note that due to limitations in the HTML language the editor can change the
-background color for a single word.
+background color on a word-by-word basis only.
 @paragraph{}
 
 The available options are:
@@ -2795,12 +2795,12 @@ The available options are:
 title for the generated HTML.
 @item Same background color as the editor: defines the background of the HTML
 file to be equal to the background of the editor's window.
-@item Monospacied font: sets the font for the HTML to @il{Courier New}.
+@item Monospaced font: sets the font for the HTML to @il{Courier New}.
 @item Bold attribute: sets the font for the HTML to @il{bold}.
 @end itemize
 
 You can also choose between colorized or simple output. Using colors the size
-of the file is increased a lot but the result is very beauty.
+of the file is increased a lot but the result is very nice.
 @paragraph{}
 
 @refMenu1{cmeExportAsHTML}
@@ -2809,7 +2809,7 @@ of the file is increased a lot but the result is very beauty.
 @subsection Insert key name
 @cindex keys, names
 
-This command brings a dialog asking you to press a key. When you press a key
+This command brings up a dialog asking you to press a key. When you press a key
 the dialog is closed and the name of the key is inserted at the cursor
 position. You can use it to configure the menues (@file{menubind.smn}).
 @x{How to configure the keyboard}.
@@ -2821,19 +2821,20 @@ position. You can use it to configure the menues (@file{menubind.smn}).
 
 With this command you can change the code page encoding of the current
 document. This operation will translate all the characters from the current
-encoding to a new one. Characters that doesn't have an equivalent in the new
+encoding to a new one. Characters that don't have an equivalent in the new
 code page are converted to spaces.
 @paragraph{}
 
-The dialog asks for the original code page (from list) and the new code page
-(to list). Additionally you can allow the editor to also translate the lower
-32 values. Translating the lower 32 values could be dangerous; for this
+The dialog asks for the original code page ('from' list) and the new code page
+('to' list). Additionally you can allow the editor to also translate the first
+32 values. Translating the first 32 values can be dangerous; for this
 reason the editor won't translate carriage return, line feed and tabs even if
-you choose to remap the low values.
+you choose to remap the first values.
 @paragraph{}
 
-This operation affects the buffer globally so doesn't have undo, just keep a
-copy of the file and don't save it if the results aren't what you expected.
+This operation affects the buffer globally so you can't use undo. Therefore
+you should keep a copy of the file and don't save it if the results aren't
+what you expected.
 @paragraph{}
 
 This option is very useful to exchange texts between different operating
@@ -2845,8 +2846,8 @@ systems.
 @c --------------------------------------------------------------------------
 @subsection Profile Editor
 
-This option is just used to meassure the speed of the editor. Use large files
-and to compare results run it on the same file.
+This option is used to measure the speed of the editor. Use large files
+and to make results comparable always use the same one.
 @paragraph{}
 
 @refMenu1{cmcProfileEditor}
@@ -2856,8 +2857,8 @@ and to compare results run it on the same file.
 @cindex screen, redraw
 @cindex redrawing the screen
 
-This command just forces a redraw of the screen. It could be needed if some
-application running in background messed your console.
+This command forces a redraw of the screen. It might be needed if some
+application running in the background messed up your console.
 @paragraph{}
 
 @refMenu1{cmeReDraw}
@@ -2868,11 +2869,11 @@ application running in background messed your console.
 
 Pastes a comment at the start of the file indicating the Emacs mode and the
 tab size used for this file. That's very useful if the file doesn't have
-extension or the extension is ambiguous. It is also good idea to do it if
+an extension or the extension is ambiguous. It is also a good idea to do it if
 you'll send the file to another person and want to indicate which tab size
 you used.
 @paragraph{}
-The editor understands this comment and sets the syntax highlight and tab
+The editor understands this comment and sets the syntax highlighting and tab
 size to the value indicated.
 @paragraph{}
 
@@ -2883,9 +2884,9 @@ size to the value indicated.
 @cindex quoted printable
 @cindex MIME quoted printable
 
-This option decodes de selected text assuming it is encoded with the quoted
+This option decodes the selected text assuming it is encoded with the quoted
 printable MIME spec. That's useful if you have an e-mail with non-ASCII
-characters and it was encoded with this methode. That's very useful for
+characters and it was encoded with this method. That's very useful for
 spanish accents.
 @paragraph{}
 
@@ -2913,16 +2914,16 @@ Unindents a block one character. For more information @x{Indentation}.
 @c --------------------------------------------------------------------------
 @subsubsection Indent one tab or gap
 
-Indents a block like if you used the @key{Tab} key in the first line and
-propagated it to the rest. For more information @x{Indentation}.
+Indents a block as if you used the @key{Tab} key in each line.
+For more information @x{Indentation}.
 
 @refMenu1{cmcIndentBlk}
 
 @c --------------------------------------------------------------------------
 @subsubsection Unindent one tab or gap
 
-Unindents a block like if you used the @key{Backspace} key in the first line
-and propagated it to the rest. For more information @x{Indentation}.
+Unindents a block as if you used the @key{Backspace} key in all of the
+lines. For more information @x{Indentation}.
 
 @refMenu1{cmcUnIndentBlk}
 
@@ -2930,9 +2931,9 @@ and propagated it to the rest. For more information @x{Indentation}.
 @subsubsection Comment indent
 
 This command inserts a comment at the start of each line of the selected
-block. The comment used is the one defined in the syntax highlight file as
+block. The comment used is the one defined in the syntax highlighting file as
 @code{EOLComment1}; if none is defined or the file doesn't have any syntax
-highlight or no block is selected this command does nothing. @x{EOLComment1}.
+highlighting or no block is selected this command does nothing. @x{EOLComment1}.
 
 @refMenu1{cmcCommentIndent}
 
@@ -2941,20 +2942,20 @@ highlight or no block is selected this command does nothing. @x{EOLComment1}.
 
 This command removes as many chars from each selected line as the length of
 a comment sequence. The comment used is the one defined in the syntax
-highlight file as @code{EOLComment1}; if none is defined or the file doesn't
-have any syntax highlight or no block is selected this command does nothing.
+highlighting file as @code{EOLComment1}; if none is defined or the file doesn't
+have any syntax highlighting or no block is selected this command does nothing.
 @x{EOLComment1}.
 @paragraph{}
 
 This command doesn't check if each line you selected starts with the defined
-comment, be careful.
+comment, so be careful.
 
 @refMenu1{cmcCommentUnIndent}
 
 @c --------------------------------------------------------------------------
 @subsubsection Arbitrary indent
 
-This command pop ups a dialog asking for a text to be used as indentation.
+This command pops up a dialog asking for a text to be used as indentation.
 The text will be inserted at the start of each line of the selected block.
 
 @refMenu1{cmcArbitraryIndent}
@@ -2963,10 +2964,10 @@ The text will be inserted at the start of each line of the selected block.
 @subsection Delete memorized backups
 @cindex backups, delete
 
-Deletes all the memorized backups. It includes all the backups created while
+Deletes all the memorized backups. This includes all the backups created while
 the current project/desktop file was opened. If you want to also delete
-backup files created during previous sessions you must enable an special
-option that makes the editor keep a list across senssions.
+backup files created during previous sessions you must enable a special
+option that makes the editor keep a list across sessions.
 @x{Editor General}.
 @paragraph{}
 
@@ -2975,8 +2976,8 @@ option that makes the editor keep a list across senssions.
 @c --------------------------------------------------------------------------
 @section Project
 
-The project files are used to indicate groups of files. Each project have
-your own desktop file so you can have different settings for different
+The project files are used to indicate groups of files. Each project has
+its own desktop file so you can have different settings for different
 groups of files. @x{Desktop Files}.
 @paragraph{}
 
@@ -2985,25 +2986,24 @@ There are several reasons to use projects:
 
 @itemize @bullet
 @item If you want to work on a group of files and you will be editing these
-files for a long time use a project. Then you will be able to select what
+files for a long time use a project. Then you will be able to select which
 file to edit from the project window, as this window is sorted alphabetically
-is easy to make incremental searches (typing the first letters) to find the
+it's easy to make incremental searches (typing the first letters) to find the
 file. Additionally the editor saves the window position and other stuff for
 all the files listed in the project, even if they aren't listed in the closed
-windows list. I use it for my web site files, they are over than 44 and the
+windows list. I use it for my web site files; they are more than 44 and the
 list of windows (@kbd{Alt+0}) doesn't help.
 
-@item If you are using the SDG module it will collect the comments of the
-files listed in the project, so you need to use a project to specify the
-files.
+@item If you are using the SDG module to collect the comments of the
+files you need to use a project to specify them.
 
-@item You can use a project to list a set of files to search with grep, then
-each time you want to search in these files you open this project and
-performe the search.
+@item You can use a project to list a set of files to search with grep.
+Each time you want to search in these files you just open this project and
+perform the search.
 @end itemize
 
-By default the project window is located at the bottom of the desktop, you
-can change it. @x{Editor General}.
+By default the project window is located at the bottom of the desktop, but
+you can change this. @x{Editor General}.
 @p{}
 
 @c --------------------------------------------------------------------------
@@ -3026,7 +3026,7 @@ Close the project file.
 @c --------------------------------------------------------------------------
 @subsection Close (Project)
 
-Saves the working project. Is a good idea to save the project after adding or
+Saves the current project. It's a good idea to save the project after adding or
 removing a lot of files.
 @p{}
 
@@ -3045,7 +3045,7 @@ useful to locally store settings without creating a project.
 @c --------------------------------------------------------------------------
 @subsection Export project
 
-Creates a text file containing the name of the project items. The file
+Creates a text file containing the names of the project items. The file
 contains one file per line.
 @p{}
 
@@ -3054,10 +3054,10 @@ contains one file per line.
 @c --------------------------------------------------------------------------
 @subsection Import project items
 
-Imports files as project items. The file with the file names to import must
-contain one file per line. Relative paths are recommended. The editor will
-check if the file exists and if that's a regular file, if not the item will
-be rejected.
+Imports the names given in the file as project items. The file with the file
+names to import must contain one file per line. Relative paths are
+recommended. The editor will check if the file exists and if that's a
+regular file, if not the item will be rejected.
 @p{}
 
 At the end of the import process the editor informs how many items were
@@ -3073,7 +3073,7 @@ correspond to existing files.
 @c --------------------------------------------------------------------------
 @subsection InfView
 
-Well I think you figured it out, that's the help.
+Well, I think you figured it out, that's the help.
 @paragraph{}
 
 @refMenu{cmeInfView,F1}
@@ -3081,7 +3081,7 @@ Well I think you figured it out, that's the help.
 @c --------------------------------------------------------------------------
 @subsection Another InfView
 
-It opens another InfView window. The editor @b{ever} opens one window that's
+It opens another InfView window. The editor @b{always} opens one window that's
 used by the help system. When you close this window the editor just hides it
 and when you press @key{F1} the window is un-hided and the help is displayed.
 That allows the existence of the @il{Previous help} command. But some times
@@ -3094,12 +3094,12 @@ window, in this case you need more than one InfView opened.
 @c --------------------------------------------------------------------------
 @subsection Tip of the day
 
-Once a day the editor shows a tip when you start. Each tip talks about one
-interesting feature that most of the people overlook. Reading one tip by day
+Once a day the editor shows a usage tip when you start it. Each tip talks about one
+interesting feature that most of the people overlook. Reading them
 you'll discover a lot of interesting things about the editor.
 @paragraph{}
 
-Each tip have one or more buttons at the right, each button is a link to a
+Each tip has one or more buttons at the right, which represent a link to a
 help topic related to this tip. If you want to learn more about the tip's
 topic you can browse the help using the buttons.
 @paragraph{}
@@ -3111,7 +3111,7 @@ message window (once a day of course). The third option is less annoying than
 the second but you lose the link buttons.
 @paragraph{}
 
-The text displayed by the tips comes from the @file{editor.tip} file. You can
+The text displayed by the tips can be found in the @file{editor.tip} file. You can
 edit it to show anything but be careful because the parser isn't very
 tolerant to typos.
 @paragraph{}
@@ -3124,11 +3124,11 @@ To learn more about the message window @x{Message Window}.
 @c --------------------------------------------------------------------------
 @subsection Syntax help
 
-When programming a language like C you can't remember the exact name of all
-the library functions. The djgpp libc help contains around 650 nodes and the
-Allegro help around 400. Placing the cursor over the name of a library
-function and pressing @key{^F1} you'll get help about this function. If the
-name isn't exactly typed you'll get a list of the closest matches. The
+When programming in a language like C you probably can't remember the exact
+name of all the library functions; the djgpp libc help contains around 650
+nodes and the Allegro help around 400. Placing the cursor over the name of a
+library function and pressing @key{^F1} you'll get help about this function.
+If the name isn't exactly typed you'll get a list of the closest matches. The
 following topics explain how to configure it.
 
 @c --------------------------------------------------------------------------
@@ -3138,7 +3138,7 @@ This dialog box allows the configuration of the syntax help.
 @xref{Syntax help}.
 @paragraph{}
 
-The search methode used can be:
+The search method used can be:
 @paragraph{}
 @itemize @bullet
 
@@ -3159,7 +3159,7 @@ disabled the sorting criteria is alphabetical. A greater score means the
 match is more similar to the word you are searching. A score of 1000
 means exact match.
 @item Fuzzy value: That's used only when the selected mode is the fuzzy mode.
-It indicates what is minimal score a word must have to be displayed as
+It indicates the minimal score a word must have to be displayed as
 a possible match. Experiment with different values and see the scores
 reported.
 @end itemize
@@ -3169,24 +3169,24 @@ reported.
 @c --------------------------------------------------------------------------
 @subsubsection Files to search (Syntax help)
 
-Here you can indicate in what info files the editor will search the name of
-the function. the default is OS dependent. @xref{Syntax help}.
+Here you can indicate in which info files the editor will search the name of
+the function; the default is OS dependent. @xref{Syntax help}.
 @paragraph{}
 
 You can specify an info node or just the name of the file. In the first case
 the editor will read all the cross references found in this node, in the
 second the editor will use all the nodes of the file. Normally the node that
 contains all the relevant references is called Index, but there are
-exceptions one interesting case is libc.
+exceptions; one interesting case is libc.
 @paragraph{}
 
-In the dialog the editor shows what nodes are used to search. If the name
-have a question mark at the left it means the editor didn't read the file
+In the dialog the editor shows which nodes are searched in. If the name
+has a question mark to the left it means the editor didn't read the file
 yet, pressing @key{^F1} over any word the editor will search it and hence
-will read the help files. If the name have an asterisk it means some error
+will read the help files. If the name has an asterisk it means some error
 was encoutered when trying to read this file. Finally if no mark is indicated
-it means the editor succesfully read the file, additionally the number of
-nodes found is indicated at the right. You can add or remove nodes from the
+it means the editor successfully read the file, additionally the number of
+nodes found is indicated to the right. You can add or remove nodes from the
 list.
 @paragraph{}
 
@@ -3195,7 +3195,7 @@ list.
 @c --------------------------------------------------------------------------
 @subsubsection Search (Syntax help)
 
-It makes the syntax search and reports the matches found. If only one match
+It makes the syntax search and report the matches found. If only one match
 was found the editor jumps to this node. @xref{Syntax help}.
 @paragraph{}
 
@@ -3215,15 +3215,15 @@ the editor.
 @cindex Overwrite
 
   This setting controls if the typed characters are inserted in the buffer or
-if the typed characters replace the original ones. @x{Insert and Delete}
+replace the original ones. @x{Insert and Delete}
 for a detailed explanation.
 
 @section Autoindent
 @cindex Autoindent
 
-  This setting controls what happend when you press @key{ENTER}. If this setting
+  This setting controls what happens when you press @key{ENTER}. If this setting
 is off the cursor goes to the column 1 of a new line. If the
-mode is on the editor will try to keep the indentation of the code
+mode is on the editor will try to mimic the indentation of the code by 
 inserting spaces or tabs. @x{Optimal Fill}.
 
 @section Real Tabs
@@ -3231,8 +3231,8 @@ inserting spaces or tabs. @x{Optimal Fill}.
 @cindex Use Real Tabs
 @cindex TABs
 
-  This setting controls what happend when you press @kbd{@key{TAB}}. If this
-setting is on the editor will insert an ASCII 9 in this place.
+  This setting controls what happens when you press @kbd{@key{TAB}}. If this
+setting is on the editor will insert an ASCII 9 at this position.
 @paragraph{}
 
   An ASCII 9 is a TAB, that means that the width of this char is enough to
@@ -3241,12 +3241,12 @@ columns are equidistant and the positions are controled by the Tab Size value.
 @paragraph{}
 
   If this setting is off the editor won't put any ASCII 9 in your text.
-The behavior if configured by the @il{Tab indents} option. Read the section
+The behavior is configured by the @il{Tab indents} option. Read the section
 about it for more information. @x{Tab indents}.
 @paragraph{}
 
   You can also indent using spaces when this option is disabled. For more
-information about consult the  @il{Use indent size} option.
+information consult the @il{Use indent size} option.
 @x{Use indent size}.
 @paragraph{}
 
@@ -3256,23 +3256,23 @@ controlled by the @il{Backspace unindents} option. @x{Backspace unindents}.
 @paragraph{}
 
   The editor is much more coherent when you choose to use TABs or not use
-TABs. If you mix the two modes you'll get some unexpected things, specially
+TABs. If you mix the two modes you'll get some unexpected results, especially
 in the indentation of the blocks.
 @paragraph{}
 
-  Is better if you always work in a file without tabs and with this setting
-off. Then you'll get much from the editor.
+  If you never use tabs, it's better you work with this setting off.
+Then you'll get much from the editor.
 @paragraph{}
 
   Now you can say: @il{But I really need tabs because I'm editing a make file!} or
 @il{because I will send the file using an ultra slow link} @il{and I want the compression
 granted by the tabs.} In these cases you can first expand all tabs, then
 work without real tabs and at the finish of your work compact all possible
-spaces and generate a file with all the tabs that you need.
+spaces and generate a file with tabs.
 @x{Miscellaneous} section.
 @paragraph{}
 
-  Most tabs users also likes to enable the @il{Optimal Fill} option. @x{Optimal Fill}.@*
+  Most tabs users also like to enable the @il{Optimal Fill} option. @x{Optimal Fill}.@*
 I also suggest using the following options to complement the indentation when
 using tabs: @il{Autoindent} @b{ON}, @il{Intelligent C indent} @b{OFF}, @il{Optimal
 Fill} @b{ON}, @il{Do not move inside tabs} @b{ON}, @il{Tab smart indents}
@@ -3289,9 +3289,9 @@ Fill} @b{ON}, @il{Do not move inside tabs} @b{ON}, @il{Tab smart indents}
 @section Intelligent C indent
 @cindex Intelligent C indent
 
-  This mode was designed to be used in jointly with the Pseudo Macros
-(@x{Pseudo Macros}) and the Real Tabs mode in off to achieve an
-easy way to indent the code making a better work than the Autoindent mode.
+  This mode was designed to be used jointly with the Pseudo Macros
+(@x{Pseudo Macros}) and the Real Tabs mode off to achieve an
+easy way to indent the code that does a better job than the Autoindent mode.
 @paragraph{}
 
   In this mode the spaces inserted after pressing @key{ENTER} depend on
@@ -3346,12 +3346,12 @@ _
 on your part.
 @paragraph{}
 
-  I tried to make this mode as smart as possible, but needs more work. If
-you have suggestions contact me.
+  I tried to make this mode as smart as possible, but it still needs more
+work. If you have suggestions contact me.
 @paragraph{}
 
   Another important thing is that this indentation has a personal style,
-my style ;-), so maybe you don't like it. If that's your case you can
+my style ;-), so it may be you don't like it. If that's the case you can
 do the following things:
 @paragraph{}
 
@@ -3361,18 +3361,17 @@ turn on the Real Tabs mode and indent with tabs.
   @item Customize the @file{cpmacros.pmc} file (@x{Pseudo Macros}), actually this
 file is coherent with this mode.
   @item The editor isn't configurable like Emacs or Brief using a language,
-but is written in C++ and chances that you know C++ are over the
-90% so contact me and I'll help you to write the routines that you
-need to get an indentation in your own style :-).
+but is written in C++. If you know C++ contact me and I'll help you to write
+the routines that you need to get an indentation in your own style :-).
 @end itemize
 
-@subsection Can you explain to me more about the behavior of this mode?
+@subsection Can you explain more about the behavior of this mode?
 
   I'll try to describe the behaviour of the mode:
 @paragraph{}
   Each time you press @key{ENTER} the editor inserts a @samp{\r\n} string in your
 text, after that the editor searches one line located above the new line that
-has at least one character inside. This line is taken as reference. The
+has at least one character on it. This line is taken as reference. The
 editor analyzes this line searching for:
 @paragraph{}
 
@@ -3384,7 +3383,7 @@ editor analyzes this line searching for:
    @item The last non-blank and non-comment character in the line.
 @end itemize
 
-  Now, if the line contains @{ at the start the editor goes to the first
+  Now, if the line contains @{ at the beginning the editor goes to the first
 column after the @{.
 @paragraph{}
   If the line contains @} at the start the editor will go to the same column
@@ -3407,8 +3406,8 @@ first non-blank after the first @samp{(}.
 number of parentheses is balanced, then will analyze this line. If the whole
 line still generates an unbalanced situation the editor will go to the
 first used column in the line that was found the first time. But if this
-line lets all balanced the editor will take the first word on the line and
-will use it as reference.
+line will leave all brackets balanced the editor will take the first word on the
+line and will use it as reference (Ed.: Is this what you meant ???).
 @paragraph{}
   At last, and according to the word found, the editor will use this
 word as reference. The editor recognises the following keywords:
@@ -3428,8 +3427,8 @@ word as reference. The editor recognises the following keywords:
 @titemR{@samp{default},+5}
 @endtable_{}
 
-  The numbers are how many spaces are added with reference to the first letter
-of the word.  'not if @dots{} ;' specified means that, if the line ends with
+  The numbers represent how many spaces are added with reference to the first letter
+of the word.  'not if @dots{} ;' means that, if the line ends with
 a semicolon, the editor will do the same as for Autoindent. @x{Autoindent}. The
 unindent is performed with @key{Backspace}.
 @paragraph{}
@@ -3445,12 +3444,12 @@ rest of the parameters on the next line.
 
 @subsection Do you have more examples?
 
-  Well here are some examples. I used a strange convention, like this:
+  Well here are some other examples. I used a strange convention, like this:
 if I say type `a[ENTER]@{', type the letter @kbd{a}, then press @kbd{@key{ENTER}} and
 finally press the `@{' key.
 @paragraph{}
 
-Example 1: (Is similar to one explained before but is to show the
+Example 1: (similar to one explained before but is to show the
 convention)
 @paragraph{}
 
@@ -3560,13 +3559,13 @@ smart ;-).
 @section Column cursor
 @cindex Column cursor
 
-  This setting enables an strange feature of the editor, when this mode is
-on the column where the cursor is is highlighted. This feature is very good
-to check if some part of your code is aligned.
+  This setting enables a strange feature of the editor. When on the column
+where the cursor is is highlighted. This feature is very good
+to check if parts of your code are aligned correctly.
 @paragraph{}
 
-  If you like this mode but is very uncomfortable to use all the time
-contact me and if I get enough feedback I'll put this thing in a key to be
+  If you like this mode but think it's very uncomfortable to use all the time
+contact me and if I get enough feedback I'll create a hotkey for it to be
 turned on/off quickly.
 @paragraph{}
 
@@ -3590,7 +3589,7 @@ inform the situation in the status line too.
 @paragraph{}
 
   That's very useful when you are typing complex parenthetical expressions or
-a very nested code. You can use it jointly with the @il{cmcSearchStart},
+a very nested code. You can use it together with the @il{cmcSearchStart},
 @il{cmcSearchEnd}, @il{cmcSearchOpPar}, @il{cmcSearchClPar}, @il{cmcSearchOpCor} and
 @il{cmcSearchClCor} commands. (@x{Miscellaneous}).
 @paragraph{}
@@ -3612,23 +3611,24 @@ first. @x{Match pair highlight}.
 is @b{over} the character to search.
 @paragraph{}
 
-  The highlight is done half a second after you stop typing to avoid stoping
-you. But if you have a fast machine, not just a 386, you can configure the
-editor to do the search without waiting. @x{Do not wait to search the pair}.
+  The highlight is done half a second after you stop typing to avoid interfering
+with your typing. But if you have a fast machine, not just a 386, you can
+configure the editor to do the search without waiting.
+@x{Do not wait to search the pair}.
 @paragraph{}
 
 @section Do not wait to search the pair
 
   This option works only when @il{Match pair on the fly} is enabled. When
 enabled the editor doesn't wait to do the search of the complementary pair.
-I think this could impact the performance of the scroll in very slow machines
-and that's why is optional. @x{Match pair on the fly}.
+I think this could impact the performance of scrolling on very slow machines
+and that's why it's optional. @x{Match pair on the fly}.
 @paragraph{}
 
 @section Transparent Blocks
 @cindex Blocks, transparent
 
-  When this mode is on you can see the syntax highlight of selected blocks. Normally
+  When this mode is on you can see the syntax highlighting of selected blocks. Normally
 the selection affects the background and foreground colors, but when using transparent
 blocks only the background is affected.
 
@@ -3636,16 +3636,16 @@ blocks only the background is affected.
 @cindex TABs, indenting with
 @cindex Real Tabs when indenting
 
-  This mode was added for the people that uses ASCII 9 tabulators in your code
+  This mode was added for the people that use ASCII 9 tabulators in their code
 (@x{Real Tabs}). Normally the editor uses spaces to indent the code or, in general,
-to fill any gap in the text. When you enable this mode the editor will use as much
-tabs as possible to fill these gaps. That's what the tabs users normally spects.
+to fill any gap in the text. When you enable this mode the editor will use as many
+tabs as possible to fill these gaps. That's what the tab users normally expect.
 
 @section Wrap Words
 @cindex wrapping
 
-  Even when the editor is mainly intended for programmers I saw that some users want
-it too.
+  Even when the editor is mainly intended for programmers it became apparent that some other
+user groups want to use it too.
 @paragraph{}
   The word wrap added to the editor is a very simple one, it just inserts a new line
 if you type a word beyond the wrap column, that's all. You won't get automatic reformat
@@ -3658,24 +3658,24 @@ Gates company).
 @cindex Paste, do not move the cursor
 
   That's a global setting. When it's on the cursor isn't moved after pasting. Normally
-the cursor is moved to the end of the pasted block, but sometimes is better if the
+the cursor is moved to the end of the pasted block, but sometimes it's better if the
 cursor isn't moved.
 
 @section Scroll Lock centers
 @cindex centering the screen while typing
 
-  When this mode is on the Scroll Lock key have an special meaning. If the Scroll Lock
-led of your keyboard is on then the editor centers the current line in the window. The
+  When this mode is on the Scroll Lock key has a special meaning. If the Scroll Lock
+LED of your keyboard is on then the editor centers the current line in the window. The
 effect is very strange but the advantage is that you don't need to follow the movement
-of the line with your eyes because it's ever in the same place.
+of the line with your eyes because it's always in the same place.
 
 @section See Tabs
 @cindex TABs, highlight/see
 
   In this mode the tabs are highlighted, two colors are used for this purpose,
-one for even and the other for odd tabs. In this way you can clearly see where
-a tab is located and the size of the tab. The colors can be customized from
-the Colors menu option. @xref{Customize Colors}.
+one for even and the other for odd numbered tabs. In this way you can clearly
+see where a tab is located and the size of the tab. The colors can be
+customized from the Colors menu option. @xref{Customize Colors}.
 @paragraph{}
 
   This mode was introduced in v0.4.23 and is globally enabled by default.
@@ -3684,14 +3684,14 @@ the Colors menu option. @xref{Customize Colors}.
 @cindex TABs, skipping/through
 @cindex cursor through tabs
 
-  In this mode the cursor can't be place inside a tab character. This
+  In this mode the cursor can't be placed inside a tab character. This
 definition is fuzzy and confusing so here I'll try to explain it better. One
-tab character can be expanded to one or more characters when displayed in the
+tab character can be expanded to one or more characters when displayed on the
 screen. Normally you can place the cursor in any of the spaces that belong to
 a tab character. I think this behavior is the best because you are free to
-move the cursor to any place you want, but tab's users get confused when they
+move the cursor to any place you want, but tab users get confused when they
 type and discover they had the cursor in the middle of a tab. It produces a
-cursor jump. To avoid this kind of surprises a lot of editors doesn't allow
+cursor jump. To avoid this kind of surprise a lot of editors don't allow
 to position the cursor in these spaces, only in the first space.
 @paragraph{}
 
@@ -3704,11 +3704,11 @@ to position the cursor in these spaces, only in the first space.
   When @il{Use real tabs} option is disabled the editor will insert enough
 spaces to move the cursor to the next tab-stop or indent position. But if
 this option is enabled the editor will insert enough spaces to move the
-cursor to the next hole in the line over the line where is currently
-positioned. Confused? Sorry for my English, an example will clarify that:
+cursor to the next word boundary(Ed.:??) in the line directly above.
+Confused? Sorry for my English, an example will clarify that:
 @paragraph{}
 
-This is a line over the line where you are
+This is a line above the line you are
 @paragraph{}
 
 That's the line where the cursor is, at column one.
@@ -3717,14 +3717,14 @@ That's the line where the cursor is, at column one.
   After pressing TAB you'll get:
 @paragraph{}
 
-This is a line over the line where you are
+This is a line above the line you are
 @paragraph{}
 
      That's the line where the cursor is, at column one.
 @paragraph{}
 
-  Now can ask, Why this? Is that useful? The answer is that's very useful
-to keep your code indented, experiment using that under a line with if, for,
+  Now you'll ask, Why this? Is that useful? The answer is that's very useful
+to keep your code indented. Experiment using that under a line with if, for,
 @il{etc.}
 @paragraph{}
 
@@ -3734,15 +3734,15 @@ than the tab size. This can be done disabling this option and enabling
 @paragraph{}
 
 @section Use indent size
-@cindex Indent ammount
+@cindex Indent amount
 @cindex TABs as spaces
 
   When the @il{Real Tabs} and @il{Tab indents} options are disabled you can
-indent with the tab key but using spaces. Some times people wants to use tabs
+indent with the tab key but using spaces. Sometimes people want to use tabs
 of eight spaces because this is the most common value for consoles and
-printers but, at the same time, they want to indent by a different ammount of
+printers but, at the same time, they want to indent by a different amount of
 spaces pressing tab. In this situation you must enable this option and
-configure the indentation ammount in the @il{Indent size} box.
+configure the indentation amount in the @il{Indent size} box.
 @paragraph{}
 
 @section Do not purge spaces
@@ -3750,8 +3750,8 @@ configure the indentation ammount in the @il{Indent size} box.
 
   Normally the editor purges any space after the last visible character in a
 line. That's very useful to save disk space and to avoid problems with end of
-line continuation sequences, like in C language. But sometimes you could want
-to avoid it for some special reason. Enabling this option the editor won't
+line continuation sequences, like in C language. But sometimes you may want
+to avoid it for some reason. Enabling this option the editor won't
 try to remove extra spaces at the end of lines.
 @paragraph{}
 
@@ -3760,9 +3760,9 @@ try to remove extra spaces at the end of lines.
 @cindex Unindenting with backspace
 
   When this option is enabled the @key{Backspace} deletes as many spaces as
-necesary to move the cursor to the first used column of the previous line.
-Basically it keeps the indentation. This is true only when all the characters
-located at the left of the cursor are spaces or tabs.
+necessary to move the cursor to the first used column of the previous line.
+Basically it keeps the indentation. However, this is true only when all the
+characters located to the left of the cursor are spaces or tabs.
 @paragraph{}
 
   In versions older than 0.4.44 this option was implicitly enabled when the
@@ -3784,18 +3784,18 @@ should be separated by spaces and sorted incrementally. The editor will
 format the list in this way.
 @p{}
 
-@section Syntax Highlight
-@cindex syntax highlight extensions
+@section Syntax Highlighting
+@cindex syntax highlighting extensions
 
   The editor can highlight the syntax of your code. The available modes
 are:
 @paragraph{}
 
 @itemize @bullet
-  @item No highlight, all the code is with the same color.
-  @item C/C++ Highlight.
-  @item Pascal Highlight.
-  @item Clipper Highlight.
+  @item No highlighting, all the code is with the same color.
+  @item C/C++ Highlighting.
+  @item Pascal Highlighting.
+  @item Clipper Highlighting.
   @item User defined. Including already defined for:
   @itemize @bullet
     @item 4DOS batch files
@@ -3839,15 +3839,15 @@ are:
 @end itemize
 @end itemize
 
-  The kind of highlight is chosen automatically using the extension of the
-file. Additionally the editor supports Emacs like mode selection. Emacs
+  The kind of highlighting is chosen automatically using the extension of the
+file. Additionally the editor supports Emacs-like mode selection. Emacs
 searches the name of the editing mode in the first kilobyte and last three
 kilobytes of text. The editing mode is delimited by @code{-*-} and the
-editor will use it instead of the file extension to select the highlight.
+editor will use it instead of the file extension to select the highlighting mode.
 That's very useful for files without extensions like the new C++ headers.
 To add even more flexibility I'm supporting another technique used by some
 C++ headers from Silicon Graphics and Hewlett Packard, in these headers the
-mode is located in the last lines unsing some special keywords.
+mode is located in the last lines using some special keywords.
 @paragraph{}
 
   The editor also supports the convention used for UNIX script files. If a
@@ -3856,20 +3856,20 @@ executed to interpret the script. The editor reads this line and extracts the
 name of this program and searches it in the @code{ShellScript} definition.
 @paragraph{}
 
-  The C/C++ highlight was designed for the GNU C compiler.
+  The C/C++ highlighting was designed for the GNU C compiler.
 @paragraph{}
-  The Pascal highlight was designed for the GNU Pascal compiler.
+  The Pascal highlighting was designed for the GNU Pascal compiler.
 @paragraph{}
-  The Clipper highlight was designed for the CA-Clipper 5 compiler.
+  The Clipper highlighting was designed for the CA-Clipper 5 compiler.
 @paragraph{}
 
-  The highlight can be customized, @x{Syntax Highlight File}.
+  The highlighting can be customized, @x{Syntax Highlighting File}.
 
-@chapter Syntax Highlight File
+@chapter Syntax Highlighting File
 
-  The highlight can be customized editing the @file{syntaxhl.shl} file. You can add
-syntax highlight to almost any kind of files, a good example is the fact that the files
-used to configure the editor have your own syntax highlight.
+  The highlighting can be customized editing the @file{syntaxhl.shl} file. You can add
+syntax highlighting to almost any kind of files, a good example is the fact that the files
+used to configure the editor have their own syntax highlighting.
 @paragraph{}
 
   The file declares the settings for each kind of files. Each declaration ends with an
@@ -3877,20 +3877,20 @@ used to configure the editor have your own syntax highlight.
 column.
 @paragraph{}
 
-  Important things you have to know to add a new syntax highlight:
+  Important things you have to know to add a new syntax highlighting:
 @paragraph{}
 @itemize @bullet
-  @item In previous versions when adding a new highlight it should be added
-at the end of the file now it isn't mandatory.
+  @item In previous versions when adding a new highlight mode it ought to have
+been added at the end of the file, now this isn't mandatory.
   @item The editor remembers various settings of loaded files even after
-closing the file. It includes the syntax highlight, so if you add
-a new one or just add a new extension to the list and you open a file
-that you already opened the editor could remember the last settings
-and don't use the new setting. In this case you must force it by
+closing the file. This includes the syntax highlighting, so if you add
+a new one or added a new extension to the list and you open a file
+that you already opened the editor will remember the last settings
+and doesn't use the new setting. In this case you must force it by
 hand.
-  @item If you feel that this new highlight can be used by other users send
+  @item If you feel that this new highlight mode can be used by other users send
 it to me and I'll include it in the next release. Many of the
-currently included syntax highlights were contributed by users.
+currently included syntax highlightings were contributed by users.
 @end itemize
 @paragraph{}
 
@@ -3906,7 +3906,7 @@ the user. @x{User Words}.
 
 @section AllowedInsideNames
 
-  Some languages includes symbols inside names, you can list these symbols here.
+  Some languages include symbols inside names, you can list these symbols here.
 Normally the editor allows letters, digits and underscore. These characters are allowed
 inside the names and not at the start of the name. @x{CanStartAName}.
 
@@ -3918,28 +3918,28 @@ at the start of the name and not inside. @x{AllowedInsideNames}.
 
 @section Case
 
-  When this setting is 1 all the keywords becomes case sensitive. If the keywords aren't
+  When this setting is 1 all the keywords become case sensitive. If the keywords aren't
 case sensitive don't use it.
 @paragraph{}
   This should be declared as one of the first settings because it affects how
-other definitions are loaded in memory. I suggest using it before @code{Name}
-and @code{Files} and after the rest.
+other definitions are loaded in memory. I suggest using it before @code{Name} and
+@code{Files} and after the others.
 
 @section CloseComment1
 
   Used to indicate the end of a multiline comment. The lenght is limited to four
-characters. If the file format have two different ends use @code{CloseComment2} for
-the second.
+characters. If the file format has two different terminations use
+@code{CloseComment2} for the second.
 @paragraph{}
-  For more information @x{Format of short syntax highlight definitions}.
+  For more information @x{Format of short syntax highlighting definitions}.
 
 @section EmacsModes
-@cindex syntax highlight, Emacs modes
+@cindex syntax highlighting, Emacs modes
 
-  It indicates what Emacs modes will use this highlight. The modes must be
+  It indicates which Emacs modes will use this highlighting. The modes must be
 separated by commas. The modes are't case sensitive.
 @paragraph{}
-  As in Emacs the editor looks in the first kilobyte of text and in the last
+  As in Emacs the editor looks at the first kilobyte of text and at the last
 three kilobytes for the mode delimited by @code{-*-}.
 @paragraph{}
   The priority is as follows: @code{EmacsModes}, @code{ShellScript} and
@@ -3952,37 +3952,37 @@ characters is present in the first column.
 
 @section EOLCInFirstCol1
 
-  That's like EOLCInFirstCol but affects only the EOLComment1 and no both.
+  That's like EOLCInFirstCol but affects only the EOLComment1 and not both.
 @x{EOLCInFirstCol}.
 
 @section EOLCInFirstCol2
 
-  That's like EOLCInFirstCol but affects only the EOLComment2 and no both.
+  That's like EOLCInFirstCol but affects only the EOLComment2 and not both.
 @x{EOLCInFirstCol}.
 
 @section EOLCInFirstUse1
 
-  That's like EOLCInFirstCol1 but the starting sequence could be the first
-non-blank character and not just located in the first column.
+  That's like EOLCInFirstCol1 but the starting sequence may be the first
+non-blank character and does not need to be located in the first column.
 @x{EOLCInFirstCol1}.
 
 @section EOLCInFirstUse2
 
-  That's like EOLCInFirstCol2 but the starting sequence could be the first
-non-blank character and not just located in the first column.
+  That's like EOLCInFirstCol2 but the starting sequence may be the first
+non-blank character and does not need to be located in the first column.
 @x{EOLCInFirstCol2}.
 
 @section EOLComment1
 
   Used to indicate the start of a comment that ends at the end of the line. The lenght
-is limited to four characters. If the file format have two different ends use
+is limited to four characters. If the file format has two different terminations use
 @code{EOLComment2} for the second.
 @paragraph{}
-  For more information @x{Format of short syntax highlight definitions}.
+  For more information @x{Format of short syntax highlighting definitions}.
 
 @section Escape
 
-  Indicates what character acts as escape character inside strings or to concatenate
+  Indicates which character acts as escape character inside strings or to concatenate
 lines.
 
 @section EscapeAnywhere
@@ -3991,12 +3991,12 @@ lines.
 strings or at the end of lines like in C.
 
 @section Files
-@cindex syntax highlight, extensions
+@cindex syntax highlighting, extensions
 
-  It indicates what extensions will use this highlight. The extensions must be
+  It indicates which extensions will use this highlighting mode. The extensions must be
 separated by commas. The extensions are case sensitive, be careful.
 @paragraph{}
-  The editor can also choose the highlight using the Emacs mode or the
+  The editor can also choose the highlighting using the Emacs mode or the
 program used to execute the file if that's an UNIX script.
 @paragraph{}
   The priority is as follows: @code{EmacsModes}, @code{ShellScript},
@@ -4005,21 +4005,21 @@ program used to execute the file if that's an UNIX script.
 @x{NameMatch}.
 
 @section FullNameMatch
-@cindex syntax highlight, matching a path
+@cindex syntax highlighting, matching a path
 
   It can be used to indicate a regular expression to match the full path and
 name of the file. If the expression matches the editor will use this syntax
-highlight.
+highlighting.
 @paragraph{}
-  The regular expression must be in Perl format. You can learn about it from
+  The regular expression must be in Perl format. You can read about it in
 any book about Perl.
 
 @section HexMarker
 
   This setting indicates what prefix is used for hexadecimal numbers. No postfix
-supported yet. The lenght is limited to four characters.
+is supported yet. The lenght is limited to four characters.
 @paragraph{}
-  For more information @x{Format of short syntax highlight definitions}.
+  For more information @x{Format of short syntax highlighting definitions}.
 
 @section Keywords
 
@@ -4028,16 +4028,16 @@ of the language. The separator is the comma.
 
 @section Name
 
-  It sets the name of the syntax highlight. This name is used in the local settings
+  It sets the name of the syntax highlighting. This name is used in the local settings
 dialog (cmcSetLocalOptions).
 
 @section NameMatch
-@cindex syntax highlight, matching a name
+@cindex syntax highlighting, matching a name
 
   It can be used to indicate a regular expression to match the name of the
-file. If the expression matches the editor will use this syntax highlight.
+file. If the expression matches the editor will use this syntax highlighting mode.
 @paragraph{}
-  The regular expression must be in Perl format. You can learn about it from
+  The regular expression must be in Perl format. You can read about it in
 any book about Perl.
 
 @section NoCheckNumbers
@@ -4047,23 +4047,23 @@ any book about Perl.
 @section OpenComment1
 
   Used to indicate the start of a multiline comment. The lenght is limited to four
-characters. If the file format have two different starts use @code{OpenComment2} for
+characters. If the file format has two different starts use @code{OpenComment2} for
 the second.
 @paragraph{}
-  The maximun length is four characters, for more information about the format:
-@x{Format of short syntax highlight definitions}.
+  The maximum length is four characters, for more information about the format:
+@x{Format of short syntax highlighting definitions}.
 
-@subsection Format of short syntax highlight definitions
+@subsection Format of short syntax highlighting definitions
 
-  All the characters after the equal sign are taked as part of the field. Blank spaces
+  All the characters after the equal sign are taken as part of the field. Blank spaces
 after the equal sign are ignored, so @samp{Field= //} is equivalent to @samp{Field=//}.
 @paragraph{}
-  As the field could start with spaces and spaces at the end of line are invisible
-you can quote the test using the double quote sign. If you do it the first character
+  As the field may start with spaces and spaces at the end of line are invisible
+you can quote the text using the double quote letter. If you do it the first character
 after the equal sign must be the double quote, if you left an space like this:
 @samp{Field= "} the double quote will be interpreted as part of the field.
 @paragraph{}
-  When quoting text the back slash is the escape character, so it: @samp{Filed="\""}
+  When quoting text the back slash is the escape character, so this: @samp{Filed="\""}
 will be interpreted as asigning @samp{"} to @code{Field}.
 
 @section PartialKeywords
@@ -4071,30 +4071,30 @@ will be interpreted as asigning @samp{"} to @code{Field}.
   When this setting is enabled the list of the editor will highlight partial matches of
 the keywords. For example, suppose a keyword is defined as @samp{key} and you type
 @samp{keytable}, in this case the editor will highlight the @samp{key} part of the
-word. This feature is experimental and makes the highlight much more slow.
+word. This feature is experimental and makes the highlighting quite slower.
 
 @section PMacros
 
   Indicates the name of the pseudo macros file used for this kind of files. Using
 different files for different formats you can assign common triggers to different
-actions. For example, you can use i( to trigger an if() @{@} else @{@} in C and an if then
-else in BASIC. @x{Pseudo Macros}.
+actions. For example, you can use i( to trigger an if() @{@} else @{@} in C and
+an if then else in BASIC. @x{Pseudo Macros}.
 
 @section Preprocessor
 
-  Indicates what symbol starts a preprocessor line.
+  Indicates which symbol starts a preprocessor line.
 
 @section RelaxNumberCheck
 
-  This is used when a number can start a name and that isn't a wrong
-situation. Normally the editor takes it as a wrong number but when this
-option is enabled the numbers check is relaxed and they aren't highlighted as
+  This is used when a number can start a name and that isn't a error.
+Normally the editor takes it as a wrong number but when this
+option is enabled the check for numbers is relaxed and they aren't highlighted as
 wrong values.
 
 @section ShellScript
-@cindex syntax highlight, shell scripts
+@cindex syntax highlighting, shell scripts
 
-  It indicates what scripts will be highlighted. You must indicate the names
+  It indicates which scripts will be highlighted. You must indicate the names
 of the programs associated with this script. The names are case sensitive.
 @paragraph{}
   The editor looks for the @code{#!} characters at the start of the file, if
@@ -4110,7 +4110,7 @@ The string ends at the end of line if not explicitly closed.
 
 @section SpecialSymbol
 
-  That's used to mark pairs of characters that forms a particular symbol that will
+  That's used to mark pairs of characters that form a particular symbol that will
 generate problems if the editor sees them as separated symbols. It was created to
 avoid problems with @samp{$#} in Perl and bash scripts and with @samp{@@@@} in Texinfo
 files. You can define more than one character here.
@@ -4121,28 +4121,28 @@ files. You can define more than one character here.
 @section String1
 
   Used to indicate the start and end of strings, used for long strings. You can specify
-more than one character in this case any of them can open or close the string.
+more than one character, in this case any of them can open or close the string.
 @paragraph{}
-  The editor supports upto three diferent strings declared as @code{String1},
+  The editor supports up to three diferent strings declared as @code{String1},
 @code{String2} and @code{String3}.
 
 @section Symbols1
 
-  Used to indicate what characters are allowed symbols, normally used for boolean and
+  Used to indicate which characters are allowed to be symbols, normally used for boolean and
 arithmetic symbols.
 
 @section Symbols2
 
-  Used to indicate what characters are allowed symbols, normally used for flow control
+  Used to indicate what characters are allowed to be symbols, normally used for flow control
 and subindex symbols.
 
 @section UseInternal
 
-  That's optional. When a highlight have this setting the editor will use the internal
+  That's optional. When a highlighting mode has this setting the editor will use the internal
 routines and will ignore almost all the settings. Only the extensions (@x{Files}) and
 pseudo macros (@x{PMacros}) settings are used.
 @paragraph{}
-  The value assigned can be: 1 for GNU C highlight, 2 for standard Pascal and 3 for
+  The value assigned can be: 1 for GNU C highlighting, 2 for standard Pascal and 3 for
 Clipper.
 
 @chapter Pseudo Macros
@@ -4155,24 +4155,24 @@ can create a lot of shortcuts to make your life easier.
 
 @section Please enlighten me - what is that?
 
-  So now, What's a Pseudo Macro? It's like a macro but is triggered by two
-things: one the text behind the cursor, and two the @kbd{^Space} combination.
+  So now, What's a Pseudo Macro? It's like a macro but it's triggered by two
+things: one the text before the cursor, and two the @kbd{^Space} combination.
 @paragraph{}
 
   And what's the result? The result is customizable, but by default there are
-some predefined behaviours. For example, type in a C source window the following
-two characters: @kbd{#i} and the press @kbd{^Space} @dots{} (to create an empty
+some predefined behaviours. For example, in a C source window type the following
+two characters: @kbd{#i} and then press @kbd{^Space} @dots{} (to create an empty
 file with .c extension go to File|Open and type a new name, foo.c for example).
 @paragraph{}
 
-  Surprised? I bet! You got: #include <.h> and the cursor just in the right
+  Surprised? I bet! You got: #include <.h> and the cursor just at the right
 place to write the name of the header.
 @paragraph{}
 Now write the famous stdio word, press @kbd{@key{End}}, then @kbd{@key{Enter}} twice and now write
 the following two letters: @kbd{ma} and then @kbd{^Space} @dots{}
 @paragraph{}
 
-  I bet this time you predicted better what will happen so you aren't so
+  I bet this time you had an inkling of what will happen so you aren't that
 surprised ;-). Anyways, Surprise! Now type @kbd{pr} and the magic keys and @dots{}
 @code{printf("");} appears. To end the happy history now type "Hello world!" That's
 all. You wrote the hello world program at a very good speed.
@@ -4183,9 +4183,9 @@ all. You wrote the hello world program at a very good speed.
 
 @section How can I customize that?
 
-  Is very easy. Each syntax highlight have your own pseudo macros file. Which
-file belongs to each syntax highlight is indicated in the @file{syntaxhl.shl}
-file. @xref{Syntax Highlight File}. In the case of C/C++ the file is called
+  It's very easy. Each syntax highlighting has its own pseudo macros file. Which
+file belongs to which syntax highlighting is indicated in the @file{syntaxhl.shl}
+file. @xref{Syntax Highlighting File}. In the case of C/C++ the file is called
 @file{cpmacros.pmc} and is located in the same directory where the rest of the
 configuration files are installed. This file contains the definitions for each
 pseudo macro that can be triggered in C/C++ files. You can define as many
@@ -4193,11 +4193,11 @@ pseudo macros as you want.
 @paragraph{}
 
   Important: If you are using RHIDE consult the RHIDE documentation to know
-where is stored the @file{cpmacros.pmc} file.
+where the @file{cpmacros.pmc} file is stored.
 @paragraph{}
 
-  The @file{cpmacros.pmc} file is a very good example and is self-explained but
-I'll include here one example.
+  The @file{cpmacros.pmc} file is a very good example and is self-explanatory but
+I'll include one example here.
 @paragraph{}
 
 @format
@@ -4211,7 +4211,7 @@ Mode: 0,1,0,1,0
    "@}"
 @end format
 
-  The Trigger keyword defines the two letter behind the cursor that will
+  The Trigger keyword defines the two letters before the cursor that will
 trigger the pseudo macro.
 @paragraph{}
   The Mode keyword indicates the mode that the editor will use when inserting
@@ -4227,19 +4227,19 @@ the text. The modes are:
 @end itemize
 
   Each mode can be 0 or 1. The editor will return to the original mode after
-expanding the pseudo macro. In this case the macro is expanded in the No
+expanding the pseudo macro. In this case the macro is expanded like this: No
 overwrite, autoindent, don't use tabs, the blocks are persistent
 and don't be smart when indenting.
 @paragraph{}
 
-  The rest is the code to insert surrounded by ". You can use \b to indicate
+  The rest is the code to insert enclosed by ". You can use \b to indicate
 backspace, \n for newline and \\ to indicate a simple \. If you want to
 insert a @@ you have to type it twice @@@@, because this character
 has a special meaning (see below).
 @paragraph{}
 
   After the insertion the cursor is positioned in the place marked with @@0.
-Don't forget to signal this point or the cursor will positioned at the
+Don't forget to signal this point or the cursor will be positioned at the
 beginning of the file. The places marked with @@1, @@2 and @@3 are saved in
 the markers 7, 8 and 9.
 @paragraph{}
@@ -4261,7 +4261,7 @@ called @file{macros.slp}.
 
   The macros can be assigned to keys (@x{How to configure the keyboard}), selected
 from the @il{Macro} menu or from the menu. From the @il{Macro} menu you can choose a
-macro from the list and then if you want to repeat it make it with one keystroke.
+macro from the list. If you want to repeat it you can do so with one keystroke.
 @paragraph{}
 
   To add a new macro to the list you must edit the @file{macros.slp} file. You can
@@ -4276,7 +4276,7 @@ trigger.
 
 @section How to write a sLisp macro
 
-  I'll show an example and then I'll explain each part of the example:
+  I'll show you an example and then I'll explain each part of the example:
 @paragraph{}
 
 @example
@@ -4293,19 +4293,19 @@ trigger.
 inside of the @code{eval} sentence. The @code{SendCommands} command sends one or more
 commands to the editor. The @code{InsertText} command inserts one string in the code.
 To concatenate strings use the @code{+} operator. Currently you can use the @code{\n}
-escape sequence inside a string to indicate a carriage return but in the example I'm
-showing how to concatenate strings. The @code{CR} is a defined constant.
+escape sequence inside a string to indicate a carriage return, but in the example above
+@code{CR} - a constant - is used to concatenate strings.
 @paragraph{}
 
 @section How strings are parsed
 
-  sLisp strings can be delimited by single or double quotes (@code{"} or
-@code{'}). Currently both produce the same result but in the future it could
+  sLisp strings can be delimited by single or double quotes (@code{'} or
+@code{"}). Currently both produce the same result but in the future it could
 change to be similar to Perl.
 @paragraph{}
 
-  A few C escape sequences are supported inside strings. It means the
-@code{\ } character have an special meaning. Here are the values supported:
+  A few C escape sequences are supported inside strings. This means the
+@code{\ } character has a special meaning. Here are the values supported:
 
 @table2{Character,Interpreted as}
 @titemR{n,an OS dependant carriage return (\r\n for DOS and \n for UNIX)}
@@ -4316,18 +4316,18 @@ change to be similar to Perl.
 
   In strings that will be inserted in the text you should use the @code{\\n}
 escape sequence to maintain compatibility across different OSs. You can also
-use the build in constant called @code{CR}.
+use the built-in constant called @code{CR}.
 
 @section Running programs with a macro
 
-  There are a sLisp command called @code{RunProgram}. It takes an string as
-parameter it can contain one or more programs separated by @code{;} or the
+  There is a sLisp command called @code{RunProgram}. It takes a string as
+parameter which can contain one or more programs separated by @code{;} or the
 commands separator used by your command shell.
 @paragraph{}
 
   The standard output and error are redirected and the results are sent to
 the Message Window. If the program is a GNU tool and reported errors the
-editor will parse these errors and allow you to directly jump to the file
+editor will parse these errors and will allow you to directly jump to the file
 and line where the error was reported.
 @paragraph{}
 
@@ -4337,7 +4337,7 @@ To learn more about the message window @x{Message Window}.
 @c ************************************************************************************
 @section Editor specific commands
 
-  This section describes commands specifically related to files under edition.
+  This section describes commands related to files being edited.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4346,8 +4346,8 @@ To learn more about the message window @x{Message Window}.
   (AskString @var{title} @var{message})
 @paragraph{}
 
-  Pop-ups a dialog asking for user input, the text is returned as an sLisp
-string variable. If the user cancels the string have zero length.
+  Pops up a dialog asking for user input. The text is returned as an sLisp
+string variable. If the user canceled the input, the string has zero length.
 
 @c --------------------------------------------------------------
 @subsection ComplChoose
@@ -4355,7 +4355,7 @@ string variable. If the user cancels the string have zero length.
   (ComplChoose @var{options} @var{delimiter} [@var{flags}])
 @paragraph{}
 
-  Brings a floating drop-down list with the options. The
+  Brings up a floating drop-down list with the options. The
 @var{options} parameter is a delimited string, the delimiter is
 specified by the @var{delimiter} parameter.
 @paragraph{}
@@ -4366,7 +4366,7 @@ the user aborted.
 
   The list is sorted alphabetically, the user can choose the item using the
 cursors or doing an incremental search. Only characters allowed for reserved
-words are accepted, any symbol will choose the currently selected item other
+words are accepted, any symbol will choose the currently selected item, other
 characters will abort.
 @paragraph{}
 
@@ -4401,9 +4401,9 @@ Passing 1 for @var{flags} the character isn't concatenated.
   (ForceUpdate)
 @paragraph{}
 
-  It forces an update at this point of the macro. That's useful if you'll
-stop for asking something or will spend some time and don't want to give the
-impression you hanged the editor.
+  It forces an update at this point of the macro. That's useful if you want
+to stop to ask the user something or the macro will take some time to complete
+and don't want to give the impression the editor hangs.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4413,7 +4413,7 @@ impression you hanged the editor.
 @paragraph{}
 
   This command returns the content of the environment variable called
-@var{name}. Internal variables of the editor are also accessable. I the
+@var{name}. Internal variables of the editor are also accessable. If the
 variable doesn't exist an empty string is returned.
 @paragraph{}
 
@@ -4433,8 +4433,8 @@ variable doesn't exist an empty string is returned.
   (GetSyntaxAtCursor)
 @paragraph{}
 
-  This command returns the syntax highlight flags for the cursor position.
-That's very specific and can be used to know if the cursor is inside a
+  This command returns the syntax highlighting flags for the cursor position.
+That's very specific and can be used to find out if the cursor is inside a
 comment, string or preprocessor code.
 @paragraph{}
 
@@ -4454,12 +4454,12 @@ places to see what you get:
 @paragraph{}
 
 @table2{Flag,Meaning}
-@titemR{edfComInside,Inside an end of line comment}
+@titemR{edfComInside,Inside an end-of-line comment}
 @titemR{edfEndCom,This line ends a multiline comment}
 @titemR{edfEndCom2,This line ends a multiline comment type 2}
 @titemR{edfExtCom,This line extends a multiline comment}
 @titemR{edfExtCom2,This line extends a multiline comment type 2}
-@titemR{edfExtOneLineCom,The end of line comment is extended to the next line}
+@titemR{edfExtOneLineCom,The end-of-line comment is extended to the next line}
 @titemR{edfExtPrepro,The preprocessor line follows in the next}
 @titemR{edfExtString,Inside a string}
 @titemR{edfExtString2,Inside a string type 2}
@@ -4469,16 +4469,16 @@ places to see what you get:
 @titemR{edfPrepro,Inside preprocessor code}
 @titemR{edfStartCom,This line starts a multiline comment}
 @titemR{edfStartCom2,This line starts a multiline comment type 2}
-@titemR{edfStartInCom,This line started commented by the previous}
-@titemR{edfStartInCom2,This line started commented by the previous (type 2)}
+@titemR{edfStartInCom,This line is commented out by the previous}
+@titemR{edfStartInCom2,This line is commented out by the previous (type 2)}
 @titemR{edfStartString,This line startes inside a string}
 @titemR{edfStartString2,This line startes inside a string type 2}
 @titemR{edfStartString3,This line startes inside a string type 3}
 @endtable_{}
 
-  Something very important is that the editor will analyze upto the cursor
-position. So if the cursor is inside a string the editor will think this line
-extends a string.
+  Something very important is that the editor will only analyze the line up
+to the cursor's position. So if the cursor is inside a string the editor
+will think this line extends a string.
 
 @c --------------------------------------------------------------
 @subsection InsertText
@@ -4487,9 +4487,9 @@ extends a string.
 @paragraph{}
 
   Inserts the @var{string} at the cursor's position. By default the cursor is moved
-after the insertion and the inserted text isn't selected. If @var{selected} is 1
+behind the insertion and the inserted text isn't selected. If @var{selected} is 1
 the text is selected. If the @var{move} parameter is 0 the cursor isn't moved and if
-the parameter is 1 the action depends on the current editor's setings.
+the parameter is 1 the action depends on the current editor's setup.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4498,17 +4498,17 @@ the parameter is 1 the action depends on the current editor's setings.
   (MessageBox @var{message} [@var{options}])
 @p{}
 
-  Pop-ups a small dialog showing the @var{message} to the user. The
-@var{options} can take the following values (use or to combine them):
+  Pops up a small dialog showing the @var{message} to the user. The
+@var{options} can take the following values (use 'or' to combine them):
 @p{}
 
 @itemize @bullet
-@item edfMBCancelButton: put a @code{Cancel} button.
-@item edfMBNoButton: put a @code{No} button.
-@item edfMBOKButton: put an @code{Ok} button.
-@item edfMBOKCancel: put an @code{Ok} and a @code{Cancel} button.
-@item edfMBYesButton: put an @code{Yes} button.
-@item edfMBYesNoCancel: put a @code{Yes}, a @code{No} and a @code{Cancel} button.
+@item edfMBCancelButton: has a @code{Cancel} button.
+@item edfMBNoButton: has a @code{No} button.
+@item edfMBOKButton: has an @code{Ok} button.
+@item edfMBOKCancel: has an @code{Ok} and a @code{Cancel} button.
+@item edfMBYesButton: has a @code{Yes} button.
+@item edfMBYesNoCancel: has a @code{Yes}, a @code{No} and a @code{Cancel} button.
 @item edfMBConfirmation: use @b{Confirmation} as caption.
 @item edfMBError: use @b{Error} as caption.
 @item edfMBInformation: use @b{Information} as caption.
@@ -4521,8 +4521,8 @@ the parameter is 1 the action depends on the current editor's setings.
   (OpenFile @var{string})
 @paragraph{}
 
-  Opens the file @var{string} in a window and gives the focus to it. If the
-file doesn't exist it does nothing. Ever returns 1.
+  Opens the file @var{string} in a window and makes it the current one. If the
+file doesn't exist it does nothing. Always returns 1.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4563,7 +4563,7 @@ string.
 @paragraph{}
 
   Additionally you can specify a text to send to the standard input of the
-program you are calling. With it is easy to call external filters. I provide
+program you are calling. You can easily call external filters with it. I provide
 an example of how to replace a selected text with the output of an external
 filter in the @file{macros.slp} file.
 @p{}
@@ -4587,7 +4587,7 @@ filter in the @file{macros.slp} file.
 @paragraph{}
 
   Sends all the listed commands to the editor. The editor commands are sLisp constants
-that starts with @code{cmc}. These commands are the same explained in the keyboard
+that start with @code{cmc}. These commands are the same explained in the keyboard
 section as @code{cmcXXXXX}.
 @paragraph{}
 
@@ -4597,7 +4597,7 @@ section as @code{cmcXXXXX}.
   (ShowInMessageWindow @var{string} [@var{clear}])
 @p{}
 
-  Shows the desired string in the message window. That's a very good way to
+  Prints the desired string in the message window. That's a very good way to
 show a result to the user.
 @p{}
 
@@ -4612,8 +4612,8 @@ the window. @x{Message Window}.
   (ShowInStatusLine @var{string})
 @paragraph{}
 
-  Shows the desired string in the status line of the current editor. Tabs
-are converted to one space and the message stops in the first carriage
+  Prints the passed string in the status line of the current editor. Tabs
+are converted to one space and the message stops at the first carriage
 return or line feed. That's a very good way to show a result to the user.
 @paragraph{}
 
@@ -4651,14 +4651,14 @@ located under the cursor. That's very useful for things like searching
 help about the function the user is typing or things like that.
 @paragraph{}
 
-  The maximun length is optional and if you don't specify it 256 is used.
+  The maximum length is optional and if you don't specify it 256 is used.
 Values under 4 or over 32768 are adjusted to fit this range for security
 issues.
 @paragraph{}
 
   The @var{options} parameter is 0 by default. Passing 1 the editor will
-return the word located at the left of the cursor if the cursor is located
-in the first character after this word.
+return the word located to the left of the cursor, if the cursor is located
+at the first character after this word.
 @paragraph{}
 
 
@@ -4677,7 +4677,7 @@ the SDG configuration files.
 
   Returns the logical and of the provided expressions. The values are
 evaluated from left to right. If at any point the result is zero then zero is
-returned and the rest aren't evaluated.
+returned and the rest isn't evaluated.
 @paragraph{}
 
   Each value is evaluated as one or zero.
@@ -4699,14 +4699,14 @@ returned and the rest aren't evaluated.
 
   Returns the bitwise and of the provided expressions. The values are
 evaluated from left to right. If at any point the result is zero then zero is
-returned and the rest aren't evaluated.
+returned and the rest isn't evaluated.
 @paragraph{}
 
-  (and 20 4 2)@*
+  (& 20 4 2)@*
   Returns 0.
 @paragraph{}
 
-  (and 20 4)@*
+  (& 20 4)@*
   Returns 4.
 @paragraph{}
 
@@ -4717,7 +4717,7 @@ returned and the rest aren't evaluated.
 @paragraph{}
 
   Evaluates the conditions until one is true and returns the associated
-expression. If all conditions are false returns 0.
+expression. If all conditions are false it returns 0.
 @paragraph{}
 
   (cond 0 1 2 3)@*
@@ -4734,8 +4734,8 @@ expression. If all conditions are false returns 0.
   (eval @var{expression} ...)
 @paragraph{}
 
-  This command is used to specify more than one action where just one is spected.
-Additionally you could construct sLisp code in a string and then evaluate it. The
+  This command is used to specify more than one action where just one is expected.
+Additionally you could write sLisp code in a string and then evaluate it. The
 expressions are evaluated from left to right, the last evaluated result is returned.
 @paragraph{}
 
@@ -4759,8 +4759,8 @@ the 0 position.
   (if @var{condition} @var{statement_1} [@var{statement_2}])
 @paragraph{}
 
-  It evaluates @var{condition} if the boolean value of it is true then
-@var{statement_1} is evaluates. If the value is false and if you provided a
+  It evaluates @var{condition}, if the boolean value of it is true then
+@var{statement_1} is evaluated. If the value is false and you provided a
 second statement then @var{statement_2} is evaluated. If the value is false
 and the second statement is missing nothing is evaluated and the resulting
 value is 0.
@@ -4854,7 +4854,7 @@ value is 0.
 
   Returns the logical or of the provided expressions. The values are
 evaluated from left to right. If any of them is non-zero the result is
-non-zero and the rest aren't evaluated.
+non-zero and the rest isn't evaluated.
 @paragraph{}
 
   (or 20 4 2)@*
@@ -4869,10 +4869,10 @@ non-zero and the rest aren't evaluated.
 
   Returns the bitwise or of the provided expressions. The values are
 evaluated from left to right. If at any point all bits are one the rest of
-the values aren't evaluated.
+the values isn't evaluated.
 @paragraph{}
 
-  (or 20 4 2)@*
+  (| 20 4 2)@*
   Returns 22.
 @paragraph{}
 
@@ -4896,7 +4896,7 @@ enough I'll add it. Adding strings means concatenation.
 @paragraph{}
 
   (+ "hello" 1)@*
-  Gives syntax error.
+  Syntax error.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4920,7 +4920,7 @@ enough I'll add it. Adding strings means concatenation.
 
   Assigns @var{value} to the @var{variable}. If the @var{variable} wasn't yet defined
 the variable is created. The @var{variable} parameter must be a string representing
-the name of the variable, it could be an expression.
+the name of the variable, it may also be an expression.
 @paragraph{}
 
   (setv "counter" 1)@*
@@ -4928,7 +4928,7 @@ the name of the variable, it could be an expression.
 @paragraph{}
 
   (setv (+ "counter" "1") 1)@*
-  Assigns 1 to the @var{counter1} variable, if @var{counter1} doesn't exist counter is
+  Assigns 1 to the @var{counter1} variable, if @var{counter1} doesn't exist counter1 is
 created.
 @paragraph{}
 
@@ -4948,8 +4948,8 @@ an external program that doesn't support long file names.
   (sstr @var{string} @var{position} @var{value})
 @paragraph{}
 
-  Changes the @var{position}th character of @var{string} by the first character of
-@var{value}. The first character is in the 0 position.
+  Changes the @var{position}th character of @var{string} to the first character of
+@var{value}. The first character is at 0.
 @paragraph{}
 
   (sstr "hello" 1 "a")@*
@@ -4974,7 +4974,7 @@ sensitive. @x{strcmp}.
 
   This function compares @var{s1} and @var{s2}. The returned value is zero
 if the strings are equal, a positive number if @var{s1} comes after @var{s2}
-in the ASCII collating sequense, else a negative number.
+in the ASCII collating(Ed.:??) sequence, else a negative number.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -4985,7 +4985,7 @@ in the ASCII collating sequense, else a negative number.
 
   Searches the string @var{search} in the string @var{string} starting at
 @var{start_pos} position. If @var{start_pos} is not provided the search is
-done from the begining of @var{string}. The returned value is the offset of
+done from the beginning of @var{string}. The returned value is the offset of
 @var{search} in @var{string} or -1 if the value wasn't found.
 @paragraph{}
 
@@ -5015,7 +5015,7 @@ replacing each ocurrence by the correponding value found in @var{replace}.
 
   Returns @var{len} characters of @var{string} starting at the indicated @var{position}.
 If @var{len} is omitted all the characters in the string starting at @var{position} are
-returned. The first character is in the 0 position.
+returned. The first character is at 0.
 @paragraph{}
 
   (substr "hello" 1 3)@*
@@ -5036,7 +5036,7 @@ returned. The first character is in the 0 position.
 variables must be integer.
 @paragraph{}
 
-  (+ 20 3)@*
+  (- 20 3)@*
   Returns 17.
 @paragraph{}
 
@@ -5054,10 +5054,10 @@ variables must be integer.
 @paragraph{}
 
 @c ************************************************************************************
-@section Writing macros that uses text filters
+@section Writing macros that use text filters
 
-  The sLisp language provides the commands needed to take a selected text
-pass it to an external program and collect their output. You can finally
+  The sLisp language provides the commands needed to take a selected text,
+pass it to an external program, and collect their output. You can finally
 replace the original text by the new text. This kind of programs are usually
 called filters. Some applications of this are complex recoding using GNU
 recode, text formating, code indentation using GNU indent, @il{etc.}
@@ -5081,9 +5081,9 @@ under setedit, which is not that ambitious :)
 As you will notice, in some version SET added the "word wrap"
 option. IMHO it should be removed, if you try to use it, it
 will behave quite differently from what you expect (ie: if you
-are writting tabbed lines, the editor will ignore them and put
+are writting tabbed lines, the editor will ignore them and puts
 your cursor right away in the first column ignoring any possible
-autoidentation options and tab uses you might have set for the
+autoindentation options and tab uses you might have set for the
 document). Also, it's setedit's choice of characters which will be
 used to split the line. Bleah... it really sucks.
 @p{}
@@ -5097,16 +5097,16 @@ program. Certainly not the most optimized way of doing things, but
 flexible enough to write a custom extension which treats your text.
 @p{}
 
-And here we come... the purpose will be to create a macro, which
+And here we go... the purpose will be to create a macro, which
 feeds a text block to an external program which we will write. Simple
-as that, all the power you wanted under your fingers.
+as that, all the power you wanted at your finger tips.
 @p{}
 
 @c --------------------------------------------------------------
 @subsubsection Step 1. Building your macro.
 
 Macros are written in sLisp, and stored somewhere in a @file{macros.slp}
-file. This file can be a global read only file or it can be located at
+file. This file can be a global read-only file or it can be located at
 @file{~/.setedit/macros.slp}.  It's pure text, and somewhere (ie: at the
 end of the file) you will insert the following chunk of code:
 @p{}
@@ -5117,7 +5117,7 @@ end of the file) you will insert the following chunk of code:
 ; MACRO:   Block reformat
 ;
 ; DESCRIPTION: This script gets the current selection and feeds it to
-; an external program. If no selection is present a mesage box will
+; an external program. If no selection is present a message box will
 ; be printed.
 ;
 ;*******************************************************************/
@@ -5138,7 +5138,7 @@ end of the file) you will insert the following chunk of code:
     (SendCommands cmcCut)
     (InsertText output 1)
    )
-   ; Ask the user to select something firt
+   ; Ask the user to select something first
    (MessageBox "Please select a text first")
   )
  )
@@ -5148,7 +5148,7 @@ end of the file) you will insert the following chunk of code:
 Ok, don't worry about the syntax of the macro or how it's written,
 if you are curious you can take a look at setedit's documentation
 to find out what all that mess means. The important line is the
-one which follows the commen @code{; filter line here}. That line
+one which follows the comment @code{; filter line here}. That line
 is actually the path to the external program we will be using,
 which can be stored anywhere on your computer, it only needs to
 have execution permission. I am the only user of my machine, so I
@@ -5159,16 +5159,16 @@ Please change that to point at your filter script.
 @c --------------------------------------------------------------
 @subsubsection Step 2. The filter program.
 
-The filter program has to be simple: recieves text lines as input
-and prints to stdout the result. You can say: @il{Hey, that calls some
+The filter program has to be simple: receives text lines as input
+and prints the result to stdout. You can say: @il{Hey, that calls some
 weird Python script which I don't have... why don't
 I call GNU's fmt command instead?}.  Good point. Do it. If you are
 meaning to write simple texts that's ok. In fact, after the command
 you can specify parameters to fmt like the width of the lines, and
 there you go, you have a text formatting macro in Setedit. But if
-you are meaning to answer emails (ie: setedit is your environmet
+you are meaning to answer emails (ie: setedit is your default
 editor and mail programs like mutt call it to write messages) or
-do something more sophisticate, you better use something like this
+do something more sophisticated, you better use something like this
 (big chunk of code follows):
 @p{}
 
@@ -5180,13 +5180,13 @@ import sys, popen2, tempfile, os
 class LINE:
    pass
 
-identation = " \t>:;#"
+indentation = " \t>:;#"
 
-def detect_identation_characters(line):
-   """Returns number of identation chars minus trailing whitespace."""
+def detect_indentation_characters(line):
+   """Returns number of indentation chars minus trailing whitespace."""
    count = 0
    for f in line:
-      if f in identation: count = count + 1
+      if f in indentation: count = count + 1
       else: break
 
    return len(line[:count].rstrip()), count
@@ -5196,12 +5196,12 @@ def initial_scan(line):
    l = LINE()
    l.line = line
    l.total_length = len(line)
-   l.ident, l.soft_ident = detect_identation_characters(line)
+   l.ident, l.soft_ident = detect_indentation_characters(line)
    l.length = l.total_length - l.soft_ident
    return l
 
-def same_identation_lines(lines):
-   """Returns number of lines with same identation level."""
+def same_indentation_lines(lines):
+   """Returns number of lines with same indentation level."""
    f = 1
    while f < len(lines):
       if lines[f].ident != lines[0].ident:
@@ -5252,7 +5252,7 @@ def main():
 
    f = 0
    while f < len(lines):
-      look = same_identation_lines(lines[f:])
+      look = same_indentation_lines(lines[f:])
       reformat_lines(lines[f:f+look], temp_filename)
       f = f + look
 
@@ -5264,7 +5264,7 @@ if __name__ == "__main__":
 Woah, that's more than the previous script. True, but this 86
 line Python script is a cool wrapper: fmt doesn't
 know exactly how you want to format your text. If you are replying
-somebody's email, some text will have quotes. Wouldn't be nice if
+somebody's email, some text will have quotes. Wouldn't it be nice if
 fmt could detect them? Yes, but it doesn't. Remember that the unix
 style is doing one simple thing, but doing it extremely well.
 @p{}
@@ -5272,17 +5272,17 @@ style is doing one simple thing, but doing it extremely well.
 So we solve this with the Python script. It isn't really
 long (try removing blank lines and comments), and it's pretty clear
 (to any experienced functional programmer) what it does. It scans
-the sent block of text for existant quote characters like those hold
-by the identation variable, which are used frequently by most email
+the sent block of text for existant quote characters like those defined
+in the indentation variable, which are used frequently by most email
 programs. These lines will be kept together, and the script will
 call fmt with them, but removing the quote characters and reducing
 the line width. To the result, the script will add the apropiate
-quote identation level.
+quote indentation level.
 @p{}
 
 This means that you can select say 20 lines of text which contain
-three different quote identation levels.  If these use the defined
-identation characters the script will split them, format them
+three different quote indentation levels.  If these use the defined
+indentation characters the script will split them, format them
 separately and join them before returning them to setedit. The result
 is obvious: a cool formatting feature which is cumbersome to build
 into setedit, and which can be customized any way you want. You
@@ -5307,7 +5307,7 @@ format a text block:
 
 If you did it once, you can repeat the macro with @kbd{Shift+F3}, but
 this is not nice, it prevents you from running other macros and
-you aren't saved from the punishment of doing that all once each
+you aren't saved from the punishment of doing all that once each
 time you run setedit, and since we want this for email replies,
 the editor will be run independently for each answer. Ugh!
 @p{}
@@ -5317,15 +5317,15 @@ The option is located under the menu option
 called Tool&Ops, submenu Options, submenu Keyboard, submenu Key
 assignment. Once you reach that, you can see all the key bindings for
 the editor. Notice that none seem to use Alt for keystrokes, which
-is nice becase you can presume they are free for customizing. So you
+is nice because you can assume they are free for customizing. So you
 just have to type a nice combo. I use @kbd{Alt+F} for "Formatting". Once
 you have the combo you assign the macro "Block reformat" to it.
 @p{}
 
 Say ok to all menus and try it yourself: write a few lines with only
 a word in each of them. Select those lines and press @kbd{Alt+F}. If
-you did it all right you will see all those words formatted in a
-single paragraph. Now try that with email identation. Think of all
+you did it right you will see all those words formatted in a
+single paragraph. Now try that with email indentation. Think of all
 the possibilities of using this trick along with the "rectangle
 selection" feature of the editor.
 @p{}
@@ -5417,7 +5417,7 @@ In my opinion it should still take one char* and...
 
   The calculator inside the editor was originally made by Laszlo Molnar.
 Laszlo is a friend of mine from Hungary and is the author of the great DJP
-progam (a djgpp exe's compressor and now UPX, the best EXE compressor in all
+progam (a djgpp exe compressor and now UPX, the best EXE compressor in all
 the categories). Currently the editor is compiled with a new calculator with
 some advanced features. This new calculator have the same features plus some
 interesting additions and was developed by Burton Radons.
@@ -5428,7 +5428,7 @@ free and you can use it for any purpose. There are three sources.
   Here is the documentation of the calculator written by Laszlo:
 @paragraph{}
 
-  The purpose of this program, to provide a simple but powerful
+  The purpose of this program is to provide a simple but powerful
 'calculator' for programmers, to help with coding and debugging, where GDB's
 expression evaluator is not enough.
 @paragraph{}
@@ -5478,11 +5478,11 @@ Here are the operators in decreasing precedence:
 @code{==} equal to *
 @code{!=} different than *
 @item
-@code{&} bits and
+@code{&} bitwise and
 @item
-@code{^} bits xor
+@code{^} bitwise xor
 @item
-@code{|} bits or
+@code{|} bitwise or
 @item
 @code{&&} logical and *
 @item
@@ -5497,7 +5497,7 @@ Here are the operators in decreasing precedence:
 
   The calculator includes the following functions:
 @il{sin\, cos\, tan\, sinh\, cosh\, tanh\, asin\, acos\, atan\, log\, log10\, exp\, abs\,
-sqrt\, ceil} and @il{floor}.  They work as you expected.  Additionally the
+sqrt\, ceil} and @il{floor}.  They work as you expect.  Additionally the
 calculator provides some radix conversion routines: @il{bin\, oct\, dec} and @il{hex}.
 @paragraph{}
 
@@ -5507,10 +5507,10 @@ base 8.  The result of the calculation is displayed as a double for base 10,
 and converted to long long format for the other radixes.
 @paragraph{}
 
-  In addition the new calculator have the following features:
+  In addition the new calculator has the following features:
 @paragraph{}
 
-  You can define variables just assigning a value to them. So if you enter
+  You can define variables just by assigning a value to them. So if you enter
 @il{x=5} you can use @il{x} in other calculation like this @il{x**2}. You can
 also use the C/C++ assign plus operation. Post and pre increment and
 decrement are also available.
@@ -5532,7 +5532,7 @@ operation is the result of the compound.
 @chapter How to contact me
 @cindex How to contact me
 
-  If you have any suggestions or bug report contact me at the address shown
+  If you have any suggestions or a bug report contact me at the address shown
 in the author section. @x{About the Author}.
 @paragraph{}
 
@@ -5544,12 +5544,11 @@ one and I know that needs some work on it.
 @paragraph{}
 
   When reporting a bug please don't tell me: Some times some strange thing
-happend @dots{} Try to find a pattern to the problem. What situation triggers
+happens @dots{} Try to find a pattern to the problem. What situation triggers
 the problem? @dots{} with which file(s)? Then send me the file and the description.
 @paragraph{}
 
-  When sending to me a file UUEncode it to avoid problems related with the
-e-mail.
+  When sending me a file UUEncode it to avoid problems related with e-mail.
 @paragraph{}
 
 @chapter TAGS files
@@ -5566,36 +5565,36 @@ tags files.
 @cindex tags, what are?
 
 TAGS files are plain text files containing a list of symbols from your source
-code. For each symbol the file indicates in which file is located and how to
-find the symbol inside the file. Modern programs also includes very important
-information like what kind of symbol is defined and if this symbol is part of
-a bigger construction like a class.
+code. For each symbol the file indicates in which file it's located and how to
+find the symbol inside the file. Modern programs also include very important
+information like which type of symbol is defined and if this symbol is part of
+a bigger construct like a class.
 @p{}
 
 This information is very useful to do searches. The editor implements
 facilities to jump to any defined symbol, browse classes and do word
-completion using information from tag files.
+completion using information from tags files.
 @p{}
 
-@section Which program is used to generate tag files?
+@section Which program is used to generate tags files?
 @cindex tags, program to generate
 
-A lot of programs generates tag files but the editor uses special features
+A lot of programs generate tags files but the editor uses special features
 only found in the @il{Exuberant Ctags} program. For this reason I recommend
-using this program to generate the tag files. You can find this program at
+using this program to generate the tags files. You can find this program at
 Source Forge (http://ctags.sourceforge.net).
 @p{}
 
 @section How should I generate the tags?
 @cindex tags, how to generate
 
-It depends on your project and how do you compile the project. It also
-depends on how fast is your system. I currently use a tags file for the
+It depends on your project and how you compile the project. It also
+depends on how fast your system is. I currently use a tags file for the
 editor and another for the Turbo Vision library. The best is to refresh the
-tags file using the same makefile tou use to compile your project. If your
+tags file using the same makefile you use to compile your project. If your
 system isn't very fast or your project is too big you could try using one
 tags file for each directory in your project. The editor can be configured to
-collect symbols from various tag files.
+collect symbols from various tags files.
 @p{}
 
 The command line options I recommend to use with @file{ctags} are:
@@ -5604,7 +5603,7 @@ The command line options I recommend to use with @file{ctags} are:
 @itemize @bullet
    @item -R recursive, to search in all subdirectories.
    @item --fields=+i+l+m+z Inheritance information, language of source file
-containing tag, implementation information and kind of tag.
+that contains the tag, implementation information and type of tag.
 @end itemize
 
 Without the @code{+i} and @code{+z} option you won't be able to use the class
@@ -5614,9 +5613,9 @@ browser.
 @section Can these files be created and updated by the editor?
 @cindex tags, how to maintain
 
-I recommend using makefiles to maintain tags files because then you have all
+I recommend using makefiles to maintain tags files because you have all
 the control over when and how they are updated. But if you are using a fast
-machine and want to simplify the processyou can let the editor to create and
+machine and want to simplify the process you can let the editor create and
 maintain a tags file for your project. You'll find options for it in the
 Tool&Ops | Options | Tag files menu option. @x{Tag files options}.
 
@@ -5650,46 +5649,46 @@ With the tag files you can:
 
 @section Technical details about tags
 
-The editor loads the tags to memory to allow fast searches for this reason
-you must be aware that they consume memory. In some tests I did using
-GNU/Linux I found the ammout needed to load a tags file is close to the size
+The editor loads the tags to memory to allow fast searches. For this reason
+you must be aware that they consume lots of memory. In some tests I did using
+GNU/Linux I found the amount needed to load a tags file is close to the size
 of the file on disk. For this reason I recommend to avoid generating symbols
 for files you don't need.
 @p{}
 
-The time to parse and load tags files can be annoying in slow systems. For
+The time to parse and load tags files can be annoying on slow systems. For
 this reason the editor never loads the tag files until they are really
-needed. So you'll notice a delay for the first search because the files are
-loaded at this time and not when the editor is started.
+needed. That's why you'll notice a delay for the first search, because the
+files are loaded at this time and not when the editor is started.
 @p{}
 
-Tag files doesn't catch all definitions, they aren't perfect so please read
-the man pages. They also lack some important information as which is the type
-of a variable (int, float, @il{etc.}).
+Tag files don't catch all definitions, they aren't perfect, so please read
+the man pages. They also lack some important information, like what type
+a variable (int, float, @il{etc.}) is.
 @p{}
 
 @chapter Miscellaneous
 
 @section Clipboard
 
-The clipboard is just another editor window where you put text using the
-@code{Cut} and @code{Copy} commands to then retreive it with the @code{Paste}
+The clipboard is just another editor window, which holds the text you used the
+@code{Cut} and @code{Copy} commands on, and retrieve it with the @code{Paste}
 command.
 @paragraph{}
 
 Unlike the windows clipboard the one provided with the editor doesn't lose
-the old contents when you copy to it. This approach have the important
+the old contents when you copy to it. This approach has the important
 advantage that you can copy text from various parts to the clipboard and then
-paste all the text in one place and with just one operation. To do it select
-the clipboard window and then select the text to paste, the editor pastes the
+paste all the text in one place with just one operation. To do it select
+the clipboard window, select the text to paste and the editor pastes the
 text selected in the clipboard window.
 @paragraph{}
 
-The disadvantage is that all the texts copied to the clipboard remains there
-and if you are running in a machine with low memory and handling huge files
-you can fill all the memory. To avoid it check the clipboard size (with
-@kbd{Alt+0}) and exit the program if it gets huge. That normally isn't needed
-in machines with enough free disk that can be used as swap.
+The disadvantage is that all the text copied to the clipboard remains there
+and if you are running on a machine with low memory and handling huge files
+you can fill all the memory quickly. To avoid this check the clipboard size (with
+@kbd{Alt+0}) and exit the program if it gets too big. That normally isn't needed
+on machines with enough free disk space that can be used as swap.
 @paragraph{}
 
 @section Time and date modifiers formats
@@ -5761,38 +5760,38 @@ A (modern) RE is one(*) or more non-empty(*) @emph{branches}, separated
 by @samp{|}.  It matches anything that matches one of the branches.
 @paragraph{}
 
-A branch is one(*) or more @emph{pieces}, concatenated.  It matches a
-match for the first, followed by a match for the second, etc.
+A branch is one(*) or more @emph{pieces}, concatenated.  It will try to find
+a match for the first, then for the second, etc.
 @paragraph{}
 
 A piece is an @emph{atom} possibly followed by a single(*) `*', `+',
 `?', or @emph{bound}.
-An atom followed by `*' matches a sequence of 0 or more matches of the atom.
-An atom followed by `+' matches a sequence of 1 or more matches of the atom.
-An atom followed by `?' matches a sequence of 0 or 1 matches of the atom.
+An atom followed by `*' matches a sequence of 0 or more occurences of the atom.
+An atom followed by `+' matches a sequence of 1 or more occurences of the atom.
+An atom followed by `?' matches a sequence of 0 or 1 occurences of the atom.
 @paragraph{}
 
-A @emph{bound} is `@{' followed by an unsigned decimal integer, possibly
+A @emph{bound} is a `@{' followed by an unsigned decimal integer, possibly
 followed by `,' possibly followed by another unsigned decimal integer,
 always followed by `@}'.  The integers must lie between 0 and
 @code{RE_DUP_MAX} (255(*)) inclusive, and if there are two of them, the
 first may not exceed the second.  An atom followed by a bound containing
 one integer @samp{i} and no comma matches a sequence of exactly @samp{i}
-matches of the atom.  An atom followed by a bound containing one integer
-@samp{i} and a comma matches a sequence of @samp{i} or more matches of
+occurences of the atom.  An atom followed by a bound containing one integer
+@samp{i} and a comma matches a sequence of @samp{i} or more occurences of
 the atom.  An atom followed by a bound containing two integers @samp{i}
 and @samp{j} matches a sequence of @samp{i} through @samp{j} (inclusive)
-matches of the atom.
+occurences of the atom.
 @paragraph{}
 
-An atom is a regular expression enclosed in `()' (matching a match for the
-regular expression), an empty set of `()' (matching the null string(*)),
+An atom is a regular expression enclosed in `()' (one occurence for the
+regular expression), an empty set of `()' (matches the null string(*)),
 a @emph{bracket expression} (see below), `.' (matching any single
 character), `^' (matching the null string at the beginning of a line),
 `$' (matching the null string at the end of a line), a `\\' followed by
-one of the characters `^.[$()|*+?@{\\' (matching that character taken as
+one of the characters `^.[$()|*+?@{\\' (matches that character taken as
 an ordinary character), a `\\' followed by any other character(*)
-(matching that character taken as an ordinary character, as if the `\\'
+(matches that character taken as an ordinary character, as if the `\\'
 had not been present(*)), or a single character with no other
 significance (matching that character).  A `@{' followed by a character
 other than a digit is an ordinary character, not the beginning of a
@@ -5805,7 +5804,7 @@ If the list begins with `^', it matches any single character (but see
 below) @emph{not} from the rest of the list.  If two characters in the
 list are separated by `-', this is shorthand for the full @emph{range}
 of characters between those two (inclusive) in the collating sequence,
-e.g. `[0-9]' in ASCII matches any decimal digit.  It is illegal(*) for
+e.g. `[0-9]' matches any decimal digit in ASCII.  It is illegal(*) for
 two ranges to share an endpoint, e.g. `a-c-e'.  Ranges are very
 collating-sequence-dependent, and portable programs should avoid relying
 on them.
@@ -5839,7 +5838,7 @@ of all collating elements equivalent to that one, including itself.
 as if the enclosing delimiters were `[.' and `.]'.)  For example, if o
 and \o'o^' are the members of an equivalence class, then `[[=o=]]',
 `[[=\o'o^'=]]', and `[o\o'o^']' are all synonymous.  An equivalence
-class may not\(dg be an endpoint of a range.
+class may not be an endpoint of a range.
 @paragraph{}
 
 Within a bracket expression, the name of a @emph{character class}
@@ -5868,13 +5867,13 @@ expressions `[[:<:]]' and `[[:>:]]' match the null string at the
 beginning and end of a word respectively.  A word is defined as a
 sequence of word characters which is neither preceded nor followed by
 word characters.  A word character is an @code{alnum} character (as
-defined by @code{isalnum} library function) or an underscore.  This is
+defined by the @code{isalnum} library function) or an underscore.  This is
 an extension, compatible with but not specified by POSIX 1003.2, and
 should be used with caution in software intended to be portable to other
 systems.
 @paragraph{}
 
-In the event that an RE could match more than one substring of a given
+In the event that an RE would match more than one substring of a given
 string, the RE matches the one starting earliest in the string.  If the
 RE could match more than one substring starting at that point, it
 matches the longest.  Subexpressions also match the longest possible
@@ -5895,7 +5894,7 @@ parenthesized subexpression match the null string.
 @paragraph{}
 
 If case-independent matching is specified, the effect is much as if all
-case distinctions had vanished from the alphabet.  When an alphabetic
+case distinctions had vanished from the alphabet.  When a letter
 that exists in multiple cases appears as an ordinary character outside a
 bracket expression, it is effectively transformed into a bracket
 expression containing both cases, e.g. `x' becomes `[xX]'.  When it
@@ -5913,9 +5912,9 @@ POSIX-compliant.
 Obsolete (@emph{basic}) regular expressions differ in several respects.
 `|', `+', and `?' are ordinary characters and there is no equivalent
 for their functionality.  The delimiters for bounds are `\\@{' and
-`\\@}', with `@{' and `@}' by themselves ordinary characters.  The
+`\\@}', with `@{' and `@}' themselves being ordinary characters.  The
 parentheses for nested subexpressions are `\(' and `\)', with `(' and
-`)' by themselves ordinary characters.  `^' is an ordinary character
+`)' themselves being ordinary characters.  `^' is an ordinary character
 except at the beginning of the RE or(*) the beginning of a parenthesized
 subexpression, `$' is an ordinary character except at the end of the RE
 or(*) the end of a parenthesized subexpression, and `*' is an ordinary
@@ -5932,10 +5931,10 @@ matches `bb' or `cc' but not `bc'.
 @section Desktop Files
 
 Each time you run the editor it searches for a desktop file in the current
-directory, if the editor can find any desktop file it searches in the
+directory, if the editor can't find any desktop file it searches in the
 directory indicated by the enviroment variable @code{SET_FILES}. If no
-desktop files are found the editor uses internal default values. As you can
-see creating a desktop file in the @code{%SET_FILES%} directory you'll
+desktop files are found the editor uses internal default values. By
+creating a desktop file in the @code{%SET_FILES%} directory you'll
 indicate default values. To create a desktop file in this directory just
 run the editor in the directory, customize it and leave the editor. This
 feature is very useful to customize things like: Colors, Palette, Global
@@ -5943,16 +5942,16 @@ editor options, @il{etc.}
 @paragraph{}
 
 When you exit from the editor it saves all the settings, windows positions,
-@il{etc.@:} to a desktop file stored in the current directory. Some prople
-doesn't like it for this reason there is special mode where the editor
+@il{etc.@:} to a desktop file stored in the current directory. Some people
+don't like this and therefore a special mode in which the editor
 stores just one desktop file in the @code{%SET_FILES%} directory and not
-in each directory. This approach have the advantage of saving disk space, but
-you don't have local settings. If you use this approarch and want to keep
-a local configuration in a directory use a project. @x{Project}. To store
-only one centralized desktop file: @x{Editor General}.
+in each directory exists. This approach has the advantage of saving disk
+space, but you won't have local settings. If you use this approarch and want
+to keep a local configuration in a directory use a project. @x{Project}. To
+store only one centralized desktop file: @x{Editor General}.
 @paragraph{}
 
-The destop files have @file{.dst} as extension.
+The desktop files have @file{.dst} as extension.
 @paragraph{}
 
 @section Text mode attributes
@@ -5963,38 +5962,38 @@ allowing just 256 combinations. So four bits are dedicated to the background
 color giving 16 combinations and the other four bits for the foreground.
 @paragraph{}
 
-As we have only 16 colors there are a big chance that our predilect colors
+As we have only 16 colors there is a big chance that our preferred colors
 aren't included. For this reason the VGA chip uses a palette of colors. That
-means that these 16 colors aren't fixed and you can indicate what color
-is. The values are just index values and you can assign to it any color.
+means that these 16 colors aren't fixed and you can indicate what colors to
+use. The values are just index values and you can assign to it any color.
 @paragraph{}
 
-The VGA chip supports 18 bits per color giving 262,144 combinations. The
-colors are created using the RGB (Red Green and Blue) methode. That's simply
-because the CRT (Cathode Rays Tube) of the monitor uses this methode to
+The VGA chip supports 18(6:6:6) bits per color giving 262,144 combinations. The
+colors are created using the RGB (Red Green and Blue) method. That's simply
+because the CRT (Cathode Rays Tube) of the monitor uses this method to
 create the colors. You have 6 bits per component giving 64 different levels.
 @paragraph{}
 
-There are a little more of complexity added to the VGA card. The most
+There is a little more of complexity added to the VGA card. The most
 significant bit of the background is used to create blinking text. The editor
 avoids this mode because it restricts the background combinations to 8 and
 the editor doesn't need blinking text. The other funny thing of the attribute
-is the most significant bit of the foreground color. It have an special
-meaning even when using it doesn't reduce the number of combinations. That
-means that this bit can select two things at the same time. By now you'll be
+is the most significant bit of the foreground color. It has a special
+meaning but even when using it, it doesn't reduce the number of combinations.
+That means that this bit can select two things at the same time. By now you'll be
 asking: What? This bit can be used to select a second font, in this way you
 can have upto 512 different characters on the screen. The editor can exploit
 it but you must understand that this bit is used for the foreground color
 too. You can customize the palette to reduce the number of foreground
-combinations to 8 just defining the 9th color with the same value as the
+combinations to 8 and defining the 9th color with the same value as the
 0th color and so on. Then you can assign different colors and different fonts
 to the things in the editor. You can for example use a font for the menues
 and other for the text, or a font for the code and other for the comments.
 The editor goes even further allowing different code page encodings for each
 font. I really never saw it in any editor. You can use it for example to
 write your code using a font with the ISO Latin 1 encoding (used by Linux
-and Windows in USA and part of Europe) and have your comments in russian
-(using cyrilic characters).
+and Windows in the USA and part of Europe) and have your comments in russian
+(using cyrillic characters).
 @paragraph{}
 
 To learn how to customize the palette: @x{Color Palette}.@*
@@ -6003,12 +6002,12 @@ To learn how to select a font and an encoding: @x{Screen Options}.@*
 
 @section File Open
 
-This dialog is used to select a file in various places. Even when it have
-different names and purposes the dialog is ever the same.
+This dialog is used to select a file in various places. Even when it has
+different names and purposes the dialog is always the same.
 @paragraph{}
 
 The dialog is similar to the one used by most of the T/GUI programs so I'll
-focus in special details and particularities.
+focus on special details and particularities.
 @paragraph{}
 
 All the files and directories are shown together, the directories have a
@@ -6016,20 +6015,20 @@ slash at the end. The current directory and selected file information is
 shown at the bottom of the dialog.
 @paragraph{}
 
-To select a different disk, in DOS of course, you can simply type the drive
+To select a different disk, at least in DOS, you can simply type the drive
 letter followed by a colon in the text input area and press @key{Enter}. You
-can specify a mask in the text area too. Even under DOS a single asterisk
-matches with any filename, the *.* mask won't match with a filename that lacks
-extension. You can use some asterisk and question marks in the mask, they
+can specify a mask in the text area too. Even though under DOS a single asterisk
+matches any filename, the *.* mask won't match with a filename that lacks
+extension. You can use some asterisks and question marks in the mask, they
 work like in most of the shells (DOS command.com included). Additionally the
 mask can contain brackets, if your shell doesn't use it and you never used
 it here is an example: @code{*.[ch]*} will match with test.c, test.h,
-test.cc, test.cpp, @il{etc.@:} the brackets indicates the posible characters
+test.cc, test.cpp, @il{etc.@:} the brackets indicates the possible characters
 that will match, in this case the first character after the point should be c
 or h.@*
 Pressing the down arrow while you are in the text input area you'll get a
-list of the paths from where you selected files in past. That's very useful
-when you load files from two or more directories very differents.
+list of the paths in which you selected files in the past. That's very useful
+when you load files from two or more very different directories.
 @paragraph{}
 
 The @code{Home} changes the directory to the one from where you started the
@@ -6047,11 +6046,11 @@ you used it. This information is stored in the desktop file. This information
 is unique for the following selections: open a file to edit, save a file,
 open a help file, save a block of text, open/save a project, open an MP3 file
 and save an MP3 file. In this way you can be opening files from a directory
-and saving newlly created files to another at the same time without
+and saving newly created files to another at the same time without
 indicating the directory each time you open/save a file.
 @paragraph{}
 
-@subsection Sort of the files and directories in the dialog
+@subsection Sorting of the files and directories in the dialog
 @cindex backups, listing at the end
 
 By default the sorting criteria is the following:
@@ -6076,13 +6075,14 @@ options:
   @item Directories first: the directories are listed first.
   @item Files first: file names are listed first.
 @end itemize
- @item Case style: controls if the capital letters are different or not.
+ @item Case style: controls if the dialog differentiates between capital and
+lower case ones.
  @itemize @bullet
-  @item Capital letters goes first: the names are sorting according to the
+  @item Capital letters goes first: the names are sorted according to the
 ASCII table
   @item Case insensitive: the names are sorted lexicographically.
 @end itemize
- @item Parent directory: this option controls where is located the parent
+ @item Parent directory: this option controls the location of the parent
 directory link (@code{..}). It doesn't affect the @il{Alphabetical} sorting.
  @itemize @bullet
   @item First in the list: the parent is the first entry in the list.
@@ -6092,11 +6092,11 @@ directory link (@code{..}). It doesn't affect the @il{Alphabetical} sorting.
 are handled.
  @itemize @bullet
   @item Normally sorted: they will be sorted alphabetically. As the
-@code{ASCII} code of a dot is less than the code that any letter they will be
+@code{ASCII} code of a dot is less than the code of any letter they will be
 first in the list. That's quite annoying when you use UNIX style backups and
 they are also hidden files.
   @item After the rest: they will be put at the end of the list.
-@end itemize  
+@end itemize
 @end itemize
 
 The other options you'll find in this configuration dialog are described in
@@ -6108,18 +6108,18 @@ interpreted.
 @paragraph{}
 
 When the sorting is @il{Alphabetical} and the list is case
-sensitive (@il{Capital letters goes first}) the shift key affects the case of
-the typed letters so you must be careful, specially with the state of
-@key{Caps Lock}.
+sensitive (@il{Capital letters are first}) the shift key affects the case of
+the typed letters so you must be careful; check the state of @key{Caps Lock}
+now and then as well.
 @paragraph{}
 
-When the sorting isn't @il{Alphabetical} the @key{Shift} have an special
+When the sorting isn't @il{Alphabetical} the @key{Shift} has a special
 meaning. If you press shift while typing the first letter of the name then
 the search will be done in the list of directories instead of the list of
-file names. Once you are in one of the list the rest of the searches are done
+file names. Once you are in one of the lists the rest of the search is done
 in this list. If the list is case sensitive it creates an interesting
 conflict because you could need to press shift for some file name and then
-the search will be done in the directories list. Don't forget it.
+the search will be done in the directories list. Don't forget this.
 @paragraph{}
 
 @subsection Files and directories excluded in the dialog
@@ -6134,7 +6134,7 @@ dialog. The related options are:
 @item Exclude files: controls which names are excluded.
  @itemize @bullet
   @item Ending with tilde: names ending with a tilde are excluded. They
-usually belongs to UNIX backups. The editor generates these files when you
+usually belong to UNIX-style backups. The editor generates these files when you
 configure it to generate UNIX style backups.
   @item Ending with .bkp: names with the bkp extension are excluded. By
 default the editor generates backup files with this extension.
@@ -6145,27 +6145,27 @@ hidden files.
 @end itemize
 
 Personally I only exclude files with the bkp extension and sort files
-starting with a dot so they appears at the end of the list.
+starting with a dot so they appear at the end of the list.
 @p{}
 
 @section Message Window
 @cindex message window
 @cindex windows, message
 
-This window is used to show important information that you could want to have
+This window is used to show important information that you may want to have
 at hand. Some examples are: the results of a printing operation, the errors
 collected from an external program, the hits of the powered grep, the tip of
 the day, the output of an external program, etc.
 @paragraph{}
 
 The message window doesn't have a number but can be accessed from the list of
-windows (usually @kbd{Alt+0}).
+windows (default @kbd{Alt+0}).
 @paragraph{}
 
 If the messages are errors or hits from grep you can use @kbd{Alt+F7} and
 @kbd{Alt+F8} to quickly jump to the next/previous line. You can also just
 select any of the error/hits. The errors are parsed by the editor according
-to the user selection, many formats are supported by the editor and the
+to the user selection. Many formats are supported by the editor and the
 mechanism is configurable. See the next section for more information.
 @paragraph{}
 
@@ -6175,7 +6175,7 @@ This behavior can be configured. @x{Editor General}.
 
 You can also delete entries in the message window pressing @key{Delete}. To
 add more flexibility the content of the message window can be stored in a
-file or copied to the clipboard, to do it just use the menu.
+file or copied to the clipboard, to do this just use the menu.
 @paragraph{}
 
 For more information about the behavior of the message window when you run
@@ -6201,11 +6201,11 @@ options and ends with an @code{End} marker.
 The @code{Pattern} entry tells the editor how to parse a line containing an
 error from the external program. The pattern is actually a Perl regular
 expression. I used it because they are much more easy to learn than POSIX
-regular expressions and they are much more clear to me.
+regular expressions and they are a lot more logical to me.
 @paragraph{}
 
 The @code{File}, @code{Line}, @code{Severity} and @code{Description} entries
-indicates with subexpression will contain the file name, line number, degree
+indicate - with subexpressions - the file name, line number, degree
 of severity and description of the error. Note that actually only the first
 two are used. If you don't know what a subexpression is here is a hint: look
 at the parentheses.
@@ -6230,7 +6230,7 @@ aren't interpreted very well.
 @paragraph{}
 
 If you are using an X terminal the mouse isn't interactive because X
-terminals only reports when the button is pressed and released but no when
+terminals only report when the button is pressed and released but not when
 it's moved. You can do all the normal operations but you won't get the usual
 feedback.
 @paragraph{}
@@ -6257,7 +6257,7 @@ a back slash. Here are some examples:
 
 This mechanism can be used to set default options and avoid typing them all
 the time. Another use is when you need to pass options to the editor and you
-are using Eterm, in this case Eterm can't pass command line options so you
+are using Eterm; which can't pass command line options, so you
 must use this mechanism.
 
 @section UNIX: How to run setedit remotely without root installation
@@ -6272,7 +6272,7 @@ customize your environment}. Obviously I chose to install setedit,
 and it worked great. However, from time to time I have to go to
 another workstation or login remotely. We export @file{/home} through
 NFS, so apparently we have the same configuration everywhere. But
-setedit doesn't work.
+setedit doesn't work that way.
 @p{}
 
 First of all, setedit depends on the TVision library, and only my PC
@@ -6282,7 +6282,7 @@ pointed by @code{SET_FILES}.  One solution would be to install setedit
 everywhere, but this is not scalable, and it's error prone. If I
 wanted to upgrade setedit or TVision I would spend much time copying
 and installing on every machine. Besides, even if my coworkers let me
-used root, or told me the password, I would never be given access
+use root, or told me the password, I would never be given access
 to the main server, and it's the only one with email I/O. What's
 the solution?
 @p{}
@@ -6295,7 +6295,7 @@ that the librhtv dependency is resolved to your local file system. If
 you logged now to another computer, the library wouldn't be found.
 @p{}
 
-To avoid this, add something similar to your .bashrc:
+To avoid this, add something similar to this to your .bashrc:
 @p{}
 
 @example
@@ -6317,7 +6317,7 @@ Now make @code{SET_FILES} point to it:
 @end example
 
 Nice. Now, if you run setedit it will be able to load,
-but you will find still two annoying facts: setedit always
+but you will still find two annoying facts: setedit always
 looks for the @file{setedit.info} file (which is usually found in
 @file{/usr/info/setedit.info.gz}), and the language translations won't
 be found because GNU's gettext doesn't know anything about our
