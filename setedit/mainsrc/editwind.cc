@@ -338,3 +338,8 @@ void TCEditWindow::FillResumeWith(EditorResume &r, TPoint &origin,
  time(&r.dateResume);
 }
 
+TCEditWindow::~TCEditWindow()
+{
+ TVIntl::freeSt(iClipboardTitle);
+ TVIntl::freeSt(iUntitled);
+}

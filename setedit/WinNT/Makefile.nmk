@@ -18,7 +18,7 @@ all:: setedit.exe
 # MSVC
 
 CC       = cl /nologo
-CXX      = $(CC) /TP
+CXX      = $(CC)
 LD       = $(CXX)
 INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
 	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
@@ -31,39 +31,39 @@ LDFLAGS  = -link $(TV_LIB) user32.lib
 OBJDIR   = objs
 
 {..\setedit}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\setedit\streams}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\streams}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\names}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\librhuti}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\easydiag}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\infview}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\infview\streams}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\infview\names}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\calcu}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\settvuti}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\settvuti\streams}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\settvuti\names}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\sdg}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\extra}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\mp3}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 {..\mainsrc}.cc{$(OBJDIR)}.o:
-	$(CXX) -c $(CXXFLAGS) $(INC) $? -Fo$*.o
+	$(CXX) -c $(CXXFLAGS) $(INC) /Tp$?  -Fo$*.o
 
 {..\mainsrc}.c{$(OBJDIR)}.o:
 	$(CC) -c $(CFLAGS) $(INC) $? -Fo$*.o

@@ -52,7 +52,7 @@ void TListWindowsDiag::handleEvent(TEvent &event)
  TDialog::handleEvent(event);
  if (event.what==evCommand || event.what==evBroadcast)
    {
-    ccIndex pos=tl->focused;
+    ccIndex pos=tl ? tl->focused : 0;
     if (pos>=TSetEditorApp::edHelper->getCount())
        return;
     TDskWin *obj=(TDskWin *)(TSetEditorApp::edHelper->at(pos));
@@ -158,11 +158,12 @@ void BringListOfWindows(void)
   {
    TProgram::deskTop->insert(d);
    d->setState(sfModal,True);
-   i = d->execute();
+   i=d->execute();
    TProgram::deskTop->remove(d);
   }
  while (i==cmDelete || i==cmDelFile);
- delete d;
+ d->tl=NULL; // No longer valid
+ CLY_destroy(d);
 
  FinishFocusChange();
 }

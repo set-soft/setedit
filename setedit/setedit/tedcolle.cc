@@ -517,7 +517,8 @@ void TEditorCollection::removeEditor(TCEditWindow *p, Boolean dontAddClosed)
 
  if (dontAddClosed ||
      (p->editor->MakeBkpForIt!=0 &&  // Exclude files that doesn't have back-up
-     !p->editor->MakeBkpForIt(p->editor->fileName)))
+     !p->editor->MakeBkpForIt(p->editor->fileName)) ||
+     !p->editor->fileName[0])        // Exclude "new" files
    {
     delete st;
     return;
@@ -672,7 +673,7 @@ ccIndex TEditorCollection::searchEditorName(char *name, int *cant)
 
  // If the name
  l=strlen(name)-1;
- if (name[l]=='.')
+ if (l>=0 && name[l]=='.')
     name[l]=0;
  while (i)
    {

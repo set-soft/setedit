@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.529  2004/06/22 20:34:12  set
+* Fixed: [MSVC] References to make in the nmake files. Report and solution
+by Arnold Wiegert.
+* Modified: [Makefiles] extrimk to generate the first dependency with
+relative path. I should allow .umk files to be used without the need of
+"vpath" or ".path" directives. That's because nmake lacks both directives.
+
 Revision 1.528  2004/06/22 16:30:43  set
 * Added: [sLisp] More macros from Thiago. They are short and quite
 interesting because they show how to add particular behaviors or

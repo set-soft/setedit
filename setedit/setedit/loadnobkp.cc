@@ -85,6 +85,7 @@ void TNBKPColl::freeItem(void *item)
  strNBKP *p=(strNBKP *)item;
  DeleteArray(p->texto);
  ::free(p->regex);
+ delete p;
 }
 
 int TNBKPColl::check(const char *name)

@@ -695,6 +695,7 @@ class TCEditWindow : public TWindow
 {
 public:
  TCEditWindow( const TRect&, const char *, int, Boolean openRO=False );
+ ~TCEditWindow();
  virtual void close();
  virtual const char *getTitle( short );
  virtual void handleEvent( TEvent& );
