@@ -193,16 +193,26 @@ void TEnhancedText::copyLineText(int y, int xs, int xe, char *dest)
 {
  int i=xs;
  LineOfEText *l=(LineOfEText *)at(y);
- if (xs<l->len)
+ if (xs<(int)l->len)
    {
     char *s=(char *)l->text;
-    int  xm=min(l->len,xs);
+    int  xm=min(l->len,xe);
     for (; i<xm; dest++, i++)
         *dest=s[i*2];
    }
  for (; i<xe; dest++, i++)
      *dest=' ';
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Returns a newly allocated buffer (new[]) containing the selected text. The
+size of the buffer is returned in the referenced variable.
+
+  Return: The selection or NULL if nothing is selected.
+  
+***************************************************************************/
 
 char *TEnhancedText::getSelection(unsigned &len)
 {
@@ -223,7 +233,7 @@ char *TEnhancedText::getSelection(unsigned &len)
  len=ySelEnd-ySelStart;
  // Bytes in the first line
  l=(LineOfEText *)at(ySelStart);
- len+=xSelStart<l->len ? l->len-xSelStart : 0;
+ len+=xSelStart<(int)l->len ? l->len-xSelStart : 0;
  // In the middle lines
  for (y=ySelStart+1; y<ySelEnd; y++)
     {
@@ -237,7 +247,7 @@ char *TEnhancedText::getSelection(unsigned &len)
  char *s=dest;
  // Fill it
  l=(LineOfEText *)at(ySelStart);
- if (xSelStart<l->len)
+ if (xSelStart<(int)l->len)
    {
     copyLineText(ySelStart,xSelStart,l->len,s);
     s+=l->len-xSelStart;
@@ -266,11 +276,15 @@ TManPageView::TManPageView(const TRect& bounds, TScrollBar *aHScrollBar,
   : TScroller(bounds,aHScrollBar,aVScrollBar)
 {
  text=0;
- options |= ofSelectable;
- growMode = gfGrowHiX | gfGrowHiY;
+ options |=ofSelectable;
+ growMode =gfGrowHiX | gfGrowHiY;
+ lockCount=0;
+ mustBeRedrawed=False;
 }
 
 #define cManPage "\x06\x08\x09"
+
+void (*TManPageView::InsertRoutine)(char *b, long l)=NULL;
 
 TPalette& TManPageView::getPalette() const
 {
@@ -289,23 +303,34 @@ Boolean TManPageView::clipWinCopy(int id)
  Boolean res=False;
  if (text && text->hasSelection())
    {
-    /*if (!TVOSClipboard::isAvailable())
+    if (!TVOSClipboard::isAvailable())
       {
        messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
        return False;
-      }*/
+      }
     unsigned len;
     char *buffer=text->getSelection(len);
     res=TVOSClipboard::copy(id,buffer,len) ? True : False;
     DeleteArray(buffer);
-    /*if (!res)
+    if (!res)
       {
        messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
                   TVOSClipboard::getError());
        return False;
-      }*/
+      }
    }
  return res;
+}
+
+void TManPageView::clipCopy()
+{
+ if (text && text->hasSelection())
+   {
+    unsigned len;
+    char *buffer=text->getSelection(len);
+    InsertRoutine(buffer,len);
+    DeleteArray(buffer);
+   }
 }
 
 void TManPageView::handleEvent( TEvent& event )
@@ -364,7 +389,7 @@ void TManPageView::handleEvent( TEvent& event )
       }
    }
  else if (text && event.what==evMouseDown && event.mouse.buttons==mbLeftButton)
-   {
+   {// Mouse selection mechanism.
     TPoint mouse=makeLocal(event.mouse.where)+delta;
     int xSt=text->xSelStart=text->xSelEnd=mouse.x;
     int ySt=text->ySelStart=text->ySelEnd=mouse.y;
@@ -372,6 +397,7 @@ void TManPageView::handleEvent( TEvent& event )
     TPoint last=mouse;
     do
       {
+       lock();
        if (event.what==evMouseAuto)
          {
           mouse=makeLocal(event.mouse.where);
@@ -407,11 +433,12 @@ void TManPageView::handleEvent( TEvent& event )
              draw();
             }
          }
+       unlock();
       }
     while (mouseEvent(event,evMouseMove+evMouseAuto));
     clearEvent(event);
-    //if (TVOSClipboard::isAvailable()>1)
-    //   clipWinCopy(1);
+    if (TVOSClipboard::isAvailable()>1)
+       clipWinCopy(1);
    }
  else if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
    {
@@ -424,6 +451,41 @@ void TManPageView::handleEvent( TEvent& event )
        putEvent(event);
       }
    }
+ else if (event.what==evCommand)
+   {
+    switch (event.message.command)
+      {
+       case cmcCopyClipWin:
+            if (TVOSClipboard::isAvailable())
+               clipWinCopy(0);
+            break;
+       case cmcCopy:
+            if (InsertRoutine)
+               clipCopy();
+            break;
+      }
+   }
+}
+
+void TManPageView::setCmdState(uint16 command, Boolean enable)
+{
+ if (enable && (state & sfActive))
+    enableCommand(command);
+ else
+    disableCommand(command);
+}
+
+void TManPageView::updateCommands()
+{
+ if (!(state & sfActive))
+   { // We lost the focus, disable all
+    setCmdState(cmcCopyClipWin,False);
+    setCmdState(cmcCopy,False);
+    return;
+   }
+ Boolean sel=text && text->hasSelection();
+ setCmdState(cmcCopyClipWin,(TVOSClipboard::isAvailable() && sel) ? True : False);
+ setCmdState(cmcCopy,(InsertRoutine && sel) ? True : False);
 }
 
 void TManPageView::InsertText(TEnhancedText *aText)
@@ -437,8 +499,25 @@ void TManPageView::InsertText(TEnhancedText *aText)
  //drawView();
 }
 
+void TManPageView::unlock()
+{
+ if (lockCount>0)
+   {
+    lockCount--;
+    if (lockCount==0 && mustBeRedrawed)
+       drawView();
+   }
+}
+
 void TManPageView::draw()
 {
+ if (lockCount)
+   {
+    mustBeRedrawed=True;
+    return;
+   }
+ mustBeRedrawed=False;
+
  char colors[3];
  colors[0]=getColor(1);
  colors[1]=getColor(2);
@@ -462,6 +541,15 @@ void TManPageView::draw()
      text->copyLine(y+delta.y,w,line,colors);
      writeLine(0,y,size.x,1,line+delta.x);
     }
+ if (state & sfActive)
+    updateCommands();
+}
+
+void TManPageView::setState(uint16 aState, Boolean enable)
+{
+ TScroller::setState(aState,enable);
+ if (aState==sfActive)
+    updateCommands();
 }
 
 TManPageView::~TManPageView()
@@ -484,7 +572,8 @@ void *TManPageView::read(ipstream& is)
  InsertText(new TEnhancedText(tmp,aCommandLine));
  unlink(tmp);
  free(tmp);
- delete[] aCommandLine;
+ DeleteArray(aCommandLine);
+ lockCount=0;
  return this;
 }
 
@@ -510,7 +599,7 @@ TRect &getDefaultSizeWindow()
 }
 
 TManWindow::TManWindow(const char *fileName, const char *name,
-                       char *aCommandLine) :
+                       char *aCommandLine, void (*ir)(char *b, long l)) :
        TWindow(getDefaultSizeWindow(),name,wnNoNumber),
        TWindowInit(&TManWindow::initFrame)
 {
@@ -522,6 +611,7 @@ TManWindow::TManWindow(const char *fileName, const char *name,
  vScrollBar=standardScrollBar(sbVertical | sbHandleKeyboard);
  page=new TManPageView(r,hScrollBar,vScrollBar);
  page->InsertText(new TEnhancedText(fileName,aCommandLine));
+ page->InsertRoutine=ir;
  unlink(fileName);
  insert(page);
  helpCtx=hcManPage;
@@ -605,7 +695,7 @@ char *CreateTempManPage(char *str)
  close_stderr();
 
  struct stat s;
- if (stat(tmp,&s)!=0 || s.st_size==0)
+ if (::stat(tmp,&s)!=0 || s.st_size==0)
    {// No stdout info
     unlink(tmp);
     free(tmp);
@@ -643,13 +733,13 @@ char *CreateCommandLine(const char *file, const char *sections)
 }
 
 TManWindow *CreateManWindow(const char *file, const char *sections,
-                            const char *extraOps)
+                            const char *extraOps, void (*ir)(char *b, long l))
 {
  ExtraOps=extraOps;
  char *cmd=CreateCommandLine(file,sections);
  char *tmp=CreateTempManPage(cmd);
 
- TManWindow *ret=new TManWindow(tmp,file,cmd);
+ TManWindow *ret=new TManWindow(tmp,file,cmd,ir);
  free(cmd);
  free(tmp);
 

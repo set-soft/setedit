@@ -52,12 +52,22 @@ public:
  virtual void draw();
  virtual TPalette& getPalette() const;
  virtual void handleEvent( TEvent& event );
+ virtual void setState(uint16 aState, Boolean enable);
+ void setCmdState(uint16 command, Boolean enable);
  void InsertText(TEnhancedText *aText);
  void getScrollBars(TScrollBar *&hScr, TScrollBar *&vScr);
  Boolean clipWinCopy(int id);
+ void clipCopy();
+ void lock() { lockCount++; };
+ void unlock();
+ void updateCommands();
+
+ static void (*InsertRoutine)(char *b, long l);
 
 protected:
  TEnhancedText *text;
+ int lockCount;
+ Boolean mustBeRedrawed;
  
 private:
  virtual const char *streamableName() const { return name; }
@@ -93,7 +103,8 @@ class TScrollBar;
 class TManWindow : public TWindow
 {
 public:
- TManWindow(const char *fileName, const char *name, char *aCommandLine);
+ TManWindow(const char *fileName, const char *name, char *aCommandLine,
+            void (*ir)(char *b, long l));
  virtual void handleEvent( TEvent& event );
  virtual TPalette& getPalette() const;
  const char *getFileName() { return title; };
@@ -131,7 +142,8 @@ const int hcManPage=0x2120,
           cmMPUpdateTitle=0x2120;
 
 extern TManWindow *CreateManWindow(const char *file, const char *sections,
-                                   const char *extraOps);
+                                   const char *extraOps,
+                                   void (*ir)(char *b, long l));
 
 #endif // __TManWindow__
 

@@ -224,7 +224,9 @@ public:
     Boolean selecting;
     static void (*InsertRoutine)(char *b, long l);
     //static void (*InsertRoutineSecondary)(char *b, long l); // i.e. GUI clipboard
-    static void OSInsertRoutine(char *b, long l);
+    static void OSInsertRoutine0(char *b, long l);
+    static void OSInsertRoutine1(char *b, long l);
+    static void OSInsertRoutine(int clip, char *b, long l);
     void PasteToClipboard(void (*ir)(char *b, long l));
     void PasteInclude(void);
     int modeFlags;

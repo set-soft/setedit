@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -25,6 +25,7 @@ class TRect;
 #include <manview.h>
 
 #define Uses_SETAppDialogs
+#define Uses_SETAppVarious
 #include <setapp.h>
 
 #include <rhutils.h>
@@ -69,7 +70,7 @@ TDskWinMan::TDskWinMan(const char *file, const char *sections, const char *extra
  type=dktMan;
  CanBeSaved=1;
  CanBeDeletedFromDisk=0;
- view=CreateManWindow(file,sections,extraOps);
+ view=CreateManWindow(file,sections,extraOps,CopyHelp2Clip);
 }
 
 TDskWinMan::~TDskWinMan()

@@ -48,16 +48,6 @@
 #include <manview.h>
 #include <codepage.h>
 
-#if TV_MAJOR_VERSION>=2
-#define TV_System TScreen::System
-#define Uses_TScreen
-#include <tv/screen.h>
-#endif
-#if TV_MAJOR_VERSION<2
- #define getWindowTitle GetWindowTitle
- #define setWindowTitle SetWindowTitle
-#endif
-
 #define INFVIEW_VERSION_STR "0.2.7"
 const char *EditorFile="setedit";
 
@@ -155,7 +145,7 @@ void TEditorMiApp::dosShell()
  if (TScreen::noUserScreen())
     return;
  suspend();
- TV_System(CLY_GetShellName());
+ TScreen::System(CLY_GetShellName());
  resume();
  Redraw();
 }

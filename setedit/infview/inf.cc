@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -881,14 +881,24 @@ char *TInfViewer::TakeFromHistory(TPoint& Pos)
  return h->Name;
 }
 
-void TInfViewer::OSInsertRoutine(char *b, long l)
+void TInfViewer::OSInsertRoutine(int clip, char *b, long l)
 {
- if (!TVOSClipboard::copy(0,b,l))
+ if (!TVOSClipboard::copy(clip,b,l))
    {
     messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
                TVOSClipboard::getError());
     return;
    }
+}
+
+void TInfViewer::OSInsertRoutine0(char *b, long l)
+{
+ OSInsertRoutine(0,b,l);
+}
+
+void TInfViewer::OSInsertRoutine1(char *b, long l)
+{
+ OSInsertRoutine(1,b,l);
 }
 
 void TInfViewer::PasteToClipboard(void (*ir)(char *b, long l))
@@ -1036,12 +1046,9 @@ void TInfViewer::UpdateSelection(int X, int Y)
    }
 }
 
-void TInfViewer::MoveToMouse( TPoint m, uchar selMode )
+void TInfViewer::MoveToMouse(TPoint m, uchar selMode)
 {
-#ifdef NO_DOUBLE_CLICK
- int oldSel=selected;
-#endif
- TPoint mouse = makeLocal( m );
+ TPoint mouse = makeLocal(m);
 
  scrollTo(mouse.x+delta.x,mouse.y+delta.y);
  if (selMode & smExtend)
@@ -1059,17 +1066,13 @@ void TInfViewer::MoveToMouse( TPoint m, uchar selMode )
       {
        selRowStartPoint=cursor.y+delta.y+1;
        selColStartPoint=cursor.x+delta.x;
-#ifdef NO_DOUBLE_CLICK
-       if ((oldSel==selected) && selected>0)
-          switchToTopic(topic->getCrossRef(selected-1));
-#endif
       }
    }
 }
 
 void TInfViewer::unlock()
 {
- if ( lockCount > 0 )
+ if (lockCount>0)
    {
     lockCount--;
     if (lockCount==0 && mustBeRedrawed)
@@ -1197,7 +1200,7 @@ void TInfViewer::handleEvent( TEvent& event )
 
               case cmcCopyClipWin:
                    if (TVOSClipboard::isAvailable())
-                      PasteToClipboard(OSInsertRoutine);
+                      PasteToClipboard(OSInsertRoutine0);
                    break;
 
               case cmInfPasteIn:
@@ -1571,18 +1574,18 @@ void TInfViewer::handleEvent( TEvent& event )
          break;
 
      case evMouseDown:
-#ifndef NO_DOUBLE_CLICK
-          if ( event.mouse.doubleClick )
-     	     selectMode |= smDouble;
-#endif
+          if (event.mouse.doubleClick)
+             selectMode|=smDouble;
           do
             {
              lock();
              MoveToMouse(event.mouse.where,selectMode);
-             selectMode |= smExtend;
+             selectMode|=smExtend;
              unlock();
             }
-          while( mouseEvent(event, evMouseMove + evMouseAuto) );
+          while (mouseEvent(event,evMouseMove+evMouseAuto));
+          if (TVOSClipboard::isAvailable()>1)
+             PasteToClipboard(OSInsertRoutine1);
           break;
 
      #if defined(FOR_EDITOR)
@@ -2207,12 +2210,8 @@ seleccionado.
 void TStrListBox::handleEvent(TEvent& event)
 {
  short a=focused;
-#ifdef NO_DOUBLE_CLICK
- if ( event.what==evKeyDown && event.keyDown.keyCode==kbEnter )
-#else
- if ( (event.what==evKeyDown && event.keyDown.keyCode==kbEnter)
-    || (event.what == evMouseDown && event.mouse.doubleClick) )
-#endif
+ if ((event.what==evKeyDown && event.keyDown.keyCode==kbEnter) ||
+     (event.what==evMouseDown && event.mouse.doubleClick))
    {
     message( owner, evBroadcast, cmStrChoose, (void *)&focused );
     clearEvent(event);
