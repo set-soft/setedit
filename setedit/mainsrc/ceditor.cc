@@ -237,7 +237,8 @@ TCEditor::TCEditor( const TRect& bounds,
                   TScrollBar *aHScrollBar,
                   TScrollBar *aVScrollBar,
                   TSIndicator *aIndicator,
-                  const char *aFileName ) :
+                  const char *aFileName,
+                  Boolean openRO ) :
     TViewPlus( bounds ),
     hScrollBar( aHScrollBar ),
     vScrollBar( aVScrollBar ),
@@ -246,7 +247,6 @@ TCEditor::TCEditor( const TRect& bounds,
     canUndo( True ),
     selecting( False ),
     overwrite( False ),
-    isReadOnly( False ),
     IsaUNIXFile( False ),
     IsaCompressedFile( gzNoCompressed ),
     lockCount( 0 ),
@@ -293,6 +293,8 @@ TCEditor::TCEditor( const TRect& bounds,
  CrossCursorX2=size.x;
  CrossCursorCol=0;
  CrossCursorRow=0;
+
+ isReadOnly=openRO;
 
  /* TSIndicators uses a pointer to the editor, so link it */
  if (indicator) // Some routines creates temporal editors without indicators
@@ -12016,7 +12018,8 @@ Boolean TCEditor::loadFile(Boolean setSHL)
        // Check if we can write
        if (CLY_FileAttrIsRO(&ModeOfFile))
          {
-          if (!(editorFlags & efDoNotWarnRO) && editorDialog(edIsReadOnly)==cmYes)
+          if (!isReadOnly && !(editorFlags & efDoNotWarnRO) &&
+              editorDialog(edIsReadOnly)==cmYes)
             {
              // Close it, DOS 6 fails if we change the mode while opened
              fclose(f);

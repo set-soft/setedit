@@ -29,6 +29,7 @@ int CompareFileNames(char *origFile, char *destFile);
 void CheckIfCurDirValid(void);
 char *GetShortNameOf(char *longName, char *shortName);
 int CheckIfPathAbsolute(const char *s);
+char *MakeItHiddenName(char *);
 
 const int maxSFNSize=68;
 

@@ -45,9 +45,9 @@ TPalette & TCEditWindow::getPalette() const
 const TPoint minEditWinSize = {24, 6};
 
 TCEditWindow::TCEditWindow( const TRect& bounds,
-                          const char *fileName,
-                          int aNumber
-                        ) :
+                            const char *fileName,
+                            int aNumber,
+                            Boolean openRO ) :
     TWindow( bounds, 0, aNumber ),
     TWindowInit( &TCEditWindow::initFrame )
 {
@@ -71,7 +71,7 @@ TCEditWindow::TCEditWindow( const TRect& bounds,
 
     TRect r( getExtent() );
     r.grow(-1, -1);
-    editor = new TCEditor( r, hScrollBar, vScrollBar, indicator, fileName );
+    editor=new TCEditor(r,hScrollBar,vScrollBar,indicator,fileName,openRO);
     insert(editor);
 }
 

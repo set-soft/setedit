@@ -117,7 +117,8 @@ class TCEditor : public TViewPlus
 {
 public:
 
-    TCEditor( const TRect&, TScrollBar *, TScrollBar *, TSIndicator *, const char * );
+    TCEditor( const TRect&, TScrollBar *, TScrollBar *, TSIndicator *, const char *,
+              Boolean openRO=False );
 
     virtual ~TCEditor();
     virtual void shutDown();
@@ -651,7 +652,7 @@ class TCEditWindow : public TWindow
 
 public:
 
-    TCEditWindow( const TRect&, const char *, int );
+    TCEditWindow( const TRect&, const char *, int, Boolean openRO=False );
     virtual void close();
     virtual const char *getTitle( short );
     virtual void handleEvent( TEvent& );

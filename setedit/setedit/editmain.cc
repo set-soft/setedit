@@ -222,7 +222,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
  else
    {
     FixUpName(fileName);
-    ain=new TCEditWindow(r,fileName,wnNoNumber);
+    ain=new TCEditWindow(r,fileName,wnNoNumber,openAsReadOnly);
     if ((options & oedDontOpenEmpty) && ain->editor->FailedToLoad)
       {
        destroy(ain);
@@ -233,10 +233,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     if (!p)
        return (TCEditWindow *)p;
 
-
     ain=(TCEditWindow *)p;
-    if (openAsReadOnly)
-       ain->editor->isReadOnly=True;
 
     // Transfer the special lines
     int *spL=SpLinesGetFor(fileName);

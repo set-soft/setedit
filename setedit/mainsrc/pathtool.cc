@@ -28,6 +28,10 @@
 #include <pathtool.h>
 #include <pathlist.h>
 
+// Get HIDDEN_DIFFERENT, it should be moved to CLY
+#define Uses_SETAppFiles
+#include <setapp.h>
+
 #ifdef SEOS_Win32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -562,8 +566,7 @@ void CheckForValidTMPDIR()
 }
 
 
-#ifdef SEOS_UNIX
-static
+#ifdef HIDDEN_DIFFERENT
 char *MakeItHiddenName(char *file)
 {
  // Look for the real name:
@@ -584,6 +587,11 @@ char *MakeItHiddenName(char *file)
  s[l]='.';
 
  return s;
+}
+#else
+char *MakeItHiddenName(char *)
+{
+ return 0;
 }
 #endif
 
