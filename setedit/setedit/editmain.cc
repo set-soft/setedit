@@ -2291,10 +2291,7 @@ int main(int argc, char *argv[])
 
  LoadKeysForTCEditor(GetKeyBindFName(0));
  #ifdef TVOSf_Linux
-  #if TV_MAJOR_VERSION==2
- if (UseRH52)
-    TGKey::SetKbdMapping(TGKey::linuxRH52);
-  #else
+  #if TV_MAJOR_VERSION<2
  if (UseRH52)
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
   #endif

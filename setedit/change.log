@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.99  2002/05/20 16:52:07  set
+* Added: Now InfView sets the window title. Suggested by Ivan.
+
 Revision 1.98  2002/05/17 15:33:04  set
 * Added: "Vertical project window" options, SF FR #553029. Saved to the
 desktop file, documented, updated spanish translations.
