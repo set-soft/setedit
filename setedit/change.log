@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.496  2004/03/25 20:11:29  set
+* Added: Non interactive versions of the cmcExpandAllTabs and
+cmcCompactBuffer commands to be used from sLisp. Suggested by Grzegorz.
+
 Revision 1.495  2004/03/17 20:50:23  set
 * Updated: [SHL] Flat Assembler, contributed by Matt C.
 

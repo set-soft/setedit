@@ -485,6 +485,21 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
            (Use with TV <a href="http://prdownloads.sourceforge.net/setedit/rhtvision1.1.4_1.1.4-0.1_sparc.deb">1.1.4</a>)
      </ul>
      <p>
+<li> <b>Fedora Core 1 (i386)</b>:<br>
+     Rohan Carly reported success installing the Red Hat 7.3 binaries like this:<br>
+     <xmp>
+     If I install this C++ library that comes with the distribution:
+     rpm -i compat-libstdc++-7.3-2.96.118.i386.rpm
+
+     ... then I can install your RPMS without much trouble:
+     rpm -i librhtv-2.0.2-3rh73.i386.rpm
+     rpm -i --nodeps setedit-0.5.2-1rh73.i386.rpm
+
+     The --nodeps for setedit is required because it thinks it
+     /usr/local/install-info is missing. In reality it resides in
+     /sbin/install-info.
+     </xmp>
+     <p>
 <li> <b>Red Hat 8.0 (i386) [Also look in Red Hat 7.3 section]</b>:
      <ul>
       <li> Previous release <a href="http://prdownloads.sourceforge.net/setedit/setedit-0.5.0-4rh8.i386.rpm">v0.5.0</a>
