@@ -282,11 +282,11 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
 	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC= 
@@ -304,11 +304,11 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
 	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC= 
@@ -416,16 +416,17 @@ obj/back2sl.o:: $(DEPS_2)
 DEPS_3=basename.cc ../librhuti/rhutils.h
 obj/basename.o:: $(DEPS_3)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_4=fexpand.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv/configtv.h ../librhuti/rhutils.h
+DEPS_4=fexpand.cc ../librhuti/rhutils.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h
 obj/fexpand.o:: $(DEPS_4)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_5=io.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv/configtv.h ../librhuti/rhutils.h
+DEPS_5=io.cc ../librhuti/rhutils.h ../../tvision/include/cl/unistd.h\
+	../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h
 obj/io.o:: $(DEPS_5)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_6=specs.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv/configtv.h ../librhuti/rhutils.h
+DEPS_6=specs.cc ../librhuti/rhutils.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h
 obj/specs.o:: $(DEPS_6)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_7=splitfn.cc ../librhuti/rhutils.h

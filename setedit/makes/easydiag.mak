@@ -293,11 +293,11 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
 	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC= 
@@ -315,11 +315,11 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
 	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC= 
@@ -422,7 +422,9 @@ NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 libeasyd.a:: $(DEPS_0)
 	$(RHIDE_COMPILE_ARCHIVE)
-DEPS_1=lablchek.cc ../../tvision/include/compatlayer.h\
+DEPS_1=lablchek.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tschkbox.h ../easydiag/tslabel.h ../easydiag/tsview.h\
+	../easydiag/tsviewco.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
@@ -448,12 +450,12 @@ DEPS_1=lablchek.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tschkbox.h ../easydiag/tslabel.h\
-	../easydiag/tsview.h ../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/lablchek.o:: $(DEPS_1)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_2=lablradi.cc ../../tvision/include/compatlayer.h\
+DEPS_2=lablradi.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslabel.h ../easydiag/tsradbot.h ../easydiag/tsview.h\
+	../easydiag/tsviewco.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/configtv.h\
@@ -478,14 +480,14 @@ DEPS_2=lablradi.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslabel.h ../easydiag/tsradbot.h\
-	../easydiag/tsview.h ../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/lablradi.o:: $(DEPS_2)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_3=snostate.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_3=snostate.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/snostate.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../settvuti/include/nostatex.h ../settvuti/include/settvuti.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -506,14 +508,13 @@ DEPS_3=snostate.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/snostate.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h ../settvuti/include/nostatex.h\
-	../settvuti/include/settvuti.h
+	../../tvision/include/tv/yes_mss.h
 obj/snostate.o:: $(DEPS_3)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_4=tcheck2.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_4=tcheck2.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tcheck2.h ../easydiag/tmiclust.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/object.h\
@@ -527,12 +528,11 @@ DEPS_4=tcheck2.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../easydiag/easydia1.h ../easydiag/easydiag.h ../easydiag/tcheck2.h\
-	../easydiag/tmiclust.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/tcheck2.o:: $(DEPS_4)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_5=tmiclust.cc ../../tvision/include/compatlayer.h\
+DEPS_5=tmiclust.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tmiclust.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
@@ -558,11 +558,12 @@ DEPS_5=tmiclust.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tmiclust.h
+	../../tvision/include/tv/yes_mss.h
 obj/tmiclust.o:: $(DEPS_5)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_6=tsbutton.cc ../../tvision/include/compatlayer.h\
+DEPS_6=tsbutton.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsbutton.h ../easydiag/tshzgrp.h ../easydiag/tsview.h\
+	../easydiag/tsviewco.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/configtv.h\
@@ -585,12 +586,12 @@ DEPS_6=tsbutton.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
-	../easydiag/tsview.h ../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsbutton.o:: $(DEPS_6)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_7=tschkarr.cc ../../tvision/include/compatlayer.h\
+DEPS_7=tschkarr.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tcheck2.h ../easydiag/tmiclust.h ../easydiag/tschkarr.h\
+	../easydiag/tsview.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -608,14 +609,13 @@ DEPS_7=tschkarr.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tcheck2.h ../easydiag/tmiclust.h\
-	../easydiag/tschkarr.h ../easydiag/tsview.h
+	../../tvision/include/tv/window.h
 obj/tschkarr.o:: $(DEPS_7)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_8=tschkbox.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/checkbox.h\
+DEPS_8=tschkbox.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tschkbox.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -638,14 +638,13 @@ DEPS_8=tschkbox.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tschkbox.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tschkbox.o:: $(DEPS_8)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_9=tshscrol.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_9=tshscrol.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tshscrol.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -666,14 +665,13 @@ DEPS_9=tshscrol.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tshscrol.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tshscrol.o:: $(DEPS_9)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_10=tshzgrp.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_10=tshzgrp.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tshzgrp.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -693,14 +691,13 @@ DEPS_10=tshzgrp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tshzgrp.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tshzgrp.o:: $(DEPS_10)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_11=tsinplin.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_11=tsinplin.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsinplin.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -722,14 +719,14 @@ DEPS_11=tsinplin.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsinplin.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsinplin.o:: $(DEPS_11)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_12=tsinplpi.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_12=tsinplpi.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsinplpi.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tinppipe.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -751,15 +748,13 @@ DEPS_12=tsinplpi.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsinplpi.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tinppipe.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsinplpi.o:: $(DEPS_12)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_13=tslabel.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_13=tslabel.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslabel.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -780,13 +775,13 @@ DEPS_13=tslabel.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslabel.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tslabel.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_14=tslider.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_14=tslider.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslider.h ../easydiag/tsview.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/group.h\
@@ -805,11 +800,12 @@ DEPS_14=tslider.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslider.h ../easydiag/tsview.h
+	../../tvision/include/tv/window.h
 obj/tslider.o:: $(DEPS_14)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_15=tslistbo.cc ../../tvision/include/compatlayer.h\
+DEPS_15=tslistbo.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslistbo.h ../easydiag/tssortva.h ../easydiag/tsview.h\
+	../easydiag/tsviewco.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -834,14 +830,13 @@ DEPS_15=tslistbo.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslistbo.h\
-	../easydiag/tssortva.h ../easydiag/tsview.h ../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tslistbo.o:: $(DEPS_15)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_16=tsradbot.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/cluster.h\
+DEPS_16=tsradbot.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsradbot.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
@@ -863,14 +858,14 @@ DEPS_16=tsradbot.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsradbot.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsradbot.o:: $(DEPS_16)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_17=tssortlb.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_17=tssortlb.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslistbo.h ../easydiag/tssortlb.h\
+	../easydiag/tssortva.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -894,13 +889,14 @@ DEPS_17=tssortlb.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslistbo.h\
-	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tssortlb.o:: $(DEPS_17)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_18=tssosslb.cc ../../tvision/include/compatlayer.h\
+DEPS_18=tssosslb.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslistbo.h ../easydiag/tssortva.h\
+	../easydiag/tssosslb.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -926,16 +922,13 @@ DEPS_18=tssosslb.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslistbo.h\
-	../easydiag/tssortva.h ../easydiag/tssosslb.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
+	../../tvision/include/tv/yes_mss.h
 obj/tssosslb.o:: $(DEPS_18)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_19=tstatext.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_19=tstatext.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tstatext.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -956,12 +949,12 @@ DEPS_19=tstatext.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tstatext.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tstatext.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_20=tstextsc.cc ../../tvision/include/compatlayer.h\
+DEPS_20=tstextsc.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tstextsc.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../easydiag/ttextscr.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -987,12 +980,14 @@ DEPS_20=tstextsc.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tstextsc.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h ../easydiag/ttextscr.h
+	../../tvision/include/tv/yes_mss.h
 obj/tstextsc.o:: $(DEPS_20)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_21=tstsorlb.cc ../../tvision/include/compatlayer.h\
+DEPS_21=tstsorlb.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tslistbo.h ../easydiag/tssortva.h\
+	../easydiag/tstsorlb.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tstringa.h\
+	../settvuti/include/tstrlbox.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -1017,16 +1012,13 @@ DEPS_21=tstsorlb.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tslistbo.h\
-	../easydiag/tssortva.h ../easydiag/tstsorlb.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h
+	../../tvision/include/tv/yes_mss.h
 obj/tstsorlb.o:: $(DEPS_21)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_22=tsvegrp.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_22=tsvegrp.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsvegrp.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -1046,12 +1038,11 @@ DEPS_22=tsvegrp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsvegrp.h ../easydiag/tsview.h\
-	../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsvegrp.o:: $(DEPS_22)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_23=tsview.cc ../../tvision/include/compatlayer.h\
+DEPS_23=tsview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsview.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -1069,13 +1060,13 @@ DEPS_23=tsview.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsview.h
+	../../tvision/include/tv/window.h
 obj/tsview.o:: $(DEPS_23)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_24=tsviewco.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/applictn.h\
+DEPS_24=tsviewco.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsview.h ../easydiag/tsviewco.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
@@ -1098,11 +1089,11 @@ DEPS_24=tsviewco.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsview.h ../easydiag/tsviewco.h
+	../../tvision/include/tv/yes_mss.h
 obj/tsviewco.o:: $(DEPS_24)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_25=ttextscr.cc ../../tvision/include/compatlayer.h\
+DEPS_25=ttextscr.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/ttextscr.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -1122,8 +1113,7 @@ DEPS_25=ttextscr.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/ttextscr.h
+	../../tvision/include/tv/yes_mss.h
 obj/ttextscr.o:: $(DEPS_25)
 	$(RHIDE_COMPILE.cc.o)
 all:: libeasyd.a
