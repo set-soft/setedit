@@ -1,0 +1,5 @@
+#!/bin/sh
+tools/cvssyncget setedit $1 "makes/*.mak mp3/libamp/*.mak mp3/mpegsound/*.mak" > cvsdiff
+gzip -9 cvsdiff
+echo "cvsdiff.gz and files.tar.gz generated"
+
