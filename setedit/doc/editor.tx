@@ -2229,6 +2229,11 @@ The exact place of the file depends on your system like other files created
 by the editor.
 @p{}
 
+Note that files listed here aren't remmembered in the list of closed editors.
+That's because the editor assumes these files are temporal and you won't need
+to use them again.
+@p{}
+
 @refMenu1{cmeEditNoBkp}
 
 @c --------------------------------------------------------------------------
