@@ -428,12 +428,12 @@ static edCList SetFlags[] =
 {"WinASCII"       ,-dktASCII          }, // SelectWindowNumber constants
 {"WinCalendar"    ,-dktCalendar       },
 {"WinClipboard"   ,-dktClipboard      },
+{"WinDebugger"    ,-dktDbgMsg         },
 {"WinHelp"        ,-dktHelp           },
 {"WinMP3"         ,-dktMP3            },
 {"WinMan"         ,-dktMan            },
 {"WinMessage"     ,-dktMessage        },
 {"WinPrj"         ,-dktPrj            },
-{"WinDebugger"    ,-dktDbgMsg         },
 {"WinWatches"     ,-dktDbgWt          }
 };
 

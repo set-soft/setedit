@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.615  2004/09/23 19:19:07  set
+* Fixed: [RPMs] Problems to generate the RPMs using Red Hat 9.0. The
+changes introduced by bbcat should be enough (they are for Fedora Core 2),
+but more is needed to avoid problems with RH9.0. The problems are related
+to the generation of a RPM file with debug info.
+
 Revision 1.614  2004/09/23 19:05:45  set
 * Fixed: [BC++] The last change to support pcre/pcre.h needed changes in
 the configed.h file for Win32.
