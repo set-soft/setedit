@@ -4,12 +4,10 @@
                                   by SET
 
   That's the official distribution of SET's editor v@@v@@
-  The editor is Copyrighted by Salvador Eduardo Tropea. (c) 1996-2001 and
-distributed under the GPL license.
-  The editor is free and you don't need to pay for it. Any kind of donations
-are accepted ;-). One good way of cooperation is buying one of my djgpp CDs,
-they have more than 500Mb of fresh djgpp stuff and costs less than the
-Walnut Creek CD.
+  The editor is Copyrighted by Salvador Eduardo Tropea <set@ieee.org>.
+(c) 1996-2001 and distributed under the GPL license.
+  It's free and you don't need to pay for it. Any kind of donations are
+accepted ;-).
 
 INDEX:
 
@@ -339,10 +337,12 @@ Note for DOS users:
 * PC 386 compatible or superior computer.
 * 2 Mb of memory or more.
 * 2.4 Mb of free disk during installation and about 1.5 Mb once installed.
-* DOS version 5.0 or posterior or any compatible OS (Win '95, Win 3.1, OS/2,
+* DOS version 5.0 or posterior or any compatible OS (Win '9x, Win 3.1, OS/2,
 MS-DOS, etc.). The NT platform isn't fully supported, I don't have NT, if you
 need support for NT send me a licensed copy of NT ;-). I did my best to
 support it, but as I don't have one at home I can't do more.
+Note: A native windows version is available but is just for testing.
+or
 * Linux with ELF support for the Linux version. For console use you need gpm
 1.14, older versions are incompatible.
 * A VGA card.
@@ -357,8 +357,8 @@ your system. To use the man page viewer you need the man program installed in
 your system. Both are found in all Linux systems but not in all DOS systems.
   Starting with v0.4.26 the DOS version of the editor is distributed with an
 installer, if you have it just run install.exe and follow the instructions.
-If you only have a .zip file that contains a lot of files continue reading
-this chapter.
+If you only have a .zip or .tar.gz file that contains a lot of files continue
+reading this chapter.
   The following cases are explained:
   
 A) Installing in DOS for djgpp users.
@@ -388,7 +388,7 @@ B) Installing in DOS for non-djgpp users:
     or
    pkunzip -d edi0426b.zip
     or
-   using WinZip
+   using WinZip (be careful to preserve the directories)
    
    For the other sections I'll give examples assuming you uncompressed the
    files in c:/setedit.
@@ -408,7 +408,8 @@ B) Installing in DOS for non-djgpp users:
 
 C) Installing in Linux:
 1) Uncompress the files in /tmp and run ./INSTALL_LINUX. If you want to setup
-   the destination directory read the INSTALL_LINUX script.
+   the destination directory read the INSTALL_LINUX script. You'll need the
+   make tool to run it, that's usually installed.
    Also: the script contains useful information about access rights needed
    to run the editor.
 2) If you installed the editor in /usr or /usr/local the following is
@@ -441,7 +442,11 @@ c:/setedit/share/setedit, c:/djgpp/share/setedir, /usr/share/setedit)
 directory, start the editor and set all the options (colors and settings
 with Alt-G). Just exit and the editor will save a file called tcedit.dst.
 Each time you start the editor in a directory where there isn't any *.dst
-file the editor will load this default.
+file the editor will load this default. Linux users that doesn't have write
+access to the /usr tree can create a default in their home directory. In
+this case the file should be created in ~/.setedit directory.
+  Users that want to have only one tcedit.dst file, and not one in each
+directory, must configure it in Tool&Ops|Options|Editor General.
   If you are annoyed with the back-up files and .dst files created by the
 editor in all the places just exit with Alt+Q and the editor will delete
 these files. Also see the options available in Tool&Ops|Options|Editor
@@ -449,8 +454,10 @@ General.
 
 
 
-4. MP3: [Only in the DOS version]
+4. MP3: [Only in the DOS and Linux versions]
 
+  Linux users doesn't need to configure any special thing.
+  DOS users:
   The editor supports the Allegro mixing routines with 16 bits of resolution
 (I contributed it to the Allegro project because I needed it for the editor).
   If you want to enable it create a file called allegro.cfg with the following
@@ -553,12 +560,18 @@ extend the BIOS functionallity.
 9.  KEYBOARD FEATURES UNDER X [Linux version only]
 
   If you want to use the editor under X I recommend installing Eterm 0.8.10
-(or the lastest CVS snapshot available of 0.8.9) and follow the instruction
-of the readme.txt file located in the eterm directory of the configuration
-files (example: /usr/share/setedit/eterm/readme.txt). Using it you'll get all
-the available keyboard combinations (some of them are used by the Window
-Manager and aren't accesible, I recommend Enlightenment where all the
-keyboards are complex and also configured so they doesn't interfere).
+and follow the instruction of the readme.txt file located in the eterm
+directory of the configuration files (example:
+/usr/share/setedit/eterm/readme.txt). Using it you'll get all the available
+keyboard combinations (some of them are used by the Window Manager and
+aren't accesible, I recommend Enlightenment where all the keyboards are
+complex and also configured so they doesn't interfere).
+  I uploaded to Source Forge the sources of Eterm 0.8.10, the patches
+needed to generate a Debian package and my patches to enable the special
+keyboard mode. You must install the sources and apply both sets of patches,
+finally compile and install the package. For those using Debian Potato
+I also uploaded binaries in .deb format. All is in the extra directory of
+the Source Forge site: http://sourceforge.net/projects/setedit/
   If you use xterm you'll have some limitations imposed by common UNIX
 terminal, example: Shift+Arrows reported as just arrows.
 
@@ -566,21 +579,19 @@ terminal, example: Shift+Arrows reported as just arrows.
 
 10. DOWNLOAD:
 
- http://members.xoom.com/stropea/
- http://setsoft.webjump.com/
+ Stable and beta releases, mailing list, cvs, etc.:
+ http://setedit.sourceforge.net/
  or any Simtelnet mirror, example:
- ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/edi*.zip
+ (only stable releases)
+ ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/inf*.zip
 
 
 
 11. MAILING LIST
 
- To subscribe send an e-mail to:
- setedit-subscribe@topica.com
- To post:
- setedit@topica.com
- To consult the list from the web, post or subscribe:
- http://www.topica.com/lists/setedit
+ To subscribe visit:
+ http://lists.sourceforge.net/mailman/listinfo/setedit-users
+ I moved the old list at topica to Source Forge.
 
 
 
@@ -597,18 +608,32 @@ boxes, stamps, old money and coins).
 
 
 
-13. THANKS TO:
+13. THANKS TO (random order):
 
   Ivan Baldo: My Debian packager and friend.
   Molnar Laszlo: He reported a lot of the fixed bugs and sugested a lot of
 things that I added in the first releases of the 0.4.x serie.
+  Grzegorz Adam Hankiewicz: Another tester and source of bug reports and
+good ideas to add to the editor.
+  José Angel Sanchez Caso: For contributing a lot of code to make TV
+working in other UNIX platforms, not just Linux. I didn't yet incorporated
+all the things he sent me.
+  Vadim Belodorov: For contributing the first port of TV to Win32.
+  Anatoli Soltan: For porting to Win32 using BC++.
   Alexander Bokovoy: For the information on the russian code pages.
   Marek Habersack & Martijn Versteegh: For sugestions about the mode that
 doesn't create .dst files in all the dirs.
+  Robert Hoehne: For starting RHIDE project and porting TV to djgpp, it
+made me start this project.
+  The FSF and GNU people for such a good tools.
+  DJ Delorie and colaborators for porting it to DOS.
   Shawn Hargreaves: For Allegro, the best gaming library. I use the sound
 engine from Allegro.
   Tomislav Uzelac: For AMP the MP3 engine.
   Ove Kaaven: For LibAmp, an adaptation of AMP to Allegro.
+  Julian R. Seward: For the bzip2 library.
+  Jean-loup Gailly and Mark Adler: For the zlib.
+  Bjorn Reese: For a lot of ideas about the stack debugger for UNIX.
   The University of Cambridge: For the Perl Regular expressions package.
   The University of California, Berkeley and its contributors: after all I
 used your malloc upto v0.4.23, and perhaps I still using some libc function
