@@ -193,7 +193,9 @@ $MakeDefsRHIDE[1].='-lmss '     if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[1].='-lefence '  if @conf{'efence'} eq 'yes';
 $MakeDefsRHIDE[1].='-ltvfintl ' if @conf{'tvfintl'} eq 'yes';
 
-$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=-L. "; # MP3 lib is in makes
+$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=";
+# Before the system one
+$MakeDefsRHIDE[2].=' -L../gettext '  if (@conf{'intlShipped'} eq 'yes');
 # QNX Workaround
 $MakeDefsRHIDE[2].='-L/lib ' if ($OSf eq 'QNXRtP');
 # Libraries for TV
@@ -208,7 +210,6 @@ $MakeDefsRHIDE[2].=' '.$libs;
 $MakeDefsRHIDE[2].=' -L../libz'     if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libpcre'  if (@conf{'PCREShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' -L../gettext'  if (@conf{'intlShipped'} eq 'yes');
 
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
 

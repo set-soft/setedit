@@ -1,4 +1,9 @@
 $Log$
+Revision 1.386  2003/05/23 13:20:05  set
+* Modified: Some details about the configuration process. Now the scripts
+takes C flags, C++ flags, libraries and path to libraries from TV
+configuration using rhtv-config tool. I'm testing it so please be patient.
+Sorry for inconvenients.
 
 --- CVS tag i0_5_2b ---
 --- Tarball uploaded to S.F. ---
