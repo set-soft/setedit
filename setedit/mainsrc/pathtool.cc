@@ -391,13 +391,7 @@ void SetReferencePath(char *orig)
 char *RedirectStdErrToATemp(int &StdErrOri,int &StdErrNew)
 {
  char aux[PATH_MAX];
- #ifndef SEOS_UNIX
- char *s=(char *)GetVariable("SET_FILES");
- #else
- // In UNIX the user can't write to the share directory so we must avoid creating
- // such a files
- char *s=GetHome();
- #endif
+ char *s=ExpandHomeSave("");
  char *ret=0;
 
  /*#ifdef __TURBOC__
@@ -409,7 +403,7 @@ char *RedirectStdErrToATemp(int &StdErrOri,int &StdErrNew)
  StdErrNew=open(tempName,O_RDWR | O_CREAT,S_IRUSR | S_IWUSR);
  #else
  #endif*/
- sprintf(aux,"%s/erXXXXXX",s);
+ sprintf(aux,"%serXXXXXX",s);
  StdErrNew=mkstemp(aux);
  if (StdErrNew>0)
    {
