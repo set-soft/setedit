@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || return 0;
@@ -100,6 +100,7 @@ if ($iMode)
    $bindir    =$prefix.'/bin';
    $contrib1  =$prefix.'/contrib';
    $contrib   =$contrib1.'/setedit.bin';
+   $contribX  =$contrib.'/examples';
    $info      =$prefix.'/info';
    $share1    =$prefix.'/share';
    $share     =$share1.'/setedit';
@@ -114,6 +115,7 @@ if ($iMode)
    $bindir,
    $contrib1,
    $contrib,
+   $contribX,
    $info,
    $share1,
    $share,
@@ -131,6 +133,7 @@ else
    $bindir    =$distPrefix.'/bin';
    $contrib1  =$distPrefix.'/contrib';
    $contrib   =$contrib1.'/setedit.bin';
+   $contribX  =$contrib.'/examples';
    $info      =$distPrefix.'/info';
    $share1    =$distPrefix.'/share';
    $share     =$share1.'/setedit';
@@ -147,6 +150,7 @@ else
    $bindir,
    $contrib1,
    $contrib,
+   $contribX,
    $info,
    $share1,
    $share,
@@ -243,19 +247,23 @@ print "done.\n\n";
 
 
 print "Copying other files: ";
-print 'example.zip ' if (CopyIf('../../distrib/kextend.zip',$contrib.'/kextend.zip',$binManifest));
-print 'kexpand.zip ' if (CopyIf('../../distrib/example.zip',$contrib.'/example.zip',$binManifest));
+print 'example.zip '  if (CopyIf('../../distrib/example.zip',$contrib.'/example.zip',$binManifest));
+print 'kexpand.zip '  if (CopyIf('../../distrib/kextend.zip',$contrib.'/kextend.zip',$binManifest));
 print 'calltpc7.zip ' if (CopyIf('../../distrib/calltpc7.zip',$contrib.'/calltpc7.zip',$binManifest));
-print 'change.log '  if (CopyIf('../../change.log',$contrib.'/change.log',$binManifest));
-print 'copyrigh'     if (CopyIf('../../copyrigh',$contrib.'/copyrigh',$binManifest));
-print 'copying.dj'   if (CopyIf('../../copying.dj',$contrib.'/copying.dj',$binManifest));
-print 'copying.gpl'  if (CopyIf('../../copying.gpl',$contrib.'/copying.gpl',$binManifest));
-print 'copying.lgp'  if (CopyIf('../../copying.lgp',$contrib.'/copying.lgp',$binManifest));
-print 'copying.rh'   if (CopyIf('../../copying.rh',$contrib.'/copying.rh',$binManifest));
-print 'windos.faq'   if (CopyIf('../../windos.faq',$contrib.'/readme.faq',$binManifest));
-print 'setedit.pif'  if (CopyIf('../../distrib/setedit.pif',$bindir.'/setedit.pif',$binManifest));
-print 'Spanish messages' if (CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo',$binManifest));
-print 'German messages'  if (CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo',$binManifest));
+print 'change.log '   if (CopyIf('../../change.log',$contrib.'/change.log',$binManifest));
+print 'copyrigh '     if (CopyIf('../../copyrigh',$contrib.'/copyrigh',$binManifest));
+print 'copying.dj '   if (CopyIf('../../copying.dj',$contrib.'/copying.dj',$binManifest));
+print 'copying.gpl '  if (CopyIf('../../copying.gpl',$contrib.'/copying.gpl',$binManifest));
+print 'copying.lgp '  if (CopyIf('../../copying.lgp',$contrib.'/copying.lgp',$binManifest));
+print 'copying.rh '   if (CopyIf('../../copying.rh',$contrib.'/copying.rh',$binManifest));
+print 'windos.faq '   if (CopyIf('../../windos.faq',$contrib.'/readme.faq',$binManifest));
+print 'setedit.pif '  if (CopyIf('../../distrib/setedit.pif',$bindir.'/setedit.pif',$binManifest));
+print 'Spanish messages ' if (CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo',$binManifest));
+print 'German messages '  if (CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo',$binManifest));
+print 'Examples '     if (CopyIf('../../distrib/examples/tvrc',$contribX.'tvrc',$binManifest) ||
+                          CopyIf('../../distrib/examples/examp1.epr',$contribX.'examp1.epr',$binManifest) ||
+                          CopyIf('../../distrib/examples/examp1.dst',$contribX.'examp1.dst',$binManifest) ||
+                          CopyIf('../../distrib/examples/test1.cc',$contribX.'test1.cc',$binManifest));
 print "done.\n\n";
 
 

@@ -330,8 +330,11 @@ void *TEditorCollection::read( ipstream& is )
              i--;
          }
        else
-         if (forgetCursorPos)
-            ped->edw->editor->handleCommand(cmcTextStart);
+         {
+          if (forgetCursorPos)
+             ped->edw->editor->handleCommand(cmcTextStart);
+          ped->edw->editor->update(ufUpdate);
+         }
       }
     else
     // 2) Closed files

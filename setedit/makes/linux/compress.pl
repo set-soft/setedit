@@ -177,6 +177,7 @@ $baseFHS.='/share' if $useFHS;
 $doc_dir1=$baseFHS.'/doc';
 $doc_dir1=$base.'/share/doc' if ($os=~/FreeBSD/ && !$useFHS);
 $doc_dir=$doc_dir1.'/setedit';
+$xmp_dir=$doc_dir.'/examples';
 $man_dir1=$baseFHS.'/man';
 $man_dir=$man_dir1.'/man1';
 $inf_dir=$baseFHS.'/info';
@@ -191,6 +192,7 @@ $cfg_dir3,
 $inf_dir,
 $doc_dir1,
 $doc_dir,
+$xmp_dir,
 $man_dir1,
 $man_dir,
 $Locale2,
@@ -295,6 +297,10 @@ CopyIfRpl('../../distrib/distrib1.txt',$cfg_dir.'/readme.1st');
 CopyIf('../../distrib/linux.faq',$doc_dir.'/faq.txt');
 CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo');
 CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo');
+CopyIf('../../distrib/examples/tvrc',$xmp_dir.'/tvrc');
+CopyIf('../../distrib/examples/examp1.dst',$xmp_dir.'/examp1.dst');
+CopyIf('../../distrib/examples/examp1.epr',$xmp_dir.'/examp1.epr');
+CopyIf('../../distrib/examples/test1.cc',$xmp_dir.'/test1.cc');
 print "done.\n\n";
 
 

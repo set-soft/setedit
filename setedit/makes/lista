@@ -71,6 +71,10 @@ distrib/default.map
 *distrib/distrib1.txt
 *distrib/distrib2.txt
 *distrib/distrib3.txt
+-distrib/examples/examp1.dst
+-distrib/examples/examp1.epr
+distrib/examples/test1.cc
+distrib/examples/tvrc
 -distrib/example.zip
 +distrib/INSTALL.LINUX
 +distrib/INSTALL.MAK
@@ -794,3 +798,4 @@ WinNT/Makefile.nmk
 WinNT/msvcmake.in
 WinNT/README
 WinNT/objs/delete.me
+
