@@ -216,11 +216,7 @@ void LoadOneCLE(const char *name)
    }
 
  i=index;
- #if 0
-  #define C(a) CLEValues[i].##a=-1
- #else
-  #define C(a) CLEValues[i].a=-1
- #endif
+ #define C(a) CLEValues[i].a=0xFF
  C(File);
  C(Line);
  C(Severity);
@@ -355,7 +351,7 @@ int CLEDoSearch(char *search, int len, pcre *CompiledPCRE)
 
 void CLEGetMatch(int match, char *buf, int maxLen)
 {
- if (match==-1 || match>LastHits)
+ if (match<0 || match>LastHits)
    {
     *buf=0;
     return;
@@ -371,7 +367,7 @@ void CLEGetMatch(int match, char *buf, int maxLen)
 
 void CLEGetMatch(int match, int &offset, int &len)
 {
- if (match==-1 || match>LastHits)
+ if (match<0 || match>LastHits)
    {
     offset=-1; len=0;
     return;
