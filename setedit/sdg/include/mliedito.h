@@ -2,8 +2,9 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=18;
+const int MLIEditorCommands=19;
 class TNoCaseStringCollection;
+class TCEditor;
 
 typedef struct
 {
@@ -40,6 +41,9 @@ public:
  static int  ForceUpdate();
  static char *AskString(const char *title, const char *message);
  static int  OpenFile(const char *fileName);
+ static Boolean SelectionExists();
+
+ static TCEditor *Editor;
 
 private:
  static char *cNames[MLIEditorCommands];

@@ -845,6 +845,25 @@ CleanUp:
  destroyFloatVar(File);
 }
 
+// (tostr <object>)
+// converts a Lisp object into its "printed representation"
+DecFun(MLIBaseToStr)
+{
+ CheckNumParams(cant!=1);
+
+ char *str;
+ LocVar(val);
+
+ GetVar(0,val);
+ str=val->toStr();
+ destroyFloatVar(val);
+
+ MLIRetStrLenExists(str,strlen(str));
+
+CleanUp:
+ return;
+}
+
 // C like for(inic;condition;increment) code; => (inic cond inc code for)
 /*DecFun(MLIBaseFor)
 {
@@ -871,7 +890,8 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "strcasecmp",
  "length",
  "progn",
- "cond"/*,
+ "cond",
+ "tostr"/*,
  "for"*/
 };
 
@@ -896,7 +916,8 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseStrCaseCmp,
  MLIBaseLength,
  MLIBaseEval,
- MLIBaseCond/*,
+ MLIBaseCond,
+ MLIBaseToStr/*,
  MLIBaseFor*/
 };
 
