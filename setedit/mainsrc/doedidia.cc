@@ -19,6 +19,7 @@ somewhere in your code to execute the dialogs.
 #include <ceditint.h>
 
 #define Uses_stdio
+#define Uses_string
 #define Uses_limits
 #define Uses_MsgBox
 #define Uses_fpstream
@@ -44,6 +45,12 @@ void ApplyBroadcast(TView *p, void *e)
  p->handleEvent(*(TEvent *)e);
 }
 
+#ifdef SEOSf_Solaris
+ #define StrError(a) strerror(a)
+#else
+ #define StrError(a) sys_errlist[a]
+#endif
+
 unsigned doEditDialog(int dialog, va_list arg)
 {
  CreateStrStream(os,buf,PATH_MAX+80);
@@ -55,7 +62,7 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edReadError:
         {
         os << _("Error reading file ") << va_arg(arg,_charPtr)
-           << ". " << sys_errlist[errno] << " (" << errno << ")"
+           << ". " << StrError(errno) << " (" << errno << ")"
            << CLY_std(ends);
         va_end(arg);
         return messageBox(GetStrStream(buf),mfError | mfOKButton);
@@ -70,7 +77,7 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edCreateError:
         {
         os << _("Error creating file ") << va_arg(arg,_charPtr)
-           << ". " << sys_errlist[errno] << " (" << errno << ")"
+           << ". " << StrError(errno) << " (" << errno << ")"
            << CLY_std(ends);
         va_end(arg);
         return messageBox(GetStrStream(buf),mfError | mfOKButton);
