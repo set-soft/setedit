@@ -1,5 +1,5 @@
 setedit-*
+infview-*
 result
 resultInf
-infview-*
-
+libncurses.a
