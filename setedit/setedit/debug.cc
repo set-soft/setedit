@@ -11,8 +11,6 @@
 
   * Document.
   * Join help context values to documentation
-  * Annoy fucking idiots maintaining gdb to apply the trivial patch that
-fixes the bug in the registers stuff.
   * Fix menu entries that uses dialogs and lacks ...
   * Add the menubind.smn options to the redmond.smn
   * Update spanish translation and ensure it is complete.
@@ -2300,8 +2298,8 @@ TDisAsmWin::TDisAsmWin(const TRect &aR) :
  codeInfoLine=-1;
 
  int cRegs;
- mi_chg_reg *rg=dbg->GetRegisterNames(&cRegs);
- if (rg && !dbg->GetRegisterValues(rg))
+ mi_chg_reg *rg=dbg->GetRegisterValues(&cRegs);
+ if (rg && !dbg->GetRegisterNames(rg))
    {
     mi_free_chg_reg(rg);
     rg=NULL;
