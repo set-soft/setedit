@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -46,6 +46,14 @@ fonts than the BIOS ones.@p
 #include <ceditor.h>
 
 #include <codepage.h>
+
+#if TV_MAJOR_VERSION<2
+ #define SpecialChars specialChars
+ #define o_SpecialChars o_specialChars
+#else
+ #define SpecialChars TView::specialChars
+ #define o_SpecialChars TView::o_specialChars
+#endif
 
 TNoCaseNoOwnerStringCollection *CodePages=0;
 const unsigned maxSymbolDefined=587; // Number of symbols defined (0-460=>461)
@@ -1181,7 +1189,7 @@ void RemapCharactersFor(int id)
  int i;
 
  for (i=0; i<6; i++)
-     specialChars[i]=RemapCharCodePage(o_specialChars[i],map);
+     SpecialChars[i]=RemapCharCodePage(o_SpecialChars[i],map);
  #if 0
   #define C(cla,name,len) RemapNStringCodePage((uchar *)cla##::##name,(uchar *)cla##::o##name,map,len)
  #else
