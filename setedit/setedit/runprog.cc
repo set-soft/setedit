@@ -648,7 +648,8 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
    }
 
  SaveAllEditors();
- char *err=open_stderr_out();
+ int nherr;
+ char *err=open_stderr_out(&nherr);
 
  if ((flags & repDontShowAsMessage)==0)
    {
@@ -681,7 +682,7 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
 
  MP3Suspend;
  TScreen::System(b,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
-                 0 : &PidChild);
+                 0 : &PidChild,-1,nherr,nherr);
  MP3Resume;
 
  if (saveScreen)

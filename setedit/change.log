@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.239  2002/11/27 13:11:58  set
+* Added: A resumed list of new and fixed stuff to the distribution list.
+
 Revision 1.238  2002/11/26 12:51:12  set
 * Added: An LRU algorithm to remove entries in the closed list, as
 suggested by Ivan. I changed (once again) the resume structure to add the

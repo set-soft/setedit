@@ -100,7 +100,7 @@ void close_stdout(void)
   close (h_outbak);
 }
 
-char *open_stderr_out(void)
+char *open_stderr_out(int *nherr)
 {
  if (erroutname) free(erroutname);
  erroutname = unique_name("eo");
@@ -110,6 +110,14 @@ char *open_stderr_out(void)
  h_outbak = dup(STDOUT);
  fflush(stderr);  /* so any buffered chars will be written out */
  fflush(stdout);  /* so any buffered chars will be written out */
+ if (nherr)
+    *nherr=h_err;
+ return erroutname;
+}
+
+char *open_stderr_out(void)
+{
+ open_stderr_out(NULL);
  dup2(h_err,STDERR);
  dup2(h_err,STDOUT);
  return erroutname;

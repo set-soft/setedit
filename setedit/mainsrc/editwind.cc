@@ -274,6 +274,7 @@ void TCEditWindow::ReadResume(EditorResume &r, ipstream& is)
        if (version>=6)
          {
           is >> r.extraSize;
+          if (r.extraSize==0) r.extraSize=4; // Workaround
           is.readBytes(&r.dateResume,r.extraSize);
          }
       }
@@ -302,6 +303,10 @@ void TCEditWindow::SaveResume(EditorResume &r, opstream& os)
 {
  // If the file wasn't closed the resume is empty, even the version!
  r.version=ResumeVersion;
+ // It must be filled properly.
+ // PrjItem *TPrjItemColl::createNewElement(char *name, int flags) doesn't
+ // fill it for new (and hence empty) items.
+ r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
  os.writeBytes(&r,sizeof(EditorResume));
 }
 

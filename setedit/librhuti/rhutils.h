@@ -170,6 +170,7 @@ void close_stderr(void);
 void close_stdout(void);
 /* SET: that's for stderr and stdout redirected to the same file */
 char *open_stderr_out(void);
+char *open_stderr_out(int *nherr); // Without dup2
 void close_stderr_out(void);
 
 /* Return an unique filename in $TMPDIR which starts with 'before'.
