@@ -560,9 +560,9 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
      delete[] hl[i].EmacsModes;
      delete[] hl[i].ShellScript;
      delete[] hl[i].PMacros;
-     // That's allocated in editorfo.cc by SETSECreateTables
-     delete[] hl[i].Search.firstLetters;
-     delete[] hl[i].SearchUserWords.firstLetters;
+     // Search tables
+     SETSEDeleteTables(hl[i].Search);
+     SETSEDeleteTables(hl[i].SearchUserWords);
      // PCREs
      free(hl[i].NameMatch);
      free(hl[i].PathMatch);

@@ -163,6 +163,7 @@ extern int SHLConvPosToVal(ccIndex a);
 class TSOSStringCollection;
 struct strSETSE;
 extern Boolean SETSECreateTables(strSETSE &st, int CaseSens, TStringCollection *TSC);
+extern void SETSEDeleteTables(strSETSE &st);
 
 // isalnum() + _ + all the accents
 const unsigned char ttedIsWordChar=1;
