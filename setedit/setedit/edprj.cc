@@ -28,6 +28,7 @@
 #define Uses_fcntl
 #define Uses_filelength
 #define Uses_TVCodePage
+#define Uses_TScreen
 #include <ceditor.h>
 #include <editcoma.h>
 

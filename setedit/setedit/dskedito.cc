@@ -12,6 +12,7 @@
 #define Uses_TDeskTop
 #define Uses_TListBox
 #define Uses_TVCodePage
+#define Uses_TScreen
 #include <ceditor.h>
 #define Uses_SETAppVarious
 #define Uses_TSetEditorApp

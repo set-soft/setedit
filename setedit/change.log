@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.178  2002/08/20 14:23:28  set
+* Added: First step towards loading screen options before starting TV. It
+implies a "pre-load" of the desktop file loading only the screen related
+stuff. Currently I'm implementing what will become the "compatibility"
+code. The new desktop files (0.5.0) will store it in a better way and will
+have separated options for each driver.
+
 Revision 1.177  2002/08/13 13:38:59  set
 * Added: UseSecondaryFont TVRC keyword.
 * Fixed: I declared some const char * const members as const char *. MSVC

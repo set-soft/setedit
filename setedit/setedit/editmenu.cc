@@ -21,6 +21,7 @@
 #define Uses_TSortedListBox
 #define Uses_TKeys
 #define Uses_TVCodePage
+#define Uses_TScreen
 // InfView requests
 #include <infr.h>
 

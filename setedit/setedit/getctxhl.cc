@@ -8,6 +8,7 @@
 #define Uses_TCEditWindow
 #define Uses_TCEditor_Commands
 #define Uses_TVCodePage
+#define Uses_TScreen
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>

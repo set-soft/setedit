@@ -1,14 +1,6 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#if TV_MAJOR_VERSION==2
 typedef TScreenColor PalCol;
-#else
-typedef struct
-{
- uchar R,G,B;
-} PalCol;
-#endif
-
 class fpstream;
 
 class TTextPalette
@@ -24,7 +16,7 @@ public:
  void GetOne(int color, int &R, int &G, int &B);
  void BackToDefault(void);
  void Save(fpstream &s);
- void Load(fpstream &s);
+ void Load(fpstream &s, PalCol *pal=NULL);
  void getArray(unsigned *pal);
  PalCol *GetAllPal();
  void SetAllPal(PalCol *);
@@ -44,5 +36,6 @@ extern TTextPalette *EditorPalette;
 #define ResumePaletteSystem() EditorPalette->resume()
 #define SavePaletteSystem(s) EditorPalette->Save(s)
 #define LoadPaletteSystem(s) EditorPalette->Load(s)
+#define LoadPaletteSystemDontSet(s,p) EditorPalette->Load(s,p)
 #define RestorePaletteSystem() EditorPalette->restore()
 #define GetRGBArrayPaletteSystem(a) EditorPalette->getArray(a)

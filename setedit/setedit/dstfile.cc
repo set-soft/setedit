@@ -29,6 +29,8 @@
 #define Uses_TFileCollection
 #define Uses_TSOSListBox
 #define Uses_TVCodePage
+#define Uses_TScOptsCol
+#define Uses_TVFontCollection
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>
@@ -878,7 +880,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
   Loads settings for fonts from desktops older than 0.5.0.
   
 ***************************************************************************/
-void TSetEditorApp::loadOldFontInfo(fpstream& s)
+void TSetEditorApp::loadOldFontInfo(fpstream& s, stScreenOptions *scrOps)
 {
  char version,aux;
  s >> version;
@@ -890,8 +892,8 @@ void TSetEditorApp::loadOldFontInfo(fpstream& s)
     if (version>=3)
       {
        s >> cp1;
-       so.enForceScr=1;
-       so.enScr=cp1;
+       scrOps->enForceScr=1;
+       scrOps->enScr=cp1;
       }
     char *nameSeco=0;
 
@@ -904,20 +906,20 @@ void TSetEditorApp::loadOldFontInfo(fpstream& s)
           if (version>=3)
             {
              s >> cp2;
-             so.enForceSnd=1;
-             so.enSnd=cp2;
+             scrOps->enForceSnd=1;
+             scrOps->enSnd=cp2;
             }
          }
       }
     if (namePrim && namePrim[0])
       {
-       so.foPriName=namePrim;
-       so.foPriLoad=1;
+       scrOps->foPriName=namePrim;
+       scrOps->foPriLoad=1;
       }
     if (nameSeco && nameSeco[0])
       {
-       so.foSecName=nameSeco;
-       so.foSecLoad=1;
+       scrOps->foSecName=nameSeco;
+       scrOps->foSecLoad=1;
       }
    }
  else
@@ -934,24 +936,24 @@ void TSetEditorApp::loadOldFontInfo(fpstream& s)
        if (aux)
           nameSeco=s.readString();
       }
-    so.enForceScr=1;
-    so.enScr=cp1;
-    so.enForceSnd=1;
-    so.enSnd=cp2;
+    scrOps->enForceScr=1;
+    scrOps->enScr=cp1;
+    scrOps->enForceSnd=1;
+    scrOps->enSnd=cp2;
     if (namePrim)
       {
-       so.foPriName=namePrim;
-       so.foPriLoad=1;
+       scrOps->foPriName=namePrim;
+       scrOps->foPriLoad=1;
       }
     if (nameSeco)
       {
-       so.foSecName=nameSeco;
-       so.foSecLoad=1;
+       scrOps->foSecName=nameSeco;
+       scrOps->foSecLoad=1;
       }
    }
 }
 
-// Ojo!!! si todas fallan hay que crear algo por defecto o tolerarlo!!!
+// TODO: Ojo!!! si todas fallan hay que crear algo por defecto o tolerarlo!!!
 Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
 {
  char buffer[80];
@@ -970,11 +972,47 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
    }
  //if (deskTopVersion>TCEDITOR_VERSION)
  // You need a newer editor for this desktop file.
- // No creo que sea necesario, esto va a tener una versión por separado.
+ // TODO: No creo que sea necesario, esto va a tener una versión por separado.
+ destroy(soCol);
+ soCol=new TScOptsCol();
  if (deskTopVersion<0x500)
    {// The preLoad was introduced in the 0.4.x to 0.5.x change.
     // We have to extract the information from the old structure.
-    loadOldFontInfo(s);
+    stScreenOptions *scrOps=&so;
+    if (deskTopVersion>=0x404)
+       loadOldFontInfo(s,scrOps);
+    #ifdef TVCompf_djgpp
+    if (deskTopVersion>=0x405)
+       LoadPaletteSystemDontSet(s,scrOps->palette);
+    #else
+    /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
+       I choose compatibility with these versions */
+    if (deskTopVersion>=0x418)
+       LoadPaletteSystemDontSet(s,scrOps->palette);
+    #endif
+    if (deskTopVersion>=0x403)
+      {
+       ushort mode;
+       s >> mode;
+       scrOps->scOptions=scfMode;
+       scrOps->scModeNumber=mode;
+       if (deskTopVersion>=0x411)
+         {
+          s >> UseExternPrgForMode;
+          s.readString(ExternalPrgMode,80);
+          if (UseExternPrgForMode)
+            {
+             scrOps->scOptions=scfExternal;
+             scrOps->scCommand=newStr(ExternalPrgMode);
+            }
+         }
+      }
+    scrOps->driverName=newStr("_Default");
+    // TODO: Insertar esto en la configuración de TV y en la colección
+    // Ojo, eso implica que de acá en más la aplicación sólo tenga un "puntero" a y no
+    // un objeto. Esto hay que verlo porque entonces la colección tiene que existir pase
+    // lo que pase y contener al menos un elemento. De paso los diálogos de configuración
+    // deberían reusarse a funcionar si esto no se cumple por algún error fatal
    }
  return True;
 }
@@ -992,5 +1030,81 @@ void TSetEditorApp::createClipBoard(void)
 
 TScOptsCol *TSetEditorApp::soCol=NULL;
 
-//void TSetEditorApp::readScreenOptions()
+void *TScOptsCol::keyOf(void *item)
+{
+ return ((stScreenOptions *)item)->driverName;
+}
+
+int TScOptsCol::compare(void *key1, void *key2)
+{
+ return strcmp((char *)key1,(char *)key2);
+}
+
+void TScOptsCol::freeItem(void *item)
+{
+ stScreenOptions *p=(stScreenOptions *)item;
+ DeleteArray(p->driverName);
+ DeleteArray(p->foPriName);
+ DeleteArray(p->foSecName);
+ DeleteArray(p->foPriFile);
+ DeleteArray(p->foSecFile);
+ DeleteArray(p->scCommand);
+ destroy(p->foPri);
+ destroy(p->foSec);
+ delete p;
+}
+
+const char scOptsVer=1;
+
+void *TScOptsCol::readItem(ipstream &is)
+{
+ stScreenOptions *p=new stScreenOptions;
+ memset(p,0,sizeof(stScreenOptions));
+
+ char version;
+ is >> version;
+ p->driverName=is.readString();
+ p->foPriName =is.readString();
+ p->foSecName =is.readString();
+ p->scCommand =is.readString();
+ is >> p->enForceApp  >> p->enForceScr >> p->enForceSnd >> p->enForceInp
+    >> p->enApp       >> p->enScr      >> p->enSnd      >> p->enInp
+    >> p->foPriLoad   >> p->foSecLoad
+    >> p->foPriW      >> p->foPriH
+    >> p->scOptions   >> p->scWidth    >> p->scHeight
+    >> p->scCharWidth >> p->scCharHeight
+    >> p->scModeNumber;
+ unsigned i;
+ for (i=0; i<16; i++)
+     is >> p->palette[i].R >> p->palette[i].G >> p->palette[i].B;
+ // TODO: ¿Determinar esto? creo que mejor dejarlo demorado
+ // char *foPriFile, *foSecFile;
+ // TVFontCollection *foPri, *foSec;
+ // uchar foPriLoaded, foSecLoaded;
+ // uchar foCallBackSet;
+ return p;
+}
+
+void TScOptsCol::writeItem(void *obj, opstream &os)
+{
+ stScreenOptions *p=(stScreenOptions *)obj;
+ os << scOptsVer;
+ os.writeString(p->driverName);
+ os.writeString(p->foPriName);
+ os.writeString(p->foSecName);
+ os.writeString(p->scCommand);
+ os << p->enForceApp  << p->enForceScr << p->enForceSnd << p->enForceInp
+    << p->enApp       << p->enScr      << p->enSnd      << p->enInp
+    << p->foPriLoad   << p->foSecLoad
+    << p->foPriW      << p->foPriH
+    << p->scOptions   << p->scWidth    << p->scHeight
+    << p->scCharWidth << p->scCharHeight
+    << p->scModeNumber;
+ unsigned i;
+ for (i=0; i<16; i++)
+     os << p->palette[i].R << p->palette[i].G << p->palette[i].B;
+}
+
+const char * const TScOptsCol::name="TScOptsCol";
+
 

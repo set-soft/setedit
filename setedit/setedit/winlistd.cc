@@ -16,6 +16,7 @@
 #define Uses_TSButton
 #define Uses_TSListBox
 #define Uses_TVCodePage
+#define Uses_TScreen
 #include <easydia1.h>
 #include <ceditor.h>
 #include <easydiag.h>

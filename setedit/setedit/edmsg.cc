@@ -24,6 +24,7 @@
 #define Uses_FileOpenAid
 #define Uses_MsgBox
 #define Uses_TVCodePage
+#define Uses_TScreen
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>

@@ -1147,7 +1147,7 @@ stScreenOptions TSetEditorApp::so=
 
  // Screen size options
  //uint32 scOptions;
- 0,
+ scfDontForce,
  //unsigned scWidth, scHeight;
  80,25,
  //unsigned scCharWidth, scCharHeight;

@@ -9,6 +9,7 @@
 #define Uses_TProgram
 #define Uses_TDeskTop
 #define Uses_TVCodePage
+#define Uses_TScreen
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>

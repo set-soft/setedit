@@ -106,7 +106,8 @@ class TScOptsCol : public TSortedCollection
 public:
  TScOptsCol() : TSortedCollection(8,2) {};
  virtual void *keyOf(void *item);
- virtual int compare(void *key1, void *key2);
+ virtual int   compare(void *key1, void *key2);
+ virtual void  freeItem(void* item);
  SetDefStreamMembers(TScOptsCol,TSortedCollection);
 };
 SetDefStreamOperators(TScOptsCol)
@@ -171,6 +172,9 @@ struct stScreenOptions
  unsigned scModeNumber;
  // External program
  char *scCommand;
+
+ // The screen colors palette
+ TScreenColor palette[16];
 };
 
 const uint32 scfDontForce=0, scfSameLast=1, scfExternal=2, scfForced=3, scfMode=4;
@@ -194,7 +198,7 @@ public:
     void storeDesktop(fpstream& s);
     Boolean loadDesktop(fpstream& s, Boolean isLocal);
     static Boolean preLoadDesktop(fpstream &s);
-    static void    loadOldFontInfo(fpstream& s);
+    static void    loadOldFontInfo(fpstream& s, stScreenOptions *scrOps);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();
