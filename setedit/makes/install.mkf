@@ -38,7 +38,7 @@ INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 #
 include rhide.env
 # This is specific for this project
-RHIDE_OS_LIBS:=$(RHIDE_OS_LIBS) win
+RHIDE_OS_LIBS:=$(RHIDE_OS_LIBS) -lwin
 
 #
 # Common rules used by RHIDE.

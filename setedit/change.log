@@ -1,4 +1,12 @@
 $Log$
+
+--- CVS tag i0_5_2b ---
+--- Tarball uploaded to S.F. ---
+
+Revision 1.385  2003/05/22 20:47:31  set
+* Added: Support for "DOS files" to the .mak parser. Just in case.
+* Updated: .imk files to avoid the need of gpr2mak.
+
 Revision 1.384  2003/05/22 19:24:45  set
 * Fixed: It was wrong again ;-), if the source was newer than imks and the
 .exe didn't exist it failed. Thanks Kevin for the patience.

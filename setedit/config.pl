@@ -19,7 +19,7 @@ $conf{'compressExe'}='undef';
 $TVCommandLine=0;
 
 # If the script is newer discard the cache.
-GetCache() unless (-M 'config.pl' < -M 'configure.cache');
+#GetCache() unless (-M 'config.pl' < -M 'configure.cache');
 GetVersion('');
 
 $TVVersionNeeded='2.0.2';
@@ -94,7 +94,6 @@ if ($OS eq 'DOS')
 # Where is the TV library?
 # $TVInclude and $TVLib
 LookForTV();
-CheckTVFix();
 # Is the right version?
 TestTVVersion($TVVersionNeeded);
 # Find the major version
@@ -117,9 +116,9 @@ LookForBZ2Lib($BZ2LibVersionNeeded);
 LookForGettextTools();
 LookForMakeinfo();
 # Is a usable gpm there?
-LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
+#LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
 # Should we try X?
-LookForXlib() if (($OS eq 'UNIX') && ($tvMajor>=2));
+#LookForXlib() if (($OS eq 'UNIX') && ($tvMajor>=2));
 # Needed by X libraries in some systems
 LookForDL() if ($OS eq 'UNIX');
 # An option to display screen savers ;-)
@@ -139,58 +138,80 @@ $TVInclude='../'.$TVInclude if (substr($TVInclude,0,2) eq '..');
 if ($OS eq 'DOS')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=$(DJDIR)/include $(DJDIR)/lang/cxx $(DJDIR)/lib/gcc-lib';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
-   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ';
-   $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
-   $MakeDefsRHIDE[1].='iconv ' if (@conf{'iconv'} eq 'yes');
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=-lrhtv ';
+   $MakeDefsRHIDE[1].='-l'.substr($stdcxx,2).' ';
+   $MakeDefsRHIDE[1].='-lintl ' unless (@conf{'intl'} eq 'no');
+   $MakeDefsRHIDE[1].='-liconv ' if (@conf{'iconv'} eq 'yes');
    if ((@conf{'mp3'} eq 'yes') && (@conf{'HAVE_ALLEGRO'} eq 'yes'))
      {
-      $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' alleg ';
+      $MakeDefsRHIDE[1].='-l'.@conf{'mp3lib'}.' -lalleg ';
      }
-   $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].='-lbz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
   }
 elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
-   # RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
-   # be added for things like FreeBSD or SunOS.
-   $MakeDefsRHIDE[1].=substr($stdcxx,2).' '; # unless ($OSf eq 'Linux');
-   $MakeDefsRHIDE[1].='ncurses m ';
-   # No for UNIX!! $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
-   $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
-   $MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
+   if (@conf{'static'} eq 'yes')
+      { $libs=`rhtv-config --slibs`; }
+   else
+      { $libs=`rhtv-config --dlibs`; }
+   chop $libs;
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS='.$libs.' ';
+   #
+   # The following are TV dependencies
+   #
+   ## RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
+   ## be added for things like FreeBSD or SunOS.
+   #$MakeDefsRHIDE[1].=substr($stdcxx,2).' '; # unless ($OSf eq 'Linux');
+   #$MakeDefsRHIDE[1].='ncurses m ';
+   ## No for UNIX!! $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
+   #$MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
+   #$MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
    if ($conf{'dl'} eq 'yes')
      {
-      $MakeDefsRHIDE[1].=($OSf eq 'QNXRtP') ? 'ltdl ' : 'dl ';
+      $MakeDefsRHIDE[1].=($OSf eq 'QNXRtP') ? '-lltdl ' : '-ldl ';
      }
-   $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
-   $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
-   $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
-   $MakeDefsRHIDE[1].='aa ' if ($conf{'HAVE_AA'} eq 'yes');
+   $MakeDefsRHIDE[1].='-lbz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
+   $MakeDefsRHIDE[1].='-l'.@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
+   $MakeDefsRHIDE[1].='-lintl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
+   $MakeDefsRHIDE[1].='-laa ' if ($conf{'HAVE_AA'} eq 'yes');
   }
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ gdi32 ';
-   $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
-   $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
-   $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
+   $libs=`rhtv-config --slibs`;
+   chop $libs;
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS= '.$libs.' ';
+   #$MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ gdi32 ';
+   #$MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
+   $MakeDefsRHIDE[1].='-lbz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].='-l'.@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
   }
-$MakeDefsRHIDE[1].='z ';
-$MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
-$MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
-$MakeDefsRHIDE[1].='efence ' if @conf{'efence'} eq 'yes';
-$MakeDefsRHIDE[1].='tvfintl ' if $conf{'tvfintl'} eq 'yes';
-$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=";
-$MakeDefsRHIDE[2].='/lib ' if ($OSf eq 'QNXRtP');
-$MakeDefsRHIDE[2].="$TVLib $LDExtraDirs";
-$MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' '.$conf{'X11LibPath'} if ($conf{'HAVE_X11'} eq 'yes');
+$MakeDefsRHIDE[1].='-lz ';
+$MakeDefsRHIDE[1].='-lpcre '    if @conf{'HAVE_PCRE_LIB'} eq 'yes';
+$MakeDefsRHIDE[1].='-lmss '     if @conf{'mss'} eq 'yes';
+$MakeDefsRHIDE[1].='-lefence '  if @conf{'efence'} eq 'yes';
+$MakeDefsRHIDE[1].='-ltvfintl ' if @conf{'tvfintl'} eq 'yes';
+
+$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=-L. "; # MP3 lib is in makes
+# QNX Workaround
+$MakeDefsRHIDE[2].='-L/lib ' if ($OSf eq 'QNXRtP');
+# Libraries for TV
+$libs=`rhtv-config --dir-libs`;
+chop $libs;
+$MakeDefsRHIDE[2].=$libs;
+# Extra libraries path
+$libs=$LDExtraDirs;
+$libs=~s/(\S+)/-L$1/g;
+$MakeDefsRHIDE[2].=' '.$libs;
+# Shipped replacements
+$MakeDefsRHIDE[2].=' -L../libz'     if (@conf{'zlibShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' -L../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' -L../libpcre'  if (@conf{'PCREShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' -L../gettext'  if (@conf{'intlShipped'} eq 'yes');
+
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
+
 $test='';
 $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
@@ -198,6 +219,7 @@ $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
+
 # The support libraries shouldn't generate dependencies
 $MakeDefsRHIDE[0].=$test;
 # Nor compatlayer headers
@@ -220,9 +242,11 @@ else
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[8]='STDCPP_LIB='.$stdcxx;
+$MakeDefsRHIDE[9]='RHIDE_LIBS=$(LIBS) $(RHIDE_OS_LIBS)';
+$MakeDefsRHIDE[10]='RHIDE_LIBDIRS=$(LIB_DIRS)';
 if ($Compf eq 'MinGW')
   {
-   $MakeDefsRHIDE[9]='SPECIAL_LDFLAGS=-mconsole';
+   $MakeDefsRHIDE[11]='SPECIAL_LDFLAGS=-mconsole';
   }
 CreateRHIDEenvs('makes/rhide.env','+mp3/libamp/rhide.env',
                 '+mp3/mpegsound/rhide.env');
@@ -614,23 +638,6 @@ sub LookForMakeinfo
    {
     $conf{'makeinfo'}=$ver;
     print " OK\n";
-   }
-}
-
-sub CheckTVFix
-{
- my $a;
-
- $a=cat($TVInclude.'/compatlayer.h');
- if (!($a=~/GetStrStream\(os\,buf\)/))
-   {
-    print "\nAttention! you have an old release of Turbo Vision 1.1.4, it needs a fix\n";
-    print "for gcc 3.x. Please download it again or look in the extra section of\n";
-    print "SETEdit's Source Forge site for a patch.\n\n";
-    print "http://www.sourceforge.net/projects/setedit\n\n";
-    print "Sorry for the inconvenience\n\n";
-    CreateCache();
-    die "Missing library\n";
    }
 }
 
