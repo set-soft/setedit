@@ -3367,6 +3367,7 @@ are:
     @item Clipper 5.x
     @item Command Line Errors File
     @item Environment files
+    @item Fortran
     @item HTML
     @item Internationalization files (.po)
     @item Java
