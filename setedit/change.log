@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.439  2003/08/27 17:53:42  set
+* Added: HTML as html extension.
+* Fixed: The readme said it was a .0 release. Pointed out by Ivan.
+* Fixed: The configure scripts to pass the arguments using "". From a
+problem reported by Ivan.
+* Added: Nice screen shot contributed by Mike Conrad
+<conradme@email.uc.edu>
+* Fixed: An unhandled diff case in the applycvs.pl tool.
+
 Revision 1.438  2003/08/15 18:51:32  set
 * Fixed: [Configuration] The configure script didn't take the CXXFLAGS
 variable, instead always used rhtv-config output (only CXXFLAGS, no CFLAGS)

@@ -4432,7 +4432,7 @@ void TCEditor::SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags)
     }
  fputs("-->\n</style>\n",f);
  // End of head
- fputs("</HEAD><p>",f);
+ fputs("</HEAD><Body><p>",f);
  ColorsCacheToIDs();
  for (int y=0; y<limit.y; y++)
     {
