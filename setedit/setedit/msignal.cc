@@ -40,9 +40,10 @@ void EditorSignal(int num)
  signal(SIGSEGV, SIG_IGN);
  signal(SIGTERM, SIG_IGN);
  signal(SIGINT,  SIG_IGN);
+ /* It doesn't have much sense, SIGKILL never reachs the application ;-)
  #ifdef SIGKILL
  signal(SIGKILL, SIG_IGN);
- #endif
+ #endif */
  #ifdef SIGQUIT
  signal(SIGQUIT, SIG_IGN);
  #endif

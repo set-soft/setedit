@@ -6467,7 +6467,8 @@ void TCEditor::MakeEfectiveLineInEdition(void)
     if (bufSize<bufLen+dif)
        setBufSize(bufLen+dif);
    }
- memmove(curLinePtr+actual,curLinePtr+old,(size_t)(bufLen-(curLinePtr+old-buffer)));
+ if (actual!=old)
+    memmove(curLinePtr+actual,curLinePtr+old,(size_t)(bufLen-(curLinePtr+old-buffer)));
 
  unsigned curLineOff=(unsigned)(curLinePtr-buffer);
  if (selNewStart!=selStart || selNewEnd!=selEnd)
@@ -7454,7 +7455,7 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
     addToUndo(undoDeleteBuf,to);
 
  // do the work
- memcpy(from,to,(size_t)(bufLen-(to-buffer)));
+ CLY_memcpy(from,to,(size_t)(bufLen-(to-buffer)));
  bufLen-=(unsigned)(to-from);
 
  // Correct the syntax of the line and test for propagation
@@ -9441,7 +9442,7 @@ unsigned LineMeassureC(char *s, char *end, uint32 &Attr, uint32 *extra)
  if (l && *s=='\n') l++;
 #else
  // Touched by Robert, I don't know if it's safe
- if (*s=='\n') l++;
+ if (s<end && *s=='\n') l++;
 #endif
  return l;
 }
@@ -11074,7 +11075,6 @@ void *TCEditor::read( ipstream& is )
  // stuff related to the drawing machinery.
  updateFlags=0;
  CrossCursorInCol=CrossCursorInRow=0;
- //undoGroupCount=0;
  setBufLen(0);
 
  SpecialLines=NULL;
@@ -11658,7 +11658,7 @@ void TCEditor::BackSpace(Boolean allowUndo)
           addToUndo(undoDelChar,inEditPtr-1);
        // If one of the 2 chars is a tab the X must be recalculated
        int wasATab=*(inEditPtr-1)=='\t' || *inEditPtr=='\t';
-       memcpy(inEditPtr-1,inEditPtr,restCharsInLine+1);
+       CLY_memcpy(inEditPtr-1,inEditPtr,restCharsInLine+1);
        AdjustLineSel((uint32)(inEditPtr-bufEdit),-1,True);
 
        // Update the markers
@@ -12407,6 +12407,8 @@ void TCEditor::addToUndo(UndoState st, void *p)
  UndoSt=st;
  UndoCell &un2=UndoArray[UndoActual];
  un2.Type=st;
+ // Increment now, some cases returns.
+ un2.Count=undoGroupCount;
 
  switch (st)
    {
@@ -12476,7 +12478,6 @@ void TCEditor::addToUndo(UndoState st, void *p)
          break;
    }
 
- un2.Count=undoGroupCount;
  if (undoLockCount)
     undoGroupCount++;
 }
