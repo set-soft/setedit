@@ -8920,7 +8920,7 @@ uint32 TCEditor::SyntaxHighlightExtraFor(char *lineStart, char *posTarget,
 {
  if (SyntaxHL==shlNoSyntax)
     return 0;
- uint32 attr=lenLines.getAttr(line);
+ uint32 attr=line ? lenLines.getAttr(line-1) : 0;
  uint32 extra;
  LineMeassure(lineStart,posTarget,attr,&extra);
  return extra;
