@@ -3131,7 +3131,7 @@ msgstr "Generar ~c~¢digo"
 
 #: ../setedit/editmenu.cc:235
 msgid "Ru~n~ selected code"
-msgstr "Ejecutar ~c~¢digo seleccionado"
+msgstr "E~j~ecutar c¢digo seleccionado"
 
 #: ../setedit/editmenu.cc:236
 msgid "Enter c~o~de to run"
