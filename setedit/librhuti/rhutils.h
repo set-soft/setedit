@@ -71,8 +71,8 @@ extern int expand_variable_names;
    second with 'use_env=1' and the 'use_env' of the second functions can
    be used to disable the search in the real environment for the wanted
    variable by setting it to zero. */
-const char * GetVariable(const char *variable);
-const char * GetVariable(const char *variable,int use_env);
+//const char * GetVariable(const char *variable);
+//const char * GetVariable(const char *variable,int use_env);
 void set_variable(const char *variable, const char *contents);
 
 /* Array of strings with the internal variables with the organization

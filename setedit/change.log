@@ -1,4 +1,13 @@
 $Log$.
+Revision 1.574  2004/08/12 21:07:32  set
+* Fixed: [Debug] if we specified a path for sources when gdb wasn't running
+the editor crashed. It was only from the dialog to specify a file.
+* Added: The "FindFile" function now also looks for the filename alone. So
+if we look for ./examples/ex3d.c FindFile will try with it and then with
+ex3d.c alone.
+* Added: [Debug] frames of the available threads and also selection of
+current thread by default. So it can be used to display current threads.
+
 Revision 1.573  2004/08/11 21:06:29  set
 * Added: [Debug] Select thread option. But this is quite useless. GDB
 doesn't report any info, just the ID and doesn't remove finished threads

@@ -1434,6 +1434,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               DebugThreadSel();
               break;
 
+         case cmeDbgOptionsAdv:
+              DebugOptionsAdv();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

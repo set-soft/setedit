@@ -1,4 +1,4 @@
-/* Copyright (C) 2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef EDSPECS_H_INCLUDED
 #define EDSPECS_H_INCLUDED
@@ -6,7 +6,7 @@
 extern void InsertEnviromentVar(const char *variable, const char *contents);
 extern void InitEnvirVariables(void);
 extern void DeInitEnvirVariables(void);
-extern const char *GetVariable(const char *variable);
+extern const char *GetVariable(const char *variable, const char *def=NULL);
 extern int  EnvirVariablesIsOldVersion();
 extern unsigned EnvirGetIntVar(const char *name, unsigned aDefault=0);
 extern void     EnvirSetIntVar(const char *name, unsigned Value);

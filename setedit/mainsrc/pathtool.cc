@@ -28,6 +28,7 @@
 #include <settvuti.h>
 #include <pathtool.h>
 #include <pathlist.h>
+#include <edspecs.h>
 
 // Get HIDDEN_DIFFERENT, it should be moved to CLY
 #define Uses_SETAppFiles
@@ -44,7 +45,6 @@
  #endif
 #endif
 
-extern const char *GetVariable(const char *variable);
 static char PathOrig[PATH_MAX];
 static char *PathOrigPos;
 

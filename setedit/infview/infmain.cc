@@ -831,6 +831,12 @@ void InsertEnviromentVar(const char *,const char *)
 {
 }
 
+const char *GetVariable(const char *variable, const char *def)
+{
+ const char *env=getenv(variable);
+ return env ? env : def;
+}
+
 static
 void InitInternacSup()
 {

@@ -39,6 +39,7 @@ editor. @x{TMLIBase (class)}.@p
 #include <keytrans.h>
 #define Uses_SETAppConst
 #include <setapp.h>
+#include <edspecs.h>
 
 // Open a file and insert it in the desktop
 // This function should be defined by RHIDE and is already needed

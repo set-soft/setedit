@@ -21,24 +21,25 @@ may be we should "refresh" the ignores before running.
   * Fix: We are saving the "TRect" for msg and watches, but not the "zoom
   state" and the "unzoomed" size. That's annoying.
 
-  * Add some mechanism to enable MI v2. That's much better.
+  * Add some mechanism to enable MI v2. That's much better. We already have the
+option.
+  * Mechanism to disable the slow workaround for bugs in look-up symbols in gdb.
+We already have the option.
 
   * Advices (only project, ...).
   * Disassembler window.
-  * Put a limit to the ammount of messages in the debug message window.
-Reset it when reseting the session.
-  * Allow to configure gdb and XTerm program.
-  * Setup the "main" function, currently we have a "run to main", but this
-is C/C++ specific.
   * Add the menubind.smn options to the redmond.smn
   * Don't show again in the confirmation for exit while debugging.
   * Detect recompilations (target time stamp), then ask to the user if we
 should "move" the breakpoints to their new locations. That's tricky.
 Note: currently we do it if the user used "run program".
-  * Time out in the gdb responses to avoid hanging. Also a stop mechanism.
+  * A widget to get a filename that also have a "Browse" button.
 
 -----------------------------------------------
 Low priority:
+
+General:
+* Some stop mechanism to avoid waiting for response time out.
 
 Inspectors:
 * Highlight changed values.
@@ -48,6 +49,9 @@ Watches:
 
 Data Window:
 * Small dialog with all the modes.
+
+Debug Window:
+* Save content to disk.
 -----------------------------------------------
 Whish gdb could:
 
@@ -155,6 +159,7 @@ directories to look for sources.
 #include <diaghelp.h>
 #include <pathtool.h> // FindFile
 #include <edcollec.h>
+#include <edspecs.h>
 
 #include <sys/time.h> // Profile
 
@@ -187,6 +192,7 @@ const int widthWtExp=widthFiles, maxWtBox=maxWBox;
 const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
 const int widthPID=32;
 const int dmLocal=0, dmPID=1, dmRemote=2;
+const int wTimeOut=8, wLinesMsg=8;
 
 struct DebugOptionsStruct
 {
@@ -201,7 +207,9 @@ static int debugOpsNotIndicated=1;
 static DebugOptionsStruct dOps;
 // End of Variables for the configuration
 
+const int defaultTimeOut=MI_DEFAULT_TIME_OUT, defaultLinesMsg=1000;
 const int maxWDbgSt=20, maxWStatus=256;
+const unsigned miscNoBanner=1, miscMIv2=2, miscSymWA=4;
 
 const int modeX11=0, modeLinux=1;
 static int localMode;
@@ -219,6 +227,10 @@ static char *binReference=NULL;
 static int   binReferenceLen=0;
 // Modification time
 static time_t binMTime;
+// Main function (main)
+static char *mainFunction=NULL;
+// Max. lines in debug window
+static int msgsInDebugWindow;
 
 // Some common messages
 static stTVIntl *icUnknown=NULL,
@@ -241,6 +253,102 @@ static TDialog *createEditExp(char *tit);
 static void ShowErrorInMsgBox();
 static void SaveExpandedRect(opstream &os, TRect &r, unsigned wS, unsigned hS);
 static void ReadExpandedRect(ipstream &is, TRect &r, unsigned wS, unsigned hS);
+
+static
+int IsEmpty(const char *s)
+{
+ for (;*s && ucisspace(*s); s++);
+ return *s==0;
+}
+
+static inline
+unsigned GetGDBTimeOut()
+{
+ return EnvirGetIntVar("SET_GDB_TIME_OUT",defaultTimeOut);
+}
+
+static inline
+void SetGDBTimeOut(unsigned val)
+{
+ EnvirSetIntVar("SET_GDB_TIME_OUT",val);
+}
+
+static inline
+unsigned GetMsgLines()
+{
+ return EnvirGetIntVar("SET_GDB_MSG_LINES",defaultLinesMsg);
+}
+
+static inline
+void SetMsgLines(unsigned val)
+{
+ EnvirSetIntVar("SET_GDB_MSG_LINES",val);
+ msgsInDebugWindow=val;
+}
+
+static inline
+unsigned GetGDBMisc()
+{
+ return EnvirGetIntVar("SET_GDB_MISC",0);
+}
+
+static inline
+void SetGDBMisc(unsigned val)
+{
+ EnvirSetIntVar("SET_GDB_MISC",val);
+}
+
+static inline
+const char *GetGDBExe()
+{
+ return GetVariable("SET_GDB_EXE",MIDebugger::GetGDBExe());
+}
+
+static inline
+const char *GetGDBExeNoD()
+{
+ return GetVariable("SET_GDB_EXE",NULL);
+}
+
+static inline
+void SetGDBExe(const char *name)
+{
+ InsertEnviromentVar("SET_GDB_EXE",IsEmpty(name) ? NULL: name);
+}
+
+static inline
+const char *GetXTermExe()
+{
+ return GetVariable("SET_XTERM_EXE",MIDebugger::GetXTermExe());
+}
+
+static inline
+const char *GetXTermExeNoD()
+{
+ return GetVariable("SET_XTERM_EXE",NULL);
+}
+
+static inline
+void SetXTermExe(const char *name)
+{
+ InsertEnviromentVar("SET_XTERM_EXE",IsEmpty(name) ? NULL: name);
+}
+
+static inline
+const char *GetMainFunc()
+{
+ if (mainFunction)
+    return mainFunction;
+ return MIDebugger::GetMainFunc();
+}
+
+static inline
+void SetMainFunc(const char *mf, Boolean copy)
+{
+ delete[] mainFunction;
+ mainFunction=copy ? newStr(mf) : (char *)mf;
+ return MIDebugger::SetMainFunc(mf);
+}
 
 /*****************************************************************************
   Sources files cache:
@@ -568,6 +676,23 @@ int TSetEditorApp::DebugCheckAcceptCmd(Boolean showConnect)
 /**[txh]********************************************************************
 
   Description:
+  That's a callback called when a gdb response exceeds the time out. The
+dialog asks the user if s/he wants to wait more time or just take it as an
+error.
+  
+  Return: !=0 continue waiting.
+  
+***************************************************************************/
+
+int TSetEditorApp::DebugTimeOut(void *)
+{
+ return messageBox(__("Time out in gdb response. Continue waiting?"),
+                   mfError|mfYesButton|mfNoButton)==cmYes;
+}
+
+/**[txh]********************************************************************
+
+  Description:
   Tries to connect to gdb. It doesn't check if we are initialized or in
 which state is the debugger. Call it only after checking.
   
@@ -577,24 +702,36 @@ which state is the debugger. Call it only after checking.
 
 int TSetEditorApp::DebugConnect()
 {
- // TODO: REMOVE IT!!!
- //dbg->SetGDBExe("/mnt/hda3/var/tmp/Compartido/set/src/gdb-6.1.1/gdb/gdb");
+ // TODO: Implement the misc flags stuff, most do nothing.
+ unsigned misc=GetGDBMisc();
+ const char *aux=GetGDBExeNoD();
+ if (aux)
+    dbg->SetGDBExe(aux);
+ aux=GetXTermExeNoD();
+ if (aux)
+    dbg->SetXTermExe(aux);
  int res=dbg->Connect();
  if (res)
    {
+    DebugMsgClear();
     DBG_SetCallBacks();
+    dbg->SetTimeOut(GetGDBTimeOut());
+    dbg->SetTimeOutCB(DebugTimeOut,NULL);
     DebugMsgSetState();
-    // TODO: optional?
-    dbg->Version();
+    if (!(misc & miscNoBanner) && !dbg->Version())
+       return 0;
     // Set the path for sources
     char n[PATH_MAX];
-    dbg->PathSources(NULL);
-    for (int i=0; PathListGetItem(i,n,paliSource); i++)
-        dbg->PathSources(n);
-    // At the end so it becomes the fist in the list:
-    // Yet another gdb bug?? some gdbs need it
-    if (getcwd(n,PATH_MAX))
-       dbg->PathSources(n);
+    if (dbg->PathSources(NULL))
+      {
+       for (int i=0; PathListGetItem(i,n,paliSource); i++)
+           if (!dbg->PathSources(n))
+              break;
+       // At the end so it becomes the fist in the list:
+       // Yet another gdb bug?? some gdbs need it
+       if (getcwd(n,PATH_MAX))
+          dbg->PathSources(n);
+      }
    }
  else
     DebugMsgSetError();
@@ -627,13 +764,6 @@ int GetPID()
  if (execDialog(createPidDlg(),pid)==cmOK)
     return atoi(pid);
  return 0;
-}
-
-static
-int IsEmpty(const char *s)
-{
- for (;*s && ucisspace(*s); s++);
- return *s==0;
 }
 
 /**[txh]********************************************************************
@@ -794,6 +924,7 @@ void TSetEditorApp::DebugUpdateCommands()
          break;
     case MIDebugger::connected:
          TSetEditorApp::setCmdState(cmeDebugOptions,False);
+         TSetEditorApp::setCmdState(cmeDbgOptionsAdv,False);
          TSetEditorApp::setCmdState(cmeDbgEndSession,True);
          TSetEditorApp::setCmdState(cmeDbgCloseSession,True);
          TSetEditorApp::setCmdState(cmGDBCommand,True);
@@ -1475,6 +1606,7 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
  return True;
 }
 
+// Small class to display frames
 class TFramesList : public TStringable
 {
 public:
@@ -1555,7 +1687,7 @@ void TSetEditorApp::DebugThreadSel()
  if (fl->GetCount()!=(unsigned)cant)
    {
     delete fl;
-    messageBox(__("Unconsistent info from gdb"),mfError|mfOKButton);
+    messageBox(__("Inconsistent info from gdb"),mfError|mfOKButton);
     return;
    }
  // Transfer the ids
@@ -5964,6 +6096,7 @@ TDebugMsgDialog *DebugMsgInit(Boolean hide, int ZOrder)
 {
  if (MsgWindow)
     return MsgWindow;
+ msgsInDebugWindow=GetMsgLines();
  // Create the list:
  if (!MsgCol)
     MsgCol=new TMsgCollection(8,6);
@@ -6017,7 +6150,17 @@ void DebugMsgAdd(char *msg)
 {
  DebugMsgInit();
  MsgCol->insert(msg);
+ while (MsgCol->getCount()>msgsInDebugWindow)
+    MsgCol->atFree(0);
  DebugMsgUpdate(edsmDontSelect);
+}
+
+void DebugMsgClear()
+{
+ if (!MsgCol || !MsgList)
+    return;
+ MsgCol->removeAll();
+ MsgList->setRange(0);
 }
 
 static
@@ -6900,6 +7043,90 @@ int TSetEditorApp::DebugOptionsEdit()
  return 0;
 }
 
+TDialog *createDebugOpsAdvDialog()
+{
+ TSViewCol *col=new TSViewCol(__("Advanced Debug Options"));
+
+ // EN: BFGILMSTX
+ // ES:
+ TSVeGroup *o1=
+ MakeVeGroup(0, // All together
+   new TSLabel(__("~G~DB executable"),
+       new TSInputLine(wFilename,1,hID_DbgGDB,wVisible)),
+   new TSLabel(__("~X~ terminal executable"),
+       new TSInputLine(wFilename,1,hID_DbgXTerm,wVisible)),
+   new TSLabel(__("~M~ain function"),
+       new TSInputLine(wFunction,1,hID_DbgMainFunc,wVisible)),
+   new TSHzGroup(
+       new TSHzLabel(__("GDB ~T~ime out [s]"),new TSInputLine(wTimeOut)),
+       new TSHzLabel(__("Max. ~l~ines in Debug window"),new TSInputLine(wLinesMsg))),
+   TSLabelCheck(__("M~i~scellaneous"),
+                __("No gdb ~b~anner after connecting"),
+                __("Enable MI v2 ~f~eatures"),
+                __("No ~s~ymbols bug workaround"),0),0);
+ o1->makeSameW();
+
+ col->insert(xTSLeft,yTSUp,o1);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(cmeDebugOptions);
+ delete col;
+ return d;
+}
+
+struct DebugOptionsAdvStruct
+{
+ char gdb[wFilename];
+ char xterm[wFilename];
+ char main[wFunction];
+ char to[wTimeOut];
+ char lines[wLinesMsg];
+ uint32 misc;
+};
+
+int TSetEditorApp::DebugOptionsAdv()
+{
+ // Get current values
+ const char *gdb=GetGDBExe();
+ const char *xterm=GetXTermExe();
+ const char *mainf=GetMainFunc();
+ unsigned to=GetGDBTimeOut();
+ unsigned lines=GetMsgLines();
+ unsigned misc=GetGDBMisc();
+
+ // Transfer to the edit box
+ DebugOptionsAdvStruct box;
+ strncpyZ(box.gdb,gdb,wFilename);
+ strncpyZ(box.xterm,xterm,wFilename);
+ strncpyZ(box.main,mainf,wFunction);
+ CLY_snprintf(box.to,wTimeOut,"%d",to);
+ CLY_snprintf(box.lines,wLinesMsg,"%d",lines);
+ box.misc=misc;
+
+ // Edit
+ if (execDialog(createDebugOpsAdvDialog(),&box)==cmOK)
+   {// Set the changed values
+    if (strcmp(box.gdb,gdb))
+       SetGDBExe(box.gdb);
+    if (strcmp(box.xterm,xterm))
+       SetXTermExe(box.xterm);
+    if (strcmp(box.main,mainf))
+       SetMainFunc(box.main,True);
+    unsigned bto=atoi(box.to);
+    if (bto<2) bto=2;
+    if (bto!=to)
+       SetGDBTimeOut(bto);
+    unsigned blines=atoi(box.lines);
+    if (blines<100) blines=100;
+    if (blines!=lines)
+       SetMsgLines(blines);
+    if (box.misc!=misc)
+       SetGDBMisc(box.misc);
+    return 1;
+   }
+ return 0;
+}
+
 TDialog *createDebugOptsMsgsDialog()
 {
  TSViewCol *col=new TSViewCol(__("Messages"));
@@ -7156,6 +7383,9 @@ void DebugSaveData(opstream &os)
  os << dataWindows;
  if (dataWindows)
     TSetEditorApp::edHelper->forEachNonEditor(dktDbgDataWin,SaveDW,&os);
+ // Main Function
+ os << svPresent;
+ os.writeString(mainFunction);
  // No more data
  os << svAbsent;
 }
@@ -7247,6 +7477,12 @@ void DebugReadData(ipstream &is)
  is >> dataWindows;
  for (int i=0; i<dataWindows; i++)
      TDskDataWin::readData(is,aux);
+ // Main Function
+ is >> aux;
+ if (!aux)
+    return;
+ char *mf=is.readString();
+ SetMainFunc(mf,False);
  // No more data
  is >> aux;
 }

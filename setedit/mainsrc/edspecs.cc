@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /* This file is an adaptation of idespecs.cc from Robert Hoehne to make the editor */
 /* more coherent with RHIDE and more easy to configure (?)                         */
@@ -18,9 +18,7 @@
 extern char **environ;
 #endif
 
-//typedef unsigned short ushort;
-
-static char *default_variables[] =
+static char *default_variables[]=
 {
  "SET_CONFQUIT","0",
  "SET_CREATE_DST","1",
@@ -54,15 +52,16 @@ void InsertEnviromentVar(const char *variable, const char *contents)
  add_variable(variable,contents);
 }
 
-const char *GetVariable(const char *variable)
+const char *GetVariable(const char *variable, const char *def)
 {
  int i;
  for (i=0;i<var_count;i++)
     {
-     if (strcmp(variable,vars[i*2]) == 0)
+     if (strcmp(variable,vars[i*2])==0 && vars[i*2+1])
         return vars[i*2+1];
     }
- return getenv(variable);
+ const char *env=getenv(variable);
+ return env ? env : def;
 }
 
 /**[txh]********************************************************************
@@ -194,6 +193,11 @@ void SaveEnviromentFile(void)
        fPutVar("SET_TIPS1",f);
        fPutVar("SET_VARIOUS1",f);
        fPutVar("SET_FORCED_LANG",f);
+       fPutVar("SET_GDB_TIME_OUT",f);
+       fPutVar("SET_GDB_MSG_LINES",f);
+       fPutVar("SET_GDB_MISC",f);
+       fPutVar("SET_GDB_EXE",f);
+       fPutVar("SET_XTERM_EXE",f);
        fclose(f);
       }
    }

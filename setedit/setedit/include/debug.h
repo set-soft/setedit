@@ -20,6 +20,7 @@ void WatchesDeInit();
 void DebugMsgClose();
 void WatchesClose();
 void DebugMsgAdd(char *msg);
+void DebugMsgClear();
 void DebugMsgUpdate(unsigned options=0);
 void DebugMsgSetState();
 void DebugMsgSetMode(Boolean select=False);

@@ -224,6 +224,7 @@ static edCList SetApp[] =
 { "DbgGoToCursor"  ,115  },
 { "DbgInspector"   ,126  },
 { "DbgKill"        ,119  },
+{ "DbgOptionsAdv"  ,136  },
 { "DbgOptsMsgs"    ,122  },
 { "DbgReturnNow"   ,117  },
 { "DbgRunContinue" ,112  },

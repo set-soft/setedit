@@ -32,10 +32,10 @@ class TSOSListBox;
 #define Uses_SETAppVarious
 #define Uses_SETAppConst
 #include <setapp.h>
+#include <edspecs.h>
 
 extern char *DskPrjGetNextFile(int &l, int &MustBeDeleted, char *FileName);
 extern int DskPrjSDGInit(void);
-extern const char *GetVariable(const char *variable);
 
 const int maxStrs=120;
 

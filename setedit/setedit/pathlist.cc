@@ -43,6 +43,7 @@ comparing it with the simple string used in RHIDE]
 #include <setapp.h>
 #include <rhutils.h>
 #include <pathlist.h>
+#include <edspecs.h>
 
 class TPathList : public TCollection, public TStringable
 {

@@ -12,6 +12,7 @@
 #define Uses_TVCodePage
 #include <ceditor.h>
 #include <loadshl.h>
+#include <edspecs.h>
 
 #include <ced_pcre.h>
 #include <dyncat.h>
@@ -926,7 +927,6 @@ int IsInList(char *list, char *val, int noCase=0)
  return 0;
 }
 
-extern const char *GetVariable(const char *variable);
 const int extExtension=1, extEmacsModes=2, extShellScript=3;
 
 static

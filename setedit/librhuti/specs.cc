@@ -14,6 +14,9 @@
 #define A(n)
 #endif
 
+const char * GetVariable(const char *variable);
+const char * GetVariable(const char *variable,int use_env);
+
 static void _handle_newline();
 void (*handle_newline)() = _handle_newline;
 int expand_variable_names = 1;

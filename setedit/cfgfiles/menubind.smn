@@ -306,11 +306,12 @@ $if DEBUG
 # ES: BCDEILMNPRTUVX 12
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
-# EN: MPS
+# EN: AMPS
 # ES: MPS
   MenuItemC: "~P~rogram and mode", cmeDebugOptions
   MenuItemC: "Path for ~s~ources", cmeSourceList
   MenuItemC: "~M~essages displayed", cmeDbgOptsMsgs
+  MenuItemC: "~A~dvanced", cmeDbgOptionsAdv
  EndSubMenu
  SubMenu: "Go to st~a~te", kbUnknown
 # EN: CR

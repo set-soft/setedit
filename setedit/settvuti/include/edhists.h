@@ -7,7 +7,7 @@
 
 const int
 hID_Start             = 120,
-hID_Cant              = 31;
+hID_Cant              = 34;
 
 const int
 hID_TextSearchEditor  = hID_Start,
@@ -41,5 +41,8 @@ hID_DbgBkAddress      = hID_Start+27,
 hID_DbgBkCondition    = hID_Start+28,
 hID_DbgBkCount        = hID_Start+29,
 hID_DbgBkThread       = hID_Start+30,
-hID_DbgCommand        = hID_Start+31;
+hID_DbgCommand        = hID_Start+31,
+hID_DbgGDB            = hID_Start+32,
+hID_DbgXTerm          = hID_Start+33,
+hID_DbgMainFunc       = hID_Start+34;
 #endif
