@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.263  2002/12/27 12:40:40  set
+* Fixed: Added/Removed entries to the list of files.
+* Added: A chmod to make the INSTALL script executable when generating the
+packages.
+
 Revision 1.262  2002/12/20 15:44:40  set
 * Fixed: Ivan forgot to comment STANDALONE in pphp.cc.
 * Added: A new environment variable: SET_LOCALEDIR. It tells to the editor

@@ -1,7 +1,8 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_getline
 #define Uses_string
 #define Uses_ctype
 #define Uses_AllocLocal
@@ -115,7 +116,9 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
 {
  int loadIt=0,isCase=hl.Flags1 & FG1_CaseSensitive;
  FILE *f;
- char b[maxSHLFileWidth];
+ ssize_t len;
+ size_t  lenLine=0;
+ char *b=0;
  char *pos,*s;
 
  hl.Keywords=new TStringCollection(48,12);
@@ -129,9 +132,9 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
       {
        do
          {
-          fgets(b,maxSHLFileWidth,f);
+          len=CLY_getline(&b,&lenLine,f);
          }
-       while (!feof(f) && (*b=='#' || ucisspace(*b)));
+       while (len!=-1 && !feof(f) && (*b=='#' || ucisspace(*b)));
 
        if (strncasecmp(b,"Name",4)==0)
          {
@@ -170,6 +173,7 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
    }
  while (!loadIt && !feof(f));
  fclose(f);
+ free(b);
  CreateSearchTables(hl);
 
  return 0;
@@ -178,7 +182,9 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
 int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int &Cant)
 {
  FILE *f;
- char b[maxSHLFileWidth];
+ ssize_t len;
+ size_t  lenLine=0;
+ char *b=0;
  int  defs,def,end,i,isCase,preLoad;
  char *pos,*s;
 
@@ -190,23 +196,32 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
  // Meassure the number of definitions
  for (defs=0; !feof(f); )
     {
-     fgets(b,maxSHLFileWidth,f);
-     if (!feof(f) && strncasecmp(b,"End",3)==0)
+     len=CLY_getline(&b,&lenLine,f);
+     if (len!=-1 && !feof(f) && strncasecmp(b,"End",3)==0)
         defs++;
     }
 
  Cant=defs;
  if (!defs)
+   {
+    free(b);
     return 2;
+   }
 
  // Allocate enough memory
  hl=new strSHL[defs];
  if (!hl)
+   {
+    free(b);
     return 3;
+   }
  memset(hl,0,sizeof(strSHL)*defs);
  ConvTable=new ccIndex[defs];
  if (!ConvTable)
+   {
+    free(b);
     return 3;
+   }
 
  PCREInitCompiler(shlPCRE);
  // Load and parse all
@@ -222,9 +237,9 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
        {
         do
           {
-           fgets(b,maxSHLFileWidth,f);
+           len=CLY_getline(&b,&lenLine,f);
           }
-        while (*b=='#' || ucisspace(*b));
+        while (len!=-1 && *b=='#' || ucisspace(*b));
 
         if (strncasecmp(b,"NameMatch",9)==0)
           {
@@ -534,6 +549,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
      while (!feof(f) && strncasecmp(b,"End",3)!=0);
     }
  fclose(f);
+ free(b);
 
  PCREStopCompiler(shlPCRE);
  for (def=0; def<defs; def++)

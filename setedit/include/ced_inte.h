@@ -282,7 +282,6 @@ inline int isWordCharColon(unsigned char ch)
 #define shl_SPC    16384
 
 #define SHLFile "syntaxhl.shl"
-const int maxSHLFileWidth=100;
 
 #define isSymbol1(a)     (TCEditor::strC.SymbolT[(uchar)a] & shl_SYM1)
 #define isSymbol2(a)     (TCEditor::strC.SymbolT[(uchar)a] & shl_SYM2)
