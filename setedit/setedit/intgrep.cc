@@ -210,6 +210,9 @@ void RunGrep(char *command)
  char *err;
  if (!CheckForGREP())
     return;
+
+ Boolean oldBusy=TScreen::showBusyState(True);
+    
  char b[PATH_MAX+60];
  out=open_stdout();
  err=open_stderr();
@@ -243,9 +246,14 @@ void RunGrep(char *command)
  #endif
  close_stdout();
  close_stderr();
+
+ TScreen::showBusyState(oldBusy);
+ 
  DumpFileToMessage(err,__("From stderr:"),edsmEverScroll);
  DumpFileToMessage(out,__("From stdout:"),edsmEverScroll,ParseFun);
 }
+
+static int stopRecurse;
 
 // That's similar to ftw, I didn't used ftw because isn't in the libc.info of my
 // Linux so I don't know if that's so common.
@@ -266,12 +274,20 @@ void look_in(char *command)
     return;
    }
  Visited->atInsert(pos,pwdHere);
+ 
+ TEvent event;
+ TProgram::application->getEvent(event);
+ if (event.what==evCommand && event.message.command==cmeStopChild)
+   {
+    stopRecurse=1;
+    return;
+   }
  RunGrep(command);
  
  d=opendir(".");
  if (d)
    {
-    while ((f=readdir(d))!=0)
+    while ((f=readdir(d))!=0 && !stopRecurse)
       {
        name=f->d_name;
        // Skip . and .. they aren't useful
@@ -296,6 +312,8 @@ void look_in(char *command)
 static
 void RunRecurseGrep(char *command, int recurse)
 {
+ TView::disableCommand(cmeStopChild);
+ 
  char dirTemp[maxDirLen];
  // A copy to use strtok
  strcpy(dirTemp,box.dirs);
@@ -318,7 +336,11 @@ void RunRecurseGrep(char *command, int recurse)
     else
       {
        if (recurse)
+         {
+          TView::enableCommand(cmeStopChild);
           look_in(command);
+          TView::disableCommand(cmeStopChild);
+         }
        else
           RunGrep(command);
       }
@@ -518,6 +540,7 @@ void grepWindow(char *patStart)
       {
        SaveAllEditors();
        EdShowMessageI(__("Powered grep"),True);
+       stopRecurse=0;
        if (absolute)
          {
           if (box.recurse)
@@ -530,7 +553,10 @@ void grepWindow(char *patStart)
           ArrangeGrepCommand(command,param);
           RunRecurseGrep(command,box.recurse);
          }
-       EdShowMessageI(__("End of grep search"));
+       if (stopRecurse)
+          EdShowMessageI(__("Grep search aborted"));
+       else
+          EdShowMessageI(__("End of grep search"));
        EdJumpToMessage(0);
        SpLinesUpdate();
       }

@@ -401,6 +401,7 @@ StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
 StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
 #StatusEntry: "~Ctrl+C~ Copy", cmtilCopyOS, kbCtC
 #StatusEntry: "~Ctrl+V~ Paste", cmtilPasteOS, kbCtV
+StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
 EndStatusRange
 
 #

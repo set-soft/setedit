@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.380  2003/05/20 17:29:24  set
+* Added: Emacs modes for CSS files. From Grzegorz.
+
 Revision 1.379  2003/05/20 14:12:42  set
 * Added: A new couple of commands to copy and paste to/from the OS
 clipboard when using the TInputLinePiped input boxes. These commands must

@@ -402,6 +402,7 @@ StatusRange: hcGrepDialog, 1
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ctrl+Ins~ Copy", cmtilCopy, kbCtInsert
 StatusEntry: "~Shift+Ins~ Paste", cmtilPaste, kbShInsert
+StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
 EndStatusRange
 
 #
