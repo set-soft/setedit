@@ -1614,7 +1614,7 @@ sub LookForBasicTools
 
 sub LookForXlib()
 {
- my $test;
+ my ($test,$o,$libs);
 
  print 'Looking for X11 libs: ';
  if (@conf{'HAVE_X11'})
@@ -1636,10 +1636,12 @@ int main(void)
 }
 ';
  $conf{'X11LibPath'}='/usr/X11R6/lib' unless $conf{'X11LibPath'};
- $conf{'X11Lib'}='X11' unless $conf{'X11Lib'};
+ $conf{'X11Lib'}='X11 Xmu' unless $conf{'X11Lib'};
+ $libs=$conf{'X11Lib'};
+ $libs=~s/(\S+)/-l$1/g;
  $o='';
  $o.='-I'.$conf{'X11IncludePath'} if $conf{'X11IncludePath'};
- $o.=" -L$conf{'X11LibPath'} -l$conf{'X11Lib'}";
+ $o.=" -L$conf{'X11LibPath'} $libs";
  $test=RunGCCTest($GCC,'c',$test,$o);
  if ($test=~/OK, (\d+)\.(\d+)/)
    {
@@ -1651,7 +1653,7 @@ int main(void)
     if (!$conf{'X11IncludePath'})
       {
        $conf{'X11IncludePath'}='/usr/X11R6/include';
-       $o.="-I$conf{'X11IncludePath'} -L$conf{'X11LibPath'} -l$conf{'X11Lib'}";
+       $o.="-I$conf{'X11IncludePath'} -L$conf{'X11LibPath'} $libs";
        if ($test=~/OK, (\d+)\.(\d+)/)
          {
           $conf{'HAVE_X11'}='yes';

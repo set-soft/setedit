@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.139  2002/07/01 13:31:09  set
+* Fixed: One spanish translation pointed out by Ivan.
+
 Revision 1.138  2002/07/01 13:12:21  set
 * Fixed: Crash in InfView when no desktop file was available.
 
