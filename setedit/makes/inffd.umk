@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-17 12:34
+# 2003-06-24 16:01
 #
 
 obj/inf$(ExOBJ):: inf.cc  

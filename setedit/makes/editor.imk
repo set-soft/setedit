@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-06-17 12:34
+# 2003-06-24 16:01
 #
 
 editor$(ExEXE):: \
@@ -147,18 +147,15 @@ obj/accehtml$(ExOBJ):: accehtml.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	ucdefs.h \
-	setapp.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -200,21 +197,24 @@ obj/accehtml$(ExOBJ):: accehtml.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	ucdefs.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/advice$(ExOBJ):: advice.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	edspecs.h \
+	setapp.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
 	tstatext.h \
 	tsview.h \
 	tsviewco.h \
-	edspecs.h \
-	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -257,9 +257,9 @@ INCLUDE00=amp3$(ExIMK)
 
 obj/ascii$(ExOBJ):: ascii.cc \
 	ascii.h \
+	compatlayer.h \
 	dskwin.h \
 	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -292,19 +292,19 @@ obj/ascii$(ExOBJ):: ascii.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/boardmix$(ExOBJ):: boardmix.cc \
+	$(MP3_PREV_DIR)/setedit/boardmix.cc \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	mixer.h \
+	setapp.h \
 	tsbutton.h \
 	tschkbox.h \
 	tslider.h \
 	tstatext.h \
 	tsview.h \
 	tsviewco.h \
-	mixer.h \
-	configed.h \
-	$(MP3_PREV_DIR)/setedit/boardmix.cc \
-	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -350,8 +350,23 @@ obj/boardmix$(ExOBJ):: boardmix.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/bufun$(ExOBJ):: bufun.cc \
+	$(MP3_PREV_DIR)/mainsrc/bufun.cc \
+	bufun.h \
+	ced_coma.h \
+	ced_exte.h \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edmsg.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	splinman.h \
+	tdiagrow.h \
+	tnocastc.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
@@ -361,21 +376,6 @@ obj/bufun$(ExOBJ):: bufun.cc \
 	tstatext.h \
 	tsview.h \
 	tsviewco.h \
-	bufun.h \
-	ced_coma.h \
-	ced_exte.h \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
-	edmsg.h \
-	splinman.h \
-	$(MP3_PREV_DIR)/mainsrc/bufun.cc \
-	setapp.h \
-	setstack.h \
-	settvuti.h \
-	tdiagrow.h \
-	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -434,21 +434,19 @@ obj/calcu$(ExOBJ):: calcu.cc \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	editcoma.h \
-	setapp.h \
 	edhists.h \
+	editcoma.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tinppipe.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -495,15 +493,17 @@ obj/calcu$(ExOBJ):: calcu.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/calendar$(ExOBJ):: calendar.cc \
-	datetools.h \
 	$(MP3_PREV_DIR)/setedit/calendar.cc \
 	calendar.h \
-	editcoma.h \
 	compatlayer.h \
+	datetools.h \
+	editcoma.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -534,7 +534,8 @@ obj/calendar$(ExOBJ):: calendar.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ceditor$(ExOBJ):: ceditor.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/mainsrc/ceditor.cc \
+	advice.h \
 	bufun.h \
 	ced_clas.h \
 	ced_coma.h \
@@ -542,31 +543,28 @@ obj/ceditor$(ExOBJ):: ceditor.cc \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	codepage.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
+	edhists.h \
 	gzfiles.h \
 	keytrans.h \
 	loadkbin.h \
 	loadshl.h \
 	pathtool.h \
 	pmcoll.h \
-	setconst.h \
-	sindicat.h \
-	slpinter.h \
-	tvsetuti.h \
 	rhutils.h \
-	$(MP3_PREV_DIR)/mainsrc/ceditor.cc \
-	advice.h \
-	codepage.h \
-	edhists.h \
 	sarray.h \
+	setconst.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	slpinter.h \
 	tnocastc.h \
 	tprogdia.h \
 	tstringa.h \
 	tstrlbox.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/cmdset.h \
@@ -625,31 +623,31 @@ obj/ceditor$(ExOBJ):: ceditor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/codepage$(ExOBJ):: codepage.cc \
+	$(MP3_PREV_DIR)/setedit/codepage.cc \
+	calendar.h \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	mp3play.h \
-	$(MP3_PREV_DIR)/setedit/codepage.cc \
-	calendar.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tprogdia.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -695,6 +693,8 @@ obj/codepage$(ExOBJ):: codepage.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -703,17 +703,15 @@ obj/completi$(ExOBJ):: completi.cc \
 	ced_exte.h \
 	ced_inte.h \
 	ceditor.h \
+	compatlayer.h \
 	completi.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/collectn.h \
@@ -756,12 +754,35 @@ obj/completi$(ExOBJ):: completi.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/deedidia$(ExOBJ):: deedidia.cc \
+	$(MP3_PREV_DIR)/mainsrc/deedidia.cc \
+	ced_clas.h \
+	ced_coma.h \
+	ced_exte.h \
+	ced_inte.h \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
+	diaghelp.h \
 	easydia1.h \
 	easydiag.h \
+	edhists.h \
+	editcoma.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setconst.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	tinppipe.h \
+	tnocastc.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
@@ -773,35 +794,12 @@ obj/deedidia$(ExOBJ):: deedidia.cc \
 	tssortlb.h \
 	tssortva.h \
 	tstatext.h \
+	tstringa.h \
+	tstrlbox.h \
 	tstsorlb.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ced_clas.h \
-	ced_coma.h \
-	ced_exte.h \
-	ced_inte.h \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
-	pmcoll.h \
-	setconst.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/deedidia.cc \
-	editcoma.h \
-	setapp.h \
-	diaghelp.h \
-	edhists.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	tinppipe.h \
-	tnocastc.h \
-	tstringa.h \
-	tstrlbox.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -859,25 +857,27 @@ obj/deedidia$(ExOBJ):: deedidia.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/doedidia$(ExOBJ):: doedidia.cc \
+	$(MP3_PREV_DIR)/mainsrc/doedidia.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	setconst.h \
-	$(MP3_PREV_DIR)/mainsrc/doedidia.cc \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
+	setconst.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/collectn.h \
@@ -920,16 +920,16 @@ obj/doedidia$(ExOBJ):: doedidia.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dskascii$(ExOBJ):: dskascii.cc \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
 	$(MP3_PREV_DIR)/setedit/dskascii.cc \
 	ascii.h \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
 	dskascii.h \
 	dskwin.h \
 	setapp.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -961,16 +961,16 @@ obj/dskascii$(ExOBJ):: dskascii.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dskcalen$(ExOBJ):: dskcalen.cc \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
 	$(MP3_PREV_DIR)/setedit/dskcalen.cc \
 	calendar.h \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
 	dskcalen.h \
 	dskwin.h \
 	setapp.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -1002,25 +1002,23 @@ obj/dskcalen$(ExOBJ):: dskcalen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dskclip$(ExOBJ):: dskclip.cc \
+	$(MP3_PREV_DIR)/setedit/dskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/setedit/dskclip.cc \
 	dskclip.h \
 	dskwin.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1062,30 +1060,30 @@ obj/dskclip$(ExOBJ):: dskclip.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/dskclose$(ExOBJ):: dskclose.cc \
+	$(MP3_PREV_DIR)/setedit/dskclose.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/setedit/dskclose.cc \
 	dskclose.h \
 	dskwin.h \
 	edcollec.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1130,30 +1128,30 @@ obj/dskclose$(ExOBJ):: dskclose.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/dskedito$(ExOBJ):: dskedito.cc \
+	$(MP3_PREV_DIR)/setedit/dskedito.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/setedit/dskedito.cc \
 	dskedito.h \
 	dskwin.h \
 	edcollec.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1198,34 +1196,34 @@ obj/dskedito$(ExOBJ):: dskedito.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/dskhelp$(ExOBJ):: dskhelp.cc \
+	$(MP3_PREV_DIR)/setedit/dskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	dskhelp.h \
+	dskwin.h \
+	edcollec.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	$(MP3_PREV_DIR)/setedit/dskhelp.cc \
-	dskhelp.h \
-	dskwin.h \
-	edcollec.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1272,19 +1270,21 @@ obj/dskhelp$(ExOBJ):: dskhelp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/dskman$(ExOBJ):: dskman.cc \
-	ceditint.h \
-	configed.h \
-	manview.h \
-	rhutils.h \
 	$(MP3_PREV_DIR)/setedit/dskman.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	dskman.h \
 	dskwin.h \
+	manview.h \
+	rhutils.h \
 	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -1323,16 +1323,16 @@ obj/dskman$(ExOBJ):: dskman.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dskmessa$(ExOBJ):: dskmessa.cc \
+	$(MP3_PREV_DIR)/setedit/dskmessa.cc \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	edmsg.h \
-	$(MP3_PREV_DIR)/setedit/dskmessa.cc \
 	dskmessa.h \
 	dskwin.h \
+	edmsg.h \
 	setapp.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1370,17 +1370,17 @@ obj/dskmessa$(ExOBJ):: dskmessa.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dskmp3$(ExOBJ):: dskmp3.cc \
-	mixer.h \
+	$(MP3_PREV_DIR)/setedit/dskmp3.cc \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	intermp3.h \
-	$(MP3_PREV_DIR)/setedit/dskmp3.cc \
 	dskmp3.h \
 	dskwin.h \
+	intermp3.h \
+	mixer.h \
 	setapp.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -1412,10 +1412,10 @@ obj/dskmp3$(ExOBJ):: dskmp3.cc \
 
 obj/dskwin$(ExOBJ):: dskwin.cc \
 	ceditor.h \
+	compatlayer.h \
 	dskwin.h \
 	setapp.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -1446,46 +1446,44 @@ obj/dskwin$(ExOBJ):: dskwin.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/dstfile$(ExOBJ):: dstfile.cc \
-	mixer.h \
+	$(MP3_PREV_DIR)/setedit/dstfile.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
-	configed.h \
-	edmsg.h \
-	edspecs.h \
-	pathtool.h \
-	pmcoll.h \
-	sindicat.h \
-	ssyntax.h \
-	tags.h \
-	tvsetuti.h \
-	inf.h \
-	infbase.h \
-	infbaser.h \
-	infr.h \
-	$(MP3_PREV_DIR)/setedit/dstfile.cc \
 	codepage.h \
+	compatlayer.h \
+	configed.h \
+	dktclock.h \
 	dskclip.h \
 	dskhelp.h \
 	dskwin.h \
 	edcollec.h \
-	edprint.h \
-	pathlist.h \
-	setapp.h \
-	tpaltext.h \
-	dktclock.h \
 	edhists.h \
+	edmsg.h \
+	edprint.h \
+	edspecs.h \
 	fileopen.h \
 	fiopeaid.h \
+	inf.h \
+	infbase.h \
+	infbaser.h \
+	infr.h \
+	mixer.h \
+	pathlist.h \
+	pathtool.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	ssyntax.h \
+	tags.h \
 	tnocastc.h \
+	tpaltext.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1544,13 +1542,15 @@ obj/dstfile$(ExOBJ):: dstfile.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/dumpfile$(ExOBJ):: dumpfile.cc \
-	edmsg.h \
 	cl/unistd.h \
 	compatlayer.h \
+	edmsg.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -1570,34 +1570,32 @@ obj/dumpfile$(ExOBJ):: dumpfile.cc \
 INCLUDE01=easydiag$(ExIMK)
 
 obj/edcolor$(ExOBJ):: edcolor.cc \
-	easydia1.h \
-	easydiag.h \
-	tsbutton.h \
-	tslistbo.h \
-	tssortva.h \
-	tstsorlb.h \
-	tsview.h \
-	tsviewco.h \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
+	diaghelp.h \
+	easydia1.h \
+	easydiag.h \
 	pal.h \
 	palconv.h \
 	paldjd.h \
 	palfte.h \
-	setapp.h \
-	diaghelp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
+	tsbutton.h \
+	tslistbo.h \
+	tssortva.h \
 	tstringa.h \
 	tstrlbox.h \
-	viewplus.h \
-	compatlayer.h \
+	tstsorlb.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -1645,6 +1643,8 @@ obj/edcolor$(ExOBJ):: edcolor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -1652,18 +1652,17 @@ obj/edconst$(ExOBJ):: edconst.cc \
 	ced_coma.h \
 	ced_inte.h \
 	ceditor.h \
-	tvsetuti.h \
+	compatlayer.h \
+	editcoma.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	editcoma.h \
 	setapp.h \
 	setstack.h \
 	settvuti.h \
 	tinppipe.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -1703,12 +1702,13 @@ obj/edconst$(ExOBJ):: edconst.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edfonts$(ExOBJ):: edfonts.cc \
-	setapp.h \
 	compatlayer.h \
+	setapp.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1758,8 +1758,10 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
+	tschkbox.h \
 	tstatext.h \
 	tstextsc.h \
+	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
 	ttextscr.h \
@@ -1768,6 +1770,7 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	ceditor.h \
 	configed.h \
 	edspecs.h \
+	vername.h \
 	$(MP3_PREV_DIR)/setedit/editdiag.cc \
 	advice.h \
 	setapp.h \
@@ -1825,9 +1828,8 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/editmain$(ExOBJ):: editmain.cc \
-	mixer.h \
-	stackdbg.h \
-	datetools.h \
+	$(MP3_PREV_DIR)/setedit/editmain.cc \
+	advice.h \
 	bufun.h \
 	ced_clas.h \
 	ced_coma.h \
@@ -1835,55 +1837,54 @@ obj/editmain$(ExOBJ):: editmain.cc \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	edmsg.h \
-	edspecs.h \
-	loadkbin.h \
-	loadshl.h \
-	pathtool.h \
-	pmcoll.h \
-	runprog.h \
-	sdginter.h \
-	sindicat.h \
-	splinman.h \
-	ssyntax.h \
-	tags.h \
-	tvsetuti.h \
-	inf.h \
-	infbase.h \
-	infbaser.h \
-	infr.h \
-	rhutils.h \
-	intermp3.h \
-	$(MP3_PREV_DIR)/setedit/editmain.cc \
-	advice.h \
+	datetools.h \
+	diaghelp.h \
+	dktclock.h \
 	dskclose.h \
 	dskedito.h \
 	dskhelp.h \
 	dskman.h \
 	dskwin.h \
 	edcollec.h \
-	edprint.h \
-	loadcle.h \
-	loadnobkp.h \
-	pal.h \
-	pathlist.h \
-	setapp.h \
-	tpaltext.h \
-	diaghelp.h \
-	dktclock.h \
 	edhists.h \
+	edmsg.h \
+	edprint.h \
+	edspecs.h \
 	fileopen.h \
 	fiopeaid.h \
+	inf.h \
+	infbase.h \
+	infbaser.h \
+	infr.h \
+	intermp3.h \
+	loadcle.h \
+	loadkbin.h \
+	loadnobkp.h \
+	loadshl.h \
+	mixer.h \
+	pal.h \
+	pathlist.h \
+	pathtool.h \
+	pmcoll.h \
+	rhutils.h \
+	runprog.h \
 	sarray.h \
+	sdginter.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	splinman.h \
+	ssyntax.h \
+	stackdbg.h \
+	tags.h \
 	tnocastc.h \
 	tnosostr.h \
+	tpaltext.h \
 	tprogdia.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -1946,35 +1947,35 @@ obj/editmain$(ExOBJ):: editmain.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/editmenu$(ExOBJ):: editmenu.cc \
+	$(MP3_PREV_DIR)/setedit/editmenu.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	pmcoll.h \
-	setconst.h \
-	sindicat.h \
-	tvsetuti.h \
+	editcoma.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	$(MP3_PREV_DIR)/setedit/editmenu.cc \
-	editcoma.h \
-	setapp.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
+	setconst.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tinppipe.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2033,27 +2034,27 @@ obj/editmenu$(ExOBJ):: editmenu.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/editorfo$(ExOBJ):: editorfo.cc \
+	$(MP3_PREV_DIR)/mainsrc/editorfo.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/editorfo.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -2088,15 +2089,17 @@ obj/editorfo$(ExOBJ):: editorfo.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/editpale$(ExOBJ):: editpale.cc \
-	configed.h \
 	$(MP3_PREV_DIR)/setedit/editpale.cc \
+	compatlayer.h \
+	configed.h \
 	setapp.h \
 	tpaltext.h \
-	compatlayer.h \
 	tv.h \
 	tv/button.h \
 	tv/clrselct.h \
@@ -2140,23 +2143,21 @@ obj/editpale$(ExOBJ):: editpale.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/editwind$(ExOBJ):: editwind.cc \
+	$(MP3_PREV_DIR)/mainsrc/editwind.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/editwind.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -2195,43 +2196,44 @@ obj/editwind$(ExOBJ):: editwind.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edkeys$(ExOBJ):: edkeys.cc \
-	easydia1.h \
-	easydiag.h \
-	tsbutton.h \
-	tslabel.h \
-	tstatext.h \
-	tsview.h \
-	tsviewco.h \
-	dyncat.h \
+	$(MP3_PREV_DIR)/setedit/edkeys.cc \
 	ced_coma.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
+	diaghelp.h \
+	dyncat.h \
+	easydia1.h \
+	easydiag.h \
+	edhists.h \
+	editcoma.h \
 	edmsg.h \
+	inputsca.h \
 	keytrans.h \
 	loadkbin.h \
-	tvsetuti.h \
 	mli.h \
 	mlieditd.h \
-	$(MP3_PREV_DIR)/setedit/edkeys.cc \
-	editcoma.h \
 	setapp.h \
-	diaghelp.h \
-	edhists.h \
-	inputsca.h \
 	setstack.h \
 	settvuti.h \
 	tdiagaid.h \
 	tdiagrow.h \
 	tnocastc.h \
+	tsbutton.h \
+	tslabel.h \
+	tstatext.h \
 	tstringa.h \
 	tstrlbox.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -2286,37 +2288,36 @@ obj/edkeys$(ExOBJ):: edkeys.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edmsg$(ExOBJ):: edmsg.cc \
+	$(MP3_PREV_DIR)/setedit/edmsg.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
-	configed.h \
-	edmsg.h \
-	pmcoll.h \
-	sindicat.h \
-	splinman.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/setedit/edmsg.cc \
 	codepage.h \
+	compatlayer.h \
+	configed.h \
 	dskmessa.h \
 	dskwin.h \
-	editcoma.h \
-	setapp.h \
 	edhists.h \
+	editcoma.h \
+	edmsg.h \
 	fileopen.h \
 	fiopeaid.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	splinman.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2364,12 +2365,32 @@ obj/edmsg$(ExOBJ):: edmsg.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edprefs$(ExOBJ):: edprefs.cc \
+	advice.h \
+	ced_clas.h \
+	ced_exte.h \
+	ceditor.h \
+	codepage.h \
+	compatlayer.h \
+	diaghelp.h \
+	dktclock.h \
 	easydia1.h \
 	easydiag.h \
+	edcollec.h \
+	edmsg.h \
+	edspecs.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	tnocastc.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
@@ -2380,30 +2401,10 @@ obj/edprefs$(ExOBJ):: edprefs.cc \
 	tssortlb.h \
 	tssortva.h \
 	tstatext.h \
+	tstringa.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ced_clas.h \
-	ced_exte.h \
-	ceditor.h \
-	edmsg.h \
-	edspecs.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	advice.h \
-	codepage.h \
-	edcollec.h \
-	setapp.h \
-	diaghelp.h \
-	dktclock.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	tnocastc.h \
-	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2466,12 +2467,20 @@ obj/edprefs$(ExOBJ):: edprefs.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edprint$(ExOBJ):: edprint.cc \
+	$(MP3_PREV_DIR)/setedit/edprint.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edmsg.h \
+	setapp.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
@@ -2480,12 +2489,6 @@ obj/edprint$(ExOBJ):: edprint.cc \
 	tsradbot.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	edmsg.h \
-	$(MP3_PREV_DIR)/setedit/edprint.cc \
-	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -2534,38 +2537,36 @@ obj/edprint$(ExOBJ):: edprint.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/edprj$(ExOBJ):: edprj.cc \
+	$(MP3_PREV_DIR)/setedit/edprj.cc \
+	advice.h \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
-	configed.h \
-	edspecs.h \
-	pathtool.h \
-	pmcoll.h \
-	sdginter.h \
-	sindicat.h \
-	tags.h \
-	tvsetuti.h \
-	rhutils.h \
-	$(MP3_PREV_DIR)/setedit/edprj.cc \
-	advice.h \
 	codepage.h \
+	compatlayer.h \
+	configed.h \
 	dskprj.h \
 	dskwin.h \
 	edcollec.h \
-	editcoma.h \
-	setapp.h \
 	edhists.h \
+	editcoma.h \
+	edspecs.h \
 	fileopen.h \
 	fiopeaid.h \
+	pathtool.h \
+	pmcoll.h \
+	rhutils.h \
 	sarray.h \
+	sdginter.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	tags.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2622,14 +2623,16 @@ obj/edprj$(ExOBJ):: edprj.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/edspecs$(ExOBJ):: edspecs.cc \
 	ced_inte.h \
+	compatlayer.h \
 	edspecs.h \
 	pathtool.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -2657,25 +2660,23 @@ obj/getctxhl$(ExOBJ):: getctxhl.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
+	dskhelp.h \
+	dskwin.h \
+	editcoma.h \
+	fileopen.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	dskhelp.h \
-	dskwin.h \
-	editcoma.h \
-	setapp.h \
-	fileopen.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2722,15 +2723,17 @@ obj/getctxhl$(ExOBJ):: getctxhl.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/gzfiles$(ExOBJ):: gzfiles.cc \
+	$(MP3_PREV_DIR)/mainsrc/gzfiles.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
 	gzfiles.h \
-	$(MP3_PREV_DIR)/mainsrc/gzfiles.cc \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -2749,22 +2752,22 @@ obj/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/holidays$(ExOBJ):: holidays.cc \
+	$(MP3_PREV_DIR)/setedit/holidays.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
+	datetools.h \
 	easydia1.h \
 	easydiag.h \
+	editcoma.h \
+	edspecs.h \
+	setapp.h \
 	tsbutton.h \
 	tslabel.h \
 	tsradbot.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	datetools.h \
-	ceditint.h \
-	configed.h \
-	edspecs.h \
-	$(MP3_PREV_DIR)/setedit/holidays.cc \
-	editcoma.h \
-	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -2810,30 +2813,28 @@ obj/holidays$(ExOBJ):: holidays.cc \
 INCLUDE03=inffd$(ExIMK)
 
 obj/intgrep$(ExOBJ):: intgrep.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/setedit/intgrep.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
+	edhists.h \
 	edmsg.h \
 	pathtool.h \
 	pmcoll.h \
-	sindicat.h \
-	splinman.h \
-	tvsetuti.h \
 	rhutils.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/intgrep.cc \
-	edhists.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	splinman.h \
 	tinppipe.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -2892,20 +2893,22 @@ obj/intgrep$(ExOBJ):: intgrep.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/keytrans$(ExOBJ):: keytrans.cc \
-	dyncat.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditor.h \
+	compatlayer.h \
+	dyncat.h \
 	keytrans.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
 	tstringa.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -2947,8 +2950,8 @@ INCLUDE04=librhuti$(ExIMK)
 obj/linelen$(ExOBJ):: linelen.cc \
 	ced_clas.h \
 	ceditor.h \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -2966,12 +2969,12 @@ obj/linelen$(ExOBJ):: linelen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loadcle$(ExOBJ):: loadcle.cc \
-	dyncat.h \
-	ceditint.h \
-	configed.h \
-	loadcle.h \
 	$(MP3_PREV_DIR)/setedit/loadcle.cc \
+	ceditint.h \
 	compatlayer.h \
+	configed.h \
+	dyncat.h \
+	loadcle.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -3001,8 +3004,24 @@ obj/loadcle$(ExOBJ):: loadcle.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loaddefl$(ExOBJ):: loaddefl.cc \
+	ced_clas.h \
+	ced_exte.h \
+	ced_inte.h \
+	ceditor.h \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	loadshl.h \
+	pathtool.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	tdiagaid.h \
+	tdiagrow.h \
+	tnocastc.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tsinplin.h \
@@ -3010,28 +3029,10 @@ obj/loaddefl$(ExOBJ):: loaddefl.cc \
 	tslistbo.h \
 	tssortlb.h \
 	tssortva.h \
-	tsview.h \
-	tsviewco.h \
-	ced_clas.h \
-	ced_exte.h \
-	ced_inte.h \
-	ceditor.h \
-	loadshl.h \
-	pathtool.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	setapp.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tnocastc.h \
 	tstringa.h \
 	tstrlbox.h \
-	viewplus.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -3079,12 +3080,14 @@ obj/loaddefl$(ExOBJ):: loaddefl.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/loadfunc$(ExOBJ):: loadfunc.cc \
-	pathtool.h \
 	compatlayer.h \
+	pathtool.h \
 	tv.h \
 	tv/codepage.h \
 	tv/configtv.h \
@@ -3104,29 +3107,29 @@ obj/loadfunc$(ExOBJ):: loadfunc.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
-	easydia1.h \
-	easydiag.h \
-	tsbutton.h \
-	tsinplin.h \
-	tslabel.h \
-	tsview.h \
-	tsviewco.h \
+	$(MP3_PREV_DIR)/setedit/loadnobkp.cc \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	loadshl.h \
+	easydia1.h \
+	easydiag.h \
 	loadnobkp.h \
+	loadshl.h \
 	setapp.h \
-	$(MP3_PREV_DIR)/setedit/loadnobkp.cc \
 	setstack.h \
 	settvuti.h \
 	tdiagaid.h \
 	tdiagrow.h \
 	tnocastc.h \
+	tsbutton.h \
+	tsinplin.h \
+	tslabel.h \
 	tstringa.h \
 	tstrlbox.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -3174,25 +3177,23 @@ obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loadshl$(ExOBJ):: loadshl.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/mainsrc/loadshl.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
 	loadshl.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/loadshl.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -3227,12 +3228,30 @@ obj/loadshl$(ExOBJ):: loadshl.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/loadusew$(ExOBJ):: loadusew.cc \
+	ced_clas.h \
+	ced_exte.h \
+	ced_inte.h \
+	ceditor.h \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	loadshl.h \
+	pathtool.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	tdiagaid.h \
+	tdiagrow.h \
+	tnocastc.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tsinplin.h \
@@ -3240,28 +3259,10 @@ obj/loadusew$(ExOBJ):: loadusew.cc \
 	tslistbo.h \
 	tssortlb.h \
 	tssortva.h \
-	tsview.h \
-	tsviewco.h \
-	ced_clas.h \
-	ced_exte.h \
-	ced_inte.h \
-	ceditor.h \
-	loadshl.h \
-	pathtool.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	setapp.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tnocastc.h \
 	tstringa.h \
 	tstrlbox.h \
-	viewplus.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -3308,6 +3309,8 @@ obj/loadusew$(ExOBJ):: loadusew.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -3315,18 +3318,16 @@ obj/macrocom$(ExOBJ):: macrocom.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
-	sindicat.h \
-	slpinter.h \
-	tvsetuti.h \
-	setapp.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	slpinter.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -3365,30 +3366,30 @@ obj/macrocom$(ExOBJ):: macrocom.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/menuload$(ExOBJ):: menuload.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/setedit/menuload.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
 	keytrans.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/menuload.cc \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -3434,18 +3435,20 @@ obj/menuload$(ExOBJ):: menuload.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mli$(ExOBJ):: mli.cc \
+	compatlayer.h \
 	dyncat.h \
-	pathtool.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
 	mlibase.h \
 	mlivar.h \
-	compatlayer.h \
+	pathtool.h \
 	tv.h \
 	tv/codepage.h \
 	tv/configtv.h \
@@ -3479,7 +3482,7 @@ obj/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
-	ucdefs.h \
+	compatlayer.h \
 	mli.h \
 	mliabase.h \
 	mlibase.h \
@@ -3487,7 +3490,6 @@ obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	mlisdg.h \
 	mlisdgi.h \
 	mlivar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -3507,12 +3509,13 @@ obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	ucdefs.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mliediti$(ExOBJ):: mliediti.cc \
+	compatlayer.h \
 	edmsg.h \
-	tvsetuti.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -3522,7 +3525,6 @@ obj/mliediti$(ExOBJ):: mliediti.cc \
 	mlivar.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -3548,17 +3550,16 @@ obj/mliediti$(ExOBJ):: mliediti.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mliedito$(ExOBJ):: mliedito.cc \
-	dyncat.h \
 	ced_coma.h \
 	ceditor.h \
+	compatlayer.h \
+	dyncat.h \
 	edmsg.h \
-	runprog.h \
-	tvsetuti.h \
-	rhutils.h \
 	mli.h \
 	mliabase.h \
 	mlibase.h \
@@ -3567,9 +3568,10 @@ obj/mliedito$(ExOBJ):: mliedito.cc \
 	mlisdg.h \
 	mlisdgi.h \
 	mlivar.h \
+	rhutils.h \
+	runprog.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -3596,10 +3598,12 @@ obj/mliedito$(ExOBJ):: mliedito.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mlisdg$(ExOBJ):: mlisdg.cc \
+	compatlayer.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -3608,7 +3612,6 @@ obj/mlisdg$(ExOBJ):: mlisdg.cc \
 	mlisdg.h \
 	mlisdgi.h \
 	mlivar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -3632,12 +3635,12 @@ obj/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/msignal$(ExOBJ):: msignal.cc \
-	stackdbg.h \
+	$(MP3_PREV_DIR)/setedit/msignal.cc \
 	ced_inte.h \
 	ceditint.h \
-	configed.h \
-	$(MP3_PREV_DIR)/setedit/msignal.cc \
 	compatlayer.h \
+	configed.h \
+	stackdbg.h \
 	tv.h \
 	tv/configtv.h \
 	tv/event.h \
@@ -3769,24 +3772,23 @@ obj/parser$(ExOBJ):: parser.c \
 	$(RHIDE_COMPILE_C)
 
 obj/pathlist$(ExOBJ):: pathlist.cc \
+	$(MP3_PREV_DIR)/setedit/pathlist.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
-	tsbutton.h \
-	tsinplin.h \
-	tslabel.h \
-	tsview.h \
-	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	tvsetuti.h \
 	setapp.h \
-	$(MP3_PREV_DIR)/setedit/pathlist.cc \
 	settvuti.h \
 	tdiagaid.h \
 	tdiagrow.h \
+	tsbutton.h \
+	tsinplin.h \
+	tslabel.h \
 	tstringa.h \
 	tstrlbox.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -3830,21 +3832,21 @@ obj/pathlist$(ExOBJ):: pathlist.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/pathtool$(ExOBJ):: pathtool.cc \
-	ceditint.h \
-	configed.h \
-	pathtool.h \
-	tvsetuti.h \
-	rhutils.h \
 	$(MP3_PREV_DIR)/mainsrc/pathtool.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	pathlist.h \
+	pathtool.h \
+	rhutils.h \
 	setapp.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -3871,6 +3873,7 @@ obj/pathtool$(ExOBJ):: pathtool.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -3897,10 +3900,10 @@ obj/pclipper$(ExOBJ):: pclipper.cc \
 
 obj/pmacros$(ExOBJ):: pmacros.cc \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
 	settvuti.h \
 	tstringa.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -3962,8 +3965,23 @@ obj/pvarious$(ExOBJ):: pvarious.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/runprog$(ExOBJ):: runprog.cc \
+	$(MP3_PREV_DIR)/setedit/runprog.cc \
+	ceditint.h \
+	ceditor.h \
+	compatlayer.h \
+	configed.h \
+	dyncat.h \
 	easydia1.h \
 	easydiag.h \
+	edmsg.h \
+	intermp3.h \
+	loadcle.h \
+	rhutils.h \
+	runprog.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	splinman.h \
 	tsbutton.h \
 	tsinplin.h \
 	tslabel.h \
@@ -3973,21 +3991,6 @@ obj/runprog$(ExOBJ):: runprog.cc \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	dyncat.h \
-	ceditint.h \
-	ceditor.h \
-	configed.h \
-	edmsg.h \
-	runprog.h \
-	splinman.h \
-	rhutils.h \
-	intermp3.h \
-	loadcle.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/runprog.cc \
-	setstack.h \
-	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -4046,22 +4049,20 @@ obj/runprog$(ExOBJ):: runprog.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/sceditor$(ExOBJ):: sceditor.cc \
+	$(MP3_PREV_DIR)/streams/sceditor.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	$(MP3_PREV_DIR)/streams/sceditor.cc \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4097,32 +4098,32 @@ obj/sceditor$(ExOBJ):: sceditor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/scresave$(ExOBJ):: scresave.cc \
-	dyncat.h \
+	$(MP3_PREV_DIR)/setedit/scresave.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
+	dyncat.h \
+	intermp3.h \
 	pathtool.h \
 	pmcoll.h \
-	runprog.h \
-	sindicat.h \
-	tvsetuti.h \
 	rhutils.h \
-	intermp3.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/scresave.cc \
+	runprog.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -4166,19 +4167,20 @@ obj/scresave$(ExOBJ):: scresave.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sdginter$(ExOBJ):: sdginter.cc \
+	$(MP3_PREV_DIR)/mainsrc/sdginter.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
 	edmsg.h \
-	$(MP3_PREV_DIR)/mainsrc/sdginter.cc \
 	mli.h \
 	mlisdgi.h \
-	txhgen.h \
 	setapp.h \
-	compatlayer.h \
 	tv.h \
 	tv/button.h \
 	tv/checkbox.h \
@@ -4215,13 +4217,14 @@ obj/sdginter$(ExOBJ):: sdginter.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
+	txhgen.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sdskasci$(ExOBJ):: sdskasci.cc \
+	compatlayer.h \
 	dskascii.h \
 	dskwin.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -4241,9 +4244,9 @@ obj/sdskasci$(ExOBJ):: sdskasci.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/sdskcale$(ExOBJ):: sdskcale.cc \
+	compatlayer.h \
 	dskcalen.h \
 	dskwin.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -4266,18 +4269,16 @@ obj/sdskclip$(ExOBJ):: sdskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskclip.h \
 	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4313,6 +4314,8 @@ obj/sdskclip$(ExOBJ):: sdskclip.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -4320,18 +4323,16 @@ obj/sdskclos$(ExOBJ):: sdskclos.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskclose.h \
 	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4367,6 +4368,8 @@ obj/sdskclos$(ExOBJ):: sdskclos.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -4374,18 +4377,16 @@ obj/sdskedit$(ExOBJ):: sdskedit.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskedito.h \
 	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4421,6 +4422,8 @@ obj/sdskedit$(ExOBJ):: sdskedit.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -4428,22 +4431,20 @@ obj/sdskhelp$(ExOBJ):: sdskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
+	dskhelp.h \
+	dskwin.h \
 	inf.h \
 	infbase.h \
 	infbaser.h \
 	infr.h \
-	dskhelp.h \
-	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4484,13 +4485,15 @@ obj/sdskhelp$(ExOBJ):: sdskhelp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sdskman$(ExOBJ):: sdskman.cc \
+	compatlayer.h \
 	dskman.h \
 	dskwin.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -4513,18 +4516,16 @@ obj/sdskmess$(ExOBJ):: sdskmess.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskmessa.h \
 	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4560,13 +4561,15 @@ obj/sdskmess$(ExOBJ):: sdskmess.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sdskmp3$(ExOBJ):: sdskmp3.cc \
+	compatlayer.h \
 	dskmp3.h \
 	dskwin.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -4589,18 +4592,16 @@ obj/sdskprj$(ExOBJ):: sdskprj.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskprj.h \
 	dskwin.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4636,27 +4637,27 @@ obj/sdskprj$(ExOBJ):: sdskprj.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/search$(ExOBJ):: search.cc \
+	$(MP3_PREV_DIR)/mainsrc/search.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/search.cc \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -4692,6 +4693,8 @@ obj/search$(ExOBJ):: search.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -4699,18 +4702,16 @@ obj/sedcolle$(ExOBJ):: sedcolle.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
+	compatlayer.h \
 	dskwin.h \
 	edcollec.h \
+	pmcoll.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4749,48 +4750,48 @@ obj/sedcolle$(ExOBJ):: sedcolle.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE05=settv$(ExIMK)
 
 obj/slpinter$(ExOBJ):: slpinter.cc \
-	easydia1.h \
-	easydiag.h \
-	tsbutton.h \
-	tsinplpi.h \
-	tslabel.h \
-	tsview.h \
-	tsviewco.h \
+	$(MP3_PREV_DIR)/mainsrc/slpinter.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	completi.h \
 	configed.h \
+	easydia1.h \
+	easydiag.h \
+	edhists.h \
 	edmsg.h \
-	pmcoll.h \
-	sindicat.h \
-	slpinter.h \
-	tvsetuti.h \
-	$(MP3_PREV_DIR)/mainsrc/slpinter.cc \
 	mli.h \
 	mliabase.h \
 	mlibase.h \
 	mlieditd.h \
 	mliedito.h \
 	mlivar.h \
-	setapp.h \
-	edhists.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	slpinter.h \
 	tinppipe.h \
 	tnocastc.h \
+	tsbutton.h \
+	tsinplpi.h \
+	tslabel.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -4838,6 +4839,8 @@ obj/slpinter$(ExOBJ):: slpinter.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -4846,17 +4849,15 @@ obj/splinman$(ExOBJ):: splinman.cc \
 	ced_exte.h \
 	ced_inte.h \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
-	sindicat.h \
-	splinman.h \
-	tvsetuti.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
+	splinman.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -4889,15 +4890,16 @@ obj/splinman$(ExOBJ):: splinman.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ssindica$(ExOBJ):: ssindica.cc \
 	ceditor.h \
-	sindicat.h \
-	tvsetuti.h \
-	settvuti.h \
 	compatlayer.h \
+	settvuti.h \
+	sindicat.h \
 	tv.h \
 	tv/configtv.h \
 	tv/drawbuf.h \
@@ -4920,39 +4922,39 @@ obj/ssindica$(ExOBJ):: ssindica.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ssyntax$(ExOBJ):: ssyntax.cc \
+	$(MP3_PREV_DIR)/mainsrc/ssyntax.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	inf.h \
+	infbase.h \
+	infbaser.h \
+	infr.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	ssyntax.h \
+	tdiagaid.h \
+	tdiagrow.h \
+	tnocastc.h \
 	tsbutton.h \
 	tsinplin.h \
 	tslabel.h \
 	tslistbo.h \
 	tssortva.h \
+	tstringa.h \
+	tstrlbox.h \
 	tstsorlb.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	ssyntax.h \
-	tvsetuti.h \
-	inf.h \
-	infbase.h \
-	infbaser.h \
-	infr.h \
-	$(MP3_PREV_DIR)/mainsrc/ssyntax.cc \
-	setapp.h \
-	setstack.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tnocastc.h \
-	tstringa.h \
-	tstrlbox.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -5005,12 +5007,32 @@ obj/ssyntax$(ExOBJ):: ssyntax.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tags$(ExOBJ):: tags.cc \
+	$(MP3_PREV_DIR)/mainsrc/tags.cc \
+	advice.h \
+	ced_coma.h \
+	ced_exte.h \
+	ceditor.h \
+	compatlayer.h \
+	completi.h \
 	easydia1.h \
 	easydiag.h \
+	edhists.h \
+	fileopen.h \
+	fiopeaid.h \
+	pathtool.h \
+	rhutils.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	tags.h \
+	tdiagaid.h \
+	tdiagrow.h \
+	tnocastc.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
@@ -5018,32 +5040,12 @@ obj/tags$(ExOBJ):: tags.cc \
 	tssortlb.h \
 	tssortva.h \
 	tstatext.h \
+	tstringa.h \
+	tstrlbox.h \
 	tstsorlb.h \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ced_coma.h \
-	ced_exte.h \
-	ceditor.h \
-	completi.h \
-	pathtool.h \
-	tags.h \
-	tvsetuti.h \
-	rhutils.h \
-	$(MP3_PREV_DIR)/mainsrc/tags.cc \
-	advice.h \
-	setapp.h \
-	edhists.h \
-	fileopen.h \
-	fiopeaid.h \
-	setstack.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tnocastc.h \
-	tstringa.h \
-	tstrlbox.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -5094,40 +5096,39 @@ obj/tags$(ExOBJ):: tags.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tedcolle$(ExOBJ):: tedcolle.cc \
-	easydia1.h \
-	easydiag.h \
-	tslistbo.h \
-	tssortlb.h \
-	tssortva.h \
-	tsview.h \
-	tsviewco.h \
+	$(MP3_PREV_DIR)/setedit/tedcolle.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
+	compatlayer.h \
 	configed.h \
-	edspecs.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	dskclose.h \
 	dskedito.h \
 	dskwin.h \
+	easydia1.h \
+	easydiag.h \
 	edcollec.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/tedcolle.cc \
+	edspecs.h \
+	pmcoll.h \
 	sarray.h \
+	setapp.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
+	tslistbo.h \
+	tssortlb.h \
+	tssortva.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
+	tsview.h \
+	tsviewco.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -5174,12 +5175,21 @@ obj/tedcolle$(ExOBJ):: tedcolle.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tips$(ExOBJ):: tips.cc \
+	$(MP3_PREV_DIR)/setedit/tips.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edmsg.h \
+	edspecs.h \
+	setapp.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
@@ -5188,13 +5198,6 @@ obj/tips$(ExOBJ):: tips.cc \
 	tsview.h \
 	tsviewco.h \
 	ttextscr.h \
-	ceditint.h \
-	configed.h \
-	edmsg.h \
-	edspecs.h \
-	setapp.h \
-	$(MP3_PREV_DIR)/setedit/tips.cc \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -5246,8 +5249,8 @@ obj/tips$(ExOBJ):: tips.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/tpaltext$(ExOBJ):: tpaltext.cc \
-	tpaltext.h \
 	compatlayer.h \
+	tpaltext.h \
 	tv.h \
 	tv/configtv.h \
 	tv/fpbase.h \
@@ -5272,16 +5275,14 @@ obj/tsindica$(ExOBJ):: tsindica.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
+	compatlayer.h \
 	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
 	sarray.h \
 	setstack.h \
 	settvuti.h \
+	sindicat.h \
 	tnocastc.h \
 	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -5316,20 +5317,21 @@ obj/tsindica$(ExOBJ):: tsindica.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/txhgen$(ExOBJ):: txhgen.cc \
 	bufun.h \
-	rhutils.h \
+	cl/unistd.h \
+	compatlayer.h \
 	mli.h \
 	mlisdgi.h \
-	txhgen.h \
+	rhutils.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	cl/unistd.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -5357,36 +5359,35 @@ obj/txhgen$(ExOBJ):: txhgen.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	txhgen.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/winlistd$(ExOBJ):: winlistd.cc \
+	advice.h \
+	ced_clas.h \
+	ced_exte.h \
+	ceditor.h \
+	compatlayer.h \
+	dskwin.h \
 	easydia1.h \
 	easydiag.h \
+	edcollec.h \
+	editcoma.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	tnocastc.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslistbo.h \
 	tssortva.h \
+	tstringa.h \
 	tsview.h \
 	tsviewco.h \
-	ced_clas.h \
-	ced_exte.h \
-	ceditor.h \
-	pmcoll.h \
-	sindicat.h \
-	tvsetuti.h \
-	advice.h \
-	dskwin.h \
-	edcollec.h \
-	editcoma.h \
-	setapp.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	tnocastc.h \
-	tstringa.h \
-	viewplus.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -5434,6 +5435,8 @@ obj/winlistd$(ExOBJ):: winlistd.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
