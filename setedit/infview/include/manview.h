@@ -17,12 +17,18 @@ public:
  TEnhancedText(const char *aFileName, const char *aCommandLine);
  ~TEnhancedText();
  void copyLine(int y, int w, ushort *line, char *colors);
+ void copyLineText(int y, int xs, int xe, char *dest);
+ Boolean hasSelection();
+ char *getSelection(unsigned &len);
 
  const char *fileName;
  const char *commandLine;
  char isOK;
  static int maxWidth;
  int rows, cols;
+
+ int xSelStart,ySelStart;
+ int xSelEnd,ySelEnd;
 };
 
 #endif // __TEnhancedText__
@@ -48,6 +54,7 @@ public:
  virtual void handleEvent( TEvent& event );
  void InsertText(TEnhancedText *aText);
  void getScrollBars(TScrollBar *&hScr, TScrollBar *&vScr);
+ Boolean clipWinCopy(int id);
 
 protected:
  TEnhancedText *text;

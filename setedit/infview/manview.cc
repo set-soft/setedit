@@ -22,6 +22,8 @@
 #define Uses_TSVeGroup
 #define Uses_TSInputLine
 #define Uses_TSButton
+#define Uses_TVOSClipboard
+#define Uses_MsgBox
 
 #define Uses_TCEditor_Commands
 
@@ -63,6 +65,7 @@ TEnhancedText::TEnhancedText(const char *aFileName, const char *aCommandLine) :
  commandLine=newStr(aCommandLine);
  isOK=1;
  rows=cols=0;
+ xSelStart=ySelStart=xSelEnd=ySelEnd=0;
 
  FILE *f=fopen(aFileName,"rt");
  if (!f)
@@ -130,7 +133,14 @@ TEnhancedText::TEnhancedText(const char *aFileName, const char *aCommandLine) :
 
 void TEnhancedText::copyLine(int y, int w, ushort *line, char *colors)
 {
- ushort space=' ' |  (colors[0]<<8);
+ ushort space;
+ uchar *aux;
+ aux=(uchar *)&space;
+ aux[0]=' ';
+ aux[1]=colors[0];
+ aux=(uchar *)line;
+ int width=w;
+
  int i;
  if (y>=getCount())
     for (i=0; i<w; i++) line[i]=space;
@@ -153,6 +163,96 @@ void TEnhancedText::copyLine(int y, int w, ushort *line, char *colors)
     if (w)
        for (i=0; i<w; i++) line[i]=space;
    }
+ // Selection post-processing
+ if (y>=ySelStart && y<=ySelEnd)
+   {
+    //fprintf(stderr,"%d in %d-%d: ",y,ySelStart,ySelEnd);
+    int xs=0, xe=width;
+    if (y==ySelStart) xs=xSelStart;
+    if (xs>width)     xs=width;
+    if (y==ySelEnd)   xe=xSelEnd;
+    if (xe>width)     xe=width;
+    //fprintf(stderr,"%d a %d\n",xs,xe);
+    while (xs<xe)
+      {
+       aux[xs*2+1]=(aux[xs*2+1] & 0xF) | 0x70;
+       xs++;
+      }
+   }
+}
+
+Boolean TEnhancedText::hasSelection()
+{
+ if (ySelStart<ySelEnd ||
+     (ySelStart==ySelEnd && xSelStart<xSelEnd))
+    return True;
+ return False;
+}
+
+void TEnhancedText::copyLineText(int y, int xs, int xe, char *dest)
+{
+ int i=xs;
+ LineOfEText *l=(LineOfEText *)at(y);
+ if (xs<l->len)
+   {
+    char *s=(char *)l->text;
+    int  xm=min(l->len,xs);
+    for (; i<xm; dest++, i++)
+        *dest=s[i*2];
+   }
+ for (; i<xe; dest++, i++)
+     *dest=' ';
+}
+
+char *TEnhancedText::getSelection(unsigned &len)
+{
+ if (!hasSelection())
+   {
+    len=0;
+    return NULL;
+   }
+ if (ySelStart==ySelEnd)
+   {
+    len=xSelEnd-xSelStart;
+    char *res=new char[len];
+    copyLineText(ySelStart,xSelStart,xSelEnd,res);
+    return res;
+   }
+ LineOfEText *l;
+ int y;
+ len=ySelEnd-ySelStart;
+ // Bytes in the first line
+ l=(LineOfEText *)at(ySelStart);
+ len+=xSelStart<l->len ? l->len-xSelStart : 0;
+ // In the middle lines
+ for (y=ySelStart+1; y<ySelEnd; y++)
+    {
+     l=(LineOfEText *)at(y);
+     len+=l->len;
+    }
+ // In last line
+ len+=xSelEnd;
+ // Allocate
+ char *dest=new char[len];
+ char *s=dest;
+ // Fill it
+ l=(LineOfEText *)at(ySelStart);
+ if (xSelStart<l->len)
+   {
+    copyLineText(ySelStart,xSelStart,l->len,s);
+    s+=l->len-xSelStart;
+   }
+ *s='\n'; s++;
+ for (y=ySelStart+1; y<ySelEnd; y++)
+    {
+     l=(LineOfEText *)at(y);
+     copyLineText(y,0,l->len,s);
+     s+=l->len;
+     *s='\n'; s++;
+    }
+ copyLineText(y,0,xSelEnd,s);
+
+ return dest;
 }
 
 TEnhancedText::~TEnhancedText()
@@ -182,6 +282,30 @@ void TManPageView::getScrollBars(TScrollBar *&hScr, TScrollBar *&vScr)
 {
  hScr=hScrollBar;
  vScr=vScrollBar;
+}
+
+Boolean TManPageView::clipWinCopy(int id)
+{
+ Boolean res=False;
+ if (text && text->hasSelection())
+   {
+    /*if (!TVOSClipboard::isAvailable())
+      {
+       messageBox(_("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       return False;
+      }*/
+    unsigned len;
+    char *buffer=text->getSelection(len);
+    res=TVOSClipboard::copy(id,buffer,len) ? True : False;
+    DeleteArray(buffer);
+    /*if (!res)
+      {
+       messageBox(mfError | mfOKButton,_("Error copying to clipboard: %s"),
+                  TVOSClipboard::getError());
+       return False;
+      }*/
+   }
+ return res;
 }
 
 void TManPageView::handleEvent( TEvent& event )
@@ -238,6 +362,56 @@ void TManPageView::handleEvent( TEvent& event )
             }
          }
       }
+   }
+ else if (text && event.what==evMouseDown && event.mouse.buttons==mbLeftButton)
+   {
+    TPoint mouse=makeLocal(event.mouse.where)+delta;
+    int xSt=text->xSelStart=text->xSelEnd=mouse.x;
+    int ySt=text->ySelStart=text->ySelEnd=mouse.y;
+    draw();
+    TPoint last=mouse;
+    do
+      {
+       if (event.what==evMouseAuto)
+         {
+          mouse=makeLocal(event.mouse.where);
+          TPoint d=delta;
+          if (mouse.x<0)
+             d.x--;
+          if (mouse.x>=size.x)
+             d.x++;
+          if (mouse.y<0)
+             d.y--;
+          if (mouse.y>=size.y)
+             d.y++;
+          scrollTo(d.x,d.y);
+          mouse+=delta;
+         if (mouse!=last)
+            {
+             if (mouse.y<ySt || (mouse.y==ySt && mouse.x<xSt))
+               {
+                text->xSelStart=mouse.x;
+                text->ySelStart=mouse.y;
+                text->xSelEnd=xSt;
+                text->ySelEnd=ySt;
+               }
+             else
+               {
+                text->xSelStart=xSt;
+                text->ySelStart=ySt;
+                text->xSelEnd=mouse.x;
+                text->ySelEnd=mouse.y;
+               }
+             last=mouse;
+             //fprintf(stderr,"%d,%d - %d,%d\n",text->xSelStart,text->ySelStart,text->xSelEnd,text->ySelEnd);
+             draw();
+            }
+         }
+      }
+    while (mouseEvent(event,evMouseMove+evMouseAuto));
+    clearEvent(event);
+    //if (TVOSClipboard::isAvailable()>1)
+    //   clipWinCopy(1);
    }
  else if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
    {
