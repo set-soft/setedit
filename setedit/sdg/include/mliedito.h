@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=17;
+const int MLIEditorCommands=18;
 class TNoCaseStringCollection;
 
 typedef struct
