@@ -9070,7 +9070,8 @@ Boolean TCEditor::search(const char *, unsigned opts)
                takeThisHit=0;
         }
       // In/Outside comments
-      if (SyntaxHL!=shlNoSyntax && (opts & (efSearchInComm | efSearchOutComm)))
+      if (takeThisHit && SyntaxHL!=shlNoSyntax &&
+          (opts & (efSearchInComm | efSearchOutComm)))
         {// Find the attributes of this point
          uint32 attr=SyntaxHighlightForOffset(i);
          if (attr & IsInsideCom)

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.412  2003/06/17 14:43:45  set
+* Added: SQL emacs modes and sequence keyword. Suggested by Grzegorz.
+
 Revision 1.411  2003/06/17 14:36:37  set
 * Added: cmcCommentIndent/cmcCommentUnIndent now indents the current line
 if nothing is selected. Suggested by Thiago.
