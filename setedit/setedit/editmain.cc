@@ -2967,6 +2967,7 @@ int main(int argc, char *argv[])
  RunExternalProgramFreeMemory();
  LoadKeysForTCEditorFreeMemory();
  TagsFreeMemory();
+ PathListUnLoad();
 
  return 0;
 }

@@ -272,7 +272,7 @@ PMacros=htmlmac.pmc
 Keywords=break,case,continue,default
 Keywords=do,else,for,goto,if,return,switch,this,while
 Keywords=<a,<script,</script,href,<img,src,<pre,<p,</p,</a,<br,<b,http-equiv
-Keywords=</b,</pre,<xmp,</xmp,<table,</table,<table,<center,</center,<i,</i
+Keywords=</b,</pre,<xmp,</xmp,<table,</table,<center,</center,<i,</i
 Keywords=<h1,</h1,<h2,</h2,<h3,</h3,<h4,</h4,<h5,</h5,<h6,</h6
 Keywords=<td,</td,<tr,</tr,<li,</li,<menu,</menu,<u,</u,<font,</font,<hr
 Keywords=<title,</title,<html,</html,<head,</head,<meta,width,height,<body,</body
@@ -287,7 +287,7 @@ Keywords=<dl,</dl,<dt,<option,<select,</select,selected,onUnLoad,<sup,</sup
 Keywords=background,scrolling,noresize,frameborder,onload,alink,language
 Keywords=<div,</div,<frameset,</frameset,<noframes,</noframes,<frame,</frame
 Keywords=<strong,</strong,<dd,<base,<cite,</cite,<code,</code,</option,<nobr
-Keywords=http-equiv,<sub,</sub,<th,</th,<blink,</blink,<noscript,</noscript
+Keywords=<sub,</sub,<th,</th,<blink,</blink,<noscript,</noscript
 Keywords=style,clear,<link,<style,</style,<col,<colgroup,</colgroup
 Keywords=<tbody,</tbody,<thead,</thead,<tfoot,</tfoot,rel,rev,<!doctype
 End
@@ -771,18 +771,18 @@ Keywords=@kindex,@L,@l,@global,@lisp,@url,@lowersections,@macro,@author
 Keywords=@majorheading,@math,@menu,@minus,@OE,@multitable,@need,@vindex
 Keywords=@noindent,@O,@o,@oddfooting,@oddheading,@print,@appendixsubsec
 Keywords=@cartouche,@center,@centerchap,@chapheading,@chapter,@AE
-Keywords=@paragraphindent,@pindex,@point,@@,@pounds,@node,@thistitle
+Keywords=@paragraphindent,@pindex,@point,@@,@pounds,@thistitle
 Keywords=@pxref,@questiondown,@quotation,@r,@raisesections,@ref,@refill
 Keywords=@result,@ringaccent,@samp,@sc,@section,@set,@setchapternewpage
 Keywords=@setfilename,@settitle,@shortcontents,@shorttitlepage,thisfile
-Keywords=@smallbook,@smallexample,@sp,@ss,@oe,@appendixsubsubsec,@table
+Keywords=@smallbook,@smallexample,@sp,@ss,@oe,@table
 Keywords=@subheading,@subsection,@w,@subsubheading,@xref,@subsubsection
 Keywords=@subtitle,@summarycontents,@appendix,@syncodeindex,@cindex,@aa
 Keywords=@TeX,@tex,@thischapter,@thischaptername,@vtable,@printindex
 Keywords=@thispage,@tindex,@title,@titlefont,@titlepage,@uC,@synindex
 Keywords=@t,@ubaraccentC,@udotaccentC,@unnumbered,@unnumberedsec,@bullet
 Keywords=@unnumberedsubsec,@unnumberedsubsubsec,@vC,@value,@var,@strong
-Keywords=@ae,@appendix,@appendixsec,@appendixsection,@top,@today,@vskip
+Keywords=@ae,@appendixsec,@appendixsection,@top,@today,@vskip
 End
 
 # ---------------- PICS asm ----------------

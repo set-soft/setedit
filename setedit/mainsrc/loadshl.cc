@@ -162,7 +162,11 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
                    if (!isCase)
                       strlwr(t); // Make sure they are lower case if the language is not
                                  // case sensitive, the seachs assumes it
-                   hl.Keywords->insert(t);
+                   ccIndex curPos;
+                   if (hl.Keywords->search(t,curPos))
+                      delete[] t;
+                   else
+                      hl.Keywords->insert(t);
                   }
                 pos=s+1;
                }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2001-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -98,11 +98,16 @@ void PathListSave(fpstream& s)
     s << (uchar)0;
 }
 
+void PathListUnLoad()
+{
+ destroy0(IncludeList);
+}
+
 void PathListLoad(fpstream& s)
 {
  uchar aux;
  s >> aux; // Version
- destroy0(IncludeList);
+ PathListUnLoad();
  s >> aux;
  if (aux)
     s >> IncludeList;
