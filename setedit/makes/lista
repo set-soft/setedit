@@ -718,6 +718,10 @@ streams/ssindica.cc
 TODO
 tools/cmclist.c
 tools/conv.cc
++tools/cvssget
++tools/cvssput
+tools/cvssyncget.cc
+tools/cvssyncput.cc
 tools/kbv.c
 *tools/makediff.bat
 +tools/makediff.pl
