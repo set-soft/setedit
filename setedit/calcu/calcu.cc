@@ -50,6 +50,8 @@ public:
   TInputLine *result;
 };
 
+const int MaxLinePipe=255;
+
 TCalcDialog::TCalcDialog(const TRect & bounds, char *Title, char *StartVal)
   : TDialog(bounds,Title),
   TWindowInit(TCalcDialog::initFrame)
@@ -61,13 +63,17 @@ TCalcDialog::TCalcDialog(const TRect & bounds, char *Title, char *StartVal)
   r.b.x = size.x - 5;
   r.b.y = r.a.y + 1;
   // Piped and supports copy & paste
-  input = new TInputLinePiped(r,255);
+  input = new TInputLinePiped(r,MaxLinePipe);
   insert(new THistory(TRect(r.b.x,r.a.y,r.b.x+3,r.b.y), input,
                       hID_TCalcDialogExp));
   if (StartVal)
-  {
-    input->setData(StartVal);
-  }
+    {
+     // This will copy MaxLinePipe characters -1. For this reason the source
+     // *must* be at least MaxLinePipe in size.
+     char aux[MaxLinePipe];
+     strncpy(aux,StartVal,MaxLinePipe);
+     input->setData(aux);
+    }
   insert(input);
   r.move(0,-1);
   insert(new TLabel(r,_("~E~xpression"),input));

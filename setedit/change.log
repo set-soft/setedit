@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.134  2002/06/28 12:36:29  set
+* Modified: The editor now checks if the screen saver is suitable for the
+current driver.
+
 Revision 1.133  2002/06/27 18:08:58  set
 * Fixed: Another use of a class after releasing the memory. Reported by
 efence.
