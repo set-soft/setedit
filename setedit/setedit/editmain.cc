@@ -471,7 +471,7 @@ unsigned doEditDialogLocal(int dialog, ...)
  switch(dialog)
    {
     case edFileExists:
-         str=va_arg(arg,_charPtr);
+         str=va_arg(arg,charPtr);
          flags=va_arg(arg,int);
          if (!flags && IsAlreadyOnDesktop(str))
            {
@@ -485,6 +485,7 @@ unsigned doEditDialogLocal(int dialog, ...)
  va_start(arg,dialog);
  unsigned ret=doEditDialog(dialog,arg);
  va_end(arg);
+ return ret;
 }
 
 TSetEditorApp::TSetEditorApp() :
