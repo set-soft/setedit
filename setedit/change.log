@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.653  2005/01/31 14:13:33  set
+* Fixed: [MSVC] compilation problems in pvhdl.cc. Reported by Grzegorz.
+* Fixed: [TAGS] allocation of -1 for some files. Reported by Grzegorz.
+
 Revision 1.652  2005/01/05 13:10:32  set
 * Fixed: The growing mode of the "assigned to" widget in the kbd conf.
 Reported by Thiago.

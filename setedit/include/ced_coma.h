@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Commands ) && !defined( __TCEditor_Commands__ )
 #define __TCEditor_Commands__
@@ -171,8 +171,9 @@ const int
   cmbCompactBufferNi   = 157,
   cmbSearchSelForward  = 158,
   cmbSearchSelBackward = 159,
+  cmbSmartTab          = 160,
   
-  cmbLastCommand       = 160;
+  cmbLastCommand       = 161;
 
 
 const int
@@ -337,7 +338,8 @@ const int
   cmcExpandAllTabsNi   = cmbExpandAllTabsNi+cmbBaseNumber,
   cmcCompactBufferNi   = cmbCompactBufferNi+cmbBaseNumber,
   cmcSearchSelForward  = cmbSearchSelForward+cmbBaseNumber,
-  cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber;
+  cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber,
+  cmcSmartTab          = cmbSmartTab+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

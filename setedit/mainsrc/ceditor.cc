@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -10,15 +10,16 @@
   
   Postal Address:
   Salvador E. Tropea
-  Curapalige 2124
+  Curapaligue 2124
   (1678) Caseros - 3 de Febrero
   Prov: Buenos Aires
   Argentina
 
   Contributors:
-  Robert H”hne    (Robert.Hoehne@Mathematik.TU-Chemnitz.DE)
+  Robert Hoehne   (Robert.Hoehne@Mathematik.TU-Chemnitz.DE)
   Marek Habersack (grendel@ananke.amu.edu.pl)
   Molnar Laszlo   (molnarl@postabank.hu)
+  And more ...
 
 *****************************************************************************/
 
@@ -3609,6 +3610,10 @@ int TCEditor::handleCommand(ushort command)
                 SearchSelForward();
                 break;
 
+           case cmcSmartTab:
+                SmartTab();
+                break;
+
            default:
                unlock();
                unlockUndo();
@@ -5890,72 +5895,86 @@ void TCEditor::CompactBuffer(Boolean interactive)
 }
 
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void InsertCharInLine(char cVal, Boolean allowUndo)
+  Description: Implements cmcSmartTab, that's the behavior of the TAB key
+in the editor.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
+void TCEditor::SmartTab()
+{
+ if (isReadOnly)
+    return;
 
-   Objetive: Insert a char in the edited line.
-   Keeps track on:
+ lock();
+ CutIfNotPersistent();
+ if (!IslineInEdition)
+    EditLine();
+ if (IslineInEdition)
+   {
+    if (UseTabs)
+       InsertCharInLine('\t');
+    // Tab in indent mode
+    else
+      {
+       int X;
+       if (TabIndents)
+         {
+          int Xact=curPos.x;
+          X=0;
+          if (curPos.y>0)
+            { // Search a hole in the last line
+             char *s=curLinePtr-lenLines[curPos.y-1];
+      
+             do
+              {
+               for (;CLY_IsntEOL(*s) && !ucisspace(*s); s++) // While letters
+                   { AdvanceWithTab(*s,X); }
+               for (;CLY_IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
+                   { AdvanceWithTab(*s,X); }
+              }
+             while (CLY_IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
+             if (X>Xact)
+                X-=Xact;
+             else
+                X=NextTabPos(Xact)-Xact;
+            }
+          else
+            X=NextTabPos(Xact)-Xact;
+         }
+       else
+         {
+          int Xact=curPos.x;
+          if (UseIndentSize)
+             X=NextIndentPos(Xact)-Xact;
+          else
+             X=NextTabPos(Xact)-Xact;
+         }
+       for (;X;--X) InsertCharInLine(' ');
+      }
+    update(ufLine);
+    if (ShowMatchPairFly && ShowMatchPairNow)
+       SearchMatchOnTheFly();
+   }
+ unlock();
+}
+
+/**[txh]********************************************************************
+
+  Description: Insert a char in the edited line. Keeps track of:
    1) The selected text.
    2) The markers.
-   3) The fucking ASCII 9 (Tab).
-   4) The real tabs ;).
-   5) The overwrite mode.
-   6) The undo.
-
-   Parameter:
-   cVal: char to insert.
-
-   by SET.
-
-****************************************************************************/
+   3) The overwrite mode.
+   4) The undo.
+  @var{cVal} is the char to insert.
+  
+***************************************************************************/
 
 void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
 {
  if (!IslineInEdition)
     return;
- // Tab in indent mode
- // Note: If we are in undo mode (!allowUndo) tabs are realtabs
- if (cVal=='\t' && !UseTabs && allowUndo)
-   {
-    int X;
-    if (TabIndents)
-      {
-       int Xact=curPos.x;
-       X=0;
-       if (curPos.y>0)
-         { // Search a hole in the last line
-          char *s=curLinePtr-lenLines[curPos.y-1];
-   
-          do
-           {
-            for (;CLY_IsntEOL(*s) && !ucisspace(*s); s++) // While letters
-                { AdvanceWithTab(*s,X); }
-            for (;CLY_IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
-                { AdvanceWithTab(*s,X); }
-           }
-          while (CLY_IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
-          if (X>Xact)
-             X-=Xact;
-          else
-             X=NextTabPos(Xact)-Xact;
-         }
-       else
-         X=NextTabPos(Xact)-Xact;
-      }
-    else
-      {
-       int Xact=curPos.x;
-       if (UseIndentSize)
-          X=NextIndentPos(Xact)-Xact;
-       else
-          X=NextTabPos(Xact)-Xact;
-      }
-    for (;X;--X) InsertCharInLine(' ');
-    return;
-   }
 
  if (overwrite)
    {
@@ -6878,40 +6897,46 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
       {
        switch (*s)
          {
-          case '\n': newLine();
-                     break;
-          case '\b': BackSpace();
-                     break;
-          case '@':  if (s[1] == '@') // the user want to insert a '@'
-                       {
-                        if (!IslineInEdition)
-                           EditLine();
-                        InsertCharInLine(*s++);
-                        break;
-                       }
-                     if (IslineInEdition)
-                       {
-                        Pos=(unsigned)((curLinePtr-buffer)+(inEditPtr-bufEdit));
-                       }
-                     else
-                        Pos=(unsigned)(ColToPointer()-buffer);
-                     Val=*++s-0x30;
-                     if (Val)
-                       {
-                        Val--;
-                        if (Val<MaxAuxMarker)
-                           AuxMarkers[Val]=Pos;
-                       }
-                     else
-                       {
-                        XCur=curPos.x;
-                        YCur=curPos.y;
-                       }
-                     break;
-          default:
+          case '\n':
+               newLine();
+               break;
+          case '\b':
+               BackSpace();
+               break;
+          case '\t':
+               SmartTab();
+               break;
+          case '@':
+               if (s[1] == '@') // the user want to insert a '@'
+                 {
                   if (!IslineInEdition)
                      EditLine();
-                  InsertCharInLine(*s);
+                  InsertCharInLine(*s++);
+                  break;
+                 }
+               if (IslineInEdition)
+                 {
+                  Pos=(unsigned)((curLinePtr-buffer)+(inEditPtr-bufEdit));
+                 }
+               else
+                  Pos=(unsigned)(ColToPointer()-buffer);
+               Val=*++s-0x30;
+               if (Val)
+                 {
+                  Val--;
+                  if (Val<MaxAuxMarker)
+                     AuxMarkers[Val]=Pos;
+                 }
+               else
+                 {
+                  XCur=curPos.x;
+                  YCur=curPos.y;
+                 }
+               break;
+          default:
+               if (!IslineInEdition)
+                  EditLine();
+               InsertCharInLine(*s);
          }
       }
     NotExpandingMacro=True;

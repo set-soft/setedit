@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Class )
 
@@ -346,6 +346,7 @@ public:
     void ColorsCacheToIDs(void);
 
     void InsertCharInLine(char cVal, Boolean allowUndo=True);
+    void SmartTab();
     void MakeEfectiveLineInEdition();
     char *ColToPointer();
     char *ColToPointer(int &Dif);

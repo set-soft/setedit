@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -869,12 +869,12 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 195 keys defined
-const int NormalSize=88,CtrlQSize=50,CtrlKSize=61;
-#define NormalTable KeyTTable88
+// 196 keys defined
+const int NormalSize=89,CtrlQSize=50,CtrlKSize=61;
+#define NormalTable KeyTTable89
 #define CtrlQTable  KeyTTable50
 #define CtrlKTable  KeyTTable61
-DeclareTable(88);
+DeclareTable(89);
 DeclareTable(50);
 DeclareTable(61);
 
@@ -884,9 +884,10 @@ extern CtrlKTable CtrlK;
 NormalTable base=
 { NormalSize,0,
  { // MUST be sorted
-  // Normal 14
+  // Normal 15
   { kbEsc, kbtIsComm, {cmcHideSelect} }, // 31
   { kbBackSpace, kbtIsComm, {cmcBackSpace} }, // 42
+  { kbTab, kbtIsComm, {cmcSmartTab} }, // 43
   { kbEnter, kbtIsComm, {cmcNewLine} }, // 44
   { kbHome, kbtIsComm, {cmcLineStart} }, // 69
   { kbUp, kbtIsComm, {cmcLineUp} }, // 70

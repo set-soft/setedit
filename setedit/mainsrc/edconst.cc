@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #define Uses_TCEditor_Commands
@@ -171,6 +171,7 @@ static edCList List[] =
 { "SetGlobalOptions", 92 },
 { "SetLocalOptions", 86 },
 { "SmartIndent", 15 },
+{ "SmartTab", 160 },
 { "SmartUnIndent", 14 },
 { "StartSelect", 68 },
 { "StopMacro", 90 },
