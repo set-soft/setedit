@@ -13753,7 +13753,7 @@ unsigned defEditorDialog( int, ... )
 
 int FillEditorId(stEditorId *id, const char *name, struct stat *st)
 {
- #ifdef SEOS_Win32
+ #if defined(SEOS_Win32) && !defined(SECompf_Cygwin)
  // This function must fail on WIN32 systems.
  // Inode number reported by stat is always 0.
  if (st) st=0;
