@@ -2,7 +2,7 @@
 # created with the command:
 # gpr2mak libset.gpr
 ifeq ($(strip $(SUPPORT_INC)),)
-SUPPORT_INC=../libbzip2 ../libpcre
+SUPPORT_INC=../libbzip2
 endif
 ifeq ($(strip $(TVISION_INC)),)
 TVISION_INC=
@@ -108,7 +108,7 @@ RHIDE_FPC_FLAGS=$(C_FPC_LANG_FLAGS) $(LOCAL_OPT) $(addprefix\
 RHIDE_COMPILE_FPC=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -E- $(SOURCE_NAME)
 RHIDE_COMPILE_FPC_FORCE=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -B -E-\
 	$(SOURCE_NAME)
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
 RHIDE_COMPILE_LINK_GPC=$(RHIDE_LD_PASCAL) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS)\
 	-o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LDFLAGS) $(LDFLAGS)\
 	$(RHIDE_LIBS)
@@ -208,12 +208,12 @@ RHIDE_PATH_SEPARATOR_Linux=:
 RHIDE_PATH_SEPARATOR=$(RHIDE_PATH_SEPARATOR_$(RHIDE_OS))
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib ../libbzip2 ../libpcre
-RHIDE_OS_LIBS=ncurses gpm m bz2  mpegsnd
-RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2 ../libpcre
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib ../libbzip2
+RHIDE_OS_LIBS=ncurses m gpm bz2 mpegsnd 
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso ../libbzip2
 TVISION_INC=../../tvision/include
-SUPPORT_INC=../libbzip2 ../libpcre
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
+SUPPORT_INC=../libbzip2
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
 RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
 INCLUDE_DIRS=$(TVISION_INC) ../include ../settvuti/include\
@@ -238,9 +238,9 @@ OBJFILES=objlib/bufun.o objlib/calcu.o objlib/ceditor.o objlib/completi.o\
 	objlib/deedidia.o objlib/doedidia.o objlib/edconst.o\
 	objlib/editorfo.o objlib/editwind.o objlib/edkeys.o\
 	objlib/edprint.o objlib/edspecs.o obj/djmdr.o obj/dyncat.o\
-	obj/memmove.o obj/mixer.o obj/mixersb.o obj/mixoss.o obj/strncpyz.o\
-	obj/strndup.o obj/winoldap.o objlib/gzfiles.o objlib/inf.o\
-	objlib/infbase.o objlib/keytrans.o objlib/linelen.o\
+	obj/memmove.o obj/mixer.o obj/mixersb.o obj/mixoss.o obj/stackdbg.o\
+	obj/strncpyz.o obj/strndup.o obj/winoldap.o objlib/gzfiles.o\
+	objlib/inf.o objlib/infbase.o objlib/keytrans.o objlib/linelen.o\
 	objlib/loaddefl.o objlib/loadfunc.o objlib/loadshl.o\
 	objlib/loadusew.o objlib/macrocom.o objlib/mli.o objlib/mliasimp.o\
 	objlib/mlicsdg.o objlib/mliediti.o objlib/mliedito.o\
@@ -248,9 +248,10 @@ OBJFILES=objlib/bufun.o objlib/calcu.o objlib/ceditor.o objlib/completi.o\
 	objlib/nfileedi.o objlib/nhiscoll.o objlib/ninfview.o\
 	objlib/ninfwind.o objlib/nsindica.o objlib/parser.o\
 	objlib/pathtool.o objlib/pclipper.o objlib/pmacros.o objlib/pperl.o\
-	objlib/rhideint.o objlib/sceditor.o objlib/sdginter.o\
-	objlib/search.o objlib/sinf.o objlib/slpinter.o objlib/splinman.o\
-	objlib/ssindica.o objlib/tsindica.o objlib/txhgen.o
+	objlib/pvarious.o objlib/rhideint.o objlib/sceditor.o\
+	objlib/sdginter.o objlib/search.o objlib/sinf.o objlib/slpinter.o\
+	objlib/splinman.o objlib/ssindica.o objlib/tsindica.o\
+	objlib/txhgen.o
 LIBRARIES=libeasyd.a libsettv.a
 SOURCE_NAME=$<
 OUTFILE=$@
@@ -278,9 +279,9 @@ PROJECT_ITEMS=bufun.cc calcu.cc ceditor.cc completi.cc deedidia.cc\
 	loadshl.cc loadusew.cc macrocom.cc mli.cc mliasimp.cc mlicsdg.cc\
 	mliediti.cc mliedito.cc mlisdg.cc nceditor.cc neditwin.cc\
 	nfileedi.cc nhiscoll.cc ninfview.cc ninfwind.cc nsindica.cc\
-	parser.c pathtool.cc pclipper.cc pmacros.cc pperl.cc rhideint.cc\
-	sceditor.cc sdginter.cc search.cc settv.gpr sinf.cc slpinter.cc\
-	splinman.cc ssindica.cc tsindica.cc txhgen.cc
+	parser.c pathtool.cc pclipper.cc pmacros.cc pperl.cc pvarious.cc\
+	rhideint.cc sceditor.cc sdginter.cc search.cc settv.gpr sinf.cc\
+	slpinter.cc splinman.cc ssindica.cc tsindica.cc txhgen.cc
 DEFAULT_MASK=*.cc
 RHIDE_BIN_DIR=/usr/bin
 PASCAL_TYPE=GPC
@@ -363,9 +364,9 @@ DEPS_0= objlib/bufun.o objlib/calcu.o objlib/ceditor.o objlib/completi.o\
 	objlib/deedidia.o objlib/doedidia.o objlib/edconst.o\
 	objlib/editorfo.o objlib/editwind.o objlib/edkeys.o\
 	objlib/edprint.o objlib/edspecs.o obj/djmdr.o obj/dyncat.o\
-	obj/memmove.o obj/mixer.o obj/mixersb.o obj/mixoss.o obj/strncpyz.o\
-	obj/strndup.o obj/winoldap.o objlib/gzfiles.o objlib/inf.o\
-	objlib/infbase.o objlib/keytrans.o objlib/linelen.o\
+	obj/memmove.o obj/mixer.o obj/mixersb.o obj/mixoss.o obj/stackdbg.o\
+	obj/strncpyz.o obj/strndup.o obj/winoldap.o objlib/gzfiles.o\
+	objlib/inf.o objlib/infbase.o objlib/keytrans.o objlib/linelen.o\
 	objlib/loaddefl.o objlib/loadfunc.o objlib/loadshl.o\
 	objlib/loadusew.o objlib/macrocom.o objlib/mli.o objlib/mliasimp.o\
 	objlib/mlicsdg.o objlib/mliediti.o objlib/mliedito.o\
@@ -373,10 +374,10 @@ DEPS_0= objlib/bufun.o objlib/calcu.o objlib/ceditor.o objlib/completi.o\
 	objlib/nfileedi.o objlib/nhiscoll.o objlib/ninfview.o\
 	objlib/ninfwind.o objlib/nsindica.o objlib/parser.o\
 	objlib/pathtool.o objlib/pclipper.o objlib/pmacros.o objlib/pperl.o\
-	objlib/rhideint.o objlib/sceditor.o objlib/sdginter.o\
-	objlib/search.o objlib/sinf.o objlib/slpinter.o objlib/splinman.o\
-	objlib/ssindica.o objlib/tsindica.o objlib/txhgen.o libeasyd.a\
-	libsettv.a
+	objlib/pvarious.o objlib/rhideint.o objlib/sceditor.o\
+	objlib/sdginter.o objlib/search.o objlib/sinf.o objlib/slpinter.o\
+	objlib/splinman.o objlib/ssindica.o objlib/tsindica.o\
+	objlib/txhgen.o libeasyd.a libsettv.a
 NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 libset.a:: $(DEPS_0)
@@ -422,7 +423,7 @@ DEPS_1=bufun.cc ../../tvision/include/compatlayer.h\
 	../easydiag/tssosslb.h ../easydiag/tstatext.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/bufun.h ../include/ced_coma.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
-	../include/configed.h ../include/edmsg.h\
+	../include/configed.h ../include/edmsg.h ../include/splinman.h\
 	../setedit/include/setapp.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tdiagrow.h\
 	../settvuti/include/tnocastc.h
@@ -521,13 +522,14 @@ DEPS_3=ceditor.cc ../../tvision/include/compatlayer.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ced_inte.h\
 	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
 	../include/gzfiles.h ../include/keytrans.h ../include/loadkbin.h\
-	../include/pathtool.h ../include/pmcoll.h ../include/setconst.h\
-	../include/sindicat.h ../include/slpinter.h ../include/tvsetuti.h\
-	../librhuti/rhutils.h ../settvuti/include/edhists.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tprogdia.h ../settvuti/include/tstringa.h\
-	../settvuti/include/tstrlbox.h ../settvuti/include/viewplus.h
+	../include/loadshl.h ../include/pathtool.h ../include/pmcoll.h\
+	../include/setconst.h ../include/sindicat.h ../include/slpinter.h\
+	../include/tvsetuti.h ../librhuti/rhutils.h\
+	../settvuti/include/edhists.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tprogdia.h\
+	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h\
+	../settvuti/include/viewplus.h
 objlib/ceditor.o:: $(DEPS_3)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_4=completi.cc ../../tvision/include/compatlayer.h\
@@ -883,7 +885,7 @@ DEPS_13=edspecs.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
-	../include/pathtool.h
+	../include/ced_inte.h ../include/edspecs.h ../include/pathtool.h
 objlib/edspecs.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_14=
@@ -996,23 +998,32 @@ DEPS_17=infbase.cc ../../tvision/include/compatlayer.h\
 objlib/infbase.o:: $(DEPS_17)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_18=keytrans.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/event.h ../../tvision/include/tv/gkey.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
-	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/system.h\
 	../../tvision/include/tv/tkeyext.h ../../tvision/include/tv/tkeys.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/views.h ../extra/dyncat.h\
-	../include/ced_coma.h ../include/keytrans.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tstringa.h
+	../include/ced_coma.h ../include/ced_exte.h ../include/ceditor.h\
+	../include/keytrans.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tstringa.h
 objlib/keytrans.o:: $(DEPS_18)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_19=linelen.cc ../../tvision/include/compatlayer.h\
@@ -1069,8 +1080,9 @@ DEPS_20=loaddefl.cc ../../tvision/include/compatlayer.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_clas.h ../include/ced_exte.h\
-	../include/ced_inte.h ../include/ceditor.h ../include/pathtool.h\
-	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
+	../include/ced_inte.h ../include/ceditor.h ../include/loadshl.h\
+	../include/pathtool.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../setedit/include/setapp.h\
 	../setedit/include/setapp.h ../settvuti/include/sarray.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
@@ -1117,11 +1129,11 @@ DEPS_22=loadshl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../extra/dyncat.h ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ced_inte.h ../include/ceditint.h ../include/ceditor.h\
-	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
-	../include/tvsetuti.h ../settvuti/include/sarray.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
-	../settvuti/include/viewplus.h
+	../include/configed.h ../include/loadshl.h ../include/pmcoll.h\
+	../include/sindicat.h ../include/tvsetuti.h\
+	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
 objlib/loadshl.o:: $(DEPS_22)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_23=loadusew.cc ../../tvision/include/compatlayer.h\
@@ -1164,8 +1176,9 @@ DEPS_23=loadusew.cc ../../tvision/include/compatlayer.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_clas.h ../include/ced_exte.h\
-	../include/ced_inte.h ../include/ceditor.h ../include/pathtool.h\
-	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
+	../include/ced_inte.h ../include/ceditor.h ../include/loadshl.h\
+	../include/pathtool.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../setedit/include/setapp.h\
 	../setedit/include/setapp.h ../settvuti/include/sarray.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
@@ -1448,7 +1461,10 @@ objlib/pmacros.o:: $(DEPS_41)
 DEPS_42=pperl.cc ../include/bufun.h
 objlib/pperl.o:: $(DEPS_42)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_43=rhideint.cc ../../tvision/include/compatlayer.h\
+DEPS_43=pvarious.cc ../include/bufun.h
+objlib/pvarious.o:: $(DEPS_43)
+	$(RHIDE_COMPILE.cc.o)
+DEPS_44=rhideint.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -1457,10 +1473,11 @@ DEPS_43=rhideint.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
-	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objlib/rhideint.o:: $(DEPS_43)
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
+	../include/ced_exte.h ../include/edmsg.h
+objlib/rhideint.o:: $(DEPS_44)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_44=sceditor.cc ../../tvision/include/compatlayer.h\
+DEPS_45=sceditor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -1493,9 +1510,9 @@ DEPS_44=sceditor.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
 	../settvuti/include/viewplus.h
-objlib/sceditor.o:: $(DEPS_44)
+objlib/sceditor.o:: $(DEPS_45)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_45=sdginter.cc ../../tvision/include/compatlayer.h\
+DEPS_46=sdginter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/fpbase.h\
 	../../tvision/include/tv/fpstream.h ../../tvision/include/tv/intl.h\
@@ -1509,9 +1526,9 @@ DEPS_45=sdginter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../include/ceditint.h ../include/configed.h
-objlib/sdginter.o:: $(DEPS_45)
+objlib/sdginter.o:: $(DEPS_46)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_46=search.cc ../../tvision/include/compatlayer.h\
+DEPS_47=search.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -1541,14 +1558,14 @@ DEPS_46=search.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-objlib/search.o:: $(DEPS_46)
+objlib/search.o:: $(DEPS_47)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_47=
+DEPS_48=
 .PHONY: settv.gpr.force
 all:: settv.gpr.force
 settv.gpr.force:
 	$(MAKE) -f settv.mak
-DEPS_48=sinf.cc ../../tvision/include/compatlayer.h\
+DEPS_49=sinf.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
@@ -1582,9 +1599,9 @@ DEPS_48=sinf.cc ../../tvision/include/compatlayer.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h
-objlib/sinf.o:: $(DEPS_48)
+objlib/sinf.o:: $(DEPS_49)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_49=slpinter.cc ../../tvision/include/compatlayer.h\
+DEPS_50=slpinter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/collectn.h\
@@ -1633,9 +1650,9 @@ DEPS_49=slpinter.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tinppipe.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-objlib/slpinter.o:: $(DEPS_49)
+objlib/slpinter.o:: $(DEPS_50)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_50=splinman.cc ../../tvision/include/compatlayer.h\
+DEPS_51=splinman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -1665,9 +1682,9 @@ DEPS_50=splinman.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-objlib/splinman.o:: $(DEPS_50)
+objlib/splinman.o:: $(DEPS_51)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_51=ssindica.cc ../../tvision/include/compatlayer.h\
+DEPS_52=ssindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
@@ -1687,9 +1704,9 @@ DEPS_51=ssindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../include/ceditor.h ../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/settvuti.h
-objlib/ssindica.o:: $(DEPS_51)
+objlib/ssindica.o:: $(DEPS_52)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_52=tsindica.cc ../../tvision/include/compatlayer.h\
+DEPS_53=tsindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -1719,9 +1736,9 @@ DEPS_52=tsindica.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-objlib/tsindica.o:: $(DEPS_52)
+objlib/tsindica.o:: $(DEPS_53)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_53=txhgen.cc ../../tvision/include/compatlayer.h\
+DEPS_54=txhgen.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -1745,6 +1762,6 @@ DEPS_53=txhgen.cc ../../tvision/include/compatlayer.h\
 	../sdg/include/mli.h ../sdg/include/mlisdgi.h\
 	../sdg/include/txhgen.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
-objlib/txhgen.o:: $(DEPS_53)
+objlib/txhgen.o:: $(DEPS_54)
 	$(RHIDE_COMPILE.cc.o)
 all:: libset.a

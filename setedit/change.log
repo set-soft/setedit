@@ -1,5 +1,36 @@
 $Log$
-Revision 1.424  2001/09/30 20:46:51  root
+Revision 1.7  2001/10/01 15:18:46  set
+* Removed "fixme" labels from Ivan, things seems to be OK.
+
+Revision 1.6  2001/10/01 13:33:14  set
+* Removed: tcedit.dst file from CVS, it was there by accident.
+.
+Revision 1.5  2001/10/01 02:51:07  terrible
+Fixed: if we are not using shipped libbzip2 then use the system include files
+and not the shipped ones.
+Fixed: if we are not using shipped libbzip2, then not compile it.
+New: support old libbzip2 (before 1.0 version).
+Workaround: patchenv.pl checks if a variable needs replacing or not, the
+problem is that it only checks in the first occurence of the variable (in
+the .mak file), so if the first occurence of the variable not needed a
+change, then it didn't change the other occurences even if they had to be
+changed; so I have disabled that check and it always replaces the variables
+no matter what, a Perl guru should elaborate a correct solution to avoid
+changing everytime all the variables.
+To do: Salvador has to check the various "FIXME:"'s and correct my mistakes
+(though "It Works For Me TM" in Debian Potato and in Sid but maybe that's
+because of black magic).
+
+Revision 1.4  2001/09/30 04:08:29  terrible
+Updated Debian packaging to 0.4.47-2.
+
+Revision 1.3  2001/09/30 00:51:10  terrible
+Debian packaging updated to 0.4.47-1.
+
+Revision 1.2  2001/09/29 14:58:35  terrible
+Updated Debian files to version 0.4.45-1.
+
+Revision 1.424  2001/09/30 20:46:51  set
 * Modified: The new tools.
 
 Revision 1.423  2001/09/30 20:03:05  set
@@ -297,6 +328,9 @@ directory. In this case (or when you load the original file from
 informs the user with a dialog indicating where the file was stored.
 * Fixed: The editor failed to set the ShowMatchPairFly from the default
 flags file.
+
+Revision 1.1.1.1  2001/09/11 13:58:18  set
+Imported sources.
 
 Revision 1.386  2001/09/09 22:16:36  set
 * Fixed: [BC++/Win32] Some unused parameter warnings.
