@@ -405,7 +405,10 @@ TSetEditorApp::TSetEditorApp() :
  ts.enableCmd(cmeClosePrj);
  ts.enableCmd(cmeSavePrj);
  if (TScreen::noUserScreen())
+   {
     ts.enableCmd(cmeDosShell);
+    ts.enableCmd(cmeUserScreen);
+   }
  disableCommands( ts );
 
  TCEditor::editorDialog=doEditDialogLocal;

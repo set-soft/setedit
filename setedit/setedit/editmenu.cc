@@ -59,7 +59,7 @@ TMenuBar *TSetEditorApp::initMenuBar( TRect r )
  // Spanish: ABCEHMPRV
  // English: CEFHMPSVW
  TSubMenu& sub1 = *new TSubMenu( _("~F~ile"), kbAltF ) +
-   // E: ACDNOSUX
+   // E: ACHNOSUX
    *new TMenuItem( _("~O~pen..."), cmeOpen, kbF3 ) +
    *new TMenuItem( _("~N~ew"), cmeNew, kbNoKey ) +
    *new TMenuItem( _("~S~ave"), cmcSave, kbF2, hcNoContext, "F2" ) +
@@ -67,7 +67,7 @@ TMenuBar *TSetEditorApp::initMenuBar( TRect r )
    *new TMenuItem( _("Save as ~U~NIX..."), cmcSaveAsUNIX, kbNoKey ) +
           newLine() +
    *new TMenuItem( _("~C~hange dir..."), cmeChangeDrct, kbNoKey ) +
-   *new TMenuItem( _("~D~OS shell"), cmeDosShell, kbNoKey ) +
+   *new TMenuItem( _("S~h~ell"), cmeDosShell, kbNoKey ) +
    *new TMenuItem( _("E~x~it"), cmeQuit, kbAltX, hcNoContext, "Alt-X" ) +
    *new TMenuItem( _("~Q~uit"), cmeQuitDelete, kbAltQ, hcNoContext, "Alt-Q" );
 
