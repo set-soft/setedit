@@ -14,6 +14,7 @@ makes/sdgcline.mak
 makes/settv.mak
 makes/testeasy.mak
 mp3/libamp/libamp.mak
+mp3/libamp/rhide.env
 mp3/mpegsound/mpegsnd.mak
 mp3/mpegsound/rhide.env
 internac/de.po

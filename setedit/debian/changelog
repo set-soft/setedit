@@ -1,14 +1,11 @@
-setedit (0.4.49-0.1) unstable; urgency=low
+setedit (0.4.49-1) unstable; urgency=low
 
-  * New version automatically modified by version update scripts
+  * New upstream version.
+  * Added missing Conflicts: suidmanager (<< 0.50) to INFView package.
+  * Don't delete mp3/libamp/rhide.env on clean and added it to the
+    backup system.
 
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sun, 23 Sep 2001 11:52:36 -0300
-
-setedit (0.4.48-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 22 Sep 2001 10:28:11 -0300
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun,  7 Oct 2001 19:54:51 -0300
 
 setedit (0.4.47-2) unstable; urgency=low
 

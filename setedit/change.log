@@ -1,5 +1,8 @@
 $Log$
-Revision 1.430  2001/10/05 00:38:47  root
+Revision 1.10  2001/10/05 13:13:08  set
++
+
+Revision 1.430  2001/10/05 00:38:47  set
 * Added: Name of current function to the menues. This command is old and is
 available as an option of find & replace but wasn't in the menues.
 * Added: My CVS sync tools to the distribution list.

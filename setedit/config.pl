@@ -1035,7 +1035,7 @@ sub GenerateMakefile
  $libamp=@conf{'HAVE_AMP'} eq 'yes';
  $libmpegsnd=@conf{'HAVE_MPEGSOUND'} eq 'yes';
  $infview=@conf{'infview'} eq 'yes';
- $libbzip2=@conf{'bz2libShipped'};
+ $libbzip2=@conf{'bz2libShipped'} eq 'yes';
  $libz=@conf{'zlibShipped'} eq 'yes';
  $libpcre=@conf{'PCREShipped'} eq 'yes';
  $libintl=@conf{'intlShipped'} eq 'yes';
