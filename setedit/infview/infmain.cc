@@ -448,7 +448,7 @@ const char *Signature="InfView desktop file\x1A";
 
 void TEditorMiApp::saveDesktop(const char *fName)
 {
- fpstream *f=new fpstream(fName,CLY_std(ios::out) | CLY_IOSBin);
+ fpstream *f=new fpstream(fName,CLY_IOSOut | CLY_IOSBin);
 
  if (f)
    {
@@ -499,7 +499,7 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
        return;
     fpstream *f=new fpstream(h);
     #else
-    fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+    fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
     #endif
 
     if (!f)

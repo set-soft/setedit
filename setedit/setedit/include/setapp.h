@@ -95,7 +95,9 @@ const int
   cmeSaveDesktop    = cmeBase+75,
   cmeEncodings      = cmeBase+76,
   cmeFonts          = cmeBase+77,
-  cmeSaveAll        = cmeBase+78;
+  cmeSaveAll        = cmeBase+78,
+  cmeTagFiles       = cmeBase+79,
+  cmeSearchTag      = cmeBase+80;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -374,6 +376,10 @@ extern void OpenFileFromEditor(char *fullName);
 // Defined in dstfile.cc to indicate we loaded the desktop file from the current
 // directory and not from the default one.
 extern char DstLoadedHere;
+
+// TAGs stuff:
+void EditTagFiles();
+void SearchTag(char *word);
 #endif
 
 #ifdef Uses_SETAppProject

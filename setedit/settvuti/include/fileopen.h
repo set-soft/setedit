@@ -26,7 +26,8 @@ hcConfigFiles =0x2214,
 hcProjectFiles=0x2215,
 hcOpenMP3     =0x2216,
 hcSaveMP3     =0x2217,
-hcGenChDir    =0x2218;
+hcGenChDir    =0x2218,
+hcSelTagFile  =0x2219;
 
 // This flag allows to select various files without living the dialog
 const unsigned fdMultipleSel=0x10000,fdDialogForSave=0x80000000;

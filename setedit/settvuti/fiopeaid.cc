@@ -40,6 +40,8 @@ AsoID Convert[]={
 {hID_OpenMP3,0,0,hcOpenMP3},
 // Used by the standalone editor to store WAV converted MP3 files
 {hID_SaveMP3,0,0,hcSaveMP3},
+// Used by the standalone editor to select TAG files
+{hID_SelectTagFile,0,0,hcSelTagFile},
 {0,0}
 };
 

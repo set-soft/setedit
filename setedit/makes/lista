@@ -250,6 +250,7 @@ include/sindicat.h
 include/slpinter.h
 include/splinman.h
 include/ssyntax.h
+include/tags.h
 include/tvsetuti.h
 include/ucdefs.h
 infview/change.log
@@ -393,6 +394,7 @@ mainsrc/search.cc
 mainsrc/slpinter.cc
 mainsrc/splinman.cc
 mainsrc/ssyntax.cc
+mainsrc/tags.cc
 mainsrc/tsindica.cc
 Makefile
 makes/.cvsignore

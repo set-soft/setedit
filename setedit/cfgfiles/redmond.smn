@@ -111,6 +111,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"
  MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
+ MenuItemC: "Jump ~t~o symbol", cmeSearchTag, kbCtF2, "Ctrl+F2"
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
 EndSubMenu
 
@@ -190,6 +191,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions
    MenuItemC: "Do~n~'t create backups for ...", cmeEditNoBkp
    MenuItemC: "Searc~h~ files under cursor in ...", cmeIncludeList
+   MenuItemC: "T~a~g files ...", cmeTagFiles
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc

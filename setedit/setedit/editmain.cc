@@ -701,7 +701,7 @@ void TSetEditorApp::getEvent(TEvent& event)
          break;
    }
 }
-
+void TagsBrowseAll();
 void TSetEditorApp::handleEvent( TEvent& event )
 {
  TApplication::handleEvent( event );
@@ -1037,6 +1037,14 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeSaveAll:
               SaveAllEditors();
+              break;
+
+         case cmeTagFiles:
+              EditTagFiles();
+              break;
+
+         case cmeSearchTag:
+              SearchTag(GetWordUnderCursor(80));
               break;
 
          // These commands are traslated to the original values

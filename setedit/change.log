@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.300  2003/04/22 15:32:56  set
+* Modified: To support the --with-ssc TV option.
+
 Revision 1.299  2003/04/21 19:38:34  set
 * Fixed: wrong rules to create internac/colors.cc.
 
