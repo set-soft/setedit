@@ -42,6 +42,7 @@ static TNBKPColl *NBKPList=0;
 static PCREData   NBKPpcre={0,0};
 static int        listChanged;
 static unsigned   localCtxHelp;
+static char       warnSaveDifDir=1;
 
 const char *Title=__("Don't create backups for");
 
@@ -234,7 +235,14 @@ void NBKPEdit(void)
  if (listChanged)
    {
     if (ret==cmOK)
+      {
        NBKPList->Save(NBKPSaveFile);
+       if (warnSaveDifDir && strcmp(NBKPSaveFile,NBKPFile)!=0)
+         {
+          ShowSavePoint(NBKPSaveFile);
+          warnSaveDifDir=0;
+         }
+      }
     else
       {
        NBKPList->freeAll();
