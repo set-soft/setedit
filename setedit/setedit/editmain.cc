@@ -1536,17 +1536,20 @@ void ShowAboutStartBox(void)
 }
 
 static
-int GuessOneSET_FILES(const char *OSShareDir)
+int GuessOneSET_FILES(const char *OSShareDir, char isAbsolute)
 {
  // The fool doesn't put SET_FILES in the autoexec.bat, will try to guess here
  char Name[PATH_MAX];
- #ifdef NoHomeOrientedOS
- char *end=GetPathRelativeToRunPoint(Name,OSShareDir,SHLFile);
- #else
- strcpy(Name,OSShareDir);
- char *end=Name+strlen(Name);
- strcat(Name,"/" SHLFile);
- #endif
+ char *end;
+
+ if (isAbsolute)
+   {
+    strcpy(Name,OSShareDir);
+    end=Name+strlen(Name);
+    strcat(Name,"/share/setedit/" SHLFile);
+   }
+ else
+   end=GetPathRelativeToRunPoint(Name,OSShareDir,SHLFile);
 
  if (!edTestForFile(Name))
     // Bad luck guessing
@@ -1559,22 +1562,38 @@ int GuessOneSET_FILES(const char *OSShareDir)
  return 0;
 }
 
-#ifdef NoHomeOrientedOS
-const char *OSShareDir1="share/setedit/";
-#else
-const char *OSShareDir1="/usr/share/setedit";
-const char *OSShareDir2="/usr/local/share/setedit";
-#endif
+const char *OSShareDir[]=
+{// First from the configuration script
+ CONFIG_PREFIX,
+ #ifdef NoHomeOrientedOS
+ "share/setedit/",
+ #else
+ "/usr",
+ "/usr/local",
+ #endif
+ 0
+};
+
+char OSShareDirT[]=
+{
+ 1,
+ #ifdef NoHomeOrientedOS
+ 0
+ #else
+ 1,1
+ #endif
+};
 
 static
 int GuessSET_FILES()
 {
- int ret;
- ret=GuessOneSET_FILES(OSShareDir1);
-#ifndef NoHomeOrientedOS
- if (ret)
-    ret=GuessOneSET_FILES(OSShareDir2);
-#endif
+ int ret=1,i=0;
+ do
+   {
+    if (OSShareDir[i][0])
+       ret=GuessOneSET_FILES(OSShareDir[i],OSShareDirT[i]);
+   }
+ while (ret && OSShareDir[++i]);
  return ret;
 }
 
@@ -2048,7 +2067,7 @@ int main(int argc, char *argv[])
  if (set_files && !IsADirectory(set_files) && GuessSET_FILES())
     ShowErrorSET_FILES();
  if (!set_files && GuessSET_FILES())
-    ShowInstallError("SET_FILES",OSShareDir1,1);
+    ShowInstallError("SET_FILES",OSShareDir[1],1);
 
  // Redirect stderr to a unique file to catch any kind of errors.
  // We want it as soon as possible so any errors can be dumped there.
