@@ -11,7 +11,6 @@
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>
-#include <inf.h>
 #define Uses_SETAppVarious
 #define Uses_TSetEditorApp
 #include <setapp.h>

@@ -15,7 +15,6 @@
 #define Uses_TSetEditorApp
 #include <setapp.h>
 
-#include <inf.h>
 #include <dskwin.h>
 #include <dskhelp.h>
 // Various help context
