@@ -156,8 +156,10 @@ const int
   cmbInvertCase        = 145,
   cmbAltCase           = 146,
   cmbInsertKeyName     = 147,
+  cmbRunSel_sLisp      = 148,
+  cmbRunEnter_sLisp    = 149,
   
-  cmbLastCommand       = 148;
+  cmbLastCommand       = 150;
 
 
 const int
@@ -309,7 +311,9 @@ const int
   cmcCommentUnIndent   = cmbCommentUnIndent+cmbBaseNumber,
   cmcInvertCase        = cmbInvertCase+cmbBaseNumber,
   cmcAltCase           = cmbAltCase+cmbBaseNumber,
-  cmcInsertKeyName     = cmbInsertKeyName+cmbBaseNumber;
+  cmcInsertKeyName     = cmbInsertKeyName+cmbBaseNumber,
+  cmcRunSel_sLisp      = cmbRunSel_sLisp+cmbBaseNumber,
+  cmcRunEnter_sLisp    = cmbRunEnter_sLisp+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;
