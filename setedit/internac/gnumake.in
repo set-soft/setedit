@@ -82,15 +82,18 @@ potfiles.po: po_list
 
 T=$(subst /,\,$@)
 
-$(addsuffix .po,$(LANGUAGES)): potfiles.po
+fix.exe: fix.c
+	@cpp_compiler@ -o fix.exe -s -O2 fix.c
+
+$(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe
 #if not exist $(T) cp $^ $@
 	touch $@
-	perl fix.pl $(addprefix h_,$@) $^ __.pot
+	fix $(addprefix h_,$@) $< __.pot
 	-$(msgmerge) --force-po -o __.pon $@ __.pot
 	-$(update_p) __.pon $@
 	rm -f __.pon
 	rm -f __.pot
-	perl fix.pl $(addprefix h_,$@) $@ $@
+	fix $(addprefix h_,$@) $@ $@
 #$(addsuffix .mo,$(LANGUAGES)): $(msgfmt)
 
 %.mo: %.po
