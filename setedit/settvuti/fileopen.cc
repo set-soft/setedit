@@ -140,7 +140,7 @@ void TFileDialogHome::handleEvent(TEvent& event)
                if (p)
                  {
                   ret=TProgram::deskTop->execView(p);
-                  TObject::destroy(p);
+                  TObject::CLY_destroy(p);
                  }
                if (ret==cmOK && getcwd(buf2,PATH_MAX))
                  {
@@ -282,7 +282,7 @@ int GenericFileDialog(const char *title, char *file, char *mask, int histID, int
     delete[] LastMaskUsed;
     LastMaskUsed=newStr(d->wildCard);
 
-    TObject::destroy(p);
+    TObject::CLY_destroy(p);
    }
 
  if (dirChanged)

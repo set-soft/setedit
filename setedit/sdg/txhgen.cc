@@ -2024,11 +2024,11 @@ CleanUp:
  string_free(tmp2);
 
  // TVision objects have destroy to check for NULL
- destroy(FunList);
- destroy(fList);
- destroy(DefinedCommands);
- destroy(ListOfConstants);
- destroy(CommandLines);
+ CLY_destroy(FunList);
+ CLY_destroy(fList);
+ CLY_destroy(DefinedCommands);
+ CLY_destroy(ListOfConstants);
+ CLY_destroy(CommandLines);
  // Init Vars
  for (i=0; i<Associations; i++)
     {

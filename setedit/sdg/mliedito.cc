@@ -54,7 +54,7 @@ TMLIEditor::TMLIEditor(TMLIArrayBase *a, TLispVariableCol *v, FILE *f) :
 
 TMLIEditor::~TMLIEditor()
 {
- destroy(Macros);
+ CLY_destroy(Macros);
  Macros=0;
 }
 

@@ -930,7 +930,7 @@ int main(int argc, char *argv[])
  editorApp->retrieveDesktop(desktopIn,startInfo==0);
  editorApp->run();
  editorApp->saveDesktop(desktopOut);
- destroy(editorApp);
+ CLY_destroy(editorApp);
 
  return 0;
 }

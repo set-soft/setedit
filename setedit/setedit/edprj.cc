@@ -474,7 +474,7 @@ TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
 
 TEditorProjectWindow::~TEditorProjectWindow()
 {
- destroy(ProjectList);
+ CLY_destroy(ProjectList);
  ProjectList=NULL;
  delete[] bufTitle;
  delete[] FileName;
@@ -574,7 +574,7 @@ TDskWinPrj::TDskWinPrj(char *fName)
 
 TDskWinPrj::~TDskWinPrj()
 {
- destroy(window);
+ CLY_destroy(window);
  editorApp->SetTitle();
 }
 
@@ -865,7 +865,7 @@ void CloseProject(int openDesktop)
     SaveProject();
    }
  // Close all the DeskTop windows
- destroy(TSetEditorApp::edHelper);
+ CLY_destroy(TSetEditorApp::edHelper);
  TSetEditorApp::edHelper=0;
  prjWin=0;
  if (GetAutoGenMode()==stfAutoCentral)

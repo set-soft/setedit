@@ -90,7 +90,7 @@ Called by menuload.cc.
 
 void UnRegisterMacroCommands(void)
 {
- destroy(List);
+ CLY_destroy(List);
  List=0;
 }
 

@@ -68,7 +68,7 @@ int TDskWinEditor::DeleteAction(ccIndex , Boolean fromDiskToo)
     // this pointer anymore. That's why we need a copy (efence reported).
     TCEditWindow *oldEdw=edw;
     TSetEditorApp::edHelper->removeEditor(edw,True);
-    destroy(oldEdw);
+    CLY_destroy(oldEdw);
    }
  else
     edw->close();

@@ -207,6 +207,6 @@ void PathListEdit(void)
  if (listChanged && ret!=cmOK)
     *IncludeList=*backup;
 
- destroy(backup);
+ CLY_destroy(backup);
 }
 

@@ -237,7 +237,7 @@ void TFileEntryCollection::freeItem(void *s)
  delete p->file;
  delete p->node;
  if (p->isOK==fileOK)
-    destroy(p->items);
+    CLY_destroy(p->items);
  delete p;
 }
 
@@ -444,11 +444,11 @@ void EditSearchList(void)
 
  if (execDialog(d,&boxParam)!=cmCancel && Modified)
    {
-    destroy(entries);
+    CLY_destroy(entries);
     entries=entriesCopy;
    }
  else
-    destroy(entriesCopy);
+    CLY_destroy(entriesCopy);
  entriesCopy=0;
 }
 
@@ -979,7 +979,7 @@ int SyntaxSearch_Search(char *word, char *&FileName, char *&NodeName,
           ret=2;
       }
    }
- destroy(nodes);
+ CLY_destroy(nodes);
  if (ret==1)
    {
     VisibleName=NodeName;
@@ -999,7 +999,7 @@ int SyntaxSearch_Search(char *word, char *&FileName, char *&NodeName,
 
 void SyntaxSearch_ShutDown(void)
 {
- destroy(entries);
+ CLY_destroy(entries);
  entries=0;
 }
 
@@ -1052,7 +1052,7 @@ int SyntaxSearch_Load(fpstream &s)
              }
           }
       }
-    destroy(entries);
+    CLY_destroy(entries);
     entries=entriesCopy;
     entriesCopy=0;
    }

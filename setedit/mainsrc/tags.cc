@@ -270,7 +270,7 @@ void TTagFiles::freeItem(void *item)
  stTagFile *p=(stTagFile *)item;
  DeleteArray(p->file);
  DeleteArray(p->base);
- destroy(p->info);
+ CLY_destroy(p->info);
  delete p;
 }
 
@@ -382,7 +382,7 @@ TSpTagCollection::TSpTagCollection(unsigned size) :
 
 TSpTagCollection::~TSpTagCollection()
 {
- destroy(files);
+ CLY_destroy(files);
 }
 
 TTagCollection::TTagCollection() :
@@ -393,7 +393,7 @@ TTagCollection::TTagCollection() :
 
 TTagCollection::~TTagCollection()
 {
- destroy(tagFiles);
+ CLY_destroy(tagFiles);
 }
 
 void *TSpTagCollection::keyOf(void *item)
@@ -1053,7 +1053,7 @@ void TTagClassCol::addMember(stTag *p)
 void TTagClassCol::freeItem(void *item)
 {
  stClassTagInfo *p=(stClassTagInfo *)item;
- destroy(p->parents);
+ CLY_destroy(p->parents);
  delete p->childs;
  delete p->members;
 }
@@ -1121,7 +1121,7 @@ int TagsSave(fpstream& s)
 
 int TagsLoad(fpstream& s)
 {
- destroy(tags);
+ CLY_destroy(tags);
  tags=new TTagCollection();
  return tags->load(s);
 }
@@ -1765,7 +1765,7 @@ void TagsClassBrowser(char *word)
  else
     BrowseClasses(br,classList);
 
- destroy(classList);
+ CLY_destroy(classList);
 }
 
 /*****************************************************************************

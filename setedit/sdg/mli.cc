@@ -1155,7 +1155,7 @@ TMLIBase::~TMLIBase()
     delete array;
     array=0;
    }
- destroy(Vars);
+ CLY_destroy(Vars);
  Vars=0;
 }
 

@@ -393,7 +393,7 @@ void TSetEditorApp::displayDetectCallBack()
     TScreen::setFontRequestCallBack(FontRequestCallBack);
     so->foCallBackSet=1;
    }
- destroy(fonts);
+ CLY_destroy(fonts);
 
  if (adjustVideoMode && so->scOptions==scfMode)
    {// These settings come from DOS. Is much better to indicate resolutions.
@@ -882,7 +882,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
        s >> infoSaved;
        if (infoSaved)
          {// We have settings, load them replacing current settings
-          destroy(soCol);
+          CLY_destroy(soCol);
           s >> soCol;
           hotApplyScreenOptions();
          }
@@ -891,7 +891,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
       {// Load the old information and setup it
        stScreenOptions *scrOps=loadOldDesktopScreenInfo(s);
        scrOps->driverName=newStr(TScreen::getDriverShortName());
-       destroy(soCol);
+       CLY_destroy(soCol);
        soCol=new TScOptsCol();
        soCol->Insert(scrOps);
        hotApplyScreenOptions();
@@ -907,7 +907,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
          {
           TScOptsCol *aux;
           s >> aux;
-          destroy(aux);
+          CLY_destroy(aux);
           // TODO: this is really inefficient, but lamentably TV saves the
           // information using a crappy indexing stuff. If we skip it the
           // indexes gets wrong.
@@ -1376,8 +1376,8 @@ void TScOptsCol::freeItem(void *item)
  DeleteArray(p->foPriFile);
  DeleteArray(p->foSecFile);
  DeleteArray(p->scCommand);
- destroy(p->foPri);
- destroy(p->foSec);
+ CLY_destroy(p->foPri);
+ CLY_destroy(p->foSec);
  delete p;
 }
 

@@ -1000,7 +1000,7 @@ int LoadTVMenuAndStatus(char *fileName)
    }
 
  fclose(f);
- destroy(defs);
+ CLY_destroy(defs);
  if (!Error)
    {
     if (!subMenu)

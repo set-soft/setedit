@@ -904,7 +904,7 @@ call it if you are sure the user won't need the list again.
 
 void DestroyFunctionList()
 {
- destroy(lstBufun);
+ CLY_destroy(lstBufun);
  delete stkBufun;
  DeleteArray(FileName);
  lstBufun=0;

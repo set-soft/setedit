@@ -234,8 +234,8 @@ static void ShowDialogTip(char *fileName, int &LastTip)
     else
        showNext=0;
 
-    destroy(TipText);
-    destroy(TipLinks);
+    CLY_destroy(TipText);
+    CLY_destroy(TipLinks);
 
     LastTip++;
    }

@@ -162,7 +162,7 @@ void executeCalc(char *startVal)
  d=new TCalcDialog(TRect(10,2,72,11),__("Calculator"),startVal);
  TProgram::deskTop->execView(d);
  // Dialogs should be destroyed or your members won't de deleted.
- destroy(d);
+ CLY_destroy(d);
  if (startVal)
     delete startVal;
 }

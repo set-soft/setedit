@@ -15,4 +15,4 @@ void MoveRectBut(TRect &r,int len,int sep)
  r.b.x=r.a.x+len;
 }
 
-#define Destroy(p) { destroy(p); p=0; }
+#define Destroy(p) { CLY_destroy(p); p=0; }

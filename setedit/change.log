@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.408  2003/06/17 13:02:32  set
+* Added: [Linux] an script to create TV and SETEdit RPMs in one call.
+* Added: Documentation about compilation and installation for BC++, Linux
+and generic UNIX systems. Also explanation for the .deb files. I also
+removed the obsolete information found in the README that now points to
+INSTALL.txt and it points to individual files in doc/install.
+
 Revision 1.407  2003/06/17 12:55:04  set
 * Added: A script to generate the RPMs in an easy way.
 * Modified: RPMs release version to 1.

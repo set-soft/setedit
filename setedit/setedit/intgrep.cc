@@ -321,7 +321,7 @@ void RunRecurseGrep(char *command, int recurse)
  char StartPoint[PATH_MAX];
  getcwd(StartPoint,PATH_MAX);
 
- destroy(Visited); // Just in case
+ CLY_destroy(Visited); // Just in case
  Visited=new TStringCollection(10,5);
 
  char *s=strtok(dirTemp,";, ");
@@ -349,7 +349,7 @@ void RunRecurseGrep(char *command, int recurse)
     chdir(StartPoint);
    }
 
- destroy(Visited);
+ CLY_destroy(Visited);
  Visited=0;
 }
 

@@ -261,13 +261,13 @@ void TStrStringable::getText(char *dest, unsigned item, int maxLen)
  dest[maxLen]=EOS;
 }
 
-static TStrStringable *copy;
+static TStrStringable *listCopy;
 static int listChanged;
 
 static
 int DeleteWord(int wich)
 {
- copy->atRemove(wich);
+ listCopy->atRemove(wich);
  listChanged++;
  return 1;
 }
@@ -279,7 +279,7 @@ int AddNewWord(void)
  if (s)
    {
     listChanged++;
-    copy->insert(s);
+    listCopy->insert(s);
     return 1;
    }
  return 0;
@@ -303,17 +303,17 @@ void EditList(char *name)
  // Make a copy to edit
  int i;
  TStringCollection *col=s->UserWords;
- copy=new TStrStringable(col ? col->getCount() : 4,6);
+ listCopy=new TStrStringable(col ? col->getCount() : 4,6);
  if (col)
     for (i=0; i<col->getCount(); i++)
-        copy->insert(newStr((char *)col->at(i)));
+        listCopy->insert(newStr((char *)col->at(i)));
 
- box.items=copy;
+ box.items=listCopy;
  box.selection=0;
  d->DelAction=DeleteWord;
  d->AddAction=AddNewWord;
 
- if (copy->getCount()==0)
+ if (listCopy->getCount()==0)
    {
     //TView::disableCommand(cmOKApply);
     TView::disableCommand(cmDeleteKey);
@@ -322,19 +322,19 @@ void EditList(char *name)
  int ret=execDialog(d,&box);
  if (ret==cmOK && listChanged)
    {// Destroy the previous words
-    destroy(col);
+    CLY_destroy(col);
     delete[] s->SearchUserWords.firstLetters;
     // Create a new one
-    col=new TStringCollection(copy->getCount(),6);
-    for (i=0; i<copy->getCount(); i++)
-        col->insert(newStr(copy->at(i)));
+    col=new TStringCollection(listCopy->getCount(),6);
+    for (i=0; i<listCopy->getCount(); i++)
+        col->insert(newStr(listCopy->at(i)));
     s->UserWords=col;
     SETSECreateTables(s->SearchUserWords,s->Flags1 & FG1_CaseSensitive,col);
     // Force a cache reload
     TCEditor::InvalidateSHLCache();
     UpdateFile(name,col);
    }
- destroy(copy);
+ CLY_destroy(listCopy);
 }
 
 class TDiaUW : public TDialog

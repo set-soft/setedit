@@ -177,7 +177,7 @@ void TSetEditorApp::screenSaver()
     ss->shutDown();
    
     remove(scrn);
-    destroy(scrn);
+    CLY_destroy(scrn);
     ProcessMP3Idle;
     MP3UnBuffered;
     if (ss->flags & scrsvNeedsResetVideoMode)
@@ -1031,7 +1031,7 @@ void CreateExtrScrSavList(int forceReRead)
  if (ExtrScrSavList)
    {
     if (forceReRead)
-       destroy(ExtrScrSavList);
+       CLY_destroy(ExtrScrSavList);
     else
        return;
    }

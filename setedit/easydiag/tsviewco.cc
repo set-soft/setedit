@@ -245,7 +245,7 @@ ushort TSViewCol::exec(void *data, int center)
    ushort result=TProgram::deskTop->execView(p);
    if (result!=cmCancel && data!=0)
       p->getData(data);
-   TObject::destroy(p);
+   TObject::CLY_destroy(p);
    return result;
   }
 }

@@ -334,7 +334,7 @@ TInfViewer::~TInfViewer()
 {
  delete hFile;
  delete topic;
- destroy(History);
+ CLY_destroy(History);
 }
 
 static int PointInCrossRef(TPoint point,TInfTopic *topic,int & i)

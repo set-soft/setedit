@@ -134,7 +134,7 @@ static int ClassInitialized=0;
 static
 void DeInitTCEditor(void)
 {
- destroy(TCEditor::PMColl);
+ CLY_destroy(TCEditor::PMColl);
 #ifdef STANDALONE
  DestroySHShortCutTables();
 #endif
@@ -1947,7 +1947,7 @@ void TCEditor::handleMouse(TEvent &event)
     TMenuBox *mbox=new TMenuBox(TRect(event.mouse.where.x-2,event.mouse.where.y-2,
                                 dkt.b.x,dkt.b.y),RightClickMenu->subMenu,0);
     unsigned command=TProgram::deskTop->execView(mbox);
-    destroy(mbox);
+    CLY_destroy(mbox);
     if (command)
        message(TProgram::application,evCommand,command,0);
     return;

@@ -569,9 +569,9 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
 
  for (i=0; i<Cant; i++)
     {// Collections
-     destroy(hl[i].PM);
-     destroy(hl[i].Keywords);
-     destroy(hl[i].UserWords);
+     CLY_destroy(hl[i].PM);
+     CLY_destroy(hl[i].Keywords);
+     CLY_destroy(hl[i].UserWords);
      // Various strings
      delete[] hl[i].Extensions;
      delete[] hl[i].EmacsModes;
@@ -585,7 +585,7 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
      free(hl[i].PathMatch);
     }
  delete[] hl;
- destroy(list);
+ CLY_destroy(list);
  Cant=0;
  delete[] ConvTable;
  ConvTable=0;

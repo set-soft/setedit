@@ -645,8 +645,8 @@ void EditList(dflOptions *ops, char *name)
        }
     UpdateFile(name,settingsCol);
    }
- destroy(settingsCol);
- destroy(listSettings);
+ CLY_destroy(settingsCol);
+ CLY_destroy(listSettings);
 }
 
 class TDiaDO : public TDialog

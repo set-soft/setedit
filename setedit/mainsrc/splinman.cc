@@ -64,9 +64,9 @@ void TSpLAsoc::freeItem( void *item )
 {
  NodeCol *p=(NodeCol *)item;
  delete p->file;
- destroy(p->SpecialLines);
- destroy(p->OriginalLines);
- destroy(p->idSources);
+ CLY_destroy(p->SpecialLines);
+ CLY_destroy(p->OriginalLines);
+ CLY_destroy(p->idSources);
 }
 
 static TSpLAsoc *SpLines=0;
@@ -243,7 +243,7 @@ void SpLinesDeleteForId(int id)
     }
  if (count==0)
    {
-    destroy(SpLines);
+    CLY_destroy(SpLines);
     SpLines=0;
    }
 }

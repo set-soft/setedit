@@ -46,7 +46,7 @@ ushort execDialog( TDialog *d, void *data )
    ushort result=TProgram::deskTop->execView(p);
    if (result!=cmCancel && data!=0)
       p->getData( data );
-   TObject::destroy( p );
+   TObject::CLY_destroy( p );
    return result;
   }
 }
@@ -155,7 +155,7 @@ void FullAboutBox(void)
  col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault),0,txt);
 
  col->exec(0);
- destroy(text);
+ CLY_destroy(text);
  delete col;
 }
 

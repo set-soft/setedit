@@ -345,7 +345,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     ain=new TCEditWindow(r,fileName,wnNoNumber,openAsReadOnly);
     if ((options & oedDontOpenEmpty) && ain->editor->FailedToLoad)
       {
-       destroy(ain);
+       CLY_destroy(ain);
        return 0;
       }
     p=validView(ain);
@@ -1815,7 +1815,7 @@ void TSetEditorApp::KillClock()
  if (Clock)
    {
     remove(Clock);
-    destroy(Clock);
+    CLY_destroy(Clock);
     Clock=0;
     // Enlarge the menuBar again
     TRect r=menuBar->getExtent();
@@ -2803,7 +2803,7 @@ int main(int argc, char *argv[])
 
  // That saves the desktop too, even if there isn't a project
  SaveProject();
- destroy(TSetEditorApp::edHelper);
+ CLY_destroy(TSetEditorApp::edHelper);
 
  if (TSetEditorApp::DeleteFilesOnExit)
    {
@@ -2840,13 +2840,13 @@ int main(int argc, char *argv[])
  UnLoadTVMenu();
  if (TCEditor::RightClickMenu)
     delete TCEditor::RightClickMenu;
- destroy(editorApp);
+ CLY_destroy(editorApp);
  delete[] TSetEditorApp::WhichScrSaver; // static member
  SLPInterfaceDeInit();
- destroy(ReservedWords);
- destroy(UserWords);
- destroy(PascalRWords);
- destroy(ClipperRWords);
+ CLY_destroy(ReservedWords);
+ CLY_destroy(UserWords);
+ CLY_destroy(PascalRWords);
+ CLY_destroy(ClipperRWords);
  DeInitEnvirVariables();
  DeInitSafetyPool();
  delete[] KeyBindFNameUser;

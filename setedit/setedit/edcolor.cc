@@ -119,7 +119,7 @@ void Colors()
     TCEditor::colorsCached = 0;
   
     TProgram::application->Redraw();
-    destroy(c);
+    CLY_destroy(c);
    }
  delete temp_pal;
  temp_pal=0;

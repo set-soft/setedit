@@ -140,7 +140,7 @@ void TDskWinHelp::CreateModal(char *File, char *Node)
  TInfWindow *aWindow = new TInfWindow(aFile,Node,NULL,CopyHelp2Clip,False);
  if ((aWindow=(TInfWindow *)editorApp->validView(aWindow))!=0)
     TProgram::deskTop->execView(aWindow);
- destroy(aWindow);
+ CLY_destroy(aWindow);
 }
 
 TDskWinHelp::TDskWinHelp(char *File, char *Node, Boolean TheOne)

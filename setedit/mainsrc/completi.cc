@@ -186,7 +186,7 @@ char *CompletionChooseFromList(TStringCollection *list, int cant, int len,
    }
  else
    ret=0;
- destroy(group);
+ CLY_destroy(group);
 
  return ret;
 }

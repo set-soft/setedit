@@ -284,7 +284,7 @@ static int AddNewKey(void)
  int added=(execDialog(AddKeyDialog,&NewKeyBox)==cmOK);
  RestoreCommands();
 
- destroy(KSequence);
+ CLY_destroy(KSequence);
  return added;
 }
 
@@ -305,7 +305,7 @@ int AddCommOrMacro(void)
     if (p)
       {
        int ret=addKey(KSequence,p,kbtIsSeq);
-       destroy(p);
+       CLY_destroy(p);
        return ret;
       }
    }
@@ -431,7 +431,7 @@ TComSeqCol *AddCommands(void)
  if (ret==cmOK)
     return CSequence;
 
- destroy(CSequence);
+ CLY_destroy(CSequence);
  return 0;
 }
 

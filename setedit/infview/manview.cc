@@ -489,7 +489,7 @@ void TManPageView::InsertText(TEnhancedText *aText)
  if (!aText || !aText->isOK)
     return;
  if (text)
-    destroy(text);
+    CLY_destroy(text);
  text=aText;
  setLimit(aText->cols,aText->rows);
  //drawView();
@@ -550,7 +550,7 @@ void TManPageView::setState(uint16 aState, Boolean enable)
 
 TManPageView::~TManPageView()
 {
- destroy(text);
+ CLY_destroy(text);
 }
 
 void TManPageView::write(opstream& os)
