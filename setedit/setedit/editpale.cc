@@ -1,8 +1,7 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <configed.h>
 
-#if defined(SECompf_djgpp) || defined(SEOSf_Linux)
 #include <stdio.h>
 
 #define Uses_TDialog
@@ -17,6 +16,8 @@
 #define Uses_TKeys_Extended
 #define Uses_TStaticText
 #define Uses_TColorSelector
+#define Uses_MsgBox
+#define Uses_TScreen
 #include <tv.h>
 
 #include <tpaltext.h>
@@ -290,14 +291,17 @@ void TDiaPal::handleEvent(TEvent& event)
 
 void EditPalette(void)
 {
+ #if TV_MAJOR_VERSION>=2
+ if (!TScreen::canSetPalette())
+   {
+    messageBox(_("This hardware doesn't support it."),mfError | mfOKButton);
+    return;
+   }
+ #endif
  PalCol *orig=EditorPalette->GetAllPal();
  TDialog *d=new TDiaPal();
  if (execDialog(d,0)==cmCancel)
     EditorPalette->SetAllPal(orig);
  DeleteArray(orig);
 }
-#else
-void EditPalette(void)
-{
-}
-#endif
+

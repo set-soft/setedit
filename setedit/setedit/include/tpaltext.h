@@ -1,9 +1,13 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+#if TV_MAJOR_VERSION==2
+typedef TScreenColor PalCol;
+#else
 typedef struct
 {
  uchar R,G,B;
 } PalCol;
+#endif
 
 class fpstream;
 
