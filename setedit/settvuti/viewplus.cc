@@ -179,7 +179,7 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
        #else // DJGPP
        TScreen::setCharacter(offset,
         ChangeAttr(TScreen::getCharacter(offset),
-                   GetAttr((unsigned char)attr));
+                   GetAttr((unsigned char)attr)));
        #endif
        if (OverMouse)
           TMouse::show();
