@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.454  2003/10/16 19:42:47  set
+* Modified: To select the closest word when using double click and not the
+next. Suggested by Alain.
+
 Revision 1.453  2003/10/16 19:41:54  set
 * Fixed: A code page problem. A little bit complex to describe: If you
 started the editor for the first time in a Linux console and forced the
