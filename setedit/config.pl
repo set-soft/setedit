@@ -221,6 +221,8 @@ $MakeDefsRHIDE[2].=' '.$libs;
 $MakeDefsRHIDE[2].=' -L../libz'     if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' -L../libpcre'  if (@conf{'PCREShipped'} eq 'yes');
+# Subprojects generates libraries in the makes directory
+$MakeDefsRHIDE[2].=' -L.';
 
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
 

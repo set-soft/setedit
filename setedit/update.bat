@@ -12,4 +12,4 @@
 @echo .
 @echo Updating from CVS. Errors are discarded!
 @echo .
-@redir -e /dev/null cvs update -dP
+@redir -e /dev/null cvs update -dP | less
