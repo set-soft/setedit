@@ -220,7 +220,7 @@ inline void parseID3(Soundinputstream *fp,ID3 *data,const char *&genre,
   data->year    [0]=0;
   data->comment [0]=0;
   genre="Unknown";
-  if(avoidID3 || fp->getcanseek())return;
+  if(avoidID3 || !fp->getcanseek())return;
 
   int oldPos=fp->getposition();
   fp->setposition(fp->getsize()-128);
