@@ -108,6 +108,7 @@ int RegExDialog(unsigned , void *)
 }
 
 // Eng: BCDEFGHIKOSTUWX
+// Esp: ABCDFGHIKLMOPSTX
 TDialog *createFindDialog(void *regexBox)
 {
  boxRegEx=regexBox;
@@ -146,6 +147,7 @@ TDialog *createFindDialog(void *regexBox)
 
 
 // Eng: ABCDEFGHIKNOPRSTWX
+// Esp: ABCDEFGHKLMNOPRSTUX
 TDialog *createReplaceDialog(void *regexBox)
 {
  boxRegEx=regexBox;

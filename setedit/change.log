@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.642  2004/12/01 17:26:29  set
+* Added: Search backwards. That's a first approach and even when it seems
+to work I'm sure it have various bugs ;-)
+* Added: A message when trying to search inside a selection and no
+selection is available.
+* Added: Column to error messages. Currently used by the internal GNU
+errors parser. I tested it with GHDL.
+* Updated: Link to the new 0.5.4 installer for Win32 in the web page.
+
 Revision 1.641  2004/11/29 18:10:59  set
 * Modified: Version to 0.5.5.
 * Updated: [WWW] To reflect the new release.
