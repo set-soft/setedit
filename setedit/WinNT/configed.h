@@ -12,6 +12,8 @@
 /* PCRE version 2.0.6 or newer */
 #define HAVE_BZIP2 1
 
+#define CONFIG_PREFIX ""
+
 #define SEOS_Win32
 #define SEOSf_
 #define SEComp_BCPP
