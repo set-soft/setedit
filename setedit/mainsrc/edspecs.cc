@@ -168,7 +168,7 @@ void fPutVar(char *var,FILE *f)
  char *c=(char *)GetVariable(var);
  if (c)
    {
-    int len=strlen(var);
+    ushort len=strlen(var);
     fwrite(&len,sizeof(ushort),1,f);
     fwrite(var,len,1,f);
     len=strlen(c);
