@@ -2,4 +2,5 @@
 tools/cvssyncget setedit $1 "makes/*.mak mp3/libamp/*.mak mp3/mpegsound/*.mak" > cvsdiff
 gzip -9 cvsdiff
 echo "cvsdiff.gz and files.tar.gz generated"
+echo "Now tag this to be able to generate another delta in the future"
 
