@@ -218,6 +218,7 @@ $ReplaceTags{'TVInclude'}=$TVInclude;
 $ReplaceTags{'recode'}=$conf{'recode'} eq 'no' ? '@echo' : 'recode';
 $ReplaceTags{'recode_sep'}=$conf{'recode_sep'};
 $ReplaceTags{'copy_recode'}='perl utod.pl'; #($OS eq 'UNIX') ? 'perl utod.pl' : 'cp';
+$ReplaceTags{'cpp_compiler'}=$GXX;
 ReplaceText('doc/gnumake.in','doc/Makefile');
 ReplaceText('internac/gnumake.in','internac/Makefile');
 # Shipped gettext:
