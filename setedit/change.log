@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.575  2004/08/13 18:10:17  set
+* Added: [Debug] Options to configure: gdb binary, xterm binary, main
+function, max. number of lines in debug window, gdb response time
+out and disable gdb banner.
+* Added: [Debug] The messages in the debug window are limited in
+number and cleared when a new session is started.
+* Added: [Debug] A dialog to ask if we want to wait more when a time
+out in gdb response is detected. Not tested.
+
 Revision 1.574  2004/08/12 21:07:32  set
 * Fixed: [Debug] if we specified a path for sources when gdb wasn't running
 the editor crashed. It was only from the dialog to specify a file.

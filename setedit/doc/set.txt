@@ -18,21 +18,18 @@
 @set table-title2 \title2\
 @set table-title3 \title3\
 @set table-title4 \title4\
-@itemize @bullet
 @end macro
 
 @macro table3{title1,title2,title3}
 @set table-title2 \title2\
 @set table-title3 \title3\
 @clear table-title4
-@itemize @bullet
 @end macro
 
 @macro table2{title1,title2}
 @set table-title2 \title2\
 @clear table-title3
 @clear table-title4
-@itemize @bullet
 @end macro
 
 @macro table2-auto{title1,title2}
@@ -51,39 +48,10 @@
 @sp 1
 @end macro
 
-@macro endtable-{}
-@end itemize
-@sp 2
-@end macro
-
-@c --- The following are because HTML replaces it
-@macro end-format
-@end format
-@end macro
-@macro end-table
-@end table
-@end macro
-@macro end-itemize
-@end itemize
-@end macro
-@macro end-enumerate
-@end enumerate
-@end macro
-@macro end-example
-@end example
-@end macro
-@macro end-smallexample
-@end smallexample
-@end macro
-@macro end-display
-@end display
-@end macro
-@macro end-quotation
-@end quotation
-@end macro
-@macro end-menu
-@end menu
-@end macro
+@c  @macro endtable-{}
+@c  @end itemize
+@c  @sp 2
+@c  @end macro
 
 @c --- Entries for menues
 @c @unmacro mitem

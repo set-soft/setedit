@@ -30,7 +30,7 @@ index_sdg=-n "Index of variables and commands" vindex.idx vindex.tdx
 
 # set the commandline options for sdh
 sdh_ops=-c -n Index cindex.idx cindex.tdx $(index_$*) \
-	-I $(srcdir) -I $(incdir)
+	-I $(srcdir) -I $(incdir) @MakeInfoNumbers@
 
 all: all_docs
 

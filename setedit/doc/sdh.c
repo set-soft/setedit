@@ -561,7 +561,7 @@ void GenerateTXI_NUM(void)
  CreateFile(".txi");
  fo2=fo;
  // Special hack! a .txi but with numbers, for .info using makeinfo 4.7 or newer
- // where we cant use @end xxx inside a macro.
+ // where we can't use @end xxx inside a macro.
  CreateFile(".nut");
  fo3=fo;
  CreateFile(".num");
@@ -1218,6 +1218,9 @@ void GenerateTX1(void)
             }
           v=*end;
           *end=0;
+          fputc('"',fo);
+          fputs(pos,fo);
+          fputs("\" ",fo);
           fputs(SearchNode(pos),fo);
           fputc(v,fo);
           s=end+1;
@@ -1440,7 +1443,7 @@ int main(int argc, char *argv[])
     GenerateC_IDX();
     // Create a file with the xref as Section x
     fclose(fi);
-    fi=OpenInFile(".num");
+    fi=OpenInFile(".nut");
     GenerateTX1();
     // Create the indices requested, this time in text format
     GenerateIDX(1);
