@@ -265,6 +265,7 @@ foreach $i (@fext)
    print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$r));
   }
 print "done.\n\n";
+chmod 0755, $base.'/INSTALL';
 
 if ($iMode)
   {

@@ -381,6 +381,7 @@ mainsrc/loadusew.cc
 mainsrc/macrocom.cc
 mainsrc/pathtool.cc
 mainsrc/pclipper.cc
+mainsrc/pphp.cc
 mainsrc/pmacros.cc
 mainsrc/pperl.cc
 mainsrc/pvarious.cc
@@ -761,7 +762,6 @@ tools/symify.cc
 tools/TVpo.pl
 version.txt
 *windos.faq
-WinNT/.cvsignore
 WinNT/configed.h
 -WinNT/makeinfo/makeinfo.exe
 WinNT/bccmake.in

@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.262  2002/12/20 15:44:40  set
+* Fixed: Ivan forgot to comment STANDALONE in pphp.cc.
+* Added: A new environment variable: SET_LOCALEDIR. It tells to the editor
+where to look for i18n files. That's useful when you have to install in the
+home directory. From a problem pointed out by Grzegorz.
+* Added: Info about the new environment variable to the manpage and the
+Linux FAQ.
+
 Revision 1.261  2002/12/14 23:00:14  terrible
 * Modified: PHP Functions Parser: added benchmark results and a EXTRA_INLINE
 macro to activate the inlines that cause bloat but speed things (yes! because
