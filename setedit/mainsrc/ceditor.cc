@@ -11966,7 +11966,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
        DiskTime=s.st_mtime;
        FillEditorId(&EditorId,0,&s);
        // Check if we can write
-       if (CLY_FileAttrIsRO(&ModeOfFile))
+       if (!(editorFlags & efDoNotWarnRO) && CLY_FileAttrIsRO(&ModeOfFile))
          {
           if (editorDialog(edIsReadOnly)==cmYes)
             {
@@ -12295,6 +12295,25 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
           MakeFileHidden(backupName);
       }
     AddToFilesToKill(backupName);
+   }
+ else
+   {// We are not going to back-up the file.
+    // Check if it was a RO and the user asked not to warn.
+    if ((editorFlags & efDoNotWarnRO) && CLY_FileAttrIsRO(&ModeOfFile))
+      {// Ok, we will most probably fail to replace the file
+       if (editorDialog(edIsReadOnly)==cmYes)
+         {
+          CLY_FileAttrReadWrite(&ModeOfFile);
+          if (!CLY_SetFileAttributes(&ModeOfFile,fileName))
+            {// Bad luck
+             editorDialog(edStillReadOnly);
+             // Undo the change to reflect reality
+             CLY_FileAttrReadOnly(&ModeOfFile);
+             // We will go on, the user could be root and finally
+             // overwrite the file.
+            }
+         }
+      }
    }
 
  TGZFileWrite *f=new TGZFileWrite(fileName,IsaCompressedFile);
