@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -1168,7 +1168,7 @@ int LoadKeysForTCEditor(char *name)
 
 void LoadKeysForTCEditorFreeMemory()
 {
- delete[] loadedFile;
+ DeleteArray(loadedFile);
 }
 
 int  SaveKeyBind(char *name)

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.146  2002/07/08 14:30:52  set
+* Fixed: One preprocessor combination that fooled the functions parser.
+Reported by David A. Capello <dacap@users.sourceforge.net>.
+
 Revision 1.145  2002/07/05 20:29:40  set
 * Fixed: [MSVC] small makefile details from WintiX.
 

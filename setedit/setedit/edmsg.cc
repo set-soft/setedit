@@ -2,7 +2,8 @@
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_access
 #define Uses_unistd
 
 #define Uses_TDialog

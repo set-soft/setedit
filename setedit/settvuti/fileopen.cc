@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -24,6 +24,8 @@ man! I'm loving these f*king messages ;-)
 ***************************************************************************/
 #define Uses_unistd
 #define Uses_string
+#define Uses_getcwd
+#define Uses_chdir
 
 #define Uses_TFileDialog
 #define Uses_TFileList
@@ -123,7 +125,7 @@ void TFileDialogHome::handleEvent(TEvent& event)
     switch(event.message.command)
       {
        case cmHomeDir:
-            delete[] directory;
+            DeleteArray(directory);
             directory=newStr(homeDirectory);
             fileList->readDirectory(homeDirectory,wildCard);
             clearEvent(event);
@@ -150,7 +152,7 @@ void TFileDialogHome::handleEvent(TEvent& event)
                         buf2[l]='/';
                         buf2[l+1]=0;
                        }
-                     delete[] directory;
+                     DeleteArray(directory);
                      directory=newStr(buf2);
                      fileList->readDirectory(buf2,wildCard);
                     }

@@ -9,6 +9,8 @@
 #define Uses_ctype
 #define Uses_dirent
 #define Uses_sys_stat
+#define Uses_getcwd
+#define Uses_chdir
 
 #define Uses_TDialog
 #define Uses_TDeskTop

@@ -1,4 +1,4 @@
-/* Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_ctype
@@ -157,8 +157,8 @@ void TEnhancedText::copyLine(int y, int w, ushort *line, char *colors)
 
 TEnhancedText::~TEnhancedText()
 {
- delete[] fileName;
- delete[] commandLine;
+ DeleteArray(fileName);
+ DeleteArray(commandLine);
 }
 
 TManPageView::TManPageView(const TRect& bounds, TScrollBar *aHScrollBar,

@@ -1,7 +1,8 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_getcwd
 #define Uses_string
 #define Uses_unistd
 

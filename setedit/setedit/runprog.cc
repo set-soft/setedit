@@ -9,6 +9,7 @@
 #define Uses_unistd
 #define Uses_ctype
 #define Uses_limits
+#define Uses_getcwd
 
 #define Uses_MsgBox
 #define Uses_fpstream
