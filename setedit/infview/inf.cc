@@ -1583,18 +1583,6 @@ void TInfViewer::handleEvent( TEvent& event )
           if (TVOSClipboard::isAvailable()>1)
              PasteToClipboard(OSInsertRoutine1);
           break;
-
-     case evBroadcast:
-          if (event.message.command==cmcUpdateCodePage)
-            {
-             TVCodePage::RemapNString((uchar *)hScrollBar->chars,
-                                      (uchar *)TScrollBar::ohChars,
-                                      (ushort *)event.message.infoPtr,5);
-             TVCodePage::RemapNString((uchar *)vScrollBar->chars,
-                                      (uchar *)TScrollBar::ovChars,
-                                      (ushort *)event.message.infoPtr,5);
-            }
-          break;
      }
 }
 

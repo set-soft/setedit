@@ -59,6 +59,10 @@ TScreenFont256 *TSetEditorApp::FontRequestCallBack(int which, unsigned w, unsign
  f->w=w;
  f->h=h;
  fontCreated=1;
+ if (which)
+    so->foSecLoaded=1;
+ else
+    so->foPriLoaded=1;
  return f;
 }
 

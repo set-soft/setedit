@@ -291,7 +291,8 @@ const int
   cmcWrapOn            = cmbWrapOn+cmbBaseNumber,
   cmcWrapOff           = cmbWrapOff+cmbBaseNumber,
   cmcWrapToggle        = cmbWrapToggle+cmbBaseNumber,
-  cmcUpdateCodePage    = cmbUpdateCodePage+cmbBaseNumber,
+  // No longer used:
+  //cmcUpdateCodePage    = cmbUpdateCodePage+cmbBaseNumber,
   cmcMouseToggle       = cmbMouseToggle+cmbBaseNumber,
   cmcSelRectToUpper    = cmbSelRectToUpper+cmbBaseNumber,
   cmcSelRectToLower    = cmbSelRectToLower+cmbBaseNumber,

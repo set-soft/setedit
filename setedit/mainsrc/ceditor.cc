@@ -162,7 +162,6 @@ void DisableCommands(TCommandSet &cmdsAux)
  cmdsAux.disableCmd(cmbBaseNumber,cmbBaseNumber+cmbLastCommand);
  // Let the broadcasts enabled
  cmdsAux.enableCmd(cmcSetGlobalOptions);
- cmdsAux.enableCmd(cmcUpdateCodePage); // Is really needed?
  cmdsAux.enableCmd(cmcColorsChanged);  // Is really needed?
  TView::setCommands(cmdsAux);
 }
@@ -1852,8 +1851,8 @@ void TCEditor::handleEvent( TEvent& event )
           switch(event.message.command)
             {
              case cmScrollBarChanged:
-                  checkScrollBar( event, hScrollBar, delta.x );
-                  checkScrollBar( event, vScrollBar, delta.y );
+                  checkScrollBar(event,hScrollBar,delta.x);
+                  checkScrollBar(event,vScrollBar,delta.y);
                   break;
      
              case cmcSetGlobalOptions:
@@ -1865,15 +1864,6 @@ void TCEditor::handleEvent( TEvent& event )
                   CacheColors();
                   break;
 
-             case cmcUpdateCodePage:
-                  TVCodePage::RemapNString((uchar *)hScrollBar->chars,
-                                           (uchar *)TScrollBar::ohChars,
-                                           (ushort *)event.message.infoPtr,5);
-                  TVCodePage::RemapNString((uchar *)vScrollBar->chars,
-                                           (uchar *)TScrollBar::ovChars,
-                                           (ushort *)event.message.infoPtr,5);
-                  return;
-     
              default:
                   return;
             }

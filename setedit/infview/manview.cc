@@ -637,14 +637,6 @@ void TManWindow::handleEvent(TEvent& event)
             title=newStr((char *)event.message.infoPtr);
             frame->draw();
             break;
-       case cmcUpdateCodePage:
-            TVCodePage::RemapNString((uchar *)hScrollBar->chars,
-                                     (uchar *)TScrollBar::ohChars,
-                                     (ushort *)event.message.infoPtr,5);
-            TVCodePage::RemapNString((uchar *)vScrollBar->chars,
-                                     (uchar *)TScrollBar::ovChars,
-                                     (ushort *)event.message.infoPtr,5);
-            break;
       }
    }
 }

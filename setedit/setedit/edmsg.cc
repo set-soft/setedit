@@ -95,15 +95,6 @@ void TEdMsgDialog::handleEvent(TEvent& event)
     return;
    }
  TDialog::handleEvent(event);
- if (event.what==evBroadcast && event.message.command==cmcUpdateCodePage)
-   {
-    TVCodePage::RemapNString((uchar *)MsgList->hScrollBar->chars,
-                             (uchar *)TScrollBar::ohChars,
-                             (ushort *)event.message.infoPtr,5);
-    TVCodePage::RemapNString((uchar *)MsgList->vScrollBar->chars,
-                             (uchar *)TScrollBar::ovChars,
-                             (ushort *)event.message.infoPtr,5);
-   }
 }
 
 TEdMsgDialog::~TEdMsgDialog()
