@@ -278,6 +278,7 @@ internac/tvision.cc
 internac/utod.pl
 libbzip2/Makefile
 libbzip2/Makefile.bcc
+libbzip2/Makefile.nmk
 libbzip2/blocksort.c
 libbzip2/bzlib.c
 libbzip2/bzlib.h
@@ -295,6 +296,7 @@ libpcre/internal.h
 libpcre/licence
 libpcre/Makefile
 libpcre/Makefile.bcc
+libpcre/Makefile.nmk
 libpcre/maketables.c
 libpcre/pcre.c
 libpcre/pcre.h

@@ -1,0 +1,56 @@
+# Makefile for bzip2.lib for compiling by MSVC
+
+!ifndef _SUBMAKE
+
+#clean default extension list
+.SUFFIXES:
+#append extensions to list
+.SUFFIXES: .cc .cpp .c
+
+CC       = cl /nologo
+LD       = $(CXX)
+
+CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
+LDFLAGS  =
+
+!endif
+
+O        = .o
+
+# variables
+OBJ = blocksort$(O) huffman$(O) crctable$(O) randtable$(O) compress$(O) \
+  decompress$(O) bzlib$(O)
+
+all::  bzip2.lib
+
+blocksort.o: blocksort.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+huffman.o: huffman.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+crctable.o: crctable.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+randtable.o: randtable.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+compress.o: compress.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+decompress.o: decompress.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+bzlib.o: bzlib.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+bzip2.lib: $(OBJ)
+	-del bzip2.lib
+	lib /OUT:bzip2.lib $(OBJ)
+
+clean:
+	del *.o
+	del *.exe
+	del *.dll
+	del *.lib
+

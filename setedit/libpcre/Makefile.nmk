@@ -1,0 +1,65 @@
+# Makefile for for compiling PCRE library by MSVC
+
+!ifndef _SUBMAKE
+
+#clean default extension list
+.SUFFIXES:
+#append extensions to list
+.SUFFIXES: .cc .cpp .c
+
+CC       = cl /nologo
+LD       = $(CXX)
+
+CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
+LDFLAGS  =
+
+!endif
+
+O        = .o
+
+OBJ = maketables$(O) pcre$(O) study$(O) get$(O)
+
+all::  pcre.lib
+
+dftables.o: dftables.c internal.h
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+dftables.exe: dftables.o maketables.c
+	$(LD) $(LDFLAGS) dftables.o
+
+chartables.c: dftables.exe
+	dftables > chartables.c
+
+maketables.o: maketables.c internal.h chartables.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+get.o: get.c internal.h
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+study.o: study.c internal.h
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+pcre.o: pcre.c internal.h
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+pcre.lib: $(OBJ)
+	-del bzip2.lib
+	lib /OUT:pcre.lib $(OBJ)
+
+pcreposix.lib: pcreposix.o
+	-del pcreposix.lib
+	lib /OUT:pcreposix.lib pcreposix.o
+
+pcretest.o: pcretest.c
+	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
+
+pcretest.exe: pcretest.o
+	$(LD) $(LDFLAGS) pcretest.o pcre.lib pcreposix.lib
+
+clean:
+	-del chartables.c
+	-del *.o
+	-del *.exe
+	-del *.dll
+	-del *.lib
+

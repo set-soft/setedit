@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.142  2002/07/03 18:27:49  set
+* Added: First versions of MSVC makefile and libz makefile.
+
 Revision 1.141  2002/07/02 20:50:00  set
 * Added: Mouse Wheel support. Currently works with X11 driver.
 
