@@ -222,7 +222,7 @@ char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s)
  return PathOrig;
 }
 
-int FindFile(const char *name, char *&fullName)
+int FindFile(const char *name, char *&fullName, const char *reference)
 {
  if (strlen(name)>=PATH_MAX)
     return 0;
@@ -250,12 +250,30 @@ int FindFile(const char *name, char *&fullName)
       {
        // Try with the project
        char *prjName=GetAbsForNameInPrj(name);
-       if (!prjName)
-         {
-          DeleteArray(fullName);
-          return 0;
+       if (prjName)
+          strcpy(fullName,prjName);
+       else
+         {// Try in the same place as the reference
+          int found=0;
+          if (reference)
+            {
+             char *s=strrchr(reference,'/');
+             if (s)
+               {
+                int l=s-reference+1;
+                memcpy(fullName,reference,l);
+                strcpy(fullName+l,name);
+                //printf("Intentando: %s\n",fullName);
+                if (edTestForFile(fullName))
+                   found=1;
+               }
+            }
+          if (!found)
+            {
+             DeleteArray(fullName);
+             return 0;
+            }
          }
-       strcpy(fullName,prjName);
       }
    }
  CLY_fexpand(fullName);

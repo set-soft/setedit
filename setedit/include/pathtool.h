@@ -6,7 +6,7 @@ class TStringCollectionW;
 
 int   edTestForFile(const char *name);
 char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
-int   FindFile(const char * name,char * & fullName);
+int   FindFile(const char * name,char * & fullName, const char *reference);
 char *ReplaceExtension(char *name, const char *ext, const char *old);
 char *ReplaceExtension(char *name, const char *ext);
 char *AddToNameOfFile(char *fname, char *add);

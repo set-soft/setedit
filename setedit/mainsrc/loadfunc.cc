@@ -40,7 +40,7 @@ editor to load this file.
 
 Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
                             void (*Message)(const char *msg, void *data),
-                            void *data)
+                            void *data, const char *reference)
 {
  char *end=lineStart+l;
  char *startWord,*endWord,*name,*fullName;
@@ -112,7 +112,7 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
  messageBox(name,mfOKButton);
  #endif
 
- if (FindFile(name,fullName))
+ if (FindFile(name,fullName,reference))
    {
     OpenFileFromEditor(fullName);
     free(fullName);

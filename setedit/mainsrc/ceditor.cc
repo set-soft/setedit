@@ -3481,7 +3481,7 @@ int TCEditor::handleCommand(ushort command)
            case cmcLoadFileUnderCur:
                 flushLine();
                 LoadFileUnderCursor(curLinePtr,ColToPointer(),LenWithoutCRLF(curPos.y,curLinePtr),
-                                    CallBackStatusLine,this);
+                                    CallBackStatusLine,this,fileName);
                 break;
  
            // ------ From the File -------

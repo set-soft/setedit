@@ -26,6 +26,7 @@ more memory and disk space but is much more easy to setup.
 #define Uses_TSHzLabel
 #define Uses_TSInputLine
 #define Uses_TSButton
+#define Uses_AllocLocal
 // SetTVUti
 #define Uses_TStringable
 #define Uses_TDialogAID
@@ -188,7 +189,44 @@ int PathListGetItem(ccIndex pos, char *buffer)
     PathListPopulate();
  if (!IncludeList || pos>=IncludeList->getCount())
     return 0;
- strcpy(buffer,(const char *)IncludeList->at(pos));
+ const char *str=(const char *)IncludeList->at(pos);
+ char *var=strstr(str,"$(");
+ if (!var)
+    strcpy(buffer,str);
+ else
+   {// This is some rudimentary $(VARIABLE) expansion
+    int offset=0;
+    do
+      {
+       int l=var-str;
+       memcpy(buffer+offset,str,l);
+       offset+=l;
+       str+=l+2;
+       var=strchr(str,')');
+       if (var)
+         {
+          l=var-str;
+          AllocLocalStr(v,l+1);
+          memcpy(v,str,l);
+          v[l]=0;
+          const char *vVar=GetVariable(v);
+          if (vVar)
+            {
+             int lVar=strlen(vVar);
+             memcpy(buffer+offset,vVar,lVar);
+             offset+=lVar;
+            }
+          str=var+1;
+          var=strstr(str,"$(");
+          if (!var)
+             strcpy(buffer+offset,str);
+         }
+       else
+          buffer[offset]=0;
+      }
+    while (var);
+    //printf("Expandido: %s\n",buffer);
+   }
  return 1;
 }
 

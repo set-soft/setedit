@@ -167,7 +167,7 @@ extern Boolean CreateSHShortCutTables(void);
 extern void DestroySHShortCutTables(void);
 extern void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l,
                                 void (*Message)(const char *msg, void *data),
-                                void *data);
+                                void *data, const char *reference);
 extern char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 extern int CheckForSequence(char *s, int len, int available, char *d);
 extern int CheckForSequenceNotFirst(char *s, int len, int available, char *d);

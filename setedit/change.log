@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.472  2003/11/24 15:47:10  set
+* Added: AltKeysSetting TV config keyword.
+
 Revision 1.471  2003/11/24 15:44:19  set
 * Fixed: Some gcc versions needs explicit use of libstdc++ to link C++ and
 intenac/getcolors didn't have it. Reported by Michel Catudal (bbcat).
