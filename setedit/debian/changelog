@@ -1,3 +1,9 @@
+setedit (0.4.51-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 13 Oct 2001 19:09:25 -0300
+ 
 setedit (0.4.50-1) unstable; urgency=low
 
   * The "Let's see if I can release while I am sleeping" release.
@@ -15,6 +21,12 @@ setedit (0.4.50-1) unstable; urgency=low
     same time now timestamps are preserved so CVS checkins are faster.
 
  -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu, 11 Oct 2001 23:07:58 -0300
+
+setedit (0.4.50-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Tue,  9 Oct 2001 19:12:31 -0300
 
 setedit (0.4.49-1) unstable; urgency=low
 
