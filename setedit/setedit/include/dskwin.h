@@ -56,6 +56,7 @@ const int
       dktDbgDisasm =15;
 
 class TDeskTop;
-void InsertInOrder(TDeskTop *dsk,TDskWin *win);
+void InsertInOrder(TDeskTop *dsk, TDskWin *win);
+void AddAndInsertDskWin(TDskWin *win);
 
 

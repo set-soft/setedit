@@ -238,6 +238,11 @@ void InsertInOrder(TDeskTop *dsk,TDskWin *win)
    dsk->insert(win->view);
 }
 
+void AddAndInsertDskWin(TDskWin *win)
+{
+ AddNonEditorToHelper(win);
+ InsertInOrder(TProgram::deskTop,win);
+}
 
 void TDskWin::write(opstream& os)
 {

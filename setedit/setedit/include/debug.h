@@ -6,7 +6,9 @@ int DBG_RemoveBreakpoint(const char *source, int line);
 void DBG_SetCallBacks();
 void DBG_ReleaseMemory();
 void DBG_ApplyBkpts();
+void DBG_RefreshIgnoreBkpts();
 void DBG_ApplyWpts();
+void DBG_AddPathForSources(const char *path);
 
 class TDebugMsgDialog;
 class TWatchesDialog;
@@ -58,6 +60,7 @@ public:
  static int  unset(const char *source, int line);
  static mi_bkpt *search(const char *source, int line);
  static void apply();
+ static void refreshIgnore();
  static void refreshBinRef();
  static mi_bkpt *getItem(int num);
  static void releaseAll();

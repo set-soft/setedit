@@ -9,35 +9,29 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * GDB meaning of the ignore field is quite different to what I thinked. That's
-a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
-After it the breakpoint becomes "normal". It means that after a program reset it
-won't ignore is the "times" reached the ignore count in the previous pass. So
-may be we should "refresh" the ignores before running.
-
-  * When a new item is added to the project try to add its path to the
-  sources path.
-
-  * Fix: We are saving the "TRect" for msg and watches, but not the "zoom
-  state" and the "unzoomed" size. That's annoying.
-
-  * Add some mechanism to enable MI v2. That's much better. We already have the
-option.
-  * Mechanism to disable the slow workaround for bugs in look-up symbols in gdb.
-We already have the option.
+  * warnings about big lens, and also show explicit limit of 1 MB, not here
+  but in the input dialog. (Data Window).
 
   * Advices (only project, ...).
   * Don't show again in the confirmation for exit while debugging.
   * Add the menubind.smn options to the redmond.smn
+  * Document.
+  * Document how "ignore" works.
+  * Update spanish translation and ensure it is complete.
 
 -----------------------------------------------
 Low priority:
 
 General:
 * Some stop mechanism to avoid waiting for response time out.
+
+Breakpoints:
 * Detect recompilation of the target from "outside", that's without using Run
 program. A good moment could be when we are restarting. In this case move the
 breakpoints.
+* Right click on a line where we have a bkpt should offer to edit it.
+* When adding a new breakpoint from the dialog use the current file and
+function to field the empty fields.
 
 Inspectors:
 * Highlight changed values.
@@ -50,6 +44,11 @@ Watches:
 Data Window:
 * Small dialog with all the modes.
 * Mouse movement.
+* Things ML had:
+ - search(-next,-prev) ^S ^N ^P
+ - bookmarks?
+ - try to fix 32-bit dependencies
+ - change address types to correct types using libgdb.h
 
 Debug Window:
 * Save content to disk.
@@ -58,6 +57,35 @@ Disassembler Window:
 * Keys or similar to change the size used by the registers and the code.
 * Some, slow, way to choose the format for the registers. It will imply
 fetching its values by batchs with the same format.
+* Support syntax hl. for other CPUs.
+* The "code" created is pure UNIX \n text, but what about DOS files with
+\r\n? (I mean source C/C++ files mixed with asm code).
+
+by Function:
+void TSetEditorApp::DebugFinishFun()
+void TSetEditorApp::DebugReturnNow() (same?)
+ Should we check if we are at main? Not sure, the check is expensive:
+1) Get the list of frames, 2) Determine if we are at the top, 3) Release the
+frames. First time I got the gdb error I got confused, but is quite obvious.
+
+void TSetEditorApp::DebugCallStack()
+should I modify mi lib to return something better ...
+Move the code to the "parser.c" in migdb
+
+int TDisAsmEdWin::jumpToFrame(mi_frames *f)
+We should lock the editor until the end, that's annoying because of the
+unlocks on fails.
+
+void TInspector::updateVars(mi_gvar_chg *changed)
+What if a variable changes its type? I don't know how can it be but gdb code
+seems to support it.
+
+int isValidAddress(const char *taddr, unsigned long &addr)
+It determines if something is a pointer using a very weak methode.
+
+void TDataViewer::handleEvent(TEvent & event)
+It does a complete redraw when 1 char is inserted, it looks like an overkill.
+
 -----------------------------------------------
 Whish gdb could:
 
@@ -173,17 +201,16 @@ directories to look for sources.
 #include <edspecs.h>
 #include <loadshl.h> // SHLNumberOf
 
-// TODO: remove
-#include <assert.h>
-
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
 const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
 const char bkptsVersion=2;
 const char wptsVersion=1;
-const char inspVersion=1;
-const char dwVersion=1;
+const char inspVersion=2;
+const char dwVersion=2;
 const char debugDataVersion=1;
+const char msgWinVersion=2;
+const char watchWinVersion=2;
 
 #ifdef HAVE_GDB_MI
 
@@ -239,7 +266,6 @@ static mi_stop *stoppedInfo=NULL;
 static char pendingStoppedInfo=0;
 static char killAfterStop=0;
 // CPU line
-// TODO: Move to app class
 static char *cpuLFile=NULL;
 static int   cpuLLine;
 // Path for the binary
@@ -317,6 +343,16 @@ static inline
 void SetGDBMisc(unsigned val)
 {
  EnvirSetIntVar("SET_GDB_MISC",val);
+ // It shouldn't be needed because the dialog is enabled only when dbg is NULL
+ // but in this way we are ready for future changes.
+ if (dbg)
+   {
+    if (val & miscMIv2)
+       dbg->ForceMIVersion(2,0,0);
+    else
+       dbg->ForceMIVersion(1,0,0);
+   }
+ mi_set_workaround(MI_PSYM_SEARCH,val & miscSymWA ? 0 : 1);
 }
 
 static inline
@@ -731,8 +767,8 @@ which state is the debugger. Call it only after checking.
 
 int TSetEditorApp::DebugConnect()
 {
- // TODO: Implement the misc flags stuff, most do nothing.
  unsigned misc=GetGDBMisc();
+ mi_set_workaround(MI_PSYM_SEARCH,misc & miscSymWA ? 0 : 1);
  const char *aux=GetGDBExeNoD();
  if (aux)
     dbg->SetGDBExe(aux);
@@ -749,6 +785,8 @@ int TSetEditorApp::DebugConnect()
     DebugMsgSetState();
     if (!(misc & miscNoBanner) && !dbg->Version())
        return 0;
+    if (misc & miscMIv2)
+       dbg->ForceMIVersion(2,0,0);
     // Set the path for sources
     char n[PATH_MAX];
     if (dbg->PathSources(NULL))
@@ -1053,6 +1091,7 @@ void TSetEditorApp::DebugRunOrContinue()
 {
  if (!DebugCheckStopped())
     return;
+ DBG_RefreshIgnoreBkpts();
  if (dbg->RunOrContinue())
     DebugMsgSetState();
 }
@@ -1186,9 +1225,6 @@ void TSetEditorApp::DebugGoToCursor()
   Description:
   Executes until the end of the current function. Not smart, only works for
 stopped state.
-TODO: Should we check if we are at main? Not sure, the check is expensive:
-1) Get the list of frames, 2) Determine if we are at the top, 3) Release the
-frames. First time I got the gdb error I got confused, but is quite obvious.
   
 ***************************************************************************/
 
@@ -1207,9 +1243,6 @@ void TSetEditorApp::DebugFinishFun()
   Description:
   Finishes current function and goes to the previous frame. Not smart, only
 works for stopped state.
-TODO: Should we check if we are at main? Not sure, the check is expensive:
-1) Get the list of frames, 2) Determine if we are at the top, 3) Release the
-frames. First time I got the gdb error I got confused, but is quite obvious.
   
 ***************************************************************************/
 
@@ -1320,7 +1353,6 @@ void TSetEditorApp::DebugCallStack()
                             r->line,r->addr);
      DynStrCatInit(&msg,b,l);
      // Add the function arguments.
-     // TODO: should I modify mi lib to return something better ...
      mi_results *args=r->args;
      if (args)
        {
@@ -1837,7 +1869,6 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
  from=to=NULL;
  spLine=NULL;
  curLine=NULL;
- // TODO: Support other CPUs
  editor->SetHighlightTo(shlGenericSyntax,
                         SHLNumberOf("80x86 asm (AT&T syntax)"));
 }
@@ -1892,8 +1923,6 @@ void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
  mi_asm_insn *a;
  // First pass: create a list of jump targets
  TStringCollection *col=new TStringCollection(10,10);
- // TODO: What about DOS files with \r\n?
- // We are creating a pure UNIX text.
  while (c)
    {
     a=c->ins;
@@ -2091,7 +2120,6 @@ int TDisAsmEdWin::jumpToFrame(mi_frames *f)
  Boolean newCode=False;
  curLine=NULL;
  // Make sure we have the address in our range
- // TODO: we should lock the editor until the end, that's annoying because of the unlocks on fails
  if (f->addr<from || f->addr>to)
    {
     if (!dissasembleFrame(f))
@@ -2222,6 +2250,18 @@ TDisAsmWin::~TDisAsmWin()
  delete regs;
 }
 
+static
+int DebugEvalExpressionNoRet(char *exp)
+{
+ free(TSetEditorApp::DebugEvalExpression(exp));
+ if (MIDebugger::GetErrorNumber()!=MI_OK)
+   {
+    ShowErrorInMsgBox();
+    return 0;
+   }
+ return 1;
+}
+
 void TDisAsmWin::handleEvent(TEvent &event)
 {
  TDialog::handleEvent(event);
@@ -2239,11 +2279,7 @@ void TDisAsmWin::handleEvent(TEvent &event)
       {
        char e[widthWtExp];
        CLY_snprintf(e,widthWtExp,"$%s=%s",r->name,b);
-       // TODO: May be a function to do this, is quite useful
-       free(TSetEditorApp::DebugEvalExpression(e));
-       if (MIDebugger::GetErrorNumber()!=MI_OK)
-          ShowErrorInMsgBox();
-       else
+       if (DebugEvalExpressionNoRet(e))
          {
           regs->update();
           bRegs->drawView();
@@ -2323,10 +2359,7 @@ void DisAsmWin()
    }
  TRect re=GetDeskTopSize();
  re.grow(-4,-2);
- TDskDbgDisasm *dsk=new TDskDbgDisasm(new TDisAsmWin(re));
- // TODO: Join them in a function
- AddNonEditorToHelper(dsk);
- InsertInOrder(TProgram::deskTop,dsk);
+ AddAndInsertDskWin(new TDskDbgDisasm(new TDisAsmWin(re)));
 }
 
 void TSetEditorApp::DebugDisAsmWin()
@@ -2371,6 +2404,7 @@ public:
  int isOK() { return ok; }
  void disable() { outOfScope=1; }
  void undefine();
+ Boolean canBeDestroyed();
 
 protected:
  mi_gvar *var;
@@ -2381,7 +2415,14 @@ protected:
  mi_gvar *init(const char *anExp);
 };
 
-// TODO: ensure we never destroy them if gdb isn't in "stopped"
+Boolean TPVarTree::canBeDestroyed()
+{
+ if (!dbg || tree->outOfScope)
+    return True;
+ // We can't delete the variable while running
+ return dbg->GetState()==MIDebugger::running ? False : True;
+}
+
 TPVarTree::~TPVarTree()
 {
  if (var)
@@ -2741,6 +2782,7 @@ public:
 
  virtual void handleEvent(TEvent &event);
  virtual void setState(uint16 aState, Boolean enable);
+ virtual Boolean valid(ushort command);
 
  void inspect();
  void expand();
@@ -2780,6 +2822,13 @@ TInspector::~TInspector()
  delete[] exp;
  delete[] tstate;
  cInspectors--;
+}
+
+Boolean TInspector::valid(ushort command)
+{
+ if (command==cmClose && tree)
+    return tree->canBeDestroyed();
+ return TDialog::valid(command);
 }
 
 int TInspector::modify()
@@ -2927,7 +2976,7 @@ void TInspector::updateVars(mi_gvar_chg *changed)
               if (*s=='.') depth++;
        dbgPr("Changed var: %s (%d)\n",ch->name,depth);
        if (depth==0 && (!ch->in_scope || ch->new_type))
-         {// TODO: solve it:
+         {
           if (ch->new_type)
              printf("It happened!!! type changed for gdb var\n");
           dbgPr("Disabling var\n");
@@ -3190,6 +3239,8 @@ void TDskInspector::saveData(opstream &os)
  char *state=inspector->getTreeState();
  os.writeString(state);
  delete[] state;
+ // zoomRect
+ SaveExpandedRect(os,inspector->zoomRect,wS,hS);
 }
 
 void TDskInspector::readData(ipstream &is, char version)
@@ -3210,6 +3261,9 @@ void TDskInspector::readData(ipstream &is, char version)
 
  // Recreate it
  TInspector *d=new TInspector(size,exp,tstate);
+ // zoomRect
+ if (version>1)
+    ReadExpandedRect(is,d->zoomRect,wS,hS);
  TDskInspector *win=new TDskInspector(d);
  win->ZOrder=ZOrder;
  AddNonEditorToHelper(win);
@@ -3231,8 +3285,7 @@ void OpenInspector(const char *var)
     d->setData(&box);
 
     TDskInspector *win=new TDskInspector(d);
-    AddNonEditorToHelper(win);
-    InsertInOrder(TProgram::deskTop,win);
+    AddAndInsertDskWin(win);
    }
  else
     ShowErrorInMsgBox();
@@ -3368,8 +3421,8 @@ void TBreakpoints::add(mi_bkpt *b)
 void TBreakpoints::updateAbs(mi_bkpt *b)
 {
  if (!b->file)
-   {// TODO: dbgPr
-    printf("Bogus breakpoint\n");
+   {
+    dbgPr("Breakpoint without file name\n");
     return;
    }
  free(b->file_abs);
@@ -3422,7 +3475,6 @@ void TBreakpoints::remove(mi_bkpt *b)
     ant=e;
     e=e->next;
    }
- // TODO: Remove
  dbgPr("Oops! can't find bkp TBreakpoints::remove\n");
 }
 
@@ -3448,7 +3500,6 @@ void TBreakpoints::replace(mi_bkpt *old, mi_bkpt *b)
     ant=e;
     e=e->next;
    }
- // TODO: Remove
  dbgPr("Oops! can't find bkp TBreakpoints::replace\n");
 }
 
@@ -3468,7 +3519,7 @@ int TBreakpoints::unset(const char *source, int line)
 {
  mi_bkpt *b=search(source,line);
  if (!b)
-   {// TODO: Remove
+   {
     dbgPr("Oops! where is bkpt %s:%d\n",source,line);
     return 0;
    }
@@ -3479,6 +3530,21 @@ int TBreakpoints::unset(const char *source, int line)
    }
  remove(b);
  return 1;
+}
+
+void TBreakpoints::refreshIgnore()
+{// Only before running
+ if (!dbg || dbg->GetState()!=MIDebugger::target_specified)
+    return;
+ if (DEBUG_BREAKPOINTS_UPDATE)
+    dbgPr("TBreakpoints::refreshIgnore: Refreshing ignore field\n");
+ mi_bkpt *b=first;
+ while (b)
+   {
+    if (b->enabled && b->ignore>0)
+       dbg->BreakAfter(b);
+    b=b->next;
+   }
 }
 
 void TBreakpoints::apply()
@@ -3499,8 +3565,6 @@ void TBreakpoints::apply()
     killIt=0;
     if (b->enabled) // Avoid disabled ones.
       {
-       // TODO: I'm quite sure we will lose something in the transfer, make
-       // sure it doesn't.
        mi_bkpt *nb=dbg->Breakpoint(b);
        if (!nb)
          {
@@ -3587,7 +3651,6 @@ void TBreakpoints::load(ipstream &is)
  int32 cnt;
 
  is >> version >> cnt;
- // TODO:
  if (first)
     dbgPr("Oops! loading breakpoints when we already have!!!\n");
  dbgPr("%d breakpoints\n",cnt);
@@ -3750,8 +3813,14 @@ TDialog *TDiagBrk::createEdit(const char *title)
 static
 void ShowErrorInMsgBox()
 {
- char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
  int iErr=DebugGetErrorSt();
+ if (iErr==MI_OK)
+   {
+    messageBox(__("Sorry, you can't perform this operation right now"),
+               mfOKButton | mfError);
+    return;
+   }
+ char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
 
  if (iErr==MI_FROM_GDB)
     messageBox(mfOKButton | mfError,
@@ -3853,8 +3922,6 @@ int TDiagBrk::ApplyBkt(mi_bkpt *nb, mi_bkpt *old, int enabled)
 
 int TDiagBrk::Modify()
 {
- if (!bkpts.GetCount())
-    return 0; // Just in case
  TDialog *d=createEdit(__("Modify breakpoint"));
 
  stBrkEdit box;
@@ -3897,7 +3964,6 @@ int TDiagBrk::Add()
  TDialog *d=createEdit(__("Add breakpoint"));
 
  stBrkEdit box;
- // TODO: Could we use current file and function?
  memset(&box,0,sizeof(box));
  box.enabled=1;
 
@@ -3940,16 +4006,11 @@ int TDiagBrk::Delete(int which)
 
 int TDiagBrk::Delete()
 {
- if (!bkpts.GetCount())
-    return 0; // Just in case
  return Delete(focusedB);
 }
 
 int TDiagBrk::Enable()
 {
- if (!bkpts.GetCount())
-    return 0; // Just in case
-
  mi_bkpt *p=bkpts.getItem(focusedB);
  if (p->enabled)
     return 0;
@@ -3960,9 +4021,6 @@ int TDiagBrk::Enable()
 
 int TDiagBrk::Disable()
 {
- if (!bkpts.GetCount())
-    return 0; // Just in case
-
  mi_bkpt *p=bkpts.getItem(focusedB);
  if (!p->enabled)
     return 0;
@@ -3983,10 +4041,6 @@ void TDiagBrk::UpdateCommandsFocused()
 }
 int TDiagBrk::Go()
 {
- // TODO: looks like all actions checks it, move to the caller.
- if (!bkpts.GetCount())
-    return 0; // Just in case
-
  mi_bkpt *p=bkpts.getItem(focusedB);
  if (p->file_abs)
    {
@@ -4005,6 +4059,19 @@ void TDiagBrk::handleEvent(TEvent &event)
  TDialog::handleEvent(event);
  if (event.what==evCommand)
    {
+    switch (event.message.command)
+      {// Just in case
+       case cmBkModify:
+       case cmBkDel:
+       case cmBkEnable:
+       case cmBkDisable:
+       case cmBkGo:
+            if (!bkpts.GetCount())
+              {
+               clearEvent(event);
+               return;
+              }
+      }
     switch (event.message.command)
       {
        case cmBkModify:
@@ -4152,8 +4219,8 @@ void MoveBreakpoint(const char *file, stSpLine *spline, void *data)
     b->line=spline->nline+1;
    }
  else
-   {// TODO: Change to dbgPr
-    printf("Don't know how to move %s:%d\n",file,spline->oline+1);
+   {
+    dbgPr("Don't know how to move %s:%d\n",file,spline->oline+1);
    }
 }
 
@@ -4249,7 +4316,6 @@ void TWatchpoints::remove(mi_wp *b)
     ant=e;
     e=e->next;
    }
- // TODO: Remove
  dbgPr("Oops! can't find wp TWatchpoints::remove\n");
 }
 
@@ -4275,7 +4341,6 @@ void TWatchpoints::replace(mi_wp *old, mi_wp *b)
     ant=e;
     e=e->next;
    }
- // TODO: Remove
  dbgPr("Oops! can't find wp TWatchpoints::replace\n");
 }
 
@@ -4343,7 +4408,6 @@ void TWatchpoints::load(ipstream &is, char version)
  int32 cnt;
 
  is >> cnt;
- // TODO:
  if (first)
     dbgPr("Oops! loading watchpoints when we already have!!!\n");
  dbgPr("%d watchpoints\n",cnt);
@@ -4389,7 +4453,7 @@ int TWatchpoints::unset(int num)
 {
  mi_wp *b=search(num);
  if (!b)
-   {// TODO: Remove
+   {
     dbgPr("Oops! where is wp %s\n",num);
     return 0;
    }
@@ -4498,8 +4562,6 @@ int TDiagWp::DeleteFromGDB(mi_wp *p)
 
 int TDiagWp::Modify()
 {
- if (!wpts.GetCount())
-    return 0; // Just in case
  TDialog *d=createEdit(__("Modify watchpoint"));
 
  stWpEdit box;
@@ -4584,16 +4646,11 @@ int TDiagWp::Delete(int which)
 
 int TDiagWp::Delete()
 {
- if (!wpts.GetCount())
-    return 0; // Just in case
  return Delete(focusedB);
 }
 
 int TDiagWp::Enable()
 {
- if (!wpts.GetCount())
-    return 0; // Just in case
-
  mi_wp *p=wpts.getItem(focusedB);
  if (p->enabled)
     return 0;
@@ -4611,9 +4668,6 @@ int TDiagWp::Enable()
 
 int TDiagWp::Disable()
 {
- if (!wpts.GetCount())
-    return 0; // Just in case
-
  mi_wp *p=wpts.getItem(focusedB);
  if (!p->enabled)
     return 0;
@@ -4640,6 +4694,18 @@ void TDiagWp::handleEvent(TEvent &event)
  TDialog::handleEvent(event);
  if (event.what==evCommand)
    {
+    switch (event.message.command)
+      {// Just in case
+       case cmBkModify:
+       case cmBkDel:
+       case cmBkEnable:
+       case cmBkDisable:
+            if (!wpts.GetCount())
+              {
+               clearEvent(event);
+               return;
+              }
+      }
     switch (event.message.command)
       {
        case cmBkModify:
@@ -4757,9 +4823,6 @@ void TSetEditorApp::DebugEditWatchPts(char *startVal)
   From "DataWindow v0.10 Copyright (C) 1998 Laszlo Molnar" that was
 contributed to RHIDE.
 *****************************************************************************/
-
-// TODO: Should we have persistence here?
-// TODO: some "disable" state when we stop.
 
 /*
  Palette:
@@ -4894,7 +4957,6 @@ int isValidAddress(const char *taddr, unsigned long &addr)
     return 0;
  int na, res;
  uchar test;
- // TODO: I think that's too weak
  int convAddr=!(isdigit(*taddr) || *taddr=='&' || *taddr=='$');
 
  res=dbg->ReadMemory(taddr,1,&test,na,convAddr,&addr);
@@ -4932,9 +4994,6 @@ int isValidUL(const char *exp, unsigned long &val)
 }
 
 //\\//\\//\\//\\//\\//\\ Memory handling
-
-// TODO: warnings about big lens, and also show explicit limit of 1 MB, not here
-// but in the input dialog.
 
 /**[txh]********************************************************************
 
@@ -5018,12 +5077,8 @@ int targetWriteMemory(ulong addr, uchar *memo, int len)
     b[offset++]='}';
     b[offset]=0;
 
-    free(TSetEditorApp::DebugEvalExpression(b));
-    if (MIDebugger::GetErrorNumber()!=MI_OK)
-      {
-       ShowErrorInMsgBox();
+    if (!DebugEvalExpressionNoRet(b))
        return 0;
-      }
 
     len-=transfer;
     addr+=transfer;
@@ -5585,9 +5640,6 @@ void TDataViewer::setState(ushort aState, Boolean enable)
           setCommands(dbg && dbg->GetState()==MIDebugger::stopped ? True : False);
       }
    }
- // TODO SET: Why? I don't think that's needed
- //if (aState & sfFocused)
- //   drawView();
 }
 
 #define cpDataViewer "\x06\x07\x08\x09\x0A\x0B"
@@ -5773,7 +5825,7 @@ void TDataViewer::handleEvent(TEvent & event)
                memo[cursor.y*bytesPerLine+cursor.x-addrLen+memLen]|=stEdited;
                indi->changeState(TDIndicator::iChanged,'*');
                cursorHoriz(1);
-               drawView(); // TODO: Too expensive?
+               drawView();
               }
             else if ((kc>='0' && kc<='9') || (radix==rxHex && (kc | 0x20)>='a'
                      && (kc | 0x20)<='f'))
@@ -6278,9 +6330,7 @@ char *TDskDataWin::GetText(char *dest, short maxLen)
 
 void TDskDataWin::Insert(TDataWindow *w)
 {
- TDskWin *win=new TDskDataWin(w);
- AddNonEditorToHelper(win);
- InsertInOrder(TProgram::deskTop,win);
+ AddAndInsertDskWin(new TDskDataWin(w))
 }
 
 void TDskDataWin::saveData(opstream &os)
@@ -6294,6 +6344,8 @@ void TDskDataWin::saveData(opstream &os)
  os << (int)(TProgram::deskTop->indexOf(view));
  // expression and state
  window->saveData(os);
+ // zoomRect
+ SaveExpandedRect(os,window->zoomRect,wS,hS);
 }
 
 void TDskDataWin::readData(ipstream &is, char version)
@@ -6309,11 +6361,13 @@ void TDskDataWin::readData(ipstream &is, char version)
  is >> ZOrder;
  // expression and state
  TDataWindow *d=TDataWindow::readData(is,version,size);
+ // zoomRect
+ if (version>1)
+    ReadExpandedRect(is,d->zoomRect,wS,hS);
  // Recreate it
  TDskDataWin *win=new TDskDataWin(d);
  win->ZOrder=ZOrder;
- AddNonEditorToHelper(win);
- InsertInOrder(TProgram::deskTop,win);
+ AddAndInsertDskWin(win);
 }
 
 /*****************************************************************************
@@ -6354,18 +6408,11 @@ void TSetEditorApp::DebugStackWindow()
  + add mouse & scrollbar handling
  + remove magic constants
 
- todo:
- -----
- - search(-next,-prev) ^S ^N ^P
- - bookmarks?
- - data breakpoints
- / cleanup the code
- - comments
- - try to fix 32-bit dependencies
- - fix FIXMEs
- - popup menus?
- - change address types to correct types using libgdb.h
- 
+ Here are things that ML marked as thing to do and we did:
+ + data breakpoints, we have the watchpoints dialog.
+ + fix the FIXMEs
+ + popup menus, we have a hole menu for it.
+ + disassembler, we have a separated window for it.
 */
 
 /*****************************************************************************
@@ -6399,6 +6446,11 @@ void DBG_ApplyBkpts()
  bkpts.apply();
 }
 
+void DBG_RefreshIgnoreBkpts()
+{
+ bkpts.refreshIgnore();
+}
+
 void DBG_ApplyWpts()
 {
  wpts.apply();
@@ -6422,6 +6474,12 @@ void DBG_ReadBreakpoints(ipstream &is)
 void DBG_ReadWatchpoints(ipstream &is, char version)
 {
  wpts.load(is,version);
+}
+
+void DBG_AddPathForSources(const char *path)
+{
+ if (IsStopped())
+    dbg->PathSources(path);
 }
 
 static
@@ -6603,7 +6661,6 @@ char *TDskDbgMsg::GetText(char *dest, short maxLen)
   End of Dsk Wrapper for Debug Status and Messages Window
 *****************************************************************************/
 
-// TODO: enclose in a class
 static TDebugMsgDialog *MsgWindow=NULL;
 static TMsgCollection  *MsgCol   =NULL;
 static TListBox        *MsgList  =NULL;
@@ -7048,8 +7105,7 @@ void DebugMsgSetStopped()
  if (stoppedInfo->reason==sr_wp_scope && stoppedInfo->have_wpno)
    {// Must be disabled
     wpts.unset(stoppedInfo->wpno);
-    // TODO: dbgPr
-    printf("Disabling watchpoint %d, out of scope\n",stoppedInfo->wpno);
+    dbgPr("Disabling watchpoint %d, out of scope\n",stoppedInfo->wpno);
    }
 }
 
@@ -7306,7 +7362,6 @@ char *TDskDbgWt::GetText(char *dest, short maxLen)
   End of Dsk Wrapper for Watches Window
 *****************************************************************************/
 
-// TODO: enclose in a class
 static TWatchesDialog     *WtWindow=NULL;
 static TStringableListBox *WtList  =NULL;
 static TRect WtWindowRect(-1,-1,-1,-1);
@@ -8081,8 +8136,9 @@ void DebugSaveData(opstream &os)
     if (MsgWindow)
       {
        dbgPr("MsgWindow\n");
-       os << svPresent << (int)(TProgram::deskTop->indexOf(MsgWindow))
+       os << msgWinVersion << (int)(TProgram::deskTop->indexOf(MsgWindow))
           << (char)((MsgWindow->state & sfVisible) ? svYes : svNo);
+       SaveExpandedRect(os,MsgWindow->zoomRect,wS,hS);
       }
     else
        os << svAbsent;
@@ -8106,8 +8162,9 @@ void DebugSaveData(opstream &os)
     if (WtWindow)
       {
        dbgPr("WtWindow\n");
-       os << svPresent << (int)(TProgram::deskTop->indexOf(WtWindow))
+       os << watchWinVersion << (int)(TProgram::deskTop->indexOf(WtWindow))
           << (char)((WtWindow->state & sfVisible) ? svYes : svNo);
+       SaveExpandedRect(os,WtWindow->zoomRect,wS,hS);
       }
     else
        os << svAbsent;
@@ -8178,6 +8235,8 @@ void DebugReadData(ipstream &is)
        char visible;
        is >> ZOrder >> visible;
        DebugMsgInit(visible ? False : True,ZOrder);
+       if (aux>1)
+          ReadExpandedRect(is,MsgWindow->zoomRect,wS,hS);
       }
    }
  // Watches
@@ -8201,6 +8260,8 @@ void DebugReadData(ipstream &is)
        char visible;
        is >> ZOrder >> visible;
        WatchesInit(visible ? False : True,ZOrder);
+       if (aux>1)
+          ReadExpandedRect(is,WtWindow->zoomRect,wS,hS);
       }
    }
  // Breakpoints
@@ -8279,6 +8340,8 @@ void TSetEditorApp::DebugMoveBreakPts() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}
+
+void DBG_AddPathForSources(const char *) {}
 
 void DBG_SaveBreakpoints(opstream &os)
 {

@@ -863,6 +863,10 @@ int CheckForCTAGS(void)
 int TTagCollection::refresh(Boolean advice)
 {
  ccIndex c=tagFiles->getCount(),i;
+
+ // Indicate we are busy
+ Boolean oldBusy=TScreen::showBusyState(True);
+
  // Automatic central tags maintainance
  if (autoGenMode==stfAutoCentral)
     for (i=0; i<c; i++)
@@ -930,6 +934,10 @@ int TTagCollection::refresh(Boolean advice)
         loadTagsFromFile(p);
        }
     }
+
+ // We finished the blocking stuff
+ TScreen::showBusyState(oldBusy);
+
  if (advice && !abortInit && c==1) // Only one entry and ...
    {
     stTagFile *p=tagFiles->atPos(0);

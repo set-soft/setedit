@@ -47,6 +47,7 @@
 #define Uses_TagsOnlyFuncs
 #include <tags.h>
 #include <debug.h>
+#include <pathlist.h>
 
 extern char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 static TDskWinPrj *prjWin=NULL;
@@ -463,7 +464,10 @@ int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags, char **test)
        *test=NULL;
       }
     else
+      {
        atInsert(pos,name,flags);
+       PathListAddPathFor(at(pos),paliSource);
+      }
     // Not returned, free it
     string_free(relName);
    }

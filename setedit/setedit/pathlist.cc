@@ -45,6 +45,7 @@ comparing it with the simple string used in RHIDE]
 #include <pathlist.h>
 #include <edspecs.h>
 #include <fileopen.h>
+#include <debug.h> // DBG_AddPathForSources
 
 class TPathList : public TCollection, public TStringable
 {
@@ -89,7 +90,7 @@ TPathList & TPathList::operator = (const TPathList & pl)
  return *this;
 }
 
-static TPathList *lists[paliLists], *lEdited;
+static TPathList *lists[paliLists]={NULL,NULL}, *lEdited;
 const char Version=2;
 const int MaxLineLen=PATH_MAX;
 static const char *Titles[paliLists]=
@@ -159,9 +160,25 @@ void PathListAddFromPrj(void *p, void *data)
       {
        //printf("Adding %s from project\n",f);
        l->insert(newStr(f));
+       // It works only when "stopped"
+       DBG_AddPathForSources(f);
       }
     *end=aux;
    }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Adds a path for a project item to the @var{which} list. Note that
+@var{item} must be a PrjItem pointer.
+  
+***************************************************************************/
+
+void PathListAddPathFor(void *item, int which)
+{
+ if (lists[which])
+    PathListAddFromPrj(item,lists[which]);
 }
 
 /**[txh]********************************************************************
@@ -338,6 +355,9 @@ int AddItem(void)
  if (s)
    {
     lEdited->insert(s);
+    if (lEdited==lists[paliSource])
+       // It works only when "stopped"
+       DBG_AddPathForSources(s);
     listChanged++;
     return 1;
    }
@@ -351,6 +371,9 @@ int AddDir(void)
  if (s)
    {
     lEdited->insert(s);
+    if (lEdited==lists[paliSource])
+       // It works only when "stopped"
+       DBG_AddPathForSources(s);
     listChanged++;
     return 1;
    }
