@@ -4020,6 +4020,29 @@ the parameter is 1 the action depends on the current editor's setings.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection MessageBox
+
+  (MessageBox @var{message} [@var{options}])
+@p{}
+
+  Pop-ups a small dialog showing the @var{message} to the user. The
+@var{options} can take the following values (use or to combine them):
+@p{}
+
+@itemize @bullet
+@item edfMBCancelButton: put a @code{Cancel} button.
+@item edfMBNoButton: put a @code{No} button.
+@item edfMBOKButton: put an @code{Ok} button.
+@item edfMBOKCancel: put an @code{Ok} and a @code{Cancel} button.
+@item edfMBYesButton: put an @code{Yes} button.
+@item edfMBYesNoCancel: put a @code{Yes}, a @code{No} and a @code{Cancel} button.
+@item edfMBConfirmation: use @b{Confirmation} as caption.
+@item edfMBError: use @b{Error} as caption.
+@item edfMBInformation: use @b{Information} as caption.
+@item edfMBWarning: use @b{Warning} as caption.
+@end itemize
+
+@c --------------------------------------------------------------
 @subsection OpenFile
 
   (OpenFile @var{string})
@@ -4058,13 +4081,19 @@ to parse the output of the external program. By default the GNU one is used.
 @c --------------------------------------------------------------
 @subsection RunProgramRedir
 
-  (RunProgramRedir @var{program_name})
+  (RunProgramRedir @var{program_name} [@var{input_text}])
 @paragraph{}
 
   This function is similar to RunProgram, but the result isn't dumped to
 the message window, instead the output of the program is returned as a
 string.
 @paragraph{}
+
+  Additionally you can specify a text to send to the standard input of the
+program you are calling. With it is easy to call external filters. I provide
+an example of how to replace a selected text with the output of an external
+filter in the @file{macros.slp} file.
+@p{}
 
   Be careful, that's a very powerful command, but very dangerous too.
 @paragraph{}
