@@ -102,6 +102,15 @@ char *toSl(char *e)
 }
 
 static
+char *toQuestion(char *e)
+{
+ for (; *e && *e!='?'; e++)
+     if (*e=='\\')
+        e++;
+ return e;
+}
+
+static
 char *newStrN(const char *s, int len)
 {
  char *r=new char[len+1];
@@ -364,6 +373,11 @@ const char *TSpTagCollection::getKind(stTag *p)
 
 void TSpTagCollection::getText(char *buf, unsigned item, int maxLen)
 {
+ if (((int)item)==-1)
+   {
+    *buf=EOS;
+    return;
+   }
  getText(buf,at(item),maxLen);
 }
 
@@ -457,17 +471,25 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
     e++;
     //printf("Regex: %s\n",p->regex);
    }
+ else if (*s=='?')
+   {
+    s++;
+    e=toQuestion(s);
+    p->regex=newStrN(s+1,e-s-2);
+    e++;
+    //printf("Backwards Regex: %s\n",p->regex);
+   }
  else
    {
     printf("What it means?: %s\n",s);
     delete p;
     return 4;
    }
+ p->tagFile=tf;
  if (*e!=';' || e[1]!='"')
-   {
-    printf("Wrong format?: %s\n",e);
-    delete p;
-    return 5;
+   {// Most probably that's a format 1 (original ctags) file
+    insert(p);
+    return 0;
    }
  e+=2;
  if (*e=='\t') e++;
@@ -541,7 +563,6 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
       }
     e=strtok(NULL,"\t");
    }
- p->tagFile=tf;
  insert(p);
  return 0;
 }
@@ -563,14 +584,23 @@ int TTagCollection::loadTagsFromFile(stTagFile *p)
     // Read the data
     char *line=(char *)malloc(200);
     size_t size=200;
+    int varsFound=0;
     while (!feof(f))
       {
        if (CLY_getline(&line,&size,f)!=-1)
          {
           if (strncmp(line,"!_TAG_",6)==0)
+            {
              p->info->addValue(line);
+             varsFound++;
+            }
           else
             {
+             if (!varsFound)
+               {
+                messageBox(__("Wrong format for tags file!"),mfError | mfOKButton);
+                break;
+               }
              if (addValue(line,p)==0)
                 entries++;
             }
@@ -1153,6 +1183,8 @@ void SearchTag(char *word)
 {
  if (InitTagsCollection()) return;
  tags->refresh();
+ if (!tags->getCount()) return;
+
  TListBoxRec br;
  br.items=tags;
  br.selection=0;
@@ -1186,6 +1218,11 @@ public:
 
 void TClListBox::getText(char *dest, ccIndex item, short maxLen)
 {
+ if (item<0)
+   {
+    *dest=0;
+    return;
+   }
  TTagClassCol *p=(TTagClassCol *)items;
  //p->getText(dest,item,maxLen);
  CLY_snprintf(dest,maxLen,"%s",p->atPos(item)->cl->id);
@@ -1395,6 +1432,12 @@ void TagsClassBrowser(char *word)
  tags->refresh();
  TTagClassCol *classList=new TTagClassCol(tags);
 
+ if (!classList->getCount())
+   {
+    messageBox(__("Sorry but I can't find any class."),mfError | mfOKButton);
+    return;
+   }
+
  TListBoxRec br;
  br.items=classList;
  br.selection=0;
@@ -1423,6 +1466,7 @@ char *TagsWordCompletion(int x, int y, char *word)
 {
  if (!word || InitTagsCollection()) return NULL;
  tags->refresh();
+ if (!tags->getCount()) return NULL;
 
  // Search a tag that matches
  int lenW=strlen(word),tLen;
