@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.492  2004/02/02 16:13:50  set
+* Added: [WWW] A note about Red Hat RPMs, a user (Jan Cnops) reported that
+the Red Hat 7.3 packages (newer than the Red Hat 8.0 packages) install OK
+on Red Hat 9.0 systems.
+
 Revision 1.491  2004/02/02 14:52:50  set
 * Added: [WWW] SuSE 9.0 release by bbcat.
 
