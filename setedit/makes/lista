@@ -628,7 +628,7 @@ setedit/include/edprint.h
 setedit/include/loadcle.h
 setedit/include/loadnobkp.h
 setedit/include/pal.h
-setedit/include/pathlist.cc
+setedit/include/pathlist.h
 setedit/include/setapp.h
 setedit/include/tpaltext.h
 setedit/intgrep.cc
