@@ -12,6 +12,8 @@ editor or call a shell.
 3. Miscellaneous
 3.1 Do you really think your screen saver can be called screen saver?
 3.2 Why I can't access files in a directory called c:\dev?
+3.3 I'm using Windows NT (4.0, 2k, XP, etc.) and defined Set_Files but it
+doesn't work, why?
 
 4. Mouse problems
 4.1 I don't get a mouse pointer while I'm in DOS, why?
@@ -168,6 +170,13 @@ A: Even when SETEdit is a DOS application uses the djgpp library which
 emulates a lot of UNIX details. In UNIX the /dev directory contains devices
 mapped to files, djgpp emulates it, so files in c:\dev, d:\dev, etc. have
 special meaning. Avoid using files en these directories.
+
+-----------------------------------------------------------------------------
+3.3 I'm using Windows NT (4.0, 2k, XP, etc.) and defined Set_Files but it
+doesn't work, why?
+
+A: NT is case sensitive for environment variable you *must* use SET_FILES
+(all capitals).
   
 =============================================================================
 4. Mouse problems

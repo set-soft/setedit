@@ -587,6 +587,8 @@ A) Installing in DOS for djgpp users:
    SET SET_FILES=c:/djgpp/share/setedit
 
    Replacing c:/djgpp with the place where you installed djgpp.
+   IMPORTANT!! Windows NT (4.0, 2k, XP, etc.) is case sensitive for
+   environment variables, avoid defining things like Set_Files.
 
 B) Installing in DOS for non-djgpp users:
    Attention: If you don't use the installer you must have some basic DOS
@@ -609,6 +611,9 @@ B) Installing in DOS for non-djgpp users:
    Add the following to your autoexec.bat:
 
    SET SET_FILES=c:/setedit/share/setedit
+   
+   IMPORTANT!! Windows NT (4.0, 2k, XP, etc.) is case sensitive for
+   environment variables, avoid defining things like Set_Files.
 
    Replacing c:/setedit by the place where you uncompressed the editor.
 3) Add the c:\setedit\bin (don't forget to replace c:/setedit by the name
