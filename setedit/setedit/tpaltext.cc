@@ -8,65 +8,60 @@
 #include <tv.h>
 #include <tpaltext.h>
 
-PalCol TTextPalette::OriginalPalette[16];
 PalCol TTextPalette::ActualPalette[16];
+char   TTextPalette::Changed=0;
 
 /*
   In TV 2.0.0 I moved it to Turbo Vision, so that's a simple wrapper over
-  the TV code.
+  the TV code. It also acts as a cache
 */
-
-TTextPalette::TTextPalette()
-{
-}
-
-void TTextPalette::SetPalette(PalCol *cols)
-{
- TScreen::setPaletteColors(0,16,cols);
-}
-
-void TTextPalette::suspend()
-{
-}
-
-void TTextPalette::resume()
-{
-}
-
-TTextPalette::~TTextPalette()
-{
-}
 
 void TTextPalette::SetOne(int color, int R, int G, int B)
 {
- TScreenColor col={R,G,B,0xFF};
- TScreen::setPaletteColors(color,1,&col);
+ ActualPalette[color].R=R;
+ ActualPalette[color].G=G;
+ ActualPalette[color].B=B;
+ TScreen::setPaletteColors(color,1,&ActualPalette[color]);
+ // Re-compute the changed value
+ const TScreenColor *orig=TDisplay::getDefaultPalette()+color;
+ if (orig->R==R && orig->G==G && orig->B==B)
+   {// Restoring this color
+    if (Changed)
+       ComputeChangedStatus();
+   }
+ else
+    Changed=1;
+}
+
+void TTextPalette::ComputeChanged()
+{
+ const TScreenColor *orig=TDisplay::getDefaultPalette();
+ int i;
+ for (i=0; i<16; i++)
+     if (ActualPalette[i].R!=orig[i].R || ActualPalette[i].G!=orig[i].G ||
+         ActualPalette[i].B!=orig[i].B)
+       {
+        Changed=1;
+        return;
+       }
+ Changed=0;
 }
 
 void TTextPalette::GetOne(int color, int &R, int &G, int &B)
 {
- TScreenColor col;
- TScreen::getPaletteColors(color,1,&col);
- R=col.R;
- G=col.G;
- B=col.B;
+ R=ActualPalette[color].R;
+ G=ActualPalette[color].G;
+ B=ActualPalette[color].B;
 }
 
 void TTextPalette::BackToDefault(void)
 {
  TScreen::resetPalette();
+ Changed=0;
+ Cache();
 }
 
-void TTextPalette::Save(fpstream &s)
-{
- // version
- s << (char)2;
- TScreen::getPaletteColors(0,16,ActualPalette);
- int i;
- for (i=0; i<16; i++)
-     s << ActualPalette[i].R << ActualPalette[i].G << ActualPalette[i].B;
-}
-
+// This funtion exists only for compatibility with all desktop files.
 void TTextPalette::Load(fpstream &s, PalCol *pal)
 {
  PalCol *dest=pal ? pal : ActualPalette;
@@ -90,16 +85,27 @@ void TTextPalette::Load(fpstream &s, PalCol *pal)
  for (i=0; i<16 && !acum; i++)
      acum+=dest[i].R+dest[i].G+dest[i].B;
  if (!acum)
-    memcpy(dest,OriginalPalette,sizeof(ActualPalette));
- if (!pal)
-    TScreen::setPaletteColors(0,16,ActualPalette);
+   {
+    memcpy(dest,TDisplay::getDefaultPalette(),sizeof(ActualPalette));
+    Changed=0;
+   }
+ else
+    if (!pal)
+      {
+       ComputeChanged();
+       Restore();
+      }
 }
 
-void TTextPalette::getArray(unsigned *pal)
+void TTextPalette::Cache()
+{
+ TScreen::getPaletteColors(0,16,ActualPalette);
+ ComputeChanged();
+}
+
+void TTextPalette::GetArray(unsigned *pal)
 {
  int i;
-
- TScreen::getPaletteColors(0,16,ActualPalette);
  for (i=0; i<16; i++)
      pal[i]=(ActualPalette[i].R<<16) | (ActualPalette[i].G<<8) | ActualPalette[i].B;
 }
@@ -107,47 +113,36 @@ void TTextPalette::getArray(unsigned *pal)
 PalCol *TTextPalette::GetAllPal()
 {
  PalCol *ret=new PalCol[16];
- TScreen::getPaletteColors(0,16,ret);
+ memcpy(ret,ActualPalette,sizeof(ActualPalette));
  return ret;
 }
 
 void TTextPalette::SetAllPal(PalCol *pal)
 {
  TScreen::setPaletteColors(0,16,pal);
+ memcpy(ActualPalette,pal,sizeof(ActualPalette));
+ ComputeChanged();
 }
 
-#ifdef TEST
-int main(int argc, char *argv[])
+void TTextPalette::Restore()
 {
- int i;
-
- intensevideo();
- for (i=0; i<16; i++)
-    {
-     textattr(0xF | (i<<4));
-     cprintf(" %d ",i);
-    }
- getch();
-
- TTextPalette *p=new TTextPalette();
-
- textattr(0x1F);
- p->SetOne(6,30,60,10);
- getch();
- p->suspend();
- getch();
- p->resume();
- getch();
-
- delete p;
- return 0;
+ TScreen::setPaletteColors(0,16,ActualPalette);
 }
-#endif // TEST
-/* for (i=0; i<16; i++)
-     printf("%d,",TXTGetOneColor(i));
- TXTGetAllColors(ColorsMap);
- printf("\n");
- for (i=0; i<16; i++)
-     printf("%d,",ColorsMap[i]);
-*/
+
+/**[txh]********************************************************************
+  Description:
+  Used when Restore will be called soon and we just want to set a value for
+it.
+***************************************************************************/
+
+void TTextPalette::PreparePal(PalCol *pal)
+{
+ memcpy(ActualPalette,pal,sizeof(ActualPalette));
+ ComputeChanged();
+}
+
+void TTextPalette::Copy(PalCol *dest)
+{
+ memcpy(dest,ActualPalette,sizeof(ActualPalette));
+}
 

@@ -1683,7 +1683,10 @@ void TSetEditorApp::ScreenOptions()
  ToStr(so->scCharWidth,box.sizeCW);
  ToStr(so->scCharHeight,box.sizeCH);
  sprintf(box.mode,"0x%03X",so->scModeNumber);
- strcpy(box.command,TSetEditorApp::ExternalPrgMode);
+ if (so->scCommand)
+    strcpy(box.command,so->scCommand);
+ else
+    box.command[0]=0;
 
  int retry;
  do
@@ -1748,14 +1751,9 @@ void TSetEditorApp::ScreenOptions()
           so->scCharWidth=atoi(box.sizeCW);
           so->scCharHeight=atoi(box.sizeCH);
           so->scModeNumber=strtol(box.mode,&end,0);
-          strcpy(TSetEditorApp::ExternalPrgMode,box.command);
-          if (so->scOptions==scfExternal)
-             TProgram::application->setScreenMode(0xFFFF,TSetEditorApp::ExternalPrgMode);
-          else if (so->scOptions==scfForced)
-             TProgram::application->setScreenMode(so->scWidth,so->scHeight,
-                                                  so->scCharWidth,so->scCharHeight);
-          else if (so->scOptions==scfMode)
-             TProgram::application->setScreenMode(so->scModeNumber);
+          DeleteArray(so->scCommand);
+          so->scCommand=newStr(box.command);
+          resetVideoMode();
          }         
       }
    }

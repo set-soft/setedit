@@ -1,4 +1,17 @@
-$Log$
+$Log$.
+Revision 1.186  2002/09/02 13:58:40  set
+* Added: Now the driver dependent settings are stored in the desktop file.
+For this reason the desktop file format changed and I'm switching to
+version 0.5.0. Consider it ***UNSTABLE***
+* Version: 0.5.0
+* Added: The code needed to adapt to a desktop file change once we are
+already initialized (change of project for example). This seems to work,
+but I'm quite sure is full of bugs.
+* Note: I was able to have different settings for X11 and Linux drivers in
+the same desktop file and properly handle a project with another fonts
+loaded. But it was hard to get working so I think a lot of work will be
+needed before it works for all the cases.
+
 Revision 1.185  2002/09/02 13:54:41  set
 * Modified: [DOS] Now -b/B are now deprecated in favor of the BIOSKey TV
 configuration option, but is supported.

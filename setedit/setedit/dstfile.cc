@@ -436,10 +436,11 @@ void TSetEditorApp::hotApplyScreenOptions()
     TScreen::setFontRequestCallBack(FontRequestCallBack);
     so->foCallBackSet=1;
    }
+ PreparePalForRestore(so->palette);
  if (so->scOptions!=scfDontForce && TScreen::canSetVideoSize())
-   {
     resetVideoMode();
-   }
+ else
+    RestorePaletteSystem();
  // Fonts: fontCreated, should be loaded during the
  if (!fontCreated && (so->foPriLoad || so->foSecLoad))
    {
@@ -478,8 +479,8 @@ void TSetEditorApp::preLoadDesktop(char *name, int haveFilesCL)
 }
 
 void TSetEditorApp::finishPreLoadDesktop()
-{
- // TODO: code moved to the call back. Should I keep it?
+{// We are initialized, now ask the palette system to read the actual palette
+ CacheActualPalette();
 }
 
 /**[txh]********************************************************************
@@ -653,6 +654,10 @@ void TSetEditorApp::storeDesktop(fpstream& s)
              so->scCharHeight=h;
             }
          }
+       ComputeChangedStatus();
+       so->palChanged=PaletteWasChanged();
+       if (so->palChanged)
+          PaletteCopy(so->palette);
       }
     s << (char)1 << soCol;
    }
@@ -863,48 +868,30 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
    }
 
  if (!DesktopPreloaded)
-   {
+   {// That's a desktop change, not the first load. So we must do a "hot swap" ;-)
     if (deskTopVersion>=0x500)
-      {
+      {// New projects structure
        char infoSaved;
        s >> infoSaved;
        if (infoSaved)
-         {
+         {// We have settings, load them replacing current settings
           destroy(soCol);
           s >> soCol;
           hotApplyScreenOptions();
          }
       }
     else
-      {
-       if (deskTopVersion>=0x404)
-          LoadFontLoadedInfo(s);
-      
-       #ifdef TVCompf_djgpp
-       if (deskTopVersion>=0x405)
-          LoadPaletteSystem(s);
-       #else
-       /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
-          I choose compatibility with these versions */
-       if (deskTopVersion>=0x418)
-          LoadPaletteSystem(s);
-       #endif
-      
-       if (deskTopVersion>=0x403)
-         {
-          ushort mode;
-          s >> mode;
-          if (deskTopVersion>=0x411)
-            {
-             s >> UseExternPrgForMode;
-             s.readString(ExternalPrgMode,80);
-            }
-          ResetVideoMode(mode,0);
-         }
+      {// Load the old information and setup it
+       stScreenOptions *scrOps=loadOldDesktopScreenInfo(s);
+       scrOps->driverName=newStr(TScreen::getDriverShortName());
+       destroy(soCol);
+       soCol=new TScOptsCol();
+       soCol->Insert(scrOps);
+       hotApplyScreenOptions();
       }
    }
  else
-   {
+   {// We already loaded the screen settings
     if (deskTopVersion>=0x500)
       {
        char infoSaved;
@@ -1245,22 +1232,62 @@ void TSetEditorApp::transferSetting2TV(void *aP, void *)
     TVMainConfigFile::Add(drv,"VideoMode",p->scModeNumber);
    }
 
- const TScreenColor *pal=TDisplay::getDefaultPalette();
- unsigned i;
- for (i=0; i<16; i++)
-     if (p->palette[i].R!=pal[i].R || p->palette[i].G!=pal[i].G ||
-         p->palette[i].B!=pal[i].B)
-       {
-        char b[192],*s=b;
-        for (i=0; i<16; i++)
-           {
-            s+=sprintf(s,"%d,%d,%d",p->palette[i].R,p->palette[i].G,p->palette[i].B);
-            if (i!=15)
-               *(s++)=',';
-           }
-        TVMainConfigFile::Add(drv,"ScreenPalette",b);
-        break;
-       }
+ if (p->palChanged)
+   {// palChanged isn't enough
+    const TScreenColor *pal=TDisplay::getDefaultPalette();
+    unsigned i;
+    for (i=0; i<16; i++)
+        if (p->palette[i].R!=pal[i].R || p->palette[i].G!=pal[i].G ||
+            p->palette[i].B!=pal[i].B)
+          {
+           char b[192],*s=b;
+           for (i=0; i<16; i++)
+              {
+               s+=sprintf(s,"%d,%d,%d",p->palette[i].R,p->palette[i].G,p->palette[i].B);
+               if (i!=15)
+                  *(s++)=',';
+              }
+           TVMainConfigFile::Add(drv,"ScreenPalette",b);
+           break;
+          }
+   }
+}
+
+stScreenOptions *TSetEditorApp::loadOldDesktopScreenInfo(fpstream &s)
+{
+ stScreenOptions *scrOps=new stScreenOptions;
+ memset(scrOps,0,sizeof(stScreenOptions));
+ if (deskTopVersion>=0x404)
+    loadOldFontInfo(s,scrOps);
+ #ifdef TVCompf_djgpp
+ if (deskTopVersion>=0x405)
+    LoadPaletteSystemDontSet(s,scrOps->palette);
+ #else
+ /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
+    I choose compatibility with these versions */
+ if (deskTopVersion>=0x418)
+    LoadPaletteSystemDontSet(s,scrOps->palette);
+ #endif
+ if (deskTopVersion>=0x403)
+   {
+    ushort mode;
+    s >> mode;
+    scrOps->scOptions=scfMode;
+    scrOps->scModeNumber=mode;
+    if (deskTopVersion>=0x411)
+      {
+       s >> UseExternPrgForMode;
+       char *extPrg=s.readString();
+       if (UseExternPrgForMode)
+         {
+          scrOps->scOptions=scfExternal;
+          scrOps->scCommand=extPrg;
+         }
+       else
+          DeleteArray(extPrg);
+      }
+   }
+ return scrOps;
 }
 
 Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
@@ -1280,36 +1307,7 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
  if (deskTopVersion<0x500)
    {// The preLoad was introduced in the 0.4.x to 0.5.x change.
     // We have to extract the information from the old structure.
-    stScreenOptions *scrOps=new stScreenOptions;
-    memset(scrOps,0,sizeof(stScreenOptions));
-    if (deskTopVersion>=0x404)
-       loadOldFontInfo(s,scrOps);
-    #ifdef TVCompf_djgpp
-    if (deskTopVersion>=0x405)
-       LoadPaletteSystemDontSet(s,scrOps->palette);
-    #else
-    /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
-       I choose compatibility with these versions */
-    if (deskTopVersion>=0x418)
-       LoadPaletteSystemDontSet(s,scrOps->palette);
-    #endif
-    if (deskTopVersion>=0x403)
-      {
-       ushort mode;
-       s >> mode;
-       scrOps->scOptions=scfMode;
-       scrOps->scModeNumber=mode;
-       if (deskTopVersion>=0x411)
-         {
-          s >> UseExternPrgForMode;
-          s.readString(ExternalPrgMode,80);
-          if (UseExternPrgForMode)
-            {
-             scrOps->scOptions=scfExternal;
-             scrOps->scCommand=newStr(ExternalPrgMode);
-            }
-         }
-      }
+    stScreenOptions *scrOps=loadOldDesktopScreenInfo(s);
     scrOps->driverName=newStr(defaultDrvName);
     if (!soCol)
        soCol=new TScOptsCol();
@@ -1370,7 +1368,7 @@ void TScOptsCol::freeItem(void *item)
  delete p;
 }
 
-const char scOptsVer=1;
+const char scOptsVer=2;
 
 void *TScOptsCol::readItem(ipstream &is)
 {
@@ -1390,9 +1388,18 @@ void *TScOptsCol::readItem(ipstream &is)
     >> p->scOptions   >> p->scWidth    >> p->scHeight
     >> p->scCharWidth >> p->scCharHeight
     >> p->scModeNumber;
- unsigned i;
- for (i=0; i<16; i++)
-     is >> p->palette[i].R >> p->palette[i].G >> p->palette[i].B;
+ if (version>=2)
+    is >> p->palChanged;
+ else
+    p->palChanged=1;
+ if (p->palChanged)
+   {
+    unsigned i;
+    for (i=0; i<16; i++)
+        is >> p->palette[i].R >> p->palette[i].G >> p->palette[i].B;
+   }
+ else
+    memcpy(p->palette,TDisplay::getDefaultPalette(),sizeof(TScreenColor)*16);
  return p;
 }
 
@@ -1410,10 +1417,13 @@ void TScOptsCol::writeItem(void *obj, opstream &os)
     << p->foPriW      << p->foPriH
     << p->scOptions   << p->scWidth    << p->scHeight
     << p->scCharWidth << p->scCharHeight
-    << p->scModeNumber;
- unsigned i;
- for (i=0; i<16; i++)
-     os << p->palette[i].R << p->palette[i].G << p->palette[i].B;
+    << p->scModeNumber<< p->palChanged;
+ if (p->palChanged)
+   {
+    unsigned i;
+    for (i=0; i<16; i++)
+        os << p->palette[i].R << p->palette[i].G << p->palette[i].B;
+   }
 }
 
 void TScOptsCol::Insert(stScreenOptions *p)

@@ -9,4 +9,7 @@ That's a list of things to do in the project:
  s << TScreen::screenMode;
  s << UseExternPrgForMode;
  s.writeString(ExternalPrgMode);
-
+* Remove: TSetEditorApp::ExternalPrgMode, UseExternPrgForMode
+* Clean code page and font code.
+* Clean all preferences dialogs.
+* Evaluate if the TTextPalette member should test Changed before calling the low level set.

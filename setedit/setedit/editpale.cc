@@ -291,13 +291,11 @@ void TDiaPal::handleEvent(TEvent& event)
 
 void EditPalette(void)
 {
- #if TV_MAJOR_VERSION>=2
  if (!TScreen::canSetPalette())
    {
     messageBox(_("This hardware doesn't support it."),mfError | mfOKButton);
     return;
    }
- #endif
  PalCol *orig=EditorPalette->GetAllPal();
  TDialog *d=new TDiaPal();
  if (execDialog(d,0)==cmCancel)

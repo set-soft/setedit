@@ -488,7 +488,6 @@ void TSetEditorApp::changeDir()
 
 void FullSuspendScreen()
 {
- SuspendPaletteSystem();
  TProgram::application->suspend();
 }
 
@@ -507,7 +506,7 @@ int ResetVideoMode(int mode, int redraw)
     TProgram::application->setScreenMode(mode);
  // We ever use intense mode I don't need blinks
  //setIntenseState();
- // Restore the user palette
+ // Restore the user palette, we can lose it during the setScreenMode
  RestorePaletteSystem();
  // Redraw ALL
  if (redraw)
@@ -537,7 +536,7 @@ int TSetEditorApp::resetVideoMode(Boolean redraw)
     TProgram::application->setScreenMode(so->scModeNumber);
  // We ever use intense mode I don't need blinks
  //setIntenseState();
- // Restore the user palette
+ // Restore the user palette, we can lose it during the setScreenMode
  RestorePaletteSystem();
  // Redraw ALL
  if (redraw)
@@ -2417,8 +2416,10 @@ int main(int argc, char *argv[])
  // to create a window of the desired size than creating an 80x25 window and
  // the resize.
  TSetEditorApp::preLoadDesktop(ProjectAskedByUser,CLY_optind<Argc);
-
+ // Now create the application, it will init TV
  editorApp=new TSetEditorApp();
+ // We finished the preload stuff
+ TSetEditorApp::finishPreLoadDesktop();
 
  // Set's the window title for our application (W9x,X,etc.)
  editorApp->SetTitle();

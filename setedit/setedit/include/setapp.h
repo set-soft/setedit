@@ -177,7 +177,10 @@ struct stScreenOptions
  // External program
  char *scCommand;
 
- // The screen colors palette
+ // Is the palette different than the default one?
+ char palChanged;
+ // The screen colors palette, this is used during the load process.
+ // The real palette is handled by the TTextPalette class.
  TScreenColor palette[16];
 };
 
@@ -212,6 +215,7 @@ public:
     static void    displayDetectCallBack();
     static void    hotApplyScreenOptions();
     static int     resetVideoMode(Boolean redraw=False);
+    static stScreenOptions *loadOldDesktopScreenInfo(fpstream &s);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();
