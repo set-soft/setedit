@@ -219,9 +219,10 @@ else
 # Take out the CFLAGS and CPPFLAGS variables
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
+$MakeDefsRHIDE[8]='STDCPP_LIB='.$stdcxx;
 if ($Compf eq 'MinGW')
   {
-   $MakeDefsRHIDE[8]='SPECIAL_LDFLAGS=-mconsole';
+   $MakeDefsRHIDE[9]='SPECIAL_LDFLAGS=-mconsole';
   }
 CreateRHIDEenvs('makes/rhide.env','+mp3/libamp/rhide.env',
                 '+mp3/mpegsound/rhide.env');

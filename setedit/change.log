@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.369  2003/05/16 12:41:30  set
+* Modified: To ever include stdc++ as library in the worst case it will be
+listed twice.
+
 Revision 1.368  2003/05/15 18:10:26  set
 * Modified: configset to wait for ENTER instead of sleeping 2 seconds. As
 suggested by Ivan.
