@@ -723,6 +723,7 @@ streams/sceditor.cc
 streams/sedhelp.cc
 streams/ssindica.cc
 TODO
+tools/applycvs.pl
 tools/cmclist.c
 tools/conv.cc
 +tools/cvssget

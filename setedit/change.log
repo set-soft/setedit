@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.113  2002/06/07 19:03:34  set
+* Modified: [UNIX] the configuration to test if the X11 include directory
+is really needed. It looks like gcc 3.1 gives a warning if this is manually
+specified. Is a test because I don't have gcc 3.1 for Linux. Reported by
+Andris.
+
 Revision 1.112  2002/06/07 02:18:36  terrible
 * Updated: Debian packaging with small changes.
 
