@@ -72,7 +72,7 @@ static char strategy=DBGST_DO_NOTHING;
 /* A compiler won't respect volatile if the variable is local! */
 static volatile int DebugStack_attached=0;
 
-static void JustDumpStack(const char *redirect);
+void StackDBG_JustDumpStack(const char *redirect);
 
 /*****************************************************************************
   Helper functions for process handling.
@@ -91,8 +91,7 @@ DebugStack().
 
 ***************************************************************************/
 
-static
-int my_special_system(const char *command)
+int StackDBG_SpecialSystem(const char *command)
 {
  int rc=0;
  pid_t pid;
@@ -285,8 +284,8 @@ quite easily also.
 optimizations enabled.
   
 ***************************************************************************/
-static
-void GCCDumpStack(int fd)
+
+void StackDBG_GCCDumpStack(int fd)
 {
  #if 1
  /* The following works even for -O3 */
@@ -314,14 +313,14 @@ void GCCDumpStack(int fd)
      switch (i)
        {
         case 0:
-             Write(fd," JustDumpStack ");
+             Write(fd," StackDBG_JustDumpStack ");
              /* The following is a trick to prevent gcc from making these
                 functions inline. */
-             WriteHex(fd,(unsigned long)JustDumpStack);
+             WriteHex(fd,(unsigned long)StackDBG_JustDumpStack);
              Write(fd," ");
-             WriteHex(fd,(unsigned long)GCCDumpStack);
+             WriteHex(fd,(unsigned long)StackDBG_GCCDumpStack);
              Write(fd," ");
-             WriteHex(fd,(unsigned long)my_special_system);
+             WriteHex(fd,(unsigned long)StackDBG_SpecialSystem);
              Write(fd," ");
              WriteNL(fd);
              break;
@@ -341,8 +340,7 @@ void GCCDumpStack(int fd)
     }
 }
 #else
-static
-void GCCDumpStack(int fd)
+void StackDBG_GCCDumpStack(int fd)
 {
 }
 #endif
@@ -353,8 +351,8 @@ void GCCDumpStack(int fd)
   Wrapper for the function that dumps the stack.
   
 ***************************************************************************/
-static
-void JustDumpStack(const char *redirect)
+
+void StackDBG_JustDumpStack(const char *redirect)
 {
  int closeIt=0,fd;
 
@@ -376,7 +374,7 @@ void JustDumpStack(const char *redirect)
    }
  WriteNL(fd);
  WriteNL(fd);
- GCCDumpStack(fd);
+ StackDBG_GCCDumpStack(fd);
  WriteNL(fd);
  WriteNL(fd);
 
@@ -448,7 +446,7 @@ void DebugStack(const char *redirect)
    "set DebugStack_attached = 1\n" /* Tell the process it can go on */
    "echo <-------- Ignore\\n\n"
    "finish\n" /* while (!attached); */
-   "finish\n" /* my_special_system() */
+   "finish\n" /* StackDBG_SpecialSystem() */
    "finish\n" /* DebugStack() */
    "echo <-------- Crash\\n\n"
    "finish\n"
@@ -461,7 +459,7 @@ void DebugStack(const char *redirect)
     return;
  if (strategy==DBGST_DUMP_STACK)
    {
-    JustDumpStack(redirect);
+    StackDBG_JustDumpStack(redirect);
     return;
    }
 
@@ -518,7 +516,7 @@ void DebugStack(const char *redirect)
    }
 
  /* Launch the debugger */
- my_special_system(buffer);
+ StackDBG_SpecialSystem(buffer);
 
  /* Remove the temporary file */
  unlink(filename);
