@@ -1,3 +1,13 @@
+/**[txh]********************************************************************
+
+  Copyright (c) 2003 by Salvador Eduardo Tropea
+  Covered by the GPL license.
+  Description:
+  This program generates the .imk files from the .gpr files. To achieve it
+first creates the .mak files and then calls the extrimk.exe program.
+  
+***************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

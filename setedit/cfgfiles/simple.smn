@@ -171,6 +171,8 @@ StatusRange: hcReplace, 2
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
 StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+#StatusEntry: "~Ctrl+C~ Copy", cmtilCopyOS, kbCtC
+#StatusEntry: "~Ctrl+V~ Paste", cmtilPasteOS, kbCtV
 EndStatusRange
 
 #
@@ -226,6 +228,8 @@ StatusRange: hcCalculator, 4
 StatusEntry: "~ENTER~ Evaluate", cmEval, kbEnter
 StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
 StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+#StatusEntry: "~Ctrl+C~ Copy", cmtilCopyOS, kbCtC
+#StatusEntry: "~Ctrl+V~ Paste", cmtilPasteOS, kbCtV
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 EndStatusRange
 
@@ -236,6 +240,8 @@ StatusRange: hcGrepDialog, 1
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
 StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+#StatusEntry: "~Ctrl+C~ Copy", cmtilCopyOS, kbCtC
+#StatusEntry: "~Ctrl+V~ Paste", cmtilPasteOS, kbCtV
 EndStatusRange
 
 #

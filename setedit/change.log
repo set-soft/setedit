@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.378  2003/05/19 21:03:48  set
+* Fixed: When importing items to the project the editor:
+1) Didn't redraw the project window.
+2) Didn't use the base path for the project.
+From a report by Kevin.
+
 Revision 1.377  2003/05/19 14:18:16  set
 * Modified: [MinGW] Looks like pwd can be called from Perl, at least from
 the Perl I have. Most probably the problem is that MinGW have pwd only as

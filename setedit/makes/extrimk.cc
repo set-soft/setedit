@@ -1,3 +1,13 @@
+/**[txh]********************************************************************
+
+  Copyright (c) 2003 by Salvador Eduardo Tropea.
+  Covered by the GPL license.
+  Description:
+  This program generates a .imk file containing the dependencies for a
+project.
+  
+***************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

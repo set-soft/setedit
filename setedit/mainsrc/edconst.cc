@@ -418,7 +418,9 @@ static edCList Simple[] =
 #undef  C
 #define C(a) { "til" #a, cmtil##a }
  C(Copy),
- C(Paste)
+ C(CopyOS),
+ C(Paste),
+ C(PasteOS)
 #undef C
 };
 

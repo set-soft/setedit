@@ -178,6 +178,8 @@
 
 #include <tv.h>
 
+extern char *strncpyZ(char *dest, const char *orig, int size);
+
 #ifdef INCL_NOSTATEX
 #include <nostatex.h>
 #endif

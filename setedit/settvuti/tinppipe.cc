@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]**********************************************************************
 
@@ -18,6 +18,7 @@ editor's buffer.
 #define Uses_TEvent
 #define Uses_TKeys
 #define Uses_TCEditWindow
+#define Uses_TVOSClipboard
 #include <ceditor.h>
 
 
@@ -113,6 +114,14 @@ void TInputLinePiped::handleEvent( TEvent& event )
                  CopyFromClip();
                  clearEvent(event);
                  break;
+            case cmtilCopyOS:
+                 CopyToClipOS();
+                 clearEvent(event);
+                 break;
+            case cmtilPasteOS:
+                 CopyFromClipOS();
+                 clearEvent(event);
+                 break;
            }
          break;
    }
@@ -145,6 +154,34 @@ void TInputLinePiped::CopyFromClip(void)
  drawView();
 }
 
+void TInputLinePiped::CopyToClipOS(void)
+{
+ if ((mFlags & tilpNoCopy) || !TVOSClipboard::isAvailable())
+    return;
+ unsigned Len=strlen(data);
+ if (Len)
+    TVOSClipboard::copy(0,data,Len);
+}
+
+void TInputLinePiped::CopyFromClipOS(void)
+{
+ if ((mFlags & tilpNoPaste) || !TVOSClipboard::isAvailable())
+    return;
+ unsigned size;
+ char *p=TVOSClipboard::paste(0,size);
+ if (p)
+   {
+    if (size>(unsigned)maxLen)
+       size=maxLen;
+    memcpy(data,p,size);
+    data[size]=0;
+    selStart=0;
+    curPos=selEnd=size;
+    drawView();
+    DeleteArray(p);
+   }
+}
+
 void TInputLinePiped::setState( uint16 aState, Boolean enable )
 {
  TInputLine::setState(aState,enable);
@@ -153,18 +190,32 @@ void TInputLinePiped::setState( uint16 aState, Boolean enable )
     if (enable)
       {
        if (mFlags & tilpNoPaste)
+         {
           disableCommand(cmtilPaste);
+          disableCommand(cmtilPasteOS);
+         }
        else
+         {
           enableCommand(cmtilPaste);
+          enableCommand(cmtilPasteOS);
+         }
        if (mFlags & tilpNoCopy)
+         {
           disableCommand(cmtilCopy);
+          disableCommand(cmtilCopyOS);
+         }
        else
+         {
           enableCommand(cmtilCopy);
+          enableCommand(cmtilCopyOS);
+         }
       }
     else
       {
        disableCommand(cmtilPaste);
        disableCommand(cmtilCopy);
+       disableCommand(cmtilPasteOS);
+       disableCommand(cmtilCopyOS);
       }
    }
 }
