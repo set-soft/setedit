@@ -58,15 +58,6 @@ char *GetHome(void)
  return s;
 }
 
-static
-char *ExpandFileNameToUserHomeNoDot(const char *s)
-{
- strcpy(FileNameToLoad,GetHome());
- strcat(FileNameToLoad,"/");
- strcat(FileNameToLoad,s);
- return FileNameToLoad;
-}
-
 #ifdef NoHomeOrientedOS
 char *ExpandHomeSave(const char *s)
 {
@@ -133,6 +124,15 @@ char *ExpandHomeSave(const char *s)
 #endif
 
 #ifdef STANDALONE
+static
+char *ExpandFileNameToUserHomeNoDot(const char *s)
+{
+ strcpy(FileNameToLoad,GetHome());
+ strcat(FileNameToLoad,"/");
+ strcat(FileNameToLoad,s);
+ return FileNameToLoad;
+}
+
 /**[txh]********************************************************************
 
   Description:

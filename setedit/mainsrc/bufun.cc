@@ -541,6 +541,8 @@ static stFuncsSHL FuncsAvail[]=
 {
  {"Clipper 5.x",SearchClipperFuncs},
  {"Perl",SearchPerlFuncs},
+ {"Syntax Highlight File",SearchSHLDefs},
+ {"Texinfo source",SearchTxiSecs},
  {0,SearchCFuncs}
 };
 
@@ -548,6 +550,7 @@ static
 int SearchFuncs(char *b, unsigned l, TNoCaseSOSStringCollection *FunList,
                 SOStack *stk, int mode, char *shl)
 {
+ if (!shl) return 0;
  glFunList=FunList;
  glStk=stk;
  int i=0;
