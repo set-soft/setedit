@@ -1098,6 +1098,8 @@ TLispVar *TMLIBase::Interpret(char *s)
  int Commands=0;
  int stkPos=array->GetCount();
  char *start,*end;
+ // Skip whitespace, macros typed by the user could have it
+ while (ucisspace(*s)) s++;
  StartCode=Code=s;
  if (*s!='(')
    {
