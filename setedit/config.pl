@@ -1106,7 +1106,7 @@ int main(void)
  $intllib=(($OS eq 'DOS') || ($OS eq 'Win32') || ($OSf eq 'FreeBSD')) ? '-lintl' : '';
  $libdir=$LDExtraDirs;
  $libdir=~s/(\S+)/-L$1/g;
- $test=RunGCCTest($GCC,'c',$intltest,'-Iinclude/ '.$libdir.' '.$intllib);
+ $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$libdir.' '.$intllib);
  if ($test ne "OK\n")
    {
     print "no, additional check required.\n";

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.120  2002/06/18 15:06:41  set
+* Added: Tasm 2.02 errors parser. Contributed by Alex Lozano.
+
 Revision 1.119  2002/06/11 19:07:51  set
 * Fixed: codepage code to support changes in TV 2.0.
 
