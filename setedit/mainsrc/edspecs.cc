@@ -231,7 +231,7 @@ void InitEnvirVariables(void)
  // First try to figure out what version wrote the file
  unsigned version=EnvirGetIntVar("SET_VERUSED");
  // First time?
- if (!version) return;
+ //if (!version) return;
  // Is this version or newer?
  if (version>=TCEDITOR_VERSION) return;
  // An old version, mark the new one
