@@ -72,6 +72,8 @@ static char strategy=DBGST_DO_NOTHING;
 /* A compiler won't respect volatile if the variable is local! */
 static volatile int DebugStack_attached=0;
 
+static void JustDumpStack(const char *redirect);
+
 /*****************************************************************************
   Helper functions for process handling.
 *****************************************************************************/
@@ -312,7 +314,16 @@ void GCCDumpStack(int fd)
      switch (i)
        {
         case 0:
-             Write(fd," JustDumpStack\n");
+             Write(fd," JustDumpStack ");
+             /* The following is a trick to prevent gcc from making these
+                functions inline. */
+             WriteHex(fd,(unsigned long)JustDumpStack);
+             Write(fd," ");
+             WriteHex(fd,(unsigned long)GCCDumpStack);
+             Write(fd," ");
+             WriteHex(fd,(unsigned long)my_special_system);
+             Write(fd," ");
+             WriteNL(fd);
              break;
         case 1:
              Write(fd," DebugStack\n");
