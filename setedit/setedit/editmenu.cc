@@ -2,7 +2,8 @@
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_string
 
 #define Uses_TApplication
 #define Uses_TMenuBar

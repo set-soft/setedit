@@ -214,7 +214,7 @@ void TSOSListBoxMsg::copyClipboard()
  int c=MsgCol->getCount();
  int len=1,i,lacu;
  for (i=0; i<c; i++)
-     len+=strlen(MsgCol->atStr(i))+LenEOL;
+     len+=strlen(MsgCol->atStr(i))+CLY_LenEOL;
 
  char *buffer=new char[len];
  if (!buffer)
@@ -228,8 +228,8 @@ void TSOSListBoxMsg::copyClipboard()
      char *s=MsgCol->atStr(i);
      strcpy(buffer+lacu,s);
      lacu+=strlen(s);
-     strcpy(buffer+lacu,crlf);
-     lacu+=LenEOL;
+     strcpy(buffer+lacu,CLY_crlf);
+     lacu+=CLY_LenEOL;
     }
 
  TCEditor::clipboard->insertText(buffer,lacu,True);
