@@ -20,9 +20,9 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_TMLIEditor
 #define Uses_TLispSDGstring
 #define Uses_MsgBox
-#include <mli.h>
 #define Uses_TNoCaseStringCollection
 #include <settvuti.h>
+#include <mli.h>
 #define Uses_TCEditor_Commands
 #include <ceditor.h>
 #include <rhutils.h>
@@ -38,10 +38,17 @@ extern void OpenFileFromEditor(char *fullName);
 extern char *strncpyZ(char *dest, char *orig, int size);
 extern char *strndup(char *source, int size);
 
+void TMacrosColl::freeItem(void *item)
+{
+ MLIMacro *m=(MLIMacro *)item;
+ delete[] m->start;
+ delete m;
+}
+
 TMLIEditor::TMLIEditor(TMLIArrayBase *a, TLispVariableCol *v, FILE *f) :
             TMLIBase(a,v,f)
 {
- Macros=new TNoCaseStringCollection(10,10);
+ Macros=new TMacrosColl();
 }
 
 TMLIEditor::~TMLIEditor()
@@ -149,7 +156,7 @@ DecFun(MLIdefmacro)
  ccIndex ind;
  int len;
  MLIMacro *macro;
- TNoCaseStringCollection *Macros=((TMLIEditor *)o)->Macros;
+ TMacrosColl *Macros=((TMLIEditor *)o)->Macros;
  LocVarStr(string);
  LocVarCode(code);
 
@@ -158,15 +165,19 @@ DecFun(MLIdefmacro)
  GetCode(1,code);
 
  macro=new MLIMacro;
+ // Copy the name
  len=min(31,string->len);
  strncpy(macro->Name,string->str,len);
  macro->Name[len]=0;
- macro->start=code->start;
+ // Copy the code
+ len=code->end-code->start;
+ macro->start=new char[len+1];
+ memcpy(macro->start,code->start,len);
+ macro->start[len]=0;
+
  if (Macros->search(macro->Name,ind))
    { // Exists, so replace it
-    void *obj=Macros->at(ind);
-    Macros->atRemove(ind);
-    delete[] (char *)obj;
+    Macros->atFree(ind);
    }
  Macros->insert(macro);
 

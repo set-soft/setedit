@@ -5,6 +5,19 @@
 const int MLIEditorCommands=16;
 class TNoCaseStringCollection;
 
+typedef struct
+{
+ char Name[32];
+ char *start;
+} MLIMacro;
+
+class TMacrosColl : public TNoCaseStringCollection
+{
+public:
+ TMacrosColl() : TNoCaseStringCollection(10,10) {};
+ virtual void freeItem(void *item);
+};
+
 class TMLIEditor : public TMLIBase
 {
 public:
@@ -13,7 +26,7 @@ public:
  virtual Command   WhatCommand(char *s);
  virtual TLispVar *WhatConstant(char *s);
 
- TNoCaseStringCollection *Macros;
+ TMacrosColl *Macros;
 
  /* These functions are here just for scope reasons, like a namespace */
  static int SendCommand(int command);
@@ -33,9 +46,4 @@ private:
  static Command cComms[MLIEditorCommands];
 };
 
-typedef struct
-{
- char Name[32];
- char *start;
-} MLIMacro;
 #endif
