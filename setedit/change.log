@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.324  2003/04/30 20:28:34  set
+* Fixed: The editor wrongly interpreted the basic/extended regex option so
+the real mode was in fact tied to the case sensitive option.
+* Modified: Now the tags code uses real regex.
+
 Revision 1.323  2003/04/30 19:34:19  set
 * Added: A button to search for members of a class, struct, enum or union
 to the jump to tag dialog.

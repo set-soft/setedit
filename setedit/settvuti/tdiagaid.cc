@@ -259,8 +259,8 @@ TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w,
  if (options & aidNoCancel)
     bts=new TSButton(nbotOk,cmOK,bfDefault);
  else
-    bts=MakeHzGroup(new TSButton(nbotOk,cmOKApply,bfDefault),
-                    new TSButton(nbotCan,cmCancelApply),0);
+    bts=MakeHzGroup(new TSButton(nbotOk,cmOK,bfDefault),
+                    new TSButton(nbotCan,cmCancel),0);
  col->insert(xTSCenter,yTSDown,bts);
 
  TDialog *d=col->doIt();
