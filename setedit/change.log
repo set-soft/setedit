@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.399  2003/06/05 20:11:20  set
+* Fixed: When genimk fails it must delete the partially generated .imk and
+.umk to force a new generation after fixing the problems.
+
 Revision 1.398  2003/06/05 20:08:57  set
 * Fixed: Compilation problems with gcc 3.3 patch from Andris. It fixes:
 1) The order we call the contructors for the base classes.

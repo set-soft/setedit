@@ -321,4 +321,6 @@ _("Save As")
 _("Calendar (holida~y~s)...")
 _("Checking for ~m~odified files...")
 _("Advice dialogs...")
+_("Jump to ~l~ast cursor position")
+_("Jump to last ~u~ndo position")
 #endif

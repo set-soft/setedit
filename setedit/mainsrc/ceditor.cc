@@ -3379,6 +3379,7 @@ int TCEditor::handleCommand(ushort command)
            case cmcLastPosCur:
                 if (UndoSt==undoInMov)
                   {
+                   flushLine();
                    MoveCursorTo(UndoArray[UndoActual].X,UndoArray[UndoActual].Y);
                    cursorMoved=1;
                   }
@@ -3500,6 +3501,7 @@ int TCEditor::handleCommand(ushort command)
                 break;                
 
            case cmcJumpLastCursorPos:
+                flushLine();
                 addToUndo(undoInMov);
                 MoveCursorTo(lastCurPos.x,lastCurPos.y);
                 cursorMoved=1;

@@ -6,26 +6,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-05-18 17:13-0300\n"
+"PO-Revision-Date: 2003-06-04 21:01-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
-#: ../calcu/calcu.cc:79
+#: ../calcu/calcu.cc:80
 msgid "~E~xpression"
 msgstr "~E~xpresión"
 
-#: ../calcu/calcu.cc:85
+#: ../calcu/calcu.cc:86
 msgid "~R~esult"
 msgstr "~R~esultado"
 
-#: ../calcu/calcu.cc:89
+#: ../calcu/calcu.cc:90
 msgid "E~v~al"
 msgstr "E~v~aluar"
 
-#: ../calcu/calcu.cc:92 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
+#: ../calcu/calcu.cc:93 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
 #: ../infview/inf.cc:2338 ../infview/inf.cc:2361 ../infview/inf.cc:2386
 #: ../infview/inf.cc:2410 ../infview/inf.cc:2465 ../infview/infmain.cc:385
 #: ../install/install.cc:443 ../install/install.cc:451 ../mainsrc/bufun.cc:737
@@ -35,25 +35,25 @@ msgstr "E~v~aluar"
 #: ../mainsrc/slpinter.cc:425 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
 #: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
 #: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
-#: ../setedit/intgrep.cc:397 ../setedit/winlistd.cc:127
+#: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
 #: ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Cancela"
 
-#: ../calcu/calcu.cc:95 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
+#: ../calcu/calcu.cc:96 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
 msgid "~C~opy"
 msgstr "~C~opiar"
 
-#: ../calcu/calcu.cc:98 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
+#: ../calcu/calcu.cc:99 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
 msgid "~P~aste"
 msgstr "~P~egar"
 
-#: ../calcu/calcu.cc:119
+#: ../calcu/calcu.cc:120
 #, c-format
 msgid "Error in expression (%d)"
 msgstr "Error en la expresión (%d)"
 
-#: ../calcu/calcu.cc:161
+#: ../calcu/calcu.cc:162
 msgid "Calculator"
 msgstr "Calculadora"
 
@@ -67,11 +67,11 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:424
-#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:118
+#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/editdiag.cc:155 ../setedit/edprefs.cc:239
 #: ../setedit/edprefs.cc:471 ../setedit/edprefs.cc:616
 #: ../setedit/edprefs.cc:680 ../setedit/edprefs.cc:906
-#: ../setedit/intgrep.cc:396 ../setedit/tips.cc:213
+#: ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~k~"
 
@@ -101,7 +101,7 @@ msgstr "Buscando ..."
 msgid "Sorry can't find the string"
 msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 
-#: ../infview/inf.cc:2270
+#: ../infview/inf.cc:2271
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
@@ -212,7 +212,7 @@ msgstr "Ocultar la palabra '*~N~ode'"
 msgid "Hide real ~l~ink name"
 msgstr "Ocultar los nombres de los ~l~inks"
 
-#: ../infview/inf.cc:2448
+#: ../infview/inf.cc:2449
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
@@ -1405,20 +1405,20 @@ msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
-#: ../mainsrc/ceditor.cc:3911
+#: ../mainsrc/ceditor.cc:3927
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4111
+#: ../mainsrc/ceditor.cc:4127
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4130
+#: ../mainsrc/ceditor.cc:4146
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4152
+#: ../mainsrc/ceditor.cc:4168
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1429,7 +1429,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4186
+#: ../mainsrc/ceditor.cc:4202
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1442,16 +1442,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5746
+#: ../mainsrc/ceditor.cc:5762
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5761
+#: ../mainsrc/ceditor.cc:5777
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10081
+#: ../mainsrc/ceditor.cc:10097
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1459,29 +1459,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10096
+#: ../mainsrc/ceditor.cc:10112
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10825
+#: ../mainsrc/ceditor.cc:10841
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11767
+#: ../mainsrc/ceditor.cc:11783
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11978
+#: ../mainsrc/ceditor.cc:11994
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13165
+#: ../mainsrc/ceditor.cc:13181
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13175
+#: ../mainsrc/ceditor.cc:13191
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -1806,7 +1806,7 @@ msgstr "~T~odos"
 msgid "Export Options"
 msgstr "Opciones para exportar"
 
-#: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:394
+#: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:416
 #: ../setedit/runprog.cc:120
 msgid "~O~ptions"
 msgstr "~O~pciones"
@@ -2022,17 +2022,17 @@ msgstr "Versión incorrecta"
 msgid "Error while reading"
 msgstr "Error al leer"
 
-#: ../mainsrc/keytrans.cc:1136
+#: ../mainsrc/keytrans.cc:1137
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr "%s, archivo \"%s\"\n"
 
-#: ../mainsrc/keytrans.cc:1145
+#: ../mainsrc/keytrans.cc:1146
 #, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Error al cargar la configuración de teclado: %s"
 
-#: ../mainsrc/keytrans.cc:1182
+#: ../mainsrc/keytrans.cc:1183
 msgid "You'll lose all the changes"
 msgstr "Perderá todos los cambios"
 
@@ -2080,7 +2080,7 @@ msgstr "¿Desea descartar los cambios?"
 msgid "Settings"
 msgstr "Seteos"
 
-#: ../mainsrc/loaddefl.cc:661
+#: ../mainsrc/loaddefl.cc:662
 msgid "Default global options"
 msgstr "Opciones globales por defecto"
 
@@ -2105,7 +2105,7 @@ msgstr "Palabra:"
 msgid "List of words"
 msgstr "Lista de palabras"
 
-#: ../mainsrc/loadusew.cc:349
+#: ../mainsrc/loadusew.cc:350
 msgid "User words"
 msgstr "Palabras de usuario"
 
@@ -2786,49 +2786,49 @@ msgstr "Diálogos de concejo"
 msgid "Select which advice dialogs are enabled"
 msgstr "Seleccione cuales diálogos están habilitados"
 
-#: ../setedit/ascii.cc:151
+#: ../setedit/ascii.cc:152
 msgid "  Char: "
 msgstr "  Caracter: "
 
-#: ../setedit/ascii.cc:152
+#: ../setedit/ascii.cc:153
 msgid " Decimal: "
 msgstr " Dec: "
 
-#: ../setedit/ascii.cc:153
+#: ../setedit/ascii.cc:154
 msgid " Hex: "
 msgstr " Hex: "
 
-#: ../setedit/ascii.cc:189
+#: ../setedit/ascii.cc:191
 msgid "ASCII Chart"
 msgstr "Tabla ASCII"
 
-#: ../setedit/boardmix.cc:78
+#: ../setedit/boardmix.cc:79
 msgid "Disabled by configuration"
 msgstr "Deshabilitado por configuración"
 
-#: ../setedit/boardmix.cc:86
+#: ../setedit/boardmix.cc:87
 msgid "Failed to initialize mixer. Sorry"
 msgstr "Falla al inicializar el mezclador. Lo lamento"
 
 #. gcc 2.95.2 doesn't like the _() call in the inlined constructor, I wonder why
 #. because 2.7.2.3 and 2.8.1 allows it as spected.
-#: ../setedit/boardmix.cc:92
+#: ../setedit/boardmix.cc:93
 msgid "Hardward Mixer Settings"
 msgstr "Seteos del Mezclador de Sonidos"
 
-#: ../setedit/boardmix.cc:94
+#: ../setedit/boardmix.cc:95
 msgid "Mixer model:"
 msgstr "Modelo:"
 
-#: ../setedit/boardmix.cc:116
+#: ../setedit/boardmix.cc:117
 msgid "~L~ock channels"
 msgstr "~T~rabar canales"
 
-#: ../setedit/boardmix.cc:116
+#: ../setedit/boardmix.cc:117
 msgid "~S~ave to disk"
 msgstr "~G~rabar a disco"
 
-#: ../setedit/boardmix.cc:150
+#: ../setedit/boardmix.cc:151
 msgid "No mixer support linked in during configuration, sorry"
 msgstr "Lo lamento, no se incluyó soporte para el mezclador al compilar"
 
@@ -2884,7 +2884,7 @@ msgstr "Diciembre"
 msgid "Su Mo Tu We Th Fr Sa"
 msgstr "Do Lu Ma Mi Ju Vi Sa"
 
-#: ../setedit/calendar.cc:292
+#: ../setedit/calendar.cc:293
 msgid "Calendar"
 msgstr "Calendario"
 
@@ -3959,7 +3959,15 @@ msgstr "~V~erificar archivos modificados..."
 msgid "Advice dialogs..."
 msgstr "Diálogos de concejo..."
 
-#: ../setedit/editpale.cc:109
+#: ../setedit/editmenu.cc:324
+msgid "Jump to ~l~ast cursor position"
+msgstr "S~a~ltar a la última posición del cursor"
+
+#: ../setedit/editmenu.cc:325
+msgid "Jump to last ~u~ndo position"
+msgstr "Saltar a la última posición de ~d~eshacer"
+
+#: ../setedit/editpale.cc:110
 msgid "Palette editor"
 msgstr "Paleta del editor"
 
@@ -4086,7 +4094,7 @@ msgstr "Primer mensaje en la lista"
 msgid "Message Window"
 msgstr "Ventana de Mensajes"
 
-#: ../setedit/edprefs.cc:94
+#: ../setedit/edprefs.cc:95
 msgid "Open File options"
 msgstr "Opciones de `Abrir Archivo'"
 
@@ -4159,7 +4167,7 @@ msgstr "Terminan con .bk~p~"
 msgid "Startin~g~ with ."
 msgstr "Comien~z~an con ."
 
-#: ../setedit/edprefs.cc:221
+#: ../setedit/edprefs.cc:222
 msgid "Screen saver"
 msgstr "Salvapantallas"
 
@@ -4748,7 +4756,7 @@ msgstr "Importar items al proyecto"
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1198
+#: ../setedit/edprj.cc:1206
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
@@ -4785,132 +4793,136 @@ msgstr "El portapapeles está vacío"
 msgid "You must install GNU grep to use it!"
 msgstr "¡Debe instalar grep para usar esto!"
 
-#: ../setedit/intgrep.cc:217
+#: ../setedit/intgrep.cc:220
 #, c-format
 msgid "Running grep in: %s"
 msgstr "Ejecutando grep en: %s"
 
-#: ../setedit/intgrep.cc:246
+#: ../setedit/intgrep.cc:252
 msgid "From stderr:"
 msgstr "De stderr:"
 
-#: ../setedit/intgrep.cc:247
+#: ../setedit/intgrep.cc:253
 msgid "From stdout:"
 msgstr "De stdout:"
 
-#: ../setedit/intgrep.cc:315
+#: ../setedit/intgrep.cc:333
 #, c-format
 msgid "chdir error: %s"
 msgstr "error al entrar al directorio: %s"
 
-#: ../setedit/intgrep.cc:355
+#: ../setedit/intgrep.cc:377
 msgid "Powered Grep by SET"
 msgstr "Grep Potenciado por SET"
 
 #. ACDEFGIJKLNORPSTUWX
 #. Pattern section
-#: ../setedit/intgrep.cc:361
+#: ../setedit/intgrep.cc:383
 msgid "~P~attern box"
 msgstr "~P~atrón de búsqueda"
 
-#: ../setedit/intgrep.cc:362
+#: ../setedit/intgrep.cc:384
 msgid "Files to ~s~earch"
 msgstr "Archivo~s~ a buscar"
 
-#: ../setedit/intgrep.cc:363
+#: ../setedit/intgrep.cc:385
 msgid "~D~irectories to search"
 msgstr "~D~irectorio a buscar"
 
-#: ../setedit/intgrep.cc:366
+#: ../setedit/intgrep.cc:388
 msgid "`Pattern box' is the pa~t~tern"
 msgstr "El `Pa~t~rón' es eso mismo"
 
-#: ../setedit/intgrep.cc:367
+#: ../setedit/intgrep.cc:389
 msgid "`Pattern box' is a fi~l~e name"
 msgstr "El `Patrón' es un arc~h~ivo"
 
-#: ../setedit/intgrep.cc:368
+#: ../setedit/intgrep.cc:390
 msgid "Use the ~c~lipboard selection"
 msgstr "Usar la sele~c~ción del portapapeles"
 
-#: ../setedit/intgrep.cc:370
+#: ../setedit/intgrep.cc:392
 msgid "Source of Pattern"
 msgstr "Fuente del patrón a buscar"
 
-#: ../setedit/intgrep.cc:373
+#: ../setedit/intgrep.cc:395
 msgid "Basic regular expression (-~G~)"
 msgstr "Expresiones regul. básicas (-~G~)"
 
-#: ../setedit/intgrep.cc:374
+#: ../setedit/intgrep.cc:396
 msgid "~E~xtended regular expression (-E)"
 msgstr "~E~xpresiones regulares extendidas (-E)"
 
-#: ../setedit/intgrep.cc:375
+#: ../setedit/intgrep.cc:397
 msgid "~F~ixed separated by CR (-F)"
 msgstr "~F~ijos separados por CR (-F)"
 
-#: ../setedit/intgrep.cc:377
+#: ../setedit/intgrep.cc:399
 msgid "Type of Pattern"
 msgstr "Tipo de patrón"
 
-#: ../setedit/intgrep.cc:380
+#: ../setedit/intgrep.cc:402
 msgid "~U~se `Files to search'"
 msgstr "~U~sar `Archivos a buscar'"
 
-#: ../setedit/intgrep.cc:381
+#: ../setedit/intgrep.cc:403
 msgid "Search in ope~n~ed windows"
 msgstr "Buscar e~n~ las ventanas abiertas"
 
-#: ../setedit/intgrep.cc:382
+#: ../setedit/intgrep.cc:404
 msgid "Search in pro~j~ect"
 msgstr "Buscar en el pro~y~ecto"
 
-#: ../setedit/intgrep.cc:384
+#: ../setedit/intgrep.cc:406
 msgid "Pl~a~ces to search"
 msgstr "Lug~a~res a buscar"
 
-#: ../setedit/intgrep.cc:386
+#: ../setedit/intgrep.cc:408
 msgid "~R~ecurse in subdirs"
 msgstr "~R~ecursividad en subdirs"
 
-#: ../setedit/intgrep.cc:389
+#: ../setedit/intgrep.cc:411
 msgid "~I~gnore case (-i)"
 msgstr "~I~gnorar may/min (-i)"
 
-#: ../setedit/intgrep.cc:390
+#: ../setedit/intgrep.cc:412
 msgid "~W~hole words only (-w)"
 msgstr "Palabras co~m~pletas (-w)"
 
-#: ../setedit/intgrep.cc:391
+#: ../setedit/intgrep.cc:413
 msgid "Whole line (-~x~)"
 msgstr "Líneas completas (-~x~)"
 
-#: ../setedit/intgrep.cc:392
+#: ../setedit/intgrep.cc:414
 msgid "In~v~erse matching (-v)"
 msgstr "Búsqueda inversa (-~v~)"
 
-#: ../setedit/intgrep.cc:415
+#: ../setedit/intgrep.cc:437
 msgid "You must provide at least one directory to search"
 msgstr "Debe especificar al menos un directorio donde buscar"
 
-#: ../setedit/intgrep.cc:497
+#: ../setedit/intgrep.cc:519
 msgid "There aren't any files open"
 msgstr "No hay archivos abiertos"
 
-#: ../setedit/intgrep.cc:505
+#: ../setedit/intgrep.cc:527
 msgid "No files in project"
 msgstr "No hay archivos en el proyecto"
 
-#: ../setedit/intgrep.cc:520
+#: ../setedit/intgrep.cc:542
 msgid "Powered grep"
 msgstr "Grep potenciado"
 
-#: ../setedit/intgrep.cc:524
+#: ../setedit/intgrep.cc:547
 msgid "Recurse & dirs. ignored, using internal names"
 msgstr ""
 "Recursividad y directorios ignorados ya que especificó una búsqueda interna"
 
-#: ../setedit/intgrep.cc:533
+#: ../setedit/intgrep.cc:557
+msgid "Grep search aborted"
+msgstr "Búsqueda con grep abortada"
+
+#: ../setedit/intgrep.cc:559
 msgid "End of grep search"
 msgstr "Fin de la búsqueda"
 
@@ -5173,7 +5185,7 @@ msgstr "Mostrarlo en la ~v~entana de mensajes"
 msgid "~N~ext tip"
 msgstr "P~r~óximo"
 
-#: ../setedit/winlistd.cc:45
+#: ../setedit/winlistd.cc:46
 msgid "Windows List"
 msgstr "Lista de Ventanas"
 

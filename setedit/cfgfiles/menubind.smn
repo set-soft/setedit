@@ -100,8 +100,8 @@ SubMenu: "~E~dit", kbAlE
  EndSubMenu
 EndSubMenu
 
-# English: CFGJLNPRSTW
-# Spanish: BCEILNOPRST
+# English: CFGJLNPRSTUW
+# Spanish: ABCDEILNOPRST
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
@@ -114,7 +114,8 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
  MenuItemC: "~C~lass browser", cmeClassBrowser
  MenuItemC: "~W~ord completion", cmeWordCompletion, kbCtTab, "Ctrl+Tab"
- MenuItemC: "Jump ~l~ast cursor position", cmcJumpLastCursorPos, kbUnknown, "Ctrl+Q-P"
+ MenuItemC: "Jump to ~l~ast cursor position", cmcJumpLastCursorPos, kbUnknown, "Ctrl+Q-P"
+ MenuItemC: "Jump to last ~u~ndo position", cmcLastPosCur
 EndSubMenu
 
 # CEGMNOPRSU
