@@ -40,13 +40,24 @@ to avoid the modfication of the original lib.
 #define Uses_TViewPlus
 #include "viewplus.h"
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <dos.h>
 #include <go32.h>
 #endif
 
 // From View.cc
 extern TPoint shadowSize;
+
+// SET: Be careful about nibble order
+#ifdef TV_BIG_ENDIAN
+ #define GetAttr(a) ((a) & 0xFF)
+ #define ChangeAttr(v,a)  (((v) & 0xFF00) | (a))
+ #define AttrOffset 0
+#else
+ #define GetAttr(a) ((a) << 8)
+ #define ChangeAttr(v,a)  (((v) & 0xFF) | (a))
+ #define AttrOffset 1
+#endif
 
 // Set the attribute of the X,Y coordinate
 int TViewPlus::setAttrOfCoor(int x, int y, char attr)
@@ -90,7 +101,7 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
     Ytest=view->origin.y;
     if (y<Ytest) continue;
     Ytest+=view->size.y;
-#if 0  // For this application the shadow is like a solid thing
+    #if 0  // For this application the shadow is like a solid thing
     if (y>=Ytest)
       {
        // Test the shadow
@@ -103,17 +114,17 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
        if (x>=Xtest && x<Xtest+view->size.x) IsUnderShadow++;
        continue;
       }
-#else
+    #else
     if (view->state & sfShadow)
        Ytest+=shadowSize.y; // Add the shadow
     if (y>=Ytest) continue;
-#endif
+    #endif
 
     // Check the X range
     Xtest=view->origin.x;
     if (x<Xtest) continue;
     Xtest+=view->size.x;
-#if 0  // For this application the shadow is like a solid thing
+    #if 0  // For this application the shadow is like a solid thing
     if (x>=Xtest)
       {
        // Test the shadow
@@ -126,11 +137,11 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
        if (y>=Ytest && y<Ytest+view->size.y) IsUnderShadow++;
        continue;
       }
-#else
+    #else
     if (view->state & sfShadow)
        Xtest+=shadowSize.x;
     if (x>=Xtest) continue;
-#endif
+    #endif
 
     // OK is under this object, no draw needed
     return 1;
@@ -144,37 +155,38 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
     if (owner->buffer==TScreen::screenBuffer)
       {
        // Is to the screen
-#if 0
+       #if 0
        disable();
-#endif
+       #endif
        int OverMouse = (y==TEventQueue::curMouse.where.y) && (x==TEventQueue::curMouse.where.x);
-#if 0
+       #if 0
        enable();
-#endif
+       #endif
        if (OverMouse)
           TMouse::hide();
-       #if !defined(__GNUC__) && !defined(_WIN32)
-       *(char *)(MK_FP(0xB800,1+(offset<<1)))=attr;
-       #else
-#ifdef __DJGPP__
+       // Ancient code: *(char *)(MK_FP(0xB800,1+(offset<<1)))=attr;
+       #ifdef TVCompf_djgpp
+
        long _buffer;
-#if 1 // def RHIDE // RHIDE supports dual display
+       #if 1 // def RHIDE // RHIDE supports dual display
        _buffer = (dual_display ? 0xb0000 : ScreenPrimary) + (offset<<1) + 1 + 
                  TScreen::GetPage()*0x1000;
-#else
+       #else
        _buffer = ScreenPrimary + (offset<<1) + 1 + TScreen::GetPage()*0x1000;
-#endif
+       #endif
        dosmemput((const void *)(&attr),1,_buffer);
-#else // __DJGPP__
-       TScreen::setCharacter(offset,(TScreen::getCharacter(offset) & 0x00ff) | (((unsigned char)attr) << 8));
-#endif // __DJGPP__
+
+       #else // DJGPP
+       TScreen::setCharacter(offset,
+        ChangeAttr(TScreen::getCharacter(offset),
+                   GetAttr((unsigned char)attr));
        #endif
        if (OverMouse)
           TMouse::show();
       }
     else
       { // Is to the cache buffer
-       *((char *)(&owner->buffer[offset])+1)=attr;
+       *((char *)(&owner->buffer[offset])+AttrOffset)=attr;
       }
    }
  // Now see if is locked
