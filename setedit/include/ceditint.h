@@ -114,12 +114,12 @@
 
 #ifdef SEOS_Win32
  // 0 padded
- #define CLK24_FORMAT   "%H:%M "
- #define CLKAMPM_FORMAT "%I:%M%p "
+ #define CLK24_FORMAT   "%H:%M  "
+ #define CLKAMPM_FORMAT "%I:%M%p  "
 #else
  // DJGPP and Linux have a space padded option
- #define CLK24_FORMAT   "%k:%M "
- #define CLKAMPM_FORMAT "%l:%M%p "
+ #define CLK24_FORMAT   "%k:%M  "
+ #define CLKAMPM_FORMAT "%l:%M%p  "
 #endif
 
 #if defined(SEOS_DOS) || (defined(SEOS_Win32) && !defined(SECompf_Cygwin))
