@@ -237,7 +237,7 @@ int FindFile(const char * name,char * & fullName)
 
 ***************************************************************************/
 
-char *ReplaceExtension(char *name, char *ext, char *old)
+char *ReplaceExtension(char *name, const char *ext, const char *old)
 {
  char *pos;
  pos=strrchr(name,'/');
@@ -263,7 +263,7 @@ is added too.
 
 ***************************************************************************/
 
-char *ReplaceExtension(char *name, char *ext)
+char *ReplaceExtension(char *name, const char *ext)
 {
  char *dot,*slash;
  int flen=strlen(name);

@@ -325,7 +325,7 @@ TCEditor::TCEditor( const TRect& bounds,
    }
  else
    {
-    strcpy( fileName, aFileName );
+    strcpy(fileName,aFileName);
     if (isValid)
        isValid=loadFile(True);
    }
@@ -11928,9 +11928,8 @@ Boolean TCEditor::loadFile(Boolean setSHL)
     FailedToLoad=False;
     DiskTime=0;
     IsaUNIXFile=False;
-    // These 2 are to differentiate the file
-    DeviceOfFile=0;
-    INodeOfFile=0;
+    // This structure differentiate the file
+    FillEditorId(&EditorId);
 
     // We need some information about the file later. First I tried using fstat
     // but under DOS stat can give much more accurate information because we
@@ -11959,8 +11958,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
       {
        // Get the modification time (from stat)
        DiskTime=s.st_mtime;
-       DeviceOfFile=s.st_dev;
-       INodeOfFile=s.st_ino;
+       FillEditorId(&EditorId,0,&s);
        // Check if we can write
        if (CLY_FileAttrIsRO(&ModeOfFile))
          {
@@ -12095,18 +12093,22 @@ Boolean TCEditor::loadFile(Boolean setSHL)
         }
 }
 
-/****************************************************************************
+Boolean TCEditor::reLoadFile()
+{// Free memory we won't use anymore
+ flushUndoInfo();
+ // Load the file again
+ return loadFile();
+}
 
-   Function: Boolean save()
+/**[txh]********************************************************************
 
-   Type: TCEditor member.
-
-   Objetive: Saves the editor buffer to disk, this file just desides if
-             we need to call saveAs or saveFile.
-
-   by Robert.
-
-****************************************************************************/
+  Description: 
+  Saves the editor buffer to disk, this file just desides if we need to call
+saveAs or saveFile.
+  
+  Return: True on success.
+  
+***************************************************************************/
 
 Boolean TCEditor::save()
 {
@@ -12382,8 +12384,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
        if (stat(fileName,&s)==0)
          {
           sprintf(aux,_("Saved: %s (%ld bytes %d lines)."),fileName,s.st_size,totalLines+1);
-          DeviceOfFile=s.st_dev;
-          INodeOfFile=s.st_ino;
+          FillEditorId(&EditorId,0,&s);
           // Update it we don't know if all went OK
           GetFileMode(&ModeOfFile,&s,fileName);
           if (!noChangeTime)
@@ -12436,20 +12437,55 @@ Boolean TCEditor::valid( ushort command )
  return True;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: uint16 defEditorDialog( int, ... )
-
-   Type: Normal function.
-
-   Objetive: Is the default function to handle the dialogs, the editor must
-   define a real one.
-
-****************************************************************************/
+  Description: 
+  Is the default function to handle the dialogs, the editor must define a
+real one.
+  
+***************************************************************************/
 
 unsigned defEditorDialog( int, ... )
 {
  return cmCancel;
+}
+
+int FillEditorId(stEditorId *id, const char *name, struct stat *st)
+{
+ #ifdef SEOS_Win32
+ // This function must fail on WIN32 systems.
+ // Inode number reported by stat is always 0.
+ if (st) st=0;
+ if (name) name=0;
+ #else
+ if (st && (st->st_dev!=0 || st->st_ino!=0))
+   {
+    id->dev=st->st_dev;
+    id->inode=st->st_ino;
+    return 1;
+   }
+ struct stat s;
+ if (name && stat(name,&s)==0)
+   {
+    id->dev=s.st_dev;
+    id->inode=s.st_ino;
+    return 1;
+   }
+ #endif
+
+ id->dev=0;
+ id->inode=0;
+ return 0;
+}
+
+int CompareEditorId(stEditorId *id1, stEditorId *id2)
+{
+ return id1->dev==id2->dev && id1->inode==id2->inode;
+}
+
+int IsEmptyEditorId(stEditorId *id)
+{
+ return id->dev==0 && id->inode==0;
 }
 
 TEditorDialog  TCEditor::editorDialog = defEditorDialog;

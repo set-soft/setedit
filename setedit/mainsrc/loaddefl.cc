@@ -30,6 +30,8 @@
 
 #include <pathtool.h>
 #include <loadshl.h>
+#define Uses_SETAppVarious // EdReloadIfOpened
+#include <setapp.h>
 
 static const char *DefaultOptsFileName="deflopts.txt";
 static const char *noSHL="None";
@@ -381,13 +383,19 @@ void UpdateFile(char *name, TSetting *col)
  char *origFile=ExpandHome(DefaultOptsFileName);
  FILE *dest,*ori;
  int differentFile=0;
+ stEditorId idFile;
 
+ // Be sure the idFile is cleared
+ FillEditorId(&idFile);
  if (edTestForFile(origFile))
    {// We must use the values in this file
     if (CompareFileNames(origFile,destFile))
       {// We will overwrite the original
+       // We must identify the file before anything
+       FillEditorId(&idFile,origFile);
+       // Now backup it
        char *bkpName=newStr(origFile);
-       ReplaceExtension(bkpName,".bkp",".txt");
+       ReplaceExtension(bkpName,TCEditor::backupExt,".txt");
        rename(origFile,bkpName);
        ori=fopen(bkpName,"rt");
        delete[] bkpName;
@@ -442,8 +450,11 @@ void UpdateFile(char *name, TSetting *col)
    {// Just create a new one
     dest=fopen(destFile,"wt");
     WriteSettings(name,col,dest);
+    differentFile=1;
    }
  fclose(dest);
+ if (!differentFile)
+    EdReloadIfOpened(origFile,&idFile);
 }
 
 static TSetting *settingsCol;

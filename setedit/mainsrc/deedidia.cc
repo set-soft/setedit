@@ -403,19 +403,22 @@ TDialog *createArbitraryIndent(int len)
  return d;
 }
 
-void ShowSavePoint(const char *file)
+unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *file)
 {
- const char *s=_("Data saved to file: ");
+ char b[100];
  int l=strlen(file); 
- AllocLocalStr(b,strlen(s)+100);
- strcpy(b,s);
  if (l>90)
    {
-    strcat(b,"~");
+    strcpy(b,"~");
     strcat(b,file+l-90);
    }
  else
-   strcat(b,file);
+   strcpy(b,file);
 
- messageBox(b,mfInformation|mfOKButton);
+ return messageBox(flags,_(format),b);
+}
+
+void ShowSavePoint(const char *file)
+{
+ LimitedFileNameDialog(mfInformation|mfOKButton,__("Data saved to file: %s"),file);
 }
