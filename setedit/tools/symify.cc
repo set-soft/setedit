@@ -16,6 +16,9 @@ you can feed setedit with it and browse the crashing points.
   Note that the stack traces I'm generating are incomplete because I can't
 show the exact point of the signal, I should investigate how in the hell
 gdb achieves it. Any help will be appreciated.
+
+  Compilation:
+  g++ -o symify -O2 symify.cc
   
 ***************************************************************************/
 
