@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.329  2003/05/05 13:53:14  set
+* Added: A small tool I wrote to extract info from linker maps. Is quite
+useful for DOS to know how much comes from each lib.
+
 Revision 1.328  2003/05/05 13:51:10  set
 * Added: A warning to configset.bat because people thinks thats "set
 configuration" and not "configuration for SET" ;-)

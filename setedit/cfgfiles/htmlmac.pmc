@@ -1,4 +1,4 @@
-; Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+; Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 ; see copyrigh file for details
 ;
 ;
@@ -6,54 +6,54 @@
 ;
 
 Trigger: "<b"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Bold
  "<b>@0</b>@1"
 
 Trigger: "<i"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Italic
  "<i>@0</i>@1"
 
 Trigger: "<u"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Underline
  "<u>@0</u>@1"
 
 Trigger: "<c"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Centre
  "<center>@0</center>@1"
 
 Trigger: "<a"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Link
  "<a href=\"@0\">@1</a>@2"
 
 Trigger: "<m"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Image
  "<img src=\"@0\">@1"
 
 Trigger: "<t"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Table
  "<table>\n"
  "<tr>@0</tr>\n"
  "</table>@1"
 
 Trigger: "me"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Meta tag
  "<meta name=\"@0\" content=\"@1\">"
 
 Trigger: "<!"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Comment
  "<!-- @0 -->@1"
 
 Trigger: "ma"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Squeleton
  "<HTML><head>\n"
  "<title>@0</title>\n"
@@ -64,7 +64,7 @@ Name: Squeleton
  "</HTML>\n"
 
 Trigger: "<f"
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Font
  "<font @0>@1</font>"
 

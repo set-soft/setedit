@@ -8045,10 +8045,13 @@ void TCEditor::newLine()
     if (makeUnIndent)
       {
        Boolean oldUseTabs=UseTabs;
+       Boolean oldBackSpUnindents=BackSpUnindents;
        UseTabs=False; // Force the unindent even whe the user isn't in the
                       // rigth mode.
+       BackSpUnindents=True;
        BackSpace();
        UseTabs=oldUseTabs;
+       BackSpUnindents=oldBackSpUnindents;
       }
    }
  else
