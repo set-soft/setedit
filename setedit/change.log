@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.270  2003/01/08 15:01:33  set
+* Fixed: Bug in match pair highlight on the fly, using the wrong line as
+shl reference. Reported by Ivan.
+
 Revision 1.269  2003/01/07 19:57:31  set
 * Fixed: Wrong SHL parsing of empty lines that propagates strings when they
 are under edition. Reported by Ivan.

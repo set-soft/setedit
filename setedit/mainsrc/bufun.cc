@@ -560,9 +560,24 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
            {
             //stkHandler s=StrDup(bfTempNomFun,LineFun,Line,used,stk,rearrageName);
             //FunList->insert(s);
-            char *member;
+            char *member=NULL, *aux;
+
+            // Look for the member name. But only in the function name.
+            aux=strchr(bfTempNomFun,'(');
+            if (aux)
+              {
+               *aux=0;
+               // Look for the *last* :: (namespace::class::member)
+               // Pointed out by Andris.
+               member=strrchr(bfTempNomFun,':');
+               if (member && member!=bfTempNomFun && member[-1]==':')
+                  member--;
+               else
+                  member=NULL;
+               *aux='(';
+              }
            
-            if (!rearrageName || (member=strchr(bfTempNomFun,':'))==0)
+            if (!rearrageName || member==NULL)
               {
                strcpy(bfNomFun,bfTempNomFun);
               }
