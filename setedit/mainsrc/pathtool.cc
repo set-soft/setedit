@@ -54,13 +54,17 @@ static char FileNameToLoad[PATH_MAX];
 
 int IsADirectory(const char *name);
 
-int edTestForFile(const char *name)
+int edTestForFile(const char *name, struct stat &st)
 {
- struct stat st;
-
  if (stat(name,&st)==0)
     return S_ISREG(st.st_mode);
  return 0;
+}
+
+int edTestForFile(const char *name)
+{
+ struct stat st;
+ return edTestForFile(name,st);
 }
 
 char *GetHome(void)

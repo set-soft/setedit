@@ -302,7 +302,7 @@ SubMenu: "~P~roject", kbAlP
 EndSubMenu
 
 $if DEBUG
-# EN: BCDEGHIKLNOPRSTW 12
+# EN: BCDEGHIKLNOPRSTW 123
 # ES: BCDEILMNPRTUVX 12
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
@@ -316,6 +316,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Go to 'Ready to run' ~2~", cmeDbgGoReadyToRun
  MenuItemC: "~B~reakpoint", cmeBreakpoint, kbCtF8, "Ctrl+F8"
  MenuItemC: "Ed~i~t breakpoints", cmeDbgEditBreakPts
+ MenuItemC: "Edit watchpoints ~3~", cmeDbgEditWatchPts
  MenuSeparator
  MenuItemC: "~R~un/Continue", cmeDbgRunContinue
  MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
@@ -506,9 +507,9 @@ StatusEntry: "~F5~ Zoom", cmZoom, kbF5
 EndStatusRange
 
 #
-# Breakpoints window
+# Breakpoints window (also Watchpoints)
 #
-StatusRange: hcBkptDialog, 0
+StatusRange: hcBkptDialog, 1
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ins~ Add", cmBkAdd, kbInsert
 StatusEntry: "~Del~ Delete", cmBkDel, kbDelete

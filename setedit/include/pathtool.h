@@ -1,10 +1,12 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef PATHTOOL_H_INCLUDED
 #define PATHTOOL_H_INCLUDED
 class TStringCollectionW;
 
+struct stat;
 int   edTestForFile(const char *name);
+int   edTestForFile(const char *name, struct stat &st);
 char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 int   FindFile(const char * name,char * & fullName, const char *reference);
 char *ReplaceExtension(char *name, const char *ext, const char *old);

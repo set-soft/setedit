@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -85,6 +85,7 @@ public:
 protected:
   int sizeBufTitle;
   char *bufTitle;
+  stTVIntl *titleCache;
 };
 
 typedef struct
@@ -550,21 +551,22 @@ TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
 {
  if (!ProjectList)
     ProjectList=new TPrjItemColl(5,5);
- TRect r = getExtent();
+ TRect r=getExtent();
  r.grow(-1,-1);
- scrollbar = standardScrollBar(sbVertical | sbHandleKeyboard);
- list = new TEditorProjectListBox(r,(TSetEditorApp::geFlags & geVertWindows) ? 1 : 3,scrollbar);
+ scrollbar=standardScrollBar(sbVertical | sbHandleKeyboard);
+ list=new TEditorProjectListBox(r,(TSetEditorApp::geFlags & geVertWindows) ? 1 : 3,scrollbar);
  growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
- list->growMode = gfGrowHiX | gfGrowHiY;
+ list->growMode=gfGrowHiX | gfGrowHiY;
  list->newList(ProjectList);
  insert(list);
- flags |= wfGrow | wfZoom;
- options |= ofFirstClick;
- helpCtx = hcEditorProjectWindow;
+ flags|=wfGrow | wfZoom;
+ options|=ofFirstClick;
+ helpCtx=hcEditorProjectWindow;
  number=1;
  sizeBufTitle=0;
  bufTitle=0;
  FileName=0;
+ titleCache=NULL;
 }
 
 TEditorProjectWindow::~TEditorProjectWindow()
@@ -573,6 +575,7 @@ TEditorProjectWindow::~TEditorProjectWindow()
  ProjectList=NULL;
  delete[] bufTitle;
  delete[] FileName;
+ TVIntl::freeSt(titleCache);
 }
 
 void TEditorProjectWindow::handleEvent(TEvent& event)
@@ -593,13 +596,14 @@ void TEditorProjectWindow::close()
 
 const char *TEditorProjectWindow::getTitle(short maxSize)
 {
- int len=strlen(title)+strlen(FileName)+4;
+ const char *intlTitle=TVIntl::getText(title,titleCache);
+ int len=strlen(intlTitle)+strlen(FileName)+4;
  if (len>sizeBufTitle)
    {
     delete[] bufTitle;
     bufTitle=new char[len];
    }
- sprintf(bufTitle,"%s - %s",title,FileName);
+ sprintf(bufTitle,"%s - %s",intlTitle,FileName);
 
  return bufTitle;
 }

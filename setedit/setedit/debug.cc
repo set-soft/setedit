@@ -9,6 +9,8 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
+  * Join the watchpoint dialog with the word under cursor.
+
   * When debugging remote programs gdb exposes a nasty bug: When I do next
 at the end of main it replies "running", but then it sends a couple of
 errors to the log (because gdb can't set a temporal breakpoint) and then
@@ -47,11 +49,11 @@ Reset it when reseting the session.
   * Allow to configure gdb and XTerm program.
   * Setup the "main" function, currently we have a "run to main", but this
 is C/C++ specific.
-  * Not related: beep when we finish compilation.
   * Add the menubind.smn options to the redmond.smn
   * Don't show again in the confirmation for exit while debugging.
   * Detect recompilations (target time stamp), then ask to the user if we
 should "move" the breakpoints to their new locations. That's tricky.
+Note: currently we do it if the user used "run program".
   * Time out in the gdb responses to avoid hanging. Also a stop mechanism.
 
 IMPORTANT NOTES!!!
@@ -136,6 +138,7 @@ directories to look for sources.
 #ifdef HAVE_GDB_MI
  #include <mi_gdb.h>
  #define Uses_TBreakpoints
+ #define Uses_TWatchpoints
 #endif
 #include <debug.h>
 #include <dyncat.h>
@@ -149,6 +152,7 @@ const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
 const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
 const char bkptsVersion=2;
+const char wptsVersion=1;
 const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
@@ -197,6 +201,18 @@ static int   cpuLLine;
 // Path for the binary
 static char *binReference=NULL;
 static int   binReferenceLen=0;
+// Modification time
+static time_t binMTime;
+
+// Some common messages
+static stTVIntl *icUnknown=NULL,
+                *icNotStarted=NULL,
+                *icDisconnected=NULL,
+                *icConnected=NULL,
+                *icReadyToRun=NULL,
+                *icRunning=NULL,
+                *icStopped=NULL,
+                *icDefault=NULL;
 
 /*****************************************************************************
   Sources files cache:
@@ -368,6 +384,14 @@ void TSetEditorApp::DebugDeInitVars()
  WatchesDeInit();
  DebugCommonCleanUp();
  TProgram::deskTop->unlock();
+ TVIntl::freeSt(icUnknown);
+ TVIntl::freeSt(icNotStarted);
+ TVIntl::freeSt(icDisconnected);
+ TVIntl::freeSt(icConnected);
+ TVIntl::freeSt(icReadyToRun);
+ TVIntl::freeSt(icRunning);
+ TVIntl::freeSt(icStopped);
+ TVIntl::freeSt(icDefault);
 }
 
 /**[txh]********************************************************************
@@ -588,7 +612,8 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
  char *args, *tty, *aux;
  mi_frames *fr;
 
- if (!edTestForFile(dOps.program))
+ struct stat st;
+ if (!edTestForFile(dOps.program,st))
    {// Don't even try if the program doesn't exist
     messageBox(mfError | mfOKButton,__("The '%s' file doesn't exist"),dOps.program);
     return 0;
@@ -624,9 +649,8 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
          if (fr)
            {
             res=1;
-            // TODO: i18n
             char b[maxWStatus];
-            int l=CLY_snprintf(b,maxWStatus,__("Attached to PID %d"),pid);
+            int l=TVIntl::snprintf(b,maxWStatus,__("Attached to PID %d"),pid);
             DebugMsgJumpToFrame(fr,b,l);
             mi_free_frames(fr);
            }
@@ -665,8 +689,10 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
     DebugMsgSetState();
     DebugMsgSetMode(showConnect);
     ExtractBinReference();
+    binMTime=st.st_mtime;
     // Apply breakpoints.
     DBG_ApplyBkpts();
+    DBG_ApplyWpts();
    }
 
  return res;
@@ -940,7 +966,7 @@ void TSetEditorApp::DebugReturnNow()
     return;
  mi_frames *f=dbg->ReturnNow();
  if (f)
-   {// TODO: i18n
+   {
     char b[maxWStatus];
     int l=DebugMsgFillReason(f,b,False);
     DebugMsgJumpToFrame(f,b,l);
@@ -1035,11 +1061,11 @@ void TSetEditorApp::DebugCallStack()
         options|=edsmDontUpdate;
      fI.Line=r->line;
      // Convert the frame into something "human readable"
-     // TODO i18n
-     int l=CLY_snprintf(b,maxWStatus,"%d: %s:%s:%d addr %p",r->level,
-                        r->func ? r->func : __("unknown"),
-                        r->file ? r->file : __("unknown"),
-                        r->line,r->addr);
+     const char *unknown=TVIntl::getText(__("unknown"),icUnknown);
+     int l=TVIntl::snprintf(b,maxWStatus,__("%d: %s:%s:%d addr %p"),r->level,
+                            r->func ? r->func : unknown,
+                            r->file ? r->file : unknown,
+                            r->line,r->addr);
      DynStrCatInit(&msg,b,l);
      // Add the function arguments.
      // TODO: should I modify mi lib to return something better ...
@@ -1356,16 +1382,16 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
 /*****************************************************************************
   TBreakpoints class
 
- RHIDE:
+ RHIDE dialog to be compatible:
  E/D file | line/function | Condition | Count
  Buttons: ~M~odify ~N~ew" ~D~elete ~E~nable D~i~sable ~S~how
-
 
 *****************************************************************************/
 
 mi_bkpt *TBreakpoints::first=NULL;
 mi_bkpt *TBreakpoints::last=NULL;
 int TBreakpoints::count=0;
+stTVIntl *TBreakpoints::icNone=NULL;
 static TBreakpoints bkpts;
 
 
@@ -1443,8 +1469,8 @@ void TBreakpoints::getText(char *dest, unsigned item, int maxLen)
 
  CLY_snprintf(format,wFormat,"%%-%ds",wCond-1);
  AllocLocalStr(cond,wCond);
- // TODO: i18n
- CLY_snprintf(cond,wCond,format,p->cond ? p->cond : __("None"));
+ CLY_snprintf(cond,wCond,format,p->cond ? p->cond :
+              TVIntl::getText(__("None"),icNone));
 
  CLY_snprintf(format,wFormat,"%%c|%%-%ds|%%s|%%s|%%s",wWhere-1);
  CLY_snprintf(dest,maxLen,format,p->enabled ? '*' : ' ',where,cond,times,
@@ -1729,6 +1755,7 @@ void TBreakpoints::releaseAll()
 TBreakpoints::~TBreakpoints()
 {
  releaseAll();
+ TVIntl::freeSt(icNone);
 }
 
 const int wVisible=50, wInt=32, wLabels=9,
@@ -1804,6 +1831,7 @@ TDialog *TDiagBrk::createEdit(const char *title)
  TSViewCol *col=new TSViewCol(title);
 
  // EN: CDEFHILNOSTUW
+ // ES: ABCDFHILORSUV
  TSLabel *type=TSLabelRadio(__("Type"),
                             __("File/L~i~ne"),
                             __("Fu~n~ction"),
@@ -1854,7 +1882,7 @@ TDialog *TDiagBrk::createEdit(const char *title)
 static
 void ShowErrorInMsgBox()
 {
- const char *cErr=MIDebugger::GetErrorStr();
+ char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
  int iErr=MIDebugger::GetErrorNumber();
 
  if (iErr==MI_FROM_GDB)
@@ -1862,6 +1890,7 @@ void ShowErrorInMsgBox()
                __("Error: %s (%d) [%s]"),cErr,iErr,MIDebugger::GetGDBError());
  else
     messageBox(mfOKButton | mfError,__("Error: %s (%d)"),cErr,iErr);
+ delete[] cErr;
 }
 
 mi_bkpt *TDiagBrk::CreateBktFromBox(stBrkEdit &box)
@@ -2002,6 +2031,7 @@ int TDiagBrk::Add()
  stBrkEdit box;
  // TODO: Could we use current file and function?
  memset(&box,0,sizeof(box));
+ box.enabled=1;
 
  if (execDialog(d,&box)==cmOK)
    {// Note: We know gdb is there.
@@ -2179,9 +2209,23 @@ TDiagBrk::TDiagBrk(const TRect &r) :
  CLY_snprintf(format,wFormat," %%s %%-%ds %%-%ds %%-%ds %%-%ds",wWhere-1,
               wCond-1,wTimes,wThread);
  AllocLocalStr(cols,width+1);
- // TODO: i18n
- CLY_snprintf(cols,width+1,format,__("E"),__("Where"),__("Condition"),
-              __("Count"),__("Thre."));
+
+ // The following is quite annoying because we construct the format from its
+ // parts.
+ // Keep 1 char
+ char *cE=TVIntl::getTextNew(__("E"));
+ char *cWhere=TVIntl::getTextNew(__("Where"));
+ char *cCond=TVIntl::getTextNew(__("Condition"));
+ // Keep 5 chars
+ char *cCount=TVIntl::getTextNew(__("Count"));
+ // Keep 5 chars
+ char *cThread=TVIntl::getTextNew(__("Thre."));
+ CLY_snprintf(cols,width+1,format,cE,cWhere,cCond,cCount,cThread);
+ delete[] cE;
+ delete[] cWhere;
+ delete[] cCond;
+ delete[] cCount;
+ delete[] cThread;
 
  int height=r.b.y-r.a.y-3;
  TSStringableListBox *lbox=new TSStringableListBox(width,height,tsslbVertical);
@@ -2189,6 +2233,8 @@ TDiagBrk::TDiagBrk(const TRect &r) :
  TSLabel *lb=new TSLabel(cols,lbox);
 
  col->insert(xTSLeft,yTSUp,lb);
+ // EN: DEIMNSX
+ // ES: BDHIMNS
  col->insert(xTSCenter,yTSDown,MakeHzGroup(
              new TSButton(__("E~x~it")   ,cmOK,bfDefault),
              new TSButton(__("~M~odify") ,cmBkModify),
@@ -2247,11 +2293,577 @@ void MoveBreakpoint(const char *file, stSpLine *spline, void *data)
 
 void TSetEditorApp::DebugMoveBreakPts()
 {
- SpLinesForEach(idsplBreak,MoveBreakpoint);
+ struct stat st;
+
+ if (!edTestForFile(dOps.program,st))
+    return;
+ if (binMTime!=st.st_mtime)
+   {
+    binMTime=st.st_mtime;
+    SpLinesForEach(idsplBreak,MoveBreakpoint);
+   }
 }
 
 /*****************************************************************************
   End of TBreakpoints class
+*****************************************************************************/
+
+/*****************************************************************************
+  TWatchpoints class
+*****************************************************************************/
+
+mi_wp *TWatchpoints::first=NULL;
+mi_wp *TWatchpoints::last=NULL;
+int TWatchpoints::count=0;
+static TWatchpoints wpts;
+
+
+mi_wp *TWatchpoints::getItem(int num)
+{
+ mi_wp *p=first;
+ while (num && p)
+   {
+    num--;
+    p=p->next;
+   }
+ return num ? NULL : p;
+}
+
+void TWatchpoints::getText(char *dest, unsigned item, int maxLen)
+{
+ mi_wp *p=getItem(item);
+ if (!p)
+   {
+    *dest=0;
+    dbgPr("Oops! item %d gives NULL\n",item);
+    return;
+   }
+ CLY_snprintf(dest,maxLen,"%c %c %c %s",p->enabled ? '*' : ' ',
+              (p->mode==wm_read || p->mode==wm_rw) ? 'R' : ' ',
+              (p->mode==wm_write|| p->mode==wm_rw) ? 'W' : ' ',
+              p->exp);
+}
+
+void TWatchpoints::add(mi_wp *b)
+{
+ if (first)
+    last->next=b;
+ else
+    first=b;
+ last=b;
+ count++;
+}
+
+void TWatchpoints::remove(mi_wp *b)
+{
+ mi_wp *e=first, *ant=NULL;
+
+ while (e)
+   {
+    if (e==b)
+      {
+       if (ant)
+          ant->next=b->next;
+       else
+          first=b->next;
+       if (!b->next)
+          last=ant;
+       b->next=NULL;
+       mi_free_wp(b);
+       count--;
+       return;
+      }
+    ant=e;
+    e=e->next;
+   }
+ // TODO: Remove
+ dbgPr("Oops! can't find wp TWatchpoints::remove\n");
+}
+
+void TWatchpoints::replace(mi_wp *old, mi_wp *b)
+{
+ mi_wp *e=first, *ant=NULL;
+
+ while (e)
+   {
+    if (e==old)
+      {
+       if (ant)
+          ant->next=b;
+       else
+          first=b;
+       if (!old->next)
+          last=b;
+       b->next=old->next;
+       old->next=NULL;
+       mi_free_wp(old);
+       return;
+      }
+    ant=e;
+    e=e->next;
+   }
+ // TODO: Remove
+ dbgPr("Oops! can't find wp TWatchpoints::replace\n");
+}
+
+void TWatchpoints::apply()
+{
+ if (!dbg)
+    return;
+ mi_wp *b=first, *aux;
+ // Disconnect current list, we will be creating a new one.
+ first=last=NULL;
+ count=0;
+ int disabledWpts=0, killIt, applied=0;
+
+ while (b)
+   {
+    killIt=0;
+    if (b->enabled) // Avoid disabled ones.
+      {
+       mi_wp *nb=dbg->Watchpoint(b->mode,b->exp);
+       if (!nb)
+         {
+          b->enabled=0;
+          add(b);
+          disabledWpts++;
+         }
+       else
+         {
+          add(nb);
+          killIt=1;
+          applied++;
+         }
+      }
+    else
+       // Pass unchanged
+       add(b);
+    aux=b->next;
+    if (killIt)
+      {
+       b->next=NULL;
+       mi_free_wp(b);
+      }
+    b=aux;
+   }
+ if (disabledWpts)
+    messageBox(mfWarning | mfOKButton,
+               __("%d watchpoints failed to apply, they are disabled now."),
+               disabledWpts);
+}
+
+void TWatchpoints::save(opstream &os)
+{// Save them
+ os << wptsVersion << (int32)count;
+ dbgPr("%d Watchpoints\n",count);
+ mi_wp *p=first;
+ while (p)
+   {
+    os << p->enabled << (char)p->mode;
+    os.writeString(p->exp);
+    p=p->next;
+   }
+}
+
+void TWatchpoints::load(ipstream &is, char version)
+{
+ int32 cnt;
+
+ is >> cnt;
+ // TODO:
+ if (first)
+    dbgPr("Oops! loading watchpoints when we already have!!!\n");
+ dbgPr("%d watchpoints\n",cnt);
+ for (int32 i=0; i<cnt; i++)
+    {
+     mi_wp *b=mi_alloc_wp();
+     if (b)
+       {
+        is >> b->enabled;
+        b->mode=(enum mi_wp_mode)ReadChar(is);
+        b->exp=ReadStringC(is);
+        add(b);
+       }
+    }
+}
+
+void TWatchpoints::releaseAll()
+{
+ mi_free_wp(first);
+ first=last=NULL;
+ count=0;
+}
+
+TWatchpoints::~TWatchpoints()
+{
+ releaseAll();
+}
+
+mi_wp *TWatchpoints::search(int num)
+{
+ mi_wp *b=first;
+
+ while (b)
+   {
+    if (b->number==num && b->enabled)
+       return b;
+    b=b->next;
+   }
+ return b;
+}
+
+int TWatchpoints::unset(int num)
+{
+ mi_wp *b=search(num);
+ if (!b)
+   {// TODO: Remove
+    dbgPr("Oops! where is wp %s\n",num);
+    return 0;
+   }
+ if (!dbg->WatchDelete(b))
+   {
+    DebugMsgSetError();
+    return 0;
+   }
+ b->enabled=0;
+ return 1;
+}
+
+const int wExp=256;
+
+struct stWpEdit
+{
+ char exp[wExp];
+ uint32 mode;
+ uint32 enabled;
+};
+
+
+class TDiagWp : public TDialog
+{
+public:
+ TDiagWp(const TRect &aR);
+
+ virtual void handleEvent(TEvent &event);
+
+ int Modify();
+ int Add();
+ int Delete();
+ int Enable();
+ int Disable();
+ static void UpdateCommadsForCount(int c);
+
+protected:
+ int focusedB;
+ TStringableListBox *theLBox;
+
+ TDialog *createEdit(const char *title);
+ static mi_wp *CreateWpFromBox(stWpEdit &box);
+ static int DeleteFromGDB(mi_wp *b);
+ static int ApplyWp(mi_wp *nb, mi_wp *old, int enabled);
+ void UpdateCommandsFocused();
+};
+
+void TDiagWp::UpdateCommadsForCount(int c)
+{
+ TSetEditorApp::setCmdState(cmBkModify,c ? True : False);
+ TSetEditorApp::setCmdState(cmBkDel,c ? True : False);
+}
+
+TDialog *TDiagWp::createEdit(const char *title)
+{
+ TSViewCol *col=new TSViewCol(title);
+
+ // EN: AERTW
+ // ES: AELST
+ TSLabel *exp=new TSLabel(__("~E~xpression (escape \" characters: \\\")"),
+                          new TSInputLinePiped(wExp,1,hID_DbgEvalModifyExp,wVisible));
+ TSLabel *type=TSLabelRadio(__("~T~ype"),
+                            __("~W~rite"),
+                            __("~R~ead"),
+                            __("~A~ccess (read or write)"),0);
+ TSCheckBoxes *enable=new TSCheckBoxes(new TSItem(__("~E~nabled"),0));
+
+ TSVeGroup *all=MakeVeGroup(0,exp,type,enable,0);
+ all->makeSameW();
+
+ col->insert(xTSLeft,yTSUp,all);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(hcEditWp);
+ delete col;
+ return d;
+}
+
+#define BoxMode2WpMode(a) ((enum mi_wp_mode)(a+1))
+
+mi_wp *TDiagWp::CreateWpFromBox(stWpEdit &box)
+{
+ // Create an structure to specify the new one
+ mi_wp *nb=mi_alloc_wp();
+ nb->mode=BoxMode2WpMode(box.mode);
+ nb->exp=strdup(box.exp);
+ nb->enabled=1;
+
+ return nb;
+}
+
+int TDiagWp::DeleteFromGDB(mi_wp *p)
+{
+ if (p->enabled)
+   {
+    if (!dbg->WatchDelete(p))
+      {
+       ShowErrorInMsgBox();
+       return 0;
+      }
+   }
+ return 1;
+}
+
+int TDiagWp::Modify()
+{
+ if (!wpts.GetCount())
+    return 0; // Just in case
+ TDialog *d=createEdit(__("Modify watchpoint"));
+
+ stWpEdit box;
+ mi_wp *p=wpts.getItem(focusedB);
+
+ box.mode=p->mode-1;
+ #define C(a,b,c) if (a) strncpyZ(b,a,c); else b[0]=0;
+ C(p->exp,box.exp,wExp);
+ #undef C
+ box.enabled=p->enabled ? 1 : 0;
+
+ if (execDialog(d,&box)==cmOK)
+   {// Note: We know gdb is there.
+    // Delete the current watchpoint
+    if (!DeleteFromGDB(p))
+       return 0;
+    if (box.enabled)
+      {// Apply it
+       mi_wp *nw_gdb=dbg->Watchpoint(BoxMode2WpMode(box.mode),box.exp);
+       if (!nw_gdb)
+         {
+          ShowErrorInMsgBox();
+          p->enabled=0;
+          return 0;
+         }
+       wpts.replace(p,nw_gdb);
+      }
+    else
+      {// Just modify it
+       free(p->exp);
+       p->exp=strdup(box.exp);
+       p->mode=BoxMode2WpMode(box.mode);
+       p->enabled=0;
+      }
+    return 1;
+   }
+ return 0;
+}
+
+int TDiagWp::Add()
+{
+ TDialog *d=createEdit(__("Add watchpoint"));
+
+ stWpEdit box;
+ memset(&box,0,sizeof(box));
+ box.enabled=1;
+
+ if (execDialog(d,&box)==cmOK)
+   {// Note: We know gdb is there.
+    if (box.enabled)
+      {// Apply it
+       mi_wp *nw_gdb=dbg->Watchpoint(BoxMode2WpMode(box.mode),box.exp);
+       if (!nw_gdb)
+         {
+          ShowErrorInMsgBox();
+          return 0;
+         }
+       wpts.add(nw_gdb);
+      }
+    else
+      {// Just add to the list
+       wpts.add(CreateWpFromBox(box));
+      }
+    return 1;
+   }
+ return 0;
+}
+
+int TDiagWp::Delete()
+{
+ if (!wpts.GetCount())
+    return 0; // Just in case
+ mi_wp *p=wpts.getItem(focusedB);
+ // Delete the current breakpoint
+ if (!DeleteFromGDB(p))
+    return 0;
+ wpts.remove(p);
+ return 1;
+}
+
+int TDiagWp::Enable()
+{
+ if (!wpts.GetCount())
+    return 0; // Just in case
+
+ mi_wp *p=wpts.getItem(focusedB);
+ if (p->enabled)
+    return 0;
+
+ mi_wp *nw_gdb=dbg->Watchpoint(p->mode,p->exp);
+ if (!nw_gdb)
+   {
+    ShowErrorInMsgBox();
+    return 0;
+   }
+ wpts.replace(p,nw_gdb);
+
+ return 1;
+}
+
+int TDiagWp::Disable()
+{
+ if (!wpts.GetCount())
+    return 0; // Just in case
+
+ mi_wp *p=wpts.getItem(focusedB);
+ if (!p->enabled)
+    return 0;
+
+ if (DeleteFromGDB(p))
+   {
+    p->enabled=0;
+    return 1;
+   }
+ return 0;
+}
+
+void TDiagWp::UpdateCommandsFocused()
+{
+ mi_wp *p=wpts.getItem(focusedB);
+ TSetEditorApp::setCmdState(cmBkEnable,!p || p->enabled ? False : True);
+ TSetEditorApp::setCmdState(cmBkDisable,!p || !p->enabled ? False : True);
+}
+
+void TDiagWp::handleEvent(TEvent &event)
+{
+ int range=0, drawV=0;
+
+ TDialog::handleEvent(event);
+ if (event.what==evCommand)
+   {
+    switch (event.message.command)
+      {
+       case cmBkModify:
+            if (Modify())
+               drawV=1;
+            break;
+       case cmBkAdd:
+            if (Add())
+               drawV=range=1;
+            break;
+       case cmBkDel:
+            if (Delete())
+               drawV=range=1;
+            break;
+       case cmBkEnable:
+            if (Enable())
+              drawV=1;
+            break;
+       case cmBkDisable:
+            if (Disable())
+              drawV=1;
+            break;
+       default:
+            return;
+      }
+    if (range)
+      {
+       int c=wpts.GetCount();
+       UpdateCommadsForCount(c);
+       theLBox->setRange(c);
+      }
+    if (drawV)
+      {
+       theLBox->drawView();
+       UpdateCommandsFocused();
+      }
+    clearEvent(event);
+   }
+ else if (event.what==evBroadcast)
+   {
+    switch (event.message.command)
+      {
+       case cmListItemFocused:
+            focusedB=((TListViewer *)event.message.infoPtr)->focused;
+            UpdateCommandsFocused();
+            break;
+       default:
+            return;
+      }
+    clearEvent(event);
+   }
+}
+
+TDiagWp::TDiagWp(const TRect &r) :
+    TWindowInit(TDiagWp::initFrame),
+    TDialog(r,__("Watchpoints"))
+{
+ flags=wfMove | wfClose;
+ growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+ focusedB=0;
+
+ TSetEditorApp::setCmdState(cmBkEnable,False);
+ TSetEditorApp::setCmdState(cmBkDisable,False);
+
+ TSViewCol *col=new TSViewCol(this);
+
+ int width=r.b.x-r.a.x-4;
+ int height=r.b.y-r.a.y-3;
+ TSStringableListBox *lbox=new TSStringableListBox(width,height,tsslbVertical);
+ theLBox=(TStringableListBox *)(lbox->view);
+ TSLabel *lb=new TSLabel(__(" E R/W Expression"),lbox);
+
+ col->insert(xTSLeft,yTSUp,lb);
+ // EN: DEIMNX
+ // ES: BDHMNS
+ col->insert(xTSCenter,yTSDown,MakeHzGroup(
+             new TSButton(__("E~x~it")   ,cmOK,bfDefault),
+             new TSButton(__("~M~odify") ,cmBkModify),
+             new TSButton(__("~N~ew")    ,cmBkAdd),
+             new TSButton(__("~D~elete") ,cmBkDel),
+             new TSButton(__("~E~nable") ,cmBkEnable),
+             new TSButton(__("D~i~sable"),cmBkDisable),0));
+
+ col->doItCenter(hcWpDialog);
+ delete col;
+}
+
+void TSetEditorApp::DebugEditWatchPts()
+{
+ // Currently we allow editing breakpoints only if we can get feadback from
+ // gdb. I think its possible to avoid it, but I don't see the point and
+ // the consequences can be quite confusing.
+ if (!DebugCheckStopped())
+    return;
+
+ TRect r=GetDeskTopSize();
+ TDiagWp *d=new TDiagWp(TRect(0,0,r.b.x,r.b.y-3));
+ TDiagWp::UpdateCommadsForCount(wpts.GetCount());
+
+ TStringableListBoxRec box;
+ box.items=&wpts;
+ box.selection=0;
+
+ execDialog(d,&box);
+}
+
+/*****************************************************************************
+  End of TWatchpoints class
 *****************************************************************************/
 
 /*****************************************************************************
@@ -2280,14 +2892,29 @@ void DBG_ApplyBkpts()
  bkpts.apply();
 }
 
+void DBG_ApplyWpts()
+{
+ wpts.apply();
+}
+
 void DBG_SaveBreakpoints(opstream &os)
 {
  bkpts.save(os);
 }
 
+void DBG_SaveWatchpoints(opstream &os)
+{
+ wpts.save(os);
+}
+
 void DBG_ReadBreakpoints(ipstream &is)
 {
  bkpts.load(is);
+}
+
+void DBG_ReadWatchpoints(ipstream &is, char version)
+{
+ wpts.load(is,version);
 }
 
 static
@@ -2321,6 +2948,7 @@ void DBG_SetCallBacks()
 void DBG_ReleaseMemory()
 {
  bkpts.releaseAll();
+ wpts.releaseAll();
 }
 
 /*****************************************************************************
@@ -2353,10 +2981,10 @@ class TDebugMsgDialog : public TDialog
 {
 public:
  TDebugMsgDialog(const TRect &aR, const char *tit);
- void SetStatusGDB(char *s) { statusF->setText(s); };
- void SetStatusStop(char *s) { status2->setText(s); };
- void SetStatusError(char *s) { status2->setText(s); };
- void SetStatusMode(char *s) { status1->setText(s); };
+ void SetStatusGDB(const char *s) { statusF->setText(s); };
+ void SetStatusStop(const char *s) { status2->setText(s); };
+ void SetStatusError(const char *s) { status2->setText(s); };
+ void SetStatusMode(const char *s) { status1->setText(s); };
  virtual void changeBounds(const TRect &r);
  virtual void close();
  virtual void handleEvent(TEvent &event);
@@ -2441,10 +3069,7 @@ int TDskDbgMsg::DeleteAction(ccIndex, Boolean)
 
 char *TDskDbgMsg::GetText(char *dest, short maxLen)
 {
- char *msg=DebugMsgStateName();
- if (!msg)
-    msg=__("Not started");
- // TODO: i18n
+ const char *msg=DebugMsgStateName();
  TVIntl::snprintf(dest,maxLen,__("   Debugger Window [%s]"),msg);
  return dest;
 }
@@ -2676,30 +3301,33 @@ void DebugMsgUpdate(unsigned options)
  TProgram::deskTop->unlock();
 }
 
-char *DebugMsgStateName()
+const char *DebugMsgStateName()
 {
- char *msg=NULL;
+ const char *msg=NULL;
  if (dbg)
    {
     switch (dbg->GetState())
       {
        case MIDebugger::disconnected:
-            msg=__("Disconnected");
+            msg=TVIntl::getText(__("Disconnected"),icDisconnected);
             break;
        case MIDebugger::connected:
-            msg=__("Connected");
+            msg=TVIntl::getText(__("Connected"),icConnected);
             break;
        case MIDebugger::target_specified:
-            msg=__("Ready to Run");
+            msg=TVIntl::getText(__("Ready to Run"),icReadyToRun);
             break;
        case MIDebugger::running:
-            msg=__("Running");
+            msg=TVIntl::getText(__("Running"),icRunning);
             break;
        case MIDebugger::stopped:
-            msg=__("Stopped");
+            msg=TVIntl::getText(__("Stopped"),icStopped);
             break;
       }
    }
+ else
+    msg=TVIntl::getText(__("Not started"),icNotStarted);
+
  return msg;
 }
 
@@ -2715,9 +3343,7 @@ void DebugMsgSetState()
  // If we changed the state then the commands must be updated.
  TSetEditorApp::DebugUpdateCommands();
  DebugMsgInit();
- char *msg=DebugMsgStateName();
- if (!msg)
-   msg=__("Unknown");
+ const char *msg=DebugMsgStateName();
  // Execute associated actions
  int cleanStop=1;
  switch (dbg->GetState())
@@ -2750,11 +3376,11 @@ void DebugMsgSetError()
 
  char b[maxWStatus];
 
- // TODO: i18n
- const char *cErr=MIDebugger::GetErrorStr();
+ char *cErr=TVIntl::getTextNew(MIDebugger::GetErrorStr());
  int iErr=MIDebugger::GetErrorNumber();
 
- int l=CLY_snprintf(b,maxWStatus,__("Error: %s (%d)"),cErr,iErr);
+ int l=TVIntl::snprintf(b,maxWStatus,__("Error: %s (%d)"),cErr,iErr);
+ delete[] cErr;
 
  if (iErr==MI_FROM_GDB)
     CLY_snprintf(b+l,maxWStatus-l," [%s]",MIDebugger::GetGDBError());
@@ -2771,7 +3397,6 @@ void DebugMsgSetMode(Boolean select)
 {
  DebugMsgInit();
 
- // TODO: i18n
  char b[maxWStatus];
  const char *tty;
  b[0]=0;
@@ -2785,15 +3410,15 @@ void DebugMsgSetMode(Boolean select)
          if (!tty)
             tty=dbg->GetAuxTTY();
          if (!tty)
-            tty=__("default");
-         CLY_snprintf(b,maxWStatus,__("Mode: %s (%s) [%s]"),
-                      localMode==modeX11 ? "X11" : "Console",tty,dOps.program);
+            tty=TVIntl::getText(__("default"),icDefault);
+         TVIntl::snprintf(b,maxWStatus,__("Mode: %s (%s) [%s]"),
+                          localMode==modeX11 ? "X11" : "Console",tty,dOps.program);
          break;
     case dmPID:
          break;
     case dmRemote:
-         CLY_snprintf(b,maxWStatus,__("Mode: Remote (%s) [%s]"),
-                      dOps.rparam,dOps.program);
+         TVIntl::snprintf(b,maxWStatus,__("Mode: Remote (%s) [%s]"),
+                          dOps.rparam,dOps.program);
          break;
    }
  MsgWindow->SetStatusMode(b);
@@ -2820,20 +3445,23 @@ int DebugMsgFillReason(mi_frames *f, char *b, Boolean stop)
 {
  int l;
 
- // TODO: i18n
  if (stop)
-    l=CLY_snprintf(b,maxWStatus,__("Reason stopped: %s"),
-                   mi_reason_enum_to_str(stoppedInfo->reason));
+   {
+    char *reason=TVIntl::getTextNew(mi_reason_enum_to_str(stoppedInfo->reason));
+    l=TVIntl::snprintf(b,maxWStatus,__("Reason stopped: %s"),reason);
+    delete[] reason;
+   }
  else
-    l=CLY_snprintf(b,maxWStatus,__("Returned immediatly"));
+    l=TVIntl::snprintf(b,maxWStatus,__("Returned immediatly"));
 
  if (f && l+10<maxWStatus)
    {
+    const char *unknown=TVIntl::getText(__("unknown"),icUnknown);
     l+=CLY_snprintf(b+l,maxWStatus-l," [%s:%s:%d]",
-                    f->func ? f->func : __("unknown"),
-                    f->file ? f->file : __("unknown"),
+                    f->func ? f->func : unknown,
+                    f->file ? f->file : unknown,
                     f->line);
-   }
+   }   
  MsgWindow->SetStatusStop(b);
 
  return l;
@@ -2858,6 +3486,11 @@ void DebugMsgSetStopped()
    {
     killAfterStop=0;
     TSetEditorApp::DebugKill();
+   }
+ if (stoppedInfo->reason==sr_wp_scope && stoppedInfo->have_wpno)
+   {// Must be disabled
+    wpts.unset(stoppedInfo->wpno);
+    printf("Disabling watchpoint %d, out of scope\n",stoppedInfo->wpno);
    }
 }
 
@@ -2961,8 +3594,7 @@ void TGVarCollection::getText(char *dest, unsigned item, int maxLen)
     if (gv->value)
        CLY_snprintf(dest,maxLen,"%s: %s",gv->exp,gv->value);
     else
-       // TODO: i18n
-       CLY_snprintf(dest,maxLen,__("%s: Not yet in debugger"),gv->exp);
+       TVIntl::snprintf(dest,maxLen,__("%s: Not yet in debugger"),gv->exp);
    }
 }
 
@@ -3516,8 +4148,9 @@ int TSetEditorApp::DebugOptionsEdit()
  if (debugOpsNotIndicated)
    {// Fill the structure with examples and recommendations
     debugOpsNotIndicated=0;
-    // TODO: i18n
-    strcpy(dOps.program,__("Your program compiled with -g"));
+    char *fakeName=TVIntl::getTextNew(__("Your program compiled with -g"));
+    strcpy(dOps.program,fakeName);
+    delete[] fakeName;
     dOps.mode=dmLocal;
     dOps.args[0]=0;
     dOps.tty[0]=0;
@@ -3697,6 +4330,8 @@ void DebugSaveData(opstream &os)
     os << svAbsent;
  // Breakpoints
  DBG_SaveBreakpoints(os);
+ // Watchpoints
+ DBG_SaveWatchpoints(os);
  // No more data
  os << svAbsent;
 }
@@ -3767,6 +4402,10 @@ void DebugReadData(ipstream &is)
    }
  // Breakpoints
  DBG_ReadBreakpoints(is);
+ // Watchpoints
+ is >> aux;
+ if (aux)
+    DBG_ReadWatchpoints(is,aux);
  // No more data
  is >> aux;
 }
@@ -3797,6 +4436,7 @@ void TSetEditorApp::DebugCloseSession(Boolean ) { return True; }
 int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
 void TSetEditorApp::DebugEditBreakPts() {}
+void TSetEditorApp::DebugEditWatchPts() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}
@@ -3828,4 +4468,36 @@ void DebugSaveData(opstream &os)
 }
 
 #endif // HAVE_GDB_MI
+
+#if 0
+__("Hit a breakpoint")
+__("Write watchpoint")
+__("Read watchpoint")
+__("Access watchpoint")
+__("Watchpoint out of scope")
+__("Function finished")
+__("Location reached")
+__("End of stepping")
+__("Exited signalled")
+__("Exited with error")
+__("Exited normally")
+__("Signal received")
+__("Unknown (temp bkp?)")
+__("natural")
+__("binary")
+__("decimal")
+__("hexadecimal")
+__("octal")
+__("unknown")
+__("Ok")
+__("Out of memory")
+__("Pipe creation")
+__("Fork failed")
+__("GDB not running")
+__("Parser failed")
+__("Unknown asyn response")
+__("Unknown result response")
+__("Error from gdb")
+__("Unknown")
+#endif
 

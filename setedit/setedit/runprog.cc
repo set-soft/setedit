@@ -119,7 +119,7 @@ void ConfigureRunCommand(void)
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));
  // EN: ABCDEFGHIJKLMNOPRSTUW
- // ES: ACEFKIJLNOPRSTUZ
+ // ES: ACDEFKHIJLMNOPRSTUVZ
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,1,hID_RunProgram,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
@@ -695,7 +695,6 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
  
  if (!noStopDebug)
    {// We have to stop the debug session
-    printf("Closing session\n");
     if (!TSetEditorApp::DebugCloseSession(Options & opWarnDebugStop ? True : False))
        // The user canceled it, abort
        return;

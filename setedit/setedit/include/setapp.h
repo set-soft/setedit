@@ -146,7 +146,7 @@ const int
   cmeDbgOptsMsgs    = cmeBase+122,
   cmeDbgWatchExpNorm= cmeBase+123,
   cmeDbgWatchExpScp = cmeBase+124,
-  //Moved - cmeSelDebugWin    = cmeBase+125,
+  cmeDbgEditWatchPts= cmeBase+125,
   //Moved - cmeSelWatchesWin  = cmeBase+126,
   cmeDbgEndSession  = cmeBase+127,
   cmeDbgCloseSession= cmeBase+128,
@@ -402,6 +402,7 @@ public:
     static void DebugCommandsForDisc();
     static void DebugCommonCleanUp();
     static void DebugEditBreakPts();
+    static void DebugEditWatchPts();
     static void DebugMoveBreakPts();
 
 protected:

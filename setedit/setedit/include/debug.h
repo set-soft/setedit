@@ -6,6 +6,7 @@ int DBG_RemoveBreakpoint(const char *source, int line);
 void DBG_SetCallBacks();
 void DBG_ReleaseMemory();
 void DBG_ApplyBkpts();
+void DBG_ApplyWpts();
 
 class TDebugMsgDialog;
 class TWatchesDialog;
@@ -29,7 +30,7 @@ int  DebugMsgFillReason(mi_frames_struct *f, char *b, Boolean stop);
 void DebugClearCPULine();
 void DebugSetCPULine(int line, char *file);
 void DebugUpdateWatches();
-char *DebugMsgStateName();
+const char *DebugMsgStateName();
 void DebugSaveData(opstream &os);
 void DebugReadData(ipstream &is);
 int  DebugConfirmEndSession();
@@ -66,10 +67,43 @@ public:
 protected:
  static mi_bkpt *first, *last;
  static int count;
+ static stTVIntl *icNone;
 
  static void updateAbs(mi_bkpt *b);
 
  friend class TDiagBrk;
 };
 #endif // Uses_TBreakpoints
+
+#if defined(Uses_TWatchpoints) && !defined(TWatchpoints_Defined)
+#define TWatchpoints_Defined
+class TWatchpoints : public TStringable
+{
+public:
+ TWatchpoints() :
+   TStringable() {}
+ ~TWatchpoints();
+
+ virtual unsigned GetCount() { return count; };
+ virtual void getText(char *dest, unsigned item, int maxLen);
+
+ static void add(mi_wp *);
+ static void remove(mi_wp *b);
+ static void apply();
+ static mi_wp *getItem(int num);
+ static void releaseAll();
+ static void replace(mi_wp *old, mi_wp *n);
+ static int  unset(int num);
+ static mi_wp *search(int num);
+
+ static void save(opstream &os);
+ static void load(ipstream &is, char version);
+
+protected:
+ static mi_wp *first, *last;
+ static int count;
+
+ friend class TDiagWp;
+};
+#endif // Uses_TWatchpoints
 

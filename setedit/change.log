@@ -1,4 +1,19 @@
-$Log$
+$Log$.
+Revision 1.557  2004/08/02 12:44:28  set
+* Fixed: When going step by step and the "match pair on the fly" was
+enabled the code to restore the highlighted pairs did a mess with the
+background color if the pair involved a "CPU line".
+* Added: After using "Run a program" the editor updates the moved
+breakpoints. Also an option to disable it. Note: That's what made me create
+the splines, lamentably Robert never used them for RHIDE.
+* Added: A beep when "Run a program" finishes. Option to disable.
+* Added: Close the debug session before running the external program. An
+option to disable it. That's needed for OSs where we can't overwrite opened
+files and is also needed to woraround gdb bugs.
+* Added: Option to ask for confirmation if the "Run program" will kill the
+current debug session.
+* Added: [sLisp] edfRunStopDebug option to RunProgram.
+
 Revision 1.556  2004/07/30 21:10:17  set
 * Modified: Now the cmc*Win (Copy,Cut,Paste) commands are called cmc*OS to
 reflect their real use. The old names remains as aliases. From a suggestion

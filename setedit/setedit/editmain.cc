@@ -1407,6 +1407,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               DebugEditBreakPts();
               break;
 
+         case cmeDbgEditWatchPts:
+              DebugEditWatchPts();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)
