@@ -158,7 +158,7 @@ $o='../infview.exe';
 if (!(-e $d) or (-M $d > -M $o))
   {
    system("cp -p $o .");
-   system('zip -9u resultInf/dbgcopy.zip infview.exe') unless($iMode);
+   system("zip -9u resultInf/infview-$version-Linux-debug.zip infview.exe") unless($iMode);
    system('strip infview.exe');
    $i=`which upx`;
    if (length($i))

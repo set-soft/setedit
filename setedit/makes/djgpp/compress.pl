@@ -179,7 +179,7 @@ if (!(-e $d) or (-M $d > -M $o))
    system("cp -p $o .");
    if ($Strip)
      {
-      system("zip -9u $result/dbgcopy.zip editor.exe") unless($iMode);
+      system("zip -9u $result/setedit-$version-DOS-debug.zip editor.exe") unless($iMode);
       system('strip editor.exe');
       # I could use --best but is slooooowwwwwwwww and doesn't compress much in
       # the case of the editor.
