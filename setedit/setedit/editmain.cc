@@ -1545,8 +1545,9 @@ int GuessOneSET_FILES(const char *OSShareDir, char isAbsolute)
  if (isAbsolute)
    {
     strcpy(Name,OSShareDir);
+    strcat(Name,"/share/setedit");
     end=Name+strlen(Name);
-    strcat(Name,"/share/setedit/" SHLFile);
+    strcat(Name,"/" SHLFile);
    }
  else
    end=GetPathRelativeToRunPoint(Name,OSShareDir,SHLFile);

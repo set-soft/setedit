@@ -50,6 +50,9 @@
 #include <edspecs.h>
 #include <pathlist.h>
 
+// Used by edprj.cc to know if we loaded the desktop file from this directory
+char DstLoadedHere=0;
+
 extern TEditorCollection *edHelper;
 extern char *EditorFile;
 
@@ -71,6 +74,7 @@ const int   EditorsDelta=10;
 void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
 {
  TEditorCollection::HaveFilesCL=haveFilesCL;
+ DstLoadedHere=0;
 
  // 0) If the user forces a project load it or if that's impossible create it
  if (suggestedName && CLY_ValidFileName(suggestedName))
@@ -117,6 +121,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  if (edTestForFile(cDeskTopFileName))
    {
     editorApp->retrieveDesktop(cDeskTopFileName,True);
+    DstLoadedHere=1;
     return;
    }
  #ifdef HIDDEN_DIFFERENT
@@ -124,6 +129,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  if (edTestForFile(cDeskTopFileNameHidden))
    {
     editorApp->retrieveDesktop(cDeskTopFileNameHidden,True);
+    DstLoadedHere=1;
     return;
    }
  #endif
