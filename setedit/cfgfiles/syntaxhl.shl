@@ -804,14 +804,19 @@ Keywords=ifneq,include,join,notdir,origin,override,patsubst,shell,sort,strip
 Keywords=subst,suffix,unexport,vpath,vpath,wildcard,word,wordlist,words
 End
 
-# -------------------------- TCL scripts ------------------------------------
+# -------------------------------- TCL/Tk scripts -----------------------------
 #
-# Contributed by FireEgl <FireEgl@EMail.com>
-# http://www.Scriptics.com - http://www.EggHeads.org
+# Contributed by Philip Moore <FireEgl@EMail.com>
+# TCL/Tk - http://Dev.Scriptics.com/software/tcltk/
+# Also, all of these integrate with or extend TCL/Tk.
+# Therefore their keywords are also listed below:
+# [incr Tcl] & [incr Tk] - http://www.TCLTk.com/itcl/  (TCL and Tk extensions)
+# TclX - http://www.NeoSoft.com/tclx/  (TCL extension)
+# Expect - http://Expect.Nist.Gov  (TCL extension)
+# Eggdrop - http://www.EggHeads.org  (IRC bot that uses TCL for it's scripting)
 #
 Name=TCL/Tk-Eggdrop
 Files=tcl,TCL,Tcl,tCL,tcL,TcL,tCl,TCl
-# SET: I commented the following, they are too fuzzy: dist,cfg,config,dis
 Case=1
 RelaxNumberCheck=1
 EOLComment1=#
@@ -820,7 +825,7 @@ EOLComment2=;#
 AllowedInsideNames=1234567890-=\~!@#$%^&*_+|;,./:<>?`'
 CanStartAName=1234567890-=\~!@#$%^&*()_+|;,./:<>?`'
 HexMarker=\x
-Symbols1=!&*+-/<=>?^|~$%;:@#_\"(),`'"
+Symbols1=!&*+-/<=>?^|~$%;:@#_\"(),`'".
 Symbols2={}[]()"
 String1="
 Escape=\
@@ -828,40 +833,133 @@ Escape=\
 # so that's why there's a SpecialSymbol setting here.
 SpecialSymbol=\
 SpecialSymbolCont={}[]()$\"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=\~!@#%^&*_+|;,./:<>?`'
-# TCL Specific:
-Keywords=Base,Http,Safe,Safe Tcl,Tcl,Tcltest
-Keywords=after,append,array,bgerror,binary,break,case,catch,cd,clock,close
-Keywords=concat,continue,dde,encoding,eof,error,eval,exec,exit,expr,fblocked
-Keywords=fconfigure,fcopy,file,fileevent,filename,flush,for,foreach,format
-Keywords=gets,glob,global,history,if,incr,info,interp,join,lappend,library
-Keywords=lindex,linsert,list,llength,load,lrange,lreplace,lsearch,lsort
-Keywords=msgcat,namespace,open,package,pid,pkg_mkIndex,proc,puts,pwd
-Keywords=re_syntax,read,regexp,registry,regsub,rename,resource,return,scan
-Keywords=seek,set,socket,source,split,string,subst,switch,tclvars,tell,time
-Keywords=trace,unknown,unset,update,uplevel,upvar,variable,vwait,while
-Keywords=::safe::interpCreate,::safe::interpInit,::safe::interpConfigure
-Keywords=::safe::interpDelete,::safe::interpAddToAccessPath
-Keywords=::safe::interpFindInAccessPath,::safe::setLogCmd
+
+# TCL (8.4a1) Specific:
+Keywords=after,append,array,auto_execok,auto_import,auto_load,auto_load_index
+Keywords=auto_mkindex,auto_mkindex_old,auto_qualify,auto_reset,bgerror,binary
+Keywords=break,case,catch,cd,clock,close,concat,continue,dde,encoding,eof
+Keywords=error,eval,exec,exit,expr,fblocked,fconfigure,fcopy,file,fileevent
+Keywords=filename,flush,for,foreach,format,gets,glob,global,history,if,incr
+Keywords=info,interp,join,lappend,library,lindex,linsert,list,llength,load
+Keywords=lrange,lreplace,lsearch,lsort,memory,msgcat,namespace,open,package
+Keywords=parray,pid,pkg_mkIndex,proc,puts,pwd,re_syntax,read,regexp,registry
+Keywords=regsub,rename,resource,return,scan,seek,set,socket,source,split
+Keywords=string,subst,switch,tclvars,tell,time,trace,unknown,unset,update
+Keywords=uplevel,upvar,variable,vwait,while
+Keywords=tcl_endOfWord,tcl_findLibrary,tcl_startOfNextWord
+Keywords=tcl_startOfPreviousWord,tcl_wordBreakAfter,tcl_wordBreakBefore
+Keywords=tclPkgSetup,tclLog,tclMacPkgSearch,tclPkgUnknown,pkg_compareExtension
+Keywords=else,then,elseif
+# Tk (8.4a1) Specific:
+Keywords=bell,bind,bindtags,bitmap,button,canvas,checkbutton,clipboard,colors
+Keywords=cursors,destroy,entry,event,focus,font,frame,grab,grid,image,keysyms
+Keywords=label,listbox,lower,menu,menubutton,message,option,options,pack,
+Keywords=pack-old,photo,place,radiobutton,raise,scale,scrollbar,selection,send
+Keywords=spinbox,text,tk,tk_bindForTraversal,tk_bisque,tk_chooseColor,tk_dialog
+Keywords=tk_focusFollowsMouse,tk_focusNext,tk_focusPrev,tk_getSaveFile
+Keywords=tk_menuBar,tk_messageBox,tk_optionMenu,tk_popup,tk_setPalette,tkerror
+Keywords=tkvars,tkwait,toplevel,winfo,wm,tk_chooseDirectory,tk_getOpenFile
+Keywords=tkButtonAutoInvoke,::safe::loadTk,::safe::InitTk
+# TCL package commands (tell me if I missed any):
 Keywords=::http::config,::http::geturl,::http::formatQuery
 Keywords=::http::reset,::http::wait,::http::status
 Keywords=::http::size,::http::code,::http::data,::http::cleanup
+Keywords=::http::register,::http::unregister,::http::Finish
+Keywords=::http::ncode,::http::error,::http::Connect,::http::Write
+Keywords=::http::Event,::http::CopyStart,http::CopyDone,::http::Eof
+Keywords=::http::mapReply,::http::ProxyRequired
+Keywords=::safe::interpCreate,::safe::interpInit,::safe::interpConfigure
+Keywords=::safe::interpDelete,::safe::interpAddToAccessPath
+Keywords=::safe::interpFindInAccessPath,::safe::setLogCmd
+Keywords=::safe::InterpStatics,InterpStatics,::safe::InterpNested,InterpNested
+Keywords=::safe::CheckInterp,::safe::interpConfigure,::safe::InterpSetConfig
+Keywords=::safe::InterpInit,::safe::AddSubDirs,::safe::SyncAccessPath
+Keywords=::safe::InterpStateName,::safe::IsInterp,::safe::PathToken
+Keywords=::safe::PathListName,::safe::VirtualPathListName
+Keywords=::safe::PathNumberName,::safe::StaticsOkName,::safe::NestedOkName
+Keywords=::safe::Toplevel,::safe::Set,::safe::Lappend,::safe::Unset
+Keywords=::safe::Exists,::safe::GetAccessPath,::safe::StaticsOk
+Keywords=::safe::NestedOk,::safe::DeleteHookName,::safe::TranslatePath
+Keywords=::safe::Log,::safe::CheckFileName,::safe::AliasSource
+Keywords=::safe::AliasLoad,::safe::FileInAccessPath,::safe::Subset
+Keywords=::safe::AliasSubset,::safe::AliasEncoding
+Keywords=::msgcat::mc,::msgcat::mclocale,::msgcat::mcpreferences
+Keywords=::msgcat::mcload,::msgcat::mcset,::msgcat::mcunknown
 Keywords=::tcltest::test,::tcltest::cleanupTests
 Keywords=::tcltest::getMatchingTestFiles,::tcltest::makeFile
 Keywords=::tcltest::removeFile,::tcltest::makeDirectory
 Keywords=::tcltest::removeDirectory,::tcltest::viewFile
 Keywords=::tcltest::normalizeMsg,::tcltest::bytestring,::tcltest::saveState
 Keywords=::tcltest::restoreState,::tcltest::threadReap
-# Tk Specific:
-Keywords=Safe Tk,bell,bind,bindtags,bitmap,button,canvas,checkbutton
-Keywords=clipboard,destroy,entry,event,focus,font,frame,grab,grid,image
-Keywords=label,listbox,loadTk,lower,menu,menubutton,message,option,options
-Keywords=pack,pack-old,photo,place,radiobutton,raise,scale,scrollbar
-Keywords=selection,send,text,tk,tk_bindForTraversal,tk_bisque
-Keywords=tk_chooseColor,tk_dialog,tk_focusFollowsMouse,tk_focusNext
-Keywords=tk_focusPrev,tk_getSaveFile,tk_menuBar,tk_messageBox,tk_optionMenu
-Keywords=tk_popup,tk_setPalette,tkerror,tkvars,tkwait,toplevel,winfo,wm
-Keywords=::safe::loadTk
-# Eggdrop Specific:
+Keywords=::tcltest::DebugPuts,::tcltest::DebugPArray,::tcltest::DebugDo
+Keywords=::tcltest::AddToSkippedBecause,::tcltest::PrintError
+Keywords=::tcltest::initConstraints,::tcltest::PrintUsageInfo
+Keywords=::tcltest::CheckDirectory,::tcltest::normalizePath
+Keywords=::tcltest::MakeAbsolutePath,::tcltest::processCmdLineArgs
+Keywords=::tcltest::loadTestedCommands,::tcltest::getMatchingFiles
+Keywords=::tcltest::openfiles,::tcltest::leakfiles,::tcltest::grep
+Keywords=::tcltest::set_iso8859_1_locale,::tcltest::restore_locale
+Keywords=::tcl::HistAdd,::tcl::HistKeep,::tcl::HistClear,::tcl::HistInfo
+Keywords=::tcl::HistRedo,::tcl::HistIndex,::tcl::HistEvent,::tcl::HistChange
+Keywords=::tcl::OptKeyRegister,::tcl::OptKeyDelete,::tcl::OptParse
+Keywords=::tcl::OptProc,::tcl::OptProcArgGiven,::tcl::OptKeyParse
+Keywords=::tcl::OptCheckType,::tcl::OptKeyError,::tcl::OptError,::tcl::Lempty
+Keywords=::tcl::Lget,::tcl::Lvarset,::tcl::Lvarset1,::tcl::Lvarset1nc
+Keywords=::tcl::Lvarincr,::tcl::Lvarincr1,::tcl::Lfirst,::tcl::Lrest
+Keywords=::tcl::Lvarpop1,::tcl::Lvarpop,::tcl::Lassign,::tcl::SetMax
+Keywords=::tcl::SetMin,::pkg::create
+# [incr Tcl] (8.3.1+) Specific commands:
+Keywords=itcl_info,itcl_class,delete,ensemble,local
+Keywords=body,find,scope,code,configbody,class
+# [incr Tk] (8.0.4) Specific commands:
+Keywords=tkCheckRadioInvoke,tkScrollByPages,tkCheckRadioEnter,tkPostOverPoint
+Keywords=tkTextNextWord,tkMenuNextMenu,tkListboxUpDown,tkMenuDownArrow
+Keywords=tkListboxBeginExtend,tk_textPaste,tkEntryTranspose,tkScaleButtonDown
+Keywords=tkEventMotifBindings,tkButtonLeave,tkMenuMotion,.,tkSaveGrabInfo
+Keywords=tkTextPaste,tkTextResetAnchor,tkTraverseToMenu,tkScaleControlPress
+Keywords=tkScrollButtonUp,tkTextTranspose,tkEntryNextWord,tkScaleActivate
+Keywords=tkListboxBeginSelect,tkTextScrollPages,tkButtonDown,tkMenuRightArrow
+Keywords=tkMenuFirstEntry,tkMenuInvoke,tkScrollButtonDown,tkEntrySeeInsert
+Keywords=tkScrollByUnits,tkFirstMenu,tkEntryInsert,tkMenuLeftArrow
+Keywords=tkEntrySetCursor,tkListboxDataExtend,tkMbMotion,tkCancelRepeat
+Keywords=tkGenerateMenuSelect,tkButtonUp,tkTabToWindow,tkCheckRadioDown
+Keywords=tkMbPost,tkEntryBackspace,tkTextAutoScan,tkScaleIncrement
+Keywords=tkMenuEscape,tkMenuUnpost,tkTextSetCursor,tkMbEnter,tkButtonInvoke
+Keywords=tkMenuButtonDown,tkTraverseWithinMenu,tkTextKeyExtend
+Keywords=tkRestoreOldGrab,tk_textCut,tkScrollToPos,tkScrollButton2Down
+Keywords=tkScaleEndDrag,tkTextPrevPara,tkEntryClosestGap,tkEntryKeySelect
+Keywords=tkEntryPreviousWord,tkTextNextPos,tkEntryMouseSelect,tkEntryAutoScan
+Keywords=tkListboxMotion,tkListboxAutoScan,tkMenuNextEntry,tkEntryButton1
+Keywords=tkTextNextPara,tkTextInsert,tkScreenChanged,tkScrollStartDrag
+Keywords=tkScaleDrag,tkMenuFind,tk_textCopy,tkScrollTopBottom,tkTextKeySelect
+Keywords=tkListboxSelectAll,tkTextSelectTo,tkTextClosestGap,tkTextPrevPos
+Keywords=tkMbLeave,tkScrollDrag,tkButtonEnter,tkScrollEndDrag,tkMenuFindName
+Keywords=tk_menuSetFocus,tkTextUpDownLine,tkTextButton1,tkListboxExtendUpDown
+Keywords=tkListboxBeginToggle,tkMenuLeave,tkListboxCancel,tkMenuUpArrow
+Keywords=tkScaleButton2Down,tkScrollSelect,tkEntryPaste,tkMbButtonUp
+Keywords=tkEntryGetSelection
+# TclX Specific:
+Keywords=auto_load_pkg,commandloop,fork,loop,funlock,cequal,sync,lvarpush
+Keywords=host_info,replicate,lassign,scanmatch,readdir,cconcat,cindex
+Keywords=ftruncate,catclose,try_eval,sleep,keylkeys,cmdtrace,clength,id,nice
+Keywords=crange,lcontain,execl,scancontext,min,max,chroot,fcntl,select,bsearch
+Keywords=umask,profile,kill,lvarcat,keylget,scanfile,signal,tclx_findinit
+Keywords=chown,ccollate,translit,lmatch,keyldel,infox,system,alarm,csubstr,dup
+Keywords=keylset,tclx_load_tndxs,times,catopen,fstat,chmod,lempty,chgrp,wait
+Keywords=ctype,lgets,flock,random,catgets,ctoken,lvarpop,pipe,loadlibindex
+# Expect Specific:
+Keywords=exp_timestamp,exp_getpid,exp_version,debug,expect_background,exp_pid
+Keywords=interact,expect_after,exp_debug,interpreter,exp_inter_return
+Keywords=exp_log_file,send_user,exp_interpreter,exp_system,spawn,exp_continue
+Keywords=strace,disconnect,expect_before,exp_send_user,exp_spawn,exp_sleep
+Keywords=exp_send,exp_remove_nulls,exp_send_log,log_user,parity,exp_wait
+Keywords=overlay,prompt1,send_error,prompt2,getpid,expect_version,exp_send_tty
+Keywords=exp_overlay,exp_exit,exp_stty,expect_tty,match_max,exp_close,exp_trap
+Keywords=exp_match_max,exp_open,exp_fork,inter_return,log_file,exp_interact
+Keywords=expect_user,exp_internal,remove_nulls,send_log,exp_strace
+Keywords=exp_disconnect,expect,send_tty,stty,timestamp,exp_log_user,exp_parity
+Keywords=trap,exp_send_error
+# Eggdrop (1.5.4) TCL Specific:
 Keywords=putserv,puthelp,putquick,putlog,putcmdlog,putxferlog,putloglev
 Keywords=dumpfile,queuesize,clearqueue,countusers,validuser,finduser,userlist
 Keywords=passwdok,getuser,setuser,chnick,chattr,botattr,matchattr
@@ -871,10 +969,9 @@ Keywords=newinvite,stick,unstick,killchanban,killban,killchanexempt
 Keywords=killexempt,killchaninvite,killinvite,isban,ispermban,isexempt
 Keywords=ispermexempt,isinvite,isperminvite,isbansticky,isexemptsticky
 Keywords=isinvitesticky,matchban,matchexempt,matchinvite,banlist,exemptlist
-Keywords=invitelist,newignore,killignore,ignorelist,isignore,save,reload,
-Keywords=backup,getting-users,channel add,channel set,channel info 
-Keywords=channel remove,savechannels,loadchannels,channels,isbotnick
-Keywords=botisop,botisvoice,botonchan,isop,isvoice,onchan,nick2hand
+Keywords=invitelist,newignore,killignore,ignorelist,isignore,save,reload
+Keywords=backup,getting-users,channel,savechannels,loadchannels,channels
+Keywords=isbotnick,botisop,botisvoice,botonchan,isop,isvoice,onchan,nick2hand
 Keywords=handonchan,hand2nick,ischanban,ischanexempt,ischaninvite,chanbans
 Keywords=chanexempts,chaninvites,resetbans,resetexempts,resetinvites,
 Keywords=resetchan,getchanhost,getchanjoin,onchansplit,chanlist,getchanidle
@@ -885,27 +982,88 @@ Keywords=killdcc,bots,botlist,islinked,dccused,dcclist,whom,getdccidle
 Keywords=getdccaway,setdccaway,connect,listen,dccdumpfile,bind,unbind,logfile
 Keywords=maskhost,timer,utimer,timers,utimers,killtimer,killutimer,unixtime
 Keywords=time,duration,strftime,date,ctime,myip,rand,control,sendnote,link
-Keywords=unlink,encrypt,decrypt,encpass,die,unames,matchchanattr
-Keywords=notes,erasenotes,listnotes,storenote
-Keywords=assoc,killassoc
-Keywords=setpwd,getpwd,getfiles,getdirs,dccsend,filesend,setdesc,getdesc
-Keywords=setowner,getowner,setlink,getlink,getfileq,setuploads,getuploads
-Keywords=setdnloads,getdnloads,mkdir,rmdir,mv,cp,getflags,setflags
-# procs found in compat.tcl (an Eggdrop TCL script):
-Keywords=gethosts,addhost,chpass,getxtra,setxtra,setinfo,getinfo,getaddr
-Keywords=setaddr,getdccdir,setdccdir,getcomment,setcomment,getemail,setemail
-Keywords=getchanlaston,time,date
+Keywords=unlink,encrypt,decrypt,encpass,die,unames,matchchanattr,notes
+Keywords=erasenotes,listnotes,storenote,assoc,killassoc,setpwd,getpwd
+Keywords=getfiles,getdirs,dccsend,filesend,setdesc,getdesc,setowner,getowner
+Keywords=setlink,getlink,getfileq,setuploads,getuploads,setdnloads,getdnloads
+Keywords=mkdir,rmdir,mv,cp,getflags,setflags,stickexempt,unstickexempt
+Keywords=stickinvite,unstickinvite,ischanjuped,channame2dname,chandname2name
+Keywords=wasop,setudef,renudef,deludef,md5,compressfile,uncompressfile
+Keywords=iscompressed,putkick,chhandle,fileresend
+# Other Eggdrop TCL commands (undocumented):
+Keywords=putidx,unshare,reloadhelp,putdccraw,dellang,hide
+Keywords=page,loadhelp,unloadhelp,loadmodule,unloadmodule
 # procs found in alltools.tcl (an Eggdrop TCL script):
 Keywords=putmsg,putchan,putnotc,putact,strlwr,strupr,strcmp,stricmp,strlen
 Keywords=stridx,iscommand,timerexists,utimerexists,inchain,randstring
 Keywords=putdccall,putdccbut,killdccall,killdccbut,iso,realtime,testip
-Keywords=number_to_number
-# procs found in moretools.tcl by MC_8 (an Eggdrop TCL script):
+Keywords=number_to_number,isnumber,ispermowner
+# procs found in compat.tcl (an Eggdrop TCL script):
+Keywords=gethosts,addhost,chpass,getxtra,setxtra,setinfo,getinfo,getaddr
+Keywords=setaddr,getdccdir,setdccdir,getcomment,setcomment,getemail
+Keywords=setemail,getchanlaston,time,date
+# procs found in mc.moretools.tcl by MC_8 (an Eggdrop TCL script):
 Keywords=findip,filt,strip:color,strip:bold,strip:uline,strip:reverse
 Keywords=strip:all,lremove,wholetime,dnslookup,llowest,lbiggest,islink
-Keywords=isparty,notice,msg,ctcp,bold,uline,reverse,color
+Keywords=isparty,notice,msg,ctcp,bold,uline,reverse,color,str,findchanuser
+Keywords=masktype,replace,finduserchan,getchanhost2,which
 # procs found in netbots.tcl by slennox (an Eggdrop TCL script):
-Keywords=slindex,stl
+Keywords=slindex,isbotnetnick,stl,nb_randomise,putwrap
+# procs found in..I've no idea where:
+Keywords=boolean,makedir,timesince,timeago
+# The built-in commands to Eggdrop bindings:
+Keywords=*raw:ERROR,*dcc:resetbans,*dcc:unstick,*msg:jump,*dcc:whom,*msg:who
+Keywords=*fil:cancel,*ctcp:ERRMSG,*raw:WALLOPS,*msg:addhost,*dcc:+lang
+Keywords=*dcc:topic,*dcc:noteigns,*msg:notes,*fil:pwd,*bot:notes2
+Keywords=*dcc:adduser,*dcc:unlink,*dcc:help,*msg:seen,*msg:ident,*dcc:bottree
+Keywords=*dcc:+chan,*fil:reget,*dcc:act,*dcc:channel,*dcc:resetinvites
+Keywords=*dcc:chaninfo,*fil:mkdir,*raw:irc:join,*dcc:handle
+Keywords=*dcc:+chrec,*dcc:msg,*chon:notes,*dcc:-host,*dcc:-ignore
+Keywords=*raw:lagcheck:401,*dcc:notes2,*dcc:note,*dcc:traffic,*dcc:-lsec
+Keywords=*raw:MODE,*dcc:store,*raw:irc:mode,*dcc:+ignore,*fil:get,*dcc:whois
+Keywords=*load:irc,*raw:lagcheck:441,*raw:lagcheck:MODE,*dcc:rehelp
+Keywords=*dcc:addlog,*dcc:link,*dcc:deop,*fil:share,*dcc:voice
+Keywords=*raw:lagcheck:478,*dcc:invite,*dcc:binds,*dcc:chanload,*dcc:-invite
+Keywords=*dcc:chhandle,*dcc:status,*dcc:+invite,*raw:KICK,*dcc:comment
+Keywords=*raw:irc:kick,*dcc:server:die,*dcc:+ban,*dcc:clearqueue,*msg:help
+Keywords=*raw:001,*dcc:me,*pub:seen,*dcc:chansave,*dcc:reset,*dcc:language
+Keywords=*load:notes:server,*dcc:kickban,*dcc:chaddr,*dcc:op,*msg:rehash
+Keywords=*fil:quit,*dcc:+host,*raw:PART,*dcc:strip,*dcc:die,*msg:whois
+Keywords=*raw:irc:part,*raw:irc:315,*dcc:+lsec,*dcc:module,*dcc:su
+Keywords=*dcc:page,*raw:irc:331,*raw:irc:332,*dcc:back,*dcc:ldump,*msg:voice
+Keywords=*raw:irc:346,*raw:irc:347,*dcc:debug,*raw:irc:348,*raw:irc:349
+Keywords=*away:notes,*raw:irc:352,*raw:irc:354,*dcc:newpass,*dcc:away
+Keywords=*raw:PONG,*fil:cp,*ctcp:CHAT,*raw:irc:367,*raw:irc:368
+Keywords=*raw:NICK,*dcc:+bot,*dcc:kick,*dcc:info,*raw:irc:nick,*dcc:assoc
+Keywords=*raw:irc:403,*raw:irc:405,*fil:unhide,*dcc:invites,*raw:200
+Keywords=*load:notes:irc,*raw:206,*dcc:motd,*msg:reset,*dcc:-chrec,*dcc:match
+Keywords=*dcc:chanset,*dcc:dump,*raw:irc:invite,*dcc:loadmod,*fil:ln
+Keywords=*dcc:bans,*dcc:say,*msg:die,*fil:ls,*raw:irc:471,*raw:irc:473
+Keywords=*ctcp:ECHO,*raw:irc:474,*raw:251,*raw:irc:475,*chon:channels:chon
+Keywords=*fil:mv,*dcc:set,*load:filesys:server,*raw:303,*ctcp:files:DCC
+Keywords=*fil:rm,*dcc:resetexempts,*dcc:uptime,*raw:318,*dcc:vbottree
+Keywords=*dcc:restart,*dcc:nick,*dcc:dccstat,*fil:rmdir,*raw:QUIT,*dcc:tcl
+Keywords=*ctcp:FINGER,*raw:irc:quit,*raw:346,*raw:348,*link:assoc
+Keywords=*dcc:stick,*raw:irc:msg,*raw:367,*dcc:boot,*dcc:-user,*msg:go
+Keywords=*raw:401,*raw:402,*chon:notes2,*msg:invite,*dcc:unloadmod,*dcc:fwd
+Keywords=*dcc:chat,*dcc:modules,*raw:432,*dcc:-noteign,*raw:433
+Keywords=*raw:irc:notice,*raw:437,*dcc:save,*raw:438,*dcc:bots,*raw:442
+Keywords=*dcc:ignores,*msg:status,*raw:451,*msg:info,*dcc:flush,*msg:op
+Keywords=*raw:482,*msg:memory,*ctcp:TIME,*fil:help,*fil:lsa,*raw:NOTICE
+Keywords=*dcc:quit,*dcc:-ban,*dcc:console,*dcc:files,*dcc:echo,*dcc:relay
+Keywords=*msg:pass,*dcc:chattr,*ctcp:USERINFO,*dcc:reload,*dcc:jump
+Keywords=*dcc:relang,*bot:notes2reply,*ctcp:CLIENTINFO,*fil:pending
+Keywords=*dcc:+user,*nkch:notes,*fil:note,*fil:stats,*dcc:seen
+Keywords=*chon:console:chon,*dcc:chinfo,*raw:irc:topic,*fil:optimise
+Keywords=*dcc:-lang,*dcc:botattr,*dcc:-bot,*ctcp:PING,*dcc:who,*dcc:-exempt
+Keywords=*dcc:banner,*fil:filestats,*dcc:servers,*dcc:-chan,*dcc:lstat
+Keywords=*dcc:notes,*msg:save,*dcc:+exempt,*join:notes,*dcc:resolve
+Keywords=*fil:desc,*fil:chdir,*msg:hello,*dcc:exempts,*dcc:+noteign
+Keywords=*dcc:chpass,*dcc:devoice,*fil:hide,*dcc:trace,*dcc:deluser
+Keywords=*load:server,*raw:PING,*dcc:botinfo,*dcc:backup,*dcc:rehash
+Keywords=*dcc:chnick,*bot:assoc,*dcc:fixcodes,*ctcp:VERSION,*fil:unshare
+Keywords=*raw:irc:324,*fil:cd,*ctcp:server:DCC,*msg:key,*ctcp:transfer:DCC
+Keywords=*raw:PRIVMSG,*dcc:simul
 End
 
 # ----------- TeX, that's really bad!, sorry ---------------
@@ -1282,4 +1440,28 @@ Keywords=typecheck,undefined,undefinedfilename,undefineresource
 Keywords=undefineresult,unmatchedmark,unregistered,VMerror
 Keywords=[,],<<,>>
 End
+
+# ---------------------- Fortran ----------------------
+# Contributed by: Martijn Versteegh <versteegh@kvi.nl>.
+#
+Name=Fortran
+Files=F,f
+Case=0
+EOLComment1=c
+EOLCInFirstCol1=1
+EOLComment2=!
+Symbols1=+-/*=
+Symbols2=(){}[];
+String1="
+String2='
+NoChecknumbers=1
+Escape=\
+Keywords=common,integer,real,logical,character,double,precision,implicit,equivalence,kind
+Keywords=subroutine,parameter,program,include,save,intrinsic
+#flow control
+Keywords=do,end,stop,if,then,else,endif,elseif,goto,continue,call,return,select, case
+#file handling
+Keywords=read,write,format,rewind,open,close,print
+End
+#---------- end of fortran shl definition -----------------------
 
