@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-11-12 11:53
+# 2003-12-09 13:38
 #
 
 libsettv$(ExLIB):: \
@@ -104,9 +104,9 @@ obj/dktclock$(ExOBJ):: dktclock.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fileopen$(ExOBJ):: fileopen.cc \
-	cl/unistd.h \
-	compatlayer.h \
+	$(MP3_PREV_DIR)/settvuti/fileopen.cc \
 	fileopen.h \
+	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/button.h \
@@ -156,16 +156,21 @@ obj/fileopen$(ExOBJ):: fileopen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
-	compatlayer.h \
+	$(MP3_PREV_DIR)/settvuti/fiopeaid.cc \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
 	settvuti.h \
+	compatlayer.h \
 	tv.h \
+	tv/app.h \
+	tv/applictn.h \
 	tv/configtv.h \
+	tv/desktop.h \
 	tv/dialog.h \
 	tv/dialogs.h \
 	tv/drawbuf.h \
+	tv/event.h \
 	tv/filedlg.h \
 	tv/fpbase.h \
 	tv/fpstream.h \
@@ -177,6 +182,7 @@ obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
 	tv/objects.h \
 	tv/opstream.h \
 	tv/point.h \
+	tv/program.h \
 	tv/pstream.h \
 	tv/rect.h \
 	tv/stddlg.h \
