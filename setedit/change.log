@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.479  2003/12/09 16:09:31  set
+* Fixed: The new code needed a conditional to avoid ridiculous small sizes.
+
 Revision 1.478  2003/12/09 16:07:51  set
 * Added: "File open" dialogs remmembers its size and position. Each kind of
 dialog have its own values, so open and save as are independent. I know it

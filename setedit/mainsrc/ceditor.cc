@@ -13043,7 +13043,6 @@ Boolean TCEditor::saveAs(Boolean Unix)
     revertToReadOnly=True;
    }
  Boolean res=False;
- int revertName=fileName[0]==EOS;
  char *oldName=0;
 
  oldName=strdup(fileName);
@@ -13054,8 +13053,8 @@ Boolean TCEditor::saveAs(Boolean Unix)
        // If the user is trying to save the same file in UNIX format let do it
        if (editorDialog(edFileExists,fileName,Unix && strcmp(oldName,fileName)==0)!=cmYes)
          {
-          if (revertName)
-             fileName[0]=EOS;
+          strcpy(fileName,oldName);
+          free(oldName);
           return False;
          }
       }

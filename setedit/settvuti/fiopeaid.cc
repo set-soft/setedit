@@ -17,8 +17,6 @@ the same time. To avoid overheads the buffers are dynamically allocated.
 #define Uses_stdlib
 #define Uses_limits
 
-#define Uses_stdio // remove me
-
 #define Uses_FileOpenAid
 #define Uses_TFileDialog   // For the buttons' constants
 #define Uses_fpstream      // To save/load the dirs
