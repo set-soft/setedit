@@ -256,13 +256,15 @@ struct stUndoInsert
 };
 
 const int
-      undoSelHided=1,
-      undoModified=2,
-      undoSelHidedF=4,
-      undoModifiedF=8,
-      undoOverWriteF=16,
-      undoOverWrite=32,
-      undoLineInEd=64;
+      undoSelHided    =0x001,
+      undoModified    =0x002,
+      undoSelHidedF   =0x004,
+      undoModifiedF   =0x008,
+      undoOverWriteF  =0x010,
+      undoOverWrite   =0x020,
+      undoLineInEd    =0x040,
+      undoSelRecHided =0x080,
+      undoSelRecHidedF=0x100;
 /************************* End of UNDO types and constants *****************/
 
 // ***************** Various Structures

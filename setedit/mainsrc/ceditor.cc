@@ -3540,7 +3540,7 @@ void TCEditor::CommentUnIndent()
 
  // How many lines?
  unsigned Lines,PosAux,y;
- for (Lines=0,y=curPos.y,PosAux=Pos; PosAux<selEnd;)
+ for (Lines=0,y=curPos.y,PosAux=Pos; PosAux<selEnd-1;)
     {
      PosAux+=lenLines[y++];
      Lines++;
@@ -3553,7 +3553,7 @@ void TCEditor::CommentUnIndent()
  // Mark the end of the rectangular block
  FillUndoForRectangularStartEnd(undoRectEnd);
  Xr2=l+1;
- Yr2=curPos.y+Lines;
+ Yr2=curPos.y+Lines-1;
  // Delete the rectangle
  selRectDelete(Xr1,Yr1,Xr2,Yr2);
  updateRectCommands();
@@ -11222,6 +11222,12 @@ void TCEditor::undoOneAction()
        selHided=newBool;
        update(ufView);
       }
+    newBool=((un.Flags & undoSelRecHided)!=0) ? True : False;
+    if (newBool!=selRectHided)
+      {
+       selRectHided=newBool;
+       update(ufView);
+      }
     if (IslineInEdition)
       {
        selNewStart=un.selStart;
@@ -11424,6 +11430,12 @@ void TCEditor::redo(void)
        selHided=newBool;
        update(ufView);
       }
+    newBool=((un.Flags & undoSelRecHidedF)!=0) ? True : False;
+    if (newBool!=selRectHided)
+      {
+       selRectHided=newBool;
+       update(ufView);
+      }
     if (overwrite!=(((un.Flags & undoOverWriteF)!=0) ? True : False))
        toggleInsMode(False);
 
@@ -11472,9 +11484,10 @@ void TCEditor::UndoSaveFinalState(UndoCell &un)
     un.selStartf=selStart;
     un.selEndf=selEnd;
    }
- if (selHided)  un.Flags|=undoSelHidedF;
- if (modified)  un.Flags|=undoModifiedF;
- if (overwrite) un.Flags|=undoOverWriteF;
+ if (selHided)        un.Flags|=undoSelHidedF;
+ if (selRectHided)    un.Flags|=undoSelRecHidedF;
+ if (modified)        un.Flags|=undoModifiedF;
+ if (overwrite)       un.Flags|=undoOverWriteF;
  if (IslineInEdition) un.Flags|=undoLineInEd;
 }
 
@@ -11507,9 +11520,10 @@ void TCEditor::UndoSaveStartState(UndoCell &un)
     un.selEnd=selEnd;
    }
  un.Flags=0;
- if (selHided)  un.Flags|=undoSelHided;
- if (modified)  un.Flags|=undoModified;
- if (overwrite) un.Flags|=undoOverWrite;
+ if (selHided)        un.Flags|=undoSelHided;
+ if (selRectHided)    un.Flags|=undoSelRecHided;
+ if (modified)        un.Flags|=undoModified;
+ if (overwrite)       un.Flags|=undoOverWrite;
  if (IslineInEdition) un.Flags|=undoLineInEd;
 }
 
