@@ -90,7 +90,15 @@ sub PatchFile
           else
             { # Single line
              $repl="^$name"."=(.*)";
-             if (($r =~ /$repl/m) && ($1 ne $value))
+             #FIXME: Ivan: I had to change the below IF because for example
+	     #SUPPORT_INC could appear more than one time in the same .mak
+	     #and we need to change it multiple times, maybe the first time
+	     #it has the same value but the second time it has a different
+	     #one, and this only checks the first time it appears, so I just
+	     #avoided the check. Someone with good knowledge of Perl has to
+	     #fix this The Good Way TM.
+	     #if (($r =~ /$repl/m) && ($1 ne $value))
+             if ($r =~ /$repl/m)
                {
                 $r =~ s/$repl/$name=$value/mg;
                 print '+';

@@ -130,6 +130,14 @@ int GZFiles_SimpleCopy(char *dest, char *orig)
 }
 
 #ifdef HAVE_BZIP2
+#ifdef HAVE_BZIP2PRE1
+#define BZ2_bzReadOpen bzReadOpen
+#define BZ2_bzReadClose bzReadClose
+#define BZ2_bzRead bzRead
+#define BZ2_bzWriteOpen bzWriteOpen
+#define BZ2_bzWriteClose bzWriteClose
+#define BZ2_bzWrite bzWrite
+#endif
 static
 int GZFiles_ExpandBZ2(char *dest, char *orig)
 {
@@ -379,5 +387,4 @@ size_t TGZFileWrite::write(void *buffer, size_t len)
    }
  return ret;
 }
-
 
