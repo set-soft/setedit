@@ -1,3 +1,31 @@
+setedit (0.5.4-1) unstable; urgency=low
+
+  * New upstream version!!!
+  * Based on CVS version 1.617 2004/09/24 18:59:51.
+  * Baurjan Ismagulov didn't updated this changelog to mention that he added a
+    libset-dev package, so I mention it here; it is useful to build RHIDE.
+    Thanks Baurjan for your work!
+    Note: this package must be improved, I think that the aproach should be
+    the same as rhtvision having the version in the package name and
+    conflicting with a virtual package, and I think that the upstream has a
+    configure option to build it so we must investigate and maybe improve it
+    to suit our needs, also the generated libs are huge so maybe there is
+    something that we are doing wrong; for this reasons I will not upload
+    this package yet.
+  * Standards compliance with Policy version 3.6.1.0, no changes.
+  * The new version of the editor has support for debugging programs with GDB
+    using a library done by Salvador called libmigdb, though it doesn't come
+    in the same CVS module as the editor, Salvador says it will come in the
+    tarball and the editor will use it. I didn't test it for this version but
+    I will and then I will upload packages with debugging support included.
+  * Don't Build-Depend on the rhtvision-dev virtual package, instead depend
+    on the required version since thats the reality.
+  * Remove on clean: gettext/Makefile, libbzip2/Makefile, libpcre/Makefile,
+    libz/Makefile, makes/rhide.env, mp3/libamp/rhide.env,
+    mp3/mpegsound/rhide.env.
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Mon, 27 Sep 2004 22:57:35 -0200
+
 setedit (0.5.4-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts

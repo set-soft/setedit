@@ -2,8 +2,8 @@ Source: setedit
 Section: editors
 Priority: optional
 Maintainer: Ivan Baldo <ibaldo@adinet.com.uy>
-Build-Depends: perl | perl5, rhtvision-dev, gzip, tar, debhelper (>=2.0.54), libpcre3-dev | libpcre2-dev, libz-dev, libbz2-dev, texinfo, gettext, xlibs-dev | xlib6g-dev, libncurses-dev, aalib1-dev
-Standards-Version: 3.5.8.0
+Build-Depends: perl | perl5, rhtvision2.0.3-dev, gzip, tar, debhelper (>=2.0.54), libpcre3-dev | libpcre2-dev, libz-dev, libbz2-dev, texinfo, gettext, xlibs-dev | xlib6g-dev, libncurses-dev, aalib1-dev
+Standards-Version: 3.6.1.0
 
 Package: setedit
 Section: editors
@@ -46,8 +46,10 @@ Package: libset-dev
 Section: libdevel
 Architecture: any
 Description: SET's libset - An editor library
- SET's libset is a library providing the editor functionality. At the
- moment, only static version is shipped.
+ SET's libset is a library providing the SET's Editor functionality, it is
+ used to build RHIDE but maybe in the future can be used by other projects.
+ At the moment, only static version is shipped, because upstream doesn't care
+ about sonames and versions as to be able to ship a shared version.
  .
  THIS IS NOT A DEBIAN OFFICIAL PACKAGE AND IS NOT PART OF THE OFFICIAL
  DEBIAN DISTRIBUTION.

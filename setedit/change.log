@@ -1,4 +1,15 @@
 $Log$
+Revision 1.620  2004/10/02 20:51:23  set
+* Fixed: [Config][Darwin] Wrong TV dynamic lib search. My previous tries
+worked because I had .so files in this system ;-)
+* Added: [Config][SuSE 8] AA lib detection to try using C++ because we need
+to include the header in a C++ file an 1.2 have a bug that prevents it.
+* Fixed: [Install][UNIX] The REMOVE_UNNEEDED neede +x, now is just included
+* Fixed: [Compilation][SuSE] SuSE SLES 8 defines _GNU_SOURCE in the command
+line!!
+* Fixed: [Compilation] A couple of ambiguous casts when compiling for
+systems with 64 bits pointers (debug.cc, seen on AMD64).
+
 Revision 1.619  2004/10/01 21:33:26  set
 * Fixed: [Config] MP3 support must be disabled for any OS different than
 DOS, Linux and Solaris. In this way the user doesn't need to disable it

@@ -42,7 +42,9 @@ clean: clean-debian debianbackup.tar
 # FIXME: ask upstream about adding the next files to his clean target:
 	rm -f internac/fix.exe internac/gr.po internac/po_list \
 		internac/getcolors.exe internac/potfiles.po internac/de.mo \
-		internac/es.mo holidays/Makefile redhat/setedit-*.*.spec
+		internac/es.mo holidays/Makefile redhat/setedit-*.*.spec \
+		gettext/Makefile libbzip2/Makefile libpcre/Makefile libz/Makefile \
+		makes/rhide.env mp3/libamp/rhide.env mp3/mpegsound/rhide.env
 # Don't delete this files (they are on the tarball but not on CVS):
 #		doc/Makefile internac/Makefile
 
