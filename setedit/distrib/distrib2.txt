@@ -2,59 +2,68 @@ That's the announcement that I released the SET's editor v@@v@@:
 
 What's SET's editor?
 
-  Is the same editor you can find inside RHIDE but without the IDE itself,
-as it's the last version have more features (and bugs?, I hope it have
-less ;-), seriously, I killed a huge number of bugs most small but some very
-annoying).
-  For the people that doesn't know about RHIDE:
-  Is an editor specially designed for C/C++ programmers, but suitable to edit
-any kind of text file.
+  SETEdit or setedit or SET's editor is a text mode oriented text editor
+with the look & feel of the old Borland's IDE. It have windows that can be
+overlapped, common widgets (buttons, menues, check and radio buttons,
+etc.), mouse support and old the funny things you usually find in a GUI
+editor (even when all is in text mode).
+  The editor is mainly oriented for programmers because it have tons of
+tools that helps writing programs, specially C/C++, but suitable to edit
+any kind of text file. In fact the code page and fonts handling options
+make it very suitable to edit text in different encodings and convert it
+back and forth from one encoding to another. Some nice widgets like
+graphical screen savers and MP3 player also makes the editor a funny
+environment.
+  For those who know about RHIDE: setedit is the same editor you can find
+inside RHIDE but without the IDE itself, as it's the last version have more
+features (and bugs?, I hope it have less ;-), seriously, I killed a huge
+number of bugs most small but some very annoying).
+  Is also true that some features takes a lot of time to be incorporated to
+RHIDE or just won't be incorporated to RHIDE at all. The standalone editor
+is also very suitable to be used for the parts of your project that are
+handled with makefiles.
 
 Main features:
 * Easy to use for DOS users because have a lot of CUA and Wordstar commands
 used in the editors of other compilers.
 * Full configurable keyboard.
-* Full configurable menu (OS dependent features and macros in menues (new)).
+* Full configurable menu (OS dependent features and macros in menues).
 * Advanced features: Rectangular blocks, intelligent indent, configurable
 syntax highlight and more.
 * Simple macro language, will be expanded only if the people is interested
-and helps a bit (which starting to happend).
+and helps a bit (which is starting to happend).
 * PMacros for fast writing.
 * Real macros.
 * Documentation tool for libraries or large projects.
 * Fonts, code pages, screen modes and palette customization.
 * You can run make or grep from the editor collecting the errors/hints.
 * Clock and screen saver.
-* Linux version.
+* Linux and Win32 versions.
 
 Why I could want to download it if RHIDE exists?
 
   The editor is the newest version v@@v@@ and have a lot of differences with
 the one included in RHIDE 1.4 (v0.3.6). Attention! Robert released a new
-beta of RHIDE (1.4.7) containing the editor v0.4.17. And Andris released
-another beta (1.4.7.4) using v0.4.39.
+beta of RHIDE (1.4.9) containing one of the newest editors.
   Here are some of the reasons you could have:
 
 1) You like the editor and want to use it without needing to start the whole
 IDE. The editor have a half of the size of RHIDE mainly because GDB isn't
 inside of the editor. I use my editor to edit all the files I create ;-).
 2) You are a RHIDE fanatic and want to test the new features or check if
-some bug was killed. I specially recommend it for people that have problems
-with the bugs in "Optimal fill" and for the ones who wants to see macros or
-word wrap in RHIDE.
+some bug was killed.
 3) You are a djgpp fanatic and want to collect anything made with djgpp (I'm
 one of these crazy mans ;-).
 4) You don't like RHIDE at all, you think it sucks, but you think you can
 help to make it a really good thing.
 
-Note: Actually Robert is working to incorporate it to RHIDE. But so slowly
 ...
 
 Ok, where can I get it?
 
- http://www.geocities.com/set-soft/setedit.html
+ http://setedit.sourceforge.net/
 
-(DOS/Linux sources/binaries are available from this page).
+(DOS/Linux/Win32 sources/binaries/cvs are available from this page).
 
 ---------------------------------------------------------------------------
 
