@@ -530,39 +530,81 @@ Keywords=wantarray,warn,while,write,x,xor,y
 End
 
 
-# ---------------- 8051 asm ----------------
+# ---------------------------- 8051 asm ------------------------------------
 #
 # Contributed by Alex Lozano <alex@inti.gov.ar>
+# Keil A51 (8 bit) and A251 (16 bit) assembler for 8x51/52 and MCS 251
+# Extracted from the Keil A51/A251 User's Guide version 04.95
+# This replace the former 8051 Syntax Highlight definition
+# Compatible with the 'ASM51' CrossAssembler (freeware Version) by MetaLink
 #
 Name=8x51 asm
-Files=a51
-OpenComment1=/*
-CloseComment1=*/
+Files=a51,inc
+EmacsModes=Asm51,Asm251
+Pmacros=asm51.pmc
+Preprocessor=$
 EOLComment1=;
-EOLComment2=//
-HexMarker=0x
-Symbols1=!$%&(),-./:<>?[]
+Escape=\
+Symbols1=-+*/=
+Symbols2=#@!$%&(),.:<>?[]
 String1='"
 AllowedInsideNames=.
 NoCheckNumbers=1
-# Instruction set
-Keywords=add,addc,subb,inc,dec,mul,div,da,anl,orl,xrl,clr,cpl,rl,rlc,rr,rrc
-Keywords=swap,mov,movc,movx,push,pop,xch,xchd,clr,setb,nop,ajmp,cjne,djnz,jb
-Keywords=jbc,jc,jmp,jnb,jnc,jnz,jz,ljmp,sjmp,acalllcall,ret,reti,jmp,cal
-# Franklin compiler reserved words
-Keywords=a,ab,ac,acc,and,ar0,ar1,ar2,ar3,ar4,ar5,ar6,ar7,b,bit,bseg,c,code
-Keywords=cseg,cy,data,db,dbit,dph,dpl,dptr,ds,dseg,dw,ea,end,endm,eq,equ,es
-Keywords=et0,et1,ex0,ex1,exitm,extrn,f0,gt,gte,high,idata,ie,ie0,ie1,int0,int1
-Keywords=irp,irpc,iseg,it0,it1,local,low,lt,lte,macro,mode,name,ne,not,or,org
-Keywords=ov,p,p0,p1,p2,p3,pc,ps,psw,pt0,pt1,public,px0,px1,r0,r1,r2,r3,r4,r5
-Keywords=r6,r7,rb8,rd,ren,rept,ri,rs0,rs1,rseg,rxd,sbuf,scon,segment,set,shl
-Keywords=shr,sm0,sm1,sm2,sp,t0,t1,tb8,tcon,tf0,tf1,th0,th1,ti,tl0,tl1,tmod
-Keywords=tr0,tr1,txd,using,wr,xdata,xor,xseg
-# Bit addressing
+# HexMarker only valid for A251 Assembler
+HexMarker=0x
+# A51, A251 Reserved Words
+Keywords=a,ab,and,ar0,ar1,ar2,ar3,ar4,ar5,ar6,ar7,at,bit,bitaddressable,block
+Keywords=bseg,byte,byte0,byte1,byte2,byte3,c,call,code,const,cseg,data,db,dbit
+Keywords=dd,dptr,dr0,dr12,dr16,dr20,dr24,dr28,dr4,dr56,dr60,dr8,ds,dsb,dsd
+Keywords=dseg,dsw,dw,dword,ebit,ebitaddressable,ecode,edata,else,elseif,end
+Keywords=endif,endm,endp,eq,equ,even,exitm,extern,extrn,far,ge,gt,hconst
+Keywords=hdata,high,idata,if,inblock,inpage,inseg,irp,irpc,iseg,label,le,lit
+Keywords=local,low,lt,macro,mod,h,name,nconst,ne,near,not,nul,number,offs,or
+Keywords=org,overlayable,page,pc,proc,public,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9
+Keywords=r10,r11,r12,r13,r14,r15,rept,rseg,seg,segment,set,shl,shr,unit,using
+Keywords=word,word0,word2,wr0,wr2,wr4,wr6,wr8,wr10,wr12,wr14,wr16,wr18,wr20
+Keywords=wr22,wr24,wr26,wr28,wr30,xdata,xor,xseg
+# 8051 Instruction Set
+Keywords=acall,add,addc,ajmp,anl,cjne,clr,cmp,cpl,da,dec,div,djnz,inc,jb,jbc
+Keywords=jc,jmp,jnb,jnc,jnz,jz,lcall,ljmp,mov,movc,movx,mul,nop,orl,pop
+Keywords=push,ret,reti,rl,rlc,rr,rrc,setb,sjmp,subb,swap,xch,xchd,xrl
+# MCS 251 added Instruction Set
+Keywords=ecall,ejmp,eret,je,jg,jle,jne,jsg,jsge,jsl,jsle,movh,movs,movz,
+Keywords=sll,sra,srl,sub
+# ***** Special Function Registers *****
+# BYTE Registers:
+Keywords=P0,P1,P2,P3,PSW,ACC,B,SP,DPL,DPH,PCON,TCON,TMOD,TL0,TL1,TH0,TH1,IE,IP      DATA    0B8H
+Keywords=SCON,SBUF
+# 8052 Extensions
+Keywords=T2CON,RCAP2L,RCAP2H,TL2,TH2
+# MCS 251 Extensions
+Keywords=
+# BIT Registers:
+# PSW
+Keywords=CY,AC,F0,RS1,RS0,OV,P
+# TCON
+Keywords=TF1,TR1,TF0,TR0,IE1,IT1,IE0,IT0,IE,ET1,EX1,ET0,EX0
+# IP
+Keywords=PS,PT1,PX1,PT0,PX0
+# IE
+Keywords=EA,ET2,ES,ET1,EX1,ET0,EX0
+# P3
+Keywords=RD,WR,T1,T0,INT1,INT0,TXD,RXD
+# SCON
+Keywords=SM0,SM1,SM2,REN,TB8,RB8,TI,RI
+# P1 (8052 only)
+Keywords=T2EX,T2
+# T2CON (8052 only)
+Keywords=TF2,EXF2,RCLK,TCLK,EXEN2,TR2,C_T2,CP_RL2
+#  Port Bits addressing
 Keywords=p0.0,p0.1,p0.2,p0.3,p0.4,p0.5,p0.6,p0.7
 Keywords=p1.0,p1.1,p1.2,p1.3,p1.4,p1.5,p1.6,p1.7
 Keywords=p2.0,p2.1,p2.2,p2.3,p2.4,p2.5,p2.6,p2.7
 Keywords=p3.0,p3.1,p3.2,p3.3,p3.4,p3.5,p3.6,p3.7
+#  PSW Bits addressing
+Keywords=psw.0,psw.1,psw.2,psw.3,psw.4,psw.5,psw.6,psw.7
+#  ACC Bits addressing
+Keywords=acc.0,acc.1,acc.2,acc.3,acc.4,acc.5,acc.6,acc.7
 End
 
 # --------------------------- JAVA files ---------------------------

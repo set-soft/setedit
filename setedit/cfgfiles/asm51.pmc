@@ -1,0 +1,96 @@
+; Macros designed for 8x51 assembler files 
+; by Alex Lozano
+
+
+Trigger: "i("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: if plus else
+ "$IF (@0)\n"
+ "$ELSE (@1)\n"
+ "$ENDIF"
+
+Trigger: "I("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: if, no else
+ "$IF (@0)\n"
+ "$ENDIF"
+
+Trigger: "m("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Macro
+ "@0\tMACRO\t@1\n"
+ "ENDM"
+
+Trigger: ".b"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: BSEG
+ "BSEG\tAT\t@0\n"
+
+Trigger: ".c"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: CSEG
+ "CSEG\tAT\t@0\n"
+
+Trigger: ".d"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: DSEG
+ "DSEG\tAT\t@0\n"
+
+Trigger: ".i"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: ISEG
+ "ISEG\tAT\t@0\n"
+
+Trigger: ".r"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: RSEG
+ "RSEG\tSEGMENT\t@0\n"
+
+Trigger: ".s"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: SEGMENT
+ "@0\tSEGMENT\t@1\n"
+
+Trigger: ".x"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: XSEG
+ "XSEG\tAT\t@0\n"
+
+Trigger: "ex"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Extern
+ "EXTRN\t@0 (@1)"
+
+Trigger: "pu"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Public
+ "PUBLIC\t@0,"
+
+Trigger: "us"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: USING
+ "USING\t@0"
+
+Trigger: "#i"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Include
+ "$include (@0.inc)"
+
+Trigger: "#t"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Title
+ "$TT (@0)"
+
+Trigger: "/*"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Function comment
+"/*****************************************************************************\n"
+"\n"
+"    Function: @0\n"
+"\n"
+    "Description: @1\n"
+    "Parameters: @2\n"
+    "Return: @3\n"
+"\n"
+"\b*****************************************************************************/\n"
+"\n"

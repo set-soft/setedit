@@ -7,6 +7,7 @@ calcu/parserbr.c
 calcu/parserml.c
 *calcu/parser.txt
 calcu/small.c
+cfgfiles/asm51.pmc
 *cfgfiles/clippmac.pmc
 *cfgfiles/cpmacros.pmc
 *cfgfiles/editor.tip
