@@ -26,6 +26,8 @@ build-stamp: debianbackup.tar
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" ./configure \
 		--prefix=$(shell pwd)/debian/tmp/usr --fhs --no-comp-exe
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE)
+# Compile libset:
+	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -C makes libset
 	touch build-stamp
 
 
@@ -60,7 +62,7 @@ debianbackup.tar:
 # Backup upstream provided regenerated files:
 	-tar -cf debianbackup.tar --files-from=debian/files_to_backup
 
-	
+
 # Copy needed files to the temporary directories for the packages:
 install: build
 	dh_testdir
@@ -82,6 +84,14 @@ install: build
 	cp debian/tmp/usr/share/info/infview.info.gz debian/infview/usr/share/info/infview.info.gz
 	cp debian/README.debian \
 		debian/infview/usr/share/doc/infview/README.Debian
+# Install libset files:
+	mkdir -p debian/libset-dev/usr/include/setedit \
+		debian/libset-dev/usr/lib
+# XXX: Determine which ones are really needed.
+	find . -name \*.h \
+		|xargs tar c \
+		|tar xC debian/libset-dev/usr/include/setedit
+	cp makes/libset.a debian/libset-dev/usr/lib
 
 
 # Build the packages for a specific architecture:
@@ -97,8 +107,9 @@ binary-arch: build install
 #	dh_installcron
 #	dh_installmanpages
 #	dh_undocumented e.1 setedit.1
-	dh_installchangelogs 
-	dh_strip
+	dh_installchangelogs
+# XXX: dh_strip fails to strip libset.a, don't know why.
+	dh_strip -Xlibset.a
 	dh_compress
 	dh_fixperms
 	chmod 4755 debian/tmp/usr/bin/setedit
@@ -107,6 +118,7 @@ binary-arch: build install
 	dh_shlibdeps
 	dh_gencontrol -p setedit
 	dh_gencontrol -p infview -- -v$$(cat infview/version.txt)-$$(cat version.txt)-$$(head -n1 debian/changelog | sed 's/.* (.*-//' | sed 's/) .*//')
+	dh_gencontrol -p libset-dev
 #	dh_makeshlibs  This is for libraries.
 	dh_md5sums
 	dh_builddeb
@@ -123,4 +135,3 @@ source diff:
 binary: binary-indep binary-arch
 
 .PHONY: build clean binary-indep binary-arch binary clean-debian
-

@@ -42,3 +42,12 @@ Description: SET's InfoViewer - An info documentation browser
  THIS IS NOT A DEBIAN OFFICIAL PACKAGE AND IS NOT PART OF THE OFFICIAL
  DEBIAN DISTRIBUTION.
  
+Package: libset-dev
+Section: libdevel
+Architecture: any
+Description: SET's libset - An editor library
+ SET's libset is a library providing the editor functionality. At the
+ moment, only static version is shipped.
+ .
+ THIS IS NOT A DEBIAN OFFICIAL PACKAGE AND IS NOT PART OF THE OFFICIAL
+ DEBIAN DISTRIBUTION.
