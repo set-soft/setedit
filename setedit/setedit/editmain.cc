@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -1921,7 +1921,7 @@ void ParseCommandLine(int argc, char *argv[])
             TScreen::suspend();
             #define PrintHelp(a) printf(a)
             #define FlushHelp()  fflush(stdout)
-            PrintHelp(_("Setedit "TCEDITOR_VERSION_STR". Copyright (c) 1996-2001 by Salvador E. Tropea\n\n"));
+            PrintHelp(_("Setedit "TCEDITOR_VERSION_STR". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
             PrintHelp(_("setedit [options] [file_name ...]\n\n"));
             PrintHelp(_("Valid options are:\n"));
             PrintHelp(_("+[line number]           jumps to the specified line. It only affects the next\n"
