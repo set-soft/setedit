@@ -486,8 +486,8 @@ report that like a bug. That is the way it works!
 @titem3{Autoindent mode on/off,cmcIndentMode,^O}
 @titem3{Find place marker,cmcGotoMarkn,^Q n*}
 @titem3{Set marker,cmcPutMarkn,^K n*}
-@titem3{Search for { from where the cursor is,cmcSearchStart,^[}
-@titem3{Search for } from where the cursor is,cmcSearchEnd,^]}
+@titem3{Search for open curly bracket from where the cursor is,cmcSearchStart,^[}
+@titem3{Search for close curly bracket from where the cursor is,cmcSearchEnd,^]}
 @titem3{Search for ( from where the cursor is,cmcSearchOpPar,Shift+^9}
 @titem3{Search for ) from where the cursor is,cmcSearchClPar,Shift+^0}
 @titem3{Search for [ from where the cursor is,cmcSearchOpCor,Shift+^[}
