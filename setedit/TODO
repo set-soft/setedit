@@ -1,4 +1,5 @@
 That's a list of things to do in the project:
 
+* Use cwsdpmi for DOS installer, not pmodedj.
 * Fix problems with the code pages in Windows versions. Reference report:
 0001.txt.

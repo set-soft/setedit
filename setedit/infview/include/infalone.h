@@ -53,7 +53,6 @@ protected:
     int curCodePage;
 };
 
-extern TEditWindow *clipWindow;
 extern void SyntaxSearch(void);
 
 ushort execDialog( TDialog *d, void *data );

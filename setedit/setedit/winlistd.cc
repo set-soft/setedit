@@ -32,7 +32,6 @@
 
 TView *setFocusTo;
 Boolean focusChanged;
-TEditorCollection *edHelper=NULL;
 
 class TListWindowsDiag : public TDialog
 {
@@ -54,7 +53,7 @@ void TListWindowsDiag::handleEvent(TEvent &event)
  if (event.what==evCommand || event.what==evBroadcast)
    {
     ccIndex pos = tl->focused;
-    TDskWin *obj = (TDskWin *)(edHelper->at(pos));
+    TDskWin *obj = (TDskWin *)(TSetEditorApp::edHelper->at(pos));
  
     switch( event.message.command )
       {
@@ -62,13 +61,13 @@ void TListWindowsDiag::handleEvent(TEvent &event)
        case cmGo:
             if (obj->GoAction(pos))
                delete obj;
-            tl->setRange(edHelper->getCount());
+            tl->setRange(TSetEditorApp::edHelper->getCount());
             break;
  
        case cmDelete:
             if (obj->DeleteAction(pos,False))
                delete obj;
-            tl->setRange(edHelper->getCount());
+            tl->setRange(TSetEditorApp::edHelper->getCount());
             break;
  
        case cmInsert:
@@ -82,7 +81,7 @@ void TListWindowsDiag::handleEvent(TEvent &event)
                  {
                   if (obj->DeleteAction(pos,True))
                      delete obj;
-                  tl->setRange(edHelper->getCount());
+                  tl->setRange(TSetEditorApp::edHelper->getCount());
                  }
                else
                  {
@@ -130,7 +129,7 @@ void BringListOfWindows(void)
  delete col;
 
  TListBoxRec box;
- box.items=edHelper;
+ box.items=TSetEditorApp::edHelper;
  box.selection=0;
  d->setData(&box);
 

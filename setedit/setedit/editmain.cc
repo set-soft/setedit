@@ -41,6 +41,7 @@
 #define Uses_ctype
 #define Uses_unistd
 #define Uses_ProgBar  // Needed for recoding stuff only!
+#define Uses_TVConfigFile
 #ifndef SECompf_djgpp
  #define Uses_TGKey
 #endif
@@ -104,10 +105,10 @@ void SLPInterfaceDeInit(void);
 // RHTV setting
 extern void setIntenseState(void);
 
-extern TEditorCollection *edHelper;
-
 // That's the manager for InfView, we don't worry about the viewer all is handled by it
-TDskWinHelp *TSetEditorApp::InfManager=NULL;
+TDskWinHelp       *TSetEditorApp::InfManager=NULL;
+TEditorCollection *TSetEditorApp::edHelper=NULL;
+TCEditWindow      *TSetEditorApp::clipWindow=NULL;
 // For the tricky context latch
 int      TSetEditorApp::helpRequest=0;
 ushort   TSetEditorApp::helpCtxRequested=0;
@@ -148,7 +149,6 @@ TStringCollection *UserWords;
 TStringCollection *PascalRWords;
 TStringCollection *ClipperRWords;
 #endif
-extern TCEditWindow *clipWindow;
 static int StdErrOri=STDERR_FILENO,StdErrNew=-1;
 static char *TemporalStdErr=0;
 
@@ -550,8 +550,8 @@ void TSetEditorApp::cascade()
 
 void CopyHelp2Clip(char *b, long l)
 {
- if (clipWindow)
-    clipWindow->editor->insertBuffer( b,0,(unsigned)l,False,True);
+ if (TSetEditorApp::clipWindow)
+    TSetEditorApp::clipWindow->editor->insertBuffer( b,0,(unsigned)l,False,True);
 }
 
 static
@@ -1056,16 +1056,16 @@ char DumpStartName[]="\n\n>>>>>>>>>>>>>>\n";
 
 void DumpEditors(void)
 {
- if (edHelper)
+ if (TSetEditorApp::edHelper)
    {
-    int c=edHelper->Editors;
+    int c=TSetEditorApp::edHelper->Editors;
     if (c>0 && c<100)
       {
        int i;
        TDskWinEditor *st;
        for (i=0; i<c; i++)
           {
-           st=(TDskWinEditor *)(edHelper->at(i));
+           st=(TDskWinEditor *)(TSetEditorApp::edHelper->at(i));
            if (st)
              {
               TCEditWindow *edw=st->edw;
@@ -1158,13 +1158,13 @@ __link(RManWindow)
 
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL)
 {
- edHelper->addEditor(p,SelectHL);
+ TSetEditorApp::edHelper->addEditor(p,SelectHL);
 }
 
 int IsAnEditor(void *p)
 {
- if (!edHelper) return 0;
- return edHelper->search(p,dktEditor)>=0;
+ if (!TSetEditorApp::edHelper) return 0;
+ return TSetEditorApp::edHelper->search(p,dktEditor)>=0;
 }
 
 TCEditor *GetCurrentIfEditor()
@@ -1179,10 +1179,10 @@ TCEditor *GetCurrentIfEditor()
 TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant, stEditorId *id)
 {
  // First search by inode, the only way
- ccIndex pos=edHelper->searchEditorbyINode(id,fileName,cant);
+ ccIndex pos=TSetEditorApp::edHelper->searchEditorbyINode(id,fileName,cant);
  if (pos<0)
     return NULL;
- TDskWinEditor *st=(TDskWinEditor *)edHelper->at(pos);
+ TDskWinEditor *st=(TDskWinEditor *)TSetEditorApp::edHelper->at(pos);
  return st->edw;
 }
 
@@ -1190,22 +1190,22 @@ int AskForClosedResume(EditorResume *r,char *fileName)
 {
  if (!fileName)
     return 0;
- ccIndex pos=edHelper->search(fileName,dktClosed);
+ ccIndex pos=TSetEditorApp::edHelper->search(fileName,dktClosed);
  if (pos<0)
     return 0;
- CopyEditorResume(r,&(((TDskWinClosed *)edHelper->at(pos))->resume));
+ CopyEditorResume(r,&(((TDskWinClosed *)TSetEditorApp::edHelper->at(pos))->resume));
  return 2;
 }
 
 int SearchInHelper(int type, void *p)
 {
- return edHelper->search(p,type)>=0;
+ return TSetEditorApp::edHelper->search(p,type)>=0;
 }
 
 void AddNonEditorToHelper(TDskWin *p)
 {
  if (p)
-    edHelper->addNonEditor(p);
+    TSetEditorApp::edHelper->addNonEditor(p);
 }
 
 
@@ -1236,8 +1236,8 @@ separated by spaces.@p
 int WriteNamesOfOpenedTo(FILE *f)
 {
  NamesPrinted=0;
- if (edHelper)
-    edHelper->forEach(EdPrintName,f);
+ if (TSetEditorApp::edHelper)
+    TSetEditorApp::edHelper->forEach(EdPrintName,f);
  return NamesPrinted;
 }
 
@@ -1326,8 +1326,8 @@ void ApplySpLines(char *fileName,int *spLines)
 
 void SaveAllEditors(void)
 {
- if (edHelper)
-    edHelper->saveEditors();
+ if (TSetEditorApp::edHelper)
+    TSetEditorApp::edHelper->saveEditors();
 }
 
 /**[txh]********************************************************************
@@ -1398,17 +1398,17 @@ separated by spaces.@p
 
 void ReLoadModifEditors(void)
 {
- if (edHelper)
+ if (TSetEditorApp::edHelper)
    {
     int again=1;
     int c,i;
     do
       {
        again=0;
-       c=edHelper->getCount();
+       c=TSetEditorApp::edHelper->getCount();
        i=0;
        while (i<c && !again)
-          again=EdReLoad(edHelper->at(i++));
+          again=EdReLoad(TSetEditorApp::edHelper->at(i++));
       }
     while (again);
    }
@@ -2396,14 +2396,15 @@ int main(int argc, char *argv[])
  // starting the application. A good example is the window size, is much better
  // to create a window of the desired size than creating an 80x25 window and
  // the resize.
- LoadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc,1);
+ TProgInit::config=new TVMainConfigFile();
+ TSetEditorApp::preLoadDesktop(ProjectAskedByUser,CLY_optind<Argc);
 
  editorApp=new TSetEditorApp();
 
  // Set's the window title for our application (W9x,X,etc.)
  editorApp->SetTitle();
 
- LoadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc);
+ TSetEditorApp::loadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc);
 
  // Open all the files indicated in the command line
  while (CLY_optind<Argc)
@@ -2455,7 +2456,7 @@ int main(int argc, char *argv[])
 
  // That saves the desktop too, even if there isn't a project
  SaveProject();
- destroy(edHelper);
+ destroy(TSetEditorApp::edHelper);
 
  if (TSetEditorApp::DeleteFilesOnExit)
    {

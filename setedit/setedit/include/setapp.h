@@ -100,6 +100,7 @@ const int
 // TScOptsCol used to hold the screen options for each video driver.
 #if defined(Uses_TScOptsCol) && !defined(Defined_TScOptsCol)
 #define Defined_TScOptsCol 1
+struct stScreenOptions;
 
 class TScOptsCol : public TSortedCollection
 {
@@ -108,6 +109,7 @@ public:
  virtual void *keyOf(void *item);
  virtual int   compare(void *key1, void *key2);
  virtual void  freeItem(void* item);
+ void Insert(stScreenOptions *p);
  SetDefStreamMembers(TScOptsCol,TSortedCollection);
 };
 SetDefStreamOperators(TScOptsCol)
@@ -128,6 +130,7 @@ class TVFontCollection;
 struct EditorResume;
 struct TScreenFont256;
 struct TVBitmapFontSize;
+class TEditorCollection;
 #ifndef Defined_TScOptsCol
 class TScOptsCol;
 #endif
@@ -193,12 +196,18 @@ public:
     TCEditWindow *openEditor(char *fileName, Boolean visible, EditorResume *res=NULL,
                              int options=0);
 
-    Boolean retrieveDesktop(const char *name, Boolean isLocal, int preLoad);
     void saveDesktop(const char *fName, int makeBkp);
     void storeDesktop(fpstream& s);
     Boolean loadDesktop(fpstream& s, Boolean isLocal);
+    static Boolean retrieveDesktop(TSetEditorApp *app, const char *name,
+                                   Boolean isLocal, int preLoad);
     static Boolean preLoadDesktop(fpstream &s);
+    static void    preLoadDesktop(char *name=0, int haveFilesCL=0);
+    static void    finishPreLoadDesktop();
     static void    loadOldFontInfo(fpstream& s, stScreenOptions *scrOps);
+    static void    loadEditorDesktop(int LoadPrj, char *name=0,
+                                     int haveFilesCL=0, int preLoad=0);
+    static void    transferSetting2TV(stScreenOptions *p);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();
@@ -228,12 +237,14 @@ public:
     static int  screenSaverTime;
     static int  screenSaverTimeMouse;
     static char ExternalPrgMode[80];
-    static struct stScreenOptions so;
+    static struct stScreenOptions *so;
     static TScOptsCol *soCol;
     void KillClock();
 
     void   ShowHelpTopic(char *file, char *node);
     static TDskWinHelp *InfManager;
+    static TEditorCollection *edHelper;
+    static TCEditWindow *clipWindow;
     static int helpRequest;
     static ushort helpCtxRequested;
     static int maxOpenEditorsSame;
@@ -268,7 +279,6 @@ const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
 const unsigned geVertWindows=1,geRightSide=2;
 
 extern TSetEditorApp *editorApp;
-extern TCEditWindow *clipWindow;
 #endif
 
 #ifdef Uses_SETAppDialogs
@@ -366,8 +376,6 @@ extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
 extern int  IsPrjOpened(void);
-extern void LoadEditorDesktop(int LoadPrj, char *name=0, int haveFilesCL=0,
-                              int preLoad=0);
 extern void SaveDesktopHere(void);
 #endif
 

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.180  2002/08/23 15:22:46  set
+* Added: HideCursorWhenNoFocus tvrc keyword.
+
 Revision 1.179  2002/08/23 14:10:21  set
 * Added: ScreenPalette to the tvrc syntax highlight.
 * Added: More code to the preLoadDesktop, now is loading all the screen

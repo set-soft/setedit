@@ -18,8 +18,6 @@
 #include <dskwin.h>
 #include <dskclip.h>
 
-TCEditWindow *clipWindow=0;
-
 TStreamable *TDskWinClipboard::build()
 {
  return new TDskWinClipboard( streamableInit );
@@ -42,18 +40,18 @@ void *TDskWinClipboard::read( ipstream& is )
  p = (TCEditWindow *)editorApp->validView( new TCEditWindow( r, 0, wnNoNumber ) );
  p->hide();
 
- edw=clipWindow=p;
- if ( clipWindow )
+ edw=TSetEditorApp::clipWindow=p;
+ if (TSetEditorApp::clipWindow)
    {
-    TCEditor::clipboard = clipWindow->editor;
-    TCEditor::clipboard->canUndo = False;
+    TCEditor::clipboard=TSetEditorApp::clipWindow->editor;
+    TCEditor::clipboard->canUndo=False;
    }
 
  // Now restore the last settings
  is >> aux;
- clipWindow->moveTo(aux.x,aux.y);
+ TSetEditorApp::clipWindow->moveTo(aux.x,aux.y);
  is >> aux;
- clipWindow->growTo(aux.x,aux.y);
+ TSetEditorApp::clipWindow->growTo(aux.x,aux.y);
  int vis;
  is >> vis;
  if (vis)
@@ -88,8 +86,8 @@ int TDskWinClipboard::DeleteAction(ccIndex, Boolean)
 TDskWinClipboard::~TDskWinClipboard()
 {
  destroy(edw);
- if (clipWindow==edw)
-    clipWindow=0;
+ if (TSetEditorApp::clipWindow==edw)
+    TSetEditorApp::clipWindow=0;
  edw=0;
 }
 

@@ -22,8 +22,6 @@
 #include <dskclose.h>
 #include <edcollec.h>
 
-extern TEditorCollection *edHelper;
-
 TStreamable *TDskWinClosed::build()
 {
  return new TDskWinClosed( streamableInit );
@@ -80,8 +78,8 @@ int TDskWinClosed::GoAction(ccIndex i)
  TCEditWindow *ed;
 
  // Remove from the closed list
- edHelper->atRemove(i);
- edHelper->Closed--;
+ TSetEditorApp::edHelper->atRemove(i);
+ TSetEditorApp::edHelper->Closed--;
  // Lock the desktop to avoid lotz redraws
  TProgram::deskTop->lock();
  // Reopen the file
@@ -97,8 +95,8 @@ int TDskWinClosed::DeleteAction(ccIndex i, Boolean fromDiskToo)
 {
  if (fromDiskToo)
     unlink(Name);
- edHelper->atRemove(i);
- edHelper->Closed--;
+ TSetEditorApp::edHelper->atRemove(i);
+ TSetEditorApp::edHelper->Closed--;
 
  return 1;
 }

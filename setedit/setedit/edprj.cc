@@ -83,8 +83,6 @@ protected:
 
 const int TEditorProjectWindow::Version=4;
 
-extern TEditorCollection *edHelper;
-
 typedef struct
 {
  char *name;
@@ -704,14 +702,14 @@ void OpenProject(char *name, int preLoad)
        if (hidden)
          {
           if (edTestForFile(hidden))
-             loaded=editorApp->retrieveDesktop(hidden,True,preLoad);
+             loaded=TSetEditorApp::retrieveDesktop(editorApp,hidden,True,preLoad);
           delete[] hidden;
          }
       }
     else
-       loaded=editorApp->retrieveDesktop(s,True,preLoad);
+       loaded=TSetEditorApp::retrieveDesktop(editorApp,s,True,preLoad);
     if (!loaded)
-       LoadEditorDesktop(0);
+       TSetEditorApp::loadEditorDesktop(0);
     if (preLoad)
        return;
     LoadProject(ReplaceExtension(s,ProjectFileExt,DeskTopFileExt));
@@ -720,7 +718,7 @@ void OpenProject(char *name, int preLoad)
    { // Is a new one
     if (preLoad)
       {
-       LoadEditorDesktop(0);
+       TSetEditorApp::loadEditorDesktop(0);
        return;
       }
     CloseProject(1);
@@ -730,7 +728,7 @@ void OpenProject(char *name, int preLoad)
  if (prjWin && prjWin->window)
    {
     InsertInOrder(editorApp->deskTop,prjWin);
-    edHelper->addNonEditor(prjWin);
+    TSetEditorApp::edHelper->addNonEditor(prjWin);
     editorApp->enableCommand(cmeClosePrj);
     editorApp->enableCommand(cmeSavePrj);
     editorApp->enableCommand(cmeSDG);
@@ -751,12 +749,12 @@ void CloseProject(int openDesktop)
     SaveProject();
    }
  // Close all the DeskTop windows
- destroy(edHelper);
- edHelper=0;
+ destroy(TSetEditorApp::edHelper);
+ TSetEditorApp::edHelper=0;
  prjWin=0;
  // Load a desktop, but not a project
  if (openDesktop)
-    LoadEditorDesktop(0);
+    TSetEditorApp::loadEditorDesktop(0);
 }
 
 

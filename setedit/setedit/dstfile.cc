@@ -31,6 +31,7 @@
 #define Uses_TVCodePage
 #define Uses_TScOptsCol
 #define Uses_TVFontCollection
+#define Uses_TVConfigFile
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>
@@ -59,7 +60,6 @@
 // Used by edprj.cc to know if we loaded the desktop file from this directory
 char DstLoadedHere=0;
 
-extern TEditorCollection *edHelper;
 extern char *EditorFile;
 
 // Desktop file name
@@ -68,7 +68,8 @@ const char *cDeskTopFileName=DeskTopFileName;
 const char *cDeskTopFileNameHidden=DeskTopFileNameHidden;
 #endif
 static char *Signature="TEditorApp desktop file\x1A";
-const int   EditorsDelta=10;
+const int    EditorsDelta=10;
+const char  *defaultDrvName="_Default";
 
 // Default Installation Options variables
 typedef struct
@@ -218,8 +219,8 @@ a desktop file to determine default screen options.
 
 ***************************************************************************/
 
-void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
-                       int preLoad)
+void TSetEditorApp::loadEditorDesktop(int LoadPrj, char *suggestedName,
+                                      int haveFilesCL, int preLoad)
 {
  TEditorCollection::HaveFilesCL=haveFilesCL;
  DstLoadedHere=0;
@@ -244,7 +245,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
  // 2) Try with the desktop file here
  if (edTestForFile(cDeskTopFileName))
    {
-    if (editorApp->retrieveDesktop(cDeskTopFileName,True,preLoad))
+    if (retrieveDesktop(editorApp,cDeskTopFileName,True,preLoad))
       {
        DstLoadedHere=1;
        return;
@@ -254,7 +255,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
  // 2.2) Same for hidden version
  if (edTestForFile(cDeskTopFileNameHidden))
    {
-    if (editorApp->retrieveDesktop(cDeskTopFileNameHidden,True,preLoad))
+    if (retrieveDesktop(editorApp,cDeskTopFileNameHidden,True,preLoad))
       {
        DstLoadedHere=1;
        return;
@@ -265,7 +266,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
  char *s=ExpandHome(cDeskTopFileName);
  if (edTestForFile(s))
    {
-    if (editorApp->retrieveDesktop((const char *)s,False,preLoad))
+    if (retrieveDesktop(editorApp,(const char *)s,False,preLoad))
        return;
    }
  #ifdef HIDDEN_DIFFERENT
@@ -273,12 +274,52 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL,
  s=ExpandHome(cDeskTopFileNameHidden);
  if (edTestForFile(s))
    {
-    if (editorApp->retrieveDesktop((const char *)s,False,preLoad))
+    if (retrieveDesktop(editorApp,(const char *)s,False,preLoad))
        return;
    }
  #endif
- editorApp->retrieveDesktop(NULL,False,preLoad);
+ retrieveDesktop(editorApp,NULL,False,preLoad);
  LoadInstallationDefaults();
+}
+
+void TSetEditorApp::preLoadDesktop(char *name, int haveFilesCL)
+{
+ if (!soCol)
+    soCol=new TScOptsCol();
+ so=NULL;
+ loadEditorDesktop(1,name,haveFilesCL,1);
+ // TODO: si no hay defaults hacer que el primer driver lo sea
+}
+
+void TSetEditorApp::finishPreLoadDesktop()
+{
+ const char *drv=TScreen::getDriverShortName();
+ ccIndex pos;
+ if (soCol->search((void *)drv,pos))
+    // Ok, we had the options for this driver
+    so=(stScreenOptions *)soCol->at(pos);
+ else
+   {// We didn't know about it
+    if (soCol->search((void *)defaultDrvName,pos))
+      {// We used the defaults, associate them with this driver
+       so=(stScreenOptions *)soCol->at(pos);
+       DeleteArray(so->driverName);
+       so->driverName=newStr(drv);
+      }
+    else
+      {// Nothing, create a default
+       so=new stScreenOptions;
+       memset(so,0,sizeof(stScreenOptions));
+       so->driverName=newStr(drv);
+       so->enApp=so->enScr=so->enSnd=so->enInp=-1;
+       so->foPriW=8; so->foPriH=16;
+       so->scCharWidth=8; so->scCharHeight=16;
+       so->scModeNumber=3;
+       so->scWidth=80; so->scHeight=25;
+       soCol->Insert(so);
+      }
+   }
+
 }
 
 /**[txh]********************************************************************
@@ -290,8 +331,8 @@ application (screen options).
 
 ***************************************************************************/
 
-Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal,
-                                       int preLoad)
+Boolean TSetEditorApp::retrieveDesktop(TSetEditorApp *app, const char *name,
+                                       Boolean isLocal, int preLoad)
 {
  Boolean ret=False;
  if (name)
@@ -312,9 +353,9 @@ Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal,
     else
       {
        if (preLoad)
-          ret=TSetEditorApp::preLoadDesktop(*f);
+          ret=preLoadDesktop(*f);
        else
-          ret=TSetEditorApp::loadDesktop(*f,isLocal);
+          ret=app->loadDesktop(*f,isLocal);
        if (!f)
          {
           if (!preLoad)
@@ -325,7 +366,7 @@ Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal,
       }
     delete f;
    }
- if (preLoad)
+ if (preLoad || !app)
     return ret;
 
  // Create all the necesary things if there is no desktop file
@@ -334,7 +375,7 @@ Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal,
 
  if (!clipWindow)
    {
-    createClipBoard();
+    app->createClipBoard();
     if (clipWindow)
        edHelper->addNonEditor(new TDskWinClipboard(clipWindow));
    }
@@ -953,6 +994,56 @@ void TSetEditorApp::loadOldFontInfo(fpstream& s, stScreenOptions *scrOps)
    }
 }
 
+void TSetEditorApp::transferSetting2TV(stScreenOptions *p)
+{// Driver section
+ const char *drv=p->driverName;
+ // The _Default goes to the root
+ if (*drv=='_')
+    drv=NULL;
+ TVMainConfigFile::Add(drv,"AppCP",p->enForceApp ? p->enApp : -1);
+ TVMainConfigFile::Add(drv,"ScrCP",p->enForceScr ? p->enScr : -1);
+ TVMainConfigFile::Add(drv,"InpCP",p->enForceInp ? p->enInp : -1);
+
+ if (p->foPriLoad || p->foSecLoad)
+   {
+    TVMainConfigFile::Add(drv,"FontWidth",p->foPriW);
+    TVMainConfigFile::Add(drv,"FontHeight",p->foPriH);
+   }
+
+ // TODO: Rellenar!
+ //TVFontCollection *foPri, *foSec;
+
+ if (p->scOptions==scfSameLast || p->scOptions==scfForced)
+   {
+    TVMainConfigFile::Add(drv,"ScreenWidth",p->scWidth);
+    TVMainConfigFile::Add(drv,"ScreenHeight",p->scHeight);
+    if (!p->foPriLoad && !p->foSecLoad)
+      {
+       TVMainConfigFile::Add(drv,"FontWidth",p->scCharWidth);
+       TVMainConfigFile::Add(drv,"FontHeight",p->scCharHeight);
+      }
+   }
+ // TODO: Resolver:
+ //scfExternal=2,
+ //scfMode=4;
+ const TScreenColor *pal=TDisplay::getDefaultPalette();
+ unsigned i;
+ for (i=0; i<16; i++)
+     if (p->palette[i].R!=pal[i].R || p->palette[i].G!=pal[i].G ||
+         p->palette[i].B!=pal[i].B)
+       {
+        char b[192],*s=b;
+        for (i=0; i<16; i++)
+           {
+            s+=sprintf(s,"%d,%d,%d",p->palette[i].R,p->palette[i].G,p->palette[i].B);
+            if (i!=15)
+               *(s++)=',';
+           }
+        TVMainConfigFile::Add(drv,"ScreenPalette",b);
+        break;
+       }
+}
+
 // TODO: Ojo!!! si todas fallan hay que crear algo por defecto o tolerarlo!!!
 Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
 {
@@ -973,12 +1064,10 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
  //if (deskTopVersion>TCEDITOR_VERSION)
  // You need a newer editor for this desktop file.
  // TODO: No creo que sea necesario, esto va a tener una versión por separado.
- destroy(soCol);
- soCol=new TScOptsCol();
  if (deskTopVersion<0x500)
    {// The preLoad was introduced in the 0.4.x to 0.5.x change.
     // We have to extract the information from the old structure.
-    stScreenOptions *scrOps=&so;
+    stScreenOptions *scrOps=new stScreenOptions;
     if (deskTopVersion>=0x404)
        loadOldFontInfo(s,scrOps);
     #ifdef TVCompf_djgpp
@@ -1007,12 +1096,9 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
             }
          }
       }
-    scrOps->driverName=newStr("_Default");
-    // TODO: Insertar esto en la configuración de TV y en la colección
-    // Ojo, eso implica que de acá en más la aplicación sólo tenga un "puntero" a y no
-    // un objeto. Esto hay que verlo porque entonces la colección tiene que existir pase
-    // lo que pase y contener al menos un elemento. De paso los diálogos de configuración
-    // deberían reusarse a funcionar si esto no se cumple por algún error fatal
+    scrOps->driverName=newStr(defaultDrvName);
+    soCol->Insert(scrOps);
+    transferSetting2TV(scrOps);
    }
  return True;
 }
@@ -1103,6 +1189,15 @@ void TScOptsCol::writeItem(void *obj, opstream &os)
  unsigned i;
  for (i=0; i<16; i++)
      os << p->palette[i].R << p->palette[i].G << p->palette[i].B;
+}
+
+void TScOptsCol::Insert(stScreenOptions *p)
+{
+ ccIndex pos=indexOf(p);
+ if (pos==ccNotFound)
+    insert(p);
+ else
+    atReplace(pos,p);
 }
 
 const char * const TScOptsCol::name="TScOptsCol";

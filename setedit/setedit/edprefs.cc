@@ -1119,44 +1119,7 @@ char *CreateTitle(const char *title)
  return res;
 }
 
-stScreenOptions TSetEditorApp::so=
-{
- NULL, // Driver name
-
- // Encoding options
- //uchar enForceApp, enForceScr, enForceSnd, enForceInp;
- 0,0,0,0,
- //int   enApp, enScr, enSnd, enInp;
- -1,-1,-1,-1,
-
- // Fonts options
- //uchar foPriLoad, foSecLoad;
- 0,0,
- //char *foPriName, *foSecName;
- NULL,NULL,
- //char *foPriFile, *foSecFile;
- NULL,NULL,
- //unsigned foPriW,foPriH;
- 8,16,
- //uchar foPriLoaded, foSecLoaded;
- 0,0,
- //uchar foCallBackSet;
- 0,
- //TVFontCollection *foPri, *foSec;
- NULL,NULL,
-
- // Screen size options
- //uint32 scOptions;
- scfDontForce,
- //unsigned scWidth, scHeight;
- 80,25,
- //unsigned scCharWidth, scCharHeight;
- 8,16,
- //unsigned scModeNumber;
- 3,
- //char *scCommand;
- NULL
-};
+stScreenOptions *TSetEditorApp::so=NULL;
 
 /************************** New code pages dialogs **************************/
 #pragma pack(1)
@@ -1180,6 +1143,7 @@ typedef struct
 // New code pages dialogs
 void TSetEditorApp::EncodingOptions()
 {
+ if (!so) return; // Sanity check
  // Compute the height of the list boxes to use most of the desktop
  TRect dkt=TProgram::deskTop->getExtent();
  int height=dkt.b.y-dkt.a.y-10;
@@ -1247,16 +1211,16 @@ void TSetEditorApp::EncodingOptions()
 
  // Currently selected values
  int appCP, scrCP, sndCP, inpCP;
- appCP=TVCodePage::IDToIndex(so.enApp!=-1 ? so.enApp : idDefApp);
- inpCP=TVCodePage::IDToIndex(so.enInp!=-1 ? so.enInp : idDefInp);
- scrCP=TVCodePage::IDToIndex(so.enScr!=-1 ? so.enScr : idDefScr);
- sndCP=so.enSnd!=-1 ? TVCodePage::IDToIndex(so.enSnd) : scrCP;
+ appCP=TVCodePage::IDToIndex(so->enApp!=-1 ? so->enApp : idDefApp);
+ inpCP=TVCodePage::IDToIndex(so->enInp!=-1 ? so->enInp : idDefInp);
+ scrCP=TVCodePage::IDToIndex(so->enScr!=-1 ? so->enScr : idDefScr);
+ sndCP=so->enSnd!=-1 ? TVCodePage::IDToIndex(so->enSnd) : scrCP;
 
  // Data box
- box.appForce=so.enForceApp;
- box.inpForce=so.enForceInp;
- box.scrForce=so.enForceScr;
- box.sndForce=so.enForceSnd;
+ box.appForce=so->enForceApp;
+ box.inpForce=so->enForceInp;
+ box.scrForce=so->enForceScr;
+ box.sndForce=so->enForceSnd;
  box.appCP=appCP;
  box.inpCP=inpCP;
  box.scrCP=scrCP;
@@ -1266,37 +1230,37 @@ void TSetEditorApp::EncodingOptions()
  unsigned ret=execDialog(d,&box);
  if (ret==cmYes)
    {// Set defaults
-    int priChanged=so.enForceScr || (so.enForceScr && idDefScr!=scrCP);
-    int sndChanged=so.enForceSnd || (so.enForceSnd && idDefScr!=sndCP);
-    so.enForceApp=so.enForceInp=so.enForceScr=so.enForceSnd=0;
-    so.enApp=idDefApp;
-    so.enInp=idDefInp;
-    so.enScr=so.enSnd=idDefScr;
-    TVCodePage::SetCodePage(so.enApp,so.enScr,so.enInp);
+    int priChanged=so->enForceScr || (so->enForceScr && idDefScr!=scrCP);
+    int sndChanged=so->enForceSnd || (so->enForceSnd && idDefScr!=sndCP);
+    so->enForceApp=so->enForceInp=so->enForceScr=so->enForceSnd=0;
+    so->enApp=idDefApp;
+    so->enInp=idDefInp;
+    so->enScr=so->enSnd=idDefScr;
+    TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
     SetEditorFontsEncoding(priChanged,idDefScr,sndChanged,idDefScr);
     // This is a full redraw, not just a refresh from the buffers
     TProgram::application->Redraw();
    }
  else if (ret==cmOK)
    {
-    int appChanged=box.appForce!=so.enForceApp || (so.enForceApp && box.appCP!=appCP);
-    int inpChanged=box.inpForce!=so.enForceInp || (so.enForceInp && box.inpCP!=inpCP);
-    int priChanged=box.scrForce!=so.enForceScr || (so.enForceScr && box.scrCP!=scrCP);
-    int sndChanged=box.sndForce!=so.enForceSnd || (so.enForceSnd && box.sndCP!=sndCP);
+    int appChanged=box.appForce!=so->enForceApp || (so->enForceApp && box.appCP!=appCP);
+    int inpChanged=box.inpForce!=so->enForceInp || (so->enForceInp && box.inpCP!=inpCP);
+    int priChanged=box.scrForce!=so->enForceScr || (so->enForceScr && box.scrCP!=scrCP);
+    int sndChanged=box.sndForce!=so->enForceSnd || (so->enForceSnd && box.sndCP!=sndCP);
     if (appChanged || inpChanged || priChanged || sndChanged)
       {// At least one changed
-       so.enForceApp=box.appForce;
-       so.enForceInp=box.inpForce;
-       so.enForceScr=box.scrForce;
-       so.enForceSnd=box.sndForce;
+       so->enForceApp=box.appForce;
+       so->enForceInp=box.inpForce;
+       so->enForceScr=box.scrForce;
+       so->enForceSnd=box.sndForce;
        // Transfer only the settings that will be used
-       if (so.enForceApp) so.enApp=TVCodePage::IndexToID(box.appCP);
-       if (so.enForceInp) so.enInp=TVCodePage::IndexToID(box.inpCP);
-       if (so.enForceScr) so.enScr=TVCodePage::IndexToID(box.scrCP);
-       if (so.enForceSnd) so.enSnd=TVCodePage::IndexToID(box.sndCP);
-       TVCodePage::SetCodePage(so.enApp,so.enScr,so.enInp);
-       SetEditorFontsEncoding(priChanged,so.enForceScr ? so.enScr : idDefScr,
-                              sndChanged,so.enForceSnd ? so.enSnd : idDefScr);
+       if (so->enForceApp) so->enApp=TVCodePage::IndexToID(box.appCP);
+       if (so->enForceInp) so->enInp=TVCodePage::IndexToID(box.inpCP);
+       if (so->enForceScr) so->enScr=TVCodePage::IndexToID(box.scrCP);
+       if (so->enForceSnd) so->enSnd=TVCodePage::IndexToID(box.sndCP);
+       TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
+       SetEditorFontsEncoding(priChanged,so->enForceScr ? so->enScr : idDefScr,
+                              sndChanged,so->enForceSnd ? so->enSnd : idDefScr);
        // This is a full redraw, not just a refresh from the buffers
        TProgram::application->Redraw();
       }
@@ -1384,24 +1348,25 @@ void TDiaFont::handleEvent(TEvent& event)
 void TSetEditorApp::SetEditorFontsEncoding(int priChanged, int enPri,
                                            int sndChanged, int enSec)
 {
+ if (!so) return; // Sanity check
  int prC=0, seC=0;
  TScreenFont256 primary,secondary,*prF=NULL,*seF=NULL;
 
- if (priChanged && so.foPriLoaded && so.foPri)
+ if (priChanged && so->foPriLoaded && so->foPri)
    {
-    so.foPri->SetCodePage(enPri);
-    primary.w=so.foPriW;
-    primary.h=so.foPriH;
-    primary.data=so.foPri->GetFont(so.foPriW,so.foPriH);
+    so->foPri->SetCodePage(enPri);
+    primary.w=so->foPriW;
+    primary.h=so->foPriH;
+    primary.data=so->foPri->GetFont(so->foPriW,so->foPriH);
     prF=&primary;
     prC=1;
    }
- if (sndChanged && so.foSecLoaded && so.foSec)
+ if (sndChanged && so->foSecLoaded && so->foSec)
    {
-    so.foSec->SetCodePage(enSec);
-    secondary.w=so.foPriW;
-    secondary.h=so.foPriH;
-    secondary.data=so.foSec->GetFont(so.foPriW,so.foPriH);
+    so->foSec->SetCodePage(enSec);
+    secondary.w=so->foPriW;
+    secondary.h=so->foPriH;
+    secondary.data=so->foSec->GetFont(so->foPriW,so->foPriH);
     seF=&secondary;
     seC=1;
    }
@@ -1416,12 +1381,13 @@ void TSetEditorApp::SetEditorFontsEncoding(int priChanged, int enPri,
 
 TScreenFont256 *TSetEditorApp::FontRequestCallBack(int which, unsigned w, unsigned h)
 {
- so.foPriW=w;
- so.foPriH=h;
- TVFontCollection *col=which ? so.foSec : so.foPri;
+ if (!so) return NULL; // Sanity check
+ so->foPriW=w;
+ so->foPriH=h;
+ TVFontCollection *col=which ? so->foSec : so->foPri;
  if (!col)
     return NULL;
- uchar *data=col->GetFont(so.foPriW,so.foPriH);
+ uchar *data=col->GetFont(so->foPriW,so->foPriH);
  if (!data)
     return NULL;
  TScreenFont256 *f=new TScreenFont256;
@@ -1433,23 +1399,24 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
                                    TVBitmapFontSize *priSize,
                                    uchar secUse, char *secName, char *secFile)
 {
+ if (!so) return; // Sanity check
  // Transfer the options
  unsigned w,h;
  w=priSize->w; h=priSize->h;
- int sizeChanged=(w!=so.foPriW) || (h!=so.foPriH);
+ int sizeChanged=(w!=so->foPriW) || (h!=so->foPriH);
  if (sizeChanged)
    {
-    so.foPriW=w;
-    so.foPriH=h;
+    so->foPriW=w;
+    so->foPriH=h;
    }
 
- int priNameChanged=!so.foPriName || strcmp(so.foPriName,priName)!=0;
+ int priNameChanged=!so->foPriName || strcmp(so->foPriName,priName)!=0;
  if (priNameChanged)
    {
-    DeleteArray(so.foPriName);
-    so.foPriName=newStr(priName);
-    DeleteArray(so.foPriFile);
-    so.foPriFile=newStr(priFile);
+    DeleteArray(so->foPriName);
+    so->foPriName=newStr(priName);
+    DeleteArray(so->foPriFile);
+    so->foPriFile=newStr(priFile);
    }
  else
    {
@@ -1457,16 +1424,16 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
     DeleteArray(priFile);
    }
 
- int priUseChanged=priUse!=so.foPriLoad;
- so.foPriLoad=priUse;
+ int priUseChanged=priUse!=so->foPriLoad;
+ so->foPriLoad=priUse;
 
- int secNameChanged=!so.foSecName || strcmp(so.foSecName,secName)!=0;
+ int secNameChanged=!so->foSecName || strcmp(so->foSecName,secName)!=0;
  if (secNameChanged)
    {
-    DeleteArray(so.foSecName);
-    so.foSecName=newStr(secName);
-    DeleteArray(so.foSecFile);
-    so.foSecFile=newStr(secFile);
+    DeleteArray(so->foSecName);
+    so->foSecName=newStr(secName);
+    DeleteArray(so->foSecFile);
+    so->foSecFile=newStr(secFile);
    }
  else
    {
@@ -1474,8 +1441,8 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
     DeleteArray(secFile);
    }
 
- int secUseChanged=secUse!=so.foSecLoad;
- so.foSecLoad=secUse;
+ int secUseChanged=secUse!=so->foSecLoad;
+ so->foSecLoad=secUse;
 
  // Make it efective
  int idDefScr, idDefApp, idDefInp;
@@ -1487,20 +1454,20 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
  int priChanged=priNameChanged || priUseChanged || sizeChanged;
  if (priNameChanged)
    {// Create a collection for this font
-    if (so.enScr==-1) so.enScr=idDefScr;
-    if (so.foPri) delete so.foPri;
-    so.foPri=new TVFontCollection(so.foPriFile,so.enScr);
-    if (so.foPri->GetError())
+    if (so->enScr==-1) so->enScr=idDefScr;
+    if (so->foPri) delete so->foPri;
+    so->foPri=new TVFontCollection(so->foPriFile,so->enScr);
+    if (so->foPri->GetError())
       {
-       if (so.foPri) delete so.foPri;
-       so.foPri=NULL;
+       if (so->foPri) delete so->foPri;
+       so->foPri=NULL;
       }
    }
- if (priChanged && so.foPriLoad && so.foPri)
+ if (priChanged && so->foPriLoad && so->foPri)
    {
-    primary.w=so.foPriW;
-    primary.h=so.foPriH;
-    primary.data=so.foPri->GetFont(so.foPriW,so.foPriH);
+    primary.w=so->foPriW;
+    primary.h=so->foPriH;
+    primary.data=so->foPri->GetFont(so->foPriW,so->foPriH);
     prF=&primary;
    }
 
@@ -1509,33 +1476,33 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
     secChanged=secNameChanged || secUseChanged || sizeChanged;
     if (secNameChanged)
       {// Create a collection for this font
-       if (so.enSnd==-1) so.enSnd=idDefScr;
-       if (so.foSec) delete so.foSec;
-       so.foSec=new TVFontCollection(so.foSecFile,so.enSnd);
-       if (so.foSec->GetError())
+       if (so->enSnd==-1) so->enSnd=idDefScr;
+       if (so->foSec) delete so->foSec;
+       so->foSec=new TVFontCollection(so->foSecFile,so->enSnd);
+       if (so->foSec->GetError())
          {
-          delete so.foSec;
-          so.foSec=NULL;
+          delete so->foSec;
+          so->foSec=NULL;
          }
       }
-    if (secChanged && so.foSecLoad && so.foSec)
+    if (secChanged && so->foSecLoad && so->foSec)
       {
-       secondary.w=so.foPriW;
-       secondary.h=so.foPriH;
-       secondary.data=so.foSec->GetFont(so.foPriW,so.foPriH);
+       secondary.w=so->foPriW;
+       secondary.h=so->foPriH;
+       secondary.data=so->foSec->GetFont(so->foPriW,so->foPriH);
        seF=&secondary;
       }
    }
- if (TScreen::setFont(priChanged,prF,secChanged,seF,so.enScr))
+ if (TScreen::setFont(priChanged,prF,secChanged,seF,so->enScr))
    {
     if (priChanged)
-       so.foPriLoaded=prF!=NULL;
+       so->foPriLoaded=prF!=NULL;
     if (secChanged)
-       so.foSecLoaded=seF!=NULL;
-    if (!so.foCallBackSet)
+       so->foSecLoaded=seF!=NULL;
+    if (!so->foCallBackSet)
       {
        TScreen::setFontRequestCallBack(FontRequestCallBack);
-       so.foCallBackSet=1;
+       so->foCallBackSet=1;
       }
    }
  if (prF) DeleteArray(prF->data);
@@ -1544,6 +1511,7 @@ void TSetEditorApp::SetEditorFonts(uchar priUse, char *priName, char *priFile,
 
 void TSetEditorApp::FontsOptions()
 {
+ if (!so) return; // Sanity check
  if (!TScreen::canSetBFont())
    {
     messageBox(_("This terminal doesn't support fonts"),mfInformation | mfOKButton);
@@ -1571,20 +1539,20 @@ void TSetEditorApp::FontsOptions()
  // Ok, we have fonts and we can use them
  // Fill the data box
  FontsBox box;
- box.priUse=so.foPriLoad;
- box.secUse=so.foSecLoad;
+ box.priUse=so->foPriLoad;
+ box.secUse=so->foSecLoad;
  box.priList=box.secList=fonts;
- if (!so.foPriName || !fonts->search(so.foPriName,box.priFont))
+ if (!so->foPriName || !fonts->search(so->foPriName,box.priFont))
     box.priFont=0;
- if (!so.foSecName || !fonts->search(so.foSecName,box.secFont))
+ if (!so->foSecName || !fonts->search(so->foSecName,box.secFont))
     box.secFont=0;
 
  TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont),*sec;
  box.priSizes=pri->sizes;
  int filled=0;
  TVBitmapFontSize sizeSt;
- sizeSt.w=so.foPriW; sizeSt.h=so.foPriH;
- if (!so.foPriName || !pri->sizes->search(&sizeSt,box.priSize))
+ sizeSt.w=so->foPriW; sizeSt.h=so->foPriH;
+ if (!so->foPriName || !pri->sizes->search(&sizeSt,box.priSize))
    {
     unsigned w,h;
     if (TScreen::getFontGeometry(w,h))
@@ -1698,6 +1666,7 @@ void ToStr(int val, char *dest)
 
 void TSetEditorApp::ScreenOptions()
 {
+ if (!so) return; // Sanity check
  if (!TScreen::canSetVideoSize())
    {
     messageBox(_("This terminal have a fixed size"),mfInformation | mfOKButton);
@@ -1705,12 +1674,12 @@ void TSetEditorApp::ScreenOptions()
    }
 
  ScreenSizeBox box;
- box.options=so.scOptions;
- ToStr(so.scWidth,box.sizeW);
- ToStr(so.scHeight,box.sizeH);
- ToStr(so.scCharWidth,box.sizeCW);
- ToStr(so.scCharHeight,box.sizeCH);
- sprintf(box.mode,"0x%03X",so.scModeNumber);
+ box.options=so->scOptions;
+ ToStr(so->scWidth,box.sizeW);
+ ToStr(so->scHeight,box.sizeH);
+ ToStr(so->scCharWidth,box.sizeCW);
+ ToStr(so->scCharHeight,box.sizeCH);
+ sprintf(box.mode,"0x%03X",so->scModeNumber);
  strcpy(box.command,TSetEditorApp::ExternalPrgMode);
 
  int retry;
@@ -1770,20 +1739,20 @@ void TSetEditorApp::ScreenOptions()
        else
          {
           char *end;
-          so.scOptions=box.options;
-          so.scWidth=atoi(box.sizeW);
-          so.scHeight=atoi(box.sizeH);
-          so.scCharWidth=atoi(box.sizeCW);
-          so.scCharHeight=atoi(box.sizeCH);
-          so.scModeNumber=strtol(box.mode,&end,0);
+          so->scOptions=box.options;
+          so->scWidth=atoi(box.sizeW);
+          so->scHeight=atoi(box.sizeH);
+          so->scCharWidth=atoi(box.sizeCW);
+          so->scCharHeight=atoi(box.sizeCH);
+          so->scModeNumber=strtol(box.mode,&end,0);
           strcpy(TSetEditorApp::ExternalPrgMode,box.command);
-          if (so.scOptions==scfExternal)
+          if (so->scOptions==scfExternal)
              TProgram::application->setScreenMode(0xFFFF,TSetEditorApp::ExternalPrgMode);
-          else if (so.scOptions==scfForced)
-             TProgram::application->setScreenMode(so.scWidth,so.scHeight,
-                                                  so.scCharWidth,so.scCharHeight);
-          else if (so.scOptions==scfMode)
-             TProgram::application->setScreenMode(so.scModeNumber);
+          else if (so->scOptions==scfForced)
+             TProgram::application->setScreenMode(so->scWidth,so->scHeight,
+                                                  so->scCharWidth,so->scCharHeight);
+          else if (so->scOptions==scfMode)
+             TProgram::application->setScreenMode(so->scModeNumber);
          }         
       }
    }

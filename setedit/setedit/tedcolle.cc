@@ -58,7 +58,7 @@ void UpdateProjectResumeFor(char *fileName, TCEditWindow *p);
 // static because it inherits from TCollection.
 //   The only object that can exist is edHelper. During the read process the
 // class need this variable to be initialized.
-extern TEditorCollection *edHelper;
+//extern TEditorCollection *edHelper; I moved it to SetEditorApp
 
 // Options for the sorting of closed files in removeEditor
 const char dscSort=0,dscNoSortPutLast=1,dscNoSortPutFirst=2;
@@ -204,7 +204,7 @@ void *TEditorCollection::read( ipstream& is )
  // That's needed if we want to remove some windows from the desktop
  // Is silly but some users wants to remove windows if the command line
  // contains names
- edHelper=this;
+ TSetEditorApp::edHelper=this;
  is >> version;
  if (version>=0) // Again! sorry
    {

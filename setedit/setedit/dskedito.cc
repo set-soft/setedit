@@ -21,7 +21,6 @@
 #include <dskedito.h>
 #include <edcollec.h>
 
-extern TEditorCollection *edHelper;
 void RemoveFromEditorsHelper(TCEditWindow *p);
 
 TStreamable *TDskWinEditor::build()
@@ -68,7 +67,7 @@ int TDskWinEditor::DeleteAction(ccIndex , Boolean fromDiskToo)
     // We will be autodestroyed soon, for this reason we can't use the
     // this pointer anymore. That's why we need a copy (efence reported).
     TCEditWindow *oldEdw=edw;
-    edHelper->removeEditor(edw,True);
+    TSetEditorApp::edHelper->removeEditor(edw,True);
     destroy(oldEdw);
    }
  else
