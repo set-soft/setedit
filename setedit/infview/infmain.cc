@@ -437,7 +437,8 @@ void TEditorMiApp::loadDesktop(fpstream &s, int loadWindows)
 
  if (deskTop->valid(cmClose))
    {
-    deskTop->forEach(::closeView,0);  // Clear the desktop
+    if (loadWindows)
+       deskTop->forEach(::closeView,0);  // Clear the desktop
     s >> version >> curCodePage;
     s >> TInfViewer::BookMark;
     SetCodePage(curCodePage);
