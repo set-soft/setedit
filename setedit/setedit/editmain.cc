@@ -124,6 +124,8 @@ const char *KeyBindFName="keybind.dat";
 // Name specified by the user
 static char *KeyBindFNameUser=0;
 
+const char *cmeQuitDeleteMessage=__("Do you want to delete all the .BKP, desktop and project files?");
+
 const char *TipsFName="editor.tip";
 #ifdef NoHomeOrientedOS
 // Used to guess the info directory in DOS
@@ -1123,6 +1125,17 @@ void TSetEditorApp::handleEvent( TEvent& event )
                    }
                  RunExternalProgramStopChild();
                 }
+              if (DeleteFilesOnExit)
+                {
+                 int ret=messageBoxDSA(cmeQuitDeleteMessage,
+                     mfYesButton | mfNoButton | mfWarning,"SET_CONFQUIT",cmYes);
+                 if (ret!=cmYes)
+                   {
+                    DeleteFilesOnExit=0;
+                    if (ret==cmCancel)
+                       break;
+                   }
+                }
               event.message.command=cmQuit;
               TApplication::handleEvent(event);
               break;
@@ -1202,6 +1215,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeSetModiCkOps:
               SetModifCheckOptions();
+              break;
+
+         case cmeAdviceDiagConf:
+              AdviceManager();
               break;
 
          // These commands are traslated to the original values
@@ -1817,11 +1834,7 @@ void TSetEditorApp::setCmdState( uint16 command, Boolean enable )
 #ifdef SECompf_djgpp
 const int clockResolution=CLOCKS_PER_SEC;
 #elif defined(SEOS_UNIX)
- #ifdef CLOCKS_PER_SEC
- const int clockResolution=CLOCKS_PER_SEC;
- #else
- const int clockResolution=100;
- #endif
+const int clockResolution=100;
 #elif defined(SEOS_Win32)
 const int clockResolution=(int)CLK_TCK;
 #endif
@@ -2786,14 +2799,6 @@ int main(int argc, char *argv[])
  ShowTips(ExpandHome(TipsFName));
 
  editorApp->run();
-
- if (TSetEditorApp::DeleteFilesOnExit)
-   {
-    int ret=messageBoxDSA(__("Do you want to delete all the .BKP, desktop and project files?"),
-        mfYesButton | mfNoButton | mfWarning,"SET_CONFQUIT",cmYes);
-    if (ret!=cmYes)
-       TSetEditorApp::DeleteFilesOnExit=0;
-   }
 
  // That saves the desktop too, even if there isn't a project
  SaveProject();

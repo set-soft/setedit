@@ -320,4 +320,5 @@ _("~I~mport project items")
 _("Save As")
 _("Calendar (holida~y~s)...")
 _("Checking for ~m~odified files...")
+_("Advice dialogs...")
 #endif

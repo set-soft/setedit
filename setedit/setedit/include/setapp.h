@@ -104,7 +104,8 @@ const int
   cmeImportPrj      = cmeBase+84,
   cmeTagsOps        = cmeBase+85,
   cmeHolidaysConf   = cmeBase+86,
-  cmeSetModiCkOps   = cmeBase+87;
+  cmeSetModiCkOps   = cmeBase+87,
+  cmeAdviceDiagConf = cmeBase+88;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -328,6 +329,7 @@ extern void FullAboutBox(void);
 extern void ShowUserScreenDialog();
 class TDskWinMan;
 extern TDskWinMan *ManPageView(const char *name); // From dskman.cc
+extern const char *cmeQuitDeleteMessage;
 #endif
 
 #ifdef Uses_SETAppVarious

@@ -1,6 +1,8 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TStringableListBox
+#define Uses_TEvent
+#define Uses_TKeys
 #include <settvuti.h>
 
 /* List Box used in the keybinding, I think that Borland was wrong in your
@@ -78,3 +80,17 @@ void TStringableListBox::Update(void)
  setRange(items->GetCount());
  drawView();
 }
+
+void TStringableListBox::handleEvent(TEvent& event)
+{
+ if (event.what==evKeyDown && event.keyDown.keyCode==kbSpace &&
+     items->taggingSupported())
+   {
+    items->setTag(focused,items->isTagged(focused) ? False : True);
+    drawView();
+    clearEvent(event);
+    return;
+   }
+ TListViewer::handleEvent(event);
+}
+

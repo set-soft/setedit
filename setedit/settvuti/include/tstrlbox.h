@@ -15,16 +15,17 @@ typedef struct
 class TStringableListBox : public TListViewer
 {
 public:
- TStringableListBox( const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar );
- TStringableListBox( const TRect& bounds, ushort aNumCols, TScrollBar *aHScrollBar,
-                     TScrollBar *aVScrollBar );
+ TStringableListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar);
+ TStringableListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aHScrollBar,
+                    TScrollBar *aVScrollBar);
  ~TStringableListBox();
 
  virtual uint32 dataSize();
- virtual void getData( void *rec );
- virtual void getText( char *dest, ccIndex item, short maxLen );
- virtual void newList( TStringable *aList );
- virtual void setData( void *rec );
+ virtual void getData(void *rec);
+ virtual void getText(char *dest, ccIndex item, short maxLen);
+ virtual void newList(TStringable *aList);
+ virtual void setData(void *rec);
+ virtual void handleEvent(TEvent& event);
  void Update(void);
 
  TStringable *list();

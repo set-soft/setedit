@@ -199,6 +199,7 @@ SubMenu: "~T~ool&Ops", kbAlT
      MenuItemC: "~O~ptions...", cmeTagsOps
    EndSubMenu
    MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf
+   MenuItemC: "Advice dialogs...", cmeAdviceDiagConf
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc

@@ -13,3 +13,4 @@ gadvNoTags      =8,
 gadvDiffModOpts =9;
 
 int GiveAdvice(int number);
+void AdviceManager();

@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.5.1
-@set update-date 7 May 2003
+@set version 0.5.2
+@set update-date 11 May 2003
 @set update-month May 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -2042,6 +2042,77 @@ These settings are stored in the desktop file. @x{Desktop Files}.
 @refMenu1{cmeEdGralOptions}
 
 @c --------------------------------------------------------------------------
+@subsubsection Check for modified files
+@cindex newer, files on disk
+@cindex reloading newer files
+@cindex checking if file changed
+
+When you edit a file the editor uses a copy of this file stored on memory.
+The copy on disk can be changed by another user or by a program. If it
+happends you can be working on a different file and you'll destroy those
+changes when saving. For this reason the editor must check if the
+modification time of the file changed. The editor does this check when:
+@p{}
+
+@enumerate
+@item You run an external program. This program could generate some output
+file and it could be one of the opened files.
+@item You select an editor window. This is done in the @code{idle loop}, so
+this check could be delayed a fraction of a second.
+@item Periodically for the focused file.
+@end enumerate
+
+The configuration dialog can be used to disable or fine tune these checks.
+The @code{Seconds between checks} option refers to the periodical checks.
+The other options are:
+@p{}
+
+@itemize @bullet
+@item Don't check after executing an external program. It disables the
+checks done after running an external program.
+@item Don't check while idle. It disables the the checks done periodically
+and also the checks done when you select a an editor window. That's because
+both are done when the editor have some free time.
+@end itemize
+
+When the editor detects a file on disk is newer than the file on memory a
+dialog asking if you want to load the new file pops up. This question will be
+done only once and no matters what you answer the editor will asume the
+problem is solved. This is to avoid an endless storm of questions.
+@p{}
+
+If you choose to load the file from disk the editor will check if the memory
+copy is also modified. In this case a collision between your changes and the
+external changes can lose data. For this reason the editor offers four
+options:
+@p{}
+
+@enumerate
+@item Load file from disk (discard changes): This is the default action, use
+it if you want to get a fresh copy discarding any changes done in memory.
+@item Abort operation: The editor does nothing and you must solve the problem
+manually.
+@item Load and show differences: This is like the first option, but the
+editor will invoke @code{diff} and load it's output. You can analize the
+differences between your changes and the external changes to solve the
+problem.
+@item Don't load and show differences: This is like the second option, but
+the editor invokes @code{diff} like in the third.
+@end enumerate
+
+The last two options are offered only if GNU diff is installed in your
+system. You can get GNU diff from the GNU site (http://www.gnu.org/).
+@p{}
+
+Note that when the editor offers a diff output this is loaded from a temporal
+file that is discarded as soon as loaded. For this reason the editor marks
+this window as read only. If you want to use this file to as input for
+@code{patch} just use the @code{Save As} option.
+@p{}
+
+@refMenu1{cmeSetModiCkOps}
+
+@c --------------------------------------------------------------------------
 @subsubsection Screen Saver
 @cindex screen saver
 
@@ -2694,6 +2765,21 @@ other people from your country can share the benefits.
 @p{}
 
 @refMenu1{cmeHolidaysConf}
+
+@c --------------------------------------------------------------------------
+@subsubsection Advice dialogs
+
+In some situations the editor offers some advice to guide new users. These
+are called @il{advice dialogs}. They can be disabled using a check box in the
+dialog.
+@p{}
+
+This option is used to enable or disable any of the advice dialogs. Texts
+marked with an @code{X} indicates the corresponding dialog is enabled. Use
+the @key{space} key to change the desired dialog.
+@p{}
+
+@refMenu1{cmeAdviceDiagConf}
 
 @c --------------------------------------------------------------------------
 @subsection Calculator (command/menu)

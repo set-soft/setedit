@@ -1,21 +1,28 @@
 /* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#include <stdlib.h>
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_stdlib
+#define Uses_string
+#define Uses_snprintf
+#define Uses_TApplication
+#define Uses_TStringable
 
 // EasyDiag requests
 #define Uses_TSButton
 #define Uses_TSStaticText
 #define Uses_TSCheckBoxes
 #define Uses_TSHzGroup
+#define Uses_TSLabel
+#define Uses_TSStringableListBox
 
 // First include creates the dependencies
 #include <easydia1.h>
-#include <tv.h>
+#include <settvuti.h>
 // Second request the headers
 #include <easydiag.h>
 
 #define Uses_SETAppDialogs
+#define Uses_SETAppConst
 #include <setapp.h>
 #include <edspecs.h>
 
@@ -27,6 +34,7 @@ typedef struct
  unsigned options;
 } advice;
 
+// Note: AdviceManager() support only one
 static const char *AdviceVar1="SET_TIPS1";
 
 const unsigned opsSimple=0, ops40cols=1, ops60cols=2, opsTypeMask=7;
@@ -130,5 +138,112 @@ int GiveAdvice(int number)
     EnvirSetIntVar(ad->variable,ops | ad->mask);
 
  return ret;
+}
+
+struct stItem
+{
+ const char *str;
+ stTVIntl *intlCache;
+ Boolean  state;
+};
+
+class AdvManagedItems : public TStringable
+{
+public:
+ AdvManagedItems();
+ ~AdvManagedItems();
+
+ void apply();
+
+ virtual void getText(char *dest, unsigned item, int maxLen);
+ virtual Boolean taggingSupported() { return True; };
+ virtual Boolean isTagged(unsigned );
+ virtual Boolean setTag(unsigned , Boolean state);
+
+protected:
+ stItem *items;
+};
+
+AdvManagedItems::AdvManagedItems()
+{
+ Count=cantAdvices+1; // + the cmeQuitDelete question
+ items=new stItem[Count];
+ memset(items,0,sizeof(stItem)*Count);
+ int i;
+ for (i=0; i<cantAdvices; i++)
+    {
+     items[i].str=Advices[i].label;
+     TVIntl::getText(Advices[i].label,items[i].intlCache);
+     items[i].state=EnvirGetIntVar(Advices[i].variable) & Advices[i].mask ? True : False;
+    }
+ items[i].str=cmeQuitDeleteMessage;
+ TVIntl::getText(cmeQuitDeleteMessage,items[i].intlCache);
+ items[i].state=strcmp(GetVariable("SET_CONFQUIT"),"1")==0 ? True : False;
+}
+
+AdvManagedItems::~AdvManagedItems()
+{
+ unsigned i;
+ for (i=0; i<Count; i++)
+     TVIntl::freeSt(items[i].intlCache);
+ delete[] items;
+}
+
+void AdvManagedItems::getText(char *dest, unsigned item, int maxLen)
+{
+ CLY_snprintf(dest,maxLen,"[%c] %s",items[item].state ? ' ' : 'X',
+              TVIntl::getText(items[item].str,items[item].intlCache));
+ char *s=dest;
+ for (;*s; s++)
+     if (*s==3 || *s=='\n')
+        *s=' ';
+}
+
+Boolean AdvManagedItems::isTagged(unsigned item)
+{
+ return items[item].state;
+}
+
+Boolean AdvManagedItems::setTag(unsigned item, Boolean state)
+{
+ Boolean old=items[item].state;
+ items[item].state=state;
+ return old;
+}
+
+void AdvManagedItems::apply()
+{// Slow but simple
+ int i;
+ for (i=0; i<cantAdvices; i++)
+    {
+     unsigned ops=EnvirGetIntVar(Advices[i].variable);
+     if (items[i].state)
+        ops|=Advices[i].mask;
+     else
+        ops&= ~Advices[i].mask;
+     EnvirSetIntVar(Advices[i].variable,ops);
+    }
+ InsertEnviromentVar("SET_CONFQUIT",items[i].state ? "1" : "0");
+}
+
+void AdviceManager()
+{
+ TSViewCol *col=new TSViewCol(__("Advice dialogs"));
+
+ TRect r=TApplication::deskTop->getExtent();
+ int h=r.b.y-r.a.y-10;
+ int w=r.b.x-r.a.x-15;
+ col->insert(xTSCenter,yTSUp,
+             new TSLabel(__("Select which advice dialogs are enabled"),
+                         new TSStringableListBox(w,h,tsslbVertical|tsslbHorizontal,1,256)));
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doItCenter(cmeAdviceDiagConf);
+ delete col;
+
+ AdvManagedItems *list=new AdvManagedItems();
+ TStringableListBoxRec box={list,0};
+ if (execDialog(d,&box)==cmOK)
+    list->apply();
+ delete list;
 }
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-05-10 22:43-0300\n"
+"PO-Revision-Date: 2003-05-11 19:09-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:424
-#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:118 ../setedit/boardmix.cc:118
+#: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:118
 #: ../setedit/editdiag.cc:155 ../setedit/edprefs.cc:239
 #: ../setedit/edprefs.cc:471 ../setedit/edprefs.cc:616
 #: ../setedit/edprefs.cc:680 ../setedit/edprefs.cc:906
@@ -318,7 +318,7 @@ msgstr "InfView v"
 # msgstr "~C~olores ..."
 # msgid "~C~olors ..."
 # msgstr "~C~olores ..."
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2366
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2379
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -334,7 +334,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2368
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2381
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
@@ -763,12 +763,12 @@ msgid "> ~N~ext"
 msgstr "> P~r~óxima"
 
 #: ../install/install.cc:449 ../mainsrc/deedidia.cc:339
-#: ../setedit/advice.cc:107 ../setedit/advice.cc:114
+#: ../setedit/advice.cc:115 ../setedit/advice.cc:122
 msgid "~Y~es"
 msgstr "~S~i"
 
 #: ../install/install.cc:450 ../mainsrc/deedidia.cc:340
-#: ../setedit/advice.cc:108 ../setedit/advice.cc:113
+#: ../setedit/advice.cc:116 ../setedit/advice.cc:121
 msgid "~N~o"
 msgstr "~N~o"
 
@@ -2675,7 +2675,7 @@ msgstr "símbolo no definido"
 msgid "operation not defined"
 msgstr "operación no definida"
 
-#: ../setedit/advice.cc:38
+#: ../setedit/advice.cc:46
 msgid ""
 "You are about to switch to the user screen\n"
 "Press ENTER to go back"
@@ -2683,7 +2683,7 @@ msgstr ""
 "Ud. está por cambiar a la pantalla de usuario\n"
 "Presione INTRO para regresar"
 
-#: ../setedit/advice.cc:40
+#: ../setedit/advice.cc:48
 msgid ""
 "Avoid using files that aren't in a directory that isn't relative to the "
 "working one. For example: on another drive. If you do it, you'll have "
@@ -2694,7 +2694,7 @@ msgstr ""
 "hace esto puede tener problemas al mover el proyecto a otro directorio o "
 "computadora."
 
-#: ../setedit/advice.cc:42
+#: ../setedit/advice.cc:50
 msgid ""
 "Do you really want to delete\n"
 "this file from disk?"
@@ -2702,7 +2702,7 @@ msgstr ""
 "¿Está seguro que desea borrar\n"
 "el archivo del disco?"
 
-#: ../setedit/advice.cc:44
+#: ../setedit/advice.cc:52
 msgid ""
 "Keep in mind that SHIFT and CAPS-LOCK will affect the case of the letters "
 "during incremental searches"
@@ -2711,7 +2711,7 @@ msgstr ""
 "mayúsculas o minúsculas) durante las búsquedas incrementales, lo mismo "
 "sucederá con CAPS-LOCK. No olvide este detalle."
 
-#: ../setedit/advice.cc:46
+#: ../setedit/advice.cc:54
 msgid ""
 "Keep in mind that incremental searches aren't very intuitive, especially "
 "when pressing SHIFT."
@@ -2719,7 +2719,7 @@ msgstr ""
 "Con estas opciones las búsquedas incrementales no serán muy intuituvas, "
 "especialmente al presionar SHIFT. No olvide este detalle."
 
-#: ../setedit/advice.cc:48
+#: ../setedit/advice.cc:56
 msgid ""
 "Keep in mind that while holding SHIFT the incremental search is done for "
 "directory names, rather than files."
@@ -2728,7 +2728,7 @@ msgstr ""
 "nombres de los directorios, sino con los nombres de los archivos. No olvide "
 "este detalle."
 
-#: ../setedit/advice.cc:50
+#: ../setedit/advice.cc:58
 msgid ""
 "When using real tabs the following options are usually desired: Autoindent "
 "ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, "
@@ -2741,7 +2741,7 @@ msgstr ""
 "'indentado' NO y La tecla <- desindenta NO. Veo que no todas están "
 "seleccionadas de esta manera."
 
-#: ../setedit/advice.cc:52
+#: ../setedit/advice.cc:60
 msgid ""
 "Tags file has incorrect format.\n"
 "Do you want to read more about it?"
@@ -2749,7 +2749,7 @@ msgstr ""
 "Archivo de TAGs en formato incorrecto.\n"
 "¿Desea leer más sobre esto?"
 
-#: ../setedit/advice.cc:54
+#: ../setedit/advice.cc:62
 msgid ""
 "This option needs a tags file.\n"
 "Do you want to read more about it?"
@@ -2757,7 +2757,7 @@ msgstr ""
 "Esta opción necesita un archivo de TAGs.\n"
 "¿Desea leer más sobre esto?"
 
-#: ../setedit/advice.cc:56
+#: ../setedit/advice.cc:64
 msgid ""
 "GNU diff isn't installed.\n"
 "For this reason I can't offer some options."
@@ -2765,13 +2765,21 @@ msgstr ""
 "El programa GNU diff no está instalado.\n"
 "Por esta razón no puedo ofrecer algunas opciones."
 
-#: ../setedit/advice.cc:84
+#: ../setedit/advice.cc:92
 msgid "Advice"
 msgstr "Concejo"
 
-#: ../setedit/advice.cc:99 ../setedit/editdiag.cc:73
+#: ../setedit/advice.cc:107 ../setedit/editdiag.cc:73
 msgid "Don't show it next time"
 msgstr "No mostrar esto la próxima vez"
+
+#: ../setedit/advice.cc:231
+msgid "Advice dialogs"
+msgstr "Diálogos de concejo"
+
+#: ../setedit/advice.cc:237
+msgid "Select which advice dialogs are enabled"
+msgstr "Seleccione cuales diálogos están habilitados"
 
 #: ../setedit/ascii.cc:151
 msgid "  Char: "
@@ -3024,60 +3032,64 @@ msgstr "Todos mis amigos que soportaron mi proyecto (Laszlo, Marek,"
 msgid "Grzegorz, etc.)."
 msgstr "Ivan, Grzegorz, etc.)."
 
-#: ../setedit/editmain.cc:415
+#: ../setedit/editmain.cc:127
+msgid "Do you want to delete all the .BKP, desktop and project files?"
+msgstr "¿Desea borrar todos los archivos de respaldo y escritorio?"
+
+#: ../setedit/editmain.cc:417
 msgid "No project loaded"
 msgstr "No hay proyecto cargado"
 
-#: ../setedit/editmain.cc:475
+#: ../setedit/editmain.cc:477
 msgid "This file is already open, close it first."
 msgstr "Este archivo ya esta abierto, primero ciérrelo."
 
-#: ../setedit/editmain.cc:557
+#: ../setedit/editmain.cc:559
 msgid "Open File"
 msgstr "Abrir Archivo"
 
-#: ../setedit/editmain.cc:572
+#: ../setedit/editmain.cc:574
 msgid "You must select an editor window for this operation"
 msgstr "Ud. debe seleccionar una ventana de esitor para esta operación"
 
-#: ../setedit/editmain.cc:706
+#: ../setedit/editmain.cc:708
 msgid "Export file as"
 msgstr "Exportar archivo como"
 
-#: ../setedit/editmain.cc:783
+#: ../setedit/editmain.cc:785
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Esta ventana no puede imprimirse, seleccione un editor"
 
-#: ../setedit/editmain.cc:941
+#: ../setedit/editmain.cc:943
 msgid "Couldn't find any matching help"
 msgstr "No pude encontrar ninguna ayuda"
 
-#: ../setedit/editmain.cc:1118
+#: ../setedit/editmain.cc:1120
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 "Estamos ejecutando una tarea en segundo plano. ¿Salir de todas maneras?"
 
-#: ../setedit/editmain.cc:1482
+#: ../setedit/editmain.cc:1499
 msgid "This line no longer exists"
 msgstr "Esta línea ya no existe"
 
-#: ../setedit/editmain.cc:1633
+#: ../setedit/editmain.cc:1650
 msgid "Error creating the difference, aborting"
 msgstr "Error al buscar los cambios, operación abortada"
 
-#: ../setedit/editmain.cc:1709
+#: ../setedit/editmain.cc:1726
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es más nueva, ¿la cargo?"
 
-#: ../setedit/editmain.cc:1937
+#: ../setedit/editmain.cc:1950
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
 "the file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, búsquelo en el paquete que instaló."
 
-#: ../setedit/editmain.cc:2072
+#: ../setedit/editmain.cc:2085
 #, c-format
 msgid ""
 "\n"
@@ -3086,7 +3098,7 @@ msgstr ""
 "\n"
 "¡Instalación errónea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:2073
+#: ../setedit/editmain.cc:2086
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -3094,7 +3106,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribución.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2077
+#: ../setedit/editmain.cc:2090
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3103,7 +3115,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2079
+#: ../setedit/editmain.cc:2092
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3112,11 +3124,11 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2084
+#: ../setedit/editmain.cc:2097
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:2093
+#: ../setedit/editmain.cc:2106
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3126,15 +3138,15 @@ msgstr ""
 "Ud. definió SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2122
+#: ../setedit/editmain.cc:2135
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2366
+#: ../setedit/editmain.cc:2379
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2367
+#: ../setedit/editmain.cc:2380
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3142,7 +3154,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2369
+#: ../setedit/editmain.cc:2382
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3159,11 +3171,11 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2373
+#: ../setedit/editmain.cc:2386
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2374
+#: ../setedit/editmain.cc:2387
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3177,7 +3189,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:2379
+#: ../setedit/editmain.cc:2392
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -3189,7 +3201,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:2383
+#: ../setedit/editmain.cc:2396
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3198,7 +3210,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:2385
+#: ../setedit/editmain.cc:2398
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3206,34 +3218,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2387
+#: ../setedit/editmain.cc:2400
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:2389
+#: ../setedit/editmain.cc:2402
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:2391
+#: ../setedit/editmain.cc:2404
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2392
+#: ../setedit/editmain.cc:2405
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2393
+#: ../setedit/editmain.cc:2406
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:2396
+#: ../setedit/editmain.cc:2409
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:2398
+#: ../setedit/editmain.cc:2411
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3242,7 +3254,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:2400
+#: ../setedit/editmain.cc:2413
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3250,7 +3262,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:2403
+#: ../setedit/editmain.cc:2416
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -3258,19 +3270,15 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:2405
+#: ../setedit/editmain.cc:2418
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:2406
+#: ../setedit/editmain.cc:2419
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
-
-#: ../setedit/editmain.cc:2792
-msgid "Do you want to delete all the .BKP, desktop and project files?"
-msgstr "¿Desea borrar todos los archivos de respaldo y escritorio?"
 
 #. E: ACHNOSUX
 #: ../setedit/editmenu.cc:64 ../setedit/editmenu.cc:140
@@ -3941,6 +3949,10 @@ msgstr "Calendario (feriados)..."
 #: ../setedit/editmenu.cc:322
 msgid "Checking for ~m~odified files..."
 msgstr "~V~erificar archivos modificados..."
+
+#: ../setedit/editmenu.cc:323
+msgid "Advice dialogs..."
+msgstr "Diálogos de concejo..."
 
 #: ../setedit/editpale.cc:109
 msgid "Palette editor"

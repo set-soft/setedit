@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.356  2003/05/12 13:44:40  set
+* Fixed: Also infview.mkf needed FOR_EDITOR as extra flags and libset.mkf
+needed FOR_LIBSET.
+
 Revision 1.355  2003/05/12 13:43:36  set
 * Added: A dialog to configure if the editor will check modification times
 after running an external program and/or periodically. Also how many seconds
