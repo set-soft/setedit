@@ -825,6 +825,7 @@ tools/conv.cc
 tools/cvssyncget.cc
 tools/cvssyncput.cc
 tools/kbv.c
+tools/lines.pl
 *tools/makediff.bat
 +tools/makediff.pl
 tools/mapa.cc
@@ -834,6 +835,8 @@ tools/mideline.cc
 +tools/putcopyr.pl
 tools/symify.cc
 tools/TVpo.pl
+tools/valgrind.cmd
+tools/woody.supp
 +update
 *update.bat
 version.txt
