@@ -141,7 +141,7 @@
  #define CLKAMPM_FORMAT "%l:%M%p"
 #endif
 
-#if defined(SEOS_DOS) || defined(SEOS_Win32)
+#if defined(SEOS_DOS) || (defined(SEOS_Win32) && !defined(SECompf_Cygwin))
 // This definition controls how the editor behaves when dealing with
 // file locations. In DOS/Win32 you don't log as an user with a home
 // directory.
