@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.246  2002/12/03 12:35:10  set
+* Modified: Default global settings to be more similar to what a Windows
+user spects. Suggested by Ivan.
+
 Revision 1.245  2002/12/03 12:34:18  set
 * Modified: Removed all the conditionals for TV<2 and modified the
 configure script to request TV>=2.0.1.

@@ -1,5 +1,6 @@
   Here I'll put some common and not so common questions about the editor
-running under DOS and Windows.
+running under DOS and Windows. These comments apply to the DOS version
+running on DOS and/or Windows and not the native Win32 version.
 
 1. Video questions.
 1.1 Screen goes black (or green or any strange option) when I exit the
@@ -14,6 +15,8 @@ editor or call a shell.
 3.2 Why I can't access files in a directory called c:\dev?
 3.3 I'm using Windows NT (4.0, 2k, XP, etc.) and defined Set_Files but it
 doesn't work, why?
+3.4 I'm using Windows NT (4.0, 2k, XP, etc.) and I can copy/paste to/from the
+Windows clipboard, why?
 
 4. Mouse problems
 4.1 I don't get a mouse pointer while I'm in DOS, why?
@@ -183,6 +186,12 @@ doesn't work, why?
 A: NT is case sensitive for environment variable you *must* use SET_FILES
 (all capitals).
   
+-----------------------------------------------------------------------------
+3.4 I'm using Windows NT (4.0, 2k, XP, etc.) and I can copy/paste to/from the
+Windows clipboard, why?
+
+A: NT doesn't implement the WinOldAP API that allows DOS programs to access
+some Windows stuff like the clipboard. Blame Microsoft for that.
 =============================================================================
 4. Mouse problems
 

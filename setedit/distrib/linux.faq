@@ -9,29 +9,15 @@ SET's Editor under Linux FAQ:
 1.1) Q: Why the right Alt key doesn't work for menues?
 1.2) Q: If I start the editor from midnight commander the keyboard doesn't
 work very well, why?
-1.3) Q: I use Red Hat 5.2 and the function keys works funny, some works
-others are moved to other places ... what's going on?
-1.4) Q: I use an X terminal emulator and home/end doesn't work, can I fix
-it? (example Konsole+Mandrake 8.1)
-Old questions, no longer apply but could help:
-1.5)
-Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
-is shifted.
-Q: Why pseudo-macros doesn't work?
-Q: Why delete previous word doesn't work?
 
 2) Mouse problems
 2.1) Q: Why mouse doesn't work?
-2.2) Q: Why the mouse isn't very interactive in xterm?
-2.3) Q: How can I copy/paste using gpm?
+2.2) Q: How can I copy/paste using gpm?
 
 3) Video problems
-3.1) Q: I have ISO Latin-1 fonts loaded, as root I selected this code page
-and all works OK, but as a common user the characters aren't right and I must
-select CP437. Why?
-3.2) Q: SETEdit can't open /dev/ptyX device, why?
-3.3) Q: Why capital accented characters doesn't work? I have lat1u fonts loaded.
-3.4) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
+3.1) Q: Can I make screen output faster?
+3.1) Q: SETEdit can't open /dev/ptyX device, why?
+3.2) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
 lat1u fonts?
 
 4) sLisp macro language
@@ -40,11 +26,12 @@ lat1u fonts?
 5) Edition modes
 5.1) Q: What options should I use to get real tabs (ascii 9)?
 
+=============================================================================
 0) Installation problems
 
 0.1) Q: I type e in the shell and the editor doesn't start, why?
 
-A: After installing the editor by defualt it is located in /usr/bin so
+A: After installing the editor by default it is located in /usr/bin so
 if your path doesn't contain this directory you must add it.
   If you are using bash you must edit the .bash_profile file and include this
 directory in the definition of the PATH variable. Here is how it looks in my
@@ -52,6 +39,7 @@ system:
 
 PATH=".:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11"
 
+-----------------------------------------------------------------------------
 0.2) Q: The editor complains about something related to SET_FILES not defined
 
 *** Currently it only happens if you don't install in /usr/bin or ***
@@ -68,6 +56,7 @@ export PATH PS1 RHIDESRC SET_FILES ESCDELAY
 
 Note: This syntax is for bash, I don't use other shell in UNIX.
 
+-----------------------------------------------------------------------------
 0.3) Q: I get "wrong command name at line NN of menubind.smn", what's up?
 
   Be sure you don't have another version of the editor installed in your
@@ -75,7 +64,7 @@ system. I changed the default installation directory from /usr/local/bin to
 /usr/bin so perhaps you have the old copy and it is *first* in your path so
 you are loading the new menu files with the old version of the binary.
 
-------------------------------------------------------------------------------
+=============================================================================
 1) Keyboard problems
 
 1.1) Q: Why the right Alt key doesn't work for menues?
@@ -91,6 +80,7 @@ the same key.
 for menues. That's currently a limitation.
 
 
+-----------------------------------------------------------------------------
 1.2) Q: If I start the editor from midnight commander the keyboard doesn't
 work, why?
 
@@ -101,93 +91,7 @@ cooperate with the OS to work in a multitasking environment. Run the editor
 in other virtual console.
 
 
-1.3) Q: I use Red Hat 5.2 and the function keys works funny, some works
-others are moved to places ... what's going on?
-
-A: The kbd package shipped with Red Hat 5.2 (not sure if all RH 5.2 does it,
-looks like just some CDs were shipped with it and most not) introduces some
-changes in the keyboard configuration. The function keys are reported a
-little bit different. Try using the --use-rh-52-keys command line option, it
-should fix the problem. Note: Use a script to call the editor passing this
-switch.
-  I'm also including the default.map file I use in the .tar.gz distribution.
-You can try using it instead or run a diff to see what's difference are
-introduced in yours.
-
-
-
-1.4) Q: I use an X terminal emulator and home/end doesn't work, can I fix
-it? (example Konsole+Mandrake 8.1)
-
-A: Is quite common to see wrongly configured terminfo databases. Most VT102
-terminal emulators generates \E[4~ for end and \E[1~ for home (\E == ESC).
-In my systems that's true for the normal console and for ncurses. My
-terminfo database (Debian Potato) defines the terminfo entries as kend=\E[4~
-and khome=\E[1~, so all works OK. In some systems the terminfo definition
-for xterm says kend=\E05F and KHome=\E0H generating a problem. What you need
-to do is modify the terminfo definition. The easiest thing is to modify
-this value for all applications but I guess the propper thing is to create
-a special definition for setedit, something like xterm-setedit and define
-TERM to use it (export TERM=xterm-setedit).
-I won't explain how to modify a terminfo definition in detail but here are
-some hints:
-1) To decompile the definition for your terminal use the infocmp tool.
-2) The first line of the dumped definition says where is stored the
-definition.
-3) You can store it in a text file and edit it without problems.
-4) To compile it into the binary format just use the tic tool.
-5) You can force tic to generate the file in another directory hierarchy
-using the -o option.
-All the needed information is in the infocmp and tic manpages. If you need
-more information please post to the editor's mailing list asking for help.
-
-
-1.5)
-Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
-is shifted.
-Q: Why pseudo-macros doesn't work?
-Q: Why delete previous word doesn't work?
-
-*** As now I maintain the Turbo Vision port I taked the desition to patch ***
-*** more keyboard combinations, so it shouldn't happend                   ***
-A: That's because Linux is configured by default to do it. As the editor is
-using curses to read the keyboard and as we (Robert and me) want maximun
-compatibility we don't mess the keyboard tables (Or at least not too much
-;-). We did it in early versions of RHIDE and the result wasn't very good.
-Currently only few combinations are patched by TVision.
- So if you want to change it you must change the keyboard mapping. For that
-you should read loadkeys(1), dumpkeys(1), showkey(1) and related man pages.
- Here is an example to disable this behavior:
-
- % loadkeys
- shift keycode 104 = Prior
- [Press Ctrl+D here]
-
- It instructs the kernel to map Shift+PageUp (104, to find it use showkey),
-to just page up (by default is Scroll_Backward and is used by the kernel).
- Note that these changes affects all the consoles.
- To make the changes permanent edit /etc/kbd/default.map (Debian) or the
-equivalent in your system (look in the man pages).
- "But SET making it I lose Scroll_Backward, that's a usefull thing!". If you
-want to have it too just map it to other key, like AltGR+Shift+PageUp.
-
-Examples:
-
-# Map Shift+PageUp to PageUp
-shift keycode 104 = Prior
-alt shift keycode 104 = Scroll_Backward
-# Map Shift+PageDown to PageDown
-shift keycode 109 = Next
-alt shift keycode 109 = Scroll_Forward
-# Map Control+Backspace (Backspace)
-control keycode 14 = Delete
-# Map Control+Space (on purppose null)
-control keycode 57 = space
-
- I included my default.map file in the tar.gz of the distribution.
-
-
-------------------------------------------------------------------------------
+=============================================================================
 2) Mouse problems
 
 2.1) Q: Why mouse doesn't work?
@@ -207,12 +111,8 @@ lamentably gpm >= 1.14 is incompatible with previous versions.
 sources.
 
 
-2.2) Q: Why the mouse isn't very interactive in xterm?
-
-A: Because xterm reports only mouse clicks and not moves.
-
-
-2.3) Q: How can I copy/paste using gpm?
+-----------------------------------------------------------------------------
+2.2) Q: How can I copy/paste using gpm?
 
 A: Hold down the right Alt key and do the selection or copy or paste as you
 normally do with gpm.
@@ -221,27 +121,33 @@ gpm.
    Note that gpm doesn't work in X terminals.
 
    
-------------------------------------------------------------------------------
+=============================================================================
 3) Video problems
 
-3.1) Q: I have ISO Latin-1 fonts loaded, as root I selected this code page
-and all works OK, but as a common user the characters aren't right and I must
-select CP437. Why?
+3.1) Q: Can I make screen output faster?
 
-A: Terminals doesn't use the fonts you loaded, they have an special mapping
-so the setting that is correct for the root (that have access to the real
-console) is not good for the user (who only have access to a tty terminal).
-  There are many solutions, one is just don't share desktop files and
-configure the desktop files of the user for CP437 and the desktop files for
-the root as ISO-1.
-  But the best choice is to give access to the user to the /dev/vcsa devices.
-The editor includes a script that puts these devices in a special group
-called "vcsa", just run it and then add the users to this group.
-  If you are lazy or doesn't have annoying users logging in your computer
-just change the vcsa right access flags to "rw-rw--w-" so any user can write
-to the virtual consoles, that's enough for the editor (works better if have
-read access).
+A: The editor is much faster is you have access to the /dev/vcsa* devices.
+These devices maps the console video buffer.
+  In order to give access to regular users (not just root) to these devices I
+recommend:
 
+1) Create a group for people that will have access to it.
+
+# addgroup vcs
+
+2) Change the /dev/vcs* owner so they belong to this group.
+
+# chown root.vcs /dev/vcs*
+
+3) Change the /dev/vcs* rights so the group can read and write to them.
+
+# chmod 0660 /dev/vcs*
+
+4) Add the user/s you want to grant access to this group.
+
+# adduser NAME vcs
+
+-----------------------------------------------------------------------------
 3.2) Q: SETEdit can't open /dev/ptyX device, why?
 
 A: I know it isn't for a FAQ but the case of Attila is quite interesting:
@@ -252,36 +158,8 @@ was owned by root.
 
 Attila Kinali"
 
-3.3) Q: Why capital accented characters doesn't work? I have lat1u fonts
-loaded.
-
-A: When the editor uses /dev/vcsa no font mapping is done. It means: if your
-document have a symbol number 192 (capital A letter with accute accent in
-ISO 8859 latin 1 encoding) the editor will send to the screen the code 192.
-The lat1u fonts are a tweacked version of the real ISO 8859 latin 1 fonts
-where capital letters are moved to other codes to get nice frames (connected
-instead of separated). This works for most programs because the kernel does a
-remapping using hash tables and converting the code into unicode and then
-back to an 8 bits value for the screen.
-If you really want to use capital accented letters just load lat1 fonts and
-not lat1u. Your frames will most probably look unconnected, if that's the
-case you must adjust the video mode to have characters of 8 pixels (width)
-and not 9. This can be achieved using SVGATextMode tool, you can use the
-following mode:
-
-"80x25x8"         25.2   640  680  776  800    400  412  414  449 font  8x16
-
-I personally use:
-
-"94x30_VGA"       28.3   752  776  840 904    480  488  490  525 font  8x16
-
-More information about it can be found in:
-
-http://www.balug.org.ar/ConfTips/Fonts/index.html
-
-The text is in spanish.
-
-3.4) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
+-----------------------------------------------------------------------------
+3.3) Q: Why my lat1 fonts doesn't fix the problems and looks exactly like
 lat1u fonts?
 
 A: Some Linux distros included wrong fonts. An example is Debian GNU/Linux
@@ -293,7 +171,7 @@ http://www.balug.org.ar/ConfTips/Fonts/index.html
 
 Look at the bottom of the page.
 
-------------------------------------------------------------------------------
+=============================================================================
 4) sLisp macro language
 
 4.1) How can I extend it?
@@ -460,7 +338,7 @@ Here you can see what's inside the usual macros like GetxxxVar, the
 
 If you need more information just e-mail me.
 
-------------------------------------------------------------------------------
+=============================================================================
 5) Edition modes
 
 5.1) What options should I use to get real tabs (ascii 9)?
