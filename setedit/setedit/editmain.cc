@@ -32,6 +32,7 @@
 #define Uses_TStreamableClass
 #define Uses_TGKey
 #define Uses_TSubMenu
+#define Uses_TMenu
 #define Uses_TVCodePage
 #define Uses_string
 #define Uses_alloca
@@ -53,6 +54,7 @@
 #define Uses_SETAppAll
 #define Uses_SETAppHelper
 #define Uses_PrjFunctions
+#define Uses_TMultiMenu
 #include <setapp.h>
 #include <dskwin.h>
 #include <dskedito.h>
@@ -109,6 +111,7 @@ extern void setIntenseState(void);
 TDskWinHelp       *TSetEditorApp::InfManager=NULL;
 TEditorCollection *TSetEditorApp::edHelper=NULL;
 TCEditWindow      *TSetEditorApp::clipWindow=NULL;
+TMultiMenuBar     *TSetEditorApp::multiMenuBar=NULL;
 // For the tricky context latch
 int      TSetEditorApp::helpRequest=0;
 ushort   TSetEditorApp::helpCtxRequested=0;
@@ -2186,6 +2189,8 @@ void TSetEditorApp::idle()
  ProcessMP3Idle;
  // Look for async responses from gdb.
  DebugPoll();
+ if (multiMenuBar)
+    multiMenuBar->update();
  TApplication::idle();
  clock_t DifLastTime=lastIdleClock-LastTimeUpdate;
  // Update 2 times per second

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.566  2004/08/09 15:14:29  set
+* Fixed: [DOC] Problems in the HTML generation using makeinfo 4.7.
+* Fixed: [DOC] Problems in the DVI/PS generation (macro name collision).
+Again from info sent by Andrea Mazzoleni (amadvance/users/sourceforge/net).
+
 Revision 1.565  2004/08/09 12:54:47  set
 *** Data Window stuff:
 *** Related to the new code

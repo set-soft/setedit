@@ -32,6 +32,7 @@
 #include <ceditor.h>
 #define Uses_SETAppConst
 #define Uses_SETAppVarious
+#define Uses_TMultiMenu
 #include <setapp.h>
 
 #include <keytrans.h>
@@ -729,6 +730,26 @@ TStatusDef *GetStatusDef(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
 }
 
 static
+void GetNewMenuID(FILE *f, char *buf, char *s, unsigned &min, unsigned &max)
+{
+ int from,quantity,to;
+
+ // Same as StatusRange
+ s=SkipBlanks(s);
+ // Get the from
+ s=GetHelpCtx(s,from,1);
+ if (Error) return;
+ // Get the quantity
+ s=GetNumber(s,quantity,errMLNoToInRange,errMLNoNumber);
+ if (Error) return;
+ to=from+quantity;
+ if (from>to)
+    Error=errMLFromLessTo;
+ min=from;
+ max=to;
+}
+
+static
 int PreproLine_Start(char *line, unsigned len, unsigned flags, stPreproInfo *p,
                      DynStrCatStruct *str)
 {
@@ -1180,9 +1201,84 @@ char *ExpandPreprocessor(char *buf, stPreproInfo *p, TDef *defs)
  return buf;
 }
 
+/*****************************************************************************
+  TMultiMenu and TMultiMenuBar members.
+*****************************************************************************/
+
+void TMultiMenu::add(TMenuItem *m)
+{
+ if (last)
+   {
+    last->next=m;
+    last=m;
+   }
+ else
+    items=last=m;
+}
+
+TMultiMenu::~TMultiMenu()
+{
+ if (next)
+    delete next;
+}
+
+void TMultiMenuBar::findMenu()
+{// The last is the default
+ TMultiMenu *p=menuList;
+ while (p->next && (helpCtx<p->min || helpCtx>p->max))
+   p=p->next;
+ if (p!=menu)
+   {
+    menu=p;
+    computeLength();
+    drawView();
+   }
+}
+
+void TMultiMenuBar::update()
+{
+ // Avoid changing the menu if the user is using it ;-)
+ if (state & sfModal)
+    return;
+ TView *p=TopView();
+ unsigned h=p ? p->getHelpCtx() : hcNoContext;
+ if (helpCtx!=h)
+   {
+    helpCtx=h;
+    findMenu();
+   }
+}
+
+/*****************************************************************************
+  Helpers to construct a TMultiMenu
+*****************************************************************************/
+
 static char MenuAndStatusLoaded=0;
-static TSubMenu   *subMenu=0;
-static TStatusDef *statusDef=0;
+static TStatusDef *statusDef=NULL;
+// List of menues
+static TMultiMenu *firstMenu=NULL;
+
+static
+void InitAddSubMenu()
+{
+ firstMenu=new TMultiMenu();
+}
+
+static
+void AddNewMenu(unsigned min, unsigned max)
+{
+ TMultiMenu *mm=new TMultiMenu();
+ mm->min=min;
+ mm->max=max;
+ mm->next=firstMenu;
+ firstMenu=mm;
+}
+
+static
+void AddSubMenu(TSubMenu *m)
+{
+ firstMenu->add(m);
+}
 
 /**[txh]********************************************************************
 
@@ -1201,10 +1297,10 @@ int LoadTVMenuAndStatus(char *fileName)
  FILE *f;
  char buf[maxLineLen+1];
  char *s;
- TSubMenu *lastSubMenu=0;
- TStatusDef *lastStatusDef=0;
  DynStrCatStruct Cat;
  int PreproValue=1;
+ InitAddSubMenu();
+ TStatusDef *lastStatusDef=NULL;
 
  Error=0; Line=0;
  f=fopen(fileName,"rt");
@@ -1278,16 +1374,16 @@ int LoadTVMenuAndStatus(char *fileName)
              if (strcasecmp(m->name,"Editor Right Click")==0)
                 TCEditor::RightClickMenu=m;
              else
-               {
-                if (subMenu)
-                  {
-                   lastSubMenu->next=m;
-                   lastSubMenu=m;
-                  }
-                else
-                   subMenu=lastSubMenu=m;
-               }
+                AddSubMenu(m);
             }
+         }
+       else
+       if (strncasecmp(s,"NewMenu:",8)==0)
+         {
+          unsigned min, max;
+          GetNewMenuID(f,buf,s+8,min,max);
+          if (!Error)
+             AddNewMenu(min,max);
          }
        else
        if (strncasecmp(s,"StatusRange:",12)==0)
@@ -1315,7 +1411,7 @@ int LoadTVMenuAndStatus(char *fileName)
  CLY_destroy(defs);
  if (!Error)
    {
-    if (!subMenu)
+    if (!firstMenu->items)
        Error=errMLNoMenuDefinition;
     else
     if (!statusDef)
@@ -1326,19 +1422,18 @@ int LoadTVMenuAndStatus(char *fileName)
  return 0;
 }
 
-int LoadMenuAndStatus(char *fileName, int forceReload=0);
 int LoadMenuAndStatus(char *fileName, int forceReload)
 {
  if (MenuAndStatusLoaded && !forceReload) return 1;
- Error=0; subMenu=0; statusDef=0;
+ Error=0; firstMenu=NULL; statusDef=NULL;
  return LoadTVMenuAndStatus(fileName);
 }
 
-TMenuBar *GetTVMenu(char *fileName, TRect &rect)
+TMultiMenuBar *GetTVMenu(char *fileName, TRect &rect)
 {
  if (Error) return 0;
- if (!subMenu && !LoadMenuAndStatus(fileName)) return 0;
- return new TMenuBar(rect,*subMenu);
+ if (!firstMenu && !LoadMenuAndStatus(fileName)) return 0;
+ return new TMultiMenuBar(rect,firstMenu);
 }
 
 TStatusLine *GetTVStatusLine(char *fileName, TRect &rect)

@@ -187,9 +187,43 @@ public:
 SetDefStreamOperators(TScOptsCol)
 #endif
 
+#if (defined(Uses_TMultiMenu) || defined(Uses_TMultiMenuBar)) && \
+    !defined(TMultiMenu_defined)
+#define TMultiMenu_defined
+class TMultiMenu : public TMenu
+{
+public:
+ TMultiMenu() : TMenu(), next(NULL), last(NULL) {};
+ ~TMultiMenu();
+ void add(TMenuItem *m);
+
+ TMultiMenu *next;
+ TMenuItem *last;
+ unsigned min, max;
+};
+
+class TMultiMenuBar : public TMenuBar
+{
+public:
+ TMultiMenuBar(const TRect &bounds, TMultiMenu *aMenu) :
+  TMenuBar(bounds,aMenu) { menuList=aMenu; helpCtx=(unsigned)-1; };
+ void update();
+ void findMenu();
+
+ unsigned helpCtx;
+ TMultiMenu *menuList;
+};
+
+int LoadMenuAndStatus(char *fileName, int forceReload=0);
+TMultiMenuBar *GetTVMenu(char *fileName, TRect &rect);
+TStatusLine   *GetTVStatusLine(char *fileName, TRect &rect);
+#endif
+
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
 #define __TSetEditorApp__
 class TMenuBar;
+class TMultiMenuBar;
+class TMenu;
 class TStatusLine;
 class TEditWindow;
 class TDialog;
@@ -430,6 +464,8 @@ protected:
     static char fontCreated;
 
     static uint32 modifFilesOps;
+
+    static TMultiMenuBar *multiMenuBar;
 };
 
 // modifFilesOps:

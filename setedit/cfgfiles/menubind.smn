@@ -378,6 +378,81 @@ SubMenu: "Editor Right Click", kbUnknown
  MenuItemC: "Cu~t~", cmcCut, kbShDelete, "Shift+Del"
 EndSubMenu
 
+#
+# You can define different menues for different contexts.
+# Currently we have a special menu for the Data Window. That's because this
+# window have tons of commands.
+#
+
+NewMenu: hcDataViewer, 0
+
+SubMenu: "~F~ile", kbAlF
+# EN: RWX
+ MenuItemC: "~R~ead block", cmDWRead, kbCtR, "Ctrl+R"
+ MenuItemC: "~W~rite block", cmDWWrite, kbCtW, "Ctrl+W"
+ MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
+EndSubMenu
+
+SubMenu: "~M~ove", kbAlM
+# EN: ADLOPRSTUW
+ MenuItemC: "~U~p", cmDWUp, kbUp, "Cursor up"
+ MenuItemC: "~D~own", cmDWDown, kbDown, "Cursor down"
+ MenuItemC: "~R~ight", cmDWRight, kbRight, "->"
+ MenuItemC: "~L~eft", cmDWLeft, kbLeft, "<-"
+ MenuItemC: "Page d~o~wn", cmDWPgDn, kbPgDn, "Page Down"
+ MenuItemC: "Page u~p~", cmDWPgUp, kbPgUp, "Page Up"
+ MenuItemC: "Fir~s~t column", cmDWFirstColumn, kbHome, "Home"
+ MenuItemC: "L~a~st column", cmDWLastColumn, kbEnd, "End"
+ MenuItemC: "First ro~w~", cmDWFirstRow, kbCtHome, "Ctrl+Home"
+ MenuItemC: "Las~t~ row", cmDWLastRow, kbCtEnd, "Ctrl+End"
+EndSubMenu
+
+SubMenu: "~A~ddress", kbAlA
+# EN: BFGINPR
+ MenuItemC: "Change ~b~ase address", cmDWBaseAddress, kbCtB, "Ctrl+B"
+ MenuItemC: "~G~o to new address", cmDWGotoAddress, kbCtG, "Ctrl+G"
+ MenuItemC: "Follow ~p~ointer", cmDWFollowPointer, kbCtF, "Ctrl+F"
+ MenuItemC: "Follow pointer in ~n~ew window", cmDWFollowPtnNew, kbCtO, "Ctrl+O"
+ MenuItemC: "~R~ecompute address", cmDWRecompute, kbCtH, "Ctrl+H"
+ MenuItemC: "First addr. ~i~ncrement", cmDWBaseIncrement, kbCtRight, "Ctrl+->"
+ MenuItemC: "~F~irst addr. decrement", cmDWBaseDecrement, kbCtLeft, "Ctrl+<-"
+EndSubMenu
+
+SubMenu: "M~o~de", kbAlO
+# EN: ADER
+ MenuItemC: "Toggle ~a~uto follow", cmDWTogAutoF, kbCtA, "Ctrl+A"
+ MenuItemC: "Change ~d~isplay mode", cmDWDispMode, kbCtD, "Ctrl+D"
+ MenuItemC: "Toggle ~e~ndian mode", cmDWTogEndian, kbCtE, "Ctrl+E"
+ MenuItemC: "Change ~r~adix", cmDWRadix, kbCtX, "Ctrl+X"
+EndSubMenu
+
+SubMenu: "~B~lock", kbAlB
+# EN: CFM
+ MenuItemC: "~F~ill", cmDWFill, kbCtI, "Ctrl+I"
+ MenuItemC: "~C~lear", cmDWClear, kbCtL, "Ctrl+L"
+ MenuItemC: "~M~ove", cmDWMove, kbCtM, "Ctrl+M"
+EndSubMenu
+
+SubMenu: "~V~arious", kbAlV
+# EN: LMU
+ MenuItemC: "~L~ess bytes per line", cmDWLessLines, kbMinus, "-"
+ MenuItemC: "~M~ore bytes per line", cmDWMoreLines, kbPlus, "+"
+ MenuItemC: "~U~pdate memory", cmDWUpdateMemory, kbEnter, "Enter"
+EndSubMenu
+
+SubMenu: "~W~indows", kbAlW
+# EN: CGJLNPSWZ
+ MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
+ MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
+ MenuItemC: "~N~ext", cmeNext, kbF6, "F6"
+ MenuItemC: "~P~revious", cmePrev, kbShF6, "Shift+F6"
+ MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
+ MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
+ MenuItemC: "Debu~g~ger Window", cmeSelDebugWin
+ MenuItemC: "~W~atches Window", cmeSelWatchesWin
+EndSubMenu
+
 
 #
 #   The following is the declaration for the status line of the editor. It

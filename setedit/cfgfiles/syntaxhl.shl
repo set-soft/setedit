@@ -402,7 +402,7 @@ Symbols1=:,
 Preprocessor=$
 HexMarker=0x
 Keywords=SubMenu,MenuItem,MenuItemC,MenuSeparator,EndSubMenu
-Keywords=StatusRange,StatusEntry,StatusHiddenEntry,EndStatusRange
+Keywords=StatusRange,StatusEntry,StatusHiddenEntry,EndStatusRange,NewMenu
 End
 
 #----------------------- Netwide Assembler (nasm) -------------------------

@@ -8,6 +8,7 @@
 #define Uses_TApplication
 #define Uses_TMenuBar
 #define Uses_TRect
+#define Uses_TMenu
 #define Uses_TSubMenu
 #define Uses_TMenuItem
 #define Uses_TStatusLine
@@ -33,6 +34,7 @@
 #include <setconst.h>
 
 #define Uses_TSetEditorApp
+#define Uses_TMultiMenu
 #define Uses_SETAppConst
 #define Uses_SETAppDialogs
 #include <setapp.h>
@@ -43,19 +45,15 @@
 #include <inf.h>
 #include <editcoma.h>
 
-int LoadMenuAndStatus(char *fileName, int forceReload=0);
-TMenuBar    *GetTVMenu(char *fileName, TRect &rect);
-TStatusLine *GetTVStatusLine(char *fileName, TRect &rect);
-
 char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 
-TMenuBar *TSetEditorApp::initMenuBar( TRect r )
+TMenuBar *TSetEditorApp::initMenuBar(TRect r)
 {
  r.b.y = r.a.y+1;
 
- TMenuBar *mb=GetTVMenu(ExpandFileNameToThePointWhereTheProgramWasLoaded("menubind.smn"),r);
- if (mb)
-    return mb;
+ multiMenuBar=GetTVMenu(ExpandFileNameToThePointWhereTheProgramWasLoaded("menubind.smn"),r);
+ if (multiMenuBar)
+    return multiMenuBar;
 
  // Spanish: ABCEHMPRV
  // English: CEFHMPSVW
@@ -140,7 +138,10 @@ TMenuBar *TSetEditorApp::initMenuBar( TRect r )
    *new TMenuItem( __("~O~pen..."), cmeOpenPrj, kbNoKey ) +
    *new TMenuItem( __("~C~lose"), cmeClosePrj, kbNoKey );
 
- return new TMenuBar( r, sub1 + sub2 + sub3 + sub4 + sub5 + sub6 + sub7 + sub8 + sub9);
+ TMultiMenu *m=new TMultiMenu();
+ m->add(&(sub1+sub2+sub3+sub4+sub5+sub6+sub7+sub8+sub9));
+ multiMenuBar=new TMultiMenuBar(r,m);
+ return multiMenuBar;
 }
 
 

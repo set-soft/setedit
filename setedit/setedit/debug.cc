@@ -40,7 +40,7 @@ says ok to everything. -symbol-list-lines could help, but that's only for
 GDB 6.x. Note: GDB accepts breakpoints everywhere and puts the breakpoint
 somewhere close to the indicated point, may be we just need to find where
 is the real breakpoint.
-  * Data window.
+  * Select thread.
   * Disassembler window.
   * Put a limit to the ammount of messages in the debug message window.
 Reset it when reseting the session.
@@ -3831,11 +3831,8 @@ void TSetEditorApp::DebugEditWatchPts()
 contributed to RHIDE.
 *****************************************************************************/
 
-// TODO: When created it reads memory twice, find why.
 // TODO: Should we have persistence here?
 // TODO: some "disable" state when we stop.
-// TODO: some menu and/or status bar, currently it just uses keys and nobody
-// knows which ones. Must use commands binded to keys outside.
 
 /*
  Palette:
@@ -3877,7 +3874,7 @@ public:
  virtual void draw();
  virtual void handleEvent(TEvent & event);
  void update(unsigned long address, Boolean external=False);
- void getLine(char *buf, char *cols, int row);
+ int  getLine(char *buf, char *cols, int row);
  void cursorHoriz(int);
  void adjustWindow();
  unsigned char *curs2memo();
@@ -4383,22 +4380,22 @@ static const char *fieldStr[4][2]=
 
 static const uchar fieldBytes[4]={1,2,4,1};
 
-/*#ifdef __DJGPP__
-#define toPrintable(uc) (uc)
-#else
-#endif*/
 static inline
 uchar toPrintable(uchar uc)
 {
- return (uc)<0x7e && (uc)>=32 ? (uc) : '.';
+ if (0)
+    // I think that all current TV drivers supports all chars.
+    return (uc)<0x7e && (uc)>=32 ? (uc) : '.';
+ else
+    return uc ? uc : ' ';
 }
 
-void TDataViewer::getLine(char *buf, char *cols, int row)
+int TDataViewer::getLine(char *buf, char *cols, int row)
 {
  if (!memo)
    {
-    *buf = 0;
-    return;
+    *buf=0;
+    return 0;
    }
 
  unsigned ic;
@@ -4408,6 +4405,7 @@ void TDataViewer::getLine(char *buf, char *cols, int row)
  const unsigned fl=fieldLen[dispmode][radix]+1;
  const char *fs=fieldStr[dispmode][radix];
  const char *notAcc=notAccess+12-fl;
+ const char *bufOri=buf;
 
  switch (dispmode)
    {
@@ -4492,6 +4490,7 @@ void TDataViewer::getLine(char *buf, char *cols, int row)
          break;
    }
  *buf=0;
+ return buf-bufOri;
 }
 
 void TDataViewer::draw()
@@ -4513,11 +4512,12 @@ void TDataViewer::draw()
 
      memset(cols,0,size.x);
      sprintf(buf,"%08lX: ",ic*bpl+memStart-baseAddress);
-     getLine(buf+addrLen,cols,ic);
+     int len=addrLen+getLine(buf+addrLen,cols,ic);
 
      color=normalColor;
-     b.moveChar(0,' ',color,size.x);
-     b.moveCStr(0,buf,color);
+     b.moveBuf(0,buf,color,len);
+     if (len<size.x)
+        b.moveChar(len,' ',color,size.x-len);
 
      if (addressChanged && origAddr==memStart+ic*bpl)
         for (jc=0; jc<addrLen-2; jc++)
@@ -4603,9 +4603,6 @@ uchar *TDataViewer::curs2memo()
  return memo+bytesPerLine*cursor.y+
         (cursor.x-addrLen)/(fieldLen[dispmode][radix]+1)*fieldBytes[dispmode];
 }
-
-// TODO: Implement it in another way, why is different to the methode used
-// when the dialog is created?
 
 const int taddNone=-1, taddNewValue=0, taddFrom=1, taddTo=2, taddExp=3,
           taddLength=4, taddValue=5;
@@ -4710,181 +4707,6 @@ void TDataViewer::handleEvent(TEvent & event)
    {
     switch (event.keyDown.keyCode)
       {
-       // Cursor movement
-       case kbUp:
-            if (cursor.y==0)
-               newAddr=memStart-bytesPerLine;
-            else
-               setCursor(cursor.x,cursor.y-1);
-            break;
-       case kbDown:
-            if (cursor.y==size.y-1)
-               newAddr=memStart+bytesPerLine;
-            else
-               setCursor(cursor.x,cursor.y+1);
-            break;
-       case kbRight:
-            cursorHoriz(1);
-            break;
-       case kbCtrlRight:
-            newAddr=memStart+1;
-            break;
-       case kbLeft:
-            cursorHoriz(-1);
-            break;
-       case kbCtrlLeft:
-            newAddr=memStart-1;
-            break;
-       case kbPgDn:
-            newAddr=memStart+size.y*bytesPerLine;
-            break;
-       case kbPgUp:
-            newAddr=memStart-size.y*bytesPerLine;
-            break;
-       case kbHome:
-            setCursor(addrLen,cursor.y);
-            break;
-       case kbCtrlHome:
-            setCursor(cursor.x,0);
-            break;
-       case kbCtrlEnd:
-            setCursor(cursor.x,size.y-1);
-            break;
-       case kbEnd:
-            cursorHoriz(size.x);
-            break;
-       // End of cursor movement
-       case kbGrayMinus:        // decrease bytes/line
-            if (bytesPerLine>fieldBytes[dispmode])
-              {
-               bytesPerLine-=fieldBytes[dispmode];
-               update(memStart);
-               adjustWindow();
-               setCursor(addrLen,cursor.y);
-              }
-            break;
-       case kbGrayPlus:         // increase bytes/line
-            bytesPerLine+=fieldBytes[dispmode];
-            free(memo);
-            memo=NULL;
-            update(memStart);
-            adjustWindow();
-            break;
-       case kbEnter:            // update changes
-            writeBytes(memStart,memo,bytesPerLine*size.y,memLen);
-            drawView();
-            break;
-       case kbCtrlA:            // toggle auto follow mode
-            autoFollow^=1;
-            indi->changeState(TDIndicator::iAutofollow," A"[autoFollow]);
-            break;
-       case kbCtrlB:            // set new base address
-            printCursorAddress(buf);
-            if (EnterAddresses(__("Base Address"),taddNewValue,&baseAddress,buf))
-              {
-               indi->changeState(TDIndicator::iBaseAddress,baseAddress ? 'B' : ' ');
-               drawView();
-              }
-            break;
-       case kbCtrlD:            // change display mode
-            dispmode=(dispmode+1) % dmMAX;
-            bytesPerLine&=~(fieldBytes[dispmode]-1);
-            update(memStart);
-            adjustWindow();
-            setCursor(addrLen,cursor.y);
-            break;
-       case kbCtrlE:            // change endianness
-            endian^=1;
-            indi->changeState(TDIndicator::iEndian,"eE"[endian]);
-            if (fieldBytes[dispmode]>1)
-               update(memStart);
-            break;
-       case kbCtrlF:            // follow pointer
-            printCursorAddress(buf,True);
-            if (isValidAddress(buf,newAddr))
-              {
-               origAddr=newAddr;
-               setCursor(addrLen,0);
-              }
-            break;
-       case kbCtrlG:            // goto to a new address
-            if (EnterAddresses(__("Data window"),taddExp,&origAddr,origAddrTxt))
-              {
-               setCursor(addrLen,0);
-               addressChanged=True;
-              }
-            break;
-       case kbCtrlH:            // reevalute the original address then go to there
-            if (isValidAddress(origAddrTxt,newAddr))
-              {
-               origAddr=newAddr;
-               setCursor(addrLen,0);
-              }
-            break;
-       case kbCtrlI:            // fill block
-            printCursorAddress(buf);
-            if (EnterAddresses(__("Fill Block"),taddFrom,&from,buf,
-                taddLength,&len,taddValue,&value) && len<maxBlockLen)
-               targetFillMem(from,len,value);
-            break;
-       case kbCtrlL:            // clear block
-            printCursorAddress(buf);
-            if (EnterAddresses(__("Clear Block"),taddFrom,&from,buf,
-                taddLength,&len) && len<maxBlockLen)
-               targetFillMem(from,len,0);
-            break;
-       case kbCtrlM:            // move block
-            printCursorAddress(buf);
-            if (EnterAddresses(__("Move Block"),taddFrom,&from,buf,
-                taddTo,&to,taddLength,&len) && len<maxBlockLen)
-               targetMoveMem(from,to,len);
-            break;
-       case kbCtrlO:            // follow pointer & open new window
-            printCursorAddress(buf,True);
-            TSetEditorApp::DebugDataWindow(newStr(buf));
-            break;
-       case kbCtrlR:            // read block
-            {
-             FILE *f1=NULL;
-
-             if (getFilename(buf,0) && (f1=fopen(buf,"rb"))!=NULL)
-               {
-                printCursorAddress(buf);
-                if (EnterAddresses(__("Read Block"),taddTo,&to,buf,taddLength,
-                    &len) && len<maxBlockLen)
-                  {
-                   unsigned bRead=readFile(f1,to,len);
-                   messageBox(mfOKButton | mfInformation,__("%u bytes read."),
-                              bRead);
-                   if (to<memStart+memLen && to+bRead>=memStart)
-                      update(memStart);
-                  }
-                fclose(f1);
-               }
-             break;
-            }
-       case kbCtrlW:            // write block
-            printCursorAddress(buf);
-            if (EnterAddresses(__("Write Block"),taddFrom,&from,buf,taddLength,
-                &len) && len<maxBlockLen)
-              {// Now we have what to write ask for the file, not in the
-               // reverse order to avoid creating an empty file.
-               FILE *f;
-               if (getFilename(buf,1) && (f=fopen(buf,"wb"))!=NULL)
-                 {
-                  messageBox(mfOKButton | mfInformation,
-                             __("%u bytes written."),writeFile(f,from,len));
-                  fclose(f);
-                 }
-              }
-            break;
-       case kbCtrlX:            // change radix
-            radix=(radix+1) % rxMAX;
-            indi->changeState(TDIndicator::iRadix,"XD"[radix]);
-            update(memStart);
-            adjustWindow();
-            setCursor(addrLen,cursor.y);
-            break;
        case kbEsc:
             message(owner,evCommand,cmClose,NULL);
             clearEvent(event);
@@ -4959,6 +4781,192 @@ void TDataViewer::handleEvent(TEvent & event)
             break;
       }
    }
+ else if (event.what==evCommand)
+   {
+    switch (event.message.command)
+      {
+       // Cursor movement
+       case cmDWUp:
+            if (cursor.y==0)
+               newAddr=memStart-bytesPerLine;
+            else
+               setCursor(cursor.x,cursor.y-1);
+            break;
+       case cmDWDown:
+            if (cursor.y==size.y-1)
+               newAddr=memStart+bytesPerLine;
+            else
+               setCursor(cursor.x,cursor.y+1);
+            break;
+       case cmDWRight:
+            cursorHoriz(1);
+            break;
+       case cmDWBaseIncrement:
+            newAddr=memStart+1;
+            break;
+       case cmDWLeft:
+            cursorHoriz(-1);
+            break;
+       case cmDWBaseDecrement:
+            newAddr=memStart-1;
+            break;
+       case cmDWPgDn:
+            newAddr=memStart+size.y*bytesPerLine;
+            break;
+       case cmDWPgUp:
+            newAddr=memStart-size.y*bytesPerLine;
+            break;
+       case cmDWFirstColumn:
+            setCursor(addrLen,cursor.y);
+            break;
+       case cmDWFirstRow:
+            setCursor(cursor.x,0);
+            break;
+       case cmDWLastRow:
+            setCursor(cursor.x,size.y-1);
+            break;
+       case cmDWLastColumn:
+            cursorHoriz(size.x);
+            break;
+       // End of cursor movement
+       case cmDWLessLines:        // decrease bytes/line
+            if (bytesPerLine>fieldBytes[dispmode])
+              {
+               bytesPerLine-=fieldBytes[dispmode];
+               update(memStart);
+               adjustWindow();
+               setCursor(addrLen,cursor.y);
+              }
+            break;
+       case cmDWMoreLines:         // increase bytes/line
+            bytesPerLine+=fieldBytes[dispmode];
+            free(memo);
+            memo=NULL;
+            update(memStart);
+            adjustWindow();
+            break;
+       case cmDWUpdateMemory:     // update changes
+            writeBytes(memStart,memo,bytesPerLine*size.y,memLen);
+            drawView();
+            break;
+       case cmDWTogAutoF:         // toggle auto follow mode
+            autoFollow^=1;
+            indi->changeState(TDIndicator::iAutofollow," A"[autoFollow]);
+            break;
+       case cmDWBaseAddress:      // set new base address
+            printCursorAddress(buf);
+            if (EnterAddresses(__("Base Address"),taddNewValue,&baseAddress,buf))
+              {
+               indi->changeState(TDIndicator::iBaseAddress,baseAddress ? 'B' : ' ');
+               drawView();
+              }
+            break;
+       case cmDWDispMode:         // change display mode
+            dispmode=(dispmode+1) % dmMAX;
+            bytesPerLine&=~(fieldBytes[dispmode]-1);
+            update(memStart);
+            adjustWindow();
+            setCursor(addrLen,cursor.y);
+            break;
+       case cmDWTogEndian:       // change endianness
+            endian^=1;
+            indi->changeState(TDIndicator::iEndian,"eE"[endian]);
+            if (fieldBytes[dispmode]>1)
+               update(memStart);
+            break;
+       case cmDWFollowPointer:   // follow pointer
+            printCursorAddress(buf,True);
+            if (isValidAddress(buf,newAddr))
+              {
+               origAddr=newAddr;
+               setCursor(addrLen,0);
+              }
+            break;
+       case cmDWGotoAddress:     // goto to a new address
+            if (EnterAddresses(__("Data window"),taddExp,&origAddr,origAddrTxt))
+              {
+               setCursor(addrLen,0);
+               addressChanged=True;
+              }
+            break;
+       case cmDWRecompute:       // reevalute the original address then go to there
+            if (isValidAddress(origAddrTxt,newAddr))
+              {
+               origAddr=newAddr;
+               setCursor(addrLen,0);
+              }
+            break;
+       case cmDWFill:           // fill block
+            printCursorAddress(buf);
+            if (EnterAddresses(__("Fill Block"),taddFrom,&from,buf,
+                taddLength,&len,taddValue,&value) && len<maxBlockLen)
+               targetFillMem(from,len,value);
+            break;
+       case cmDWClear:          // clear block
+            printCursorAddress(buf);
+            if (EnterAddresses(__("Clear Block"),taddFrom,&from,buf,
+                taddLength,&len) && len<maxBlockLen)
+               targetFillMem(from,len,0);
+            break;
+       case cmDWMove:           // move block
+            printCursorAddress(buf);
+            if (EnterAddresses(__("Move Block"),taddFrom,&from,buf,
+                taddTo,&to,taddLength,&len) && len<maxBlockLen)
+               targetMoveMem(from,to,len);
+            break;
+       case cmDWFollowPtnNew:   // follow pointer & open new window
+            printCursorAddress(buf,True);
+            TSetEditorApp::DebugDataWindow(newStr(buf));
+            break;
+       case cmDWRead:           // read block
+            {
+             FILE *f1=NULL;
+
+             if (getFilename(buf,0) && (f1=fopen(buf,"rb"))!=NULL)
+               {
+                printCursorAddress(buf);
+                if (EnterAddresses(__("Read Block"),taddTo,&to,buf,taddLength,
+                    &len) && len<maxBlockLen)
+                  {
+                   unsigned bRead=readFile(f1,to,len);
+                   messageBox(mfOKButton | mfInformation,__("%u bytes read."),
+                              bRead);
+                   if (to<memStart+memLen && to+bRead>=memStart)
+                      update(memStart);
+                  }
+                fclose(f1);
+               }
+             break;
+            }
+       case cmDWWrite:           // write block
+            printCursorAddress(buf);
+            if (EnterAddresses(__("Write Block"),taddFrom,&from,buf,taddLength,
+                &len) && len<maxBlockLen)
+              {// Now we have what to write ask for the file, not in the
+               // reverse order to avoid creating an empty file.
+               FILE *f;
+               if (getFilename(buf,1) && (f=fopen(buf,"wb"))!=NULL)
+                 {
+                  messageBox(mfOKButton | mfInformation,
+                             __("%u bytes written."),writeFile(f,from,len));
+                  fclose(f);
+                 }
+              }
+            break;
+       case cmDWRadix:          // change radix
+            radix=(radix+1) % rxMAX;
+            indi->changeState(TDIndicator::iRadix,"XD"[radix]);
+            update(memStart);
+            adjustWindow();
+            setCursor(addrLen,cursor.y);
+            break;
+       default:
+            return;
+      }
+    if (newAddr!=memStart)
+       update(newAddr);
+    clearEvent(event);
+   }
 }
 
 void TDataViewer::changeBounds(const TRect &bounds)
@@ -5020,6 +5028,7 @@ TDataWindow::TDataWindow(const TRect & bounds, const char *aTitle) :
  insert(viewer->indi);
 
  viewer->select();
+ helpCtx=hcDataViewer;
 }
 
 TDataWindow *TDataWindow::createNew(const char *naddr, Boolean edit)
@@ -5046,7 +5055,8 @@ TDataWindow *TDataWindow::createNew(const char *naddr, Boolean edit)
  winpos=(winpos+1) % 10;
  TDataWindow *dw=new TDataWindow(r,naddr ? naddr : boxEA.v1);
  
- dw->viewer->update(addr);
+ //dw->viewer->update(addr); Will be updated by adjustWindow side effect
+ dw->viewer->memStart=addr; // But we need it.
  dw->viewer->adjustWindow();
  return dw;
 }
