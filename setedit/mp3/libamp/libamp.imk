@@ -2,78 +2,203 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-../../makes/djgpp/libamp.a:: obj/audioalg.o obj/audiolib.o obj/dump.o \
-	obj/formats.o obj/getbits.o obj/getdata.o obj/guicontr.o \
-	obj/huffman.o obj/layer2.o obj/layer3.o obj/misc2.o obj/position.o \
-	obj/rtbuf.o obj/transfor.o obj/util.o rhide.env common.imk 
+../../makes/djgpp/libamp.a:: \
+	obj/audioalg.o \
+	obj/audiolib.o \
+	obj/dump.o \
+	obj/formats.o \
+	obj/getbits.o \
+	obj/getdata.o \
+	obj/guicontr.o \
+	obj/huffman.o \
+	obj/layer2.o \
+	obj/layer3.o \
+	obj/misc2.o \
+	obj/position.o \
+	obj/rtbuf.o \
+	obj/transfor.o \
+	obj/util.o \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/audioalg.o:: audioalg.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/libamp.h \
-	amp.h audioio.h config.h proto.h transform.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/audiolib.o:: audiolib.c $(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h $(MP3_PREV_DIR)/getbits.h \
-	$(MP3_PREV_DIR)/libamp.h amp.h config.h controldata.h guicontrol.h \
-	huffman.h layer2.h layer3.h position.h proto.h rtbuf.h transform.h \
-	rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/dump.o:: dump.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h dump.h \
-	rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/formats.o:: formats.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/formats.h \
-	rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/getbits.o:: getbits.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/formats.h \
-	$(MP3_PREV_DIR)/getbits.h amp.h config.h proto.h rtbuf.h rhide.env \
+obj/audioalg.o:: audioalg.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/libamp.h \
+	amp.h \
+	audioio.h \
+	config.h \
+	proto.h \
+	transform.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_C)
 
-obj/getdata.o:: getdata.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h \
-	amp.h config.h getdata.h huffman.h proto.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/guicontr.o:: guicontr.c $(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h $(MP3_PREV_DIR)/getbits.h amp.h config.h \
-	controldata.h huffman.h layer2.h layer3.h position.h proto.h rtbuf.h \
-	transform.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/huffman.o:: huffman.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h \
-	huffman.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/layer2.o:: layer2.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h \
-	amp.h config.h layer2.h proto.h transform.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/layer3.o:: layer3.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h \
-	amp.h config.h dump.h getdata.h huffman.h layer3.h misc2.h proto.h \
-	rtbuf.h transform.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/misc2.o:: misc2.c $(MP3_PREV_DIR)/audio.h amp.h config.h getdata.h \
-	huffman.h misc2.h proto.h rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/position.o:: position.c $(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h amp.h config.h position.h proto.h \
-	rhide.env common.imk 
-	$(RHIDE_COMPILE_C)
-
-obj/rtbuf.o:: rtbuf.c $(MP3_PREV_DIR)/audio.h $(MP3_PREV_DIR)/getbits.h \
-	amp.h config.h layer3.h proto.h rtbuf.h transform.h rhide.env \
+obj/audiolib.o:: audiolib.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/formats.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	$(MP3_PREV_DIR)/libamp.h \
+	amp.h \
+	config.h \
+	controldata.h \
+	guicontrol.h \
+	huffman.h \
+	layer2.h \
+	layer3.h \
+	position.h \
+	proto.h \
+	rtbuf.h \
+	transform.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_C)
 
-obj/transfor.o:: transfor.c $(MP3_PREV_DIR)/audio.h getdata.h misc2.h \
-	transform.h rhide.env common.imk 
+obj/dump.o:: dump.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	dump.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_C)
 
-obj/util.o:: util.c $(MP3_PREV_DIR)/audio.h amp.h config.h proto.h rhide.env \
+obj/formats.o:: formats.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/formats.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/getbits.o:: getbits.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/formats.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	proto.h \
+	rtbuf.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/getdata.o:: getdata.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	getdata.h \
+	huffman.h \
+	proto.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/guicontr.o:: guicontr.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/formats.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	controldata.h \
+	huffman.h \
+	layer2.h \
+	layer3.h \
+	position.h \
+	proto.h \
+	rtbuf.h \
+	transform.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/huffman.o:: huffman.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	huffman.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/layer2.o:: layer2.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	layer2.h \
+	proto.h \
+	transform.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/layer3.o:: layer3.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	dump.h \
+	getdata.h \
+	huffman.h \
+	layer3.h \
+	misc2.h \
+	proto.h \
+	rtbuf.h \
+	transform.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/misc2.o:: misc2.c \
+	$(MP3_PREV_DIR)/audio.h \
+	amp.h \
+	config.h \
+	getdata.h \
+	huffman.h \
+	misc2.h \
+	proto.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/position.o:: position.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	position.h \
+	proto.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/rtbuf.o:: rtbuf.c \
+	$(MP3_PREV_DIR)/audio.h \
+	$(MP3_PREV_DIR)/getbits.h \
+	amp.h \
+	config.h \
+	layer3.h \
+	proto.h \
+	rtbuf.h \
+	transform.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/transfor.o:: transfor.c \
+	$(MP3_PREV_DIR)/audio.h \
+	getdata.h \
+	misc2.h \
+	transform.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_C)
+
+obj/util.o:: util.c \
+	$(MP3_PREV_DIR)/audio.h \
+	amp.h \
+	config.h \
+	proto.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_C)
 

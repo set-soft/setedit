@@ -2,1201 +2,2344 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-libset.a:: objlib/bufun.o objlib/calcu.o objlib/ceditor.o objlib/completi.o \
-	objlib/deedidia.o objlib/doedidia.o libeasyd.a objlib/edconst.o \
-	objlib/editorfo.o objlib/editwind.o objlib/edkeys.o objlib/edprint.o \
-	objlib/edspecs.o obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o \
-	obj/mixersb.o obj/mixoss.o obj/stackdbg.o obj/strncpyz.o \
-	obj/strndup.o objlib/gzfiles.o objlib/inf.o objlib/infbase.o \
-	objlib/keytrans.o objlib/linelen.o objlib/loaddefl.o \
-	objlib/loadfunc.o objlib/loadshl.o objlib/loadusew.o \
-	objlib/macrocom.o objlib/mli.o objlib/mliasimp.o objlib/mlicsdg.o \
-	objlib/mliediti.o objlib/mliedito.o objlib/mlisdg.o \
-	objlib/nceditor.o objlib/neditwin.o objlib/nfileedi.o \
-	objlib/nhiscoll.o objlib/ninfview.o objlib/ninfwind.o \
-	objlib/nsindica.o objlib/parser.o objlib/pathtool.o \
-	objlib/pclipper.o objlib/pmacros.o objlib/pperl.o objlib/pphp.o \
-	objlib/pvarious.o objlib/rhideint.o objlib/sceditor.o \
-	objlib/sdginter.o objlib/search.o libsettv.a objlib/sinf.o \
-	objlib/slpinter.o objlib/splinman.o objlib/ssindica.o \
-	objlib/tsindica.o objlib/txhgen.o rhide.env common.imk 
+libset.a:: \
+	objlib/bufun.o \
+	objlib/calcu.o \
+	objlib/ceditor.o \
+	objlib/completi.o \
+	objlib/deedidia.o \
+	objlib/doedidia.o \
+	libeasyd.a \
+	objlib/edconst.o \
+	objlib/editorfo.o \
+	objlib/editwind.o \
+	objlib/edkeys.o \
+	objlib/edprint.o \
+	objlib/edspecs.o \
+	obj/djmdr.o \
+	obj/dyncat.o \
+	obj/memmove.o \
+	obj/mixer.o \
+	obj/mixersb.o \
+	obj/mixoss.o \
+	obj/stackdbg.o \
+	obj/strncpyz.o \
+	obj/strndup.o \
+	objlib/gzfiles.o \
+	objlib/inf.o \
+	objlib/infbase.o \
+	objlib/keytrans.o \
+	objlib/linelen.o \
+	objlib/loaddefl.o \
+	objlib/loadfunc.o \
+	objlib/loadshl.o \
+	objlib/loadusew.o \
+	objlib/macrocom.o \
+	objlib/mli.o \
+	objlib/mliasimp.o \
+	objlib/mlicsdg.o \
+	objlib/mliediti.o \
+	objlib/mliedito.o \
+	objlib/mlisdg.o \
+	objlib/nceditor.o \
+	objlib/neditwin.o \
+	objlib/nfileedi.o \
+	objlib/nhiscoll.o \
+	objlib/ninfview.o \
+	objlib/ninfwind.o \
+	objlib/nsindica.o \
+	objlib/parser.o \
+	objlib/pathtool.o \
+	objlib/pclipper.o \
+	objlib/pmacros.o \
+	objlib/pperl.o \
+	objlib/pphp.o \
+	objlib/pvarious.o \
+	objlib/rhideint.o \
+	objlib/sceditor.o \
+	objlib/sdginter.o \
+	objlib/search.o \
+	libsettv.a \
+	objlib/sinf.o \
+	objlib/slpinter.o \
+	objlib/splinman.o \
+	objlib/ssindica.o \
+	objlib/tsindica.o \
+	objlib/txhgen.o \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-objlib/bufun.o:: bufun.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h $(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tslistbo.h $(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tssosslb.h $(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/bufun.h $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h $(INCLUDE_DIR)/splinman.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/applictn.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/label.h \
-	$(TVISION_INC)/tv/listbox.h $(TVISION_INC)/tv/lstviewr.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/program.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/sortlibo.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/sttctext.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/bufun.o:: bufun.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tssosslb.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/bufun.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/splinman.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/applictn.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/calcu.o:: calcu.cc $(CALCU_INC_DIR)/calcu.h $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/applictn.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/desktop.h $(TVISION_INC)/tv/dialog.h \
-	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/history.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/inputln.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/label.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/program.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/sttctext.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/calcu.o:: calcu.cc \
+	$(CALCU_INC_DIR)/calcu.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/applictn.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ceditor.o:: ceditor.cc $(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/bufun.h $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/gzfiles.h $(INCLUDE_DIR)/keytrans.h \
-	$(INCLUDE_DIR)/loadkbin.h $(INCLUDE_DIR)/loadshl.h \
-	$(INCLUDE_DIR)/pathtool.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/setconst.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h $(SETEDIT_INC_DIR)/advice.h \
-	$(SETTVUTI_INC_DIR)/edhists.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tprogdia.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/cl/unistd.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/app.h $(TVISION_INC)/tv/cmdset.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/colorsel.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/desktop.h $(TVISION_INC)/tv/dialog.h \
-	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/filedlg.h \
-	$(TVISION_INC)/tv/findrepl.h $(TVISION_INC)/tv/gkey.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/menubox.h \
-	$(TVISION_INC)/tv/menuitem.h $(TVISION_INC)/tv/menus.h \
-	$(TVISION_INC)/tv/menuview.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/osclipboard.h $(TVISION_INC)/tv/palette.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/program.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/screen.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/submenu.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeys.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/completi.o:: completi.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/completi.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/desktop.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/listbox.h $(TVISION_INC)/tv/lstviewr.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/palette.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/program.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeys.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/ceditor.o:: ceditor.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/bufun.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(INCLUDE_DIR)/loadkbin.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/setconst.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETEDIT_INC_DIR)/advice.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogdia.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/cmdset.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/colorsel.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/filedlg.h \
+	$(TVISION_INC)/tv/findrepl.h \
+	$(TVISION_INC)/tv/gkey.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/menubox.h \
+	$(TVISION_INC)/tv/menuitem.h \
+	$(TVISION_INC)/tv/menus.h \
+	$(TVISION_INC)/tv/menuview.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/osclipboard.h \
+	$(TVISION_INC)/tv/palette.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/screen.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/submenu.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/deedidia.o:: deedidia.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tschkbox.h $(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h $(EASYDIAG_INC_DIR)/tsinplpi.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h $(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tsradbot.h $(EASYDIAG_INC_DIR)/tssortlb.h \
-	$(EASYDIAG_INC_DIR)/tssortva.h $(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tstsorlb.h $(EASYDIAG_INC_DIR)/tsvegrp.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/setconst.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/diaghelp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tinppipe.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/applictn.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/checkbox.h $(TVISION_INC)/tv/cluster.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/desktop.h $(TVISION_INC)/tv/dialog.h \
-	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/fpbase.h \
-	$(TVISION_INC)/tv/fpstream.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/history.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/inputln.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/iopstrm.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/program.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/radiobtn.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sitem.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/sortlibo.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/sttctext.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeys.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/completi.o:: completi.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/completi.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/palette.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/doedidia.o:: doedidia.cc $(INCLUDE_DIR)/bufun.h \
-	$(INCLUDE_DIR)/ced_coma.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/setconst.h \
-	$(SETTVUTI_INC_DIR)/edhists.h $(SETTVUTI_INC_DIR)/fileopen.h \
-	$(SETTVUTI_INC_DIR)/fiopeaid.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/app.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/fpbase.h $(TVISION_INC)/tv/fpstream.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/iopstrm.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/program.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/deedidia.o:: deedidia.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tschkbox.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tsinplpi.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tsradbot.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tstsorlb.h \
+	$(EASYDIAG_INC_DIR)/tsvegrp.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/setconst.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/applictn.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/checkbox.h \
+	$(TVISION_INC)/tv/cluster.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/fpbase.h \
+	$(TVISION_INC)/tv/fpstream.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/iopstrm.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/radiobtn.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sitem.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/doedidia.o:: doedidia.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/setconst.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/fileopen.h \
+	$(SETTVUTI_INC_DIR)/fiopeaid.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/fpbase.h \
+	$(TVISION_INC)/tv/fpstream.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/iopstrm.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 include easydiag.imk
 
-objlib/edconst.o:: edconst.cc $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h $(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h $(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/dialog.h \
-	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/listbox.h $(TVISION_INC)/tv/lstviewr.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/scroller.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/edconst.o:: edconst.cc \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/scroller.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editorfo.o:: editorfo.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/viewplus.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/editorfo.o:: editorfo.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editwind.o:: editwind.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/viewplus.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/frame.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/indicato.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/palette.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/screen.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/editwind.o:: editwind.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/frame.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/palette.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/screen.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edkeys.o:: edkeys.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h $(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(EXTRA_INC_DIR)/dyncat.h $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h $(INCLUDE_DIR)/keytrans.h \
-	$(INCLUDE_DIR)/loadkbin.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mlieditd.h \
-	$(SETEDIT_INC_DIR)/editcoma.h $(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/diaghelp.h $(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/inputsca.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/app.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/cluster.h $(TVISION_INC)/tv/codepage.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/desktop.h $(TVISION_INC)/tv/dialog.h \
-	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/filedlg.h \
-	$(TVISION_INC)/tv/gkey.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/program.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/radiobtn.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sitem.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/sttctext.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tkeyext.h $(TVISION_INC)/tv/tkeys.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/edkeys.o:: edkeys.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(INCLUDE_DIR)/loadkbin.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/inputsca.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/cluster.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/filedlg.h \
+	$(TVISION_INC)/tv/gkey.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/radiobtn.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sitem.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeyext.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edprint.o:: edprint.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tschkbox.h $(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h $(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tsradbot.h $(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/edmsg.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(TVISION_INC)/cl/unistd.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/app.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/checkbox.h $(TVISION_INC)/tv/cluster.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/fpbase.h $(TVISION_INC)/tv/fpstream.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/history.h \
-	$(TVISION_INC)/tv/inputln.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/iopstrm.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/radiobtn.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/sitem.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/sttctext.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+objlib/edprint.o:: edprint.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tschkbox.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tsradbot.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/checkbox.h \
+	$(TVISION_INC)/tv/cluster.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/fpbase.h \
+	$(TVISION_INC)/tv/fpstream.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/iopstrm.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/radiobtn.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/sitem.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edspecs.o:: edspecs.cc $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/edspecs.h $(INCLUDE_DIR)/pathtool.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/edspecs.o:: edspecs.cc \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/edspecs.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 include extra.imk
 
-objlib/gzfiles.o:: gzfiles.cc $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/gzfiles.h \
-	$(TVISION_INC)/cl/unistd.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/gzfiles.o:: gzfiles.cc \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/inf.o:: inf.cc $(EXTRA_INC_DIR)/dyncat.h $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h $(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h $(SETTVUTI_INC_DIR)/diaghelp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h $(SETTVUTI_INC_DIR)/fileopen.h \
-	$(SETTVUTI_INC_DIR)/fiopeaid.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tprogrdi.h \
-	$(SETTVUTI_INC_DIR)/tprogres.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/button.h \
-	$(TVISION_INC)/tv/checkbox.h $(TVISION_INC)/tv/cluster.h \
-	$(TVISION_INC)/tv/cmdset.h $(TVISION_INC)/tv/codepage.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/filedlg.h $(TVISION_INC)/tv/findrepl.h \
-	$(TVISION_INC)/tv/frame.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/history.h $(TVISION_INC)/tv/inputln.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/menus.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/osclipboard.h \
-	$(TVISION_INC)/tv/palette.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/radiobtn.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/scroller.h $(TVISION_INC)/tv/sitem.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/sortlibo.h \
-	$(TVISION_INC)/tv/statslin.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/sttctext.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeyext.h \
-	$(TVISION_INC)/tv/tkeys.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/inf.o:: inf.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/fileopen.h \
+	$(SETTVUTI_INC_DIR)/fiopeaid.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogrdi.h \
+	$(SETTVUTI_INC_DIR)/tprogres.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/checkbox.h \
+	$(TVISION_INC)/tv/cluster.h \
+	$(TVISION_INC)/tv/cmdset.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/filedlg.h \
+	$(TVISION_INC)/tv/findrepl.h \
+	$(TVISION_INC)/tv/frame.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/menus.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/osclipboard.h \
+	$(TVISION_INC)/tv/palette.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/radiobtn.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/scroller.h \
+	$(TVISION_INC)/tv/sitem.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/statslin.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeyext.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/infbase.o:: infbase.cc $(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/gzfiles.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(INFVIEW_INC_DIR)/infbase.h $(INFVIEW_INC_DIR)/infbaser.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tprogdia.h $(TVISION_INC)/cl/unistd.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/infbase.o:: infbase.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogdia.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/keytrans.o:: keytrans.cc $(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/keytrans.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/gkey.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeyext.h \
-	$(TVISION_INC)/tv/tkeys.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/keytrans.o:: keytrans.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/gkey.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tkeyext.h \
+	$(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/linelen.o:: linelen.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ceditor.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/linelen.o:: linelen.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loaddefl.o:: loaddefl.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h $(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h $(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tssortlb.h $(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/loadshl.h $(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/button.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/history.h \
-	$(TVISION_INC)/tv/indicato.h $(TVISION_INC)/tv/inputln.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/sttctext.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/loadfunc.o:: loadfunc.cc $(INCLUDE_DIR)/pathtool.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/loaddefl.o:: loaddefl.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadshl.o:: loadshl.cc $(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_clas.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/loadshl.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/viewplus.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/loadusew.o:: loadusew.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h $(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h $(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tssortlb.h $(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/loadshl.h $(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/button.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/history.h \
-	$(TVISION_INC)/tv/indicato.h $(TVISION_INC)/tv/inputln.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/sortlibo.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/sttctext.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/loadfunc.o:: loadfunc.cc \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/macrocom.o:: macrocom.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/applictn.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/program.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/loadshl.o:: loadshl.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mli.o:: mli.cc $(EXTRA_INC_DIR)/dyncat.h $(INCLUDE_DIR)/pathtool.h \
-	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mliasimp.h $(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlivar.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/codepage.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/mliasimp.o:: mliasimp.cc $(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h $(SDG_INC_DIR)/mliasimp.h \
-	$(SDG_INC_DIR)/mlivar.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/mlicsdg.o:: mlicsdg.cc $(INCLUDE_DIR)/ucdefs.h $(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h $(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlicsdg.h $(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/mlivar.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/loadusew.o:: loadusew.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliediti.o:: mliediti.cc $(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h $(SDG_INC_DIR)/mliasimp.h \
-	$(SDG_INC_DIR)/mlibase.h $(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h $(SDG_INC_DIR)/mlivar.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/macrocom.o:: macrocom.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/applictn.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/program.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliedito.o:: mliedito.cc $(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/edmsg.h $(INCLUDE_DIR)/runprog.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mlibase.h $(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h $(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/mlivar.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/mlisdg.o:: mlisdg.cc $(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mliasimp.h $(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlicsdg.h $(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/mlivar.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/mli.o:: mli.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nceditor.o:: nceditor.cc $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/tvutil.h rhide.env \
+objlib/mliasimp.o:: mliasimp.cc \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/neditwin.o:: neditwin.cc $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/tvutil.h rhide.env \
+objlib/mlicsdg.o:: mlicsdg.cc \
+	$(INCLUDE_DIR)/ucdefs.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nfileedi.o:: nfileedi.cc $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/tvutil.h rhide.env \
+objlib/mliediti.o:: mliediti.cc \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nhiscoll.o:: nhiscoll.cc $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/mliedito.o:: mliedito.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/runprog.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfview.o:: ninfview.cc $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/mlisdg.o:: mlisdg.cc \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfwind.o:: ninfwind.cc $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/nceditor.o:: nceditor.cc \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nsindica.o:: nsindica.cc $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/tvutil.h rhide.env \
+objlib/neditwin.o:: neditwin.cc \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/parser.o:: parser.c $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h rhide.env common.imk 
+objlib/nfileedi.o:: nfileedi.cc \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/nhiscoll.o:: nhiscoll.cc \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/ninfview.o:: ninfview.cc \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/ninfwind.o:: ninfwind.cc \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/nsindica.o:: nsindica.cc \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/parser.o:: parser.c \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h \
+	rhide.env \
+	common.imk 
 	$(RHIDE_COMPILE_C)
 
-objlib/pathtool.o:: pathtool.cc $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SETEDIT_INC_DIR)/pathlist.h $(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(TVISION_INC)/cl/unistd.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/screen.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/pathtool.o:: pathtool.cc \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETEDIT_INC_DIR)/pathlist.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/screen.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pclipper.o:: pclipper.cc $(INCLUDE_DIR)/bufun.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/pclipper.o:: pclipper.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pmacros.o:: pmacros.cc $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/pmacros.o:: pmacros.cc \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pperl.o:: pperl.cc $(INCLUDE_DIR)/bufun.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/pphp.o:: pphp.cc $(INCLUDE_DIR)/bufun.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/pvarious.o:: pvarious.cc $(INCLUDE_DIR)/bufun.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/pperl.o:: pperl.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/rhideint.o:: rhideint.cc $(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/edmsg.h $(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(TVISION_INC)/cl/unistd.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/sceditor.o:: sceditor.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/group.h \
-	$(TVISION_INC)/tv/indicato.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/sdginter.o:: sdginter.cc $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/fpbase.h $(TVISION_INC)/tv/fpstream.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/iopstrm.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/pphp.o:: pphp.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/search.o:: search.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h $(SETTVUTI_INC_DIR)/viewplus.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/msgbox.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/pvarious.o:: pvarious.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/rhideint.o:: rhideint.cc \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/sceditor.o:: sceditor.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/sdginter.o:: sdginter.cc \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/fpbase.h \
+	$(TVISION_INC)/tv/fpstream.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/iopstrm.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/search.o:: search.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 include settv.imk
 
-objlib/sinf.o:: sinf.cc $(INCLUDE_DIR)/tvsetuti.h $(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h $(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/rect.h \
-	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/scroller.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strmblcl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h \
-	$(TVISION_INC)/tv/window.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/sinf.o:: sinf.cc \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/scroller.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/slpinter.o:: slpinter.cc $(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h $(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tsinplpi.h $(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tsview.h $(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h $(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/completi.h \
-	$(INCLUDE_DIR)/configed.h $(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mlibase.h $(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h $(SDG_INC_DIR)/mlivar.h \
-	$(SETEDIT_INC_DIR)/setapp.h $(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/sarray.h $(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/app.h \
-	$(TVISION_INC)/tv/button.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/desktop.h \
-	$(TVISION_INC)/tv/dialog.h $(TVISION_INC)/tv/dialogs.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/event.h \
-	$(TVISION_INC)/tv/group.h $(TVISION_INC)/tv/history.h \
-	$(TVISION_INC)/tv/indicato.h $(TVISION_INC)/tv/inputln.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/label.h $(TVISION_INC)/tv/listbox.h \
-	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/msgbox.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/sttctext.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/window.h \
-	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
-	$(RHIDE_COMPILE_CC)
-
-objlib/splinman.o:: splinman.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h $(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/splinman.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/scrlbar.h $(TVISION_INC)/tv/sortcoll.h \
-	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/slpinter.o:: slpinter.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tsinplpi.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/completi.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/app.h \
+	$(TVISION_INC)/tv/button.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/desktop.h \
+	$(TVISION_INC)/tv/dialog.h \
+	$(TVISION_INC)/tv/dialogs.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/group.h \
+	$(TVISION_INC)/tv/history.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/inputln.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/label.h \
+	$(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/msgbox.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/sttctext.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/window.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ssindica.o:: ssindica.cc $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/sindicat.h $(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/drawbuf.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/point.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/view.h $(TVISION_INC)/tv/views.h rhide.env \
+objlib/splinman.o:: splinman.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/splinman.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/tsindica.o:: tsindica.cc $(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h $(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h $(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h $(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h $(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/drawbuf.h \
-	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/indicato.h \
-	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
-	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
-	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/rect.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/screen.h $(TVISION_INC)/tv/scrlbar.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
-	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
-	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/ssindica.o:: ssindica.cc \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-objlib/txhgen.o:: txhgen.cc $(INCLUDE_DIR)/bufun.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h $(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/txhgen.h \
-	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/cl/unistd.h \
-	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
-	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
-	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
-	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
-	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
-	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
-	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
-	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+objlib/tsindica.o:: tsindica.cc \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h \
+	$(TVISION_INC)/tv/indicato.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/rect.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/screen.h \
+	$(TVISION_INC)/tv/scrlbar.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objlib/txhgen.o:: txhgen.cc \
+	$(INCLUDE_DIR)/bufun.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/txhgen.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h \
+	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
