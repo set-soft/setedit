@@ -1,4 +1,14 @@
-$Log$.
+$Log$
+Revision 1.550  2004/07/26 15:09:15  set
+* Added: The first part of the "Breakpoints" dialog. Currently you can
+just see the breakpoint.
+* Fixed: SpLineGetOldValueOf to match not only the position but also the
+spline id.
+* Fixed: All the TCEditor::SetSpecialLines logic because it was wrong and
+it needed adjustments to the new structures.
+* Modified: Moved all the breakpoint operations to a class so we can use
+it for a dialog.
+
 Revision 1.549  2004/07/26 15:04:10  set
 * Updated: Spanish translation.
 * Fixed(?): The last modification to the special lines stuff had a major
