@@ -1,10 +1,9 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-//char *MLIGetTypeError(int error);
-//char *MLIGetError(int Error);
 
 #ifdef Uses_TLispSDGstring
 #define INCL_MLISDG_H
+#define Uses_MLI_stdio
 #define Uses_TMLISDGDefs
 #define Uses_TLispVar
 #define Uses_TLispVarDefs
@@ -24,6 +23,8 @@
 #endif
 
 #ifdef Uses_TMLISDGDefs
+#define Uses_stdio
+#define Uses_MLI_stdio
 #define INCL_MLISDGI_H
 #endif
 
@@ -42,25 +43,38 @@
 
 #ifdef Uses_TMLIBase
 #define INCL_MLIBASE_H
+#define Uses_TLispVar
+#define Uses_TLispVarDefs
+#define Uses_TLispVariableCol
 #endif
 
 #ifdef Uses_TLispVariableCol
 #define INCL_TV_H
-#define INCL_MLIVAR_H
+#define Uses_TLispVar
 #define Uses_TNSSortedCollection
+#endif
+
+#ifdef Uses_TLispBaseVars
+#define Uses_MLI_stdio
+#define Uses_TLispVar
+#define Uses_TLispVarDefs
+#endif
+
+#ifdef Uses_TLispVar
+#define Uses_MLI_stdio
+#define INCL_MLIVAR_H
 #endif
 
 #ifdef Uses_TLispVarDefs
 #define INCL_MLIVAR_H
 #endif
 
-#ifdef Uses_TLispVar
-#define INCL_MLIVAR_H
-#endif
-
-#ifdef Uses_TLispBaseVars
-#define INCL_MLIVAR_H
-#define Uses_TLispVar
+#ifdef Uses_MLI_stdio
+ #ifdef INCL_TV_H
+  #define Uses_stdio
+ #else
+  #include <stdio.h>
+ #endif
 #endif
 
 #ifdef INCL_TV_H
@@ -102,8 +116,4 @@
 #ifdef INCL_MLIEDITO_H
 #include "mliedito.h"
 #endif
-
-
-
-
 
