@@ -17,7 +17,8 @@
 #define Uses_fcntl
 #define Uses_sys_stat
 #define Uses_getopt
-#include <tv.h>
+#define Uses_TCEditor_Commands
+#include <ceditor.h>
 
 #include "infalone.h"
 
@@ -29,7 +30,7 @@
 #include "inf.h"
 //#include <ssyntax.h>
 
-#define INFVIEW_VERSION_STR "0.2.6"
+#define INFVIEW_VERSION_STR "0.2.7"
 
 #define _cpColor \
     "\x71\x70\x78\x74\x20\x28\x24\x17\x1F\x1A\x31\x31\x1E\x71\x00" \
@@ -80,15 +81,75 @@ TStatusLine *createStatusForInfView(TRect r);
 TEditWindow *clipMiWindow;
 
 
+static int views=0;
+
+static
+void SetCommands(Boolean enable)
+{
+ TCommandSet ts;
+ ts.enableCmd(cmInfGoto);
+ ts.enableCmd(cmInfNodes);
+ ts.enableCmd(chcdNext);
+ ts.enableCmd(chcdPrev);
+ ts.enableCmd(chcdUp);
+ ts.enableCmd(cmInfTop);
+ ts.enableCmd(cmInfDir);
+ ts.enableCmd(cmcFind);
+ ts.enableCmd(cmcSearchAgain);
+ ts.enableCmd(chcdConfigDia);
+ ts.enableCmd(cmInfControl);
+ ts.enableCmd(cmInfBookM);
+ if (enable)
+    TView::enableCommands(ts);
+ else
+    TView::disableCommands(ts);
+}
+
+static
+void SetPluralCommands(Boolean enable)
+{
+ if (enable)
+   {
+    TView::enableCommand(cmTile);
+    TView::enableCommand(cmCascade);
+   }
+ else
+   {
+    TView::disableCommand(cmTile);
+    TView::disableCommand(cmCascade);
+   }
+}
+
+static
+void IncrementViews()
+{
+ if (!views)
+    SetCommands(True);
+ else
+    SetPluralCommands(True);
+ views++;
+}
+
+static
+void DecrementViews()
+{
+ views--;
+ if (!views)
+    SetCommands(False);
+ if (views==1)
+    SetPluralCommands(False);
+}
+
 TEditorMiApp::TEditorMiApp() :
     TProgInit( TEditorMiApp::initStatusLine,
                TEditorMiApp::initMenuBar,
                TEditorMiApp::initDeskTop
              ),
     TApplication()
-{
+{// Disable all the coomands that needs at least one view opened
+ SetCommands(False);
+ SetPluralCommands(False);
 }
-
 
 void TEditorMiApp::dosShell()
 {
@@ -113,9 +174,18 @@ void TEditorMiApp::cascade()
 void TEditorMiApp::handleEvent( TEvent& event )
 {
  TApplication::handleEvent( event );
- if( event.what != evCommand )
-     return;
+ if (event.what==evBroadcast)
+   {
+    if (event.message.command==cmClosingWindow)
+       DecrementViews();
+    else
+       return;
+   }
  else
+ if (event.what!=evCommand)
+    return;
+ else
+    {
      switch( event.message.command )
         {
          case cmInfOpen: // If none infview window is opened we receive the event.
@@ -128,6 +198,7 @@ void TEditorMiApp::handleEvent( TEvent& event )
                 {
                  w->options|=ofTileable;
                  deskTop->insert(w);
+                 IncrementViews();
                  if (event.message.command==cmInfOpen)
                     w->handleEvent(event);
                 }
@@ -139,7 +210,11 @@ void TEditorMiApp::handleEvent( TEvent& event )
               TInfFile *i=new TInfFile("infview");
               TInfWindow *w = new TInfWindow(i,"About the Author");
               if (validView(w))
+                {
+                 w->options|=ofTileable;
+                 IncrementViews();
                  deskTop->insert(w);
+                }
               w->zoom();
              }
               break;
@@ -153,9 +228,10 @@ void TEditorMiApp::handleEvent( TEvent& event )
              break;
 
          default:
-             return ;
+             return;
         }
- clearEvent( event );
+    }
+ clearEvent(event);
 }
 
 
@@ -266,7 +342,11 @@ void TEditorMiApp::loadDesktop(fpstream &s)
     do
       {
        s >> p;
-       deskTop->insertBefore(validView(p),deskTop->last);
+       if (validView(p))
+         {
+          deskTop->insertBefore(p,deskTop->last);
+          IncrementViews();
+         }
       }
     while (p);
    }
@@ -333,7 +413,7 @@ void ParseCommandLine(int argc, char *argv[])
        case 'h':
        default:
             TScreen::suspend();
-            fprintf(stderr,_("InfView v"INFVIEW_VERSION_STR". Copyright (c) 1996-2000 by Salvador E. Tropea\n\n"));
+            fprintf(stderr,_("InfView v"INFVIEW_VERSION_STR". Copyright (c) 1996-2001 by Salvador E. Tropea\n\n"));
             fprintf(stderr,_("infview [option]... [info_file [menu_item...]]\n\n"));
             fprintf(stderr,_("Valid options are:\n"));
             fprintf(stderr,_("-d, --directory DIR      adds a directory to the list of directories to search\n"
@@ -358,6 +438,8 @@ void ParseCommandLine(int argc, char *argv[])
                            "node visited.  For example, `infview libc alpha printf' moves to the node\n"
                            "`Alphabetical list' and then to `printf' in the info file `libc'.\n\n"
                            #endif
+                           "Also note that info files are searched in the INFOPATH directories. To load a\n"
+                           "file stored in the current directory add ./ at the beginning of the name.\n"
                            "Email bug reports to salvador@inti.gov.ar or djgpp@delorie.com.\n");
             fflush(stderr);
             exit(1);
@@ -497,6 +579,7 @@ void OpenInfView(TEditorMiApp *editorApp, char *name)
    {
     editorApp->deskTop->insert(startInfo);
     startInfo->options|=ofTileable;
+    IncrementViews();
    }
 }
 
