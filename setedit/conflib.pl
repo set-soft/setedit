@@ -18,6 +18,8 @@ $CPU='';
 $Comp='';
 # djgpp, MinGW, Cygwin
 $Compf='';
+# TV configuration program
+$tvConfig='';
 
 sub GetCache
 {
@@ -533,7 +535,7 @@ sub FindCFLAGS
  $ret=@ENV{'CFLAGS'};
  if (!$ret)
    {
-    $ret=`rhtv-config --cflags`;
+    $ret=TVConfigOption('cflags');
     if ($ret)
       {
        chop $ret;
@@ -608,7 +610,7 @@ sub FindCXXFLAGS
     return $ret;
    }
  $ret=@ENV{'CXXFLAGS'};
- $ret=`rhtv-config --cppflags`;
+ $ret=TVConfigOption('cppflags');
  chop $ret if $ret;
  $ret=@conf{'CFLAGS'} unless $ret;
  $ret=@ENV{'CFLAGS'} unless $ret;
@@ -1328,4 +1330,9 @@ sub LookForGNUar
  die;
 }
 
+sub TVConfigOption
+{
+ return `$tvConfig --$_[0]`;
+} 
+ 
 1;

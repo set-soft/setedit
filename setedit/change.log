@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.393  2003/05/26 14:30:58  set
+* Modified: Makefile.nmk to be a wrapper for Makefile.bcc by just including
+it. The only difference is that it defines FOR_NMAKE=1 and this will force
+to use definitions for MSVC compiler.
+
 Revision 1.392  2003/05/26 14:07:48  set
 * Modified: The mkf, imk and umk files to allow more abstraction regrading
 to file extensions. So now objects can be .o or .obj or anything.

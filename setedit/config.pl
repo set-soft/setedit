@@ -60,6 +60,14 @@ if (($OS ne 'UNIX') && ($conf{'HAVE_AA'} eq 'yes'))
 
 LookForBasicTools();
 $supportDir='makes/'.$supportDir;
+
+# TV goes first to find the configuration program.
+# But we can't check TV functionality yet.
+# Where is the TV library?
+# $TVInclude and $TVLib
+LookForTV();
+LookForTVConfig();
+
 # Determine C flags
 $CFLAGS=FindCFLAGS();
 FindXCFLAGS();
@@ -91,10 +99,7 @@ if ($OS eq 'DOS')
    LookForAllegro($AllegroVersionNeeded,$AllegroNotNeeded);
   }
 
-# Where is the TV library?
-# $TVInclude and $TVLib
-LookForTV();
-# Is the right version?
+# Is TV the right version?
 TestTVVersion($TVVersionNeeded);
 # Find the major version
 if ($conf{'tv'}=~/(\d+)\.(\d+)\.(\d+)/)
@@ -103,7 +108,6 @@ if ($conf{'tv'}=~/(\d+)\.(\d+)\.(\d+)/)
    $tvMiddle=$2;
    $tvMinor=$3;
   }
-LookForTVConfig();
 
 # Have libc international support? what about libintl or libiconv?
 LookForIntlSupport();
@@ -598,6 +602,25 @@ sub GiveAdvice
    {
     print "* Some tools to create the distribution aren't installed. The distrib target\n";
     print "  was disabled.\n";
+   }
+ if ((@conf{'PCREShipped'} eq 'yes') && ($OS eq 'UNIX'))
+   {
+    print "* Using shipped PCRE lib, to avoid wasting system resources you should install\n";
+    print "  the library and also the development package (i.e. libpcre3 and libpcre3-dev)\n";
+   }
+ if ((@conf{'zlibShipped'} eq 'yes') && ($OS eq 'UNIX'))
+   {
+    print "* Using shipped zlib, to avoid wasting system resources you should install\n";
+    print "  the library and also the development package (i.e. libz-dev)\n";
+   }
+ if ((@conf{'bz2libShipped'} eq 'yes') && ($OS eq 'UNIX'))
+   {
+    print "* Using shipped bzip2 lib, to avoid wasting system resources you should install\n";
+    print "  the library and also the development package (i.e. libbz2 and libbz2-dev)\n";
+   }
+ if ((@conf{'HAVE_AA'} eq 'no') && ($OS eq 'UNIX'))
+   {
+    print "* AA lib is not installed so you won't get a nice console screen saver\n";
    }
 }
 
@@ -1747,7 +1770,7 @@ sub LookForAA
   return 0;
  }';
  $test=RunGCCTest($GCC,'c',$test,'-laa');
- $conf{'HAVE_AA'}=($test eq "OK\n") ? 'yes' : 'no';
+ $conf{'HAVE_AA'}=($test=~/OK$/) ? 'yes' : 'no';
 
  print "$conf{'HAVE_AA'}\n";
 }
