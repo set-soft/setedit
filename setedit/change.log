@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.345  2003/05/07 14:26:16  set
+* Fixed: Applied a batch of patches from Bernd to fix messages in the code.
+
 Revision 1.344  2003/05/07 12:41:15  set
 * Added: holidays.cc to the project and makefiles. That's a whole update
 of the makefiles, please reconfigure the package if you are using CVS.
