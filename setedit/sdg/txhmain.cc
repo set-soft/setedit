@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (c) 1997 by Salvador Eduardo Tropea.
+  Copyright (c) 1997-2003 by Salvador Eduardo Tropea.
 
   That's an example of interface with SDG.
   In this case the program is a command line one.
@@ -28,6 +28,55 @@ the program.
 static int CountFiles;
 static int CantFiles;
 static char **Files;
+
+#ifdef SECompf_djgpp
+#include <dpmi.h>
+#include <go32.h>
+#include <fcntl.h>
+const int maxSFNSize=68;
+
+/**[txh]********************************************************************
+
+  Description:
+  Returns the short file name of the passed file. The shortName pointer must
+point to a buffer with at least maxSFNSize bytes.
+
+  Return:
+  A pointer to the converted name if succesful or the original name if it
+fails.
+
+***************************************************************************/
+
+char *GetShortNameOf(char *longName, char *shortName)
+{
+ __dpmi_regs r;
+ unsigned long tbuf=__tb;
+
+ r.x.ax=0x7100;
+ if (_USE_LFN)
+   {
+     dosmemput (longName,strlen(longName)+1,tbuf+maxSFNSize);
+     r.x.ax=0x7160;
+     r.x.es=r.x.ds=tbuf >> 4;
+     r.x.di=0;
+     r.x.si=maxSFNSize;
+     r.x.cx=0x8001;
+     __dpmi_int(0x21, &r);
+   }
+ if ((r.x.flags & 1)==0 && r.x.ax!=0x7100)
+   {
+    dosmemget(tbuf,maxSFNSize,shortName);
+    return shortName;
+   }
+ return longName;
+}
+#else
+char *GetShortNameOf(char *longName, char *)
+{
+ return longName;
+}
+#endif
+
 
 /**[txh]**********************************************************************
 
@@ -102,7 +151,7 @@ int main(int argc, char *argv[])
  TXHOutBaseName="out";
  TXHPrintMessage=PrintMessage;
 
- printf("SET's Documentation Generator (SDG) Copyright (c) 1997 by Salvador E. Tropea\n");
+ printf("SET's Documentation Generator (SDG)\nCopyright (c) 1997,2003 by Salvador E. Tropea\n");
  if (argc==1)
    {
     printf("\nUse: sdg list_of_sources\n\n");

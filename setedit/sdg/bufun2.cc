@@ -364,9 +364,11 @@ static int SearchFuncs(TNoCaseSOSStringCollection *FunList,SOStack &stk,
  return funs;
 }
 
+int CreateFunctionList(char *b, unsigned l, SOStack &stk,
+                       TNoCaseSOSStringCollection *FunList, unsigned ops=0, char *p=0);
 
 int CreateFunctionList(char *b, unsigned l, SOStack &stk,
-                       TNoCaseSOSStringCollection *FunList, unsigned ops=0)
+                       TNoCaseSOSStringCollection *FunList, unsigned ops, char *p)
 {
  buffer=b;
  IndexB=0;

@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
         sprintf(b,"./extrimk.exe %s > %s",mak,imk);
         int ret=system(b);
         if (ret)
-           return ret>>8;
+           return ret>256 ? ret>>8 : ret;
         if (stat(mak,&stImk)!=0)
           {
            fprintf(stderr,"%s: Can't create .imk file for %s\n",argv[0],mak);

@@ -9,7 +9,7 @@ require "conflib.pl";
 SeeCommandLine();
 
 $col=14;
-$a=ExtractItemsMak('makes/editor.mak',$col);
+$a=ExtractItemsImk('makes/editor.imk',$col);
 $a=~s/mixersb\.c//;
 $a=~s/mixoss\.c//;
 $a=~s/djmdr.s//;
@@ -24,22 +24,22 @@ $ReplaceTags{'EDITOR_OBJS_MS'}=$b;
 $b=0;
 
 $col=14;
-$a=ExtractItemsMak('makes/easydiag.mak',$col);
+$a=ExtractItemsImk('makes/easydiag.imk',$col);
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 $ReplaceTags{'EASYDIAG_OBJS'}=$a;
 
 $col=14;
-$a=ExtractItemsMak('makes/librhuti.mak',$col);
+$a=ExtractItemsImk('makes/librhuti.imk',$col);
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 $ReplaceTags{'LIBRHUTI_OBJS'}=$a;
 
 $col=14;
-$a=ExtractItemsMak('makes/libset.mak',$col);
+$a=ExtractItemsImk('makes/libset.imk',$col);
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 $ReplaceTags{'LIBSET_OBJS'}=$a;
 
 $col=14;
-$a=ExtractItemsMak('makes/settv.mak',$col);
+$a=ExtractItemsImk('makes/settv.imk',$col);
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 $ReplaceTags{'SETTVUTI_OBJS'}=$a;
 

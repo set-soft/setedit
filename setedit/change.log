@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.352  2003/05/12 13:37:59  set
+* Added: A new system for the makefiles. Expect all kind of compilation
+problems. It will simplify the configuration process and reduce CVS patches
+to .mak files.
+* Fixed: libamp case sensitive include.
+* Fixed: sdgcline details to allow clean compilation.
+
 Revision 1.351  2003/05/09 13:09:03  set
 * Added: A check to determine if the configure script is newer than the
 cache. If that's the case the cache is discarded.

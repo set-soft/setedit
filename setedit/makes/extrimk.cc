@@ -45,6 +45,7 @@ stIncDir incDirs[]=
 {"LIBRHUTI_INC_DIR", "../librhuti", 0},
 {"MP3_INC_DIR",      "../mp3", 0},
 {"CALCU_INC_DIR",    "../calcu", 0},
+{"HOLIDAYS_DIR",     "../holidays", 0},
 {"MP3_MAIN_DIR",     "../../include", 0},
 {"MP3_PREV_DIR",     "..", 0},
 {0,0}
@@ -258,21 +259,42 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
 }
 
 static
-void ExtractVar(FILE *f, const char *var, char *&dest)
+int ExtractVar(FILE *f, const char *var, char *&dest, char ret)
 {
  char buffer[maxLine];
  int l=strlen(var);
  do
    {
-    if (fgets(buffer,maxLine,f) &&
-        strncmp(buffer,var,l)==0)
+    if (fgets(buffer,maxLine,f))
       {
-       char *s=strtok(buffer+l+1,"\n");
-       dest=s ? strdup(s) : strdup("");
-       return;
+       if (strncmp(buffer,var,l)==0)
+         {
+          char *s=strtok(buffer+l+1,"\n");
+          dest=s ? strdup(s) : strdup("");
+          return 1;
+         }
+       else
+         {
+          if (strncmp(buffer,"include",7)==0)
+            {
+             char *s=strtok(buffer+8,"\n");
+             FILE *inc=fopen(s,"rt");
+             if (!inc)
+               {
+                fprintf(stderr,"Can't open include %s\n",s);
+                exit(13);
+               }
+             int retVal=ExtractVar(inc,var,dest,1);
+             fclose(inc);
+             if (retVal)
+                return 1;
+            }
+         }
       }
    }
  while (!feof(f));
+ if (ret)
+    return 0;
  fprintf(stderr,"Unable to find %s var\n",var);
  exit(7);
 }
@@ -280,7 +302,7 @@ void ExtractVar(FILE *f, const char *var, char *&dest)
 static
 void ExtractObjDir(FILE *f, stMak &mk)
 {
- ExtractVar(f,"vpath_obj",mk.objDir);
+ ExtractVar(f,"vpath_obj",mk.objDir,0);
 }
 
 static
@@ -288,13 +310,13 @@ void ExtractTVDir(FILE *f)
 {
  if (incDirs[0].dir)
     return;
- ExtractVar(f,"TVISION_INC",incDirs[0].dir);
+ ExtractVar(f,"TVISION_INC",incDirs[0].dir,0);
 }
 
 static
 void ExtractTarget(FILE *f, stMak &mk)
 {
- ExtractVar(f,"MAIN_TARGET",mk.mainTarget);
+ ExtractVar(f,"MAIN_TARGET",mk.mainTarget,0);
 }
 
 static
@@ -544,8 +566,11 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
     exit(8);
    }
  ExtractObjDir(f,mk);
+ long pos=ftell(f);
  ExtractTarget(f,mk);
  ExtractSources(f,mk);
+ // RHIDE 1.4.7 have a different order than 1.4.9 and 1.5
+ fseek(f,pos,SEEK_SET);
  ExtractTVDir(f);
  int i;
  if (!incDirs[0].ldir)

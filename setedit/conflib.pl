@@ -936,7 +936,7 @@ sub ModifySimpleMakefiles
 
 sub CreateRHIDEenvs
 {
- my ($a,$text,$rep,$useXtreme,$b);
+ my ($a,$text,$rep,$useXtreme,$b,$old);
 
  print 'Configuring RHIDE: ';
  foreach $a (@_)
@@ -972,13 +972,17 @@ sub CreateRHIDEenvs
        $text.="$rep\n";
       }
 
-    if ($text)
+    $old=cat($b);
+    if ($text ne $old)
       {
-       replace($b,$text);
-      }
-    else
-      {
-       unlink $b;
+       if ($text)
+         {
+          replace($b,$text);
+         }
+       else
+         {
+          unlink $b;
+         }
       }
    }
  print "\n";
@@ -1124,6 +1128,64 @@ sub ExtractItemsMak
              $$col+=length($file);
              $result.="$file";
             }
+         }
+      }
+   }
+ else
+   {
+    print "nothing found!\n";
+   }
+ $result;
+}
+
+
+###[txh]####################################################################
+#
+# Prototype: ExtractItemsImk($makefile,\$column)
+# Description:
+#   Extracts the list of project items from a .imk.
+#
+# Return: The list of items.
+#
+####################################################################[txi]###
+
+sub ExtractItemsImk
+{
+ my ($makefile,$col)=($_[0],\$_[1]);
+ my ($mak,@items,$file,$result,$path);
+
+ $result='';
+ $makefile=~/((.+)\/+)/;
+ $path=$1;
+ print "Extracting from $makefile: ";
+ $mak=cat($makefile);
+ if ($mak=~ /(.*):: (((.+)\\\n)+(.+)\n)/ ||
+     $mak=~ /(.*):: ((.+)\n)/)
+   {
+    print "processing\n";
+    @items=split(/[\\\s]+/,$2);
+    foreach $file (@items)
+      {
+       if ($file=~/\.o$/)
+         {
+          $file=~/((.+)\/+)(.*)/;
+          $file=$3;
+          print "$file\n";
+          if ($$col!=0)
+            {
+             if ($$col+length($file)>76)
+               {
+                $result.="\\\n\t";
+                $$col=8;
+               }
+             else
+               {
+                $result.=' ';
+                $$col++;
+               }
+            }
+          $$col+=length($file);
+          $result.="$file";
          }
       }
    }
