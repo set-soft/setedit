@@ -3797,7 +3797,7 @@ msgstr "Es el primero en la ~l~ista"
 
 #: ../setedit/edprefs.cc:466
 msgid "At the ~e~nd of the list"
-msgstr "Es es ~e~l £ltimo en la lista"
+msgstr "Es ~e~l £ltimo en la lista"
 
 #: ../setedit/edprefs.cc:473
 msgid "Files starting with a dot"
@@ -4149,7 +4149,6 @@ msgid "~S~econdary"
 msgstr "~S~ecundaria"
 
 #: ../setedit/edprefs.cc:1592
-#, fuzzy
 msgid "Lo~a~d font"
 msgstr "Ca~r~gar tipograf¡a"
 

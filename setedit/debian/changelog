@@ -1,3 +1,14 @@
+setedit (0.5.0-0.3) unstable; urgency=low
+
+  * New upstream alpha version from CVS dated 11 Sep 2002 (big changes, could
+    be unstable).
+  * debian/maintainer.notes: it was very outdated, now contains accurate and
+    more useful information.
+  * Added information about APT repository in README.Debian.
+  * infview package didn't had upstream changelog and README.Debian.
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Wed, 11 Sep 2002 19:53:31 -0300
+
 setedit (0.5.0-0.2) unstable; urgency=low
 
   * Added build dependency on aalib1-dev, so the AALib-Plasma screensaver

@@ -57,14 +57,19 @@ install: build
 #   dh_installdirs
 # Add here commands to install the package into debian/tmp.
 	$(MAKE) install
-	mv debian/tmp/usr/share/doc/setedit/change.log.gz debian/tmp/usr/share/doc/setedit/changelog.gz
-	dh_link usr/share/man/man1/setedit.1.gz usr/share/man/man1/e.1.gz
 # We need to move files for other packages than the first one in the control file:
 	dh_movefiles -p infview usr/bin/infview usr/share/doc/infview/ usr/share/infview/ usr/share/man/man1/infview.1.gz
 # I don't know why dh_movefiles doesn't remove the directories I requested for moving to the infview package, so I move them by hand (anyway I don't know why that command exists in the first place!):
 	rm -rf debian/tmp/usr/share/doc/infview/ debian/tmp/usr/share/infview/
+	mv debian/tmp/usr/share/doc/setedit/change.log.gz \
+		debian/tmp/usr/share/doc/setedit/changelog.gz
+	cp debian/tmp/usr/share/doc/setedit/changelog.gz \
+		debian/infview/usr/share/doc/infview/
+	dh_link usr/share/man/man1/setedit.1.gz usr/share/man/man1/e.1.gz
 	mkdir debian/infview/usr/share/info
 	cp debian/tmp/usr/share/info/infview.info.gz debian/infview/usr/share/info/infview.info.gz
+	cp debian/README.debian \
+		debian/infview/usr/share/doc/infview/README.Debian
 
 
 # Build the packages for a specific architecture:

@@ -1,51 +1,30 @@
-How to unpack and setup the files:
-Unpack the .tar.gz. Then in the root directory of the installation there's a
-file called version.txt. This file tells the version of the editor.
-See in the file debian/changelog if it has an entry with the current version
-number of the editor. If it doesn't, then add an entry with the command
-dch -v0.4.36-0.1 "Personal use unofficial version.".
-Then you are ready to build it!
-
+How to unpack and prepare the files:
+    Make sure that the debian/rules file is executable
+(chmod 755 debian/rules).
+    In the root directory where you unpacked there's a file called
+version.txt. This file tells the version of the editor. See in the file
+debian/changelog if it has an entry with the current version number of the
+editor. If it doesn't, then add an entry with the command
+dch -v 0.4.36-0.1 "Personal use unofficial version." (replacing 0.4.36 with
+the current version number as shown in version.txt).
 
 How to make the .deb, .tar.gz, .dsc and .changes files:
-   cd to the root directory of the installation
-   dpkg-buildpackage
-or
-   dpkg-buildpackage -sa (for including the upstream .tar.gz).
+    cd setedit-directory
+    dpkg-buildpackage -rfakeroot
 
-Optionally, you can add the -vVERSION switch wich indicates that the changes
-listed in the .changes file are from version "VERSION" wich it is a version
-listed in the changelog file up to the end of the changelog file.
+To check the package (binary and source):
+    cd ..
+    lintian -i *.deb *.dsc
 
-
-How to make the .deb, .tar.gz, .dsc and .changes files (and other things)
-step by step (this is usefull for development):
-
-1) To clean the unnecessary previously generated files:
-   cd setedit-version
-   debian/rules clean
-
-2) To generate the .deb files:
-   cd setedit-version
-   debian/rules binary-arch
-
-3) To generate the source package:
-   dpkg-source -b setedit-version (creates .dsc and .diff file, if
-                                   maintainer version is 1 or 0, it adds
-                                   the .tar.gz file of the original).
-   dpkg-source -b -su setedit-version (creates .dsc, .diff and .tar.gz
-                                       file of the original).
-
-4) To check the package (binary and source):
-   lintian -i *.deb *.dsc
-
-5) To generate the .changes file (when uploading the package):
-   dpkg-genchanges (this don't works... I have to see how I have to do to
-                    make it work yet...).
-
-
+To clean everything after building:
+    cd setedit-directory
+    fakeroot debian/rules clean
 
 Other notes:
-   - There is a clean-debian target on the debian/rules file, it only cleans
-     Debian specific files and not upstream build files.
+    - There is a clean-debian target on the debian/rules file, it only cleans
+      Debian specific files and not upstream build files. It is useful when
+      you just want for example to rebuild the package without recompiling
+      the sources (use debian/rules clean-debian).
+    - To rebuild the packages without recompiling the sources, use the binary
+      target on the debian/rules file (debian/rules binary).
 

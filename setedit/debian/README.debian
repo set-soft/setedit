@@ -10,15 +10,20 @@ but I think this is not a problem.
     More documentation is in info format, called setedit.info. You can view this
 documentation from inside the editor (just press F1) or using the standalone
 GNU info viewer (executing "info setedit").
-    The editor is set user id (SUID) root, because it is much faster that way.
-The upstream author says it is safe. This is necessary so the editor can access
-the /dev/vcsa devices.
     Email me if you have suggestions/comments or bugs against the debianization
 of this package. If the bug is in the original package (and not related to
 Debian) please email the upstream author (for email look in the copyright file
 located in this same directory), anyway you can email me and I will forward the
 bug to the upstream maintainer (if you have problems contacting the upstream
 author, contact me and I will contact him).
+    There is an APT repository on http://setedit.sourceforge.net/debian/,
+ofcourse you can manually download packages for installing with dpkg if you
+are not using APT.
+    If using APT, add the following line to your /etc/apt/sources.list:
+    deb http://setedit.sourceforge.net/debian woody main
+    You can substitute woody with the name of your distribution, for example
+potato, sarge or sid. The use of aliases like stable, testing or unstable is
+discouraged.
 
 	Remember: THIS IS AN UNOFFICIAL DEBIAN PACKAGE AND IS NOT PART OF THE
 DEBIAN DISTRIBUTION. Please, do NOT send bug reports to the DEBIAN BUG
