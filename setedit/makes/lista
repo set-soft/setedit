@@ -351,8 +351,9 @@ mainsrc/loadusew.cc
 mainsrc/macrocom.cc
 mainsrc/pathtool.cc
 mainsrc/pclipper.cc
-mainsrc/pperl.cc
 mainsrc/pmacros.cc
+mainsrc/pperl.cc
+mainsrc/pvarious.cc
 mainsrc/rhideint.cc
 mainsrc/sdginter.cc
 mainsrc/search.cc
