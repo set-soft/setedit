@@ -298,7 +298,8 @@ protected:
 
 const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
           oedDontOpenEmpty=16;
-const unsigned geVertWindows=1,geRightSide=2;
+const unsigned geVertWindows=1,geRightSide=2,geAvoidPrjAndMsg=0x80000000,
+               geMask1=3;
 
 extern TSetEditorApp *editorApp;
 #endif
@@ -400,6 +401,7 @@ extern int WriteNamesOfProjectToTime(FILE *f, time_t timeT, uint32 targetMask=0)
 extern int ClearForceTargetBits(uint32 bits);
 extern int SetForceTargetBits(uint32 bits);
 extern void ProjectInsertAutoTagFiles();
+extern Boolean ProjectGetSize(TRect &r);
 
 // The forceTarget is a bitmap for each target suported by the project.
 // Currently the only target is the TAGs file.

@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.330  2003/05/05 13:57:49  set
+* Fixed: Some pmacros (Perl was the most notable) didn't indicate the right
+editing mode flags. It could make them fail to generate properly indented
+text.
+* Fixed: "Intelligent indent" mode needed "Backspace unindents" enabled in
+order to work as spected.
+
 Revision 1.329  2003/05/05 13:53:14  set
 * Added: A small tool I wrote to extract info from linker maps. Is quite
 useful for DOS to know how much comes from each lib.

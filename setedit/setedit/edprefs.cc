@@ -644,6 +644,7 @@ typedef struct
  uint32 end      CLY_Packed;
  uint32 beep     CLY_Packed;
  uint32 opts     CLY_Packed;
+ uint32 opsAv    CLY_Packed;
  char   width[5] CLY_Packed;
 } BoxOthers;
 #pragma pack()
@@ -653,8 +654,8 @@ unsigned SetGeneralEditorOptionsOthers(void)
 {
  TSViewCol *col=new TSViewCol(__("Other options"));
 
- // ENG: CIJKMRVW
- // ESP: ADIKPRSV
+ // ENG: ACIJKMRUVW
+ // ESP: ADEIKPRSUV
  TSVeGroup *MsgWin=MakeVeGroup(0,
    TSLabelRadio(__("At the end of errors in message window"),
           __("~J~ust stop"),
@@ -665,6 +666,10 @@ unsigned SetGeneralEditorOptionsOthers(void)
                new TSCheckBoxes(
                    new TSItem(__("Use the ~v~ertical direction"),
                    new TSItem(__("Use the ~r~ight side"),0)))),
+   new TSLabel(__("When opening files"),
+               new TSRadioButtons(
+                   new TSItem(__("~U~se reserved width or 7 (hz dir)"),
+                   new TSItem(__("~A~void message and project windows"),0)))),
    new TSHzLabel(__("Reserved ~w~idth"),new TSInputLine(5)),
    0);
  MsgWin->makeSameW();
@@ -681,7 +686,8 @@ unsigned SetGeneralEditorOptionsOthers(void)
  BoxOthers box;
  box.end=TSOSListBoxMsg::opsEnd;
  box.beep=TSOSListBoxMsg::opsBeep;
- box.opts=TSetEditorApp::geFlags;
+ box.opts=TSetEditorApp::geFlags & geMask1;
+ box.opsAv=TSetEditorApp::geFlags & geAvoidPrjAndMsg ? 1 : 0;
  char buf[32];
  sprintf(buf,"%d",TSetEditorApp::widthVertWindows);
  strncpy(box.width,buf,4);
@@ -692,6 +698,8 @@ unsigned SetGeneralEditorOptionsOthers(void)
     TSOSListBoxMsg::opsEnd=box.end;
     TSOSListBoxMsg::opsBeep=box.beep;
     TSetEditorApp::geFlags=box.opts;
+    if (box.opsAv)
+       TSetEditorApp::geFlags|=geAvoidPrjAndMsg;
     TSetEditorApp::widthVertWindows=atoi(box.width);
     if (TSetEditorApp::widthVertWindows<6)
        TSetEditorApp::widthVertWindows=6;

@@ -1,5 +1,8 @@
 /* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+
+class TRect;
+
 typedef struct
 {
  int Line;
@@ -83,4 +86,5 @@ extern void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
                               unsigned Options=0);
 extern void EdShowMessageUpdate(unsigned Options);
 extern void EdJumpToMessage(ccIndex item);
+extern Boolean EdMessageGetSize(TRect &r);
 

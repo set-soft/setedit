@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.1
-@set update-date 29 Apr 2003
-@set update-month Apr 2003
+@set update-date 4 May 2003
+@set update-month May 2003
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -2001,6 +2001,21 @@ One important detail is that this options affects the size of new opened
 files. If you already opened windows in this project the editor will have
 them memorized. So you should setup this options before creating a project.
 @p{}
+
+To control the size of the windows when you open a new file you have two
+options.
+@p{}
+
+@itemize @bullet
+@item Use reserved width or 7 (hz dir): In this case the editor will make
+windows smaller than the desktop by substracting the value entered in
+reserved width, for vertical direction projects, or a fixed ammount of seven
+for horizontal direction projects.
+@item Avoid message and project windows: When selected the editor will try to
+avoid using the desktop surface used by the message and project windows. The
+size computed is the size of these windows without zooming. If the resulting
+size is too small the window will overlap.
+@end itemize
 
 This dialog also have a button to go back to the main dialog.
 @p{}

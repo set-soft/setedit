@@ -25,6 +25,7 @@
 #define Uses_MsgBox
 #define Uses_TVCodePage
 #define Uses_TScreen
+#define Uses_TDeskTop
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
@@ -627,4 +628,16 @@ void EdMessageSelectPrev(void)
     MsgList->selectPrev();
 }
 
+Boolean EdMessageGetSize(TRect &r)
+{
+ if (!MsgWindow)
+    return False;
+ TRect dkt=TApplication::deskTop->getExtent();
+ TRect size=MsgWindow->getBounds();
+ if (dkt==size)
+    r=MsgWindow->zoomRect;
+ else
+    r=size;
+ return True;
+}
 

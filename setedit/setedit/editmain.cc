@@ -188,6 +188,59 @@ void FixUpName(char *fileName)
     fileName[l]=0;
 }
 
+static
+unsigned Surface(TRect &r)
+{
+ TPoint dif=r.b-r.a;
+ if (dif.x<=0 || dif.y<=0)
+    return 0;
+ return dif.x*dif.y;
+}
+
+static
+void FindBestRect(TRect &avail, TRect &avoid, TRect &ret)
+{
+ TRect left;
+ left.a=avail.a;
+ left.b.x=avoid.a.x;
+ left.b.y=avail.b.y;
+
+ TRect right;
+ right.a.x=avoid.b.x;
+ right.a.y=avail.a.y;
+ right.b=avail.b;
+
+ TRect upper;
+ upper.a=avail.a;
+ upper.b.x=avail.b.x;
+ upper.b.y=avoid.a.y;
+
+ TRect lower;
+ lower.a.x=avail.a.x;
+ lower.a.y=avoid.b.y;
+ lower.b=avail.b;
+
+ unsigned sl=Surface(left);
+ unsigned sr=Surface(right);
+ unsigned su=Surface(upper);
+ unsigned so=Surface(lower);
+
+ if (sl>sr)
+   {
+    if (sl>su)
+       ret=sl>so ? left : lower;
+    else
+       ret=su>so ? upper : lower;
+   }
+ else
+   {
+    if (sr>su)
+       ret=sr>so ? right : lower;
+    else
+       ret=su>so ? upper : lower;
+   }
+}
+
 TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
                                         EditorResume *res, int options)
 {
@@ -200,19 +253,62 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     edHelper->reIdEditors();
     ain=IsAlreadyOnDesktop(fileName,&numEditors);
    }
- TRect r = deskTop->getExtent();
+ TRect r=deskTop->getExtent();
  TView *p;
 
  // Let some space
- if (geFlags & geVertWindows)
-   {
-    if (geFlags & geRightSide)
-       r.b.x-=widthVertWindows;
-    else
-       r.a.x=widthVertWindows;
+ Boolean sizeDetermined=False;
+ if (geFlags & geAvoidPrjAndMsg)
+   {// Avoid message and project windows
+    TRect prj, msg;
+    Boolean prjF, msgF;
+
+    prjF=ProjectGetSize(prj);
+    msgF=EdMessageGetSize(msg);
+    if (msgF || prjF)
+      {
+       TRect desk=r;
+       sizeDetermined=True;
+       if (prjF)
+          FindBestRect(r,prj,r);
+       if (msgF)
+          FindBestRect(r,msg,r);
+       // Ensure the result is usable
+       TPoint sz=r.b-r.a;
+       if (sz.x<24)
+         {
+          r.b.x=r.a.x+24;
+          if (r.b.x>desk.b.x)
+            {
+             int dif=r.b.x-desk.b.x;
+             r.b.x-=dif;
+             r.a.x-=dif;
+            }
+         }
+       if (sz.y<6)
+         {
+          r.b.y=r.a.y+6;
+          if (r.b.y>desk.b.y)
+            {
+             int dif=r.b.y-desk.b.y;
+             r.b.y-=dif;
+             r.a.y-=dif;
+            }
+         }
+      }
    }
- else
-    r.b.y-=7;
+ if (!sizeDetermined)
+   {
+    if (geFlags & geVertWindows)
+      {
+       if (geFlags & geRightSide)
+          r.b.x-=widthVertWindows;
+       else
+          r.a.x=widthVertWindows;
+      }
+    else
+       r.b.y-=7;
+   }
  /* First check if the user wants more copies, in this case foget the one found */
  if (ain && numEditors<maxOpenEditorsSame)
    {
