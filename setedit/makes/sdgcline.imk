@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:03
 #
 
 sdg$(ExEXE):: \
@@ -29,11 +28,10 @@ sdg$(ExEXE):: \
 	$(RHIDE_COMPILE_LINK)
 
 objsdg/bufun2$(ExOBJ):: bufun2.cc \
-	ucdefs.h \
+	compatlayer.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -68,20 +66,21 @@ objsdg/bufun2$(ExOBJ):: bufun2.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	ucdefs.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE00=extra$(ExIMK)
 
 objsdg/mli$(ExOBJ):: mli.cc \
+	compatlayer.h \
 	dyncat.h \
-	pathtool.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
 	mlibase.h \
 	mlivar.h \
-	compatlayer.h \
+	pathtool.h \
 	tv.h \
 	tv/codepage.h \
 	tv/configtv.h \
@@ -115,7 +114,7 @@ objsdg/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(RHIDE_COMPILE_CC)
 
 objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
-	ucdefs.h \
+	compatlayer.h \
 	mli.h \
 	mliabase.h \
 	mlibase.h \
@@ -123,7 +122,6 @@ objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	mlisdg.h \
 	mlisdgi.h \
 	mlivar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -143,10 +141,12 @@ objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	ucdefs.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objsdg/mlisdg$(ExOBJ):: mlisdg.cc \
+	compatlayer.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -155,7 +155,6 @@ objsdg/mlisdg$(ExOBJ):: mlisdg.cc \
 	mlisdg.h \
 	mlisdgi.h \
 	mlivar.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -186,9 +185,9 @@ objsdg/ntnocast$(ExOBJ):: ntnocast.cc \
 	$(RHIDE_COMPILE_CC)
 
 objsdg/setstack$(ExOBJ):: setstack.cc \
+	compatlayer.h \
 	setstack.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -206,10 +205,9 @@ objsdg/setstack$(ExOBJ):: setstack.cc \
 	$(RHIDE_COMPILE_CC)
 
 objsdg/stnocast$(ExOBJ):: stnocast.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/collectn.h \
 	tv/configtv.h \
@@ -236,15 +234,15 @@ objsdg/stnocast$(ExOBJ):: stnocast.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objsdg/tnocastc$(ExOBJ):: tnocastc.cc \
-	tvsetuti.h \
+	compatlayer.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -281,20 +279,20 @@ objsdg/tnocastc$(ExOBJ):: tnocastc.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objsdg/txhgen$(ExOBJ):: txhgen.cc \
 	bufun.h \
-	rhutils.h \
+	cl/unistd.h \
+	compatlayer.h \
 	mli.h \
 	mlisdgi.h \
-	txhgen.h \
+	rhutils.h \
 	setstack.h \
 	settvuti.h \
 	tnocastc.h \
-	cl/unistd.h \
-	compatlayer.h \
 	tv.h \
 	tv/codepage.h \
 	tv/collectn.h \
@@ -322,16 +320,16 @@ objsdg/txhgen$(ExOBJ):: txhgen.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
+	txhgen.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objsdg/txhmain$(ExOBJ):: txhmain.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
 	mli.h \
 	mlisdgi.h \
-	txhgen.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \
@@ -345,6 +343,7 @@ objsdg/txhmain$(ExOBJ):: txhmain.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
+	txhgen.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

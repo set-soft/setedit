@@ -1,11 +1,20 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:16
 #
 
 obj/ampdiag$(ExOBJ):: ampdiag.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
+	dskmp3.h \
+	dskwin.h \
 	easydia1.h \
 	easydiag.h \
+	intermp3.h \
+	mp3play.h \
+	nostatex.h \
+	setapp.h \
+	settvuti.h \
 	snostate.h \
 	tsbutton.h \
 	tshscrol.h \
@@ -13,16 +22,6 @@ obj/ampdiag$(ExOBJ):: ampdiag.cc \
 	tsvegrp.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	intermp3.h \
-	mp3play.h \
-	dskmp3.h \
-	dskwin.h \
-	setapp.h \
-	nostatex.h \
-	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -68,14 +67,14 @@ obj/ampdiag$(ExOBJ):: ampdiag.cc \
 
 obj/intermp3$(ExOBJ):: intermp3.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
-	intermp3.h \
-	mp3play.h \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
+	intermp3.h \
+	mp3play.h \
 	settvuti.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/configtv.h \
@@ -107,8 +106,18 @@ obj/intermp3$(ExOBJ):: intermp3.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/mp3list$(ExOBJ):: mp3list.cc \
+	ceditint.h \
+	compatlayer.h \
+	configed.h \
 	easydia1.h \
 	easydiag.h \
+	edhists.h \
+	fileopen.h \
+	fiopeaid.h \
+	intermp3.h \
+	setapp.h \
+	settvuti.h \
+	tnosostr.h \
 	tsbutton.h \
 	tshzgrp.h \
 	tslabel.h \
@@ -116,17 +125,6 @@ obj/mp3list$(ExOBJ):: mp3list.cc \
 	tssortva.h \
 	tsview.h \
 	tsviewco.h \
-	ceditint.h \
-	configed.h \
-	tvsetuti.h \
-	intermp3.h \
-	setapp.h \
-	edhists.h \
-	fileopen.h \
-	fiopeaid.h \
-	settvuti.h \
-	tnosostr.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -177,15 +175,16 @@ obj/mp3list$(ExOBJ):: mp3list.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
+	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/mp3play$(ExOBJ):: mp3play.cc \
 	ceditint.h \
+	compatlayer.h \
 	configed.h \
 	mp3play.h \
 	mpegsound/mpegsound.h \
-	compatlayer.h \
 	tv.h \
 	tv/configtv.h \
 	tv/intl.h \

@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:16
 #
 
 test$(ExEXE):: \
@@ -13,9 +12,13 @@ test$(ExEXE):: \
 INCLUDE00=easydiag$(ExIMK)
 
 obj/test$(ExOBJ):: test.cc \
+	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
+	nostatex.h \
+	settvuti.h \
 	snostate.h \
+	tinppipe.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
@@ -33,10 +36,6 @@ obj/test$(ExOBJ):: test.cc \
 	tsview.h \
 	tsviewco.h \
 	ttextscr.h \
-	nostatex.h \
-	settvuti.h \
-	tinppipe.h \
-	compatlayer.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \

@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:16
 #
 
 obj/djmdr$(ExOBJ):: djmdr.s \
@@ -8,8 +7,8 @@ obj/djmdr$(ExOBJ):: djmdr.s \
 	$(RHIDE_COMPILE_ASM_FORCE)
 
 obj/dyncat$(ExOBJ):: dyncat.cc \
-	dyncat.h \
 	configed.h \
+	dyncat.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -18,8 +17,8 @@ obj/memmove$(ExOBJ):: memmove.s \
 	$(RHIDE_COMPILE_ASM_FORCE)
 
 obj/mixer$(ExOBJ):: mixer.c \
-	mixer.h \
 	configed.h \
+	mixer.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
@@ -29,15 +28,15 @@ obj/mixersb$(ExOBJ):: mixersb.c \
 	$(RHIDE_COMPILE_C)
 
 obj/mixoss$(ExOBJ):: mixoss.c \
-	mixer.h \
 	configed.h \
+	mixer.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/stackdbg$(ExOBJ):: stackdbg.c \
-	stackdbg.h \
-	configed.h \
 	compatlayer.h \
+	configed.h \
+	stackdbg.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)

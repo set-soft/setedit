@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:16
 #
 
 ../install/install$(ExEXE):: \
@@ -23,7 +22,25 @@ obj/datafile$(ExOBJ):: datafile.c \
 INCLUDE00=easydiag$(ExIMK)
 
 obj/install$(ExOBJ):: install.cc \
+	ceditint.h \
 	compatlayer.h \
+	configed.h \
+	easydia1.h \
+	easydiag.h \
+	nostatex.h \
+	settvuti.h \
+	snostate.h \
+	tprogdia.h \
+	tsbutton.h \
+	tschkbox.h \
+	tshzgrp.h \
+	tsinplin.h \
+	tslabel.h \
+	tstatext.h \
+	tstextsc.h \
+	tsview.h \
+	tsviewco.h \
+	ttextscr.h \
 	tv.h \
 	tv/app.h \
 	tv/applictn.h \
@@ -74,24 +91,6 @@ obj/install$(ExOBJ):: install.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	easydia1.h \
-	easydiag.h \
-	snostate.h \
-	tsbutton.h \
-	tschkbox.h \
-	tshzgrp.h \
-	tsinplin.h \
-	tslabel.h \
-	tstatext.h \
-	tstextsc.h \
-	tsview.h \
-	tsviewco.h \
-	ttextscr.h \
-	ceditint.h \
-	configed.h \
-	nostatex.h \
-	settvuti.h \
-	tprogdia.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

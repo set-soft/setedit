@@ -1,6 +1,5 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2004-06-14 12:16
 #
 
 libset$(ExLIB):: \
@@ -71,30 +70,6 @@ libset$(ExLIB):: \
 	$(RHIDE_COMPILE_ARCHIVE)
 
 objlib/bufun$(ExOBJ):: bufun.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tssosslb.h \
-	$(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/bufun.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/splinman.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -144,29 +119,34 @@ objlib/bufun$(ExOBJ):: bufun.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/calcu$(ExOBJ):: calcu.cc \
-	$(CALCU_INC_DIR)/calcu.h \
-	$(INCLUDE_DIR)/ced_clas.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tssosslb.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/bufun.h \
+	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/splinman.h \
 	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
 	$(SETTVUTI_INC_DIR)/setstack.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
 	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/calcu$(ExOBJ):: calcu.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -214,40 +194,29 @@ objlib/calcu$(ExOBJ):: calcu.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/ceditor$(ExOBJ):: ceditor.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/bufun.h \
+	$(CALCU_INC_DIR)/calcu.h \
 	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/gzfiles.h \
-	$(INCLUDE_DIR)/keytrans.h \
-	$(INCLUDE_DIR)/loadkbin.h \
-	$(INCLUDE_DIR)/loadshl.h \
-	$(INCLUDE_DIR)/pathtool.h \
 	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/setconst.h \
 	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h \
 	$(INCLUDE_DIR)/tvsetuti.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SETEDIT_INC_DIR)/advice.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
 	$(SETTVUTI_INC_DIR)/edhists.h \
 	$(SETTVUTI_INC_DIR)/sarray.h \
 	$(SETTVUTI_INC_DIR)/setstack.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
 	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tprogdia.h \
 	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/tstrlbox.h \
 	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/ceditor$(ExOBJ):: ceditor.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -308,24 +277,40 @@ objlib/ceditor$(ExOBJ):: ceditor.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/completi$(ExOBJ):: completi.cc \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/bufun.h \
 	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/completi.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(INCLUDE_DIR)/loadkbin.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
 	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/setconst.h \
 	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
 	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETEDIT_INC_DIR)/advice.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
 	$(SETTVUTI_INC_DIR)/sarray.h \
 	$(SETTVUTI_INC_DIR)/setstack.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogdia.h \
 	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
 	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/completi$(ExOBJ):: completi.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -369,50 +354,24 @@ objlib/completi$(ExOBJ):: completi.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/completi.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/deedidia$(ExOBJ):: deedidia.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tschkbox.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tsinplpi.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tsradbot.h \
-	$(EASYDIAG_INC_DIR)/tssortlb.h \
-	$(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tstsorlb.h \
-	$(EASYDIAG_INC_DIR)/tsvegrp.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/setconst.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/diaghelp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -471,23 +430,50 @@ objlib/deedidia$(ExOBJ):: deedidia.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tschkbox.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tsinplpi.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tsradbot.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tstsorlb.h \
+	$(EASYDIAG_INC_DIR)/tsvegrp.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/setconst.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/doedidia$(ExOBJ):: doedidia.cc \
-	$(INCLUDE_DIR)/bufun.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/setconst.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/fileopen.h \
-	$(SETTVUTI_INC_DIR)/fiopeaid.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -527,26 +513,25 @@ objlib/doedidia$(ExOBJ):: doedidia.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/bufun.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/setconst.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/fileopen.h \
+	$(SETTVUTI_INC_DIR)/fiopeaid.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE00=easydiag$(ExIMK)
 
 objlib/edconst$(ExOBJ):: edconst.cc \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h \
-	$(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h \
-	$(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -587,25 +572,24 @@ objlib/edconst$(ExOBJ):: edconst.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/editorfo$(ExOBJ):: editorfo.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -641,13 +625,9 @@ objlib/editorfo$(ExOBJ):: editorfo.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/editwind$(ExOBJ):: editwind.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(INCLUDE_DIR)/configed.h \
@@ -660,6 +640,10 @@ objlib/editwind$(ExOBJ):: editwind.cc \
 	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(SETTVUTI_INC_DIR)/tstringa.h \
 	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/editwind$(ExOBJ):: editwind.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -699,41 +683,25 @@ objlib/editwind$(ExOBJ):: editwind.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/edkeys$(ExOBJ):: edkeys.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tstatext.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/keytrans.h \
-	$(INCLUDE_DIR)/loadkbin.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mlieditd.h \
-	$(SETEDIT_INC_DIR)/editcoma.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/diaghelp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/inputsca.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/tstrlbox.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -789,24 +757,41 @@ objlib/edkeys$(ExOBJ):: edkeys.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tstatext.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(INCLUDE_DIR)/loadkbin.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SETEDIT_INC_DIR)/editcoma.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/inputsca.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/edprint$(ExOBJ):: edprint.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tschkbox.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tsradbot.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -853,13 +838,24 @@ objlib/edprint$(ExOBJ):: edprint.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tschkbox.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tsradbot.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/edspecs$(ExOBJ):: edspecs.cc \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/edspecs.h \
-	$(INCLUDE_DIR)/pathtool.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -874,15 +870,15 @@ objlib/edspecs$(ExOBJ):: edspecs.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/edspecs.h \
+	$(INCLUDE_DIR)/pathtool.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE01=extra$(ExIMK)
 
 objlib/gzfiles$(ExOBJ):: gzfiles.cc \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/gzfiles.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -899,31 +895,13 @@ objlib/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/inf$(ExOBJ):: inf.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h \
-	$(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h \
-	$(SETTVUTI_INC_DIR)/diaghelp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/fileopen.h \
-	$(SETTVUTI_INC_DIR)/fiopeaid.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tprogrdi.h \
-	$(SETTVUTI_INC_DIR)/tprogres.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/button.h \
@@ -987,22 +965,31 @@ objlib/inf$(ExOBJ):: inf.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETTVUTI_INC_DIR)/diaghelp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/fileopen.h \
+	$(SETTVUTI_INC_DIR)/fiopeaid.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogrdi.h \
+	$(SETTVUTI_INC_DIR)/tprogres.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/infbase$(ExOBJ):: infbase.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/gzfiles.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(INFVIEW_INC_DIR)/infbase.h \
-	$(INFVIEW_INC_DIR)/infbaser.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tprogdia.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1042,19 +1029,22 @@ objlib/infbase$(ExOBJ):: infbase.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/gzfiles.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tprogdia.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/keytrans$(ExOBJ):: keytrans.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/keytrans.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1089,13 +1079,19 @@ objlib/keytrans$(ExOBJ):: keytrans.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/keytrans.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/linelen$(ExOBJ):: linelen.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1110,40 +1106,13 @@ objlib/linelen$(ExOBJ):: linelen.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/loaddefl$(ExOBJ):: loaddefl.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tssortlb.h \
-	$(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/loadshl.h \
-	$(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1192,11 +1161,40 @@ objlib/loaddefl$(ExOBJ):: loaddefl.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/loadfunc$(ExOBJ):: loadfunc.cc \
-	$(INCLUDE_DIR)/pathtool.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1213,27 +1211,11 @@ objlib/loadfunc$(ExOBJ):: loadfunc.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/pathtool.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/loadshl$(ExOBJ):: loadshl.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/loadshl.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1269,40 +1251,27 @@ objlib/loadshl$(ExOBJ):: loadshl.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/loadusew$(ExOBJ):: loadusew.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tshzgrp.h \
-	$(EASYDIAG_INC_DIR)/tsinplin.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tslistbo.h \
-	$(EASYDIAG_INC_DIR)/tssortlb.h \
-	$(EASYDIAG_INC_DIR)/tssortva.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/loadshl.h \
-	$(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tdiagaid.h \
-	$(SETTVUTI_INC_DIR)/tdiagrow.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/tstrlbox.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1350,24 +1319,40 @@ objlib/loadusew$(ExOBJ):: loadusew.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/macrocom$(ExOBJ):: macrocom.cc \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tshzgrp.h \
+	$(EASYDIAG_INC_DIR)/tsinplin.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tslistbo.h \
+	$(EASYDIAG_INC_DIR)/tssortlb.h \
+	$(EASYDIAG_INC_DIR)/tssortva.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
 	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/loadshl.h \
+	$(INCLUDE_DIR)/pathtool.h \
 	$(INCLUDE_DIR)/pmcoll.h \
 	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h \
 	$(INCLUDE_DIR)/tvsetuti.h \
 	$(SETEDIT_INC_DIR)/setapp.h \
 	$(SETTVUTI_INC_DIR)/sarray.h \
 	$(SETTVUTI_INC_DIR)/setstack.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tdiagaid.h \
+	$(SETTVUTI_INC_DIR)/tdiagrow.h \
 	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/tstrlbox.h \
 	$(SETTVUTI_INC_DIR)/viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/macrocom$(ExOBJ):: macrocom.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1407,17 +1392,24 @@ objlib/macrocom$(ExOBJ):: macrocom.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/mli$(ExOBJ):: mli.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/pathtool.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mliasimp.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlivar.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1440,6 +1432,13 @@ objlib/mli$(ExOBJ):: mli.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlivar.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -1452,14 +1451,6 @@ objlib/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(RHIDE_COMPILE_CC)
 
 objlib/mlicsdg$(ExOBJ):: mlicsdg.cc \
-	$(INCLUDE_DIR)/ucdefs.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlicsdg.h \
-	$(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h \
-	$(SDG_INC_DIR)/mlivar.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1480,21 +1471,18 @@ objlib/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ucdefs.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/mliediti$(ExOBJ):: mliediti.cc \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mliasimp.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h \
-	$(SDG_INC_DIR)/mlivar.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1521,27 +1509,21 @@ objlib/mliediti$(ExOBJ):: mliediti.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/mliedito$(ExOBJ):: mliedito.cc \
-	$(EXTRA_INC_DIR)/dyncat.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/runprog.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h \
-	$(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h \
-	$(SDG_INC_DIR)/mlivar.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1569,18 +1551,27 @@ objlib/mliedito$(ExOBJ):: mliedito.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EXTRA_INC_DIR)/dyncat.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/runprog.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/mlisdg$(ExOBJ):: mlisdg.cc \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mliasimp.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlicsdg.h \
-	$(SDG_INC_DIR)/mlisdg.h \
-	$(SDG_INC_DIR)/mlisdgi.h \
-	$(SDG_INC_DIR)/mlivar.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1601,6 +1592,14 @@ objlib/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h \
+	$(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/mlivar.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -1626,7 +1625,6 @@ objlib/nfileedi$(ExOBJ):: nfileedi.cc \
 	$(RHIDE_COMPILE_CC)
 
 objlib/nhiscoll$(ExOBJ):: nhiscoll.cc \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1641,11 +1639,11 @@ objlib/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/ninfview$(ExOBJ):: ninfview.cc \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1660,11 +1658,11 @@ objlib/ninfview$(ExOBJ):: ninfview.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/ninfwind$(ExOBJ):: ninfwind.cc \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1679,6 +1677,7 @@ objlib/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -1696,15 +1695,6 @@ objlib/parser$(ExOBJ):: parser.c \
 	$(RHIDE_COMPILE_C)
 
 objlib/pathtool$(ExOBJ):: pathtool.cc \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pathtool.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SETEDIT_INC_DIR)/pathlist.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1733,11 +1723,19 @@ objlib/pathtool$(ExOBJ):: pathtool.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pathtool.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SETEDIT_INC_DIR)/pathlist.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/pclipper$(ExOBJ):: pclipper.cc \
-	$(INCLUDE_DIR)/bufun.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1754,14 +1752,11 @@ objlib/pclipper$(ExOBJ):: pclipper.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/pmacros$(ExOBJ):: pmacros.cc \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1789,6 +1784,10 @@ objlib/pmacros$(ExOBJ):: pmacros.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -1803,7 +1802,6 @@ objlib/pphp$(ExOBJ):: pphp.cc \
 	$(RHIDE_COMPILE_CC)
 
 objlib/pvarious$(ExOBJ):: pvarious.cc \
-	$(INCLUDE_DIR)/bufun.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1820,13 +1818,11 @@ objlib/pvarious$(ExOBJ):: pvarious.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/rhideint$(ExOBJ):: rhideint.cc \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1842,24 +1838,13 @@ objlib/rhideint$(ExOBJ):: rhideint.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/sceditor$(ExOBJ):: sceditor.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1896,12 +1881,24 @@ objlib/sceditor$(ExOBJ):: sceditor.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/sdginter$(ExOBJ):: sdginter.cc \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/configed.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1919,25 +1916,12 @@ objlib/sdginter$(ExOBJ):: sdginter.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/search$(ExOBJ):: search.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1974,20 +1958,27 @@ objlib/search$(ExOBJ):: search.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE02=settv$(ExIMK)
 
 objlib/sinf$(ExOBJ):: sinf.cc \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(INFVIEW_INC_DIR)/inf.h \
-	$(INFVIEW_INC_DIR)/infbase.h \
-	$(INFVIEW_INC_DIR)/infbaser.h \
-	$(INFVIEW_INC_DIR)/infr.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2028,44 +2019,18 @@ objlib/sinf$(ExOBJ):: sinf.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(INFVIEW_INC_DIR)/inf.h \
+	$(INFVIEW_INC_DIR)/infbase.h \
+	$(INFVIEW_INC_DIR)/infbaser.h \
+	$(INFVIEW_INC_DIR)/infr.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/slpinter$(ExOBJ):: slpinter.cc \
-	$(EASYDIAG_INC_DIR)/easydia1.h \
-	$(EASYDIAG_INC_DIR)/easydiag.h \
-	$(EASYDIAG_INC_DIR)/tsbutton.h \
-	$(EASYDIAG_INC_DIR)/tsinplpi.h \
-	$(EASYDIAG_INC_DIR)/tslabel.h \
-	$(EASYDIAG_INC_DIR)/tsview.h \
-	$(EASYDIAG_INC_DIR)/tsviewco.h \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_coma.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditint.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/completi.h \
-	$(INCLUDE_DIR)/configed.h \
-	$(INCLUDE_DIR)/edmsg.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/slpinter.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mliabase.h \
-	$(SDG_INC_DIR)/mlibase.h \
-	$(SDG_INC_DIR)/mlieditd.h \
-	$(SDG_INC_DIR)/mliedito.h \
-	$(SDG_INC_DIR)/mlivar.h \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	$(SETTVUTI_INC_DIR)/edhists.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tinppipe.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -2114,24 +2079,44 @@ objlib/slpinter$(ExOBJ):: slpinter.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(EASYDIAG_INC_DIR)/easydia1.h \
+	$(EASYDIAG_INC_DIR)/easydiag.h \
+	$(EASYDIAG_INC_DIR)/tsbutton.h \
+	$(EASYDIAG_INC_DIR)/tsinplpi.h \
+	$(EASYDIAG_INC_DIR)/tslabel.h \
+	$(EASYDIAG_INC_DIR)/tsview.h \
+	$(EASYDIAG_INC_DIR)/tsviewco.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_coma.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/completi.h \
+	$(INCLUDE_DIR)/configed.h \
+	$(INCLUDE_DIR)/edmsg.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/slpinter.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlieditd.h \
+	$(SDG_INC_DIR)/mliedito.h \
+	$(SDG_INC_DIR)/mlivar.h \
+	$(SETEDIT_INC_DIR)/setapp.h \
+	$(SETTVUTI_INC_DIR)/edhists.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tinppipe.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/splinman$(ExOBJ):: splinman.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ced_inte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/splinman.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2165,14 +2150,24 @@ objlib/splinman$(ExOBJ):: splinman.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ced_inte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/splinman.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/ssindica$(ExOBJ):: ssindica.cc \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -2196,22 +2191,14 @@ objlib/ssindica$(ExOBJ):: ssindica.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/tsindica$(ExOBJ):: tsindica.cc \
-	$(INCLUDE_DIR)/ced_clas.h \
-	$(INCLUDE_DIR)/ced_exte.h \
-	$(INCLUDE_DIR)/ceditor.h \
-	$(INCLUDE_DIR)/pmcoll.h \
-	$(INCLUDE_DIR)/sindicat.h \
-	$(INCLUDE_DIR)/tvsetuti.h \
-	$(SETTVUTI_INC_DIR)/sarray.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
-	$(SETTVUTI_INC_DIR)/tstringa.h \
-	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2247,18 +2234,22 @@ objlib/tsindica$(ExOBJ):: tsindica.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/ced_clas.h \
+	$(INCLUDE_DIR)/ced_exte.h \
+	$(INCLUDE_DIR)/ceditor.h \
+	$(INCLUDE_DIR)/pmcoll.h \
+	$(INCLUDE_DIR)/sindicat.h \
+	$(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/sarray.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(SETTVUTI_INC_DIR)/tstringa.h \
+	$(SETTVUTI_INC_DIR)/viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 objlib/txhgen$(ExOBJ):: txhgen.cc \
-	$(INCLUDE_DIR)/bufun.h \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(SDG_INC_DIR)/mli.h \
-	$(SDG_INC_DIR)/mlisdgi.h \
-	$(SDG_INC_DIR)/txhgen.h \
-	$(SETTVUTI_INC_DIR)/setstack.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -2288,6 +2279,14 @@ objlib/txhgen$(ExOBJ):: txhgen.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
+	$(INCLUDE_DIR)/bufun.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	$(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlisdgi.h \
+	$(SDG_INC_DIR)/txhgen.h \
+	$(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
