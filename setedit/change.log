@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.104  2002/05/30 17:30:05  set
+* Added: Support for the TV 2.0 palette handling. Seems to work for Linux
+console.
+
 Revision 1.103  2002/05/27 19:58:17  set
 * Modified: [Solaris] Removed debug printfs in audio code.
 * Modified: [Linux] Added some code that should avoid big endian issues
