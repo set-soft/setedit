@@ -155,7 +155,7 @@ driver.
 cursor under X11).
 
 
-Fixed [25 things]:
+Fixed [26 things]:
 
 + Fatal  [5]
 
@@ -169,7 +169,7 @@ removed the dektop structure from the list and inmediatly used it.
 * Some problems that made the editor crash when opening a file from
 the windows list dialog and this process needed to show a messageBox.
 
-+ Not fatal [12]
++ Not fatal [13]
 
 * A bug in InfView parser. When a node had a lot of cross references
 that started in a line and ended in another *and* the last cross reference
@@ -193,6 +193,7 @@ line had extra spaces at the end.
 applied.
 * When indenting a block using the arbitrary indent or comment indent the
 syntax highlight wasn't recomputed.
+* C/C++ functions list parser to support namespaces.
 
 + Undo [1]
 
