@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.396  2003/06/04 17:36:39  set
+* Added: Support for makeinfo 4.4 and newer. For some reason the new
+versions doesn't support _ inside names (only -). Really uncompatible from
+my point of view. Lamentably this is currently shipped in a few rare Linux
+distributions like Slackware 9.0.0 and SuSE 8.2 (no in previous releases,
+nor in any Debian nor Red Hat nor Mandrake distro). And Andris and Michel
+didn't sent me the intermediate file needed to find the problem.
+
 Revision 1.395  2003/06/02 15:12:20  set
 * Modified: Configuration script to adapt to the new TV directory
 structure. Now the resulting lib is in ../tvision/makes.

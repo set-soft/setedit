@@ -448,6 +448,7 @@ public:
     static int DontLoadFile;  // If !=0 the read member doesn't really load the text
                               // in memory, but reads all the rest of stuff.
     TPoint curPos;            // Position of cursor inside the file
+    TPoint lastCurPos;        // Last position before a move, used for ^Q-P
     int    restCharsInLine;   // Number of chars between inEditPtr and the end
                               // of the buffer.
     unsigned selLineStart;    // selStart in a line

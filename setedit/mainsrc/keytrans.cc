@@ -863,13 +863,13 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 194 keys defined
-const int NormalSize=88,CtrlQSize=49,CtrlKSize=61;
+// 195 keys defined
+const int NormalSize=88,CtrlQSize=50,CtrlKSize=61;
 #define NormalTable KeyTTable88
-#define CtrlQTable  KeyTTable49
+#define CtrlQTable  KeyTTable50
 #define CtrlKTable  KeyTTable61
 DeclareTable(88);
-DeclareTable(49);
+DeclareTable(50);
 DeclareTable(61);
 
 extern CtrlQTable CtrlQ;
@@ -978,7 +978,7 @@ NormalTable base=
 CtrlQTable CtrlQ=
 { CtrlQSize,0,
  { // MUST be sorted
-  // Normal 25
+  // Normal 26
   { kbA, kbtIsComm, {cmcReplace} }, // 1
   { kbB, kbtIsComm, {cmcGoBeginBlock} }, // 2
   { kbC, kbtIsComm, {cmcTextEnd} }, // 3
@@ -989,6 +989,7 @@ CtrlQTable CtrlQ=
   { kbK, kbtIsComm, {cmcGoEndBlock} }, // 11
   { kbL, kbtIsComm, {cmcSelLength} }, // 12
   { kbM, kbtIsComm, {cmcChooseMacro} }, // 13
+  { kbP, kbtIsComm, {cmcJumpLastCursorPos} }, //
   { kbR, kbtIsComm, {cmcTextStart} }, // 18
   { kbS, kbtIsComm, {cmcLineStart} }, // 19
   { kbX, kbtIsComm, {cmcLastLineInScreen} }, // 24

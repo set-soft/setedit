@@ -2029,9 +2029,10 @@ void TCEditor::ScrollLinesDown(int lines)
 
 int TCEditor::handleCommand(ushort command)
 {
- Boolean centerCursor = (!cursorVisible()) ? True : False;
+ Boolean centerCursor=(!cursorVisible()) ? True : False;
  int i; // To be used as iterator in any of the case in the switch
  int cursorMoved=0;
+ TPoint oldCurPos;
 
  /* Note: Most of the routines check isReadOnly to avoid problems if in some
     way the command is processed without using this routine.
@@ -2042,12 +2043,14 @@ int TCEditor::handleCommand(ushort command)
     // First commands without locking, I must resee it
     case cmcFind:
          flushLine();
+         lastCurPos=curPos;
          find();
          updateCommands(); // In case the user copied/pasted
          break;
   
     case cmcReplace:
          flushLine();
+         lastCurPos=curPos;
          replace();
          updateCommands(); // In case the user copied/pasted
          break;
@@ -2055,6 +2058,7 @@ int TCEditor::handleCommand(ushort command)
     // ^L
     case cmcSearchAgain:
          flushLine();
+         lastCurPos=curPos;
          StartOfSearch=(unsigned)(ColToPointer()-buffer)+1;
          doSearchReplace();
          break;
@@ -2066,6 +2070,7 @@ int TCEditor::handleCommand(ushort command)
     default:
         lock();
         lockUndo();
+        oldCurPos=curPos;
         switch(command)
           {
            case cmcSelectOn:
@@ -3375,6 +3380,7 @@ int TCEditor::handleCommand(ushort command)
                 if (UndoSt==undoInMov)
                   {
                    MoveCursorTo(UndoArray[UndoActual].X,UndoArray[UndoActual].Y);
+                   cursorMoved=1;
                   }
                 break;
  
@@ -3493,6 +3499,13 @@ int TCEditor::handleCommand(ushort command)
                 RunSLispAsk();
                 break;                
 
+           case cmcJumpLastCursorPos:
+                addToUndo(undoInMov);
+                MoveCursorTo(lastCurPos.x,lastCurPos.y);
+                cursorMoved=1;
+                centerCursor=True;
+                break;
+
            default:
                unlock();
                unlockUndo();
@@ -3504,6 +3517,7 @@ int TCEditor::handleCommand(ushort command)
 
         if (cursorMoved)
           {
+           lastCurPos=oldCurPos;
            if (selecting)
              {
               UpdateSelecting();
@@ -10168,13 +10182,13 @@ void TCEditor::setBufLen( uint32 length )
     lenLines.setAll(0,0,0);
  drawLine=0;            // First displayed line
  totalLines=lines ? lines-1 : 0;    // Total number of lines
- limit.y = lines;
+ limit.y=lines;
  lineInEdition=0;       // Line number in edition process
  IslineInEdition=False; // There is a line under edition?
  curLinePtr=buffer;     // Pointer to the start of the line under the cursor
- delta.x = 0;
- delta.y = 0;           // Origin in window
- curPos = delta;        // Origin in file
+ delta.x=0;
+ delta.y=0;               // Origin in window
+ lastCurPos=curPos=delta; // Origin in file
 
  // Allocate the Edition buffer
  if (bufEdit && (maxLen>(uint32)bufEditLen))

@@ -79,6 +79,7 @@ static edCList List[] =
 { "InsertText", 45 },
 { "IntelIndentMode", 112 },
 { "InvertCase", 145 },
+{ "JumpLastCursorPos", 154 },
 { "JumpToFunction", 105 },
 { "JumpToPrototype", 136 },
 { "LastColInScreen", 140 },
