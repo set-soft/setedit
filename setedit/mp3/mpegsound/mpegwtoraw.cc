@@ -5,10 +5,13 @@
 static bool CheckForMP3InsideWavDontMove(Soundinputstream *f);
 static bool CheckForMP3InsideWav(Soundinputstream *f);
 
-void Mpegwavtoraw::initialize(char *filename, bool )
+void Mpegwavtoraw::initialize(char *filename, bool avoidID3)
 {
- if (loader->getcanseek()) CheckForMP3InsideWavDontMove(loader);
- Mpegtoraw::initialize(filename,true);
+ if (loader->getcanseek())
+    // Check if that's an MP3 inside a RIFF/WAVe.
+    // In this case avoid looking for the ID3 info.
+    avoidID3=CheckForMP3InsideWavDontMove(loader);
+ Mpegtoraw::initialize(filename,avoidID3);
 }
 
 

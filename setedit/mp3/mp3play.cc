@@ -481,7 +481,7 @@ int MP3Player::PlayFileToPlay(char *out)
  // Now create the engine
  MP3Engine=new Mpegwavtoraw(InputStream,out ? (Soundplayer *)ToFile :
                             (Soundplayer *)Player);
- MP3Engine->initialize(FileToPlay);
+ MP3Engine->initialize(FileToPlay,false);
  GetMP3Info();
  MP3Engine->startplay();
 
@@ -503,7 +503,11 @@ long MP3Player::GetMP3Info(void)
    {
     memcpy(Title,MP3Engine->getname(),31);
     memcpy(Author,MP3Engine->getartist(),31);
-    memcpy(Album,MP3Engine->getalbum(),34);
+    memcpy(Album,MP3Engine->getalbum(),31);
+    int i;
+    for (i=0; Album[i]; i++);
+    for (; i<30; i++) Album[i]=' ';
+    Album[i]=0;
     strcat(Album,MP3Engine->getyear());
     memcpy(Comment,MP3Engine->getcomment(),31);
     Genre=_(MP3Engine->getgenre());
