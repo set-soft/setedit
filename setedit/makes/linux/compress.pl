@@ -25,6 +25,11 @@ if ($r!~/$version/)
   {
    die "Error! inconsistent version in ced_inte.h\n";
   }
+
+$r=cat('../../include/vername.h');
+$revision=$1 if $r=~/VERSION_REV\s+(\d+)/;
+$relname=$1 if $r=~/VERSION_NAME\s+\"([^\"]+)\"/;
+
 $r=0;
 
 # Default prefix
@@ -439,6 +444,8 @@ sub CopyIfRpl
     $a =~ s/\@\@pref_alt\@\@/$prefix_alt/g;
     $a =~ s/\@\@install_bin\@\@/$inst_bin/g;
     $a =~ s/\@\@install_data\@\@/$inst_data/g;
+    $a =~ s/\@\@relname\@\@/$relname/g;
+    $a =~ s/\@\@rev\@\@/$revision/g;
     replace($d,$a);
     if (-x $o)
       {

@@ -15,6 +15,10 @@ if ($r!~/$version/)
    die "Error! inconsistent version in ced_inte.h\n";
   }
 
+$r=cat('../../include/vername.h');
+$revision=$1 if $r=~/VERSION_REV\s+(\d+)/;
+$relname=$1 if $r=~/VERSION_NAME\s+\"([^\"]+)\"/;
+
 $binManifest='';
 
 # Default prefix
@@ -425,6 +429,8 @@ sub CopyIfRpl
     $a=cat($o);
     $a =~ s/\@\@v\@\@/$version/g;
     $a =~ s/\@\@v1\@\@/$version1/g;
+    $a =~ s/\@\@relname\@\@/$relname/g;
+    $a =~ s/\@\@rev\@\@/$revision/g;
     replace($d,$a);
     return 1;
    }
