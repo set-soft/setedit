@@ -56,6 +56,8 @@ debian/infview.preinst
 debian/infview.prerm
 debian/maintainer.notes
 +debian/rules
++debian/setedit.config
+debian/setedit.templates
 debian/setedit.doc-base
 debian/setedit.menu
 debian/setedit.postinst

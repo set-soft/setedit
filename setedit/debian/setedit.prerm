@@ -5,4 +5,10 @@ if [ $1 != "upgrade" ] ; then
     install-info --quiet --remove setedit
 fi
 
+# We have to remove the installation configuration file in case of a purge:
+cfgfile="/usr/share/setedit/install.log"
+if [ "$1" = "purge" -a -e $cfgfile ]; then
+	rm -f $cfgfile
+fi
+
 #DEBHELPER#

@@ -1,3 +1,16 @@
+setedit (0.4.57-0.3) unstable; urgency=low
+
+  * DebConf support for generating the /usr/share/setedit/install.log
+    file containing options used when the editor cannot load a desktop
+    file. I think I have done it The Right Way, reading existing values
+    from the install.log file, adding new ones and modifying the existing
+    ones.
+  * Build-Depends on a newer debhelper (>=2.0.54) because of the
+    debconfisation and also Depends on debconf (I don't know if I have to
+    specify a version though).
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Mon, 17 Jun 2002 01:57:43 -0300
+
 setedit (0.4.57-0.2) unstable; urgency=low
 
   * New unstable alpha version from CVS dated 5 Jun 2002.

@@ -2,13 +2,13 @@ Source: setedit
 Section: editors
 Priority: optional
 Maintainer: Ivan Baldo <lubaldo@adinet.com.uy>
-Build-Depends: perl, rhtvision-dev, gzip, tar, debhelper (>=2.0.40), libpcre3-dev, libz-dev, libbz2-dev, texinfo, recode, gettext, xlibs-dev, libncurses-dev
+Build-Depends: perl, rhtvision-dev, gzip, tar, debhelper (>=2.0.54), libpcre3-dev, libz-dev, libbz2-dev, texinfo, recode, gettext, xlibs-dev, libncurses-dev
 Standards-Version: 3.5.2.0
 
 Package: setedit
 Section: editors
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, debconf
 Recommends: man
 Suggests: grep, doc-base, texinfo
 Conflicts: suidmanager (<< 0.50)

@@ -11,4 +11,55 @@ if [ $1 != "upgrade" ] ; then
     install-info --quiet --section "Text Editors" "Text Editors" /usr/share/info/setedit.info.gz
 fi
 
+# DebConf support:
+. /usr/share/debconf/confmodule
+cfgfile="/usr/share/setedit/install.log"
+# Create configuration file if it doesn't exist:
+if [ ! -e $cfgfile ] ; then
+	echo "#
+# Default Installation Options file, created on installation with DebConf.
+# These options will be used when no desktop file can be loaded.
+# You can modify these options editing this file and/or using
+# dpkg-reconfigure.
+#
+[Install]" > $cfgfile
+fi
+# Add possibly new options:
+if ! grep 'CentralDesktopFile=' $cfgfile >/dev/null 2>&1 ; then
+	echo "CentralDesktopFile=0" >> $cfgfile
+fi
+if ! grep 'TabsForIndent=' $cfgfile >/dev/null 2>&1 ; then
+	echo "TabsForIndent=0" >> $cfgfile
+fi
+if ! grep 'CreateBackUps=' $cfgfile >/dev/null 2>&1 ; then
+	echo "CreateBackUps=1" >> $cfgfile
+fi
+# Get the options (is better to check for non default option, so in case of
+# problems the default will be set):
+db_get setedit/central_desktop_file
+if [ "$RET" = "Use a central desktop file" ] ; then
+	CentralDesktopFile=1
+else
+	CentralDesktopFile=0
+fi
+db_get setedit/tabs_for_indent
+if [ "$RET" = "Tabs" ] ; then
+	TabsForIndent=1
+else
+	TabsForIndent=0
+fi
+db_get setedit/create_backups
+if [ "$RET" = "No" ] ; then
+	CreateBackUps=0
+else
+	CreateBackUps=1
+fi
+cat $cfgfile | \
+	sed "s/CentralDesktopFile=./CentralDesktopFile=$CentralDesktopFile/" | \
+	sed "s/TabsForIndent=./TabsForIndent=$TabsForIndent/" | \
+	sed "s/CreateBackUps=./CreateBackUps=$CreateBackUps/" \
+	> $cfgfile.new
+mv $cfgfile.new $cfgfile
+
+
 #DEBHELPER#

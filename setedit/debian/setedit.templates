@@ -1,0 +1,30 @@
+Template: setedit/central_desktop_file
+Type: select
+Description: Desktop file policy selection?
+ The editor stores configuration options in files called desktop files. These
+ files also store information about what files are opened and the size,
+ position, etc. of the windows.
+ .
+ You can have only one global file for this or one in each directory you use
+ the editor.
+Choices: Create a desktop file in each directory, Use a central desktop file
+Default: Create a desktop file in each directory
+
+Template: setedit/tabs_for_indent
+Type: select
+Description: Indent by spaces or tabs?
+ The editor is set by default to indent text using spaces. To configure the
+ editor to use tabs more than one option (in the editor, not here) must be
+ selected (which if you answer to use tabs here that will be done for you).
+Choices: Spaces, Tabs
+Default: Spaces
+
+Template: setedit/create_backups
+Type: select
+Description: Do you want to create backups of modified files?
+ Each time the editor stores a modified file to disk a backup file can be
+ created in case you want to revert the changes. This is specially useful
+ when you already exited the editor and hence undo option isn't available.
+Choices: Yes, No
+Default: Yes
+
