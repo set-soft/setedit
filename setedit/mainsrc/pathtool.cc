@@ -297,8 +297,9 @@ char *ReplaceExtension(char *name, const char *ext)
 char *AddToNameOfFile(char *fname, char *add)
 {
  #ifdef SEOS_DOS
- //if (_use_lfn(fname))
- //   return strcat(fname,add);
+ // It could fail, but in this case the user should disable the option
+ if (CLY_HaveLFNs())
+    return strcat(fname,add);
  // Not so easy boy, 8+3 limitations:
  char *dir,*name,*ext;
  int lext;
