@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.655  2005/02/21 18:54:20  set
+* Fixed: [cosmetic] A couple of typos (interprete -> interpret). Reported
+by Thiago.
+
 Revision 1.654  2005/02/21 18:05:19  set
 * Modified: Now the "Tab" behavior is implemented by an editor command
 (cmcSmartTab). In this way sLisp code can insert "smart tabs". Tabs in

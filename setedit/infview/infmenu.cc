@@ -39,6 +39,9 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
    #endif
    *new TMenuItem( __("E~x~it"), cmQuit, kbAltX, hcNoContext, "Alt+X" );
 
+ TSubMenu& sub1_5 = *new TSubMenu( __("~E~dit"), kbAltE ) +
+   *new TMenuItem( __("~C~opy"), cmcCopyClipWin, kbCtrlIns, hcNoContext, "Ctrl+Ins");
+
  TSubMenu& sub2 = *new TSubMenu( __("~G~oto"), kbAltG ) +
    *new TMenuItem( __("Goto: (~F~ile)Node"), cmInfGoto, kbCtrlG, hcNoContext, "Ctrl+G" ) +
    *new TMenuItem( __("~N~ode list"), cmInfNodes, kbCtrlO, hcNoContext, "Ctrl+O" ) +
@@ -69,7 +72,7 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
    *new TMenuItem( __("~C~lose"), cmClose, kbAltF3, hcNoContext, "Alt+F3" );
 
  r.b.y = r.a.y+1;
- return new TMenuBar(r, sub1+sub2+sub3+sub4+sub5);
+ return new TMenuBar(r, sub1+sub1_5+sub2+sub3+sub4+sub5);
 }
 
 TStatusLine *TEditorMiApp::initStatusLine( TRect r )
