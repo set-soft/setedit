@@ -1,5 +1,5 @@
 This program is copyrighted by Salvador Eduardo Tropea.
-Copyright (c) 1996,1997,1998,1999,2000,2001,2002
+Copyright (c) 1996,1997,1998,1999,2000,2001,2002,2003
 For contact information see at the bottom of the file.
 
   SET's editor is a very complex program. It currently have more than 1.45Mb
@@ -40,10 +40,11 @@ sections.
   Is freely distributable.
   For more information read copying.rh.
   It covers all the files in the librhuti directory.
+  Note: I introduced various modifications to this code.
 
 ----------- SETTVUtil -------------------------------------------------------
   This library is copyrighted by Salvador Eduardo Tropea.
-  Copyright (C) 1997-2001
+  Copyright (C) 1997-2003
 
   This library is distributed under the terms of the GNU LGPL license.
 
@@ -67,7 +68,7 @@ sections.
 
 ----------- EasyDiag -------------------------------------------------------
   This library is copyrighted by Salvador Eduardo Tropea.
-  Copyright (C) 1998-2001
+  Copyright (C) 1998-2003
 
   This library is distributed under the same terms as SETTVUtil.
 
@@ -160,8 +161,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Julian Seward, Cambridge, UK.
 jseward@acm.org
-bzip2/libbzip2 version 0.9.5 of 24 May 1999
+bzip2/libbzip2 version 1.0 of 21 March 2000
 
+---------- libmpegsound -----------------------------------------------------
+It provides the default MP3 engine. I took it from the splay Debian package
+and it says:
+
+This package was debianized by Zed Pobre <zed@debian.org> on                    
+Sat, 11 Apr 1998 10:28:15 -0500.                                                
+                                                                                
+It was downloaded from                                                          
+http://adam.kaist.ac.kr/~jwj95/splay-0.8.2.tar.gz                               
+                                                                                
+Copyright:                                                                      
+                                                                                
+Copyright for splay and xsplay: GNU GPL 2.                                      
+Copyright for bbitstream and sound libraries: GNU LGPL 2.                       
+                                                                                
 ---------- LibAMP -----------------------------------------------------------
 The original library:
 
@@ -193,6 +209,7 @@ LibAMP itself:
 LibAmp 0.2
 Ported to DJGPP/Allegro and turned into library form by Ove Kaaven
  <ovek@arcticnet.no>
+Note: This library is not the default MP3 engine.
 
 ---------- CWSDPMI ----------------------------------------------------------
 CWSDPMI is Copyright (C) 1995-1997  Charles W Sandmann (sandmann@clio.rice.edu)
@@ -239,6 +256,8 @@ Not included in this package but needed to create the editor:
 
   Copyright (c) 1994 by Borland International
   All Rights Reserved.
+  It was then released in the Borland's web site. According to Borland's FAQ
+this is Public Domain.
 
   This library is freely available from (original):
   ftp://ftp.borland.com/pub/borlandcpp/devsupport/archive/turbovision/tv.zip

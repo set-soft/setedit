@@ -38,7 +38,7 @@ and helps a bit (which is starting to happend).
 * Fonts, code pages, screen modes and palette customization.
 * You can run make or grep from the editor collecting the errors/hints.
 * Clock and screen saver.
-* Linux and Win32 versions.
+* Linux and Win32 versions (FreeBSD, QNX and Solaris also supported).
 
 Why I could want to download it if RHIDE exists?
 

@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.416  2003/06/23 14:27:48  set
+* Fixed: [InfView] the code to paste the current selection to the secondary
+OS clipboard wrongly computed the condition to determine if the selection
+was valid or not. As a result it tried to paste a negative line. The
+consequence ranged from nothing to an infinite loop, including SIGSEGVs and
+wrong text in the window. It was exposed by some double click conditions
+but also with simple clicks.
+
 Revision 1.415  2003/06/23 14:21:10  set
 *** New name for release: Iguazu I ***
 * Added: now the releases will have names to identify them easier.

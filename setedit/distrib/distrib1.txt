@@ -5,7 +5,7 @@
 
   That's the official distribution of SET's editor v@@v@@
   The editor is Copyrighted by Salvador Eduardo Tropea <set@ieee.org>.
-(c) 1996-2002 and distributed under the GPL license.
+(c) 1996-2003 and distributed under the GPL license.
   It's free and you don't need to pay for it. Any kind of donations are
 accepted ;-).
 
@@ -426,25 +426,21 @@ extend the BIOS functionallity.
 
 
 
-9.  KEYBOARD FEATURES UNDER X [Linux version only]
+9.  KEYBOARD FEATURES UNDER X [Linux/UNIX version only]
 
-  If you want to use the editor under X I recommend installing Eterm 0.8.10
-and follow the instruction found in the readme.txt file located in the eterm
-directory of the configuration files (example:
-/usr/share/setedit/eterm/readme.txt). Using it you'll get all the available
-keyboard combinations (some of them are used by the Window Manager and
-aren't accesible, I recommend Enlightenment as W.M. it uses complex  keyboard
+  Currently the editor runs as a native X11 application. It means the
+keyboard is fully supported, even the most bizarre key combinations works.
+  Note that some Window Managers reserves some key combinations that are used
+by the editor. I recommend Enlightenment as W.M. it uses complex  keyboard
 combinations and is also configurable so you can change them to avoid
-interference).
-  I uploaded sources of Eterm 0.8.10, the patches needed to generate a Debian
-package and my patches to enable the special keyboard mode to Source Forge.
-You must install the sources and apply both sets of patches, finally compile
-and install the package. For those using Debian Potato I also uploaded
-binaries in .deb format. All is in the extra section of the Source Forge site:
-http://sourceforge.net/projects/setedit/
-  If you use xterm you'll experiment some limitations imposed by common UNIX
-terminals, example: Shift+Arrows reported just as arrows.
-  The Linux FAQ included in the distribution explains some common problems.
+interference.
+  The support for XTerm and Eterm is also very good. I recommend using XTerm
+from XFree86 4.x project. So I recommend using it for remote conections,
+you'll get much better results making telnet to a remote machine using XTerm
+than using the Linux console. If you want to get the best results download
+the Turbo Vision sources (http://tvision.sf.net) and look the examples found
+in the examples directory, they show how to configure XTerm and Eterm to get
+even better results.
 
 
 

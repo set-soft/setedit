@@ -4,7 +4,7 @@
                                 by SET
 
   That's the official distribution of InfView v@@v@@
-  The info viewer is Copyrighted by Salvador Eduardo Tropea. (c) 1996-2002
+  The info viewer is Copyrighted by Salvador Eduardo Tropea. (c) 1996-2003
 and distributed under the GPL license.
   The info viewer is free and you don't need to pay for it. Any kind of
 donations are accepted ;-).

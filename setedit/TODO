@@ -1,5 +1,17 @@
 That's a list of things to do in the project:
 
+* Navigate projects changing the working directory. It should use a stack of
+current directories. Each time a subproject is opened the directory is changed
+and the old pushed to the stack. When the project is closed a pop should
+provide the previous dir and project. If the user breaks the chain by manually
+opening another project the stack should by flushed.
+  It will mostly help Windows users that likes to start an application from a
+central icon and then choose the working dir.
+
+* Add the TV templated suggested by JASC to simplify the code.
+
+* Backwards search using a line by line aproach.
+
 * Fix problems with the code pages in Windows versions. Reference report:
 0001.txt.
 * Check what can be removed from:
