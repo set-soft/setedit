@@ -509,6 +509,7 @@ sub CopyIfRpl
     $a =~ s/\@\@install_data\@\@/$inst_data/g;
     $a =~ s/\@\@relname\@\@/$relname/g;
     $a =~ s/\@\@rev\@\@/$revision/g;
+    $a =~ s/\@\@make\@\@/$Make/g;
     replace($d,$a);
     if (-x $o)
       {
@@ -585,4 +586,5 @@ sub GenerateSourceDistro
  
  chdir('setedit/makes/linux');
 }
+
 

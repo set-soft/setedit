@@ -104,6 +104,16 @@ sub LookForFile
  '';
 }
 
+sub LookForFileInPath
+{
+ my ($file)=@_;
+ my @list;
+
+ @list=(($OS eq 'UNIX') || ($Compf eq 'Cygwin')) ? split(/:/,@ENV{'PATH'}) : split(/;/,@ENV{'PATH'});
+ return LookForFile($file,@list);
+}
+
+
 ###[txh]####################################################################
 #
 # Prototype: RunRedirect($command,$ErrorLog)
@@ -1378,6 +1388,13 @@ sub LookForGNUar
     print "gar\n";
     return 'gar';
    }
+ if (!LookForFileInPath('ar'))
+   {
+    print "Unable to find GNU ar on this system.\n";
+    print "Please install it and be sure it's in your path.\n";
+    print "Also use `ar' or `gar' name for the binary.\n";
+    die;
+   }
  if (($OSf eq 'Darwin') || ($OSf eq 'HP-UX') || ($OSf eq 'Tru64') ||
      ($OSf eq 'Solaris'))
    {
@@ -1432,7 +1449,7 @@ sub LookForGNUinstall
     print "ginstall\n";
     return 'ginstall';
    }
- if (!($test=~/install/))
+ if (!LookForFileInPath('install'))
    {
     print "Unable to find 'install' on this system.\n";
     print "Please install it and be sure it's in your path.\n";

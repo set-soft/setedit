@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.635  2004/10/20 20:41:07  set
+* Fixed: Last patch that involved copyright year was incomplete.
+
 Revision 1.634  2004/10/19 18:10:41  set
 * Fixed: [Compilation][MSVC] More empty -I options, this time in
 infview.bmk. Reported by Grzegorz.

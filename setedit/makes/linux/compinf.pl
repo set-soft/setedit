@@ -357,6 +357,7 @@ sub CopyIfRpl
     $a =~ s/\@\@pref_alt\@\@/$prefix_alt/g;
     $a =~ s/\@\@install_bin\@\@/$inst_bin/g;
     $a =~ s/\@\@install_data\@\@/$inst_data/g;
+    $a =~ s/\@\@make\@\@/$Make/g;
     replace($d,$a);
     if (-x $o)
       {
