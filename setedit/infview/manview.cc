@@ -145,7 +145,7 @@ void TEnhancedText::copyLine(int y, int w, ushort *line, char *colors)
     LineOfEText *l=(LineOfEText *)at(y);
     if (l->len)
       {
-       int len=min(l->len,w);
+       int len=min((int)l->len,w);
        char *d=(char *)line;
        char *s=(char *)l->text;
        for (i=0; i<len/*w*/; i++)
@@ -192,7 +192,7 @@ void TEnhancedText::copyLineText(int y, int xs, int xe, char *dest)
  if (xs<(int)l->len)
    {
     char *s=(char *)l->text;
-    int  xm=min(l->len,xe);
+    int  xm=min((int)l->len,xe);
     for (; i<xm; dest++, i++)
         *dest=s[i*2];
    }

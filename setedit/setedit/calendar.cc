@@ -142,7 +142,7 @@ the calendar. The buffer should have size+1 bytes. (SET)
 char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
 {
  char *monthName=TVIntl::getTextNew(monthNames[month]);
- int l=max(strlen(monthName),15)+5;
+ int l=max((int)strlen(monthName),15)+5;
  if (addArrows)
     l+=2;
 

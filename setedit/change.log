@@ -1,4 +1,19 @@
-$Log$.
+$Log$
+Revision 1.589  2004/08/25 20:51:54  set
+* Fixed: [Debug] Crash when gdb failed to report registers. Found because
+a bug in gdb CVS 2004-08-25.
+* Fixed: [Debug] TDataWindow go to new address not working.
+* Fixed: [Debug] CPU line disapearing when setting a breakpoint in other
+line.
+* Added: [Debug] "Go to cursor" for the disassembler window.
+* Added: [Debug] Made more robust the code that disassembles. Now we first
+try to solve the function name and if it can be solved we use it otherwise
+we disassemble from the current code. We also check if the distance
+between the start of the function and the current point isn't huge, some
+times gdb fails to detect the real function.
+* Added: [Debug] Command to detach from "PID target".
+* Modified: [Debug] The Run/Continue to also mean "Atach"
+
 Revision 1.588  2004/08/24 21:17:53  set
 * Added: [DOC] More documentation about debug features.
 * Fixed: [Cosmetic] Some menu entries that opens dialogs to indicate "..."
