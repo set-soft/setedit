@@ -34,7 +34,12 @@ fonts than the BIOS ones.@p
 #define Uses_TBackground
 #define Uses_TCEditor_Commands
 #define Uses_TCEditor_Internal
-#define Uses_TCEditor
+#ifndef NoEditorSpecific
+ // This isn't needed for InfView and generates problems in GNU Linux/PPC
+ // Debian Potato. GCC generates a copy of an inline member of TCEditor
+ // class and tries to pull the class generating undefined references.
+ #define Uses_TCEditor
+#endif
 #define Uses_ProgBar
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_ctype
