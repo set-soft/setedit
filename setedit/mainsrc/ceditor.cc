@@ -1501,7 +1501,7 @@ void TCEditor::find()
  if ((Word=WordUnderCursor(80))!=NULL)
    {
     strcpy(findStr,Word);
-    delete Word;
+    delete[] Word;
    }
 
  editorFlags&=~efOptimizedRegex;
@@ -1610,7 +1610,7 @@ char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
  l=(unsigned)(wordEnd-wordStart+2);
  if (l>maxLength)
     return NULL;
- word = new char[l];
+ word=new char[l];
 
  for (i=wordStart,aux=word; i<=wordEnd; i++)
      *aux++ = *i;
@@ -3147,7 +3147,7 @@ int TCEditor::handleCommand(ushort command)
                     centerCursor=True;
                     update(ufUpdate|ufFound|ufLine);
                    }
-                 delete Word;
+                 delete[] Word;
                  break;
                 }
 
@@ -3232,7 +3232,7 @@ int TCEditor::handleCommand(ushort command)
                            GotoOffSet(staticNoMoveToEndPaste ? selStart : selEnd);
                            update(ufView);
                           }
-                      delete s;
+                      delete[] s;
                      }
                   }
                 break;
@@ -8964,7 +8964,7 @@ void TCEditor::replace()
  if ((Word=WordUnderCursor(80))!=NULL)
    {
     strcpy(findStr,Word);
-    delete Word;
+    delete[] Word;
    }
 
  editorFlags&=~efOptimizedRegex;

@@ -142,7 +142,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *ret;
  fI.len=strlen(endOfLine+1);
  fI.offset=endOfLine-buf+1;
- ret=strdup(buf);
+ ret=newStr(buf);
  char bFile[PATH_MAX];
  if (offset || buf[0]=='/' || buf[0]=='\\')
    { // Absolute path
@@ -159,7 +159,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
    }
  // Fix it to avoid things like /dir/../dir/file
  CLY_fexpand(bFile);
- fileName=strdup(bFile);
+ fileName=newStr(bFile);
 
  *endOfLine=0;
  fI.Line=atoi(endOfName+1);
@@ -423,7 +423,7 @@ void grepWindow(char *patStart)
  if (patStart)
    {
     strcpy(box.pattern,patStart);
-    delete patStart;
+    delete[] patStart;
    }
 
  // If we have no project change this option

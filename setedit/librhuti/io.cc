@@ -139,3 +139,10 @@ void close_stderr_out(void)
  close (h_outbak);
 }
 
+void op_cl_std_clean_up(void)
+{
+ free(errname);
+ free(outname);
+ free(erroutname);
+}
+

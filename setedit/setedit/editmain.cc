@@ -2968,6 +2968,8 @@ int main(int argc, char *argv[])
  LoadKeysForTCEditorFreeMemory();
  TagsFreeMemory();
  PathListUnLoad();
+ SpLinesCleanUp();
+ op_cl_std_clean_up();
 
  return 0;
 }

@@ -36,8 +36,8 @@ int DumpFileToMessage(char *file, const char *from, uint32 SMOps,
              if (s)
                {
                 EdShowMessageFile(s,fInfo,fileName,SMOps);
-                delete s;
-                delete fileName;
+                delete[] s;
+                delete[] fileName;
                 if (fileName)
                    count++;
                }

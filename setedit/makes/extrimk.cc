@@ -69,6 +69,29 @@ stIncDir incDirs[]=
 {0,0}
 };
 
+char *srcDirs[]=
+{
+ "../mainsrc",
+ "../names",
+ "../streams",
+ "../setedit",
+ "../setedit/names",
+ "../setedit/streams",
+ "../infview",
+ "../sdg",
+ "../settvuti",
+ "../settvuti/names",
+ "../settvuti/streams",
+ "../extra",
+ "../mp3",
+ "../calcu",
+ "../easydiag",
+ "../infview/names",
+ "../infview/streams",
+ "../librhuti",
+ NULL
+};
+
 static
 void AddFileName(const char *name, stMak &mk)
 {
@@ -283,6 +306,11 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
  while (c)
    {
     s=c->name;
+    if (strstr(s,p->name)!=NULL)
+      {// RHIDE 1.5 duplicates the source as dependency
+       c=c->next;
+       continue;
+      }
     char *toStat;
     struct stat st;
     if (mk.baseDir)
@@ -302,6 +330,14 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
        for (i=0; !foundOnVPath && incDirs[i].var; i++)
           {
            strcpy(buf,incDirs[i].dir);
+           strcat(buf,"/");
+           strcat(buf,toStat);
+           if (stat(buf,&st)==0)
+              foundOnVPath=1;
+          }
+       for (i=0; !foundOnVPath && srcDirs[i]; i++)
+          {
+           strcpy(buf,srcDirs[i]);
            strcat(buf,"/");
            strcat(buf,toStat);
            if (stat(buf,&st)==0)

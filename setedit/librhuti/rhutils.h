@@ -173,6 +173,8 @@ void close_stdout(void);
 char *open_stderr_out(void);
 char *open_stderr_out(int *nherr); // Without dup2
 void close_stderr_out(void);
+/* SET: can be used to shut-up leak reporters */
+void op_cl_std_clean_up(void);
 
 /* Return an unique filename in $TMPDIR which starts with 'before'.
    Store the result also in 'retval' if it is != NULL. This function

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -63,7 +63,7 @@ public:
 void TSpLAsoc::freeItem( void *item )
 {
  NodeCol *p=(NodeCol *)item;
- delete p->file;
+ delete[] p->file;
  CLY_destroy(p->SpecialLines);
  CLY_destroy(p->OriginalLines);
  CLY_destroy(p->idSources);
@@ -108,7 +108,7 @@ void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow)
    {
     // This file doesn't have special lines yet
     p=new NodeCol;
-    p->file=strdup(fileName);
+    p->file=newStr(fileName);
     p->SpecialLines=new TArrayCol(8,8);
     p->OriginalLines=new TArrayCol(8,8);
     p->idSources=new TArrayCol(8,8);
@@ -275,3 +275,10 @@ int SpLineGetNewValueOf(int line, char *fileName)
    }
  return line+1;
 }
+
+void SpLinesCleanUp()
+{
+ CLY_destroy(SpLines);
+ SpLines=0;
+}
+

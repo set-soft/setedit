@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.521  2004/06/14 14:34:15  set
+- From valgrind:
+* Fixed: duplicated keywords in syntaxhl.shl file. Additionaly now it
+doesn't leak memory.
+* Added: PathList* clean-up.
+
 Revision 1.520  2004/06/11 21:20:56  set
 * Added: Messages in BC++ and MSVC makefiles instructing to try the new
 mechanism.

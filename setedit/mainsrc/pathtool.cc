@@ -716,7 +716,7 @@ void AddToFilesToKill(char *name)
  if (filesToKill->search(filesToKill->keyOf(name),i)==0)
     // A simple insert here will leak memory because the dupped name won't
     // be released.
-    filesToKill->atInsert(i,strdup(name));
+    filesToKill->atInsert(i,newStr(name));
 }
 
 static

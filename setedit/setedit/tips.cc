@@ -127,7 +127,7 @@ static int maxWLink;
 
 void forDialogLine(char *text)
 {
- TipText->insert(strdup(text));
+ TipText->insert(newStr(text));
 }
 
 void forDialogLink(char *text)
