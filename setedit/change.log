@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.216  2002/09/20 16:32:11  set
+* Fixed: The editor didn't allow to save ReadOnly files using "Save As",
+that's the only way we have to make a ReadWrite copy, so now that's
+allowed. Before writing the status is changed to RW and if the save goes
+wrong is reverted to RO.
+* Fixed: The selection adjust done when we leave a line under edition
+failed if the line had extra spaces at the end. I don't understand why the
+code comment said the right thing and the code had it wrong.
+
 Revision 1.215  2002/09/18 12:33:44  set
 * Added: DontMoveHiddenCursor to the tvrc syntax hl.
 

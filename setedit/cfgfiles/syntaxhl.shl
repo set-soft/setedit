@@ -2064,6 +2064,7 @@ Keywords=Priority,UseVCS,UseMDA,PatchKeys,ShowCursorEver,Font10x20
 Keywords=ScreenWidth,ScreenHeight,FontWidth,FontHeight,UseSecondaryFont
 Keywords=ScreenPalette,zHideCursorWhenNoFocus,ExtProgVideoMode,VideoMode
 Keywords=DontResizeToCells,BIOSKey,UseShellScreen,InternalBusyCursor
-Keywords=UseShellScreen,VGABIOSState,SaveVGAState,DontMoveHiddenCursor
+Keywords=VGABIOSState,SaveVGAState,DontMoveHiddenCursor,AppCP,ScrCP,InpCP
+Keywords=PollMouse
 End
 
