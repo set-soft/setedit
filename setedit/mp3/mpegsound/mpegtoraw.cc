@@ -283,10 +283,14 @@ static
 unsigned ExtractI4(unsigned char *buf)
 {
  unsigned x;
+ #if WORDS_BIGENDIAN
+ x=*((unsigned *)buf);
+ #else
  x =buf[0]; x<<=8;
  x|=buf[1]; x<<=8;
  x|=buf[2]; x<<=8;
  x|=buf[3];
+ #endif
  return x;
 }
 

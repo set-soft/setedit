@@ -12,6 +12,12 @@
 #include <stdio.h>
 #include <sys/types.h>
 
+#include <configed.h>
+
+#if defined(SECPU_SPARC64) || defined(SECPU_SPARC) || defined(SECPU_PPC)
+ #define WORDS_BIGENDIAN 1
+#endif
+
 #ifdef PTHREADEDMPEG
 #ifdef HAVE_PTHREAD_H
 #include <pthread.h>
