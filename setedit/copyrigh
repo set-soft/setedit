@@ -1,5 +1,5 @@
 This program is copyrighted by Salvador Eduardo Tropea.
-Copyright (c) 1996,1997,1998,1999,2000
+Copyright (c) 1996,1997,1998,1999,2000,2001
 For contact information see at the bottom of the file.
 
   SET's editor is a very complex program. It currently have more than 1.45Mb
@@ -43,7 +43,7 @@ sections.
 
 ----------- SETTVUtil -------------------------------------------------------
   This library is copyrighted by Salvador Eduardo Tropea.
-  Copyright (C) 1997,1998
+  Copyright (C) 1997-2001
 
   This library is distributed under the terms of the GNU LGPL license.
 
@@ -67,7 +67,7 @@ sections.
 
 ----------- EasyDiag -------------------------------------------------------
   This library is copyrighted by Salvador Eduardo Tropea.
-  Copyright (C) 1998
+  Copyright (C) 1998-2001
 
   This library is distributed under the same terms as SETTVUtil.
 
@@ -83,7 +83,7 @@ GNU GPL license, DJ puts some extra conditions that I think are already
 covered by the GPL license.
 
 ---------- PCRE ------------------------------------------------------------
-  Copyright (c) 1998 University of Cambridge
+  Copyright (c) 1997-1999 University of Cambridge
 
 Permission is granted to anyone to use this software for any purpose on any
 computer system, and to redistribute it freely, subject to the following
@@ -125,7 +125,7 @@ restrictions:
 I included the sources to avoid problems, they aren't so big.
 
 This program, "bzip2" and associated library "libbzip2", are
-copyright (C) 1996-1999 Julian R Seward.  All rights reserved.
+copyright (C) 1996-2000 Julian R Seward.  All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -163,7 +163,6 @@ jseward@acm.org
 bzip2/libbzip2 version 0.9.5 of 24 May 1999
 
 ---------- LibAMP -----------------------------------------------------------
-NOT INCLUDED IN THE LINUX DISTRIBUTION!
 The original library:
 
   (C) Tomislav Uzelac  1996,1997
@@ -257,7 +256,7 @@ can avoid it) you must link with this library covered by the LGPL license.
 
 ---------- Allegro ----------------------------------------------------------
 
-  Copyright (c) by Shawn Hargreaves, 1994/99
+  Copyright (c) by Shawn Hargreaves, 1994-2001
 
    Allegro is gift-ware. It was created by a number of people working in 
    cooperation, and is given to you freely as a gift. You may use, modify, 
