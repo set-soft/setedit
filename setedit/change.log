@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.656  2005/02/21 19:06:26  set
+* Added: [Standalone InfView] Menu entry to copy to the OS clipboard. Patch
+by Thiago.
+
 Revision 1.655  2005/02/21 18:54:20  set
 * Fixed: [cosmetic] A couple of typos (interprete -> interpret). Reported
 by Thiago.

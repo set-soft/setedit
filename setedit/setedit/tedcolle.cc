@@ -682,7 +682,17 @@ ccIndex TEditorCollection::searchEditorName(char *name, int *cant)
       {
        i--;
        ed=((TDskWinEditor *)st)->edw->editor;
-       if (strcasecmp(ed->fileName,name)==0)
+       #if defined(SEOS_Win32) && !defined(SECompf_Cygwin)
+       char expanded_path1[PATH_MAX], expanded_path2[PATH_MAX];
+       strcpy(expanded_path1,ed->fileName);
+       strcpy(expanded_path2,name);
+       CLY_fexpand(expanded_path1);
+       CLY_fexpand(expanded_path2);
+       #else
+       const char *expanded_path1=ed->fileName;
+       const char *expanded_path2=name;
+       #endif
+       if (strcasecmp(expanded_path1,expanded_path2)==0)
          {
           Cant++;
           if (indFound==-1 || (isIndReadOnly && !ed->isReadOnly))

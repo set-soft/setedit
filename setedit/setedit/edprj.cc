@@ -865,6 +865,18 @@ static int HaveExtention(char *name)
  return point!=NULL;
 }
 
+inline
+int range(int val, int min, int max)
+{
+ if (val<min)
+    return min;
+ else
+   if (val>max)
+      return max;
+   else
+      return val;
+}
+
 void OpenProject(char *name, int preLoad)
 {
  char *s,fname[PATH_MAX];
@@ -945,6 +957,13 @@ void OpenProject(char *name, int preLoad)
        r.b.y+=dS.y;
        r.b.x+=dS.x;
        if (r.a.y<0) r.a.y=0;
+       if (r.a.x<0) r.a.x=0;
+       // Ensure the window is bigger than the minimum size.
+       TPoint minLim, maxLim;
+       prjWin->view->sizeLimits(minLim,maxLim);
+       r.b.x=r.a.x+range(r.b.x-r.a.x,minLim.x,maxLim.x);
+       r.b.y=r.a.y+range(r.b.y-r.a.y,minLim.y,maxLim.y);
+       // Set the new size
        prjWin->view->changeBounds(r);
       }
     editorApp->deskTop->unlock();
