@@ -1,6 +1,66 @@
 $Log$
-Revision 1.32  2001/12/04 14:35:12  set
-* Fixed: Need for some headers in rhideint.cc. Patch by Robert.
+Revision 1.526  2001/12/17 00:08:16  set
+* Fixed: SDG determined the line number of a function using an old methode,
+now modified to work in machines where data must be aligned. Reported by
+Grzegorz.
+
+Revision 1.525  2001/12/17 00:04:05  set
+* Fixed: Thiago's example that used underscores at the beggining of defines
+(reserved for compiler/libc).
+
+Revision 1.524  2001/12/16 23:42:44  set
+* Updated: Some dates in the copyrigh file.
+* Fixed: The section 9 of readme.1st to be more clear.
+
+Revision 1.523  2001/12/16 23:28:55  set
+* Fixed: Even when specifying not to save the sound mixer settings the
+editor initialized the sound system during start-up. As a result Windows
+reserved the sound board for the editor blocking the access to other
+applications. Reported by David J. Hughes <David.J.Hughes@nokia.com>.
+* Updated: Distrib files (new sLisp commands).
+
+Revision 1.522  2001/12/13 03:24:46  set
+* Added: Documentation for the new sLisp commands. Also added to the syntax
+highlight.
+
+Revision 1.521  2001/12/11 02:45:17  set
+* Added: New example (IndentLineOrBlock) and extended the copy line
+(DuplicateLineOrSelection). Contributed by Thiago.
+
+Revision 1.520  2001/12/11 02:42:50  set
+* Added: TMLIEditor::SelectionExists() to help a new command from Thiago
+(he suggested a concept for it).
+* Added: tostr and SelectionExists, contributed by Thiago.
+
+Revision 1.519  2001/12/11 02:34:15  set
+* Added and fixed some details in Thiago's macros. Patches by Thiago.
+
+Revision 1.518  2001/12/11 00:22:11  set
+Revision 1.32 SF 2001/12/04 14:35:12  set
+* Fixed: Applied patch from Robert for missing includes in the RHIDE interface
+module.
+
+Revision 1.517  2001/12/11 00:19:55  set
+* Fixed: The new ShowInMessageWindow function didn't return a value
+returning a command. Detected by a report from Thiago.
+* Fixed: It was possible to crash the editor writing a recursive sLisp
+macro. Now the recursion is limited. Reported by Thiago.
+
+Revision 1.516  2001/12/11 00:18:33  set
+* Added: More examples from Thiago (EvalSelection_Print,
+EvalSelection_StatusLine and EvalSelection_MessageWindow).
+
+Revision 1.515  2001/12/11 00:14:39  set
+* Fixed: When using "generate code" for a macro while editing a line the
+editor forgot to flush the line. It generated a SIGSEGV when it happend at
+the end of file. Reported by Thiago.
+
+Revision 1.514  2001/12/11 00:05:26  set
+Revision 1.33 SF 2001/12/04 15:15:17  set
+* Modified: The macros.slp file, I commented Lemur macros until a copy is
+available for the public. I also added some macros contributed by Thiago.
+They are good examples but most of them are commented because they eat
+memory and aren't 100% generic.
 
 Revision 1.31  2001/12/04 13:57:13  set
 * Synchronized with my personal CVS.
@@ -34,10 +94,7 @@ assigned to undo and scroll up confusing users. Now this key is assigned
 only by the menu and the redmond.smn doesn't have a short-cut for scroll
 up. Reported by David J. Hughes <David.J.Hughes@nokia.com>.
 * Added: Some notes about errors in xterm description shipped with Mandrake
-8.1 to Linux FAQ.
-
-Revision 1.29  2001/11/29 17:59:50  set
-* Synchronized with my personal CVS.
+8.1 to Linux FAQ. From a report by ZhiJie <zhi4jie2@yahoo.com>.
 
 Revision 1.510  2001/11/29 00:10:33  set
 * Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
@@ -51,7 +108,9 @@ Revision 1.508  2001/11/28 23:24:17  set
 * Fixed: getline replacement details. (#ifdef 0 and lack of (char *) cast).
 * Fixed: Use of strerror for Solaris. Another candidate for compatlayer. It
 exists on Linux too.
- 
+* Fixed: _S macro in pal.h (collides on Solaris). Never use _* ...
+* Fixed: Missing getopt in Solaris (must go to compatlayer).
+
 Revision 1.28  2001/11/28 13:56:30  set
 * Synchronized with my personal CVS.
 
@@ -3545,13 +3604,13 @@ current directory or a project) the default load, save, etc. points are
 ignored. That's important for people that uses only one centralized desktop,
 if I don't do it the editor will remmember the last point where s/he saved
 the file and this is very confusing.
-.
+
 Revision 1.28  1999/02/14 23:52:34  set
 * Added code to setup the tabs colors to a default for all desktop files
 where the value is 0.
 * Added a default for the tabs in the mochrome palette.
-.
-Revision 1.27  1999/02/14 23:06:46  root (set)
+
+Revision 1.27  1999/02/14 23:06:46  set
 * Added the make install target to Linux.
 * Added 'prefix' and 'install' parameters to the Linux compress.pl file.
 * Changed: Now InfView by default searchs the info files in /usr/local/info
@@ -3568,7 +3627,7 @@ the environment variables PREFIX and prefix.
 distribution.
 * Updated the year in the about box.
 * Added explanation about the new targets in the readme.txt.
-.
+
 Revision 1.25  1999/02/14 15:23:32  set
 * Updated the copyright year (1999).
 * Updated my telephone number, ugh! now is huge.
@@ -3677,7 +3736,7 @@ when they are selected. Any similitude to the methode used in killtabs by
 Grzegorz Adam Hankiewicz <gah@iname.com> or the Midnight Commander editor is
 only coincidence ;-)). Additionally: I hope MDaniel will stop complaining
 about what hard is to locate tabs (the same for Andy <andygoth@juno.com>).
-.
+
 Revision 1.7  1999/02/07 12:55:02  set
 * Minor fixes to make the code more RHIDE friendly: RSIndicator link request,
 Expand...() only in standalone (RHIDE uses your own replacement) and renamed
@@ -3692,10 +3751,10 @@ avoid linking the whole library were incorporated by Shawn (all OK).
 
 Revision 1.5  1999/01/29 01:41:44  set
 * Created the compress.pl Perl script to create the Linux distribution files.
-.
+
 Revision 1.4  1999/01/26 00:16:52  set
 * Various small adjusts to compile under Linux.
-.
+
 Revision 1.3  1999/01/25 23:08:07  set
 * Modified the name files to use the new Uses_n request for the n() macro.
 
