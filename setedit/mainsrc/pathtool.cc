@@ -25,6 +25,7 @@
 #define Uses_TStringCollectionW
 #include <settvuti.h>
 #include <pathtool.h>
+#include <pathlist.h>
 
 #ifdef SEOS_Win32
 #define WIN32_LEAN_AND_MEAN
@@ -198,8 +199,6 @@ char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s)
 
 int FindFile(const char * name,char * & fullName)
 {
- char *base;
-
  if (strlen(name)>=PATH_MAX)
     return 0;
  fullName=new char[PATH_MAX];
@@ -208,16 +207,21 @@ int FindFile(const char * name,char * & fullName)
  strcpy(fullName,name);
  if (!edTestForFile(fullName))
    {
-    base=getenv("DJDIR");
-    if (!base)
+    ccIndex i=0;
+    int found=0;
+    while (PathListGetItem(i++,fullName))
       {
-       delete fullName;
-       return 0;
+       char *s=fullName+strlen(fullName)-1;
+       if (!CLY_IsValidDirSep(*s))
+          strcat(s,DIRSEPARATOR_);
+       strcat(s,name);
+       if (edTestForFile(fullName))
+         {
+          found=1;
+          break;
+         }
       }
-    strcpy(fullName,base);
-    strcat(fullName,"/include/");
-    strcat(fullName,name);
-    if (!edTestForFile(fullName))
+    if (!found)
       {
        delete fullName;
        return 0;

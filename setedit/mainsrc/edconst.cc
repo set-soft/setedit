@@ -200,6 +200,7 @@ static edCList SetApp[] =
 { "GrepDialog"     , 32 },
 { "HTMLAccents"    , 53 },
 { "HTMLTag2Accent" , 68 },
+{ "IncludeList"    , 73 },
 { "InfView"        , 6  },
 { "KbBackDefault"  , 28 },
 { "KeyPadBehavior" , 49 },
