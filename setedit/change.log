@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.431  2003/07/16 13:33:37  set
+* Modified: The RPM scripts to support an environment variable to indicate
+where to create the RPMs. I needed it when using S.F. Compiler Farm and
+Red Hat 7.3 which always failed when using a directory mounted with NFS.
+* Modified: The source package creation to create the "result" directory
+if it doesn't exist.
+
 Revision 1.430  2003/07/14 17:54:07  set
 * Added: More SQL keywords. Contributed by Grzegorz.
 
