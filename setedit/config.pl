@@ -151,7 +151,10 @@ elsif ($OS eq 'UNIX')
    # No for UNIX!! $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
    $MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
-   $MakeDefsRHIDE[1].='dl ' if ($conf{'dl'} eq 'yes');
+   if ($conf{'dl'} eq 'yes')
+     {
+      $MakeDefsRHIDE[1].=($OSf eq 'QNXRtP') ? 'ltdl ' : 'dl ';
+     }
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
    $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
@@ -169,7 +172,9 @@ $MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
 $MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[1].='efence ' if @conf{'efence'} eq 'yes';
 $MakeDefsRHIDE[1].='tvfintl ' if $conf{'tvfintl'} eq 'yes';
-$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib $LDExtraDirs";
+$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=";
+$MakeDefsRHIDE[2].='/lib ' if ($OSf eq 'QNXRtP');
+$MakeDefsRHIDE[2].="$TVLib $LDExtraDirs";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
@@ -1014,7 +1019,7 @@ int main(void)
 
 sub LookForDL
 {
- my $test,$ver;
+ my ($test,$ver,$header,$lib);
 
  print 'Looking for dl library: ';
  $test=@conf{'dl'};
@@ -1023,20 +1028,31 @@ sub LookForDL
     print "$test (cached) OK\n";
     return;
    }
+ if ($OSf eq 'QNXRtP')
+   {
+    $lib='ltdl';
+    $header='dlfcn';
+   }
+ else
+   {
+    $lib='dl';
+    $header='link';
+   }
  $test='
-#include <stdio.h>
-#include <link.h>
-void test()
-{
- dlopen("test.o",0);
-}
+ #include <stdio.h>
+ #include <'.$header.'.h>
+ void test()
+ {
+  dlopen("test.o",0);
+ }
 
-int main(void)
-{
- printf("OK");
- return 0;
-}';
- $ver=RunGCCTest($GCC,'c',$test,'-ldl');
+ int main(void)
+ {
+  printf("OK");
+  return 0;
+ }';
+ $ver=RunGCCTest($GCC,'c',$test,'-l'.$lib);
+
  if ($ver eq 'OK')
    {
     $conf{'dl'}='yes';

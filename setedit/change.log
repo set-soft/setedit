@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.121  2002/06/18 15:08:19  set
+* Fixed: The config.pl failed to detect intl support becasue TV include
+was absent. Introduced in last changes. Reported by Ivan.
+
 Revision 1.120  2002/06/18 15:06:41  set
 * Added: Tasm 2.02 errors parser. Contributed by Alex Lozano.
 
