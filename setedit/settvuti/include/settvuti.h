@@ -169,11 +169,11 @@
 #endif
 
 #ifdef _INCL_STDLIB
-#include <stdlib.h>
+#define Uses_stdlib
 #endif
 
 #ifdef _INCL_TIME
-#include <time.h>
+#define Uses_time
 #endif
 
 #include <tv.h>
