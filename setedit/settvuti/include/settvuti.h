@@ -62,11 +62,6 @@
 #define Uses_TSortedListBox
 #endif
 
-#ifdef Uses_SOStack
-#define _INCL_SETSTACK
-#define _INCL_STDLIB
-#endif
-
 #ifdef Uses_TGrowDialog
 #define _INCL_TDIAGROW
 #define Uses_TDialog
@@ -126,6 +121,7 @@
 #endif
 
 #ifdef Uses_TDeskTopClock
+#define Uses_TView
 #define _INCL_DKTCLOCK_H
 #define _INCL_TIME
 #endif
@@ -165,6 +161,11 @@
 #ifdef Uses_TNoStaticText
 #define INCL_NOSTATEX
 #define Uses_TStaticText
+#endif
+
+#ifdef Uses_SOStack
+#define _INCL_SETSTACK
+#define _INCL_STDLIB
 #endif
 
 #ifdef _INCL_STDLIB
