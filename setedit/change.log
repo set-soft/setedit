@@ -1,4 +1,9 @@
 $Log$
+Revision 1.568  2002/02/21 23:47:38  set
+* Added: Support for TV 2.0.0, lamentably it doesn't work reliably (no
+target is working ok).
+
+Revision 1.61  2002/02/20 19:56:44  set
 Revision 1.567  2002/02/20 01:13:21  set
 * Fixed?: A potential source of reported SIGSEGVs in Tool&Ops|Options|Run
 program. If no desktop is loaded is possible to have CurrentParser==0 and

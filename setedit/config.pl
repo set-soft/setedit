@@ -87,6 +87,13 @@ LookForTV();
 CheckTVFix();
 # Is the right version?
 TestTVVersion($TVVersionNeeded);
+# Find the major version
+if ($conf{'tv'}=~/(\d+)\.(\d+)\.(\d+)/)
+  {
+   $tvMajor=$1;
+   $tvMiddle=$2;
+   $tvMinor=$3;
+  }
 
 # Have libc international support? what about libintl or libiconv?
 LookForIntlSupport();
@@ -103,6 +110,8 @@ LookForGettextTools();
 LookForMakeinfo();
 # Is a usable gpm there?
 LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
+# Should we try X?
+LookForXlib() if (($OS eq 'UNIX') && ($tvMajor>=2));
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
@@ -136,6 +145,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSf eq 'Linux');
    $MakeDefsRHIDE[1].='ncurses m ';
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
+   $MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
   }
@@ -155,6 +165,7 @@ $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' '.$conf{'X11LibPath'} if ($conf{'HAVE_X11'} eq 'yes');
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
 $test='';
 $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
@@ -1071,6 +1082,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_BZIP2PRE1','old bzip2 version before 1.0') if(@conf{'HAVE_BZIP2'} eq 'yes');
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
+ $text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
 
  $text.="\n\n#define CONFIG_PREFIX \"";
  $text.=$conf{'prefix'} unless $conf{'no-prefix-h'};
@@ -1480,3 +1492,42 @@ sub LookForBasicTools
       }
    }
 }
+
+sub LookForXlib()
+{
+ my $test;
+
+ print 'Looking for X11 libs: ';
+ if (@conf{'HAVE_X11'})
+   {
+    print "@conf{'HAVE_X11'} (cached)\n";
+    return;
+   }
+ $test='
+#include <stdio.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
+Display *Test()
+{ return XOpenDisplay(""); }
+int main(void)
+{
+ printf("OK, %d.%d\n",X_PROTOCOL,X_PROTOCOL_REVISION);
+ return 0;
+}
+';
+ $conf{'X11LibPath'}='/usr/X11R6/lib' unless $conf{'X11LibPath'};
+ $conf{'X11Lib'}='X11' unless $conf{'X11Lib'};
+ $test=RunGCCTest($GCC,'c',$test,"-L$conf{'X11LibPath'} -l$conf{'X11Lib'}");
+ if ($test=~/OK, (\d+)\.(\d+)/)
+   {
+    $conf{'HAVE_X11'}='yes';
+    print "yes OK (X$1 rev $2)\n";
+   }
+ else
+   {
+    $conf{'HAVE_X11'}='no';
+    print "no, disabling X11 version\n";
+   }
+}
+

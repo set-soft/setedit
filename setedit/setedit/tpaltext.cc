@@ -6,6 +6,14 @@
 #define Uses_fpstream
 #include <tv.h>
 #include <tpaltext.h>
+#if TV_MAJOR_VERSION==2
+#define Uses_TScreen
+#include <termios.h>
+#include <term.h>
+#include <sys/ioctl.h>
+#include <tv/screen.h>
+#include <tv/linux/screen.h>
+#endif
 
 PalCol TTextPalette::OriginalPalette[16];
 PalCol TTextPalette::ActualPalette[16];
@@ -154,21 +162,37 @@ void TXTSetOneIndex(int index, PalCol *col)
    {
     case LinuxTerm:
          sprintf(b,"\e]P%1.1X%2.2X%2.2X%2.2X",Index,R,G,B);
+         #if TV_MAJOR_VERSION==2
+         TScreenUNIX::SendToTerminal(b);
+         #else
          TScreen::SendToTerminal(b);
+         #endif
          changed=1;
          break;
     case XTerm:
          sprintf(b,"\e]4;%d;#%2.2x%2.2x%2.2x\e\\",Index,R,G,B);
+         #if TV_MAJOR_VERSION==2
+         TScreenUNIX::SendToTerminal(b);
+         #else
          TScreen::SendToTerminal(b);
+         #endif
          if (Index==0)
            { /* If setting 'black', also set the background */
             sprintf(b,"\e]11;#%2.2x%2.2x%2.2x\e\\",R,G,B);
+            #if TV_MAJOR_VERSION==2
+            TScreenUNIX::SendToTerminal(b);
+            #else
             TScreen::SendToTerminal(b);
+            #endif
            }
          else if (Index==7)
            { /* if setting 'white', also set the foreground */
             sprintf(b,"\e]10;#%2.2x%2.2x%2.2x\e\\",R,G,B);
+            #if TV_MAJOR_VERSION==2
+            TScreenUNIX::SendToTerminal(b);
+            #else
             TScreen::SendToTerminal(b);
+            #endif
            }
          changed=1;
          break;

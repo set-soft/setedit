@@ -107,7 +107,11 @@
 #define flushLine()  if (IslineInEdition) MakeEfectiveLineInEdition()
 #define flushLine2(a)  if (a->IslineInEdition) a->MakeEfectiveLineInEdition()
 
-#define CheckScrollLockCenters ((TGKey::sFlags & 16) && (editorFlags & efScrollLock))
+#if TV_MAJOR_VERSION==2
+ #define CheckScrollLockCenters ((TGKey::getShiftState() & kbScrollLockToggle) && (editorFlags & efScrollLock))
+#else
+ #define CheckScrollLockCenters ((TGKey::sFlags & 16) && (editorFlags & efScrollLock))
+#endif
 
 static unsigned LineMeassureC(char *s, char *end, uint32 &Attr);
 static unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr);

@@ -549,12 +549,16 @@ int KeyPadSetUp(void)
  d->helpCtx=cmeKeyPadBehavior;
  delete col;
 
+ #if TV_MAJOR_VERSION==2
+ //#warning Fix me!
+ #else
  uint32 b=TGKey::translateKeyPad;
  if (execDialog(d,&b)==cmOK)
    {
     TGKey::translateKeyPad=b;
     return 1;
    }
+ #endif
  return 0;
 }
 

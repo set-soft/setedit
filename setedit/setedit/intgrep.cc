@@ -47,6 +47,12 @@
 #include <dyncat.h>
 #include <pathtool.h>
 
+#if TV_MAJOR_VERSION>=2
+#define TV_System TScreen::System
+#define Uses_TScreen
+#include <tv/screen.h>
+#endif
+
 // From edprj.cc generates the list of project items
 extern int WriteNamesOfProjectTo(FILE *f);
 // From editmain.cc generates the list of opened editors

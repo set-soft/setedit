@@ -196,7 +196,11 @@ void TCEditor_MakeKeyName(char *s, unsigned short key)
  A(kbAltLCode,'A','l')
  #undef A
  *s=0;
+ #if TV_MAJOR_VERSION==2
+ strcat(b,TGKey::NumberToKeyName(key));
+ #else
  strcat(b,TGKey::KeyNames[key & kbKeyMask]);
+ #endif
 }
 
 int InterpretKeyName(char *s, ushort &code)
@@ -773,7 +777,13 @@ int TKeyTranslate::Save(char *name)
     fwrite(&cSize,sizeof(cSize),1,f);
     fwrite(base,cSize,1,f);
    }
+ #if TV_MAJOR_VERSION==2
+ // Fix Me!
+ int translateKeyPad=1;
+ fwrite(&translateKeyPad,sizeof(translateKeyPad),1,f);
+ #else
  fwrite(&TGKey::translateKeyPad,sizeof(TGKey::translateKeyPad),1,f);
+ #endif
  fclose(f);
  return 0;
 }
@@ -818,7 +828,14 @@ int TKeyTranslate::Load(char *name)
     GenError(_("Error while reading"));
    }
  if (V>=4)
+ #if TV_MAJOR_VERSION==2
+   {
+    int translateKeyPad;
+    fread(&translateKeyPad,sizeof(translateKeyPad),1,f);
+   }
+ #else
     fread(&TGKey::translateKeyPad,sizeof(TGKey::translateKeyPad),1,f);
+ #endif
  fclose(f);
  if (replaceK)
    {

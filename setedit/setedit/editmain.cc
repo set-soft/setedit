@@ -313,8 +313,8 @@ void TSetEditorApp::SetTitle(const char *str1, const char *str2)
  if (str2) strcat(s,str2);
 
  if (!OriginalWindowTitle)
-    OriginalWindowTitle=TScreen::GetWindowTitle();
- TScreen::SetWindowTitle(s);
+    OriginalWindowTitle=(char *)TScreen::getWindowTitle();
+ TScreen::setWindowTitle(s);
 }
 
 TSetEditorApp::~TSetEditorApp()
@@ -322,7 +322,7 @@ TSetEditorApp::~TSetEditorApp()
  if (OriginalWindowTitle)
    {
     // That's just in case, but isn't really needed. Not at least in W9x
-    TScreen::SetWindowTitle(OriginalWindowTitle);
+    TScreen::setWindowTitle((const char *)OriginalWindowTitle);
     delete[] OriginalWindowTitle;
    }
 }
@@ -482,7 +482,9 @@ int ResetVideoMode(int mode, int redraw)
  else
     TProgram::application->setScreenMode(mode);
  // We ever use intense mode I don't need blinks
+ #if TV_MAJOR_VERSION<2
  setIntenseState();
+ #endif
  // Restore the user palette
  RestorePaletteSystem();
  // Redraw ALL
@@ -1826,7 +1828,11 @@ void ParseCommandLine(int argc, char *argv[])
     return;
 
  // Revert the default, I changed my mind because that's too limited
+ #if TV_MAJOR_VERSION==2
+ TGKey::SetKbdMapping(TGKey::dosUseDirect);
+ #else
  TGKey::useBIOS=0;
+ #endif
 
  int optc;
  char *ExtraCMDLine=getenv("SET_CMDLINE");
@@ -1867,10 +1873,18 @@ void ParseCommandLine(int argc, char *argv[])
     switch (optc)
       {
        case 'b':
+            #if TV_MAJOR_VERSION==2
+            TGKey::SetKbdMapping(TGKey::dosUseBIOS);
+            #else
             TGKey::useBIOS=1;
+            #endif
             break;
        case 'B':
+            #if TV_MAJOR_VERSION==2
+            TGKey::SetKbdMapping(TGKey::dosUseDirect);
+            #else
             TGKey::useBIOS=0;
+            #endif
             break;
        case 'c':
             SE_CascadeWindows=1;
@@ -1894,7 +1908,9 @@ void ParseCommandLine(int argc, char *argv[])
             putenv("LFN=Y");
             break;
        case 'm':
+            #if TV_MAJOR_VERSION<2
             use_mouse_handler=0;
+            #endif
             break;
        case 'M':
             DisableBoardMixer=1;
@@ -1975,6 +1991,9 @@ void ParseCommandLine(int argc, char *argv[])
 }
 /******* End of Command line parsing *******/
 
+#if TV_MAJOR_VERSION>=2
+#define TV_System TScreen::System
+#endif
 
 void TSetEditorApp::dosShell()
 {
@@ -2147,7 +2166,9 @@ int main(int argc, char *argv[])
 
  SetConfigDialogFunc(SetFileOpenDialogOptions);
  InitPaletteSystem();
+ #if TV_MAJOR_VERSION<2
  setIntenseState();
+ #endif
  if (DisableBoardMixer)
     BoardMixerDisable();
 
@@ -2247,8 +2268,13 @@ int main(int argc, char *argv[])
 
  LoadKeysForTCEditor(GetKeyBindFName(0));
  #ifdef TVOSf_Linux
+  #if TV_MAJOR_VERSION==2
+ if (UseRH52)
+    TGKey::SetKbdMapping(TGKey::linuxRH52);
+  #else
  if (UseRH52)
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
+  #endif
  #endif
  TCEditor::SHLGenList=new TNoCaseStringCollection(5,5);
  LoadSyntaxHighLightFile(ExpandHome(SHLFile),TCEditor::SHLArray,TCEditor::SHLGenList,

@@ -53,6 +53,12 @@
 #include <signal.h>
 #endif
 
+#if TV_MAJOR_VERSION>=2
+#define TV_System TScreen::System
+#define Uses_TScreen
+#include <tv/screen.h>
+#endif
+
 // Values for Options
 const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8;
 const unsigned opshBegin=1,opshEachMessage=2,opshEnd=4;
