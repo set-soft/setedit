@@ -91,6 +91,11 @@ if ($iMode)
    $share1    =$prefix.'/share';
    $share     =$share1.'/infview';
    $manifest  =$prefix.'/manifest';
+   $Locale2   =$share1.'/locale';
+   $spLocale1 =$Locale2.'/es';
+   $spLocale  =$spLocale1.'/LC_MESSAGES';
+   $deLocale1 =$Locale2.'/de';
+   $deLocale  =$deLocale1.'/LC_MESSAGES';
 
    @tree=(
    $bindir,
@@ -99,7 +104,12 @@ if ($iMode)
    $info,
    $share1,
    $share,
-   $manifest);
+   $manifest,
+   $Locale2,
+   $spLocale1,
+   $spLocale,
+   $deLocale1,
+   $deLocale);
   }
 else
   {
@@ -112,6 +122,11 @@ else
    $share1    =$distPrefix.'/share';
    $share     =$share1.'/infview';
    $manifest  =$distPrefix.'/manifest';
+   $Locale2   =$share1.'/locale';
+   $spLocale1 =$Locale2.'/es';
+   $spLocale  =$spLocale1.'/LC_MESSAGES';
+   $deLocale1 =$Locale2.'/de';
+   $deLocale  =$deLocale1.'/LC_MESSAGES';
    $result    =$prefix.'/resulinf';
    
    @tree=(
@@ -123,6 +138,11 @@ else
    $share1,
    $share,
    $manifest,
+   $Locale2,
+   $spLocale1,
+   $spLocale,
+   $deLocale1,
+   $deLocale,
    $result);
   }
 
@@ -179,6 +199,8 @@ print 'copying.dj'   if (CopyIf('../../copying.dj',$contrib.'/copying.dj',$binMa
 print 'copying.gpl'  if (CopyIf('../../copying.gpl',$contrib.'/copying.gpl',$binManifest));
 print 'copying.lgp'  if (CopyIf('../../copying.lgp',$contrib.'/copying.lgp',$binManifest));
 print 'copying.rh'   if (CopyIf('../../copying.rh',$contrib.'/copying.rh',$binManifest));
+print 'Spanish messages' if (CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo',$binManifest));
+print 'German messages'  if (CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo',$binManifest));
 print "done.\n\n";
 
 
