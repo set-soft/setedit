@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TProgressBar
 #define Uses_TDialog
@@ -41,13 +41,13 @@ void ProgBar_Init(const char *title, int max, const char *comment1, const char *
 
  if (comment1)
    {
-    c1=new TNoStaticText(TRect(2,4,62,5),_(comment1));
+    c1=new TNoStaticText(TRect(2,4,62,5),comment1);
     d->insert(c1);
    }
 
  if (comment2)
    {
-    c2=new TNoStaticText(TRect(2,5,62,6),_(comment2));
+    c2=new TNoStaticText(TRect(2,5,62,6),comment2);
     d->insert(c2);
    }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -416,7 +416,7 @@ static TDialog *SLPCreateDialog(void)
 
  TSortedListBox *Lista=new TSortedListBox(TRect(XL,YL,X2L,Y2L),1,sb);
  d->insert(Lista);
- d->insert(new TLabel(TRect(XL,YL-1,X2L,YL),_("~M~acros"),Lista));
+ d->insert(new TLabel(TRect(XL,YL-1,X2L,YL),__("~M~acros"),Lista));
 
  d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),_("O~K~"),cmOK,bfDefault));
  d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),_("Cancel"),cmCancel,bfNormal));

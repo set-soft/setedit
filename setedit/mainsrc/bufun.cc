@@ -1,6 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2002 by Salvador E. Tropea (SET)
+  Busca Funciones (BuFun), Copyright (c) 1996-2003 by Salvador E. Tropea (SET)
 
   Designed for the TCEditor class to be used by Robert H”hne in your RHIDE.
 
@@ -728,7 +728,7 @@ static TDialog *createDialog( )
 
  TSSOSSortedListBox *ListaH=new TSSOSSortedListBox(w,h,tsslbVertical|tsslbHorizontal,1,256);
  ListaH->view->growMode=gfMoveBottomCorner;
- TSLabel *lista=new TSLabel(_("List of functions"),ListaH);
+ TSLabel *lista=new TSLabel(__("List of functions"),ListaH);
 
  col->insert(xTSLeft,yTSUp,lista);
 
@@ -765,7 +765,7 @@ int AskSortList()
 {
  TSViewCol *col=new TSViewCol(__("Sort mode"));
 
- col->insert(xTSCenter,yTSUp,new TSStaticText(_("Sort the functions")));
+ col->insert(xTSCenter,yTSUp,new TSStaticText(__("Sort the functions")));
  col->insert(xTSCenter,yTSDown,
              new TSHzGroup(new TSButton(_("~A~lphabetically"),cmYes,bfDefault),
                            new TSButton(_("by ~L~ine"),cmNo)));

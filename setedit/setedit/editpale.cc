@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <configed.h>
 
@@ -41,6 +41,7 @@ TNumShow::TNumShow(const TRect &bounds) :
    TStaticText(bounds,patterNumShow)
 {
  setValue(0);
+ noIntl=1;
 }
 
 void TNumShow::setValue(int val)
@@ -113,25 +114,25 @@ TDiaPal::TDiaPal(void) :
  TLabel *rl,*gl,*bl;
 
  TRect r(14,1,50,2);
- insert(new TStaticText(r,_("Color RGB composition")));
+ insert(new TStaticText(r,__("Color RGB composition")));
  r.move(0,3);
  red=new TScrollBar(r);
  r.move(0,1);
  rn=new TNumShow(r);
  r.move(0,-2);
- rl=new TLabel(r,_("Red"),red);
+ rl=new TLabel(r,__("Red"),red);
  r.move(0,5);
  green=new TScrollBar(r);
  r.move(0,1);
  gn=new TNumShow(r);
  r.move(0,-2);
- gl=new TLabel(r,_("Green"),green);
+ gl=new TLabel(r,__("Green"),green);
  r.move(0,5);
  blue=new TScrollBar(r);
  r.move(0,1);
  bn=new TNumShow(r);
  r.move(0,-2);
- bl=new TLabel(r,_("Blue"),blue);
+ bl=new TLabel(r,__("Blue"),blue);
 
  colorsel=new TRadioCol(TRect(2,2,7,18),
               new TSItem("",
@@ -151,7 +152,7 @@ TDiaPal::TDiaPal(void) :
               new TSItem("",
               new TSItem("", 0 )))))))))))))))),red,green,blue,rn,gn,bn);
  insert(colorsel);
- insert(new TLabel(TRect(1,1,10,2),_("Color"),colorsel));
+ insert(new TLabel(TRect(1,1,10,2),__("Color"),colorsel));
  insert(rl);
  insert(red);
  insert(rn);

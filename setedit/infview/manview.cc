@@ -789,9 +789,9 @@ TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Man page to view")));
 
  TSVeGroup *options=
- MakeVeGroup(new TSLabel(_("~M~an page for ..."),new TSInputLine(prgLen,visibleLen)),
-             new TSLabel(_("~S~ection"),new TSInputLine(sectLen,visibleLen)),
-             new TSLabel(_("~E~xtra options"),new TSInputLine(extraLen,visibleLen)),
+ MakeVeGroup(new TSLabel(__("~M~an page for ..."),new TSInputLine(prgLen,visibleLen)),
+             new TSLabel(__("~S~ection"),new TSInputLine(sectLen,visibleLen)),
+             new TSLabel(__("~E~xtra options"),new TSInputLine(extraLen,visibleLen)),
              0);
 
  col->insert(2,2,options);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -268,11 +268,11 @@ TAmpDiag *CreateShowDialog()
  ampDia->Mode_Type=(TNoStaticText *)Mode_Type->view;
  TSVeGroup *Rest=new TSVeGroup(SR_BR,Mode_Type,0);
 
- TSNoStaticText *time=new TSNoStaticText(_("Time: 000:00"));
+ TSNoStaticText *time=new TSNoStaticText(__("Time: 000:00"));
  ampDia->time=(TNoStaticText *)time->view;
- TSNoStaticText *status=new TSNoStaticText(_("[  STOP  ]"));
+ TSNoStaticText *status=new TSNoStaticText(__("[  STOP  ]"));
  ampDia->status=(TNoStaticText *)status->view;
- TSNoStaticText *total=new TSNoStaticText(_("Total: 000:00"));
+ TSNoStaticText *total=new TSNoStaticText(__("Total: 000:00"));
  ampDia->total=(TNoStaticText *)total->view;
  TSHzGroup *Time=new TSHzGroup(time,new TSHzGroup(status,total,2),2);
 
@@ -457,7 +457,7 @@ TView *MP3ReadInfo(ipstream &is, int &zorder, TDskWinMP3 * /*manager*/)
  MP3ListLoadState(is);
 
  TDialogX *d=new TDialogX(TRect(0,0,30,6),_("MP3 Player"));
- d->insert(new TStaticText(TRect(2,2,28,3),_("MP3 support not linked")));
+ d->insert(new TStaticText(TRect(2,2,28,3),__("MP3 support not linked")));
  d->options|=ofCentered;
  return d;
 }

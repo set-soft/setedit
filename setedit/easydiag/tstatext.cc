@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSStaticText
 #include <string.h>
@@ -18,7 +18,8 @@ TSStaticText::TSStaticText(const char *aText) :
 {
  int lines=1;
  int max_w=0,cur_w=0;
- const char *s=aText;
+ stTVIntl *cache=NULL;
+ const char *s=TVIntl::getText(aText,cache);
 
  while (*s)
    {
@@ -41,19 +42,20 @@ TSStaticText::TSStaticText(const char *aText) :
    }
  w=max_w;
  h=lines;
- view=new TStaticText(TRect(0,0,w,h),aText);
+ view=new TStaticText(TRect(0,0,w,h),aText,cache);
 }
 
 TSStaticText::TSStaticText(const char *aText, int wrapCol) :
    TSView()
 {
  int l,p,y,i,j;
- const char *s=aText;
+ stTVIntl *cache=NULL;
+ const char *s=TVIntl::getText(aText,cache);
  w=wrapCol;
 
  // That's the code used by TStaticText to wrap the words, here is used to meassure
  // the height.
- l=strlen(aText);
+ l=strlen(s);
  p=0;
  y=0;
  while (p<l)
@@ -84,6 +86,6 @@ TSStaticText::TSStaticText(const char *aText, int wrapCol) :
     y++;
    }
  h=y;
- view=new TStaticText(TRect(0,0,w,h),aText);
+ view=new TStaticText(TRect(0,0,w,h),aText,cache);
 }
 

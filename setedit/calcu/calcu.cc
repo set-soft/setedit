@@ -76,13 +76,13 @@ TCalcDialog::TCalcDialog(const TRect & bounds, const char *Title, char *StartVal
     }
   insert(input);
   r.move(0,-1);
-  insert(new TLabel(r,_("~E~xpression"),input));
+  insert(new TLabel(r,__("~E~xpression"),input));
   r.move(0,3);
   // Only supports copy
   result = new TInputLinePiped(r,255,tilpNoPipe | tilpNoPaste);
   insert(result);
   r.move(0,-1);
-  insert(new TLabel(r,_("~R~esult"),result));
+  insert(new TLabel(r,__("~R~esult"),result));
   r.move(0,3);
   r.b.x = r.a.x + 12;
   r.b.y = r.a.y + 2;

@@ -65,9 +65,9 @@ int AboutStartBox(void)
          (TCEDITOR_VERSION>>8) & 0xFF,TCEDITOR_VERSION & 0xFF);
  d->insert(new TStaticText(r,b));
  r.move(0,1);
- d->insert(new TStaticText(r,_("by Salvador Eduardo Tropea")));
+ d->insert(new TStaticText(r,__("by Salvador Eduardo Tropea")));
  r.move(0,2);
- d->insert(new TStaticText(r,_(cSlogan)));
+ d->insert(new TStaticText(r,cSlogan));
  r.move(0,2);
  d->insert(new TCheckBoxes32(r,new TSItem(__("Don't show it next time"),0)));
  r.a.x+=15;
@@ -108,16 +108,16 @@ void FullAboutBox(void)
  #define i(a)  cur=new TSStaticText(a); \
                col->insert(xTSCenter,yTSUnder,cur,0,ant); \
                ant=cur
- i(_("by Salvador Eduardo Tropea"));
- i(_(cSlogan));
+ i(__("by Salvador Eduardo Tropea"));
+ i(cSlogan);
 
  TSView::yDefSep=1;
- i(_("Made in Argentina"));
+ i(__("Made in Argentina"));
  #undef i
  #define i(a)  cur=new TSStaticText(a); \
                col->insert(2,yTSUnder,cur,0,ant); \
                ant=cur
- i(_("Thanks to:"));
+ i(__("Thanks to:"));
  TSView::yDefSep=0;
  TNSCollection *text=new TNSCollection(12,5);
  #undef i

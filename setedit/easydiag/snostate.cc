@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSNoStaticText
 #include <easydia1.h>
@@ -17,7 +17,8 @@ TSNoStaticText::TSNoStaticText(const char *aText) :
 {
  int lines=1;
  int max_w=0,cur_w=0;
- const char *s=aText;
+ stTVIntl *cache=NULL;
+ const char *s=TVIntl::getText(aText,cache);
 
  while (*s)
    {
@@ -40,6 +41,6 @@ TSNoStaticText::TSNoStaticText(const char *aText) :
    }
  w=max_w;
  h=lines;
- view=new TNoStaticText(TRect(0,0,w,h),aText);
+ view=new TNoStaticText(TRect(0,0,w,h),aText,cache);
 }
 

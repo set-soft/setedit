@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -368,9 +368,9 @@ int AddNewItem(void)
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("New node for search")));
 
  TSInputLine *file=new TSInputLine(60);
- TSLabel *File=new TSLabel(_("Name of the info file"),file);
+ TSLabel *File=new TSLabel(__("Name of the info file"),file);
  TSInputLine *node=new TSInputLine(60);
- TSLabel *Node=new TSLabel(_("Name of the node (leave blank for all)"),node);
+ TSLabel *Node=new TSLabel(__("Name of the node (leave blank for all)"),node);
 
  col->insert(xTSCenter,2,File);
  col->insert(xTSCenter,yTSUnder,Node,0,File);
@@ -478,7 +478,7 @@ void SyntaxSearch_EditSettings(void)
  TSVeGroup *o1=new TSVeGroup(Method,Options);
 
  o1->Flags=wSpan;
- TSLabel *FuzzyV=new TSLabel(_("Fu~z~zy value [1..1000]"),new TSInputLine(5));
+ TSLabel *FuzzyV=new TSLabel(__("Fu~z~zy value [1..1000]"),new TSInputLine(5));
  
  TSLabel *oOptions=TSLabelCheck(__("Other options"),__("Search word in the ~t~opic"),0);
 

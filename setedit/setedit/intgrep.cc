@@ -357,30 +357,30 @@ void grepWindow(char *patStart)
 
  // ACDEFGIJKLNORPSTUWX
  // Pattern section
- FullInputString(Col1,1,End1-Col1-3,200,hID_TextSearchEditor,_("~P~attern box"),0,d);
- FullInputString(Col2,1,End2-Col2-3,80,hID_GrepFiles,_("Files to ~s~earch"),tilpNoPipe,d);
- FullInputString(Col1,3,End2-Col1-3,maxDirLen,hID_GrepPlaces,_("~D~irectories to search"),tilpNoPipe,d);
+ FullInputString(Col1,1,End1-Col1-3,200,hID_TextSearchEditor,__("~P~attern box"),0,d);
+ FullInputString(Col2,1,End2-Col2-3,80,hID_GrepFiles,__("Files to ~s~earch"),tilpNoPipe,d);
+ FullInputString(Col1,3,End2-Col1-3,maxDirLen,hID_GrepPlaces,__("~D~irectories to search"),tilpNoPipe,d);
 
  TRadioButtons32 *sourP=new TRadioButtons32(TRect(Col1+1,7,End1,10),
      new TSItem(__("`Pattern box' is the pa~t~tern"),
      new TSItem(__("`Pattern box' is a fi~l~e name"),
      new TSItem(__("Use the ~c~lipboard selection"),0 ))));
  d->insert(sourP);
- d->insert(new TLabel(TRect(Col1,6,End1,7),_("Source of Pattern"),sourP));
+ d->insert(new TLabel(TRect(Col1,6,End1,7),__("Source of Pattern"),sourP));
 
  TRadioButtons32 *typeP=new TRadioButtons32(TRect(Col1+1,11,End1,14),
      new TSItem(__("Basic regular expression (-~G~)"),
      new TSItem(__("~E~xtended regular expression (-E)"),
      new TSItem(__("~F~ixed separated by CR (-F)"),0 ))));
  d->insert(typeP);
- d->insert(new TLabel(TRect(Col1,10,End1,11),_("Type of Pattern"),typeP));
+ d->insert(new TLabel(TRect(Col1,10,End1,11),__("Type of Pattern"),typeP));
 
  TRadioButtons32 *where=new TRadioButtons32(TRect(Col2+1,7,End2,10),
      new TSItem(__("~U~se `Files to search'"),
      new TSItem(__("Search in ope~n~ed windows"),
      new TSItem(__("Search in pro~j~ect"),0 ))));
  d->insert(where);
- d->insert(new TLabel(TRect(Col2,6,End2,7),_("Pl~a~ces to search"),where));
+ d->insert(new TLabel(TRect(Col2,6,End2,7),__("Pl~a~ces to search"),where));
  d->insert(new TCheckBoxes32(TRect(Col2+1,10,End2,11),
      new TSItem(__("~R~ecurse in subdirs"),0 )));
 
@@ -390,7 +390,7 @@ void grepWindow(char *patStart)
      new TSItem(__("Whole line (-~x~)"),
      new TSItem(__("In~v~erse matching (-v)"), 0 )))));
  d->insert(ops);
- d->insert(new TLabel(TRect(Col2,11,End2,12),_("~O~ptions"),ops));
+ d->insert(new TLabel(TRect(Col2,11,End2,12),__("~O~ptions"),ops));
 
  d->insert(new TButton(TRect(2,15,14,17),_("O~K~"),cmOK,bfDefault));
  d->insert(new TButton(TRect(18,15,30,17),_("Cancel"),cmCancel,bfNormal));

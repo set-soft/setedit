@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -115,7 +115,7 @@ void ConfigureRunCommand(void)
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Command to run")));
  // ABDEFHJKLMNPSTUV
- TSLabel *progInput=new TSLabel(_("~E~nter the program name"),
+ TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
          __("~U~se OS screen to run the program"),
@@ -135,7 +135,7 @@ void ConfigureRunCommand(void)
 
  if (validList)
    {
-    TSLabel *compilers=new TSLabel(_("Errors ~p~arser"),
+    TSLabel *compilers=new TSLabel(__("Errors ~p~arser"),
                                    new TSSortedListBox(28,grp->h-1,tsslbVertical));
     col->insert(xTSRightOf,yTSUp,compilers,grp);
    }

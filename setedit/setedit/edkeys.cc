@@ -354,7 +354,7 @@ unsigned short TCEditor_SelectAKey(void)
  TDialogK *d=new TDialogK(TRect(0,0,30,5),_("Key selector"));
  d->options|=ofCentered;
 
- const char *message=_(press_key);
+ const char *message=press_key;
  int x=(30-strlen(message))/2;
  TStaticText *ts=new TStaticText(TRect(x,2,29,3),message);
  d->insert(ts);

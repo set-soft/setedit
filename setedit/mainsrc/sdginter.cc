@@ -162,19 +162,19 @@ static TDialog *SDGCreateDialog(void)
 
  TInputLine *format=new TInputLine(TRect(XFRT,YFRT,AnFRT,YFRT+1),maxStrs);
  d->insert(format);
- d->insert(new TLabel(TRect(XFRT,YFRT-1,AnFRT,YFRT),_("~F~ormat file (.frt)"),format));
+ d->insert(new TLabel(TRect(XFRT,YFRT-1,AnFRT,YFRT),__("~F~ormat file (.frt)"),format));
 
  TInputLine *intermediate=new TInputLine(TRect(XINT,YINT,AnINT,YINT+1),maxStrs);
  d->insert(intermediate);
- d->insert(new TLabel(TRect(XINT,YINT-1,AnINT,YINT),_("~I~ntermediate file"),intermediate));
+ d->insert(new TLabel(TRect(XINT,YINT-1,AnINT,YINT),__("~I~ntermediate file"),intermediate));
 
  TInputLine *outfile=new TInputLine(TRect(XOUT,YOUT,AnOUT,YOUT+1),maxStrs);
  d->insert(outfile);
- d->insert(new TLabel(TRect(XOUT,YOUT-1,AnOUT,YOUT),_("~B~ase output (no extentions)"),outfile));
+ d->insert(new TLabel(TRect(XOUT,YOUT-1,AnOUT,YOUT),__("~B~ase output (no extentions)"),outfile));
 
  TInputLine *dir=new TInputLine(TRect(XDIR,YDIR,AnDIR,YDIR+1),maxStrs);
  d->insert(dir);
- d->insert(new TLabel(TRect(XDIR,YDIR-1,AnDIR,YDIR),_("~D~irectory of formats"),dir));
+ d->insert(new TLabel(TRect(XDIR,YDIR-1,AnDIR,YDIR),__("~D~irectory of formats"),dir));
 
  d->insert(new TCheckBoxes32(TRect(XOPS,YOPS,AnOPS,YOPS+nOPS),
      new TSItem( __("K~e~ep intermediate"), 0 )));

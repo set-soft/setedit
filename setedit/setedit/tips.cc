@@ -207,7 +207,7 @@ static void ShowDialogTip(char *fileName, int &LastTip)
                                 new TSItem(__("Don't ~s~how it again"),
                                 new TSItem(__("Show it once a ~d~ay"),
                                 new TSItem(__("Show it in the ~m~essage window"),0))));
-       TSLabel *Options=new TSLabel(_("Options"),origin);
+       TSLabel *Options=new TSLabel(__("Options"),origin);
        col->insert(2,yTSUnder,Options,0,Text);
 
        TSHzGroup *buttons=new TSHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),

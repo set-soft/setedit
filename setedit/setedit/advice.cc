@@ -81,13 +81,13 @@ int GiveAdvice(int number)
  switch (ad->options & opsTypeMask)
    {
     case ops40cols:
-         text=new TSStaticText(_(ad->label),40);
+         text=new TSStaticText(ad->label,40);
          break;
     case ops60cols:
-         text=new TSStaticText(_(ad->label),60);
+         text=new TSStaticText(ad->label,60);
          break;
     default:
-         text=new TSStaticText(_(ad->label));
+         text=new TSStaticText(ad->label);
    }
  col->insert(xTSCenter,2,text);
  TSCheckBoxes *again=new TSCheckBoxes(new TSItem(__("Don't show it next time"),0));

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSLabel
 #include <easydia1.h>
@@ -8,9 +8,11 @@
 TSLabel::TSLabel(const char *aText, TSView *link) :
    TSView()
 {
- w=max(cstrlen(aText)+1,link->w);
+ stTVIntl *cache=NULL;
+ const char *str=TVIntl::getText(aText,cache);
+ w=max(cstrlen(str)+1,link->w);
  h=1+link->h;
- view=new TLabel(TRect(0,0,w,1),aText,link->view);
+ view=new TLabel(TRect(0,0,w,1),aText,link->view,cache);
  linked=link;
 }
 

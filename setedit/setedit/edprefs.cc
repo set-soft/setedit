@@ -351,7 +351,7 @@ void SetScreenSaversOptions(void)
  diaPrefs->list=(TSortedListBox *)scrv->view;
  TSInputLine *extOptIn=new TSInputLine(extscrsParMxLen,24);
  diaPrefs->xtOpt=extOptIn->view;
- TSLabel *extOpts=new TSLabel(_("E~x~ternal options"),extOptIn);
+ TSLabel *extOpts=new TSLabel(__("E~x~ternal options"),extOptIn);
  TSVeGroup *Scrv=new TSVeGroup(
    MakeVeGroup(0,TSLabelRadio(__("Sc~r~een saver (?)"),__("OF~F~"),__("O~N~"),0),
                scrv,extOpts,0), // First 3 joined
@@ -361,12 +361,12 @@ void SetScreenSaversOptions(void)
  Scrv->makeSameW();
 
  TSHzLabel *timeL=new TSHzLabel(_("~T~ime"),new TSInputLine(5));
- TSStaticText *seconds=new TSStaticText(_("seconds"));
+ TSStaticText *seconds=new TSStaticText(__("seconds"));
  TSHzGroup *Time=new TSHzGroup(timeL,seconds);
  Scrv=new TSVeGroup(Scrv,Time,0);
 
  TSHzGroup *TimeM=new TSHzGroup(new TSHzLabel(_("Ti~m~e"),new TSInputLine(5)),
-                                new TSStaticText(_("mouse sec.")));
+                                new TSStaticText(__("mouse sec.")));
  TSVeGroup *ScreenSaver=new TSVeGroup(Scrv,TimeM,0);
 
  col->insert(2,1,ScreenSaver);
@@ -661,7 +661,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
           __("~I~ndicate with a message"),
           __("Wrap (~c~ircular list)"),0),
    new TSCheckBoxes(new TSItem(__("Make a beep"),0)),
-   new TSLabel(_("When creating message and similar windows"),
+   new TSLabel(__("When creating message and similar windows"),
                new TSCheckBoxes(
                    new TSItem(__("Use the ~v~ertical direction"),
                    new TSItem(__("Use the ~r~ight side"),0)))),
@@ -779,9 +779,9 @@ int TSetEditorApp::ChooseConvCPs(int &From, int &To, uint32 &ops)
  box.ops  =CPNoLow;
 
  TSHzGroup *cps=new TSHzGroup(
-                 new TSLabel(_("~F~rom code page"),
+                 new TSLabel(__("~F~rom code page"),
                   new TSSortedListBox(wForced,6,tsslbVertical)),
-                 new TSLabel(_("~T~o code page"),
+                 new TSLabel(__("~T~o code page"),
                   new TSSortedListBox(wForced,6,tsslbVertical)));
  TSVeGroup *all=new TSVeGroup(cps,
                      new TSCheckBoxes(
@@ -1122,7 +1122,7 @@ void TSetEditorApp::FontsOptions()
    
     // Size
     TSVBitmapFontSizeLBox *priSz=new TSVBitmapFontSizeLBox(12,height,tsslbVertical);
-    TSLabel *priSzl=new TSLabel(_("S~i~ze"),priSz);
+    TSLabel *priSzl=new TSLabel(__("S~i~ze"),priSz);
    
     // Secondary font options, only if available
     TSVeGroup *secOps=NULL;
@@ -1246,7 +1246,7 @@ void TSetEditorApp::ScreenOptions()
                               new TSHzLabel(_("Chars hei~g~ht"),new TSInputLine(5)),0),
                 0);
    
-    TSLabel *external=new TSLabel(_("E~x~ternal program"),
+    TSLabel *external=new TSLabel(__("E~x~ternal program"),
                                  new TSInputLine(80,36));
 
     TSHzLabel *mode=new TSHzLabel(_("Mode ~n~umber"),new TSInputLine(10));

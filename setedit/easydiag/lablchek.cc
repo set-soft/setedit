@@ -24,7 +24,7 @@ TSLabel *TSLabelCheck(const char *name, ...)
     last=aux;
    }
  va_end(arg);
- return new TSLabel(_(name),new TSCheckBoxes(first));
+ return new TSLabel(name,new TSCheckBoxes(first));
 }
 
 TSLabel *TSLabelCheck(int columns, const char *name, ...)
@@ -44,5 +44,5 @@ TSLabel *TSLabelCheck(int columns, const char *name, ...)
     last=aux;
    }
  va_end(arg);
- return new TSLabel(_(name),new TSCheckBoxes(first,-1,columns));
+ return new TSLabel(name,new TSCheckBoxes(first,-1,columns));
 }

@@ -24,7 +24,7 @@ TSLabel *TSLabelRadio(const char *name, ...)
     last=aux;
    }
  va_end(arg);
- return new TSLabel(_(name),new TSRadioButtons(first));
+ return new TSLabel(name,new TSRadioButtons(first));
 }
 
 TSLabel *TSLabelRadio(int columns, const char *name, ...)
@@ -44,6 +44,6 @@ TSLabel *TSLabelRadio(int columns, const char *name, ...)
     last=aux;
    }
  va_end(arg);
- return new TSLabel(_(name),new TSRadioButtons(first,-1,columns));
+ return new TSLabel(name,new TSRadioButtons(first,-1,columns));
 }
 

@@ -200,7 +200,7 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                              new TSItem( __("~M~acro"), 0 )));
     type->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
     d->insert(type);
-    TLabel *tl=new TLabel(TRect(2,H-9,W-2,H-8),_("Assignmen~t~"),type);
+    TLabel *tl=new TLabel(TRect(2,H-9,W-2,H-8),__("Assignmen~t~"),type);
     tl->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
     d->insert(tl);
    }

@@ -7,6 +7,7 @@ class TNoStaticText : public TStaticText
 {
 public:
  TNoStaticText(const TRect& bounds, const char *aText);
+ TNoStaticText(const TRect& bounds, const char *aText, stTVIntl *cache);
  void setText(const char *s);
 
 protected:

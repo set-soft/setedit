@@ -118,7 +118,7 @@ TDialog *createFindDialog(void *regexBox)
 
  TSVeGroup *Options=
  MakeVeGroup(0, // All together
-             new TSLabel(_("~T~ext to find"),
+             new TSLabel(__("~T~ext to find"),
                  new TSInputLinePiped(maxFindStrLenEd,1,hID_TextSearchEditor,
                                       GetDeskTopCols()/2+2)),
              TSLabelCheck(__("Options"),__("~C~ase sensitive"),
@@ -153,10 +153,10 @@ TDialog *createReplaceDialog(void *regexBox)
  TSViewCol *col=new TSViewCol(__("Replace"));
  int FixWTest=(GetDeskTopCols()-12)/2;
 
- TSLabel *TextToFind=new TSLabel(_("~T~ext to find"),
+ TSLabel *TextToFind=new TSLabel(__("~T~ext to find"),
                        new TSInputLinePiped(maxFindStrLenEd,1,hID_TextSearchEditor,FixWTest));
 
- TSLabel *newText=new TSLabel(_("~N~ew text"),
+ TSLabel *newText=new TSLabel(__("~N~ew text"),
                     new TSInputLinePiped(maxReplaceStrLenEd,1,hID_TextReplaceEditor,FixWTest));
 
  TSLabel *Options=TSLabelCheck(
@@ -336,7 +336,7 @@ TDialog *createYesNoAllCancel(TPoint *size, TPoint *cursor)
 {
  TSViewCol *col=new TSViewCol(__("Search hit"));
 
- TSStaticText *text=new TSStaticText(_("Replace this occurence?"));
+ TSStaticText *text=new TSStaticText(__("Replace this occurence?"));
  TSHzGroup *buttons=MakeHzGroup(new TSButton(_("~Y~es"),cmYes,bfDefault),
                                 new TSButton(_("~N~o"),cmNo),
                                 new TSButton(_("~A~ll"),cmOK),
@@ -400,7 +400,7 @@ TDialog *createArbitraryIndent(int len)
 {
  TSViewCol *col=new TSViewCol(__("Arbitrary indent"));
 
- TSLabel *label=new TSLabel(_("Indentation text"),new TSInputLinePiped(len,GetDeskTopCols()-20));
+ TSLabel *label=new TSLabel(__("Indentation text"),new TSInputLinePiped(len,GetDeskTopCols()-20));
  col->insert(xTSCenter,yTSUp,label);
  EasyInsertOKCancel(col);
 

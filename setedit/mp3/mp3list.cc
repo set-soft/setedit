@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -327,7 +327,7 @@ void MP3EditPlayList()
  TSViewCol *col=new TSViewCol(ListDia);
 
  TSListBox *listB=new TSListBox(60,12,tsslbVertical | tsslbHorizontal,1,PATH_MAX);
- TSLabel   *ListB=new TSLabel(_("List of files"),listB);
+ TSLabel   *ListB=new TSLabel(__("List of files"),listB);
  ListDia->listBox=(TListBox *)listB->view;
 
  TSHzGroup *buttons=new TSHzGroup(new TSButton(_("~A~dd"),cmaAddMP3),

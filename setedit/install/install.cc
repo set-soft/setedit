@@ -484,7 +484,7 @@ int AskDestination(char *djdir)
  static int AlreadyAsked=0;
 
  CreateCol(_(cDestinationDir));
- TSLabel *label=new TSLabel(_("Where do you want to install the editor?"),
+ TSLabel *label=new TSLabel(__("Where do you want to install the editor?"),
                             new TSInputLine(PATH_MAX,50));
  col->insert(xTSCenter,2,label);
  InsertPrevNextCancel(col);
@@ -617,8 +617,8 @@ int GetWindowsInformation()
 
  CreateCol(_("Searching Windows information"));
 
- TSStaticText *l=new TSStaticText(_("Windows 9x or similar detected, wait while\nfinding information about your system"));
- TSNoStaticText *m=new TSNoStaticText(_("Looking in registry       "));
+ TSStaticText *l=new TSStaticText(__("Windows 9x or similar detected, wait while\nfinding information about your system"));
+ TSNoStaticText *m=new TSNoStaticText(__("Looking in registry       "));
  m->Flags=wSpan;
  col->insert(2,1,l);
  col->insert(2,yTSUnder,m,0,l);
@@ -745,7 +745,7 @@ int AskGenericQuestion2Ops(const char *title, const char *desc,
 {
  CreateCol(_(title));
  TSVeGroup *gr=MakeVeGroup(
-   new TSStaticText(_(desc),60),
+   new TSStaticText(desc,60),
    new TSRadioButtons(new TSItem(op1,new TSItem(op2,0))),
    0);
  gr->makeSameW();
@@ -857,7 +857,7 @@ int ConfirmValues()
 
  CreateCol(_("Confirm options"));
  TSTextScroller *s=new TSTextScroller(70,LinesInList,strs,1,lines>LinesInList);
- TSStaticText *q=new TSStaticText(_("Are these options correct?"));
+ TSStaticText *q=new TSStaticText(__("Are these options correct?"));
  col->insert(xTSCenter,1,s);
  col->insert(xTSCenter,yTSUnder,q,0,s);
  InsertYesNoCancel(col);
@@ -1268,20 +1268,20 @@ void TEditWindow2::close()
 int EditAutoexec(const char *name, int modified, char *buf, unsigned l)
 {
  CreateCol(_("Instructions for edition"));
- TSStaticText *t1=new TSStaticText(_("Now I'll give you the oportunity to edit the autoexec.bat. To finish click in the small rectable found in the top-left corner or press Ctrl+F4."),70);
+ TSStaticText *t1=new TSStaticText(__("Now I'll give you the oportunity to edit the autoexec.bat. To finish click in the small rectable found in the top-left corner or press Ctrl+F4."),70);
  col->insert(2,2,t1);
  TSStaticText *last;
  if (modified)
    {
-    last=new TSStaticText(_("I added the needed command, it is marked with a comment. Please don't remove the comment is used to know where is the text added by the installer."),70);
+    last=new TSStaticText(__("I added the needed command, it is marked with a comment. Please don't remove the comment is used to know where is the text added by the installer."),70);
     col->insert(2,yTSUnder,last,0,t1);
    }
  else
    {
-    last=new TSStaticText(_("The text I suggest to add is currently in the clipboard."),70);
+    last=new TSStaticText(__("The text I suggest to add is currently in the clipboard."),70);
     col->insert(2,yTSUnder,last,0,t1);
    }
- t1=new TSStaticText(_("You can move lines using:\nShift + arrows keys: Select text\nCtrl+Insert: Copy to the clipboard\nCtrl+Delete: Delete a block\nShift+Insert: Paste from the clipboard\nShift+Delete: Copy to clipboard and then delete the block\nCtrl+U: Undo (only one action)"),70);
+ t1=new TSStaticText(__("You can move lines using:\nShift + arrows keys: Select text\nCtrl+Insert: Copy to the clipboard\nCtrl+Delete: Delete a block\nShift+Insert: Paste from the clipboard\nShift+Delete: Copy to clipboard and then delete the block\nCtrl+U: Undo (only one action)"),70);
  col->insert(2,yTSUnder,t1,0,last);
 
  col->insert(xTSCenter,yTSDown,new TSButton(_("~O~k"),cmOK,bfDefault));
@@ -1376,7 +1376,7 @@ int DefinePath()
    {
     CreateCol(_("Configuring the system"));
    
-    TSStaticText *x1=new TSStaticText(_("The editor was succesfully installed, now you must add the directory\nwhere the editor was installed to your PATH, like this:"));
+    TSStaticText *x1=new TSStaticText(__("The editor was succesfully installed, now you must add the directory\nwhere the editor was installed to your PATH, like this:"));
     strcpy(b,pathComm);
     strcat(b,Destination);
     TSStaticText *x2=new TSStaticText(b,70);
@@ -1526,7 +1526,7 @@ void Installer::Start()
  DefinePath();
  return;
  #endif
- insert(new TStaticText(TRect(0,0,80,1),_("\x3SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea")));
+ insert(new TStaticText(TRect(0,0,80,1),__("\x3SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea")));
 
  if (os_type==OSTYPE_WIN95 && !IsWindowsNT())
    {

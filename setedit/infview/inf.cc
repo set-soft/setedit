@@ -2304,7 +2304,7 @@ THelpControlDialog::THelpControlDialog(THisCollection *oCol) :
  TStrListBox *ListaH = new TStrListBox( TRect(21,3,52,15),(ushort)1, sb );
  insert(ListaH);
  ListaH->newList(oCol);
- insert (new TLabel(TRect(21,2,52,3),_("Hi~s~tory"), ListaH));
+ insert (new TLabel(TRect(21,2,52,3),__("Hi~s~tory"), ListaH));
 
  options|=ofTopSelect;
  selectNext( False );
@@ -2321,7 +2321,7 @@ TDialog *createInfFindDialog()
  TInputLine *control = new TInputLine( TRect( 3, 3, 32, 4 ), MAX_NODE_NAME );
  d->insert( control );
  d->insert(
-     new TLabel( TRect( 2, 2, 30, 3 ), _("~T~ext to find"), control ) );
+     new TLabel( TRect( 2, 2, 30, 3 ), __("~T~ext to find"), control ) );
  d->insert(
      new THistory( TRect( 32, 3, 35, 4 ), control, hID_TextSearchInf ) );
 
@@ -2353,7 +2353,7 @@ TDialog *createGoToDialog()
  TInputLine *control = new TInputLine( TRect( 3, 3, 32, 4 ), MAX_NODE_NAME );
  d->insert( control );
  d->insert(
-     new TLabel( TRect( 2, 2, 30, 3 ), _("~N~ame of Node"), control ) );
+     new TLabel( TRect( 2, 2, 30, 3 ), __("~N~ame of Node"), control ) );
  d->insert(
      new THistory( TRect( 32, 3, 35, 4 ), control, hID_GotoInf ) );
 
@@ -2379,7 +2379,7 @@ TDialog *createNodeChooseDialog()
  TSOSSortedListBox *ListaN = new TSOSSortedListBox( TRect(2,2,r.b.x-3,r.b.y-4),(ushort)1, sb );
  ListaN->growMode = gfMoveBottomCorner;
  d->insert(ListaN);
- d->insert(new TLabel(TRect(2,1,r.b.x-3,2),_("~N~odes"), ListaN));
+ d->insert(new TLabel(TRect(2,1,r.b.x-3,2),__("~N~odes"), ListaN));
 
  TButton *tb1=new TButton( TRect( 2, r.b.y-3, 16, r.b.y-1 ), _("~O~K"), cmOK, bfDefault );
  tb1->growMode = gfMoveAccording;
@@ -2479,7 +2479,7 @@ TBookMarkDialog::TBookMarkDialog(TNoCaseStringCollection *oCol) :
  insert(sb);
  TSortedListBox *Lista=new TSortedListBox( TRect(bt.b.x+1,2,r.b.x-3,r.b.y-2),(ushort)1, sb );
  insert(Lista);
- insert(new TLabel(TRect(bt.b.x+1,1,r.b.x-3,2),_("~M~arks"), Lista));
+ insert(new TLabel(TRect(bt.b.x+1,1,r.b.x-3,2),__("~M~arks"), Lista));
  //Lista->newList(oCol);
 
  selectNext( False );

@@ -91,7 +91,7 @@ void BoardMixerDialog()
  // because 2.7.2.3 and 2.8.1 allows it as spected.
  TSViewCol *col=new TSViewCol(new TMixDiag(_("Hardward Mixer Settings")));
 
- TSStaticText *text=new TSStaticText(_("Mixer model:"));
+ TSStaticText *text=new TSStaticText(__("Mixer model:"));
  TSStaticText *name=new TSStaticText(GetMixerName());
  col->insert(xTSLeft,yTSUp,text);
  col->insert(xTSRightOf,yTSUp,name,text);

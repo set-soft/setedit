@@ -692,15 +692,15 @@ void PrintSetup(void)
  TSHzLabel *time  =new TSHzLabel(_("~T~ime format:"),new TSInputLine(12));
  TSHzLabel *date  =new TSHzLabel(_("~D~ate format:"),new TSInputLine(12));
  #define C(var,str) TSLabel *var=new TSLabel(str,new TSInputLine(sizeNames,28))
- C(title,_("T~i~tle"));
- C(author,_("~A~uthor"));
- C(bH,_("Before ~h~eading"));
- C(aH,_("A~f~ter heading"));
- C(bF,_("~B~efore footer"));
- C(aF,_("After foote~r~"));
+ C(title,__("T~i~tle"));
+ C(author,__("~A~uthor"));
+ C(bH,__("Before ~h~eading"));
+ C(aH,__("A~f~ter heading"));
+ C(bF,__("~B~efore footer"));
+ C(aF,__("After foote~r~"));
  TSView::yDefSep=1;
- C(init,_("~P~rinter initialization"));
- C(output,_("O~u~tput file"));
+ C(init,__("~P~rinter initialization"));
+ C(output,__("O~u~tput file"));
  TSRadioButtons *outType=new TSRadioButtons(new TSItem(__("Output is a de~v~ice/file"),
                                             new TSItem(__("Output i~s~ a program"),0)));
  #undef C
