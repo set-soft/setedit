@@ -84,6 +84,7 @@ if ($OS eq 'DOS')
 # Where is the TV library?
 # $TVInclude and $TVLib
 LookForTV();
+CheckTVFix();
 # Is the right version?
 TestTVVersion($TVVersionNeeded);
 
@@ -594,6 +595,23 @@ sub LookForMakeinfo
    {
     print "no\n";
     $conf{'makeinfo'}='no';
+   }
+}
+
+sub CheckTVFix
+{
+ my $a;
+
+ $a=cat($TVInclude.'/compatlayer.h');
+ if (!($a=~/GetStrStream\(os\,buf\)/))
+   {
+    print "\nAttention! you have an old release of Turbo Vision 1.1.4, it needs a fix\n";
+    print "for gcc 3.x. Please download it again or look in the extra section of\n";
+    print "SETEdit's Source Forge site for a patch.\n\n";
+    print "http://www.sourceforge.net/projects/setedit\n\n";
+    print "Sorry for the inconvenience\n\n";
+    CreateCache();
+    die "Missing library\n";
    }
 }
 

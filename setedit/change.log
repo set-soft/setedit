@@ -1,4 +1,8 @@
 $Log$
+Revision 1.54  2002/02/05 14:16:16  set
+* Added: Now when the editor warms about a R.O. file the dialog says the
+name of the file.
+
 Revision 1.53  2002/02/05 13:56:13  set
 * Added: Explanation about the difference between lat1 and lat1u fonts,
 also about the damaged lat1 fonts to Linux FAQ.
@@ -3819,7 +3823,7 @@ patches I did and forgot to tell Robert.
 Revision 1.21  1999/02/12 22:28:19  set
 * Changed SETFindFile to FindFiles again and did it available only when using
 STANDALONE, in this way Robert can overwrite it with your own version.
-.
+
 Revision 1.20  1999/02/12 22:16:41  set
 * Fixed: When using Alt+F5 (Show user screen) the editor was polling the
 keyboard without calling idle() and hence eating CPU. Reported for RHIDE by
