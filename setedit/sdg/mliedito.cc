@@ -580,6 +580,7 @@ DecFun(MLIShowInMessageWindow)
  LocVar(clear);
  Boolean clearMW=False;
  char *v;
+ int l;
 
  CheckNumParams(cant!=1 && cant!=2);
  GetVar(0,value);
@@ -591,7 +592,10 @@ DecFun(MLIShowInMessageWindow)
 
  v=value->toStr();
  EdShowMessage(v,clearMW);
+ l=strlen(v);
  delete[] v;
+ // Return something like printf does
+ MLIRetInt(l);
 
 CleanUp:
  destroyFloatVar(value);

@@ -1227,6 +1227,11 @@ TLispVar *TMLIBase::InterpretNoClean(char *s)
                  }
               }
       }
+    if (array->GetCount()>maxNestedsLisp)
+      {
+       Error=MLIStakOverf;
+       return NULL;
+      }
    }
  Error=MLIENoEnd;
  return NULL;
@@ -1327,7 +1332,7 @@ int TMLIBase::ParseNumber()
  return !(ucisspace(*end) || *end=='(' || *end==')' || *end==';');
 }
 
-#define maxParse 4
+#define maxParse 5
 #define maxSyntax 7
 
 static char *UnkErr=__("unknown");
@@ -1345,7 +1350,8 @@ char *TMLIBase::ParseError[]=
  __("no ) end of code"),
  __("no starting ("),
  __("wrong number"),
- __("unknown value")
+ __("unknown value"),
+ __("stack overflow")
 };
 
 char *TMLIBase::SyntaxError[]=

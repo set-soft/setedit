@@ -30,6 +30,7 @@ const int
       MLINoIniPar   =0x1002,
       MLIWrongNumber=0x1003,
       MLIUnknownVal =0x1004,
+      MLIStakOverf  =0x1005,
       MLITooCommands=0x2000, // Syntax errors
       MLINoCommands =0x2001,
       MLIComOrder   =0x2002,
@@ -38,6 +39,9 @@ const int
       MLIUndefVar   =0x2005,
       MLIUndefSymbol=0x2006,
       MLIUndefOp    =0x2007;
+
+// Just an arbitrary limit to stop infinite recursion that will end in a crash
+const int maxNestedsLisp=1024;
 #endif
 
 #if defined(Uses_TLispVar) && !defined(__TLispVar__)
