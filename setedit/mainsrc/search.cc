@@ -103,9 +103,9 @@ char *TCEditor::GetTheReplace(int &mustDelete, uint32 &len)
 }
 
 static
-int TryToOptimize(char *expr)
+int TryToOptimize(const char *expr)
 {
- char *s=expr;
+ const char *s=expr;
  for (; *s; s++)
      if (!isWordChar(*s))
         break;
@@ -141,16 +141,17 @@ int TCEditor::CompileReplace(char *replaceStr)
 
  // Make a copy
  int l=strlen(replaceStr);
- CompiledReplace=new char[l+1];
- if (!CompiledReplace)
+ char *aux=new char[l+1];
+ if (!aux)
     return 1;
- memcpy(CompiledReplace,replaceStr,l);
- CompiledReplace[l]=0;
+ memcpy(aux,replaceStr,l);
+ aux[l]=0;
+ CompiledReplace=aux;
 
  numReplaceTags=0;
  lenReplaceStr=0;
  MaxReplaceNeeded=0;
- char *s=CompiledReplace,*end;
+ char *s=CompiledReplace, *end;
  int val,dist;
  while (*s)
    {

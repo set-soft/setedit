@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_SETAppAll
 #define Uses_SETAppConst
@@ -331,6 +331,7 @@ extern void CopyHelp2Clip(char *b, long l);
 extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line,char *name);
 extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0);
+extern int GotoFileText(char *search, char *file, char *msg=0, int off=-1, int len=0);
 extern void SetScreenOps(void);
 extern void EditPalette(void);
 extern void SaveEnviromentFile(void);

@@ -537,6 +537,7 @@ public:
     static uint32 MakeAPCRESearch(char *block, uint32 size, int &matchLen);
     #endif
     static void   FreeRegExMemory(void);
+    Boolean       SearchAndJump(char *search, unsigned flags);
 
     // Highligth of one char
     int XHLCO,YHLCO,XHLCC,YHLCC,XHLCo,YHLCo,XHLCc,YHLCc;

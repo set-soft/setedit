@@ -425,7 +425,7 @@ int TTagCollection::addValue(char *s, stTagFile *tf)
    {
     s++;
     e=toSl(s);
-    p->regex=newStrN(s,e-s);
+    p->regex=newStrN(s+1,e-s-2);
     e++;
     //printf("Regex: %s\n",p->regex);
    }
@@ -807,9 +807,8 @@ static TDialog *createDialog()
 
  TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
  TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
- TSButton *browse=new TSButton(__("~B~rowse"),cmYes);
- ok->view->growMode=cancel->view->growMode=browse->view->growMode=gfGrowAll;
- TSHzGroup *but123=MakeHzGroup(ok,cancel,browse,0);
+ ok->view->growMode=cancel->view->growMode=gfGrowAll;
+ TSHzGroup *but123=MakeHzGroup(ok,cancel,0);
  col->insert(xTSCenter,yTSDown,but123);
  col->doItCenter(cmcJumpToFunction);
  delete col;
@@ -839,9 +838,12 @@ void SearchTag(char *word)
    {
     char b[PATH_MAX],desc[120];
     stTag *p=tags->atPos(br.selection);
-    CLY_snprintf(b,PATH_MAX,"%s/%s",p->tagFile->base,p->source);
+    CLY_snprintf(b,PATH_MAX,"%s%s",p->tagFile->base,p->source);
     tags->getText(desc,p,120);
-    GotoFileLine(p->flags & sttFgLine ? p->line : 1,b,desc);
+    if (p->flags & sttFgLine)
+       GotoFileLine(p->line,b,desc);
+    else
+       GotoFileText((char *)p->regex,b,desc);
    }
 }
 

@@ -9018,6 +9018,45 @@ Boolean TCEditor::search(const char *, unsigned opts)
  return False;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Performes a regex search and jumps to the hit. This function uses the
+editor's search machinery and restore the previous values before returning.
+  
+  Return: !=0 if a hit found.
+  
+***************************************************************************/
+
+Boolean TCEditor::SearchAndJump(char *text, unsigned flags)
+{
+ // Back-up current options
+ unsigned oldEdFlags=editorFlags;
+ ushort   oldSearchInSel=SearchInSel;
+ ushort   oldFromWhere=FromWhere;
+ ushort   oldRegExStyle=RegExStyle;
+ unsigned oldStartOfSearch=StartOfSearch;
+
+ // Create new search
+ editorFlags=flags;
+ CompileSearch(text);
+ SearchInSel=0;
+ FromWhere=1;
+ RegExStyle=0;
+ StartOfSearch=0;
+ Boolean ret=search(text,flags);
+
+ // Restore normal search
+ SearchInSel=oldSearchInSel;
+ FromWhere=oldFromWhere;
+ RegExStyle=oldRegExStyle;
+ editorFlags=oldEdFlags;
+ StartOfSearch=oldStartOfSearch;
+ CompileSearch(findStr);
+
+ return ret;
+}
+
 /****************************************************************************
 
    Function: unsigned LineMeassureC(char *s, char *end, uint32 &Attr)

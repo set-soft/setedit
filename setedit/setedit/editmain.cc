@@ -1342,6 +1342,37 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len)
  return 0;
 }
 
+int GotoFileText(char *search, char *file, char *msg, int off, int len)
+{
+ if (!search)
+    return 0;
+
+ TCEditWindow *edw=editorApp->openEditor(file,True,NULL,oedDontOpenEmpty);
+ if (edw)
+   {
+    TCEditor *ed=edw->editor;
+    ed->lock();
+    ed->SearchAndJump(search,efCaseSensitive);
+    ed->trackCursor(True);
+    ed->update(ufView); // Be sure we cleared the last hit
+    if (msg)
+      {// Show only a portion if they asked for it
+       if (off>=0)
+         {
+          char oldV=msg[off+len];
+          msg[off+len]=0;
+          ed->setStatusLine(msg+off);
+          msg[off+len]=oldV;
+         }
+       else
+         ed->setStatusLine(msg);
+      }
+    ed->unlock();
+    return 1;
+   }
+ return 0;
+}
+
 /**[txh]********************************************************************
 
   Description:
