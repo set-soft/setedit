@@ -1,5 +1,8 @@
 $Log$
-Revision 1.504  2001/11/25 20:09:35  root
+Revision 1.26  2001/11/26 15:16:55  set
+* Trying to switch to stable ;-)
+
+Revision 1.504  2001/11/25 20:09:35  set
 * Fixed: Some logic in the about box for the first run. Was changed
 recently.
 * Added: Information in the README about the fact that now I'm switching to

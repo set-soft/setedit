@@ -43,7 +43,7 @@
 @set title-printed SET's Documentation Generator
 @set minidesc-printed A C/C++ documentation generator
 @set year-copyr 1997,1998,1999,2000
-@set info-file  sdg.info
+@set info-file  sdg
 
 @c --------------------------------------------------------------
 @c Now we have 3 different headers:
