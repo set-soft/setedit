@@ -594,7 +594,7 @@ sub LookForRecode
     print @conf{'recode'}." (cached)\n";
     return;
    }
- RunRedirect('recode --version',$ErrorLog);
+ $test=RunRedirect('recode --version',$ErrorLog);
  if ($test=~/(\d+\.\d+(\.\d+)?)/)
    {
     print "$1\n";
@@ -625,7 +625,7 @@ sub LookForGettextTools
     print @conf{'xgettext'}." (cached)\n";
     return;
    }
- RunRedirect('xgettext --version',$ErrorLog);
+ $test=RunRedirect('xgettext --version',$ErrorLog);
  if ($test=~/(\d+\.\d+(\.\d+)?)/)
    {
     print "$1\n";
@@ -648,7 +648,7 @@ sub LookForMakeinfo
     print @conf{'makeinfo'}." (cached)\n";
     return;
    }
- RunRedirect('makeinfo --version',$ErrorLog);  
+ $test=RunRedirect('makeinfo --version',$ErrorLog);
  if ($test=~/(\d+\.\d+(\.\d+)?)(.*)(\d+\.\d+(\.\d+)?)/)
    {
     print "$4\n";

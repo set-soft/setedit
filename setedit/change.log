@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.288  2003/04/07 13:47:27  set
+* Modified: The menu and status line creation for the new TV i18n API. Now
+they adapt to code page changes!
+* Modified: The configuration to request TV 2.0.2.
+
 Revision 1.287  2003/04/07 13:46:32  set
 * Modified: To adapt to the new TVIntl class, just compilation details.
 More will come soon ;-)

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSLabelRadio
 #define Uses_TSRadioButtons
@@ -16,7 +16,7 @@ TSLabel *TSLabelRadio(const char *name, ...)
  TSItem *first=0,*last=0,*aux;
  while ((s=va_arg(arg,const char *))!=0)
    {
-    aux=new TSItem(_(s),0);
+    aux=new TSItem(s,0);
     if (!first)
        first=aux;
     if (last)
@@ -36,7 +36,7 @@ TSLabel *TSLabelRadio(int columns, const char *name, ...)
  TSItem *first=0,*last=0,*aux;
  while ((s=va_arg(arg,const char *))!=0)
    {
-    aux=new TSItem(_(s),0);
+    aux=new TSItem(s,0);
     if (!first)
        first=aux;
     if (last)

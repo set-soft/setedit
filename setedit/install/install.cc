@@ -1,5 +1,9 @@
 /*****************************************************************************
 
+  Copyright (c) 1999-2003 by Salvador E. Tropea.
+  Covered by the GPL license.
+  Part of setedit source code.
+  
 TODO: que parsee el path (strtok) y busque instalaciones anteriores, si
 encuentra el install.log que lo levante a memoria y que use esos seteos y
 que pregunte si la quiere liquidar => barro la lista, si un archivo no
@@ -681,27 +685,27 @@ int AskMiscOps()
 
  if (Win95Desktop)
    {
-    AddItem(&ops,_(cAddToDesktop));
+    AddItem(&ops,cAddToDesktop);
     desktop=options;
     options<<=1;
     opsMask|=AddToDesktop ? desktop : 0;
    }
  if (Win95MenuPrograms)
    {
-    AddItem(&ops,_(cAddToMenu));
+    AddItem(&ops,cAddToMenu);
     menu=options;
     options<<=1;
     opsMask|=AddToMenu ? menu : 0;
    }
  if (TypeInstallation==instProg || TypeInstallation==instDJGPP)
    {
-    AddItem(&ops,_(cRedmondMenu));
+    AddItem(&ops,cRedmondMenu);
     menuRedmond=options;
     options<<=1;
     opsMask|=RedmondMenu ? menuRedmond : 0;
    }
  // Extra screen savers (external ones)
- AddItem(&ops,_(cExtraScrSave));
+ AddItem(&ops,cExtraScrSave);
  menuESS=options;
  options<<=1;
  opsMask|=ExtraScrSave ? menuESS : 0;
@@ -742,7 +746,7 @@ int AskGenericQuestion2Ops(const char *title, const char *desc,
  CreateCol(_(title));
  TSVeGroup *gr=MakeVeGroup(
    new TSStaticText(_(desc),60),
-   new TSRadioButtons(new TSItem(_(op1),new TSItem(_(op2),0))),
+   new TSRadioButtons(new TSItem(op1,new TSItem(op2,0))),
    0);
  gr->makeSameW();
  col->insert(xTSCenter,1,gr);
@@ -1522,7 +1526,7 @@ void Installer::Start()
  DefinePath();
  return;
  #endif
- insert(new TStaticText(TRect(0,0,80,1),_("\x3SET Edit installer v1.10, copyright (c) 1999 by Salvador E. Tropea")));
+ insert(new TStaticText(TRect(0,0,80,1),_("\x3SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea")));
 
  if (os_type==OSTYPE_WIN95 && !IsWindowsNT())
    {

@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Printing Module. Copyright 1995,1997 by Salvador E. Tropea.
+  Printing Module. Copyright 1995-2003 by Salvador E. Tropea.
 
   This module can be used by Robert Hoehne in RHIDE. Any other needs the
 permission of the author.
@@ -688,7 +688,7 @@ void PrintSetup(void)
  TSHzLabel *cols  =new TSHzLabel(_("Columns ~w~/o margin:"),new
                                  TSInputLine(5));
  TSHzLabel *margin=new TSHzLabel(_("Left ~m~argin:"),new TSInputLine(5));
- TSCheckBoxes *pLines=new TSCheckBoxes(new TSItem(_("Print line numbers"),0));
+ TSCheckBoxes *pLines=new TSCheckBoxes(new TSItem(__("Print line numbers"),0));
  TSHzLabel *time  =new TSHzLabel(_("~T~ime format:"),new TSInputLine(12));
  TSHzLabel *date  =new TSHzLabel(_("~D~ate format:"),new TSInputLine(12));
  #define C(var,str) TSLabel *var=new TSLabel(str,new TSInputLine(sizeNames,28))
@@ -701,8 +701,8 @@ void PrintSetup(void)
  TSView::yDefSep=1;
  C(init,_("~P~rinter initialization"));
  C(output,_("O~u~tput file"));
- TSRadioButtons *outType=new TSRadioButtons(new TSItem(_("Output is a de~v~ice/file"),
-                                            new TSItem(_("Output i~s~ a program"),0)));
+ TSRadioButtons *outType=new TSRadioButtons(new TSItem(__("Output is a de~v~ice/file"),
+                                            new TSItem(__("Output i~s~ a program"),0)));
  #undef C
  TSHzGroup *buttons=new TSHzGroup(new TSButton(_("~O~k"),cmOK,bfDefault),
                     new TSHzGroup(new TSButton(_("~C~ancel"),cmCancel),

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -177,7 +177,7 @@ static TDialog *SDGCreateDialog(void)
  d->insert(new TLabel(TRect(XDIR,YDIR-1,AnDIR,YDIR),_("~D~irectory of formats"),dir));
 
  d->insert(new TCheckBoxes32(TRect(XOPS,YOPS,AnOPS,YOPS+nOPS),
-     new TSItem( _("K~e~ep intermediate"), 0 )));
+     new TSItem( __("K~e~ep intermediate"), 0 )));
 
  d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),_("O~K~"),cmOK,bfDefault));
  d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),_("Cancel"),cmCancel,bfNormal));

@@ -1,3 +1,5 @@
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
 #include <configed.h>
 #include <mixer.h>
 
@@ -111,7 +113,7 @@ void BoardMixerDialog()
      ant=act;
     }
  JoinChannels=oldJoin;
- TSCheckBoxes *lock=new TSCheckBoxes(new TSItem(_("~L~ock channels"),new TSItem(_("~S~ave to disk"),0)));
+ TSCheckBoxes *lock=new TSCheckBoxes(new TSItem(__("~L~ock channels"),new TSItem(__("~S~ave to disk"),0)));
  col->insert(xTSLeft,yTSUnder,lock,0,ant);
  TSButton *ok=new TSButton(_("O~K~"),cmOK,bfDefault);
  ok->Flags=wSpan;

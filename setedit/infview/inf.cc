@@ -2326,13 +2326,13 @@ TDialog *createInfFindDialog()
      new THistory( TRect( 32, 3, 35, 4 ), control, hID_TextSearchInf ) );
 
  d->insert( new TCheckBoxes32( TRect( 3, 5, 35, 7 ),
-     new TSItem( _("~C~ase sensitive"),
-     new TSItem( _("~W~hole words only"), 0 ))));
+     new TSItem( __("~C~ase sensitive"),
+     new TSItem( __("~W~hole words only"), 0 ))));
 
  d->insert( new TRadioButtons32( TRect( 3, 8, 35, 11 ),
-     new TSItem( _("In current ~t~opic"),
-     new TSItem( _("In the ~f~ile"),
-     new TSItem( _("In ~a~ll files"), 0 )))));
+     new TSItem( __("In current ~t~opic"),
+     new TSItem( __("In the ~f~ile"),
+     new TSItem( __("In ~a~ll files"), 0 )))));
 
  d->insert(
      new TButton( TRect( 14, 12, 24, 14 ), _("~O~K"), cmOK, bfDefault ) );
@@ -2404,8 +2404,8 @@ TDialog *createConfigDialog()
  d->options |= ofCentered;
 
  d->insert( new TCheckBoxes32( TRect( 3, 2, 33, 4 ),
-     new TSItem( _("Hide '*~N~ote' word"),
-     new TSItem( _("Hide real ~l~ink name"), 0 ))));
+     new TSItem( __("Hide '*~N~ote' word"),
+     new TSItem( __("Hide real ~l~ink name"), 0 ))));
  d->insert(
      new TButton( TRect( 2, 5, 14, 7 ), _("~O~K"), cmOK, bfDefault ) );
  d->insert(

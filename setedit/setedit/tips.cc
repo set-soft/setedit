@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdlib.h>
@@ -204,9 +204,9 @@ static void ShowDialogTip(char *fileName, int &LastTip)
          }
 
        TSRadioButtons *origin = new TSRadioButtons(
-                                new TSItem(_("Don't ~s~how it again"),
-                                new TSItem(_("Show it once a ~d~ay"),
-                                new TSItem(_("Show it in the ~m~essage window"),0))));
+                                new TSItem(__("Don't ~s~how it again"),
+                                new TSItem(__("Show it once a ~d~ay"),
+                                new TSItem(__("Show it in the ~m~essage window"),0))));
        TSLabel *Options=new TSLabel(_("Options"),origin);
        col->insert(2,yTSUnder,Options,0,Text);
 

@@ -69,7 +69,7 @@ int AboutStartBox(void)
  r.move(0,2);
  d->insert(new TStaticText(r,_(cSlogan)));
  r.move(0,2);
- d->insert(new TCheckBoxes32(r,new TSItem(_("Don't show it next time"),0)));
+ d->insert(new TCheckBoxes32(r,new TSItem(__("Don't show it next time"),0)));
  r.a.x+=15;
  r.b.x-=15;
  r.a.y+=2;

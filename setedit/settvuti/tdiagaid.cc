@@ -196,8 +196,8 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
  if (flags & aidComMac)
    {
     TRadioButtons32 *type  = new TRadioButtons32( TRect(2,H-8,W-2,H-6 ),
-                             new TSItem( _("Command~s~"),
-                             new TSItem( _("~M~acro"), 0 )));
+                             new TSItem( __("Command~s~"),
+                             new TSItem( __("~M~acro"), 0 )));
     type->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
     d->insert(type);
     TLabel *tl=new TLabel(TRect(2,H-9,W-2,H-8),_("Assignmen~t~"),type);

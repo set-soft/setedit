@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_string
@@ -660,11 +660,11 @@ unsigned SetGeneralEditorOptionsOthers(void)
           __("~J~ust stop"),
           __("~I~ndicate with a message"),
           __("Wrap (~c~ircular list)"),0),
-   new TSCheckBoxes(new TSItem(_("Make a beep"),0)),
+   new TSCheckBoxes(new TSItem(__("Make a beep"),0)),
    new TSLabel(_("When creating message and similar windows"),
                new TSCheckBoxes(
-                   new TSItem(_("Use the ~v~ertical direction"),
-                   new TSItem(_("Use the ~r~ight side"),0)))),
+                   new TSItem(__("Use the ~v~ertical direction"),
+                   new TSItem(__("Use the ~r~ight side"),0)))),
    new TSHzLabel(_("Reserved ~w~idth"),new TSInputLine(5)),
    0);
  MsgWin->makeSameW();
@@ -785,8 +785,8 @@ int TSetEditorApp::ChooseConvCPs(int &From, int &To, uint32 &ops)
                   new TSSortedListBox(wForced,6,tsslbVertical)));
  TSVeGroup *all=new TSVeGroup(cps,
                      new TSCheckBoxes(
-                         new TSItem(_("~D~on't remap codes under 32"),
-                         new TSItem(_("~O~nly selected text"),0))));
+                         new TSItem(__("~D~on't remap codes under 32"),
+                         new TSItem(__("~O~nly selected text"),0))));
  all->makeSameW();
 
  TSViewCol *col=new TSViewCol(__("Code page remap"));

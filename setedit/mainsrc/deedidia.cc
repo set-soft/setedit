@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -220,11 +220,11 @@ int SHLSubDiag(unsigned )
  #define VeSHLW 30
  int VeSHLH=GetDeskTopRows()-15;
  TSRadioButtons *Shl=new TSRadioButtons(
-     new TSItem(_("Off ~1~"),
-     new TSItem(_("C++ st~y~le"),
-     new TSItem(_("Pa~s~cal style"),
-     new TSItem(_("C~l~ipper style"),
-     new TSItem(_("User ~d~efined"),0))))),VeSHLW);
+     new TSItem(__("Off ~1~"),
+     new TSItem(__("C++ st~y~le"),
+     new TSItem(__("Pa~s~cal style"),
+     new TSItem(__("C~l~ipper style"),
+     new TSItem(__("User ~d~efined"),0))))),VeSHLW);
  TSSortedListBox *ListaH=new TSSortedListBox(VeSHLW,VeSHLH,tsslbVertical);
  TSVeGroup *ShlVe=new TSVeGroup(Shl,ListaH,0);
  

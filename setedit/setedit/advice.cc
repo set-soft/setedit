@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #include <stdio.h>
@@ -90,7 +90,7 @@ int GiveAdvice(int number)
          text=new TSStaticText(_(ad->label));
    }
  col->insert(xTSCenter,2,text);
- TSCheckBoxes *again=new TSCheckBoxes(new TSItem(_("Don't show it next time"),0));
+ TSCheckBoxes *again=new TSCheckBoxes(new TSItem(__("Don't show it next time"),0));
  again->Flags=wSpan;
  col->insert(2,yTSUnder,again,0,text);
 
