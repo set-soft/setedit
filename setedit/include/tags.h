@@ -221,7 +221,7 @@ int  TagsSave(fpstream& s);
 int  TagsLoad(fpstream& s);
 void TagsFreeMemory();
 void EditTagFiles();
-void SearchTag(char *word);
+int  SearchTag(char *word);
 void TagsClassBrowser(char *word);
 char *TagsWordCompletion(int x, int y, char *word);
 char *TagsWordCompletionClass(int x, int y, char *word);

@@ -103,7 +103,7 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "Insert ~n~ew line (don't move)", cmcInsertNewLine, kbCtN, "Ctrl+N"
 EndSubMenu
 
-# English: CFGJLNPRSTUW
+# English: CFGJHLNOPRSTUW
 # Spanish: ABCDEILNOPRST
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
@@ -119,6 +119,8 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~W~ord completion", cmeWordCompletion, kbCtTab, "Ctrl+Tab"
  MenuItemC: "Jump to ~l~ast cursor position", cmcJumpLastCursorPos, kbUnknown, "Ctrl+Q-P"
  MenuItemC: "Jump to last ~u~ndo position", cmcLastPosCur
+ MenuItemC: "Pus~h~ cursor position and window", cmeGPushCursorPos
+ MenuItemC: "P~o~p cursor position and window (tag ret)", cmeGPopCursorPos
 EndSubMenu
 
 # CEGMNOPRSU

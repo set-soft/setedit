@@ -121,6 +121,7 @@ unsigned long
          TSetEditorApp::deskTopVersion;
 uint32   TSetEditorApp::modifFilesOps=0;
 
+XYFStack stkPos;
 const char *KeyBindFName="keybind.dat";
 // Name specified by the user
 static char *KeyBindFNameUser=0;
@@ -1300,6 +1301,14 @@ void TSetEditorApp::handleEvent( TEvent& event )
               SelectWindowNumber(event.message.command-cmeSelWindow1+1);
               break;
 
+         case cmeGPushCursorPos:
+              GPushCursorPos();
+              break;
+
+         case cmeGPopCursorPos:
+              GPopCursorPos();
+              break;
+
          //********** DEBUG commands
          case cmeBreakpoint:
               DebugToggleBreakpoint();
@@ -1700,6 +1709,67 @@ int ShowFileLine(int line, char *file)
  return 0;
 }
 
+void XYFStack::Push(uint32 aX, uint32 aY, const char *aFile)
+{
+ XYFElement *p=new XYFElement(aX,aY,aFile);
+
+ if (last)
+   {
+    last->next=p;
+    p->prev=last;
+    last=p;
+   }
+ else
+    first=last=p;
+ // Put a limit
+ count++;
+ if (count>maxXYFStack)
+   {
+    count--;
+    p=first->next;
+    first->next=NULL;
+    delete first;
+    first=p;
+   }
+}
+
+XYFElement *XYFStack::Pop()
+{
+ if (!last)
+    return NULL;
+ XYFElement *ret=last;
+ if (last->prev)
+    last=last->prev;
+ else
+    first=last=NULL;
+ count--;
+
+ return ret;
+}
+
+void GPushCursorPos()
+{
+ TCEditor *e=GetCurrentIfEditor();
+ if (!e)
+    return;
+ stkPos.Push(e->curPos.x,e->curPos.y,e->fileName);
+}
+
+void GPopCursorPos()
+{
+ XYFElement *p=stkPos.Pop();
+ if (p)
+   {
+    TCEditWindow *edw=editorApp->openEditor(p->file,True,NULL,oedDontOpenEmpty);
+    if (edw)
+      {
+       TCEditor *ed=edw->editor;
+       ed->MoveCursorTo(p->x,p->y,True);
+       ed->trackCursor(True);
+      }
+    delete p;
+   }
+}
 
 /**[txh]********************************************************************
 
@@ -2089,6 +2159,7 @@ void TSetEditorApp::idle()
  setCmdState(cmeTile,genState);
  setCmdState(cmeCascade,genState);
  setCmdState(cmeSaveDesktop,IsPrjOpened() ? False : True);
+ setCmdState(cmeGPopCursorPos,stkPos.getCount() ? True : False);
  // Disable "Local Options" if no editors are available
  TCEditor *e;
  if ((e=GetCurrentIfEditor())!=0)
@@ -2098,6 +2169,7 @@ void TSetEditorApp::idle()
     setCmdState(cmeRemapCodePage,True);
     setCmdState(cmeHTMLAccents,True);
     setCmdState(cmeHTMLTag2Accent,True);
+    setCmdState(cmeGPushCursorPos,True);
     if (e->ShowMatchPairFly)
        e->handleCommand(cmcForceMatchPairHL);
    }
@@ -2108,6 +2180,7 @@ void TSetEditorApp::idle()
     setCmdState(cmeRemapCodePage,False);
     setCmdState(cmeHTMLAccents,False);
     setCmdState(cmeHTMLTag2Accent,False);
+    setCmdState(cmeGPushCursorPos,False);
    }
 
  if (!(modifFilesOps & mfoDontCheckInIdle) && e && e->checkDiskCopyChanged())

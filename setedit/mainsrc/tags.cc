@@ -1515,6 +1515,7 @@ void JumpToTag(TListBoxRec &br, Boolean isClassCol)
     messageBox(__("Unknown line"),mfError|mfOKButton);
     p->line=1;
    }
+ GPushCursorPos();
  if (p->flags & sttFgLine)
    GotoFileLine(p->line,b,desc);
  else
@@ -1576,23 +1577,48 @@ int ShowMembers(ccIndex pos)
  return 0;
 }
 
-void SearchTag(char *word)
+int SearchTag(char *word)
 {
- if (InitTagsCollection()) return;
- if (tags->refresh()) return;
- if (!tags->getCount()) return;
+ if (InitTagsCollection() ||
+     tags->refresh() ||
+     !tags->getCount()) return 0;
 
  TListBoxRec br;
  br.items=tags;
  br.selection=0;
+ int perfectMatch=0;
 
  if (word)
    {
-    tags->search(word,br.selection);
-    if (br.selection>=tags->getCount())
-       br.selection=tags->getCount()-1;
+    if (tags->search(word,br.selection))
+      {
+       ccIndex pos=br.selection;
+       char *id=(char *)tags->keyOf(tags->at(pos));
+       if (strcmp(word,id)==0)
+         {// Full match, is the only one?
+          pos++;
+          if (pos<tags->getCount())
+            {
+             id=(char *)tags->keyOf(tags->at(pos));
+             //if (strncmp(word,id,strlen(word))!=0)
+             if (strcmp(word,id)!=0)
+                perfectMatch=1;
+            }
+         }
+      }
+    else
+      {
+       if (br.selection>=tags->getCount())
+          br.selection=tags->getCount()-1;
+      }
     DeleteArray(word);
+    if (perfectMatch)
+      {
+       JumpToTag(br);
+       return 1;
+      }
    }
+
  int ret;
  do
    {
@@ -1602,7 +1628,11 @@ void SearchTag(char *word)
    }
  while (ret==cmYes);
  if (ret==cmOK)
+   {
     JumpToTag(br);
+    return 1;
+   }
+ return 0;
 }
 
 /*****************************************************************************

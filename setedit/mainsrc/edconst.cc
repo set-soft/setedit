@@ -237,6 +237,8 @@ static edCList SetApp[] =
 { "ExportPrj"      , 83  },
 { "FileOpenOptions", 61  },
 { "Fonts"          , 77  },
+{ "GPopCursorPos"  ,162  },
+{ "GPushCursorPos" ,161  },
 { "GrepDialog"     , 32  },
 { "HTMLAccents"    , 53  },
 { "HTMLTag2Accent" , 68  },

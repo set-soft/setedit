@@ -157,7 +157,9 @@ const int
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
-  cmeSourceList     = cmeBase+160;
+  cmeSourceList     = cmeBase+160,
+  cmeGPushCursorPos = cmeBase+161,
+  cmeGPopCursorPos  = cmeBase+162;
 
 #endif
 
@@ -199,6 +201,39 @@ class TEditorCollection;
 #ifndef Defined_TScOptsCol
 class TScOptsCol;
 #endif
+
+class XYFElement
+{
+public:
+ XYFElement(uint32 aX, uint32 aY, const char *aFile)
+  { x=aX; y=aY; file=newStr(aFile); next=prev=NULL; }
+ ~XYFElement()
+  { delete[] file; delete next; }
+
+ uint32 x, y;
+ char *file;
+ XYFElement *next, *prev;
+};
+
+// I think that more than 32 means the user is leaking ;-)
+const int maxXYFStack=32;
+
+class XYFStack
+{
+public:
+ XYFStack()
+  { first=last=NULL; count=0; }
+ ~XYFStack()
+  { delete first; }
+
+ void Push(uint32 aX, uint32 aY, const char *aFile);
+ XYFElement *Pop();
+ int getCount() { return count; }
+
+protected:
+ XYFElement *first, *last;
+ int count;
+};
 
 const int extscrsParMxLen=80;
 
@@ -433,6 +468,8 @@ extern int ShowFileLine(int line,char *name);
 extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0,
                         Boolean selectLine=True);
 extern int GotoFileText(char *search, char *file, char *msg=0, int off=-1, int len=0);
+extern void GPushCursorPos();
+extern void GPopCursorPos();
 extern void SetScreenOps(void);
 extern void EditPalette(void);
 extern void SaveEnviromentFile(void);

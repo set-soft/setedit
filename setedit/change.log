@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.544  2004/07/21 19:59:04  set
+* Fixed: When deleting a breakpoint the editor could hang if the breakpoint
+couldn't be found.
+* Added: Now if the program to debug (the copy with debug info) is in a
+directory other than the current one this directory becomes the reference
+for filenames. It allowed me to debug SETEdit from SETEdit and using the
+setedit.epr file which is in "../" from the point of view of the binary.
+
 Revision 1.543  2004/07/20 20:45:00  set
 * Added: Now we can attach to running processes. Nice, but it expossed more
 gdb bugs :-(
