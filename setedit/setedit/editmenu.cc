@@ -293,6 +293,8 @@ _("~M~an page View")
 _("A~b~out")
 _("Searc~h~ files under cursor in ...")
 _("Insert key ~n~ame")
+_("Sc~r~oll Up")
+_("Scroll ~D~own")
 // Colors Window
 _("~G~roup")
 _("~I~tem")
