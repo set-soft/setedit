@@ -115,8 +115,8 @@ static int AdjustString(char *str, int len)
         switch (str[ind])
           {
            case 'n':
-                #ifdef USE_CRLF
-                Replace2By2(str,ind,crlf);
+                #ifdef CLY_UseCrLf
+                Replace2By2(str,ind,CLY_crlf);
                 #else
                 Replace2By1(str,ind,len,'\n');
                 lret--;
@@ -140,6 +140,7 @@ static
 char *AdjustCRLF(char *str, int &len)
 {
  int l=len,num=0,i;
+ const char *crlf=CLY_crlf;
 
  if (l<2)
     return str;
@@ -181,7 +182,7 @@ int TMLIEditor::InsertText(char *str, int len, int select, int move)
       }
     //len=AdjustString(str,len);
     char *Str=str;
-    if (LenEOL!=1)
+    if (CLY_LenEOL!=1)
        Str=AdjustCRLF(str,len);
     // I forgot it the first time and produced a hard bug
     if (Editor->IslineInEdition)
