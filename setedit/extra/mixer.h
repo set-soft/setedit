@@ -2,7 +2,7 @@
 
   Description:
   Mixer definitions shared by all modules.
-  Copyright (c) 2000 by Salvador E. Tropea.
+  Copyright (c) 2000-2001 by Salvador E. Tropea.
   This code is under the GPL license.
 
 ***************************************************************************/
@@ -13,7 +13,7 @@
 // Flags
 #define BOARD_MIXER_ELEM_STEREO 1
 #define BOARD_MIXER_ELEM_MONO   0
-#define IS_BOARD_MIXER_ELEM_STEREO(a) (a##.flags & BOARD_MIXER_ELEM_STEREO)
+#define IS_BOARD_MIXER_ELEM_STEREO(a) (a.flags & BOARD_MIXER_ELEM_STEREO)
 
 //
 // Commonly found ids, is not a coincidence they are the same used by Linux kernel ;-)
