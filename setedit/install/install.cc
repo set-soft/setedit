@@ -67,8 +67,10 @@ extra widgets (progress bar): 3176
 #define Uses_TSInputLine
 #define Uses_TSLabel
 #define Uses_TSLabelRadio
+#define Uses_TSRadioButtons
 #define Uses_TSButton
 #define Uses_TSHzGroup
+#define Uses_TSVeGroup
 #define Uses_TSStaticText
 #define Uses_TSNoStaticText
 #define Uses_TSCheckBoxes
@@ -102,7 +104,8 @@ ushort execDialog(TDialog *d, void *data);
 #define CreateCol(a)  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),a))
 
 const int staExit=0x100,staSelType=1,staDestination=2,staMiscOps=3,
-          staConfirm=4,staInstall=5;
+          staDesktopOps=4,staTabOps=5,staBackUpOps=6,staConfirm=7,
+          staInstall=8;
 const int retNext=1,retPrev=-1,retExit=0,retStay=2,retExitUn=3;
 const int cmStart=0x2000,cmbPrev=0x2001,cmbNext=0x2002;
 const int instNormal=0,instProg=1,instDJGPP=2;
@@ -113,6 +116,25 @@ char AddToDesktop=1;
 char AddToMenu   =1;
 char RedmondMenu =0;
 char ExtraScrSave=1;
+char DesktopOps  =0;
+char TabOps      =0;
+char BackUpOps   =1;
+
+// Default Installation Options variables
+typedef struct
+{
+ const char *option;
+ int len;
+ char *var;
+} stOption;
+
+static stOption Options[]=
+{
+ {"CentralDesktopFile",18,&DesktopOps},
+ {"TabsForIndent",13,&TabOps},
+ {"CreateBackUps",13,&BackUpOps}
+};
+const int numOptions=sizeof(Options)/sizeof(stOption);
 
 char *Win95Programs=0;
 char *Win95Desktop=0;
@@ -126,6 +148,26 @@ const char *cAddToDesktop=__("Add a direct access to the desktop");
 const char *cAddToMenu=__("Add setedit to the Start\\Programs menu");
 const char *cRedmondMenu=__("Configure the editor's menu like in Win. programs (eg. ^C=copy)");
 const char *cExtraScrSave=__("Extra screen savers (around 160 Kb)");
+const char *cDesktopOpsTit=__("Desktop files");
+const char *cDesktopOps=__("The editor stores configuration options in files called desktop files. These "
+"files also stores information about what files are opened and the size, "
+"position, etc. of the windows. You can have only one global file for this or "
+"one in each directory you use the editor. Which option do you prefer?");
+const char *cDesktopOps0=__("A desktop file in each directory");
+const char *cDesktopOps1=__("One central desktop file.");
+const char *cTabOpsTit=__("Indent using");
+const char *cTabOps=__("The editor is set by default to indent text using spaces. To configure the "
+"editor to use tabs more than one option must be selected. What do you want to "
+"use for indentation?");
+const char *cTabOps0=__("Spaces");
+const char *cTabOps1=__("Tabs");
+const char *cBackUpOpsTit=__("Backup files");
+const char *cBackUpOps=__("Each time the editor stores a modified file to disk a backup file can be "
+"created in case you want to revert the changes. This is specially useful when "
+"you alredy exited the editor and hence undo option isn't available. Do you "
+"want to create backup files?");
+const char *cBackUpOps0=__("No");
+const char *cBackUpOps1=__("Yes, create backup files");
 
 // XXX.XXX.XXX
 char VersionDots[12];
@@ -231,6 +273,7 @@ FullFile files[]={
 };
 
 const int numFiles=sizeof(files)/sizeof(FullFile);
+void TryToLoadInstOpts(char *path);
 
 int CopyFile(const char *dest, void *ori, long size)
 {
@@ -485,6 +528,8 @@ int AskDestination(char *djdir)
        else
           ret=retStay;
       }
+    if (ret==retNext)
+       TryToLoadInstOpts(Destination);
    }
  return ret;
 }
@@ -691,7 +736,71 @@ int AskMiscOps()
  return ret;
 }
 
+int AskGenericQuestion2Ops(const char *title, const char *desc,
+                           const char *op1, const char *op2, char &var)
+{
+ CreateCol(_(title));
+ TSVeGroup *gr=MakeVeGroup(
+   new TSStaticText(_(desc),60),
+   new TSRadioButtons(new TSItem(_(op1),new TSItem(_(op2),0))),
+   0);
+ gr->makeSameW();
+ col->insert(xTSCenter,1,gr);
+ InsertPrevNextCancel(col);
+ DoAndDel(col,d);
+
+ uint32 ops=var;
+ int ret=Translate(execDialog(d,&ops));
+ if (ret==retNext)
+    var=ops;
+
+ return ret;
+}
+
+int AskDesktopOps()
+{
+ if (TypeInstallation==instNormal)
+   {
+    DesktopOps=1;
+    return retNext;
+   }
+ return AskGenericQuestion2Ops(cDesktopOpsTit,cDesktopOps,cDesktopOps0,
+                               cDesktopOps1,DesktopOps);
+}
+
+int AskTabOps()
+{
+ if (TypeInstallation==instNormal)
+   {
+    TabOps=0;
+    return retNext;
+   }
+ return AskGenericQuestion2Ops(cTabOpsTit,cTabOps,cTabOps0,cTabOps1,TabOps);
+}
+
+int AskBackUpOps()
+{
+ if (TypeInstallation==instNormal)
+   {
+    BackUpOps=1;
+    return retNext;
+   }
+ return AskGenericQuestion2Ops(cBackUpOpsTit,cBackUpOps,cBackUpOps0,
+                               cBackUpOps1,BackUpOps);
+}
+
 const int LinesInList=12;
+
+char *AddOps2(char val, const char *title, const char *op0, const char *op1)
+{
+ char *a=_(title),*b=_(val ? op1 : op0);
+ char *s=new char[strlen(b)+2+strlen(a)+3];
+ strcpy(s,"  ");
+ strcat(s,a);
+ strcat(s,": ");
+ strcat(s,b);
+ return s;
+}
 
 int ConfirmValues()
 {
@@ -730,6 +839,17 @@ int ConfirmValues()
  I(AddToMenu)
  I(RedmondMenu)
  I(ExtraScrSave)
+
+ #undef I
+ #define I(ops) s=AddOps2(ops,c##ops##Tit,c##ops##0,c##ops##1); \
+                strs->insert(s); /*delete[] s;*/ lines++
+ if (TypeInstallation!=instNormal)
+   {
+    char *s;
+    I(DesktopOps);
+    I(TabOps);
+    I(BackUpOps);
+   }
 
  CreateCol(_("Confirm options"));
  TSTextScroller *s=new TSTextScroller(70,LinesInList,strs,1,lines>LinesInList);
@@ -927,6 +1047,8 @@ int DoInstall()
     fprintf(f,"AddToMenu=%d\n",AddToMenu);
     fprintf(f,"RedmondMenu=%d\n",RedmondMenu);
     fprintf(f,"TypeInstallation=%d\n",TypeInstallation);
+    for (i=0; i<numOptions; i++)
+        fprintf(f,"%s=%d\n",Options[i].option,*Options[i].var);
     fclose(f);
    }
 
@@ -973,6 +1095,44 @@ int DoInstall()
  #endif
  ProgBar_DeInit();
  return 1;
+}
+
+void TryToLoadInstOpts(char *path)
+{
+ char b[PATH_MAX],slash,*s;
+ int i;
+
+ strcpy(b,path);
+ slash=b[strlen(b)-1];
+ if (slash!='\\' && slash!='/')
+    strcat(b,"/");
+ strcat(b,"/share/setedit/install.log");
+
+ FILE *f=fopen(b,"rt");
+ if (!f)
+    return;
+ do
+   {
+    if (fgets(b,PATH_MAX,f) && *b!='#')
+      {
+       for (s=b; *s && isspace(*s); s++); // Eat spaces
+       for (i=0; i<numOptions; i++)
+           if (strncasecmp(s,Options[i].option,Options[i].len)==0)
+              break;
+       if (i!=numOptions)
+         {
+          s+=Options[i].len;
+          // Move after =
+          for (; *s && *s!='='; s++);
+          if (*s) s++;
+          for (; *s && isspace(*s); s++);
+          // Get the option
+          *(Options[i].var)=*s=='1';
+         }
+      }
+   }
+ while (!feof(f));
+ fclose(f);
 }
 
 void SearchOldSET_FILES()
@@ -1344,8 +1504,10 @@ int IsWindowsNT()
  return s && strcasecmp(s,"Windows_NT")==0;
 }
 
-#define MoveNext(prev,next) if (ret==retNext) state=next; \
-                            else if (ret==retPrev) state=prev;
+#define MoveNextS(prev,next) if (ret==retNext) state=next; \
+                             else if (ret==retPrev) state=prev;
+#define MoveNext() if (ret==retNext) state++; \
+                   else if (ret==retPrev) state--;
 
 void Installer::Start()
 {
@@ -1383,15 +1545,27 @@ void Installer::Start()
             // Ask the destination:
             //ret=AskDestination(0);// Test
             ret=AskDestination(djdir);
-            MoveNext(staSelType,staMiscOps);
+            MoveNext();
             break;
        case staMiscOps:
             ret=AskMiscOps();
-            MoveNext(staDestination,staConfirm);
+            MoveNext();
+            break;
+       case staDesktopOps:
+            ret=AskDesktopOps();
+            MoveNext();
+            break;
+       case staTabOps:
+            ret=AskTabOps();
+            MoveNext();
+            break;
+       case staBackUpOps:
+            ret=AskBackUpOps();
+            MoveNext();
             break;
        case staConfirm:
             ret=ConfirmValues();
-            MoveNext(staSelType,staInstall);
+            MoveNextS(staSelType,staInstall);
             break;
       }
     if (ret==retExitUn || (ret==retExit && ConfirmExit()))

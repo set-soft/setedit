@@ -79,8 +79,8 @@ static stOption Options[]=
 };
 
 const int numOptions=sizeof(Options)/sizeof(stOption);
-const char *dioFile="instopts.txt";
-const int dioMaxLine=132;
+const char *dioFile="install.log";
+const int dioMaxLine=PATH_MAX;
 
 /**[txh]********************************************************************
 

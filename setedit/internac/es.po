@@ -1,12 +1,12 @@
 # Este es el archivo de traducci¢n a espa¤ol.
-# Copyright (C) 2001 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001.
+# Copyright (C) 2001-2002 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2002.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.4.54\n"
-"PO-Revision-Date: 2002-01-29 11:16-0300\n"
+"Project-Id-Version: setedit 0.4.55\n"
+"PO-Revision-Date: 2002-02-06 16:37-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,8 @@ msgstr "E~v~aluar"
 
 #: ../calcu/calcu.cc:86 ../easydiag/tsbutton.cc:57 ../easydiag/tsbutton.cc:66
 #: ../infview/inf.cc:2295 ../infview/inf.cc:2318 ../infview/inf.cc:2343
-#: ../infview/inf.cc:2367 ../infview/inf.cc:2422 ../install/install.cc:398
-#: ../install/install.cc:406 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:666
+#: ../infview/inf.cc:2367 ../infview/inf.cc:2422 ../install/install.cc:441
+#: ../install/install.cc:449 ../internac/tvision.cc:25 ../mainsrc/bufun.cc:666
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:183
@@ -67,7 +67,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:182 ../mainsrc/slpinter.cc:420
-#: ../setedit/advice.cc:110 ../setedit/boardmix.cc:116
+#: ../setedit/advice.cc:112 ../setedit/boardmix.cc:116
 #: ../setedit/edprefs.cc:543 ../setedit/edprefs.cc:769
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:392 ../setedit/tips.cc:213
 msgid "O~K~"
@@ -228,7 +228,7 @@ msgstr "I~r~ a"
 msgid "~M~arks"
 msgstr "~M~arcas"
 
-#: ../infview/infbase.cc:262
+#: ../infview/infbase.cc:263
 msgid ""
 "Attention !! this file is in DOS format, Do you want convert it?, Make a "
 "backup first !!"
@@ -236,24 +236,24 @@ msgstr ""
 "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga una "
 "copia primero"
 
-#: ../infview/infbase.cc:279
+#: ../infview/infbase.cc:280
 msgid "Error: can't find the Node info"
 msgstr "Error: no puedo hallar el Nodo"
 
-#: ../infview/infbase.cc:1046
+#: ../infview/infbase.cc:1047
 msgid "Reading index table for: "
 msgstr "Leyendo el ¡ndice de: "
 
-#: ../infview/infbase.cc:1134
+#: ../infview/infbase.cc:1135
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1302
+#: ../infview/infbase.cc:1303
 #, c-format
 msgid "Attention can't open the help file '%s'."
 msgstr "Atenci¢n no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1846
+#: ../infview/infbase.cc:1854
 msgid ""
 "\n"
 " Sorry I can't find this link (press ALT-F1).\n"
@@ -274,12 +274,12 @@ msgstr "Co~d~ificaci¢n primaria"
 msgid "This terminal have a fixed code page"
 msgstr "Esta terminal no soporta cambios de p gina de caracteres"
 
-#: ../infview/infmain.cc:368 ../setedit/dstfile.cc:235
+#: ../infview/infmain.cc:368 ../setedit/dstfile.cc:331
 #, c-format
 msgid "Could not create %s."
 msgstr "No puedo crear %s."
 
-#: ../infview/infmain.cc:409 ../setedit/dstfile.cc:171
+#: ../infview/infmain.cc:409 ../setedit/dstfile.cc:267
 msgid "Could not open desktop file"
 msgstr "No puedo abrir el archivo del escritorio"
 
@@ -287,7 +287,7 @@ msgstr "No puedo abrir el archivo del escritorio"
 msgid "Wrong desktop file"
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../infview/infmain.cc:419 ../setedit/dstfile.cc:176
+#: ../infview/infmain.cc:419 ../setedit/dstfile.cc:272
 msgid "Error reading desktop file"
 msgstr "Error al leer el archivo de escritorio"
 
@@ -582,73 +582,143 @@ msgstr "~S~ecci¢n"
 msgid "~E~xtra options"
 msgstr "Opciones ~e~xtra"
 
-#: ../install/install.cc:122
+#: ../install/install.cc:144
 msgid "Type of installation"
 msgstr "Tipo de instalaci¢n"
 
-#: ../install/install.cc:123
+#: ../install/install.cc:145
 msgid "Destination directory"
 msgstr "Directorio de destino"
 
-#: ../install/install.cc:124
+#: ../install/install.cc:146
 msgid "Miscellaneous options"
 msgstr "Opciones varias"
 
-#: ../install/install.cc:125
+#: ../install/install.cc:147
 msgid "Add a direct access to the desktop"
 msgstr "Agregar un acceso directo al escritorio"
 
-#: ../install/install.cc:126
+#: ../install/install.cc:148
 msgid "Add setedit to the Start\\Programs menu"
 msgstr "Agregar setedit al men£ Inicio\\Programas"
 
-#: ../install/install.cc:127
+#: ../install/install.cc:149
 msgid "Configure the editor's menu like in Win. programs (eg. ^C=copy)"
 msgstr "Configurar el men£ como en los programas Windows (ej.^C=copiar)"
 
-#: ../install/install.cc:128
+#: ../install/install.cc:150
 msgid "Extra screen savers (around 160 Kb)"
 msgstr "Salva pantallas extra (aprox. 160 Kb)"
 
-#: ../install/install.cc:252
+#: ../install/install.cc:151
+msgid "Desktop files"
+msgstr "Archivos de escritorio"
+
+#: ../install/install.cc:152
+msgid ""
+"The editor stores configuration options in files called desktop files. These "
+"files also stores information about what files are opened and the size, "
+"position, etc. of the windows. You can have only one global file for this or "
+"one in each directory you use the editor. Which option do you prefer?"
+msgstr ""
+"El editor guarda las opciones de configuraci¢n en archivos llamados de escritorio. "
+"Estos archivos guardan informaci¢n acerca de los archivos abiertos y el tama¤o, "
+"posici¢n, etc. de las ventanas. Ud. puede tener s¢lo uno de estos archivos o bien "
+"uno en cada directorio donde use el editor. ¨Qu‚ prefiere?"
+
+#: ../install/install.cc:156
+msgid "A desktop file in each directory"
+msgstr "Uno en cada directorio"
+
+#: ../install/install.cc:157
+msgid "One central desktop file."
+msgstr "Uno £nico centralizado."
+
+#: ../install/install.cc:158
+msgid "Indent using"
+msgstr "Indentar usando"
+
+#: ../install/install.cc:159
+msgid ""
+"The editor is set by default to indent text using spaces. To configure the "
+"editor to use tabs more than one option must be selected. What do you want "
+"to use for indentation?"
+msgstr ""
+"El editor viene configurado para indentar el texto usando espacios. Para "
+"configurarlo usando tabs m s de una opci¢n debe ser seleccionada. ¨Qu‚ desea "
+"usar para indentar?"
+
+#: ../install/install.cc:162
+msgid "Spaces"
+msgstr "Espacios"
+
+#: ../install/install.cc:163
+msgid "Tabs"
+msgstr "Tabs"
+
+#: ../install/install.cc:164
+msgid "Backup files"
+msgstr "Archivos de respaldo"
+
+#: ../install/install.cc:165
+msgid ""
+"Each time the editor stores a modified file to disk a backup file can be "
+"created in case you want to revert the changes. This is specially useful "
+"when you alredy exited the editor and hence undo option isn't available. Do "
+"you want to create backup files?"
+msgstr ""
+"Cada vez que el editor guarda en disco un archivo modificado es posible "
+"crear un respaldo en caso de que desee revertir los cambios. Esto es "
+"especialmente £til cuando ya sali¢n del editor y por lo tanto no se puede "
+"usar la opci¢n deshacer. ¨Desea crear archivos de respaldo?"
+
+#: ../install/install.cc:169
+msgid "No"
+msgstr "No"
+
+#: ../install/install.cc:170
+msgid "Yes, create backup files"
+msgstr "Si, crear archivos de respaldo"
+
+#: ../install/install.cc:295
 msgid "Can't create the directory:"
 msgstr "No puedo crear el directorio:"
 
-#: ../install/install.cc:260
+#: ../install/install.cc:303
 msgid "File name in path:"
 msgstr "Nombre de archivo en la ruta:"
 
-#: ../install/install.cc:312
+#: ../install/install.cc:355
 msgid ""
 "~Ctrl-F4~ Finish edition, or click in the button found in the top left corner"
 msgstr ""
 "~Ctrl-F4~ Terminar, o haga click en el bot¢n del  ngulo superior izquierdo"
 
-#: ../install/install.cc:315
+#: ../install/install.cc:358
 msgid "~ESC~ Aborts installation"
 msgstr "~ESC~ Aborta la instalaci¢n"
 
-#: ../install/install.cc:355
+#: ../install/install.cc:398
 msgid "Are you sure you want to abort the installation?"
 msgstr "¨Esta seguro que desea abortar la instalaci¢n?"
 
-#: ../install/install.cc:359
+#: ../install/install.cc:402
 msgid "Select the type"
 msgstr "Seleccione el tipo"
 
-#: ../install/install.cc:360 ../internac/tvision.cc:47
+#: ../install/install.cc:403 ../internac/tvision.cc:47
 msgid "Normal"
 msgstr "Normal"
 
-#: ../install/install.cc:361
+#: ../install/install.cc:404
 msgid "For programmers"
 msgstr "Para programadores"
 
-#: ../install/install.cc:362
+#: ../install/install.cc:405
 msgid "For djgpp programmers"
 msgstr "Para programadores con djgpp"
 
-#: ../install/install.cc:387
+#: ../install/install.cc:430
 msgid ""
 "Looks like djgpp isn't installed. DJGPP environment variable isn't defined "
 "or is wrong. Exit to fix it first?"
@@ -656,38 +726,39 @@ msgstr ""
 "Parece que djgpp no est  instalado. La variable de entorno DJGPP no est  "
 "definida o est  mal definida. ¨Desea arreglar esto antes de instalar?"
 
-#: ../install/install.cc:396
+#: ../install/install.cc:439
 msgid "< ~P~rev"
 msgstr "< ~A~nterior"
 
-#: ../install/install.cc:397
+#: ../install/install.cc:440
 msgid "> ~N~ext"
 msgstr "> P~r~¢xima"
 
-#: ../install/install.cc:404 ../internac/tvision.cc:110
-#: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:99 ../setedit/advice.cc:106
+#: ../install/install.cc:447 ../internac/tvision.cc:110
+#: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:101
+#: ../setedit/advice.cc:108
 msgid "~Y~es"
 msgstr "~S~i"
 
-#: ../install/install.cc:405 ../internac/tvision.cc:111
-#: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:100
-#: ../setedit/advice.cc:105
+#: ../install/install.cc:448 ../internac/tvision.cc:111
+#: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:102
+#: ../setedit/advice.cc:107
 msgid "~N~o"
 msgstr "~N~o"
 
-#: ../install/install.cc:440
+#: ../install/install.cc:483
 msgid "Where do you want to install the editor?"
 msgstr "¨Donde desea instalar el editor?"
 
-#: ../install/install.cc:469
+#: ../install/install.cc:512
 msgid "Invalid drive"
 msgstr "Disco inv lido"
 
-#: ../install/install.cc:475
+#: ../install/install.cc:518
 msgid "Can't create files there"
 msgstr "No puedo crear archivos en ese lugar"
 
-#: ../install/install.cc:481
+#: ../install/install.cc:524
 msgid ""
 "You already installed (or tried) the editor, but in a different place. Do "
 "you want to continue?"
@@ -695,11 +766,11 @@ msgstr ""
 "Ud. ya ha instalado (o al menos intent¢) el editor, pero en un lugar "
 "diferente. ¨Desea continuar?"
 
-#: ../install/install.cc:569
+#: ../install/install.cc:614
 msgid "Searching Windows information"
 msgstr "Buscando informaci¢n de Windows"
 
-#: ../install/install.cc:571
+#: ../install/install.cc:616
 msgid ""
 "Windows 9x or similar detected, wait while\n"
 "finding information about your system"
@@ -707,74 +778,74 @@ msgstr ""
 "Windows 9x o similar fue detectado, por favor\n"
 "espere mientras busco informaci¢n sobre su sistema"
 
-#: ../install/install.cc:572 ../install/install.cc:589
+#: ../install/install.cc:617 ../install/install.cc:634
 msgid "Looking in registry       "
 msgstr "Buscando en el registro            "
 
-#: ../install/install.cc:584
+#: ../install/install.cc:629
 msgid "Searching programs dir"
 msgstr "Buscando el directorio de programas"
 
-#: ../install/install.cc:592
+#: ../install/install.cc:637
 msgid "Searching desktop and menu"
 msgstr "Buscando el escritorio y el men£   "
 
-#: ../install/install.cc:705
+#: ../install/install.cc:814
 msgid "  Normal"
 msgstr "  Normal"
 
-#: ../install/install.cc:708
+#: ../install/install.cc:817
 msgid "  For programmers"
 msgstr "  Para programadores"
 
-#: ../install/install.cc:711
+#: ../install/install.cc:820
 msgid "  For djgpp programmers"
 msgstr "  Para programadores con djgpp"
 
-#: ../install/install.cc:734
+#: ../install/install.cc:854
 msgid "Confirm options"
 msgstr "Confirmar opciones"
 
-#: ../install/install.cc:736
+#: ../install/install.cc:856
 msgid "Are these options correct?"
 msgstr "¨Son correctas estas opciones?"
 
 #. Put some message to left space for the file names
-#: ../install/install.cc:838
+#: ../install/install.cc:958
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../install/install.cc:838
+#: ../install/install.cc:958
 msgid "Installing files for the editor"
 msgstr "Instalando archivos del editor"
 
-#: ../install/install.cc:848
+#: ../install/install.cc:968
 #, c-format
 msgid "Unable to uncompress %s, most probably this file is damaged"
 msgstr ""
 "No puedo descomprimir %s, lo m s probable es que el archivo este da¤ado"
 
-#: ../install/install.cc:878
+#: ../install/install.cc:998
 msgid "Replacing default menu"
 msgstr "Reemplazando el men£ original"
 
-#: ../install/install.cc:891
+#: ../install/install.cc:1011
 msgid "Unable to uncompress files, most probably this file is damaged"
 msgstr "No puedo descomprimir archivos, probablemente esten da¤ados"
 
-#: ../install/install.cc:937
+#: ../install/install.cc:1059
 msgid "Adding icon to desktop"
 msgstr "Agregando un ¡cono al escritorio"
 
-#: ../install/install.cc:952
+#: ../install/install.cc:1074
 msgid "Adding icon to menu"
 msgstr "Agregando un ¡cono al men£"
 
-#: ../install/install.cc:968
+#: ../install/install.cc:1090
 msgid "Simplifying configuration"
 msgstr "Simplificando la configuraci¢n"
 
-#: ../install/install.cc:990
+#: ../install/install.cc:1150
 msgid ""
 "You defined SET_FILES environment variable in a way that isn't compatible "
 "with the installer, be careful"
@@ -782,15 +853,15 @@ msgstr ""
 "Ud. defini¢ la variable de entorno SET_FILES de una manera que es "
 "incompatible con el instalador, ­tenga cuidado!"
 
-#: ../install/install.cc:1070
+#: ../install/install.cc:1230
 msgid "You modified the autoexec.bat, Do you want to save the changes?"
 msgstr "El autoexec.bat fue modificado, ¨Desea guardar los cambios?"
 
-#: ../install/install.cc:1106
+#: ../install/install.cc:1266
 msgid "Instructions for edition"
 msgstr "Instrucciones para editar"
 
-#: ../install/install.cc:1107
+#: ../install/install.cc:1267
 msgid ""
 "Now I'll give you the oportunity to edit the autoexec.bat. To finish click "
 "in the small rectable found in the top-left corner or press Ctrl+F4."
@@ -799,7 +870,7 @@ msgstr ""
 "peque¤o rect ngulo hubicado en el el  ngulo superior izquierdo o presione "
 "Ctrl+F4"
 
-#: ../install/install.cc:1112
+#: ../install/install.cc:1272
 msgid ""
 "I added the needed command, it is marked with a comment. Please don't remove "
 "the comment is used to know where is the text added by the installer."
@@ -808,11 +879,11 @@ msgstr ""
 "favor no quite este comentario ya que es necesario para saber donde est  "
 "hubicado."
 
-#: ../install/install.cc:1117
+#: ../install/install.cc:1277
 msgid "The text I suggest to add is currently in the clipboard."
 msgstr "El texto que le sugiero agregar se encuentra en el porta papeles."
 
-#: ../install/install.cc:1120
+#: ../install/install.cc:1280
 msgid ""
 "You can move lines using:\n"
 "Shift + arrows keys: Select text\n"
@@ -830,40 +901,40 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acci¢n)"
 
-#: ../install/install.cc:1123 ../mp3/mp3list.cc:333 ../setedit/edkeys.cc:507
+#: ../install/install.cc:1283 ../mp3/mp3list.cc:333 ../setedit/edkeys.cc:507
 #: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:143
 msgid "~O~k"
 msgstr "~O~k"
 
-#: ../install/install.cc:1186
+#: ../install/install.cc:1346
 msgid "Do it yourself editing autoexec.bat later"
 msgstr "Hacerlo ud. editando el autoexec.bat luego"
 
-#: ../install/install.cc:1187
+#: ../install/install.cc:1347
 msgid "Do it yourself but now"
 msgstr "Hacerlo ud. ahora"
 
-#: ../install/install.cc:1188
+#: ../install/install.cc:1348
 msgid "Let me do it and show you the result"
 msgstr "Dejar que yo lo haga y le muestre el resultado"
 
-#: ../install/install.cc:1189
+#: ../install/install.cc:1349
 msgid "Let me do it and don't show you the result"
 msgstr "Dejar que yo lo haga sin mostrarselo"
 
-#: ../install/install.cc:1190
+#: ../install/install.cc:1350
 msgid "Select how to do it"
 msgstr "Seleccione como hacerlo"
 
-#: ../install/install.cc:1196
+#: ../install/install.cc:1356
 msgid "Error creating autoexec.bat"
 msgstr "Error al crear el autoexec.bat"
 
-#: ../install/install.cc:1213
+#: ../install/install.cc:1373
 msgid "Configuring the system"
 msgstr "Configurando el sistema"
 
-#: ../install/install.cc:1215
+#: ../install/install.cc:1375
 msgid ""
 "The editor was succesfully installed, now you must add the directory\n"
 "where the editor was installed to your PATH, like this:"
@@ -871,43 +942,43 @@ msgstr ""
 "El editor fue exitosamente instalado, ahora debe agregar el directorio\n"
 "donde el editor fue instalado a su PATH de esta manera:"
 
-#: ../install/install.cc:1245
+#: ../install/install.cc:1405
 msgid "Sorry, I can't find autoexec.bat"
 msgstr "Lo lamento, no puedo hallar el autoexec.bat"
 
-#: ../install/install.cc:1260
+#: ../install/install.cc:1420
 msgid "Can't backup the autoexec.bat, sorry do it by hand"
 msgstr ""
 "No puedo crear una copia de resplado del autoexec.bat, deber  hacer los "
 "cambios manualmente"
 
-#: ../install/install.cc:1304
+#: ../install/install.cc:1464
 msgid "Can't create temporal copy of autoexec.bat"
 msgstr "No puedo crear una copia temporal del autoexec.bat"
 
-#: ../install/install.cc:1317
+#: ../install/install.cc:1477
 msgid "A copy of the original autoexec.bat was stored in autoexec.bak"
 msgstr "Una copia del autoexec.bat original fue guardada como autoexec.bak"
 
-#: ../install/install.cc:1363
+#: ../install/install.cc:1525
 msgid "SET Edit installer v1.10, copyright (c) 1999 by Salvador E. Tropea"
 msgstr ""
 "Instalador de SET Edit v1.10, copyright (c) 1999 by Salvador E. Tropea"
 
-#: ../install/install.cc:1368
+#: ../install/install.cc:1530
 msgid "Failed, disabling all or part of the Win9x specific stuff"
 msgstr "Error, deshabilitando todo o parte del soporte espec¡fico para Win9x"
 
-#: ../install/install.cc:1404
+#: ../install/install.cc:1578
 msgid "Don't forget to update your autoexec.bat later!"
 msgstr "­No olvide actualizar su autoexec.bat m s tarde!"
 
-#: ../install/install.cc:1406
+#: ../install/install.cc:1580
 #, c-format
 msgid "Editor installed succesfully%s. Run it using e.bat"
 msgstr "Editor instalado con ‚xito%s. Inv¢quelo usando e.bat"
 
-#: ../install/install.cc:1407
+#: ../install/install.cc:1581
 msgid ", after rebooting your system you'll be able to use the editor"
 msgstr ", luego de reinicializar su sistem ud. podr  usarlo"
 
@@ -1205,19 +1276,19 @@ msgstr "Error al leer el archivo "
 msgid "Error writing file "
 msgstr "Error al escribir el archivo "
 
-#: ../internac/tvision.cc:101 ../mainsrc/doedidia.cc:79
+#: ../internac/tvision.cc:101 ../mainsrc/doedidia.cc:80
 msgid "Error creating file "
 msgstr "Error al crear el archivo "
 
-#: ../internac/tvision.cc:102 ../mainsrc/doedidia.cc:88
+#: ../internac/tvision.cc:102 ../mainsrc/doedidia.cc:91
 msgid " has been modified. Save?"
 msgstr " ha sido modificado. ¨Grabo?"
 
-#: ../internac/tvision.cc:103 ../mainsrc/doedidia.cc:93
+#: ../internac/tvision.cc:103 ../mainsrc/doedidia.cc:96
 msgid "Save untitled file?"
 msgstr "¨Grabo el archivo sin t¡tulo?"
 
-#: ../internac/tvision.cc:104 ../mainsrc/doedidia.cc:96
+#: ../internac/tvision.cc:104 ../mainsrc/doedidia.cc:99
 msgid "Save file as"
 msgstr "Grabar como"
 
@@ -1225,7 +1296,7 @@ msgstr "Grabar como"
 msgid "~N~ame"
 msgstr "~N~ombre"
 
-#: ../internac/tvision.cc:106 ../mainsrc/doedidia.cc:118
+#: ../internac/tvision.cc:106 ../mainsrc/doedidia.cc:121
 msgid "Search string not found."
 msgstr "No se pudo hallar el texto."
 
@@ -1299,16 +1370,16 @@ msgstr "Hmmm ... no puedo encontrar ninguna funci¢n ¨est  seguro?"
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:3913
+#: ../mainsrc/ceditor.cc:4002
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 l¡neas"
 
-#: ../mainsrc/ceditor.cc:3932
+#: ../mainsrc/ceditor.cc:4021
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f l¡neas/segundo"
 
-#: ../mainsrc/ceditor.cc:3955
+#: ../mainsrc/ceditor.cc:4044
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1319,7 +1390,7 @@ msgstr ""
 "Velocidad: %f l¡neas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:3989
+#: ../mainsrc/ceditor.cc:4078
 msgid ""
 "Time: %f seconds\n"
 "Speed: %f lines/second\n"
@@ -1331,16 +1402,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5385
+#: ../mainsrc/ceditor.cc:5486
 msgid "No match found"
 msgstr "No encontr‚ el complemento"
 
-#: ../mainsrc/ceditor.cc:5397
+#: ../mainsrc/ceditor.cc:5498
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la l¡nea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:9528
+#: ../mainsrc/ceditor.cc:9629
 msgid ""
 "This file contains ASCII 0 values, all the characters after it in this line "
 "becomes invisible. Be careful."
@@ -1348,29 +1419,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podr n ver en esa l¡nea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:9543
+#: ../mainsrc/ceditor.cc:9644
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10269
+#: ../mainsrc/ceditor.cc:10376
 msgid "Unhandled syntax highlight"
 msgstr "­Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11208
+#: ../mainsrc/ceditor.cc:11315
 msgid "Unhandled undo"
 msgstr "­Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11419
+#: ../mainsrc/ceditor.cc:11526
 msgid "Unhandled redo"
 msgstr "­Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:12559
+#: ../mainsrc/ceditor.cc:12669
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d l¡neas)."
 
-#: ../mainsrc/ceditor.cc:12567
+#: ../mainsrc/ceditor.cc:12677
 msgid "Stat failed."
 msgstr "­Fallo al usar 'stat'!"
 
@@ -1675,7 +1746,7 @@ msgid "Export Options"
 msgstr "Opciones para exportar"
 
 #: ../mainsrc/deedidia.cc:367 ../setedit/intgrep.cc:390
-#: ../setedit/runprog.cc:110
+#: ../setedit/runprog.cc:115
 msgid "~O~ptions"
 msgstr "~O~pciones"
 
@@ -1721,40 +1792,45 @@ msgstr "Texto a usar para indentar"
 msgid "Data saved to file: %s"
 msgstr "Datos guardados en: %s"
 
-#: ../mainsrc/doedidia.cc:104
+#: ../mainsrc/doedidia.cc:87
+msgid "Error creating temporal file, operation aborted"
+msgstr "Error al crear archivo temporario, operaci¢n abortada"
+
+#: ../mainsrc/doedidia.cc:107
 msgid "Write to file"
 msgstr "Guardar a un archivo"
 
-#: ../mainsrc/doedidia.cc:107
+#: ../mainsrc/doedidia.cc:110
 msgid "Read from file"
 msgstr "Leer desde un archivo"
 
-#: ../mainsrc/doedidia.cc:138
+#: ../mainsrc/doedidia.cc:141
 msgid " bytes selected, in "
 msgstr " caracteres seleccionados en "
 
-#: ../mainsrc/doedidia.cc:138
+#: ../mainsrc/doedidia.cc:141
 msgid " lines"
 msgstr " l¡neas"
 
-#: ../mainsrc/doedidia.cc:202
+#: ../mainsrc/doedidia.cc:205
 msgid "Line too long, cut it?"
 msgstr "L¡nea demasiado larga, ¨la corto?"
 
-#: ../mainsrc/doedidia.cc:206
+#: ../mainsrc/doedidia.cc:209
 msgid "Line extremely long, can't handle it reliably, sorry"
 msgstr ""
 "L¡nea extremadamente larga, no puede ser manejado correctamente, lo lamento"
 
-#: ../mainsrc/doedidia.cc:210
+#: ../mainsrc/doedidia.cc:213
 msgid "This file isn't in disk!"
 msgstr "­Este archivo no se encuentra en disco!"
 
-#: ../mainsrc/doedidia.cc:214
-msgid "The file is read-only, try to revert it?"
-msgstr "El archivo es de solo lectura, ¨revierto esto?"
+#: ../mainsrc/doedidia.cc:220
+#, c-format
+msgid "The file %s is read-only, try to revert it?"
+msgstr "El archivo %s es de solo lectura, ¨revierto esto?"
 
-#: ../mainsrc/doedidia.cc:217
+#: ../mainsrc/doedidia.cc:223
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -1762,31 +1838,31 @@ msgstr ""
 "No pude revertir el atributo de solo lectura, ud. no podr  sobreescribir "
 "este archivo"
 
-#: ../mainsrc/doedidia.cc:221
+#: ../mainsrc/doedidia.cc:227
 msgid "This action doesn't have undo, are you sure?"
 msgstr "Esta acci¢n no puede deshacerse, ¨est  seguro?"
 
-#: ../mainsrc/doedidia.cc:225
+#: ../mainsrc/doedidia.cc:231
 msgid " already exist, overwrite?"
 msgstr " ya existe, ¨lo sobreescribo?"
 
-#: ../mainsrc/doedidia.cc:231
+#: ../mainsrc/doedidia.cc:237
 msgid " isn't a file, probably a device, go ahead?"
 msgstr " no es un archivo, probablemente un dispositivo, ¨continuo?"
 
-#: ../mainsrc/doedidia.cc:237
+#: ../mainsrc/doedidia.cc:243
 msgid "Can't make a back up file, continue saving?"
 msgstr "No puedo crear un archivo de respaldo, ¨continuo?"
 
-#: ../mainsrc/doedidia.cc:240
+#: ../mainsrc/doedidia.cc:246
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "No se puede pegar un rect ngulo que cruce el fin del archivo"
 
-#: ../mainsrc/doedidia.cc:251
+#: ../mainsrc/doedidia.cc:257
 msgid "No pseudo macros available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/doedidia.cc:268
+#: ../mainsrc/doedidia.cc:274
 msgid "The file is compressed. Do you want to save compressing?"
 msgstr "El archivo est  comprimido. ¨Desea guardarlo comprimido?"
 
@@ -2236,9 +2312,8 @@ msgid "~L~oad"
 msgstr "~C~argar"
 
 #: ../sdg/mliediti.cc:74
-#, fuzzy
 msgid "Return value:"
-msgstr "valor desconocido"
+msgstr "Valor retornado:"
 
 #: ../sdg/mli.cc:1359
 msgid "unknown"
@@ -2275,7 +2350,7 @@ msgstr "valor desconocido"
 
 #: ../sdg/mli.cc:1375
 msgid "stack overflow"
-msgstr ""
+msgstr "desborde de pila (stack)"
 
 #: ../sdg/mli.cc:1380
 msgid "command where a parameter was expected"
@@ -2362,11 +2437,23 @@ msgstr ""
 "nombres de los directorios, sino con los nombres de los archivos. No olvide "
 "este detalle."
 
-#: ../setedit/advice.cc:76
+#: ../setedit/advice.cc:50
+msgid ""
+"When using real tabs the following options are usually desired: Autoindent "
+"ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, "
+"Tab smart indents OFF, Use indent size OFF and Backspace unindents OFF.\n"
+"I see not all are selected this way."
+msgstr ""
+"Cuando se usan verdaderos tabs usualmente es deseable utilizar las siguientes "
+"opciones: Autoindentar SI, Indentado de C inteligente NO, Rellenado ¢ptimo SI, "
+"El tab indenta buscando huecos NO, Usar el valor de 'indentado' NO y "
+"La tecla <- desindenta NO. Veo que no todas est n seleccionadas de esta manera."
+
+#: ../setedit/advice.cc:78
 msgid "Advice"
 msgstr "Concejo"
 
-#: ../setedit/advice.cc:91 ../setedit/editdiag.cc:72
+#: ../setedit/advice.cc:93 ../setedit/editdiag.cc:72
 msgid "Don't show it next time"
 msgstr "No mostrar esto la pr¢xima vez"
 
@@ -2506,15 +2593,15 @@ msgstr "   P gina del manual: "
 msgid "   MP3 Control panel"
 msgstr "   Panel de control MP3"
 
-#: ../setedit/dstfile.cc:481
+#: ../setedit/dstfile.cc:577
 msgid "Wrong desktop file."
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../setedit/dstfile.cc:487
+#: ../setedit/dstfile.cc:583
 msgid "The desktop file is too old."
 msgstr "El archivo de escritorio es de una version muy vieja."
 
-#: ../setedit/dstfile.cc:492
+#: ../setedit/dstfile.cc:588
 msgid "You need a newer editor for this desktop file."
 msgstr ""
 "Ud. necesita una nueva versi¢n del editor para este archivo de escritorio."
@@ -2528,18 +2615,18 @@ msgid "About"
 msgstr "Acerca de"
 
 #: ../setedit/editdiag.cc:64
-#, fuzzy, c-format
+#, c-format
 msgid "That's SET's Editor v%lX.%lX.%lX, (c) 1996-2002"
-msgstr "Este es el editor de SET v%lX.%lX.%lX, (c) 1996-2001"
+msgstr "Este es el editor de SET v%lX.%lX.%lX, (c) 1996-2002"
 
 #: ../setedit/editdiag.cc:68 ../setedit/editdiag.cc:111
 msgid "by Salvador Eduardo Tropea"
 msgstr "hecho por Salvador Eduardo Tropea"
 
 #: ../setedit/editdiag.cc:103
-#, fuzzy, c-format
+#, c-format
 msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2002"
-msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2001"
+msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2002"
 
 #: ../setedit/editdiag.cc:115
 msgid "Made in Argentina"
@@ -2558,9 +2645,8 @@ msgid "DJ Delorie and colaborators for porting it to DOS"
 msgstr "DJ Delorie y sus colaboradores por portarlas a DOS"
 
 #: ../setedit/editdiag.cc:127
-#, fuzzy
 msgid "Robert H”hne for porting TVision and making RHIDE"
-msgstr "Robert H”hne por portar TV y comenzar RHIDE"
+msgstr "Robert H”hne por portar TV y crear RHIDE"
 
 #: ../setedit/editdiag.cc:128
 msgid "Vadim Belodorov for contributing the first port of TV to Win32"
@@ -2743,14 +2829,12 @@ msgstr ""
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
 #: ../setedit/editmain.cc:1932
-#, fuzzy
 msgid "-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"
 msgstr ""
 "-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, "
 "limitado].\n"
 
 #: ../setedit/editmain.cc:1933
-#, fuzzy
 msgid ""
 "-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster, default].\n"
 msgstr ""
@@ -3398,6 +3482,14 @@ msgstr "~D~esplazar Arriba"
 msgid "Scroll ~D~own"
 msgstr "Desplazar A~b~ajo"
 
+#: ../setedit/editmenu.cc:304
+msgid "Cop~y~ to file Clipboard"
+msgstr "Cop~i~ar al Pota. de archivo"
+
+#: ../setedit/editmenu.cc:305
+msgid "Paste ~f~rom file Clipboard"
+msgstr "Pegar desde el Pota. de arc~h~ivo"
+
 #: ../setedit/editpale.cc:107
 msgid "Palette editor"
 msgstr "Paleta del editor"
@@ -3525,7 +3617,7 @@ msgstr "~T~eclados norteamericanos y otros"
 msgid "~G~reek keyboard (CP 737)"
 msgstr "Teclado ~g~riego (CP 737)"
 
-#: ../setedit/edmsg.cc:384
+#: ../setedit/edmsg.cc:393
 msgid "Message Window"
 msgstr "Ventana de Mensajes"
 
@@ -3830,7 +3922,7 @@ msgstr "S~i~empre"
 msgid "~O~nly if no file specified"
 msgstr "S¢~l~o si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:905 ../setedit/runprog.cc:116
+#: ../setedit/edprefs.cc:905 ../setedit/runprog.cc:121
 msgid "~N~ever"
 msgstr "~N~unca"
 
@@ -3838,7 +3930,7 @@ msgstr "~N~unca"
 msgid "Remmember other windows"
 msgstr "Recordar otras ventanas"
 
-#: ../setedit/edprefs.cc:907 ../setedit/runprog.cc:116
+#: ../setedit/edprefs.cc:907 ../setedit/runprog.cc:121
 msgid "E~v~er"
 msgstr "~S~iempre"
 
@@ -4294,81 +4386,97 @@ msgstr "Directorios para buscar archivos bajo el cursor"
 msgid "Directory"
 msgstr "Directorio"
 
-#: ../setedit/runprog.cc:71
+#: ../setedit/runprog.cc:76
 #, c-format
 msgid "Running %s"
 msgstr "Ejecutando %s"
 
-#: ../setedit/runprog.cc:72
+#: ../setedit/runprog.cc:77
 msgid "Back in the editor"
 msgstr "Nuevamente en el editor"
 
-#: ../setedit/runprog.cc:73
+#: ../setedit/runprog.cc:78
 msgid "From program:"
 msgstr "Desde el programa:"
 
-#: ../setedit/runprog.cc:106
+#: ../setedit/runprog.cc:111
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
-#. ADEFJKLNPSVU
-#: ../setedit/runprog.cc:108
+#. ABDEFHJKLMNPSTUV
+#: ../setedit/runprog.cc:113
 msgid "~E~nter the program name"
 msgstr "~I~ngrese el nombre del programa"
 
-#: ../setedit/runprog.cc:111
+#: ../setedit/runprog.cc:116
 msgid "~U~se OS screen to run the program"
 msgstr "~U~sar la pantalla del SO"
 
-#: ../setedit/runprog.cc:112
+#: ../setedit/runprog.cc:117
 msgid "~D~on't try to run in background"
 msgstr "No intentar correr en segundo ~p~lano"
 
-#: ../setedit/runprog.cc:113
+#: ../setedit/runprog.cc:118
 msgid "~A~lways parse in background"
 msgstr "Siempre en segundo pl~a~no"
 
-#: ../setedit/runprog.cc:114
+#: ../setedit/runprog.cc:119
 msgid "~J~ump to the first error"
 msgstr "Sal~t~ar al primer error"
 
-#: ../setedit/runprog.cc:115
+#: ../setedit/runprog.cc:120
 msgid "Message window ~s~croll"
 msgstr "Despla~z~amiento de la ventana de mensajes"
 
-#: ../setedit/runprog.cc:116
+#: ../setedit/runprog.cc:121
 msgid "Only if not ~f~ocused"
-msgstr "S¢~l~o si seleccionada"
+msgstr "S¢lo si sele~c~cionada"
 
-#: ../setedit/runprog.cc:117
+#: ../setedit/runprog.cc:122
+msgid "~H~orizontal reset"
+msgstr "Posici¢n horizontal a cero"
+
+#: ../setedit/runprog.cc:123
+msgid "At ~b~eggining"
+msgstr "Al p~r~incipio"
+
+#: ../setedit/runprog.cc:124
+msgid "For each ~m~essage"
+msgstr "En cada mensa~j~e"
+
+#: ../setedit/runprog.cc:125
+msgid "At ~t~he end"
+msgstr "Al ~f~inal"
+
+#: ../setedit/runprog.cc:126
 msgid "~L~ines per pass"
 msgstr "~L~¡neas por pasada"
 
-#: ../setedit/runprog.cc:124
+#: ../setedit/runprog.cc:133
 msgid "Errors ~p~arser"
 msgstr "Int‚rprete de ~e~rrores para"
 
-#: ../setedit/runprog.cc:179
+#: ../setedit/runprog.cc:189
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
-#: ../setedit/runprog.cc:202
+#: ../setedit/runprog.cc:212
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:421
+#: ../setedit/runprog.cc:431
 msgid "We are running a child process. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o det‚ngalo."
 
-#: ../setedit/runprog.cc:448
+#: ../setedit/runprog.cc:461
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:549
+#: ../setedit/runprog.cc:566
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:624
+#: ../setedit/runprog.cc:641
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el men£ de opciones"
 

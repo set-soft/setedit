@@ -49,12 +49,13 @@ do
   }
 while (!$OK);
 
-open(FIL,'>share/setedit/instopts.txt') || die;
+open(FIL,'>share/setedit/install.log') || die;
 $i=0;
 print FIL "#
 # Default Installation Options file, created during installation.
 # These options will be used when no desktop file can be loaded.
 #
+[Install]
 ";
 foreach $o (@Opts)
   {
