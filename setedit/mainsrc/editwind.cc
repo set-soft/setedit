@@ -327,5 +327,7 @@ void TCEditWindow::FillResumeWith(EditorResume &r, TPoint &origin,
  r.wrapCol=TCEditor::staticWrapCol;
  r.ed_flags=0;
  EnlargeSizesResume(r);
+ r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
+ time(&r.dateResume);
 }
 
