@@ -112,6 +112,8 @@ LookForMakeinfo();
 LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
 # Should we try X?
 LookForXlib() if (($OS eq 'UNIX') && ($tvMajor>=2));
+# Needed by X libraries in some systems
+LookForDL() if ($OS eq 'UNIX');
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
@@ -147,6 +149,7 @@ elsif ($OS eq 'UNIX')
    # No for UNIX!! $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
    $MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
+   $MakeDefsRHIDE[1].='dl ' if ($conf{'dl'} eq 'yes');
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
   }
@@ -981,6 +984,42 @@ int main(void)
  $conf{'bz2lib'}='shipped'; #$test
  $conf{'bz2libPre1'}='no';
  $conf{'HAVE_BZIP2'}='yes';
+}
+
+sub LookForDL
+{
+ my $test,$ver;
+
+ print 'Looking for dl library: ';
+ $test=@conf{'dl'};
+ if ($test)
+   {
+    print "$test (cached) OK\n";
+    return;
+   }
+ $test='
+#include <stdio.h>
+#include <link.h>
+void test()
+{
+ dlopen("test.o",0);
+}
+
+int main(void)
+{
+ printf("OK");
+ return 0;
+}';
+ $ver=RunGCCTest($GCC,'c',$test,'-ldl');
+ if ($ver eq 'OK')
+   {
+    $conf{'dl'}='yes';
+   }
+ else
+   {
+    $conf{'dl'}='no';
+   }
+ print "$conf{'dl'}\n";
 }
 
 

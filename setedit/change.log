@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.76  2002/04/30 19:40:13  set
+* Fixed: InfView to compile with TV 2.0. As Andris tried to test it and
+couldn't I though it was time to fix the problems ;-)
+
 Revision 1.75  2002/04/30 18:08:57  set
 * Added: Ctrl+Arrows support to InfView. Suggested by Thiago (I think other
 people asked for it, Ivan?).
