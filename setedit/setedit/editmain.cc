@@ -1817,7 +1817,10 @@ void ParseCommandLine(int argc, char *argv[])
 {
  if (CommandLineParsed)
     return;
-    
+
+ // Revert the default, I changed my mind because that's too limited
+ TGKey::useBIOS=0;
+
  int optc;
  char *ExtraCMDLine=getenv("SET_CMDLINE");
  int  c=0;
@@ -1919,8 +1922,8 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         options. If the line number is omitted you'll jump to\n"
                         "                         the end of the text. Example: +6 file\n"));
             #ifdef SECompf_djgpp // Don't name it under Linux
-            PrintHelp(_("-b, --bios-keyb:         use BIOS for the keyboard [safer, default].\n"));
-            PrintHelp(_("-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster].\n"));
+            PrintHelp(_("-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"));
+            PrintHelp(_("-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster, default].\n"));
             #endif
             PrintHelp(_("-c, --cascade:           arranges the windows using cascade style.\n"));
             PrintHelp(_("-d, --stack-dbg=n:       indicates which methode will be used in the event of a\n"
