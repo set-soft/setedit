@@ -62,7 +62,7 @@ public:
  virtual void handleEvent(TEvent &event);
  void SaveList(char *s);
  void LoadList(char *s);
- void ImportM3U(int h);
+ void ImportM3U(const char *name);
 
  TListBox *listBox;
  int style;
@@ -200,11 +200,11 @@ void TListDiag::SaveList(char *name)
  delete f;
 }
 
-void TListDiag::ImportM3U(int h)
+void TListDiag::ImportM3U(const char *name)
 {
  TNoSortedStringCollection *newList=new TNoSortedStringCollection(10,5);
 
- FILE *f=fdopen(h,"r");
+ FILE *f=fopen(name,"r");
  if (!f) return;
 
  char buffer[PATH_MAX+4],*s;
@@ -231,20 +231,25 @@ void TListDiag::LoadList(char *name)
 {
  char buffer[80];
 
+ #ifdef BROKEN_CPP_OPEN_STREAM
  // In this way we avoid the destruction of the file
  int h=open(name, O_RDONLY | O_BINARY);
  fpstream *f=new fpstream(h);
-
+ #else
+ fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+ #endif
+ 
  if (!f)
     messageBox(_("Could not open the list file"),mfOKButton | mfError);
  else
    {
     // Check for .m3u
-    ::read(h,buffer,sizeof(M3USignature));
-    lseek(h,0,SEEK_SET);
+    f->readBytes(buffer,sizeof(M3USignature));
+    f->seekg(0);
     if (strncmp(buffer,M3USignature,sizeof(M3USignature)-1)==0)
       {
-       ImportM3U(h);
+       ImportM3U(name);
+       f->close();
       }
     else
       {

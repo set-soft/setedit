@@ -409,11 +409,15 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
 {
  if (name)
    {
+    #ifdef BROKEN_CPP_OPEN_STREAM
     // In this way we avoid the destruction of the file
     int h=open(name, O_RDONLY | O_BINARY);
     if (h<0)
        return;
     fpstream *f=new fpstream(h);
+    #else
+    fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+    #endif
 
     if (!f)
        messageBox(_("Could not open desktop file"), mfOKButton | mfError);

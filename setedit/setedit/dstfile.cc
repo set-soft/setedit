@@ -262,9 +262,13 @@ void TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
 {
  if (name)
    {
+    #ifdef BROKEN_CPP_OPEN_STREAM
     // In this way we avoid the destruction of the file
-    int h=open(name, O_RDONLY | O_BINARY);
+    int h=open(name,O_RDONLY | O_BINARY);
     fpstream *f=new fpstream(h);
+    #else
+    fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+    #endif
 
     if (!f)
        messageBox(_("Could not open desktop file"), mfOKButton | mfError);
@@ -316,14 +320,14 @@ void TSetEditorApp::saveDesktop(const char *fName, int makeBkp)
     ReplaceExtension(backupName,".bkp");
     rename(fName,backupName);
    }
- #if 1
- int h=open(fName, O_WRONLY | O_BINARY | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
+ #ifdef BROKEN_CPP_OPEN_STREAM
+ int h=open(fName,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,S_IWUSR | S_IRUSR);
  if (h<0) return;
  fpstream *f=new fpstream(h);
 
  dbprintf("Opened %s file, got %d handle\n",fName,h);
  #else
- fpstream *f=new fpstream(fName, CLY_std(ios::out)|CLY_IOSBin);
+ fpstream *f=new fpstream(fName,CLY_std(ios::out) | CLY_IOSBin);
  #endif
 
  if (f)

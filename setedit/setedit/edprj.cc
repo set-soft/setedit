@@ -521,8 +521,12 @@ int TDskWinPrj::DeleteAction(ccIndex, Boolean)
 
 void LoadProject(char *name)
 {
+ #ifdef BROKEN_CPP_OPEN_STREAM
  int h=open(name, O_RDONLY | O_BINARY);
  fpstream *f=new fpstream(h);
+ #else
+ fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+ #endif
 
  if (!f)
     messageBox(_("Could not open project file"), mfOKButton | mfError);
