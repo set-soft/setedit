@@ -70,6 +70,7 @@ distrib/default.map
 +distrib/INSTALL.LINUX
 +distrib/INSTALL.MAK
 +distrib/infINSTALL.MAK
++distrib/infREMOVE_UNNEEDED
 -distrib/kextend.zip
 distrib/linux.faq
 +distrib/REMOVE_UNNEEDED
