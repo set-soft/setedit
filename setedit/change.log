@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.258  2002/12/10 18:32:00  set
+* Added: The new cyrillic and greek "repeated" symbols to the fonts.
+
 Revision 1.257  2002/12/10 18:27:55  set
 * Added: Last TV config keyword.
 

@@ -746,7 +746,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  s << TFileCollection::sortOptions;
  // Code page conversion options
  SaveConvCPOptions(s);
- s << TGKey::GetKbdMapping(TGKey::dosGreek737);
+ s << TGKey::GetKbdMapping(0);
  BoardMixerSave(s);
  PathListSave(s);
  s << (uchar)TSOSListBoxMsg::opsEnd << (uchar)TSOSListBoxMsg::opsBeep;
@@ -1092,7 +1092,7 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  if (deskTopVersion>=0x438)
    {// Currently useless
     s >> auxINT;
-    TGKey::SetKbdMapping(auxINT ? TGKey::dosGreek737 : TGKey::dosUS);
+    //TGKey::SetKbdMapping(auxINT ? TGKey::dosGreek737 : TGKey::dosUS);
    }
  if (deskTopVersion>=0x444)
     BoardMixerLoad(s);
