@@ -41,7 +41,6 @@ copying.gpl
 copying.lgp
 copying.rh
 copyrigh
-debian/README.debian
 +debian/buildpackage
 debian/changelog
 debian/control
@@ -55,6 +54,8 @@ debian/infview.postrm
 debian/infview.preinst
 debian/infview.prerm
 debian/maintainer.notes
+debian/README
+debian/README.debian
 +debian/rules
 +debian/setedit.config
 debian/setedit.templates
@@ -89,6 +90,11 @@ doc/.cvsignore
 doc/editor.tx
 doc/infeng.tx
 doc/infview.man
+doc/install/bcc.txt
+doc/install/djgpp.txt
+doc/install/linux.txt
+doc/install/tools.txt
+doc/install/unix.txt
 doc/gnumake.in
 doc/line.par
 doc/Makefile
@@ -286,6 +292,7 @@ infview/names/nmanwind.cc
 infview/streams/sinf.cc
 infview/streams/sman.cc
 infview/version.txt
+INSTALL.txt
 install/.cvsignore
 install/create.pl
 install/datafile.c
@@ -563,6 +570,7 @@ names/ntedcol.cc
 *policy.txt
 *README
 +redhat/config-rpm.sh
++redhat/create-all-rpms.sh
 +redhat/create-dirs.sh
 +redhat/create-rpms.sh
 redhat/README

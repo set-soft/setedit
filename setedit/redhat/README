@@ -34,6 +34,17 @@ $ redhat/create-rpms.sh
 back-up it if you have valuable information there. The script creates a
 back-up and restores the original file but it could fail.
 
+  I also provide an script to create Turbo Vision and SETEdit RPMs. This
+script assumes you uncompressed both tarballs (or fetched both CVS trees) in
+the same directory. Example: /usr/src/tvision and /usr/src/setedit
+  In this case you can run:
+
+host:/usr/src/setedit$ redhat/create-all-rpms.sh
+
+  The script is really simple and doesn't check for errors. If you
+have some time to add error level checkings, redirecting the output to a log
+file, etc. please do it and contribute the changes.
+
 II. STEP BY STEP
 ================
 

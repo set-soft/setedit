@@ -1,0 +1,31 @@
+  Read this file to know how to install from sources.
+
+  The editor have an unified methode to compile for all the available
+platforms. But even with it I give separated instructions for each target.
+  The first step is to get a copy of Turbo Vision library, last version
+available, and compile it. Even when you don't need to install Turbo Vision
+in order to compile the editor in some cases you'll need to install Turbo
+Vision to run the editor. You can unpack the Turbo Vision files in any
+directory but I recommend to unpack the files in a directory located at the
+same level as setedit sources. Example: if the editor files are located in
+the /usr/src/setedit directory then the Turbo Vision files should be located
+in the /usr/src/tvision. Just unpack both packages in the same directory and
+let them put their files in setedit and tvision dirs.
+  Note: Turbo Vision site is http://tvision.sf.net/
+
+  Here are the files that describes how to compile for each target:
+  [alphabetically sorted]
+
+Borland C++ 5.5, 5.6                      doc/install/bcc.txt
+CygWin                                    doc/install/cygwin.txt
+DJGPP                                     doc/install/djgpp.txt
+Linux                                     doc/install/linux.txt
+Microsoft Visual C (5.0, 6.0, 7.0)        doc/install/msvc.txt
+MingWin                                   doc/install/mingwin.txt
+UNIX (POSIX) systems                      doc/install/unix.txt
+
+  Important: If you want to contribute to this project you can help me to
+keep any of these targets working. You just need to get the CVS changes
+periodically compile and tell me if it worked or not.
+
+$Id$

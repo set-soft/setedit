@@ -1,0 +1,97 @@
+-* DJGPP v2.03 or 2.02; v2.01 have some bugs that affect the editor and this
+-release doesn't include the patches to fix it.
+
+-4. DJGPP v2.02 optional patch
+-
+-  DJGPP v2.02 have a bug in the system/spawn family of functions. They leak a
+-file handle and, which is worst, they left the file you execute open if
+-that's a regular .exe (not another djgpp program). It could be very annoying
+-for people using the editor as some kind of IDE for a compiler that generates
+-executables and you run them from the editor. I discovered this bug when a
+-user ("Andreas Leidner" <leidner@gmx.net>) used the editor as IDE for Turbo
+-Pascal 7.
+-  Here is a patch to fix this problem, you must patch the libc:
+-
+---------------------- start of patch
+---- chkv2prg.c~	Thu Oct  9 22:40:02 1997
+-+++ chkv2prg.c	Sat Sep 25 14:34:38 1999
+-@@ -30,7 +30,10 @@
+- 
+-   lseek(pf, 0, SEEK_SET);
+-   if (read(pf, header, sizeof(header)) != sizeof(header))
+-+  {
+-+    close(pf);
+-     return &type;
+-+  }
+-   if (header[0] == 0x010b || header[0] == 0x014c)
+-   {
+-     unsigned char firstbytes[1];
+-@@ -64,9 +67,15 @@
+-       coff_start += (long)header[1] - 512L;
+-     exe_start = (unsigned long)header[4]*16L;
+-     if (lseek(pf, exe_start, SEEK_SET) != exe_start)
+-+    {
+-+      close(pf);
+-       return &type;
+-+    }
+-     if (read(pf, go32stub, 8) != 8)
+-+    {
+-+      close(pf);
+-       return &type;
+-+    }
+-     go32stub[8] = 0;
+-     if (strcmp(go32stub, "go32stub") == 0)
+-     {
+-@@ -82,30 +91,51 @@
+-       unsigned short coff_id;
+-       type.version.v.major = 1;
+-       if (lseek(pf, coff_start - 4, SEEK_SET) != coff_start-4)
+-+      {
+-+        close(pf);
+-         return &type;
+-+      }
+-       if (read(pf, &stub_offset, 4) != 4)
+-+      {
+-+        close(pf);
+-         return &type;
+-+      }
+-       if (read(pf, &coff_id, 2) != 2)
+-+      {
+-+        close(pf);
+-         return &type;
+-+      }
+-       if (coff_id == 0x010b || coff_id == 0x014c)
+-       {
+-         type.object_format = _V2_OBJECT_FORMAT_COFF;
+-         type.exec_format = _V2_EXEC_FORMAT_STUBCOFF;
+-       }
+-       if (lseek(pf, stub_offset, 0) != stub_offset)
+-+      {
+-+        close(pf);
+-         return &type;
+-+      }
+-       if (read(pf, magic, 16) != 16)
+-+      {
+-+        close(pf);
+-         return &type;
+-+      }
+-       if (memcmp(STUB_INFO_MAGIC, magic, 16) == 0)
+-       {
+-         if (read(pf, &struct_length, 4) != 4)
+-+        {
+-+          close(pf);
+-           return &type;
+-+        }
+-         type.stubinfo = (_v1_stubinfo *)malloc(struct_length);
+-         memcpy(type.stubinfo->magic, magic, 16);
+-         type.stubinfo->struct_length = struct_length;
+-         if (read(pf, type.stubinfo->go32, struct_length - 20)
+-             != struct_length - 20)
+-+        {
+-+          close(pf);
+-           return &type;
+-+        }
+-         type.has_stubinfo = 1;
+-       }
+-     }
+---------------------- end of patch

@@ -1,7 +1,11 @@
+doc/Makefile
+gettext/config.h
 gettext/Makefile
+holidays/Makefile
 include/configed.h
+internac/de.po
+internac/es.po
+internac/Makefile
 makes/rhide.env
 mp3/libamp/rhide.env
 mp3/mpegsound/rhide.env
-internac/de.po
-internac/es.po
