@@ -1,7 +1,7 @@
 .\" Process this file with
 .\" groff -man -Tascii setedit.man
 .\"
-.TH SETEDIT 1 "SEPTEMBER 2001" "v0.4.47"
+.TH SETEDIT 1 "JANUARY 2002" "v0.4.54"
 .SH NAME
 setedit \- a friendly text editor
 .SH SYNOPSIS
@@ -136,7 +136,7 @@ Pseudo macro files.
 .RS
 Editor fonts.
 .RE
-.I "~/.deflopts.txt %DJDIR%/share/setedit/deflopts.txt"
+.I "~/.setedit/.deflopts.txt %DJDIR%/share/setedit/deflopts.txt"
 .RS
 Default edition options for each syntax highlight mode.
 .RE
@@ -156,7 +156,7 @@ Format files for the documentation generator module.
 .RS
 Log file created by the installer.
 .RE
-.I "~/.keybind.dat %DJDIR%/share/setedit/keybind.dat"
+.I "~/.setedit/.keybind.dat %DJDIR%/share/setedit/keybind.dat"
 .RS
 Keyboard bindings configured by the user.
 .RE
@@ -168,7 +168,7 @@ sLisp macros file.
 .RS
 Menu bindings.
 .RE
-.I "~/.setenvir.dat %DJDIR%/share/setedit/setenvir.dat"
+.I "~/.setedit/.setenvir.dat %DJDIR%/share/setedit/setenvir.dat"
 .RS
 Environment variables visible only while inside the editor.
 .RE
@@ -176,7 +176,7 @@ Environment variables visible only while inside the editor.
 .RS
 Syntax highlight configuration file.
 .RE
-.I "~/.userword.txt %DJDIR%/share/setedit/userword.txt"
+.I "~/.setedit/.userword.txt %DJDIR%/share/setedit/userword.txt"
 .RS
 User words for each syntax highlight.
 .SH ENVIRONMENT
