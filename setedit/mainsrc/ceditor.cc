@@ -3071,12 +3071,11 @@ int TCEditor::handleCommand(ushort command)
                  if (editorDialog(command==cmcJumpToFunction ? edJumpToFunction :
                      edJumpToPrototype,&line,buffer,bufLen,Word,fileName,strC.Name))
                    {
-                    addToUndo(undoInMov);
                     if (line<0)
                        line=0;
                     if (line>limit.y)
                        line=limit.y;
-                    MoveCursorTo(0,--line);
+                    MoveCursorTo(0,--line,True);
                     selStartF=(uint32)(curLinePtr-buffer);
                     selEndF=selStartF+LenWithoutCRLF(line,curLinePtr);
                     centerCursor=True;
@@ -3501,11 +3500,14 @@ int TCEditor::handleCommand(ushort command)
                 break;                
 
            case cmcJumpLastCursorPos:
-                flushLine();
-                addToUndo(undoInMov);
-                MoveCursorTo(lastCurPos.x,lastCurPos.y);
+                MoveCursorTo(lastCurPos.x,lastCurPos.y,True);
                 cursorMoved=1;
                 centerCursor=True;
+                break;
+
+           case cmcInsertNewLine:
+                flushLine();
+                insertBuffer(CLY_crlf,0,CLY_LenEOL,canUndo,False,False);
                 break;
 
            default:
@@ -3549,6 +3551,7 @@ int TCEditor::handleCommand(ushort command)
    }
  return 1;
 }
+
 
 /**[txh]********************************************************************
 
@@ -4092,12 +4095,11 @@ cmcGotoEditorLine.
 
 void TCEditor::GoAndSelectLine(int line)
 {
- addToUndo(undoInMov);
  if (line<0)
     line=0;
  if (line>limit.y)
     line=limit.y;
- MoveCursorTo(0,--line);
+ MoveCursorTo(0,--line,True);
  /* Use selStartF and selEndF here so any real selection
     will not removed. */
  selStartF=(uint32)(curLinePtr-buffer);
@@ -6581,10 +6583,7 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
     if (IslineInEdition)
        MakeEfectiveLineInEdition();
     if (XCur!=-1)
-      {
-       addToUndo(undoInMov);
-       MoveCursorTo(XCur,YCur);
-      }
+       MoveCursorTo(XCur,YCur,True);
     for (i=0; i<MaxAuxMarker; i++)
         if (AuxMarkers[i])
            Markers[i+7]=AuxMarkers[i];
@@ -8740,8 +8739,7 @@ void TCEditor::EditLine()
        autoIndent=False;
        curPos.x=MaxLineLen;
        newLine();
-       addToUndo(undoInMov);
-       MoveCursorTo(X,curPos.y-1);
+       MoveCursorTo(X,curPos.y-1,True);
        autoIndent=oldAI;
        if (AdjustBufEditFor(max(lar,limit.x-1)))
           return;
@@ -10644,23 +10642,21 @@ void TCEditor::updateRectCommands()
  // cmcSelRectPaste is an exception and is updated by selRectCopy()
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void MoveCursorTo(uint32 x, uint32 y)
+  Description:
+  Moves the cursor to the x,y coordinate. If the @var{undo} argument is true
+then the line in edition is flushed and the action is recorded in the undo.
 
-   Type: TCEditor member.
+***************************************************************************/
 
-   Objetive: Move the cursor to the x,y coordinate.
-
-   Parameter:
-   x,y: new cursor position.
-
-   by SET.
-
-****************************************************************************/
-
-void TCEditor::MoveCursorTo(uint32 x, uint32 y)
+void TCEditor::MoveCursorTo(uint32 x, uint32 y, Boolean undo)
 {
+ if (undo)
+   {
+    flushLine();
+    addToUndo(undoInMov);
+   }
  if (y<(uint32)curPos.y)
     MoveLinesUp(curPos.y-y);
  else
@@ -10738,9 +10734,7 @@ int TCEditor::PopCursorPosition()
  if (CurPosStack.pop(x,y))
    {
     ClearSelIfNonPers();
-    addToUndo(undoInMov);
-    flushLine();
-    MoveCursorTo(x,y);
+    MoveCursorTo(x,y,True);
     return 1;
    }
  return 0;

@@ -176,6 +176,7 @@ static helpNode helpList[]=
  HHc(SelRectDel,"Clear (Rectangle)"),
  HHc(SelRectMove,"Move (Rectangle)"),
  HHc(ProfileEditor,"Profile Editor"),
+ HHc(InsertNewLine,"Insert new line (do not move)"),
  HHC(OpenInfo,"File Open"),
  HHC(SaveBlock,"File Open"),
  HHC(ConfigFiles,"File Open"),

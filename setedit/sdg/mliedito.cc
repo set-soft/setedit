@@ -645,6 +645,44 @@ CleanUp:
  destroyFloatVar(find_option);
 }
 
+DecFun(MLIGetCursorX)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(TMLIEditor::GetCursorX());
+}
+
+DecFun(MLIGetCursorY)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(TMLIEditor::GetCursorY());
+}
+
+DecFun(MLISetCursorXY)
+{
+ int x,y;
+ LocVarInt(X);
+ LocVarInt(Y);
+
+ CheckNumParams(cant<1);
+ GetInteger(0,X);
+ x=X->val;
+ if (cant>1)
+   {
+    GetInteger(1,Y);
+    y=Y->val;
+   }
+ else
+    y=TMLIEditor::GetCursorY();
+ TMLIEditor::SetCursorXY(x,y);
+ // We must return something and y is optional
+ MLIRetInt(TMLIEditor::GetCursorY());
+
+CleanUp:
+ destroyFloatVar(X);
+ destroyFloatVar(Y);
+}
+
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -667,7 +705,10 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "EvalString",
  "ShowInMessageWindow",
  "SelectionExists",
- "Find"
+ "Find",
+ "GetCursorX",
+ "GetCursorY",
+ "SetCursorXY"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -692,7 +733,10 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIEvalString,
  MLIShowInMessageWindow,
  MLISelectionExists,
- MLIFindString
+ MLIFindString,
+ MLIGetCursorX,
+ MLIGetCursorY,
+ MLISetCursorXY
 };
 
 

@@ -362,7 +362,7 @@ public:
     void SetStartOfSelecting(unsigned startOffSet);
     void UpdateSelecting(void);
     void MoveToMouse( TPoint m, uchar selMode );
-    void MoveCursorTo(unsigned x, unsigned y);
+    void MoveCursorTo(unsigned x, unsigned y, Boolean undo=False);
     void GoAndSelectLine(int line);
     int  IsFirstCharInLine(void);
     void GotoOffSet(unsigned o);

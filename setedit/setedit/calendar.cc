@@ -12,6 +12,8 @@
 #define Uses_TRect
 #define Uses_TEvent
 #define Uses_TKeys
+#define Uses_TKeys
+#define Uses_TKeys_Extended
 #define Uses_TDrawBuffer
 #define Uses_TStreamableClass
 #define Uses_TStreamable
@@ -256,7 +258,7 @@ void TCalendarView::handleEvent(TEvent& event)
             }
         else if (event.what == evKeyboard)
             {
-            if ( (loByte(event.keyDown.keyCode) == '+') ||
+            if ( event.keyDown.keyCode == kbPlus ||
               event.keyDown.keyCode == kbDown)
                 {
                 ++month;
@@ -267,7 +269,7 @@ void TCalendarView::handleEvent(TEvent& event)
                     month = 1;
                     }
                 }
-            else if ( (loByte(event.keyDown.keyCode) == '-') ||
+            else if ( event.keyDown.keyCode == kbMinus ||
               event.keyDown.keyCode == kbUp)
                 {
                 --month;
@@ -302,4 +304,16 @@ TCalendarWindow::TCalendarWindow() :
     r.grow(-1, -1);
     view = new TCalendarView( r );
     insert( view );
+}
+
+
+void TCalendarWindow::handleEvent(TEvent& event)
+{
+    TWindow::handleEvent(event);
+    if ( event.what == evKeyboard && event.keyDown.keyCode == kbEsc )
+        {
+        close();
+        clearEvent(event);
+        return;
+        }
 }

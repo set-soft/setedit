@@ -275,6 +275,21 @@ Boolean TMLIEditor::FindString(char* str, unsigned flags)
  return ret!=sfSearchFailed ? True : False;
 }
 
+int  TMLIEditor::GetCursorX()
+{
+ return Editor->curPos.x;
+}
+
+int  TMLIEditor::GetCursorY()
+{
+ return Editor->curPos.y;
+}
+
+void TMLIEditor::SetCursorXY(int x, int y)
+{
+ Editor->MoveCursorTo(x,y,True);
+}
+
 #define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
                              CLY_snprintf(buf,256,aux,b); \
                              EdShowMessage(buf); \

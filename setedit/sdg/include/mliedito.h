@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=20;
+const int MLIEditorCommands=23;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -43,6 +43,9 @@ public:
  static int  OpenFile(const char *fileName);
  static Boolean SelectionExists();
  static Boolean FindString(char *str, unsigned flags);
+ static int  GetCursorX();
+ static int  GetCursorY();
+ static void SetCursorXY(int x, int y);
 
  static TCEditor *Editor;
 

@@ -323,4 +323,5 @@ _("Checking for ~m~odified files...")
 _("Advice dialogs...")
 _("Jump to ~l~ast cursor position")
 _("Jump to last ~u~ndo position")
+_("Insert ~n~ew line (don't move)")
 #endif

@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # That's an example of a menu file that changes the following commands:
@@ -101,6 +101,7 @@ SubMenu: "~E~dit", kbAlE
   MenuItemC: "Block ~i~nvert", cmcInvertCase
   MenuItemC: "Block ~a~lternate", cmcAltCase
  EndSubMenu
+ MenuItemC: "Insert ~n~ew line (don't move)", cmcInsertNewLine, kbCtN, "Ctrl+N"
 EndSubMenu
 
 SubMenu: "~S~earch", kbAlS

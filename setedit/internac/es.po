@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-06-04 21:01-0300\n"
+"PO-Revision-Date: 2003-06-11 20:10-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:425 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
+#: ../mainsrc/slpinter.cc:456 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
 #: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
 #: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
 #: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
@@ -66,7 +66,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:424
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:455
 #: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/editdiag.cc:155 ../setedit/edprefs.cc:239
 #: ../setedit/edprefs.cc:471 ../setedit/edprefs.cc:616
@@ -1405,20 +1405,20 @@ msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
-#: ../mainsrc/ceditor.cc:3927
+#: ../mainsrc/ceditor.cc:3930
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4127
+#: ../mainsrc/ceditor.cc:4129
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4146
+#: ../mainsrc/ceditor.cc:4148
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4168
+#: ../mainsrc/ceditor.cc:4170
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1429,7 +1429,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4202
+#: ../mainsrc/ceditor.cc:4204
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1442,16 +1442,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5762
+#: ../mainsrc/ceditor.cc:5764
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5777
+#: ../mainsrc/ceditor.cc:5779
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10097
+#: ../mainsrc/ceditor.cc:10095
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1459,29 +1459,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10112
+#: ../mainsrc/ceditor.cc:10110
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10841
+#: ../mainsrc/ceditor.cc:10835
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11783
+#: ../mainsrc/ceditor.cc:11777
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11994
+#: ../mainsrc/ceditor.cc:11988
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13181
+#: ../mainsrc/ceditor.cc:13175
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13191
+#: ../mainsrc/ceditor.cc:13185
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2171,12 +2171,12 @@ msgstr "(%d) %s en la línea %d"
 msgid "In section %s"
 msgstr "En la sección %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:270
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:301
 #, c-format
 msgid "Type of error: %s"
 msgstr "Tipo de error: %s"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:272
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:303
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Código: ...%s..."
@@ -2218,27 +2218,27 @@ msgstr "Error en la expresión regular: %s"
 msgid "PCRE Exec error"
 msgstr "Error de ejecución del a ExpReg"
 
-#: ../mainsrc/slpinter.cc:269
+#: ../mainsrc/slpinter.cc:300
 msgid "Error in sLisp interpreter:"
 msgstr "Error en el intérprete de sLisp:"
 
-#: ../mainsrc/slpinter.cc:273
+#: ../mainsrc/slpinter.cc:304
 msgid "End of SLP"
 msgstr "Fin de SLP"
 
-#: ../mainsrc/slpinter.cc:336
+#: ../mainsrc/slpinter.cc:367
 msgid "Enter sLisp code to interprete"
 msgstr "Ingrese código sLisp a ser interpretado"
 
-#: ../mainsrc/slpinter.cc:369
+#: ../mainsrc/slpinter.cc:400
 msgid "No macros defined"
 msgstr "No hay macros definidos"
 
-#: ../mainsrc/slpinter.cc:412
+#: ../mainsrc/slpinter.cc:443
 msgid "sLisp macros"
 msgstr "Macros sLisp"
 
-#: ../mainsrc/slpinter.cc:422
+#: ../mainsrc/slpinter.cc:453
 msgid "~M~acros"
 msgstr "~M~acros"
 
@@ -2611,72 +2611,72 @@ msgstr "~C~argar"
 msgid "Return value:"
 msgstr "Valor retornado:"
 
-#: ../sdg/mli.cc:1360
+#: ../sdg/mli.cc:1475
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1365
+#: ../sdg/mli.cc:1480
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1366
+#: ../sdg/mli.cc:1481
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1371
+#: ../sdg/mli.cc:1486
 msgid "string not closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1372
+#: ../sdg/mli.cc:1487
 msgid "no ) at end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1373
+#: ../sdg/mli.cc:1488
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1374
+#: ../sdg/mli.cc:1489
 msgid "wrong number"
 msgstr "número erróneo"
 
-#: ../sdg/mli.cc:1375
+#: ../sdg/mli.cc:1490
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1376
+#: ../sdg/mli.cc:1491
 msgid "stack overflow"
 msgstr "desborde de pila (stack)"
 
-#: ../sdg/mli.cc:1381
+#: ../sdg/mli.cc:1496
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un parámetro"
 
-#: ../sdg/mli.cc:1382
+#: ../sdg/mli.cc:1497
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1383
+#: ../sdg/mli.cc:1498
 msgid "parameter after command"
 msgstr "parámetro luego de un comando"
 
-#: ../sdg/mli.cc:1384
+#: ../sdg/mli.cc:1499
 msgid "wrong number of parameters"
 msgstr "número equivocado de parámetros"
 
-#: ../sdg/mli.cc:1385
+#: ../sdg/mli.cc:1500
 msgid "wrong parameter type"
 msgstr "tipo de parámetro equivocado"
 
-#: ../sdg/mli.cc:1386
+#: ../sdg/mli.cc:1501
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1387
+#: ../sdg/mli.cc:1502
 msgid "undefined symbol"
 msgstr "símbolo no definido"
 
-#: ../sdg/mli.cc:1388
+#: ../sdg/mli.cc:1503
 msgid "operation not defined"
 msgstr "operación no definida"
 
@@ -2832,59 +2832,59 @@ msgstr "~G~rabar a disco"
 msgid "No mixer support linked in during configuration, sorry"
 msgstr "Lo lamento, no se incluyó soporte para el mezclador al compilar"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "January"
 msgstr "Enero"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "February"
 msgstr "Febrero"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "March"
 msgstr "Marzo"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "April"
 msgstr "Abril"
 
-#: ../setedit/calendar.cc:40
+#: ../setedit/calendar.cc:42
 msgid "May"
 msgstr "May"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "June"
 msgstr "Junio"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "July"
 msgstr "Julio"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "August"
 msgstr "Agosto"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "September"
 msgstr "Septiembre"
 
-#: ../setedit/calendar.cc:41
+#: ../setedit/calendar.cc:43
 msgid "October"
 msgstr "Octubre"
 
-#: ../setedit/calendar.cc:42
+#: ../setedit/calendar.cc:44
 msgid "November"
 msgstr "Noviembre"
 
-#: ../setedit/calendar.cc:42
+#: ../setedit/calendar.cc:44
 msgid "December"
 msgstr "Diciembre"
 
-#: ../setedit/calendar.cc:190
+#: ../setedit/calendar.cc:192
 msgid "Su Mo Tu We Th Fr Sa"
 msgstr "Do Lu Ma Mi Ju Vi Sa"
 
-#: ../setedit/calendar.cc:293
+#: ../setedit/calendar.cc:295
 msgid "Calendar"
 msgstr "Calendario"
 
@@ -3966,6 +3966,10 @@ msgstr "S~a~ltar a la última posición del cursor"
 #: ../setedit/editmenu.cc:325
 msgid "Jump to last ~u~ndo position"
 msgstr "Saltar a la última posición de ~d~eshacer"
+
+#: ../setedit/editmenu.cc:326
+msgid "Insert ~n~ew line (don't move)"
+msgstr "Insertar una ~n~ueva línea (no mover)"
 
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"

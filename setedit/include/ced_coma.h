@@ -162,8 +162,9 @@ const int
   cmbPasteClipFile     = 151,
   cmbEditorGotFocus    = 152,
   cmbJumpLastCursorPos = 153,
+  cmbInsertNewLine     = 154,
   
-  cmbLastCommand       = 154;
+  cmbLastCommand       = 155;
 
 
 const int
@@ -322,7 +323,8 @@ const int
   cmcCopyClipFile      = cmbCopyClipFile+cmbBaseNumber,
   cmcPasteClipFile     = cmbPasteClipFile+cmbBaseNumber,
   cmcEditorGotFocus    = cmbEditorGotFocus+cmbBaseNumber,
-  cmcJumpLastCursorPos = cmbJumpLastCursorPos+cmbBaseNumber;
+  cmcJumpLastCursorPos = cmbJumpLastCursorPos+cmbBaseNumber,
+  cmcInsertNewLine     = cmbInsertNewLine+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

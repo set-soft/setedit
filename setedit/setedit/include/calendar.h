@@ -44,6 +44,7 @@ class TCalendarWindow : public TWindow
 public:
     TCalendarWindow();
     TCalendarView *view;
+    virtual void handleEvent(TEvent& event);
 };
 
 #endif      // __CALENDAR_H

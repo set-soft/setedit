@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.402  2003/06/11 20:18:38  set
+* Added: [sLisp] Find command, contributed by Bernd.
+
 Revision 1.401  2003/06/10 15:27:03  set
 * Added: [sLisp] loop and exitloop sentences, also ==, !=, ++ and --
 operators. All of them have some basic behavior that could be extended but

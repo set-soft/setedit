@@ -59,7 +59,7 @@ SubMenu: "~F~ile", kbAlF
  MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
 EndSubMenu
 
-# ABCDEFGHILMOPRSTUWX
+# ABCDEFGHILMNOPRSTUWX
 SubMenu: "~E~dit", kbAlE
  MenuItemC: "~U~ndo", cmcUndo, kbAlBackSpace, "Alt+BackSpace"
  MenuItemC: "~R~edo", cmcRedo
@@ -98,6 +98,7 @@ SubMenu: "~E~dit", kbAlE
   MenuItemC: "Block ~i~nvert", cmcInvertCase
   MenuItemC: "Block ~a~lternate", cmcAltCase
  EndSubMenu
+ MenuItemC: "Insert ~n~ew line (don't move)", cmcInsertNewLine, kbCtN, "Ctrl+N"
 EndSubMenu
 
 # English: CFGJLNPRSTUW

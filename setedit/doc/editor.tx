@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.2
-@set update-date 9 June 2003
+@set update-date 11 June 2003
 @set update-month June 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -1124,6 +1124,16 @@ so on. If you want the reverse you can use the command to invert a block.
 @paragraph{}
 
 @refMenu1{cmcAltCase}
+
+@c --------------------------------------------------------------------------
+@subsection Insert new line (do not move)
+
+It inserts a new line character at cursor position but without modifying the
+cursor position. Note it doesn't apply indentation or other special things to
+the inserted line.
+@p{}
+
+@refMenu{cmcInsertNewLine,Ctrl+N}
 
 @c --------------------------------------------------------------------------
 @section Search
@@ -4557,6 +4567,26 @@ and don't want to give the impression the editor hangs.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection GetCursorX
+
+  (GetCursorX)
+@p{}
+
+  Returns the X cursor coordinate. Note the coordinates are computed from
+zero.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetCursorY
+
+  (GetCursorY)
+@p{}
+
+  Returns the Y cursor coordinate. Note the coordinates are computed from
+zero.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection getenv
 
   (getenv @var{name})
@@ -4740,6 +4770,19 @@ filter in the @file{macros.slp} file.
 that start with @code{cmc}. These commands are the same explained in the keyboard
 section as @code{cmcXXXXX}.
 @paragraph{}
+
+@c --------------------------------------------------------------
+@subsection SetCursorXY
+
+  (SetCursorXY @var{x} [@var{y}])
+@p{}
+
+  Sets the cursor coordinates. Note the coordinates starts from zero. If the
+@var{y} argument is omitted only the X coordinate is changed. This function
+returns the current Y coordinate, it doesn't have to be the same value you
+indicated in the @var{y} argument because the editor limits this value to the
+last line in the current buffer.
+@p{}
 
 @c --------------------------------------------------------------
 @subsection ShowInMessageWindow

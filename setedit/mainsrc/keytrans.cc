@@ -916,7 +916,7 @@ NormalTable base=
   { kbCtK, kbtIsSComm, {pSeq(CtrlK)} }, // 11
   { kbCtL, kbtIsComm, {cmcSearchAgain} }, // 12
   { kbCtM, kbtIsComm, {cmcNewLine} }, // 13
-  { kbCtN, kbtIsComm, {cmcNewLine} }, // 14
+  { kbCtN, kbtIsComm, {cmcInsertNewLine} }, // 14
   { kbCtO, kbtIsComm, {cmcIndentMode} }, // 15
   { kbCtP, kbtIsComm, {cmcIntelIndentMode} }, // 16
   { kbCtQ, kbtIsSComm, {pSeq(CtrlQ)} }, // 17
