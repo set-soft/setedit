@@ -244,15 +244,16 @@ void Write(int fd, const char *s)
 }
 
 static
-void WriteSpace(int fd)
-{
- Write(fd," ");
-}
-
-static
 void WriteNL(int fd)
 {
  Write(fd,"\n");
+}
+
+#ifdef TVCPU_x86
+static
+void WriteSpace(int fd)
+{
+ Write(fd," ");
 }
 
 static
@@ -262,6 +263,7 @@ void WriteHex(int fd, unsigned long value)
  itoa(value,bNumAux,16);
  Write(fd,bNumAux);
 }
+#endif
 
 /*****************************************************************************
   Core routines.
