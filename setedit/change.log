@@ -1,4 +1,24 @@
-$Log$.
+$Log$
+Revision 1.629  2004/10/12 20:43:44  set
+* Added: [Install] Support for Solaris' native install tool. It have
+nothing todo with POSIX install.
+* Modified: [Config] Looks like some versions of bzlib had the right
+prototypes in the header but the library contained the pre 1.0 and 1.0
+function names. To avoid detecting it as pre 1 now I test using C++ where
+function prototypes are mandatory. Seen on Solaris with bzlib 1.0.1.
+* Added: [Compilation] Support for Solaris 9 implementation of isspace when
+compiling with gcc 3.x. It uses the char value as index of an array.
+* Fixed: [Solaris] stackdbg.c didn't request alloca.
+* Fixed: [MSVC][Compilation] Missing () in comparissons like: overwrite !=
+((un.Flags & undoOverWrite)!=0) ? True : False. Reported by Grzegorz.
+* Modified: [MSVC][Compilation] The command to compile the assembler files.
+Not yet tested.
+* Modified: [MSVC][Compilation] Command line option to compile the code.
+It looks like new versions of MSVC can't compile code that includes
+iostream using /GX-
+* Fixed: [MSVC][Compilation] An empty include path made the unified
+makefile useless. Reported by Grzegorz.
+
 Revision 1.628  2004/10/12 15:41:45  set
 * Fixed: "Paste Emacs Mode" not grayed when the mode isn't available.
 Suggested by Grzegorz.

@@ -852,6 +852,8 @@ www-site/infview.html
 www-site/my_file1.html
 www-site/my_file2.html
 www-site/my_file3.html
+www-site/readme.html
+www-site/readmeinf.html
 www-site/tag_imgs/a_project.png
 www-site/tag_imgs/advice_tags.png
 www-site/tag_imgs/class_child1.png
@@ -868,9 +870,8 @@ www-site/tag_imgs/this_and_parents.png
 www-site/tag_imgs/this_class.png
 www-site/tag_imgs/w_completion.png
 www-site/tags.html
-www-site/readme.html
-www-site/readmeinf.html
 +www-site/update
+www-site/xterm.html
 WinNT/configed.h
 -WinNT/makeinfo/makeinfo.exe
 WinNT/bccmake.in
