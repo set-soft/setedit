@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.247  2002/12/03 12:35:53  set
+* Added: [DOS] FAQ entry explaining that NT doesn't implement WinOldAP and
+hence you can't copy/paste using it.
+* Modified: [Linux] I heavily modified the Linux FAQ because now we have
+the X11 driver and it should remove most of the annoying limitations. I
+also added an entry explaining how to give access to /dev/vcs* to users.
+
 Revision 1.246  2002/12/03 12:35:10  set
 * Modified: Default global settings to be more similar to what a Windows
 user spects. Suggested by Ivan.

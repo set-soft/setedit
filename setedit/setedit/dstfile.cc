@@ -377,7 +377,7 @@ void TSetEditorApp::displayDetectCallBack()
     if (fonts->search(so->foSecName,pos))
       {
        so->foSecFile=newStr(((TVBitmapFontDesc *)fonts->at(pos))->file);
-       so->foSec=new TVFontCollection(so->foSecFile,so->enScr);
+       so->foSec=new TVFontCollection(so->foSecFile,so->enSnd);
        if (so->foSec->GetError())
          {
           delete so->foSec;
@@ -1213,6 +1213,8 @@ void TSetEditorApp::transferSetting2TV(void *aP, void *)
    {
     TVMainConfigFile::Add(drv,"FontWidth",p->foPriW);
     TVMainConfigFile::Add(drv,"FontHeight",p->foPriH);
+    if (p->foSecLoad)
+       TVMainConfigFile::Add(drv,"LoadSecondaryFont",1);
    }
 
  if (p->scOptions!=scfDontForce && p->scWidth)
