@@ -24,10 +24,13 @@ This man page just describes the command line options for
 for more details consult the on\-line help.
 .PP
 The command line options are intentionally similar to the ones provided by
-.BR info (1).
+.BR info(1).
 The first argument, if present, is the name of the Info file to read.
 Any remaining arguments are treated as the names of menu items in the
-initial node visited.
+initial node visited. Also note that info files are searched in the
+.B INFOPATH
+directories. To load a file stored in the current directory add ./ at the
+beginning of the name.
 .PP
 .B InfView
 saves the position of the windows, which info files are open, the history of
