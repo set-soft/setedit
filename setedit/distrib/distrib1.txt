@@ -34,506 +34,70 @@ INDEX:
 will be part of RHIDE so I need them tested.
 
   Changes in v@@v@@ (for more details read the change.log file):
-[taking last stable release (0.4.41) as reference, revision 290 to 523]
+[taking last stable release (0.4.54) as reference]
 
-New [94 things]:
+New [1 things]:
 
-+ Various [10]
++ Various []
 
-* Transparent support for bzip2 compressed files (text and info files).
-Suggested by Salazar <jsalaz3@almez.pntic.mec.es>.
-* A dialog asking if a compressed file saved with "save as" should be
-also saved compressed. Reported by Grzegorz.
-* New calculator parser from Burton Radons. It adds conditionals, variables
-definitions and function definitions.
-* Now is possible to have two files with the same file name in projects if
-they are different files (from different directories). After some talk with
-Grzegorz.
-* German traslation for most of the messages. Contributed by Oliver Schieche
-<oliver.schieche@d2mail.de>.
-* When a file that was stored in the desktop file no longer exists the
-editor doesn't open an empty window. Suggested by Martijn Versteegh
-<m.versteegh@hccnet.nl>
-* Modified the behavior of Paste from Win Clipboard to be consistent with
-what a regular windows user would expect.  Now it just does not copy the
-previous selection to the clipboard and selects the pasted text only if
-persistent blocks are enabled. Patch from Anatoli Soltan
-<anatoli@iname.com>.
-* Now File Open dialogs not only remmembers paths+masks but also file names
-(full qualified).
-* The number of lines of the saved text (not only size).
-* Mazovia code page (polish).
 
-+ Configuration [12]
++ Configuration []
 
-* A button to the file open/save/etc dialog to configure the sorting options.
-* New options to hide .*/*~/*.bkp and sort .* to the end to the dialog to
-configure the file open dialog.
-* Now the "Open only specified files" option is divided in various
-options to give more control about what is stored in the desktop file. Now
-the windows are divided in three types: Editor, Non editors and Closed
-Editors. For each group is possible to set if we want to: remmember it,
-remmember it but if the command line contains file names forget or just
-don't remmember. These nine options replaces the old one.
-* An option to not remmember the cursor position while loading the desktop.
-* Configurable status line, so now the accelerators shown at the bottom of
-the screen are configurable. Suggested by Dean Limbaugh
-<edl@ns1.co.alachua.fl.us> and Bernd Becker <munin@munin.inka.de>.
-* Now the $if command supports and/or operators for menu files.
-* An option to indicate in which directories to search files we indicate with
-Ctrl+Enter. Usually include dirs.
-* If SET_FILES wasn't defined the editor also tries to guess using the prefix
-indicated during configuration.
-* When the user have one central desktop file the editor makes a
-back-up of it before writing a new one. This is quite useful for Windows
-systems that likes to crash and corrupt files. Suggested by S. M. Halloran
-<mitch@duzen.com.tr>.
-* A new option to avoid making backups for some particular files. The setting
-is just a list of regex (Perl style) stored in a text file. If a file name
-matches any of the regex the editor doesn't create a backup.
-* An option to disable the R.O. file warning. In this case the editor will
-warn when you try to save so you have an oportunity to revert it. Suggested
-by Marc-Antoine Massicotte <marc.massicotte@videotron.ca>.
-* Option to open R.O. files as R.O. buffers.
 
-+ InfView [2]
++ InfView []
 
-* Real support for Texinfo 4.0's Ref: references. They jump to the correct
-node and positions the cursor at the right line.
-* InfView now looks in all the file if the node isn't found in the first try.
-It helps for handedited/damaged info files.
 
-+ List of functions [5]
++ List of functions []
 
-* Now the list of functions lists members like this "member (class)" instead
-of C++ syntax "class::member". It makes the incremental search much more
-simple.
-* A button to the function list called "Browse". It sends the list of
-functions to the message window sorted alphabetically or by line number and
-then you can browse the source code jumping from function to function.
-Suggested by Grzegorz Adam Hankiewicz <gradha@iname.com>.
-* Support for Clipper, Perl, Texinfo, assembler and SHL functions in Alt+F2.
-* An option to the search dialog to show the name of the function where a the
-text was found.
-* The heuristic parser for C sources takes only one part of #if #elif #else
-#endif sequences when they are inside a function. It solves a well known
-limitation.
 
-+ Run external programs and message window [4]
++ Run external programs and message window []
 
-* Now is possible to enter comands upto 256 characters long in the run
-external program dialog (was 80).
-* Now the messages/errors from the external program can be parsed in
-background. Is slower but you can continue working. That's the default
-when the command runs in parallel, but can be enabled even if the process
-will block the editor.
-* Options to configure how often the Message Window is updated when
-the messages are parsed in parallel with the child program (the parameter
-is how many lines are processed before releasing the CPU to poll input
-devices). Also to configure if the window is forced to scroll or not.
-* A new option to the Run program options dialog. When enabled and we get
-errors from the child process the editor jumps to the first line with errors.
 
-+ Edition modes [6]
++ Edition modes []
 
-* Yet another tab option: Now is possible to indent using spaces but
-also using an indentation ammount different than the tab size. The new option
-is called "Use indent size" and you can also configure the value of "indent
-size". Suggested by Martijn Versteegh <versteegh@kvi.nl>.
-* Now tab size, indent size and wrap column are stored for closed files and
-project items.
-* Don't purge spaces options. When enabled the spaces at the end of lines
-aren't automagically deleted by the editor. Suggested by Martijn Versteegh
-<versteegh@kvi.nl>.
-* Now backspace behavior is not tied to the Real Tabs option. It have your
-own option.
-* A new option that forces the editor to do the match pair 'on the fly'
-without waiting for idle. Suggested by Oswald Buddenhagen
-<ob6@inf.tu-dresden.de>.
-* Column markers used to highlight columns. This is useful for languages that
-needs text in particular columns (Fortran and Cobol I think). I tested global
-and local settings and default global options. Suggested by Martijn Versteegh.
 
-+ Editor commands [8]
++ Editor commands []
 
-* Jump to last column in screen. Suggested by Leon <Leon@caresystems.com.au>.
-* A new command called cmcWhichFunctionIs. It determines the name of
-the function where the cursor is positioned. It isn't associated to a key.
-Suggested by Jeremy W. Murphy.
-* CommentIndent command, it indents a block with the EOLCom1 definition.
-Suggested by Thiago.
-* CommentUnIndent, it unindents a block using the length of EOLCom1 as
-reference. Suggested by Thiago.
-* Code page remap for a block of text (no the whole file). It have undo and I
-reused code from toupper/lower block.
-* Block invert case and alternate case.
-* A (cmcInsertKeyName) to insert the name of the key in the text you are
-editing. Suggested by "Thiago F.G. Albuquerque" <tfga@zaz.com.br>.
-* Name of current function menu option.
 
-+ Sound system [3]
++ Sound system []
 
-* The MP3 list can be loaded/saved as a WinAmp M3U list.
-* Board level sound mixer. With options to disable it from command line
-(--no-mixer). Under DOS only SB Pro and SB 16 compatible mixers are supported.
-Under Linux OSS mixer is supported. The values can be optionally stored in
-the desktop file.
-* Support for MP3s inside wavs, damaged MP3 files, VBR encoded files with a
-modified version of the mpegsound library (splay).
 
-+ Syntax highlight and pmacros [15]
++ Syntax highlight and pmacros [1]
 
-* SQL. Contributed by Jeremy W. Murphy <jwm@amc.com.au>.
-* Objetive C. Contributed by Beni Cherniavsky <cben@crosswinds.net>.
-* PDP 11 assembler. Contributed by Beni Cherniavsky <cben@crosswinds.net>.
-* .po files.
-* PostScript. Contributed by S. M. Halloran <mitch@duzen.com.tr>.
-* JavaScript. Contributed by S. M. Halloran <mitch@duzen.com.tr>.
-* Cascading Style Sheets v2. Contributed by S. M. Halloran
-<mitch@duzen.com.tr>.
-* Fortran. Contributed by Martijn Versteegh <versteegh@kvi.nl>.
-* More tags to the HTML syntax highlight contributed by S. M. Halloran
-<mitch@duzen.com.tr>.
-* Better TeX syntax highlight with some stuff contributed by Jan Cnops
-<jan.cnops@hogent.be>.
-* Updated Tcl/Tk. Patch by Philip Moore <FireEgl@EMail.com>
-* Now the keywords of the syntax highlights aren't loaded at start-up,
-intead they are loaded on demand. The keywords and the search tables are the
-most memory consuming parts of the syntax highlight structure. Is possible to
-force the load of some of them at startup.
-* A couple of new pmacros for Clipper.
-* Now all modes are supported in the Mode setence used by the pmacros.
-* Support for "namespace" and "using" C++ keywords to the internal shl.
+* Lua. David A. Capello <dacap@users.sourceforge.net>.
 
-+ sLisp [13]
++ sLisp []
 
-* OpenFile: opens a file as a new window. (Asked by "Thiago F.G. Albuquerque"
-            <tfga@zaz.com.br>)
-* length: returns the length of a string.
-* strcasecmp/strcmp: compares strings.
-* Operator -: for integers.
-* MessageBox: to communicate things to the user.
-* Operatot ~: it behaves like not did and now not is boolean (not bitwise).
-* progn: that's an alias for eval, the regular Lisp language uses it.
-Suggested by Thiago.
-* cond: that's something like switch/case, is similar to Clipper's do case.
-Contributed by Thiago.
-* tostr: converts any sLisp variable into a string. Contributed by Thiago.
-* SelectionExists: returns true if some text is selected. Contributed by
-Thiago.
-* A new optional parameter to RunProgramRedir. If provided is used for the
-stdin of the external program. Suggested by Grzegorz.
-* An example of how to use the new RunProgramRedir to run an external filter
-program. (tested with "recode ISO8859-1..html"). And a lot of examples
-contributed by Thiago.
-* A couple of command to execute sLisp from the editor (selected text) or
-entering it in an input line. Suggested by Thiago.
 
-+ Linux [10]
++ Linux []
 
-* The configuration files are now stored in ~/.setedit for each user.
-* MP3 support.
-* Palette support.
-* A shell option. I ever thinked it wasn't a good idea but a user asked for
-it. Suggested by David Xu <davidx@viasoft.com.cn>.
-* The run external program option now can run the program in background. It
-can optionally disabled by the user.
-* The background process can be stopped just selecting the Message Window and
-pressing Ctrl+C. The status line indicates if that's available or not (the
-process is running or we still parsing their output).
-* Now the editor also dumps a stack trace when crashes. I also added a
-message informing the user where the unsaved buffers and crash information
-can be found.
-* Two new behaviors in case of a crash. One calls gdb to get a detailed stack
-trace and information about local variables the other not only does it but
-also gives the control to gdb so we can get more information. If we are in a
-X a separated xterm is created for gdb. Based in code by Bjorn Reese
-<breese@mail1.stofanet.dk> sent me by Grzegorz. It can be selected from the
-command line and with an environment variable.
-* Now when expanding compressed info files the temporal file is removed just
-after opening it. Making it we don't let those temporals when the editor
-crashes or we debug it.
-* Now the editor loads ~/.file first that ~/file for any configuration file.
 
-+ Windows [1]
++ Windows []
 
-* Window title for W9x adding information about the version and loaded
-project. Suggested by Jeremy W. Murphy <jwm@amc.com.au>.
 
-+ Cosmetic [5]
-
-* Now double clicking in Alt+0 window is the same as pressing the Go button.
-Suggested by Philip (FireEgl) <FireEgl@EMail.com>.
-* An horizontal scroll bar to the MP3 list dialog.
-* The list of functions and list of windows now have horizontal scroll bar.
-* All the Turbo Vision messages to the translations.
-* When you jump to an error the editor puts in the status line only the
-description of the error and not the entire line generated by the compiler.
++ Cosmetic []
 
 
 
-Fixed [68 things]:
 
-+ Fatal  [13]
+Fixed [0 things]:
 
-* GPFs produced by the column and row cursors when the cursor was outside the
-visible area, also uninitialized data.
-* Hangs when InfView can't find a node.
-* A GPF when the editor was stopped during a list play operation and it was
-restored in another run.
-* The editor added read-only copies to the list of closed windows when
-closing one of them. It produced a crash when opening the file from the
-closed list. Reported by Volker Kiefel <volker.kiefel@med.uni-rostock.de>.
-* A crash when deleting all the items (and one more ;-) in the MP3 list. Only
-happend if you did it very quickly.
-* When loading some old desktop files with black palettes (created by
-some really old versions of the editor) you got a black screen. Now the editor
-checks for such a silly situation and reverts to the default palette.
-* If the errors.cle file wasn't there the editor crashed when you run external
-programs. Reported by Grzegorz.
-* If the editor remmembered a file that is read-only at start-up a dialog
-pop-ups asking if we want to revert it, but it happends while the editor is
-still loading files and the problem is that the idle() makes some searchs in
-the list of opened windows. As it isn't completly loaded the result was a
-SIGSEGV.
-* When specifying an out of range marker in pmacros a stack corruption
-ocurred.
-* After a grep search or similar thing creating a new editor (File|New) and
-inserting text there produced a SIGSEGV (ignored by Win9x).
-* Some sLisp commands returned variables that were released from memory
-before used producing SIGSEGVs or garbage. Only in some cases.
-* If when trying to overwrite a file when saving a block of text the
-operation failed the editor generated a SIGSEGV.
-* Using the Macro|Generate Code at the end of a file while editing a line
-produced a SIGSEGV. Reported by Thiago.
-
-+ Not fatal [39]
-
-* A small error in the MSVC errors parsing. Pointed out by Grzegorz.
-* The error pattern description for Borland C compilers. Now it works
-for BC++ 5.5. Reported by Grzegorz.
-* ESC doesn't reset the palette to defaults in the palette dialog. Reported
-by Philip (FireEgl) <FireEgl@EMail.com>.
-* When loading .dst files older than 0.4.32 the memorized flags for closed
-files were converted in the wrong way. Some times enabling the cross cursor.
-* When using the match pair on the fly the editor always forced a line
-flush even if the cursor weren't in a potential match. Now that's done only
-if the cursor is over {, }, (, ), [ or ]. A side effect of this behavior was
-reported as a bug by Martijn Versteegh <versteegh@kvi.nl>.
-* Bug in relative paths interpretation of the code that parses messages from
-external programs.
-* Now if you have two functions with the same name SDG will list both in the
-index. Reported by Grzegorz.
-* The syntax highlight for shell scripts needed EscapeAnywhere=1. Reported by
-Grzegorz.
-* When following a list of errors/hits with Alt+F8 in some cases the previous
-hit wasn't cleared.
-* The generation of .html files from the .txt ones. Now < and > are replaced.
-Reported by Neil Parks <nparks@torah.org>.
-* Now when passing a list of files to grep the filenames are quoted to avoid
-problems with file names containing spaces. Reported by Grzegorz.
-* The message window scrolled horizontally only 255 columns and lines
-are allowed to be 1000 columns (then are wrapped). So now you can fully
-scroll upto 1000 columns.
-* A bug in "Intelligent C indent". A parenthesis after a / was not
-counted leading to wrong indentation.
-* When jumping to another manpage double clicking the name of the new one the
-window didn't update their title.
-* The GNU errors parsed was fulled by some gcc messages like it: In file
-included by .....:line:\n Now those lines are discarded.
-* When running `make' as the external program the editor keeps track
-of the various directory changes that makes does (nested makefiles). That's
-needed for programs that reports errors giving relative names. The problem
-was that when using spanish messages the editor got confused. Now the
-editor tries with english and if it fails tries translating it. Currently
-only english and spanish are supported but that's done with the .mo file
-so any language can be supported without recompiling.
-* Now the Message Window only scrolls to the first line only if we collected
-lines to jump. It was the original idea but was wrongly implemented.
-* Now Prev/Next message are enabled only if the Message Window really have
-lines to jump to.
-* If no default options file was defined the default mask used to reset modes
-was just 16 bits and not 32 clearing "Use indent size", "Don't purge spaces"
-and "Backspace unindents". So they failed to be transfered from global to
-local options.
-* The generic error parsers some times added an extra / generating file names
-with to consecutive / (invalid for UNIX).
-* The option to open only the editor indicated in command line was broken.
-* When enabling the column cursor in a window that wasn't restored from disk
-it sometimes was shorter than what we expect. It was due to a wrong
-initialization of CrossCursorCol member, the same could happend with the row
-cursor.
-* I was damaging argv[0]. It was easy to see when running ps, the editor name
-had a space after the last slash.
-* The "backspace unindents" could get confused with lines containing only
-spaces.
-* When adding items to a project the only way to exit is by pressing ESC, but
-then the editor didn't remmember the path we used and when inserting again we
-must get it from the history. Now remmembers it.
-* When I changed from absolute to relative projects the memory of settings
-for project items got broken.
-* Fails to set the ShowMatchPairFly from the default flags file.
-* When collecting errors/messages the editor didn't check for names like
-it: /dir/../dir/file and similar situations. In this case the editor failed
-to find the information about this file in the project window. Now the editor
-shows only the name of the file as the external program repoted, internally
-adds the right path and ensures the name doesn't have such an artifacts.
-* The perl pmacros file made reference to an unexistant marker (@4).
-* Code page support to the ManPageView scroll bars.
-* All ManPageView windows didn't remmember the position (just centered every
-time).
-* The C/C++ function parser failed with sequences like it: "\\\\". Reported
-by Grzegorz.
-* After jumping to a function name extending the selection usually generated
-strange results. It was like extending an old selection. Now the selected
-line is made with a temporal selection like in the search mechanism.
-* When jumping to a function already in the screen it wasn't highlighted.
-* When match on the fly was enabled and also no wait the editor failed to
-propagate some syntax highlight situations.
-* When jumping to a file reported by an external program and the file doesn't
-exist the editor doesn't open an empty window, is just ignored.
-* The syntax highlight for .s files didn't separate strings starting with "
-and '.
-* Calculator parsers aren't "locale aware" but libc is so it generated a mess.
-Now the locale is set to C before running them. Reported by Ivan.
-* When using a central dst file and loading another in a directory the settings
-were transferred to the central one. Reported by Ivan.
-* Now is possible to enter negative values in sLisp code.
-* After running an sLisp macro that returned with error it wasn't cleaned
-in the next run
-
-+ Undo [4]
-
-* The undo of the arbitrary indent used the starting selection instead of the
-final one generating problems for long blocks.
-* UnIndentBlock failed to update the syntax highlight, it was clear after
-removing the comments in the block.
-* The routine that restores a line under edition failed to update the correct
-start of the selection when it purged spaces at the left of the cursor
-position.
-* The undo of BackSpace inserted spaces at the wrong column when they were
-completly purged during the action.
-
-+ Linux [6]
-
-* The editor didn't preserve the UID/GID of files when creating back-ups.
-* When a manpage didn't exist Linux's man outputs to stderr a message. In the
-past the editor missed it giving no help to the user and also letting an error
-file in the home directory. Now stderr is also redirected and if stdout is
-empty stderr is shown. Reported by "GiBa" <giba@lacasilla.com.ar>.
-* A bug in the use of putenv, it made the editor fail to detect the /tmp dir.
-As a result the editor created temporal files in the current directory.
-* It was possible to fool the editor and open the same file twice if it was
-modified by an external program and saved with another i-node value.
-* All editor functions that collected word characters (like ctrl+right/left
-arrows) wrongly stopped in accents. The problem was that it didn't reflect
-the selected code page, just CP 437.
-* When running suid root the stderr redirected files were owned by root.
-Reported by Ivan.
-
-+ Cosmetic [4]
-
-* Now the FileOpen dialog used in the project and MP3 list says "Done"
-instead of "Cancel". Suggested by Waldemar Schultz <schultz@ma.tum.de>.
-* Some spelling errors (remmember, allready and latter). Reported by
-Bernd Becker <munin@munin.inka.de> and Philip (FireEgl) <FireEgl@EMail.com>.
-* The 'D' shortcut was used twice in the redmond.smn for the File menu.
-Reported by Jeremy W. Murphy <jwm@amc.com.au>.
-* When modifying files like deflopts.txt with the menues and the file was
-opened by the editor the opened buffer got out of sync. Now the editor checks
-if it was changed and then reloads the file. The same applies to nobkp.txt
-and userword.txt files.
++ Fatal  []
 
 
-  Changes in v0.4.41 (v.s. 0.4.39)
-
-New [23 things]:
-
-* Configurable mechanism to parse the errors collected from an external
-application. It uses Perl RegEx to do the job. Suggested by Gregorio.
-* Now you can pass extra command line options using an environment variable
-called SET_CMDLINE.
-* Menu option to save the project manually. Suggested by Jeremy W.
-Murphy <jwm@amc.com.au>
-* Project window also says the name of the project file. Suggested by Jeremy
-W. Murphy <jwm@amc.com.au>.
-* Command line option +[line number], like in VI. Suggested by Ivan.
-* When calling the man page viewer the editor offers the word under cursor
-as man page.
-* Shl flag "EscapeAnywhere" this switch makes the editor parse the escape
-character outside strings.
-* Syntax highlight for PLM/51 contributed by Jari Korhonen
-<jari.korhonen@ponsse.fi>. (Intel's long-gone not-so-highlevel language for
-8051 CPUs).
-* Command line switch to specify files to load from an external list of files
-where each line is a file. Suggested by SpaZe.
-* Three command line switches: --tile-vert, --tile-horiz and --cascade
-to make these operations after loading the files from the desktop file or
-named in the command line. Suggested by Spaze.
-* The reverse operation for "HTML accents". Suggested by Gregorio.
-* Now the file open dialog is resizeble. Suggested by Gregorio.
-* Yet another tab mode. "Tab indents", it is by default enabled because
-that's what the editor ever did. Disabling it the editor will behave like
-when using tabs but will insert spaces instead of tabs.
-
-+ Linux
-
-* Debian package for InfView.
-* ISO-8859-1 spanish messages.
-* InfView man page. Pointed out by Ivan,
-* Now the convert HTML accents feature also works in Linux, was just matter
-of enabling it.
-* Now the editor disables the Xon/Xoff mode of the terminal so ^Q/^S aren't
-used for it. It enables the use of ^Q and ^S when running in an Xterm, Eterm,
-etc.
-
-+ DOS
-
-* Now the editor also looks for HOME and HOMEDIR when loading configuration
-files. Also: the directory where the exe is located is the one looked at last.
-
-+ Cosmetic:
-
-* Now the message window shows ^M if the line contains /r.
-* Changed the way the INFOPATH is guessed under DOS. A djgpp user installed
-the editor outside the djgpp tree and then the editor used INFOPATH but
-failed to find the setedit.inf file. Now the editor also adds your tree even
-if INFOPATH is defined. Reported by Sylvia <smlew@ifocus.com.sg>.
-* Now if you use "load only specified files" the editor doesn't really load
-the files to then close'm like before. It makes things faster.
-* Now the new option to search the word when you press ^F1 inside
-the node takes the visible name you choose from the list and not the word
-under cursor. Suggested by Gregorio.
++ Not fatal []
 
 
-Fixed [10 things]:
++ Undo []
 
-* Problems with info files created with the new Texinfo 4.0 package.
-* Abort when pressing ENTER in the message window without items.
-* Bug in sLisp when handling strings with escape sequences (\n, \t, etc.).
-Reported by Uwe Steinmann <steinm@majestix.fernuni-hagen.de>.
-* GPF/SIGSEGV when using BackSpace in the functions list to delete the first
-letter in the incremental search. Reported by Gregorio.
-* Crashes when starting the editor and it was playing an MP3 file that doesn't
-exist anymore.
 
-+ Linux:
++ Linux []
 
-* Problems when saving files in DOS format. Reported by Gregorio.
-* When switching from hidden to normal desktop files the editor left the
-hidden version of the desktop file generating potential confusions. Now the
-hidden file is removed.
 
-+ DOS:
++ Cosmetic []
 
-* Problems with project files. Reported by Ryan Owen <ryan@eyring.com>.
 
-+ Cosmetic:
 
-* The ~K~eep short-cut in the SDG options was used for O~K~. Reported
-by Gregorio.
-* When inserting items to the project the editor used the *.epr mask instead
-of the one used to open regular files. Reported by Gregorio.
 
   For information about older releases and more read the change.log file.
 

@@ -1,4 +1,7 @@
 $Log$
+Revision 1.44  2002/01/29 18:05:29  set
+* Updated: Man page version and ~/* paths (now ~/.setedit/*).
+
 Revision 1.43  2002/01/29 17:53:33  set
 * Updated: Documentation version.
 
@@ -2911,7 +2914,7 @@ Revision 1.145  1999/07/04 15:44:40  set
 * Added: A progress bar when loading a file greater than 1Mb. The bar is
 displayed during the parse process (much slower than the load). I tested it
 with the disassebled code of the editor (15Mb ;-).
-.
+
 Revision 1.144  1999/07/04 15:21:29  set
 * Added: A command to paste de Emacs mode associated with the current syntax
 highlight and the tabsize as a comment at the start of the file. Documented.

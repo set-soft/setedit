@@ -1510,3 +1510,18 @@ Keywords=read,write,format,rewind,open,close,print
 End
 #---------- end of fortran shl definition -----------------------
 
+# --------------------------------- Lua -----------------------------------
+# Contributed by: David A. Capello <dacap@users.sourceforge.net>.
+#
+Name=Lua
+Files=lua
+EOLComment1=--
+HexMarker=
+Symbols1=+-*/<=>.:%^~
+Symbols2=(){}[],;
+String1="
+String2='
+Keywords=do,end,while,repeat,until,if,then,elseif,else
+Keywords=return,break,for,in,function,local,and,or,not
+End
+
