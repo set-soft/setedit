@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -73,6 +73,12 @@ void TEdMsgDialog::close(void)
 
 void TEdMsgDialog::handleEvent(TEvent& event)
 {
+ if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
+   {
+    close();
+    clearEvent(event);
+    return;
+   }
  TDialog::handleEvent(event);
  if (event.what==evBroadcast && event.message.command==cmcUpdateCodePage)
    {
