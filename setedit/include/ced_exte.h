@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_External ) && !defined( __TCEditor_External__ )
 #define __TCEditor_External__
@@ -350,6 +350,21 @@ TDialog *createReplaceDialog(void *regexBox);
 TDialog *createHTMLExportOps();
 TDialog *createPMChoose();
 TDialog *createArbitraryIndent(int len);
+unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *file);
 void     ShowSavePoint(const char *file);
 
+#endif
+
+#if defined(Uses_EditorId) && !defined(EditorId_Defined)
+#define EditorId_Defined
+// Identifies a file stored on disk
+struct stEditorId
+{
+ dev_t dev;
+ ino_t inode;
+};
+
+extern int  FillEditorId(stEditorId *id, const char *name=0, struct stat *st=0);
+extern int  CompareEditorId(stEditorId *id1, stEditorId *id2);
+extern int  IsEmptyEditorId(stEditorId *id);
 #endif
