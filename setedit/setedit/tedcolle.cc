@@ -313,13 +313,15 @@ void *TEditorCollection::read( ipstream& is )
        if (!p->view || removeEditors)
          {
           int cEdAnt=Editors;
+          // We need it because we will delete ped in removeEditor
+          TCEditWindow *edw=ped->edw;
           // If we just call close() and the object is 0 then the
           // removeEditor will get the real pointer and won't be
           // able to find what to remove, so we do it here.
           if (!p->view)
-             removeEditor(ped->edw,False);
+             removeEditor(edw,False);
           // We can do it because we know edHelper is initialized
-          ped->edw->close();
+          edw->close();
           // When we succeed to remove the editor it created a closed window
           // it makes cAnt==count, but we don't have to increment i
           if (cAnt==count && cEdAnt!=Editors)

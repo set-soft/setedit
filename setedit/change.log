@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.126  2002/06/20 20:09:42  set
+* Modified: Now that TV can inform if the driver supports changing the
+shape of the cursor I use I/O indicator only if needed.
+
 Revision 1.125  2002/06/19 15:01:19  set
 * Fixed: The Desktop background recoding, it changed in new TV. Also added
 recode to the MP3 and calendar.
