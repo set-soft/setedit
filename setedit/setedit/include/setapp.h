@@ -426,7 +426,8 @@ const uint32 mfoDontCheckAfterRun=1, mfoDontCheckInIdle=2;
 const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
           oedDontOpenEmpty=16;
 const unsigned geVertWindows=1,geRightSide=2,geAvoidPrjAndMsg=0x80000000,
-               geMask1=3;
+               geZoomedIfNoPrj=0, geZoomedNPorZ=0x10, geAlwaysZoomed=0x20,
+               geMask1=3, geMask2=0x30, geShift2=4;
 
 extern TSetEditorApp *editorApp;
 #endif
@@ -528,9 +529,10 @@ class TRect;
 
 extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
-extern void SaveProject(void);
-extern int  IsPrjOpened(void);
-extern int  IsPrjVisible(void);
+extern void SaveProject();
+extern int  IsPrjOpened();
+extern int  IsPrjVisible();
+extern int IsPrjZoomed();
 extern void SaveDesktopHere(void);
 extern void ExportProjectItems();
 extern void ImportProjectItems();

@@ -647,6 +647,7 @@ typedef struct
  uint32 opts     CLY_Packed;
  uint32 opsAv    CLY_Packed;
  char   width[5] CLY_Packed;
+ uint32 opsZoom  CLY_Packed;
 } BoxOthers;
 #pragma pack()
 
@@ -655,23 +656,25 @@ unsigned SetGeneralEditorOptionsOthers(void)
 {
  TSViewCol *col=new TSViewCol(__("Other options"));
 
- // ENG: ACIJKMRUVW
+ // ENG: ACIJKLMNPRUVW
  // ESP: ADEIKPRSUV
  TSVeGroup *MsgWin=MakeVeGroup(0,
    TSLabelRadio(__("At the end of error list in message window"),
-          __("~J~ust stop"),
-          __("~I~ndicate with a message"),
-          __("Wrap (~c~ircular list)"),0),
+                __("~J~ust stop"),
+                __("~I~ndicate with a message"),
+                __("Wrap (~c~ircular list)"),0),
    new TSCheckBoxes(new TSItem(__("Make a beep"),0)),
-   new TSLabel(__("When creating message and similar windows"),
-               new TSCheckBoxes(
-                   new TSItem(__("Use the ~v~ertical direction"),
-                   new TSItem(__("Use the ~r~ight side"),0)))),
-   new TSLabel(__("When opening files"),
-               new TSRadioButtons(
-                   new TSItem(__("~U~se reserved width or 7 (hz dir)"),
-                   new TSItem(__("~A~void message and project windows"),0)))),
+   TSLabelCheck(__("When creating message and similar windows"),
+                __("Use the ~v~ertical direction"),
+                __("Use the ~r~ight side"),0),
+   TSLabelRadio(__("When opening files"),
+                __("~U~se reserved width or 7 (hz dir)"),
+                __("~A~void message and project windows"),0),
    new TSHzLabel(__("Reserved ~w~idth"),new TSInputLine(5)),
+   TSLabelRadio(__("Zoom windows when"),
+                __("No ~p~roject window"),
+                __("No prj. wi~n~dow or it's zoomed"),
+                __("A~l~ways"),0),
    0);
  MsgWin->makeSameW();
 
@@ -692,6 +695,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
  char buf[32];
  sprintf(buf,"%d",TSetEditorApp::widthVertWindows);
  strncpy(box.width,buf,4);
+ box.opsZoom=(TSetEditorApp::geFlags & geMask2)>>geShift2;
 
  unsigned command=execDialog(d,&box);
  if (command!=cmCancel)
@@ -701,6 +705,8 @@ unsigned SetGeneralEditorOptionsOthers(void)
     TSetEditorApp::geFlags=box.opts;
     if (box.opsAv)
        TSetEditorApp::geFlags|=geAvoidPrjAndMsg;
+    if (box.opsZoom)
+        TSetEditorApp::geFlags|=(box.opsZoom<<geShift2) & geMask2;
     TSetEditorApp::widthVertWindows=atoi(box.width);
     if (TSetEditorApp::widthVertWindows<6)
        TSetEditorApp::widthVertWindows=6;

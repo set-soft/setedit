@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.546  2004/07/23 13:00:50  set
+* Fixed: [MSVC] Wrong prototype of LoadFileUnderCursor in ced_inte.h. Only
+reported by MSVC 4.0. From a report by Arnold.
+
 Revision 1.545  2004/07/22 00:59:15  set
 * Added: When using the tag search if we find a perfect match now we jump
 directly to the tag. Suggested by Thiago.

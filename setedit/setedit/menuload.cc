@@ -1024,6 +1024,12 @@ int LoadTVMenuAndStatus(char *fileName)
  #if HAVE_GDB_MI
  defs->insert(newStr("DEBUG"));
  #endif
+ #if HAVE_CALCULATOR
+ defs->insert(newStr("CALCULATOR"));
+ #endif
+ #if HAVE_CALENDAR
+ defs->insert(newStr("CALENDAR"));
+ #endif
 
  PreproInfo.depth=0;
  GetLine();

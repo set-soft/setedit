@@ -12,6 +12,8 @@ $conf{'parser'}='parserbr.c';
 $conf{'mp3lib'}='mpegsnd';
 $conf{'mp3'}='yes';
 $conf{'HAVE_MIXER'}='yes';
+$conf{'HAVE_CALCULATOR'}='yes';
+$conf{'HAVE_CALENDAR'}='yes';
 $conf{'intlShipped'}='no';
 $conf{'ToolsInstaller'}='no';
 $conf{'ToolsDistrib'}='no';
@@ -531,6 +533,22 @@ sub SeeCommandLine
       {
        $JustSpec=1;
       }
+    elsif ($i eq '--with-calc')
+      {
+       $conf{'HAVE_CALCULATOR'}='yes';
+      }
+    elsif ($i eq '--without-calc')
+      {
+       $conf{'HAVE_CALCULATOR'}='no';
+      }
+    elsif ($i eq '--with-calend')
+      {
+       $conf{'HAVE_CALENDAR'}='yes';
+      }
+    elsif ($i eq '--without-calend')
+      {
+       $conf{'HAVE_CALENDAR'}='no';
+      }
     else
       {
        ShowHelp();
@@ -577,6 +595,10 @@ sub ShowHelp
  print "--without-mss   : compiles without MSS [default].\n";
  print "--with-efence   : compiles with Electric Fence memory debugger.\n";
  print "--without-efence: compiles without Electric Fence [default].\n";
+ print "--with-calc     : compiles the internal calculator [default].\n";
+ print "--without-calc  : no internal calculator.\n";
+ print "--with-calend   : compiles the internal calendar [default].\n";
+ print "--without-calend: no internal calendar.\n";
  # Compilation
  print "\nCompilation options:\n";
  print "--enable-maintainer-mode:\n";
@@ -1286,6 +1308,8 @@ sub CreateConfigH
  #$text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
  $text.=ConfigIncDefYes('HAVE_AA','AA lib');
  $text.=ConfigIncDefYes('HAVE_GDB_MI','GDB/MI interface');
+ $text.=ConfigIncDefYes('HAVE_CALCULATOR','Calculator');
+ $text.=ConfigIncDefYes('HAVE_CALENDAR','Calendar');
  $text.=ConfigIncDefYes('HAVE_DL_LIB','Support for runtime dynamic libs');
  $text.="\n#define DL_HEADER_NAME <".$conf{'dl_header'}.".h>\n";
 

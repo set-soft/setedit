@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 #  Simple menu to avoid confusing people with too much options.
@@ -118,9 +118,16 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "~S~creen Options", cmeSetScreenOps
    MenuItemC: "Encod~i~ngs...", cmeEncodings
    MenuItemC: "Fon~t~s...", cmeFonts
+   $if CALENDAR
    MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf
+   $endif
  EndSubMenu
+ $if CALCULATOR
  MenuItemC: "~C~alculator", cmePocketCalc, kbAlF4, "Alt+F4"
+ $endif
+ $if CALENDAR
+ MenuItemC: "Ca~l~endar", cmeCalendar
+ $endif
  $if MP3
  SubMenu: "MP~3~ songs", kbUnknown
    MenuItemC: "~S~elect a song", cmeMP3Open

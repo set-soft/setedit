@@ -388,9 +388,26 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
            !(options & oedForgetResume))
           ain->ApplyResume(r);
        deskTop->insert(p);
-       // When the project is OFF zoom it
-       if (!validResume && !(IsPrjOpened() && IsPrjVisible()))
-          ain->zoom();
+
+       if (!validResume)
+         {
+          int prjWinThere=IsPrjOpened() && IsPrjVisible();
+          switch (TSetEditorApp::geFlags & geMask2)
+            {
+             case geZoomedIfNoPrj:
+                  // When the project is OFF zoom it
+                  if (!prjWinThere)
+                     ain->zoom();
+                  break;
+             case geZoomedNPorZ:
+                  if (!prjWinThere || IsPrjZoomed())
+                     ain->zoom();
+                  break;
+             case geAlwaysZoomed:
+                  ain->zoom();
+                  break;
+            }
+         }
       }
     else
       {
@@ -1416,6 +1433,7 @@ void TSetEditorApp::RemapCodePageEd(void)
 
 void TSetEditorApp::pocketCalculator(void)
 {
+ #if HAVE_CALCULATOR
  TCalculator *calc=(TCalculator *)validView(new TCalculator);
 
  if (calc)
@@ -1423,6 +1441,10 @@ void TSetEditorApp::pocketCalculator(void)
     //calc->helpCtx = hcCalculator; very obvious to use
     deskTop->insert(calc);
    }
+ #else
+ messageBox(__("This functionality was disabled at compile time"),
+            mfError | mfOKButton);
+ #endif
 }
 
 char DumpStartName[]="\n\n>>>>>>>>>>>>>>\n";
@@ -1739,7 +1761,10 @@ XYFElement *XYFStack::Pop()
     return NULL;
  XYFElement *ret=last;
  if (last->prev)
+   {
     last=last->prev;
+    last->next=NULL;
+   }
  else
     first=last=NULL;
  count--;

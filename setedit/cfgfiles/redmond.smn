@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # That's an example of a menu file that changes the following commands:
@@ -225,16 +225,22 @@ SubMenu: "~T~ool&Ops", kbAlT
      MenuItemC: "~L~ist of tag files...", cmeTagFiles
      MenuItemC: "~O~ptions...", cmeTagsOps
    EndSubMenu
+   $if CALENDAR
    MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf
+   $endif
    MenuItemC: "Advice dialogs...", cmeAdviceDiagConf
  EndSubMenu
+ $if CALCULATOR
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc
+ $endif
  MenuItemC: "~S~DG", cmeSDG, kbF9, "F9"
  MenuItemC: "~R~un program", cmeRunCommand, kbCtF9, "Ctrl+F9"
  MenuItemC: "~G~rep...", cmeGrepDialog, kbShF2, "Shift+F2"
  MenuItemC: "~A~SCII Chart", cmeASCIIChart
+ $if CALENDAR
  MenuItemC: "Ca~l~endar", cmeCalendar
+ $endif
  $if MP3
  SubMenu: "MP~3~ songs", kbUnknown
    MenuItemC: "~S~elect a song", cmeMP3Open

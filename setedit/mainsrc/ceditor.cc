@@ -2848,7 +2848,7 @@ int TCEditor::handleCommand(ushort command)
                 SetMarker(command-cmcPutMark0);
                 break;
  
-           // ^Qn Without Undo
+           // ^Qn
            case cmcGotoMark0:
            case cmcGotoMark1:
            case cmcGotoMark2:
@@ -3216,19 +3216,18 @@ int TCEditor::handleCommand(ushort command)
  
            // ^KV Full OK Level 2
            case cmcMoveBlock:
-                if (!isReadOnly && hasVisibleSelection() && PersistentBlocks &&
-                    clipboard!=0 && clipboard!=this)
+                if (!isReadOnly && hasVisibleSelection() && PersistentBlocks)
                   {
                    flushLine();
                    unsigned pos=(unsigned)(ColToPointer()-buffer);
-                   char *s;
                    unsigned l=selEnd-selStart;
-                   s=new char[l];
-                   if (s)
+                   if (pos<selStart)
                      {
-                      memcpy(s,buffer+selStart,l);
-                      if (pos<selStart)
-                        {
+                      char *s=new char[l];
+                      if (s)
+                        {// Temporal copy, if we use the buffer then the selected
+                         // text is moved during the insertion.
+                         memcpy(s,buffer+selStart,l);
                          uint32 x,y;
                          x=curPos.x; y=curPos.y;
                          deleteSelect();
@@ -3236,23 +3235,17 @@ int TCEditor::handleCommand(ushort command)
                          insertBuffer(s,0,l,True,True,False);
                          update(ufView);
                         }
-                      else
-                        if (pos>=selEnd)
-                          {
-                           uint32 st,e;
-                           st=selStart; e=selEnd;
-                           insertBuffer(s,0,l,True,True,False);
-                           Markers[8]=selStart;
-                           Markers[9]=selEnd;
-                           selStart=st; selEnd=e;
-                           deleteSelect();
-                           selStart=Markers[8];
-                           selEnd=Markers[9];
-                           GotoOffSet(staticNoMoveToEndPaste ? selStart : selEnd);
-                           update(ufView);
-                          }
-                      delete[] s;
                      }
+                   else
+                     if (pos>=selEnd)
+                       {
+                        uint32 st,e;
+                        st=selStart; e=selEnd;
+                        insertBuffer(buffer,selStart,l,True,True,False);
+                        deleteRange(buffer+st,buffer+e);
+                        GotoOffSet(staticNoMoveToEndPaste ? selStart : selEnd);
+                        update(ufView);
+                       }
                   }
                 break;
  
@@ -4093,7 +4086,11 @@ void TCEditor::ShowLength()
        if (buffer[pos++]=='\n')
           lines++;
       }
-    editorDialog(edLineLenght,selEnd-selStart,lines);
+    //editorDialog(edLineLenght,selEnd-selStart,lines);
+    int l=size.x+1;
+    AllocLocalStr(b,l);
+    TVIntl::snprintf(b,l,__("%d bytes selected, in %d"),selEnd-selStart,lines);
+    setStatusLine(b);
    }
 }
 
@@ -6988,11 +6985,19 @@ Boolean TCEditor::insertBuffer( char *p,
  if (allowUndo)  // Just remember the actual selected area
     addToUndo(undoPreInsert,NULL);
 
+ // To allow copying from the same buffer (only works if the insertion point
+ // is greater than p+offtset+length).
+ // When we do a realloc we know we need to re-compute the pointer.
+ Boolean copyFromItself=p==buffer;
+
  if (bufLen==0 && bufSize==0)
    { // It's a new buffer?
     bufSize=MakeItGranular(length);
     initBuffer();
     setBufLen(0);
+    if (copyFromItself)
+       // Pointer could be changed
+       p=buffer;
    }
 
  int lar=LenWithoutCRLF(curPos.y,curLinePtr);
@@ -7049,8 +7054,13 @@ Boolean TCEditor::insertBuffer( char *p,
   uint32 DeltaS=(uint32)(s-buffer); // If we need more space the pointer change
   //uint32 DeltaCL=(uint32)(curLinePtr-buffer);
   if (bufSize<bufLen+TotalToAdd+1) // 1 to keep space for a \x0
+    {
      if (!setBufSize(bufLen+TotalToAdd+1))
         return False;
+     if (copyFromItself)
+        // Pointer could be changed
+        p=buffer+offset;
+    }
   s=buffer+DeltaS;
   //curLinePtr=buffer+DeltaCL;
  }

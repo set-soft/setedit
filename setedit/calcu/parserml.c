@@ -13,6 +13,7 @@
 
  */
 
+#include <configed.h>
 #define Uses_string
 #define Uses_alloca
 #define Uses_stdlib
@@ -26,6 +27,8 @@
 #ifdef   TVCompf_djgpp
  #include <float.h>  /* for _clear87() */
 #endif
+
+#ifdef HAVE_CALCULATOR
 
 #ifdef TVComp_GCC
  #define ltype   long long
@@ -401,4 +404,6 @@ int main (int argc,char **argv)
     return 0;
 }
 #endif
+
+#endif // HAVE_CALCULATOR
 

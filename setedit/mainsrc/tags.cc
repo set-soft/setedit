@@ -410,6 +410,7 @@ void TSpTagCollection::freeItem(void *item)
  DeleteArray(p->partof);
  if (!(p->flags & sttFgLine))
     DeleteArray(p->regex);
+ delete p;
 }
 
 void TTagCollection::print1(void *item, void *)

@@ -1083,16 +1083,25 @@ void UpdateProjectResumeFor(char *fileName, TCEditWindow *p)
    }
 }
 
-int IsPrjOpened(void)
+int IsPrjOpened()
 {
  return PrjExists();
 }
 
-int IsPrjVisible(void)
+int IsPrjVisible()
 {
  if (!PrjExists())
     return 0;
  return prjWin->view->state & sfVisible;
+}
+
+int IsPrjZoomed()
+{
+ if (!PrjExists())
+    return 0;
+ TRect dkt=TApplication::deskTop->getExtent();
+ TRect size=prjWin->window->getBounds();
+ return dkt==size;
 }
 
 struct FileTm

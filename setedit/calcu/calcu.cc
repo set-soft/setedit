@@ -33,6 +33,8 @@
 #include <calcu.h>
 #include <setapp.h>
 
+#ifdef HAVE_CALCULATOR
+
 #ifdef FLEX_BISON
 extern "C" char *yyParseString(char *s);
 #else
@@ -166,3 +168,15 @@ void executeCalc(char *startVal)
  CLY_destroy(d);
  delete[] startVal;
 }
+
+#else
+
+void executeCalc(char *startVal)
+{
+ messageBox(__("This functionality was disabled at compile time"),
+            mfError | mfOKButton);
+ delete[] startVal;
+}
+
+#endif
+

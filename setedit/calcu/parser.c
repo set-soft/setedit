@@ -10,6 +10,7 @@
 
 *****************************************************************************/
 
+#include <configed.h>
 #include <ctype.h>
 #include <math.h>
 #include <setjmp.h>
@@ -18,6 +19,8 @@
 #define Uses_string
 #define CLY_DoNotDefineUTypes
 #include <compatlayer.h>
+
+#ifdef HAVE_CALCULATOR
 
 #define isprenum(STR) (STR == '.' || (STR >= '0' && STR <= '9'))
 #define isprevar(STR) (STR == '_' || (STR >= 'a' && STR <= 'z') || (STR >= 'A' && STR <= 'Z'))
@@ -482,3 +485,6 @@ int main (int argc, char *argv [])
    return 0;
 }
 #endif /* TEST */
+
+#endif // HAVE_CALCULATOR
+
