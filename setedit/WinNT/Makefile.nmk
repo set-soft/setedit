@@ -1,3 +1,8 @@
+#
+#  This makefile is deprecated, you should use it only if the "new" mechanism
+#  fails. Please read the INSTALL.txt instructions.
+#  If you must use this file please report it.
+#
 DEST_BIN_DIR = c:\setedit
 DEST_SET_DIR = c:\setedit
 

@@ -2243,6 +2243,7 @@ Keywords=IOError,IndexError,Integer,Interrupt,LoadError,LocalJumpError,MatchingD
 Keywords=Numeric,Object,Proc,Range,Regexp,RuntimeError,SecurityError,SignalException,StandardError,String,Struct,SyntaxError
 Keywords=SystemCallError,SystemExit,SystemStackError,ThreadError,Time,TypeError,ZeroDivisionError,fatal
 Keywords=Comparable,Enumerable,Errno,FileTest,GC,Kernel,Marshal,Math,ObjectSpace,Precision,Process
+End
 #---------------------------End Ruby shl-----------------------------------#
 
 # -------------------------------- WML ------------------------------------

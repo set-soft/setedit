@@ -656,7 +656,7 @@ void CutNoteStr(char *s, char *ori, long &size, char *&fin)
  else
     cant=5;
  //char eos=*fin;
- memcpy(s,s+cant,size_t(size-(s-ori)-cant+1));
+ CLY_memcpy(s,s+cant,size_t(size-(s-ori)-cant+1));
  size-=cant;
  fin-=cant;
  //if (!eos) *fin=0;
@@ -1031,7 +1031,7 @@ TInfIndex::~TInfIndex()
  if (coll!=NULL)
     delete coll;
  if (IndOffsets!=NULL)
-    delete IndOffsets;
+    delete[] IndOffsets;
  IndOffsets=NULL;
 }
 

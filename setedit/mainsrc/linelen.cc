@@ -97,8 +97,8 @@ void LineLengthArray::del(unsigned pos)
 void LineLengthArray::deleteRange(unsigned from,unsigned to)
 {
  unsigned count=to-from+1;
- memcpy(&elArray[from],&elArray[to+1],(Length-from-count)<<1);
- memcpy(&elArrayAttr[from],&elArrayAttr[to+1],(Length-from-count)<<2);
+ CLY_memcpy(&elArray[from],&elArray[to+1],(Length-from-count)<<1);
+ CLY_memcpy(&elArrayAttr[from],&elArrayAttr[to+1],(Length-from-count)<<2);
  Length-=count;
 }
 

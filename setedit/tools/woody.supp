@@ -1,0 +1,127 @@
+# General suppressions
+#
+# putenv needs a copy for glibc.
+#
+{
+   PutEnv1
+   Memcheck:Leak
+   fun:__builtin_vec_new
+   fun:CheckForValidTMPDIR__Fv
+   fun:main
+}
+{
+   PutEnv2
+   Memcheck:Leak
+   fun:__builtin_vec_new
+   fun:GuessOneSET_LIBS__FPCcc
+   fun:GuessSET_LIBS__Fv
+   fun:main
+}
+{
+   PutEnv3
+   Memcheck:Leak
+   fun:__builtin_vec_new
+   fun:GuessOneSET_FILES__FPCcc
+   fun:GuessSET_FILES__Fv
+   fun:main
+}
+#
+# XCloseIM seems to leak?! don't know if that's my fault.
+#
+{
+   XOpenIM_Unknown_Problem
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XOpenIM
+}
+{
+   XOpenIM_Unknown_Problem_2
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+}
+{
+   XOpenIM_Unknown_Problem_3
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+}
+{
+   XOpenIM_Unknown_Problem_4
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+}
+{
+   XOpenIM_Unknown_Problem_5
+   Memcheck:Leak
+   fun:malloc
+   fun:_XOpenLC
+   fun:XOpenIM
+   fun:__10TScreenX11i
+}
+{
+   XOpenIM_Unknown_Problem_6
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object_deps
+   obj:/lib/libc-2.2.5.so
+   fun:_dl_catch_error
+}
+{
+   XOpenIM_Unknown_Problem_7
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+}
+{
+   XOpenIM_Unknown_Problem_8
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object
+   obj:/lib/libc-2.2.5.so
+   fun:_dl_catch_error
+}
+{
+   XOpenIM_Unknown_Problem_9
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_check_map_versions
+   obj:/lib/libc-2.2.5.so
+   fun:_dl_catch_error
+}
+{
+   XOpenIM_Unknown_Problem_10
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+}
+
+# Debian specific
+{
+   DlStartWoody
+   Memcheck:Cond
+   fun:_dl_start
+   obj:/lib/ld-2.2.5.so
+}
+{
+   X11WriteVWoody
+   Memcheck:Param
+   writev(vector[...])
+   fun:writev
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_X11TransWritev
+   fun:_XSend
+}

@@ -11,6 +11,7 @@ little bit tricky.@*
   
 ***************************************************************************/
 
+#include <stdlib.h>
 #include "datetools.h"
 
 /************************** Feriados *********************************/
@@ -82,7 +83,7 @@ int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem,
 
 struct dayMonth *GetListOfHolidays(int anio, int *feriados)
 {
- int d,m,a,nD,nS,j,v;
+ int a,nD,nS,j,v;
  struct dayMonth *ret=(struct dayMonth *)malloc(sizeof(struct dayMonth)*(nFeriados+2));
  int i,k;
 

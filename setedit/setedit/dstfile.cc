@@ -1346,6 +1346,7 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
     s >> soColSaved;
     if (soColSaved)
       {
+       CLY_destroy(soCol);
        s >> soCol;
        soCol->transfer2TV();
       }

@@ -130,9 +130,10 @@ void InitEditorSignals(char aStrategy, const char *prgName, const char *errFile)
  signal(SIGSEGV, EditorSignal);
  signal(SIGTERM, EditorSignal);
  signal(SIGINT,  EditorSignal);
+ /* It doesn't have much sense, SIGKILL never reachs the application ;-)
  #ifdef SIGKILL
  signal(SIGKILL, EditorSignal);
- #endif
+ #endif */
  #ifdef SIGQUIT
  signal(SIGQUIT, EditorSignal);
  #endif

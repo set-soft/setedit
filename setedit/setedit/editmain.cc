@@ -42,6 +42,7 @@
 #define Uses_unistd
 #define Uses_ProgBar  // Needed for recoding stuff only!
 #define Uses_TVConfigFile
+#define Uses_TScOptsCol
 #ifndef SECompf_djgpp
  #define Uses_TGKey
 #endif
@@ -445,6 +446,7 @@ TSetEditorApp::~TSetEditorApp()
     TScreen::setWindowTitle((const char *)OriginalWindowTitle);
     delete[] OriginalWindowTitle;
    }
+ CLY_destroy(soCol);
 }
 
 /**[txh]********************************************************************

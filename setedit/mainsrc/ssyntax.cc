@@ -234,8 +234,8 @@ void *TFileEntryCollection::readItem(ipstream& is)
 void TFileEntryCollection::freeItem(void *s)
 {
  entryInfo *p=(entryInfo *)s;
- delete p->file;
- delete p->node;
+ delete[] p->file;
+ delete[] p->node;
  if (p->isOK==fileOK)
     CLY_destroy(p->items);
  delete p;
