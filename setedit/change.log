@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.325  2003/05/02 12:45:16  set
+* Fixed: The modified CreateChooseDialog used cmOKApply and cmCancelApply
+commands instead of cmOK and cmCancel. Reported by Grzegorz.
+
 Revision 1.324  2003/04/30 20:28:34  set
 * Fixed: The editor wrongly interpreted the basic/extended regex option so
 the real mode was in fact tied to the case sensitive option.

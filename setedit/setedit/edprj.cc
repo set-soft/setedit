@@ -103,8 +103,10 @@ public:
  void freeItem(void *);
  void *keyOf(void *item) { return (void *)((PrjItem *)item)->shortName; };
  char *referencePath;
+ char *referenceCurDelta;
  Boolean Search(char *file, ccIndex &pos);
  int addFile(char *name, ccIndex &pos, int flags=0);
+ void analizeReference(const char *filename);
 
 private:
  PrjItem *createNewElement(char *name, int flags=0);
@@ -132,6 +134,7 @@ TPrjItemColl::TPrjItemColl(ccIndex aLimit, ccIndex aDelta) :
      TStringCollection(aLimit,aDelta)
 {
  referencePath=getcwd(0,PATH_MAX);
+ referenceCurDelta=NULL;
  if (!referencePath)
     string_dup(referencePath,"");
 };
@@ -140,6 +143,7 @@ TPrjItemColl::TPrjItemColl(StreamableInit) :
      TStringCollection( streamableInit )
 {
  referencePath=getcwd(0,PATH_MAX);
+ referenceCurDelta=NULL;
  if (!referencePath)
     string_dup(referencePath,"");
 };
@@ -148,6 +152,41 @@ TPrjItemColl::TPrjItemColl(StreamableInit) :
 TPrjItemColl::~TPrjItemColl()
 {
  ::free(referencePath);
+ ::free(referenceCurDelta);
+}
+
+void TPrjItemColl::analizeReference(const char *filename)
+{
+ char b1[PATH_MAX], b2[PATH_MAX];
+ // Make this path absolute
+ strcpy(b1,filename);
+ CLY_fexpand(b1);
+ // Extract the dir part
+ CLY_ExpandPath(b1,b2,NULL);
+ char *endB2=b2+strlen(b2)-1;
+ if (CLY_IsValidDirSep(*endB2))
+    *endB2=0;
+ // Compare with the reference
+ if (strcmp(b2,referencePath)!=0)
+   { // This isn't the same reference
+    ::free(referencePath);
+    ::free(referenceCurDelta);
+    getcwd(b1,PATH_MAX);
+    if (strcmp(b1,b2)==0)
+      { // The reference is the current directory
+        // I think it never happends
+       referencePath=strdup(b1);
+       referenceCurDelta=NULL;
+      }
+    else
+      { // Different reference
+       char *s=NULL;
+       referencePath=strdup(b2);
+       string_dup(s,b2);
+       AbsToRelPath(b1,s,0);
+       referenceCurDelta=s;
+      }
+   }
 }
 
 void *TPrjItemColl::readItem( ipstream& is )
@@ -286,9 +325,16 @@ void TEditorProjectListBox::selectItem(ccIndex item)
 {
  PrjItem *st=(PrjItem *)(list()->at(item));
 
- //resetIncSearch();
  message( owner, evBroadcast, cmListItemSelected, list() );
- OpenFileFromEditor(st->name);
+ if (ProjectList->referenceCurDelta)
+   {// The project was loaded from another directory, not curdir
+    char *dest=NULL;
+    string_cat(dest,ProjectList->referenceCurDelta,DIRSEPARATOR_,st->name,0);
+    OpenFileFromEditor(dest);
+    string_free(dest);
+   }
+ else
+    OpenFileFromEditor(st->name);
 }
 
 
@@ -492,6 +538,7 @@ void TDskWinPrj::setFileName(char *file)
    {
     delete[] window->FileName;
     window->FileName=newStr(file);
+    ProjectList->analizeReference(file);
    }
 }
 
