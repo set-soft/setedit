@@ -1,4 +1,7 @@
 $Log$
+Revision 1.195  2002/09/06 00:10:29  terrible
+* Updated: Debian packaging to version 0.5.0-0.1.
+
 Revision 1.194  2002/09/04 20:32:32  set
 * Added: When the editor loads a file the "busy indicator" is used.
 * Fixed: Added some rounding to the resume computations to make them more
@@ -64,7 +67,7 @@ above PageUp should be killed.
 Revision 1.184  2002/09/02 13:53:49  set
 * Modified: [DOS] The installer now uses cwsdpmi and a regular stub. I
 changed it because A) A user reported problems in SF bug tracker and B)
-cwsdpmi is much more reliable than pmodedj.
+cwsdpmi is much more reliable than pmodedj. SF bug #594116.
 
 Revision 1.183  2002/08/27 17:21:41  set
 * Added: DontResizeToCells TV configuration keyword.

@@ -5094,13 +5094,8 @@ uint32 TCEditor::CompactFlags(void)
 
 void TCEditor::ExpandFlags(uint32 t, Boolean allowUndo)
 {
- if (allowUndo)
-   {
-    if ( overwrite!=((t & loOverwrite) ? True : False) )
-       toggleInsMode(True);
-   }
- else
-    overwrite=(t & loOverwrite) ? True : False;
+ if (overwrite!=((t & loOverwrite) ? True : False))
+    toggleInsMode(allowUndo);
  autoIndent       = (t & loAutoIndent)       ? True : False;
  UseTabs          = (t & loUseTabs)          ? True : False;
  PersistentBlocks = (t & loPersistentBlocks) ? True : False;
@@ -10618,8 +10613,6 @@ void *TCEditor::read( ipstream& is )
     if (LoadingVersion<0x450 && staticColumnMarkers)
        flags|=loColumnMarkers;
     ExpandFlags(flags,False);
-    // Be sure the cursor is coherent with the insert/overwrite mode
-    setState(sfCursorIns,overwrite);
     SetHighlightTo((shlState)shl,subshl);
     if (!DontLoadFile)
        isValid = loadFile();
