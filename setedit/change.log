@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.322  2003/04/30 18:00:19  set
+* Fixed: TSortedListBox using SOStacks have a special incremental search,
+it had some bugs fixed in TV but not copied there.
+
 Revision 1.321  2003/04/30 16:05:59  set
 * Added: More documentation about tags.
 * Updated: Spanish translations.

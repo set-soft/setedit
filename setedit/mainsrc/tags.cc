@@ -1260,7 +1260,8 @@ TDialog *createDialogTags(const char *title, const char *label,
 static
 TDialog *createDialog()
 {
- return createDialogTags(__("Jump to symbol"),__("List of symbols"),__("O~K~"));
+ return createDialogTags(__("Jump to symbol"),__("List of symbols"),__("O~K~"),
+                         __("~S~earch members"));
 }
 
 static
@@ -1275,6 +1276,61 @@ void JumpToTag(TListBoxRec &br)
    GotoFileLine(p->line,b,desc);
  else
    GotoFileText((char *)p->regex,b,desc);
+}
+
+static
+int ShowMembers(ccIndex pos)
+{
+ stTag *p=tags->atPos(pos);
+ if (((p->kind=='e'|| p->kind=='u' || p->kind=='s') &&
+      (p->lang==ttclC || p->lang==ttclCpp)) ||
+     (p->kind=='c' && p->lang!=ttclFortran))
+   {
+    uchar mask=0;
+    switch (p->kind)
+      {
+       case 'c':
+            mask=sttFgClass;
+            break;
+       case 'e':
+            mask=sttFgEnum;
+            break;
+       case 'u':
+            mask=sttFgUnion;
+            break;
+       case 's':
+            mask=sttFgStruct;
+            break;
+      }
+    ccIndex c=tags->getCount(), i;
+    TSpTagCollection *members=new TSpTagCollection(10);
+    for (i=0; i<c; i++)
+       {
+        stTag *it=tags->atPos(i);
+        if ((it->flags & sttFgPMask)==mask && strcmp(p->id,it->partof)==0)
+           members->insert(it);
+       }
+    if (members->getCount())
+      {
+       TListBoxRec b={members,0};
+       int ret=execDialog(createDialogTags(p->id,__("Members"),__("~J~ump")),&b);
+       if (ret==cmOK)
+         {
+          JumpToTag(b);
+          delete members;
+          return 1;
+         }
+      }
+    else
+       messageBox(__("Sorry, couldn't find any member"),mfError|mfOKButton);
+    delete members;
+   }
+ else
+   {
+    messageBox(__("I don't know about members for this type"),mfError|mfOKButton);
+    return 0;
+   }
+ return 0;
 }
 
 void SearchTag(char *word)
@@ -1294,7 +1350,14 @@ void SearchTag(char *word)
        br.selection=tags->getCount()-1;
     DeleteArray(word);
    }
- int ret=execDialog(createDialog(),&br);
+ int ret;
+ do
+   {
+    ret=execDialog(createDialog(),&br);
+    if (ret==cmYes && ShowMembers(br.selection))
+       break;
+   }
+ while (ret==cmYes);
  if (ret==cmOK)
     JumpToTag(br);
 }
