@@ -944,16 +944,16 @@ void TSetEditorApp::EncodingOptions()
     int priChanged=box.scrForce!=so->enForceScr || (so->enForceScr && box.scrCP!=scrCP);
     int sndChanged=box.sndForce!=so->enForceSnd || (so->enForceSnd && box.sndCP!=sndCP);
     if (appChanged || inpChanged || priChanged || sndChanged)
-      {// At least one changed
+      {// At least one changed       
        so->enForceApp=box.appForce;
        so->enForceInp=box.inpForce;
        so->enForceScr=box.scrForce;
        so->enForceSnd=box.sndForce;
-       // Transfer only the settings that will be used
-       if (so->enForceApp) so->enApp=TVCodePage::IndexToID(box.appCP);
-       if (so->enForceInp) so->enInp=TVCodePage::IndexToID(box.inpCP);
-       if (so->enForceScr) so->enScr=TVCodePage::IndexToID(box.scrCP);
-       if (so->enForceSnd) so->enSnd=TVCodePage::IndexToID(box.sndCP);
+       // Transfer the settings or just revert to defaults
+       so->enApp=so->enForceApp ? TVCodePage::IndexToID(box.appCP) : idDefApp;
+       so->enInp=so->enForceInp ? TVCodePage::IndexToID(box.inpCP) : idDefInp;
+       so->enScr=so->enForceScr ? TVCodePage::IndexToID(box.scrCP) : idDefScr;
+       so->enSnd=so->enForceSnd ? TVCodePage::IndexToID(box.sndCP) : so->enScr;
        TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
        SetEditorFontsEncoding(priChanged,so->enForceScr ? so->enScr : idDefScr,
                               sndChanged,so->enForceSnd ? so->enSnd : idDefScr);
