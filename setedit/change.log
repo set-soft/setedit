@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.618  2004/09/29 20:07:11  set
+* Fixed: [DOCs] Message about pressing F1 in the printed version. Also
+wrong copyright year.
+* Fixed: strdup vs delete[] in tips.cc, reported by valgrind.
+* Updated: [WWW] Main page, changes and readme. 0.5.4 is currently named
+as pre-release.
+-------- CVS TAG r0_5_4rc1
+
 Revision 1.617  2004/09/24 18:59:51  set
 * Fixed: The SF Rev 1.523 patch about holidays clean-up was buggy. It
 released the loaded stuff but didn't indicate it. So when opening the

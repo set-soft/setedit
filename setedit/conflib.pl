@@ -10,7 +10,7 @@ $MakeDefsRHIDE={};
 $ExtraModifyMakefiles={};
 # DOS, UNIX, Win32
 $OS='';
-# Linux, FreeBSD, NetBSD, Solaris, QNXRtP
+# Linux, FreeBSD, NetBSD, Solaris, QNXRtP, OpenBSD, Darwin
 $OSf='';
 # x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium, Unknown
 $CPU='';
@@ -617,7 +617,7 @@ sub FindCXXFLAGS
     return $ret;
    }
  $ret=@ENV{'CXXFLAGS'};
- if (!ret)
+ if (!$ret)
    {
     $ret=TVConfigOption('cppflags');
     chop $ret if $ret;
@@ -823,6 +823,24 @@ sub DetectOS
    {
     $OS='UNIX';
     $OSf='NetBSD';
+    $Compf='';
+    $stdcxx='-lstdc++';
+    $defaultCXX='g++';
+    $supportDir='linux';
+   }
+ elsif ($os=~/OpenBSD/)
+   {
+    $OS='UNIX';
+    $OSf='OpenBSD';
+    $Compf='';
+    $stdcxx='-lstdc++';
+    $defaultCXX='g++';
+    $supportDir='linux';
+   }
+ elsif ($os=~/Darwin/)
+   {
+    $OS='UNIX';
+    $OSf='Darwin';
     $Compf='';
     $stdcxx='-lstdc++';
     $defaultCXX='g++';
@@ -1268,7 +1286,7 @@ int main(void)
  printf("SPARC64\n");
  #elif defined(__sparc__) || defined(sparc)
  printf("SPARC\n");
- #elif defined(__PPC__) || defined(PPC)
+ #elif defined(__PPC__) || defined(PPC) || defined(__ppc__)
  printf("PPC\n");
  #elif defined(__hppa__)
  printf("HPPA\n");
@@ -1331,26 +1349,41 @@ sub LookForGNUar
     print "$conf{'GNU_AR'} (cached)\n";
     return $conf{'GNU_AR'};
    }
- `echo ar: >> $ErrorLog`;
- $test=RunRedirect('ar --version');
+ $conf{'UseRanLib'}=0;
+ $test=RunRedirect('ar --version',$ErrorLog);
  if ($test=~/GNU ar/)
    {
     $conf{'GNU_AR'}='ar';
     print "ar\n";
     return 'ar';
    }
- $test=RunRedirect('gar --version');
+ $test=RunRedirect('gar --version',$ErrorLog);
  if ($test=~/GNU ar/)
    {
     $conf{'GNU_AR'}='gar';
     print "gar\n";
     return 'gar';
    }
+ if (($OSf eq 'Darwin') || ($OSf eq 'HP-UX'))
+   {
+    $conf{'GNU_AR'}='ar';
+    $conf{'UseRanLib'}=1;
+    print "ar (not GNU but usable!)\n";
+    return 'ar';
+   }
+ if ($OSf eq 'QNX4')
+   {
+    $conf{'GNU_AR'}='ar';
+    $conf{'UseRanLib'}=1;
+    print "ar (WATCOM)\n";
+    return 'ar';
+   }
  print "Unable to find GNU ar on this system.\n";
  print "Please install it and be sure it's in your path.\n";
  print "Also use `ar' or `gar' name for the binary.\n";
  die;
 }
+
 
 sub TVConfigOption
 {

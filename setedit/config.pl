@@ -55,7 +55,8 @@ if (($OS ne 'DOS') && (@conf{'mp3'} eq 'yes') && (@conf{'mp3lib'} ne 'mpegsnd'))
   {
    die "Only libmpegsnd is available for UNIX\n"
   }
-if ($OS eq 'Win32')
+# MP3 code works only for DOS, Linux and Solaris
+if (($OS ne 'DOS') && ($OSf ne 'Linux') && ($OSf ne 'Solaris'))
   {
    $conf{'mp3'}='no';
    $conf{'HAVE_MIXER'}='no';
@@ -65,12 +66,6 @@ if (($OS ne 'UNIX') && ($conf{'HAVE_AA'} eq 'yes'))
   {
    print "Currently AA-lib is usable only for UNIX version, please tell me if you think it should be changed.\n";
    $conf{'HAVE_AA'}='no';
-  }
-if ($OSf eq 'QNXRtP')
-  {
-   $conf{'mp3'}='no';
-   $conf{'HAVE_MIXER'}='no';
-   $conf{'mp3lib'}='';
   }
 
 LookForBasicTools();
