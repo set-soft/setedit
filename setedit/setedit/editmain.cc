@@ -2777,7 +2777,13 @@ void ParseCommandLine(int argc, char *argv[])
             #define PrintHelp(a) printf(a)
             #define FlushHelp()  fflush(stdout)
             TScreen::suspend();
-            PrintHelp(_("Setedit "TCEDITOR_VERSION_STR". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
+
+            PrintHelp(_("Setedit "));
+            PrintHelp(TCEDITOR_VERSION_STR);
+            PrintHelp(_(". Copyright (c) "));
+            PrintHelp(TCEDITOR_C_YEAR);
+            PrintHelp(_(" by Salvador E. Tropea\n\n"));
+
             PrintHelp(_("setedit [options] [file_name ...]\n\n"));
             PrintHelp(_("Valid options are:\n"));
             PrintHelp(_("+[line number]           jumps to the specified line. It only affects the next\n"

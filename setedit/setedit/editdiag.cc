@@ -38,7 +38,7 @@
 
 static const char *cSlogan=__("\x3 A friendly text editor.");
 static const char *cFormatVersion=__("\x3Version: %lX.%lX.%lX   Revision: %d");
-static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) 1996-2004");
+static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) %s");
 static const char *cFormatPlatform=__("\x3Platform: %s  Driver: %s");
 static const char *cSET=__("\x3 by Salvador Eduardo Tropea");
 
@@ -69,7 +69,7 @@ int AboutStartBox(void)
  TSViewCol *col=new TSViewCol(__("About"));
 
  char v1[bufWidth],v2[bufWidth];
- TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME);
+ TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME,TCEDITOR_C_YEAR);
  TVIntl::snprintf(v2,bufWidth,cFormatVersion,
                   TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
                   TCEDITOR_VERSION & 0xFF,VERSION_REV);

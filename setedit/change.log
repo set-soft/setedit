@@ -1,4 +1,8 @@
 $Log$.
+Revision 1.631  2004/10/14 19:42:23  set
+* Modified: [Compilation] The dependencies extractor to put the OBJFILES
+definition before its use. It should help nmake.
+
 Revision 1.630  2004/10/13 14:44:08  set
 * Added: [WWW] New Win32 installer released by wec (v0.5.2).
 * Added: [WWW] SuSE 9.1 and Fedora Core 2 packages released by bbcat
