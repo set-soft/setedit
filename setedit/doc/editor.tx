@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.5.0
-@set update-date 6 Feb 2003
-@set update-month Feb 2003
+@set version 0.5.1
+@set update-date 27 Apr 2003
+@set update-month Apr 2003
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1112,7 +1112,9 @@ so on. If you want the reverse you can use the command to invert the block.
 @c --------------------------------------------------------------------------
 @section Search
 
-This menu contains the search and replace commands of the editor.
+This menu contains the search and replace commands of the editor. The search
+functions also includes advanced tools specifically designed for programmers
+like the options to jump to a function definition or a symbol.
 @paragraph{}
 
 @c --------------------------------------------------------------------------
@@ -1236,11 +1238,14 @@ option. @x{Jump to function}.
 
 @c --------------------------------------------------------------------------
 @subsection Jump to function
+@cindex functions, heuristic jump to
 
 This option pop-ups a dialog with the list of functions in your source
 file. Then you can choose one to jump in there. The functions are searched
 in the source file so you don't need to compile it. As the parser uses an
-heuristic it can fail.
+heuristic it can fail. For an option that uses a more reliable but also
+slower and complicated search see the @il{Jump to symbol} option.
+@x{Jump to symbol}.
 @p{}
 
 The @code{Browse} button sends the list of functions to the message window
@@ -1256,6 +1261,7 @@ Currently only a few languages are supported, they are:
 @item Syntax Highlight Files
 @item Texinfo sources (chapters, sections, @il{etc.})
 @item Assembler files (labels)
+@item PHP
 @end itemize
 
 In C sources fails are common if your code have an unbalanced number of
@@ -1309,12 +1315,95 @@ number of curly brackets.
 @refMenu1{cmcJumpToPrototype}
 
 @c --------------------------------------------------------------------------
+@subsection Jump to symbol
+@cindex tags, jump to tag
+@cindex functions, jump to
+@cindex symbols, jump to
+@cindex variables, jump to
+
+This option uses @file{TAGS} files to search symbols. In order to make it
+work you should read about @file{TAGS} files first. The editor will try to
+help you to generate the @file{TAGS} file if you don't have one.
+@x{TAGS files}.
+@p{}
+
+The word at the left of the cursor will be used to start a search in the list
+of available symbols. You can make incremental searches in the list and
+pressing @key{Enter} the editor will jump to the symbol.
+@p{}
+
+@refMenu{cmeSearchTag,Ctrl+F2}
+
+@c --------------------------------------------------------------------------
 @subsection Go to line
 
 Allows you to indicate to what line you want to jump.
 @paragraph{}
 
 @refMenu{cmcGotoEditorLine,^J}
+
+@c --------------------------------------------------------------------------
+@subsection Class browser
+@cindex browsing classes
+
+This option uses @file{TAGS} files to search symbols. In order to make it
+work you should read about @file{TAGS} files first. The editor will try to
+help you to generate the @file{TAGS} file if you don't have one.
+@x{TAGS files}.
+@p{}
+
+First the editor will create an index of available classes from the
+@file{TAGS} files and then will do a search using the word at the left of the
+cursor. If an exact match was found the editor will go directly to browse
+this class, otherwise you'll get a list of available classes to choose one.
+You can make incremental searches in this list typing the first letters of
+the class name.
+@p{}
+
+The main browser dialog contains three buttons offering different information
+about the selected class. They are:
+@p{}
+
+@itemize @bullet
+@item This class: shows a list of the members for this class. You can select
+any of them to jump to the member code or go back to the main dialog.
+@item This and parents: shows a list of the members for this class and all
+the parent classes. The members for this class are first, then comes the
+members for the parents, then the members of the grandparents and so on. The
+information is more compact and you'll only see the name of the class where
+the member was found and the level (one for the parent, two for grandparents,
+@il{etc.}).
+@item Sorted: This option is the same as the previous but the list is
+alphabetically sorted.
+@end itemize
+
+In addition to these buttons you'll see a list of parent and child classes.
+Selecting a class from those lists and pressing the corresponding button you
+can browse the selected class.
+@p{}
+
+@refMenu1{cmeClassBrowser}
+
+@c --------------------------------------------------------------------------
+@subsection Word completion
+@cindex completion, words
+@cindex automatic word completion
+
+This option uses @file{TAGS} files to search symbols. In order to make it
+work you should read about @file{TAGS} files first. The editor will try to
+help you to generate the @file{TAGS} file if you don't have one.
+@x{TAGS files}.
+@p{}
+
+The word at the left of the cursor is used to perform a search in the list of
+available symbols. If a partial match is found a list of available symbols
+will pop-up. To select the symbol you want you can use the arrow cursors or
+continue typing until you reach the desired symbol. When you type
+@key{Enter}, @key{Space} or any symbol the select word will be inserted
+completing the word. Pressing @key{Esc} or @key{Tab} will abort the process.
+@p{}
+
+@refMenu{cmeWordCompletion,Alt+Right}
 
 @c --------------------------------------------------------------------------
 @section Macro
@@ -2483,6 +2572,28 @@ This list is stored in the desktop file.
 @p{}
 
 @refMenu1{cmeIncludeList}
+
+@c --------------------------------------------------------------------------
+@subsubsection Tag files (list to use)
+@cindex tags, list of files
+
+This dialog controls which tag files are loaded to search for symbols. To
+lear more about tags please read the corresponding chapter. @x{TAGS files}.
+@p{}
+
+When you add a file the editor tries to load it and shows how many symbols
+contained.
+@p{}
+
+After selecting a new tag file a dialog will ask if you want to add this name
+using a relative path. This is a very important question. If you are using
+one centralized desktop file and you have just a few projects you can add a
+list of tag files in this desktop file, but the list must contain absolute
+entries. If you are entering a list of tag files for a project or a local
+desktop file I recommend using relative paths, but it depends on your needs.
+@p{}
+
+@refMenu1{cmeTagFiles}
 
 @c --------------------------------------------------------------------------
 @subsection Calculator (command/menu)
@@ -5357,6 +5468,85 @@ the problem? @dots{} with which file(s)? Then send me the file and the descripti
   When sending to me a file UUEncode it to avoid problems related with the
 e-mail.
 @paragraph{}
+
+@chapter TAGS files
+
+This chapter describes some details about @file{TAGS} files. They are
+referreded as tags in the rest of the sections.
+@p{}
+
+I strongly recommend reading the documentation of the program to generate the
+tags files.
+@p{}
+
+@section What are tags?
+@cindex tags, what are?
+
+TAGS files are plain text files containing a list of symbols from your source
+code. For each symbol the file indicates in which file is located and how to
+find the symbol inside the file. Modern programs also includes very important
+information like what kind of symbol is defined and if this symbol is part of
+a bigger construction like a class.
+@p{}
+
+This information is very useful to do searches. The editor implements
+facilities to jump to any defined symbol, browse classes and do word
+completion using information from tag files.
+@p{}
+
+@section Which program is used to generate tag files?
+@cindex tags, program to generate
+
+A lot of programs generates tag files but the editor uses special features
+only found in the @il{Exuberant Ctags} program. For this reason I recommend
+using this program to generate the tag files. You can find this program at
+Source Forge (http://ctags.sourceforge.net).
+@p{}
+
+@section How should I generate the tags files?
+@cindex tags, how to generate
+
+It depends on your project and how do you compile the project. It also
+depends on how fast is your system. I currently use a tags file for the
+editor and another for the Turbo Vision library. The best is to refresh the
+tags file using the same makefile tou use to compile your project. If your
+system isn't very fast or your project is too big you could try using one
+tags file for each directory in your project. The editor can be configured to
+collect symbols from various tag files.
+@p{}
+
+The command line options I recommend to use with @file{ctags} are:
+@p{}
+
+@itemize @bullet
+   @item -R recursive, to search in all subdirectories.
+   @item --fields=+i+l+m+z Inheritance information, language of source file
+containing tag, implementation information and kind of tag.
+@end itemize
+
+Without the @code{+i} and @code{+z} option you won't be able to use the class
+browser.
+@p{}
+
+@section Technical details about tags
+
+The editor loads the tags to memory to allow fast searches for this reason
+you must be aware that they consume memory. In some tests I did using
+GNU/Linux I found the ammout needed to load a tags file is close to the size
+of the file on disk. For this reason I recommend to avoid generating symbols
+for files you don't need.
+@p{}
+
+The time to parse and load tags files can be annoying in slow systems. For
+this reason the editor never loads the tag files until they are really
+needed. So you'll notice a delay for the first search because the files are
+loaded at this time and not when the editor is started.
+@p{}
+
+Tag files doesn't catch all definitions, they aren't perfect so please read
+the man pages. They also lack some important information as which is the type
+of a variable (int, float, @il{etc.}).
+@p{}
 
 @chapter Miscellaneous
 

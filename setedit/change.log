@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.311  2003/04/28 14:00:31  set
+* Updated: Spanish translations.
+* Fixed: Shortcut collision in class browser.
+* Removed: Some debugging printfs.
+
 Revision 1.310  2003/04/28 13:58:19  set
 * Added: Word completion stuff! is based on the code I wrote for sLisp and
 Lemur. I used Alt+Right for it but I'm not sure if that's a good idea.
