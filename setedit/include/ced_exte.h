@@ -78,7 +78,8 @@ const int
   efSaveUNIXasis    = 0x00002000,
   efScrollLock      = 0x00004000,
   efUNIXBkpStyle    = 0x00008000,
-  efHiddenBkps      = 0x00010000;
+  efHiddenBkps      = 0x00010000,
+  efDoNotWarnRO     = 0x00020000;
 
 const int
   efBasicRegEx      = 0,
