@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.92  2002/05/14 14:40:12  set
+* Added: Now mpegsound library should detect SPARC as big endian. I don't
+know if it will be enough to get it working for Suns.
+
 Revision 1.91  2002/05/13 18:33:44  set
 * Modified: [UNIX] tar detection according to miniEleph info and separated
 tar from gzip calls. Is easier to find tar + gzip than GNU tar (-z option)
