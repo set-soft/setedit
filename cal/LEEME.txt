@@ -1,0 +1,28 @@
+CAL:
+
+  Esto es una idea medio loca que mezcla conceptos de BIF y de CSS en algo que
+ayuda a generar páginas webs escribiendo lo menos posible.
+  La idea básica es que uno escribe un programita Perl que va insertando
+"módulos" en la página a generar.
+  Cada módulo es basicamente una función Perl. Los módulos reciben como
+argumento una referencia a una hash. Cada módulo puede alterar la hash o
+generar algo de HTML, quizás en el futuro puedan hacer algo más.
+  Los módulos pertenecen a distintas "Skins" anidadas. En el caso más simple
+que estoy trabajando hay tres layers: BALUG, Common y Header. El orden en que
+se buscan los módulos en cada "Skin" es configurable. Si un módulo se
+encuentra en una de las "Skins" es invocado. Si devuelve 1 se sigue con la
+próxima "Skip", pero si devuelve 0 se corta la cadena.
+  De esta manera los skins más "altos" (o layers más externos) resuelven
+cosas más específicas de nuestras páginas y los más "bajos" son código más
+genérico.
+  Así por ejemplo el módulo "Header" del BALUG setea el iconito de las
+páginas, algunas keywords básicas y las CSS del BALUG, luego le deja el
+control al módulo Header del skin "Common". El Common setea valores muy
+comunes a cualquier HTML, pero sólo si no fueron seteados en un layer
+superior. Ejemplos son: HTML 4.01, tipo de documento, codificación, etc. y
+luego le deja el control al módulo Header de Base. En el caso de Base el
+módulo genera el código HTML necesario de acuerdo con el contenido de la
+hash.
+
+Parece flexible y potente.
+
