@@ -21,9 +21,9 @@ static int Corrimientos[]={0,0,-1,-2,+4,+3,0};
 static char Feriados[nFeriados][2]=
   {{1,1},{2,4},{1,5},{25,5},{10,6},{20,6},{9,7},{17,8},{12,10},{8,12},{25,12}};
 static char SeCorre[nFeriados]=
-  {    0,    0,    0,     0,     1,     1,    0,     1,      1,     0,     0};
+  {    0,    1,    0,     0,     1,     1,    0,     1,      1,     0,     0};
 static char ADonde[nFeriados]=
-  {    0,    0,    0,     0,     1,     2,    0,     2,      1,     0,     0};
+  {    0,    1,    0,     0,     1,     2,    0,     2,      1,     0,     0};
 static const char *Descripciones[nFeriados]=
 {
  "Primer día del año",
@@ -59,7 +59,7 @@ int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem,
    {
     if (nAno<1996 || ADonde[nFeriado]==1)
       {
-       nDiaNum+=Corrimientos[*nDiaSem-1];
+       *nDiaNum+=Corrimientos[*nDiaSem-1];
        // Si se lo corrió se lo hizo a lunes
        if (Corrimientos[*nDiaSem-1]!=0)
           *nDiaSem=2;

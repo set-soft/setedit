@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.498  2004/04/06 19:10:48  set
+* Fixed: Problems with some texinfo versions reported by Cosmin T. (ctruta\
+hotmail\com).
+
 Revision 1.497  2004/03/30 14:54:36  set
 * Added: Information about how to install the Red Hat 7.3 RPMs in Fedora
 Core 1. Contributed by Rohan Carly.
