@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.4.49
-@set update-date 23 Sep 2001
-@set update-month Sep 2001
+@set update-date 1 Oct 2001
+@set update-month Oct 2001
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1198,14 +1198,29 @@ This option repeats the last search.
 @c --------------------------------------------------------------------------
 @subsection Jump to function
 
-This option pop-ups a dialog with the list of C functions in your source
+This option pop-ups a dialog with the list of functions in your source
 file. Then you can choose one to jump in there. The functions are searched
 in the source file so you don't need to compile it. As the parser uses an
-heuristic it can fail, specially if your code have an unbalanced number of
-curly brackets.
-@paragraph{}
+heuristic it can fail.
+@p{}
 
-Here is a piece of code that makes the heuristic get lost:
+The @code{Browse} button sends the list of functions to the message window
+so you can browse the list and visit each function. @x{Message Window}.
+@p{}
+
+Currently only a few languages are supported, they are:
+@p{}
+
+@itemize @bullet
+@item C/C++
+@item Clipper 5.x
+@item Syntax Highlight Files
+@item Texinfo sources (chapters, sections, @i{etc.})
+@end itemize
+
+In C sources fails are common if your code have an unbalanced number of
+curly brackets. Here is a piece of code that makes the heuristic get
+lost:
 @paragraph{}
 
 @example
