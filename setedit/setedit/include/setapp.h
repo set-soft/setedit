@@ -396,7 +396,15 @@ extern void ExportProjectItems();
 extern void ImportProjectItems();
 const unsigned wnopEspaceSep=0, wnopLineSep=1;
 extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=wnopEspaceSep);
-extern int WriteNamesOfProjectTo(FILE *f, time_t timeT);
+extern int WriteNamesOfProjectTo(FILE *f, time_t timeT, uint32 targetMask=0);
+extern int ClearForceTargetBits(uint32 bits);
+extern int SetForceTargetBits(uint32 bits);
+
+// The forceTarget is a bitmap for each target suported by the project.
+// Currently the only target is the TAGs file.
+// An item with forceTarget bit 1 means the entry is new and we should
+// take as newer than the target.
+const uint32 prjtTags=1, prjtAllTargets=1;
 #endif
 
 #ifdef Uses_SETAppFiles

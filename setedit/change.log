@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.319  2003/04/30 13:18:25  set
+* Added: An option to maintain a central tags file using the project items.
+This option checks if any of the project files is newer than the file
+"tags" and if that's the case calls ctags using the -a option and passing
+a list of files to scan. This makes ctags scan only the newer files saving
+time.
+* Added: Support for tag files where "kind:" is implicit.
+
 Revision 1.318  2003/04/29 18:23:35  set
 * Added: Options to export the project items to a text file and to import
 file names from a text file. Documented and linked to the docs.

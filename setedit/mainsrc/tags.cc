@@ -715,13 +715,14 @@ int TTagCollection::refresh()
               if (retStat)
                  ret=WriteNamesOfProjectTo(f,wnopLineSep);
               else
-                 ret=WriteNamesOfProjectTo(f,st.st_mtime);
+                 ret=WriteNamesOfProjectTo(f,st.st_mtime,prjtTags);
               fclose(f);
               if (ret)
                 {// Call ctags only if we have at least one newer
                  AllocLocalStr(buffer,36+strlen(lst));
                  sprintf(buffer,"ctags -a --fields=+i+l+m+z -L %s",lst);
                  TScreen::System(buffer);
+                 ClearForceTargetBits(prjtTags);
                 }
               unlink(lst);
              }

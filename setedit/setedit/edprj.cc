@@ -82,13 +82,14 @@ protected:
   char *bufTitle;
 };
 
-const int TEditorProjectWindow::Version=5;
+const int TEditorProjectWindow::Version=6;
 
 typedef struct
 {
  char *name;
  char *shortName;
  EditorResume resume;
+ uint32 forceTarget;  // Read the header for more info
 } PrjItem;
 
 const int crtInteractive=1, crtUseFullName=2;
@@ -165,6 +166,8 @@ void *TPrjItemColl::readItem( ipstream& is )
    }
  if (LoadingPrjVersion>2)
     TCEditWindow::ReadResume(st->resume,is);
+ if (LoadingPrjVersion>5)
+    is >> st->forceTarget;
  return st;
 }
 
@@ -174,6 +177,7 @@ void TPrjItemColl::writeItem( void *p, opstream &os )
  os.writeString(pi->name);
  os << (char)(pi->shortName==pi->name);
  TCEditWindow::SaveResume(pi->resume,os);
+ os << pi->forceTarget;
 }
 
 TStreamableClass RPrjItemColl( TPrjItemColl::name,
@@ -256,7 +260,10 @@ void TPrjItemColl::atInsert(ccIndex pos, char *s, int flags)
 {
  PrjItem *st=createNewElement(s,flags);
  if (st)
+   {
+    st->forceTarget=prjtAllTargets;
     TStringCollection::atInsert(pos,st);
+   }
 }
 
 
@@ -922,6 +929,7 @@ struct FileTm
  FILE  *f;
  time_t t;
  int    c;
+ uint32 mask;
 };
 
 static
@@ -947,11 +955,28 @@ void PrintNameTm(void *pt, void *data)
  PrjItem *p=(PrjItem *)pt;
  struct stat stS;
 
- if (stat(p->name,&stS)==0 && difftime(stS.st_mtime,st->t)>0.0)
+ if ((p->forceTarget & st->mask) ||
+     (stat(p->name,&stS)==0 && difftime(stS.st_mtime,st->t)>0.0))
    {
     fprintf(st->f,"%s\n",p->name);
     st->c++;
    }
+}
+
+static
+void ClearTargets(void *pt, void *data)
+{
+ FileTm *st=(FileTm *)data;
+ PrjItem *p=(PrjItem *)pt;
+ p->forceTarget&= ~st->mask;
+}
+
+static
+void SetTargets(void *pt, void *data)
+{
+ FileTm *st=(FileTm *)data;
+ PrjItem *p=(PrjItem *)pt;
+ p->forceTarget|=st->mask;
 }
 
 /**[txh]********************************************************************
@@ -986,14 +1011,37 @@ int WriteNamesOfProjectTo(FILE *f, unsigned mode)
  return st.c;
 }
 
-int WriteNamesOfProjectTo(FILE *f, time_t timeT)
+int WriteNamesOfProjectTo(FILE *f, time_t timeT, uint32 targetMask)
 {
  struct FileTm st;
  st.f=f;
  st.c=0;
  st.t=timeT;
+ st.mask=targetMask;
  if (PrjExists() && ProjectList)
     ProjectList->forEach(PrintNameTm,&st);
+
+ return st.c;
+}
+
+int ClearForceTargetBits(uint32 bits)
+{
+ struct FileTm st;
+ st.c=0;
+ st.mask=bits;
+ if (PrjExists() && ProjectList)
+    ProjectList->forEach(ClearTargets,&st);
+
+ return st.c;
+}
+
+int SetForceTargetBits(uint32 bits)
+{
+ struct FileTm st;
+ st.c=0;
+ st.mask=bits;
+ if (PrjExists() && ProjectList)
+    ProjectList->forEach(SetTargets,&st);
 
  return st.c;
 }
