@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.490  2004/01/13 14:23:02  set
+* Modified: [WWW] The page to be more clear about how to try the Win32
+version. Suggested by Philippe Baucour.
+
 Revision 1.489  2004/01/06 15:54:37  set
 * Fixed: [DOCs] the "strxlt" example said "sstr". Reported by Dominik
 Grzelak.
