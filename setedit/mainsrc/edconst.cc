@@ -338,6 +338,10 @@ int SearchEditFlag(char *name, unsigned &val)
 char *TranslateEdCommand(int cmc_Com)
 {
  int i;
+ // Turbo Vision commands are 16 bits long. For some technical reasons some
+ // times I use unsigned or int to handle them but in some special cases the
+ // high 16 bits have crap. Old keybind.dat files can produce it.
+ cmc_Com&=0xFFFF;
  cmc_Com-=cmbBaseNumber;
  for (i=0; i<NumCommands; i++)
      if (List[i].command==cmc_Com)
