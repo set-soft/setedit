@@ -1,7 +1,7 @@
 .\" Process this file with
 .\" groff -man -Tascii infview.man
 .\"
-.TH INFVIEW 1 "AUGUST 1999" "v0.2.4"
+.TH INFVIEW 1 "SEPTEMBER 2001" "v0.2.7"
 .SH NAME
 infview \- an info files viewer
 .SH SYNOPSIS
