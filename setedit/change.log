@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.298  2003/04/21 18:30:05  set
+* Modified: i18n files to remove TV messages, now they are in a separated
+catalog (tvision domain).
+* Modified: The i18n initialization to use TVIntl::autoInit().
+
 Revision 1.297  2003/04/21 18:25:37  set
 * Added: Copy/paste to/from OS clipboard to the list of i18n strings.
 * Fixed: Shortcut collision between it and file clipboard.
