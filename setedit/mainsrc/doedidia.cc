@@ -29,7 +29,6 @@ somewhere in your code to execute the dialogs.
 #define Uses_TDeskTop
 #define Uses_TCEditor_Commands
 #define Uses_TCEditor_External
-#define Uses_StrStream
 #include <ceditor.h>
 #include <bufun.h>
 #define Uses_FileOpenAid
@@ -57,7 +56,7 @@ void ApplyBroadcast(TView *p, void *e)
 
 unsigned doEditDialog(int dialog, va_list arg)
 {
- CreateStrStream(os,buf,PATH_MAX+80);
+ char *s;
  switch(dialog)
    {
     case edOutOfMemory:
@@ -65,36 +64,33 @@ unsigned doEditDialog(int dialog, va_list arg)
                            mfError | mfOKButton);
     case edReadError:
         {
-        os << _("Error reading file ") << va_arg(arg,_charPtr)
-           << ". " << StrError(errno) << " (" << errno << ")"
-           << CLY_std(ends);
-        va_end(arg);
-        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
+         s=va_arg(arg,_charPtr);
+         va_end(arg);
+         return messageBox(mfError | mfOKButton,__("Error reading file %s. %s (%d)"),
+                           s,StrError(errno),errno);
         }
     case edWriteError:
         {
-        os << _("Error writing file ") << va_arg(arg,_charPtr)
-           << ". "  << StrError(errno) << " (" << errno << ")"
-           << CLY_std(ends);
-        va_end(arg);
-        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
+         s=va_arg(arg,_charPtr);
+         va_end(arg);
+         return messageBox(mfError | mfOKButton,__("Error writing file %s. %s (%d)"),
+                           s,StrError(errno),errno);
         }
     case edCreateError:
         {
-        os << _("Error creating file ") << va_arg(arg,_charPtr)
-           << ". " << StrError(errno) << " (" << errno << ")"
-           << CLY_std(ends);
-        va_end(arg);
-        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
+         s=va_arg(arg,_charPtr);
+         va_end(arg);
+         return messageBox(mfError | mfOKButton,__("Error creating file %s. %s (%d)"),
+                           s,StrError(errno),errno);
         }
     case edCreateTMPError:
          return messageBox(__("Error creating temporal file, operation aborted"),mfError | mfOKButton);
     case edSaveModify:
         {
-        os << va_arg(arg,_charPtr)
-           << _(" has been modified. Save?") << CLY_std(ends);
-        va_end(arg);
-        return messageBox(GetStrStream(os,buf),mfInformation | mfYesNoCancel);
+         s=va_arg(arg,_charPtr);
+         va_end(arg);
+         return messageBox(mfInformation | mfYesNoCancel,
+                           __("%s has been modified. Save?"),s);
         }
     case edSaveUntitled:
         return messageBox( __("Save untitled file?"),
@@ -142,21 +138,21 @@ unsigned doEditDialog(int dialog, va_list arg)
         {
          uint32 bytes=va_arg(arg,uint32);
          uint32 lines=va_arg(arg,uint32);
-         os << bytes << _(" bytes selected, in ") << lines << _(" lines")
-            << CLY_std(ends);
-         return messageBox(GetStrStream(os,buf),mfInformation | mfOKButton);
+         return messageBox(mfInformation | mfOKButton,
+                           __("%d bytes selected, in %d"),bytes,lines);
         }
  
     case edGotoLine:
         {
          int *p;
+         char buf[64];
  
          p=va_arg(arg,int *);
-         os << *p << CLY_std(ends);
+         CLY_snprintf(buf,64,"%d",*p);
  
-         if (execDialog(createGotoLineDialog(),(void *)GetStrStream(os,buf))==cmOK)
+         if (execDialog(createGotoLineDialog(),(void *)buf)==cmOK)
            {
-            sscanf(GetStrStream(os,buf),"%d",p);
+            sscanf(buf,"%d",p);
             return 1;
            }
          return 0;
@@ -232,16 +228,16 @@ unsigned doEditDialog(int dialog, va_list arg)
                            mfWarning | mfYesButton | mfNoButton);
 
     case edFileExists:
-         os << va_arg(arg,_charPtr) << _(" already exist, overwrite?")
-            << CLY_std(ends);
+         s=va_arg(arg,_charPtr);
          va_end(arg);
-         return messageBox(GetStrStream(os,buf),mfYesButton | mfNoButton | mfWarning);
+         return messageBox(mfYesButton | mfNoButton | mfWarning,
+                           __("%s already exist, overwrite?"),s);
 
     case edFileNoFile:
-         os << va_arg(arg,_charPtr) << _(" isn't a file, probably a device, go ahead?")
-            << CLY_std(ends);
+         s=va_arg(arg,_charPtr);
          va_end(arg);
-         return messageBox(GetStrStream(os,buf),mfYesButton | mfNoButton | mfWarning);
+         return messageBox(mfYesButton | mfNoButton | mfWarning,
+                           __("%s isn't a file, probably a device, go ahead?"),s);
 
     case edCantBkp:
          return messageBox(__("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.293  2003/04/16 20:29:42  set
+* Modified: All messageBox calls to the new i18n API.
+
 Revision 1.292  2003/04/10 21:39:42  set
 * Modified: Now the i18n catalogs are in ISO-8859-1 encoding for all
 targets. Under DOS they are recoded on-the-fly to get CP850.
