@@ -64,6 +64,8 @@ public:
   virtual void getText(char *dest, ccIndex item, short maxLen);
   int addFile(char *name, Boolean interactive=True);
   void delFile(void);
+  void changeSorting(int mode);
+  void toggleSorting();
 };
 
 class TEditorProjectWindow : public TDialog
@@ -115,8 +117,9 @@ public:
  void analizeReference(const char *filename);
  char *applyPrjPath(const char *name);
  void  changeSorting(int mode);
- void  toggleSorting()
-   { changeSorting(sortMode==prjShortName ? prjName : prjShortName); };
+ void  changeSorting(int mode, ccIndex &pos);
+ void  toggleSorting(ccIndex &pos)
+   { changeSorting(sortMode==prjShortName ? prjName : prjShortName,pos); };
  int   getSortMode() { return sortMode; };
 
 private:
@@ -174,6 +177,13 @@ void TPrjItemColl::changeSorting(int mode)
 {
  sortMode=mode;
  reSort();
+}
+
+void TPrjItemColl::changeSorting(int mode, ccIndex &pos)
+{
+ void *p=at(pos);
+ changeSorting(mode);
+ search(keyOf(p),pos);
 }
 
 void TPrjItemColl::analizeReference(const char *filename)
@@ -299,7 +309,11 @@ Boolean TPrjItemColl::Search(char *name, ccIndex &pos)
  Boolean ret=False;
  string_dup(relName,name);
  AbsToRelPath(referencePath,relName,0);
+ int oldSortMode=sortMode;
 
+ if (sortMode!=prjShortName)
+    // We must be in short mode to make the next search
+    changeSorting(prjShortName);
  // Search the short name
  if (search(sName,pos))
    {// We found it, now make sure that's the same file
@@ -313,6 +327,9 @@ Boolean TPrjItemColl::Search(char *name, ccIndex &pos)
     ret=search(relName,pos);
    }
  string_free(relName);
+ if (oldSortMode!=sortMode)
+    // Revert the sorting adjusting the position
+    changeSorting(oldSortMode,pos);
  return ret;
 }
 
@@ -331,6 +348,24 @@ TEditorProjectListBox::TEditorProjectListBox(const TRect& bounds, ushort aNumCol
                                              TScrollBar *aScrollBar) :
     TSortedListBox(bounds,aNumCols,aScrollBar)
 {
+}
+
+void TEditorProjectListBox::changeSorting(int mode)
+{
+ TPrjItemColl *p=(TPrjItemColl *)list();
+ ccIndex newFocused=focused;
+ p->changeSorting(mode,newFocused);
+ if (newFocused!=-1)
+    focusItem(newFocused);
+}
+
+void TEditorProjectListBox::toggleSorting()
+{
+ TPrjItemColl *p=(TPrjItemColl *)list();
+ ccIndex newFocused=focused;
+ p->toggleSorting(newFocused);
+ if (newFocused!=-1)
+    focusItem(newFocused);
 }
 
 void TEditorProjectListBox::getText(char *dest,ccIndex item,short maxlen)
@@ -386,7 +421,11 @@ int TEditorProjectListBox::addFile(char *name, Boolean interactive)
 int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags)
 {
  char *sName=GetShortName(name);
+ int oldSortMode=sortMode;
 
+ if (sortMode!=prjShortName)
+    // We must be in short mode to make the next search
+    changeSorting(prjShortName);
  if (search(sName,pos))
    {
     PrjItem *st=(PrjItem *)at(pos);
@@ -402,6 +441,9 @@ int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags)
     flags|=crtUseFullName;
    }
  atInsert(pos,name,flags);
+ if (oldSortMode!=sortMode)
+    // Revert the sorting adjusting the position
+    changeSorting(oldSortMode,pos);
  return 1;
 }
 
@@ -448,7 +490,7 @@ void TEditorProjectListBox::handleEvent(TEvent &event)
                                    fdMultipleSel | fdAddButton);
                  break;
             case cmChangeSort:
-                 ((TPrjItemColl *)list())->toggleSorting();
+                 toggleSorting();
                  draw();
                  break;                 
             default:

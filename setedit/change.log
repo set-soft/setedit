@@ -1,4 +1,24 @@
-$Log$
+$Log$.
+Revision 1.447  2003/10/16 19:12:45  set
+* Modified: [Configuration] TV 2.0.3 dependency because I'm currently using
+a couple of additions to the API and hence users needs CVS version.
+* Added: [sLisp] SelectWindowNumber used to change the focused window. when
+used for an edition window it also changes the sLisp target allowing to
+modify another buffer, not just the one selected when the macro was
+triggered.
+* Added: [sLisp] GetCurWindowNumber and GetMaxWindowNumber they can be used
+to apply an operation to all the windows and also to go back to the
+original window.
+* Modified: The Alt+window_number combination now belongs to the menues and
+isn't hardcoded in TV anymore.
+* Added: Commands to select the project and message windows, also to select
+the first 19 editors. With the help of sLisp and last aditions now is
+possible to select any window using just a key or menu entry.
+* Modified: To avoid status messages when running sLisp code binded to a
+key or menu entry.
+* Added: Documented and translated to spanish.
+* Version 0.5.3 (Iguazu II)
+
 Revision 1.446  2003/10/16 19:03:29  set
 * Added: [sLisp] now you can bind a small piece of sLisp code to a key or
 a menu entry. With it the user doesn't need to edit macros.slp for small
