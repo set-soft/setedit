@@ -2022,7 +2022,7 @@ void *TInfViewer::read( ipstream& is )
        if (!BookMark)
           BookMark=p;
        else
-          delete p;
+          destroy0(p);
       }
    }
  else
@@ -2157,7 +2157,10 @@ void *TInfWindow::read( ipstream& is )
  is >> viewer >> aux;
  isTheOne=aux ? True : False;
  if (isTheOne && viewer->version>=0x022)
+   {
+    destroy0(viewer->BookMark);
     is >> viewer->BookMark;
+   }
  options&=~(ofCenterX | ofCenterY);
 
  return this;
