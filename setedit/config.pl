@@ -703,24 +703,17 @@ sub LookForTV
  if ($OS eq 'DOS')
    {
     @dirsI=("$parent/tvision/include",$ENV{'DJDIR'}.'/include/tvision');
-    @dirsL=("$parent/tvision/djgpp",$ENV{'DJDIR'}.'/lib');
+    @dirsL=("$parent/tvision/makes",$ENV{'DJDIR'}.'/lib');
    }
  elsif ($OS eq 'UNIX')
    {
     @dirsI=("$parent/tvision/include",'/usr/include/rhtvision','/usr/local/include/rhtvision');
-    if (@conf{'static'} eq 'yes')
-      {
-       @dirsL=("$parent/tvision/linux",'/usr/lib','/usr/local/lib');
-      }
-    else
-      {
-       @dirsL=("$parent/tvision/linuxso","$parent/tvision/linux",'/usr/lib','/usr/local/lib');
-      }
+    @dirsL=("$parent/tvision/makes",'/usr/lib','/usr/local/lib');
    }
  elsif ($OS eq 'Win32')
    {
     @dirsI=("$parent/tvision/include",@conf{'prefix'}.'/include/tvision');
-    @dirsL=("$parent/tvision/win32",@conf{'prefix'}.'/lib');
+    @dirsL=("$parent/tvision/makes",@conf{'prefix'}.'/lib');
    }
  @dirsI=($conf{'TV_INCLUDE'},@dirsI) if $conf{'TV_INCLUDE'};
  $TVInclude=LookForFile('tv.h',@dirsI);

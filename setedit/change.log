@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.394  2003/05/30 19:51:37  set
+* Fixed: Config: Moved TV detection to be before detecting CFLAGS so we can
+be sure be can get TV settings.
+* Added: Config: Advices when using shipped libs.
+* Fixed: Config: AA lib detection when running the configure script in a
+remote console.
+* Removed: [Debian] recode as dependency.
+* Removed: [Debian] .mak files from "files to back-up".
+
 Revision 1.393  2003/05/26 14:30:58  set
 * Modified: Makefile.nmk to be a wrapper for Makefile.bcc by just including
 it. The only difference is that it defines FOR_NMAKE=1 and this will force
