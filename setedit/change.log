@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.89  2002/05/13 13:45:48  set
+* Fixed: When I switched to unique_name the code that converts UNIX->DOS
+and DOS->UNIX left the temporal. Now fixed.
+
 Revision 1.88  2002/05/13 12:50:21  set
 * Test: for big endian issue.
 
