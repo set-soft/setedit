@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -2229,7 +2229,7 @@ extern void RestoreScreen();
 #define DeInitSafetyPool()
 #else
 #include <tv/no_mss.h>
-#include <new>
+#include NEW_HEADER
 #include <tv/yes_mss.h>
 
 static char *safetypool;

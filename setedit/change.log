@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.530  2004/06/23 19:33:21  set
+* Modified: [MSVC] Use of /Tp<file> instead of /TP in makefiles. It looks
+like MSVC 4.0 only supports it. Reported by by Arnold Wiegert.
+* Fixed: Leaks in TCEditWindow (intl stuff), List of windows and
+loadnobkp.cc. valgrind.
+* Fixed: "New" buffers shouldn't be added to the list of closed windows
+when closed. It generated a read out of bounds and a write of unitialized
+data to disk. valgrind.
+
 Revision 1.529  2004/06/22 20:34:12  set
 * Fixed: [MSVC] References to make in the nmake files. Report and solution
 by Arnold Wiegert.

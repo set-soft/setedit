@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -335,7 +335,7 @@ DecFun(MLIBaseCond)
  for (int i=0; i < cant; i += 2) 
     {
      GetVar(i,If);
-     bool b = o->MLIBooleanValOf(If);
+     int b=o->MLIBooleanValOf(If);
      destroyFloatVar(If);
  
      if (b)

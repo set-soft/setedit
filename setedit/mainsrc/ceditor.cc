@@ -11074,7 +11074,7 @@ void *TCEditor::read( ipstream& is )
  // The setBufLen member does a call to update. So we must initialize some
  // stuff related to the drawing machinery.
  updateFlags=0;
- CrossCursorInCol=CrossCursorInRow=0;
+ CrossCursorInCol=CrossCursorInRow=False;
  setBufLen(0);
 
  SpecialLines=NULL;
