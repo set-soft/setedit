@@ -26,6 +26,8 @@
 
 #include <pathtool.h>
 #include <loadshl.h>
+#define Uses_SETAppVarious // EdReloadIfOpened
+#include <setapp.h>
 
 static const char *UserWordsFileName="userword.txt";
 static const int   maxUserWordLen=80;
@@ -130,13 +132,19 @@ void UpdateFile(char *name, TStringCollection *col)
  char *origFile=ExpandHome(UserWordsFileName);
  FILE *dest,*ori;
  int differentFile=0;
+ stEditorId idFile;
 
+ // Be sure the idFile is cleared
+ FillEditorId(&idFile);
  if (edTestForFile(origFile))
    {// We must use the values in this file
     if (CompareFileNames(origFile,destFile))
       {// We will overwrite the original
+       // We must identify the file before anything
+       FillEditorId(&idFile,origFile);
+       // Now backup it
        char *bkpName=newStr(origFile);
-       ReplaceExtension(bkpName,".bkp",".txt");
+       ReplaceExtension(bkpName,TCEditor::backupExt,".txt");
        rename(origFile,bkpName);
        ori=fopen(bkpName,"rt");
        delete[] bkpName;
@@ -191,8 +199,11 @@ void UpdateFile(char *name, TStringCollection *col)
    {// Just create a new one
     dest=fopen(destFile,"wt");
     WriteWords(name,col,dest);
+    differentFile=1;
    }
  fclose(dest);
+ if (!differentFile)
+    EdReloadIfOpened(origFile,&idFile);
 }
 
 /**[txh]********************************************************************
