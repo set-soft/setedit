@@ -1,5 +1,11 @@
 $Log$
-Revision 1.513  2001/12/04 03:12:56  root
+Revision 1.31  2001/12/04 13:57:13  set
+* Synchronized with my personal CVS.
+
+Revision 1.30  2001/12/04 05:54:16  terrible
+* Updated: Debian packaging to 0.4.52-2, no changes, just new debs.
+
+Revision 1.513  2001/12/04 03:12:56  set
 * Added: A new sLisp command ShowInMessageWindow to print information in
 the message window. Suggested by Thiago.
 
@@ -27,6 +33,9 @@ up. Reported by David J. Hughes <David.J.Hughes@nokia.com>.
 * Added: Some notes about errors in xterm description shipped with Mandrake
 8.1 to Linux FAQ.
 
+Revision 1.29  2001/11/29 17:59:50  set
+* Synchronized with my personal CVS.
+
 Revision 1.510  2001/11/29 00:10:33  set
 * Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
 by David J. Hughes <David.J.Hughes@nokia.com>.
@@ -41,7 +50,7 @@ Revision 1.508  2001/11/28 23:24:17  set
 exists on Linux too.
  
 Revision 1.28  2001/11/28 13:56:30  set
-+
+* Synchronized with my personal CVS.
 
 Revision 1.507  2001/11/28 00:40:45  set
 * Added: Now is possible to execute a selected sLisp code even if it have
