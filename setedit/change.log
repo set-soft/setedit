@@ -1,4 +1,9 @@
 $Log$
+Revision 1.638  2004/11/22 14:42:08  set
+* Fixed: [X11+sLisp] When the OS had a secondary clipboard (selection
+clipboard) the selection was stopped after copying. This interferes with
+sLisp macros. Reported by Thiago.
+
 Revision 1.637  2004/11/02 20:19:01  set
 * Added: [WWW] Instructions to download using ftp and note about the new
 Win32 installer.

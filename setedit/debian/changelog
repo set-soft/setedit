@@ -1,3 +1,14 @@
+setedit (0.5.4-3) unstable; urgency=low
+
+  * Salvador says this is it!, this is the version that will be officially
+    released! CVS release 1.637 2004/11/02 20:19:01.
+    Greetings to all my fans!!! (do I have one?) Anyway, I dedicate this
+    release to Enyunari!!!
+  * I have installed libmigdb so this editor comes with debugging support
+    built-in.
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Sun, 21 Nov 2004 18:02:18 -0200
+
 setedit (0.5.4-2) unstable; urgency=low
 
   * A new version of Lintian detected that we are build depending on essential
