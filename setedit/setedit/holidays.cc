@@ -137,7 +137,7 @@ const char *LookUpCountry(const char *lang, char *buffer, char *name)
  return defHolidaysSo;
 }
 
-char *GetLastError()
+char *HolidaysGetLastError()
 {
  switch (lastError)
    {
@@ -298,7 +298,7 @@ struct dayMonth *GetHolidays(int , int &)
  return NULL;
 }
 
-char *GetLastError()
+char *HolidaysGetLastError()
 {
  return NULL;
 }

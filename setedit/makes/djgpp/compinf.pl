@@ -18,8 +18,7 @@ if ($r!~/$version/)
 $binManifest='';
 
 # Default prefix
-$pwd=`pwd`;
-chop($pwd);
+$pwd=Pwd();
 $prefix=$pwd;
 # Environment prefix
 $i=$ENV{'prefix'};
@@ -240,8 +239,7 @@ if ($iMode)
 else
   {
    print "Compressing the files: ";
-   $i=`pwd`;
-   chop($i);
+   $i=Pwd();
    chdir($distPrefix);
    system("zip -9ru $result/inf".$version1."b.zip *");
    chdir($i);
@@ -323,3 +321,13 @@ sub CopyIfRpl
    }
  0;
 }
+
+sub Pwd
+{
+ my $pwd;
+ $pwd=`pwd`;
+ $pwd=`sh pwd` unless $pwd;
+ chop($pwd);
+ return $pwd;
+}
+

@@ -18,7 +18,7 @@ struct dayMonth
 
 // This is exported to SETEdit, not available for the plug-ins
 extern struct dayMonth *GetHolidays(int year, int &cant);
-extern char *GetLastError();
+extern char *HolidaysGetLastError();
 extern void  ConfigureHolidays();
 #endif
 

@@ -683,6 +683,14 @@ sub FindXCXXFLAGS
  $ret;
 }
 
+sub Pwd
+{
+ my $pwd;
+ $pwd=`pwd`;
+ $pwd=`sh pwd` unless $pwd;
+ chop($pwd);
+ return $pwd;
+}
 
 ###[txh]####################################################################
 #
@@ -707,7 +715,7 @@ sub FindXCXXFLAGS
 sub DetectOS
 {
  my ($os,$OS,$pwd);
- $pwd=`pwd`;
+ $pwd=Pwd();
  $os=`uname`;
  if (!$os || !$pwd)
    {
@@ -1036,11 +1044,9 @@ sub ConfigIncDefYes
 sub ParentDir
 {
  my ($cur,$parent);
- $cur=`pwd`;
- chop $cur;
+ $cur=Pwd();
  chdir('..');
- $parent=`pwd`;
- chop $parent;
+ $parent=Pwd();
  chdir($cur);
  $parent;
 }

@@ -1,4 +1,14 @@
-$Log$.
+$Log$
+Revision 1.375  2003/05/19 14:11:09  set
+* Fixed: The confignt.pl script not collected all the object files needed
+for BC++ and MSVC.
+* Fixed: Missing -I..\holidays for BC++ and MSVC.
+* Modified: Disabled "Unreachable code" BC++ warning. The compiler
+generates it for code that was obviously coded to achieve it (if (0) ....).
+* Fixed: I can't beleive I left a ; at the end of a while in the code fixed
+by revision 1.830 (home CVS number). Detected by BC++.
+* Fixed: Assigment to Boolean from a boolean condition. Detected by BC++.
+
 Revision 1.374  2003/05/19 14:09:57  set
 * Fixed: The install.mkf needed settvuti path and also the addition of
 libwin.
