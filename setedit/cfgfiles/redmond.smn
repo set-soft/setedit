@@ -173,6 +173,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "~L~ocal edition...", cmcSetLocalOptions, kbAlL, "Alt+L"
    MenuItemC: "Glo~b~al edition...", cmcSetGlobalOptions, kbAlG, "Alt+G"
    MenuItemC: "Editor ~G~eneral...", cmeEdGralOptions
+   MenuItemC: "Checking for ~m~odified files...", cmeSetModiCkOps
    MenuItemC: "Scr~e~en saver...", cmeScreenSaverOpts
    MenuItemC: "S~D~G Options...", cmeSDGDialog
    MenuItemC: "~R~un program (which one)...", cmeConfRunCommand

@@ -103,7 +103,8 @@ const int
   cmeExportPrj      = cmeBase+83,
   cmeImportPrj      = cmeBase+84,
   cmeTagsOps        = cmeBase+85,
-  cmeHolidaysConf   = cmeBase+86;
+  cmeHolidaysConf   = cmeBase+86,
+  cmeSetModiCkOps   = cmeBase+87;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -273,6 +274,7 @@ public:
     static int widthVertWindows;
     static TVCodePageCallBack oldCPCallBack;
     static void cpCallBack(ushort *map);
+    static uint32 getModifFilesOps() { return modifFilesOps; }
 
     void tile();
     void cascade();
@@ -280,6 +282,7 @@ public:
 
 protected:
 
+    static void SetModifCheckOptions();
     virtual void fileOpen();
     void fileOpenCopy();
     void fileNew();
@@ -295,8 +298,12 @@ protected:
 
     static CLY_StreamPosT posPreload;
     static char fontCreated;
+
+    static uint32 modifFilesOps;
 };
 
+// modifFilesOps:
+const uint32 mfoDontCheckAfterRun=1, mfoDontCheckInIdle=2;
 const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
           oedDontOpenEmpty=16;
 const unsigned geVertWindows=1,geRightSide=2,geAvoidPrjAndMsg=0x80000000,

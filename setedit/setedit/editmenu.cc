@@ -319,4 +319,5 @@ _("E~x~port project")
 _("~I~mport project items")
 _("Save As")
 _("Calendar (holida~y~s)...")
+_("Checking for ~m~odified files...")
 #endif

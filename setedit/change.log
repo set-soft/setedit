@@ -1,4 +1,16 @@
-$Log$
+$Log$.
+Revision 1.354  2003/05/12 13:41:34  set
+* Fixed: Deatails about handling RHIDE 1.4.7 and 1.5 projects.
+* Fixed: Difference between the criteria of return values between exit,
+djgpp, glibc and make.
+* Fixed: sdgcline compilation issues.
+* Added: Avoid to generate new rhide.env files if they won't change. Now
+they are dependencies.
+* Added: Support for the new .imk files to the BC++ and MSVC configuration
+process (confignt.pl).
+* Fixed: ../holidays shouldn't be in SUPPORT_INC.
+* Modified: To avoid dependencies from $(TVISION_INC)/cl
+
 Revision 1.353  2003/05/12 13:40:08  set
 * Fixed: Deatails about handling RHIDE 1.4.7 and 1.5 projects.
 * Fixed: Difference between the criteria of return values between exit,

@@ -25,7 +25,7 @@ DYNRTLDFLAGS = -WR
 !endif
 
 CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLDFLAGS) -WC -X -q $(CDEBUGFLAGS) \
-	-D__inline__=inline
+	-D__inline__=inline -DFOR_EDITOR
 CXXFLAGS = -P -RT- -w-hid -w-par $(CFLAGS)
 LDFLAGS  = $(DYNRTLDFLAGS) -WC
 

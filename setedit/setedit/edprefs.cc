@@ -3,6 +3,7 @@
 #define Uses_stdio
 #define Uses_string
 
+#define Uses_snprintf
 #define Uses_MsgBox
 #define Uses_TDialog
 #define Uses_TRadioButtons
@@ -1306,5 +1307,35 @@ void TSetEditorApp::ScreenOptions()
       }
    }
  while (retry);
+}
+
+void TSetEditorApp::SetModifCheckOptions()
+{
+ TSViewCol *col=new TSViewCol(__("Checking for modified files"));
+
+ col->insert(xTSCenter,yTSUpSep,
+  MakeVeGroup(tsveMakeSameW,
+              new TSStaticText(__("When a file on disk is newer than a file in edition:\n")),
+              new TSHzLabel(__("Seconds between checks"),new TSInputLine(5)),
+              TSLabelCheck(__("Related options"),
+                           __("~D~on't check after executing an external program"),
+                           __("Don't check while ~i~dle"),0),
+              0));
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doItCenter(cmeSetModiCkOps);
+ delete col;
+
+ struct
+ {
+  char time[5]    CLY_Packed;
+  uint32 ops      CLY_Packed;
+ } box;
+ CLY_snprintf(box.time,5,"%d",TCEditor::minDifModCheck);
+ box.ops=modifFilesOps;
+ if (execDialog(d,&box)==cmOK)
+   {
+    TCEditor::minDifModCheck=atoi(box.time);
+    modifFilesOps=box.ops;
+   }
 }
 

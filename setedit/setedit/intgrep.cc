@@ -99,8 +99,9 @@ typedef struct
  uint32 recurse;
  uint32 ops;
 } GrepBox;
+const uint32 grewFiles=0, grewOpened=1, grewProject=2;
 // empty,empty,Pattern box,Basic reg.,search in project,ignore case
-static GrepBox box={"","*.[ch]*",".",0,0,2,0,1};
+static GrepBox box={"","*.[ch]*",".",0,0,grewProject,0,1};
 
 const int Col1=1,Col2=40,End1=39,End2=72;
 
@@ -402,6 +403,10 @@ void grepWindow(char *patStart)
     strcpy(box.pattern,patStart);
     delete patStart;
    }
+
+ // If we have no project change this option
+ if (box.where==grewProject && !IsPrjOpened())
+    box.where=grewFiles;
 
  if (execDialog(d,&box)!=cmCancel)
    {

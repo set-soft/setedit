@@ -434,14 +434,13 @@ TDialog *createSolveModifCollision(Boolean haveDiff)
 
  col->insert(xTSCenter,yTSUp,
   MakeVeGroup(tsveMakeSameW,
-              new TSStaticText(__("Problem:")),
-              new TSStaticText(__("The copy in memory is also modified")),
+              new TSStaticText(__("Problem:\nThe copy in memory is also modified\n")),
               new TSButton(__("~L~oad file from disk (discard changes)"),cmOK,bfDefault),
               new TSButton(__("~A~bort operation"),cmCancel),
               haveDiff ? new TSButton(__("Load and ~s~how differences"),cmYes) : 0,
               haveDiff ? new TSButton(__("~D~on't load and show differences"),cmNo) : 0,
               0));
- TDialog *d=col->doItCenter(0);
+ TDialog *d=col->doItCenter(cmeSetModiCkOps);
  delete col;
  return d;
 }

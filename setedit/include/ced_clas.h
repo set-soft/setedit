@@ -566,7 +566,7 @@ public:
     // Force a check in the next call (don't compute lastTimeCheck).
     Boolean forceNextTimeCheck;
     // Number of seconds to wait between checks
-    static int minDifModCheck;
+    static uint32 minDifModCheck;
     // device and starting inode of the file. 0 on new files.
     stEditorId EditorId;
     // attributes of the file from stat under Linux or _chmod in DOS

@@ -118,6 +118,7 @@ unsigned TSetEditorApp::geFlags=0;
 int      TSetEditorApp::widthVertWindows=24;
 unsigned long
          TSetEditorApp::deskTopVersion;
+uint32   TSetEditorApp::modifFilesOps=0;
 
 const char *KeyBindFName="keybind.dat";
 // Name specified by the user
@@ -1199,6 +1200,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               ConfigureHolidays();
               break;
 
+         case cmeSetModiCkOps:
+              SetModifCheckOptions();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)
@@ -1637,13 +1642,14 @@ int SolveModifiedCollision(TCEditWindow *edw)
  int ret=execDialog(d,NULL);
  if (ret==cmCancel)
     return 0;
+ TCEditor *e=edw->editor;
  if (ret==cmOK)
    {
+    e->modified=False; // The user wants to discard it, don't ask again
     ReOpen(edw);
     return 1;
    }
  // The user wants to see a diff
- TCEditor *e=edw->editor;
  // Save the current buffer to a temporal
  char *tmpFile=e->saveToTemp();
  char *tmpDifFile=unique_name("di",NULL);
@@ -1740,7 +1746,8 @@ separated by spaces.@p
 
 void ReLoadModifEditors(void)
 {
- if (TSetEditorApp::edHelper)
+ if (TSetEditorApp::edHelper &&
+     (TSetEditorApp::getModifFilesOps() & mfoDontCheckAfterRun)==0)
    {
     int again=1;
     int c,i;
@@ -1810,7 +1817,11 @@ void TSetEditorApp::setCmdState( uint16 command, Boolean enable )
 #ifdef SECompf_djgpp
 const int clockResolution=CLOCKS_PER_SEC;
 #elif defined(SEOS_UNIX)
-const int clockResolution=100;
+ #ifdef CLOCKS_PER_SEC
+ const int clockResolution=CLOCKS_PER_SEC;
+ #else
+ const int clockResolution=100;
+ #endif
 #elif defined(SEOS_Win32)
 const int clockResolution=(int)CLK_TCK;
 #endif
@@ -1861,7 +1872,7 @@ void TSetEditorApp::idle()
     setCmdState(cmeHTMLTag2Accent,False);
    }
 
- if (e && e->checkDiskCopyChanged())
+ if (!(modifFilesOps & mfoDontCheckInIdle) && e && e->checkDiskCopyChanged())
     AskReloadEditor(GetCurrentIfEditorWindow());
 
  if (ShowClock)

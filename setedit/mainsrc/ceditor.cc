@@ -13415,7 +13415,7 @@ char     TCEditor::replaceStr[maxReplaceStrLen]="";
 TCEditor *
          TCEditor::clipboard=0;
 int      TCEditor::colorsCached=0;
-int      TCEditor::minDifModCheck=8;
+uint32   TCEditor::minDifModCheck=8;
 unsigned TCEditor::staticTabSize=8;
 unsigned TCEditor::staticIndentSize=4;
 unsigned TCEditor::LoadingVersion;

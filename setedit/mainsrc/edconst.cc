@@ -255,6 +255,7 @@ static edCList SetApp[] =
 { "SearchTag"      , 80 },
 { "SeeScanCodes"   , 29 },
 { "SetColors"      , 15 },
+{ "SetModiCkOps"   , 87 },
 { "SetScreenOps"   , 35 },
 { "SetUpAltKeys"   , 27 },
 { "SetUpPrinter"   , 31 },

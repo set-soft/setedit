@@ -752,6 +752,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  PathListSave(s);
  s << (uchar)TSOSListBoxMsg::opsEnd << (uchar)TSOSListBoxMsg::opsBeep;
  TagsSave(s);
+ s << modifFilesOps << TCEditor::minDifModCheck;
  s << 0;
 }
 
@@ -1107,6 +1108,10 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
    }
  if (deskTopVersion>=0x501)
     TagsLoad(s);
+ if (deskTopVersion>=0x502)
+   {
+    s >> modifFilesOps >> TCEditor::minDifModCheck;
+   }
 
  // Even when 0.4.15 doesn't use the Config Files path we ensure it's pointing to
  // the SET_FILES path
