@@ -1,20 +1,19 @@
-setedit (0.4.45-0.1-1) unstable; urgency=low
+setedit (0.4.45-1) unstable; urgency=low
 
-  * Personal use unofficial version
+  * New upstream version!
+  * Standards version 3.5.2.0.
+  * Long time ago, the RHTVision package had to be removed from the
+    Debian distribution because of yet unresolved legal problems with
+    Inprise, this package depends on that library and so couldn't be
+    distributed, so, this package is now unofficial.
+  * Updated build-depends.
+  * Updated description, README.Debian, etc. to reflect that this is
+    not an official Debian package.
+  * Use versioned build dependency on DebHelper instead of using
+    deprecated dh_testversion.
+  * Convert from suidregister to statoverride.
 
- -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun,  4 Jun 2000 17:31:52 -0300
-
-setedit (0.4.43-0.1-1) unstable; urgency=low
-
-  * Personal use unofficial version
-
- -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 12 Apr 2000 21:31:34 -0300
-
-setedit (0.4.42-0.1-1) unstable; urgency=low
-
-  * Personal use unofficial version
-
- -- Ivan Baldo <lubaldo@adinet.com.uy>  Wed, 12 Apr 2000 21:31:07 -0300
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun, 12 Aug 2001 22:05:56 -0300
 
 setedit (0.4.39-4) unstable; urgency=low
 

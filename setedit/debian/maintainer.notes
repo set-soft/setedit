@@ -49,15 +49,3 @@ Other notes:
    - There is a clean-debian target on the debian/rules file, it only cleans
      Debian specific files and not upstream build files.
 
-
-Source dependencies (incomplete list):
-    - tetex-bin (it contains makeinfo wich it is used to generate the
-      documentation).
-    - C++ compiler together with C library and C++ libraries.
-    - Perl 5.
-    - GNU make.
-    - Fileutils.
-    - RHTVision library.
-    - PCRE library.
-    - ZLib library.
-    - Debhelpers.    
