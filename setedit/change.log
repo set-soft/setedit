@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.637  2004/11/02 20:19:01  set
+* Added: [WWW] Instructions to download using ftp and note about the new
+Win32 installer.
+
 Revision 1.636  2004/11/02 19:56:03  set
 * Added: [Compilation][MSVC] Option to compile with debug information.
 From information sent by Grzegorz.

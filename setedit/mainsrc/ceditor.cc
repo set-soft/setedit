@@ -461,7 +461,11 @@ Boolean TCEditor::clipWinCopy(int id)
                   TVOSClipboard::getError());
        return False;
       }
-    selecting=False;
+    // id == 1 => "selection clipboard", in this case we don't want to stop the selection.
+    // I'm not sure if we really want to stop the selection in other cases, but that's the
+    // old behavior.
+    if (!id)
+       selecting=False;
    }
  return res;
 }
