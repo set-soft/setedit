@@ -1,0 +1,27 @@
+/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+/* From: util.c */
+void die(char *, ...);
+void warn(char *, ...);
+void msg(char *, ...);
+void debugSetup(char *);
+void debugOptions();
+
+/* From: audioIO_<OSTYPE>.c */
+void audioOpen(int frequency, int stereo, int volume);
+void audioSetVolume(int);
+void audioFlush();
+void audioClose();
+int  audioWrite(char *, int);
+int  getAudioFd();
+void audioBufferOn(int);
+
+/* From: buffer.c */
+void printout(void);
+int  audioBufferOpen(int, int, int);
+void audioBufferClose();
+void audioBufferWrite(char *, int);
+void audioBufferFlush();
+
+/* From: audio.c */
+void displayUsage();
