@@ -536,7 +536,7 @@ void TEditorCollection::sortClosed(void)
 {
  ccIndex pos;
  // Don't keep more than 40 closed, Laci needs much ;-)
- if (Closed>maxClosedToRemember)
+ while (Closed>maxClosedToRemember)
    {
     pos=Editors+nonEditors+--Closed;
     TDskWin *p=(TDskWin *)at(pos);
