@@ -37,7 +37,7 @@ inline int Mpegtoraw::getbits9(int bits)
 
   a<<=(bitindex&7);
   bitindex+=bits;
-  return (int)(a>>(16-bits));
+  return (int)((a & 0xFFFF)>>(16-bits));
 };
 
 inline int Mpegtoraw::getbits8(void)
@@ -61,7 +61,7 @@ inline int Mpegtoraw::getbits8(void)
 
   a<<=(bitindex&7);
   bitindex+=8;
-  return (int)(a>>8);
+  return (int)((a & 0xFFFF)>>8);
 };
 
 inline int Mpegtoraw::getbit(void)

@@ -68,7 +68,7 @@ inline int Mpegbitwindow::getbits9(int bits)
 
   a<<=(bitindex&7);
   bitindex+=bits;
-  return (int)(a>>(16-bits));
+  return (int)((a & 0xFFFF)>>(16-bits));
 }
 
 #define MUL3(a) (((a)<<1)+(a))

@@ -197,6 +197,8 @@ bool Rawplayer::putblock(void *buffer,int size)
   if(quota)
     while(getprocessed()>quota)usleep(3);
   write(audiohandle,buffer,modifiedsize);
+  unsigned char *s=(unsigned char *)buffer;
+  //fprintf(stderr,"Ok! %d bytes 0x%02X 0x%02X 0x%02X 0x%02X\n",modifiedsize,s[0],s[1],s[2],s[3]);
 
   return true;
 }
