@@ -664,6 +664,7 @@ setedit/include/loadnobkp.h
 setedit/include/pal.h
 setedit/include/palconv.h
 setedit/include/palfte.h
+setedit/include/paldjd.h
 setedit/include/pathlist.h
 setedit/include/setapp.h
 setedit/include/tpaltext.h

@@ -1,4 +1,16 @@
-$Log$.
+$Log$
+Revision 1.301  2003/04/24 19:24:19  set
+* At last!! finally I added some basic supoprt for TAGS. I had some code
+I wrote in 1998, but I discarded it because ectags changed a lot. Currently
+you can setup which tag files to use (the list isn't stored to disk) and
+do a search pressing ^F2, for repited entries you'll even be able to jump
+to the line where the symbol is defined, but in most cases the position is
+obtained using regex and it isn't implemented yet. Be careful that's really
+experimental. Also: forget about using it if the editor is linked with
+efence and the tags file is big. I tried it with a 1.1 MB file and the
+editor died after eating more than 240 MB of memory (efence seems to need
+real memory, not swap).
+
 Revision 1.300  2003/04/22 15:32:56  set
 * Modified: To support the --with-ssc TV option.
 

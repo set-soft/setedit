@@ -131,8 +131,12 @@ extern char SEcpColor[]; // Defined in editmain
 #include <pal.h>
 #include <palfte.h>
 #include <palconv.h>
+#include <paldjd.h>
+
 static char SEcpFTE[]={ SE_cpColorFTE 0 };
+static char SEcpDARKJDI[]={ SE_cpColorDarkJDI 0 };
 static char SEcpConsoleVIM[]={ SE_cpColorConsoleVIM 0 };
+
 
 typedef struct
 {
@@ -144,7 +148,8 @@ static palTheme Themes[]=
 {
  {"Default",       SEcpColor },
  {"FTE like",      SEcpFTE   },
- {"Console + VIM", SEcpConsoleVIM }
+ {"Console + VIM", SEcpConsoleVIM },
+ {"Dark JDI",     SEcpDARKJDI   },
 };
 
 class TColorThemes : public TStringable
