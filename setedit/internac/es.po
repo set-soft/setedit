@@ -547,23 +547,23 @@ msgstr "~F10~ Men£"
 msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operaci¢n."
 
-#: ../infview/manview.cc:491
+#: ../infview/manview.cc:504
 msgid "You must install man to use it!"
 msgstr "­Debe instalar el programa man para usar esto!"
 
-#: ../infview/manview.cc:520
+#: ../infview/manview.cc:533
 msgid "Man page to view"
 msgstr "Visor de p ginas del manual"
 
-#: ../infview/manview.cc:523
+#: ../infview/manview.cc:536
 msgid "~M~an page for ..."
 msgstr "~P~ gina del manual para ..."
 
-#: ../infview/manview.cc:524
+#: ../infview/manview.cc:537
 msgid "~S~ection"
 msgstr "~S~ecci¢n"
 
-#: ../infview/manview.cc:525
+#: ../infview/manview.cc:538
 msgid "~E~xtra options"
 msgstr "Opciones ~e~xtra"
 
@@ -1248,39 +1248,39 @@ msgstr "No avisar la pr¢xima vez"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:607
+#: ../mainsrc/bufun.cc:642
 msgid "Jump to function"
 msgstr "Saltar a una funci¢n"
 
-#: ../mainsrc/bufun.cc:616
+#: ../mainsrc/bufun.cc:651
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:622
+#: ../mainsrc/bufun.cc:657
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:650
+#: ../mainsrc/bufun.cc:685
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:652
+#: ../mainsrc/bufun.cc:687
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:654
+#: ../mainsrc/bufun.cc:689
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:655
+#: ../mainsrc/bufun.cc:690
 msgid "by ~L~ine"
 msgstr "por ~L~¡nea"
 
-#: ../mainsrc/bufun.cc:690
+#: ../mainsrc/bufun.cc:725
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna funci¢n ¨est  seguro?"
 
-#: ../mainsrc/bufun.cc:719
+#: ../mainsrc/bufun.cc:754
 msgid "Functions:"
 msgstr "Funciones:"
 
@@ -1851,7 +1851,7 @@ msgstr "Lista de palabras"
 msgid "User words"
 msgstr "Palabras de usuario"
 
-#: ../mainsrc/pathtool.cc:731
+#: ../mainsrc/pathtool.cc:735
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -2615,7 +2615,7 @@ msgid ""
 msgstr ""
 "No puedo encontrar el archivo readme.1st, b£squelo en el paquete que instal¢."
 
-#: ../setedit/editmain.cc:1605
+#: ../setedit/editmain.cc:1625
 #, c-format
 msgid ""
 "\n"
@@ -2624,7 +2624,7 @@ msgstr ""
 "\n"
 "­Instalaci¢n err¢nea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:1606
+#: ../setedit/editmain.cc:1626
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -2632,7 +2632,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribuci¢n.\n"
 "\n"
 
-#: ../setedit/editmain.cc:1610
+#: ../setedit/editmain.cc:1630
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -2641,7 +2641,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1612
+#: ../setedit/editmain.cc:1632
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -2650,11 +2650,11 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1617
+#: ../setedit/editmain.cc:1637
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:1626
+#: ../setedit/editmain.cc:1646
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -2755,7 +2755,7 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:1910
+#: ../setedit/editmain.cc:1930
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
@@ -4389,21 +4389,6 @@ msgstr "Comando~s~"
 #: ../settvuti/tdiagaid.cc:203
 msgid "Assignmen~t~"
 msgstr "Asi~g~naci¢n"
-
-# Este es el archivo de traducci¢n a espa¤ol para el SETEdit.
-# Copyright (C) 2001 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001.
-#
-#, fuzzy
-#~ msgid ""
-#~ msgstr ""
-#~ "Project-Id-Version: setedit 0.4.49\n"
-#~ "PO-Revision-Date: 2001-09-25 22:45-0300\n"
-#~ "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
-#~ "Language-Team: Spanish <set@ieee.org>\n"
-#~ "MIME-Version: 1.0\n"
-#~ "Content-Type: text/plain; charset=CP850\n"
-#~ "Content-Transfer-Encoding: 8bit\n"
 
 #~ msgid ""
 #~ ". Copyright (c) 1996-2001 by Salvador E. Tropea\n"

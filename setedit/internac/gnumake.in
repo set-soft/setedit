@@ -71,8 +71,8 @@ clean:
 	rm -f $(addsuffix .po,$(LANGUAGES))
 
 potfiles.po: po_list
-	@echo "*** Ignore warnings about unterminated strings, is a bug in gettext."
-	@echo "*** Ulrich Drepper, the maintainer, refuses to fix it."
+#@echo "*** Ignore warnings about unterminated strings, is a bug in gettext."
+#@echo "*** Ulrich Drepper, the maintainer, refuses to fix it."
 	$(xgettext) --default-domain=dummy --add-comments --keyword=_ \
 	  --keyword=__ --directory=$(srcdir) --omit-header \
 	  --add-location $(po_list_l)
@@ -85,10 +85,12 @@ T=$(subst /,\,$@)
 $(addsuffix .po,$(LANGUAGES)): potfiles.po
 #if not exist $(T) cp $^ $@
 	touch $@
-	-$(msgmerge) --force-po -o __.pon $@ $^
+	perl fix.pl $(addprefix h_,$@) $^ __.pot
+	-$(msgmerge) --force-po -o __.pon $@ __.pot
 	-$(update_p) __.pon $@
 	rm -f __.pon
-	
+	rm -f __.pot
+	perl fix.pl $(addprefix h_,$@) $@ $@
 #$(addsuffix .mo,$(LANGUAGES)): $(msgfmt)
 
 %.mo: %.po
