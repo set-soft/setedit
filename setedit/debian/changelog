@@ -1,3 +1,9 @@
+setedit (0.4.50-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Tue,  9 Oct 2001 19:12:31 -0300
+
 setedit (0.4.49-1) unstable; urgency=low
 
   * New upstream version.
@@ -6,6 +12,18 @@ setedit (0.4.49-1) unstable; urgency=low
     backup system.
 
  -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun,  7 Oct 2001 19:54:51 -0300
+
+setedit (0.4.49-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sun, 23 Sep 2001 11:52:36 -0300
+
+setedit (0.4.48-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 22 Sep 2001 10:28:11 -0300
 
 setedit (0.4.47-2) unstable; urgency=low
 

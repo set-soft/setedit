@@ -223,12 +223,12 @@ RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
 	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib\
 	../libbzip2
 RHIDE_OS_LIBS=ncurses m gpm bz2 mpegsnd 
-RHIDE_OS_LIBS_PATH=../../tvision/linuxso ../libbzip2
+RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2
 TVISION_INC=../../tvision/include
 SUPPORT_INC= ../libbzip2
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
-	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
-	$(RHIDE_LIBS)
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static\
+	$(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES)\
+	$(LIBRARIES) $(RHIDE_LIBS)
 RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
@@ -3446,10 +3446,11 @@ DEPS_105=slpinter.cc ../../tvision/include/compatlayer.h\
 	../sdg/include/mli.h ../sdg/include/mliabase.h\
 	../sdg/include/mlibase.h ../sdg/include/mlieditd.h\
 	../sdg/include/mliedito.h ../sdg/include/mlivar.h\
-	../setedit/include/setapp.h ../settvuti/include/sarray.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tinppipe.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
+	../setedit/include/setapp.h ../settvuti/include/edhists.h\
+	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tinppipe.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
 obj/slpinter.o:: $(DEPS_105)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_106=splinman.cc ../../tvision/include/compatlayer.h\
