@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 23 February 2004
-@set update-month February 2004
+@set update-date 6 April 2004
+@set update-month April 2004
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -6334,7 +6334,7 @@ Please change that to point at your filter script.
 @subsubsection Step 2 - The filter program
 
 The filter program has to be simple: receives text lines as input
-and prints the result to stdout. You can say: @il{Hey, that calls some
+and prints the result to stdout. You can say: @il{Hey! that calls some
 weird Python script which I don't have... why don't
 I call GNU's fmt command instead?}.  Good point. Do it. If you are
 meaning to write simple texts that's ok. In fact, after the command
