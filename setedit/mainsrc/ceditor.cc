@@ -6723,7 +6723,7 @@ void TCEditor::UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP,
     }
  // Test for propagation:
  // There are more lines?
- if (firstLine<totalLines)
+ if (firstLine<=totalLines)
    {
     // Yes, recalculate the following line
     firstTouchedP+=LineMeassure(firstTouchedP,end,attr);

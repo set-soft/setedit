@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.279  2003/02/19 12:41:22  set
+* Fixed: Heuristic Perl parser didn't pay attention to the \ character, the
+code looked for it but didn't increment the index properly. Reported by
+Juan Diego Iannelli <jdibach@yahoo.com.ar>
+* Added: New keywords used in experimental TV for their configuration file.
+
 Revision 1.278  2003/02/11 13:41:01  set
 * Updated: Spanish translation.
 
