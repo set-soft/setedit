@@ -71,17 +71,16 @@ another member to use internally and with the correct type.
 
 *****************************************************************************/
 
-#define Uses_TStreamable
-#include <ceditor.h>
-#include <dskwin.h>
 #define Uses_string
+#define Uses_TStreamable
+#define Uses_TProgram
+#define Uses_TDeskTop
+#include <ceditor.h>
+
+#include <dskwin.h>
 
 #define Uses_SETAppVarious
 #include <setapp.h> // closeView
-
-#define Uses_TProgram
-#define Uses_TDeskTop
-#include <tv.h>
 
 /**[txh]**********************************************************************
 
