@@ -1,4 +1,9 @@
 $Log$
+Revision 1.50  2002/02/04 19:08:33  set
+* Added: Now when the user sets the "Use Tabs" option the editor checks if
+other options commonly used with tabs are also coherent. If not an advice
+dialog is created. Suggeste by Ivan. SF FR # 510514.
+
 Revision 1.49  2002/02/04 15:32:08  set
 * Fixed: ncurses 5.2 collision in intgrep.cc. Patch by Andris.
 
@@ -1479,7 +1484,7 @@ it with 0.10.39 and 1.7. Even when that's supported the result is quite bad,
 for the DOS target the binary grows 829 Kb and when compressed 614 Kb. That's
 unacceptable. The size of the compressed editor is currently about 480 Kb and
 grows to 1094 Kb.
-.
+
 Revision 1.353  2001/08/27 20:37:06  set
 * Modified: Removed the bufun.h inclusion in ced_exte.h to reduce
 dependencies.

@@ -34,6 +34,9 @@ select CP437. Why?
 4) sLisp macro language
 4.1) Q: How can I extend it?
 
+5) Edition modes
+5.1) Q: What options should I use to get real tabs (ascii 9)?
+
 0) Installation problems
 
 0.1) Q: I type e in the shell and the editor doesn't start, why?
@@ -412,5 +415,22 @@ Here you can see what's inside the usual macros like GetxxxVar, the
 <---------------------
 
 If you need more information just e-mail me.
+
+------------------------------------------------------------------------------
+5) Edition modes
+
+5.1) What options should I use to get real tabs (ascii 9)?
+
+A: Most users that indents code using tabs uses the following options (Alt+G
+or Alt+L):
+
+Autoindent: ON
+Use Tabs: ON
+Intelligent C indent: OFF
+Optimal Fill: ON
+Don't move inside tabs: ON
+Tab smart indents: OFF
+Use indent size: OFF
+Backspace unindents: OFF
 
 
