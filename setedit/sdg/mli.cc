@@ -122,7 +122,7 @@ char *TLispString::toStr()
 TLispString::~TLispString()
 {
  if (flags & StrOwner)
-    delete str;
+    delete[] str;
 }
 
 TLispConstString::TLispConstString(char *s)
