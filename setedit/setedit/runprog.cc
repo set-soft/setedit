@@ -252,7 +252,7 @@ char *ParseFunCLE(char *buf, FileInfo &fI, char *&fileName)
  if ((hits=CLEDoSearch(buf,len,CLEValues[IndexCLE].Pattern))==0)
    { // No luck with the error pattern see others
     if (CLEValues[IndexCLE].EnterDirPat &&
-        CLEValues[IndexCLE].EnterDirDir>=0 &&
+        CLEValues[IndexCLE].EnterDirDir!=0xFF &&
         CLEDoSearch(buf,len,CLEValues[IndexCLE].EnterDirPat)!=0)
       { // Entering in a directory
        CLEGetMatch(CLEValues[IndexCLE].EnterDirDir,fName,PATH_MAX);

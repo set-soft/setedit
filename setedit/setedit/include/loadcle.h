@@ -22,13 +22,13 @@ struct strCLE
  // Pattern to match
  pcre *Pattern;
  // Subexpressions:
- char File;
- char Line;
- char Severity;
- char Description;
+ uchar File;
+ uchar Line;
+ uchar Severity;
+ uchar Description;
  // Pattern to indicate the makefile changed the path
  pcre *EnterDirPat;
- char EnterDirDir;
+ uchar EnterDirDir;
  // Flag to indicate this structure was loaded
  char Loaded;
  // This falg indicates we must use the internal parser. That's for the GNU parser
