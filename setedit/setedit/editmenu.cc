@@ -452,5 +452,7 @@ _("Link ~8~")
 _("Link ~9~")
 _("How to use the ~h~elp")
 _("Con~t~rol dialog...")
+_("S~e~arch selection forward")
+_("Search selection ~b~ackward")
 #endif
 

@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.644  2004/12/02 20:07:17  set
+* Added: Two new commands to emulate what Ivan and Sergio described as
+a search mechanism using the selected text. Needs some adjustments.
+
 Revision 1.643  2004/12/01 19:15:56  set
 * Fixed: [WWW] The names of the images in the TAGs tutorials weren't 8+3
 clean. Pointed out by DJ Delorie.
