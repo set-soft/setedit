@@ -162,6 +162,7 @@ void __fixpath(const char *in, char *out);
    be called nested!!! */
 /* redirect stderr to a file and return the name of that file */
 char * open_stderr(void);
+char * open_stderr(int *nherr);
 /* the same for stdout */
 char * open_stdout(void);
 /* close the redirected stderr */

@@ -2269,6 +2269,17 @@ working while the editor does this job. You must understand that's even
 slower but you can at least use the time for reading or editing text.
 @paragraph{}
 
+Option @il{Jump to the first error}: If enabled the editor jumps to the
+file and line of the first error reported by the external program.
+@p{}
+
+Option @il{Don't redirect stdout}: Complements the
+@code{Use OS screen to run the program} option. When enabled the editor
+collects errors only from the standard error and not from the standard
+output. This is useful for interactive applications that sends its output to
+the standard output.
+@p{}
+
 The @il{Message window scroll} group of options are mutually exclusive and
 give some control over the behavior of the message window. When you start
 executing the external program the message window will automatically get the
@@ -4720,8 +4731,11 @@ redirected and captured by the message window of the editor.
   Use the operator @code{+} to concatenate strings and pass arguments.
 @paragraph{}
 
-  Using 1 for the @var{flags} argument the editor will redraw the screen
-after running the external program.
+  Using @code{edfRunUserScreen} for the @var{flags} argument the editor will
+use the user screen when running the external program. Using
+@code{edfRunNoRedirect} the editor won't redirect the standard output. For
+interactive applications that uses standard input and output you should both
+flags combined using the or operator. @x{Operator | (bitwise or)}.
 @paragraph{}
 
   The @var{parser} parameter tells the editor which error parser will be used

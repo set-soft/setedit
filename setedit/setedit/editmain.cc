@@ -588,6 +588,7 @@ void TSetEditorApp::changeDir()
 
 void FullSuspendScreen()
 {
+ //TProgram::deskTop->setState(sfVisible,False);
  TProgram::application->suspend();
 }
 

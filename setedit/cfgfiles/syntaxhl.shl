@@ -369,7 +369,17 @@ Keywords=WhichEditor,GetSelection,left,right,substr,sstr,gstr,setv,strxlt,if
 Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
 Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
 Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
-Keywords=cond,ShowInMessageWindow,SelectionExists,tostr,loop,exitloop
+Keywords=cond,ShowInMessageWindow,SelectionExists,tostr,loop,GetCursorX,Find
+Keywords=GetCursorY,SetCursorXY,exitloop
+# Flags
+Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
+Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom
+Keywords=edfInsideCom2,edfMBCancelButton,edfMBConfirmation,edfMBError
+Keywords=edfMBInformation,edfMBNoButton,edfMBOKButton,edfMBOKCancel,edfMBWarning
+Keywords=edfMBYesButton,edfMBYesNoCancel,edfPrepro,edfRunNoRedirect,edfRunUserScreen
+Keywords=edfStartCom,edfStartCom2,edfStartInCom,edfStartInCom2,edfStartString
+Keywords=edfStartString2,edfStartString3,edfWEDisk,edfWEExtension,edfWEFull
+Keywords=edfWEFullNoExt,edfWENameNoExt,edfWEPath
 End
 
 # ---------------- Menu File ------------------

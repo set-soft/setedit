@@ -57,7 +57,8 @@
 #endif
 
 // Values for Options
-const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8;
+const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8,
+               opNoRedirOut=16;
 const unsigned opshBegin=1,opshEachMessage=2,opshEnd=4;
 
 const int maxCommand=256;
@@ -114,14 +115,16 @@ void ConfigureRunCommand(void)
    }
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));
- // ABDEFHJKLMNPSTUW
+ // EN: ABDEFHJKLMNPRSTUW
+ // ES: ACEFKIJLNOPRSTUZ
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
          __("~U~se OS screen to run the program"),
          __("~D~on't try to run in background"),
          __("~A~lways parse in background"),
-         __("~J~ump to the first error"),0);
+         __("~J~ump to the first error"),
+         __("Don't ~r~edirect stdout"),0);
  TSLabel *opsscroll=TSLabelRadio(__("Message window ~s~croll"),
          __("Al~w~ays"),__("~N~ever"),__("Only if not ~f~ocused"),0);
  TSLabel *optscrh=TSLabelCheck(__("~H~orizontal reset"),
@@ -626,6 +629,10 @@ message box, instead the file is available calling
 RunExternalProgramGetFile.@*
   repRestoreScreen: Restore the screen after running the program.@*
   repDontFork: Don't try to multitask.@*
+  repRedirIn:  Redirect standard input and send the contents of
+RedirInputFile to it.@*
+  repNoRedirOut: Avoid redirecting stdout, useful for interactive
+applications that prints to stdout.@*
 
 ***************************************************************************/
 
@@ -648,15 +655,35 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
    }
 
  SaveAllEditors();
- int nherr;
- char *err=open_stderr_out(&nherr);
 
+ // Take the options from the flags
+ int useOSScreen=flags & repRestoreScreen;
+ int dontFork   =flags & repDontFork;
+ int noRedirOut =flags & repNoRedirOut;
+ // Should we use global defaults to complement flags?
+ if (flags & repFlagsFromOps)
+   {
+    useOSScreen=useOSScreen || (Options & opUseOSScreen);
+    dontFork   =dontFork    || (Options & opNeverFork);
+    noRedirOut =noRedirOut  || (Options & opNoRedirOut);
+   }
+ 
+ int saveScreen=!TScreen::noUserScreen() && useOSScreen;
  if ((flags & repDontShowAsMessage)==0)
    {
     char b[1024];
     TVIntl::snprintf(b,1024,Running,s);
     EdShowMessage(b,True,((OpsScrHz & opshBegin) ? False : True));
    }
+
+ // It must be done before redirecting stdout because UNIX terminals uses
+ // stdout for drawing. So if we redirect stdout to a file then it will
+ // fail.
+ if (saveScreen)
+    FullSuspendScreen();
+
+ int nherr;
+ char *err=noRedirOut ? open_stderr(&nherr) : open_stderr_out(&nherr);
 
  StackPath=new SOStack();
  char b[PATH_MAX];
@@ -674,20 +701,22 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
     strcat(b,RedirInputFile);
    }
 
- int saveScreen=!TScreen::noUserScreen() &&
-                ((Options & opUseOSScreen) || (flags & repRestoreScreen));
- if (saveScreen)
-    FullSuspendScreen();
-
  MP3Suspend;
- TScreen::System(b,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
-                 0 : &PidChild,-1,nherr,nherr);
+ TScreen::System(b,saveScreen || dontFork ? 0 : &PidChild,-1,
+                 noRedirOut ? -1 : nherr,nherr);
  MP3Resume;
 
+ if (noRedirOut)
+    close_stderr();
+ else
+    close_stderr_out();
+
+ // It must be done after closing the stdout redirection for the above
+ // mentioned reasons. The effect of doing it with the redirected file
+ // is even worst because a file is not a tty ;-)
  if (saveScreen)
     FullResumeScreen();
-
- close_stderr_out();
+    
  if (!PidChild && (flags & repDontShowAsMessage)==0)
    {
     if (Options & opAlwaysBkgd)

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-06-11 20:10-0300\n"
+"PO-Revision-Date: 2003-06-11 22:56-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -318,7 +318,7 @@ msgstr "InfView v"
 # msgstr "~C~olores ..."
 # msgid "~C~olors ..."
 # msgstr "~C~olores ..."
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2379
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2380
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -334,7 +334,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2381
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2382
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
@@ -1807,7 +1807,7 @@ msgid "Export Options"
 msgstr "Opciones para exportar"
 
 #: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:416
-#: ../setedit/runprog.cc:120
+#: ../setedit/runprog.cc:121
 msgid "~O~ptions"
 msgstr "~O~pciones"
 
@@ -3057,44 +3057,44 @@ msgstr "Abrir Archivo"
 msgid "You must select an editor window for this operation"
 msgstr "Ud. debe seleccionar una ventana de esitor para esta operación"
 
-#: ../setedit/editmain.cc:708
+#: ../setedit/editmain.cc:709
 msgid "Export file as"
 msgstr "Exportar archivo como"
 
-#: ../setedit/editmain.cc:785
+#: ../setedit/editmain.cc:786
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Esta ventana no puede imprimirse, seleccione un editor"
 
-#: ../setedit/editmain.cc:943
+#: ../setedit/editmain.cc:944
 msgid "Couldn't find any matching help"
 msgstr "No pude encontrar ninguna ayuda"
 
-#: ../setedit/editmain.cc:1120
+#: ../setedit/editmain.cc:1121
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 "Estamos ejecutando una tarea en segundo plano. ¿Salir de todas maneras?"
 
-#: ../setedit/editmain.cc:1499
+#: ../setedit/editmain.cc:1500
 msgid "This line no longer exists"
 msgstr "Esta línea ya no existe"
 
-#: ../setedit/editmain.cc:1650
+#: ../setedit/editmain.cc:1651
 msgid "Error creating the difference, aborting"
 msgstr "Error al buscar los cambios, operación abortada"
 
-#: ../setedit/editmain.cc:1726
+#: ../setedit/editmain.cc:1727
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es más nueva, ¿la cargo?"
 
-#: ../setedit/editmain.cc:1950
+#: ../setedit/editmain.cc:1951
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
 "the file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, búsquelo en el paquete que instaló."
 
-#: ../setedit/editmain.cc:2085
+#: ../setedit/editmain.cc:2086
 #, c-format
 msgid ""
 "\n"
@@ -3103,7 +3103,7 @@ msgstr ""
 "\n"
 "¡Instalación errónea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:2086
+#: ../setedit/editmain.cc:2087
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -3111,7 +3111,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribución.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2090
+#: ../setedit/editmain.cc:2091
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3120,7 +3120,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2092
+#: ../setedit/editmain.cc:2093
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3129,11 +3129,11 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2097
+#: ../setedit/editmain.cc:2098
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:2106
+#: ../setedit/editmain.cc:2107
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3143,15 +3143,15 @@ msgstr ""
 "Ud. definió SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2135
+#: ../setedit/editmain.cc:2136
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2379
+#: ../setedit/editmain.cc:2380
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2380
+#: ../setedit/editmain.cc:2381
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3159,7 +3159,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2382
+#: ../setedit/editmain.cc:2383
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3176,11 +3176,11 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2386
+#: ../setedit/editmain.cc:2387
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2387
+#: ../setedit/editmain.cc:2388
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3194,7 +3194,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:2392
+#: ../setedit/editmain.cc:2393
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -3206,7 +3206,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:2396
+#: ../setedit/editmain.cc:2397
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3215,7 +3215,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:2398
+#: ../setedit/editmain.cc:2399
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3223,34 +3223,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2400
+#: ../setedit/editmain.cc:2401
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:2402
+#: ../setedit/editmain.cc:2403
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:2404
+#: ../setedit/editmain.cc:2405
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2405
+#: ../setedit/editmain.cc:2406
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2406
+#: ../setedit/editmain.cc:2407
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:2409
+#: ../setedit/editmain.cc:2410
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:2411
+#: ../setedit/editmain.cc:2412
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3259,7 +3259,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:2413
+#: ../setedit/editmain.cc:2414
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3267,7 +3267,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:2416
+#: ../setedit/editmain.cc:2417
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -3275,12 +3275,12 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:2418
+#: ../setedit/editmain.cc:2419
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:2419
+#: ../setedit/editmain.cc:2420
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
@@ -4342,7 +4342,7 @@ msgstr "S~i~empre"
 msgid "~O~nly if no file specified"
 msgstr "Só~l~o si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:126
+#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:128
 msgid "~N~ever"
 msgstr "~N~unca"
 
@@ -4350,7 +4350,7 @@ msgstr "~N~unca"
 msgid "Remember other windows"
 msgstr "Recordar otras ventanas"
 
-#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:126
+#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:128
 msgid "Al~w~ays"
 msgstr "~S~iempre"
 
@@ -5047,97 +5047,101 @@ msgstr "Directorios para buscar archivos bajo el cursor"
 msgid "Directory"
 msgstr "Directorio"
 
-#: ../setedit/runprog.cc:79
+#: ../setedit/runprog.cc:80
 #, c-format
 msgid "Running %s"
 msgstr "Ejecutando %s"
 
-#: ../setedit/runprog.cc:80
+#: ../setedit/runprog.cc:81
 msgid "Back in the editor"
 msgstr "Nuevamente en el editor"
 
-#: ../setedit/runprog.cc:81
+#: ../setedit/runprog.cc:82
 msgid "From program:"
 msgstr "Desde el programa:"
 
-#: ../setedit/runprog.cc:116
+#: ../setedit/runprog.cc:117
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
-#. ABDEFHJKLMNPSTUW
-#: ../setedit/runprog.cc:118
+#. ABDEFHJKLMNPRSTUW
+#: ../setedit/runprog.cc:119
 msgid "~E~nter the program name"
 msgstr "~I~ngrese el nombre del programa"
 
-#: ../setedit/runprog.cc:121
+#: ../setedit/runprog.cc:122
 msgid "~U~se OS screen to run the program"
 msgstr "~U~sar la pantalla del SO"
 
-#: ../setedit/runprog.cc:122
+#: ../setedit/runprog.cc:123
 msgid "~D~on't try to run in background"
 msgstr "No intentar correr en segundo ~p~lano"
 
-#: ../setedit/runprog.cc:123
+#: ../setedit/runprog.cc:124
 msgid "~A~lways parse in background"
 msgstr "Siempre en segundo pl~a~no"
 
-#: ../setedit/runprog.cc:124
+#: ../setedit/runprog.cc:125
 msgid "~J~ump to the first error"
 msgstr "Sal~t~ar al primer error"
 
-#: ../setedit/runprog.cc:125
+#: ../setedit/runprog.cc:126
+msgid "Don't ~r~edirect stdout"
+msgstr "N~o~ redireccionar stdout"
+
+#: ../setedit/runprog.cc:127
 msgid "Message window ~s~croll"
 msgstr "Despla~z~amiento de la ventana de mensajes"
 
-#: ../setedit/runprog.cc:126
+#: ../setedit/runprog.cc:128
 msgid "Only if not ~f~ocused"
 msgstr "Sólo si sele~c~cionada"
 
-#: ../setedit/runprog.cc:127
+#: ../setedit/runprog.cc:129
 msgid "~H~orizontal reset"
 msgstr "Posición horizontal a cero"
 
-#: ../setedit/runprog.cc:128
+#: ../setedit/runprog.cc:130
 msgid "At ~b~eggining"
 msgstr "Al p~r~incipio"
 
-#: ../setedit/runprog.cc:129
+#: ../setedit/runprog.cc:131
 msgid "For each ~m~essage"
 msgstr "En cada mensa~j~e"
 
-#: ../setedit/runprog.cc:130
+#: ../setedit/runprog.cc:132
 msgid "At ~t~he end"
 msgstr "Al ~f~inal"
 
-#: ../setedit/runprog.cc:131
+#: ../setedit/runprog.cc:133
 msgid "~L~ines per pass"
 msgstr "~L~íneas por pasada"
 
-#: ../setedit/runprog.cc:138
+#: ../setedit/runprog.cc:140
 msgid "Error ~p~arser"
 msgstr "Intérprete de ~e~rrores para"
 
-#: ../setedit/runprog.cc:194
+#: ../setedit/runprog.cc:196
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
-#: ../setedit/runprog.cc:217
+#: ../setedit/runprog.cc:219
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:436
+#: ../setedit/runprog.cc:438
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:466
+#: ../setedit/runprog.cc:468
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:571
+#: ../setedit/runprog.cc:573
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:646
+#: ../setedit/runprog.cc:652
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 

@@ -1,4 +1,16 @@
-$Log$
+$Log$.
+Revision 1.403  2003/06/12 21:07:53  set
+* Added: [sLisp] GetCursorX, GetCursorY and SetCursorXY commands.
+Documented.
+* Added: A new command that inserts a new line without moving the cursor
+nor indenting. This is the old WordStar ^N command. Replaced the old ^N
+assignment. Added to menues. Translated to spanish.
+* Fixed: JumpLastCursorPos was interpreted as command 154 instead of 153
+when used from menues.
+* Fixed: + and - should change month in calendar, but used a very all (and
+nasty) legacy mechanism.
+* Added: Calendar windows can be closed pressing ESC.
+
 Revision 1.402  2003/06/11 20:18:38  set
 * Added: [sLisp] Find command, contributed by Bernd.
 

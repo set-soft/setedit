@@ -62,7 +62,7 @@ char *unique_name(char *before, char *retval)
   return NULL; // What to do here?
 }
 
-char *open_stderr(void)
+char *open_stderr(int *nherr)
 {
   if (errname) free(errname);
   errname = unique_name("er");
@@ -71,7 +71,14 @@ char *open_stderr(void)
   h_errbak = dup (STDERR);
   fflush(stderr);  /* so any buffered chars will be written out */
   dup2 (h_err, STDERR);
+  if (nherr)
+     *nherr=h_err;
   return errname;
+}
+
+char *open_stderr(void)
+{
+  return open_stderr(NULL);
 }
 
 void close_stderr(void)

@@ -305,6 +305,10 @@ static edCList SetFlags[] =
 {"MBYesNoCancel" ,mfYesNoCancel },
 
 {"Prepro"        ,Prepro        }, // Starts with #
+
+{"RunNoRedirect" ,2             }, // Don't redirect stdout
+{"RunUserScreen" ,1             }, // Use the user screen to run the external command
+
 {"StartCom"      ,StartCom      }, // /*
 {"StartCom2"     ,StartCom2     }, // {
 {"StartInCom"    ,StartInCom    }, // The first char is commented

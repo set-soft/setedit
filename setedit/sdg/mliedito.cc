@@ -207,6 +207,9 @@ DecFun(MLIRunProgram)
    }
  if (Options & 1)
     flags|=repRestoreScreen;
+ if (Options & 2)
+    flags|=repNoRedirOut;
+ //fprintf(stderr,"Options %d\n",Options);
  if (cant>=3)
    {
     GetString(2,compiler);
