@@ -104,7 +104,7 @@ void SOStack::Clean(void)
 
 SOStack::~SOStack()
 {
- delete Buffer;
+ free(Buffer); // Allocated with realloc
  Buffer=NULL;
 }
 
