@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.202  2002/09/09 20:51:39  set [uid61297 <= Ugh! SF bug!]
+* Modified: removed code used for old screen options dialog.
+
 Revision 1.201  2002/09/09 13:33:54  set
 * Fixed: InfView compilation detail, problem introduced in last rev (1.715
 in my home CVS 1.200 @SF)

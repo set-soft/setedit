@@ -896,11 +896,20 @@ void TSetEditorApp::EncodingOptions()
  int idDefScr, idDefApp, idDefInp;
  TVCodePage::GetDefaultCodePages(idDefScr,idDefApp,idDefInp);
 
+ //fprintf(stderr,"SO: App %d Inp %d Scr %d\n",so->enApp,so->enInp,so->enScr);
+ //fprintf(stderr,"DrvDef: App %d Inp %d Scr %d\n",idDefApp,idDefInp,idDefScr);
+
  // Currently selected values
+ // Note: Here if the user isn't forcing the code page what we show is what the
+ // driver is currently using. The other option is to show what was selected last
+ // time it was forced but in this way:
+ // 1) The user doesn't know what's using currently, maybe s/he doesn't really want
+ // to force it.
+ // 2) The first code to handle v0.5.0 left it in 0 which is invalid.
  int appCP, scrCP, sndCP, inpCP;
- appCP=TVCodePage::IDToIndex(so->enApp!=-1 ? so->enApp : idDefApp);
- inpCP=TVCodePage::IDToIndex(so->enInp!=-1 ? so->enInp : idDefInp);
- scrCP=TVCodePage::IDToIndex(so->enScr!=-1 ? so->enScr : idDefScr);
+ appCP=TVCodePage::IDToIndex(so->enForceApp && so->enApp!=-1 ? so->enApp : idDefApp);
+ inpCP=TVCodePage::IDToIndex(so->enForceInp && so->enInp!=-1 ? so->enInp : idDefInp);
+ scrCP=TVCodePage::IDToIndex(so->enForceScr && so->enScr!=-1 ? so->enScr : idDefScr);
  sndCP=so->enSnd!=-1 ? TVCodePage::IDToIndex(so->enSnd) : scrCP;
 
  // Data box
