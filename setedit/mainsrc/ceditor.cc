@@ -10454,20 +10454,26 @@ void *TCEditor::read( ipstream& is )
     CrossCursorCol=X;
     CrossCursorRow=Y;
    
+    if (X>limit.x)
+       limit.x=X+1;
+    selHided=(sh) ? True : False;
+    if (sEnd<=bufLen)
+      {
+       selStart=sStart;
+       selEnd=sEnd;
+       selStartOffSet=sStart;
+      }
+
     if (isValid && !DontLoadFile)
       {
        MoveCursorTo(X,Y);
-       if (X>limit.x)
-          limit.x=X+1;
-       selHided=(sh) ? True : False;
-       if ( sEnd <= bufLen )
-         {
-          selStart=sStart;
-          selEnd=sEnd;
-          selStartOffSet=sStart;
-         }
-       trackCursor( True );
+       trackCursor(True);
        update(ufView);
+      }
+    else
+      { // Setup this so we can construct a good resume
+       curPos.x=X;
+       curPos.y=Y;
       }
    }
  return this;
