@@ -110,6 +110,12 @@ $bin_dir=$base.'/bin';
 $cfg_dir1=$base.'/share';
 $cfg_dir=$cfg_dir1.'/infview';
 
+$Locale2  =$cfg_dir1.'/locale';
+$spLocale1=$Locale2.'/es';
+$spLocale =$spLocale1.'/LC_MESSAGES';
+$deLocale1=$Locale2.'/de';
+$deLocale =$deLocale1.'/LC_MESSAGES';
+
 $baseFHS=$base;
 $baseFHS.='/share' if $useFHS;
 $doc_dir1=$baseFHS.'/doc';
@@ -130,6 +136,9 @@ $man_dir1,
 $man_dir,
 $cfg_dir2,
 $cfg_dir3,
+$Locale2,
+$spLocale1,$spLocale,
+$deLocale1,$deLocale,
 'resultInf');
 
 foreach $i (@tree)
@@ -196,6 +205,10 @@ CopyIf('copying.rh','makes/linux/'.$doc_dir.'/copying.rh');
 chdir('makes/linux');
 CopyIfRpl('../../distrib/distrib3.txt',$doc_dir.'/readme.1st');
 CopyIfRpl('../../distrib/distrib3.txt',$cfg_dir.'/readme.1st');
+CopyIf('../../internac/es_iso.mo',$spLocale.'/setedit.mo');
+CopyIf('../../internac/es.mo',$spLocale.'/setedit850.mo');
+CopyIf('../../internac/de_iso.mo',$deLocale.'/setedit.mo');
+CopyIf('../../internac/de.mo',$deLocale.'/setedit850.mo');
 print "done.\n\n";
 
 
