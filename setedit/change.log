@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.250  2002/12/05 17:09:43  set
+* Added: Spanish translations for "Save as DOS" and "Shell". Pointed out
+by Ivan.
+
 Revision 1.249  2002/12/04 21:25:46  terrible
 * Corrected typo in change.log: spect should be expect.
 * Tested the editor, the Debian packaging didn't need any changes!

@@ -3246,18 +3246,21 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
       }
     // Take a word
     word_end = offset;
-    if (word_end<=lineLength && isWordCharBe(BUFFER[word_end]))
+    if (!in_c_comment1 && !in_c_comment2)
       {
-       do
-        {
-         word_end++;
-        }
-       while (word_end<=lineLength && isWordCharIn(BUFFER[word_end]));
+       if (word_end<=lineLength && isWordCharBe(BUFFER[word_end]))
+         {
+          do
+           {
+            word_end++;
+           }
+          while (word_end<=lineLength && isWordCharIn(BUFFER[word_end]));
+         }
+   
+       if (word_end > lineLength ||
+           (word_end > offset && !isWordCharIn(BUFFER[word_end])))
+         word_end--;
       }
-
-    if (word_end > lineLength ||
-        (word_end > offset && !isWordCharIn(BUFFER[word_end])))
-      word_end--;
 
     { // Analize the word
       char *name;
@@ -3282,9 +3285,8 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
 
       if (in_c_comment1)
         { // The line is commented by the last
-         color = CommentColor;
-         word_end=0;
-         char *s=name=BUFFER;
+         color=CommentColor;
+         char *s=name=BUFFER+word_end;
          while (word_end<lineLength)
            {
             if (CheckForSequence(TCEditor::strC.CloseCom1,TCEditor::strC.lCloseCom1,BytesLeft,&BUFFER[word_end]))
@@ -3301,15 +3303,14 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
       else
       if (in_c_comment2)
         { // The line is commented by the last
-         color = CommentColor;
-         word_end=0;
-         char *s=name=BUFFER;
+         color=CommentColor;
+         char *s=name=BUFFER+word_end;
          while (word_end<lineLength)
            {
             if (CheckForSequence(TCEditor::strC.CloseCom2,TCEditor::strC.lCloseCom2,BytesLeft,&BUFFER[word_end]))
               {
                word_end+=TCEditor::strC.lCloseCom2-1;
-               in_c_comment1=0;
+               in_c_comment2=0;
                break;
               }
             s++;
