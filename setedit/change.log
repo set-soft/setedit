@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.523  2004/06/14 16:40:42  set
+- From valgrind
+* Added: Holidays clean-up.
+* Fixed: Memory leak in special lines.
+* Fixed: malloc/delete missmatch in grep interface.
+
 Revision 1.522  2004/06/14 14:39:20  set
 * Added: now extrimk.cc can also solve vpath sources.
 * Modified: valgrind command line script to report up-to 40 functions in
