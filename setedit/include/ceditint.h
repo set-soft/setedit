@@ -69,25 +69,6 @@
 #endif
 #define NextIndentPos(x)        (((x/indentSize)+1)*indentSize)
 
-// End Of Line settings
-
-#define IsntEOL(a) (a!='\r' && a!='\n')
-#define IsEOL(a)   (a=='\r' || a=='\n')
-#if defined(SECompf_djgpp) || defined(SEOS_Win32)
- #define LenEOL     2
- #define USE_CRLF
- #define IsTrueEOL(a) (a=='\r' || a=='\n')
- #ifdef SEComp_GCC
-  const char crlf[] = "\r\n";
- #else
-  #define crlf "\r\n"
- #endif
-#else
- #define LenEOL     1
- const char crlf[] = "\n";
- #define IsTrueEOL(a) (a=='\n')
-#endif
-
 // Non standard libc stuff
 
 #if defined(SECompf_djgpp) || defined(SEOS_Win32)

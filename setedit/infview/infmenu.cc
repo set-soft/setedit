@@ -1,5 +1,6 @@
 /* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+#define Uses_string
 #define Uses_TApplication
 #define Uses_TMenuBar
 #define Uses_TRect

@@ -916,8 +916,8 @@ void TInfViewer::PasteToClipboard(void)
                 lTotal=lLine-Xs;
                 memcpy(s,b+Xs,lTotal);
                 s+=lTotal;
-                const char *p=crlf;
-                for (int i=0; i<LenEOL; i++)
+                const char *p=CLY_crlf;
+                for (int i=0; i<CLY_LenEOL; i++)
                   {
                    s[0]=p[i];
                    s++;
@@ -939,8 +939,8 @@ void TInfViewer::PasteToClipboard(void)
        {
         lLine=topic->getLine(i,s);
         s+=lLine;
-        const char *p=crlf;
-        for (int i=0; i<LenEOL; i++)
+        const char *p=CLY_crlf;
+        for (int i=0; i<CLY_LenEOL; i++)
           {
            s[0]=p[i];
            s++;
@@ -974,7 +974,7 @@ void TInfViewer::PasteInclude(void)
        for (f=s, l=1; *f && *f!='>'; f++,l++);
        if (inserted)
          {
-          DynStrCat(&cat,(char *)crlf,LenEOL);
+          DynStrCat(&cat,(char *)CLY_crlf,CLY_LenEOL);
           DynStrCat(&cat,s,l);
          }
        else
