@@ -669,7 +669,7 @@ void OpenProject(char *name)
    { // Load it
     CloseProject(0);
     ReplaceExtension(s,DeskTopFileExt,ProjectFileExt);
-    char *hidden;
+    char *hidden=0;
     if (!edTestForFile(s) && (hidden=MakeItHiddenName(s))!=NULL)
       {
        editorApp->retrieveDesktop(hidden,True);
