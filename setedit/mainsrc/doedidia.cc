@@ -48,7 +48,11 @@ void ApplyBroadcast(TView *p, void *e)
 #ifdef SEOSf_Solaris
  #define StrError(a) strerror(a)
 #else
- #define StrError(a) sys_errlist[a]
+ #if defined(SEOSf_Linux) && ((__GLIBC__==2 && __GLIBC_MINOR__>1) || __GLIBC__>2)
+  #define StrError(a) strerror(a)
+ #else
+  #define StrError(a) sys_errlist[a]
+ #endif
 #endif
 
 unsigned doEditDialog(int dialog, va_list arg)
