@@ -21,7 +21,12 @@ typedef struct
  {
   int offset;
   void *data;
-  unsigned short command;
+  //  This value *must* be of the same size as "int".
+  //  That's because when I fill the structure in keytrans.cc the compiler
+  // promotes the ushort to int (and assume is filling offset). This works
+  // for little endians, but for big endians makes command==0 (wrong 16
+  // bits used ;-)
+  unsigned command;
   char *macro;
   KeyTSeq *sequence;
  } d;
