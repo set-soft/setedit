@@ -19,7 +19,7 @@
 #include "mixer.h"
 
 #define COMPOSE_VOLUME(left,right) ((right<<8)|left)
-#define DECOMPOSE_VOLUME(vol,dev) dev##.right=(vol>>8)&0xFF; dev##.left=vol&0xFF
+#define DECOMPOSE_VOLUME(vol,dev) dev.right=(vol>>8)&0xFF; dev.left=vol&0xFF
 
 static int fdMixer=-1;
 static BOARD_MIXER elements[SOUND_MIXER_NRDEVICES];

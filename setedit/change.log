@@ -1,4 +1,10 @@
 $Log$
+Revision 1.46  2002/02/01 19:04:25  set
+* Added: Options to avoid reseting the horizontal position of the message
+window when new entries are added. Suggested by David A. Capello
+<dacap@users.sourceforge.net>.
+* Changed to v0.4.55 to store new settings.
+
 Revision 1.45  2002/02/01 15:26:51  set
 * Added: Lua syntax highlight. Contributed by David A. Capello
 <dacap@users.sourceforge.net>.
@@ -861,7 +867,7 @@ very convenient for inline assembler.
 * Fixed: Missing memcpy prototype in mp3play.cc.
 * Modified: Now gcc doesn't provide set_new_handler() anymore.
 * Fixed: I put pathlist.h wrongly in the files list.
-.
+
 Revision 1.421  2001/09/26 02:37:31  set
 * Adapted: The es.po, de.po, utod.pl and Makefile for internationalizations
 to work with gettext 0.10.39 tools (that seems to suppose files are in
