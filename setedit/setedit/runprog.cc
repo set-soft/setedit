@@ -114,7 +114,7 @@ void ConfigureRunCommand(void)
    }
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));
- // ABDEFHJKLMNPSTUV
+ // ABDEFHJKLMNPSTUW
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
@@ -123,7 +123,7 @@ void ConfigureRunCommand(void)
          __("~A~lways parse in background"),
          __("~J~ump to the first error"),0);
  TSLabel *opsscroll=TSLabelRadio(__("Message window ~s~croll"),
-         __("E~v~er"),__("~N~ever"),__("Only if not ~f~ocused"),0);
+         __("Al~w~ays"),__("~N~ever"),__("Only if not ~f~ocused"),0);
  TSLabel *optscrh=TSLabelCheck(__("~H~orizontal reset"),
          __("At ~b~eggining"),
          __("For each ~m~essage"),
@@ -135,7 +135,7 @@ void ConfigureRunCommand(void)
 
  if (validList)
    {
-    TSLabel *compilers=new TSLabel(__("Errors ~p~arser"),
+    TSLabel *compilers=new TSLabel(__("Error ~p~arser"),
                                    new TSSortedListBox(28,grp->h-1,tsslbVertical));
     col->insert(xTSRightOf,yTSUp,compilers,grp);
    }
@@ -433,7 +433,7 @@ Boolean RunExternalProgramNotRunning()
 {
  if (RunExternalProgramRunning())
    {
-    messageBox(__("We are running a child process. Please wait or stop it."),
+    messageBox(__("A child process is running. Please wait or stop it."),
                mfError | mfOKButton);
     return False;
    }

@@ -93,7 +93,7 @@ void TListWindowsDiag::handleEvent(TEvent &event)
               }
             else
               {
-               messageBox(__("You can't delete it from disk"),mfOKButton);
+               messageBox(__("You can't delete this file"),mfOKButton);
                clearEvent(event);
                return;
               }

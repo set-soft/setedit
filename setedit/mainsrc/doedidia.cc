@@ -207,11 +207,11 @@ unsigned doEditDialog(int dialog, va_list arg)
                            mfError | mfYesButton | mfNoButton);
 
     case edLineTooLong:
-         return messageBox(__("Line extremely long, can't handle it reliably, sorry"),
+         return messageBox(__("Line extremely long. Can't handle it reliably, sorry"),
                            mfError | mfOKButton);
  
     case edNotFromDisk:
-         return messageBox(__("This file isn't in disk!"),
+         return messageBox(__("This file isn't on the disk!"),
                            mfInformation | mfOKButton);
  
     case edIsReadOnly:
@@ -225,14 +225,14 @@ unsigned doEditDialog(int dialog, va_list arg)
                            mfError | mfOKButton);
 
     case edActionWOUndo:
-         return messageBox(__("This action doesn't have undo, are you sure?"),
+         return messageBox(__("This action can't be undone. Are you sure?"),
                            mfWarning | mfYesButton | mfNoButton);
 
     case edFileExists:
          s=va_arg(arg,_charPtr);
          va_end(arg);
          return messageBox(mfYesButton | mfNoButton | mfWarning,
-                           __("%s already exist, overwrite?"),s);
+                           __("%s already exists. Overwrite?"),s);
 
     case edFileNoFile:
          s=va_arg(arg,_charPtr);
@@ -241,7 +241,7 @@ unsigned doEditDialog(int dialog, va_list arg)
                            __("%s isn't a file, probably a device, go ahead?"),s);
 
     case edCantBkp:
-         return messageBox(__("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);
+         return messageBox(__("Can't create a backup. Continue saving?"),mfYesButton | mfNoButton | mfError);
 
     case edRectOutside:
          messageBox(__("You can't paste a rectangle crossing the end of the file"),mfError | mfOKButton);
@@ -272,7 +272,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
 
     case edFileCompMant:
-         return messageBox(__("The file is compressed. Do you want to save compressing?"),mfInformation | mfYesNoCancel);
+         return messageBox(__("The file is compressed. Do you want to save with compression?"),mfInformation | mfYesNoCancel);
    }
  return 0;
 }

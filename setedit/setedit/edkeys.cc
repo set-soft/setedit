@@ -539,8 +539,8 @@ int KeyPadSetUp(void)
 {
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Key Pad behavior")));
 
- TSLabel *Behave=TSLabelRadio(__("Behavior"),__("Mantain the ~B~IOS default"),
-                              __("Ever interpret shift+arrow as ~m~ovement"),0);
+ TSLabel *Behave=TSLabelRadio(__("Behavior"),__("Use the ~B~IOS default"),
+                              __("Always interprete shift+arrow as ~m~ovement"),0);
  col->insert(2,2,Behave);
  EasyInsertOKCancel(col);
 

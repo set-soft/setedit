@@ -447,7 +447,7 @@ Boolean TCEditor::clipWinCopy(int id)
    {
     if (!TVOSClipboard::isAvailable())
       {
-       messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       messageBox(__("Sorry but no OS specific clipboard is available"),mfError | mfOKButton);
        return False;
       }
     flushLine();
@@ -517,7 +517,7 @@ void TCEditor::clipWinPaste(int id)
     return;
  if (!TVOSClipboard::isAvailable())
    {
-    messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+    messageBox(__("Sorry but no OS specific clipboard is available"),mfError | mfOKButton);
     return;
    }
  flushLine();
@@ -10043,7 +10043,7 @@ void TCEditor::setBufLen( uint32 length )
     }
 
  if (haveASCII0)
-    messageBox(__("This file contains ASCII 0 values, all the characters after it in this line becomes invisible. Be careful."),mfWarning | mfOKButton);
+    messageBox(__("This file contains ASCII 0 values, all the characters in this line after it become invisible. Be careful."),mfWarning | mfOKButton);
 
  if (bufLen)
    {
@@ -10787,7 +10787,7 @@ void TCEditor::SetHighlightTo(shlState sHL, int subSHL)
             RecalculateLineAttributes();
            }
          break;
-    default: messageBox(__("Unhandled syntax highlight"),mfError | mfOKButton);
+    default: messageBox(__("Unhandled syntax highlighting"),mfError | mfOKButton);
    }
 }
 

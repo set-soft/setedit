@@ -243,7 +243,7 @@ void UpdateSilly(void)
  if (!(i%6))
    {
     k=i%60;
-    char *s=TVIntl::getTextNew(__("Screen saver, press a key"));
+    char *s=TVIntl::getTextNew(__("Screen saver. Press a key"));
     scrn->printAt(k,scrn->numRows-1,s);
     DeleteArray(s);
    }
@@ -840,10 +840,10 @@ ScrSaver TextStars=
 
 #ifdef TVCompf_djgpp
 /************************** Safe saver *****************************/
-static char *cCartel2=__("That's a 'safe' screen saver. The editor have a beautiful "
-                         "plasma screen saver but currently isn't the default "
+static char *cCartel2=__("That's a 'safe' screen saver. The editor has a beautiful "
+                         "plasma screen saver but currently it isn't the default "
                          "because some (really buggy) Winshit 9x video drivers "
-                         "makes strange things when a windowed DOS program switchs "
+                         "do strange things when a windowed DOS program switches "
                          "to video mode. I hate it ....");
 
 // Shared with Text Stars

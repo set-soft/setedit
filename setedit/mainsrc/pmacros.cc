@@ -103,7 +103,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
      }
    if (strncmp(buf,"Trigger:",8)!=0)
      {
-      messageBox(__("Macro definition don't start with Trigger"),mfError | mfOKButton);
+      messageBox(__("Macro definition doesn't start with Trigger"),mfError | mfOKButton);
       fclose(f);
       return False;
      }

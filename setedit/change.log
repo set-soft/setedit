@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.344  2003/05/07 12:41:15  set
+* Added: holidays.cc to the project and makefiles. That's a whole update
+of the makefiles, please reconfigure the package if you are using CVS.
+
 Revision 1.343  2003/05/07 12:34:42  set
 * Fixed: The holidays directory must be used for includes even when
 dynamic libs are not supported.

@@ -118,7 +118,7 @@ void SDGInterfaceRun(void)
             break;
        case 3:
             IntMessage1(__("In section %s"),TXHGetGenSect())
-            IntMessage1(__("Error of type: %s"),MLISDGTypeError)
+            IntMessage1(__("Type of error: %s"),MLISDGTypeError)
             EdShowMessage(MLISDGErrorName);
             IntMessage1(__("Code: ...%s..."),MLISDGErrorCode)
             break;

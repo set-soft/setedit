@@ -1471,7 +1471,7 @@ int ShowMembers(ccIndex pos)
    }
  else
    {
-    messageBox(__("I don't know about members for this type"),mfError|mfOKButton);
+    messageBox(__("I don't know any members for this type"),mfError|mfOKButton);
     return 0;
    }
  return 0;
@@ -1599,7 +1599,7 @@ TDialog *createDialogVCl(stClassTagInfo *cl)
  if (cl->childs->getCount())
    {
     childs=MakeVeGroup(1 | tsveMakeSameW,
-              new TSLabel(__("Chil~d~s"),
+              new TSLabel(__("Chil~d~ren"),
                           new TSSortedListBox(20,6,tsslbVertical|tsslbHorizontal,1,80)),
               new TSButton(__("Browse ~c~hild"),cmChild,bfNormal,buttonsCB_VCl),0);
    }
@@ -1744,7 +1744,7 @@ void TagsClassBrowser(char *word)
 
  if (!classList->getCount())
    {
-    messageBox(__("Sorry but I can't find any class."),mfError | mfOKButton);
+    messageBox(__("Sorry, but I can't find any class."),mfError | mfOKButton);
     return;
    }
 
@@ -1812,7 +1812,7 @@ void SetTagFilesGenerationOptions()
 {
  if (!IsPrjOpened())
    {
-    messageBox(__("This option is usable only when using projects"),
+    messageBox(__("This option is only available when using projects"),
                mfInformation | mfOKButton);
     return;
    }

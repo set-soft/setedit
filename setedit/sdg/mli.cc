@@ -1368,8 +1368,8 @@ char *TMLIBase::TypeError[]=
 
 char *TMLIBase::ParseError[]=
 {
- __("string no closed"),
- __("no ) end of code"),
+ __("string not closed"),
+ __("no ) at end of code"),
  __("no starting ("),
  __("wrong number"),
  __("unknown value"),

@@ -469,7 +469,7 @@ unsigned doEditDialogLocal(int dialog, ...)
          flags=va_arg(localArg,int);
          if (!flags && IsAlreadyOnDesktop(str))
            {
-            messageBox(__("This file is already opened, first close it."),mfError | mfOKButton);
+            messageBox(__("This file is already open, close it first."),mfError | mfOKButton);
             return cmNo;
            }
          break;
@@ -551,7 +551,7 @@ void TSetEditorApp::fileOpen()
  char fileName[PATH_MAX];
  strcpy(fileName,"*");
 
- if (GenericFileDialog(__("File Open"),fileName,0,hID_FileOpen)!=cmCancel)
+ if (GenericFileDialog(__("Open File"),fileName,0,hID_FileOpen)!=cmCancel)
      openEditor(fileName,True);
 }
 
@@ -777,7 +777,7 @@ void PrintEditor(void)
     PrintSource(e->buffer,s,e->tabSize);
    }
  else
-   messageBox(__("This window can't be printed select an editor"),mfError | mfOKButton);
+   messageBox(__("This window can't be printed. Select an editor window instead"),mfError | mfOKButton);
 }
 
 #define T(a) \
@@ -1112,7 +1112,7 @@ void TSetEditorApp::handleEvent( TEvent& event )
          case cmeQuit:
               if (RunExternalProgramRunning())
                 {
-                 if (messageBox(__("We still running a background task, exit anyways?"),
+                 if (messageBox(__("A background task is still running, exit anyway?"),
                      mfYesButton | mfNoButton | mfConfirmation)==cmNo)
                    {
                     DeleteFilesOnExit=0;
@@ -1791,7 +1791,7 @@ void ShowAboutStartBox(void)
 
     if (!edTestForFile(Name))
       {
-       messageBox(__("I can't find the readme.1st file, please look for it the .ZIP and read the file."),mfOKButton);
+       messageBox(__("I can't find the readme.1st file, please look for it in the .ZIP and read the file."),mfOKButton);
        //messageBox(Name,mfOKButton);
        return;
       }
@@ -2228,13 +2228,13 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         options. If the line number is omitted you'll jump to\n"
                         "                         the end of the text. Example: +6 file\n"));
             PrintHelp(_("-c, --cascade:           arranges the windows using cascade style.\n"));
-            PrintHelp(_("-d, --stack-dbg=n:       indicates which methode will be used in the event of a\n"
-                        "                         crash. The default methode is 0.\n"
+            PrintHelp(_("-d, --stack-dbg=n:       indicates which method will be used in the event of a\n"
+                        "                         crash. The default method is 0.\n"
                         "                         0: dump unsaved buffers and stack calls.\n"
-                        "                         1: do nothings (conservative).\n"));
+                        "                         1: do nothing (conservative).\n"));
             #ifdef SEOS_UNIX
             PrintHelp(_("                         2: dump unsaved buffers and call debugger to get\n"
-                        "                            information. Finally die.\n"
+                        "                            information. Then die.\n"
                         "                         3: like 2 but stay in the debugger.\n"));
             #endif
             PrintHelp(_("-f, --file-list file_n:  loads the files listed in file_n, each line in this\n"
@@ -2259,8 +2259,8 @@ void ParseCommandLine(int argc, char *argv[])
             #ifdef SECompf_djgpp // Don't name it under Linux
             PrintHelp(_("-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"));
             #endif
-            PrintHelp(_("-t, --tile-vert:         arranges the windows using vertical tile style.\n"));
-            PrintHelp(_("-T, --tile-horiz:        arranges the windows using horizontal tile style.\n"));
+            PrintHelp(_("-t, --tile-vert:         the windows are arranged vertically.\n"));
+            PrintHelp(_("-T, --tile-horiz:        the windows are arranged horizontally.\n"));
             FlushHelp();
             exit(1);
             break;

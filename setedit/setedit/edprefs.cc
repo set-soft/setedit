@@ -90,7 +90,7 @@ public:
 };
 
 TDiaFO::TDiaFO() :
-         TDialog(TRect(1,1,1,1),__("File Open options")),
+         TDialog(TRect(1,1,1,1),__("Open File options")),
          TWindowInit(&TDiaFO::initFrame)
 {
  parentSortEnabled=1;
@@ -146,7 +146,7 @@ int SetFileOpenDialogOptions(void)
  TSLabel *Sort=TSLabelRadio(__("~S~ort type"),__("~A~lphabetical"),
                             __("~D~irectories first"),__("~F~iles first"),0);
  d->sortType=(TRadioButtons32 *)Sort->linked->view;
- TSLabel *Case=TSLabelRadio(__("Case style"),__("~C~apital letters goes first"),
+ TSLabel *Case=TSLabelRadio(__("Case style"),__("~C~apital letters go first"),
                             __("Case ~i~nsensitive"),0);
  TSLabel *Parent=TSLabelRadio(__("Parent directory (..)"),__("First in the ~l~ist"),
                               __("At the ~e~nd of the list"),0);
@@ -339,7 +339,7 @@ void SetScreenSaversOptions(void)
 {
  if (!TScreen::useScreenSaver())
    {
-    messageBox(__("The screen saver isn't useful for this terminal"),mfInformation | mfOKButton);
+    messageBox(__("The screen saver can't be used on this terminal"),mfInformation | mfOKButton);
     return;
    }
 
@@ -430,11 +430,11 @@ unsigned SetGeneralEditorOptionsMain(void)
  TSLabel *tcb=TSLabelCheck(__("~S~ave/Desktop options"),
               __("Make ~b~ackups"),
               #define MAKE_BKPS 1
-              __("~U~NIX style backups"),
+              __("~U~NIX-style backups"),
               #define UNIX_STYLE_BKPS 2
               __("H~i~dden backups"),
               #define HIDDEN_BKPS 4
-              __("R~e~mmember bkps to delete"),
+              __("R~e~member bkps to delete"),
               #define REMM_BKPS 8
               __("~D~on't create desktop files"),
               #define DONT_CREATE_DST 16
@@ -448,7 +448,7 @@ unsigned SetGeneralEditorOptionsMain(void)
               __("Save DOS files ~a~s DOS"),
  #endif
               #define SAVE_ASIS 128
-              __("Don't remmember cursor ~p~osition"),
+              __("Don't remember cursor ~p~osition"),
               #define NO_CURSOR_POS 256
               __("Don't ~w~arn about read-only files"),
               #define NO_RO_WARNING 512
@@ -603,12 +603,12 @@ unsigned SetGeneralEditorOptionsMoreDst(void)
  // CEKLMNORVY
  TSViewCol *col=new TSViewCol(__("More desktop options"));
 
- TSLabel *editors=TSLabelRadio(__("Remmember editor windows"),
-         __("~E~ver"),__("~O~nly if no file specified"),__("~N~ever"),0);
- TSLabel *others=TSLabelRadio(__("Remmember other windows"),
-         __("E~v~er"),__("On~l~y if no file specified"),__("Neve~r~"),0);
- TSLabel *closed=TSLabelRadio(__("Remmember ~c~losed windows"),
-         __("Ever"),__("Onl~y~ if no file specified"),__("Never"),0);
+ TSLabel *editors=TSLabelRadio(__("Remember editor windows"),
+         __("~A~lways"),__("~O~nly if no file specified"),__("~N~ever"),0);
+ TSLabel *others=TSLabelRadio(__("Remember other windows"),
+         __("Al~w~ays"),__("On~l~y if no file specified"),__("Neve~r~"),0);
+ TSLabel *closed=TSLabelRadio(__("Remember ~c~losed windows"),
+         __("Alway~s~"),__("Onl~y~ if no file specified"),__("Ne~v~er"),0);
 
  col->insert(xTSLeft,yTSUp,MakeVeGroup(0,editors,others,closed,0));
  col->insert(xTSCenter,yTSDown,
@@ -657,7 +657,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
  // ENG: ACIJKMRUVW
  // ESP: ADEIKPRSUV
  TSVeGroup *MsgWin=MakeVeGroup(0,
-   TSLabelRadio(__("At the end of errors in message window"),
+   TSLabelRadio(__("At the end of error list in message window"),
           __("~J~ust stop"),
           __("~I~ndicate with a message"),
           __("Wrap (~c~ircular list)"),0),
@@ -793,7 +793,7 @@ int TSetEditorApp::ChooseConvCPs(int &From, int &To, uint32 &ops)
                   new TSSortedListBox(wForced,6,tsslbVertical)));
  TSVeGroup *all=new TSVeGroup(cps,
                      new TSCheckBoxes(
-                         new TSItem(__("~D~on't remap codes under 32"),
+                         new TSItem(__("~D~on't remap codes below 32"),
                          new TSItem(__("~O~nly selected text"),0))));
  all->makeSameW();
 
@@ -1065,7 +1065,7 @@ void TSetEditorApp::FontsOptions()
  if (!so) return; // Sanity check
  if (!TScreen::canSetBFont())
    {
-    messageBox(__("This terminal doesn't support fonts"),mfInformation | mfOKButton);
+    messageBox(__("This terminal doesn't support changing fonts"),mfInformation | mfOKButton);
     return;
    }
  unsigned wmin,wmax,hmin,hmax;
@@ -1220,7 +1220,7 @@ void TSetEditorApp::ScreenOptions()
  if (!so) return; // Sanity check
  if (!TScreen::canSetVideoSize())
    {
-    messageBox(__("This terminal have a fixed size"),mfInformation | mfOKButton);
+    messageBox(__("This terminal has a fixed size"),mfInformation | mfOKButton);
     return;
    }
 

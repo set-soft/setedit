@@ -73,8 +73,9 @@ optimization of the regex when the search isn't a regex).
 
 TDialog *createRegExOpsDialog()
 {
- TSViewCol *col=new TSViewCol(__("Regular Expressions Options"));
+ TSViewCol *col=new TSViewCol(__("Regular Expression Options"));
 
+ // EN: ABDENPT
  TSLabel *Style=TSLabelRadio(__("RegEx style"),__("~B~asic POSIX"),
                              __("~E~xtended POSIX"),
  #ifdef SUP_PCRE
@@ -83,9 +84,9 @@ TDialog *createRegExOpsDialog()
                              0);
 
  TSLabel *Replace=TSLabelRadio(__("Replace text"),__("~N~ormal text"),
-                               __("~D~olar tags"),0);
+                               __("~D~ollar tags"),0);
  TSLabel *Optimize=TSLabelRadio(__("Optimize"),__("~T~ry to use normal search"),
-                                __("E~v~er use RegEx"),0);
+                                __("~A~lways use RegEx"),0);
 
  TSVeGroup *rightG=new TSVeGroup(Replace,Optimize);
  rightG->makeSameW();
@@ -213,7 +214,7 @@ static ShlDiagBox *SHL_Box;
 static
 int SHLSubDiag(unsigned )
 {
- TSViewCol *col=new TSViewCol(__("Syntax Highlight"));
+ TSViewCol *col=new TSViewCol(__("Syntax Highlighting"));
  
  #define VeSHLW 30
  int VeSHLH=GetDeskTopRows()-15;
@@ -248,8 +249,8 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
 
  TSLabel *Options=TSLabelCheck(2,__("Options ~3~"),__("~O~verwrite"),__("~A~utoindent"),
          __("~U~se real tabs (ASCII 9)"),__("~P~ersistent blocks"),__("~I~ntelligent C indent"),
-         __("~C~olumn cursor"),__("~R~ow cursor"),__("~M~atch pair highlight"),
-         __("Match pair on the fl~y~"),__("Don't wait to search the pair ~1~"),
+         __("~C~olumn cursor"),__("~R~ow cursor"),__("~M~atched pair highlighting"),
+         __("Match pair on the fl~y~"),__("Don't wait to search for the pair ~1~"),
          __("Tra~n~sparent Blocks"),__("Optimal ~F~ill"),__("~W~rap words"),
          __("S~e~e tabs"),__("Don't move inside ta~b~s"),
          __("Tab ~s~mart indents"),__("Use in~d~ent size"),
@@ -292,9 +293,9 @@ TDialog *createSetGlobalOptions()
           __("~I~ntelligent C indent"),
           __("~C~olumn cursor"),
           __("~R~ow cursor"),
-          __("~M~atch pair highlight"),
+          __("~M~atched pair highlighting"),
           __("Match pair on the fl~y~"),
-          __("Don't wait to searc~h~ the pair"),
+          __("Don't wait to searc~h~ for the pair"),
           __("~D~on't move the cursor on Paste"),
           __("Tra~n~sparent Blocks"),
           __("Optimal ~F~ill"),
@@ -365,7 +366,7 @@ TDialog *createHTMLExportOps()
                 TSLabelCheck(__("~O~ptions"),
                              __("~F~ile name as title"),
                              __("Same ~b~ackground color as the editor"),
-                             __("~M~onospacied font"),
+                             __("~M~onospaced font"),
                              __("Bo~l~d attribute"),
                              __("~U~se CSS and HTML 4.01"),0),
                 TSLabelRadio(__("Colors"),__("Use ~c~olors"),

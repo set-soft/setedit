@@ -294,7 +294,7 @@ void EditPalette(void)
 {
  if (!TScreen::canSetPalette())
    {
-    messageBox(__("This hardware doesn't support it."),mfError | mfOKButton);
+    messageBox(__("The hardware doesn't support this."),mfError | mfOKButton);
     return;
    }
  PalCol *orig=EditorPalette->GetAllPal();

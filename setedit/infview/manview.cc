@@ -301,7 +301,7 @@ Boolean TManPageView::clipWinCopy(int id)
    {
     if (!TVOSClipboard::isAvailable())
       {
-       messageBox(__("Sorry but none OS specific clipboard is available"),mfError | mfOKButton);
+       messageBox(__("Sorry but no OS specific clipboard is available"),mfError | mfOKButton);
        return False;
       }
     unsigned len;

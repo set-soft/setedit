@@ -267,7 +267,7 @@ static void SLPShowError(void)
 {
  char buf[256],*aux;
  EdShowMessageI(__("Error in sLisp interpreter:"),True);
- IntMessage1(__("Error of type: %s"),MLIEditorTypeError)
+ IntMessage1(__("Type of error: %s"),MLIEditorTypeError)
  EdShowMessage(MLIEditorErrorName);
  IntMessage1(__("Code: ...%s..."),MLIEditorErrorCode)
  EdShowMessageI(__("End of SLP"));
@@ -333,7 +333,7 @@ void SLPInterfaceRunSelection(TCEditor *ed)
 
 void SLPInterfaceRunAsk(TCEditor *ed, char *code)
 {
- TSViewCol *col=new TSViewCol(__("Enter sLisp code to interpret"));
+ TSViewCol *col=new TSViewCol(__("Enter sLisp code to interprete"));
  TSInputLinePiped *inp=new TSInputLinePiped(maxRunAskCode-1,1,hID_sLispMacros,60);
  col->insert(xTSCenter,yTSUp,inp);
  EasyInsertOKCancel(col);

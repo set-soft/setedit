@@ -489,7 +489,7 @@ void grepWindow(char *patStart)
        case 1:
             if (!WriteNamesOfOpenedTo(f))
               {
-               messageBox(__("There aren't opened files"),mfOKButton);
+               messageBox(__("There aren't any files open"),mfOKButton);
                ok=0;
               }
             absolute=1;

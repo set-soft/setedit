@@ -124,18 +124,18 @@ void FullAboutBox(void)
  TNSCollection *text=new TNSCollection(12,5);
  #undef i
  #define i(a) text->insert((void *)TVIntl::getTextNew(a));
- i(__("The FSF and GNU people for such a good tools"));
- i(__("DJ Delorie and colaborators for porting it to DOS"));
+ i(__("The FSF and GNU people for such good tools"));
+ i(__("DJ Delorie and collaborators for porting it to DOS"));
  i(__("Robert Hoehne for porting TVision and making RHIDE"));
  i(__("Vadim Belodorov for contributing the first port of TV to Win32"));
  i(__("Anatoli Soltan for porting to Win32 using BC++"));
- i(__("VA Linux and people that maintains Source Forge"));
+ i(__("VA Linux and the people who maintain Source Forge"));
  i(__("The University of California, Berkeley and its contributors"));
  #ifdef HAVE_PCRE_LIB
  i(__("The University of Cambridge for the PCRE package"));
  #endif
  #ifdef HAVE_ALLEGRO
- i(__("Shawn Hargreaves for Allegro, used as sound engine"));
+ i(__("Shawn Hargreaves for Allegro; used as the sound engine"));
  # ifdef SUP_MP3
  i(__("Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"));
  # endif // SUP_MP3
@@ -144,7 +144,7 @@ void FullAboutBox(void)
  #ifdef HAVE_BZIP2
  i(__("Julian R. Seward for bzip2 routines included"));
  #endif
- i(__("Bjorn Reese for a lot of ideas about the stack debugger for UNIX"));
+ i(__("Bjorn Reese for a lot of ideas about the stack debugger of UNIX"));
  i(__("All my friends that support my project (Laszlo, Marek, Ivan,"));
  i(__("Grzegorz, etc.)."));
  #undef i

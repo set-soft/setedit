@@ -36,7 +36,7 @@ SubMenu: "~F~ile", kbAlF
  $else
  MenuItemC: "Sa~v~e as DOS...", cmcSaveAsDOS
  $endif
- MenuItemC: "Save w/same ~t~ime...", cmcSaveSameTime
+ MenuItemC: "Save w/ same ~t~ime...", cmcSaveSameTime
  MenuItemC: "Save a~l~l", cmeSaveAll
  MenuSeparator
  MenuItemC: "~P~rint", cmePrintEditor
@@ -122,13 +122,13 @@ SubMenu: "~M~acro", kbAlM
  MenuItemC: "~S~top", cmcStopMacro, kbAlF10, "Alt+F10"
  MenuItemC: "~P~lay", cmcPlayMacro, kbCtF10, "Ctrl+F10"
  MenuSeparator
- MenuItemC: "~C~hoose ...", cmcChooseMacro
+ MenuItemC: "~C~hoose...", cmcChooseMacro
  MenuItemC: "R~e~peat", cmcRepeatMacro, kbShF3, "Shift+F3"
  MenuItemC: "~G~enerate Code", cmcGenCodeForMacro
  MenuItemC: "Ru~n~ selected code", cmcRunSel_sLisp
  MenuItemC: "Enter c~o~de to run", cmcRunEnter_sLisp
  MenuSeparator
- MenuItemC: "Pse~u~do macros ...", cmcChoosePMacrosList
+ MenuItemC: "Pse~u~do macros...", cmcChoosePMacrosList
 EndSubMenu
 
 SubMenu: "Re~c~tangle", kbAlR
@@ -164,18 +164,18 @@ EndSubMenu
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
    SubMenu: "~C~olors", kbAlC
-     MenuItemC: "~C~ustomize ...", cmeSetColors
+     MenuItemC: "~C~ustomize...", cmeSetColors
      $if DOS or Linux
-     MenuItemC: "~P~alette ...", cmeEditPalette
+     MenuItemC: "~P~alette...", cmeEditPalette
      $endif
-     MenuItemC: "~T~heme ...", cmeColorTheme
+     MenuItemC: "~T~heme...", cmeColorTheme
    EndSubMenu
-   MenuItemC: "~L~ocal edition ...", cmcSetLocalOptions, kbAlL, "Alt+L"
-   MenuItemC: "Glo~b~al edition ...", cmcSetGlobalOptions, kbAlG, "Alt+G"
-   MenuItemC: "Editor ~G~eneral ...", cmeEdGralOptions
-   MenuItemC: "Scr~e~en saver ...", cmeScreenSaverOpts
-   MenuItemC: "S~D~G Options ...", cmeSDGDialog
-   MenuItemC: "~R~un program (which one) ...", cmeConfRunCommand
+   MenuItemC: "~L~ocal edition...", cmcSetLocalOptions, kbAlL, "Alt+L"
+   MenuItemC: "Glo~b~al edition...", cmcSetGlobalOptions, kbAlG, "Alt+G"
+   MenuItemC: "Editor ~G~eneral...", cmeEdGralOptions
+   MenuItemC: "Scr~e~en saver...", cmeScreenSaverOpts
+   MenuItemC: "S~D~G Options...", cmeSDGDialog
+   MenuItemC: "~R~un program (which one)...", cmeConfRunCommand
    SubMenu: "~K~eyboard", kbAlK
      MenuItemC: "~K~ey assigment", cmeEditKeyBind
      MenuItemC: "~S~etup Alt keys", cmeSetUpAltKeys
@@ -185,25 +185,25 @@ SubMenu: "~T~ool&Ops", kbAlT
      MenuItemC: "Key ~p~ad behavior", cmeKeyPadBehavior
      $endif
    EndSubMenu
-   MenuItemC: "~S~creen Options ...", cmeSetScreenOps
-   MenuItemC: "Encod~i~ngs ...", cmeEncodings
-   MenuItemC: "Fon~t~s ...", cmeFonts
-   MenuItemC: "~U~ser words ...", cmeEditUserWords
-   MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
-   MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions
-   MenuItemC: "Do~n~'t create backups for ...", cmeEditNoBkp
-   MenuItemC: "Searc~h~ files under cursor in ...", cmeIncludeList
+   MenuItemC: "~S~creen Options...", cmeSetScreenOps
+   MenuItemC: "Encod~i~ngs...", cmeEncodings
+   MenuItemC: "Fon~t~s...", cmeFonts
+   MenuItemC: "~U~ser words...", cmeEditUserWords
+   MenuItemC: "De~f~ault global edition...", cmeEditDeflOpts
+   MenuItemC: "File ~o~pen dialog...", cmeFileOpenOptions
+   MenuItemC: "Do~n~'t create backups for...", cmeEditNoBkp
+   MenuItemC: "Searc~h~ files under cursor in...", cmeIncludeList
    SubMenu: "T~a~g files", kbAlA
-     MenuItemC: "~L~ist of tag files ...", cmeTagFiles
-     MenuItemC: "~O~ptions ...", cmeTagsOps
+     MenuItemC: "~L~ist of tag files...", cmeTagFiles
+     MenuItemC: "~O~ptions...", cmeTagsOps
    EndSubMenu
-   MenuItemC: "Calendar (holida~y~s) ...", cmeHolidaysConf
+   MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc
  MenuItemC: "~S~DG", cmeSDG, kbF9, "F9"
  MenuItemC: "~R~un program", cmeRunCommand, kbCtF9, "Ctrl+F9"
- MenuItemC: "~G~rep ...", cmeGrepDialog, kbShF2, "Shift+F2"
+ MenuItemC: "~G~rep...", cmeGrepDialog, kbShF2, "Shift+F2"
  MenuItemC: "~A~SCII Chart", cmeASCIIChart
  MenuItemC: "Ca~l~endar", cmeCalendar
 #$ifdef DOS
@@ -224,9 +224,9 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "Convert ~a~ccents to tags", cmeHTMLAccents
    MenuItemC: "Convert ~t~ags to accents", cmeHTMLTag2Accent
  EndSubMenu
- MenuItemC: "E~x~port as HTML ...", cmeExportAsHTML
+ MenuItemC: "E~x~port as HTML...", cmeExportAsHTML
  MenuItemC: "Insert key ~n~ame", cmcInsertKeyName
- MenuItemC: "Re~m~ap code page ...", cmeRemapCodePage
+ MenuItemC: "Re~m~ap code page...", cmeRemapCodePage
  MenuItemC: "~P~rofile Editor", cmcProfileEditor
  MenuItemC: "Paste ~E~macs mode", cmcPasteEmacsMode
  MenuItemC: "Redra~w~ screen", cmeReDraw

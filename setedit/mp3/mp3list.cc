@@ -117,7 +117,7 @@ void TListDiag::handleEvent(TEvent &event)
             break;
        case cmaSaveMP3List:
             strcpy(fileName,mp3ListExt);
-            if (GenericFileDialog(__("Save files list"),fileName,0,hID_SaveMP3,
+            if (GenericFileDialog(__("Save file list"),fileName,0,hID_SaveMP3,
                 fdDialogForSave)!=cmCancel)
                SaveList(fileName);
             break;

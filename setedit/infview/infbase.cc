@@ -261,9 +261,9 @@ int TInfTopic::ReadNodeInfo(TInfFile &File)
          }
        else
          {
-          if (messageBox(__("Attention !! this file is in DOS format,"
-              " Do you want convert it?,"
-              " Make a backup first !!"), mfError | mfYesButton | mfNoButton)
+          if (messageBox(__("Attention !! This file is in DOS format,"
+              " Do you want to convert it?,"
+              " But maybe make a backup first !!"), mfError | mfYesButton | mfNoButton)
               ==cmYes)
             {
              if (!File.ConvertIt(Pos))
@@ -1292,7 +1292,7 @@ void TInfFile::DoAll( char *Nombre, int Verbose )
  if (stream==NULL)
    {
     if (Verbose)
-       messageBox(mfError|mfOKButton,__("Attention can't open the help file '%s'."), Nombre);
+       messageBox(mfError|mfOKButton,__("Attention: can't open the help file '%s'."), Nombre);
     Status=True;
     return;
    }
@@ -1843,7 +1843,7 @@ TInfTopic *TInfFile::getTopic(char *NameOri, int Verbose, int modeForTopic,
 TInfTopic *TInfFile::invalidTopic()
 {
  TInfTopic *topic;
- char *invalidText=TVIntl::getTextNew(__("\n Sorry I can't find this link (press ALT-F1).\n"));
+ char *invalidText=TVIntl::getTextNew(__("\n Sorry, I can't find this link (press ALT-F1).\n"));
 
  topic =  new TInfTopic(0);
  topic->Text = invalidText;

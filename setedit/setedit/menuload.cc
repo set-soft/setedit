@@ -62,14 +62,14 @@ static const char *ErrorNames[] =
 {
  __("No error"),
  __("String expected"),
- __("Unclosed string"),
+ __("String not closed"),
  __("No key for SubMenu"),
  __("Wrong key name"),
  __("Extra characters in line"),
  __("No number for a context"),
  __("Syntax error"),
  __("Empty submenu"),
- __("Unclosed SubMenu"),
+ __("SubMenu not closed "),
  __("Missing command value"),
  __("Wrong command name"),
  __("No menu definition"),
@@ -81,7 +81,7 @@ static const char *ErrorNames[] =
  __("No `quantity' value in range"),
  __("Number expected"),
  __("Invalid range"),
- __("Unclosed StatusRange"),
+ __("StatusRange not closed"),
  __("Empty status line"),
  __("Wrong help context name or number")
 };

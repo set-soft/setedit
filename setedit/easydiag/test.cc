@@ -361,7 +361,7 @@ void TMiApp::insertDialog()
                col->insert(xTSCenter,yTSUnder,cur,0,ant); \
                ant=cur
  i(__("by Salvador Eduardo Tropea"));
- i(__("A text editor specially designed for programmers."));
+ i(__("A text editor especially designed for programmers."));
 
  TSView::yDefSep=1;
  i(__("Made in Argentina"));
@@ -371,9 +371,9 @@ void TMiApp::insertDialog()
                ant=cur
  i(__("Thanks to:"));
  TSView::yDefSep=0;
- i(__("The FSF and GNU people for such a good tools"));
- i(__("DJ Delorie and colaborators for porting it to DOS"));
- i(__("Robert H”hne for porting TVision and making RHIDE"));
+ i(__("The FSF and GNU people for such good tools"));
+ i(__("DJ Delorie and collaborators for porting it to DOS"));
+ i(__("Robert H”hne for porting TVision and creating RHIDE"));
  i(__("The University of California, Berkeley and its contributors"));
  i(__("All my friends that support my project (Laszlo, Marek, etc)"));
  #undef i

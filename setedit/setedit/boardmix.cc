@@ -83,7 +83,7 @@ void BoardMixerDialog()
     elements=GetElements(&cantElements);
  if (!elements || !cantElements)
    {
-    messageBox(__("Failed to initialize mixer, sorry"),mfError | mfOKButton);
+    messageBox(__("Failed to initialize mixer. Sorry"),mfError | mfOKButton);
     return;
    }
 
@@ -147,7 +147,7 @@ void BoardMixerDisable()
 
 void BoardMixerDialog()
 {
- messageBox(__("No mixer support linked during configuration, sorry"),mfError | mfOKButton);
+ messageBox(__("No mixer support linked in during configuration, sorry"),mfError | mfOKButton);
 }
 
 void BoardMixerInit()

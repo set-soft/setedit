@@ -35,23 +35,23 @@ const unsigned opsButOK=0, opsButYesNo=8, opsButNoYes=0x10, opsButMask=0x38;
 static
 advice Advices[]=
 {
- { __("\x3You are about switching to the user screen\n\x3Press ENTER to go back"),
+ { __("\x3You are about to switch to the user screen\n\x3Press ENTER to go back"),
    AdviceVar1, 0x00000001, opsSimple },
- { __("Avoid using files that aren't in a directory that isn't relative to the working one. For example: in another drive. If you do it you'll have problems if the directories are moved or transported to other machine."),
+ { __("Avoid using files that aren't in a directory that isn't relative to the working one. For example: on another drive. If you do it, you'll have problems if the directories are moved or transported to another machine."),
    AdviceVar1, 0x00000002, ops60cols },
  { __("\x3""Do you really want to delete\n\x3this file from disk?"),
    AdviceVar1, 0x00000004, opsSimple | opsButYesNo },
- { __("With this settings SHIFT key will affect the case of the letters during incremental searchs, CAPS-LOCK too. Don't forget it."),
+ { __("Keep in mind that SHIFT and CAPS-LOCK will affect the case of the letters during incremental searches"),
    AdviceVar1, 0x00000008, ops40cols },
- { __("With this settings incremental searchs aren't very intuitive, specially when pressing SHIFT. Don't forget it."),
+ { __("Keep in mind that incremental searches aren't very intuitive, especially when pressing SHIFT."),
    AdviceVar1, 0x00000010, ops40cols },
- { __("Holding SHIFT the incremental search is done for the directory names, otherwise applies to files. Don't forget it."),
+ { __("Keep in mind that while holding SHIFT the incremental search is done for directory names, rather than files."),
    AdviceVar1, 0x00000020, ops40cols },
- { __("When using real tabs the following options are usually desired: Autoindent ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, Tab smart indents OFF, Use indent size OFF and Backspace unindents OFF.\nI see not all are selected this way."),
+ { __("When using real tabs the following options are usually desired: Autoindent ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, Tab smart indents OFF, Use indent size OFF and Backspace unindents OFF.\nI see not all of them are set this way."),
    AdviceVar1, 0x00000040, ops60cols },
- { __("Tags file in incorrect format,\ndo you want to read more about it?"),
+ { __("Tags file has incorrect format.\nDo you want to read more about it?"),
    AdviceVar1, 0x00000080, opsSimple | opsButYesNo },
- { __("This option needs a tag file,\ndo you want to read more about it?"),
+ { __("This option needs a tags file.\nDo you want to read more about it?"),
    AdviceVar1, 0x00000100, opsSimple | opsButYesNo }
 };
 

@@ -154,12 +154,12 @@ const char *cRedmondMenu=__("Configure the editor's menu like in Win. programs (
 const char *cExtraScrSave=__("Extra screen savers (around 160 Kb)");
 const char *cDesktopOpsTit=__("Desktop files");
 const char *cDesktopOps=__("The editor stores configuration options in files called desktop files. These "
-"files also stores information about what files are opened and the size, "
+"files also store information about what files are opened and the size, "
 "position, etc. of the windows. You can have only one global file for this or "
-"one in each directory you use the editor. Which option do you prefer?");
+"one in each directory you use the editor in. Which option do you prefer?");
 const char *cDesktopOps0=__("A desktop file in each directory");
 const char *cDesktopOps1=__("One central desktop file.");
-const char *cTabOpsTit=__("Indent using");
+const char *cTabOpsTit=__("Indent using...");
 const char *cTabOps=__("The editor is set by default to indent text using spaces. To configure the "
 "editor to use tabs more than one option must be selected. What do you want to "
 "use for indentation?");
@@ -167,8 +167,8 @@ const char *cTabOps0=__("Spaces");
 const char *cTabOps1=__("Tabs");
 const char *cBackUpOpsTit=__("Backup files");
 const char *cBackUpOps=__("Each time the editor stores a modified file to disk a backup file can be "
-"created in case you want to revert the changes. This is specially useful when "
-"you alredy exited the editor and hence undo option isn't available. Do you "
+"created in case you want to revert the changes. This is especially useful when "
+"you already exited the editor and hence the undo option isn't available. Do you "
 "want to create backup files?");
 const char *cBackUpOps0=__("No");
 const char *cBackUpOps1=__("Yes, create backup files");
@@ -354,7 +354,7 @@ TStatusLine *Installer::initStatusLine(TRect r)
 
  TStatusLine *sL=new TStatusLine(r,
    *new TStatusDef(0x1000,0x1001) +
-    *new TStatusItem(__("~Ctrl-F4~ Finish edition, or click in the button found in the top left corner"),kbCtrlF4,cmClose) +
+    *new TStatusItem(__("~Ctrl-F4~ Finish editing, or click on the button found in the top left corner"),kbCtrlF4,cmClose) +
    *new TStatusDef(0,0xFFFF) +
     *new TStatusItem(0,kbF10,cmMenu) +
     *new TStatusItem(__("~ESC~ Aborts installation"),kbEsc,cmCancel));
@@ -523,7 +523,7 @@ int AskDestination(char *djdir)
     if (!AlreadyAsked && OldInstallation &&
         strcasecmp(OldInstallation,Destination)!=0)
       {
-       int r=messageBox(__("You already installed (or tried) the editor, but in a different place. Do you want to continue?"),
+       int r=messageBox(__("You already installed the editor (or tried to), but in a different place. Do you want to continue?"),
                         mfWarning | mfYesButton | mfNoButton);
        if (r==cmYes)
           AlreadyAsked=1;
@@ -1243,7 +1243,7 @@ ushort doSpecialEditDialog(int dialog, ...)
  switch (dialog)
    {
     case edSaveModify:
-         return messageBox(__("You modified the autoexec.bat, Do you want to save the changes?")
+         return messageBox(__("You modified the autoexec.bat. Do you want to save the changes?")
                            ,mfInformation | mfYesNoCancel);
    }
 
@@ -1279,13 +1279,13 @@ void TEditWindow2::close()
 
 int EditAutoexec(const char *name, int modified, char *buf, unsigned l)
 {
- CreateCol(__("Instructions for edition"));
- TSStaticText *t1=new TSStaticText(__("Now I'll give you the oportunity to edit the autoexec.bat. To finish click in the small rectable found in the top-left corner or press Ctrl+F4."),70);
+ CreateCol(__("Instructions for editing"));
+ TSStaticText *t1=new TSStaticText(__("Now I'll give you the opportunity to edit the autoexec.bat. To finish click in the small rectangle found in the top-left corner or press Ctrl+F4."),70);
  col->insert(2,2,t1);
  TSStaticText *last;
  if (modified)
    {
-    last=new TSStaticText(__("I added the needed command, it is marked with a comment. Please don't remove the comment is used to know where is the text added by the installer."),70);
+    last=new TSStaticText(__("I added the needed command, it is marked with a comment. Please don't remove the comment it's used to know where the text was added by the installer."),70);
     col->insert(2,yTSUnder,last,0,t1);
    }
  else
@@ -1359,7 +1359,7 @@ int AlreadyInPath()
  return 0;
 }
 
-const char *byHand   =__("Do it yourself editing autoexec.bat later");
+const char *byHand   =__("Edit autoexec.bat yourself later");
 const char *byHandNow=__("Do it yourself but now");
 const char *doItAndSh=__("Let me do it and show you the result");
 const char *doItAndNS=__("Let me do it and don't show you the result");
@@ -1433,7 +1433,7 @@ int DefinePath()
           if (!CopyFile(AutoexecBKP,s,l))
             {
              free(s);
-             messageBox(__("Can't backup the autoexec.bat, sorry do it by hand"),mfError|mfOKButton);
+             messageBox(__("Can't backup autoexec.bat. You'll have to do it by yourself"),mfError|mfOKButton);
              return 0;
             }
           // Remove any previous value we put there
@@ -1594,7 +1594,7 @@ void Installer::Start()
        messageBox(__("Don't forget to update your autoexec.bat later!"),mfInformation | mfOKButton);
       }
     char *aux=TVIntl::getTextNew(__(", after rebooting your system you'll be able to use the editor"));
-    messageBox(mfInformation | mfOKButton,__("Editor installed succesfully%s. Run it using e.bat"),
+    messageBox(mfInformation | mfOKButton,__("Editor installed successfully%s. Run it using e.bat"),
                AutoExecWasOK ? "" : aux);
     DeleteArray(aux);
    }
