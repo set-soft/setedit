@@ -627,7 +627,7 @@ int TakeExtension(char *file, char *ext)
 
 static
 int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
-                      int *startCom, int *endCom)
+                      int *startCom, int *endCom, int *modeFound, int offset)
 {
  int i;
  char buf[MaxExtension];
@@ -636,7 +636,7 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
     return 0;
  l-=2;
 
- char *s=buffer;
+ char *s=buffer+offset;
  int p1=-1,p2=-1;
 
  for (i=0; i<l; i++)
@@ -660,9 +660,9 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
     return 0;
 
  if (startCom)
-    *startCom=p1;
+    *startCom=p1+offset;
  if (endCom)
-    *endCom=p2;
+    *endCom=p2+offset;
  for (p1+=3; ucisspace(s[p1]); p1++);
  for (p2--;  ucisspace(s[p2]); p2--);
 
@@ -687,6 +687,7 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
     *end=0;
     strcpy(ext,s);
     *end=';';
+    *modeFound=1;
    }
  if (tab_width)
    {
@@ -706,6 +707,27 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
 
 const int searchFromStart=1000, searchAtEnd=3000;
 
+/**[txh]********************************************************************
+
+  Description:
+  This function looks for the Emacs style variables in the provided
+@var{buffer}. The search is done upto the @var{lenBuf} offset. The content
+of the "mode" variable is returned in @var{ext} argument. If the
+@var{tab_width} argument is provided the content of the "tab-width" variable
+is stored there. Providing @var{startCom} and @var{endCom} you can get
+pointers to the beggining and the end of the comment.@*
+  Note that only the first 1 KB and last 3 KB of the buffer are analyzed.@*
+  This function have some high-level behavior and that's why is documented.
+If you don't pass the @var{startCom} and @var{endCom} they are NULL and in
+this case the function does a search looking for all instances of variable
+definitions, it doesn't stop after finding one definition. If the pointers
+are provided the function looks for a definition where at least "mode" is
+defined.
+
+  Return: 0 if not found.
+  
+***************************************************************************/
+
 int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
                      int *startCom, int *endCom)
 {
@@ -722,25 +744,26 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
     len=lenBuf;
 
  int searchAll=startCom==NULL;
- int found, lStart, lEnd, totalFound=0;
+ int found, lStart, lEnd, totalFound=0, modeFound=0;
  if (searchAll)
    {
     startCom=&lStart;
     endCom=&lEnd;
    }
 
- found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+ found=TakeCommentLowLev(buffer,len,ext,tab_width,startCom,endCom,&modeFound,0);
  if (found)
    {
-    if (!searchAll)
+    if (!searchAll && modeFound)
        return 1;
     while (found && *endCom+3<len)
       {
        totalFound++;
        *endCom+=3;
-       start+=*endCom;
-       len-=*endCom;
-       found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+       found=TakeCommentLowLev(buffer,len-*endCom,ext,tab_width,startCom,endCom,
+                               &modeFound,*endCom);
+       if (found && !searchAll && modeFound)
+          return 1;
       }
    }
 
@@ -754,20 +777,23 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
     start=searchFromStart;
  len=lenBuf-start;
 
- found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+ found=TakeCommentLowLev(buffer,len,ext,tab_width,startCom,endCom,&modeFound,start);
  if (found)
    {
-    if (!searchAll)
+    if (!searchAll && modeFound)
        return 1;
     while (found && *endCom+3<len)
       {
        totalFound++;
        *endCom+=3;
-       start+=*endCom;
-       len-=*endCom;
-       found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+       found=TakeCommentLowLev(buffer,len-*endCom,ext,tab_width,startCom,endCom,
+                               &modeFound,*endCom);
+       if (found && !searchAll && modeFound)
+          return 1;
       }
    }
+ if (!searchAll)
+    return 0;
  return totalFound;
 }
 

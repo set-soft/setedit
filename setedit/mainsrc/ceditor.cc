@@ -4000,22 +4000,25 @@ void TCEditor::PasteEmacsMode()
          }
        else
          {// Nope, is too risky to silently delete it.
+          //printf("Actual mode definition: %s\n",buffer+stComp);
           messageBox(__("Emacs mode already pasted without this editor"),mfError|mfOKButton);
           ::free(text);
           return;
          }
       }
-
-    // Beggining of text
-    handleCommand(cmcTextStart);
-    // Avoid pasting before a `bangline'
-    if (bufLen>3 && *buffer=='#' && buffer[1]=='!')
-      {// One line down
-       handleCommand(cmcLineDown);
-       if (curPos.y==0)
-         {// It failed, one line file
-          handleCommand(cmcLineEnd);
-          newLine();
+    else
+      {
+       // Beggining of text
+       handleCommand(cmcTextStart);
+       // Avoid pasting before a `bangline'
+       if (bufLen>3 && *buffer=='#' && buffer[1]=='!')
+         {// One line down
+          handleCommand(cmcLineDown);
+          if (curPos.y==0)
+            {// It failed, one line file
+             handleCommand(cmcLineEnd);
+             newLine();
+            }
          }
       }
 

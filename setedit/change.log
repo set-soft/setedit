@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.465  2003/11/12 14:07:01  set
+* Added: Looks like the "Emacs Mode" comments can appear more than once in
+the same file defining different variables. Now when the editor looks for
+it doesn't stop in the first match. Note that it doesn't affect the
+behavior on the "Paste Emacs Mode" which only searchs for the first
+occurrence. From a report by Grzegorz.
+
 Revision 1.464  2003/11/05 18:51:11  set
 * Fixed: I forgot that global options also mentioned "purge spaces".
 Pointed out by Oswald.
