@@ -602,6 +602,12 @@ CleanUp:
  destroyFloatVar(clear);
 }
 
+DecFun(MLISelectionExists)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(TMLIEditor::SelectionExists() ? 1 : 0);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -622,7 +628,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "OpenFile",
  "MessageBox",
  "EvalString",
- "ShowInMessageWindow"
+ "ShowInMessageWindow",
+ "SelectionExists"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -645,7 +652,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIOpenFile,
  MLIMessageBox,
  MLIEvalString,
- MLIShowInMessageWindow
+ MLIShowInMessageWindow,
+ MLISelectionExists
 };
 
 
