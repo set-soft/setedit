@@ -11,8 +11,10 @@ SET's Editor under Linux FAQ:
 work very well, why?
 1.3) Q: I use Red Hat 5.2 and the function keys works funny, some works
 others are moved to other places ... what's going on?
+1.4) Q: I use an X terminal emulator and home/end doesn't work, can I fix
+it? (example Konsole+Mandrake 8.1)
 Old questions, no longer apply but could help:
-1.4)
+1.5)
 Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
 is shifted.
 Q: Why pseudo-macros doesn't work?
@@ -107,7 +109,34 @@ You can try using it instead or run a diff to see what's difference are
 introduced in yours.
 
 
-1.4)
+
+1.4) Q: I use an X terminal emulator and home/end doesn't work, can I fix
+it? (example Konsole+Mandrake 8.1)
+
+A: Is quite common to see wrongly configured terminfo databases. Most VT102
+terminal emulators generates \E[4~ for end and \E[1~ for home (\E == ESC).
+In my systems that's true for the normal console and for ncurses. My
+terminfo database (Debian Potato) defines the terminfo entries as kend=\E[4~
+and khome=\E[1~, so all works OK. In some systems the terminfo definition
+for xterm says kend=\E05F and KHome=\E0H generating a problem. What you need
+to do is modify the terminfo definition. The easiest thing is to modify
+this value for all applications but I guess the propper thing is to create
+a special definition for setedit, something like xterm-setedit and define
+TERM to use it (export TERM=xterm-setedit).
+I won't explain how to modify a terminfo definition in detail but here are
+some hints:
+1) To decompile the definition for your terminal use the infocmp tool.
+2) The first line of the dumped definition says where is stored the
+definition.
+3) You can store it in a text file and edit it without problems.
+4) To compile it into the binary format just use the tic tool.
+5) You can force tic to generate the file in another directory hierarchy
+using the -o option.
+All the needed information is in the infocmp and tic manpages. If you need
+more information please post to the editor's mailing list asking for help.
+
+
+1.5)
 Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
 is shifted.
 Q: Why pseudo-macros doesn't work?
