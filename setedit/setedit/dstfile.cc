@@ -57,6 +57,7 @@
 #include <pathlist.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
+#include <tags.h>
 
 //#define DEBUG_CONFIG_TREE
 
@@ -750,6 +751,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  BoardMixerSave(s);
  PathListSave(s);
  s << (uchar)TSOSListBoxMsg::opsEnd << (uchar)TSOSListBoxMsg::opsBeep;
+ TagsSave(s);
  s << 0;
 }
 
@@ -1103,6 +1105,8 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     s >> aux; TSOSListBoxMsg::opsEnd=aux;
     s >> aux; TSOSListBoxMsg::opsBeep=aux;
    }
+ if (deskTopVersion>=0x501)
+    TagsLoad(s);
 
  // Even when 0.4.15 doesn't use the Config Files path we ensure it's pointing to
  // the SET_FILES path

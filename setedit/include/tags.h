@@ -99,7 +99,11 @@ public:
  // TStringable things:
  virtual void getText(char *dest, unsigned item, int maxLen);
  virtual unsigned GetCount(void) { return getCount(); };
+
+ //SetDefStreamMembers(TTagFiles,TStringCollection);
 };
+
+//SetDefStreamOperators(TTagFiles);
 
 // Class to hold the tags
 class TTagCollection : public TStringCollection, public TStringable
@@ -126,6 +130,8 @@ public:
  static void        getText(char *buf, void *item, int maxLen);
  TStringCollection *getTagFilesList();
  void               deleteTagsFor(stTagFile *p);
+ int                save(fpstream& s);
+ int                load(fpstream& s);
 
  TTagFiles         *tagFiles;
 
@@ -136,4 +142,7 @@ protected:
 
  int loadTagsFromFile(stTagFile *p);
 };
+
+int TagsSave(fpstream& s);
+int TagsLoad(fpstream& s);
 

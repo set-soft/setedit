@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.306  2003/04/25 18:41:43  set
+* Fixed: When typing at the end of the visible area and a horizontal scroll
+is forced the editor have to draw the whole window. To minimize the impact
+the editor does an 8 columns scroll. But if this width was less than the
+width of the larger line this scroll was automatically neutralized by the
+horizontal scrollbar. It not only defeated the effect but also generated a
+second full draw making things even worst.
+
 Revision 1.305  2003/04/25 18:15:10  set
 * Fixed: When jumping to a hit in the message window and the first column
 contained a matching [{( and the editor was configure to do match pair on

@@ -13,6 +13,7 @@ ctags -R --exclude="*.mak" --exclude=Makefile --exclude=".*.pl~" --fields=+i+l+m
   
 ***************************************************************************/
 
+#define Uses_getcwd
 #define Uses_stdio
 #define Uses_stdlib
 #define Uses_string
@@ -26,6 +27,7 @@ ctags -R --exclude="*.mak" --exclude=Makefile --exclude=".*.pl~" --fields=+i+l+m
 #define Uses_TEvent
 #define Uses_TApplication
 #define Uses_MsgBox
+#define Uses_fpstream
 
 #define Uses_TCEditor_External // For mode constants
 #define Uses_TCEditor_Commands // For the cmcJumpToFunction context
@@ -51,6 +53,10 @@ ctags -R --exclude="*.mak" --exclude=Makefile --exclude=".*.pl~" --fields=+i+l+m
 #define Uses_SETAppConst
 #define Uses_SETAppVarious
 #include <setapp.h>
+#include <rhutils.h>
+#include <pathtool.h>
+
+static int InitTagsCollection();
 
 // Variables for this module
 static TTagCollection *tags=NULL;
@@ -210,6 +216,11 @@ void *TTagFiles::keyOf(void *item)
  stTagFile *p=(stTagFile *)item;
  return (void *)p->file;
 }
+
+/*void *TTagFiles::readItem(ipstream& is)
+void TTagFiles::writeItem(void *obj, opstream& os)
+const char * const TTagFiles::name="TTagFiles";
+s(TTagFiles);*/
 
 /*****************************************************************************
  TTagCollection class
@@ -577,6 +588,7 @@ int TTagCollection::addFile(const char *file, int defer)
  p->info=new TTagInfo();
  p->entries=defer ? -2 : -1;
 
+ //printf("f: %s\nb: %s\n",p->file,p->base);
  int ret=0;
  if (!defer)
     ret=loadTagsFromFile(p);
@@ -637,6 +649,51 @@ TStringCollection *TTagCollection::getTagFilesList()
 }
 
 /*****************************************************************************
+ Save and restore
+*****************************************************************************/
+
+const char tagsVersion=1;
+
+int TTagCollection::save(fpstream& s)
+{
+ ccIndex count=tagFiles->getCount(),i;
+ s << (char)tagsVersion << count;
+ for (i=0; i<count; i++)
+    {
+     stTagFile *p=tagFiles->atPos(i);
+     s.writeString(p->file);
+    }
+ return 0;
+}
+
+int TTagCollection::load(fpstream& s)
+{
+ char version;
+ ccIndex count,i;
+ s >> version >> count;
+ for (i=0; i<count; i++)
+    {
+     char *file=s.readString();
+     addFile(file,1);
+     DeleteArray(file);
+    }
+ return 0;
+}
+
+int TagsSave(fpstream& s)
+{
+ if (InitTagsCollection()) return 1;
+ return tags->save(s);
+}
+
+int TagsLoad(fpstream& s)
+{
+ destroy(tags);
+ tags=new TTagCollection();
+ return tags->load(s);
+}
+
+/*****************************************************************************
  User interface
 *****************************************************************************/
 
@@ -682,12 +739,40 @@ int CancelConfirm(void)
 static
 int AddNewItem(void)
 {
- char fileName[PATH_MAX];
- strcpy(fileName,"tags");
+ char buffer[PATH_MAX];
+ strcpy(buffer,"tags*");
 
- if (GenericFileDialog(__("Select tags file"),fileName,0,hID_SelectTagFile)==cmCancel)
+ if (GenericFileDialog(__("Select tags file"),buffer,0,hID_SelectTagFile)==cmCancel)
     return 0;
- tags->addFile(fileName);
+
+ // Check if we can add it as relative path
+ int options=0;
+ char *entered =strdup(buffer);
+ char *relative=strdup(buffer);
+ getcwd(buffer,PATH_MAX);
+ if (CheckIfPathAbsolute(entered))
+   {
+    options=AbsToRelPath(buffer,relative,0);
+    //printf("a: %s\nr: %s\n",entered,relative);
+   }
+ char *toUse;
+ if (options)
+   {
+    int ret=messageBox(__("Use relative path for the file?"),
+           mfYesButton | mfNoButton | mfConfirmation);
+    if (ret==cmCancel)
+      {
+       free(entered);
+       free(relative);
+       return 0;
+      }
+    toUse=ret==cmYes ? relative : entered;
+   }
+ else
+    toUse=entered;
+ tags->addFile(toUse);
+ free(entered);
+ free(relative);
  return 1;
 }
 
