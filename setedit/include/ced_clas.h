@@ -655,34 +655,37 @@ struct EditorResume
 
 class TCEditWindow : public TWindow
 {
-
 public:
+ TCEditWindow( const TRect&, const char *, int, Boolean openRO=False );
+ virtual void close();
+ virtual const char *getTitle( short );
+ virtual void handleEvent( TEvent& );
+ virtual void sizeLimits( TPoint& min, TPoint& max );
+ virtual TPalette& getPalette() const;
 
-    TCEditWindow( const TRect&, const char *, int, Boolean openRO=False );
-    virtual void close();
-    virtual const char *getTitle( short );
-    virtual void handleEvent( TEvent& );
-    virtual void sizeLimits( TPoint& min, TPoint& max );
-    virtual TPalette& getPalette() const;
+ void FillResume(EditorResume &r);
+ void ApplyResume(EditorResume &r);
+ static void ReadResume(EditorResume &r, ipstream& is);
+ static void SaveResume(EditorResume &r, opstream& os);
+ static void FillResumeWith(EditorResume &r,TPoint &origin,TPoint &size,TPoint &cursor);
 
-    void FillResume(EditorResume &r);
-    void ApplyResume(EditorResume &r);
+ TCEditor *editor;
 
-    TCEditor *editor;
+protected:
+ static const char *clipboardTitle;
+ static const char *untitled;
 
-private:
+ static void EnlargeSizesResume(EditorResume &r);
+ static void EnlargeSizeResume(short &x, short &y, int wS, int hS);
+ static void ReduceSizesResume(EditorResume &r);
+ static void ReduceSizeResume(short &x, short &y, int wS, int hS);
 
-    static const char * clipboardTitle;
-    static const char * untitled;
+ static const int ResumeVersion;
 
-    SetDefStreamMembersNoConst(TCEditWindow)
+ SetDefStreamMembersNoConst(TCEditWindow)
 };
 
 SetDefStreamOperators(TCEditWindow)
-
-void ReadResume(EditorResume &r, ipstream& is);
-void SaveResume(EditorResume &r, opstream& os);
-void FillResumeWith(EditorResume &r,TPoint &origin,TPoint &size,TPoint &cursor);
 
 #endif  // Uses_TCEditWindow
 

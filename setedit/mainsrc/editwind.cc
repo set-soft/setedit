@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -11,6 +11,7 @@
 #define Uses_ipstream
 #define Uses_TStringCollection
 #define Uses_TPalette
+#define Uses_TScreen
 
 #define Uses_TCEditWindow
 #define Uses_TCEditor_Commands
@@ -27,6 +28,10 @@
 #define cpGrayEditWindow "\x18\x19\x1A\x1B\x1C\x64\x65\x66\x67\x68\x69\x6A"\
                          "\x6B\x6C\x6D\x6E\x6F\x70\x71\x72\x73\x74\x75\x76"\
                          "\x77\x78\x79\x7A\x7B\x7C"
+
+const int   TCEditWindow::ResumeVersion=5;
+const char *TCEditWindow::clipboardTitle=__("Clipboard");
+const char *TCEditWindow::untitled=__("Untitled");
 
 TPalette & TCEditWindow::getPalette() const
 {
@@ -140,13 +145,46 @@ TCEditWindow::TCEditWindow( StreamableInit ) :
 {
 }
 
-#define ResumeVersion 4
+void TCEditWindow::EnlargeSizesResume(EditorResume &r)
+{
+ int wS=TScreen::getCols(), hS=TScreen::getRows();
+ EnlargeSizeResume(r.origin_x,r.origin_y,wS,hS);
+ EnlargeSizeResume(r.size_x,r.size_y,wS,hS);
+ EnlargeSizeResume(r.zorigin_x,r.zorigin_y,wS,hS);
+ EnlargeSizeResume(r.zsize_x,r.zsize_y,wS,hS);
+}
+
+void TCEditWindow::ReduceSizesResume(EditorResume &r)
+{
+ int wS=TScreen::getCols(), hS=TScreen::getRows();
+ ReduceSizeResume(r.origin_x,r.origin_y,wS,hS);
+ ReduceSizeResume(r.size_x,r.size_y,wS,hS);
+ ReduceSizeResume(r.zorigin_x,r.zorigin_y,wS,hS);
+ ReduceSizeResume(r.zsize_x,r.zsize_y,wS,hS);
+}
+
+void TCEditWindow::EnlargeSizeResume(short &x, short &y, int wS, int hS)
+{
+ int max=2*wS-1;
+ if (x>max) x=max;
+ x=x*0x4000/wS;
+ max=2*hS-1;
+ if (y>max) y=max;
+ y=y*0x4000/hS;
+}
+
+void TCEditWindow::ReduceSizeResume(short &x, short &y, int wS, int hS)
+{
+ x=x*wS/0x4000;
+ y=y*hS/0x4000;
+}
 
 void TCEditWindow::FillResume(EditorResume &r)
 {
  r.version=ResumeVersion;
  r.shl=editor->SyntaxHL;
  r.subshl=editor->GenericSHL;
+
  r.origin_x=origin.x; r.origin_y=origin.y;
  r.size_x=size.x; r.size_y=size.y;
  r.cursor_x=editor->curPos.x; r.cursor_y=editor->curPos.y;
@@ -156,10 +194,13 @@ void TCEditWindow::FillResume(EditorResume &r)
  r.tabSize=editor->tabSize;
  r.indentSize=editor->indentSize;
  r.wrapCol=editor->WrapCol;
+
+ EnlargeSizesResume(r);
 }
 
 void TCEditWindow::ApplyResume(EditorResume &r)
 {
+ ReduceSizesResume(r);
  moveTo(r.origin_x,r.origin_y);
  growTo(r.size_x,r.size_y);
  zoomRect.a.x=r.zorigin_x;
@@ -185,7 +226,7 @@ unsigned MoveFlags(unsigned flags, unsigned mask, unsigned pos)
  return (flags & mask) | ((flags & (~mask))<<pos);
 }
 
-void ReadResume(EditorResume &r, ipstream& is)
+void TCEditWindow::ReadResume(EditorResume &r, ipstream& is)
 {
  uchar version;
 
@@ -225,7 +266,7 @@ void ReadResume(EditorResume &r, ipstream& is)
        // v3
        is.readBytes(((char *)&r)+1,sizeof(EditorResumeV3)-1);
     else
-       // v4
+       // v4 & v5
        is.readBytes(((char *)&r)+1,sizeof(EditorResume)-1);
    }
  if (r.version==3)
@@ -235,16 +276,29 @@ void ReadResume(EditorResume &r, ipstream& is)
     r.indentSize=TCEditor::staticIndentSize;
     r.wrapCol=TCEditor::staticWrapCol;
    }
+ if (r.version==4)
+   {
+    r.version=5;
+    EnlargeSizesResume(r);
+   }
 }
 
-void SaveResume(EditorResume &r, opstream& os)
+void TCEditWindow::SaveResume(EditorResume &r, opstream& os)
 {
  // If the file wasn't closed the resume is empty, even the version!
  r.version=ResumeVersion;
  os.writeBytes(&r,sizeof(EditorResume));
 }
 
-void FillResumeWith(EditorResume &r,TPoint &origin,TPoint &size,TPoint &cursor)
+/**[txh]********************************************************************
+
+  Description:
+  Used when reading desktop versions older than 0.3.6.
+  
+***************************************************************************/
+
+void TCEditWindow::FillResumeWith(EditorResume &r, TPoint &origin,
+                                  TPoint &size, TPoint &cursor)
 {
  r.version=ResumeVersion;
  r.shl=255; // Unknown, is applied to the flags too
@@ -257,8 +311,6 @@ void FillResumeWith(EditorResume &r,TPoint &origin,TPoint &size,TPoint &cursor)
  r.indentSize=TCEditor::staticIndentSize;
  r.wrapCol=TCEditor::staticWrapCol;
  r.ed_flags=0;
+ EnlargeSizesResume(r);
 }
-
-const char *TCEditWindow::clipboardTitle = __("Clipboard");
-const char *TCEditWindow::untitled = __("Untitled");
 

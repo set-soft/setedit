@@ -30,7 +30,7 @@ TStreamable *TDskWinClosed::build()
 void TDskWinClosed::write( opstream& os )
 {
  os.writeString(Name);
- SaveResume(resume,os);
+ TCEditWindow::SaveResume(resume,os);
 }
 
 void *TDskWinClosed::read( ipstream& is )
@@ -39,12 +39,12 @@ void *TDskWinClosed::read( ipstream& is )
  is.readString(fileName,PATH_MAX);
  Name=newStr(fileName);
  if (editorApp->deskTopVersion>=0x306)
-    ReadResume(resume,is);
+    TCEditWindow::ReadResume(resume,is);
  else
    {
     TPoint origin,size,cursor;
     is >> origin >> size >> cursor;
-    FillResumeWith(resume,origin,size,cursor);
+    TCEditWindow::FillResumeWith(resume,origin,size,cursor);
    }
  ZOrder=-1;
  view=0;

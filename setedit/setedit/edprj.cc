@@ -162,7 +162,7 @@ void *TPrjItemColl::readItem( ipstream& is )
     st=createNewElement(Buffer,isSame ? crtUseFullName : 0);
    }
  if (LoadingPrjVersion>2)
-    ReadResume(st->resume,is);
+    TCEditWindow::ReadResume(st->resume,is);
  return st;
 }
 
@@ -171,7 +171,7 @@ void TPrjItemColl::writeItem( void *p, opstream &os )
  PrjItem *pi=(PrjItem *)p;
  os.writeString(pi->name);
  os << (char)(pi->shortName==pi->name);
- SaveResume(pi->resume,os);
+ TCEditWindow::SaveResume(pi->resume,os);
 }
 
 TStreamableClass RPrjItemColl( TPrjItemColl::name,

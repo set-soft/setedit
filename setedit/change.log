@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.192  2002/09/04 15:46:21  set
+* Updated: Spanish translation.
+
 Revision 1.191  2002/09/04 13:14:37  set
 * Added: The project windows are resized accroding to the desktop file when
 loading. Till now all the windows (from the dst) were resized but the
