@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-11-03 16:55
+# 2003-11-12 11:53
 #
 
 editor$(ExEXE):: \
@@ -3070,59 +3070,6 @@ obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loadshl$(ExOBJ):: loadshl.cc \
-	$(MP3_PREV_DIR)/mainsrc/loadshl.cc \
-	ced_clas.h \
-	ced_exte.h \
-	ced_inte.h \
-	ceditint.h \
-	ceditor.h \
-	compatlayer.h \
-	configed.h \
-	dyncat.h \
-	loadshl.h \
-	pmcoll.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	sindicat.h \
-	tnocastc.h \
-	tstringa.h \
-	tv.h \
-	tv/codepage.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/indicato.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/parttree.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/resource.h \
-	tv/scrlbar.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
-	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
