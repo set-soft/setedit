@@ -100,7 +100,7 @@ int ChooseAndRunLispEditor(void)
  if (!okInit)
     return SLP_NO_INIT;
 
- TNoCaseStringCollection *Col=Interpreter->Macros;
+ TMacrosColl *Col=Interpreter->Macros;
 
  int cant=Col->getCount();
  if (!cant)

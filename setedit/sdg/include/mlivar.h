@@ -143,7 +143,6 @@ public:
  virtual int print(FILE *s);
 
  char *start;
-private:
  char *end;
 };
 #endif
