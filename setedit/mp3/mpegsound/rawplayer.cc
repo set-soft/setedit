@@ -3,11 +3,11 @@
    (C) 1997 by Jung woo-jae
    Allegro routines:
    (C) 1998 by Ove Kaaven <ovek@arcticnet.no>
-   (C) 2000 by Salvador E. Tropea <set@computer.org> */
+   (C) 2000/2001 by Salvador E. Tropea <set@ieee.org> */
 
 // Rawplayer.cc
 // Playing raw data with sound type.
-// It's for only Linux
+// It's only for Linux
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -196,6 +196,7 @@ int Rawplayer::getblocksize(void)
 #endif
 #ifdef __DJGPP__
 
+#include <string.h>
 #include "mpegsound.h"
 #include <allegro.h>
 
@@ -347,33 +348,33 @@ bool Rawplayer::putblock(void *buffer,int size)
     if (rawstereo)
       {
        int d1,d2,d3,d4;
-       asm volatile ("
-        0:
-        lodsw
-        addw $0x8000,%%ax
-        movw %%ax,(%%edi)
-        lodsw
-        addw $0x8000,%%ax
-        movw %%ax,(%%ebx)
-        addl $2,%%edi
-        addl $2,%%ebx
-        decl %%ecx
-        jnz 0b
-       " : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
+       asm volatile (
+       "0:                   \n"
+       "lodsw                \n"
+       "addw $0x8000,%%ax    \n"
+       "movw %%ax,(%%edi)    \n"
+       "lodsw                \n"
+       "addw $0x8000,%%ax    \n"
+       "movw %%ax,(%%ebx)    \n"
+       "addl $2,%%edi        \n"
+       "addl $2,%%ebx        \n"
+       "decl %%ecx           \n"
+       "jnz 0b               \n"
+         : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
          : "S" (buffer), "D" (buffer_left+buffer_head), "b" (buffer_right+buffer_head), "c" (cnt)
          : "ax", "memory" );
       }
     else
       {
        int d2,d3,d4;
-       asm volatile ("
-        0:
-        lodsw
-        addw $0x8000,%%ax
-        stosw
-        decl %%ecx
-        jnz 0b
-       " : "=c" (d2), "=S" (d3), "=D" (d4)
+       asm volatile (
+       "0:                    \n"
+       "lodsw                 \n"
+       "addw $0x8000,%%ax     \n"
+       "stosw                 \n"
+       "decl %%ecx            \n"
+       "jnz 0b                \n"
+         : "=c" (d2), "=S" (d3), "=D" (d4)
          : "S" (buffer), "D" (buffer_left+buffer_head), "c" (cnt)
          : "ax", "memory" );
       }
