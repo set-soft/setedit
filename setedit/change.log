@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.243  2002/12/03 12:31:56  set
+* Fixed: The KeyPad behavior. It is only for DOS driver. TV 2.0.1 is
+needed.
+
 Revision 1.242  2002/12/03 12:31:19  set
 * Added: More InfView commands to the commands parser used for sLisp and
 Menu files. I renamed the chcd* commands to cmh* so they can be parsed.

@@ -1274,7 +1274,7 @@ opens it.
 
 int ShowFileLine(int line, char *file)
 {
- if (line<0)
+ if (!line)
     return 0;
  TCEditWindow *edw=editorApp->openEditor(file,True,0,oedNoSelect | oedDontOpenEmpty);
  if (edw)
@@ -1301,7 +1301,7 @@ opens it.
 
 int GotoFileLine(int line, char *file, char *msg, int off, int len)
 {
- if (line<0)
+ if (!line)
    {
     messageBox(_("This line no longer exists"),mfOKButton);
     return 0;
