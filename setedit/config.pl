@@ -129,7 +129,7 @@ if ($OS eq 'DOS')
 elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=';
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
    # RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
    # be added for things like FreeBSD or SunOS.
    $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSf eq 'Linux');
@@ -141,7 +141,7 @@ elsif ($OS eq 'UNIX')
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++ ';
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ ';
    $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
