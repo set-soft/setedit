@@ -11,7 +11,6 @@ export DH_COMPAT=1
 
 build: build-stamp
 build-stamp:
-	dh_testversion 2.0.40
 	dh_testdir
 # Add here commands to compile the package.
 	./configure --prefix=$(shell pwd)/debian/tmp/usr --fhs
@@ -69,7 +68,6 @@ binary-arch: build install
 	dh_fixperms
 	chmod 4755 debian/tmp/usr/bin/setedit
 	chmod 4755 debian/infview/usr/bin/infview
-	dh_suidregister /usr/bin/setedit /usr/bin/infview
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
