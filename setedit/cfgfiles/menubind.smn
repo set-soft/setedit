@@ -105,7 +105,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
 EndSubMenu
 
-# CEGMPRSU
+# CEGMNOPRSU
 SubMenu: "~M~acro", kbAlM
  MenuItemC: "~R~ecord", cmcRecordMacro, kbShF10, "Shift+F10"
  MenuItemC: "~S~top", cmcStopMacro, kbAlF10, "Alt+F10"
@@ -114,6 +114,9 @@ SubMenu: "~M~acro", kbAlM
  MenuItemC: "~C~hoose ...", cmcChooseMacro
  MenuItemC: "R~e~peat", cmcRepeatMacro, kbShF3, "Shift+F3"
  MenuItemC: "~G~enerate Code", cmcGenCodeForMacro
+ MenuItemC: "Ru~n~ selected code", cmcRunSel_sLisp
+ MenuItemC: "Enter c~o~de to run", cmcRunEnter_sLisp
+ MenuSeparator
  MenuItemC: "Pse~u~do macros ...", cmcChoosePMacrosList
 EndSubMenu
 
