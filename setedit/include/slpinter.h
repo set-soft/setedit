@@ -5,5 +5,7 @@ extern void SLPInterfaceInit(char *file);
 extern void SLPInterfaceReRun(TCEditor *ed);
 extern int  SLPSearchMacro(TCEditor *ed,char *name);
 extern void SLPInterfaceRunSelection(TCEditor *ed);
-extern void SLPInterfaceRunAsk(TCEditor *ed);
+extern void SLPInterfaceRunAsk(TCEditor *ed, char *code=0);
+
+const int maxRunAskCode=1024;
 

@@ -175,7 +175,9 @@ public:
     void newLine();
     unsigned nextWordC( unsigned );
     int goEndWord();
-    char *WordUnderCursor(unsigned maxLength=256, unsigned options=0);
+    char *WordUnderCursor(uint32 maxLength=256, unsigned options=0);
+    char *sLispUnderCursor(uint32 maxLength);
+    void RunSLispAsk();
     Boolean StringUnderCursor(uint32 &word_start, uint32 &word_end);
     void replace();
     void setBufLen( unsigned );
