@@ -30,9 +30,6 @@
 /* Gettext included with editor */
 /*#define FORCE_INTL_SUPPORT 1*/
 
-/* X11 library and headers */
-#define HAVE_X11 1
-
 /* AA lib */
 #define HAVE_AA 1
 
