@@ -1092,6 +1092,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               MakeTagsWordCompletion();
               break;
 
+         case cmeTagsOps:
+              SetTagFilesGenerationOptions();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

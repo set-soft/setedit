@@ -101,7 +101,8 @@ const int
   cmeClassBrowser   = cmeBase+81,
   cmeWordCompletion = cmeBase+82,
   cmeExportPrj      = cmeBase+83,
-  cmeImportPrj      = cmeBase+84;
+  cmeImportPrj      = cmeBase+84,
+  cmeTagsOps        = cmeBase+85;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -383,13 +384,6 @@ extern void OpenFileFromEditor(char *fullName);
 // Defined in dstfile.cc to indicate we loaded the desktop file from the current
 // directory and not from the default one.
 extern char DstLoadedHere;
-
-// From edprj.cc generates the list of project items
-#ifdef Uses_PrjFunctions
-extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=0);
-extern void ExportProjectItems();
-extern void ImportProjectItems();
-#endif
 #endif
 
 #ifdef Uses_SETAppProject
@@ -398,6 +392,11 @@ extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
 extern int  IsPrjOpened(void);
 extern void SaveDesktopHere(void);
+extern void ExportProjectItems();
+extern void ImportProjectItems();
+const unsigned wnopEspaceSep=0, wnopLineSep=1;
+extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=wnopEspaceSep);
+extern int WriteNamesOfProjectTo(FILE *f, time_t timeT);
 #endif
 
 #ifdef Uses_SETAppFiles

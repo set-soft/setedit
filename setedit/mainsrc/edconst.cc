@@ -263,6 +263,7 @@ static edCList SetApp[] =
 { "SyntaxHelpFiles", 52 },
 { "SyntaxHelpOps"  , 51 },
 { "TagFiles"       , 79 },
+{ "TagsOps"        , 85 },
 { "Tile"           , 20 },
 { "TipOfTheDay"    , 40 },
 { "UserScreen"     , 9  },

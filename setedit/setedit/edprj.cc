@@ -32,6 +32,7 @@
 #include <ceditor.h>
 #include <editcoma.h>
 
+#define Uses_PrjFunctions
 #define Uses_SETAppAll
 #include <setapp.h>
 #include <dskwin.h>
@@ -916,19 +917,41 @@ int IsPrjOpened(void)
 }
 
 
-static int NamesPrinted;
-static
-void PrintName(void *p, void *f)
+struct FileTm
 {
- fprintf((FILE *)f," \"%s\" ",((PrjItem *)p)->name);
- NamesPrinted++;
+ FILE  *f;
+ time_t t;
+ int    c;
+};
+
+static
+void PrintName(void *p, void *data)
+{
+ FileTm *st=(FileTm *)data;
+ fprintf(st->f," \"%s\" ",((PrjItem *)p)->name);
+ st->c++;
 }
 
 static
-void PrintNameLine(void *p, void *f)
+void PrintNameLine(void *p, void *data)
 {
- fprintf((FILE *)f,"%s\n",((PrjItem *)p)->name);
- NamesPrinted++;
+ FileTm *st=(FileTm *)data;
+ fprintf(st->f,"%s\n",((PrjItem *)p)->name);
+ st->c++;
+}
+
+static
+void PrintNameTm(void *pt, void *data)
+{
+ FileTm *st=(FileTm *)data;
+ PrjItem *p=(PrjItem *)pt;
+ struct stat stS;
+
+ if (stat(p->name,&stS)==0 && difftime(stS.st_mtime,st->t)>0.0)
+   {
+    fprintf(st->f,"%s\n",p->name);
+    st->c++;
+   }
 }
 
 /**[txh]********************************************************************
@@ -945,17 +968,44 @@ separated by spaces.@p
 
 int WriteNamesOfProjectTo(FILE *f, unsigned mode)
 {
- NamesPrinted=0;
+ struct FileTm st;
+ st.f=f;
+ st.c=0;
  if (PrjExists() && ProjectList)
    {
-    if (mode)
-       ProjectList->forEach(PrintNameLine,f);
-    else
-       ProjectList->forEach(PrintName,f);
+    switch (mode)
+      {
+       case wnopEspaceSep:
+            ProjectList->forEach(PrintName,&st);
+            break;
+       case wnopLineSep:
+            ProjectList->forEach(PrintNameLine,&st);
+            break;
+      }
    }
- return NamesPrinted;
+ return st.c;
 }
 
+int WriteNamesOfProjectTo(FILE *f, time_t timeT)
+{
+ struct FileTm st;
+ st.f=f;
+ st.c=0;
+ st.t=timeT;
+ if (PrjExists() && ProjectList)
+    ProjectList->forEach(PrintNameTm,&st);
+
+ return st.c;
+}
+
+
+/**[txh]********************************************************************
+
+  Description:
+  Offers a dialog to choose a file name and exports the project items to
+the selected file. One project item per line.
+  
+***************************************************************************/
 
 void ExportProjectItems()
 {
@@ -978,11 +1028,21 @@ void ExportProjectItems()
     doEditDialog(edCreateError,buffer);
     return;
    }
- WriteNamesOfProjectTo(f,1);
+ WriteNamesOfProjectTo(f,wnopLineSep);
  int err=ferror(f);
  if (fclose(f) || err)
     doEditDialog(edWriteError,buffer);
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Asks for a file to read project items. The items are only added, never
+removed and only if the referred file already exists. The routine uses the
+facilities to detect duplicated files. The files are added "as-is", relative
+files are preserved and absolute files are added absolute.
+  
+***************************************************************************/
 
 void ImportProjectItems()
 {
@@ -1030,3 +1090,5 @@ void ImportProjectItems()
             __("Results: added %d, already included: %d, rejected %d"),
             added,repeated,rejected);
 }
+
+

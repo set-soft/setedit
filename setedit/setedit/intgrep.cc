@@ -39,7 +39,7 @@
 #define Uses_SETAppHelper
 #define Uses_SETAppConst
 #define Uses_SETAppVarious
-#define Uses_PrjFunctions
+#define Uses_SETAppProject
 #include <setapp.h>
 
 // Prototypes for the message win.

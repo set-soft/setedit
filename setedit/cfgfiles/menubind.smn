@@ -197,7 +197,10 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions
    MenuItemC: "Do~n~'t create backups for ...", cmeEditNoBkp
    MenuItemC: "Searc~h~ files under cursor in ...", cmeIncludeList
-   MenuItemC: "T~a~g files ...", cmeTagFiles
+   SubMenu: "T~a~g files", kbAlA
+     MenuItemC: "~L~ist of tag files ...", cmeTagFiles
+     MenuItemC: "~O~ptions ...", cmeTagsOps
+   EndSubMenu
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc

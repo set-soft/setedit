@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.318  2003/04/29 18:23:35  set
+* Added: Options to export the project items to a text file and to import
+file names from a text file. Documented and linked to the docs.
+* Updated: Spanish translations.
+
 Revision 1.317  2003/04/29 15:04:51  set
 * Modified: CreateChooseDialog to use EasyDiag and made more configurable.
 * Added: TGrowDialogZ as a TGrowDialog that can handle cmeZoom.

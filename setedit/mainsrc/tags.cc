@@ -31,6 +31,7 @@ TODO: make a SortedStringableListBox
 #define Uses_MsgBox
 #define Uses_fpstream
 #define Uses_TScreen
+#define Uses_AllocLocal
 
 #define Uses_TCEditor_External // For mode constants
 #define Uses_TCEditor_Commands // For the cmcJumpToFunction context
@@ -42,6 +43,7 @@ TODO: make a SortedStringableListBox
 #define Uses_TSStringableListBox
 #define Uses_TSVeGroup
 #define Uses_TSSortedListBox
+#define Uses_TSLabelRadio
 
 #define Uses_TGrowDialog
 #define Uses_TStringable
@@ -56,6 +58,7 @@ TODO: make a SortedStringableListBox
 #include <tags.h>
 
 #define Uses_SETAppConst
+#define Uses_SETAppProject
 #define Uses_SETAppVarious
 #include <setapp.h>
 #include <rhutils.h>
@@ -67,6 +70,7 @@ static int InitTagsCollection();
 
 // Variables for this module
 static TTagCollection *tags=NULL;
+static uint32   autoGenMode=0;
 
 // Small helpers
 static
@@ -495,7 +499,11 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
  e=strtok(e,"\t");
  while (e)
    {
-    if (strncmp(e,"kind:",5)==0)
+    if (!e[1]) // The kind: can be implicit
+      {
+       p->kind=*e;
+      }
+    else if (strncmp(e,"kind:",5)==0)
       {
        p->kind=e[5];
       }
@@ -688,6 +696,39 @@ int CheckForCTAGS(void)
 int TTagCollection::refresh()
 {
  ccIndex c=tagFiles->getCount(),i;
+ // Automatic central tags maintainance
+ if (autoGenMode==stfAutoCentral)
+    for (i=0; i<c; i++)
+       {
+        stTagFile *p=tagFiles->atPos(i);
+        // Is that the central file?
+        if (strcmp(p->file,"tags")==0)
+          {
+           struct stat st;
+           int retStat=stat(p->file,&st);
+           // Create a list with files newer than tags file
+           char *lst=unique_name("tg");
+           FILE *f=fopen(lst,"wt");
+           if (f)
+             {
+              int ret;
+              if (retStat)
+                 ret=WriteNamesOfProjectTo(f,wnopLineSep);
+              else
+                 ret=WriteNamesOfProjectTo(f,st.st_mtime);
+              fclose(f);
+              if (ret)
+                {// Call ctags only if we have at least one newer
+                 AllocLocalStr(buffer,36+strlen(lst));
+                 sprintf(buffer,"ctags -a --fields=+i+l+m+z -L %s",lst);
+                 TScreen::System(buffer);
+                }
+              unlink(lst);
+             }
+           string_free(lst);
+           break;
+          }
+       }
  abortInit=0;
  for (i=0; i<c; i++)
     {
@@ -898,7 +939,7 @@ void *TTagClassCol::keyOf(void *item)
  Save and restore
 *****************************************************************************/
 
-const char tagsVersion=1;
+const char tagsVersion=2;
 
 int TTagCollection::save(fpstream& s)
 {
@@ -909,6 +950,7 @@ int TTagCollection::save(fpstream& s)
      stTagFile *p=tagFiles->atPos(i);
      s.writeString(p->file);
     }
+ s << (uchar)autoGenMode;
  return 0;
 }
 
@@ -923,6 +965,12 @@ int TTagCollection::load(fpstream& s)
      addFile(file,1);
      DeleteArray(file);
     }
+ if (version>1)
+   {
+    uchar aux;
+    s >> aux;
+    autoGenMode=aux;
+   }
  return 0;
 }
 
@@ -1541,5 +1589,34 @@ char *TagsWordCompletion(int x, int y, char *word)
  delete list;
 
  return ret;
+}
+
+/*****************************************************************************
+ Tag file generation options
+*****************************************************************************/
+
+void SetTagFilesGenerationOptions()
+{
+ if (!IsPrjOpened())
+   {
+    messageBox(__("This option is usable only when using projects"),
+               mfInformation | mfOKButton);
+    return;
+   }
+ if (InitTagsCollection()) return;
+ TSViewCol *col=new TSViewCol(__("Tags options"));
+ col->insert(xTSCenter,yTSUp,
+             TSLabelRadio(__("Automatic generation"),__("~D~isabled"),
+                          __("~U~sing central file"),0));
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doItCenter(cmeTagsOps);
+ delete col;
+ unsigned ops=autoGenMode;
+ if (execDialog(d,&ops)==cmOK)
+   {
+    autoGenMode=ops;
+    if (autoGenMode==stfAutoCentral)
+       tags->addFile("tags",1); // Ensure the central is included
+   }
 }
 
