@@ -126,7 +126,7 @@ void FullAboutBox(void)
  #define i(a) text->insert((void *)TVIntl::getTextNew(a));
  i(__("The FSF and GNU people for such a good tools"));
  i(__("DJ Delorie and colaborators for porting it to DOS"));
- i(__("Robert H”hne for porting TVision and making RHIDE"));
+ i(__("Robert Hoehne for porting TVision and making RHIDE"));
  i(__("Vadim Belodorov for contributing the first port of TV to Win32"));
  i(__("Anatoli Soltan for porting to Win32 using BC++"));
  i(__("VA Linux and people that maintains Source Forge"));

@@ -278,6 +278,7 @@ install/datafile.c
 install/install.cc
 install/readme.txt
 internac/.cvsignore
+internac/colors.cc
 internac/de.po
 internac/h_de.po
 internac/es.po
@@ -285,6 +286,8 @@ internac/h_es.po
 internac/emptymsg.cc
 internac/fix.pl
 internac/fix.c
+internac/getcolors.cc
+internac/getids.cc
 internac/gnumake.in
 internac/Makefile
 internac/makelist.pl

@@ -1,4 +1,4 @@
-# Este es el archivo de traducci¢n a espa¤ol.
+# Este es el archivo de traducción a español.
 # Copyright (C) 2001-2003 Salvador E. Tropea.
 # Salvador E. Tropea <set@ieee.org>, 2001-2003.
 #
@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.0\n"
-"PO-Revision-Date: 2003-04-18 20:55-0300\n"
+"PO-Revision-Date: 2003-04-19 10:49-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -750,7 +750,7 @@ msgstr "¿Esta seguro que desea abortar la instalación?"
 msgid "Select the type"
 msgstr "Seleccione el tipo"
 
-#: ../install/install.cc:405 ../internac/tvision.cc:66
+#: ../install/install.cc:405 ../internac/colors.cc:4 ../internac/tvision.cc:66
 msgid "Normal"
 msgstr "Normal"
 
@@ -1023,6 +1023,361 @@ msgstr ", luego de reinicializar su sistem ud. podrá usarlo"
 msgid "Editor installed succesfully%s. Run it using e.bat"
 msgstr "Editor instalado con éxito%s. Invóquelo usando e.bat"
 
+#: ../internac/colors.cc:1 ../internac/tvision.cc:37
+#: ../setedit/editpale.cc:155
+msgid "Color"
+msgstr "Color"
+
+#: ../internac/colors.cc:3
+msgid "Desktop"
+msgstr "Escritorio"
+
+#: ../internac/colors.cc:6
+msgid "Menus"
+msgstr "Menues"
+
+#: ../internac/colors.cc:7
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+#: ../internac/colors.cc:8
+msgid "Shortcut"
+msgstr "Tecla aceleradora"
+
+#: ../internac/colors.cc:9
+msgid "Selected"
+msgstr "Seleccionado"
+
+#: ../internac/colors.cc:10
+msgid "Selected disabled"
+msgstr "Seleccionado y deshab."
+
+#: ../internac/colors.cc:11
+msgid "Shortcut selected"
+msgstr "Tecla del seleccionado"
+
+#: ../internac/colors.cc:12 ../internac/colors.cc:22 ../internac/colors.cc:32
+#: ../internac/colors.cc:42 ../internac/colors.cc:148
+#: ../internac/colors.cc:160
+msgid "Frame disabled"
+msgstr "Marco deshabilitado"
+
+#: ../internac/colors.cc:14
+msgid "Blue Windows"
+msgstr "Ventanas Azules"
+
+#: ../internac/colors.cc:15 ../internac/colors.cc:25 ../internac/colors.cc:35
+#: ../internac/colors.cc:45 ../internac/colors.cc:151
+#: ../internac/colors.cc:163
+msgid "Frame"
+msgstr "Marco"
+
+#: ../internac/colors.cc:16 ../internac/colors.cc:26 ../internac/colors.cc:36
+#: ../internac/colors.cc:46 ../internac/colors.cc:152
+#: ../internac/colors.cc:164
+msgid "Frame icons"
+msgstr "Iconos marcos"
+
+#: ../internac/colors.cc:17 ../internac/colors.cc:27 ../internac/colors.cc:37
+#: ../internac/colors.cc:47 ../internac/colors.cc:153
+#: ../internac/colors.cc:165
+msgid "Scroll bar page"
+msgstr "Pág. barra desplazamiento"
+
+#: ../internac/colors.cc:18 ../internac/colors.cc:28 ../internac/colors.cc:38
+#: ../internac/colors.cc:48 ../internac/colors.cc:154
+#: ../internac/colors.cc:166
+msgid "Scroll bar icons"
+msgstr "Iconos barra desplazamiento"
+
+#: ../internac/colors.cc:19 ../internac/colors.cc:29 ../internac/colors.cc:39
+#: ../internac/colors.cc:49 ../internac/colors.cc:167
+msgid "Static text"
+msgstr "Texto estático"
+
+#: ../internac/colors.cc:20 ../internac/colors.cc:30 ../internac/colors.cc:40
+#: ../internac/colors.cc:168
+msgid "Selected text"
+msgstr "Texto seleccionado"
+
+#: ../internac/colors.cc:21
+msgid "reserved"
+msgstr "reservado"
+
+#: ../internac/colors.cc:24
+msgid "Cyan Windows"
+msgstr "Ventanas Cian"
+
+#: ../internac/colors.cc:31 ../internac/colors.cc:41 ../internac/colors.cc:75
+#: ../internac/colors.cc:93 ../internac/colors.cc:94 ../internac/colors.cc:113
+#: ../internac/colors.cc:114 ../internac/colors.cc:133
+#: ../internac/colors.cc:134 ../internac/colors.cc:145
+#: ../internac/colors.cc:146 ../internac/colors.cc:147
+#: ../internac/colors.cc:171
+msgid "Reserved"
+msgstr "Reservado"
+
+#: ../internac/colors.cc:34
+msgid "Gray Windows"
+msgstr "Ventanas Grises"
+
+#: ../internac/colors.cc:44
+msgid "Dialogs"
+msgstr "Diálogos"
+
+#: ../internac/colors.cc:50
+msgid "Label normal"
+msgstr "Etiqueta normal"
+
+#: ../internac/colors.cc:51
+msgid "Label selected"
+msgstr "Etiqueta seleccionada"
+
+#: ../internac/colors.cc:52
+msgid "Label shortcut"
+msgstr "Tecla de la etiqueta"
+
+#: ../internac/colors.cc:53
+msgid "Button normal"
+msgstr "Botón normal"
+
+#: ../internac/colors.cc:54
+msgid "Button default"
+msgstr "Botón por defecto"
+
+#: ../internac/colors.cc:55
+msgid "Button selected"
+msgstr "Botón seleccionado"
+
+#: ../internac/colors.cc:56
+msgid "Button disabled"
+msgstr "Botón deshabilitado"
+
+#: ../internac/colors.cc:57
+msgid "Button shortcut"
+msgstr "Tecla del botón"
+
+#: ../internac/colors.cc:58
+msgid "Button shadow"
+msgstr "Sombra del botón"
+
+#: ../internac/colors.cc:59
+msgid "Cluster normal"
+msgstr "Grupo normal"
+
+#: ../internac/colors.cc:60
+msgid "Cluster selected"
+msgstr "Grupo seleccionado"
+
+#: ../internac/colors.cc:61
+msgid "Cluster shortcut"
+msgstr "Tecla del grupo"
+
+#: ../internac/colors.cc:62
+msgid "Input normal"
+msgstr "Ingreso normal"
+
+#: ../internac/colors.cc:63
+msgid "Input selected"
+msgstr "Ingreso seleccionado"
+
+#: ../internac/colors.cc:64
+msgid "Input arrow"
+msgstr "Flecha del ingreso"
+
+#: ../internac/colors.cc:65
+msgid "History button"
+msgstr "Botón del histórico"
+
+#: ../internac/colors.cc:66
+msgid "History sides"
+msgstr "Lados del histórico"
+
+#: ../internac/colors.cc:67
+msgid "History bar page"
+msgstr "Pág. barra del histórico"
+
+#: ../internac/colors.cc:68
+msgid "History bar icons"
+msgstr "Iconos del histórico"
+
+#: ../internac/colors.cc:69
+msgid "List normal"
+msgstr "Lista normal"
+
+#: ../internac/colors.cc:70
+msgid "List focused"
+msgstr "Lista: foco"
+
+#: ../internac/colors.cc:71
+msgid "List selected"
+msgstr "Lista: seleccionado"
+
+#: ../internac/colors.cc:72
+msgid "List divider"
+msgstr "Lista: divisor"
+
+#: ../internac/colors.cc:73
+msgid "Information pane"
+msgstr "Panel de información"
+
+#: ../internac/colors.cc:74
+msgid "Cluster disabled"
+msgstr "Grupo deshabilitado"
+
+#: ../internac/colors.cc:76 ../internac/colors.cc:96 ../internac/colors.cc:116
+#: ../internac/colors.cc:155
+msgid "Normal text"
+msgstr "Texto normal"
+
+#: ../internac/colors.cc:78
+msgid "Blue Editor"
+msgstr "Editores Azules"
+
+#: ../internac/colors.cc:79 ../internac/colors.cc:99 ../internac/colors.cc:119
+#: ../internac/colors.cc:159
+msgid "Marked text"
+msgstr "Texto marcado"
+
+#: ../internac/colors.cc:80 ../internac/colors.cc:100
+#: ../internac/colors.cc:120
+msgid "Comment"
+msgstr "Comentarios"
+
+#: ../internac/colors.cc:81 ../internac/colors.cc:101
+#: ../internac/colors.cc:121
+msgid "Reserved word"
+msgstr "Palabras reservadas"
+
+#: ../internac/colors.cc:82 ../internac/colors.cc:102
+#: ../internac/colors.cc:122
+msgid "Identifier"
+msgstr "Identificador"
+
+#: ../internac/colors.cc:83 ../internac/colors.cc:103
+#: ../internac/colors.cc:123
+msgid "Symbol"
+msgstr "Símbolo"
+
+#: ../internac/colors.cc:84 ../internac/colors.cc:104
+#: ../internac/colors.cc:124
+msgid "String"
+msgstr "Cadenas de caracteres"
+
+#: ../internac/colors.cc:85 ../internac/colors.cc:105
+#: ../internac/colors.cc:125
+msgid "Integer"
+msgstr "Enteros"
+
+#: ../internac/colors.cc:86 ../internac/colors.cc:106
+#: ../internac/colors.cc:126
+msgid "Float"
+msgstr "Coma flotante"
+
+#: ../internac/colors.cc:87 ../internac/colors.cc:107
+#: ../internac/colors.cc:127
+msgid "Octal"
+msgstr "Octales"
+
+#: ../internac/colors.cc:88 ../internac/colors.cc:108
+#: ../internac/colors.cc:128
+msgid "Hex"
+msgstr "Hexadecimales"
+
+#: ../internac/colors.cc:89 ../internac/colors.cc:109
+#: ../internac/colors.cc:129
+msgid "Character"
+msgstr "Caracteres"
+
+#: ../internac/colors.cc:90 ../internac/colors.cc:110
+#: ../internac/colors.cc:130
+msgid "Preprocessor"
+msgstr "Preprocesador"
+
+#: ../internac/colors.cc:91 ../internac/colors.cc:111
+#: ../internac/colors.cc:131
+msgid "Illegal char"
+msgstr "Valores incorrectos"
+
+#: ../internac/colors.cc:92 ../internac/colors.cc:112
+#: ../internac/colors.cc:132
+msgid "User defined words"
+msgstr "Palabras definidas usuario"
+
+#: ../internac/colors.cc:95 ../internac/colors.cc:115
+#: ../internac/colors.cc:135
+msgid "Symbol2"
+msgstr "Símbolos 2"
+
+#: ../internac/colors.cc:98
+msgid "Cyan Editor"
+msgstr "Editores Cian"
+
+#: ../internac/colors.cc:118
+msgid "Gray Editor"
+msgstr "Editores Grises"
+
+#: ../internac/colors.cc:136
+msgid "Cross cursor"
+msgstr "Cursor en cruz"
+
+#: ../internac/colors.cc:138
+msgid "Specials for editors"
+msgstr "Especiales para editores"
+
+#: ../internac/colors.cc:139
+msgid "Editor statusline"
+msgstr "Línea de estado editores"
+
+#: ../internac/colors.cc:140
+msgid "Parens matching"
+msgstr "Par complementario"
+
+#: ../internac/colors.cc:141
+msgid "Rectangle block"
+msgstr "Bloque rectangular"
+
+#: ../internac/colors.cc:142
+msgid "Odd tab"
+msgstr "Tab impar"
+
+#: ../internac/colors.cc:143
+msgid "Even tab"
+msgstr "Tab par"
+
+#: ../internac/colors.cc:144 ../mainsrc/deedidia.cc:266
+#: ../mainsrc/deedidia.cc:318
+msgid "Column markers"
+msgstr "Marcadores de columna"
+
+#: ../internac/colors.cc:150
+msgid "Info viewer"
+msgstr "Visor de ayudas (Info)"
+
+#: ../internac/colors.cc:156
+msgid "Keyword"
+msgstr "Enlace"
+
+#: ../internac/colors.cc:157
+msgid "Selected keyword"
+msgstr "Enlace seleccionado"
+
+#: ../internac/colors.cc:158
+msgid "Marked keyword"
+msgstr "Enlace marcado"
+
+#: ../internac/colors.cc:162
+msgid "Man page viewer"
+msgstr "Visor de páginas del manual"
+
+#: ../internac/colors.cc:169
+msgid "Bold text"
+msgstr "Texto negrita"
+
+#: ../internac/colors.cc:170
+msgid "Underlined text"
+msgstr "Texto subrayado"
+
 #: ../internac/tvision.cc:1
 msgid "Error"
 msgstr "Error"
@@ -1164,10 +1519,6 @@ msgstr "~F~ondo"
 #: ../internac/tvision.cc:36
 msgid "Text "
 msgstr "Texto "
-
-#: ../internac/tvision.cc:37 ../setedit/editpale.cc:155
-msgid "Color"
-msgstr "Color"
 
 #: ../internac/tvision.cc:38 ../setedit/editmenu.cc:310
 msgid "~T~ry"
@@ -1375,17 +1726,17 @@ msgid "~Alt+F3~ Close"
 msgstr "~Alt+F3~ Cerrar"
 
 #: ../internac/tvision.cc:113
-#, fuzzy, c-format
+#, c-format
 msgid "Error reading file %s."
 msgstr "Error al leer el archivo %s."
 
 #: ../internac/tvision.cc:114
-#, fuzzy, c-format
+#, c-format
 msgid "Error writing file %s."
 msgstr "Error al escribir el archivo %s."
 
 #: ../internac/tvision.cc:115
-#, fuzzy, c-format
+#, c-format
 msgid "Error creating file %s."
 msgstr "Error al crear el archivo %s."
 
@@ -1416,7 +1767,8 @@ msgstr "¿Reemplazo aquí?"
 
 #: ../internac/tvision.cc:122
 msgid "that's an interactive application, don't redirect stdin"
-msgstr "esta es una aplicación interactiva, no redireccione la entrada estandar"
+msgstr ""
+"esta es una aplicación interactiva, no redireccione la entrada estandar"
 
 #: ../internac/tvision.cc:123
 msgid "failed to get the name of the current terminal used for input"
@@ -1523,7 +1875,7 @@ msgstr "Atención"
 
 #: ../internac/tvision.cc:155 ../setedit/edprefs.cc:304
 msgid "Information"
-msgstr "Informacíon"
+msgstr "Información"
 
 #: ../internac/tvision.cc:156
 msgid "Confirm"
@@ -1892,10 +2244,6 @@ msgstr "Indentad~o~"
 #: ../mainsrc/deedidia.cc:264 ../mainsrc/deedidia.cc:316
 msgid "Wrap co~l~umn"
 msgstr "Colu~m~na límite"
-
-#: ../mainsrc/deedidia.cc:266 ../mainsrc/deedidia.cc:318
-msgid "Column markers"
-msgstr "Marcadores de columna"
 
 #: ../mainsrc/deedidia.cc:273
 msgid "Syntax ~H~L Options"
@@ -2890,7 +3238,7 @@ msgid "DJ Delorie and colaborators for porting it to DOS"
 msgstr "DJ Delorie y sus colaboradores por portarlas a DOS"
 
 #: ../setedit/editdiag.cc:129
-msgid "Robert Höhne for porting TVision and making RHIDE"
+msgid "Robert Hoehne for porting TVision and making RHIDE"
 msgstr "Robert Höhne por portar TV y crear RHIDE"
 
 #: ../setedit/editdiag.cc:130
@@ -4908,6 +5256,18 @@ msgstr "Comando~s~"
 #: ../settvuti/tdiagaid.cc:203
 msgid "Assignmen~t~"
 msgstr "Asi~g~nación"
+
+#~ msgid "normal text"
+#~ msgstr "texto normal"
+
+#~ msgid "marked text"
+#~ msgstr "texto marcado"
+
+#~ msgid "hex"
+#~ msgstr "hexadecimales"
+
+#~ msgid "column markers"
+#~ msgstr "marcadores de columna"
 
 #~ msgid "~Alt-X~ Exit"
 #~ msgstr "~Alt-X~ Salir"

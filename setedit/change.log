@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.295  2003/04/21 18:16:20  set
+* Adapted: Most of the remaining use of the old TV i18n API.
+* Added: Various calls to snprintf (while adapting i18n).
+* Added: A small tool to extract msgids from TV's .po file.
+* Fixed: Spanish .po header (wrong encoding in comments).
+* Updated: TV i18n messages.
+* Fixed: Memory leak in about dialog.
+* Updated: Spanish translation.
+
 Revision 1.294  2003/04/21 18:07:16  set
 * Modified: No more use of strstream, now I use messageBox, easier code.
 

@@ -46,7 +46,11 @@ ifeq ($(libintl),)
 libintl=libintl.a
 endif
 
-po_list:
+colors.cc: getcolors.cc getcolors.exe ../setedit/include/pal.h
+	gcc -o getcolors.exe -I../setedit/include getcolors.cc
+	./getcolors.exe > colors.cc
+
+po_list: colors.cc
 	perl makelist.pl
 
 clean:

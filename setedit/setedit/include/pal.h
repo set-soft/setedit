@@ -54,7 +54,7 @@
         S(15,Yellow,Cyan,Static text) \
         S(16,Blue,Green,Selected text) \
         \
-        S(17,Black,Black,reserved) \
+        S(17,Black,Black,Reserved) \
         \
         SS(18,Lightgray,Black,Frame disabled,Gray Windows ) \
         S(19,White,Black,Frame) \
@@ -64,7 +64,7 @@
         S(1D,Lightgray,Black,Static text) \
         S(1E,Black,Lightgray,Selected text) \
         \
-        S(1F,Black,Black,reserved) \
+        S(1F,Black,Black,Reserved) \
         \
         SS(20,Black,Lightgray,Frame disabled,Dialogs) \
         S(21,White,Lightgray,Frame) \
@@ -98,76 +98,76 @@
         S(3D,Cyan,Blue,Information pane) \
         S(3E,Darkgray,Cyan,Cluster disabled) \
         \
-        S(3F,Black,Black,reserved) \
+        S(3F,Black,Black,Reserved) \
         \
-        SS(40,Yellow,Blue,normal text,Blue Editor) \
-        S(41,Blue,Lightgray,marked text) \
-        S(42,Lightgray,Blue,comment) \
-        S(43,Lightblue,Blue,reserved word) \
-        S(44,Yellow,Blue,identifier) \
-        S(45,White,Blue,symbol) \
-        S(46,Lightcyan,Blue,string) \
-        S(47,Magenta,Blue,integer) \
-        S(48,Brown,Blue,float) \
-        S(49,White,Cyan,octal) \
-        S(4A,Lightcyan,Green,hex) \
-        S(4B,Lightmagenta,Blue,character) \
-        S(4C,Lightgreen,Blue,preprocessor) \
-        S(4D,Black,Red,illegal char) \
-        S(4E,Green,Blue,user defined words) \
-        S(4F,Black,Cyan,reserved) /* CPU line */\
-        S(50,White,Red,reserved) /* Breakpoint */\
-        S(51,Lightred,Blue,symbol2) \
+        SS(40,Yellow,Blue,Normal text,Blue Editor) \
+        S(41,Blue,Lightgray,Marked text) \
+        S(42,Lightgray,Blue,Comment) \
+        S(43,Lightblue,Blue,Reserved word) \
+        S(44,Yellow,Blue,Identifier) \
+        S(45,White,Blue,Symbol) \
+        S(46,Lightcyan,Blue,String) \
+        S(47,Magenta,Blue,Integer) \
+        S(48,Brown,Blue,Float) \
+        S(49,White,Cyan,Octal) \
+        S(4A,Lightcyan,Green,Hex) \
+        S(4B,Lightmagenta,Blue,Character) \
+        S(4C,Lightgreen,Blue,Preprocessor) \
+        S(4D,Black,Red,Illegal char) \
+        S(4E,Green,Blue,User defined words) \
+        S(4F,Black,Cyan,Reserved) /* CPU line */\
+        S(50,White,Red,Reserved) /* Breakpoint */\
+        S(51,Lightred,Blue,Symbol2) \
         \
-        SS(52,Yellow,Blue,normal text,Cyan Editor) \
-        S(53,Blue,Lightgray,marked text) \
-        S(54,Lightgray,Blue,comment) \
-        S(55,Lightblue,Blue,reserved word) \
-        S(56,Yellow,Blue,identifier) \
-        S(57,White,Blue,symbol) \
-        S(58,Lightcyan,Blue,string) \
-        S(59,Magenta,Blue,integer) \
-        S(5A,Brown,Blue,float) \
-        S(5B,White,Cyan,octal) \
-        S(5C,Lightcyan,Green,hex) \
-        S(5D,Lightmagenta,Blue,character) \
-        S(5E,Lightgreen,Blue,preprocessor) \
-        S(5F,Black,Red,illegal char) \
-        S(60,Green,Blue,user defined words) \
-        S(61,Black,Cyan,reserved) /* CPU line */\
-        S(62,White,Red,reserved) /* Breakpoint */\
-        S(63,Lightred,Blue,symbol2) \
+        SS(52,Yellow,Blue,Normal text,Cyan Editor) \
+        S(53,Blue,Lightgray,Marked text) \
+        S(54,Lightgray,Blue,Comment) \
+        S(55,Lightblue,Blue,Reserved word) \
+        S(56,Yellow,Blue,Identifier) \
+        S(57,White,Blue,Symbol) \
+        S(58,Lightcyan,Blue,String) \
+        S(59,Magenta,Blue,Integer) \
+        S(5A,Brown,Blue,Float) \
+        S(5B,White,Cyan,Octal) \
+        S(5C,Lightcyan,Green,Hex) \
+        S(5D,Lightmagenta,Blue,Character) \
+        S(5E,Lightgreen,Blue,Preprocessor) \
+        S(5F,Black,Red,Illegal char) \
+        S(60,Green,Blue,User defined words) \
+        S(61,Black,Cyan,Reserved) /* CPU line */\
+        S(62,White,Red,Reserved) /* Breakpoint */\
+        S(63,Lightred,Blue,Symbol2) \
         \
-        SS(64,Yellow,Blue,normal text,Gray Editor) \
-        S(65,Blue,Lightgray,marked text) \
-        S(66,Lightgray,Blue,comment) \
-        S(67,Lightblue,Blue,reserved word) \
-        S(68,Yellow,Blue,identifier) \
-        S(69,White,Blue,symbol) \
-        S(6A,Lightcyan,Blue,string) \
-        S(6B,Magenta,Blue,integer) \
-        S(6C,Brown,Blue,float) \
-        S(6D,White,Cyan,octal) \
-        S(6E,Lightcyan,Green,hex) \
-        S(6F,Lightmagenta,Blue,character) \
-        S(70,Lightgreen,Blue,preprocessor) \
-        S(71,Black,Red,illegal char) \
-        S(72,Green,Blue,user defined words) \
-        S(73,Black,Cyan,reserved) /* CPU line */\
-        S(74,White,Red,reserved) /* Breakpoint */\
-        S(75,Lightred,Blue,symbol2) \
+        SS(64,Yellow,Blue,Normal text,Gray Editor) \
+        S(65,Blue,Lightgray,Marked text) \
+        S(66,Lightgray,Blue,Comment) \
+        S(67,Lightblue,Blue,Reserved word) \
+        S(68,Yellow,Blue,Identifier) \
+        S(69,White,Blue,Symbol) \
+        S(6A,Lightcyan,Blue,String) \
+        S(6B,Magenta,Blue,Integer) \
+        S(6C,Brown,Blue,Float) \
+        S(6D,White,Cyan,Octal) \
+        S(6E,Lightcyan,Green,Hex) \
+        S(6F,Lightmagenta,Blue,Character) \
+        S(70,Lightgreen,Blue,Preprocessor) \
+        S(71,Black,Red,Illegal char) \
+        S(72,Green,Blue,User defined words) \
+        S(73,Black,Cyan,Reserved) /* CPU line */\
+        S(74,White,Red,Reserved) /* Breakpoint */\
+        S(75,Lightred,Blue,Symbol2) \
         \
         SS(76,Lightgray,Black,Cross cursor,Specials for editors) \
-        S(77,Black,Lightgray,editor statusline) \
-        S(78,Lightred,Lightgray,parens matching) \
-        S(79,White,Magenta,rectangle block) \
-        S(7A,Black,Green,odd tab) \
-        S(7B,Black,Red,even tab) \
-        S(7C,Black,Red,column markers) \
+        S(77,Black,Lightgray,Editor statusline) \
+        S(78,Lightred,Lightgray,Parens matching) \
+        S(79,White,Magenta,Rectangle block) \
+        S(7A,Black,Green,Odd tab) \
+        S(7B,Black,Red,Even tab) \
+        S(7C,Black,Red,Column markers) \
         \
-        S(7D,Black,Black,reserved) \
-        S(7E,Black,Black,reserved) \
-        S(7F,Black,Black,reserved) \
+        S(7D,Black,Black,Reserved) \
+        S(7E,Black,Black,Reserved) \
+        S(7F,Black,Black,Reserved) \
         \
         SS(80,Lightgray,Cyan,Frame disabled,Info viewer) \
         S(81,White,Cyan,Frame) \
@@ -189,7 +189,7 @@
         S(90,Blue,Green,Selected text) \
         S(91,White,Cyan,Bold text) \
         S(92,Yellow,Cyan,Underlined text) \
-        S(93,Black,Black,reserved)
+        S(93,Black,Black,Reserved)
 
 
 #define Normal 07
