@@ -2,38 +2,38 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-obj/djmdr$(ExOBJ):: djmdr.s \
+obj/djmdr$(ExOBJ):: ../extra/djmdr.s \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/dyncat$(ExOBJ):: dyncat.cc \
+obj/dyncat$(ExOBJ):: ../extra/dyncat.cc \
 	configed.h \
 	dyncat.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/memmove$(ExOBJ):: memmove.s \
+obj/memmove$(ExOBJ):: ../extra/memmove.s \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/mixer$(ExOBJ):: mixer.c \
+obj/mixer$(ExOBJ):: ../extra/mixer.c \
 	configed.h \
 	mixer.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/mixersb$(ExOBJ):: mixersb.c \
+obj/mixersb$(ExOBJ):: ../extra/mixersb.c \
 	configed.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/mixoss$(ExOBJ):: mixoss.c \
+obj/mixoss$(ExOBJ):: ../extra/mixoss.c \
 	configed.h \
 	mixer.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/stackdbg$(ExOBJ):: stackdbg.c \
+obj/stackdbg$(ExOBJ):: ../extra/stackdbg.c \
 	compatlayer.h \
 	configed.h \
 	stackdbg.h \
@@ -41,11 +41,11 @@ obj/stackdbg$(ExOBJ):: stackdbg.c \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/strncpyz$(ExOBJ):: strncpyz.cc \
+obj/strncpyz$(ExOBJ):: ../extra/strncpyz.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/strndup$(ExOBJ):: strndup.cc \
+obj/strndup$(ExOBJ):: ../extra/strndup.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

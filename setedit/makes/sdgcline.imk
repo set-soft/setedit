@@ -27,7 +27,7 @@ sdg$(ExEXE):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objsdg/bufun2$(ExOBJ):: bufun2.cc \
+objsdg/bufun2$(ExOBJ):: ../sdg/bufun2.cc \
 	compatlayer.h \
 	setstack.h \
 	settvuti.h \
@@ -72,7 +72,7 @@ objsdg/bufun2$(ExOBJ):: bufun2.cc \
 
 INCLUDE00=extra$(ExIMK)
 
-objsdg/mli$(ExOBJ):: mli.cc \
+objsdg/mli$(ExOBJ):: ../sdg/mli.cc \
 	compatlayer.h \
 	dyncat.h \
 	mli.h \
@@ -105,7 +105,7 @@ objsdg/mli$(ExOBJ):: mli.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mliasimp$(ExOBJ):: mliasimp.cc \
+objsdg/mliasimp$(ExOBJ):: ../sdg/mliasimp.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -113,7 +113,7 @@ objsdg/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
+objsdg/mlicsdg$(ExOBJ):: ../sdg/mlicsdg.cc \
 	compatlayer.h \
 	mli.h \
 	mliabase.h \
@@ -145,7 +145,7 @@ objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlisdg$(ExOBJ):: mlisdg.cc \
+objsdg/mlisdg$(ExOBJ):: ../sdg/mlisdg.cc \
 	compatlayer.h \
 	mli.h \
 	mliabase.h \
@@ -177,14 +177,14 @@ objsdg/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/ntnocast$(ExOBJ):: ntnocast.cc \
+objsdg/ntnocast$(ExOBJ):: ../settvuti/names/ntnocast.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/setstack$(ExOBJ):: setstack.cc \
+objsdg/setstack$(ExOBJ):: ../settvuti/setstack.cc \
 	compatlayer.h \
 	setstack.h \
 	settvuti.h \
@@ -204,7 +204,7 @@ objsdg/setstack$(ExOBJ):: setstack.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/stnocast$(ExOBJ):: stnocast.cc \
+objsdg/stnocast$(ExOBJ):: ../settvuti/streams/stnocast.cc \
 	compatlayer.h \
 	settvuti.h \
 	tnocastc.h \
@@ -238,7 +238,7 @@ objsdg/stnocast$(ExOBJ):: stnocast.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/tnocastc$(ExOBJ):: tnocastc.cc \
+objsdg/tnocastc$(ExOBJ):: ../settvuti/tnocastc.cc \
 	compatlayer.h \
 	setstack.h \
 	settvuti.h \
@@ -283,7 +283,7 @@ objsdg/tnocastc$(ExOBJ):: tnocastc.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhgen$(ExOBJ):: txhgen.cc \
+objsdg/txhgen$(ExOBJ):: ../sdg/txhgen.cc \
 	bufun.h \
 	cl/unistd.h \
 	compatlayer.h \
@@ -324,7 +324,7 @@ objsdg/txhgen$(ExOBJ):: txhgen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhmain$(ExOBJ):: txhmain.cc \
+objsdg/txhmain$(ExOBJ):: ../sdg/txhmain.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \

@@ -142,7 +142,7 @@ editor$(ExEXE):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-obj/accehtml$(ExOBJ):: accehtml.cc \
+obj/accehtml$(ExOBJ):: ../mainsrc/accehtml.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -202,7 +202,7 @@ obj/accehtml$(ExOBJ):: accehtml.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/advice$(ExOBJ):: advice.cc \
+obj/advice$(ExOBJ):: ../setedit/advice.cc \
 	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
@@ -268,7 +268,7 @@ obj/advice$(ExOBJ):: advice.cc \
 
 INCLUDE00=amp3$(ExIMK)
 
-obj/ascii$(ExOBJ):: ascii.cc \
+obj/ascii$(ExOBJ):: ../setedit/ascii.cc \
 	ascii.h \
 	compatlayer.h \
 	dskwin.h \
@@ -304,7 +304,7 @@ obj/ascii$(ExOBJ):: ascii.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/boardmix$(ExOBJ):: boardmix.cc \
+obj/boardmix$(ExOBJ):: ../setedit/boardmix.cc \
 	compatlayer.h \
 	configed.h \
 	easydia1.h \
@@ -361,7 +361,7 @@ obj/boardmix$(ExOBJ):: boardmix.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/bufun$(ExOBJ):: bufun.cc \
+obj/bufun$(ExOBJ):: ../mainsrc/bufun.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -438,7 +438,7 @@ obj/bufun$(ExOBJ):: bufun.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/calcu$(ExOBJ):: calcu.cc \
+obj/calcu$(ExOBJ):: ../calcu/calcu.cc \
 	calcu.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -508,7 +508,7 @@ obj/calcu$(ExOBJ):: calcu.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/calendar$(ExOBJ):: calendar.cc \
+obj/calendar$(ExOBJ):: ../setedit/calendar.cc \
 	calendar.h \
 	compatlayer.h \
 	datetools.h \
@@ -543,7 +543,7 @@ obj/calendar$(ExOBJ):: calendar.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ceditor$(ExOBJ):: ceditor.cc \
+obj/ceditor$(ExOBJ):: ../mainsrc/ceditor.cc \
 	advice.h \
 	bufun.h \
 	ced_clas.h \
@@ -637,7 +637,7 @@ obj/ceditor$(ExOBJ):: ceditor.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/codepage$(ExOBJ):: codepage.cc \
+obj/codepage$(ExOBJ):: ../setedit/codepage.cc \
 	calendar.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -706,7 +706,7 @@ obj/codepage$(ExOBJ):: codepage.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/completi$(ExOBJ):: completi.cc \
+obj/completi$(ExOBJ):: ../mainsrc/completi.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -767,7 +767,7 @@ obj/completi$(ExOBJ):: completi.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/deedidia$(ExOBJ):: deedidia.cc \
+obj/deedidia$(ExOBJ):: ../mainsrc/deedidia.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -869,7 +869,7 @@ obj/deedidia$(ExOBJ):: deedidia.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/doedidia$(ExOBJ):: doedidia.cc \
+obj/doedidia$(ExOBJ):: ../mainsrc/doedidia.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -925,7 +925,7 @@ obj/doedidia$(ExOBJ):: doedidia.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskascii$(ExOBJ):: dskascii.cc \
+obj/dskascii$(ExOBJ):: ../setedit/dskascii.cc \
 	ascii.h \
 	ceditint.h \
 	ceditor.h \
@@ -965,7 +965,7 @@ obj/dskascii$(ExOBJ):: dskascii.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskcalen$(ExOBJ):: dskcalen.cc \
+obj/dskcalen$(ExOBJ):: ../setedit/dskcalen.cc \
 	calendar.h \
 	ceditint.h \
 	ceditor.h \
@@ -1005,7 +1005,7 @@ obj/dskcalen$(ExOBJ):: dskcalen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclip$(ExOBJ):: dskclip.cc \
+obj/dskclip$(ExOBJ):: ../setedit/dskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1068,7 +1068,7 @@ obj/dskclip$(ExOBJ):: dskclip.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclose$(ExOBJ):: dskclose.cc \
+obj/dskclose$(ExOBJ):: ../setedit/dskclose.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1135,7 +1135,7 @@ obj/dskclose$(ExOBJ):: dskclose.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskedito$(ExOBJ):: dskedito.cc \
+obj/dskedito$(ExOBJ):: ../setedit/dskedito.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1202,7 +1202,7 @@ obj/dskedito$(ExOBJ):: dskedito.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskhelp$(ExOBJ):: dskhelp.cc \
+obj/dskhelp$(ExOBJ):: ../setedit/dskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1275,7 +1275,7 @@ obj/dskhelp$(ExOBJ):: dskhelp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskman$(ExOBJ):: dskman.cc \
+obj/dskman$(ExOBJ):: ../setedit/dskman.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -1321,7 +1321,7 @@ obj/dskman$(ExOBJ):: dskman.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmessa$(ExOBJ):: dskmessa.cc \
+obj/dskmessa$(ExOBJ):: ../setedit/dskmessa.cc \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1367,7 +1367,7 @@ obj/dskmessa$(ExOBJ):: dskmessa.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmp3$(ExOBJ):: dskmp3.cc \
+obj/dskmp3$(ExOBJ):: ../setedit/dskmp3.cc \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1407,7 +1407,7 @@ obj/dskmp3$(ExOBJ):: dskmp3.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskwin$(ExOBJ):: dskwin.cc \
+obj/dskwin$(ExOBJ):: ../setedit/dskwin.cc \
 	ceditor.h \
 	compatlayer.h \
 	dskwin.h \
@@ -1442,7 +1442,7 @@ obj/dskwin$(ExOBJ):: dskwin.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dstfile$(ExOBJ):: dstfile.cc \
+obj/dstfile$(ExOBJ):: ../setedit/dstfile.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -1543,7 +1543,7 @@ obj/dstfile$(ExOBJ):: dstfile.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dumpfile$(ExOBJ):: dumpfile.cc \
+obj/dumpfile$(ExOBJ):: ../mainsrc/dumpfile.cc \
 	compatlayer.h \
 	edmsg.h \
 	tv.h \
@@ -1564,7 +1564,7 @@ obj/dumpfile$(ExOBJ):: dumpfile.cc \
 
 INCLUDE01=easydiag$(ExIMK)
 
-obj/edcolor$(ExOBJ):: edcolor.cc \
+obj/edcolor$(ExOBJ):: ../setedit/edcolor.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -1645,7 +1645,7 @@ obj/edcolor$(ExOBJ):: edcolor.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edconst$(ExOBJ):: edconst.cc \
+obj/edconst$(ExOBJ):: ../mainsrc/edconst.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -1705,7 +1705,7 @@ obj/edconst$(ExOBJ):: edconst.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edfonts$(ExOBJ):: edfonts.cc \
+obj/edfonts$(ExOBJ):: ../setedit/edfonts.cc \
 	compatlayer.h \
 	setapp.h \
 	tv.h \
@@ -1753,7 +1753,7 @@ obj/edfonts$(ExOBJ):: edfonts.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editdiag$(ExOBJ):: editdiag.cc \
+obj/editdiag$(ExOBJ):: ../setedit/editdiag.cc \
 	advice.h \
 	ced_inte.h \
 	ceditint.h \
@@ -1826,7 +1826,7 @@ obj/editdiag$(ExOBJ):: editdiag.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editmain$(ExOBJ):: editmain.cc \
+obj/editmain$(ExOBJ):: ../setedit/editmain.cc \
 	advice.h \
 	bufun.h \
 	ced_clas.h \
@@ -1950,7 +1950,7 @@ obj/editmain$(ExOBJ):: editmain.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editmenu$(ExOBJ):: editmenu.cc \
+obj/editmenu$(ExOBJ):: ../setedit/editmenu.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2036,7 +2036,7 @@ obj/editmenu$(ExOBJ):: editmenu.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editorfo$(ExOBJ):: editorfo.cc \
+obj/editorfo$(ExOBJ):: ../mainsrc/editorfo.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -2090,7 +2090,7 @@ obj/editorfo$(ExOBJ):: editorfo.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editpale$(ExOBJ):: editpale.cc \
+obj/editpale$(ExOBJ):: ../setedit/editpale.cc \
 	compatlayer.h \
 	configed.h \
 	setapp.h \
@@ -2137,7 +2137,7 @@ obj/editpale$(ExOBJ):: editpale.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editwind$(ExOBJ):: editwind.cc \
+obj/editwind$(ExOBJ):: ../mainsrc/editwind.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2195,7 +2195,7 @@ obj/editwind$(ExOBJ):: editwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edkeys$(ExOBJ):: edkeys.cc \
+obj/edkeys$(ExOBJ):: ../setedit/edkeys.cc \
 	ced_coma.h \
 	ced_inte.h \
 	ceditint.h \
@@ -2289,7 +2289,7 @@ obj/edkeys$(ExOBJ):: edkeys.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edmsg$(ExOBJ):: edmsg.cc \
+obj/edmsg$(ExOBJ):: ../setedit/edmsg.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2367,7 +2367,7 @@ obj/edmsg$(ExOBJ):: edmsg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprefs$(ExOBJ):: edprefs.cc \
+obj/edprefs$(ExOBJ):: ../setedit/edprefs.cc \
 	advice.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -2469,7 +2469,7 @@ obj/edprefs$(ExOBJ):: edprefs.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprint$(ExOBJ):: edprint.cc \
+obj/edprint$(ExOBJ):: ../setedit/edprint.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -2532,7 +2532,7 @@ obj/edprint$(ExOBJ):: edprint.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprj$(ExOBJ):: edprj.cc \
+obj/edprj$(ExOBJ):: ../setedit/edprj.cc \
 	advice.h \
 	ced_clas.h \
 	ced_coma.h \
@@ -2623,7 +2623,7 @@ obj/edprj$(ExOBJ):: edprj.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edspecs$(ExOBJ):: edspecs.cc \
+obj/edspecs$(ExOBJ):: ../mainsrc/edspecs.cc \
 	ced_inte.h \
 	compatlayer.h \
 	edspecs.h \
@@ -2646,11 +2646,11 @@ obj/edspecs$(ExOBJ):: edspecs.cc \
 
 INCLUDE02=extra$(ExIMK)
 
-obj/fstrcmp$(ExOBJ):: fstrcmp.c \
+obj/fstrcmp$(ExOBJ):: ../mainsrc/fstrcmp.c \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/getctxhl$(ExOBJ):: getctxhl.cc \
+obj/getctxhl$(ExOBJ):: ../setedit/getctxhl.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2723,7 +2723,7 @@ obj/getctxhl$(ExOBJ):: getctxhl.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/gzfiles$(ExOBJ):: gzfiles.cc \
+obj/gzfiles$(ExOBJ):: ../mainsrc/gzfiles.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -2745,7 +2745,7 @@ obj/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/holidays$(ExOBJ):: holidays.cc \
+obj/holidays$(ExOBJ):: ../setedit/holidays.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -2805,7 +2805,7 @@ obj/holidays$(ExOBJ):: holidays.cc \
 
 INCLUDE03=inffd$(ExIMK)
 
-obj/intgrep$(ExOBJ):: intgrep.cc \
+obj/intgrep$(ExOBJ):: ../setedit/intgrep.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -2890,7 +2890,7 @@ obj/intgrep$(ExOBJ):: intgrep.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/keytrans$(ExOBJ):: keytrans.cc \
+obj/keytrans$(ExOBJ):: ../mainsrc/keytrans.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ceditor.h \
@@ -2939,7 +2939,7 @@ obj/keytrans$(ExOBJ):: keytrans.cc \
 
 INCLUDE04=librhuti$(ExIMK)
 
-obj/linelen$(ExOBJ):: linelen.cc \
+obj/linelen$(ExOBJ):: ../mainsrc/linelen.cc \
 	ced_clas.h \
 	ceditor.h \
 	compatlayer.h \
@@ -2960,7 +2960,7 @@ obj/linelen$(ExOBJ):: linelen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadcle$(ExOBJ):: loadcle.cc \
+obj/loadcle$(ExOBJ):: ../setedit/loadcle.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -2994,7 +2994,7 @@ obj/loadcle$(ExOBJ):: loadcle.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loaddefl$(ExOBJ):: loaddefl.cc \
+obj/loaddefl$(ExOBJ):: ../mainsrc/loaddefl.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -3076,7 +3076,7 @@ obj/loaddefl$(ExOBJ):: loaddefl.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadfunc$(ExOBJ):: loadfunc.cc \
+obj/loadfunc$(ExOBJ):: ../mainsrc/loadfunc.cc \
 	compatlayer.h \
 	pathtool.h \
 	tv.h \
@@ -3097,7 +3097,7 @@ obj/loadfunc$(ExOBJ):: loadfunc.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
+obj/loadnobkp$(ExOBJ):: ../setedit/loadnobkp.cc \
 	ced_exte.h \
 	ceditint.h \
 	ceditor.h \
@@ -3166,7 +3166,7 @@ obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadshl$(ExOBJ):: loadshl.cc \
+obj/loadshl$(ExOBJ):: ../mainsrc/loadshl.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -3222,7 +3222,7 @@ obj/loadshl$(ExOBJ):: loadshl.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadusew$(ExOBJ):: loadusew.cc \
+obj/loadusew$(ExOBJ):: ../mainsrc/loadusew.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -3303,7 +3303,7 @@ obj/loadusew$(ExOBJ):: loadusew.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/macrocom$(ExOBJ):: macrocom.cc \
+obj/macrocom$(ExOBJ):: ../mainsrc/macrocom.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -3360,7 +3360,7 @@ obj/macrocom$(ExOBJ):: macrocom.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/menuload$(ExOBJ):: menuload.cc \
+obj/menuload$(ExOBJ):: ../setedit/menuload.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -3430,7 +3430,7 @@ obj/menuload$(ExOBJ):: menuload.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mli$(ExOBJ):: mli.cc \
+obj/mli$(ExOBJ):: ../sdg/mli.cc \
 	compatlayer.h \
 	dyncat.h \
 	mli.h \
@@ -3463,7 +3463,7 @@ obj/mli$(ExOBJ):: mli.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliasimp$(ExOBJ):: mliasimp.cc \
+obj/mliasimp$(ExOBJ):: ../sdg/mliasimp.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -3471,7 +3471,7 @@ obj/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
+obj/mlicsdg$(ExOBJ):: ../sdg/mlicsdg.cc \
 	compatlayer.h \
 	mli.h \
 	mliabase.h \
@@ -3503,7 +3503,7 @@ obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliediti$(ExOBJ):: mliediti.cc \
+obj/mliediti$(ExOBJ):: ../sdg/mliediti.cc \
 	compatlayer.h \
 	edmsg.h \
 	mli.h \
@@ -3544,7 +3544,7 @@ obj/mliediti$(ExOBJ):: mliediti.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliedito$(ExOBJ):: mliedito.cc \
+obj/mliedito$(ExOBJ):: ../sdg/mliedito.cc \
 	ced_coma.h \
 	ceditor.h \
 	compatlayer.h \
@@ -3594,7 +3594,7 @@ obj/mliedito$(ExOBJ):: mliedito.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mlisdg$(ExOBJ):: mlisdg.cc \
+obj/mlisdg$(ExOBJ):: ../sdg/mlisdg.cc \
 	compatlayer.h \
 	mli.h \
 	mliabase.h \
@@ -3626,7 +3626,7 @@ obj/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/msignal$(ExOBJ):: msignal.cc \
+obj/msignal$(ExOBJ):: ../setedit/msignal.cc \
 	ced_inte.h \
 	ceditint.h \
 	compatlayer.h \
@@ -3653,116 +3653,116 @@ obj/msignal$(ExOBJ):: msignal.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nceditor$(ExOBJ):: nceditor.cc \
+obj/nceditor$(ExOBJ):: ../names/nceditor.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwasc$(ExOBJ):: ndskwasc.cc \
+obj/ndskwasc$(ExOBJ):: ../names/ndskwasc.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcal$(ExOBJ):: ndskwcal.cc \
+obj/ndskwcal$(ExOBJ):: ../names/ndskwcal.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcli$(ExOBJ):: ndskwcli.cc \
+obj/ndskwcli$(ExOBJ):: ../names/ndskwcli.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwclo$(ExOBJ):: ndskwclo.cc \
+obj/ndskwclo$(ExOBJ):: ../names/ndskwclo.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwedi$(ExOBJ):: ndskwedi.cc \
+obj/ndskwedi$(ExOBJ):: ../names/ndskwedi.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwhel$(ExOBJ):: ndskwhel.cc \
+obj/ndskwhel$(ExOBJ):: ../names/ndskwhel.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwman$(ExOBJ):: ndskwman.cc \
+obj/ndskwman$(ExOBJ):: ../names/ndskwman.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmes$(ExOBJ):: ndskwmes.cc \
+obj/ndskwmes$(ExOBJ):: ../names/ndskwmes.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmp3$(ExOBJ):: ndskwmp3.cc \
+obj/ndskwmp3$(ExOBJ):: ../names/ndskwmp3.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwprj$(ExOBJ):: ndskwprj.cc \
+obj/ndskwprj$(ExOBJ):: ../names/ndskwprj.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/neditwin$(ExOBJ):: neditwin.cc \
+obj/neditwin$(ExOBJ):: ../names/neditwin.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nfileedi$(ExOBJ):: nfileedi.cc \
+obj/nfileedi$(ExOBJ):: ../names/nfileedi.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nsindica$(ExOBJ):: nsindica.cc \
+obj/nsindica$(ExOBJ):: ../names/nsindica.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntedcol$(ExOBJ):: ntedcol.cc \
+obj/ntedcol$(ExOBJ):: ../names/ntedcol.cc \
 	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/parser$(ExOBJ):: parser.c \
+obj/parser$(ExOBJ):: ../calcu/parser.c \
 	compatlayer.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/pathlist$(ExOBJ):: pathlist.cc \
+obj/pathlist$(ExOBJ):: ../setedit/pathlist.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -3828,7 +3828,7 @@ obj/pathlist$(ExOBJ):: pathlist.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pathtool$(ExOBJ):: pathtool.cc \
+obj/pathtool$(ExOBJ):: ../mainsrc/pathtool.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -3868,7 +3868,7 @@ obj/pathtool$(ExOBJ):: pathtool.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pclipper$(ExOBJ):: pclipper.cc \
+obj/pclipper$(ExOBJ):: ../mainsrc/pclipper.cc \
 	bufun.h \
 	compatlayer.h \
 	tv.h \
@@ -3889,7 +3889,7 @@ obj/pclipper$(ExOBJ):: pclipper.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pmacros$(ExOBJ):: pmacros.cc \
+obj/pmacros$(ExOBJ):: ../mainsrc/pmacros.cc \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -3924,17 +3924,17 @@ obj/pmacros$(ExOBJ):: pmacros.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pperl$(ExOBJ):: pperl.cc \
+obj/pperl$(ExOBJ):: ../mainsrc/pperl.cc \
 	bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pphp$(ExOBJ):: pphp.cc \
+obj/pphp$(ExOBJ):: ../mainsrc/pphp.cc \
 	bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pvarious$(ExOBJ):: pvarious.cc \
+obj/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc \
 	bufun.h \
 	compatlayer.h \
 	tv.h \
@@ -3955,7 +3955,7 @@ obj/pvarious$(ExOBJ):: pvarious.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/runprog$(ExOBJ):: runprog.cc \
+obj/runprog$(ExOBJ):: ../setedit/runprog.cc \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4039,7 +4039,7 @@ obj/runprog$(ExOBJ):: runprog.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sceditor$(ExOBJ):: sceditor.cc \
+obj/sceditor$(ExOBJ):: ../streams/sceditor.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -4093,7 +4093,7 @@ obj/sceditor$(ExOBJ):: sceditor.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/scresave$(ExOBJ):: scresave.cc \
+obj/scresave$(ExOBJ):: ../setedit/scresave.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -4161,7 +4161,7 @@ obj/scresave$(ExOBJ):: scresave.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdginter$(ExOBJ):: sdginter.cc \
+obj/sdginter$(ExOBJ):: ../mainsrc/sdginter.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -4209,7 +4209,7 @@ obj/sdginter$(ExOBJ):: sdginter.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskasci$(ExOBJ):: sdskasci.cc \
+obj/sdskasci$(ExOBJ):: ../setedit/streams/sdskasci.cc \
 	compatlayer.h \
 	dskascii.h \
 	dskwin.h \
@@ -4231,7 +4231,7 @@ obj/sdskasci$(ExOBJ):: sdskasci.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskcale$(ExOBJ):: sdskcale.cc \
+obj/sdskcale$(ExOBJ):: ../setedit/streams/sdskcale.cc \
 	compatlayer.h \
 	dskcalen.h \
 	dskwin.h \
@@ -4253,7 +4253,7 @@ obj/sdskcale$(ExOBJ):: sdskcale.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclip$(ExOBJ):: sdskclip.cc \
+obj/sdskclip$(ExOBJ):: ../setedit/streams/sdskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4307,7 +4307,7 @@ obj/sdskclip$(ExOBJ):: sdskclip.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclos$(ExOBJ):: sdskclos.cc \
+obj/sdskclos$(ExOBJ):: ../setedit/streams/sdskclos.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4361,7 +4361,7 @@ obj/sdskclos$(ExOBJ):: sdskclos.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskedit$(ExOBJ):: sdskedit.cc \
+obj/sdskedit$(ExOBJ):: ../setedit/streams/sdskedit.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4415,7 +4415,7 @@ obj/sdskedit$(ExOBJ):: sdskedit.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskhelp$(ExOBJ):: sdskhelp.cc \
+obj/sdskhelp$(ExOBJ):: ../setedit/streams/sdskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4478,7 +4478,7 @@ obj/sdskhelp$(ExOBJ):: sdskhelp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskman$(ExOBJ):: sdskman.cc \
+obj/sdskman$(ExOBJ):: ../setedit/streams/sdskman.cc \
 	compatlayer.h \
 	dskman.h \
 	dskwin.h \
@@ -4500,7 +4500,7 @@ obj/sdskman$(ExOBJ):: sdskman.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmess$(ExOBJ):: sdskmess.cc \
+obj/sdskmess$(ExOBJ):: ../setedit/streams/sdskmess.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4554,7 +4554,7 @@ obj/sdskmess$(ExOBJ):: sdskmess.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmp3$(ExOBJ):: sdskmp3.cc \
+obj/sdskmp3$(ExOBJ):: ../setedit/streams/sdskmp3.cc \
 	compatlayer.h \
 	dskmp3.h \
 	dskwin.h \
@@ -4576,7 +4576,7 @@ obj/sdskmp3$(ExOBJ):: sdskmp3.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskprj$(ExOBJ):: sdskprj.cc \
+obj/sdskprj$(ExOBJ):: ../setedit/streams/sdskprj.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4630,7 +4630,7 @@ obj/sdskprj$(ExOBJ):: sdskprj.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/search$(ExOBJ):: search.cc \
+obj/search$(ExOBJ):: ../mainsrc/search.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -4685,7 +4685,7 @@ obj/search$(ExOBJ):: search.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sedcolle$(ExOBJ):: sedcolle.cc \
+obj/sedcolle$(ExOBJ):: ../setedit/streams/sedcolle.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4744,7 +4744,7 @@ obj/sedcolle$(ExOBJ):: sedcolle.cc \
 
 INCLUDE05=settv$(ExIMK)
 
-obj/slpinter$(ExOBJ):: slpinter.cc \
+obj/slpinter$(ExOBJ):: ../mainsrc/slpinter.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -4833,7 +4833,7 @@ obj/slpinter$(ExOBJ):: slpinter.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/splinman$(ExOBJ):: splinman.cc \
+obj/splinman$(ExOBJ):: ../mainsrc/splinman.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -4884,7 +4884,7 @@ obj/splinman$(ExOBJ):: splinman.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ssindica$(ExOBJ):: ssindica.cc \
+obj/ssindica$(ExOBJ):: ../streams/ssindica.cc \
 	ceditor.h \
 	compatlayer.h \
 	settvuti.h \
@@ -4915,7 +4915,7 @@ obj/ssindica$(ExOBJ):: ssindica.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ssyntax$(ExOBJ):: ssyntax.cc \
+obj/ssyntax$(ExOBJ):: ../mainsrc/ssyntax.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -4999,7 +4999,7 @@ obj/ssyntax$(ExOBJ):: ssyntax.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tags$(ExOBJ):: tags.cc \
+obj/tags$(ExOBJ):: ../mainsrc/tags.cc \
 	advice.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -5087,7 +5087,7 @@ obj/tags$(ExOBJ):: tags.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tedcolle$(ExOBJ):: tedcolle.cc \
+obj/tedcolle$(ExOBJ):: ../setedit/tedcolle.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -5166,7 +5166,7 @@ obj/tedcolle$(ExOBJ):: tedcolle.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tips$(ExOBJ):: tips.cc \
+obj/tips$(ExOBJ):: ../setedit/tips.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -5233,7 +5233,7 @@ obj/tips$(ExOBJ):: tips.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tpaltext$(ExOBJ):: tpaltext.cc \
+obj/tpaltext$(ExOBJ):: ../setedit/tpaltext.cc \
 	compatlayer.h \
 	tpaltext.h \
 	tv.h \
@@ -5256,7 +5256,7 @@ obj/tpaltext$(ExOBJ):: tpaltext.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsindica$(ExOBJ):: tsindica.cc \
+obj/tsindica$(ExOBJ):: ../mainsrc/tsindica.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -5307,7 +5307,7 @@ obj/tsindica$(ExOBJ):: tsindica.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/txhgen$(ExOBJ):: txhgen.cc \
+obj/txhgen$(ExOBJ):: ../sdg/txhgen.cc \
 	bufun.h \
 	compatlayer.h \
 	mli.h \
@@ -5347,7 +5347,7 @@ obj/txhgen$(ExOBJ):: txhgen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/winlistd$(ExOBJ):: winlistd.cc \
+obj/winlistd$(ExOBJ):: ../setedit/winlistd.cc \
 	advice.h \
 	ced_clas.h \
 	ced_exte.h \

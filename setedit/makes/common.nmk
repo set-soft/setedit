@@ -16,9 +16,9 @@
 !include config.nmk
 
 SRCDIRS_2=$(SRCDIRS);.
-.path.cc=$(SRCDIRS_2)
-.path.c=$(SRCDIRS_2)
-.path.s=$(SRCDIRS_2)
+#.path.cc=$(SRCDIRS_2)
+#.path.c=$(SRCDIRS_2)
+#.path.s=$(SRCDIRS_2)
 
 # Turn off the implicit rule to generate .obj files from .c files.
 # If we don't do it make will use both rules.

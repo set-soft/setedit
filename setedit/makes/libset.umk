@@ -69,165 +69,165 @@ libset$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-objlib/bufun$(ExOBJ):: bufun.cc  
+objlib/bufun$(ExOBJ):: ../mainsrc/bufun.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/calcu$(ExOBJ):: calcu.cc  
+objlib/calcu$(ExOBJ):: ../calcu/calcu.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/ceditor$(ExOBJ):: ceditor.cc  
+objlib/ceditor$(ExOBJ):: ../mainsrc/ceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/completi$(ExOBJ):: completi.cc  
+objlib/completi$(ExOBJ):: ../mainsrc/completi.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/deedidia$(ExOBJ):: deedidia.cc  
+objlib/deedidia$(ExOBJ):: ../mainsrc/deedidia.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/doedidia$(ExOBJ):: doedidia.cc  
+objlib/doedidia$(ExOBJ):: ../mainsrc/doedidia.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE00=easydiag$(ExIMK)
 
-objlib/edconst$(ExOBJ):: edconst.cc  
+objlib/edconst$(ExOBJ):: ../mainsrc/edconst.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/editorfo$(ExOBJ):: editorfo.cc  
+objlib/editorfo$(ExOBJ):: ../mainsrc/editorfo.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/editwind$(ExOBJ):: editwind.cc  
+objlib/editwind$(ExOBJ):: ../mainsrc/editwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/edkeys$(ExOBJ):: edkeys.cc  
+objlib/edkeys$(ExOBJ):: ../setedit/edkeys.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/edprint$(ExOBJ):: edprint.cc  
+objlib/edprint$(ExOBJ):: ../setedit/edprint.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/edspecs$(ExOBJ):: edspecs.cc  
+objlib/edspecs$(ExOBJ):: ../mainsrc/edspecs.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE01=extra$(ExIMK)
 
-objlib/gzfiles$(ExOBJ):: gzfiles.cc  
+objlib/gzfiles$(ExOBJ):: ../mainsrc/gzfiles.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/inf$(ExOBJ):: inf.cc  
+objlib/inf$(ExOBJ):: ../infview/inf.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/infbase$(ExOBJ):: infbase.cc  
+objlib/infbase$(ExOBJ):: ../infview/infbase.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/keytrans$(ExOBJ):: keytrans.cc  
+objlib/keytrans$(ExOBJ):: ../mainsrc/keytrans.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/linelen$(ExOBJ):: linelen.cc  
+objlib/linelen$(ExOBJ):: ../mainsrc/linelen.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/loaddefl$(ExOBJ):: loaddefl.cc  
+objlib/loaddefl$(ExOBJ):: ../mainsrc/loaddefl.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadfunc$(ExOBJ):: loadfunc.cc  
+objlib/loadfunc$(ExOBJ):: ../mainsrc/loadfunc.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadshl$(ExOBJ):: loadshl.cc  
+objlib/loadshl$(ExOBJ):: ../mainsrc/loadshl.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadusew$(ExOBJ):: loadusew.cc  
+objlib/loadusew$(ExOBJ):: ../mainsrc/loadusew.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/macrocom$(ExOBJ):: macrocom.cc  
+objlib/macrocom$(ExOBJ):: ../mainsrc/macrocom.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mli$(ExOBJ):: mli.cc  
+objlib/mli$(ExOBJ):: ../sdg/mli.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliasimp$(ExOBJ):: mliasimp.cc  
+objlib/mliasimp$(ExOBJ):: ../sdg/mliasimp.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlicsdg$(ExOBJ):: mlicsdg.cc  
+objlib/mlicsdg$(ExOBJ):: ../sdg/mlicsdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliediti$(ExOBJ):: mliediti.cc  
+objlib/mliediti$(ExOBJ):: ../sdg/mliediti.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliedito$(ExOBJ):: mliedito.cc  
+objlib/mliedito$(ExOBJ):: ../sdg/mliedito.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlisdg$(ExOBJ):: mlisdg.cc  
+objlib/mlisdg$(ExOBJ):: ../sdg/mlisdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/nceditor$(ExOBJ):: nceditor.cc  
+objlib/nceditor$(ExOBJ):: ../names/nceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/neditwin$(ExOBJ):: neditwin.cc  
+objlib/neditwin$(ExOBJ):: ../names/neditwin.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/nfileedi$(ExOBJ):: nfileedi.cc  
+objlib/nfileedi$(ExOBJ):: ../names/nfileedi.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/nhiscoll$(ExOBJ):: nhiscoll.cc  
+objlib/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfview$(ExOBJ):: ninfview.cc  
+objlib/ninfview$(ExOBJ):: ../infview/names/ninfview.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfwind$(ExOBJ):: ninfwind.cc  
+objlib/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/nsindica$(ExOBJ):: nsindica.cc  
+objlib/nsindica$(ExOBJ):: ../names/nsindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/parser$(ExOBJ):: parser.c  
+objlib/parser$(ExOBJ):: ../calcu/parser.c  
 	$(RHIDE_COMPILE_C)
 
-objlib/pathtool$(ExOBJ):: pathtool.cc  
+objlib/pathtool$(ExOBJ):: ../mainsrc/pathtool.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/pclipper$(ExOBJ):: pclipper.cc  
+objlib/pclipper$(ExOBJ):: ../mainsrc/pclipper.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/pmacros$(ExOBJ):: pmacros.cc  
+objlib/pmacros$(ExOBJ):: ../mainsrc/pmacros.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/pperl$(ExOBJ):: pperl.cc  
+objlib/pperl$(ExOBJ):: ../mainsrc/pperl.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/pphp$(ExOBJ):: pphp.cc  
+objlib/pphp$(ExOBJ):: ../mainsrc/pphp.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/pvarious$(ExOBJ):: pvarious.cc  
+objlib/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/rhideint$(ExOBJ):: rhideint.cc  
+objlib/rhideint$(ExOBJ):: ../mainsrc/rhideint.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/sceditor$(ExOBJ):: sceditor.cc  
+objlib/sceditor$(ExOBJ):: ../streams/sceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/sdginter$(ExOBJ):: sdginter.cc  
+objlib/sdginter$(ExOBJ):: ../mainsrc/sdginter.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/search$(ExOBJ):: search.cc  
+objlib/search$(ExOBJ):: ../mainsrc/search.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE02=settv$(ExIMK)
 
-objlib/sinf$(ExOBJ):: sinf.cc  
+objlib/sinf$(ExOBJ):: ../infview/streams/sinf.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/slpinter$(ExOBJ):: slpinter.cc  
+objlib/slpinter$(ExOBJ):: ../mainsrc/slpinter.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/splinman$(ExOBJ):: splinman.cc  
+objlib/splinman$(ExOBJ):: ../mainsrc/splinman.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/ssindica$(ExOBJ):: ssindica.cc  
+objlib/ssindica$(ExOBJ):: ../streams/ssindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/tsindica$(ExOBJ):: tsindica.cc  
+objlib/tsindica$(ExOBJ):: ../mainsrc/tsindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-objlib/txhgen$(ExOBJ):: txhgen.cc  
+objlib/txhgen$(ExOBJ):: ../sdg/txhgen.cc  
 	$(RHIDE_COMPILE_CC)
 

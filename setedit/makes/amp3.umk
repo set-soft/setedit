@@ -2,15 +2,15 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-obj/ampdiag$(ExOBJ):: ampdiag.cc  
+obj/ampdiag$(ExOBJ):: ../mp3/ampdiag.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/intermp3$(ExOBJ):: intermp3.cc  
+obj/intermp3$(ExOBJ):: ../mp3/intermp3.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mp3list$(ExOBJ):: mp3list.cc  
+obj/mp3list$(ExOBJ):: ../mp3/mp3list.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mp3play$(ExOBJ):: mp3play.cc  
+obj/mp3play$(ExOBJ):: ../mp3/mp3play.cc  
 	$(RHIDE_COMPILE_CC)
 

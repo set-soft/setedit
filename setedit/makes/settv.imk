@@ -35,7 +35,7 @@ libsettv$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/diaghelp$(ExOBJ):: diaghelp.cc \
+obj/diaghelp$(ExOBJ):: ../settvuti/diaghelp.cc \
 	compatlayer.h \
 	edspecs.h \
 	tv.h \
@@ -72,7 +72,7 @@ obj/diaghelp$(ExOBJ):: diaghelp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dktclock$(ExOBJ):: dktclock.cc \
+obj/dktclock$(ExOBJ):: ../settvuti/dktclock.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -101,7 +101,7 @@ obj/dktclock$(ExOBJ):: dktclock.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fileopen$(ExOBJ):: fileopen.cc \
+obj/fileopen$(ExOBJ):: ../settvuti/fileopen.cc \
 	compatlayer.h \
 	fileopen.h \
 	tv.h \
@@ -152,7 +152,7 @@ obj/fileopen$(ExOBJ):: fileopen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
+obj/fiopeaid$(ExOBJ):: ../settvuti/fiopeaid.cc \
 	compatlayer.h \
 	edhists.h \
 	fileopen.h \
@@ -195,7 +195,7 @@ obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/inputsca$(ExOBJ):: inputsca.cc \
+obj/inputsca$(ExOBJ):: ../settvuti/inputsca.cc \
 	compatlayer.h \
 	inputsca.h \
 	settvuti.h \
@@ -225,14 +225,14 @@ obj/inputsca$(ExOBJ):: inputsca.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninputsc$(ExOBJ):: ninputsc.cc \
+obj/ninputsc$(ExOBJ):: ../settvuti/names/ninputsc.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex$(ExOBJ):: nostatex.cc \
+obj/nostatex$(ExOBJ):: ../settvuti/nostatex.cc \
 	compatlayer.h \
 	nostatex.h \
 	settvuti.h \
@@ -261,35 +261,35 @@ obj/nostatex$(ExOBJ):: nostatex.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar$(ExOBJ):: nprogbar.cc \
+obj/nprogbar$(ExOBJ):: ../settvuti/names/nprogbar.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres$(ExOBJ):: nprogres.cc \
+obj/nprogres$(ExOBJ):: ../settvuti/names/nprogres.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnocast$(ExOBJ):: ntnocast.cc \
+obj/ntnocast$(ExOBJ):: ../settvuti/names/ntnocast.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnosost$(ExOBJ):: ntnosost.cc \
+obj/ntnosost$(ExOBJ):: ../settvuti/names/ntnosost.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/setstack$(ExOBJ):: setstack.cc \
+obj/setstack$(ExOBJ):: ../settvuti/setstack.cc \
 	compatlayer.h \
 	setstack.h \
 	settvuti.h \
@@ -309,7 +309,7 @@ obj/setstack$(ExOBJ):: setstack.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogbar$(ExOBJ):: sprogbar.cc \
+obj/sprogbar$(ExOBJ):: ../settvuti/streams/sprogbar.cc \
 	compatlayer.h \
 	settvuti.h \
 	tprogbar.h \
@@ -339,7 +339,7 @@ obj/sprogbar$(ExOBJ):: sprogbar.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogres$(ExOBJ):: sprogres.cc \
+obj/sprogres$(ExOBJ):: ../settvuti/streams/sprogres.cc \
 	compatlayer.h \
 	settvuti.h \
 	tprogrdi.h \
@@ -370,7 +370,7 @@ obj/sprogres$(ExOBJ):: sprogres.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stnocast$(ExOBJ):: stnocast.cc \
+obj/stnocast$(ExOBJ):: ../settvuti/streams/stnocast.cc \
 	compatlayer.h \
 	settvuti.h \
 	tnocastc.h \
@@ -404,7 +404,7 @@ obj/stnocast$(ExOBJ):: stnocast.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stnonost$(ExOBJ):: stnonost.cc \
+obj/stnonost$(ExOBJ):: ../settvuti/streams/stnonost.cc \
 	compatlayer.h \
 	settvuti.h \
 	tnosostr.h \
@@ -438,7 +438,7 @@ obj/stnonost$(ExOBJ):: stnonost.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagaid$(ExOBJ):: tdiagaid.cc \
+obj/tdiagaid$(ExOBJ):: ../settvuti/tdiagaid.cc \
 	$(SETEDIT_INC_DIR)/setapp.h \
 	compatlayer.h \
 	diaghelp.h \
@@ -506,7 +506,7 @@ obj/tdiagaid$(ExOBJ):: tdiagaid.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagrow$(ExOBJ):: tdiagrow.cc \
+obj/tdiagrow$(ExOBJ):: ../settvuti/tdiagrow.cc \
 	compatlayer.h \
 	settvuti.h \
 	tdiagrow.h \
@@ -538,7 +538,7 @@ obj/tdiagrow$(ExOBJ):: tdiagrow.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tinppipe$(ExOBJ):: tinppipe.cc \
+obj/tinppipe$(ExOBJ):: ../settvuti/tinppipe.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -593,7 +593,7 @@ obj/tinppipe$(ExOBJ):: tinppipe.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tnocastc$(ExOBJ):: tnocastc.cc \
+obj/tnocastc$(ExOBJ):: ../settvuti/tnocastc.cc \
 	compatlayer.h \
 	setstack.h \
 	settvuti.h \
@@ -638,7 +638,7 @@ obj/tnocastc$(ExOBJ):: tnocastc.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tnosostr$(ExOBJ):: tnosostr.cc \
+obj/tnosostr$(ExOBJ):: ../settvuti/tnosostr.cc \
 	compatlayer.h \
 	settvuti.h \
 	tnosostr.h \
@@ -672,7 +672,7 @@ obj/tnosostr$(ExOBJ):: tnosostr.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar$(ExOBJ):: tprogbar.cc \
+obj/tprogbar$(ExOBJ):: ../settvuti/tprogbar.cc \
 	compatlayer.h \
 	settvuti.h \
 	tprogbar.h \
@@ -707,7 +707,7 @@ obj/tprogbar$(ExOBJ):: tprogbar.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia$(ExOBJ):: tprogdia.cc \
+obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc \
 	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
@@ -748,7 +748,7 @@ obj/tprogdia$(ExOBJ):: tprogdia.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogrdi$(ExOBJ):: tprogrdi.cc \
+obj/tprogrdi$(ExOBJ):: ../settvuti/tprogrdi.cc \
 	compatlayer.h \
 	nostatex.h \
 	settvuti.h \
@@ -788,7 +788,7 @@ obj/tprogrdi$(ExOBJ):: tprogrdi.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres$(ExOBJ):: tprogres.cc \
+obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc \
 	compatlayer.h \
 	settvuti.h \
 	tprogrdi.h \
@@ -824,7 +824,7 @@ obj/tprogres$(ExOBJ):: tprogres.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
+obj/tstrlbox$(ExOBJ):: ../settvuti/tstrlbox.cc \
 	compatlayer.h \
 	settvuti.h \
 	tstringa.h \
@@ -855,7 +855,7 @@ obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/uisarray$(ExOBJ):: uisarray.cc \
+obj/uisarray$(ExOBJ):: ../settvuti/uisarray.cc \
 	compatlayer.h \
 	include/sarray.cc \
 	sarray.h \
@@ -876,7 +876,7 @@ obj/uisarray$(ExOBJ):: uisarray.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ussarray$(ExOBJ):: ussarray.cc \
+obj/ussarray$(ExOBJ):: ../settvuti/ussarray.cc \
 	compatlayer.h \
 	include/sarray.cc \
 	sarray.h \
@@ -897,7 +897,7 @@ obj/ussarray$(ExOBJ):: ussarray.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/viewplus$(ExOBJ):: viewplus.cc \
+obj/viewplus$(ExOBJ):: ../settvuti/viewplus.cc \
 	compatlayer.h \
 	tv.h \
 	tv/configtv.h \

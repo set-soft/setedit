@@ -25,58 +25,58 @@ infview$(ExEXE):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objinf/dyncat$(ExOBJ):: dyncat.cc  
+objinf/dyncat$(ExOBJ):: ../extra/dyncat.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE00=easydiag$(ExIMK)
 
-objinf/fstrcmp$(ExOBJ):: fstrcmp.c  
+objinf/fstrcmp$(ExOBJ):: ../mainsrc/fstrcmp.c  
 	$(RHIDE_COMPILE_C)
 
-objinf/gzfiles$(ExOBJ):: gzfiles.cc  
+objinf/gzfiles$(ExOBJ):: ../mainsrc/gzfiles.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/inf$(ExOBJ):: inf.cc  
+objinf/inf$(ExOBJ):: ../infview/inf.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/infbase$(ExOBJ):: infbase.cc  
+objinf/infbase$(ExOBJ):: ../infview/infbase.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/infdummy$(ExOBJ):: infdummy.cc  
+objinf/infdummy$(ExOBJ):: ../infview/infdummy.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmain$(ExOBJ):: infmain.cc  
+objinf/infmain$(ExOBJ):: ../infview/infmain.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmenu$(ExOBJ):: infmenu.cc  
+objinf/infmenu$(ExOBJ):: ../infview/infmenu.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE01=librhuti$(ExIMK)
 
-objinf/manview$(ExOBJ):: manview.cc  
+objinf/manview$(ExOBJ):: ../infview/manview.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/nhiscoll$(ExOBJ):: nhiscoll.cc  
+objinf/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfview$(ExOBJ):: ninfview.cc  
+objinf/ninfview$(ExOBJ):: ../infview/names/ninfview.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfwind$(ExOBJ):: ninfwind.cc  
+objinf/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/nmanwind$(ExOBJ):: nmanwind.cc  
+objinf/nmanwind$(ExOBJ):: ../infview/names/nmanwind.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE02=settv$(ExIMK)
 
-objinf/sinf$(ExOBJ):: sinf.cc  
+objinf/sinf$(ExOBJ):: ../infview/streams/sinf.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/sman$(ExOBJ):: sman.cc  
+objinf/sman$(ExOBJ):: ../infview/streams/sman.cc  
 	$(RHIDE_COMPILE_CC)
 
-objinf/strncpyz$(ExOBJ):: strncpyz.cc  
+objinf/strncpyz$(ExOBJ):: ../extra/strncpyz.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\

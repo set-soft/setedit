@@ -2,7 +2,7 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-obj/inf$(ExOBJ):: inf.cc \
+obj/inf$(ExOBJ):: ../infview/inf.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
@@ -90,7 +90,7 @@ obj/inf$(ExOBJ):: inf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/infbase$(ExOBJ):: infbase.cc \
+obj/infbase$(ExOBJ):: ../infview/infbase.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -144,7 +144,7 @@ obj/infbase$(ExOBJ):: infbase.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/manview$(ExOBJ):: manview.cc \
+obj/manview$(ExOBJ):: ../infview/manview.cc \
 	ced_coma.h \
 	ceditor.h \
 	codepage.h \
@@ -212,7 +212,7 @@ obj/manview$(ExOBJ):: manview.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nhiscoll$(ExOBJ):: nhiscoll.cc \
+obj/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -231,7 +231,7 @@ obj/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfview$(ExOBJ):: ninfview.cc \
+obj/ninfview$(ExOBJ):: ../infview/names/ninfview.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -250,7 +250,7 @@ obj/ninfview$(ExOBJ):: ninfview.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfwind$(ExOBJ):: ninfwind.cc \
+obj/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -269,7 +269,7 @@ obj/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nmanwind$(ExOBJ):: nmanwind.cc \
+obj/nmanwind$(ExOBJ):: ../infview/names/nmanwind.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -288,7 +288,7 @@ obj/nmanwind$(ExOBJ):: nmanwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sinf$(ExOBJ):: sinf.cc \
+obj/sinf$(ExOBJ):: ../infview/streams/sinf.cc \
 	compatlayer.h \
 	inf.h \
 	infbase.h \
@@ -340,7 +340,7 @@ obj/sinf$(ExOBJ):: sinf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sman$(ExOBJ):: sman.cc \
+obj/sman$(ExOBJ):: ../infview/streams/sman.cc \
 	compatlayer.h \
 	manview.h \
 	tv.h \

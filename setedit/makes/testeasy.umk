@@ -11,7 +11,7 @@ test$(ExEXE):: \
 
 INCLUDE00=easydiag$(ExIMK)
 
-obj/test$(ExOBJ):: test.cc  
+obj/test$(ExOBJ):: ../easydiag/test.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\

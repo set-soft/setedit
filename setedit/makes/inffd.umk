@@ -2,30 +2,30 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-obj/inf$(ExOBJ):: inf.cc  
+obj/inf$(ExOBJ):: ../infview/inf.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/infbase$(ExOBJ):: infbase.cc  
+obj/infbase$(ExOBJ):: ../infview/infbase.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/manview$(ExOBJ):: manview.cc  
+obj/manview$(ExOBJ):: ../infview/manview.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nhiscoll$(ExOBJ):: nhiscoll.cc  
+obj/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfview$(ExOBJ):: ninfview.cc  
+obj/ninfview$(ExOBJ):: ../infview/names/ninfview.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfwind$(ExOBJ):: ninfwind.cc  
+obj/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nmanwind$(ExOBJ):: nmanwind.cc  
+obj/nmanwind$(ExOBJ):: ../infview/names/nmanwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sinf$(ExOBJ):: sinf.cc  
+obj/sinf$(ExOBJ):: ../infview/streams/sinf.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sman$(ExOBJ):: sman.cc  
+obj/sman$(ExOBJ):: ../infview/streams/sman.cc  
 	$(RHIDE_COMPILE_CC)
 

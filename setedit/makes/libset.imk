@@ -69,7 +69,7 @@ libset$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-objlib/bufun$(ExOBJ):: bufun.cc \
+objlib/bufun$(ExOBJ):: ../mainsrc/bufun.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -146,7 +146,7 @@ objlib/bufun$(ExOBJ):: bufun.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/calcu$(ExOBJ):: calcu.cc \
+objlib/calcu$(ExOBJ):: ../calcu/calcu.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -216,7 +216,7 @@ objlib/calcu$(ExOBJ):: calcu.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ceditor$(ExOBJ):: ceditor.cc \
+objlib/ceditor$(ExOBJ):: ../mainsrc/ceditor.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -310,7 +310,7 @@ objlib/ceditor$(ExOBJ):: ceditor.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/completi$(ExOBJ):: completi.cc \
+objlib/completi$(ExOBJ):: ../mainsrc/completi.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -371,7 +371,7 @@ objlib/completi$(ExOBJ):: completi.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/deedidia$(ExOBJ):: deedidia.cc \
+objlib/deedidia$(ExOBJ):: ../mainsrc/deedidia.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -473,7 +473,7 @@ objlib/deedidia$(ExOBJ):: deedidia.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/doedidia$(ExOBJ):: doedidia.cc \
+objlib/doedidia$(ExOBJ):: ../mainsrc/doedidia.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -531,7 +531,7 @@ objlib/doedidia$(ExOBJ):: doedidia.cc \
 
 INCLUDE00=easydiag$(ExIMK)
 
-objlib/edconst$(ExOBJ):: edconst.cc \
+objlib/edconst$(ExOBJ):: ../mainsrc/edconst.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -589,7 +589,7 @@ objlib/edconst$(ExOBJ):: edconst.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editorfo$(ExOBJ):: editorfo.cc \
+objlib/editorfo$(ExOBJ):: ../mainsrc/editorfo.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -643,7 +643,7 @@ objlib/editorfo$(ExOBJ):: editorfo.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editwind$(ExOBJ):: editwind.cc \
+objlib/editwind$(ExOBJ):: ../mainsrc/editwind.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -701,7 +701,7 @@ objlib/editwind$(ExOBJ):: editwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edkeys$(ExOBJ):: edkeys.cc \
+objlib/edkeys$(ExOBJ):: ../setedit/edkeys.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -791,7 +791,7 @@ objlib/edkeys$(ExOBJ):: edkeys.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edprint$(ExOBJ):: edprint.cc \
+objlib/edprint$(ExOBJ):: ../setedit/edprint.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -855,7 +855,7 @@ objlib/edprint$(ExOBJ):: edprint.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edspecs$(ExOBJ):: edspecs.cc \
+objlib/edspecs$(ExOBJ):: ../mainsrc/edspecs.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -878,7 +878,7 @@ objlib/edspecs$(ExOBJ):: edspecs.cc \
 
 INCLUDE01=extra$(ExIMK)
 
-objlib/gzfiles$(ExOBJ):: gzfiles.cc \
+objlib/gzfiles$(ExOBJ):: ../mainsrc/gzfiles.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -901,7 +901,7 @@ objlib/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/inf$(ExOBJ):: inf.cc \
+objlib/inf$(ExOBJ):: ../infview/inf.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/button.h \
@@ -989,7 +989,7 @@ objlib/inf$(ExOBJ):: inf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/infbase$(ExOBJ):: infbase.cc \
+objlib/infbase$(ExOBJ):: ../infview/infbase.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1044,7 +1044,7 @@ objlib/infbase$(ExOBJ):: infbase.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/keytrans$(ExOBJ):: keytrans.cc \
+objlib/keytrans$(ExOBJ):: ../mainsrc/keytrans.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1091,7 +1091,7 @@ objlib/keytrans$(ExOBJ):: keytrans.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/linelen$(ExOBJ):: linelen.cc \
+objlib/linelen$(ExOBJ):: ../mainsrc/linelen.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1112,7 +1112,7 @@ objlib/linelen$(ExOBJ):: linelen.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loaddefl$(ExOBJ):: loaddefl.cc \
+objlib/loaddefl$(ExOBJ):: ../mainsrc/loaddefl.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1194,7 +1194,7 @@ objlib/loaddefl$(ExOBJ):: loaddefl.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadfunc$(ExOBJ):: loadfunc.cc \
+objlib/loadfunc$(ExOBJ):: ../mainsrc/loadfunc.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1215,7 +1215,7 @@ objlib/loadfunc$(ExOBJ):: loadfunc.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadshl$(ExOBJ):: loadshl.cc \
+objlib/loadshl$(ExOBJ):: ../mainsrc/loadshl.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1271,7 +1271,7 @@ objlib/loadshl$(ExOBJ):: loadshl.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadusew$(ExOBJ):: loadusew.cc \
+objlib/loadusew$(ExOBJ):: ../mainsrc/loadusew.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1352,7 +1352,7 @@ objlib/loadusew$(ExOBJ):: loadusew.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/macrocom$(ExOBJ):: macrocom.cc \
+objlib/macrocom$(ExOBJ):: ../mainsrc/macrocom.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -1409,7 +1409,7 @@ objlib/macrocom$(ExOBJ):: macrocom.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mli$(ExOBJ):: mli.cc \
+objlib/mli$(ExOBJ):: ../sdg/mli.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1442,7 +1442,7 @@ objlib/mli$(ExOBJ):: mli.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliasimp$(ExOBJ):: mliasimp.cc \
+objlib/mliasimp$(ExOBJ):: ../sdg/mliasimp.cc \
 	$(SDG_INC_DIR)/mli.h \
 	$(SDG_INC_DIR)/mliabase.h \
 	$(SDG_INC_DIR)/mliasimp.h \
@@ -1450,7 +1450,7 @@ objlib/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlicsdg$(ExOBJ):: mlicsdg.cc \
+objlib/mlicsdg$(ExOBJ):: ../sdg/mlicsdg.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1482,7 +1482,7 @@ objlib/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliediti$(ExOBJ):: mliediti.cc \
+objlib/mliediti$(ExOBJ):: ../sdg/mliediti.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1523,7 +1523,7 @@ objlib/mliediti$(ExOBJ):: mliediti.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliedito$(ExOBJ):: mliedito.cc \
+objlib/mliedito$(ExOBJ):: ../sdg/mliedito.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1571,7 +1571,7 @@ objlib/mliedito$(ExOBJ):: mliedito.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlisdg$(ExOBJ):: mlisdg.cc \
+objlib/mlisdg$(ExOBJ):: ../sdg/mlisdg.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1603,47 +1603,28 @@ objlib/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nceditor$(ExOBJ):: nceditor.cc \
+objlib/nceditor$(ExOBJ):: ../names/nceditor.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/neditwin$(ExOBJ):: neditwin.cc \
+objlib/neditwin$(ExOBJ):: ../names/neditwin.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nfileedi$(ExOBJ):: nfileedi.cc \
+objlib/nfileedi$(ExOBJ):: ../names/nfileedi.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nhiscoll$(ExOBJ):: nhiscoll.cc \
-	$(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv.h \
-	$(TVISION_INC)/tv/configtv.h \
-	$(TVISION_INC)/tv/intl.h \
-	$(TVISION_INC)/tv/ipstream.h \
-	$(TVISION_INC)/tv/opstream.h \
-	$(TVISION_INC)/tv/pstream.h \
-	$(TVISION_INC)/tv/stddlg.h \
-	$(TVISION_INC)/tv/system.h \
-	$(TVISION_INC)/tv/tobjstrm.h \
-	$(TVISION_INC)/tv/ttypes.h \
-	$(TVISION_INC)/tv/tvconfig.h \
-	$(TVISION_INC)/tv/tvutil.h \
-	$(TVISION_INC)/tv/views.h \
-	$(SETTVUTI_INC_DIR)/settvuti.h \
-	$(MAKEFILE_DEPS) 
-	$(RHIDE_COMPILE_CC)
-
-objlib/ninfview$(ExOBJ):: ninfview.cc \
+objlib/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1662,7 +1643,7 @@ objlib/ninfview$(ExOBJ):: ninfview.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfwind$(ExOBJ):: ninfwind.cc \
+objlib/ninfview$(ExOBJ):: ../infview/names/ninfview.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1681,20 +1662,39 @@ objlib/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nsindica$(ExOBJ):: nsindica.cc \
+objlib/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc \
+	$(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/nsindica$(ExOBJ):: ../names/nsindica.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/parser$(ExOBJ):: parser.c \
+objlib/parser$(ExOBJ):: ../calcu/parser.c \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-objlib/pathtool$(ExOBJ):: pathtool.cc \
+objlib/pathtool$(ExOBJ):: ../mainsrc/pathtool.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1735,7 +1735,7 @@ objlib/pathtool$(ExOBJ):: pathtool.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pclipper$(ExOBJ):: pclipper.cc \
+objlib/pclipper$(ExOBJ):: ../mainsrc/pclipper.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1756,7 +1756,7 @@ objlib/pclipper$(ExOBJ):: pclipper.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pmacros$(ExOBJ):: pmacros.cc \
+objlib/pmacros$(ExOBJ):: ../mainsrc/pmacros.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1791,17 +1791,17 @@ objlib/pmacros$(ExOBJ):: pmacros.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pperl$(ExOBJ):: pperl.cc \
+objlib/pperl$(ExOBJ):: ../mainsrc/pperl.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pphp$(ExOBJ):: pphp.cc \
+objlib/pphp$(ExOBJ):: ../mainsrc/pphp.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pvarious$(ExOBJ):: pvarious.cc \
+objlib/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1822,7 +1822,7 @@ objlib/pvarious$(ExOBJ):: pvarious.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/rhideint$(ExOBJ):: rhideint.cc \
+objlib/rhideint$(ExOBJ):: ../mainsrc/rhideint.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1844,7 +1844,7 @@ objlib/rhideint$(ExOBJ):: rhideint.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/sceditor$(ExOBJ):: sceditor.cc \
+objlib/sceditor$(ExOBJ):: ../streams/sceditor.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -1898,7 +1898,7 @@ objlib/sceditor$(ExOBJ):: sceditor.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/sdginter$(ExOBJ):: sdginter.cc \
+objlib/sdginter$(ExOBJ):: ../mainsrc/sdginter.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -1921,7 +1921,7 @@ objlib/sdginter$(ExOBJ):: sdginter.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/search$(ExOBJ):: search.cc \
+objlib/search$(ExOBJ):: ../mainsrc/search.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/codepage.h \
@@ -1978,7 +1978,7 @@ objlib/search$(ExOBJ):: search.cc \
 
 INCLUDE02=settv$(ExIMK)
 
-objlib/sinf$(ExOBJ):: sinf.cc \
+objlib/sinf$(ExOBJ):: ../infview/streams/sinf.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2030,7 +2030,7 @@ objlib/sinf$(ExOBJ):: sinf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/slpinter$(ExOBJ):: slpinter.cc \
+objlib/slpinter$(ExOBJ):: ../mainsrc/slpinter.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/app.h \
@@ -2116,7 +2116,7 @@ objlib/slpinter$(ExOBJ):: slpinter.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/splinman$(ExOBJ):: splinman.cc \
+objlib/splinman$(ExOBJ):: ../mainsrc/splinman.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2167,7 +2167,7 @@ objlib/splinman$(ExOBJ):: splinman.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ssindica$(ExOBJ):: ssindica.cc \
+objlib/ssindica$(ExOBJ):: ../streams/ssindica.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/configtv.h \
@@ -2198,7 +2198,7 @@ objlib/ssindica$(ExOBJ):: ssindica.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/tsindica$(ExOBJ):: tsindica.cc \
+objlib/tsindica$(ExOBJ):: ../mainsrc/tsindica.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
 	$(TVISION_INC)/tv/collectn.h \
@@ -2249,7 +2249,7 @@ objlib/tsindica$(ExOBJ):: tsindica.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/txhgen$(ExOBJ):: txhgen.cc \
+objlib/txhgen$(ExOBJ):: ../sdg/txhgen.cc \
 	$(TVISION_INC)/cl/unistd.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \

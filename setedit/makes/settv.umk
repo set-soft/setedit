@@ -35,90 +35,90 @@ libsettv$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/diaghelp$(ExOBJ):: diaghelp.cc  
+obj/diaghelp$(ExOBJ):: ../settvuti/diaghelp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dktclock$(ExOBJ):: dktclock.cc  
+obj/dktclock$(ExOBJ):: ../settvuti/dktclock.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fileopen$(ExOBJ):: fileopen.cc  
+obj/fileopen$(ExOBJ):: ../settvuti/fileopen.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fiopeaid$(ExOBJ):: fiopeaid.cc  
+obj/fiopeaid$(ExOBJ):: ../settvuti/fiopeaid.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/inputsca$(ExOBJ):: inputsca.cc  
+obj/inputsca$(ExOBJ):: ../settvuti/inputsca.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ninputsc$(ExOBJ):: ninputsc.cc  
+obj/ninputsc$(ExOBJ):: ../settvuti/names/ninputsc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex$(ExOBJ):: nostatex.cc  
+obj/nostatex$(ExOBJ):: ../settvuti/nostatex.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar$(ExOBJ):: nprogbar.cc  
+obj/nprogbar$(ExOBJ):: ../settvuti/names/nprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres$(ExOBJ):: nprogres.cc  
+obj/nprogres$(ExOBJ):: ../settvuti/names/nprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnocast$(ExOBJ):: ntnocast.cc  
+obj/ntnocast$(ExOBJ):: ../settvuti/names/ntnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnosost$(ExOBJ):: ntnosost.cc  
+obj/ntnosost$(ExOBJ):: ../settvuti/names/ntnosost.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/setstack$(ExOBJ):: setstack.cc  
+obj/setstack$(ExOBJ):: ../settvuti/setstack.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogbar$(ExOBJ):: sprogbar.cc  
+obj/sprogbar$(ExOBJ):: ../settvuti/streams/sprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogres$(ExOBJ):: sprogres.cc  
+obj/sprogres$(ExOBJ):: ../settvuti/streams/sprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/stnocast$(ExOBJ):: stnocast.cc  
+obj/stnocast$(ExOBJ):: ../settvuti/streams/stnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/stnonost$(ExOBJ):: stnonost.cc  
+obj/stnonost$(ExOBJ):: ../settvuti/streams/stnonost.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagaid$(ExOBJ):: tdiagaid.cc  
+obj/tdiagaid$(ExOBJ):: ../settvuti/tdiagaid.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagrow$(ExOBJ):: tdiagrow.cc  
+obj/tdiagrow$(ExOBJ):: ../settvuti/tdiagrow.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tinppipe$(ExOBJ):: tinppipe.cc  
+obj/tinppipe$(ExOBJ):: ../settvuti/tinppipe.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tnocastc$(ExOBJ):: tnocastc.cc  
+obj/tnocastc$(ExOBJ):: ../settvuti/tnocastc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tnosostr$(ExOBJ):: tnosostr.cc  
+obj/tnosostr$(ExOBJ):: ../settvuti/tnosostr.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar$(ExOBJ):: tprogbar.cc  
+obj/tprogbar$(ExOBJ):: ../settvuti/tprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia$(ExOBJ):: tprogdia.cc  
+obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogrdi$(ExOBJ):: tprogrdi.cc  
+obj/tprogrdi$(ExOBJ):: ../settvuti/tprogrdi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres$(ExOBJ):: tprogres.cc  
+obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstrlbox$(ExOBJ):: tstrlbox.cc  
+obj/tstrlbox$(ExOBJ):: ../settvuti/tstrlbox.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/uisarray$(ExOBJ):: uisarray.cc  
+obj/uisarray$(ExOBJ):: ../settvuti/uisarray.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ussarray$(ExOBJ):: ussarray.cc  
+obj/ussarray$(ExOBJ):: ../settvuti/ussarray.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/viewplus$(ExOBJ):: viewplus.cc  
+obj/viewplus$(ExOBJ):: ../settvuti/viewplus.cc  
 	$(RHIDE_COMPILE_CC)
 

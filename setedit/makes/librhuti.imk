@@ -17,29 +17,29 @@ librhuti$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/abstorel$(ExOBJ):: abstorel.cc \
+obj/abstorel$(ExOBJ):: ../librhuti/abstorel.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/back2sl$(ExOBJ):: back2sl.cc \
+obj/back2sl$(ExOBJ):: ../librhuti/back2sl.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/basename$(ExOBJ):: basename.cc \
+obj/basename$(ExOBJ):: ../librhuti/basename.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fexpand$(ExOBJ):: fexpand.cc \
+obj/fexpand$(ExOBJ):: ../librhuti/fexpand.cc \
 	compatlayer.h \
 	rhutils.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/io$(ExOBJ):: io.cc \
+obj/io$(ExOBJ):: ../librhuti/io.cc \
 	cl/unistd.h \
 	compatlayer.h \
 	rhutils.h \
@@ -47,34 +47,34 @@ obj/io$(ExOBJ):: io.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/specs$(ExOBJ):: specs.cc \
+obj/specs$(ExOBJ):: ../librhuti/specs.cc \
 	compatlayer.h \
 	rhutils.h \
 	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/splitfn$(ExOBJ):: splitfn.cc \
+obj/splitfn$(ExOBJ):: ../librhuti/splitfn.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stricat$(ExOBJ):: stricat.cc \
+obj/stricat$(ExOBJ):: ../librhuti/stricat.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stridown$(ExOBJ):: stridown.cc \
+obj/stridown$(ExOBJ):: ../librhuti/stridown.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stridup$(ExOBJ):: stridup.cc \
+obj/stridup$(ExOBJ):: ../librhuti/stridup.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/strifree$(ExOBJ):: strifree.cc \
+obj/strifree$(ExOBJ):: ../librhuti/strifree.cc \
 	rhutils.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)

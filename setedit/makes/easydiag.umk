@@ -31,78 +31,78 @@ libeasyd$(ExLIB):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/lablchek$(ExOBJ):: lablchek.cc  
+obj/lablchek$(ExOBJ):: ../easydiag/lablchek.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/lablradi$(ExOBJ):: lablradi.cc  
+obj/lablradi$(ExOBJ):: ../easydiag/lablradi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/snostate$(ExOBJ):: snostate.cc  
+obj/snostate$(ExOBJ):: ../easydiag/snostate.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tcheck2$(ExOBJ):: tcheck2.cc  
+obj/tcheck2$(ExOBJ):: ../easydiag/tcheck2.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tmiclust$(ExOBJ):: tmiclust.cc  
+obj/tmiclust$(ExOBJ):: ../easydiag/tmiclust.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsbutton$(ExOBJ):: tsbutton.cc  
+obj/tsbutton$(ExOBJ):: ../easydiag/tsbutton.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkarr$(ExOBJ):: tschkarr.cc  
+obj/tschkarr$(ExOBJ):: ../easydiag/tschkarr.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkbox$(ExOBJ):: tschkbox.cc  
+obj/tschkbox$(ExOBJ):: ../easydiag/tschkbox.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tshscrol$(ExOBJ):: tshscrol.cc  
+obj/tshscrol$(ExOBJ):: ../easydiag/tshscrol.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tshzgrp$(ExOBJ):: tshzgrp.cc  
+obj/tshzgrp$(ExOBJ):: ../easydiag/tshzgrp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplin$(ExOBJ):: tsinplin.cc  
+obj/tsinplin$(ExOBJ):: ../easydiag/tsinplin.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplpi$(ExOBJ):: tsinplpi.cc  
+obj/tsinplpi$(ExOBJ):: ../easydiag/tsinplpi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslabel$(ExOBJ):: tslabel.cc  
+obj/tslabel$(ExOBJ):: ../easydiag/tslabel.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslider$(ExOBJ):: tslider.cc  
+obj/tslider$(ExOBJ):: ../easydiag/tslider.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslistbo$(ExOBJ):: tslistbo.cc  
+obj/tslistbo$(ExOBJ):: ../easydiag/tslistbo.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsradbot$(ExOBJ):: tsradbot.cc  
+obj/tsradbot$(ExOBJ):: ../easydiag/tsradbot.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tssortlb$(ExOBJ):: tssortlb.cc  
+obj/tssortlb$(ExOBJ):: ../easydiag/tssortlb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tssosslb$(ExOBJ):: tssosslb.cc  
+obj/tssosslb$(ExOBJ):: ../easydiag/tssosslb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstatext$(ExOBJ):: tstatext.cc  
+obj/tstatext$(ExOBJ):: ../easydiag/tstatext.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstextsc$(ExOBJ):: tstextsc.cc  
+obj/tstextsc$(ExOBJ):: ../easydiag/tstextsc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstsorlb$(ExOBJ):: tstsorlb.cc  
+obj/tstsorlb$(ExOBJ):: ../easydiag/tstsorlb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsvegrp$(ExOBJ):: tsvegrp.cc  
+obj/tsvegrp$(ExOBJ):: ../easydiag/tsvegrp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsview$(ExOBJ):: tsview.cc  
+obj/tsview$(ExOBJ):: ../easydiag/tsview.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsviewco$(ExOBJ):: tsviewco.cc  
+obj/tsviewco$(ExOBJ):: ../easydiag/tsviewco.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ttextscr$(ExOBJ):: ttextscr.cc  
+obj/ttextscr$(ExOBJ):: ../easydiag/ttextscr.cc  
 	$(RHIDE_COMPILE_CC)
 

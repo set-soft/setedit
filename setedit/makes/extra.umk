@@ -2,30 +2,30 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-obj/djmdr$(ExOBJ):: djmdr.s  
+obj/djmdr$(ExOBJ):: ../extra/djmdr.s  
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/dyncat$(ExOBJ):: dyncat.cc  
+obj/dyncat$(ExOBJ):: ../extra/dyncat.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/memmove$(ExOBJ):: memmove.s  
+obj/memmove$(ExOBJ):: ../extra/memmove.s  
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/mixer$(ExOBJ):: mixer.c  
+obj/mixer$(ExOBJ):: ../extra/mixer.c  
 	$(RHIDE_COMPILE_C)
 
-obj/mixersb$(ExOBJ):: mixersb.c  
+obj/mixersb$(ExOBJ):: ../extra/mixersb.c  
 	$(RHIDE_COMPILE_C)
 
-obj/mixoss$(ExOBJ):: mixoss.c  
+obj/mixoss$(ExOBJ):: ../extra/mixoss.c  
 	$(RHIDE_COMPILE_C)
 
-obj/stackdbg$(ExOBJ):: stackdbg.c  
+obj/stackdbg$(ExOBJ):: ../extra/stackdbg.c  
 	$(RHIDE_COMPILE_C)
 
-obj/strncpyz$(ExOBJ):: strncpyz.cc  
+obj/strncpyz$(ExOBJ):: ../extra/strncpyz.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/strndup$(ExOBJ):: strndup.cc  
+obj/strndup$(ExOBJ):: ../extra/strndup.cc  
 	$(RHIDE_COMPILE_CC)
 

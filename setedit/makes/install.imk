@@ -94,27 +94,27 @@ obj/install$(ExOBJ):: install.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex$(ExOBJ):: nostatex.cc \
+obj/nostatex$(ExOBJ):: ../settvuti/nostatex.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar$(ExOBJ):: nprogbar.cc \
+obj/nprogbar$(ExOBJ):: ../settvuti/names/nprogbar.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres$(ExOBJ):: nprogres.cc \
+obj/nprogres$(ExOBJ):: ../settvuti/names/nprogres.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar$(ExOBJ):: tprogbar.cc \
+obj/tprogbar$(ExOBJ):: ../settvuti/tprogbar.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia$(ExOBJ):: tprogdia.cc \
+obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres$(ExOBJ):: tprogres.cc \
+obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

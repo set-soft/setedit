@@ -23,22 +23,22 @@ INCLUDE00=easydiag$(ExIMK)
 obj/install$(ExOBJ):: install.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex$(ExOBJ):: nostatex.cc  
+obj/nostatex$(ExOBJ):: ../settvuti/nostatex.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar$(ExOBJ):: nprogbar.cc  
+obj/nprogbar$(ExOBJ):: ../settvuti/names/nprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres$(ExOBJ):: nprogres.cc  
+obj/nprogres$(ExOBJ):: ../settvuti/names/nprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar$(ExOBJ):: tprogbar.cc  
+obj/tprogbar$(ExOBJ):: ../settvuti/tprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia$(ExOBJ):: tprogdia.cc  
+obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres$(ExOBJ):: tprogres.cc  
+obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\

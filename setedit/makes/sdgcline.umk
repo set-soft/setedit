@@ -27,39 +27,39 @@ sdg$(ExEXE):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objsdg/bufun2$(ExOBJ):: bufun2.cc  
+objsdg/bufun2$(ExOBJ):: ../sdg/bufun2.cc  
 	$(RHIDE_COMPILE_CC)
 
 INCLUDE00=extra$(ExIMK)
 
-objsdg/mli$(ExOBJ):: mli.cc  
+objsdg/mli$(ExOBJ):: ../sdg/mli.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mliasimp$(ExOBJ):: mliasimp.cc  
+objsdg/mliasimp$(ExOBJ):: ../sdg/mliasimp.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc  
+objsdg/mlicsdg$(ExOBJ):: ../sdg/mlicsdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlisdg$(ExOBJ):: mlisdg.cc  
+objsdg/mlisdg$(ExOBJ):: ../sdg/mlisdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/ntnocast$(ExOBJ):: ntnocast.cc  
+objsdg/ntnocast$(ExOBJ):: ../settvuti/names/ntnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/setstack$(ExOBJ):: setstack.cc  
+objsdg/setstack$(ExOBJ):: ../settvuti/setstack.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/stnocast$(ExOBJ):: stnocast.cc  
+objsdg/stnocast$(ExOBJ):: ../settvuti/streams/stnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/tnocastc$(ExOBJ):: tnocastc.cc  
+objsdg/tnocastc$(ExOBJ):: ../settvuti/tnocastc.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhgen$(ExOBJ):: txhgen.cc  
+objsdg/txhgen$(ExOBJ):: ../sdg/txhgen.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhmain$(ExOBJ):: txhmain.cc  
+objsdg/txhmain$(ExOBJ):: ../sdg/txhmain.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\

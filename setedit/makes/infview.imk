@@ -25,7 +25,7 @@ infview$(ExEXE):: \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objinf/dyncat$(ExOBJ):: dyncat.cc \
+objinf/dyncat$(ExOBJ):: ../extra/dyncat.cc \
 	configed.h \
 	dyncat.h \
 	$(MAKEFILE_DEPS) 
@@ -33,11 +33,11 @@ objinf/dyncat$(ExOBJ):: dyncat.cc \
 
 INCLUDE00=easydiag$(ExIMK)
 
-objinf/fstrcmp$(ExOBJ):: fstrcmp.c \
+objinf/fstrcmp$(ExOBJ):: ../mainsrc/fstrcmp.c \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-objinf/gzfiles$(ExOBJ):: gzfiles.cc \
+objinf/gzfiles$(ExOBJ):: ../mainsrc/gzfiles.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -59,7 +59,7 @@ objinf/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/inf$(ExOBJ):: inf.cc \
+objinf/inf$(ExOBJ):: ../infview/inf.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ceditint.h \
@@ -147,7 +147,7 @@ objinf/inf$(ExOBJ):: inf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infbase$(ExOBJ):: infbase.cc \
+objinf/infbase$(ExOBJ):: ../infview/infbase.cc \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -201,11 +201,11 @@ objinf/infbase$(ExOBJ):: infbase.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infdummy$(ExOBJ):: infdummy.cc \
+objinf/infdummy$(ExOBJ):: ../infview/infdummy.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmain$(ExOBJ):: infmain.cc \
+objinf/infmain$(ExOBJ):: ../infview/infmain.cc \
 	ced_coma.h \
 	ceditint.h \
 	ceditor.h \
@@ -298,7 +298,7 @@ objinf/infmain$(ExOBJ):: infmain.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmenu$(ExOBJ):: infmenu.cc \
+objinf/infmenu$(ExOBJ):: ../infview/infmenu.cc \
 	ced_coma.h \
 	ceditor.h \
 	compatlayer.h \
@@ -372,7 +372,7 @@ objinf/infmenu$(ExOBJ):: infmenu.cc \
 
 INCLUDE01=librhuti$(ExIMK)
 
-objinf/manview$(ExOBJ):: manview.cc \
+objinf/manview$(ExOBJ):: ../infview/manview.cc \
 	ced_coma.h \
 	ceditor.h \
 	cl/unistd.h \
@@ -441,7 +441,7 @@ objinf/manview$(ExOBJ):: manview.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/nhiscoll$(ExOBJ):: nhiscoll.cc \
+objinf/nhiscoll$(ExOBJ):: ../infview/names/nhiscoll.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -460,7 +460,7 @@ objinf/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfview$(ExOBJ):: ninfview.cc \
+objinf/ninfview$(ExOBJ):: ../infview/names/ninfview.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -479,7 +479,7 @@ objinf/ninfview$(ExOBJ):: ninfview.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfwind$(ExOBJ):: ninfwind.cc \
+objinf/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -498,7 +498,7 @@ objinf/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/nmanwind$(ExOBJ):: nmanwind.cc \
+objinf/nmanwind$(ExOBJ):: ../infview/names/nmanwind.cc \
 	compatlayer.h \
 	settvuti.h \
 	tv.h \
@@ -519,7 +519,7 @@ objinf/nmanwind$(ExOBJ):: nmanwind.cc \
 
 INCLUDE02=settv$(ExIMK)
 
-objinf/sinf$(ExOBJ):: sinf.cc \
+objinf/sinf$(ExOBJ):: ../infview/streams/sinf.cc \
 	compatlayer.h \
 	inf.h \
 	infbase.h \
@@ -571,7 +571,7 @@ objinf/sinf$(ExOBJ):: sinf.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/sman$(ExOBJ):: sman.cc \
+objinf/sman$(ExOBJ):: ../infview/streams/sman.cc \
 	compatlayer.h \
 	manview.h \
 	tv.h \
@@ -606,7 +606,7 @@ objinf/sman$(ExOBJ):: sman.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/strncpyz$(ExOBJ):: strncpyz.cc \
+objinf/strncpyz$(ExOBJ):: ../extra/strncpyz.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
