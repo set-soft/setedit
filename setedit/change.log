@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.633  2004/10/18 20:58:01  set
+* Fixed: [Debug] when opening the disassembler window the editor failed to
+create the correct expression to find the starting address of the current
+function. This isn't critical but generates an error message and the
+function isn't disassembled from the beginning.
+
 Revision 1.632  2004/10/18 16:50:14  set
 * Fixed: [Cosmetic] Copyright year shown in the command line help. Unified
 with the one in the about box.
