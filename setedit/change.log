@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.200  2002/09/09 13:32:41  set
+* Added: Support for the secondary OS clipboard to InfView (X11 selection).
+* Added: Support fot copy from man page to: editor's clipboard, main OS
+clipboard and secondary OS clipboard.
+* Removed: Old code I used to compile InfView with Sigala's port. Also
+removed some TV 1.x code.
+
 Revision 1.199  2002/09/06 20:56:11  set
 * Added: The first steps towards selection support in the manpage viewer.
 Isn't functional yet. Suggested by Ivan.

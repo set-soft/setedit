@@ -167,7 +167,7 @@ void TEditorMiApp::ManPageView()
  TDialog *d=ManPageViewSelect(0,&op);
  if (execDialog(d,op)==cmOK)
    {
-    TView *view=CreateManWindow(op->program,op->section,op->options);
+    TView *view=CreateManWindow(op->program,op->section,op->options,NULL);
     if (validView(view))
       {
        view->options|=ofTileable;
