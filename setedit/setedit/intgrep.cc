@@ -34,6 +34,7 @@
 #define Uses_TSOSListBox
 #define Uses_fpstream
 #define Uses_TVCodePage
+#define Uses_TScreen
 #include <ceditor.h>
 #define Uses_SETAppHelper
 #define Uses_SETAppConst
@@ -49,12 +50,6 @@
 //#endif
 #include <dyncat.h>
 #include <pathtool.h>
-
-#if TV_MAJOR_VERSION>=2
-#define TV_System TScreen::System
-#define Uses_TScreen
-#include <tv/screen.h>
-#endif
 
 // From edprj.cc generates the list of project items
 extern int WriteNamesOfProjectTo(FILE *f);
@@ -184,7 +179,7 @@ int CheckForGREP(void)
    {
     // We must rediret the error to avoid getting it in the stderr file
     char *err=open_stderr_out();
-    TV_System("grep -V");
+    TScreen::System("grep -V");
     close_stderr_out();
     // Check what we got
     FILE *f=fopen(err,"r");
@@ -234,7 +229,7 @@ void RunGrep(char *command)
     putenv("SHELL=");
    }
  // Call it
- TV_System(command);
+ TScreen::System(command);
  // Now restore the environment
  if (envShell)
     // IMPORTANT! we can do it with djgpp because djgpp makes a copy
@@ -243,7 +238,7 @@ void RunGrep(char *command)
     putenv(envShellCopy);
  #else
  // Call it
- TV_System(command);
+ TScreen::System(command);
  #endif
  close_stdout();
  close_stderr();

@@ -1953,9 +1953,7 @@ void ParseCommandLine(int argc, char *argv[])
             putenv("LFN=Y");
             break;
        case 'm':
-            #if TV_MAJOR_VERSION<2
-            use_mouse_handler=0;
-            #endif
+            //use_mouse_handler=0;
             break;
        case 'M':
             DisableBoardMixer=1;
@@ -2216,9 +2214,9 @@ int main(int argc, char *argv[])
 
  SetConfigDialogFunc(SetFileOpenDialogOptions);
  InitPaletteSystem();
- #if TV_MAJOR_VERSION<2
- setIntenseState();
- #endif
+ //#if TV_MAJOR_VERSION<2
+ //setIntenseState();
+ //#endif
  if (DisableBoardMixer)
     BoardMixerDisable();
 
@@ -2320,12 +2318,6 @@ int main(int argc, char *argv[])
  PrintSetDefaults();
 
  LoadKeysForTCEditor(GetKeyBindFName(0));
- #ifdef TVOSf_Linux
-  #if TV_MAJOR_VERSION<2
- if (UseRH52)
-    TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
-  #endif
- #endif
  TCEditor::SHLGenList=new TNoCaseStringCollection(5,5);
  LoadSyntaxHighLightFile(ExpandHome(SHLFile),TCEditor::SHLArray,TCEditor::SHLGenList,
                          TCEditor::SHLCant);

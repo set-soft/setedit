@@ -18,6 +18,7 @@
 #define Uses_TKeys
 #define Uses_TKeys_Extended
 #define Uses_TVCodePage
+#define Uses_TScreen
 
 #define Uses_TSLabel
 #define Uses_TSVeGroup
@@ -44,12 +45,6 @@
 #include <diaghelp.h>
 #include <rhutils.h>
 #include <codepage.h>
-
-#if TV_MAJOR_VERSION>=2
-#define TV_System TScreen::System
-#define Uses_TScreen
-#include <tv/screen.h>
-#endif
 
 static const char *ExtraOps;
 
@@ -681,7 +676,7 @@ char *CreateTempManPage(char *str)
  DynStrCatInit(&st,str);
  DynStrCat(&st," > ");
  DynStrCat(&st,tmp);
- TV_System(st.str);
+ TScreen::System(st.str);
  free(st.str);
  close_stderr();
 
@@ -755,7 +750,7 @@ int CheckForMan(void)
  if (!isManInstalled)
    {
     char *err=open_stdout();
-    int ret=TV_System("man");
+    int ret=TScreen::System("man");
     close_stdout();
     unlink(err);
 

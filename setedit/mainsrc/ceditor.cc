@@ -110,11 +110,7 @@
 #define flushLine()  if (IslineInEdition) MakeEfectiveLineInEdition()
 #define flushLine2(a)  if (a->IslineInEdition) a->MakeEfectiveLineInEdition()
 
-#if TV_MAJOR_VERSION==2
- #define CheckScrollLockCenters ((TGKey::getShiftState() & kbScrollLockToggle) && (editorFlags & efScrollLock))
-#else
- #define CheckScrollLockCenters ((TGKey::sFlags & 16) && (editorFlags & efScrollLock))
-#endif
+#define CheckScrollLockCenters ((TGKey::getShiftState() & kbScrollLockToggle) && (editorFlags & efScrollLock))
 
 static unsigned LineMeassureC(char *s, char *end, uint32 &Attr, uint32 *extra=0);
 static unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr, uint32 *extra=0);
@@ -10351,16 +10347,8 @@ void TCEditor::toggleInsMode(Boolean allowUndo)
     addToUndo(undoCutInMov);
  overwrite = (!overwrite) ? True : False;
  setState(sfCursorIns,overwrite);
- #if TV_MAJOR_VERSION<2
-  #ifdef TVOSf_Linux
-  // I don't know how to change the cursor shape so an user suggested
-  // putting it in the indicator
-  update(ufUpdate);
-  #endif
- #else
  if (!TScreen::cursorShapes())
     update(ufUpdate);
- #endif
 }
 
 

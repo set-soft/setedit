@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.244  2002/12/03 12:32:44  set
+* Fixed: The special lines that doesn't exist are 0 and not -1.
+
 Revision 1.243  2002/12/03 12:31:56  set
 * Fixed: The KeyPad behavior. It is only for DOS driver. TV 2.0.1 is
 needed.
