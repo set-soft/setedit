@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.256  2002/12/10 14:13:55  set
+* Added: Missing header for fonts conversion utility.
+
 Revision 1.255  2002/12/09 13:23:53  set
 * Fixed: Commented out atStartOfComment in pphp.cc, it isn't used.
 

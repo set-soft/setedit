@@ -2066,7 +2066,7 @@ Keywords=ScreenWidth,ScreenHeight,FontWidth,FontHeight,UseSecondaryFont
 Keywords=ScreenPalette,zHideCursorWhenNoFocus,ExtProgVideoMode,VideoMode
 Keywords=DontResizeToCells,BIOSKey,UseShellScreen,InternalBusyCursor
 Keywords=VGABIOSState,SaveVGAState,DontMoveHiddenCursor,AppCP,ScrCP,InpCP
-Keywords=PollMouse
+Keywords=PollMouse,BrokenCursorShape
 End
 
 #--------------------------------- XML ------------------------------------
