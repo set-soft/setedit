@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.636  2004/11/02 19:56:03  set
+* Added: [Compilation][MSVC] Option to compile with debug information.
+From information sent by Grzegorz.
+* Modified: [Configuration] ar and install detection. Now more robust.
+* Fixed: [Installation][Solaris] make can't be detected trying gmake.
+
 Revision 1.635  2004/10/20 20:41:07  set
 * Fixed: Last patch that involved copyright year was incomplete.
 
