@@ -22,6 +22,7 @@
 #include <mp3play.h>
 #include <calendar.h>
 #include <tprogdia.h>
+#include <ceditint.h> // SUP_MP3
 // From the screen saver
 extern char *coFormaScreenSaverStars[];
 extern char *cFormaScreenSaverStars[];
