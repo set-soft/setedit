@@ -41,6 +41,7 @@
 #define Uses_SETAppHelper
 #define Uses_SETAppVarious
 #define Uses_SETAppConst
+#define Uses_TSetEditorApp
 #include <setapp.h>
 
 #include <edmsg.h>
@@ -59,7 +60,8 @@
 
 // Values for Options
 const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8,
-               opNoRedirOut=16;
+               opNoRedirOut=16, opNoBeep=32, opNoDebugStop=64, opNoBkpMove=128,
+               opWarnDebugStop=256;
 const unsigned opshBegin=1,opshEachMessage=2,opshEnd=4;
 
 const int maxCommand=256;
@@ -116,7 +118,7 @@ void ConfigureRunCommand(void)
    }
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));
- // EN: ABDEFHJKLMNPRSTUW
+ // EN: ABCDEFGHIJKLMNOPRSTUW
  // ES: ACEFKIJLNOPRSTUZ
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,1,hID_RunProgram,40));
@@ -125,24 +127,32 @@ void ConfigureRunCommand(void)
          __("~D~on't try to run in background"),
          __("~A~lways parse in background"),
          __("~J~ump to the first error"),
-         __("Don't ~r~edirect stdout"),0);
+         __("Don't ~r~edirect stdout"),
+         __("Don't make a beep when f~i~nished"),
+         __("Don't finish debu~g~ session"),
+         __("Don't move breakp~o~ints"),
+         __("~C~onfirm if stopping debug session"),0);
  TSLabel *opsscroll=TSLabelRadio(__("Message window ~s~croll"),
          __("Al~w~ays"),__("~N~ever"),__("Only if not ~f~ocused"),0);
+ TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,0);
+ grp->makeSameW();
+ col->insert(2,1,grp);
+
  TSLabel *optscrh=TSLabelCheck(__("~H~orizontal reset"),
          __("At ~b~eggining"),
          __("For each ~m~essage"),
          __("At ~t~he end"),0);
  TSHzLabel *linesInput=new TSHzLabel(__("~L~ines per pass"),new TSInputLine(4));
- TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,optscrh,linesInput,0);
- grp->makeSameW();
- col->insert(2,1,grp);
+ TSVeGroup *grp2=MakeVeGroup(0,optscrh,linesInput,0);
 
  if (validList)
    {
     TSLabel *compilers=new TSLabel(__("Error ~p~arser"),
-                                   new TSSortedListBox(28,grp->h-1,tsslbVertical));
-    col->insert(xTSRightOf,yTSUp,compilers,grp);
+                                   new TSSortedListBox(28,grp->h-1-grp2->h,tsslbVertical));
+    grp2=MakeVeGroup(0,grp2,compilers,0);
    }
+ grp2->makeSameW();
+ col->insert(xTSRightOf,yTSUp,grp2,grp);
 
  EasyInsertOKCancel(col);
 
@@ -163,6 +173,13 @@ void ConfigureRunCommand(void)
        CurrentParser=newStr((char *)box.tl.items->at(box.tl.selection));
       }
    }
+}
+
+static inline
+void MakeBeep()
+{
+ if (!(Options & opNoBeep))
+    CLY_Beep();
 }
 
 static
@@ -467,14 +484,19 @@ void IncCleanUp()
        PendingCleanUp=1;
        if (!(OpsScrHz & opshEnd))
           op|=edsmNoHzReset;
+       MakeBeep();
        EdShowMessageI(__("Waiting ..."),op);
       }
     return;
    }
+ else
+    MakeBeep();
  // Ok, we can go on
  ParsingErrors=0;
  EdShowMessageI(BackEd,scrlOps |
                 ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
+ if (!(Options & opNoBkpMove))
+    TSetEditorApp::DebugMoveBreakPts();
  if (incGoBack)
    {
     if (Options & opJumpFirstError)
@@ -661,14 +683,24 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
  int useOSScreen=flags & repRestoreScreen;
  int dontFork   =flags & repDontFork;
  int noRedirOut =flags & repNoRedirOut;
+ int noStopDebug=!(flags & repStopDebug);
  // Should we use global defaults to complement flags?
  if (flags & repFlagsFromOps)
    {
     useOSScreen=useOSScreen || (Options & opUseOSScreen);
     dontFork   =dontFork    || (Options & opNeverFork);
     noRedirOut =noRedirOut  || (Options & opNoRedirOut);
+    noStopDebug=noStopDebug && (Options & opNoDebugStop);
    }
  
+ if (!noStopDebug)
+   {// We have to stop the debug session
+    printf("Closing session\n");
+    if (!TSetEditorApp::DebugCloseSession(Options & opWarnDebugStop ? True : False))
+       // The user canceled it, abort
+       return;
+   }
+
  int saveScreen=!TScreen::noUserScreen() && useOSScreen;
  if ((flags & repDontShowAsMessage)==0)
    {
@@ -735,7 +767,10 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
                                 IndexCLE<0 ? ParseFun : ParseFunCLE);
        SpLinesUpdate();
        ErrorFile=0;
+       MakeBeep();
        EdShowMessageI(BackEd,scrlOps | ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
+       if (!(Options & opNoBkpMove))
+          TSetEditorApp::DebugMoveBreakPts();
        if (goBack)
          {
           if (Options & opJumpFirstError)

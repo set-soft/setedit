@@ -392,6 +392,7 @@ static edCList SetFlags[] =
 {"RegularEx"      ,efRegularEx        },
 {"ReplaceAll"     ,efReplaceAll       },
 {"RunNoRedirect"  ,2                  }, // Don't redirect stdout
+{"RunStopDebug"   ,4                  }, // Stop debug session
 {"RunUserScreen"  ,1                  }, // Use the user screen to run the external command
 
 {"SearchInComm"   ,efSearchInComm     },

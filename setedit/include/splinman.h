@@ -27,13 +27,16 @@ public:
 // Your objetive is transfer the array spLines to the editor associated to fileName
 extern void ApplySpLines(char *fileName, TSpCollection *spLines);
 
+typedef void (*spLineApplyF)(const char *file, stSpLine *spline, void *data);
+
 void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow=True);
 void SpLinesUpdate(void);
 TSpCollection *SpLinesGetFor(char *fName);
 void SpLinesDeleteForId(int id, const char *file=NULL, Boolean aLine=False, int oLine=0);
-int SpLineGetNewValueOf(int line, char *fileName, Boolean *found=NULL);
-int SpLineGetOldValueOf(int line, char *fName, int type, Boolean *found);
+int  SpLineGetNewValueOf(int line, char *fileName, Boolean *found=NULL);
+int  SpLineGetOldValueOf(int line, char *fName, int type, Boolean *found);
 void SpLinesCleanUp();
+void SpLinesForEach(int id, spLineApplyF apply, void *data=NULL);
 
 const int idsplAny=0,
           idsplError=1,

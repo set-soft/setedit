@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -323,7 +323,7 @@ int TSOSListBoxMsg::getLineOf(int pos)
  return fI->Line;
 }
 
-static
+static inline
 void MakeBeep()
 {
  CLY_Beep();

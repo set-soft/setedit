@@ -910,7 +910,7 @@ void TCEditor::doUpdate()
     // Repair the highligthed position
     if (IsHLCOn)
       {
-       if (updateFlags & (ufLine | ufFound | ufStatus | ufHLChar))
+       if (updateFlags & (ufLine | ufFound | ufStatus | ufHLChar | ufClHLCh))
          {
           int y=YHLCc-delta.y;
           int x=XHLCc-delta.x;
@@ -966,7 +966,7 @@ void TCEditor::doUpdate()
        IsStatusLineOn=False;
       }
 
-    if ( (updateFlags & ufView) != 0 )
+    if (updateFlags & ufView)
       {
        if (IslineInEdition && (updateFlags & ufLine))
          { // When we type in the last column the editor forces a full draw and we must
@@ -983,7 +983,7 @@ void TCEditor::doUpdate()
        drawView(); // All the window
       }
     else
-       if ( (updateFlags & ufLine) != 0 )
+       if (updateFlags & ufLine)
          {
           if (IslineInEdition)
             { // The following is a test and can be optimized a lot
@@ -1022,16 +1022,16 @@ void TCEditor::doUpdate()
 
     // The status line
     if (updateFlags & ufStatus)
-      { // Put it at memorize the situation
+      { // Put it and record the state
        if (curPos.y==delta.y+size.y-1)
          {
           StatusLinePos=0;
-          writeLine(0, 0, size.x, 1, StatusLine);
+          writeLine(0,0,size.x,1,StatusLine);
          }
        else
          {
           StatusLinePos=1;
-          writeLine(0, size.y-1, size.x, 1, StatusLine);
+          writeLine(0,size.y-1,size.x,1,StatusLine);
          }
        IsStatusLineOn=True;
       }
@@ -13577,6 +13577,11 @@ void TCEditor::SetSpecialLines(TSpCollection *nLines)
 
  oLines=SpecialLines;
  SpecialLines=NULL;
+
+ // We are painting individual lines without calling doUpdate, so we have to
+ // clean some things before.
+ if (IsHLCOn)
+    update(ufClHLCh);
 
  if (oLines)
    {// We already have them redraw the affected lines

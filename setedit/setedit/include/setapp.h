@@ -398,10 +398,11 @@ public:
     static void DebugOptsMsgs();
     static void DebugWatchExp(Boolean wScope, char *val);
     static int  DebugConfirmEndSession(Boolean directRequest=False);
-    static void DebugCloseSession();
+    static Boolean DebugCloseSession(Boolean confirm=True);
     static void DebugCommandsForDisc();
     static void DebugCommonCleanUp();
     static void DebugEditBreakPts();
+    static void DebugMoveBreakPts();
 
 protected:
 

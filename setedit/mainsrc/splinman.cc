@@ -396,3 +396,37 @@ void SpLinesCleanUp()
  SpLines=NULL;
 }
 
+struct idAndData
+{
+ int id;
+ void *data;
+ spLineApplyF apply;
+};
+
+static
+void SpLinesForEachFile(void *item, void *data)
+{
+ idAndData *d=(idAndData *)data;
+ NodeCol *p=(NodeCol *)item;
+
+ TSpCollection *col=p->SpecialLines;
+ int i, c=col->getCount();
+ for (i=0; i<c; i++)
+    {
+     stSpLine *s=col->At(i);
+     if (d->id==idsplAny || d->id==s->id)
+        d->apply(p->file,s,d->data);
+    }
+}
+
+void SpLinesForEach(int id, spLineApplyF apply, void *data)
+{
+ if (!SpLines)
+    return;
+ idAndData d;
+ d.id=id;
+ d.data=data;
+ d.apply=apply;
+ SpLines->forEach(SpLinesForEachFile,&d);
+}
+

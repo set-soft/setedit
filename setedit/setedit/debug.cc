@@ -1325,18 +1325,18 @@ hides the windows. Asks for confirmation if we are running or stopped.
   
 ***************************************************************************/
 
-void TSetEditorApp::DebugCloseSession()
+Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
 {
  if (dbg)
    {
     MIDebugger::eState st=dbg->GetState();
-    if (st==MIDebugger::running || st==MIDebugger::stopped &&
-        messageBox(__("It will kill the program you are debugging. Go ahead?"),
-                   mfConfirmation | mfYesButton | mfNoButton)!=cmYes)
-       return;
-   }
- if (dbg)
-   {
+    if (st==MIDebugger::running || st==MIDebugger::stopped)
+      {
+       if (confirm &&
+           messageBox(__("It will kill the program you are debugging. Go ahead?"),
+                      mfConfirmation | mfYesButton | mfNoButton)!=cmYes)
+          return False;
+      }
     delete dbg; // It will close the debug session
     dbg=NULL;
    }
@@ -1345,6 +1345,8 @@ void TSetEditorApp::DebugCloseSession()
  WatchesClose();
  DebugCommonCleanUp();
  TProgram::deskTop->unlock();
+
+ return True;
 }
 
 /*****************************************************************************
@@ -2218,6 +2220,34 @@ void TSetEditorApp::DebugEditBreakPts()
 
  if (execDialog(d,&box)==cmBkGo)
     GotoFileLine(TDiagBrk::line,(char *)TDiagBrk::file);
+}
+
+static
+void MoveBreakpoint(const char *file, stSpLine *spline, void *data)
+{
+ mi_bkpt *b=bkpts.search(file,spline->oline+1);
+ if (b)
+   {
+    dbgPr("Moved %s:%d to line %d\n",file,spline->oline+1,spline->nline+1);
+    spline->oline=spline->nline;
+    b->line=spline->nline+1;
+   }
+ else
+   {// TODO: Change to dbgPr
+    printf("Don't know how to move %s:%d\n",file,spline->oline+1);
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Transfers the SpLines movements to the list of breakpoints.
+  
+***************************************************************************/
+
+void TSetEditorApp::DebugMoveBreakPts()
+{
+ SpLinesForEach(idsplBreak,MoveBreakpoint);
 }
 
 /*****************************************************************************
@@ -3763,7 +3793,7 @@ void TSetEditorApp::DebugEvalModify(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugOptsMsgs() {}
 void TSetEditorApp::DebugWatchExp(Boolean ) {}
 void TSetEditorApp::DebugDeInitVars() {}
-void TSetEditorApp::DebugCloseSession() {}
+void TSetEditorApp::DebugCloseSession(Boolean ) { return True; }
 int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
 void TSetEditorApp::DebugEditBreakPts() {}

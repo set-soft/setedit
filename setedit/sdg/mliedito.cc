@@ -234,6 +234,8 @@ DecFun(MLIRunProgram)
     flags|=repRestoreScreen;
  if (Options & 2)
     flags|=repNoRedirOut;
+ if (Options & 4)
+    flags|=repStopDebug;
  //fprintf(stderr,"Options %d\n",Options);
  if (cant>=3)
    {

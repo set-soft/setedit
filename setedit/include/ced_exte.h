@@ -1,27 +1,27 @@
 /* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#if defined( Uses_TCEditor_External ) && !defined( __TCEditor_External__ )
-#define __TCEditor_External__
+#if defined(Uses_TCEditor_External) && !defined(TCEditor_External_Included)
+#define TCEditor_External_Included
 
 // ************* General definitions
-#define UnUsed                  __attribute__ ((unused))
 
 // ************* Redraw commands
 const int
-  ufUpdate = 0x01,
-  ufLine   = 0x02,
-  ufView   = 0x04,
-  ufStatus = 0x08,
-  ufFound  = 0x10,
-  ufHLChar = 0x20;
+  ufUpdate=0x01,
+  ufLine  =0x02,
+  ufView  =0x04,
+  ufStatus=0x08,
+  ufFound =0x10,
+  ufHLChar=0x20,
+  ufClHLCh=0x40;
 
 // ************* States of the selection
 const int
-  smExtend = 0x01,
-  smDouble = 0x02,
-  smEndSel = 0x04,
+  smExtend  =0x01,
+  smDouble  =0x02,
+  smEndSel  =0x04,
   smStartSel=0x08,
-  smDontSel=0x80;
+  smDontSel =0x80;
 
 // ************* Editor dialogs
 const int

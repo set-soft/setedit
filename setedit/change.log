@@ -1,4 +1,27 @@
-$Log$.
+$Log$
+Revision 1.556  2004/07/30 21:10:17  set
+* Modified: Now the cmc*Win (Copy,Cut,Paste) commands are called cmc*OS to
+reflect their real use. The old names remains as aliases. From a suggestion
+by Thiago.
+* Added: Ins,Del,+,- shortcuts in the status line for the breakpoints
+dialog.
+* Added: [sLisp] new command GetSystemInfo to know the current OS, TV
+driver, CPU, etc. From a suggestion by Thiago.
+* Updated: docs, not yet the debug stuff.
+* Fixed: Error in the SpLines search that made funny things when trying to
+toggle a breakpoint (introduced during the structure change).
+* Added: The dialog to add a "watch" now is piped to an editor and the word
+under cursor is used. It also have a history (shared with evaluate).
+* Added: A history to the dialog to send gdb commands.
+* Modified: The "CPU line" is centered only if we jumped to another source.
+It is less annoying.
+* Added: The conditionals in menu files can use the TV driver, CPU, OS,
+etc. for conditions. From a suggestion by Thiago.
+* Added: $define and $undef and its expansion in menu files. From a
+suggestion by Thiago.
+* Fixed: The commands to select the watches and debug window are
+independent of the debugger state.
+
 Revision 1.555  2004/07/29 20:33:37  set
 * Added: The edit breakpoint dialog now disables the unneeded options. So
 if you will specify the location using file:line then you can't say the

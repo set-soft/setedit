@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.4
-@set update-date 30 July 2004
+@set update-date 31 July 2004
 @set update-month July 2004
 @set name-author Salvador Eduardo Tropea
 
@@ -5581,30 +5581,37 @@ message window.
 @subsection RunProgram
 
   (RunProgram @var{program_name} [[@var{flags}] @var{parser}])
-@paragraph{}
+@p{}
 
   Calls the desired program. You can pass more than one using the @code{;}
 separator or any separator supported by your shell. Under DOS @code{;} is ok
 even when command.com doesn't support it. The stderr and stdout are
 redirected and captured by the message window of the editor.
-@paragraph{}
+@p{}
 
   Use the operator @code{+} to concatenate strings and pass arguments.
-@paragraph{}
+@p{}
 
   Using @code{edfRunUserScreen} for the @var{flags} argument the editor will
 use the user screen when running the external program. Using
 @code{edfRunNoRedirect} the editor won't redirect the standard output. For
 interactive applications that uses standard input and output you should both
 flags combined using the or operator. @x{Operator | (bitwise or)}.
-@paragraph{}
+@p{}
+
+  Another option you can use is @code{edfRunStopDebug}. This option will stop
+any active debug session. That's a very delicated option and can be used when
+the macro is calling a compiler to rebuild an executable. In some OSs you
+must stop the debugger in order to be able to overwrite the executable.
+Additionaly gdb have some bugs that needs it as workaround.
+@p{}
 
   The @var{parser} parameter tells the editor which error parser will be used
 to parse the output of the external program. By default the GNU one is used.
-@paragraph{}
+@p{}
 
   To learn more about the message window @x{Message Window}.
-@paragraph{}
+@p{}
 
 @c --------------------------------------------------------------
 @subsection RunProgramRedir
