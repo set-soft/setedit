@@ -551,13 +551,13 @@ int EdMessageCantMessages(void)
 
 void EdMessageSelectNext(void)
 {
- if (MsgList)
+ if (MsgList && MsgList->range)
     MsgList->selectNext();
 }
 
 void EdMessageSelectPrev(void)
 {
- if (MsgList)
+ if (MsgList && MsgList->range)
     MsgList->selectPrev();
 }
 
