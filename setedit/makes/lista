@@ -464,6 +464,7 @@ mp3/getbits.h
 mp3/intermp3.cc
 mp3/intermp3.h
 mp3/libamp.h
+mp3/libamp/.cvsignore
 mp3/libamp/amp.h
 mp3/libamp/audioalg.c
 mp3/libamp/audioio.h
@@ -504,6 +505,7 @@ mp3/libamp/util.c
 mp3/mp3list.cc
 mp3/mp3play.cc
 mp3/mp3play.h
+mp3/mpegsound/.cvsignore
 mp3/mpegsound/bitwindow.cc
 mp3/mpegsound/common.imk
 mp3/mpegsound/fileinput.cc

@@ -185,6 +185,7 @@ static edCList SetApp[] =
 {
 { "ASCIIChart"     , 59 },
 { "AboutBox"       , 41 },
+{ "AdviceDiagConf" , 88 },
 { "AnotherInfView" , 10 },
 { "BoardMixer"     , 70 },
 { "Calculator"     , 4  },
