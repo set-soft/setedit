@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.213  2002/09/16 14:43:08  set
+* Fixed: The MP3 window character wasn't remapped after the last change.
+* Added: The last TV configuration keywords to the shl file.
+
 Revision 1.212  2002/09/13 12:30:31  set
 * Fixed: Lack of string.h in edfonts.cc. Reported by Anton Ustyancev
 <anton@cinvest.chel.su>.
