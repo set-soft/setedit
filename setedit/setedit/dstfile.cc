@@ -11,6 +11,7 @@
 #include <dir.h>
 #endif
 
+#define Uses_string
 #define Uses_MsgBox
 #define Uses_fpstream
 #define Uses_TDeskTop
