@@ -233,6 +233,7 @@ SubMenu: "~P~roject", kbAlP
  MenuItemC: "~O~pen...", cmeOpenPrj
  MenuItemC: "~C~lose", cmeClosePrj
  MenuItemC: "~S~ave", cmeSavePrj
+ MenuItemC: "Save ~d~esktop here", cmeSaveDesktop
 EndSubMenu
 
 SubMenu: "~H~elp", kbAlH

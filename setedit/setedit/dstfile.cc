@@ -307,7 +307,7 @@ void TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
 
 ***************************************************************************/
 
-void TSetEditorApp::saveDesktop(char *fName, int makeBkp)
+void TSetEditorApp::saveDesktop(const char *fName, int makeBkp)
 {
  if (makeBkp && edTestForFile(fName))
    {// Try to keep the original file

@@ -61,6 +61,8 @@ static helpNode helpList[]=
  HHe(SyntaxHelp,"Search (Syntax help)"),
  HHe(OpenPrj,"Open (Project)"),
  HHe(ClosePrj,"Close (Project)"),
+ HHe(SavePrj,"Save (Project)"),
+ HHe(SaveDesktop,"Save desktop here"),
  He(SDG),
  HHe(SDGDialog,"SDG Options"),
  HHe(SetColors,"Customize Colors"),

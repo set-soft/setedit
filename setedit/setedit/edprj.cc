@@ -578,6 +578,20 @@ static void SaveOnlyProject(void)
  delete f;
 }
 
+static
+void HideDesktop(const char *s, int DesktopFilesOptions)
+{
+ // In UNIX the file name changes and we must have space for it.
+ char buf[PATH_MAX];
+ strcpy(buf,s);
+ if (DesktopFilesOptions & dstHide)
+    MakeFileHidden(buf);
+ else
+    // If we are creating a non-hidden file be sure we don't left a hidden
+    // one. That's possible under UNIX.
+    RemoveFileHidden(buf);
+}
+
 void SaveProject(void)
 {
  int DesktopFilesOptions=GetDSTOptions();
@@ -605,17 +619,15 @@ void SaveProject(void)
       }
    }
  editorApp->saveDesktop(s,makeBackUp);
- // In UNIX the file name changes and we must have space for it.
- char buf[PATH_MAX];
- strcpy(buf,s);
- if (DesktopFilesOptions & dstHide)
-    MakeFileHidden(buf);
- else
-    // If we are creating a non-hidden file be sure we don't left a hidden
-    // one. That's possible under UNIX.
-    RemoveFileHidden(buf);
+ HideDesktop(s,DesktopFilesOptions);
  if (remove)
     delete s;
+}
+
+void SaveDesktopHere(void)
+{
+ editorApp->saveDesktop(cDeskTopFileName,0);
+ HideDesktop(cDeskTopFileName,GetDSTOptions());
 }
 
 static int HaveExtention(char *name)

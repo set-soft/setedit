@@ -305,4 +305,5 @@ _("~B~ackground")
 _("~T~ry")
 _("Cop~y~ to file Clipboard")
 _("Paste ~f~rom file Clipboard")
+_("Save ~d~esktop here")
 #endif

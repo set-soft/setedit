@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.73  2002/04/30 17:56:12  set
+* Modified: Now ~/setedit/.tcedit.dst have more priority than ~/tcedit.dst.
+
 Revision 1.72  2002/04/29 15:07:15  set
 * Fixed: A rare crash in InfView. Reported by Andris.
 

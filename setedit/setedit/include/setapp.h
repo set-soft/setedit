@@ -91,7 +91,8 @@ const int
   cmeStopChild      = cmeBase+71,
   cmeEditNoBkp      = cmeBase+72,
   cmeIncludeList    = cmeBase+73,
-  cmeColorTheme     = cmeBase+74;
+  cmeColorTheme     = cmeBase+74,
+  cmeSaveDesktop    = cmeBase+75;
 #endif
 
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
@@ -123,7 +124,7 @@ public:
                              int options=0);
 
     void retrieveDesktop(const char *name, Boolean isLocal);
-    void saveDesktop(char *fName, int makeBkp);
+    void saveDesktop(const char *fName, int makeBkp);
     void storeDesktop(fpstream& s);
     void loadDesktop(fpstream& s, Boolean isLocal);
     void ShowUserScreen(TEvent &event);
@@ -275,6 +276,7 @@ extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
 extern int  IsPrjOpened(void);
 extern void LoadEditorDesktop(int LoadPrj, char *name=0, int haveFilesCL=0);
+extern void SaveDesktopHere(void);
 #endif
 
 #ifdef Uses_SETAppFiles

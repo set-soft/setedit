@@ -846,6 +846,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               SaveProject();
               break;
 
+         case cmeSaveDesktop:
+              SaveDesktopHere();
+              break;
+
          case cmeSDG:
               if (RunExternalProgramNotRunning())
                  SDGInterfaceRun();
@@ -1467,6 +1471,7 @@ void TSetEditorApp::idle()
  setCmdState(cmePrev,genState);
  setCmdState(cmeTile,genState);
  setCmdState(cmeCascade,genState);
+ setCmdState(cmeSaveDesktop,IsPrjOpened() ? False : True);
  // Disable "Local Options" if no editors are available
  TCEditor *e;
  if ((e=GetCurrentIfEditor())!=0)

@@ -241,20 +241,20 @@ msgstr ""
 msgid "Error: can't find the Node info"
 msgstr "Fehler: Kann Knoten info nicht finden"
 
-#: ../infview/infbase.cc:1047
+#: ../infview/infbase.cc:1045
 msgid "Reading index table for: "
 msgstr "Lese Indextabelle fÅr: "
 
-#: ../infview/infbase.cc:1135
+#: ../infview/infbase.cc:1133
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1303
+#: ../infview/infbase.cc:1301
 #, c-format
 msgid "Attention can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht îffnen!"
 
-#: ../infview/infbase.cc:1854
+#: ../infview/infbase.cc:1852
 msgid ""
 "\n"
 " Sorry I can't find this link (press ALT-F1).\n"
@@ -262,25 +262,25 @@ msgstr ""
 "\n"
 " Sorry, kann diesen Link nicht finden (drÅcken Sie ALT-F1).\n"
 
-#: ../infview/infmain.cc:302 ../setedit/edprefs.cc:85
-#: ../setedit/edprefs.cc:151
+#: ../infview/infmain.cc:302 ../setedit/edprefs.cc:89
+#: ../setedit/edprefs.cc:155
 msgid "Screen Options"
 msgstr "Bildschirmeinstellungen"
 
-#: ../infview/infmain.cc:304 ../setedit/edprefs.cc:76
+#: ../infview/infmain.cc:304 ../setedit/edprefs.cc:80
 msgid "Primary ~e~ncoding"
 msgstr "PrimÑres ~e~ncoding"
 
-#: ../infview/infmain.cc:337 ../setedit/edprefs.cc:114
+#: ../infview/infmain.cc:337 ../setedit/edprefs.cc:118
 msgid "This terminal have a fixed code page"
 msgstr ""
 
-#: ../infview/infmain.cc:368 ../setedit/dstfile.cc:331
+#: ../infview/infmain.cc:368 ../setedit/dstfile.cc:334
 #, c-format
 msgid "Could not create %s."
 msgstr "Konnte Projekt `%s' nicht erstellen."
 
-#: ../infview/infmain.cc:409 ../setedit/dstfile.cc:267
+#: ../infview/infmain.cc:409 ../setedit/dstfile.cc:270
 msgid "Could not open desktop file"
 msgstr "Konnte Desktopdatei nicht finden."
 
@@ -288,7 +288,7 @@ msgstr "Konnte Desktopdatei nicht finden."
 msgid "Wrong desktop file"
 msgstr "Falsche Desktopdatei."
 
-#: ../infview/infmain.cc:419 ../setedit/dstfile.cc:272
+#: ../infview/infmain.cc:419 ../setedit/dstfile.cc:275
 msgid "Error reading desktop file"
 msgstr "Fehler beim Lesen der Desktopdatei"
 
@@ -1045,19 +1045,19 @@ msgid "Colors"
 msgstr "Farben"
 
 #. Colors Window
-#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:299
+#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:301
 msgid "~G~roup"
 msgstr "~G~ruppe"
 
-#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:300
+#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:302
 msgid "~I~tem"
 msgstr "~E~intrag"
 
-#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:301
+#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:303
 msgid "~F~oreground"
 msgstr "~V~ordergrund"
 
-#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:302
+#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:304
 msgid "~B~ackground"
 msgstr "~H~intergrund"
 
@@ -1070,7 +1070,7 @@ msgstr "NÑchstes"
 msgid "Color"
 msgstr "Farbe"
 
-#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:303
+#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:305
 msgid "~T~ry"
 msgstr "~V~ersuch"
 
@@ -1091,7 +1091,7 @@ msgid "Done"
 msgstr ""
 
 #: ../internac/tvision.cc:30 ../setedit/editmenu.cc:125
-#: ../setedit/edprefs.cc:659
+#: ../setedit/edprefs.cc:663
 msgid "~H~elp"
 msgstr "~H~ilfe"
 
@@ -1334,7 +1334,7 @@ msgstr "Speicher Datei als"
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../internac/tvision.cc:113 ../setedit/edprefs.cc:609
+#: ../internac/tvision.cc:113 ../setedit/edprefs.cc:613
 msgid "Information"
 msgstr "Information"
 
@@ -1991,7 +1991,7 @@ msgstr "Wortliste"
 msgid "User words"
 msgstr "Benutzerwîrter"
 
-#: ../mainsrc/pathtool.cc:755
+#: ../mainsrc/pathtool.cc:761
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -2182,7 +2182,7 @@ msgstr "Nach Punkten so~r~tieren"
 msgid "Fu~z~zy value [1..1000]"
 msgstr "Fu~z~zy Wert [1..1000]"
 
-#: ../mainsrc/ssyntax.cc:482
+#: ../mainsrc/ssyntax.cc:482 ../setedit/edprefs.cc:955
 msgid "Other options"
 msgstr "Andere Optionen"
 
@@ -2625,17 +2625,22 @@ msgstr "   Man Seite: "
 msgid "   MP3 Control panel"
 msgstr "   MP3 Kontrollpult"
 
-#: ../setedit/dstfile.cc:577
+#: ../setedit/dstfile.cc:581
 msgid "Wrong desktop file."
 msgstr "Falsche Desktopdatei."
 
-#: ../setedit/dstfile.cc:583
+#: ../setedit/dstfile.cc:587
 msgid "The desktop file is too old."
 msgstr "Die Desktopdatei ist zu alt."
 
-#: ../setedit/dstfile.cc:588
+#: ../setedit/dstfile.cc:592
 msgid "You need a newer editor for this desktop file."
 msgstr "Sie benîtigen einen neueren Editor fÅr diese Desktopdatei."
+
+#: ../setedit/edcolor.cc:168
+#, fuzzy
+msgid "Color Themes"
+msgstr "Farben"
 
 #: ../setedit/editdiag.cc:35
 msgid "A friendly text editor."
@@ -2812,7 +2817,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1638
+#: ../setedit/editmain.cc:1646
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -2967,7 +2972,7 @@ msgid ""
 "-t, --tile-vert:         arranges the windows using vertical tile style.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:1968
+#: ../setedit/editmain.cc:1976
 msgid ""
 "-T, --tile-horiz:        arranges the windows using horizontal tile style.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -3401,127 +3406,144 @@ msgid "Redra~w~ screen"
 msgstr "Bildschirm ne~u~zeichnen"
 
 #: ../setedit/editmenu.cc:270
-msgid "~C~olors ..."
-msgstr "~F~arben..."
+#, fuzzy
+msgid "~C~olors"
+msgstr "Farben"
 
 #: ../setedit/editmenu.cc:271
-msgid "Color ~P~alette ..."
-msgstr "Farb~p~alette..."
+#, fuzzy
+msgid "~C~ustomize ..."
+msgstr "~A~uswahl..."
 
 #: ../setedit/editmenu.cc:272
+#, fuzzy
+msgid "~P~alette ..."
+msgstr "Farb~p~alette..."
+
+#: ../setedit/editmenu.cc:273
+#, fuzzy
+msgid "~T~heme ..."
+msgstr "~A~uswahl..."
+
+#: ../setedit/editmenu.cc:274
 msgid "~L~ocal edition ..."
 msgstr "~L~okale Bearbeitung..."
 
-#: ../setedit/editmenu.cc:273
+#: ../setedit/editmenu.cc:275
 msgid "Glo~b~al edition ..."
 msgstr "Globale ~B~earbeitung..."
 
-#: ../setedit/editmenu.cc:274
+#: ../setedit/editmenu.cc:276
 msgid "Editor ~G~eneral ..."
 msgstr "Editor ~g~enerell..."
 
-#: ../setedit/editmenu.cc:275
+#: ../setedit/editmenu.cc:277
 msgid "Scr~e~en saver ..."
 msgstr "Bildschirm~s~choner..."
 
-#: ../setedit/editmenu.cc:276
+#: ../setedit/editmenu.cc:278
 msgid "S~D~G Options ..."
 msgstr "S~D~G Optionen..."
 
-#: ../setedit/editmenu.cc:277
+#: ../setedit/editmenu.cc:279
 msgid "~R~un program (which one) ..."
 msgstr "Programm ~a~usfÅhren (welches)..."
 
-#: ../setedit/editmenu.cc:278
+#: ../setedit/editmenu.cc:280
 msgid "~K~eyboard"
 msgstr "~T~astatur"
 
-#: ../setedit/editmenu.cc:279
+#: ../setedit/editmenu.cc:281
 msgid "~K~ey assignment"
 msgstr "~T~astenzuweisung"
 
-#: ../setedit/editmenu.cc:280
+#: ../setedit/editmenu.cc:282
 msgid "~S~etup Alt keys"
 msgstr "~K~onfiguriere Alt-Tasten"
 
-#: ../setedit/editmenu.cc:281
+#: ../setedit/editmenu.cc:283
 msgid "Key ~p~ad behavior"
 msgstr "Key~P~ad Verhalten"
 
-#: ../setedit/editmenu.cc:282
+#: ../setedit/editmenu.cc:284
 msgid "~B~ack to defaults"
 msgstr "~Z~urÅck zu Standard"
 
-#: ../setedit/editmenu.cc:283
+#: ../setedit/editmenu.cc:285
 msgid "Consult ~s~can codes"
 msgstr "~S~can codes ansehen"
 
-#: ../setedit/editmenu.cc:284
+#: ../setedit/editmenu.cc:286
 msgid "~S~creen Options ..."
 msgstr "Bilschirm~o~ptionen..."
 
-#: ../setedit/editmenu.cc:285
+#: ../setedit/editmenu.cc:287
 msgid "~U~ser words ..."
 msgstr "Ben~u~tzerwîrter..."
 
-#: ../setedit/editmenu.cc:286
+#: ../setedit/editmenu.cc:288
 msgid "De~f~ault global edition ..."
 msgstr "Standard ~g~lobale Bearbeitung..."
 
-#: ../setedit/editmenu.cc:287
+#: ../setedit/editmenu.cc:289
 msgid "File ~o~pen dialog ..."
 msgstr "`Datei îffnen' Dial~o~g..."
 
-#: ../setedit/editmenu.cc:288
+#: ../setedit/editmenu.cc:290
 msgid "Do~n~'t create backups for ..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:289
+#: ../setedit/editmenu.cc:291
 msgid "~T~ip of the day"
 msgstr "~T~agestip"
 
-#: ../setedit/editmenu.cc:290
+#: ../setedit/editmenu.cc:292
 msgid "~S~yntax help"
 msgstr "~S~yntaxhilfe"
 
-#: ../setedit/editmenu.cc:291
+#: ../setedit/editmenu.cc:293
 msgid "~F~iles to search"
 msgstr "Zu durchsuchende Dateien"
 
-#: ../setedit/editmenu.cc:292
+#: ../setedit/editmenu.cc:294
 msgid "~M~an page View"
 msgstr "~M~an-Seiten Ansicht"
 
-#: ../setedit/editmenu.cc:293
+#: ../setedit/editmenu.cc:295
 msgid "A~b~out"
 msgstr "ö~b~er"
 
-#: ../setedit/editmenu.cc:294
+#: ../setedit/editmenu.cc:296
 msgid "Searc~h~ files under cursor in ..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:295
+#: ../setedit/editmenu.cc:297
 #, fuzzy
 msgid "Insert key ~n~ame"
 msgstr "Falsche SchlÅsselname."
 
-#: ../setedit/editmenu.cc:296
+#: ../setedit/editmenu.cc:298
 msgid "Sc~r~oll Up"
 msgstr ""
 
-#: ../setedit/editmenu.cc:297
+#: ../setedit/editmenu.cc:299
 msgid "Scroll ~D~own"
 msgstr ""
 
-#: ../setedit/editmenu.cc:304
+#: ../setedit/editmenu.cc:306
 #, fuzzy
 msgid "Cop~y~ to file Clipboard"
 msgstr "~Z~wischenablage anzeigen"
 
-#: ../setedit/editmenu.cc:305
+#: ../setedit/editmenu.cc:307
 #, fuzzy
 msgid "Paste ~f~rom file Clipboard"
 msgstr "FÅge von Windows Zwischenablage ein"
+
+#: ../setedit/editmenu.cc:308
+#, fuzzy
+msgid "Save ~d~esktop here"
+msgstr "Desktopdateien versteckt sc~h~reiben"
 
 #: ../setedit/editpale.cc:107
 msgid "Palette editor"
@@ -3651,19 +3673,29 @@ msgstr "~U~S Tastatur und meiste andere"
 msgid "~G~reek keyboard (CP 737)"
 msgstr "~G~riechische Tastatur (CP 737)"
 
-#: ../setedit/edmsg.cc:393
+#: ../setedit/edmsg.cc:348
+#, fuzzy
+msgid "Last message in the list"
+msgstr "Erster in der ~L~iste"
+
+#: ../setedit/edmsg.cc:380
+#, fuzzy
+msgid "First message in the list"
+msgstr "Erster in der ~L~iste"
+
+#: ../setedit/edmsg.cc:429
 msgid "Message Window"
 msgstr "Nachrichtenfenster"
 
 #. -------- End of Video mode stuff ---------------
 #. ---------------- Primary Font ---------------------
-#: ../setedit/edprefs.cc:76 ../setedit/edprefs.cc:176
-#: ../setedit/edprefs.cc:185 ../setedit/edprefs.cc:201
+#: ../setedit/edprefs.cc:80 ../setedit/edprefs.cc:180
+#: ../setedit/edprefs.cc:189 ../setedit/edprefs.cc:205
 msgid "No fonts found"
 msgstr "Keine Schriftarten gefunden"
 
 #. ------------ Video mode stuff ------------------
-#: ../setedit/edprefs.cc:154
+#: ../setedit/edprefs.cc:158
 msgid "~S~creen mode"
 msgstr "Bildschirm~m~odus"
 
@@ -4171,7 +4203,7 @@ msgstr "Falsche Projektdatei."
 msgid "Error reading project file"
 msgstr "Fehler beim Lesen der Projektdatei"
 
-#: ../setedit/edprj.cc:539 ../setedit/edprj.cc:686
+#: ../setedit/edprj.cc:539 ../setedit/edprj.cc:698
 #, fuzzy
 msgid "Project: "
 msgstr "~P~rojekt"
@@ -4180,7 +4212,7 @@ msgstr "~P~rojekt"
 msgid "Could not save the project."
 msgstr "Konnte das Projekt nicht speichern."
 
-#: ../setedit/edprj.cc:656
+#: ../setedit/edprj.cc:668
 msgid "Open Project"
 msgstr "Projekt îffnen"
 
@@ -4627,6 +4659,9 @@ msgstr "Befehl~e~"
 #: ../settvuti/tdiagaid.cc:203
 msgid "Assignmen~t~"
 msgstr "Zuweisun~g~"
+
+#~ msgid "~C~olors ..."
+#~ msgstr "~F~arben..."
 
 #~ msgid "Attention can't open the help file."
 #~ msgstr "Achtung! Kann Hilfedatei nicht îffnen!"

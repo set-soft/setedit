@@ -2695,6 +2695,25 @@ Close the project file.
 @refMenu1{cmeClosePrj}
 
 @c --------------------------------------------------------------------------
+@subsection Close (Project)
+
+Saves the working project. Is a good idea to save the project after adding or
+removing a lot of files.
+@p{}
+
+@refMenu1{cmeSavePrj}
+
+@c --------------------------------------------------------------------------
+@subsection Save desktop here
+
+Saves a desktop file in the working directory. A desktop file is created even
+if the editor is configured to use only one central desktop file. This is
+useful to locally store settings without creating a project.
+@p{}
+
+@refMenu1{cmeSaveDesktop}
+
+@c --------------------------------------------------------------------------
 @section Help
 
 @c --------------------------------------------------------------------------

@@ -242,6 +242,7 @@ static edCList SetApp[] =
 { "RunCommand"     , 38 },
 { "SDG"            , 13 },
 { "SDGDialog"      , 14 },
+{ "SaveDesktop"    , 75 },
 { "SavePrj"        , 69 },
 { "ScreenSaverOpts", 62 },
 { "SeeScanCodes"   , 29 },
