@@ -311,11 +311,11 @@ including all the indices.
 @end macro
 @end ifclear
 
-@ifclear tex
+@ifset dvi
 @macro il{valor}
 @i{\valor\}
 @end macro
-@end ifclear
+@end ifset
 
 
 @macro p{}

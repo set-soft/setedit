@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.267  2003/01/06 20:18:22  set
+* Added: An explanation about how to install setedit in the home directory
+and use it from any machine with access to it. Contributed by Grzegorz.
+* Modified: Some macros to work with the Texinfo provided by Woody.
+
 Revision 1.266  2003/01/06 13:54:09  set
 * Updated: Grzegorz example on how to use macros to externally process
 portions of text.

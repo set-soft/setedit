@@ -9766,12 +9766,6 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
           s++;
           continue;
          }
-       if (isSpecialSymb(*s) && s+1<end && isSpecialSCon(s[1]))
-         {// Special symbols acts like one atom
-          s+=2;
-          firstchar=0;
-          continue;
-         }
       }
     if (in_prepro && *s==TCEditor::strC.Escape && (s==end2 || CLY_IsEOL(*(s+1))))
       {
@@ -9856,6 +9850,13 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
           s++;
          }
        firstchar=0;
+      }
+    else
+    if (!type_com && isSpecialSymb(*s) && s+1<end && isSpecialSCon(s[1]))
+      {// Special symbols acts like one atom
+       s+=2;
+       firstchar=0;
+       continue;
       }
     else
     if (firstchar && !ucisspace(*s))
