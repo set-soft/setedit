@@ -1084,7 +1084,12 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeEdGralOptions:
-              SetGeneralEditorOptions();
+              {
+               SetGeneralEditorOptions();
+               // The save-as-is option affects some commands.
+               TCEditor *e=GetCurrentIfEditor();
+               if (e) e->updateCommands(1);
+              }
               break;
 
          case cmeScreenSaverOpts:

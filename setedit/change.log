@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.484  2003/12/15 14:56:46  set
+* Fixed: Some int v.s. unsigned details related to the last patch.
+* Modified: cmcSaveAsUNIX and cmcSaveAsDOS commands to be
+cmcSaveAsConvertEOL which is more clear.
+* Added: A new command cmcSaveAsNoConvertEOL used to avoid automatic
+conversions when they are enabled. From a suggestion by Oswald.
+
 Revision 1.483  2003/12/11 19:54:37  set
 * Fixed: Compilation problems with gcc 3.x. Patch from Oswald:
   - Missing \n at end of palbcc.h

@@ -10713,7 +10713,7 @@ void TCEditor::updateCommands(int full)
       }
     if (!selRectClip)
        cmdsAux.disableCmd(cmcSelRectPaste);
-    if (NoNativeEOL && !(editorFlags & efSaveEOLasis))
+    if (NoNativeEOL && (editorFlags & efSaveEOLasis))
        cmdsAux.disableCmd(cmcSaveAsConvertEOL);
     else
        cmdsAux.disableCmd(cmcSaveAsNoConvertEOL);
