@@ -1,4 +1,39 @@
 $Log$
+Revision 1.507  2001/11/28 00:40:45  root
+* Added: Now is possible to execute a selected sLisp code even if it have
+spaces at the beggining. Patch by Thiago.
+* Added: When running a selected sLisp code the result is shown in the
+message window, like when running sLisp code entered in the dialog. Patch
+by Thiago.
+
+Revision 1.506  2001/11/28 00:28:30  set
+* Fixed: The editor didn't flush the line under edition before calling a
+sLisp macro. Reported by Grzegorz.
+* Fixed: Some old kibind.dat files could have commands with garbage in the
+upper 16 bits, it produce problems to show the name of this commands. Now
+the editor limits the values to 16 bits before trying to find the name.
+Reported by Thiago.
+
+Revision 1.505  2001/11/28 00:08:29  set
+* Modified: The sLisp 'Test RunProgram Filter' example to avoid running or
+pasting empty strings.
+* Fixed: sLisp if statement, it evaluated more than once the things. It was
+a side effect of a macro. Reported by Grzegorz.
+* Fixed: It wasn't possible to use ' and " in sLisp commands, was
+interpreted as a string start.
+* Fixed: It wasn't possible to put a comment just after a number in sLisp.
+* Fixed: When calling RunProgram* sLisp command passing an empty string as
+command to execute it was telling something about configuring it in the
+options menu. Reported by Grzegorz.
+* Fixed: In case of errors if a MLIRetObj was involved the editor generated
+a SIGSEGV.
+
+Revision 1.27  2001/11/27 13:00:25  set
+* Applied: Patch 485876: Tiny Info documentation changes for Debian by
+"terrible" (Ivan). It modifies the declared name of .info docs to avoid
+problems with the install-info found in Sid.
+* Applied: Patch 485877: Changes to Debian packaging by "terrible" (Ivan)
+
 Revision 1.26  2001/11/26 15:16:55  set
 * Trying to switch to stable ;-)
 
