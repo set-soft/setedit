@@ -153,7 +153,7 @@ void FExpand(char * & name,int new_alloc=1);
      __fixpath("/foo/foo1/../.././foo",Out);
 
    will return "/foo" in 'Out'
-#ifndef __DJGPP__
+#ifndef TVCompf_djgpp
 void __fixpath(const char *in, char *out);
 #endif
 */
