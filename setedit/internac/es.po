@@ -448,7 +448,7 @@ msgstr "Ir a ~D~OS"
 
 #: ../infview/infmenu.cc:38 ../setedit/editmenu.cc:71
 msgid "S~h~ell"
-msgstr "S~h~ell"
+msgstr "~L~¡nea de comandos"
 
 #: ../infview/infmenu.cc:40 ../internac/tvision.cc:71
 #: ../setedit/editmenu.cc:72
@@ -4802,6 +4802,9 @@ msgstr "Comando~s~"
 #: ../settvuti/tdiagaid.cc:203
 msgid "Assignmen~t~"
 msgstr "Asi~g~naci¢n"
+
+msgid "Sa~v~e as DOS..."
+msgstr "Guardar en formato ~D~OS ..."
 
 #~ msgid ""
 #~ "-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"

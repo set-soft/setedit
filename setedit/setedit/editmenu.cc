@@ -310,4 +310,6 @@ _("~T~ry")
 _("Cop~y~ to file Clipboard")
 _("Paste ~f~rom file Clipboard")
 _("Save ~d~esktop here")
+_("Sa~v~e as DOS...")
+_("S~h~ell")
 #endif
