@@ -427,6 +427,8 @@ public:
     Boolean saveAsUNIX() { return saveAs(True); };
     Boolean saveSameTime();
     Boolean saveFile(Boolean Unix=False, Boolean noChangeTime=False);
+    char   *saveToTemp();
+    Boolean checkDiskCopyChanged(Boolean force=False);
     virtual Boolean valid( ushort );
     char fileName[PATH_MAX];
 
@@ -559,6 +561,12 @@ public:
     // The modification time of the disk copy of the file
     // 0 if the file isn't in disk
     time_t DiskTime;
+    // Last time we checked if the file on disk is newer.
+    time_t lastTimeCheck;
+    // Force a check in the next call (don't compute lastTimeCheck).
+    Boolean forceNextTimeCheck;
+    // Number of seconds to wait between checks
+    static int minDifModCheck;
     // device and starting inode of the file. 0 on new files.
     stEditorId EditorId;
     // attributes of the file from stat under Linux or _chmod in DOS

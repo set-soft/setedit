@@ -9,6 +9,7 @@ gadvFOShFuzzy   =4,
 gadvFOShiftDirs =5,
 gadvTabsOps     =6,
 gadvTagsOld     =7,
-gadvNoTags      =8;
+gadvNoTags      =8,
+gadvDiffModOpts =9;
 
 int GiveAdvice(int number);

@@ -160,8 +160,9 @@ const int
   cmbRunEnter_sLisp    = 149,
   cmbCopyClipFile      = 150,
   cmbPasteClipFile     = 151,
+  cmbEditorGotFocus    = 152,
   
-  cmbLastCommand       = 152;
+  cmbLastCommand       = 153;
 
 
 const int
@@ -318,7 +319,8 @@ const int
   cmcRunSel_sLisp      = cmbRunSel_sLisp+cmbBaseNumber,
   cmcRunEnter_sLisp    = cmbRunEnter_sLisp+cmbBaseNumber,
   cmcCopyClipFile      = cmbCopyClipFile+cmbBaseNumber,
-  cmcPasteClipFile     = cmbPasteClipFile+cmbBaseNumber;
+  cmcPasteClipFile     = cmbPasteClipFile+cmbBaseNumber,
+  cmcEditorGotFocus    = cmbEditorGotFocus+cmbEditorGotFocus;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

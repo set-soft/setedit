@@ -290,6 +290,7 @@ TCEditor::TCEditor( const TRect& bounds,
  DontPurgeSpaces=staticDontPurgeSpaces;
  ColumnMarkers=staticColumnMarkers;
  colMarkers=CopyColMarkers(staticColMarkers);
+ forceNextTimeCheck=False;
  
  CrossCursorY2=size.y;
  CrossCursorX2=size.x;
@@ -10350,29 +10351,29 @@ void TCEditor::setSelect( uint32 newStart, uint32 newEnd, Boolean curStart )
    instead.
      This is called whenever the command states should be updated.
 
-   From Borland's TV 1.03.
-
 ****************************************************************************/
 
-void TCEditor::setState( uint16 aState, Boolean enable )
+void TCEditor::setState(uint16 aState, Boolean enable)
 {
  TView::setState(aState, enable);
- switch( aState )
-     {
-      case sfActive:
-          if( hScrollBar != 0 )
-              hScrollBar->setState(sfVisible, enable);
-          if( vScrollBar != 0 )
-              vScrollBar->setState(sfVisible, enable);
-          if (indicator)
-             indicator->setState(sfVisible, enable);
-          updateCommands(1);
-          break;
+ switch (aState)
+   {
+    case sfActive:
+         if (hScrollBar)
+            hScrollBar->setState(sfVisible,enable);
+         if (vScrollBar)
+            vScrollBar->setState(sfVisible,enable);
+         if (indicator)
+            indicator->setState(sfVisible,enable);
+         updateCommands(1);
+         message(TProgram::application,evBroadcast,cmcEditorGotFocus,owner);
+         forceNextTimeCheck=True;
+         break;
 
-      case sfExposed:
-          if( enable )
-              unlock();
-     }
+    case sfExposed:
+         if (enable)
+            unlock();
+   }
 }
 
 /****************************************************************************
@@ -12531,6 +12532,42 @@ static void writeBlock(TCEditor *editor)
    }
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Saves the contents of the buffer to a temporal file and returns the name
+of the file. The file have "di" as prefix.
+  
+  Return: A malloced name for the temporal file containing the buffer. If it
+failed NULL is returned.
+  
+***************************************************************************/
+
+char *TCEditor::saveToTemp()
+{
+ char *name=unique_name("di",NULL);
+ if (!name)
+    return NULL;
+ FILE *f=fopen(name,"wt");
+ int error=0;
+ if (f)
+   {
+    flushLine();
+    fwrite(buffer,1,bufLen,f);
+    error=ferror(f);
+    fclose(f);
+   }
+ else
+   error=1;
+ if (error)
+   {
+    editorDialog(edWriteError,name);
+    free(name);
+    return NULL;
+   }
+ return name;
+}
+
 static
 void GetFileMode(CLY_mode_t *mode, struct stat *statVal, char *fileName)
 {
@@ -12604,6 +12641,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
 
  FailedToLoad=False;
  DiskTime=0;
+ lastTimeCheck=0;
  IsaUNIXFile=False;
  // This structure differentiate the file
  FillEditorId(&EditorId);
@@ -12634,6 +12672,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
    
  // Get the modification time (from stat)
  DiskTime=s.st_mtime;
+ time(&lastTimeCheck);
  FillEditorId(&EditorId,0,&s);
  // Check if we can write
  if (CLY_FileAttrIsRO(&ModeOfFile))
@@ -13112,6 +13151,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
           utm.actime=utm.modtime=DiskTime;
           utime(fileName,&utm);
          }
+       time(&lastTimeCheck);
       }
    }
  return True;
@@ -13340,14 +13380,44 @@ int IsEmptyEditorId(stEditorId *id)
  return id->dev==0 && id->inode==0;
 }
 
-TEditorDialog  TCEditor::editorDialog = defEditorDialog;
-unsigned TCEditor::editorFlags = efBackupFiles | efPromptOnReplace;
-char  TCEditor::findStr[maxFindStrLen] = "";
-char  TCEditor::replaceStr[maxReplaceStrLen] = "";
-TCEditor *TCEditor::clipboard = 0;
-int      TCEditor::colorsCached = 0;
-unsigned TCEditor::staticTabSize = 8;
-unsigned TCEditor::staticIndentSize = 4;
+Boolean TCEditor::checkDiskCopyChanged(Boolean force)
+{
+ /* Read Only editors are like snap-shots, don't reload */
+ /* Don't be fooled by new files, they aren't on disk! */
+ if (isReadOnly || !DiskTime)
+    return False;
+ time_t now;
+ time(&now);
+ if (!force && !forceNextTimeCheck &&
+     difftime(now,lastTimeCheck)<minDifModCheck)
+    return False;
+ lastTimeCheck=now;
+ forceNextTimeCheck=False;
+ struct stat st;
+ if (stat(fileName,&st)==0)
+   {
+    if (difftime(st.st_mtime,DiskTime)>0)
+      {// To avoid problems we assume the user will reload the file or doesn't
+       // care about it. So, in order to avoid a storm of questions and dialogs
+       // we set the time of the buffer in memory to the time of the file on disk.
+       DiskTime=st.st_mtime;
+       return True;
+      }
+   }
+ return False;
+}
+
+TEditorDialog
+         TCEditor::editorDialog=defEditorDialog;
+unsigned TCEditor::editorFlags=efBackupFiles | efPromptOnReplace;
+char     TCEditor::findStr[maxFindStrLen]="";
+char     TCEditor::replaceStr[maxReplaceStrLen]="";
+TCEditor *
+         TCEditor::clipboard=0;
+int      TCEditor::colorsCached=0;
+int      TCEditor::minDifModCheck=8;
+unsigned TCEditor::staticTabSize=8;
+unsigned TCEditor::staticIndentSize=4;
 unsigned TCEditor::LoadingVersion;
 Boolean  TCEditor::staticUseTabs=False;
 Boolean  TCEditor::staticAutoIndent=True;

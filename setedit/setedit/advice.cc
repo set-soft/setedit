@@ -52,7 +52,9 @@ advice Advices[]=
  { __("Tags file has incorrect format.\nDo you want to read more about it?"),
    AdviceVar1, 0x00000080, opsSimple | opsButYesNo },
  { __("This option needs a tags file.\nDo you want to read more about it?"),
-   AdviceVar1, 0x00000100, opsSimple | opsButYesNo }
+   AdviceVar1, 0x00000100, opsSimple | opsButYesNo },
+ { __("GNU diff isn't installed.\nFor this reason I can't offer some options."),
+   AdviceVar1, 0x00000200, opsSimple }
 };
 
 const int cantAdvices=sizeof(Advices)/sizeof(advice);

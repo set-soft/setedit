@@ -87,6 +87,8 @@
 #include <datetools.h>
 #define Uses_TagsOnlyFuncs
 #include <tags.h>
+#include <rhutils.h>
+#include <advice.h>
 
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
@@ -1359,6 +1361,15 @@ TCEditor *GetCurrentIfEditor()
  return 0;
 }
 
+TCEditWindow *GetCurrentIfEditorWindow()
+{
+ TView *p=editorApp->deskTop->current;
+ if (!p) return 0; // Avoid a search
+ if (IsAnEditor(p))
+    return (TCEditWindow *)p;
+ return 0;
+}
+
 TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant, stEditorId *id)
 {
  // First search by inode, the only way
@@ -1565,16 +1576,137 @@ int EdReloadIfOpened(const char *name, stEditorId *id)
  return 0;
 }
 
+static
+Boolean CheckForDiff()
+{
+ static Boolean isDiffInstalled=False;
+
+ if (!isDiffInstalled)
+   {
+    // We must rediret the error to avoid getting it in the stderr file
+    char *err=open_stderr_out();
+    TScreen::System("diff --version");
+    close_stderr_out();
+    // Check what we got
+    FILE *f=fopen(err,"r");
+    int ok=0;
+    if (f)
+      {
+       char resp[80];
+       fgets(resp,80,f);
+       fclose(f);
+       ok=strstr(resp,"GNU diff")!=0;
+      }
+    unlink(err);
+
+    if (ok)
+       isDiffInstalled=True;
+   }
+
+ return isDiffInstalled;
+}
+
+static
+Boolean TestDiffInstalled()
+{
+ Boolean ret=CheckForDiff();
+ if (!ret)
+    GiveAdvice(gadvDiffModOpts);
+
+ return ret;
+}
+
+static
+void ReOpen(TCEditWindow *edw)
+{
+ char *name=strdup(edw->editor->fileName);
+ closeView(edw,0);
+ editorApp->openEditor(name,True);
+ free(name);
+}
+
+const char *DiffError=__("Error creating the difference, aborting");
+
+// Handles the case where an editor contains a modified file that was
+// modified on disk. That's most probably a problem.
+static
+int SolveModifiedCollision(TCEditWindow *edw)
+{
+ Boolean haveDiff=TestDiffInstalled();
+ TDialog *d=createSolveModifCollision(haveDiff);
+ int ret=execDialog(d,NULL);
+ if (ret==cmCancel)
+    return 0;
+ if (ret==cmOK)
+   {
+    ReOpen(edw);
+    return 1;
+   }
+ // The user wants to see a diff
+ TCEditor *e=edw->editor;
+ // Save the current buffer to a temporal
+ char *tmpFile=e->saveToTemp();
+ char *tmpDifFile=unique_name("di",NULL);
+ char *command=NULL;
+ int   retDiff=1;
+ // Run diff
+ if (tmpFile && tmpDifFile)
+   {
+    string_cat(command,"diff -u ",tmpFile," ",e->fileName," > ",tmpDifFile,0);
+    if (command)
+      {
+       retDiff=TScreen::System(command);
+       if (retDiff>0xFF)
+          retDiff>>=8;
+       if (retDiff==1)
+          retDiff=0;
+       free(command);
+      }
+   }
+ // The temporal file must be deleted in any case
+ if (tmpFile)
+   {
+    unlink(tmpFile);
+    free(tmpFile);
+   }
+ // Check for errors
+ if (retDiff)
+   {
+    if (tmpDifFile)
+      {
+       unlink(tmpDifFile);
+       free(tmpDifFile);
+      }
+    messageBox(DiffError,mfError|mfOKButton);
+    return 0;
+   }
+ // Finally we have the diff so now we can discard the buffer (or not)
+ int retF=0;
+ if (ret==cmYes)
+   {
+    e->modified=False; // The user wants to discard it, don't ask again
+    ReOpen(edw);
+    retF=1;
+   }
+ // Open it read-only
+ editorApp->openEditor(tmpDifFile,True,NULL,oedForceRO | oedForgetResume | oedZoom);
+ // Don't let it on disk
+ unlink(tmpDifFile);
+ free(tmpDifFile);
+ return retF;
+}
+
 int AskReloadEditor(TCEditWindow *edw)
 {
  char *fileName=edw->editor->fileName;
  if (LimitedFileNameDialog(mfYesButton | mfNoButton | mfConfirmation,
      __("The disk copy of %s is newer, reload it?"),fileName)==cmYes)
-   {
-    char *name=strdup(fileName);
-    closeView(edw,0);
-    editorApp->openEditor(name,True);
-    free(name);
+   {// OK, but ... is this buffer modified?
+    if (edw->editor->modified)
+       // This is complex, handled in another function
+       return SolveModifiedCollision(edw);
+    // Just close it and open again
+    ReOpen(edw);
     return 1;
    }
  return 0;
@@ -1588,12 +1720,8 @@ int EdReLoad(void *p)
    {
     TCEditWindow *edw=((TDskWinEditor *)p)->edw;
     TCEditor *e=edw->editor;
-    struct stat s;
-    /* Read Only editors are like snap-shots, don't reload */
-    /* Don't be fooled by new files, they aren't in disk! */
-    if (!e->isReadOnly && e->DiskTime!=0 && stat(e->fileName,&s)==0)
-       if (s.st_mtime>e->DiskTime)
-          return AskReloadEditor(edw);
+    if (e->checkDiskCopyChanged(True))
+       return AskReloadEditor(edw);
    }
  return 0;
 }
@@ -1732,6 +1860,10 @@ void TSetEditorApp::idle()
     setCmdState(cmeHTMLAccents,False);
     setCmdState(cmeHTMLTag2Accent,False);
    }
+
+ if (e && e->checkDiskCopyChanged())
+    AskReloadEditor(GetCurrentIfEditorWindow());
+
  if (ShowClock)
    {
     if (!Clock)

@@ -364,6 +364,7 @@ TDialog *createReplaceDialog(void *regexBox);
 TDialog *createHTMLExportOps();
 TDialog *createPMChoose();
 TDialog *createArbitraryIndent(int len);
+TDialog *createSolveModifCollision(Boolean haveDiff);
 unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *file);
 void     ShowSavePoint(const char *file);
 
