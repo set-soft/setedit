@@ -38,6 +38,7 @@ class TSOSListBox;
 #include <setapp.h>
 #include <completi.h>
 #include <edhists.h>
+#include <slpinter.h>
 
 static TCEditor *Editor;
 
@@ -319,19 +320,23 @@ void SLPInterfaceRunSelection(TCEditor *ed)
    }
 }
 
-void SLPInterfaceRunAsk(TCEditor *ed)
+void SLPInterfaceRunAsk(TCEditor *ed, char *code)
 {
  TSViewCol *col=new TSViewCol(__("Enter sLisp code to interpret"));
- TSInputLinePiped *inp=new TSInputLinePiped(1023,1,hID_sLispMacros,60);
+ TSInputLinePiped *inp=new TSInputLinePiped(maxRunAskCode-1,1,hID_sLispMacros,60);
  col->insert(xTSCenter,yTSUp,inp);
  EasyInsertOKCancel(col);
  TDialog *d=col->doIt(); delete col; d->options|=ofCentered;
- char b[1024]; *b=0;
+ char b[maxRunAskCode];
+ if (code)
+    strcpy(b,code);
+ else
+    *b=0;
  if (execDialog(d,b)!=cmCancel)
    {
-    b[1023]=0;
+    b[maxRunAskCode-1]=0;
     Editor=ed;
-    if (!InterpretLispEditor(b))
+    if (!InterpretLispEditor(b,True))
        SLPShowError();
     ed->update(ufView);
     Editor=0;

@@ -3351,7 +3351,7 @@ int TCEditor::handleCommand(ushort command)
                 break;
 
            case cmcRunEnter_sLisp:
-                SLPInterfaceRunAsk(this);
+                RunSLispAsk();
                 break;                
 
            default:
@@ -3393,6 +3393,64 @@ int TCEditor::handleCommand(ushort command)
        MacroArray[MacroCount++]=command;
    }
  return 1;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Gets the sLisp code under the cursor position. You must specify the
+maximun length of the returned string.@p
+  The routine supports the pipe feature to connect the word with an input
+line object.
+
+  Return:
+  A pointer to the string (a new allocated one) or NULL if the cursor isn't
+over sLisp code.
+
+***************************************************************************/
+
+char *TCEditor::sLispUnderCursor(uint32 maxLength)
+{
+ flushLine();
+
+ // Set-Up the pipe
+ char *s=ColToPointer();
+ PipeOrigin=(unsigned)(s-buffer);
+ PipeBuf=buffer;
+ PipeBufLen=bufLen;
+
+ int PosStart,PosEnd;
+ if (*s=='(')
+    PosStart=s-buffer;
+ else
+    if ((PosStart=SearchOpenSymbol('(',')'))==-1)
+       return NULL;
+ if (*s==')')
+    PosEnd=s-buffer;
+ else
+    if ((PosEnd=SearchCloseSymbol('(',')'))==-1)
+       return NULL;
+
+ // Adjust the pipe
+ PipeOrigin=PosStart;
+
+ unsigned l=PosEnd-PosStart+1;
+ if (l>maxLength-1)
+    return NULL;
+ char *code=new char[l+1];
+
+ memcpy(code,buffer+PosStart,l);
+ code[l]=0;
+ return code;
+}
+
+void TCEditor::RunSLispAsk()
+{
+ char *Code;
+ 
+ Code=sLispUnderCursor(maxRunAskCode);
+ SLPInterfaceRunAsk(this,Code);
+ delete[] Code;
 }
 
 void TCEditor::InsertKeyName()
