@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
 
 #define ONE_DEP_BY_LINE 1
 
@@ -9,6 +11,8 @@ const int maxLine=1024;
 unsigned maxCol=78;
 
 struct node;
+static char *projectBase;
+static int   projectBaseL;
 
 struct stMak
 {
@@ -240,25 +244,64 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
       }
     else
        toStat=strdup(s);
+    int foundOnVPath=0;
     if (stat(toStat,&st))
       {
-       fprintf(stderr,"Can't stat %s dependency\n",toStat);
-       exit(12);
+       // RHIDE 1.5 CVS filters the VPATH part, now I added it to common.imk.
+       int i;
+       char buf[PATH_MAX];
+       for (i=0; !foundOnVPath && incDirs[i].var; i++)
+          {
+           strcpy(buf,incDirs[i].dir);
+           strcat(buf,"/");
+           strcat(buf,toStat);
+           if (stat(buf,&st)==0)
+              foundOnVPath=1;
+          }
+       if (!foundOnVPath)
+         {
+          fprintf(stderr,"Can't stat %s dependency\n",toStat);
+          exit(12);
+         }
       }
     free(toStat);
-    int i;
-    if (strchr(s,'/'))
+    if (!foundOnVPath)
       {
-       for (i=0; incDirs[i].var; i++)
-           if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
-             {
-              s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
-              sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
-             }
-       if (s==c->name)
+       int i;
+       if (strchr(s,'/'))
          {
-          fprintf(stderr,"Unknown include dir: %s\n",c->name);
-          exit(4);
+          for (i=0; incDirs[i].var; i++)
+              if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
+                {
+                 s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
+                 sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
+                 break;
+                }
+          if (s==c->name)
+            {
+             // This is some bug in RHIDE 1.5 CVS: some paths are emitted as absolute,
+             // maybe is because the program is loading an old project.
+             if (strncmp(s,projectBase,projectBaseL)==0)
+               {
+                char *sub=s+projectBaseL;
+                char *toTest=(char *)malloc(strlen(sub)+3+1);
+                sprintf(toTest,"../%s",sub);
+                for (i=0; incDirs[i].var; i++)
+                    if (strncmp(toTest,incDirs[i].dir,incDirs[i].ldir)==0)
+                      {
+                       s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(toTest+incDirs[i].ldir));
+                       sprintf(s,"$(%s)%s",incDirs[i].var,toTest+incDirs[i].ldir);
+                       fprintf(stderr,"%s Da: %s\n",c->name,s);
+                       break;
+                      }
+                free(toTest);
+               }
+             if (s==c->name)
+               {
+                fprintf(stderr,"Unknown include dir: %s\n",c->name);
+                exit(4);
+               }
+            }
          }
       }
     l=PrintDep(d,l,s);
@@ -609,10 +652,27 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
    }
 }
 
+static
+void SetUpCurDir()
+{
+ char buf[PATH_MAX];
+ getcwd(buf,PATH_MAX);
+ char *mk=strstr(buf,"/make");
+ if (!mk)
+   {
+    fprintf(stderr,"We aren't in make directory\n");
+    exit(30);
+   }
+ mk[1]=0;
+ projectBase=strdup(buf);
+ projectBaseL=strlen(projectBase);
+}
+
 int main(int argc, char *argv[])
 {
  stMak mak;
  memset(&mak,0,sizeof(mak));
+ SetUpCurDir();
  ProcessMakefile(argv[1],mak,0);
  //ExtractSources();
  return 0;

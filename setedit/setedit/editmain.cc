@@ -2340,7 +2340,7 @@ void ParseCommandLine(int argc, char *argv[])
             putenv("LFN=Y");
             break;
        case 'm':
-            //use_mouse_handler=0;
+            TVMainConfigFile::Add("DOS","PollMouse",1);
             break;
        case 'M':
             DisableBoardMixer=1;

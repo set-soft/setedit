@@ -1159,7 +1159,7 @@ sub ExtractItemsImk
  $path=$1;
  print "Extracting from $makefile: ";
  $mak=cat($makefile);
- if ($mak=~ /(.*):: (((.+)\\\n)+(.+)\n)/ ||
+ if ($mak=~ /(.*)::(((.+)\\\n)+(.+)\n)/ ||
      $mak=~ /(.*):: ((.+)\n)/)
    {
     print "processing\n";
@@ -1170,7 +1170,7 @@ sub ExtractItemsImk
          {
           $file=~/((.+)\/+)(.*)/;
           $file=$3;
-          print "$file\n";
+          #print "$file\n";
           if ($$col!=0)
             {
              if ($$col+length($file)>76)

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.363  2003/05/13 14:58:18  set
+* Fixed: Some details needed to compile RHIDE 1.5, CVS snapshot for today.
+
 Revision 1.362  2003/05/13 12:51:18  set
 * Fixed: More documentation details. Patch from Bernd.
 

@@ -5,6 +5,7 @@ vpath %.s $(vpath_src)
 vpath %.cc $(vpath_src)
 vpath_obj=obj
 vpath %.o $(vpath_obj)
+vpath %.h $(INCLUDE_DIRS)
 
 RHIDE_AS=$(RHIDE_GCC)
 SOURCE_NAME=$<
