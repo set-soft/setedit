@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.458  2003/10/20 15:33:02  set
+* Fixed: While locking the editor in the S&R y did it wrong and the S&R
+confirmation didn't move to the correct coordinate.
+
 Revision 1.457  2003/10/20 15:32:12  set
 * Added: Now sLisp can replace things like ^K key binding even when it
 implies removing all the ^K-x assignments. It allows a complete

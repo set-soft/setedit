@@ -9000,7 +9000,7 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
        thisLine=lenLines[y++];
        here+=thisLine;
       }
-    while (here<offset);
+    while (here<=offset);
     rest=thisLine-(here-offset);
     return y-1;
    }
@@ -9012,7 +9012,7 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
        thisLine=lenLines[y++];
        here+=thisLine;
       }
-    while (here<offset);
+    while (here<=offset);
     rest=thisLine-(here-offset);
     return y-1;
    }
