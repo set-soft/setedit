@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.44.2.1  2002/02/20 19:57:47  set
+* Fixed: If no project is available and you try to set the run program
+options the editor crashes.
+
 Revision 1.44  2002/01/29 18:05:29  set
 * Updated: Man page version and ~/* paths (now ~/.setedit/*).
 

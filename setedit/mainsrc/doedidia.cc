@@ -65,14 +65,14 @@ unsigned doEditDialog(int dialog, va_list arg)
            << ". " << StrError(errno) << " (" << errno << ")"
            << CLY_std(ends);
         va_end(arg);
-        return messageBox(GetStrStream(buf),mfError | mfOKButton);
+        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
         }
     case edWriteError:
         {
         os << _("Error writing file ") << va_arg(arg,_charPtr)
            << "." << CLY_std(ends);
         va_end(arg);
-        return messageBox(GetStrStream(buf),mfError | mfOKButton);
+        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
         }
     case edCreateError:
         {
@@ -80,14 +80,14 @@ unsigned doEditDialog(int dialog, va_list arg)
            << ". " << StrError(errno) << " (" << errno << ")"
            << CLY_std(ends);
         va_end(arg);
-        return messageBox(GetStrStream(buf),mfError | mfOKButton);
+        return messageBox(GetStrStream(os,buf),mfError | mfOKButton);
         }
     case edSaveModify:
         {
         os << va_arg(arg,_charPtr)
            << _(" has been modified. Save?") << CLY_std(ends);
         va_end(arg);
-        return messageBox(GetStrStream(buf),mfInformation | mfYesNoCancel);
+        return messageBox(GetStrStream(os,buf),mfInformation | mfYesNoCancel);
         }
     case edSaveUntitled:
         return messageBox( _("Save untitled file?"),
@@ -137,7 +137,7 @@ unsigned doEditDialog(int dialog, va_list arg)
          uint32 lines=va_arg(arg,uint32);
          os << bytes << _(" bytes selected, in ") << lines << _(" lines")
             << CLY_std(ends);
-         return messageBox(GetStrStream(buf),mfInformation | mfOKButton);
+         return messageBox(GetStrStream(os,buf),mfInformation | mfOKButton);
         }
  
     case edGotoLine:
@@ -147,9 +147,9 @@ unsigned doEditDialog(int dialog, va_list arg)
          p=va_arg(arg,int *);
          os << *p << CLY_std(ends);
  
-         if (execDialog(createGotoLineDialog(),(void *)GetStrStream(buf))==cmOK)
+         if (execDialog(createGotoLineDialog(),(void *)GetStrStream(os,buf))==cmOK)
            {
-            sscanf(GetStrStream(buf),"%d",p);
+            sscanf(GetStrStream(os,buf),"%d",p);
             return 1;
            }
          return 0;
@@ -225,13 +225,13 @@ unsigned doEditDialog(int dialog, va_list arg)
          os << va_arg(arg,_charPtr) << _(" already exist, overwrite?")
             << CLY_std(ends);
          va_end(arg);
-         return messageBox(GetStrStream(buf),mfYesButton | mfNoButton | mfWarning);
+         return messageBox(GetStrStream(os,buf),mfYesButton | mfNoButton | mfWarning);
 
     case edFileNoFile:
          os << va_arg(arg,_charPtr) << _(" isn't a file, probably a device, go ahead?")
             << CLY_std(ends);
          va_end(arg);
-         return messageBox(GetStrStream(buf),mfYesButton | mfNoButton | mfWarning);
+         return messageBox(GetStrStream(os,buf),mfYesButton | mfNoButton | mfWarning);
 
     case edCantBkp:
          return messageBox(_("Can't make a back up file, continue saving?"),mfYesButton | mfNoButton | mfError);
