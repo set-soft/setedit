@@ -650,6 +650,7 @@ setedit/edprefs.cc
 setedit/edprint.cc
 setedit/edprj.cc
 setedit/getctxhl.cc
+setedit/holidays.cc
 setedit/include/ascii.h
 setedit/include/calendar.h
 setedit/include/advice.h

@@ -5,7 +5,7 @@ ifeq ($(strip $(RHIDE_OS_LIBS_PATH)),)
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 endif
 ifeq ($(strip $(SUPPORT_INC)),)
-SUPPORT_INC=
+SUPPORT_INC=../holidays 
 endif
 ifeq ($(strip $(TVISION_INC)),)
 TVISION_INC=
@@ -211,11 +211,11 @@ RHIDE_PATH_SEPARATOR_Linux=:
 RHIDE_PATH_SEPARATOR=$(RHIDE_PATH_SEPARATOR_$(RHIDE_OS))
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib../holidays 
 RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
-SUPPORT_INC=
+SUPPORT_INC=../holidays 
 RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
 RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)

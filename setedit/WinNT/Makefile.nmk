@@ -84,11 +84,11 @@ EDITOR_OBJS =  $(OBJDIR)/accehtml.o $(OBJDIR)/advice.o $(OBJDIR)/ampdiag.o $(OBJ
 	$(OBJDIR)/editpale.o $(OBJDIR)/editwind.o $(OBJDIR)/edkeys.o $(OBJDIR)/edmsg.o $(OBJDIR)/edprefs.o $(OBJDIR)/edprint.o\
 	$(OBJDIR)/edprj.o $(OBJDIR)/edspecs.o  $(OBJDIR)/dyncat.o  $(OBJDIR)/mixer.o \
 	 $(OBJDIR)/stackdbg.o $(OBJDIR)/strncpyz.o $(OBJDIR)/strndup.o $(OBJDIR)/fstrcmp.o $(OBJDIR)/getctxhl.o\
-	$(OBJDIR)/gzfiles.o $(OBJDIR)/inf.o $(OBJDIR)/infbase.o $(OBJDIR)/manview.o $(OBJDIR)/nhiscoll.o $(OBJDIR)/ninfview.o\
-	$(OBJDIR)/ninfwind.o $(OBJDIR)/nmanwind.o $(OBJDIR)/sinf.o $(OBJDIR)/sman.o $(OBJDIR)/intgrep.o $(OBJDIR)/keytrans.o\
-	$(OBJDIR)/abstorel.o $(OBJDIR)/back2sl.o $(OBJDIR)/basename.o $(OBJDIR)/fexpand.o $(OBJDIR)/io.o $(OBJDIR)/specs.o\
-	$(OBJDIR)/splitfn.o $(OBJDIR)/stricat.o $(OBJDIR)/stridown.o $(OBJDIR)/stridup.o $(OBJDIR)/strifree.o $(OBJDIR)/linelen.o\
-	$(OBJDIR)/loadcle.o $(OBJDIR)/loaddefl.o $(OBJDIR)/loadfunc.o $(OBJDIR)/loadnobkp.o $(OBJDIR)/loadshl.o\
+	$(OBJDIR)/gzfiles.o $(OBJDIR)/holidays.o $(OBJDIR)/inf.o $(OBJDIR)/infbase.o $(OBJDIR)/manview.o $(OBJDIR)/nhiscoll.o\
+	$(OBJDIR)/ninfview.o $(OBJDIR)/ninfwind.o $(OBJDIR)/nmanwind.o $(OBJDIR)/sinf.o $(OBJDIR)/sman.o $(OBJDIR)/intgrep.o\
+	$(OBJDIR)/keytrans.o $(OBJDIR)/abstorel.o $(OBJDIR)/back2sl.o $(OBJDIR)/basename.o $(OBJDIR)/fexpand.o $(OBJDIR)/io.o\
+	$(OBJDIR)/specs.o $(OBJDIR)/splitfn.o $(OBJDIR)/stricat.o $(OBJDIR)/stridown.o $(OBJDIR)/stridup.o $(OBJDIR)/strifree.o\
+	$(OBJDIR)/linelen.o $(OBJDIR)/loadcle.o $(OBJDIR)/loaddefl.o $(OBJDIR)/loadfunc.o $(OBJDIR)/loadnobkp.o $(OBJDIR)/loadshl.o\
 	$(OBJDIR)/loadusew.o $(OBJDIR)/macrocom.o $(OBJDIR)/menuload.o $(OBJDIR)/mli.o $(OBJDIR)/mliasimp.o $(OBJDIR)/mlicsdg.o\
 	$(OBJDIR)/mliediti.o $(OBJDIR)/mliedito.o $(OBJDIR)/mlisdg.o $(OBJDIR)/msignal.o $(OBJDIR)/nceditor.o $(OBJDIR)/ndskwasc.o\
 	$(OBJDIR)/ndskwcal.o $(OBJDIR)/ndskwcli.o $(OBJDIR)/ndskwclo.o $(OBJDIR)/ndskwedi.o $(OBJDIR)/ndskwhel.o\

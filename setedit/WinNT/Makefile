@@ -93,11 +93,11 @@ EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.ob
 	+editpale.obj +editwind.obj +edkeys.obj +edmsg.obj +edprefs.obj +edprint.obj\
 	+edprj.obj +edspecs.obj  +dyncat.obj  +mixer.obj \
 	 +stackdbg.obj +strncpyz.obj +strndup.obj +fstrcmp.obj +getctxhl.obj\
-	+gzfiles.obj +inf.obj +infbase.obj +manview.obj +nhiscoll.obj +ninfview.obj\
-	+ninfwind.obj +nmanwind.obj +sinf.obj +sman.obj +intgrep.obj +keytrans.obj\
-	+abstorel.obj +back2sl.obj +basename.obj +fexpand.obj +io.obj +specs.obj\
-	+splitfn.obj +stricat.obj +stridown.obj +stridup.obj +strifree.obj +linelen.obj\
-	+loadcle.obj +loaddefl.obj +loadfunc.obj +loadnobkp.obj +loadshl.obj\
+	+gzfiles.obj +holidays.obj +inf.obj +infbase.obj +manview.obj +nhiscoll.obj\
+	+ninfview.obj +ninfwind.obj +nmanwind.obj +sinf.obj +sman.obj +intgrep.obj\
+	+keytrans.obj +abstorel.obj +back2sl.obj +basename.obj +fexpand.obj +io.obj\
+	+specs.obj +splitfn.obj +stricat.obj +stridown.obj +stridup.obj +strifree.obj\
+	+linelen.obj +loadcle.obj +loaddefl.obj +loadfunc.obj +loadnobkp.obj +loadshl.obj\
 	+loadusew.obj +macrocom.obj +menuload.obj +mli.obj +mliasimp.obj +mlicsdg.obj\
 	+mliediti.obj +mliedito.obj +mlisdg.obj +msignal.obj +nceditor.obj +ndskwasc.obj\
 	+ndskwcal.obj +ndskwcli.obj +ndskwclo.obj +ndskwedi.obj +ndskwhel.obj\

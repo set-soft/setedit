@@ -36,6 +36,11 @@
 /* AA lib */
 #define HAVE_AA 1
 
+/* Support for runtime dynamic libs */
+#define HAVE_DL_LIB 1
+#define DL_HEADER_NAME <link.h>
+
+
 #define CONFIG_PREFIX "/usr"
 
 
