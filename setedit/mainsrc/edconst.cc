@@ -214,6 +214,7 @@ static edCList SetApp[] =
 { "DbgCleanElem"   ,134  },
 { "DbgCloseSession",128  },
 { "DbgDataWindow"  ,132  },
+{ "DbgDetach"      ,138  },
 { "DbgDisAsmWin"   ,137  },
 { "DbgEditBreakPts",131  },
 { "DbgEditWatchPts",125  },

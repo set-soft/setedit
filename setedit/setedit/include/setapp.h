@@ -159,8 +159,9 @@ const int
   cmeDbgThreadSel   = cmeBase+135,
   cmeDbgOptionsAdv  = cmeBase+136,
   cmeDbgDisAsmWin   = cmeBase+137,
+  cmeDbgDetach      = cmeBase+138,
   // That isn't a command, is to know the last+1.
-  cmeDbgLastCommand = cmeBase+138,
+  cmeDbgLastCommand = cmeBase+139,
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
@@ -458,6 +459,7 @@ public:
     static int  DebugTimeOut(void *data);
     static int  DebugOptionsAdv();
     static void DebugDisAsmWin();
+    static void DebugDetach();
 
 protected:
 

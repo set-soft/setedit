@@ -11,10 +11,6 @@
 
   * warnings about big lens, and also show explicit limit of 1 MB, not here
   but in the input dialog. (Data Window).
-  * go to line in disasm window.
-  * clarify the attach to pid usage.
-  * when we set a breakpoint the cpu line disapears?
-  * clear mi_error when connecting.
 
   * Advices (only project, ...).
   * Don't show again in the confirmation for exit while debugging.
@@ -98,6 +94,8 @@ Eval/Modify:
 
 Disassembler Window:
 * Choose the format for registers individualy, not for all.
+* Avoid reporting wrong functions. Like when I stop during a getchar and it says
+it was executing read but the read symbol is 800 KB away from the real address.
 
 
 IMPORTANT NOTES!!!
@@ -118,6 +116,14 @@ But latter says that /full-path/file.cc isn't in the symtab.
 The CLI dir command or MI -environment-directory seems to solve the
 problems. Currently after connecting I'm sending to gdb a list of
 directories to look for sources.
+
+3) When gdb stops in a function inside a library (no debug info) the
+reported function can be bogus. In my tests with getchar it says we stopped
+in read (when sending a sigint or attaching), but read is 800 KB away in
+another library. So in the middle we have a gap with unaccessable memory. So
+when we ask gdb to disassemble read we cross the gap and gdb dies. Here I see
+two bugs: 1) Wrong function name and 2) Crashing just because reading
+unaccessable memory.
 
 ***************************************************************************/
 
@@ -234,7 +240,7 @@ const int maxWBox=70, widthFiles=256, widthShort=80, widthExpRes=1024;
 const int widthWtExp=widthFiles, maxWtBox=maxWBox;
 const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
 const int widthPID=32;
-const int dmLocal=0, dmPID=1, dmRemote=2;
+const unsigned dmLocal=0, dmPID=1, dmRemote=2;
 const int wTimeOut=8, wLinesMsg=8;
 const int wVisible=50, wInt=32, wLabels=9,
           wFilename=PATH_MAX,
@@ -1020,6 +1026,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgStackWindow,True);
          TSetEditorApp::setCmdState(cmeDbgDisAsmWin,True);
          TSetEditorApp::setCmdState(cmeDbgThreadSel,True);
+         TSetEditorApp::setCmdState(cmeDbgDetach,Boolean(dOps.mode!=dmLocal));
     case MIDebugger::target_specified:
          TSetEditorApp::setCmdState(cmeBreakpoint,True);
          TSetEditorApp::setCmdState(cmeDbgRunContinue,True);
@@ -1038,6 +1045,7 @@ void TSetEditorApp::DebugUpdateCommands()
             TSetEditorApp::setCmdState(cmeDbgInspector,False);
             TSetEditorApp::setCmdState(cmeDbgDataWindow,False);
             TSetEditorApp::setCmdState(cmeDbgStackWindow,False);
+            TSetEditorApp::setCmdState(cmeDbgDetach,False);
            }
          break;
     case MIDebugger::running:
@@ -1056,6 +1064,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgCleanElem,False);
          TSetEditorApp::setCmdState(cmeDbgDisAsmWin,False);
          TSetEditorApp::setCmdState(cmeDbgThreadSel,False);
+         TSetEditorApp::setCmdState(cmeDbgDetach,False);
          break;
    }
 }
@@ -1082,6 +1091,7 @@ void TSetEditorApp::DebugCommandsForDisc()
  TView::curCommandSet-=cmeDbgCleanElem;
  TView::curCommandSet-=cmeDbgDisAsmWin;
  TView::curCommandSet-=cmeDbgThreadSel;
+ TView::curCommandSet-=cmeDbgDetach;
 }
 
 /**[txh]********************************************************************
@@ -1093,13 +1103,33 @@ void TSetEditorApp::DebugCommandsForDisc()
 
 void TSetEditorApp::DebugRunOrContinue()
 {
+ int wasStopped=IsStopped();
  if (!DebugCheckStopped())
     return;
  DBG_RefreshIgnoreBkpts();
+ if (!wasStopped && dOps.mode==dmPID)
+   {// Just attach if that's the first run
+    DebugMsgSetState();
+    return;
+   }
  if (dbg->RunOrContinue())
     DebugMsgSetState();
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Used to detach from a remote or pid target.
+  
+***************************************************************************/
+
+void TSetEditorApp::DebugDetach()
+{
+ if (dOps.mode==dmLocal || !IsStopped())
+    return;
+ if (dbg->TargetUnselect())
+    DebugMsgSetState();
+}
 
 static
 Boolean DeskTopIsModal()
@@ -1207,18 +1237,29 @@ void TSetEditorApp::DebugTraceInto()
 
 void TSetEditorApp::DebugGoToCursor()
 {
- TCEditor *e=GetCurrentIfEditor();
- if (!e)
-    return;
  if (!DebugCheckStopped())
     return;
 
- // We use the full name
- char s[PATH_MAX];
- strcpy(s,e->fileName);
- CLY_fexpand(s);
+ int res;
+ if (IsDisAsmWinCurrent())
+   {
+    res=TDisAsmWin::runToCursor();
+   }   
+ else
+   {
+    TCEditor *e=GetCurrentIfEditor();
+    if (!e)
+       return;
+   
+    // We use the full name
+    char s[PATH_MAX];
+    strcpy(s,e->fileName);
+    CLY_fexpand(s);
 
- if (dbg->GoTo(s,e->curPos.y+1))
+    res=dbg->GoTo(s,e->curPos.y+1);
+   }
+
+ if (res)
     DebugMsgSetState();
  else
     DebugMsgSetError();
@@ -1819,6 +1860,7 @@ void TSetEditorApp::DebugThreadSel()
 //---------------------------------------------------------------------------
 
 const int disAsmAfterPC=500;
+const ulong disAsmMaxDist=20000;
 
 // Collection to convert an address into a line number inside the assembler text
 Boolean TAdd2Line::searchL(int line, ccIndex &pos)
@@ -1916,6 +1958,30 @@ char *TDisAsmEdWin::getCodeInfo(char *b, int l)
        CLY_snprintf(b,l,"%p",p->addr);
    }
  return b;
+}
+
+int TDisAsmEdWin::runToCursor()
+{
+ if (!a2l)
+    // Pretend we succeed and avoid farther messages.
+    // The user should avoid going nowhere.
+    return 1;
+
+ int line=editor->curPos.y+1;
+ ccIndex pos;
+ void *addr=NULL;
+ if (a2l->searchL(line,pos))
+   {
+    mi_asm_insn *p=a2l->At(pos)->asmL;
+    addr=p->addr;
+   }
+ int res=1;
+ if (addr)
+    res=dbg->GoTo(addr);
+ else
+    messageBox(__("No address associated with this line"),mfError|mfOKButton);
+
+ return res;
 }
 
 void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
@@ -2082,18 +2148,36 @@ int TDisAsmEdWin::dissasembleFrame(mi_frames *f)
     if (!f->addr)
        // Hope never happend
        return 0;
-    char end[32];
-    CLY_snprintf(end,32,"%p",(char *)f->addr+disAsmAfterPC);
+
+    char endB[32];
+    char startB[32];
+    ulong start=0;
+    // Disassemble upto addr+disAsmAfterPC
+    ulong end=(ulong)((char *)f->addr+disAsmAfterPC);
+
+    // Solve the starting point
     if (f->func)
-      {// We know the function name, get from the beggining
-       r=dbg->Disassemble(f->func,end,MI_DIS_ASM);
+      {// We know the function name and will try to get from the beggining
+       // Find if the function is valid
+       unsigned len=strlen(f->func)+20;
+       AllocLocalStr(b,len);
+       CLY_snprintf(b,len,"(unsigned long)%s",b);
+       char *res=TSetEditorApp::DebugEvalExpression(b);
+       if (res && MIDebugger::GetErrorNumber()==MI_OK)
+         {
+          start=atoi(res);
+          // Put some limits, some times gdb reports a wrong function
+          if (start>end || end-start>disAsmMaxDist)
+             start=0;
+         }
+       free(res);
       }
-    else
-      {// We know nothing! get from the $PC
-       char start[32];
-       CLY_snprintf(end,32,"%p",f->addr);
-       r=dbg->Disassemble(start,end,MI_DIS_ASM);
-      }
+    if (!start)
+       start=(ulong)f->addr;
+
+    CLY_snprintf(startB,32,"0x%lx",start);
+    CLY_snprintf(endB,32,"0x%lx",end);
+    r=dbg->Disassemble(startB,endB,MI_DIS_ASM);
    }
  if (!r)
    {
@@ -4880,6 +4964,10 @@ protected:
   char thestate[10];
 };
 
+const int taddNone=-1, taddNewValue=0, taddFrom=1, taddTo=2, taddExp=3,
+          taddLength=4, taddValue=5, taddChangeOrig=0x100;
+
+
 class TDataViewer: public TView
 {
 public:
@@ -4957,6 +5045,9 @@ protected:
  static int cDataViewers;
 
  static void setCommands(Boolean enable);
+ int EnterAddresses(const char *tit, int t1, ulong *v1,
+                    const char *startVal=NULL, int t2=taddNone,
+                    ulong *v2=NULL, int t3=taddNone, ulong *v3=NULL);
 };
 
 int TDataViewer::cDataViewers=0;
@@ -5698,9 +5789,6 @@ uchar *TDataViewer::curs2memo()
         (cursor.x-addrLen)/(fieldLen[dispMode][radix]+1)*fieldBytes[dispMode];
 }
 
-const int taddNone=-1, taddNewValue=0, taddFrom=1, taddTo=2, taddExp=3,
-          taddLength=4, taddValue=5;
-
 const char *taddNames[]=
 {
  __("~N~ew Value"),
@@ -5712,20 +5800,14 @@ const char *taddNames[]=
 };
 
 static
-int EnterAddresses(const char *tit, int t1, ulong *v1,
-                   const char *startVal=NULL,
-                   int t2=taddNone, ulong *v2=NULL,
-                   int t3=taddNone, ulong *v3=NULL);
-
-static
 struct
 {
  char v1[widthWtExp], v2[widthWtExp], v3[widthWtExp];
 } boxEA;
 
-static
-int EnterAddresses(const char *tit, int t1, ulong *v1, const char *startVal,
-                   int t2, ulong *v2, int t3, ulong *v3)
+int TDataViewer::EnterAddresses(const char *tit, int t1, ulong *v1,
+                                const char *startVal, int t2, ulong *v2,
+                                int t3, ulong *v3)
 {
  if (startVal)
     strncpyZ(boxEA.v1,startVal,widthWtExp);
@@ -5734,6 +5816,13 @@ int EnterAddresses(const char *tit, int t1, ulong *v1, const char *startVal,
  boxEA.v2[0]=boxEA.v3[0]=0;
 
  TSViewCol *col=new TSViewCol(tit);
+
+ Boolean changeOrigTxt=False;
+ if (t1 & taddChangeOrig)
+   {
+    t1&=~taddChangeOrig;
+    changeOrigTxt=True;
+   }
 
  // EN: EFLNT
  TSLabel *o1=new TSLabel(taddNames[t1],
@@ -5765,7 +5854,14 @@ int EnterAddresses(const char *tit, int t1, ulong *v1, const char *startVal,
                                      isValidAddress(boxEA.v2,*v2)))
         && (!v3 || (t3>=taddLength ? isValidUL(boxEA.v3,*v3) :
                                      isValidAddress(boxEA.v3,*v3))))
+      {
+       if (changeOrigTxt)
+         {
+          delete[] origAddrTxt;
+          origAddrTxt=newStr(boxEA.v1);
+         }
        return 1;
+      }
    }
  return 0;
 }
@@ -6016,7 +6112,8 @@ void TDataViewer::handleEvent(TEvent & event)
               }
             break;
        case cmDWGotoAddress:     // goto to a new address
-            if (EnterAddresses(__("Data window"),taddExp,&origAddr,origAddrTxt))
+            if (EnterAddresses(__("Data window"),taddExp | taddChangeOrig,
+                &newAddr,origAddrTxt))
               {
                setCursor(addrLen,0);
                addressChanged=True;
@@ -8348,6 +8445,7 @@ int  TSetEditorApp::DebugOptionsAdv() { return 0; }
 void TSetEditorApp::DebugDisAsmWin() {}
 void TSetEditorApp::DebugStackWindow() {}
 void TSetEditorApp::DebugMoveBreakPts() {}
+void TSetEditorApp::DebugDetach() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}

@@ -178,6 +178,7 @@ public:
  char *getCodeInfo(char *b, int l);
  void *getFrom() { return from; }
  void *getTo() { return to; }
+ int   runToCursor();
 
 protected:
  mi_asm_insns *lines;
@@ -215,7 +216,7 @@ public:
  static int  jumpToFrame(mi_frames *f)
  {
   int ret=theDisAsmWin->edw->jumpToFrame(f);
-  if (theDisAsmWin->regs->update())
+  if (theDisAsmWin->regs && theDisAsmWin->regs->update())
      theDisAsmWin->bRegs->drawView();
   return ret;
  }
@@ -231,6 +232,8 @@ public:
   { return theDisAsmWin ? theDisAsmWin->edw->getFrom() : NULL; }
  static void *getTo()
   { return theDisAsmWin ? theDisAsmWin->edw->getTo() : NULL; }
+ static int   runToCursor()
+  { return theDisAsmWin->edw->runToCursor(); }
 
 protected:
  static TDisAsmWin *theDisAsmWin;

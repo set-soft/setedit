@@ -58,7 +58,11 @@ TSpCollection &TSpCollection::operator=(const TSpCollection &pl)
      d->oline=o->oline;
      d->nline=o->nline;
      d->id=o->id;
-     TNSSortedCollection::insert(d);
+     // Maintain the same sorting, even for duplicated items.
+     // That's important because duplicated newer entries goes first, but when
+     // we copy they are inserted in the reverse order. This can make an old
+     // breakpoint hide the CPU line.
+     TNSCollection::insert(d);
     }
  return *this;
 }

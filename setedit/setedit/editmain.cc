@@ -1462,6 +1462,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               DebugDisAsmWin();
               break;
 
+         case cmeDbgDetach:
+              DebugDetach();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

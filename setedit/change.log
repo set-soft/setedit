@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.588  2004/08/24 21:17:53  set
+* Added: [DOC] More documentation about debug features.
+* Fixed: [Cosmetic] Some menu entries that opens dialogs to indicate "..."
+* Modified: [Debug] Avoid asking for confirmation when closing a debug
+session that isn't stopped nor running.
+* Fixed: [Debug] If gdb failed to disassembler code we shortly SIGSEGVed in
+the idle update.
+* Fixed: [Debug] The debug options dialog didn't return success.
+
 Revision 1.587  2004/08/24 13:16:38  set
 * Fixed: [Debug] A couple of typos in new code.
 

@@ -323,7 +323,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Ed~i~t breakpoints", cmeDbgEditBreakPts
  MenuItemC: "Edit watchpoints ~3~", cmeDbgEditWatchPts
  MenuSeparator
- MenuItemC: "~R~un/Continue", cmeDbgRunContinue, kbShF9, "Shift+F9"
+ MenuItemC: "~R~un/Continue/Atach", cmeDbgRunContinue, kbShF9, "Shift+F9"
  MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
  MenuItemC: "~T~race into", cmeDbgTraceInto, kbF7, "F7"
  MenuItemC: "~G~o to cursor", cmeDbgGoToCursor, kbF4, "F4"
@@ -346,6 +346,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
  MenuSeparator
  SubMenu: "~D~ebug session", kbUnknown
+  MenuItemC: "De~t~ach", cmeDbgDetach
   MenuItemC: "Clear deb~u~g elements", cmeDbgCleanElem
   MenuItemC: "C~l~ose", cmeDbgCloseSession
   MenuItemC: "~D~estroy (DANGER!)", cmeDbgEndSession
