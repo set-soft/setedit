@@ -4,7 +4,7 @@
   This program is covered by the GPL license.
 
   Description:
-  Parses a .shl or .txi file looking for function definitions.
+  Parses a .shl, .txi or assembler file looking for function definitions.
   It can be compiled as an standalone program by defining STANDALONE.
 
 ***************************************************************************/
@@ -131,6 +131,43 @@ int SearchTxiSecs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
  return funcs;
 }
 
+static
+int IsAsmChar(uchar s)
+{
+ return isalnum(s) || s=='_' || s=='@' || s=='$';
+}
+
+static
+int GetLabel(int &len)
+{
+ int i=0;
+ while (IsAsmChar(bfBuffer[i]))
+   {
+    bfNomFun[i]=bfBuffer[i];
+    i++;
+   }
+ bfNomFun[i]=0;
+ len=i;
+ return bfBuffer[i]==':' && i!=0;
+}
+
+int SearchAsmLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned funcs=0;
+ int l;
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    if (GetLabel(l))
+      {
+       AddFunc(bfNomFun,l+1,Line,-1);
+       funcs++;
+      }
+   }
+ return funcs;
+}
+
 #ifdef STANDALONE
 char bfBuffer[MaxLenWith0];
 char bfNomFun[MaxLenWith0];
@@ -144,7 +181,8 @@ void PrintFunc(char *name, int len, int lineStart, int lineEnd)
 int main(int argc, char *argv[])
 {
  //printf(".SHL Definitions Parser, Copyright 2001 by Salvador E. Tropea\n");
- printf(".TXI Definitions Parser, Copyright 2001 by Salvador E. Tropea\n");
+ //printf(".TXI Definitions Parser, Copyright 2001 by Salvador E. Tropea\n");
+ printf("Assembler Labels Parser, Copyright 2001 by Salvador E. Tropea\n");
  if (argc!=2)
    {
     printf("Use: pvarious file\n");
@@ -171,7 +209,8 @@ int main(int argc, char *argv[])
  fclose(f);
  buffer[len]=0;
  //SearchSHLDefs(buffer,len,0,PrintFunc);
- SearchTxiSecs(buffer,len,0,PrintFunc);
+ //SearchTxiSecs(buffer,len,0,PrintFunc);
+ SearchAsmLabels(buffer,len,0,PrintFunc);
 
  return 0;
 }

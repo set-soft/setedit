@@ -543,6 +543,12 @@ static stFuncsSHL FuncsAvail[]=
  {"Perl",SearchPerlFuncs},
  {"Syntax Highlight File",SearchSHLDefs},
  {"Texinfo source",SearchTxiSecs},
+ {"80x86 asm (AT&T syntax)",SearchAsmLabels},
+ {"80x86 asm (Intel syntax)",SearchAsmLabels},
+ {"Netwide Assembler",SearchAsmLabels},
+ {"8x51 asm",SearchAsmLabels},
+ {"PICs asm",SearchAsmLabels},
+ {"PDP11 asm",SearchAsmLabels},
  {0,SearchCFuncs}
 };
 

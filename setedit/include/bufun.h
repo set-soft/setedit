@@ -48,5 +48,6 @@ extern int SearchClipperFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchPerlFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchSHLDefs(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchTxiSecs(char *b, unsigned l, int mode, tAddFunc AddFunc);
+extern int SearchAsmLabels(char *b, unsigned l, int mode, tAddFunc AddFunc);
 
 #endif // BUFUN_H_INCLUDED
