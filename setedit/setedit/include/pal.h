@@ -185,10 +185,10 @@
         S(8C,Lightgreen,Cyan,Frame icons) \
         S(8D,Cyan,Blue,Scroll bar page) \
         S(8E,Cyan,Blue,Scroll bar icons) \
-        S(8F,Yellow,Cyan,Static text) \
+        S(8F,Black,Cyan,Static text) \
         S(90,Blue,Green,Selected text) \
-        S(91,Black,Cyan,Bold text) \
-        S(92,White,Cyan,Underlined text) \
+        S(91,White,Cyan,Bold text) \
+        S(92,Yellow,Cyan,Underlined text) \
         S(93,Black,Black,reserved)
 
 
