@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.598  2004/09/08 18:14:32  set
+* Added: [SHL] For SPARC assembler.
+* Added: [Debug] syntax highlight for SPARC targets. Now the code can be
+adapted to other architectures with minor changes. Also tested stack window
+on an Ultra 60 machine.
+
 Revision 1.597  2004/09/07 20:00:02  set
 * Added: [Debug] Support for the Stack Window on SPARC machines. Not
 tested.

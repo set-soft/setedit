@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.4
-@set update-date 1 September 2004
+@set update-date 8 September 2004
 @set update-month September 2004
 @set name-author Salvador Eduardo Tropea
 
@@ -7025,8 +7025,8 @@ version 6 implements MI version 2.
 @p{}
 
 To debug the editor starts gdb and communicates with the debugger using a
-POSIX mechanism called pipe. It means that the editor can just send commands
-to gdb like a you could do manually. The consequence is that you all the
+POSIX mechanism called pipe. It means the editor can just send commands
+to gdb like you could do manually. The consequence is that you all the
 power of gdb, but also all the problems and bugs found in gdb. During the
 development of the debug features I found more than two bugs in gdb each
 week.
@@ -7042,8 +7042,8 @@ mode (CLI Command Line Interface).
 The MI mode allows to send CLI commands to gdb. So you can send your own
 commands to gdb. This should be used only if the editor doesn't provide any
 way to achieve the same result. If you need to do it very often please
-consider commenting it in the editor's mailing list. We could add the propper
-user interface for what you need.
+consider commenting it in the editor's mailing list. We could add the proper
+user interface for what you need. @x{Debug Messages Window}.
 @p{}
 
 @section Quick start to debugging
@@ -7182,7 +7182,7 @@ menu entry.
 @p{}
 
 This dialog controls which messages will be displayed in the Debugger Window.
-You can filter the following kind of messages:
+@x{Debug Messages Window}. You can filter the following kind of messages:
 @p{}
 
 @itemize @bullet
@@ -7236,7 +7236,7 @@ the response will never arrive. You can't indicate less than two seconds.
 Window. When this value is reached the older lines are discarded. You can't
 indicate less than 100 lines.
 @item No gdb banner after connecting: Suppress the gdb banner printed in the
-Debugger Window when we start gdb.
+Debugger Window when we start gdb. @x{Debug Messages Window}.
 @item Enable MI v2 features: Enable a few features only available in gdb MI
 version 2. Currently the editor can't determine the exact version implemented
 in gdb so you must indicate it. Versions newer than 6.0 seems to implement MI
@@ -7262,7 +7262,7 @@ file.
 Not all operations can be performed at any time. GDB must be running in order
 to run the program and the program running in order to stop it. For this
 reason the editor keeps track of gdb state. The current state is displayed in
-the Debugger Window. The following states are defined:
+the Debugger Window. @x{Debug Messages Window}.The following states are defined:
 @p{}
 
 @itemize @bullet
@@ -7279,7 +7279,7 @@ in this state.
 Some menu options can be used to force a particular state. So you can
 directly jump to @il{connected} or @il{ready to run} states from the
 @il{disconnected} state. This is useful if you want to send commands to gdb
-that only works in these states.
+that only works in these states. @x{Debug Messages Window}.
 @p{}
 
 When you specify an action that is invalid for the current state the editor
@@ -8396,6 +8396,42 @@ normal execution.
 @p{}
 
 @refMenu1{cmeDbgDetach}
+
+@section Debug Messages Window
+@cindex debug, state window
+@cindex debug, gdb messages
+
+This window is used to:
+@p{}
+
+@itemize @bullet
+@item Show gdb messages. @x{Messages displayed}.
+@item Show the current debugging state. @x{Debugging states}.
+@item Show extra information about the current state. It includes errors from
+gdb or in the communication with gdb.
+@item Send commands to gdb.
+@end itemize
+
+When you start a new debug session this window becomes visible. When the
+session is closed the window is hided. When the window is hided you can
+access it using the list of windows dialog. @x{List}.
+@p{}
+
+The maximum ammount of messages displayed in this window is limited to avoid
+wasting memory. You can configure this value using the advanced options
+dialog. @x{Advanced debug options}.
+@p{}
+
+To send commands to gdb use the @kbd{Insert} key.
+@p{}
+
+@section Editing a debug expression
+@cindex debug, edit expression
+
+When a dialog asks for an expression to watch, modify, @il{etc.@:} you can
+enter any expression that gdb can analize. This includes arithmetic
+operations and function calls.
+@p{}
 
 @chapter Miscellaneous
 

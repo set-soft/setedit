@@ -9,8 +9,6 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * Document.
-  * Join help context values to documentation
   * Fix menu entries that uses dialogs and lacks ...
   * Add the menubind.smn options to the redmond.smn
   * Update spanish translation and ensure it is complete.

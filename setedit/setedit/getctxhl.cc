@@ -223,6 +223,19 @@ static helpNode helpList[]=
  HHe(DbgDisAsmWin,"Disassembler Window"),
  HHe(DbgDetach,"Debugging already running processes"),
  HHe(SourceList,"Path for sources"),
+ HHC(DebugMsgWin,"Debug Messages Window"),
+ HHC(WatchesWin,"Watch an expression"),
+ HHC(WatchesWinEdit,"Editing a debug expression"),
+ HHC(EditBkpt,"Advanced breakpoint options"),
+ HHC(EditWp,"Watchpoints"),
+ HHC(BkptDialog,"Advanced breakpoint options"),
+ HHC(WpDialog,"Watchpoints"),
+ HHC(Inspector,"Inspectors"),
+ HHC(DataViewer,"Data Window"),
+ HHC(Disassembler,"Disassembler Window"),
+ HHC(SourceLoc,"Path for sources"),
+ HHC(DebugAdvOps,"Advanced debug options"),
+ HHC(DebugOps,"Debug options"),
  { 0,EditorFile,""}
 };
 
