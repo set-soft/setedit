@@ -462,19 +462,17 @@ a hook for the hook function.
 
 unsigned doEditDialogLocal(int dialog, ...)
 {
- typedef char *_charPtr;
- va_list arg,localArg;
+ typedef char *charPtr;
+ va_list arg;
  char *str;
  int   flags;
 
  va_start(arg,dialog);
- localArg=arg;
-
  switch(dialog)
    {
     case edFileExists:
-         str=va_arg(localArg,_charPtr);
-         flags=va_arg(localArg,int);
+         str=va_arg(arg,_charPtr);
+         flags=va_arg(arg,int);
          if (!flags && IsAlreadyOnDesktop(str))
            {
             messageBox(__("This file is already open, close it first."),mfError | mfOKButton);
@@ -482,8 +480,11 @@ unsigned doEditDialogLocal(int dialog, ...)
            }
          break;
    }
+ va_end(arg);
 
- return doEditDialog(dialog,arg);
+ va_start(arg,dialog);
+ unsigned ret=doEditDialog(dialog,arg);
+ va_end(arg);
 }
 
 TSetEditorApp::TSetEditorApp() :
