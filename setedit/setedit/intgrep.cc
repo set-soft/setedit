@@ -38,6 +38,8 @@
 #include <ceditor.h>
 #define Uses_SETAppHelper
 #define Uses_SETAppConst
+#define Uses_SETAppVarious
+#define Uses_PrjFunctions
 #include <setapp.h>
 
 // Prototypes for the message win.
@@ -51,8 +53,6 @@
 #include <dyncat.h>
 #include <pathtool.h>
 
-// From edprj.cc generates the list of project items
-extern int WriteNamesOfProjectTo(FILE *f);
 // From editmain.cc generates the list of opened editors
 extern int WriteNamesOfOpenedTo(FILE *f);
 extern ushort execDialog( TDialog *d, void *data );

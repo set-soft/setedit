@@ -250,6 +250,8 @@ SubMenu: "~P~roject", kbAlP
  MenuItemC: "~C~lose", cmeClosePrj
  MenuItemC: "~S~ave", cmeSavePrj
  MenuItemC: "Save ~d~esktop here", cmeSaveDesktop
+ MenuItemC: "E~x~port project", cmeExportPrj
+ MenuItemC: "~I~mport project items", cmeImportPrj
 EndSubMenu
 
 # ABIMST

@@ -42,6 +42,8 @@ AsoID Convert[]={
 {hID_SaveMP3,0,0,hcSaveMP3},
 // Used by the standalone editor to select TAG files
 {hID_SelectTagFile,0,0,hcSelTagFile},
+// Used to import/export the project items
+{hID_ExportProjectItems,0,0,hcExpPrjItems},
 {0,0}
 };
 

@@ -313,4 +313,6 @@ _("T~a~g files ...")
 _("Jump ~t~o symbol")
 _("~C~lass browser")
 _("~W~ord completion")
+_("E~x~port project")
+_("~I~mport project items")
 #endif

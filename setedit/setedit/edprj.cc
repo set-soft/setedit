@@ -59,7 +59,7 @@ public:
   virtual void handleEvent(TEvent &);
   virtual void selectItem(ccIndex item);
   virtual void getText(char *dest, ccIndex item, short maxLen);
-  void addFile(char *name);
+  int addFile(char *name, Boolean interactive=True);
   void delFile(void);
 };
 
@@ -102,6 +102,7 @@ public:
  void *keyOf(void *item) { return (void *)((PrjItem *)item)->shortName; };
  char *referencePath;
  Boolean Search(char *file, ccIndex &pos);
+ int addFile(char *name, ccIndex &pos, int flags=0);
 
 private:
  PrjItem *createNewElement(char *name, int flags=0);
@@ -283,31 +284,43 @@ void TEditorProjectListBox::selectItem(ccIndex item)
 }
 
 
-void TEditorProjectListBox::addFile(char *name)
+int TEditorProjectListBox::addFile(char *name, Boolean interactive)
 {
  ccIndex pos;
- int flags=crtInteractive;
+ int flags=interactive ? crtInteractive : 0;
+
+ if (!ProjectList->addFile(name,pos,flags))
+   {
+    if (interactive)
+       messageBox(__("File already in project"),mfOKButton | mfError);
+    return 0;
+   }
+ setRange(ProjectList->getCount());
+ focusItem(pos);
+ drawView();
+ return 1;
+}
+
+int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags)
+{
  char *sName=GetShortName(name);
 
- if (ProjectList->search(sName,pos))
+ if (search(sName,pos))
    {
-    PrjItem *st=(PrjItem *)ProjectList->at(pos);
+    PrjItem *st=(PrjItem *)at(pos);
     char *relName;
     string_dup(relName,name);
-    AbsToRelPath(ProjectList->referencePath,relName,0);
-    if (strcmp(relName,st->name)==0 || ProjectList->search(relName,pos))
+    AbsToRelPath(referencePath,relName,0);
+    if (strcmp(relName,st->name)==0 || search(relName,pos))
       {
        string_free(relName);
-       messageBox(__("File already in project"),mfOKButton | mfError);
-       return;
+       return 0;
       }
     string_free(relName);
     flags|=crtUseFullName;
    }
- ProjectList->atInsert(pos,name,flags);
- setRange(ProjectList->getCount());
- focusItem(pos);
- drawView();
+ atInsert(pos,name,flags);
+ return 1;
 }
 
 void TEditorProjectListBox::delFile(void)
@@ -764,6 +777,8 @@ void OpenProject(char *name, int preLoad)
     TSetEditorApp::edHelper->addNonEditor(prjWin);
     editorApp->enableCommand(cmeClosePrj);
     editorApp->enableCommand(cmeSavePrj);
+    editorApp->enableCommand(cmeImportPrj);
+    editorApp->enableCommand(cmeExportPrj);
     editorApp->enableCommand(cmeSDG);
    }
  else
@@ -775,6 +790,8 @@ void CloseProject(int openDesktop)
 {
  editorApp->disableCommand(cmeClosePrj);
  editorApp->disableCommand(cmeSavePrj);
+ editorApp->disableCommand(cmeImportPrj);
+ editorApp->disableCommand(cmeExportPrj);
  editorApp->disableCommand(cmeSDG);
  if (PrjExists())
    {
@@ -907,6 +924,13 @@ void PrintName(void *p, void *f)
  NamesPrinted++;
 }
 
+static
+void PrintNameLine(void *p, void *f)
+{
+ fprintf((FILE *)f,"%s\n",((PrjItem *)p)->name);
+ NamesPrinted++;
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -919,11 +943,90 @@ separated by spaces.@p
 
 ***************************************************************************/
 
-int WriteNamesOfProjectTo(FILE *f)
+int WriteNamesOfProjectTo(FILE *f, unsigned mode)
 {
  NamesPrinted=0;
  if (PrjExists() && ProjectList)
-    ProjectList->forEach(PrintName,f);
+   {
+    if (mode)
+       ProjectList->forEach(PrintNameLine,f);
+    else
+       ProjectList->forEach(PrintName,f);
+   }
  return NamesPrinted;
 }
 
+
+void ExportProjectItems()
+{
+ if (!(PrjExists() && ProjectList))
+    return;
+ char buffer[PATH_MAX];
+ strcpy(buffer,"*.txt");
+
+ if (GenericFileDialog(__("Export project items"),buffer,0,
+     hID_ExportProjectItems,fdDialogForSave)==cmCancel)
+    return;
+
+ if (edTestForFile(buffer) &&
+     doEditDialogLocal(edFileExists,buffer,0)==cmNo)
+    return;
+
+ FILE *f=fopen(buffer,"wt");
+ if (!f)
+   {
+    doEditDialog(edCreateError,buffer);
+    return;
+   }
+ WriteNamesOfProjectTo(f,1);
+ int err=ferror(f);
+ if (fclose(f) || err)
+    doEditDialog(edWriteError,buffer);
+}
+
+void ImportProjectItems()
+{
+ if (!(PrjExists() && ProjectList))
+    return;
+ char buffer[PATH_MAX];
+ strcpy(buffer,"*.txt");
+
+ if (GenericFileDialog(__("Import project items"),buffer,0,
+     hID_ExportProjectItems,fdSelectButton)==cmCancel)
+    return;
+
+ unsigned rejected=0, repeated=0, added=0;
+ FILE *f=fopen(buffer,"rt");
+ if (!f)
+   {
+    messageBox(__("Unable to open file"),mfError | mfOKButton);
+    return;
+   }
+ while (!feof(f))
+   {
+    if (fgets(buffer,PATH_MAX,f))
+      {
+       char *s;
+       for (s=buffer; *s && *s!='\r' && *s!='\n'; s++);
+       *s=0;
+       //CLY_fexpand(buffer);
+       if (edTestForFile(buffer))
+         {
+          ccIndex pos;
+          if (ProjectList->addFile(buffer,pos))
+             added++;
+          else
+             repeated++;
+         }
+       else
+          rejected++;
+      }
+   }
+ int err=ferror(f);
+ if (fclose(f) || err)
+    doEditDialog(edReadError,buffer);
+
+ messageBox(mfInformation|mfOKButton,
+            __("Results: added %d, already included: %d, rejected %d"),
+            added,repeated,rejected);
+}

@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.317  2003/04/29 15:04:51  set
+* Modified: CreateChooseDialog to use EasyDiag and made more configurable.
+* Added: TGrowDialogZ as a TGrowDialog that can handle cmeZoom.
+* Modified: TAGs code to reuse both things.
+
 Revision 1.316  2003/04/29 12:52:11  set
 * Added: A new member to EasyDiag objects to set the growMode option in an
 easier way (setGrowMode).

@@ -51,6 +51,7 @@
 #include <ceditor.h>
 #define Uses_SETAppAll
 #define Uses_SETAppHelper
+#define Uses_PrjFunctions
 #include <setapp.h>
 #include <dskwin.h>
 #include <dskedito.h>
@@ -401,6 +402,8 @@ TSetEditorApp::TSetEditorApp() :
  ts.enableCmd(cmcSearchAgain);
  ts.enableCmd(cmeClosePrj);
  ts.enableCmd(cmeSavePrj);
+ ts.enableCmd(cmeExportPrj);
+ ts.enableCmd(cmeImportPrj);
  if (TScreen::noUserScreen())
    {
     ts.enableCmd(cmeDosShell);
@@ -909,6 +912,14 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeSaveDesktop:
               SaveDesktopHere();
+              break;
+
+         case cmeExportPrj:
+              ExportProjectItems();
+              break;
+
+         case cmeImportPrj:
+              ImportProjectItems();
               break;
 
          case cmeSDG:

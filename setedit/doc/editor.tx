@@ -1,12 +1,12 @@
 \input texinfo  @c -*-texinfo-*-
-@c Copyright (C) 1996-2002 by Salvador Eduardo Tropea.
+@c Copyright (C) 1996-2003 by Salvador Eduardo Tropea.
 @c The first 75 lines configures all, the rest is the real doc.
 
 @comment %**start of header
 
 @setfilename setedit.info
 @set version 0.5.1
-@set update-date 27 Apr 2003
+@set update-date 29 Apr 2003
 @set update-month Apr 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -2983,6 +2983,31 @@ useful to locally store settings without creating a project.
 @p{}
 
 @refMenu1{cmeSaveDesktop}
+
+@c --------------------------------------------------------------------------
+@subsection Export project
+
+Creates a text file containing the name of the project items. The file
+contains one file per line.
+@p{}
+
+@refMenu1{cmeExportPrj}
+
+@c --------------------------------------------------------------------------
+@subsection Import project items
+
+Imports files as project items. The file with the file names to import must
+contain one file per line. Relative paths are recommended. The editor will
+check if the file exists and if that's a regular file, if not the item will
+be rejected.
+@p{}
+
+At the end of the import process the editor informs how many items were
+added, how many were already in the project and how many file names didn't
+correspond to existing files.
+@p{}
+
+@refMenu1{cmeImportPrj}
 
 @c --------------------------------------------------------------------------
 @section Help

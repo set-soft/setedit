@@ -99,7 +99,9 @@ const int
   cmeTagFiles       = cmeBase+79,
   cmeSearchTag      = cmeBase+80,
   cmeClassBrowser   = cmeBase+81,
-  cmeWordCompletion = cmeBase+82;
+  cmeWordCompletion = cmeBase+82,
+  cmeExportPrj      = cmeBase+83,
+  cmeImportPrj      = cmeBase+84;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -363,6 +365,7 @@ extern void ASCIIWindow();
 extern void CalendarWindow();
 //extern void RemoveFromEditorsHelper(TView *p, int type);
 extern void AddNonEditorToHelper(TDskWin *p);
+extern unsigned doEditDialogLocal(int dialog, ...);
 
 extern char *TranslateCommandToMacro(unsigned command);
 extern int RegisterMacroCommand(char *name);
@@ -380,6 +383,13 @@ extern void OpenFileFromEditor(char *fullName);
 // Defined in dstfile.cc to indicate we loaded the desktop file from the current
 // directory and not from the default one.
 extern char DstLoadedHere;
+
+// From edprj.cc generates the list of project items
+#ifdef Uses_PrjFunctions
+extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=0);
+extern void ExportProjectItems();
+extern void ImportProjectItems();
+#endif
 #endif
 
 #ifdef Uses_SETAppProject

@@ -65,6 +65,8 @@ static helpNode helpList[]=
  HHe(ClosePrj,"Close (Project)"),
  HHe(SavePrj,"Save (Project)"),
  HHe(SaveDesktop,"Save desktop here"),
+ HHe(ExportPrj,"Export project"),
+ HHe(ImportPrj,"Import project items"),
  He(SDG),
  HHe(SDGDialog,"SDG Options"),
  HHe(SetColors,"Customize Colors"),
