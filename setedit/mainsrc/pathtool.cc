@@ -86,6 +86,10 @@ char *ExpandHomeWDir(const char *s)
          {// Oops! something went wrong
           HiddenDirFailed=1;
          }
+       else
+         {// We are in the start-up so we could be SUID yet
+          chown(FileNameToLoad,getuid(),getgid());
+         }
       }
     if (!HiddenDirFailed)
       {// Ok see if we can write
