@@ -1,3 +1,19 @@
+setedit (0.4.54-1) unstable; urgency=low
+
+  * The "Brothers of Argentina have problems, I hope they can get
+    through it soon!" release, which it is dedicated to my argentine
+    neighbors.
+  * New release, with small changes and fixes, this one is supposed to
+    be the One, I mean, the new Stable one, so rejoice!!!
+  * Upstream says that it modified debian/rules to not delete
+    doc/Makefile and internac/Makefile, but it seems it did not.
+    I decided to stick with removing that files, because that's what
+    I think should be done (to leave the source directory identical to
+    the upstream released one, after the clean). I will talk with
+    Salvador about that, not big problem though so don't worry.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue, 29 Jan 2002 00:10:56 -0300
+
 setedit (0.4.53-1) unstable; urgency=low
 
   * The "Ivan hates computers after having good vacations" release.

@@ -1,4 +1,8 @@
 $Log$
+Revision 1.37  2002/01/28 15:40:39  set
+* Synchronized with home CVS.
+* Added: rel and rev keywords to HTML, suggested by Ivan.
+
 Revision 1.542  2002/01/27 21:36:49  set
 * Changed to version 0.4.54 for a new release.
 
@@ -1622,7 +1626,7 @@ Grzegorz.
 Revision 1.331  2000/06/06 00:49:03  set
 * Added: A check and warning for/by makeinfo during configuration.
 
-Revision 1.330  2000/06/06 00:41:40  root (set)
+Revision 1.330  2000/06/06 00:41:40  set
 * Added: A check for xgettext in the configuration script and a warning if
 recode isn't installed.
 
