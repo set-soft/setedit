@@ -277,6 +277,22 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edSearchAndNoSel:
          messageBox(__("Searching inside a selection but nothing is selected"),mfError | mfOKButton);
          break;
+
+    case edNothingSelected:
+         messageBox(__("You must select some text for this operation"),mfError | mfOKButton);
+         break;
+
+    case edSelTooBig:
+        {
+         uint32 bytes=va_arg(arg,uint32);
+         return messageBox(mfError | mfOKButton,
+                           __("You must select less than %d characters"),bytes);
+        }
+         break;
+
+    case esSelHaveEOL:
+         messageBox(__("The selection can't contain more than one line"),mfError | mfOKButton);
+         break;
    }
  return 0;
 }

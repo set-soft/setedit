@@ -60,7 +60,10 @@ const int
   edArbitraryIndent = 32,
   edFileCompMant    = 33,
   edCreateTMPError  = 34,
-  edSearchAndNoSel  = 35;
+  edSearchAndNoSel  = 35,
+  edNothingSelected = 36,
+  edSelTooBig       = 37,
+  esSelHaveEOL      = 38;
 
 // ************* Various flags
 const int

@@ -103,12 +103,15 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "Insert ~n~ew line (don't move)", cmcInsertNewLine, kbCtN, "Ctrl+N"
 EndSubMenu
 
-# English: CFGJHLNOPRSTUW
+# English: BCEFGJHLNOPRSTUW
 # Spanish: ABCDEILNOPRSTUV
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
  MenuItemC: "~S~earch again", cmcSearchAgain, kbUnknown, "Ctrl+L"
+ MenuSeparator
+ MenuItemC: "S~e~arch selection forward", cmcSearchSelForward
+ MenuItemC: "Search selection ~b~ackward", cmcSearchSelForward
  MenuSeparator
  MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"

@@ -4,8 +4,8 @@
 
 #if !defined ( __TCEditor_Class_Constants__ )
 #define __TCEditor_Class_Constants__
-const int maxFindStrLenEd=80,
-          maxReplaceStrLenEd=maxFindStrLenEd;
+const unsigned maxFindStrLenEd=80,
+               maxReplaceStrLenEd=maxFindStrLenEd;
 #endif
 
 #if defined( Uses_TFindCDialogRec ) && !defined( __TFindCDialogRec__ )
@@ -551,6 +551,10 @@ public:
     static uint32 MakeAPCRESearch(char *block, uint32 size, int &matchLen);
     static void   FreeRegExMemory(void);
     Boolean       SearchAndJump(char *search, unsigned flags);
+    Boolean       SearchSelForB(Boolean back);
+    Boolean       SearchSelForward();
+    Boolean       SearchSelBackward();
+    Boolean       CopySelToFindStr(char *destination, unsigned max);
 
     // Highligth of one char
     int XHLCO,YHLCO,XHLCC,YHLCC,XHLCo,YHLCo,XHLCc,YHLCc;

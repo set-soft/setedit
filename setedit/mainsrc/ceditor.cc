@@ -3611,6 +3611,14 @@ int TCEditor::handleCommand(ushort command)
                 insertBuffer(CLY_crlf,0,CLY_LenEOL,canUndo,False,False);
                 break;
 
+           case cmcSearchSelBackward:
+                SearchSelBackward();
+                break;
+
+           case cmcSearchSelForward:
+                SearchSelForward();
+                break;
+
            default:
                unlock();
                unlockUndo();
@@ -3653,6 +3661,136 @@ int TCEditor::handleCommand(ushort command)
  return 1;
 }
 
+
+/**[txh]********************************************************************
+
+  Description:
+  Copies the selected text to the @var{destination} buffer. If nothing is
+selected informs it to the user. If the selection contains \n also informs it
+to the user. It also checks for @var{max} bytes.
+  
+  Return: True if the selection was copied.
+  
+***************************************************************************/
+
+Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
+{
+ flushLine();
+ // Must have a selection.
+ // Note: the command is disabled when no selection is available.
+ if (!hasVisibleSelection())
+   {
+    editorDialog(edNothingSelected);
+    return False;
+   }
+ // Must be less than maxFindStrLenEd chars
+ unsigned selLen=selEnd-selStart;
+ if (selLen>=max)
+   {
+    editorDialog(edSelTooBig,max);
+    return False;
+   }
+ // Shouldn't contain more than a line
+ for (unsigned offset=selStart; offset<selEnd; offset++)
+     if (CLY_IsEOL(buffer[offset]))
+       {
+        editorDialog(esSelHaveEOL);
+        return False;
+       }
+ // Now is safe to copy
+ strncpyZ(destination,buffer+selStart,selLen+1);
+ return True;
+}
+
+
+/**[txh]********************************************************************
+
+  Description:
+  Searchs the selected text forward or backward from the cursor position. If
+@var{back} is True the search is backward.
+  
+  Return: True if a match was found.
+  
+***************************************************************************/
+
+Boolean TCEditor::SearchSelForB(Boolean back)
+{
+ if (!bufLen)     // Sanity check
+    return False;
+ char tmp[maxFindStrLenEd];
+ if (!CopySelToFindStr(tmp,maxFindStrLenEd))
+    return False;
+ // Remmember the old search settings
+ unsigned oldOps=editorFlags;
+ ushort   oldSearchInSel=SearchInSel;
+ ushort   oldFromWhere=FromWhere;
+ // Change the settings for this search
+ editorFlags&=~(efCaseSensitive | efWholeWordsOnly | efRegularEx |
+                efSearchInComm | efSearchOutComm | efDoReplace |
+                efSearchBack);
+ editorFlags|=efCaseSensitive;
+ if (back)
+    editorFlags|=efSearchBack;
+ SearchInSel=FromWhere=0;
+ // Compile the search
+ if (CompileSearch(tmp))
+    return False;
+
+ StartOfSearch=(unsigned)(ColToPointer()-buffer);
+ if (back)
+   {
+    if (StartOfSearch)
+       StartOfSearch--;
+   }
+ else
+    StartOfSearch++;
+ Boolean found=search(tmp,editorFlags);
+
+ if (!found)
+   {// Start from the other end
+    if (back)
+       StartOfSearch=bufLen-1;
+    else
+       StartOfSearch=0;
+    search(tmp,editorFlags);
+   }
+
+ // Restore previous settings
+ editorFlags=oldOps;
+ SearchInSel=oldSearchInSel;
+ FromWhere=oldFromWhere;
+ // Compile the old search
+ CompileSearch(findStr);
+ return False;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Searchs the selected text forward from the cursor position.
+  
+  Return: True if a match was found.
+  
+***************************************************************************/
+
+Boolean TCEditor::SearchSelForward()
+{
+ return SearchSelForB(False);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Searchs the selected text backward from the cursor position.
+  
+  Return: True if a match was found.
+  
+***************************************************************************/
+
+Boolean TCEditor::SearchSelBackward()
+{
+ return SearchSelForB(True);
+}
 
 /**[txh]********************************************************************
 
@@ -9288,7 +9426,7 @@ Boolean TCEditor::search(const char *, unsigned opts)
           pos=editorFlags & efSearchBack ? i+MatchLen-1 : i+1;
       }
     }
- while(i!=sfSearchFailed);
+ while (i!=sfSearchFailed);
  return False;
 }
 
@@ -10829,12 +10967,12 @@ void TCEditor::updateCommands(int full)
     setCommands(cmdsAux);
    }
 
+ Boolean hs=hasVisibleSelection();
  if (!isClipboard())
    {
     setCmdState(cmcUndo,Boolean(UndoActual!=UndoBase));
     setCmdState(cmcRedo,Boolean(UndoActual<UndoTop));
    
-    Boolean hs=hasVisibleSelection();
     Boolean oscli=TVOSClipboard::isAvailable() ? True : False;
     setCmdState(cmcCut,hs);
     setCmdState(cmcCutClipWin,(hs && oscli) ? True : False);
@@ -10845,6 +10983,8 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
     setCmdState(cmcPasteClipWin,oscli);
    }
+ setCmdState(cmcSearchSelBackward,hs);
+ setCmdState(cmcSearchSelForward,hs);
 }
 
 /**[txh]********************************************************************

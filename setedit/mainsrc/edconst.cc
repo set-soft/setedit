@@ -152,6 +152,8 @@ static edCList List[] =
 { "SearchEnd", 10 },
 { "SearchOpCor", 82 },
 { "SearchOpPar", 80 },
+{ "SearchSelBackward", 159 },
+{ "SearchSelForward", 158 },
 { "SearchStart", 9 },
 { "SelLength", 2 },
 { "SelRectCopy", 97 },

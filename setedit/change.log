@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.643  2004/12/01 19:15:56  set
+* Fixed: [WWW] The names of the images in the TAGs tutorials weren't 8+3
+clean. Pointed out by DJ Delorie.
+* Added: [WWW] A page about "Glaciar Perito Moreno"
+
 Revision 1.642  2004/12/01 17:26:29  set
 * Added: Search backwards. That's a first approach and even when it seems
 to work I'm sure it have various bugs ;-)

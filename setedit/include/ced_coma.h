@@ -169,8 +169,10 @@ const int
   cmbSaveAsNoConvertEOL= 155,
   cmbExpandAllTabsNi   = 156,
   cmbCompactBufferNi   = 157,
+  cmbSearchSelForward  = 158,
+  cmbSearchSelBackward = 159,
   
-  cmbLastCommand       = 158;
+  cmbLastCommand       = 160;
 
 
 const int
@@ -333,7 +335,9 @@ const int
   cmcInsertNewLine     = cmbInsertNewLine+cmbBaseNumber,
   cmcSaveAsNoConvertEOL= cmbSaveAsNoConvertEOL+cmbBaseNumber,
   cmcExpandAllTabsNi   = cmbExpandAllTabsNi+cmbBaseNumber,
-  cmcCompactBufferNi   = cmbCompactBufferNi+cmbBaseNumber;
+  cmcCompactBufferNi   = cmbCompactBufferNi+cmbBaseNumber,
+  cmcSearchSelForward  = cmbSearchSelForward+cmbBaseNumber,
+  cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;
