@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-08-09 09:51-0300\n"
+"PO-Revision-Date: 2004-08-09 17:47-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
 #. EN: E
-#: ../calcu/calcu.cc:83 ../setedit/debug.cc:4618 ../setedit/debug.cc:6131
+#: ../calcu/calcu.cc:83 ../setedit/debug.cc:4615 ../setedit/debug.cc:6141
 msgid "~E~xpression"
 msgstr "~A~usdruck"
 
@@ -42,13 +42,13 @@ msgstr "~A~uswerten"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1285 ../setedit/editmenu.cc:80
-#: ../setedit/editmenu.cc:110
+#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1285 ../setedit/editmenu.cc:78
+#: ../setedit/editmenu.cc:108
 msgid "~C~opy"
 msgstr "~K~opieren"
 
-#: ../calcu/calcu.cc:102 ../setedit/debug.cc:1286 ../setedit/editmenu.cc:81
-#: ../setedit/editmenu.cc:111
+#: ../calcu/calcu.cc:102 ../setedit/debug.cc:1286 ../setedit/editmenu.cc:79
+#: ../setedit/editmenu.cc:109
 msgid "~P~aste"
 msgstr "~E~infügen"
 
@@ -61,7 +61,7 @@ msgstr "Fehler in Ausdruck (%d)"
 msgid "Calculator"
 msgstr "Rechner"
 
-#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1464
+#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1467
 msgid "This functionality was disabled at compile time"
 msgstr ""
 
@@ -113,11 +113,11 @@ msgstr "Sorry, kann den Text nicht finden"
 msgid "Help Control"
 msgstr "Hilfe Kontrolle"
 
-#: ../infview/inf.cc:2277 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:121
+#: ../infview/inf.cc:2277 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "~N~ächstes"
 
-#: ../infview/inf.cc:2280 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:122
+#: ../infview/inf.cc:2280 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~V~orherige"
 
@@ -330,7 +330,7 @@ msgstr "Fehler beim Lesen der Desktopdatei"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2725
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2730
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -344,7 +344,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2727
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2732
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -436,7 +436,7 @@ msgstr "Konnte `%s' nicht finden."
 
 #. Spanish: ABCEHMPRV
 #. English: CEFHMPSVW
-#: ../infview/infmenu.cc:31 ../setedit/editmenu.cc:62
+#: ../infview/infmenu.cc:31 ../setedit/editmenu.cc:60
 msgid "~F~ile"
 msgstr "~D~atei"
 
@@ -457,14 +457,14 @@ msgstr ""
 msgid "~D~OS shell"
 msgstr "~D~OS Shell"
 
-#: ../infview/infmenu.cc:38 ../setedit/editmenu.cc:71
-#: ../setedit/editmenu.cc:311
+#: ../infview/infmenu.cc:38 ../setedit/editmenu.cc:69
+#: ../setedit/editmenu.cc:312
 #, fuzzy
 msgid "S~h~ell"
 msgstr "~A~lles"
 
 #: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1748 ../setedit/debug.cc:3198
-#: ../setedit/debug.cc:3794 ../setedit/editmenu.cc:72
+#: ../setedit/debug.cc:3794 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~B~eenden"
 
@@ -507,7 +507,7 @@ msgstr "~Z~ur Codepage"
 msgid "~D~irectory"
 msgstr "Kann Verzeichnis nicht erstellen:"
 
-#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../setedit/editmenu.cc:95
+#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../setedit/editmenu.cc:93
 msgid "~S~earch"
 msgstr "~S~uche"
 
@@ -536,41 +536,41 @@ msgstr "~K~onfiguration"
 msgid "~A~bout"
 msgstr "Ü~b~er"
 
-#: ../infview/infmenu.cc:62 ../setedit/editmenu.cc:116
+#: ../infview/infmenu.cc:62 ../setedit/editmenu.cc:114
 msgid "~W~indows"
 msgstr "~F~enster"
 
-#: ../infview/infmenu.cc:63 ../setedit/editmenu.cc:117
+#: ../infview/infmenu.cc:63 ../setedit/editmenu.cc:115
 msgid "~S~ize/move"
 msgstr "~G~röße ändern/Bewegen"
 
-#: ../infview/infmenu.cc:64 ../setedit/editmenu.cc:118
+#: ../infview/infmenu.cc:64 ../setedit/editmenu.cc:116
 msgid "~Z~oom"
 msgstr "~Z~oom"
 
-#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:119
+#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:117
 msgid "~T~ile"
 msgstr "~T~eilen"
 
-#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:120
+#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:118
 msgid "C~a~scade"
 msgstr "Ü~b~erlappend"
 
-#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:123
-#: ../setedit/editmenu.cc:141
+#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:121
+#: ../setedit/editmenu.cc:139
 msgid "~C~lose"
 msgstr "S~c~hließen"
 
-#: ../infview/infmenu.cc:80 ../setedit/editmenu.cc:172
+#: ../infview/infmenu.cc:80 ../setedit/editmenu.cc:173
 msgid "~Alt+F1~ Back"
 msgstr "~Alt+F1~ Zurück"
 
-#: ../infview/infmenu.cc:81 ../setedit/editmenu.cc:173
+#: ../infview/infmenu.cc:81 ../setedit/editmenu.cc:174
 msgid "~Alt+F10~ Control"
 msgstr "~Alt+F10~ Steuerg"
 
-#: ../infview/infmenu.cc:82 ../setedit/editmenu.cc:182
-#: ../setedit/editmenu.cc:201 ../setedit/editmenu.cc:204
+#: ../infview/infmenu.cc:82 ../setedit/editmenu.cc:183
+#: ../setedit/editmenu.cc:202 ../setedit/editmenu.cc:205
 msgid "~F1~ Help"
 msgstr "~F1~ Hilfe"
 
@@ -580,20 +580,20 @@ msgid "~Ctrl+O~ Index"
 msgstr "~Alt+I~ Include"
 
 #: ../infview/infmenu.cc:84 ../infview/infmenu.cc:86
-#: ../setedit/editmenu.cc:163 ../setedit/editmenu.cc:187
-#: ../setedit/editmenu.cc:205
+#: ../setedit/editmenu.cc:164 ../setedit/editmenu.cc:188
+#: ../setedit/editmenu.cc:206
 msgid "~F5~ Zoom"
 msgstr "~F5~ Zoom"
 
-#: ../infview/infmenu.cc:87 ../setedit/editmenu.cc:164
+#: ../infview/infmenu.cc:87 ../setedit/editmenu.cc:165
 msgid "~F6~ Next"
 msgstr "~F6~ Nächstes"
 
-#: ../infview/infmenu.cc:88 ../setedit/editmenu.cc:165
+#: ../infview/infmenu.cc:88 ../setedit/editmenu.cc:166
 msgid "~F10~ Menu"
 msgstr "~F10~ Menü"
 
-#: ../infview/infmenu.cc:95 ../setedit/editmenu.cc:212
+#: ../infview/infmenu.cc:95 ../setedit/editmenu.cc:213
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
@@ -1897,7 +1897,7 @@ msgstr "~A~lles"
 msgid "Export Options"
 msgstr "Export Optionen"
 
-#: ../mainsrc/deedidia.cc:364 ../setedit/editmenu.cc:353
+#: ../mainsrc/deedidia.cc:364 ../setedit/editmenu.cc:354
 #: ../setedit/intgrep.cc:416 ../setedit/runprog.cc:125
 msgid "~O~ptions"
 msgstr "~O~ptionen"
@@ -2178,7 +2178,7 @@ msgid "Default global options"
 msgstr "Standardeinstellungen (global)"
 
 #: ../mainsrc/loaddefl.cc:712 ../mainsrc/loadusew.cc:388
-#: ../setedit/editmenu.cc:75
+#: ../setedit/editmenu.cc:73
 msgid "~E~dit"
 msgstr "~B~earbeiten"
 
@@ -2222,7 +2222,7 @@ msgstr ""
 "Fehler! Bitte starten Sie den Editor aus einem gültigen Verzeichnis heraus\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:6836 ../setedit/loadcle.cc:97
+#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:6846 ../setedit/loadcle.cc:97
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -2731,7 +2731,7 @@ msgstr "Dateiliste"
 msgid "~I~nsert"
 msgstr "~E~infügen"
 
-#: ../mp3/mp3list.cc:336 ../setedit/editmenu.cc:66
+#: ../mp3/mp3list.cc:336 ../setedit/editmenu.cc:64
 msgid "~S~ave"
 msgstr "~S~peichern"
 
@@ -2745,8 +2745,8 @@ msgid "Return value:"
 msgstr "Unbekannter Wert"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1099 ../setedit/debug.cc:5779
-#: ../setedit/debug.cc:6826
+#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1099 ../setedit/debug.cc:5789
+#: ../setedit/debug.cc:6836
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -3037,7 +3037,7 @@ msgstr "So Mo Di Mi Do Fr Sa"
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../setedit/debug.cc:231 ../setedit/debug.cc:6827
+#: ../setedit/debug.cc:231 ../setedit/debug.cc:6837
 #, fuzzy
 msgid "Ok"
 msgstr "~O~k"
@@ -3283,7 +3283,7 @@ msgstr ""
 msgid "Error: %s (%d) [%s]"
 msgstr "Fehler in Ausdruck (%d)"
 
-#: ../setedit/debug.cc:2851 ../setedit/debug.cc:5702
+#: ../setedit/debug.cc:2851 ../setedit/debug.cc:5712
 #, fuzzy, c-format
 msgid "Error: %s (%d)"
 msgstr "Fehler in Ausdruck (%d)"
@@ -3338,7 +3338,7 @@ msgstr "Vorh."
 msgid "~M~odify"
 msgstr "~B~ewegen"
 
-#: ../setedit/debug.cc:3200 ../setedit/debug.cc:3796 ../setedit/editmenu.cc:65
+#: ../setedit/debug.cc:3200 ../setedit/debug.cc:3796 ../setedit/editmenu.cc:63
 msgid "~N~ew"
 msgstr "~N~eu"
 
@@ -3398,410 +3398,410 @@ msgstr "Ersetzen"
 msgid " E R/W Expression"
 msgstr "~A~usdruck"
 
-#: ../setedit/debug.cc:3935
+#: ../setedit/debug.cc:3932
 msgid "Unaccessable memory address specified"
 msgstr ""
 
-#: ../setedit/debug.cc:3958
+#: ../setedit/debug.cc:3955
 #, fuzzy
 msgid "Error in expression, an integer is needed"
 msgstr "Fehler in Ausdruck (%d)"
 
-#: ../setedit/debug.cc:4615
+#: ../setedit/debug.cc:4612
 #, fuzzy
 msgid "~N~ew Value"
 msgstr "Ü~b~erschreiben"
 
-#: ../setedit/debug.cc:4616
+#: ../setedit/debug.cc:4613
 #, fuzzy
 msgid "~F~rom"
 msgstr "~F5~ Zoom"
 
-#: ../setedit/debug.cc:4617
+#: ../setedit/debug.cc:4614
 #, fuzzy
 msgid "~T~o"
 msgstr "~N~ein"
 
-#: ../setedit/debug.cc:4619
+#: ../setedit/debug.cc:4616
 #, fuzzy
 msgid "~L~ength"
 msgstr "~R~echte Alt"
 
-#: ../setedit/debug.cc:4620
+#: ../setedit/debug.cc:4617
 #, fuzzy
 msgid "~V~alue"
 msgstr "Wert:"
 
-#: ../setedit/debug.cc:4687
+#: ../setedit/debug.cc:4684
 #, fuzzy
 msgid "Write block to file"
 msgstr "In Datei schreiben"
 
-#: ../setedit/debug.cc:4687
+#: ../setedit/debug.cc:4684
 #, fuzzy
 msgid "Read block from file"
 msgstr "Lese aus Datei"
 
-#: ../setedit/debug.cc:4783
+#: ../setedit/debug.cc:4858
 #, fuzzy
 msgid "Base Address"
 msgstr "~H~inzufügen"
 
 #. goto to a new address
-#: ../setedit/debug.cc:4811 ../setedit/debug.cc:5037
+#: ../setedit/debug.cc:4886 ../setedit/debug.cc:5046
 #, fuzzy
 msgid "Data window"
 msgstr "~F~enster"
 
-#: ../setedit/debug.cc:4826
+#: ../setedit/debug.cc:4901
 msgid "Fill Block"
 msgstr ""
 
-#: ../setedit/debug.cc:4832
+#: ../setedit/debug.cc:4907
 msgid "Clear Block"
 msgstr ""
 
-#: ../setedit/debug.cc:4838
+#: ../setedit/debug.cc:4913
 msgid "Move Block"
 msgstr ""
 
-#: ../setedit/debug.cc:4853
+#: ../setedit/debug.cc:4928
 #, fuzzy
 msgid "Read Block"
 msgstr "Re~c~hteck"
 
-#: ../setedit/debug.cc:4857
+#: ../setedit/debug.cc:4932
 #, c-format
 msgid "%u bytes read."
 msgstr ""
 
-#: ../setedit/debug.cc:4868
+#: ../setedit/debug.cc:4943
 #, fuzzy
 msgid "Write Block"
 msgstr "~B~eständige Blöcke"
 
-#: ../setedit/debug.cc:4876
+#: ../setedit/debug.cc:4951
 #, c-format
 msgid "%u bytes written."
 msgstr ""
 
-#: ../setedit/debug.cc:5064
+#: ../setedit/debug.cc:5074
 msgid ""
 "Only implemented for IA32 (i386), please help to implement for your platform"
 msgstr ""
 
-#: ../setedit/debug.cc:5161
+#: ../setedit/debug.cc:5171
 #, fuzzy, c-format
 msgid "   Data Window %s"
 msgstr "~F~enster"
 
-#: ../setedit/debug.cc:5406
+#: ../setedit/debug.cc:5416
 #, fuzzy, c-format
 msgid "   Debugger Window [%s]"
 msgstr "   Nachrichtenfenster (%d Zeilen)"
 
-#: ../setedit/debug.cc:5506
+#: ../setedit/debug.cc:5516
 #, fuzzy
 msgid "Send command to gdb"
 msgstr "auzuführender Befehl"
 
 #. EN: C
-#: ../setedit/debug.cc:5509
+#: ../setedit/debug.cc:5519
 #, fuzzy
 msgid "~C~ommand, be careful!"
 msgstr "auzuführender Befehl"
 
-#: ../setedit/debug.cc:5546
+#: ../setedit/debug.cc:5556
 #, fuzzy
 msgid "Debugger Window"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/debug.cc:5629
+#: ../setedit/debug.cc:5639
 msgid "Disconnected"
 msgstr ""
 
-#: ../setedit/debug.cc:5632
+#: ../setedit/debug.cc:5642
 msgid "Connected"
 msgstr ""
 
-#: ../setedit/debug.cc:5635
+#: ../setedit/debug.cc:5645
 #, fuzzy
 msgid "Ready to Run"
 msgstr "auzuführender Befehl"
 
-#: ../setedit/debug.cc:5638
+#: ../setedit/debug.cc:5648
 #, fuzzy
 msgid "Running"
 msgstr "Führe aus: %s"
 
-#: ../setedit/debug.cc:5641
+#: ../setedit/debug.cc:5651
 #, fuzzy
 msgid "Stopped"
 msgstr "Bereich"
 
-#: ../setedit/debug.cc:5646
+#: ../setedit/debug.cc:5656
 msgid "Not started"
 msgstr ""
 
-#: ../setedit/debug.cc:5733
+#: ../setedit/debug.cc:5743
 #, fuzzy
 msgid "default"
 msgstr "~O~riginal"
 
-#: ../setedit/debug.cc:5734
+#: ../setedit/debug.cc:5744
 #, c-format
 msgid "Mode: %s (%s) [%s]"
 msgstr ""
 
-#: ../setedit/debug.cc:5740
+#: ../setedit/debug.cc:5750
 #, c-format
 msgid "Mode: Remote (%s) [%s]"
 msgstr ""
 
-#: ../setedit/debug.cc:5771
+#: ../setedit/debug.cc:5781
 #, c-format
 msgid "Reason stopped: %s"
 msgstr ""
 
-#: ../setedit/debug.cc:5775
+#: ../setedit/debug.cc:5785
 msgid "Returned immediatly"
 msgstr ""
 
-#: ../setedit/debug.cc:5918
+#: ../setedit/debug.cc:5928
 #, c-format
 msgid "%s: Not yet in debugger"
 msgstr ""
 
-#: ../setedit/debug.cc:5937
+#: ../setedit/debug.cc:5947
 msgid "Wait until the process is stopped to delete this watch"
 msgstr ""
 
-#: ../setedit/debug.cc:5959
+#: ../setedit/debug.cc:5969
 #, fuzzy
 msgid "Error deleting variable"
 msgstr "Fehler beim Erstellen von "
 
-#: ../setedit/debug.cc:6063
+#: ../setedit/debug.cc:6073
 #, fuzzy, c-format
 msgid "   Watches Window (%d watches)"
 msgstr "   Nachrichtenfenster (%d Zeilen)"
 
-#: ../setedit/debug.cc:6156
+#: ../setedit/debug.cc:6166
 msgid "Add to watch list"
 msgstr ""
 
-#: ../setedit/debug.cc:6190
+#: ../setedit/debug.cc:6200
 msgid "Change the expression to watch"
 msgstr ""
 
-#: ../setedit/debug.cc:6240
+#: ../setedit/debug.cc:6250
 #, fuzzy
 msgid "Watches"
 msgstr "Ersetzen"
 
-#: ../setedit/debug.cc:6411
+#: ../setedit/debug.cc:6421
 #, fuzzy
 msgid "Debug Options"
 msgstr "Einstellungen"
 
 #. All together
-#: ../setedit/debug.cc:6417
+#: ../setedit/debug.cc:6427
 msgid "~P~rogram to debug, with debug info"
 msgstr ""
 
-#: ../setedit/debug.cc:6419
+#: ../setedit/debug.cc:6429
 #, fuzzy
 msgid "~M~ode"
 msgstr "~B~ewegen"
 
-#: ../setedit/debug.cc:6420
+#: ../setedit/debug.cc:6430
 msgid "Local with ~e~xecutable"
 msgstr ""
 
-#: ../setedit/debug.cc:6421
+#: ../setedit/debug.cc:6431
 msgid "Local with r~u~nning process"
 msgstr ""
 
-#: ../setedit/debug.cc:6422
+#: ../setedit/debug.cc:6432
 msgid "Remote (g~d~bserver/stub)"
 msgstr ""
 
-#: ../setedit/debug.cc:6423
+#: ../setedit/debug.cc:6433
 #, fuzzy
 msgid "Local target options"
 msgstr "Lokale Einstellungen"
 
-#: ../setedit/debug.cc:6424
+#: ../setedit/debug.cc:6434
 msgid "Program ~a~rguments, not for remote mode"
 msgstr ""
 
-#: ../setedit/debug.cc:6426
+#: ../setedit/debug.cc:6436
 msgid "Forced ~t~erminal, leave blank for auto"
 msgstr ""
 
-#: ../setedit/debug.cc:6428
+#: ../setedit/debug.cc:6438
 #, fuzzy
 msgid "Remote target options"
 msgstr "Andere Optionen"
 
-#: ../setedit/debug.cc:6429
+#: ../setedit/debug.cc:6439
 #, fuzzy
 msgid "Remote p~r~otocol type"
 msgstr "Gehe zu ~P~rototyp"
 
-#: ../setedit/debug.cc:6431
+#: ../setedit/debug.cc:6441
 #, fuzzy
 msgid "Remote ~l~ocation"
 msgstr "Andere Optionen"
 
-#: ../setedit/debug.cc:6449
+#: ../setedit/debug.cc:6459
 msgid "Your program compiled with -g"
 msgstr ""
 
-#: ../setedit/debug.cc:6472
+#: ../setedit/debug.cc:6482
 #, fuzzy
 msgid "Messages"
 msgstr "Nachrichtenfenster"
 
 #. EN: ACDFLT
 #. ES: CDELRT
-#: ../setedit/debug.cc:6476
+#: ../setedit/debug.cc:6486
 msgid "~D~isplay messages related to"
 msgstr ""
 
-#: ../setedit/debug.cc:6477
+#: ../setedit/debug.cc:6487
 msgid "GDB ~c~onsole (CLI)"
 msgstr ""
 
-#: ../setedit/debug.cc:6478
+#: ../setedit/debug.cc:6488
 msgid "T~a~rget (not really implemented in gdb)"
 msgstr ""
 
-#: ../setedit/debug.cc:6479
+#: ../setedit/debug.cc:6489
 msgid "~L~og (gdb internal messages)"
 msgstr ""
 
-#: ../setedit/debug.cc:6480
+#: ../setedit/debug.cc:6490
 msgid "GDB/MI commands sent ~t~o gdb"
 msgstr ""
 
-#: ../setedit/debug.cc:6481
+#: ../setedit/debug.cc:6491
 msgid "GDB/MI responses ~f~rom gdb"
-msgstr ""
-
-#: ../setedit/debug.cc:6808
-#, fuzzy
-msgid "Hit a breakpoint"
-msgstr "~D~rucken"
-
-#: ../setedit/debug.cc:6809
-#, fuzzy
-msgid "Write watchpoint"
-msgstr "In Datei schreiben"
-
-#: ../setedit/debug.cc:6810
-msgid "Read watchpoint"
-msgstr ""
-
-#: ../setedit/debug.cc:6811
-msgid "Access watchpoint"
-msgstr ""
-
-#: ../setedit/debug.cc:6812
-msgid "Watchpoint out of scope"
-msgstr ""
-
-#: ../setedit/debug.cc:6813
-#, fuzzy
-msgid "Function finished"
-msgstr "Aktion"
-
-#: ../setedit/debug.cc:6814
-msgid "Location reached"
-msgstr ""
-
-#: ../setedit/debug.cc:6815
-msgid "End of stepping"
-msgstr ""
-
-#: ../setedit/debug.cc:6816
-msgid "Exited signalled"
-msgstr ""
-
-#: ../setedit/debug.cc:6817
-msgid "Exited with error"
 msgstr ""
 
 #: ../setedit/debug.cc:6818
 #, fuzzy
-msgid "Exited normally"
-msgstr "  Normal"
+msgid "Hit a breakpoint"
+msgstr "~D~rucken"
 
 #: ../setedit/debug.cc:6819
-msgid "Signal received"
-msgstr ""
+#, fuzzy
+msgid "Write watchpoint"
+msgstr "In Datei schreiben"
 
 #: ../setedit/debug.cc:6820
-msgid "Unknown (temp bkp?)"
+msgid "Read watchpoint"
 msgstr ""
 
 #: ../setedit/debug.cc:6821
-msgid "natural"
+msgid "Access watchpoint"
 msgstr ""
 
 #: ../setedit/debug.cc:6822
-#, fuzzy
-msgid "binary"
-msgstr "Januar"
+msgid "Watchpoint out of scope"
+msgstr ""
 
 #: ../setedit/debug.cc:6823
 #, fuzzy
-msgid "decimal"
-msgstr " Dezimal: "
+msgid "Function finished"
+msgstr "Aktion"
 
 #: ../setedit/debug.cc:6824
-msgid "hexadecimal"
+msgid "Location reached"
 msgstr ""
 
 #: ../setedit/debug.cc:6825
-#, fuzzy
-msgid "octal"
-msgstr "Okt"
+msgid "End of stepping"
+msgstr ""
+
+#: ../setedit/debug.cc:6826
+msgid "Exited signalled"
+msgstr ""
+
+#: ../setedit/debug.cc:6827
+msgid "Exited with error"
+msgstr ""
 
 #: ../setedit/debug.cc:6828
 #, fuzzy
-msgid "Out of memory"
-msgstr "Nicht genug Speicher für diese Operation"
+msgid "Exited normally"
+msgstr "  Normal"
 
 #: ../setedit/debug.cc:6829
-msgid "Pipe creation"
+msgid "Signal received"
 msgstr ""
 
 #: ../setedit/debug.cc:6830
-#, fuzzy
-msgid "Fork failed"
-msgstr "`Stat' hhat versagt!"
+msgid "Unknown (temp bkp?)"
+msgstr ""
 
 #: ../setedit/debug.cc:6831
-msgid "GDB not running"
+msgid "natural"
 msgstr ""
 
 #: ../setedit/debug.cc:6832
 #, fuzzy
+msgid "binary"
+msgstr "Januar"
+
+#: ../setedit/debug.cc:6833
+#, fuzzy
+msgid "decimal"
+msgstr " Dezimal: "
+
+#: ../setedit/debug.cc:6834
+msgid "hexadecimal"
+msgstr ""
+
+#: ../setedit/debug.cc:6835
+#, fuzzy
+msgid "octal"
+msgstr "Okt"
+
+#: ../setedit/debug.cc:6838
+#, fuzzy
+msgid "Out of memory"
+msgstr "Nicht genug Speicher für diese Operation"
+
+#: ../setedit/debug.cc:6839
+msgid "Pipe creation"
+msgstr ""
+
+#: ../setedit/debug.cc:6840
+#, fuzzy
+msgid "Fork failed"
+msgstr "`Stat' hhat versagt!"
+
+#: ../setedit/debug.cc:6841
+msgid "GDB not running"
+msgstr ""
+
+#: ../setedit/debug.cc:6842
+#, fuzzy
 msgid "Parser failed"
 msgstr "Analysiere Datei"
 
-#: ../setedit/debug.cc:6833
+#: ../setedit/debug.cc:6843
 #, fuzzy
 msgid "Unknown asyn response"
 msgstr "Unbekannt"
 
-#: ../setedit/debug.cc:6834
+#: ../setedit/debug.cc:6844
 #, fuzzy
 msgid "Unknown result response"
 msgstr "Unbekannt"
 
-#: ../setedit/debug.cc:6835
+#: ../setedit/debug.cc:6845
 msgid "Error from gdb"
 msgstr ""
 
@@ -3971,61 +3971,61 @@ msgstr "Danksagungen an:"
 msgid "Made in Argentina"
 msgstr "Hergstellt in Argentinien (übersetzt in Deutschland)"
 
-#: ../setedit/editmain.cc:129
+#: ../setedit/editmain.cc:132
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 
-#: ../setedit/editmain.cc:440
+#: ../setedit/editmain.cc:443
 #, fuzzy
 msgid "No project loaded"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/editmain.cc:499
+#: ../setedit/editmain.cc:502
 #, fuzzy
 msgid "This file is already open, close it first."
 msgstr "Die Datei ist bereits geöffnet. Schließen Sie sie zuerst."
 
-#: ../setedit/editmain.cc:586
+#: ../setedit/editmain.cc:589
 #, fuzzy
 msgid "Open File"
 msgstr "Ö~f~fne Info"
 
-#: ../setedit/editmain.cc:601
+#: ../setedit/editmain.cc:604
 msgid "You must select an editor window for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../setedit/editmain.cc:736
+#: ../setedit/editmain.cc:739
 msgid "Export file as"
 msgstr "Exportiere Datei als"
 
-#: ../setedit/editmain.cc:826
+#: ../setedit/editmain.cc:829
 #, fuzzy
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Diese Fenster kann nicht gedruckt werden, wählen Sie einen Editor"
 
-#: ../setedit/editmain.cc:986
+#: ../setedit/editmain.cc:989
 msgid "Couldn't find any matching help"
 msgstr "Konnte keine passende Hilfe finden"
 
-#: ../setedit/editmain.cc:1169
+#: ../setedit/editmain.cc:1172
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1833
+#: ../setedit/editmain.cc:1836
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:1992
+#: ../setedit/editmain.cc:1995
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:2068
+#: ../setedit/editmain.cc:2071
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2296
+#: ../setedit/editmain.cc:2301
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -4034,7 +4034,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2431
+#: ../setedit/editmain.cc:2436
 #, c-format
 msgid ""
 "\n"
@@ -4043,7 +4043,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2432
+#: ../setedit/editmain.cc:2437
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4052,7 +4052,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2436
+#: ../setedit/editmain.cc:2441
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4061,7 +4061,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2438
+#: ../setedit/editmain.cc:2443
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4070,11 +4070,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2443
+#: ../setedit/editmain.cc:2448
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2452
+#: ../setedit/editmain.cc:2457
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4084,15 +4084,15 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2481
+#: ../setedit/editmain.cc:2486
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2725
+#: ../setedit/editmain.cc:2730
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2726
+#: ../setedit/editmain.cc:2731
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4100,7 +4100,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2728
+#: ../setedit/editmain.cc:2733
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4110,11 +4110,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2732
+#: ../setedit/editmain.cc:2737
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2733
+#: ../setedit/editmain.cc:2738
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4123,14 +4123,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2738
+#: ../setedit/editmain.cc:2743
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2742
+#: ../setedit/editmain.cc:2747
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4139,7 +4139,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2744
+#: ../setedit/editmain.cc:2749
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4147,36 +4147,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2746
+#: ../setedit/editmain.cc:2751
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2748
+#: ../setedit/editmain.cc:2753
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2750
+#: ../setedit/editmain.cc:2755
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2751
+#: ../setedit/editmain.cc:2756
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2752
+#: ../setedit/editmain.cc:2757
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2755
+#: ../setedit/editmain.cc:2760
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2757
+#: ../setedit/editmain.cc:2762
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4185,7 +4185,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2759
+#: ../setedit/editmain.cc:2764
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4193,1000 +4193,1000 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2762
+#: ../setedit/editmain.cc:2767
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2764
+#: ../setedit/editmain.cc:2769
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2765
+#: ../setedit/editmain.cc:2770
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
 
 #. E: ACHNOSUX
-#: ../setedit/editmenu.cc:64 ../setedit/editmenu.cc:140
+#: ../setedit/editmenu.cc:62 ../setedit/editmenu.cc:138
 msgid "~O~pen..."
 msgstr "Ö~f~fnen..."
 
-#: ../setedit/editmenu.cc:67
+#: ../setedit/editmenu.cc:65
 msgid "S~a~ve as..."
 msgstr "Speichern ~a~ls..."
 
-#: ../setedit/editmenu.cc:68
+#: ../setedit/editmenu.cc:66
 msgid "Save as ~U~NIX..."
 msgstr "Als UNI~X~ speichern..."
 
-#: ../setedit/editmenu.cc:70
+#: ../setedit/editmenu.cc:68
 msgid "~C~hange dir..."
 msgstr "~W~echsle Verzeichnis..."
 
-#: ../setedit/editmenu.cc:73
+#: ../setedit/editmenu.cc:71
 msgid "~Q~uit"
 msgstr "~V~erlassen"
 
-#: ../setedit/editmenu.cc:76
+#: ../setedit/editmenu.cc:74
 msgid "~U~ndo"
 msgstr "~R~ückgängig"
 
-#: ../setedit/editmenu.cc:77
+#: ../setedit/editmenu.cc:75
 msgid "~R~edo"
 msgstr "~W~iederherstellen"
 
-#: ../setedit/editmenu.cc:79 ../setedit/editmenu.cc:112
+#: ../setedit/editmenu.cc:77 ../setedit/editmenu.cc:110
 msgid "Cu~t~"
 msgstr "~A~usschneiden"
 
-#: ../setedit/editmenu.cc:82
+#: ../setedit/editmenu.cc:80
 msgid "~S~how clipboard"
 msgstr "~Z~wischenablage anzeigen"
 
-#: ../setedit/editmenu.cc:84
+#: ../setedit/editmenu.cc:82
 msgid "~C~lear"
 msgstr "~L~ösche"
 
-#: ../setedit/editmenu.cc:86
+#: ../setedit/editmenu.cc:84
 msgid "S~e~t Local"
 msgstr "Lokal s~e~tzen"
 
-#: ../setedit/editmenu.cc:87
+#: ../setedit/editmenu.cc:85
 msgid "Set ~G~lobal"
 msgstr "~G~lobal setzen"
 
-#: ../setedit/editmenu.cc:89
+#: ../setedit/editmenu.cc:87
 msgid "E~x~pand all tabs"
 msgstr "Tabs e~x~pandieren"
 
-#: ../setedit/editmenu.cc:90
+#: ../setedit/editmenu.cc:88
 msgid "C~o~mpact text"
 msgstr "~L~eerzeichen zu Tabs"
 
-#: ../setedit/editmenu.cc:92
+#: ../setedit/editmenu.cc:90
 msgid "~J~ump to function"
 msgstr "~G~ehe zu Funktion"
 
-#: ../setedit/editmenu.cc:93
+#: ../setedit/editmenu.cc:91
 msgid "~P~rofile Editor"
 msgstr "Editor ~t~esten"
 
-#: ../setedit/editmenu.cc:96
+#: ../setedit/editmenu.cc:94
 msgid "~F~ind..."
 msgstr "~S~uche..."
 
-#: ../setedit/editmenu.cc:97
+#: ../setedit/editmenu.cc:95
 msgid "~R~eplace..."
 msgstr "~E~rsetzen..."
 
-#: ../setedit/editmenu.cc:98
+#: ../setedit/editmenu.cc:96
 msgid "~S~earch again"
 msgstr "~W~iederhole Suche"
 
-#: ../setedit/editmenu.cc:100 ../settvuti/tdiagaid.cc:187
+#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:187
 msgid "~M~acro"
 msgstr "~M~akro"
 
-#: ../setedit/editmenu.cc:101
+#: ../setedit/editmenu.cc:99
 msgid "~R~ecord"
 msgstr "Auf~n~ehmen"
 
-#: ../setedit/editmenu.cc:102
+#: ../setedit/editmenu.cc:100
 msgid "~S~top"
 msgstr "~S~top"
 
-#: ../setedit/editmenu.cc:103
+#: ../setedit/editmenu.cc:101
 msgid "~P~lay"
 msgstr "Ab~s~pielen"
 
-#: ../setedit/editmenu.cc:105
+#: ../setedit/editmenu.cc:103
 msgid "Re~c~tangle"
 msgstr "Re~c~hteck"
 
-#: ../setedit/editmenu.cc:106
+#: ../setedit/editmenu.cc:104
 msgid "~S~tart"
 msgstr "~A~nfang"
 
-#: ../setedit/editmenu.cc:107
+#: ../setedit/editmenu.cc:105
 msgid "~E~nd"
 msgstr "~E~nde"
 
-#: ../setedit/editmenu.cc:108
+#: ../setedit/editmenu.cc:106
 msgid "~H~ide"
 msgstr "~V~erstecke"
 
-#: ../setedit/editmenu.cc:113
+#: ../setedit/editmenu.cc:111
 msgid "C~l~ear"
 msgstr "~L~öschen"
 
-#: ../setedit/editmenu.cc:114
+#: ../setedit/editmenu.cc:112
 msgid "~M~ove"
 msgstr "~B~ewegen"
 
-#: ../setedit/editmenu.cc:124
+#: ../setedit/editmenu.cc:122
 msgid "~L~ist"
 msgstr "~L~iste"
 
-#: ../setedit/editmenu.cc:125
+#: ../setedit/editmenu.cc:123
 msgid "~U~ser Screen"
 msgstr "Ben~u~tzerbildschirm"
 
-#: ../setedit/editmenu.cc:127 ../setedit/edprefs.cc:361
+#: ../setedit/editmenu.cc:125 ../setedit/edprefs.cc:361
 msgid "~H~elp"
 msgstr "~H~ilfe"
 
-#: ../setedit/editmenu.cc:128
+#: ../setedit/editmenu.cc:126
 msgid "~I~NF View"
 msgstr "~I~NF Betrachter"
 
-#: ../setedit/editmenu.cc:129
+#: ../setedit/editmenu.cc:127
 msgid "~A~nother InfView"
 msgstr "~A~nderes InfView"
 
-#: ../setedit/editmenu.cc:131
+#: ../setedit/editmenu.cc:129
 msgid "~V~arious"
 msgstr "Va~r~iabel"
 
-#: ../setedit/editmenu.cc:132
+#: ../setedit/editmenu.cc:130
 msgid "~C~alculator"
 msgstr "~R~echner"
 
-#: ../setedit/editmenu.cc:133
+#: ../setedit/editmenu.cc:131
 msgid "~S~DG"
 msgstr "~S~DG"
 
-#: ../setedit/editmenu.cc:134
+#: ../setedit/editmenu.cc:132
 msgid "SDG ~O~ptions"
 msgstr "SDP ~O~ptionen"
 
-#: ../setedit/editmenu.cc:135
+#: ../setedit/editmenu.cc:133
 msgid "Copy to ~W~indows Clip."
 msgstr "Kopiere in ~W~in Zwischenablage"
 
-#: ../setedit/editmenu.cc:136
+#: ../setedit/editmenu.cc:134
 msgid "Paste ~f~rom Wind. Clip."
 msgstr "Füge von Windows Zwischenablage ein"
 
-#: ../setedit/editmenu.cc:137
+#: ../setedit/editmenu.cc:135
 msgid "Co~l~ors"
 msgstr "~F~arben"
 
-#: ../setedit/editmenu.cc:139
+#: ../setedit/editmenu.cc:137
 msgid "~P~roject"
 msgstr "~P~rojekt"
 
-#: ../setedit/editmenu.cc:160
+#: ../setedit/editmenu.cc:161
 msgid "~F2~ Save"
 msgstr "~F2~ Speichern"
 
-#: ../setedit/editmenu.cc:161
+#: ../setedit/editmenu.cc:162
 msgid "~F3~ Open"
 msgstr "~F3~ Öffnen"
 
-#: ../setedit/editmenu.cc:162
+#: ../setedit/editmenu.cc:163
 msgid "~Alt+F3~ Close"
 msgstr "~Alt+F3~ Weg"
 
-#: ../setedit/editmenu.cc:174
+#: ../setedit/editmenu.cc:175
 msgid "~^H~ Help"
 msgstr "~^H~ Hilfe"
 
-#: ../setedit/editmenu.cc:175
+#: ../setedit/editmenu.cc:176
 msgid "~ESC~ Close"
 msgstr "~ESC~ Schließen"
 
-#: ../setedit/editmenu.cc:176
+#: ../setedit/editmenu.cc:177
 msgid "~Alt+I~ Include"
 msgstr "~Alt+I~ Include"
 
-#: ../setedit/editmenu.cc:177
+#: ../setedit/editmenu.cc:178
 msgid "~Alt+B~ Bookmark"
 msgstr "~Alt+B~ Lesezeichen"
 
-#: ../setedit/editmenu.cc:180
+#: ../setedit/editmenu.cc:181
 msgid "~Del~ Close"
 msgstr "~Del~ Schließen"
 
-#: ../setedit/editmenu.cc:181
+#: ../setedit/editmenu.cc:182
 msgid "~Ins~ Open"
 msgstr "~Einf~ Öffnen"
 
-#: ../setedit/editmenu.cc:183
+#: ../setedit/editmenu.cc:184
 msgid "~Ctrl+Del~ Delete File"
 msgstr "~Ctrl+Del~ Datei löschen"
 
-#: ../setedit/editmenu.cc:185
+#: ../setedit/editmenu.cc:186
 msgid "~Ins~ Insert"
 msgstr "~Einf~ Einfügen"
 
-#: ../setedit/editmenu.cc:186
+#: ../setedit/editmenu.cc:187
 msgid "~Del~ Delete"
 msgstr "~Del~ Löschen"
 
-#: ../setedit/editmenu.cc:190
+#: ../setedit/editmenu.cc:191
 #, fuzzy
 msgid "~Alt+F7~ Previous"
 msgstr "~V~orherige"
 
-#: ../setedit/editmenu.cc:191
+#: ../setedit/editmenu.cc:192
 #, fuzzy
 msgid "~Alt+F8~ Next"
 msgstr "~F6~ Nächstes"
 
-#: ../setedit/editmenu.cc:192
+#: ../setedit/editmenu.cc:193
 #, fuzzy
 msgid "~Ctrl+C~ Stop"
 msgstr "~Strg+Einf~ Kopie"
 
-#: ../setedit/editmenu.cc:193
+#: ../setedit/editmenu.cc:194
 #, fuzzy
 msgid "Save"
 msgstr "~S~peichern"
 
-#: ../setedit/editmenu.cc:194 ../setedit/editmenu.cc:199
+#: ../setedit/editmenu.cc:195 ../setedit/editmenu.cc:200
 msgid "~Ctrl+Ins~ Copy"
 msgstr "~Strg+Einf~ Kopie"
 
-#: ../setedit/editmenu.cc:198
+#: ../setedit/editmenu.cc:199
 msgid "~ENTER~ Evaluate"
 msgstr "~ENTER~ Auswerten"
 
-#: ../setedit/editmenu.cc:200
+#: ../setedit/editmenu.cc:201
 msgid "~Shift+Ins~ Paste"
 msgstr "~Umsch+Einf~ Einfügen"
 
 #. The following are here just for internationalization purposes
-#: ../setedit/editmenu.cc:217
+#: ../setedit/editmenu.cc:218
 msgid "Open Read-only ~c~opy"
 msgstr "Nur-Lesen-Kopie öffnen"
 
-#: ../setedit/editmenu.cc:218
+#: ../setedit/editmenu.cc:219
 #, fuzzy
 msgid "Save w/ same ~t~ime..."
 msgstr "Mit gleicher Zei~t~ schreiben..."
 
-#: ../setedit/editmenu.cc:219
+#: ../setedit/editmenu.cc:220
 msgid "Save a~l~l"
 msgstr ""
 
-#: ../setedit/editmenu.cc:220
+#: ../setedit/editmenu.cc:221
 msgid "~P~rint"
 msgstr "~D~rucken"
 
-#: ../setedit/editmenu.cc:221
+#: ../setedit/editmenu.cc:222
 msgid "Pr~i~nt Setup..."
 msgstr "Drucke~i~nstellungen..."
 
-#: ../setedit/editmenu.cc:222
+#: ../setedit/editmenu.cc:223
 msgid "S~e~t Local options"
 msgstr "Lokale ~E~instellungen"
 
-#: ../setedit/editmenu.cc:223
+#: ../setedit/editmenu.cc:224
 msgid "Set ~G~lobal options"
 msgstr "~G~lobale Einstellungen setzen"
 
-#: ../setedit/editmenu.cc:224
+#: ../setedit/editmenu.cc:225
 msgid "Pus~h~ cursor position"
 msgstr "Cursorposition speichern"
 
-#: ../setedit/editmenu.cc:225
+#: ../setedit/editmenu.cc:226
 msgid "Pop cursor pos~i~tion"
 msgstr "Cursorpos~i~tion laden"
 
-#: ../setedit/editmenu.cc:226
+#: ../setedit/editmenu.cc:227
 msgid "C~a~se (upper/lower)"
 msgstr "~G~roß/Kleinschreibung"
 
-#: ../setedit/editmenu.cc:227
+#: ../setedit/editmenu.cc:228
 msgid "Block to ~u~pper"
 msgstr "Block ~g~roßschreiben"
 
-#: ../setedit/editmenu.cc:228
+#: ../setedit/editmenu.cc:229
 msgid "Block to ~l~ower"
 msgstr "Block ~k~leinschreiben"
 
-#: ../setedit/editmenu.cc:229
+#: ../setedit/editmenu.cc:230
 msgid "~C~haracter toggle"
 msgstr "~Z~eichenwechsel"
 
-#: ../setedit/editmenu.cc:230
+#: ../setedit/editmenu.cc:231
 #, fuzzy
 msgid "Block ~i~nvert"
 msgstr "Block ~g~roßschreiben"
 
-#: ../setedit/editmenu.cc:231
+#: ../setedit/editmenu.cc:232
 #, fuzzy
 msgid "Block ~a~lternate"
 msgstr "Block ~g~roßschreiben"
 
-#: ../setedit/editmenu.cc:232
+#: ../setedit/editmenu.cc:233
 msgid "~G~o to line"
 msgstr "~G~ehe zu Zeile"
 
-#: ../setedit/editmenu.cc:233
+#: ../setedit/editmenu.cc:234
 msgid "Jump to ~p~rototype"
 msgstr "Gehe zu ~P~rototyp"
 
-#: ../setedit/editmenu.cc:234
+#: ../setedit/editmenu.cc:235
 #, fuzzy
 msgid "~N~ame current function"
 msgstr "~G~ehe zu Funktion"
 
-#: ../setedit/editmenu.cc:235
+#: ../setedit/editmenu.cc:236
 #, fuzzy
 msgid "~C~hoose..."
 msgstr "~A~uswahl..."
 
-#: ../setedit/editmenu.cc:236
+#: ../setedit/editmenu.cc:237
 msgid "R~e~peat"
 msgstr "Wiederholen"
 
-#: ../setedit/editmenu.cc:237
+#: ../setedit/editmenu.cc:238
 msgid "~G~enerate Code"
 msgstr "Erzeuge ~C~ode"
 
-#: ../setedit/editmenu.cc:238
+#: ../setedit/editmenu.cc:239
 #, fuzzy
 msgid "Ru~n~ selected code"
 msgstr "Ausge~w~ählter Text"
 
-#: ../setedit/editmenu.cc:239
+#: ../setedit/editmenu.cc:240
 #, fuzzy
 msgid "Enter c~o~de to run"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../setedit/editmenu.cc:240
+#: ../setedit/editmenu.cc:241
 #, fuzzy
 msgid "Pse~u~do macros..."
 msgstr "Pse~u~do Macros ..."
 
-#: ../setedit/editmenu.cc:241
+#: ../setedit/editmenu.cc:242
 msgid "To ~u~pper"
 msgstr "in ~G~roßbuchstaben"
 
-#: ../setedit/editmenu.cc:242
+#: ../setedit/editmenu.cc:243
 msgid "To l~o~wer"
 msgstr "in ~K~leinbuchstaben"
 
-#: ../setedit/editmenu.cc:243
+#: ../setedit/editmenu.cc:244
 msgid "Poc~k~et calculator"
 msgstr "~T~aschenrechner"
 
-#: ../setedit/editmenu.cc:244
+#: ../setedit/editmenu.cc:245
 msgid "~R~un program"
 msgstr "Programm ~a~usführen"
 
-#: ../setedit/editmenu.cc:245
+#: ../setedit/editmenu.cc:246
 msgid "~A~SCII Chart"
 msgstr "~A~SCII Tabelle"
 
-#: ../setedit/editmenu.cc:246
+#: ../setedit/editmenu.cc:247
 msgid "Ca~l~endar"
 msgstr "Ka~l~ender"
 
-#: ../setedit/editmenu.cc:247
+#: ../setedit/editmenu.cc:248
 #, fuzzy
 msgid "MP~3~ songs"
 msgstr "~M~P3 Lieder"
 
-#: ../setedit/editmenu.cc:248
+#: ../setedit/editmenu.cc:249
 msgid "~S~elect a song"
 msgstr "Wähle einen ~S~ong aus"
 
-#: ../setedit/editmenu.cc:249
+#: ../setedit/editmenu.cc:250
 msgid "~P~lay selected"
 msgstr "gewähltes a~b~spielen"
 
-#: ../setedit/editmenu.cc:250
+#: ../setedit/editmenu.cc:251
 msgid "S~t~op selected"
 msgstr "Anhal~t~en"
 
-#: ../setedit/editmenu.cc:251
+#: ../setedit/editmenu.cc:252
 msgid "~C~onvert to WAV"
 msgstr "in ~W~AV umwandeln"
 
-#: ../setedit/editmenu.cc:252
+#: ../setedit/editmenu.cc:253
 msgid "~E~dit/Create list"
 msgstr "~B~earbeite/Erstelle Liste"
 
-#: ../setedit/editmenu.cc:253
+#: ../setedit/editmenu.cc:254
 msgid "P~l~ay list"
 msgstr "Spiel~l~iste"
 
-#: ../setedit/editmenu.cc:254
+#: ../setedit/editmenu.cc:255
 msgid "St~o~p list"
 msgstr "Liste st~o~ppen"
 
-#: ../setedit/editmenu.cc:255
+#: ../setedit/editmenu.cc:256
 msgid "~H~TML Accents"
 msgstr "~H~TML Akzente"
 
-#: ../setedit/editmenu.cc:256
+#: ../setedit/editmenu.cc:257
 msgid "Convert ~a~ccents to tags"
 msgstr "Wandle ~A~kzente in Markierungen um"
 
-#: ../setedit/editmenu.cc:257
+#: ../setedit/editmenu.cc:258
 msgid "Convert ~t~ags to accents"
 msgstr "Wandle ~M~arkierungen in Akzente um"
 
-#: ../setedit/editmenu.cc:258
+#: ../setedit/editmenu.cc:259
 #, fuzzy
 msgid "E~x~port as HTML..."
 msgstr "E~x~port als HTML..."
 
-#: ../setedit/editmenu.cc:259
+#: ../setedit/editmenu.cc:260
 #, fuzzy
 msgid "Re~m~ap code page..."
 msgstr "Code~p~age ändern..."
 
-#: ../setedit/editmenu.cc:260
+#: ../setedit/editmenu.cc:261
 msgid "~B~lock quoted printable decode"
 msgstr "~D~ekodiere `quoted printable' Auswahl"
 
-#: ../setedit/editmenu.cc:261
+#: ../setedit/editmenu.cc:262
 msgid "Un/~I~ndent block"
 msgstr "Block~e~inschub"
 
-#: ../setedit/editmenu.cc:262
+#: ../setedit/editmenu.cc:263
 msgid "Indent ~o~ne space"
 msgstr "Schiebe ein Leerzeichen ein"
 
-#: ../setedit/editmenu.cc:263
+#: ../setedit/editmenu.cc:264
 msgid "Unindent o~n~e character"
 msgstr "Ein Zeiche~n~ zurückschieben"
 
-#: ../setedit/editmenu.cc:264
+#: ../setedit/editmenu.cc:265
 msgid "Indent one ~t~ab/gap"
 msgstr "Schiebe ein ~T~ab/Lücke ein"
 
-#: ../setedit/editmenu.cc:265
+#: ../setedit/editmenu.cc:266
 msgid "~U~nindent one tab/gap"
 msgstr "~E~inschub um ein Tab verkleinern"
 
-#: ../setedit/editmenu.cc:266
+#: ../setedit/editmenu.cc:267
 #, fuzzy
 msgid "~C~omment indent"
 msgstr "~A~utoeinschub"
 
-#: ../setedit/editmenu.cc:267
+#: ../setedit/editmenu.cc:268
 msgid "Comment unin~d~ent"
 msgstr ""
 
-#: ../setedit/editmenu.cc:268
+#: ../setedit/editmenu.cc:269
 msgid "~A~rbitrary indent"
 msgstr "~E~igener Einschub"
 
-#: ../setedit/editmenu.cc:269
+#: ../setedit/editmenu.cc:270
 msgid "Paste ~E~macs mode"
 msgstr "Füge im ~E~macs Modus ein"
 
-#: ../setedit/editmenu.cc:270
+#: ../setedit/editmenu.cc:271
 msgid "Test of macro from menu"
 msgstr "Test des Makros des Menüs"
 
-#: ../setedit/editmenu.cc:271
+#: ../setedit/editmenu.cc:272
 msgid "~D~elete memorized backups"
 msgstr "Gemerkte Backu~p~s löschen"
 
-#: ../setedit/editmenu.cc:272
+#: ../setedit/editmenu.cc:273
 msgid "Redra~w~ screen"
 msgstr "Bildschirm ne~u~zeichnen"
 
-#: ../setedit/editmenu.cc:273
+#: ../setedit/editmenu.cc:274
 #, fuzzy
 msgid "~C~olors"
 msgstr "Farben"
 
-#: ../setedit/editmenu.cc:274
+#: ../setedit/editmenu.cc:275
 #, fuzzy
 msgid "~C~ustomize..."
 msgstr "~A~uswahl..."
 
-#: ../setedit/editmenu.cc:275
+#: ../setedit/editmenu.cc:276
 #, fuzzy
 msgid "~P~alette..."
 msgstr "Farb~p~alette..."
 
-#: ../setedit/editmenu.cc:276
+#: ../setedit/editmenu.cc:277
 #, fuzzy
 msgid "~T~heme..."
 msgstr "~A~uswahl..."
 
-#: ../setedit/editmenu.cc:277
+#: ../setedit/editmenu.cc:278
 #, fuzzy
 msgid "~L~ocal edition..."
 msgstr "~L~okale Bearbeitung..."
 
-#: ../setedit/editmenu.cc:278
+#: ../setedit/editmenu.cc:279
 #, fuzzy
 msgid "Glo~b~al edition..."
 msgstr "Globale ~B~earbeitung..."
 
-#: ../setedit/editmenu.cc:279
+#: ../setedit/editmenu.cc:280
 #, fuzzy
 msgid "Editor ~G~eneral..."
 msgstr "Editor ~g~enerell..."
 
-#: ../setedit/editmenu.cc:280
+#: ../setedit/editmenu.cc:281
 #, fuzzy
 msgid "Scr~e~en saver..."
 msgstr "Bildschirm~s~choner..."
 
-#: ../setedit/editmenu.cc:281
+#: ../setedit/editmenu.cc:282
 #, fuzzy
 msgid "S~D~G Options..."
 msgstr "S~D~G Optionen..."
 
-#: ../setedit/editmenu.cc:282
+#: ../setedit/editmenu.cc:283
 #, fuzzy
 msgid "~R~un program (which one)..."
 msgstr "Programm ~a~usführen (welches)..."
 
-#: ../setedit/editmenu.cc:283
+#: ../setedit/editmenu.cc:284
 msgid "~K~eyboard"
 msgstr "~T~astatur"
 
-#: ../setedit/editmenu.cc:284
+#: ../setedit/editmenu.cc:285
 msgid "~K~ey assignment"
 msgstr "~T~astenzuweisung"
 
-#: ../setedit/editmenu.cc:285
+#: ../setedit/editmenu.cc:286
 msgid "~S~etup Alt keys"
 msgstr "~K~onfiguriere Alt-Tasten"
 
-#: ../setedit/editmenu.cc:286
+#: ../setedit/editmenu.cc:287
 msgid "Key ~p~ad behavior"
 msgstr "Key~P~ad Verhalten"
 
-#: ../setedit/editmenu.cc:287
+#: ../setedit/editmenu.cc:288
 msgid "~B~ack to defaults"
 msgstr "~Z~urück zu Standard"
 
-#: ../setedit/editmenu.cc:288
+#: ../setedit/editmenu.cc:289
 msgid "Consult ~s~can codes"
 msgstr "~S~can codes ansehen"
 
-#: ../setedit/editmenu.cc:289
+#: ../setedit/editmenu.cc:290
 #, fuzzy
 msgid "~S~creen Options..."
 msgstr "Bilschirm~o~ptionen..."
 
-#: ../setedit/editmenu.cc:290
+#: ../setedit/editmenu.cc:291
 msgid "Encod~i~ngs..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:291
+#: ../setedit/editmenu.cc:292
 #, fuzzy
 msgid "Fon~t~s..."
 msgstr "~A~uswahl..."
 
-#: ../setedit/editmenu.cc:292
+#: ../setedit/editmenu.cc:293
 #, fuzzy
 msgid "~U~ser words..."
 msgstr "Ben~u~tzerwörter..."
 
-#: ../setedit/editmenu.cc:293
+#: ../setedit/editmenu.cc:294
 #, fuzzy
 msgid "De~f~ault global edition..."
 msgstr "Standard ~g~lobale Bearbeitung..."
 
-#: ../setedit/editmenu.cc:294
+#: ../setedit/editmenu.cc:295
 #, fuzzy
 msgid "~O~pen file dialog..."
 msgstr "`Datei öffnen' Dial~o~g..."
 
-#: ../setedit/editmenu.cc:295
+#: ../setedit/editmenu.cc:296
 #, fuzzy
 msgid "Do~n~'t create backups for..."
 msgstr "~K~eine Desktopdateien erstellen"
 
-#: ../setedit/editmenu.cc:296
+#: ../setedit/editmenu.cc:297
 msgid "~T~ip of the day"
 msgstr "~T~agestip"
 
-#: ../setedit/editmenu.cc:297
+#: ../setedit/editmenu.cc:298
 msgid "~S~yntax help"
 msgstr "~S~yntaxhilfe"
 
-#: ../setedit/editmenu.cc:298
+#: ../setedit/editmenu.cc:299
 msgid "~F~iles to search"
 msgstr "Zu durchsuchende Dateien"
 
-#: ../setedit/editmenu.cc:299
+#: ../setedit/editmenu.cc:300
 msgid "~M~an page View"
 msgstr "~M~an-Seiten Ansicht"
 
-#: ../setedit/editmenu.cc:300
+#: ../setedit/editmenu.cc:301
 msgid "A~b~out"
 msgstr "Ü~b~er"
 
-#: ../setedit/editmenu.cc:301
+#: ../setedit/editmenu.cc:302
 msgid "Searc~h~ files under cursor in..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:302
+#: ../setedit/editmenu.cc:303
 #, fuzzy
 msgid "Insert key ~n~ame"
 msgstr "Falsche Schlüsselname."
 
-#: ../setedit/editmenu.cc:303
+#: ../setedit/editmenu.cc:304
 msgid "Sc~r~oll Up"
 msgstr ""
 
-#: ../setedit/editmenu.cc:304
+#: ../setedit/editmenu.cc:305
 msgid "Scroll ~D~own"
 msgstr ""
 
-#: ../setedit/editmenu.cc:305
+#: ../setedit/editmenu.cc:306
 #, fuzzy
 msgid "Cop~y~ to file Clipboard"
 msgstr "~Z~wischenablage anzeigen"
 
-#: ../setedit/editmenu.cc:306
+#: ../setedit/editmenu.cc:307
 #, fuzzy
 msgid "Paste ~f~rom file Clipboard"
 msgstr "Füge von Windows Zwischenablage ein"
 
-#: ../setedit/editmenu.cc:307
+#: ../setedit/editmenu.cc:308
 #, fuzzy
 msgid "Copy to OS Clipboar~d~"
 msgstr "~Z~wischenablage anzeigen"
 
-#: ../setedit/editmenu.cc:308
+#: ../setedit/editmenu.cc:309
 #, fuzzy
 msgid "Paste from OS Clip~b~oard"
 msgstr "Füge von Windows Zwischenablage ein"
 
-#: ../setedit/editmenu.cc:309
+#: ../setedit/editmenu.cc:310
 #, fuzzy
 msgid "Save ~d~esktop here"
 msgstr "Desktopdateien versteckt sc~h~reiben"
 
-#: ../setedit/editmenu.cc:310
+#: ../setedit/editmenu.cc:311
 #, fuzzy
 msgid "Sa~v~e as DOS..."
 msgstr "Speichern ~a~ls..."
 
-#: ../setedit/editmenu.cc:312
+#: ../setedit/editmenu.cc:313
 #, fuzzy
 msgid "T~a~g files"
 msgstr "Speicher Datei als"
 
-#: ../setedit/editmenu.cc:313
+#: ../setedit/editmenu.cc:314
 #, fuzzy
 msgid "~L~ist of tag files..."
 msgstr "Dateiliste"
 
-#: ../setedit/editmenu.cc:314
+#: ../setedit/editmenu.cc:315
 #, fuzzy
 msgid "~O~ptions..."
 msgstr "~O~ptionen"
 
-#: ../setedit/editmenu.cc:315
+#: ../setedit/editmenu.cc:316
 msgid "Jump ~t~o symbol"
 msgstr ""
 
-#: ../setedit/editmenu.cc:316
+#: ../setedit/editmenu.cc:317
 #, fuzzy
 msgid "~C~lass browser"
 msgstr "S~c~hließen"
 
-#: ../setedit/editmenu.cc:317
+#: ../setedit/editmenu.cc:318
 #, fuzzy
 msgid "~W~ord completion"
 msgstr "~E~xtraeinstellungen"
 
-#: ../setedit/editmenu.cc:318
+#: ../setedit/editmenu.cc:319
 #, fuzzy
 msgid "E~x~port project"
 msgstr "~P~rojekt"
 
-#: ../setedit/editmenu.cc:319
+#: ../setedit/editmenu.cc:320
 msgid "~I~mport project items"
 msgstr ""
 
-#: ../setedit/editmenu.cc:320
+#: ../setedit/editmenu.cc:321
 #, fuzzy
 msgid "Save As"
 msgstr "Speicher Datei als"
 
-#: ../setedit/editmenu.cc:321
+#: ../setedit/editmenu.cc:322
 msgid "Calendar (holida~y~s)..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:322
+#: ../setedit/editmenu.cc:323
 msgid "Checking for ~m~odified files..."
 msgstr ""
 
-#: ../setedit/editmenu.cc:323
+#: ../setedit/editmenu.cc:324
 #, fuzzy
 msgid "Advice dialogs..."
 msgstr "`Datei öffnen' Dial~o~g..."
 
-#: ../setedit/editmenu.cc:324
+#: ../setedit/editmenu.cc:325
 #, fuzzy
 msgid "Jump to ~l~ast cursor position"
 msgstr "Cursorposition speichern"
 
-#: ../setedit/editmenu.cc:325
+#: ../setedit/editmenu.cc:326
 #, fuzzy
 msgid "Jump to last ~u~ndo position"
 msgstr "Gehe zu Funktion"
 
-#: ../setedit/editmenu.cc:326
+#: ../setedit/editmenu.cc:327
 msgid "Insert ~n~ew line (don't move)"
 msgstr ""
 
-#: ../setedit/editmenu.cc:327
+#: ../setedit/editmenu.cc:328
 #, fuzzy
 msgid "Pro~j~ect Window"
 msgstr "Projektfenster"
 
-#: ../setedit/editmenu.cc:328
+#: ../setedit/editmenu.cc:329
 #, fuzzy
 msgid "~M~essage Window"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/editmenu.cc:329
+#: ../setedit/editmenu.cc:330
 #, fuzzy
 msgid "~E~dition Windows"
 msgstr "~F~enster"
 
-#: ../setedit/editmenu.cc:330
+#: ../setedit/editmenu.cc:331
 #, fuzzy
 msgid "Window  ~2~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:331
+#: ../setedit/editmenu.cc:332
 #, fuzzy
 msgid "Window  ~3~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:332
+#: ../setedit/editmenu.cc:333
 #, fuzzy
 msgid "Window  ~4~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:333
+#: ../setedit/editmenu.cc:334
 #, fuzzy
 msgid "Window  ~5~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:334
+#: ../setedit/editmenu.cc:335
 #, fuzzy
 msgid "Window  ~6~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:335
+#: ../setedit/editmenu.cc:336
 #, fuzzy
 msgid "Window  ~7~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:336
+#: ../setedit/editmenu.cc:337
 #, fuzzy
 msgid "Window  ~8~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:337
+#: ../setedit/editmenu.cc:338
 #, fuzzy
 msgid "Window  ~9~"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:338
+#: ../setedit/editmenu.cc:339
 #, fuzzy
 msgid "Window 10"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:339
+#: ../setedit/editmenu.cc:340
 #, fuzzy
 msgid "Window 11"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:340
+#: ../setedit/editmenu.cc:341
 #, fuzzy
 msgid "Window 12"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:341
+#: ../setedit/editmenu.cc:342
 #, fuzzy
 msgid "Window 13"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:342
+#: ../setedit/editmenu.cc:343
 #, fuzzy
 msgid "Window 14"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:343
+#: ../setedit/editmenu.cc:344
 #, fuzzy
 msgid "Window 15"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:344
+#: ../setedit/editmenu.cc:345
 #, fuzzy
 msgid "Window 16"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:345
+#: ../setedit/editmenu.cc:346
 #, fuzzy
 msgid "Window 17"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:346
+#: ../setedit/editmenu.cc:347
 #, fuzzy
 msgid "Window 18"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:347
+#: ../setedit/editmenu.cc:348
 #, fuzzy
 msgid "Window 19"
 msgstr "Fensterliste"
 
-#: ../setedit/editmenu.cc:348
+#: ../setedit/editmenu.cc:349
 #, fuzzy
 msgid "Pus~h~ cursor position and window"
 msgstr "Cursorposition speichern"
 
-#: ../setedit/editmenu.cc:349
+#: ../setedit/editmenu.cc:350
 #, fuzzy
 msgid "P~o~p cursor position and window (tag ret)"
 msgstr "Cursorpos~i~tion laden"
 
-#: ../setedit/editmenu.cc:350
+#: ../setedit/editmenu.cc:351
 #, fuzzy
 msgid "Debu~g~ger Window"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/editmenu.cc:351
+#: ../setedit/editmenu.cc:352
 #, fuzzy
 msgid "~W~atches Window"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/editmenu.cc:352
+#: ../setedit/editmenu.cc:353
 #, fuzzy
 msgid "~D~ebug"
 msgstr "~O~riginal"
 
-#: ../setedit/editmenu.cc:354
+#: ../setedit/editmenu.cc:355
 #, fuzzy
 msgid "~P~rogram and mode"
 msgstr "~V~orherige"
 
-#: ../setedit/editmenu.cc:355
+#: ../setedit/editmenu.cc:356
 msgid "Path for ~s~ources"
 msgstr ""
 
-#: ../setedit/editmenu.cc:356
+#: ../setedit/editmenu.cc:357
 #, fuzzy
 msgid "~M~essages displayed"
 msgstr "Nachrichtenfenster"
 
-#: ../setedit/editmenu.cc:357
+#: ../setedit/editmenu.cc:358
 msgid "Go to 'Connected' ~1~"
 msgstr ""
 
-#: ../setedit/editmenu.cc:358
+#: ../setedit/editmenu.cc:359
 #, fuzzy
 msgid "Go to 'Ready to run' ~2~"
 msgstr "auzuführender Befehl"
 
-#: ../setedit/editmenu.cc:359
+#: ../setedit/editmenu.cc:360
 #, fuzzy
 msgid "~B~reakpoint"
 msgstr "~D~rucken"
 
-#: ../setedit/editmenu.cc:360
+#: ../setedit/editmenu.cc:361
 msgid "~R~un/Continue"
 msgstr ""
 
-#: ../setedit/editmenu.cc:361
+#: ../setedit/editmenu.cc:362
 #, fuzzy
 msgid "~S~tep over"
 msgstr "Ü~b~erschreiben"
 
-#: ../setedit/editmenu.cc:362
+#: ../setedit/editmenu.cc:363
 #, fuzzy
 msgid "~T~race into"
 msgstr "~D~rucken"
 
-#: ../setedit/editmenu.cc:363
+#: ../setedit/editmenu.cc:364
 #, fuzzy
 msgid "~G~o to cursor"
 msgstr "~Z~eilencursor"
 
-#: ../setedit/editmenu.cc:364
+#: ../setedit/editmenu.cc:365
 msgid "~U~ntil return"
 msgstr ""
 
-#: ../setedit/editmenu.cc:365
+#: ../setedit/editmenu.cc:366
 msgid "Return ~n~ow"
 msgstr ""
 
-#: ../setedit/editmenu.cc:366
+#: ../setedit/editmenu.cc:367
 #, fuzzy
 msgid "Sto~p~"
 msgstr "~S~top"
 
-#: ../setedit/editmenu.cc:367
+#: ../setedit/editmenu.cc:368
 msgid "Restart (~K~ill)"
 msgstr ""
 
-#: ../setedit/editmenu.cc:368
+#: ../setedit/editmenu.cc:369
 #, fuzzy
 msgid "~E~valuate/Modify"
 msgstr "~ENTER~ Auswerten"
 
 # End of header
-#: ../setedit/editmenu.cc:369
+#: ../setedit/editmenu.cc:370
 #, fuzzy
 msgid "~W~atch an expression"
 msgstr "~A~usdruck"
 
-#: ../setedit/editmenu.cc:370
+#: ../setedit/editmenu.cc:371
 msgid "Watc~h~ an exp. (w/scope)"
 msgstr ""
 
-#: ../setedit/editmenu.cc:371
+#: ../setedit/editmenu.cc:372
 msgid "~C~alling stack"
 msgstr ""
 
-#: ../setedit/editmenu.cc:372
+#: ../setedit/editmenu.cc:373
 msgid "C~l~ose debug session"
 msgstr ""
 
-#: ../setedit/editmenu.cc:373
+#: ../setedit/editmenu.cc:374
 msgid "~D~estroy debug session (DANGER!)"
 msgstr ""
 
-#: ../setedit/editmenu.cc:374
+#: ../setedit/editmenu.cc:375
 msgid "~+~ Expand"
 msgstr ""
 
-#: ../setedit/editmenu.cc:375
+#: ../setedit/editmenu.cc:376
 #, fuzzy
 msgid "~-~ Collapse"
 msgstr "~ESC~ Schließen"
 
-#: ../setedit/editmenu.cc:376
+#: ../setedit/editmenu.cc:377
 #, fuzzy
 msgid "~+~ Enable"
 msgstr "~E~inschalten"
 
-#: ../setedit/editmenu.cc:377
+#: ../setedit/editmenu.cc:378
 #, fuzzy
 msgid "~-~ Disable"
 msgstr "~A~usschalten"
 
-#: ../setedit/editmenu.cc:378
+#: ../setedit/editmenu.cc:379
 #, fuzzy
 msgid "~Ins~ Send command"
 msgstr "auzuführender Befehl"
 
-#: ../setedit/editmenu.cc:379
+#: ../setedit/editmenu.cc:380
 msgid "~+~ Add w/scope"
 msgstr ""
 
@@ -6232,124 +6232,124 @@ msgstr "~K~eine Desktopdateien erstellen"
 msgid "Perl regular expression"
 msgstr "Reguläre Ausd~r~ücke"
 
-#: ../setedit/menuload.cc:71
+#: ../setedit/menuload.cc:72
 msgid "No error"
 msgstr "Kein Fehler"
 
-#: ../setedit/menuload.cc:72
+#: ../setedit/menuload.cc:73
 msgid "String expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:73
+#: ../setedit/menuload.cc:74
 #, fuzzy
 msgid "String not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:74
+#: ../setedit/menuload.cc:75
 msgid "No key for SubMenu"
 msgstr "Keine Taste für `SubMenu'"
 
-#: ../setedit/menuload.cc:75
+#: ../setedit/menuload.cc:76
 msgid "Wrong key name"
 msgstr "Falsche Schlüsselname."
 
-#: ../setedit/menuload.cc:76
+#: ../setedit/menuload.cc:77
 msgid "Extra characters in line"
 msgstr "Extra Zeichen in Zeile"
 
-#: ../setedit/menuload.cc:77
+#: ../setedit/menuload.cc:78
 msgid "No number for a context"
 msgstr "Keine Nummer für einen Kontext"
 
-#: ../setedit/menuload.cc:78
+#: ../setedit/menuload.cc:79
 msgid "Syntax error"
 msgstr "Syntaxfehler"
 
-#: ../setedit/menuload.cc:79
+#: ../setedit/menuload.cc:80
 msgid "Empty submenu"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:80
+#: ../setedit/menuload.cc:81
 #, fuzzy
 msgid "SubMenu not closed "
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:81
+#: ../setedit/menuload.cc:82
 #, fuzzy
 msgid "Missing command value"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:82
+#: ../setedit/menuload.cc:83
 msgid "Wrong command name"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:83
+#: ../setedit/menuload.cc:84
 msgid "No menu definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:84
+#: ../setedit/menuload.cc:85
 msgid "Wrong context name"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:85
+#: ../setedit/menuload.cc:86
 msgid "Unfinished macro name"
 msgstr "Nicht beendeter Makroname"
 
-#: ../setedit/menuload.cc:86
+#: ../setedit/menuload.cc:87
 msgid "Unable to register macro"
 msgstr "Kann Makro nicht registrieren"
 
-#: ../setedit/menuload.cc:87
+#: ../setedit/menuload.cc:88
 #, fuzzy
 msgid "No status line definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:88
+#: ../setedit/menuload.cc:89
 msgid "No `from' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:89
+#: ../setedit/menuload.cc:90
 msgid "No `quantity' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:90
+#: ../setedit/menuload.cc:91
 #, fuzzy
 msgid "Number expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:91
+#: ../setedit/menuload.cc:92
 #, fuzzy
 msgid "Invalid range"
 msgstr "Ungültiges Laufwerk"
 
-#: ../setedit/menuload.cc:92
+#: ../setedit/menuload.cc:93
 #, fuzzy
 msgid "StatusRange not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:93
+#: ../setedit/menuload.cc:94
 #, fuzzy
 msgid "Empty status line"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:94
+#: ../setedit/menuload.cc:95
 #, fuzzy
 msgid "Wrong help context name or number"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:95
+#: ../setedit/menuload.cc:96
 msgid "Too much conditionals nested"
 msgstr ""
 
-#: ../setedit/menuload.cc:96
+#: ../setedit/menuload.cc:97
 msgid "Unmatched $endif"
 msgstr ""
 
-#: ../setedit/menuload.cc:97
+#: ../setedit/menuload.cc:98
 msgid "Preprocessor value redefined"
 msgstr ""
 
-#: ../setedit/menuload.cc:1380
+#: ../setedit/menuload.cc:1475
 #, c-format
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Fehler beim Laden von Menü: (%d) %s in Zeile %d von %s."
