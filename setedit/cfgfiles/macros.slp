@@ -213,6 +213,21 @@
  )
 )
 
+(defmacro 'EvalSelection_Print'
+ (InsertText (+ "\n" (EvalString (GetSelection))))
+)
+
+(defmacro 'EvalSelection_StatusLine'
+ (ShowInStatusLine (EvalString (GetSelection)))
+)
+
+; (defmacro 'EvalSelection_MessageWindow'
+;  (eval
+;   (ShowInMessageWindow "Return value:" 1)
+;   (ShowInMessageWindow (EvalString (GetSelection)))
+;  )
+; )
+;
 ; (defmacro 'Compile'
 ;  (eval
 ;   (RunProgram
