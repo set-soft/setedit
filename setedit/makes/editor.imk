@@ -1,6 +1,6 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-07-23 14:29
+# 2003-11-03 16:55
 #
 
 editor$(ExEXE):: \
@@ -144,6 +144,7 @@ editor$(ExEXE):: \
 	$(RHIDE_COMPILE_LINK)
 
 obj/accehtml$(ExOBJ):: accehtml.cc \
+	$(MP3_PREV_DIR)/mainsrc/accehtml.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -204,19 +205,28 @@ obj/accehtml$(ExOBJ):: accehtml.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/advice$(ExOBJ):: advice.cc \
+	$(MP3_PREV_DIR)/setedit/advice.cc \
 	compatlayer.h \
 	easydia1.h \
 	easydiag.h \
 	edspecs.h \
 	setapp.h \
+	settvuti.h \
 	tsbutton.h \
 	tschkbox.h \
 	tshzgrp.h \
+	tslabel.h \
+	tslistbo.h \
+	tssortva.h \
 	tstatext.h \
+	tstringa.h \
+	tstrlbox.h \
+	tstsorlb.h \
 	tsview.h \
 	tsviewco.h \
 	tv.h \
 	tv/app.h \
+	tv/applictn.h \
 	tv/button.h \
 	tv/checkbox.h \
 	tv/cluster.h \
@@ -225,17 +235,23 @@ obj/advice$(ExOBJ):: advice.cc \
 	tv/dialog.h \
 	tv/dialogs.h \
 	tv/drawbuf.h \
+	tv/event.h \
 	tv/group.h \
 	tv/intl.h \
 	tv/ipstream.h \
+	tv/label.h \
+	tv/listbox.h \
+	tv/lstviewr.h \
 	tv/no_mss.h \
 	tv/nscoll.h \
 	tv/object.h \
 	tv/objects.h \
 	tv/opstream.h \
 	tv/point.h \
+	tv/program.h \
 	tv/pstream.h \
 	tv/rect.h \
+	tv/scrlbar.h \
 	tv/sitem.h \
 	tv/stddlg.h \
 	tv/streambl.h \
@@ -256,38 +272,6 @@ obj/advice$(ExOBJ):: advice.cc \
 INCLUDE00=amp3$(ExIMK)
 
 obj/ascii$(ExOBJ):: ascii.cc \
-	ascii.h \
-	compatlayer.h \
-	dskwin.h \
-	setapp.h \
-	tv.h \
-	tv/app.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/system.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
@@ -534,97 +518,6 @@ obj/calendar$(ExOBJ):: calendar.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/ceditor$(ExOBJ):: ceditor.cc \
-	$(MP3_PREV_DIR)/mainsrc/ceditor.cc \
-	advice.h \
-	bufun.h \
-	ced_clas.h \
-	ced_coma.h \
-	ced_exte.h \
-	ced_inte.h \
-	ceditint.h \
-	ceditor.h \
-	codepage.h \
-	compatlayer.h \
-	configed.h \
-	dyncat.h \
-	edhists.h \
-	gzfiles.h \
-	keytrans.h \
-	loadkbin.h \
-	loadshl.h \
-	pathtool.h \
-	pmcoll.h \
-	rhutils.h \
-	sarray.h \
-	setconst.h \
-	setstack.h \
-	settvuti.h \
-	sindicat.h \
-	slpinter.h \
-	tnocastc.h \
-	tprogdia.h \
-	tstringa.h \
-	tstrlbox.h \
-	tv.h \
-	tv/app.h \
-	tv/cmdset.h \
-	tv/codepage.h \
-	tv/collectn.h \
-	tv/colorsel.h \
-	tv/configtv.h \
-	tv/desktop.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/filedlg.h \
-	tv/findrepl.h \
-	tv/gkey.h \
-	tv/group.h \
-	tv/indicato.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/lstviewr.h \
-	tv/menubox.h \
-	tv/menuitem.h \
-	tv/menus.h \
-	tv/menuview.h \
-	tv/msgbox.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/osclipboard.h \
-	tv/palette.h \
-	tv/parttree.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/resource.h \
-	tv/screen.h \
-	tv/scrlbar.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/strncoll.h \
-	tv/submenu.h \
-	tv/system.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
-	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
