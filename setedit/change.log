@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.392  2003/05/26 14:07:48  set
+* Modified: The mkf, imk and umk files to allow more abstraction regrading
+to file extensions. So now objects can be .o or .obj or anything.
+* Added: Makefiles to use the umk files with BC++. I successfully compiled
+the editor and infview using the .umk files called from a main Makefile.bcc
+I keep the old mechanism until this is more tested.
+* Added: Files for nmake, but they aren't tested and I'm quite sure they
+will need adjusts. I need a volunteer.
+
 Revision 1.391  2003/05/26 14:03:14  set
 * Modified: The makefiles to maintain the .imk and .umk files only when
 the "Maintainer Mode" is enabled.

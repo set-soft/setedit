@@ -11,14 +11,6 @@
 # select Microsoft tools.
 #
 
-#
-# Main targets
-#
-all: editor infview
-
-editor:
-	make FOR_NMAKE=1 -f Makefile.bcc editor
-
-infview:
-	make FOR_NMAKE=1 -f Makefile.bcc infview
+FOR_NMAKE=1
+!include Makefile.bcc
 
