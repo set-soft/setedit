@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -52,7 +52,7 @@ void Open()
  char fileName[PATH_MAX];
  strcpy(fileName,"*.mp[23]");
 
- if (GenericFileDialog(_("MP3 Open"),fileName,0,hID_OpenMP3)!=cmCancel)
+ if (GenericFileDialog(__("MP3 Open"),fileName,0,hID_OpenMP3)!=cmCancel)
    {
     InitMP3Engine();
     mp3.SelectNewFile(fileName);
@@ -67,7 +67,7 @@ void Convert()
  char fileName[PATH_MAX];
  strcpy(fileName,"*.wav");
 
- if (GenericFileDialog(_("Output WAV file"),fileName,0,hID_SaveMP3,fdDialogForSave)
+ if (GenericFileDialog(__("Output WAV file"),fileName,0,hID_SaveMP3,fdDialogForSave)
      ==cmCancel)
     return;
 

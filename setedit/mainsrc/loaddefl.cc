@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -245,7 +245,7 @@ const char *GetNameOfDefaultOptsFile()
 static
 editSetting *EnterNewSetting()
 {
- TDialog *d=CreateChooseDialog(40,8,_("Available"),10,24);
+ TDialog *d=CreateChooseDialog(40,8,__("Available"),10,24);
  boxCol box={ listSettings, 0 };
  if (execDialog(d,&box)!=cmOK)
     return 0;
@@ -278,7 +278,7 @@ editSetting *EnterNewSetting()
  else if (Settings[sel].type==tyInt)
    { // Ask the value
     TSViewCol *col=new TSViewCol(__("Associated value"));
-    TSHzLabel *p=new TSHzLabel(_("Value:"),new TSInputLine(6));
+    TSHzLabel *p=new TSHzLabel(__("Value:"),new TSInputLine(6));
     p->Flags|=wSpan;
     col->insert(2,2,p);
     EasyInsertOKCancel(col);
@@ -298,7 +298,7 @@ editSetting *EnterNewSetting()
  else
    { // Ask the value
     TSViewCol *col=new TSViewCol(__("Associated string"));
-    TSHzLabel *p=new TSHzLabel(_("Value:"),new TSInputLine(256,30));
+    TSHzLabel *p=new TSHzLabel(__("Value:"),new TSInputLine(256,30));
     p->Flags|=wSpan;
     col->insert(2,2,p);
     EasyInsertOKCancel(col);
@@ -554,7 +554,7 @@ int CancelConfirm(void)
 static
 void EditList(dflOptions *ops, char *name)
 {
- TDialogAID *d=CreateAddInsDelDialog(24,3,_("Settings"),12,30,aidOKEnabled);
+ TDialogAID *d=CreateAddInsDelDialog(24,3,__("Settings"),12,30,aidOKEnabled);
  TStringableListBoxRec box;
  d->helpCtx=localCtxHelp;
 
@@ -658,7 +658,7 @@ public:
 };
 
 TDiaDO::TDiaDO(void) :
-        TDialog(TRect(1,1,1,1),_("Default global options")),
+        TDialog(TRect(1,1,1,1),__("Default global options")),
         TWindowInit(&TDiaDO::initFrame)
 {
 }
@@ -709,9 +709,9 @@ void TCEditDefaultOpts(char *destinationFile, unsigned ctxHelp)
  ddo->list=(TSortedListBox *)ListaH->view;
  ListaH->Flags|=wSpan;
 
- TSHzGroup *buts=new TSHzGroup(new TSButton(_("~E~dit"),cmYes,bfDefault),
-                 new TSHzGroup(new TSButton(_("O~K~"),cmOK),
-                 new TSButton(_("~N~o SHL"),cmNo)));
+ TSHzGroup *buts=new TSHzGroup(new TSButton(__("~E~dit"),cmYes,bfDefault),
+                 new TSHzGroup(new TSButton(__("O~K~"),cmOK),
+                 new TSButton(__("~N~o SHL"),cmNo)));
 
  col->insert(2,1,ListaH);
  col->insert(xTSCenter,yTSDown,buts);

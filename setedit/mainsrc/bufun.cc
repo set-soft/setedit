@@ -719,7 +719,7 @@ void TLFuns::handleEvent(TEvent& event)
 
 static TDialog *createDialog( )
 {
- TLFuns *d=new TLFuns(TRect(1,1,1,1),_("Jump to function"));
+ TLFuns *d=new TLFuns(TRect(1,1,1,1),__("Jump to function"));
  TSViewCol *col=new TSViewCol(d);
 
  TRect r=TApplication::deskTop->getExtent();
@@ -732,9 +732,9 @@ static TDialog *createDialog( )
 
  col->insert(xTSLeft,yTSUp,lista);
 
- TSButton *ok=new TSButton(_("O~K~"),cmOK,bfDefault);
- TSButton *cancel=new TSButton(_("Cancel"),cmCancel);
- TSButton *browse=new TSButton(_("~B~rowse"),cmYes);
+ TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
+ TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
+ TSButton *browse=new TSButton(__("~B~rowse"),cmYes);
  ok->view->growMode=cancel->view->growMode=browse->view->growMode=gfGrowAll;
  TSHzGroup *but123=MakeHzGroup(ok,cancel,browse,0);
  col->insert(xTSCenter,yTSDown,but123);
@@ -767,8 +767,8 @@ int AskSortList()
 
  col->insert(xTSCenter,yTSUp,new TSStaticText(__("Sort the functions")));
  col->insert(xTSCenter,yTSDown,
-             new TSHzGroup(new TSButton(_("~A~lphabetically"),cmYes,bfDefault),
-                           new TSButton(_("by ~L~ine"),cmNo)));
+             new TSHzGroup(new TSButton(__("~A~lphabetically"),cmYes,bfDefault),
+                           new TSButton(__("by ~L~ine"),cmNo)));
  TDialog *d=col->doItCenter(cmcJumpToFunction);
  delete col;
  return execDialog(d,0);

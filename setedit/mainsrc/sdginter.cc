@@ -155,7 +155,7 @@ void SDGInterfaceRun(void)
 
 static TDialog *SDGCreateDialog(void)
 {
- TDialog *d=new TDialog(TRect(0,0,AnDiag,AlDiag),_("SDG Parameters"));
+ TDialog *d=new TDialog(TRect(0,0,AnDiag,AlDiag),__("SDG Parameters"));
 
  d->options|=ofCentered;
  d->helpCtx =cmeSDGDialog;
@@ -179,8 +179,8 @@ static TDialog *SDGCreateDialog(void)
  d->insert(new TCheckBoxes32(TRect(XOPS,YOPS,AnOPS,YOPS+nOPS),
      new TSItem( __("K~e~ep intermediate"), 0 )));
 
- d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),_("O~K~"),cmOK,bfDefault));
- d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),_("Cancel"),cmCancel,bfNormal));
+ d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),__("O~K~"),cmOK,bfDefault));
+ d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),__("Cancel"),cmCancel,bfNormal));
 
  d->selectNext( False );
  return d;

@@ -36,12 +36,13 @@ void TSLabel::setWidth(int aW)
 TSHzLabel::TSHzLabel(const char *aText, TSView *link, int separation) :
    TSView()
 {
- int lenStr=cstrlen(aText);
+ stTVIntl *cache=NULL;
+ int lenStr=cstrlen(TVIntl::getText(aText,cache));
 
  xSecond=lenStr+separation;
  w=xSecond+link->w;
  h=1;
- view=new TLabel(TRect(0,0,lenStr+1,1),aText,link->view);
+ view=new TLabel(TRect(0,0,lenStr+1,1),aText,link->view,cache);
  linked=link;
 }
 

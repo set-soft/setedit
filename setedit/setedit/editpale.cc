@@ -106,7 +106,7 @@ public:
 };
 
 TDiaPal::TDiaPal(void) :
-         TDialog(TRect(0,0,52,19),_("Palette editor")),
+         TDialog(TRect(0,0,52,19),__("Palette editor")),
          TWindowInit(&TDiaPal::initFrame)
 {
  options|=ofCentered;
@@ -162,8 +162,8 @@ TDiaPal::TDiaPal(void) :
  insert(bl);
  insert(blue);
  insert(bn);
- insert(new TButton(TRect(15,16,27,18),_("~O~K"),cmOK,bfDefault));
- insert(new TButton(TRect(34,16,46,18),_("~D~efault"),cmYes,bfNormal));
+ insert(new TButton(TRect(15,16,27,18),__("~O~K"),cmOK,bfDefault));
+ insert(new TButton(TRect(34,16,46,18),__("~D~efault"),cmYes,bfNormal));
  selectNext(False);
 }
 

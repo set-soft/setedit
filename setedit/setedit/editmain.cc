@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -437,7 +437,7 @@ char *GetKeyBindFName(int save)
 int FileOpenDialog(char *title, char *file)
 {
  return
- execDialog( new TFileDialog( file, title, _("~N~ame"), fdOpenButton, hID_FileOpen ),
+ execDialog( new TFileDialog( file, title, __("~N~ame"), fdOpenButton, hID_FileOpen ),
              file) != cmCancel;
 }*/
 
@@ -447,7 +447,7 @@ void TSetEditorApp::fileOpen()
  char fileName[PATH_MAX];
  strcpy(fileName,"*");
 
- if (GenericFileDialog(_("File Open"),fileName,0,hID_FileOpen)!=cmCancel)
+ if (GenericFileDialog(__("File Open"),fileName,0,hID_FileOpen)!=cmCancel)
      openEditor(fileName,True);
 }
 
@@ -596,7 +596,7 @@ void ExportAsHTML(void)
     char fileName[PATH_MAX];
     strcpy(fileName,"*.html");
    
-    if (GenericFileDialog(_("Export file as"),fileName,"*",hID_FileSave,
+    if (GenericFileDialog(__("Export file as"),fileName,"*",hID_FileSave,
         fdDialogForSave)!=cmCancel)
       {
        if (access(fileName,F_OK)==0 &&

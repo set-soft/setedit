@@ -1,4 +1,4 @@
-/* Copyright (C) 2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -135,7 +135,7 @@ char *EditItem(const char *s)
  char b[MaxLineLen];
  TSViewCol *col=new TSViewCol(Title);
 
- TSHzLabel *lineLabel=new TSHzLabel(_("Directory"),
+ TSHzLabel *lineLabel=new TSHzLabel(__("Directory"),
                                     new TSInputLine(MaxLineLen,60));
 
  col->insert(xTSCenter,yTSUpSep,lineLabel);
@@ -189,7 +189,7 @@ void PathListEdit(void)
     if (!IncludeList)
        return;
    }
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,_(Title),12,50,aidOKEnabled);
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,Title,12,50,aidOKEnabled);
  d->helpCtx=cmeIncludeList;
  d->DelAction=DeleteItem;
  d->AddAction=AddItem;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -100,7 +100,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         return messageBox( _("Save untitled file?"),
                            mfInformation | mfYesNoCancel );
     case edSaveAs:
-         return GenericFileDialog(_("Save file as"),va_arg(arg,_charPtr),"*",
+         return GenericFileDialog(__("Save file as"),va_arg(arg,_charPtr),"*",
                                   hID_FileSave,fdDialogForSave);
          /*return execDialog( new TFileDialog( "*.*",
                                              _("Save file as"),
@@ -108,10 +108,10 @@ unsigned doEditDialog(int dialog, va_list arg)
                                              fdOKButton,
                                              101 ), va_arg(arg,_charPtr) );*/
     case edSaveBlock:
-         return GenericFileDialog(_("Write to file"),va_arg(arg,_charPtr),0,
+         return GenericFileDialog(__("Write to file"),va_arg(arg,_charPtr),0,
                                   hID_SaveBlock,fdDialogForSave);
     case edReadBlock:
-         return GenericFileDialog(_("Read from file"),va_arg(arg,_charPtr),0,
+         return GenericFileDialog(__("Read from file"),va_arg(arg,_charPtr),0,
                                   hID_SaveBlock);
  
     case edFind:

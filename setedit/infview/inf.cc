@@ -1611,7 +1611,7 @@ void TInfViewer::OpenInfo(void)
 
  strcpy(file,"*.in[fz]*");
 
- if (GenericFileDialog(_("Open Info"),file,0,hID_OpenInfo)!=cmCancel)
+ if (GenericFileDialog(__("Open Info"),file,0,hID_OpenInfo)!=cmCancel)
    {
     l=strlen(file);
     memmove(file+1,file,l);
@@ -2269,35 +2269,35 @@ void THelpControlDialog::handleEvent(TEvent& event)
 
 
 THelpControlDialog::THelpControlDialog(THisCollection *oCol) :
-    TDialog( TRect( 1, 1, 56, 20 ), _("Help Control") ),
+    TDialog( TRect( 1, 1, 56, 20 ), __("Help Control") ),
     TWindowInit( &THelpControlDialog::initFrame )
 {
  TRect r(1,2,18,4);
- insert( new TButton(r,_("~N~ext"),cmhNext,bfDefault) );
+ insert( new TButton(r,__("~N~ext"),cmhNext,bfDefault) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~P~revious"),cmhPrev,bfNormal) );
+ insert( new TButton(r,__("~P~revious"),cmhPrev,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~U~p"),cmhUp,bfNormal) );
+ insert( new TButton(r,__("~U~p"),cmhUp,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("Prev. ~H~ist."),cmhPrevH,bfNormal) );
+ insert( new TButton(r,__("Prev. ~H~ist."),cmhPrevH,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("Nodes ~L~ist"),cmhNodeList,bfNormal) );
+ insert( new TButton(r,__("Nodes ~L~ist"),cmhNodeList,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~B~ookmarks"),cmhBookMarks,bfNormal) );
+ insert( new TButton(r,__("~B~ookmarks"),cmhBookMarks,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~C~onfiguration"),cmhConfigDia,bfNormal) );
+ insert( new TButton(r,__("~C~onfiguration"),cmhConfigDia,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~O~pen Info"),cmhOpenInfo,bfNormal) );
+ insert( new TButton(r,__("~O~pen Info"),cmhOpenInfo,bfNormal) );
  r.a.x+=19;
  r.b.x+=19;
- insert( new TButton(r,_("H~i~de"),cmhHide,bfNormal) );
+ insert( new TButton(r,__("H~i~de"),cmhHide,bfNormal) );
 
  TScrollBar *sb = new TScrollBar( TRect(52,3,53,15) );
  insert(sb);
@@ -2314,7 +2314,7 @@ THelpControlDialog::THelpControlDialog(THisCollection *oCol) :
 
 TDialog *createInfFindDialog()
 {
- TDialog *d = new TDialog( TRect( 0, 0, 38, 15 ), _("Inf Find") );
+ TDialog *d = new TDialog( TRect( 0, 0, 38, 15 ), __("Inf Find") );
 
  d->options |= ofCentered;
 
@@ -2335,9 +2335,9 @@ TDialog *createInfFindDialog()
      new TSItem( __("In ~a~ll files"), 0 )))));
 
  d->insert(
-     new TButton( TRect( 14, 12, 24, 14 ), _("~O~K"), cmOK, bfDefault ) );
+     new TButton( TRect( 14, 12, 24, 14 ), __("~O~K"), cmOK, bfDefault ) );
  d->insert(
-     new TButton( TRect( 26, 12, 36, 14 ), _("Cancel"), cmCancel, bfNormal ) );
+     new TButton( TRect( 26, 12, 36, 14 ), __("Cancel"), cmCancel, bfNormal ) );
 
  d->selectNext( False );
  d->helpCtx=hcInfSearch;
@@ -2346,7 +2346,7 @@ TDialog *createInfFindDialog()
 
 TDialog *createGoToDialog()
 {
- TDialog *d = new TDialog( TRect( 0, 0, 38, 9 ), _("Go To") );
+ TDialog *d = new TDialog( TRect( 0, 0, 38, 9 ), __("Go To") );
 
  d->options |= ofCentered;
 
@@ -2358,9 +2358,9 @@ TDialog *createGoToDialog()
      new THistory( TRect( 32, 3, 35, 4 ), control, hID_GotoInf ) );
 
  d->insert(
-     new TButton( TRect( 14, 6, 24, 8 ), _("~O~K"), cmOK, bfDefault ) );
+     new TButton( TRect( 14, 6, 24, 8 ), __("~O~K"), cmOK, bfDefault ) );
  d->insert(
-     new TButton( TRect( 26, 6, 36, 8 ), _("Cancel"), cmCancel, bfNormal ) );
+     new TButton( TRect( 26, 6, 36, 8 ), __("Cancel"), cmCancel, bfNormal ) );
 
  d->selectNext( False );
  d->helpCtx=hcInfGoto;
@@ -2372,7 +2372,7 @@ TDialog *createNodeChooseDialog()
 {
  TRect r( 0, 0, 60, 20 );
  // Make it growable
- TGrowDialog *d = new TGrowDialog( r, _("Tag Table"), ofCentered );
+ TGrowDialog *d = new TGrowDialog( r, __("Tag Table"), ofCentered );
 
  TScrollBar *sb = new TScrollBar( TRect(r.b.x-3,2,r.b.x-2,r.b.y-4) );
  d->insert(sb);
@@ -2381,11 +2381,11 @@ TDialog *createNodeChooseDialog()
  d->insert(ListaN);
  d->insert(new TLabel(TRect(2,1,r.b.x-3,2),__("~N~odes"), ListaN));
 
- TButton *tb1=new TButton( TRect( 2, r.b.y-3, 16, r.b.y-1 ), _("~O~K"), cmOK, bfDefault );
+ TButton *tb1=new TButton( TRect( 2, r.b.y-3, 16, r.b.y-1 ), __("~O~K"), cmOK, bfDefault );
  tb1->growMode = gfMoveAccording;
  d->insert(tb1);
 
- TButton *tb2=new TButton( TRect( 20, r.b.y-3, 34, r.b.y-1 ), _("Cancel"), cmCancel, bfNormal );
+ TButton *tb2=new TButton( TRect( 20, r.b.y-3, 34, r.b.y-1 ), __("Cancel"), cmCancel, bfNormal );
  tb2->growMode = gfMoveAccording;
  d->insert(tb2);
 
@@ -2399,7 +2399,7 @@ TDialog *createConfigDialog()
 {
  TRect r( 0, 0, 36, 8);
 
- TDialog *d = new TDialog( r, _("InfView Configuration") );
+ TDialog *d = new TDialog( r, __("InfView Configuration") );
 
  d->options |= ofCentered;
 
@@ -2407,9 +2407,9 @@ TDialog *createConfigDialog()
      new TSItem( __("Hide '*~N~ote' word"),
      new TSItem( __("Hide real ~l~ink name"), 0 ))));
  d->insert(
-     new TButton( TRect( 2, 5, 14, 7 ), _("~O~K"), cmOK, bfDefault ) );
+     new TButton( TRect( 2, 5, 14, 7 ), __("~O~K"), cmOK, bfDefault ) );
  d->insert(
-     new TButton( TRect( 16, 5, 28, 7 ), _("Cancel"), cmCancel, bfNormal ) );
+     new TButton( TRect( 16, 5, 28, 7 ), __("Cancel"), cmCancel, bfNormal ) );
 
  d->selectNext( False );
  d->helpCtx=hcInfConfig;
@@ -2447,7 +2447,7 @@ void TBookMarkDialog::handleEvent(TEvent& event)
 }
 
 TBookMarkDialog::TBookMarkDialog(TNoCaseStringCollection *oCol) :
-    TDialog( TRect( 0, 0, 60, 15 ), _("InfView Bookmarks") ),
+    TDialog( TRect( 0, 0, 60, 15 ), __("InfView Bookmarks") ),
     TWindowInit( &TBookMarkDialog::initFrame )
 {
  int Cant=oCol->getCount();
@@ -2456,18 +2456,18 @@ TBookMarkDialog::TBookMarkDialog(TNoCaseStringCollection *oCol) :
  options|=ofCentered | ofTopSelect;
 
  TRect bt(1,2,13,4);
- TButton *tb=new TButton( bt, _("~A~dd"),cmbmAddToBookMark,bfNormal);
+ TButton *tb=new TButton( bt, __("~A~dd"),cmbmAddToBookMark,bfNormal);
  insert(tb);
 
  bt.move(0,2);
- tb=new TButton( bt, _("~D~elete"),cmbmDeleteFromBookMark,bfNormal);
+ tb=new TButton( bt, __("~D~elete"),cmbmDeleteFromBookMark,bfNormal);
  insert(tb);
 
  bt.move(0,2);
- insert( new TButton( bt, _("Cancel"),cmCancel,bfNormal) );
+ insert( new TButton( bt, __("Cancel"),cmCancel,bfNormal) );
 
  bt.move(0,2);
- tb=new TButton( bt, _("~G~o to"),cmbmGoTo,bfDefault);
+ tb=new TButton( bt, __("~G~o to"),cmbmGoTo,bfDefault);
  insert(tb);
  if (!Cant)
    {

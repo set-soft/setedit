@@ -351,7 +351,7 @@ void ArrangeGrepCommand(char *command, char *param)
 
 void grepWindow(char *patStart)
 {
- TDialog *d=new TDialog(TRect(0,0,74,18),_("Powered Grep by SET"));
+ TDialog *d=new TDialog(TRect(0,0,74,18),__("Powered Grep by SET"));
  d->options|=ofCentered;
  d->helpCtx=cmeGrepDialog;
 
@@ -392,8 +392,8 @@ void grepWindow(char *patStart)
  d->insert(ops);
  d->insert(new TLabel(TRect(Col2,11,End2,12),__("~O~ptions"),ops));
 
- d->insert(new TButton(TRect(2,15,14,17),_("O~K~"),cmOK,bfDefault));
- d->insert(new TButton(TRect(18,15,30,17),_("Cancel"),cmCancel,bfNormal));
+ d->insert(new TButton(TRect(2,15,14,17),__("O~K~"),cmOK,bfDefault));
+ d->insert(new TButton(TRect(18,15,30,17),__("Cancel"),cmCancel,bfNormal));
 
  d->selectNext(False);
 

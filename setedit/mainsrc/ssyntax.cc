@@ -365,7 +365,7 @@ int AddNewItem(void)
   char node[60];
  } box;
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("New node for search")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("New node for search")));
 
  TSInputLine *file=new TSInputLine(60);
  TSLabel *File=new TSLabel(__("Name of the info file"),file);
@@ -429,7 +429,7 @@ void EditSearchList(void)
     return;
  entries->forEach(forEachAction,0);
 
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,_("Nodes for syntax help"),12,56,0);
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,__("Nodes for syntax help"),12,56,0);
  d->helpCtx=cmeSyntaxHelpFiles;
  boxParam.items=entriesCopy;
  boxParam.selection=0;
@@ -467,7 +467,7 @@ void SyntaxSearch_EditFilesList(void)
 
 void SyntaxSearch_EditSettings(void)
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Options for syntax help")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Options for syntax help")));
 
  /* I think that's easiest way! The following 5 lines are equivalent to 20 lines
     of cryptic stuff if you don't use EasyDiag! (I can write it in 1 too ;-) */
@@ -869,7 +869,7 @@ NodeInfo *ChooseOne(TNodeCollection *nodes)
        }
    }
 
- TSViewCol *col=new TSViewCol(new TSelNodeDiag(TRect(1,1,1,1),_("Choose a node")));
+ TSViewCol *col=new TSViewCol(new TSelNodeDiag(TRect(1,1,1,1),__("Choose a node")));
 
  TSStringableListBox *Nodes=new TSStringableListBox(73,16,tsslbVertical);
  col->insert(2,1,Nodes);

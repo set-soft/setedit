@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSButton
 #define Uses_TSViewCol
@@ -59,7 +59,12 @@ void TSButtonBase::fill(int type, const char *aTitle, ushort aCommand, ushort aF
  if (wForced>=0)
     w=wForced;
  else
-    w=cstrlen(aTitle)+3;
+   {
+    stTVIntl *cache=NULL;
+    const char *t=TVIntl::getText(aTitle,cache);
+    w=cstrlen(t)+3;
+    TVIntl::freeSt(cache);
+   }
  h=2;
  TButton *b=NULL;
  if (type==tpTButton)
@@ -81,17 +86,17 @@ void TSButtonBase::insert(TDialog *d)
 
 void EasyInsertOKCancelSp(TSViewCol *col, int sep)
 {
- TSHzGroup *but12=new TSHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                  new TSButton(_("Cancel"),cmCancel),sep);
+ TSHzGroup *but12=new TSHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                  new TSButton(__("Cancel"),cmCancel),sep);
  col->insert(xTSCenter,yTSDown,but12);
  but12->Flags=wSpan;
 }
 
 void EasyInsertOKCancel(TSViewCol *col, int sep)
 {
- TSButton *ok=new TSButton(_("O~K~"),cmOK,bfDefault);
+ TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
  ok->view->growMode=gfGrowAll;
- TSButton *cancel=new TSButton(_("Cancel"),cmCancel);
+ TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
  cancel->view->growMode=gfGrowAll;
  TSHzGroup *but12=new TSHzGroup(ok,cancel,sep);
  col->insert(xTSCenter,yTSDown,but12);

@@ -31,7 +31,7 @@ void ProgBar_Init(const char *title, int max, const char *comment1, const char *
  if (comment1 || comment2)
     h++;
 
- d=new TDialog(TRect(0,0,64,h),_(title));
+ d=new TDialog(TRect(0,0,64,h),title);
  // Don't allow the user close it
  d->flags&=~wfClose;
  d->options|=ofCentered;

@@ -90,7 +90,7 @@ public:
 };
 
 TDiaFO::TDiaFO() :
-         TDialog(TRect(1,1,1,1),_("File Open options")),
+         TDialog(TRect(1,1,1,1),__("File Open options")),
          TWindowInit(&TDiaFO::initFrame)
 {
  parentSortEnabled=1;
@@ -217,7 +217,7 @@ public:
 };
 
 TDiaScrSaver::TDiaScrSaver(void) :
-           TDialog(TRect(1,1,1,1),_("Screen saver")),
+           TDialog(TRect(1,1,1,1),__("Screen saver")),
            TWindowInit(&TDiaScrSaver::initFrame)
 {
  commandsOn=1;
@@ -227,7 +227,7 @@ TDiaScrSaver::TDiaScrSaver(void) :
 static
 void ShowText(char *Text, char *Title)
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_(Title)));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),Title));
 
  char *s=Text;
  for (; *s; s++)
@@ -235,7 +235,7 @@ void ShowText(char *Text, char *Title)
         *s=' ';
  TSStaticText *text=new TSStaticText(Text,72);
  col->insert(xTSCenter,1,text);
- col->insert(xTSCenter,yTSUnder,new TSButton(_("O~K~"),cmOK,bfDefault,10),0,text);
+ col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault,10),0,text);
 
  TDialog *d=col->doIt();
  delete col;
@@ -355,17 +355,17 @@ void SetScreenSaversOptions(void)
  TSVeGroup *Scrv=new TSVeGroup(
    MakeVeGroup(0,TSLabelRadio(__("Sc~r~een saver (?)"),__("OF~F~"),__("O~N~"),0),
                scrv,extOpts,0), // First 3 joined
-   MakeHzGroup(new TSButton(_("T~e~st"),cmTestScrv),
-               new TSButton(_("~I~nfo"),cmInfoScrv),
-               new TSButton(_("~H~elp"),cmHelpScrv),0)); // Buttons separated
+   MakeHzGroup(new TSButton(__("T~e~st"),cmTestScrv),
+               new TSButton(__("~I~nfo"),cmInfoScrv),
+               new TSButton(__("~H~elp"),cmHelpScrv),0)); // Buttons separated
  Scrv->makeSameW();
 
- TSHzLabel *timeL=new TSHzLabel(_("~T~ime"),new TSInputLine(5));
+ TSHzLabel *timeL=new TSHzLabel(__("~T~ime"),new TSInputLine(5));
  TSStaticText *seconds=new TSStaticText(__("seconds"));
  TSHzGroup *Time=new TSHzGroup(timeL,seconds);
  Scrv=new TSVeGroup(Scrv,Time,0);
 
- TSHzGroup *TimeM=new TSHzGroup(new TSHzLabel(_("Ti~m~e"),new TSInputLine(5)),
+ TSHzGroup *TimeM=new TSHzGroup(new TSHzLabel(__("Ti~m~e"),new TSInputLine(5)),
                                 new TSStaticText(__("mouse sec.")));
  TSVeGroup *ScreenSaver=new TSVeGroup(Scrv,TimeM,0);
 
@@ -459,18 +459,18 @@ unsigned SetGeneralEditorOptionsMain(void)
  TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),0),
                                 TSLabelRadio(__("St~y~le"),__("AM/PM"),__("24 hs"),0));
 
- TSHzLabel *MaxEds=new TSHzLabel(_("~M~ax. editor copies"),new TSInputLine(5));
- TSHzLabel *MaxClo=new TSHzLabel(_("Max. c~l~osed to remember"),new TSInputLine(5));
+ TSHzLabel *MaxEds=new TSHzLabel(__("~M~ax. editor copies"),new TSInputLine(5));
+ TSHzLabel *MaxClo=new TSHzLabel(__("Max. c~l~osed to remember"),new TSInputLine(5));
 
  TSVeGroup *FirstCol=MakeVeGroup(0,tcb,Clock,MaxEds,MaxClo,0);
  FirstCol->makeSameW();
 
  col->insert(xTSLeft,yTSUp,FirstCol);
  col->insert(xTSCenter,yTSDown,
-             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                         new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("+ Desk~t~op"),cmYes),
-                         new TSButton(_("+ Others"),cmNo),0));
+             MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                         new TSButton(__("Cancel"),cmCancel),
+                         new TSButton(__("+ Desk~t~op"),cmYes),
+                         new TSButton(__("+ Others"),cmNo),0));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -612,9 +612,9 @@ unsigned SetGeneralEditorOptionsMoreDst(void)
 
  col->insert(xTSLeft,yTSUp,MakeVeGroup(0,editors,others,closed,0));
  col->insert(xTSCenter,yTSDown,
-             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                         new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("~M~ain options"),cmYes),0));
+             MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                         new TSButton(__("Cancel"),cmCancel),
+                         new TSButton(__("~M~ain options"),cmYes),0));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -665,15 +665,15 @@ unsigned SetGeneralEditorOptionsOthers(void)
                new TSCheckBoxes(
                    new TSItem(__("Use the ~v~ertical direction"),
                    new TSItem(__("Use the ~r~ight side"),0)))),
-   new TSHzLabel(_("Reserved ~w~idth"),new TSInputLine(5)),
+   new TSHzLabel(__("Reserved ~w~idth"),new TSInputLine(5)),
    0);
  MsgWin->makeSameW();
 
  col->insert(xTSLeft,yTSUp,MsgWin);
  col->insert(xTSCenter,yTSDown,
-             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                         new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("~M~ain options"),cmYes),0));
+             MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                         new TSButton(__("Cancel"),cmCancel),
+                         new TSButton(__("~M~ain options"),cmYes),0));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -893,9 +893,9 @@ void TSetEditorApp::EncodingOptions()
  if (lowerCPs)
     col->insert(xTSCenter,yTSUnder,lowerCPs,0,upperCPs);
  col->insert(xTSCenter,yTSDown,
-             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                         new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("Set ~D~efaults"),cmYes),0));
+             MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                         new TSButton(__("Cancel"),cmCancel),
+                         new TSButton(__("Set ~D~efaults"),cmYes),0));
  TDialog *d=col->doIt();
  delete col;
  d->options|=ofCentered;
@@ -1240,16 +1240,16 @@ void TSetEditorApp::ScreenOptions()
              __("Specified ~m~ode number"),0);
    
     TSHzGroup *sizes=MakeHzGroup(
-                new TSVeGroup(new TSHzLabel(_("~W~idth "),new TSInputLine(5)),
-                              new TSHzLabel(_("~H~eight"),new TSInputLine(5)),0),
-                new TSVeGroup(new TSHzLabel(_("Chars w~i~dth "),new TSInputLine(5)),
-                              new TSHzLabel(_("Chars hei~g~ht"),new TSInputLine(5)),0),
+                new TSVeGroup(new TSHzLabel(__("~W~idth "),new TSInputLine(5)),
+                              new TSHzLabel(__("~H~eight"),new TSInputLine(5)),0),
+                new TSVeGroup(new TSHzLabel(__("Chars w~i~dth "),new TSInputLine(5)),
+                              new TSHzLabel(__("Chars hei~g~ht"),new TSInputLine(5)),0),
                 0);
    
     TSLabel *external=new TSLabel(__("E~x~ternal program"),
                                  new TSInputLine(80,36));
 
-    TSHzLabel *mode=new TSHzLabel(_("Mode ~n~umber"),new TSInputLine(10));
+    TSHzLabel *mode=new TSHzLabel(__("Mode ~n~umber"),new TSInputLine(10));
    
     TSVeGroup *all=MakeVeGroup(options,sizes,external,mode,0);
     all->makeSameW();

@@ -89,7 +89,7 @@ void BoardMixerDialog()
 
  // gcc 2.95.2 doesn't like the _() call in the inlined constructor, I wonder why
  // because 2.7.2.3 and 2.8.1 allows it as spected.
- TSViewCol *col=new TSViewCol(new TMixDiag(_("Hardward Mixer Settings")));
+ TSViewCol *col=new TSViewCol(new TMixDiag(__("Hardward Mixer Settings")));
 
  TSStaticText *text=new TSStaticText(__("Mixer model:"));
  TSStaticText *name=new TSStaticText(GetMixerName());
@@ -115,7 +115,7 @@ void BoardMixerDialog()
  JoinChannels=oldJoin;
  TSCheckBoxes *lock=new TSCheckBoxes(new TSItem(__("~L~ock channels"),new TSItem(__("~S~ave to disk"),0)));
  col->insert(xTSLeft,yTSUnder,lock,0,ant);
- TSButton *ok=new TSButton(_("O~K~"),cmOK,bfDefault);
+ TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
  ok->Flags=wSpan;
  col->insert(xTSRightOf,yTSUnder,ok,lock,ant);
 

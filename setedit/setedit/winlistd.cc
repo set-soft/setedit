@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TRect
 #define Uses_TDialog
@@ -42,7 +42,7 @@ public:
 };
 
 TListWindowsDiag::TListWindowsDiag() :
- TDialog(TRect(1,1,1,1),_("Windows List")),
+ TDialog(TRect(1,1,1,1),__("Windows List")),
  TWindowInit(TListWindowsDiag::initFrame)
 {
 }
@@ -121,10 +121,10 @@ void BringListOfWindows(void)
  TSListEditors *list=new TSListEditors(w,h,tsslbVertical | tsslbHorizontal,1,PATH_MAX);
  d->tl=(TListEditors *)list->view;
  TSHzGroup *buttons=MakeHzGroup(
-   new TSButton(_("~G~o"),cmGo,bfDefault),
-   new TSButton(_("~D~elete"),cmDelete),
-   new TSButton(_("~O~pen"),cmInsert),
-   new TSButton(_("Cancel"),cmCancel),0);
+   new TSButton(__("~G~o"),cmGo,bfDefault),
+   new TSButton(__("~D~elete"),cmDelete),
+   new TSButton(__("~O~pen"),cmInsert),
+   new TSButton(__("Cancel"),cmCancel),0);
  col->insert(xTSLeft,yTSUp,list);
  col->insert(xTSCenter,yTSUnder,buttons,0,list);
  col->doItCenter(hcListWin);

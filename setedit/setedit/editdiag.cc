@@ -56,7 +56,7 @@ int AboutStartBox(void)
  if (EnvirGetBits("SET_VARIOUS1",svr1DontShowAbout))
     return 0;
 
- TDialog *d=new TDialog(TRect(0,0,54,12),_("About"));
+ TDialog *d=new TDialog(TRect(0,0,54,12),__("About"));
  d->options|=ofCentered;
 
  TRect r(2,2,52,3);
@@ -74,7 +74,7 @@ int AboutStartBox(void)
  r.b.x-=15;
  r.a.y+=2;
  r.b.y+=3;
- d->insert(new TButton(r,_("~O~K"),cmOK,bfDefault));
+ d->insert(new TButton(r,__("~O~K"),cmOK,bfDefault));
  d->selectNext(False);
 
  uint32 op=0;
@@ -97,7 +97,7 @@ void FullAboutBox(void)
  char b[54];
  TSStaticText *ant,*cur;
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("About")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("About")));
 
  TSView::yDefSep=0;
  sprintf(b,_("SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),TCEDITOR_VERSION>>16,
@@ -150,7 +150,7 @@ void FullAboutBox(void)
  col->insert(2,yTSUnder,txt,0,ant);
 
  TSView::yDefSep=1;
- col->insert(xTSCenter,yTSUnder,new TSButton("O~K~",cmOK,bfDefault),0,txt);
+ col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault),0,txt);
 
  col->exec(0);
  delete col;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -219,9 +219,9 @@ void UpdateFile(char *name, TStringCollection *col)
 static
 char *EnterNewWord()
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("New user word")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("New user word")));
 
- TSHzLabel *lineLabel=new TSHzLabel(_("Word:"),new TSInputLine(80,20));
+ TSHzLabel *lineLabel=new TSHzLabel(__("Word:"),new TSInputLine(80,20));
 
  col->insert(2,2,lineLabel);
  EasyInsertOKCancel(col,3);
@@ -296,7 +296,7 @@ void EditList(char *name)
     LoadUserWords(s,id);
 
 
- TDialogAID *d=CreateAddInsDelDialog(35,3,_("List of words"),12,30,aidOKEnabled);
+ TDialogAID *d=CreateAddInsDelDialog(35,3,__("List of words"),12,30,aidOKEnabled);
  TStringableListBoxRec box;
  d->helpCtx=localCtxHelp;
 
@@ -346,7 +346,7 @@ public:
 };
 
 TDiaUW::TDiaUW(void) :
-        TDialog(TRect(3,2,1,1),_("User words")),
+        TDialog(TRect(3,2,1,1),__("User words")),
         TWindowInit(&TDiaUW::initFrame)
 {
 }
@@ -385,8 +385,8 @@ void TCEditUserWords(char *destinationFile, unsigned ctxHelp)
  TSSortedListBox *ListaH=new TSSortedListBox(VeSHLW,12,tsslbVertical);
  duw->list=(TSortedListBox *)ListaH->view;
 
- TSHzGroup *buts=new TSHzGroup(new TSButton(_("~E~dit"),cmYes,bfDefault),
-                               new TSButton(_("O~K~"),cmOK));
+ TSHzGroup *buts=new TSHzGroup(new TSButton(__("~E~dit"),cmYes,bfDefault),
+                               new TSButton(__("O~K~"),cmOK));
 
  col->insert(2,1,ListaH);
  col->insert(xTSCenter,yTSDown,buts);

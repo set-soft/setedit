@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TDialog
 #define Uses_TProgram
@@ -35,10 +35,10 @@ void AddOKCancel(TDialog *d)
 
  int sep=(r.b.x-lBotOK-lBotCan)/3;
  TRect r2(sep,r.b.y-3,sep+lBotOK,r.b.y-1);
- d->insert(new TButton(r2,_("~O~K"),cmOK,bfDefault));
+ d->insert(new TButton(r2,__("~O~K"),cmOK,bfDefault));
  r2.a.x=r2.b.x+sep;
  r2.b.x=r2.a.x+lBotCan;
- d->insert(new TButton(r2,_("Cancel"),cmCancel,bfNormal));
+ d->insert(new TButton(r2,__("Cancel"),cmCancel,bfNormal));
 }
 
 ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,

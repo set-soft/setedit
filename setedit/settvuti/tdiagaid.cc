@@ -176,7 +176,7 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
  int anBots2=lbotAdd+lbotDel+3*lSepb+2;
  if (flags & aidInsert)
     anBots2+=lbotIns+lSepb;
- int W=max(max(anBots1,anBots2),max(strlen(name),w+3));
+ int W=max(max(anBots1,anBots2),max(strlen(_(name)),w+3));
  int H=h+7;
  if (flags & aidComMac)
     H+=3;
@@ -210,11 +210,11 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
  sep=(W-lbotOk-lbotCan)/3;
  x=sep-1;
 
- TButton *tb=new TButton(TRect(x,H-5,x+lbotOk+2,H-3),_(nbotOk),cmOKApply,bfDefault);
+ TButton *tb=new TButton(TRect(x,H-5,x+lbotOk+2,H-3),nbotOk,cmOKApply,bfDefault);
  tb->growMode=gfMoveAccording;
  d->insert(tb);
  x+=lbotOk+sep;
- tb=new TButton(TRect(x,H-5,x+lbotCan+2,H-3),_(nbotCan),cmCancelApply,bfNormal);
+ tb=new TButton(TRect(x,H-5,x+lbotCan+2,H-3),nbotCan,cmCancelApply,bfNormal);
  tb->growMode=gfMoveAccording;
  d->insert(tb);
 
@@ -223,18 +223,18 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
  else
     sep=(W-(lbotAdd+lbotDel))/3;
  x=sep-1;
- tb=new TButton(TRect(x,H-3,x+lbotAdd+2,H-1),_(nbotAdd),cmAddKey,bfNormal);
+ tb=new TButton(TRect(x,H-3,x+lbotAdd+2,H-1),nbotAdd,cmAddKey,bfNormal);
  tb->growMode=gfMoveAccording;
  d->insert(tb);
  x+=lbotAdd+sep;
  if (flags & aidInsert)
    {
-    tb=new TButton(TRect(x,H-3,x+lbotIns+2,H-1),_(nbotIns),cmInsertKey,bfNormal);
+    tb=new TButton(TRect(x,H-3,x+lbotIns+2,H-1),nbotIns,cmInsertKey,bfNormal);
     tb->growMode=gfMoveAccording;
     d->insert(tb);
     x+=lbotIns+sep;
    }
- tb=new TButton(TRect(x,H-3,x+lbotDel+2,H-1),_(nbotDel),cmDeleteKey,bfNormal);
+ tb=new TButton(TRect(x,H-3,x+lbotDel+2,H-1),nbotDel,cmDeleteKey,bfNormal);
  tb->growMode=gfMoveAccording;
  d->insert(tb);
 
@@ -252,7 +252,7 @@ TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w)
  InitBotLens();
 
  int anBots=lbotOk+lbotCan+3*lSepb+2; // 2 for frames
- int W=max(anBots,max(strlen(name),w+3));
+ int W=max(anBots,max(strlen(_(name)),w+3));
  int H=h+5;
  int X=x+W;
  int Y=y+H;

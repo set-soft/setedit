@@ -86,16 +86,16 @@ TCalcDialog::TCalcDialog(const TRect & bounds, const char *Title, char *StartVal
   r.move(0,3);
   r.b.x = r.a.x + 12;
   r.b.y = r.a.y + 2;
-  insert(new TButton(r,_("E~v~al"),cmEval,bfDefault));
+  insert(new TButton(r,__("E~v~al"),cmEval,bfDefault));
   r.a.x = r.b.x + 2;
   r.b.x = r.a.x + 12;
-  insert(new TButton(r,_("Cancel"),cmCancel,bfNormal));
+  insert(new TButton(r,__("Cancel"),cmCancel,bfNormal));
   r.a.x = r.b.x + 2;
   r.b.x = r.a.x + 12;
-  insert(new TButton(r,_("~C~opy"),cmCaCopy,bfNormal));
+  insert(new TButton(r,__("~C~opy"),cmCaCopy,bfNormal));
   r.a.x = r.b.x + 2;
   r.b.x = r.a.x + 12;
-  insert(new TButton(r,_("~P~aste"),cmCaPaste,bfNormal));
+  insert(new TButton(r,__("~P~aste"),cmCaPaste,bfNormal));
   input->select();
   options |= ofCentered;
 }
@@ -161,7 +161,7 @@ void TCalcDialog::handleEvent(TEvent & event)
 void executeCalc(char *startVal)
 {
  TCalcDialog *d;
- d=new TCalcDialog(TRect(10,2,72,11),_("Calculator"),startVal);
+ d=new TCalcDialog(TRect(10,2,72,11),__("Calculator"),startVal);
  TProgram::deskTop->execView(d);
  // Dialogs should be destroyed or your members won't de deleted.
  destroy(d);

@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.290  2003/04/08 14:08:01  set
+* Modified: Uses of TStaticText incarnations to follow new TV features. I
+hope the number of bugs is low ;-) This isn't really harmful but I think
+some bugs are there.
+
 Revision 1.289  2003/04/07 13:48:38  set
 * Modified: all uses of TCheckBoxes and TRadioButtons to match the new TV
 API. Now they also support code page changes on the fly.

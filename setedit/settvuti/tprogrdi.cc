@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 #define Uses_TProgress
@@ -18,7 +18,7 @@ void Progress_Init(const char *title, const char *comment)
  prevFocus=TProgram::deskTop->current;
  int l=strlen(_(comment))+2;
 
- d=new TDialog(TRect(0,0,l+6,5),_(title));
+ d=new TDialog(TRect(0,0,l+6,5),title);
  // Don't allow the user close it
  d->flags&=~wfClose;
  d->options|=ofCentered;

@@ -241,7 +241,7 @@ TAmpDiag *ampDia;
 static
 TAmpDiag *CreateShowDialog()
 {
- ampDia=new TAmpDiag(TRect(1,1,1,1),_("Player status"));
+ ampDia=new TAmpDiag(TRect(1,1,1,1),__("Player status"));
 
  char buffer[80];
  int i;
@@ -280,13 +280,13 @@ TAmpDiag *CreateShowDialog()
  ampDia->timeBar=timeBar->sb;
 
  TSHzGroup *buttons=MakeHzGroup(
-                    new TSButton(_("Prev."),cmaMP3Prev),
-                    new TSButtonRef(MP3Player::butRew,cmaMP3Rew),
-                    new TSButtonRef(MP3Player::butStop,cmaMP3Stop,bfDefault),
-                    new TSButtonRef(MP3Player::butPlay,cmaMP3Play),
-                    new TSButtonRef(MP3Player::butPause,cmaMP3Pause),
-                    new TSButtonRef(MP3Player::butFfw,cmaMP3Ffw),
-                    new TSButton(_("Next"),cmaMP3Next),
+                    new TSButton(__("Prev."),cmaMP3Prev),
+                    new TSButton(MP3Player::butRew,cmaMP3Rew),
+                    new TSButton(MP3Player::butStop,cmaMP3Stop,bfDefault),
+                    new TSButton(MP3Player::butPlay,cmaMP3Play),
+                    new TSButton(MP3Player::butPause,cmaMP3Pause),
+                    new TSButton(MP3Player::butFfw,cmaMP3Ffw),
+                    new TSButton(__("Next"),cmaMP3Next),
                     0);
 
  ampDia->SetHeaderValues();
@@ -456,7 +456,7 @@ TView *MP3ReadInfo(ipstream &is, int &zorder, TDskWinMP3 * /*manager*/)
  is >> iAux >> aux;
  MP3ListLoadState(is);
 
- TDialogX *d=new TDialogX(TRect(0,0,30,6),_("MP3 Player"));
+ TDialogX *d=new TDialogX(TRect(0,0,30,6),__("MP3 Player"));
  d->insert(new TStaticText(TRect(2,2,28,3),__("MP3 support not linked")));
  d->options|=ofCentered;
  return d;

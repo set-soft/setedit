@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -380,9 +380,9 @@ void TEditorMiApp::SetScreenOps()
  if (lowerCPs)
     col->insert(xTSCenter,yTSUnder,lowerCPs,0,upperCPs);
  col->insert(xTSCenter,yTSDown,
-             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                         new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("Set ~D~efaults"),cmYes),0));
+             MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                         new TSButton(__("Cancel"),cmCancel),
+                         new TSButton(__("Set ~D~efaults"),cmYes),0));
  TDialog *d=col->doIt();
  delete col;
  d->options|=ofCentered;

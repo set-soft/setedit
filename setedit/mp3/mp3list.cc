@@ -98,7 +98,7 @@ void TListDiag::handleEvent(TEvent &event)
        case cmaAddMP3:
             strcpy(fileName,MP3ext);
             style=(event.message.command==cmaAddMP3);
-            GenericFileDialog(_("Select a file"),fileName,(char *)MP3ext,
+            GenericFileDialog(__("Select a file"),fileName,(char *)MP3ext,
                               hID_OpenMP3,fdMultipleSel | fdSelectButton);
             if (List->getCount())
                EnableComms();
@@ -117,13 +117,13 @@ void TListDiag::handleEvent(TEvent &event)
             break;
        case cmaSaveMP3List:
             strcpy(fileName,mp3ListExt);
-            if (GenericFileDialog(_("Save files list"),fileName,0,hID_SaveMP3,
+            if (GenericFileDialog(__("Save files list"),fileName,0,hID_SaveMP3,
                 fdDialogForSave)!=cmCancel)
                SaveList(fileName);
             break;
        case cmaLoadMP3List:
             strcpy(fileName,mp3ListExt);
-            if (GenericFileDialog(_("Load list of files"),fileName,0,hID_OpenMP3)
+            if (GenericFileDialog(__("Load list of files"),fileName,0,hID_OpenMP3)
                 !=cmCancel)
               {
                LoadList(fileName);
@@ -323,19 +323,19 @@ void MP3EditPlayList()
  else
     DisableComms();
 
- TListDiag *ListDia=new TListDiag(TRect(1,1,1,1),_("Play List"));
+ TListDiag *ListDia=new TListDiag(TRect(1,1,1,1),__("Play List"));
  TSViewCol *col=new TSViewCol(ListDia);
 
  TSListBox *listB=new TSListBox(60,12,tsslbVertical | tsslbHorizontal,1,PATH_MAX);
  TSLabel   *ListB=new TSLabel(__("List of files"),listB);
  ListDia->listBox=(TListBox *)listB->view;
 
- TSHzGroup *buttons=new TSHzGroup(new TSButton(_("~A~dd"),cmaAddMP3),
-                    new TSHzGroup(new TSButton(_("~I~nsert"),cmaInsertMP3),
-                    new TSHzGroup(new TSButton(_("~D~elete"),cmaDeleteMP3),
-                    new TSHzGroup(new TSButton(_("~S~ave"),cmaSaveMP3List),
-                    new TSHzGroup(new TSButton(_("~L~oad"),cmaLoadMP3List),
-                                  new TSButton(_("~O~k"),cmOK,bfDefault))))));
+ TSHzGroup *buttons=new TSHzGroup(new TSButton(__("~A~dd"),cmaAddMP3),
+                    new TSHzGroup(new TSButton(__("~I~nsert"),cmaInsertMP3),
+                    new TSHzGroup(new TSButton(__("~D~elete"),cmaDeleteMP3),
+                    new TSHzGroup(new TSButton(__("~S~ave"),cmaSaveMP3List),
+                    new TSHzGroup(new TSButton(__("~L~oad"),cmaLoadMP3List),
+                                  new TSButton(__("~O~k"),cmOK,bfDefault))))));
 
  col->insert(2,1,ListB);
  col->insert(xTSCenter,yTSDown,buttons);

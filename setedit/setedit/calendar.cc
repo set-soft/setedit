@@ -247,7 +247,7 @@ void TCalendarView::handleEvent(TEvent& event)
 //
 
 TCalendarWindow::TCalendarWindow() :
-    TWindow( TRect(1, 1, 25, 11), _("Calendar"), wnNoNumber ),
+    TWindow( TRect(1, 1, 25, 11), __("Calendar"), wnNoNumber ),
     TWindowInit( &TCalendarWindow::initFrame )
 {
     TRect r(getExtent());

@@ -176,7 +176,7 @@ void TReport::handleEvent(TEvent& event)
 //
 
 TAsciiChart::TAsciiChart() :
-    TWindow(TRect(0, 0, 34, 12), _("ASCII Chart"), wnNoNumber),
+    TWindow(TRect(0, 0, 34, 12), __("ASCII Chart"), wnNoNumber),
     TWindowInit( &TAsciiChart::initFrame )
 {
     TView *control;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -349,7 +349,7 @@ void TEditorProjectListBox::handleEvent(TEvent &event)
                  break;
             case cmInsert:
                  *name=0;
-                 GenericFileDialog(_("Add File"),name,"*",hID_FileOpen,
+                 GenericFileDialog(__("Add File"),name,"*",hID_FileOpen,
                                    fdMultipleSel | fdAddButton);
                  break;
             default:
@@ -446,7 +446,7 @@ void *TDskWinPrj::read( ipstream& is )
 
  is >> pos.a >> pos.b >> ProjectList >> ZOrder;
  pos.b+=pos.a;
- window=new TEditorProjectWindow(pos,_("Project Window"));
+ window=new TEditorProjectWindow(pos,__("Project Window"));
  view=window;
 
  return this;
@@ -485,7 +485,7 @@ TDskWinPrj::TDskWinPrj(char *fName)
    }
  else
     r.a.y=r.b.y-7;
- view=window=new TEditorProjectWindow(r,_("Project Window"));
+ view=window=new TEditorProjectWindow(r,__("Project Window"));
  setFileName(fName);
  type=dktPrj;
  CanBeSaved=0;
@@ -687,7 +687,7 @@ void OpenProject(char *name, int preLoad)
  if (!name)
    {
     strcpy(fname,"*" ProjectFileExt);
-    if (GenericFileDialog(_("Open Project"),fname,0,hID_ProjectFiles)!=cmCancel)
+    if (GenericFileDialog(__("Open Project"),fname,0,hID_ProjectFiles)!=cmCancel)
       {
        if (!HaveExtention(fname))
           strcat(fname,ProjectFileExt);

@@ -10003,7 +10003,7 @@ void TCEditor::setBufLen( uint32 length )
       {
        useProgressBar=1;
        chunkSize=bufLen/110;
-       ProgBar_Init(_("Parsing file"),bufLen);
+       ProgBar_Init(__("Parsing file"),bufLen);
       }
     while (s<end)
       {

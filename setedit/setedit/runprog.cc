@@ -113,7 +113,7 @@ void ConfigureRunCommand(void)
        box.tl.selection=0;
    }
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Command to run")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));
  // ABDEFHJKLMNPSTUV
  TSLabel *progInput=new TSLabel(__("~E~nter the program name"),
          new TSInputLine(maxCommand,40));
@@ -128,7 +128,7 @@ void ConfigureRunCommand(void)
          __("At ~b~eggining"),
          __("For each ~m~essage"),
          __("At ~t~he end"),0);
- TSHzLabel *linesInput=new TSHzLabel(_("~L~ines per pass"),new TSInputLine(4));
+ TSHzLabel *linesInput=new TSHzLabel(__("~L~ines per pass"),new TSInputLine(4));
  TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,optscrh,linesInput,0);
  grp->makeSameW();
  col->insert(2,1,grp);

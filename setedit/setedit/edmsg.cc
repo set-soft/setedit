@@ -425,7 +425,7 @@ TEdMsgDialog *EdMessageWindowInit(int Insert)
     else
        MsgWindowRect.a.y=MsgWindowRect.b.y-7;
    }
- MsgWindow=new TEdMsgDialog(MsgWindowRect,_("Message Window"));
+ MsgWindow=new TEdMsgDialog(MsgWindowRect,__("Message Window"));
  if (!MsgWindow)
    return MsgWindow;
  MsgList=MsgWindow->MsgList; // Global alias

@@ -75,7 +75,7 @@ int GiveAdvice(int number)
     return 0;
    }
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Advice")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Advice")));
 
  TSStaticText *text;
  switch (ad->options & opsTypeMask)
@@ -98,18 +98,18 @@ int GiveAdvice(int number)
    {
     case opsButYesNo:
          col->insert(xTSCenter,yTSUnder,
-                     new TSHzGroup(new TSButton(_("~Y~es"),cmYes,bfDefault),
-                                   new TSButton(_("~N~o"),cmNo)),
+                     new TSHzGroup(new TSButton(__("~Y~es"),cmYes,bfDefault),
+                                   new TSButton(__("~N~o"),cmNo)),
                      0,again);
          break;
     case opsButNoYes:
          col->insert(xTSCenter,yTSUnder,
-                     new TSHzGroup(new TSButton(_("~N~o"),cmNo,bfDefault),
-                                   new TSButton(_("~Y~es"),cmYes)),
+                     new TSHzGroup(new TSButton(__("~N~o"),cmNo,bfDefault),
+                                   new TSButton(__("~Y~es"),cmYes)),
                      0,again);
          break;
     default:
-         col->insert(xTSCenter,yTSUnder,new TSButton(_("O~K~"),cmOK,bfDefault,10),
+         col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault,10),
                      0,again);
    }
 

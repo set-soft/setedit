@@ -406,7 +406,7 @@ void SLPInterfaceReRun(TCEditor *ed)
 
 static TDialog *SLPCreateDialog(void)
 {
- TDialog *d=new TDialog(TRect(0,0,AnDiag,AlDiag),_("sLisp macros"));
+ TDialog *d=new TDialog(TRect(0,0,AnDiag,AlDiag),__("sLisp macros"));
 
  d->options |= ofCentered;
  d->helpCtx =  cmcChooseMacro;
@@ -418,8 +418,8 @@ static TDialog *SLPCreateDialog(void)
  d->insert(Lista);
  d->insert(new TLabel(TRect(XL,YL-1,X2L,YL),__("~M~acros"),Lista));
 
- d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),_("O~K~"),cmOK,bfDefault));
- d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),_("Cancel"),cmCancel,bfNormal));
+ d->insert(new TButton(TRect(XOK,YOK,XOK+AnOK,YOK+2),__("O~K~"),cmOK,bfDefault));
+ d->insert(new TButton(TRect(XCan,YCan,XCan+AnCan,YCan+2),__("Cancel"),cmCancel,bfNormal));
 
  d->selectNext( False );
  return d;

@@ -356,10 +356,10 @@ TStatusLine *Installer::initStatusLine(TRect r)
 
  TStatusLine *sL=new TStatusLine(r,
    *new TStatusDef(0x1000,0x1001) +
-    *new TStatusItem(_("~Ctrl-F4~ Finish edition, or click in the button found in the top left corner"),kbCtrlF4,cmClose) +
+    *new TStatusItem(__("~Ctrl-F4~ Finish edition, or click in the button found in the top left corner"),kbCtrlF4,cmClose) +
    *new TStatusDef(0,0xFFFF) +
     *new TStatusItem(0,kbF10,cmMenu) +
-    *new TStatusItem(_("~ESC~ Aborts installation"),kbEsc,cmCancel));
+    *new TStatusItem(__("~ESC~ Aborts installation"),kbEsc,cmCancel));
 
  return sL;
 }
@@ -412,7 +412,7 @@ int SelectTypeInstall(char *djdir)
 {
  static int AlreadyAsked=0;
 
- CreateCol(_(cTypeOfInstall));
+ CreateCol(cTypeOfInstall);
 
  TSLabel *l=TSLabelRadio(cSelectType,cNormal,cForProgrammers,cForDJGPP,0);
  col->insert(xTSCenter,1,l);
@@ -440,17 +440,17 @@ int SelectTypeInstall(char *djdir)
 
 void InsertPrevNextCancel(TSViewCol *col)
 {
- TSHzGroup *but12=new TSHzGroup(new TSButton(_("< ~P~rev"),cmYes),
-                  new TSHzGroup(new TSButton(_("> ~N~ext"),cmOK,bfDefault),
-                                new TSButton(_("Cancel"),cmCancel)));
+ TSHzGroup *but12=new TSHzGroup(new TSButton(__("< ~P~rev"),cmYes),
+                  new TSHzGroup(new TSButton(__("> ~N~ext"),cmOK,bfDefault),
+                                new TSButton(__("Cancel"),cmCancel)));
  col->insert(xTSCenter,yTSDown,but12);
 }
 
 void InsertYesNoCancel(TSViewCol *col)
 {
- TSHzGroup *but12=new TSHzGroup(new TSButton(_("~Y~es"),cmYes,bfDefault),
-                  new TSHzGroup(new TSButton(_("~N~o"),cmNo),
-                                new TSButton(_("Cancel"),cmCancel)));
+ TSHzGroup *but12=new TSHzGroup(new TSButton(__("~Y~es"),cmYes,bfDefault),
+                  new TSHzGroup(new TSButton(__("~N~o"),cmNo),
+                                new TSButton(__("Cancel"),cmCancel)));
  col->insert(xTSCenter,yTSDown,but12);
 }
 
@@ -483,7 +483,7 @@ int AskDestination(char *djdir)
 {
  static int AlreadyAsked=0;
 
- CreateCol(_(cDestinationDir));
+ CreateCol(cDestinationDir);
  TSLabel *label=new TSLabel(__("Where do you want to install the editor?"),
                             new TSInputLine(PATH_MAX,50));
  col->insert(xTSCenter,2,label);
@@ -615,7 +615,7 @@ int GetWindowsInformation()
  int ret=0;
  char command[PATH_MAX];
 
- CreateCol(_("Searching Windows information"));
+ CreateCol(__("Searching Windows information"));
 
  TSStaticText *l=new TSStaticText(__("Windows 9x or similar detected, wait while\nfinding information about your system"));
  TSNoStaticText *m=new TSNoStaticText(__("Looking in registry       "));
@@ -630,15 +630,15 @@ int GetWindowsInformation()
 
  if (!w95_reg_openkey(HKEY_LOCAL_MACHINE,"SOFTWARE\\Microsoft\\Windows\\CurrentVersion",&hKey))
    {
-    message->setText(_("Searching programs dir"));
+    message->setText(__("Searching programs dir"));
     if (!w95_reg_queryvalueex(hKey,"ProgramFilesDir",0,&bufType,command,&bufLen))
       {
        Win95Programs=SolveFuckName(command);
        w95_reg_closekey(hKey);
-       message->setText(_("Looking in registry       "));
+       message->setText(__("Looking in registry       "));
        if (!w95_reg_openkey(HKEY_USERS,".Default\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders",&hKey))
          {
-          message->setText(_("Searching desktop and menu"));
+          message->setText(__("Searching desktop and menu"));
           bufType=REG_SZ; bufLen=sizeof(command);
           if (!w95_reg_queryvalueex(hKey,"Desktop",0,&bufType,command,&bufLen))
             {
@@ -713,7 +713,7 @@ int AskMiscOps()
  if (options==1)
     return retNext;
 
- CreateCol(_(cMiscOps));
+ CreateCol(cMiscOps);
  TSCheckBoxes *c=new TSCheckBoxes(ops);
  col->insert(xTSCenter,1,c);
  InsertPrevNextCancel(col);
@@ -743,7 +743,7 @@ int AskMiscOps()
 int AskGenericQuestion2Ops(const char *title, const char *desc,
                            const char *op1, const char *op2, char &var)
 {
- CreateCol(_(title));
+ CreateCol(title);
  TSVeGroup *gr=MakeVeGroup(
    new TSStaticText(desc,60),
    new TSRadioButtons(new TSItem(op1,new TSItem(op2,0))),
@@ -855,7 +855,7 @@ int ConfirmValues()
     I(BackUpOps);
    }
 
- CreateCol(_("Confirm options"));
+ CreateCol("Confirm options");
  TSTextScroller *s=new TSTextScroller(70,LinesInList,strs,1,lines>LinesInList);
  TSStaticText *q=new TSStaticText(__("Are these options correct?"));
  col->insert(xTSCenter,1,s);
@@ -959,7 +959,7 @@ int DoInstall()
         actions++;
 
  // Put some message to left space for the file names
- ProgBar_Init(_("Installing"),actions,_("Installing files for the editor"));
+ ProgBar_Init(__("Installing"),actions,__("Installing files for the editor"));
  for (i=0; i<numFiles; i++)
     {
      if (!(files[i].flags & mask))
@@ -999,7 +999,7 @@ int DoInstall()
  if (RedmondMenu)
    {
     ProgBar_UpDate(i++);
-    ProgBar_SetComments(_("Replacing default menu"));
+    ProgBar_SetComments(__("Replacing default menu"));
     ReplaceBy("menubind.smn","redmond.smn","default.smn",fullName,auxName);
    }
 
@@ -1060,7 +1060,7 @@ int DoInstall()
  if (AddToDesktop)
    {
     ProgBar_UpDate(i++);
-    ProgBar_SetComments(_("Adding icon to desktop"));
+    ProgBar_SetComments(__("Adding icon to desktop"));
     p=load_datafile_object(DAT_FILENAME,"setedit.pif");
     if (p)
       {
@@ -1075,7 +1075,7 @@ int DoInstall()
  if (AddToMenu)
    {
     ProgBar_UpDate(i++);
-    ProgBar_SetComments(_("Adding icon to menu"));
+    ProgBar_SetComments(__("Adding icon to menu"));
     p=load_datafile_object(DAT_FILENAME,"setedit.pif");
     if (p)
       {
@@ -1091,7 +1091,7 @@ int DoInstall()
  if (TypeInstallation==instNormal)
    {
     ProgBar_UpDate(i++);
-    ProgBar_SetComments(_("Simplifying configuration"));
+    ProgBar_SetComments(__("Simplifying configuration"));
     ReplaceBy("menubind.smn","simple.smn","default.smn",fullName,auxName);
     ReplaceBy("editor.tip","simple.tip","default.tip",fullName,auxName);
     ReplaceBy("tcedit.dst","simple.dst","default.dst",fullName,auxName);
@@ -1267,7 +1267,7 @@ void TEditWindow2::close()
 
 int EditAutoexec(const char *name, int modified, char *buf, unsigned l)
 {
- CreateCol(_("Instructions for edition"));
+ CreateCol(__("Instructions for edition"));
  TSStaticText *t1=new TSStaticText(__("Now I'll give you the oportunity to edit the autoexec.bat. To finish click in the small rectable found in the top-left corner or press Ctrl+F4."),70);
  col->insert(2,2,t1);
  TSStaticText *last;
@@ -1284,7 +1284,7 @@ int EditAutoexec(const char *name, int modified, char *buf, unsigned l)
  t1=new TSStaticText(__("You can move lines using:\nShift + arrows keys: Select text\nCtrl+Insert: Copy to the clipboard\nCtrl+Delete: Delete a block\nShift+Insert: Paste from the clipboard\nShift+Delete: Copy to clipboard and then delete the block\nCtrl+U: Undo (only one action)"),70);
  col->insert(2,yTSUnder,t1,0,last);
 
- col->insert(xTSCenter,yTSDown,new TSButton(_("~O~k"),cmOK,bfDefault));
+ col->insert(xTSCenter,yTSDown,new TSButton(__("~O~k"),cmOK,bfDefault));
  DoAndDel(col,d);
  execDialog(d,0);
 
@@ -1374,7 +1374,7 @@ int DefinePath()
  char b[strlen(Destination)+sizeof(pathBIN)+sizeof(pathComm)+sizeof(RemWarning)+3];
  do
    {
-    CreateCol(_("Configuring the system"));
+    CreateCol(__("Configuring the system"));
    
     TSStaticText *x1=new TSStaticText(__("The editor was succesfully installed, now you must add the directory\nwhere the editor was installed to your PATH, like this:"));
     strcpy(b,pathComm);

@@ -786,7 +786,7 @@ TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
  if (name)
     strncpyZ(op.program,name,80);
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Man page to view")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Man page to view")));
 
  TSVeGroup *options=
  MakeVeGroup(new TSLabel(__("~M~an page for ..."),new TSInputLine(prgLen,visibleLen)),

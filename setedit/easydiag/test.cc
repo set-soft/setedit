@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*
 Ver:
@@ -113,17 +113,17 @@ void TMiApp::insertDialog()
 
  // First we create the object without specifying the position
  TSCheckBoxes *options = new TSCheckBoxes(
-     new TSItem(_("~C~ase sensitive"),
-     new TSItem(_("~W~hole words only"),
-     new TSItem(_("Re~g~ular expressions"),
-     new TSItem(_("E~x~tended regex"),
-     new TSItem(_("~P~rompt on replace"),
-     new TSItem(_("~R~eplace all"), 0 )))))));
+     new TSItem(__("~C~ase sensitive"),
+     new TSItem(__("~W~hole words only"),
+     new TSItem(__("Re~g~ular expressions"),
+     new TSItem(__("E~x~tended regex"),
+     new TSItem(__("~P~rompt on replace"),
+     new TSItem(__("~R~eplace all"), 0 )))))));
  TSLabel *label=new TSLabel("Some options",options);
 
  TSRadioButtons *scope = new TSRadioButtons(
-                        new TSItem( _("~F~rom cursor"),
-                        new TSItem( _("~E~ntire scope"), 0 )));
+                        new TSItem( __("~F~rom cursor"),
+                        new TSItem( __("~E~ntire scope"), 0 )));
  TSLabel *label2=new TSLabel("Origin", scope);
 
  // As the label contains the text we just need to insert the label
@@ -138,13 +138,13 @@ void TMiApp::insertDialog()
 /********
 void TMiApp::insertDialog()
 {
- //TDialog *d = new TDialog( TRect( 0, 0, 76, 18 ), _("Replace") );
+ //TDialog *d = new TDialog( TRect( 0, 0, 76, 18 ), __("Replace") );
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),"Replace"));
 
  //TInputLinePiped *control=new TInputLinePiped(TRect(3,3,34,4),80);
  //d->insert( control );
  //d->insert(
- //    new TLabel( TRect( 2, 2, 33, 3 ), _("~T~ext to find"), control ) );
+ //    new TLabel( TRect( 2, 2, 33, 3 ), __("~T~ext to find"), control ) );
  //d->insert( new THistory( TRect( 34, 3, 37, 4 ), control, hID_TextSearchEditor ) );
  #define FixWTest 30
 
@@ -153,58 +153,58 @@ void TMiApp::insertDialog()
 
  //TInputLinePiped *control2=new TInputLinePiped(TRect(39,3,70,4),80);
  //d->insert( control2 );
- //d->insert( new TLabel( TRect( 38, 2, 69, 3 ), _("~N~ew text"), control2 ) );
+ //d->insert( new TLabel( TRect( 38, 2, 69, 3 ), __("~N~ew text"), control2 ) );
  //d->insert( new THistory( TRect( 70, 3, 73, 4 ), control2, hID_TextReplaceEditor ) );
  TSInputLine *textN=new TSInputLine(80,1,(ushort)101,FixWTest);
  TSLabel *newText=new TSLabel("~N~ew text",textN);
 
  //TCheckBoxes *options = new TCheckBoxes( TRect( 3, 6, 37, 12 ),
- //    new TSItem(_("~C~ase sensitive"),
- //    new TSItem(_("~W~hole words only"),
- //    new TSItem(_("Re~g~ular expressions"),
- //    new TSItem(_("E~x~tended regex"),
- //    new TSItem(_("~P~rompt on replace"),
- //    new TSItem(_("~R~eplace all"), 0 )))))));
+ //    new TSItem(__("~C~ase sensitive"),
+ //    new TSItem(__("~W~hole words only"),
+ //    new TSItem(__("Re~g~ular expressions"),
+ //    new TSItem(__("E~x~tended regex"),
+ //    new TSItem(__("~P~rompt on replace"),
+ //    new TSItem(__("~R~eplace all"), 0 )))))));
  //d->insert( options );
  //d->insert(
- //    new TLabel( TRect( 2, 5, 35, 6 ), _("Options"), options ) );
+ //    new TLabel( TRect( 2, 5, 35, 6 ), __("Options"), options ) );
  TSCheckBoxes *options = new TSCheckBoxes(
-     new TSItem(_("~C~ase sensitive"),
-     new TSItem(_("~W~hole words only"),
-     new TSItem(_("Re~g~ular expressions"),
-     new TSItem(_("E~x~tended regex"),
-     new TSItem(_("~P~rompt on replace"),
-     new TSItem(_("~R~eplace all"), 0 )))))));//,FixWTest);
+     new TSItem(__("~C~ase sensitive"),
+     new TSItem(__("~W~hole words only"),
+     new TSItem(__("Re~g~ular expressions"),
+     new TSItem(__("E~x~tended regex"),
+     new TSItem(__("~P~rompt on replace"),
+     new TSItem(__("~R~eplace all"), 0 )))))));//,FixWTest);
  TSLabel *Options=new TSLabel("Options",options);
 
  //TRadioButtons *origin = new TRadioButtons( TRect( 39, 6, 73, 8 ),
- //                        new TSItem( _("~G~lobal"),
- //                        new TSItem( _("~S~elected text"), 0 )));
+ //                        new TSItem( __("~G~lobal"),
+ //                        new TSItem( __("~S~elected text"), 0 )));
  //d->insert( origin );
  //d->insert(
- //    new TLabel( TRect( 38, 5, 71, 6 ), _("Scope"), origin ) );
+ //    new TLabel( TRect( 38, 5, 71, 6 ), __("Scope"), origin ) );
  TSRadioButtons *origin = new TSRadioButtons(
-                         new TSItem( _("~G~lobal"),
-                         new TSItem( _("~S~elected text"), 0 )));//,FixWTest);
+                         new TSItem( __("~G~lobal"),
+                         new TSItem( __("~S~elected text"), 0 )));//,FixWTest);
  TSLabel *Origin=new TSLabel("Scope",origin);
 
  //TRadioButtons *scope = new TRadioButtons( TRect( 39, 10, 73, 12 ),
- //                       new TSItem( _("~F~rom cursor"),
- //                       new TSItem( _("~E~ntire scope"), 0 )));
+ //                       new TSItem( __("~F~rom cursor"),
+ //                       new TSItem( __("~E~ntire scope"), 0 )));
  //d->insert( scope );
  //d->insert(
- //    new TLabel( TRect( 38, 9, 71, 10 ), _("Origin"), scope ) );
+ //    new TLabel( TRect( 38, 9, 71, 10 ), __("Origin"), scope ) );
  TSRadioButtons *scope =new TSRadioButtons(
-                        new TSItem( _("~F~rom cursor"),
-                        new TSItem( _("~E~ntire scope"), 0 )));//,FixWTest);
+                        new TSItem( __("~F~rom cursor"),
+                        new TSItem( __("~E~ntire scope"), 0 )));//,FixWTest);
  TSLabel *Scope=new TSLabel("Origin",scope);
 
  //d->insert(
- //    new TButton( TRect( 29, 15, 39, 17 ), _("O~K~"), cmOK, bfDefault ) );
+ //    new TButton( TRect( 29, 15, 39, 17 ), __("O~K~"), cmOK, bfDefault ) );
  //d->insert(
- //    new TButton( TRect( 41, 15, 59, 17 ), _("Replace ~A~ll"), cmYes, bfNormal) );
+ //    new TButton( TRect( 41, 15, 59, 17 ), __("Replace ~A~ll"), cmYes, bfNormal) );
  //d->insert(
- //    new TButton( TRect( 61, 15, 74, 17 ),_("Cancel"), cmCancel, bfNormal ) );
+ //    new TButton( TRect( 61, 15, 74, 17 ),__("Cancel"), cmCancel, bfNormal ) );
  //TSHzGroup *but123=new TSHzGroup(new TSButton("O~K~",cmOK,bfDefault),
  //                  new TSHzGroup(new TSButton("Replace ~A~ll",cmYes),
  //                  new TSButton("Cancel",cmCancel)));
@@ -246,10 +246,10 @@ void TMiApp::insertDialog()
 /***
 void TMiApp::insertDialog()
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Goto Line")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Goto Line")));
 
  TSInputLine *lineInp=new TSInputLine(10);
- TSHzLabel *lineLabel=new TSHzLabel(_("~T~ext to find"),lineInp);
+ TSHzLabel *lineLabel=new TSHzLabel(__("~T~ext to find"),lineInp);
 
  col->insert(2,2,lineLabel);
  EasyInsertOKCancel(col);
@@ -262,7 +262,7 @@ void TMiApp::insertDialog()
 /************
 void TMiApp::insertDialog()
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Goto Line")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Goto Line")));
 
  TSSortedListBox *list=new TSSortedListBox(20,5,tsslbHorizontal);
  TSLabel *label=new TSLabel("~S~ome o~p~tions 567890123",list);
@@ -279,7 +279,7 @@ void TMiApp::insertDialog()
 /************
 void TMiApp::insertDialog()
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Goto Line")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Goto Line")));
 
  TNSCollection *list=new TNSCollection(14,3);
  list->insert("1234567890abcdefghijklmnopqrstuvwxyz");
@@ -324,7 +324,7 @@ void CallBack(int value, TScrollBarCB *, void *data)
 
 void TMiApp::insertDialog()
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Sliders")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Sliders")));
 
  TSNoStaticText *lval=new TSNoStaticText("  0");
  LeftVal=(TNoStaticText *)lval->view;
@@ -349,7 +349,7 @@ void TMiApp::insertDialog()
  char b[54];
  TSStaticText *ant,*cur;
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("About")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("About")));
 
  TSView::yDefSep=0;
  sprintf(b,_("SET's Editor v%X.%X.%X, (c) 1996-1998"),TCEDITOR_VERSION>>16,
@@ -360,22 +360,22 @@ void TMiApp::insertDialog()
  #define i(a)  cur=new TSStaticText(a); \
                col->insert(xTSCenter,yTSUnder,cur,0,ant); \
                ant=cur
- i(_("by Salvador Eduardo Tropea"));
- i(_("A text editor specially designed for programmers."));
+ i(__("by Salvador Eduardo Tropea"));
+ i(__("A text editor specially designed for programmers."));
 
  TSView::yDefSep=1;
- i(_("Made in Argentina"));
+ i(__("Made in Argentina"));
  #undef i
  #define i(a)  cur=new TSStaticText(a); \
                col->insert(2,yTSUnder,cur,0,ant); \
                ant=cur
- i(_("Thanks to:"));
+ i(__("Thanks to:"));
  TSView::yDefSep=0;
- i(_("The FSF and GNU people for such a good tools"));
- i(_("DJ Delorie and colaborators for porting it to DOS"));
- i(_("Robert H”hne for porting TVision and making RHIDE"));
- i(_("The University of California, Berkeley and its contributors"));
- i(_("All my friends that support my project (Laszlo, Marek, etc)"));
+ i(__("The FSF and GNU people for such a good tools"));
+ i(__("DJ Delorie and colaborators for porting it to DOS"));
+ i(__("Robert H”hne for porting TVision and making RHIDE"));
+ i(__("The University of California, Berkeley and its contributors"));
+ i(__("All my friends that support my project (Laszlo, Marek, etc)"));
  #undef i
 
  TSView::yDefSep=1;

@@ -183,7 +183,7 @@ static int InitVariables(void)
 {
  Original=KeyTrans.expand(CanBeDeleted);
 
- ChooseFirstDialog=CreateAddInsDelDialog(col1,1,_("Key assignment"),12,lNameKeys+4,0);
+ ChooseFirstDialog=CreateAddInsDelDialog(col1,1,__("Key assignment"),12,lNameKeys+4,0);
  ChooseFirstDialog->helpCtx=hcEditKeys;
  FirstSel.items=&KeyTrans;
  FirstSel.selection=0;
@@ -267,7 +267,7 @@ int CancelApply(void)
 
 static int AddNewKey(void)
 {
- AddKeyDialog=CreateAddInsDelDialog(col2,3,_("Sequence of keys"),6,24,
+ AddKeyDialog=CreateAddInsDelDialog(col2,3,__("Sequence of keys"),6,24,
                                     aidInsert | aidComMac);
  AddKeyDialog->helpCtx=hcEditKeysSeq;
  KSequence=new TKeySeqCol(2,2);
@@ -351,7 +351,7 @@ static char *press_key=__("Press a key");
 
 unsigned short TCEditor_SelectAKey(void)
 {
- TDialogK *d=new TDialogK(TRect(0,0,30,5),_("Key selector"));
+ TDialogK *d=new TDialogK(TRect(0,0,30,5),__("Key selector"));
  d->options|=ofCentered;
 
  const char *message=press_key;
@@ -403,7 +403,7 @@ char *AddMacro(void)
  if (!MacrosDialog)
    {
     isFirstTime=1;
-    MacrosDialog=CreateChooseDialog(col3,5,_("Macros"),10,32);
+    MacrosDialog=CreateChooseDialog(col3,5,__("Macros"),10,32);
     MacrosDialog->helpCtx=hcEditKeysMac;
     MacBox.items=GetMacrosList();
     MacBox.selection=0;
@@ -419,7 +419,7 @@ char *AddMacro(void)
 static
 TComSeqCol *AddCommands(void)
 {
- AddComDialog=CreateAddInsDelDialog(col3,5,_("Commands"),6,32,aidInsert);
+ AddComDialog=CreateAddInsDelDialog(col3,5,__("Commands"),6,32,aidInsert);
  AddComDialog->helpCtx=hcEditKeysCom;
  CSequence=new TComSeqCol(2,6);
  NewComBox.items=CSequence;
@@ -448,7 +448,7 @@ int SelectACom(void)
  if (!CommandsDialog)
    {
     isFirstTime=1;
-    CommandsDialog=CreateChooseDialog(col4,7,_("A command"),10,20);
+    CommandsDialog=CreateChooseDialog(col4,7,__("A command"),10,20);
     Commands=CreateEdCommandCol();
     ComBox.items=Commands;
     ComBox.selection=0;
@@ -498,20 +498,20 @@ int InsNewComInSeq(int wich)
 
 void SeeScanCodes(void)
 {
- TDialog *d=new TDialog(TRect(0,0,30,7),_("Scan Viewer"));
+ TDialog *d=new TDialog(TRect(0,0,30,7),__("Scan Viewer"));
  d->options|=ofCentered;
  d->helpCtx=cmeSeeScanCodes;
  TPoint p;
  p.x=5; p.y=2;
  d->insert(new TInputScanKey(p));
- d->insert(new TButton(TRect(10,4,20,6),_("~O~k"),cmOK,bfNormal));
+ d->insert(new TButton(TRect(10,4,20,6),__("~O~k"),cmOK,bfNormal));
  d->selectNext(False);
  execDialog(d,0);
 }
 
 int AltKeysSetUp(void)
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Alt keys settings")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Alt keys settings")));
 
  TSLabel *Hotkey=TSLabelRadio(__("~K~eys used by the menues, etc."),
                               __("~L~eft Alt"),__("~R~ight Alt"),
@@ -537,7 +537,7 @@ int AltKeysSetUp(void)
 
 int KeyPadSetUp(void)
 {
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Key Pad behavior")));
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Key Pad behavior")));
 
  TSLabel *Behave=TSLabelRadio(__("Behavior"),__("Mantain the ~B~IOS default"),
                               __("Ever interpret shift+arrow as ~m~ovement"),0);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -177,7 +177,7 @@ char *EditItem(const char *s)
  char b[NBKPMaxLineLen];
  TSViewCol *col=new TSViewCol(Title);
 
- TSHzLabel *lineLabel=new TSHzLabel(_("Perl regular expression"),
+ TSHzLabel *lineLabel=new TSHzLabel(__("Perl regular expression"),
                                     new TSInputLine(NBKPMaxLineLen,50));
 
  col->insert(xTSCenter,yTSUpSep,lineLabel);
@@ -223,7 +223,7 @@ void NBKPEdit(void)
     if (!NBKPList || !NBKPSaveFile)
        return;
    }
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,_(Title),12,50,aidOKEnabled);
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,Title,12,50,aidOKEnabled);
  d->helpCtx=localCtxHelp;
  d->DelAction=DeleteItem;
  d->AddAction=AddItem;

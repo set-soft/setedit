@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define NDEBUG
 #include <assert.h>
@@ -13,7 +13,7 @@
 TSViewCol::TSViewCol(const char *name) :
   TNSCollection(5,5)
 {
- d=new TDialog(TRect(1,1,1,1),_(name));
+ d=new TDialog(TRect(1,1,1,1),name);
 }
 
 void TSViewCol::insert(int x, int y, TSView *view, TSView *refX, TSView *refY)

@@ -131,9 +131,9 @@ TDialog *createFindDialog(void *regexBox)
              0);
  Options->makeSameW();
 
- TSHzGroup *but123=MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                               new TSButton(_("Cancel"),cmCancel),
-                               new TSButton(_("RegEx ~O~ps"),cmRegExOptions,
+ TSHzGroup *but123=MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                               new TSButton(__("Cancel"),cmCancel),
+                               new TSButton(__("RegEx ~O~ps"),cmRegExOptions,
                                             bfNormal,RegExDialog),
                                0);
 
@@ -174,10 +174,10 @@ TDialog *createReplaceDialog(void *regexBox)
                              __("~E~ntire scope"),0);
  Scope->setWidth(FixWTest);
 
- TSHzGroup *but123=MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                               new TSButton(_("Replace ~A~ll"),cmYes),
-                               new TSButton(_("Cancel"),cmCancel),
-                               new TSButton(_("RegEx ~O~ps"),cmRegExOptions,
+ TSHzGroup *but123=MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                               new TSButton(__("Replace ~A~ll"),cmYes),
+                               new TSButton(__("Cancel"),cmCancel),
+                               new TSButton(__("RegEx ~O~ps"),cmRegExOptions,
                                             bfNormal,RegExDialog),
                                0);
 
@@ -199,7 +199,7 @@ TDialog *createGotoLineDialog()
  TSViewCol *col=new TSViewCol(__("Goto Line"));
 
  TSInputLine *lineInp=new TSInputLine(10,(ushort)hID_GotoLine);
- TSHzLabel *lineLabel=new TSHzLabel(_("Desired line"),lineInp);
+ TSHzLabel *lineLabel=new TSHzLabel(__("Desired line"),lineInp);
 
  col->insert(xTSCenter,yTSUpSep,lineLabel);
  EasyInsertOKCancel(col,3);
@@ -259,18 +259,18 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
          __("Column markers ~4~"),0);
 
  TSHzGroup *Inputs=MakeHzGroup(3,
-            new TSHzLabel(_("~T~ab size"),new TSInputLine(3)),
-            new TSHzLabel(_("Indent si~z~e"),new TSInputLine(3)),
-            new TSHzLabel(_("Wrap co~l~umn"),new TSInputLine(4)),
+            new TSHzLabel(__("~T~ab size"),new TSInputLine(3)),
+            new TSHzLabel(__("Indent si~z~e"),new TSInputLine(3)),
+            new TSHzLabel(__("Wrap co~l~umn"),new TSInputLine(4)),
             0);
- TSHzLabel *colMarkers=new TSHzLabel(_("Column markers"),
+ TSHzLabel *colMarkers=new TSHzLabel(__("Column markers"),
                                      new TSInputLine(colMarkersStrLen,30));
  TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
 
  TSHzGroup *but123=MakeHzGroup(
-            new TSButton(_("O~K~"),cmOK,bfDefault),
-            new TSButton(_("Cancel"),cmCancel),
-            new TSButton(_("Syntax ~H~L Options"),cmSHLOptions,bfNormal,SHLSubDiag),
+            new TSButton(__("O~K~"),cmOK,bfDefault),
+            new TSButton(__("Cancel"),cmCancel),
+            new TSButton(__("Syntax ~H~L Options"),cmSHLOptions,bfNormal,SHLSubDiag),
             0);
             
  col->insert(xTSCenter,yTSUp,Ops);
@@ -311,17 +311,17 @@ TDialog *createSetGlobalOptions()
           __("Column markers ~9~"),
          0);
  TSHzGroup *Inputs=MakeHzGroup(3,
-            new TSHzLabel(_("~T~ab size"),new TSInputLine(3)),
-            new TSHzLabel(_("Indent si~z~e"),new TSInputLine(3)),
-            new TSHzLabel(_("Wrap co~l~umn"),new TSInputLine(4)),
+            new TSHzLabel(__("~T~ab size"),new TSInputLine(3)),
+            new TSHzLabel(__("Indent si~z~e"),new TSInputLine(3)),
+            new TSHzLabel(__("Wrap co~l~umn"),new TSInputLine(4)),
             0);
- TSHzLabel *colMarkers=new TSHzLabel(_("Column markers"),
+ TSHzLabel *colMarkers=new TSHzLabel(__("Column markers"),
                                      new TSInputLine(colMarkersStrLen,30));
  TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
 
- TSHzGroup *but123=MakeHzGroup(new TSButton(_("T~o~ all"), cmYes),
-                               new TSButton(_("O~K~"), cmOK, bfDefault),
-                               new TSButton(_("Cancel"), cmCancel),
+ TSHzGroup *but123=MakeHzGroup(new TSButton(__("T~o~ all"), cmYes),
+                               new TSButton(__("O~K~"), cmOK, bfDefault),
+                               new TSButton(__("Cancel"), cmCancel),
                                0);
 
  col->insert(xTSCenter,yTSUp,Ops);
@@ -337,10 +337,10 @@ TDialog *createYesNoAllCancel(TPoint *size, TPoint *cursor)
  TSViewCol *col=new TSViewCol(__("Search hit"));
 
  TSStaticText *text=new TSStaticText(__("Replace this occurence?"));
- TSHzGroup *buttons=MakeHzGroup(new TSButton(_("~Y~es"),cmYes,bfDefault),
-                                new TSButton(_("~N~o"),cmNo),
-                                new TSButton(_("~A~ll"),cmOK),
-                                new TSButton(_("Cancel"),cmCancel),
+ TSHzGroup *buttons=MakeHzGroup(new TSButton(__("~Y~es"),cmYes,bfDefault),
+                                new TSButton(__("~N~o"),cmNo),
+                                new TSButton(__("~A~ll"),cmOK),
+                                new TSButton(__("Cancel"),cmCancel),
                                 0);
 
  col->insert(xTSCenter,yTSUpSep,text);

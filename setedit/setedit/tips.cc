@@ -178,7 +178,7 @@ static void ShowDialogTip(char *fileName, int &LastTip)
     int lines=TipText->getCount();
     if (lines)
       {
-       TSViewCol *col=new TSViewCol(new TDialogTips(TRect(1,1,1,1),_("Tip of the day")));
+       TSViewCol *col=new TSViewCol(new TDialogTips(TRect(1,1,1,1),__("Tip of the day")));
    
        TSTextScroller *text=new TSTextScroller(40,10,TipText,0,lines>10,40);
        char aux[40];
@@ -210,8 +210,8 @@ static void ShowDialogTip(char *fileName, int &LastTip)
        TSLabel *Options=new TSLabel(__("Options"),origin);
        col->insert(2,yTSUnder,Options,0,Text);
 
-       TSHzGroup *buttons=new TSHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
-                                        new TSButton(_("~N~ext tip"),cmNextTip),4);
+       TSHzGroup *buttons=new TSHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
+                                        new TSButton(__("~N~ext tip"),cmNextTip),4);
        col->insert(xTSCenter,yTSDown,buttons);
    
        TDialog *d=col->doIt();

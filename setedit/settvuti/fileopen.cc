@@ -60,7 +60,7 @@ int (*TFileDialogHome::ConfDiag)()=0;
 static
 TButton *AddButton(TRect &r, const char *label, unsigned command)
 {
- TButton *bt=new TButton(r,_(label),command,bfNormal);
+ TButton *bt=new TButton(r,label,command,bfNormal);
  bt->growMode=gfGrowLoX | gfGrowHiX;
  r.a.y+=2; r.b.y+=2;
  return bt;
@@ -265,7 +265,7 @@ int GenericFileDialog(const char *title, char *file, char *mask, int histID, int
  // 2 directories.
  if ((!mask || !mask[0]) && CLY_IsWild(file))
     fgButtons|=fdNoLoadDir;
- TFileDialogHome *d=new TFileDialogHome(mask,title,_("~N~ame"),fgButtons,histID,curDir,
+ TFileDialogHome *d=new TFileDialogHome(mask,title,__("~N~ame"),fgButtons,histID,curDir,
                                         flags,dir);
  d->helpCtx=ctx;
 

@@ -680,17 +680,17 @@ void TDiaPrint::SetDefault(PrnDef &def)
 void PrintSetup(void)
 { //ABCDEFHILMOPRSTUVW
  RectDiag r;
- TSViewCol *col=new TSViewCol(new TDiaPrint(TRect(1,1,1,1),_("Printer Setup"),&r));
+ TSViewCol *col=new TSViewCol(new TDiaPrint(TRect(1,1,1,1),__("Printer Setup"),&r));
 
  TSView::yDefSep=0;
- TSHzLabel *tLines=new TSHzLabel(_("Total ~l~ines per page:"),new
+ TSHzLabel *tLines=new TSHzLabel(__("Total ~l~ines per page:"),new
                                  TSInputLine(5));
- TSHzLabel *cols  =new TSHzLabel(_("Columns ~w~/o margin:"),new
+ TSHzLabel *cols  =new TSHzLabel(__("Columns ~w~/o margin:"),new
                                  TSInputLine(5));
- TSHzLabel *margin=new TSHzLabel(_("Left ~m~argin:"),new TSInputLine(5));
+ TSHzLabel *margin=new TSHzLabel(__("Left ~m~argin:"),new TSInputLine(5));
  TSCheckBoxes *pLines=new TSCheckBoxes(new TSItem(__("Print line numbers"),0));
- TSHzLabel *time  =new TSHzLabel(_("~T~ime format:"),new TSInputLine(12));
- TSHzLabel *date  =new TSHzLabel(_("~D~ate format:"),new TSInputLine(12));
+ TSHzLabel *time  =new TSHzLabel(__("~T~ime format:"),new TSInputLine(12));
+ TSHzLabel *date  =new TSHzLabel(__("~D~ate format:"),new TSInputLine(12));
  #define C(var,str) TSLabel *var=new TSLabel(str,new TSInputLine(sizeNames,28))
  C(title,__("T~i~tle"));
  C(author,__("~A~uthor"));
@@ -704,8 +704,8 @@ void PrintSetup(void)
  TSRadioButtons *outType=new TSRadioButtons(new TSItem(__("Output is a de~v~ice/file"),
                                             new TSItem(__("Output i~s~ a program"),0)));
  #undef C
- TSHzGroup *buttons=new TSHzGroup(new TSButton(_("~O~k"),cmOK,bfDefault),
-                    new TSHzGroup(new TSButton(_("~C~ancel"),cmCancel),
+ TSHzGroup *buttons=new TSHzGroup(new TSButton(__("~O~k"),cmOK,bfDefault),
+                    new TSHzGroup(new TSButton(__("~C~ancel"),cmCancel),
                     new TSHzGroup(new TSButton("~E~pson",cmEpson),
                                   new TSButton("HP",cmHP))));
  buttons->Flags|=wSpan;
