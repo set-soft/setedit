@@ -1815,7 +1815,9 @@ static int is_hex(const char *name, uint32 l)
  uint32 lori=l;
  int notYetANumber=1;
 
- if (l<3 || (*(uint16 *)name!=0x7830 && *(uint16 *)name!=0x5830)) return 0;
+ // We can't use a char * as an uint16 * in some RISC machines like SPARC
+ //if (l<3 || (*(uint16 *)name!=0x7830 && *(uint16 *)name!=0x5830)) return 0;
+ if (l<3 || name[0]!='0' || (name[1]!='x' && name[1]!='X')) return 0;
  name+=2;
  l-=2;
  while (l--)
