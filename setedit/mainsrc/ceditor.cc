@@ -537,6 +537,7 @@ void TCEditor::clipWinPaste(int id)
          }
        insertBuffer(p,0,size,canUndo,PersistentBlocks,False);
        DeleteArray(p);
+       trackCursor(False);
       }
     else
        messageBox(mfError | mfOKButton,__("Error pasting from clipboard: %s"),

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.485  2003/12/15 14:58:36  set
+* Fixed: A couple of details about the last option and when is greyed.
+
 Revision 1.484  2003/12/15 14:56:46  set
 * Fixed: Some int v.s. unsigned details related to the last patch.
 * Modified: cmcSaveAsUNIX and cmcSaveAsDOS commands to be
