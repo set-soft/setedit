@@ -24,7 +24,6 @@ static int h_err,h_errbak;
 char *unique_name(char *before,char *retval)
 {
   char *name,*tmp = getenv("TMPDIR");
-  FILE *f;
   // SET: The next 2 fallbacks aren't usually needed because RHIDE and SETEdit
   // defines TMPDIR. SAA added them and I keep it because they make more
   // robust the code if anybody uses the library in another project.
@@ -49,11 +48,15 @@ char *unique_name(char *before,char *retval)
     string_cat(name,before);
     string_cat(name,"XXXXXX");
   }
-  mktemp(name);
-  f = fopen(name, "w+b");
-  if (f)
-     fclose(f);
-  return name;
+  /* SET: Modified to use mkstemp because mktemp is dangerous */
+  int handler=mkstemp(name);
+  if (handler!=-1)
+  {
+    close(handler);
+    return name;
+  }
+  free(name);
+  return NULL; // What to do here?
 }
 
 char *open_stderr(void)

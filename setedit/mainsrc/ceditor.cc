@@ -5000,6 +5000,11 @@ void TCEditor::ExpandAllTabs(void)
     return;
 
  char *n=unique_name("tb");
+ if (!n)
+   {
+    editorDialog(edCreateTMPError);
+    return;
+   }
  flushLine();
  f=fopen(n,"w+b");
  if (f)
@@ -12021,12 +12026,15 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
  if (!IsCompressed)
     return f;
  fclose(f);
- char *tmp;
- tmp=new char[PATH_MAX];
- tmpnam(tmp);
+ char *tmp=unique_name("gz");
+ if (!tmp)
+   {
+    TCEditor::editorDialog(edCreateTMPError);
+    return NULL;
+   }
 
  if (GZFiles_ExpandHL(tmp,name))
-    return 0;
+    return NULL;
 
  temp=tmp;
  return fopen(tmp,"rb");
@@ -12054,12 +12062,12 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
 
 #ifdef CLY_UseCrLf
 #define RemoveTemporal() if (wasCompressed) { remove(wasCompressed); \
-                                              delete wasCompressed; \
+                                              free(wasCompressed); \
                                               wasCompressed=0; } \
                          if (!crfound) remove(tmp);
 #else
 #define RemoveTemporal() if (wasCompressed) { remove(wasCompressed); \
-                                              delete wasCompressed; \
+                                              free(wasCompressed); \
                                               wasCompressed=0; } \
                          if (crfound) remove(tmp);
 #endif

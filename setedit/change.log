@@ -1,4 +1,7 @@
 $Log$
+Revision 1.47  2002/02/04 14:16:54  set
+* Fixed: compilation problems with gcc 3.0.x in mixoss.c. Patch by Andris.
+
 Revision 1.46  2002/02/01 19:04:25  set
 * Added: Options to avoid reseting the horizontal position of the message
 window when new entries are added. Suggested by David A. Capello
@@ -1030,7 +1033,7 @@ installer.cc file. Related to implicit conversions.
 * Fixed: [DOS] Some warnings from binutils 2.11.2 not reported by 2.8.1 in
 mixsurf.c. Related to EOL C++ comments in inline assembler (must be in a
 separated line).
-.
+
 Revision 1.398  2001/09/16 20:10:00  set
 * Fixed: Now the clean target of the Makefile also cleans mpegsound
 objects. Reported by Ivan.

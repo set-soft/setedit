@@ -82,6 +82,8 @@ unsigned doEditDialog(int dialog, va_list arg)
         va_end(arg);
         return messageBox(GetStrStream(buf),mfError | mfOKButton);
         }
+    case edCreateTMPError:
+         return messageBox(_("Error creating temporal file, operation aborted"),mfError | mfOKButton);
     case edSaveModify:
         {
         os << va_arg(arg,_charPtr)

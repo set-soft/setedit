@@ -50,6 +50,7 @@
 
 #include <tprogdia.h>
 #include <infbase.h>
+#include <rhutils.h> // unique_name
 
 //#define DEBUG
 #ifdef DEBUG
@@ -1651,6 +1652,7 @@ FILE *TInfFile::fOpen(char *Nombre)
 {
  char Buf[PATH_MAX];
  char *name=Buf;
+ int  freeName=0;
 
  if (ExpandName(Buf,Nombre,1))
    {
@@ -1673,11 +1675,16 @@ FILE *TInfFile::fOpen(char *Nombre)
    }
  if (IsCompressed)
    {
-    name=tmpnam(NameOfTemporal);
+    name=unique_name("gz",NameOfTemporal);
     if (!name)
        name="__infc__";
+    else
+       freeName=1;
     if (GZFiles_ExpandHL(name,Buf))
+      {
+       if (freeName) free(name);
        return NULL;
+      }
    }
 
  #ifdef InfV_UseBinaryFile
@@ -1697,6 +1704,7 @@ FILE *TInfFile::fOpen(char *Nombre)
  DontRemoveCompressed=False;
  #endif
  fileLength=ret ? filelength(fileno(ret)) : 0;
+ if (freeName) free(name);
  return ret;
 }
 

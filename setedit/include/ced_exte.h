@@ -58,7 +58,8 @@ const int
   edChoosePMacro    = 30,
   edJumpToPrototype = 31,
   edArbitraryIndent = 32,
-  edFileCompMant    = 33;
+  edFileCompMant    = 33,
+  edCreateTMPError  = 34;
 
 // ************* Various flags
 const int
