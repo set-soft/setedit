@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.500  2004/04/13 18:21:44  set
+* Added: [SHL] Syntax and pmacros for WML, contributed by Diego J. Brengi.
+
 Revision 1.499  2004/04/12 13:17:13  set
 * Fixed: [Holydays] bug in movement and fixed april 2 movement in
 argentinian holydays.

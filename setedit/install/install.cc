@@ -207,6 +207,7 @@ FullFile files[]={
 {fgAll   ,"share/setedit/","perlmac.pmc",0,0},
 {fgAll   ,"share/setedit/","pmacros.pmc",0,0},
 {fgAll   ,"share/setedit/","htmlmac.pmc",0,0},
+{fgAll   ,"share/setedit/","wmlmac.pmc",0,0},
 {fgAll   ,"share/setedit/","syntaxhl.shl",0,0},
 {fgAll   ,"share/setedit/","errors.cle",0,0},
 {fgPrg   ,"share/setedit/","editor.tip",0,0},
