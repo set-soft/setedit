@@ -53,8 +53,8 @@ public:
  KeyTTable *expand(int &canBeDeleted);
  void compact(void);
  unsigned getLen(void);
- void deleteKey(unsigned wich);
- int addKey(TKeySeqCol *sKeys, void *data, int Type);
+ void deleteKey(unsigned which);
+ int addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef=NULL);
  virtual void getText(char *dest, unsigned item, int maxLen);
  int Save(char *name);
  int Load(char *name);
@@ -67,7 +67,7 @@ protected:
  KeyTSeq *GetTSeqC(KeyTNode *node) { return (KeyTSeq *)(long(base)+node->d.offset); };
  KeyTTable *GetTableC(KeyTNode *node) { return (KeyTTable *)(long(base)+node->d.offset); };
  char *GetMNameC(KeyTNode *node) { return (char *)(long(base)+node->d.offset); };
- // Whe the table is expanded
+ // When the table is expanded
  KeyTSeq *GetTSeqE(KeyTNode *node)  { return (KeyTSeq *)(node->d.data); };
  KeyTTable *GetTableE(KeyTNode *node) { return (KeyTTable *)(node->d.data); };
  char *GetMNameE(KeyTNode *node) { return (char *)(node->d.data); };
@@ -96,8 +96,9 @@ protected:
  void deleteTree(void);
  unsigned CountKeys(KeyTTable *t);
  void CatFullNameKey(KeyTNode *node, DynStrCatStruct *cat);
- void DeleteKey(KeyTTable *t, unsigned c, unsigned wich);
+ void DeleteKey(KeyTTable *t, unsigned c, unsigned which);
  KeyTNode *move(unsigned key, int add=0);
+ void rewind() { state=0; curTable=base; };
 
  KeyTTable *base;
  KeyTTable *curTable;

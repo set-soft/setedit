@@ -453,7 +453,6 @@ int TMLIEditor::oriCanBeDeleted;
 
 int TMLIEditor::StartKeyBind()
 {
- printf("StartKeyBind\n");
  if (oriKeyTable)
     return 0;
  oriKeyTable=KeyTrans.expand(oriCanBeDeleted);
@@ -462,7 +461,6 @@ int TMLIEditor::StartKeyBind()
 
 void TMLIEditor::EndKeyBind()
 {
- printf("EndKeyBind\n");
  if (!oriKeyTable)
     return;
  if (oriCanBeDeleted)
@@ -473,7 +471,6 @@ void TMLIEditor::EndKeyBind()
 
 void TMLIEditor::AbortKeyBind()
 {
- printf("AbortKeyBind\n");
  if (!oriKeyTable)
     return;
  KeyTrans.ChangeTable(oriKeyTable,oriCanBeDeleted ? kbtDynamic : kbtStatic);
@@ -482,8 +479,8 @@ void TMLIEditor::AbortKeyBind()
 
 int TMLIEditor::BindKey(TKeySeqCol *sKeys, void *data, int Type)
 {
- printf("BindKey\n");
- int ret=KeyTrans.addKey(sKeys,data,Type);
+ int keyBranch;
+ int ret=KeyTrans.addKey(sKeys,data,Type,&keyBranch);
  if (ret>=0)
    {
     KeyTrans.deleteKey(ret);
@@ -491,9 +488,10 @@ int TMLIEditor::BindKey(TKeySeqCol *sKeys, void *data, int Type)
    }
  else
    if (ret==-1)
-     {
-      // TODO: Solve it
-      return 0;
+     {// This is something not allowed from the dialogs: to simply destroy
+      // a group of assigments to replace it by just one assignment.
+      KeyTrans.deleteKey(keyBranch);
+      KeyTrans.addKey(sKeys,data,Type);
      }
  return 1;
 }

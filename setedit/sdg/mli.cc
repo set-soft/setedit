@@ -1557,8 +1557,8 @@ int TMLIBase::ParseNumber()
  return !(ucisspace(*end) || *end=='(' || *end==')' || *end==';');
 }
 
-#define maxParse 5
-#define maxSyntax 7
+#define maxParse 6
+#define maxSyntax 9
 
 static char *UnkErr=__("unknown");
 

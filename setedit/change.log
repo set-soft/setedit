@@ -1,4 +1,19 @@
-$Log$.
+$Log$
+Revision 1.456  2003/10/20 15:31:16  set
+* Modified: "Do not purge spaces" option to be "Keep trailing whitespace"
+that's more descriptive. Suggested by Oswald.
+* Fixed: No match pair after deleting some text and the cursor goes to a
+symbol. Reported by Oswald.
+* Modified: To lock the screen while doing a search & replace operation to
+avoid "flashing" when doing a lot of S&R operations. Suggested by Oswald.
+* Fixed: Wrong match pair when the cursor was in the middle of a tab and
+the next character matched a pair (highlight in the middle of the tab).
+Reported by Oswald.
+* Fixed: Undo error when a character replaced a tab (overwrite enabled) and
+the cursor was inside the tab (not at the beggining). Reported by Oswald.
+* Added: History to the "arbitrary indent" and "run command" input lines.
+Suggested by Oswald.
+
 Revision 1.455  2003/10/16 20:02:35  set
 * Fixed: [Cygwin] Collision between strndup and calculator parser.
 Personally don't know mush about this issue but looks like a name space

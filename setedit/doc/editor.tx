@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 12 October 2003
+@set update-date 18 October 2003
 @set update-month October 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -692,6 +692,10 @@ Additionally you no longer need to configure the editor for non-US keyboards.
   You can also assing sLisp defined macros to keys or even small portions of
 sLisp code to keys. In addition you can change the key assignments using
 sLisp macros.
+@p{}
+
+  If you are looking for information about the names used for the keys in the
+editor consult: @x{Key names}.
 @p{}
 
 @section How to configure the keyboard
@@ -5048,6 +5052,12 @@ message window.
 
   When writing a key sequence you can use the @il{Insert key name} menu option
 if you don't know the name of a key combination. @x{Insert key name}.
+@p{}
+
+  An important detail is that this command can replace already defined keys
+and can even replace a group of assignments by the new definition. You can
+assign a command to @code{CtK} removing all the @kbd{^K} assigments during
+this operation.
 @p{}
 
 @c --------------------------------------------------------------

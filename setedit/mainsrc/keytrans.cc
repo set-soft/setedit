@@ -130,15 +130,15 @@ void TKeyTranslate::getText(char *dest, unsigned item, int maxLen)
  delete cat.str;
 }
 
-void TKeyTranslate::deleteKey(unsigned wich)
+void TKeyTranslate::deleteKey(unsigned which)
 {
  assert(type==kbtExpanded);
- assert(base->total>wich);
- DeleteKey(base,0,wich);
+ assert(base->total>which);
+ DeleteKey(base,0,which);
  Count=base->total;
 }
 
-void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned c, unsigned wich)
+void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned baseNumKey, unsigned which)
 {
  unsigned cant=t->cant;
  unsigned i;
@@ -146,12 +146,12 @@ void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned c, unsigned wich)
  for (i=0; i<cant; )
     {
      KeyTNode *node=&(t->nodes[i]);
-     if (node->flags==kbtIsSComm)
+     if (node->flags==kbtIsSComm && baseNumKey!=which)
        {
         KeyTTable *nT=GetTableE(node);
-        if (wich<c+nT->total)
+        if (which<baseNumKey+nT->total)
           { // Is in a deeper table
-           DeleteKey(nT,c,wich);
+           DeleteKey(nT,baseNumKey,which);
            if (nT->cant==0)
              { // The table is empty
               delete nT;
@@ -164,22 +164,25 @@ void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned c, unsigned wich)
           }
         else
           { // Skip the table
-           c+=nT->total;
+           baseNumKey+=nT->total;
            i++;
           }
        }
      else
        {
-        if (c==wich)
+        if (baseNumKey==which)
           {
            if (node->flags==kbtIsMacro || node->flags==kbtIsSeq)
               delete[] node->d.macro;
+           else if (node->flags==kbtIsSComm)
+              // It removes a branch in the tree
+              DeleteTree(GetTableE(node));
            memcpy(node,node+1,sizeof(KeyTNode)*(cant-i-1));
            t->cant--;
            t->total--;
            return;
           }
-        c++;
+        baseNumKey++;
         i++;
        }
     }
@@ -280,8 +283,7 @@ int TKeyTranslate::get(unsigned key,KeyTNode *ret)
  KeyTNode *p=search(key);
  if (!p)
    {
-    state=0;
-    curTable=base;
+    rewind();
     return 0;
    }
  memcpy(ret,p,sizeof(KeyTNode));
@@ -298,8 +300,7 @@ int TKeyTranslate::get(unsigned key,KeyTNode *ret)
          ret->d.data=GetTSeqC(ret);
          break;
    }
- state=0;
- curTable=base;
+ rewind();
  return 1;
 }
 
@@ -655,7 +656,7 @@ program ask for deletion.@p
 
 ***************************************************************************/
 
-int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
+int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef)
 {
  assert(type==kbtExpanded);
  int c=sKeys->getCount();
@@ -663,10 +664,9 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
  KeyTNode *node;
  //char b[100];
 
- state=0;
  numKey=0;
  lastTableInSearch=0;
- curTable=base;
+ rewind();
  for (i=0; i<c; i++)
     {
      node=move((unsigned long)(sKeys->at(i)));
@@ -679,16 +679,16 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
        {
         /*printf("Ya tiene asignado algo (%d)\n",numKey);
         getText(b,numKey,99);*/
-        state=0;
-        curTable=base;
+        rewind();
         return numKey;
        }
     }
  if (!ok)
    {
     //printf("No se puede ya que tiene m s de 1 asignada\n");
-    state=0;
-    curTable=base;
+    rewind();
+    if (keyDef)
+       *keyDef=numKey;
     return -1;
    }
  node=InsertKey((unsigned long)(sKeys->at(i)));
@@ -730,8 +730,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
       }
    }
  // Hoppefully the key is there
- state=0;
- curTable=base;
+ rewind();
  // But what about the counters?
  Count++;
  c=sKeys->getCount();
@@ -744,8 +743,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
      assert(node!=0);
      #endif
     }
- state=0;
- curTable=base;
+ rewind();
 
  return -2;
 }
