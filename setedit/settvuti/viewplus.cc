@@ -51,7 +51,7 @@ extern TPoint shadowSize;
 // SET: Be careful about nibble order
 #ifdef TV_BIG_ENDIAN
  #define GetAttr(a) ((a) & 0xFF)
- #define ChangeAttr(v,a)  (((v) & 0xFF00) | (a))
+ #define ChangeAttr(v,a)  (uint16)(((v) & 0xFF00) | (a))
  #define AttrOffset 0
 #else
  #define GetAttr(a) ((a) << 8)

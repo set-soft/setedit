@@ -1,4 +1,12 @@
 $Log$
+Revision 1.281  2003/04/01 03:44:38  terrible
+* Updated: Debian packaging to version 0.5.0-1.
+* Modified: tell people to use the distribution name like for example
+potato/woody instead of unstable/stable.
+
+------------------------------------------------------------------------------
+v0.5.0 [tagged as r0_5_0]
+
 Revision 1.280  2003/03/21 18:02:58  set
 * Fixed: Syntax highlight propagation in "last line - 1" after pasting.
 
