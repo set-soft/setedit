@@ -329,8 +329,8 @@ the first letter of the identifier (after eating the blanks following the
 of the name of the class and its length in characters, without counting the
 null character or other characters (real length of the word).
 */
-static void processFunc(const char *className=NULL,
-    const unsigned classNameSize=0)
+static void processFunc(const char *className,
+    const unsigned classNameSize)
 {
     const char *funcNameStartPtr = curBufPtr;
     const unsigned funcStartLine = curLine;
@@ -391,7 +391,7 @@ and endChar's between.
 substituting comments and blanks by just a space.
 */
 static void goMatching(const char startChar, const char endChar,
-    const bool copy=false)
+    const bool copy)
 {
     int idx=copy ? 1 : MaxLenWith0;
     unsigned int level=1;
@@ -442,7 +442,7 @@ function found.
 */
 static void registerFunc(const char *funcName, const unsigned funcNameSize,
     const char *param, const unsigned paramSize, const unsigned funcStartLine,
-    const char *className=NULL, unsigned classNameSize=0)
+    const char *className, unsigned classNameSize)
 {
     ++curFuncNum;
     int tsz=funcNameSize+paramSize+1+1+classNameSize+1;

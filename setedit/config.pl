@@ -170,7 +170,7 @@ elsif ($OS eq 'UNIX')
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ ';
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ gdi32 ';
    $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');

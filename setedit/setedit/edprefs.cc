@@ -153,19 +153,22 @@ int SetFileOpenDialogOptions(void)
  d->parentSort=Parent->linked->view;
  d->updateState(box.sortType);
 
- TSVeGroup *grp1=MakeVeGroup(1,Sort,Case,Parent,0);
- grp1->makeSameW();
+ // Note: MinGW have a really nasty namespace pollution, the grp1 and grp2
+ // names are defined as numeric constants in dlgs.h, which I don't request.
+ // I'm sick of these faults, MinGW is really bad.
+ TSVeGroup *Grp1=MakeVeGroup(1,Sort,Case,Parent,0);
+ Grp1->makeSameW();
 
  TSLabel *DotFiles=TSLabelRadio(__("Files starting with a dot"),__("~N~ormally sorted"),
                                 __("After the ~r~est"),0);
  TSLabel *Exclude=TSLabelCheck(__("Exclude files"),__("Ending ~w~ith tilde"),
                                __("Ending with .bk~p~"),__("Startin~g~ with ."),0);
 
- TSVeGroup *grp2=MakeVeGroup(1,DotFiles,Exclude,0);
- grp2->makeSameW();
+ TSVeGroup *Grp2=MakeVeGroup(1,DotFiles,Exclude,0);
+ Grp2->makeSameW();
 
- col->insert(xTSLeft,yTSUp,grp1);
- col->insert(xTSRightOf,yTSUp,grp2,grp1);
+ col->insert(xTSLeft,yTSUp,Grp1);
+ col->insert(xTSRightOf,yTSUp,Grp2,Grp1);
  EasyInsertOKCancel(col);
 
  col->doIt();

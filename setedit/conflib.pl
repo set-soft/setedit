@@ -164,7 +164,7 @@ sub RunGCCTest
  `echo $label >> $ErrorLog`;
 
  RunRedirect($command);
- $test=`./test.exe`;
+ $test=-e 'test.exe' ? `./test.exe` : '';
  unlink('test.o',$file,'test.exe');
  $test;
 }

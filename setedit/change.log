@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.252  2002/12/09 13:07:08  set
+* Fixed: [DOS] The greek hack. It should go away.
+
 Revision 1.251  2002/12/09 13:06:10  set
 * Fixed: A bug in the painting shl routine used for user defined syntax
 highlights. Failed for commented lines starting with blank spaces
