@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TDskWin : public TStreamable
 {
@@ -12,10 +12,17 @@ public:
  TView *view;
  virtual int  GoAction(ccIndex i);
  virtual int  DeleteAction(ccIndex i, Boolean fromDiskToo);
- virtual int  Compare(void *,int) = 0;
+ virtual int  Compare(void *p, int t);
  virtual char *GetText(char *dest, short maxLen) = 0;
  virtual int  GetNumber();
  char *GetText(char *dest, char *s, short maxLen);
+
+protected:
+ virtual void write(opstream& os);
+ virtual void *read(ipstream& is);
+
+private:
+ virtual const char *streamableName() const;
 };
 
 inline ipstream& operator >> ( ipstream& is, TDskWin& cl )
@@ -43,7 +50,8 @@ const int
       dktCalendar  = 9,
       dktMan       = 10,
       dktDbgMsg    = 11,
-      dktDbgWt     = 12;
+      dktDbgWt     = 12,
+      dktDbgIns    = 13;
 
 class TDeskTop;
 void InsertInOrder(TDeskTop *dsk,TDskWin *win);

@@ -239,3 +239,22 @@ void InsertInOrder(TDeskTop *dsk,TDskWin *win)
 }
 
 
+void TDskWin::write(opstream& os)
+{
+}
+
+void *TDskWin::read(ipstream& is)
+{
+ return this;
+}
+
+const char *TDskWin::streamableName() const
+{
+ return NULL;
+}
+
+int  TDskWin::Compare(void *p, int t)
+{
+ return (t==type) && p==(void *)view;
+}
+

@@ -808,8 +808,20 @@ void TEditorCollection::forEachEditor(void (*func)(TCEditWindow *))
       }
     ind++;
    }
+}
 
- return;
+void TEditorCollection::forEachNonEditor(int type, void (*func)(TDskWin *, void *),
+                                         void *data)
+{
+ ccIndex i, cant;
+ TDskWin *st;
+
+ for (i=Editors, cant=Editors+nonEditors; i<cant; i++)
+    {
+     st=(TDskWin *)at(i);
+     if (st->type==type)
+        func(st,data);
+    }
 }
 
 static

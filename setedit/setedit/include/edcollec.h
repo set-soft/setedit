@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 struct stEditorId;
 class TCEditWindow;
@@ -22,6 +22,7 @@ public:
  ccIndex searchEditorbyINode(stEditorId *id, char *name, int *cant);
  TDskWin *searchByNumber(int num);
  void forEachEditor(void (*func)(TCEditWindow *));
+ void forEachNonEditor(int type, void (*func)(TDskWin *,void *), void *data);
  void saveEditors(void);
  void redrawEditors(void);
  void reIdEditors(void);

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.560  2004/08/02 15:23:03  set
+* Fixed: makeinfo 4.7 enforces the use of @pxref for (@x{...}).
+* Fixed(?): makeinfo 4.7 no longer supports "@end xxxx" commands inside
+macros :-( so I added an aditional intermediate file to avoid them.
+
 Revision 1.559  2004/08/02 13:22:41  set
 * Added: [sLisp] CommentIndent macro contributed by Thiago.
 

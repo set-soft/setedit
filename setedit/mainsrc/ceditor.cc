@@ -11174,6 +11174,7 @@ void *TCEditor::read( ipstream& is )
        flags|=loColumnMarkers;
     ExpandFlags(flags,False);
     SetHighlightTo((shlState)shl,subshl);
+    isReadOnly=False; // Will be read later
     if (!DontLoadFile)
        isValid = loadFile();
 

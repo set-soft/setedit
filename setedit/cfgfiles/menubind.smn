@@ -302,7 +302,7 @@ SubMenu: "~P~roject", kbAlP
 EndSubMenu
 
 $if DEBUG
-# EN: BCDEGHIKLNOPRSTW 123
+# EN: ABCDEGHIKLNOPRSTW 3
 # ES: BCDEILMNPRTUVX 12
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
@@ -312,8 +312,11 @@ SubMenu: "~D~ebug", kbAlD
   MenuItemC: "Path for ~s~ources", cmeSourceList
   MenuItemC: "~M~essages displayed", cmeDbgOptsMsgs
  EndSubMenu
- MenuItemC: "Go to 'Connected' ~1~", cmeDbgGoConnected
- MenuItemC: "Go to 'Ready to run' ~2~", cmeDbgGoReadyToRun
+ SubMenu: "Go to st~a~te", kbUnknown
+# EN: CR
+  MenuItemC: "~C~onnected", cmeDbgGoConnected
+  MenuItemC: "~R~eady to run", cmeDbgGoReadyToRun
+ EndSubMenu
  MenuItemC: "~B~reakpoint", cmeBreakpoint, kbCtF8, "Ctrl+F8"
  MenuItemC: "Ed~i~t breakpoints", cmeDbgEditBreakPts
  MenuItemC: "Edit watchpoints ~3~", cmeDbgEditWatchPts
@@ -328,8 +331,12 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Restart (~K~ill)", cmeDbgKill
  MenuSeparator
  MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
- MenuItemC: "~W~atch an expression", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
- MenuItemC: "Watc~h~ an exp. (w/scope)", cmeDbgWatchExpScp
+ SubMenu: "~W~atch an expression", kbUnknown
+# EN: NUW
+  MenuItemC: "~N~ormal watch", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
+  MenuItemC: "~W~ith scope", cmeDbgWatchExpScp
+  MenuItemC: "~U~sing the Inspector", cmeDbgInspector
+ EndSubMenu
  MenuItemC: "~C~alling stack", cmeDbgCallStack
  MenuSeparator
  MenuItemC: "C~l~ose debug session", cmeDbgCloseSession
@@ -515,6 +522,20 @@ StatusEntry: "~Ins~ Add", cmBkAdd, kbInsert
 StatusEntry: "~Del~ Delete", cmBkDel, kbDelete
 StatusEntry: "~+~ Enable", cmBkEnable, kbPlus
 StatusEntry: "~-~ Disable", cmBkDisable, kbMinus
+EndStatusRange
+
+#
+# Inspector windows
+#
+StatusRange: hcInspector, 0
+StatusEntry: "~+~ Expand", cmExpand, kbPlus
+StatusEntry: "~-~ Collapse", cmCollapse, kbMinus
+StatusEntry: "~ENTER~ Inspect", cmInspect, kbEnter
+StatusEntry: "~^R~ Recycle", cmRecycle, kbCtR
+StatusEntry: "~^M~ Modify", cmModifyIns, kbCtM
+StatusEntry: "~^F~ Format", cmFormatIns, kbCtF
+StatusHiddenEntry: cmeInfView, kbF1
+StatusHiddenEntry: cmClose, kbEsc
 EndStatusRange
 
 #

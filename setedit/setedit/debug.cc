@@ -35,13 +35,11 @@ may be we should "refresh" the ignores before running.
   * Add some mechanism to enable MI v2. That's much better.
 
   * Advices (only project, ...).
-  * Watchpoints.
   * Some mechanism to verify that a location for a breakpoint is OK. GDB
 says ok to everything. -symbol-list-lines could help, but that's only for
 GDB 6.x. Note: GDB accepts breakpoints everywhere and puts the breakpoint
 somewhere close to the indicated point, may be we just need to find where
 is the real breakpoint.
-  * Inspect variables.
   * Data window.
   * Disassembler window.
   * Put a limit to the ammount of messages in the debug message window.
@@ -77,6 +75,7 @@ directories to look for sources.
 
 ***************************************************************************/
 
+#define _GNU_SOURCE
 #include <ceditint.h>
 #define Uses_stdio
 #define Uses_unistd
@@ -119,6 +118,7 @@ directories to look for sources.
 #define Uses_TSHzGroup
 #define Uses_TSLabelRadio
 #define Uses_TSLabelCheck
+#define Uses_TSNoStaticText
 
 #define Uses_TDialogAID
 
@@ -147,12 +147,17 @@ directories to look for sources.
 #include <pathlist.h>
 #include <diaghelp.h>
 #include <pathtool.h> // FindFile
+#include <edcollec.h>
+
+// TODO: remove
+#include <assert.h>
 
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
 const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
 const char bkptsVersion=2;
 const char wptsVersion=1;
+const char inspVersion=1;
 const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
@@ -166,7 +171,7 @@ const char debugDataVersion=1;
 #define DEBUG_BREAKPOINTS_UPDATE 0
 
 // Variables for the configuration
-const int maxWBox=70, widthFiles=256, widthShort=80;
+const int maxWBox=70, widthFiles=256, widthShort=80, widthExpRes=1024;
 const int widthWtExp=widthFiles, maxWtBox=maxWBox;
 const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
 const int widthPID=32;
@@ -212,7 +217,19 @@ static stTVIntl *icUnknown=NULL,
                 *icReadyToRun=NULL,
                 *icRunning=NULL,
                 *icStopped=NULL,
-                *icDefault=NULL;
+                *icDefault=NULL,
+                *icInspOk=NULL,
+                *icInspWait=NULL,
+                *icInspNoScope=NULL;
+static const char *cInspOk=__("Ok");
+static const char *cInspWait=__("Can't update");
+static const char *cInspNoScope=__("Out of scope");
+
+static void OpenInspector(const char *var);
+static TDialog *createEditExp(char *tit);
+static void ShowErrorInMsgBox();
+static void SaveExpandedRect(opstream &os, TRect &r, unsigned wS, unsigned hS);
+static void ReadExpandedRect(ipstream &is, TRect &r, unsigned wS, unsigned hS);
 
 /*****************************************************************************
   Sources files cache:
@@ -392,6 +409,9 @@ void TSetEditorApp::DebugDeInitVars()
  TVIntl::freeSt(icRunning);
  TVIntl::freeSt(icStopped);
  TVIntl::freeSt(icDefault);
+ TVIntl::freeSt(icInspOk);
+ TVIntl::freeSt(icInspWait);
+ TVIntl::freeSt(icInspNoScope);
 }
 
 /**[txh]********************************************************************
@@ -412,6 +432,8 @@ void TSetEditorApp::DebugCommonCleanUp()
  binReference=NULL;
  binReferenceLen=0;
  DeInitSourcesCache();
+ // TInspectors needs it, maybe others in the future.
+ message(TProgram::deskTop,evBroadcast,cmDbgChgState,NULL);
 }
 
 /**[txh]********************************************************************
@@ -1130,18 +1152,27 @@ char *TSetEditorApp::DebugModifyExpression(char *exp, char *newVal)
  return dbg->ModifyExpression(exp,newVal);
 }
 
+struct evalBox
+{
+ char exp[widthFiles];
+ char res[widthExpRes];
+ char val[widthShort];
+};
+
+
 class TDbgEvalModify : public TDialog
 {
 public:
- TDbgEvalModify() :
+ TDbgEvalModify(evalBox *aBox) :
    TWindowInit(&TDbgEvalModify::initFrame),
-   TDialog(TRect(1,1,1,1),__("Evaluate and Modify")) {};
+   TDialog(TRect(1,1,1,1),__("Evaluate and Modify")) { box=aBox; };
  virtual void handleEvent(TEvent &);
- void SetStartVal(char *val);
 
  TInputLinePiped *exp;
  TInputLinePiped *res;
  TInputLine *val;
+
+ evalBox *box;
 };
 
 /**[txh]********************************************************************
@@ -1155,8 +1186,6 @@ actions to the correct input line.
 
 void TDbgEvalModify::handleEvent(TEvent &event)
 {
- char inputBuffer[widthFiles];
- char valBuffer[widthFiles];
  char *ret;
 
  TDialog::handleEvent(event);
@@ -1164,27 +1193,29 @@ void TDbgEvalModify::handleEvent(TEvent &event)
     switch (event.message.command)
       {
        case cmEval:
-             exp->getData(inputBuffer);
-             ret=TSetEditorApp::DebugEvalExpression(inputBuffer);
+             exp->getData(box->exp);
+             ret=TSetEditorApp::DebugEvalExpression(box->exp);
              if (ret)
                {
-                res->setData(ret);
+                strncpyZ(box->res,ret,widthExpRes);
+                res->setData(box->res);
                 free(ret);
                 exp->selectAll(True);
                }
             clearEvent(event);
             break;
        case cmChange:
-             exp->getData(inputBuffer);
-             val->getData(valBuffer);
-             ret=TSetEditorApp::DebugModifyExpression(inputBuffer,valBuffer);
+             exp->getData(box->exp);
+             val->getData(box->val);
+             ret=TSetEditorApp::DebugModifyExpression(box->exp,box->val);
              if (ret)
                {
-                res->setData(ret);
+                strncpyZ(box->res,ret,widthExpRes);
+                res->setData(box->res);
                 free(ret);
                 exp->selectAll(True);
                }
-             clearEvent(event);
+            clearEvent(event);
             break;
        case cmCaCopy:
             event.message.command=cmtilCopy;
@@ -1194,24 +1225,11 @@ void TDbgEvalModify::handleEvent(TEvent &event)
             event.message.command=cmtilPaste;
             exp->handleEvent(event);
             break;
+       case cmInspect:
+            endModal(cmInspect);
+            clearEvent(event);
+            break;
       }
-}
-
-/**[txh]********************************************************************
-
-  Description:
-  Sets the starting value for the "Expression".
-  
-***************************************************************************/
-
-void TDbgEvalModify::SetStartVal(char *val)
-{
- if (val)
-   {
-    char aux[widthFiles];
-    strncpy(aux,val,widthFiles);
-    exp->setData(aux);
-   }
 }
 
 /**[txh]********************************************************************
@@ -1223,21 +1241,23 @@ void TDbgEvalModify::SetStartVal(char *val)
   
 ***************************************************************************/
 
-TDbgEvalModify *createEvalModifyDialog()
+TDbgEvalModify *createEvalModifyDialog(evalBox *box)
 {
- TDbgEvalModify *d=new TDbgEvalModify();
+ TDbgEvalModify *d=new TDbgEvalModify(box);
  TSViewCol *col=new TSViewCol(d);
 
  TSInputLinePiped *sExp=
    new TSInputLinePiped(widthFiles,1,hID_DbgEvalModifyExp,maxWBox);
  TSInputLinePiped *sRes=
-   new TSInputLinePiped(widthFiles,0,0,maxWBox,tilpNoPipe | tilpNoPaste);
+   new TSInputLinePiped(widthExpRes,0,0,maxWBox,tilpNoPipe | tilpNoPaste);
  TSInputLine *sVal=new TSInputLine(widthShort,1,hID_DbgEvalModifyNewV,maxWBox);
  d->exp=(TInputLinePiped *)sExp->view;
  d->res=(TInputLinePiped *)sRes->view;
  d->val=(TInputLine *)sVal->view;
+ TSetEditorApp::setCmdState(cmInspect,dbg->GetState()==MIDebugger::stopped ?
+                            True : False);
 
- // EN: CEHPRNV
+ // EN: CEHIPRNV
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
              new TSLabel(__("~E~xpression (escape \" characters: \\\")"),sExp),
@@ -1251,6 +1271,7 @@ TDbgEvalModify *createEvalModifyDialog()
              new TSButton(__("Cancel"),cmCancel),
              new TSButton(__("~C~opy"),cmCaCopy),
              new TSButton(__("~P~aste"),cmCaPaste),
+             new TSButton(__("~I~nspect"),cmInspect),
              0);
 
  col->insert(xTSLeft,yTSUp,o1);
@@ -1260,7 +1281,6 @@ TDbgEvalModify *createEvalModifyDialog()
  delete col;
  return d;
 }
-
 
 /**[txh]********************************************************************
 
@@ -1274,12 +1294,23 @@ void TSetEditorApp::DebugEvalModify(char *startVal)
 {
  if (!DebugCheckAcceptCmd())
     return;
- TDbgEvalModify *d=createEvalModifyDialog();
- d->SetStartVal(startVal);
- TProgram::deskTop->execView(d);
- // Dialogs should be destroyed or your members won't de deleted.
- CLY_destroy(d);
- delete[] startVal;
+ evalBox box;
+ memset(&box,0,sizeof(box));
+ if (startVal)
+   {
+    strncpyZ(box.exp,startVal,widthFiles);
+    delete[] startVal;
+   }
+
+ TDbgEvalModify *d=createEvalModifyDialog(&box);
+ if (execDialog(d,&box)==cmInspect)
+   {
+    if (IsEmpty(box.exp))
+       messageBox(__("Nothing to inspect, please provide an expression"),
+                  mfError | mfOKButton);
+    else
+       OpenInspector(box.exp);
+   }
 }
 
 /**[txh]********************************************************************
@@ -1380,6 +1411,926 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
 *****************************************************************************/
 
 /*****************************************************************************
+  TInspector class and functionality
+*****************************************************************************/
+
+class TPVarTree : public TStringable
+{
+public:
+ TPVarTree(const char *var, Boolean fake=False);
+ ~TPVarTree();
+
+ virtual void getText(char *dest, unsigned item, int maxLen);
+
+ mi_gvar *getItem(int index);
+ char *getExpression(int index);
+
+ void collapse(mi_gvar *p);
+ void expand(mi_gvar *p);
+ int countVisChildren(mi_gvar *p);
+ const char *mainVarName() { return var->name; }
+ const char *mainVarExp() { return var->exp; }
+ int markChanged(const char *name, int depth);
+ int recycle();
+ char *createTreeState(mi_gvar *p);
+ char *createTreeState() { return createTreeState(var); }
+ int applyTreeState(mi_gvar *p, const char *st);
+ int applyTreeState(const char *st) { return applyTreeState(var,st); };
+
+ int isOK() { return ok; }
+ void disable() { outOfScope=1; }
+ void undefine();
+
+protected:
+ mi_gvar *var;
+ int ok;
+ int outOfScope;
+ char *exp;
+
+ mi_gvar *init(const char *anExp);
+};
+
+// TODO: ensure we never destroy them if gdb isn't in "stopped"
+TPVarTree::~TPVarTree()
+{
+ if (var)
+   {
+    if (dbg && !outOfScope)
+       dbg->DelgVar(var);
+    mi_free_gvar(var);
+   }
+ delete[] exp;
+}
+
+TPVarTree::TPVarTree(const char *anExp, Boolean fake) :
+   TStringable()
+{
+ exp=NULL;
+ if (fake)
+   {
+    var=mi_alloc_gvar();
+    var->name=strdup(anExp);
+    outOfScope=1;
+    Count=1;
+    ok=1;
+   }
+ else
+   {
+    ok=0;
+    Count=0;
+    outOfScope=0;
+    var=NULL;
+    var=init(anExp);
+   }
+}
+
+const int tstOpened=1, tstHaveChild=2, tstLast=4,
+          tstBase=64; // Just to make them ASCII
+
+char *TPVarTree::createTreeState(mi_gvar *p)
+{
+ int l=1+p->vischild+1, i=0;
+ char *r=new char[l];
+ r[l-1]=0;
+
+ while (i<l && p)
+   {
+    r[i]=tstBase | (((unsigned)p->format)<<3);
+    if (p->numchild)
+       r[i]|=tstHaveChild;
+    if (!p->next)
+       r[i]|=tstLast;
+    if (p->child && p->opened)
+      {
+       r[i]|=tstOpened;
+       p=p->child;
+      }
+    else if (p->next)
+      {
+       p=p->next;
+      }
+    else
+      {
+       while (p && !p->next)
+          p=p->parent;
+       if (p)
+          p=p->next;
+      }
+    i++;
+   }
+ return r;
+}
+
+int TPVarTree::applyTreeState(mi_gvar *p, const char *st)
+{
+ enum mi_gvar_fmt fmt;
+ while (*st && p)
+   {
+    if ((*st & tstHaveChild) && !p->numchild)
+       return 0;
+    if ((*st & tstOpened) && !p->opened)
+       expand(p);
+    fmt=(enum mi_gvar_fmt)((*st>>3) & 7);
+    if (fmt!=p->format)
+      {
+       dbg->SetFormatgVar(p,fmt);
+       if (p->value)
+          p->changed=1;
+      }
+    if (p->child)
+      {
+       p=p->child;
+      }
+    else if (p->next)
+      {
+       p=p->next;
+      }
+    else
+      {
+       while (p && !p->next)
+          p=p->parent;
+       if (p)
+          p=p->next;
+      }
+    st++;
+   }
+ return !*st && !p;
+}
+
+void TPVarTree::undefine()
+{
+ if (dbg && !outOfScope)
+    dbg->DelgVar(var);
+ disable();
+}
+
+mi_gvar *TPVarTree::init(const char *anExp)
+{
+ mi_gvar *v=NULL;
+ if (dbg && dbg->GetState()==MIDebugger::stopped)
+   {
+    v=dbg->AddgVar(anExp);
+    if (v)
+      {
+       dbg->EvalgVar(v);
+       if (v->numchild)
+         {
+          dbg->GetChildgVar(v);
+          dbg->FillTypeVal(v->child);
+         }
+       ok=1;
+       if (!exp)
+          exp=newStr(anExp);
+       Count=1+v->numchild;
+      }
+   }
+ return v;
+}
+
+int TPVarTree::recycle()
+{
+ if (!outOfScope  || !dbg || dbg->GetState()!=MIDebugger::stopped)
+    return 0;
+ mi_gvar *v=init(exp);
+ if (v)
+   {// Find which ones are expanded
+    char *st=createTreeState(var);
+    mi_free_gvar(var);
+    var=v;
+    outOfScope=0;
+    // Try to expand the same vars
+    applyTreeState(var,st);
+    delete[] st;
+    return 1;
+   }
+ return 0;
+}
+
+int TPVarTree::markChanged(const char *name, int depth)
+{
+ mi_gvar *p=var;
+ int curDepth=0;
+
+ while (p)
+   {
+    if (curDepth==depth && strcmp(p->name,name)==0)
+      {
+       p->changed=1;
+       dbgPr("Marked %s as changed\n",p->exp);
+       return 1;
+      }
+    if (p->child)
+      {
+       p=p->child;
+       curDepth++;
+      }
+    else if (p->next)
+      {
+       p=p->next;
+      }
+    else
+      {
+       while (p && !p->next)
+         {
+          p=p->parent;
+          curDepth--;
+         }
+       if (p)
+          p=p->next;
+      }
+   }
+ return 0;
+}
+
+mi_gvar *TPVarTree::getItem(int index)
+{
+ mi_gvar *p=var;
+ for (int i=0; p && i<index; )
+    {
+     int have=1+p->vischild;
+     if (i+have>index)
+       {// Go deeper
+        p=p->child;
+        i++;
+       }
+     else
+       {// Next in the list
+        p=p->next;
+        i+=have;
+       }
+    }
+ return p;
+}
+
+char *TPVarTree::getExpression(int index)
+{
+ DynStrCatStruct st;
+
+ DynStrCatInit(&st,"*(",2);
+ mi_gvar *p=var;
+ int first=1;
+ for (int i=0; p && i<index; )
+    {
+     int have=1+p->vischild;
+     if (i+have>index)
+       {// Go deeper
+        // Classes uses <class> to separate members
+        if (p->exp && p->type && p->type[0])
+          {
+           if (first)
+              DynStrCat(&st,"(",1);
+           DynStrCat(&st,p->exp);
+           if (first)
+             {
+              DynStrCat(&st,")",1);
+              first=0;
+             }
+           DynStrCat(&st,".",1);
+          }
+        p=p->child;
+        i++;
+       }
+     else
+       {// Next in the list
+        p=p->next;
+        i+=have;
+       }
+    }
+ if (!p)
+   {
+    free(st.str);
+    return NULL;
+   }
+ DynStrCat(&st,p->exp);
+ DynStrCat(&st,")",1);
+ return st.str;
+}
+
+void TPVarTree::getText(char *dest, unsigned item, int maxLen)
+{
+ mi_gvar *p=getItem(item);
+
+ // Indent
+ int spaces=p->depth*2;
+ if (spaces>=maxLen)
+    spaces=maxLen-1;
+ if (spaces)
+   {
+    memset(dest,' ',spaces);
+    dest+=spaces;
+    maxLen-=spaces;
+    if (maxLen==1)
+      {
+       *dest=0;
+       return;
+      }
+   }
+
+ if (p->numchild)
+   {
+    int size=CLY_snprintf(dest,maxLen,"%c ",p->opened ? '-' : '+');
+    dest+=size;
+    maxLen-=size;
+   }
+
+ // The following operations needs gdb in stopped state.
+ if (!outOfScope && dbg && dbg->GetState()==MIDebugger::stopped)
+   {
+    if (!p->numchild && p->attr==MI_ATTR_DONT_KNOW)
+       dbg->FillAttr(p);
+    if (p->changed)
+      {
+       p->changed=0;
+       ::free(p->value);
+       p->value=NULL;
+       dbgPr("Forcing update of %s\n",p->name);
+      }
+    if (!p->type || !p->value)
+       dbg->FillOneTypeVal(p);
+   }
+
+ if ((!p->type || *p->type==0) && (!p->value || *p->value==0))
+    CLY_snprintf(dest,maxLen,"%s",p->name);
+ else
+    CLY_snprintf(dest,maxLen,"%s [%s]=%s",p->exp,p->type,p->value);
+}
+
+void TPVarTree::collapse(mi_gvar *p)
+{
+ p->opened=0;
+ int reduce=p->vischild;
+ mi_gvar *r=p->parent;
+ p->vischild=0;
+ while (r)
+   {
+    r->vischild-=reduce;
+    r=r->parent;
+   }
+ Count=1+var->vischild;
+}
+
+int TPVarTree::countVisChildren(mi_gvar *p)
+{
+ mi_gvar *n=p->child;
+ int res=0;
+ while (n)
+   {
+    res+=1+n->vischild;
+    n=n->next;
+   }
+ return res;
+}
+
+void TPVarTree::expand(mi_gvar *p)
+{
+ if (p->numchild && !p->child)
+   {// First time we expand it
+    if (outOfScope || !dbg || dbg->GetState()!=MIDebugger::stopped)
+       // We will hang if running and get nothing for other states.
+       return;
+    dbg->GetChildgVar(p);
+    // That's too slow :-(. We just update what's needed.
+    //dbg->FillTypeVal(p->child);
+   }
+ p->opened=1;
+ int increase=countVisChildren(p);
+ p->vischild=increase;
+ mi_gvar *r=p->parent;
+ while (r)
+   {
+    r->vischild+=increase;
+    r=r->parent;
+   }
+ Count=1+var->vischild;
+}
+
+class TInspector : public TDialog
+{
+public:
+ TInspector(TPVarTree *p);
+ TInspector(const TRect &aR, char *anExp, char *aTState);
+ ~TInspector();
+
+ virtual void handleEvent(TEvent &event);
+ virtual void setState(uint16 aState, Boolean enable);
+
+ void inspect();
+ void expand();
+ void collapse();
+ void recycle();
+ int  modify();
+ int  format();
+ void updateCommands();
+ void updateVars(mi_gvar_chg *changed);
+ const char *getVar() { return tree ? tree->mainVarExp() : exp; }
+ char *getTreeState() { return tree ? tree->createTreeState() : tstate; }
+
+ static int getCountInspectors() { return cInspectors; }
+
+protected:
+ TPVarTree *tree;
+ mi_gvar *focused;
+ int nFocused;
+ TStringableListBox *theLBox;
+ TNoStaticText      *status;
+ int outOfScope;
+ enum { stNone, stOk, stWaitGDB, stOutOfScope };
+ int iStatus;
+ TSNoStaticText *CreateStatus();
+
+ char *exp, *tstate;
+
+ static int cInspectors;
+};
+
+int TInspector::cInspectors=0;
+
+TInspector::~TInspector()
+{
+ delete tree;
+ delete[] exp;
+ delete[] tstate;
+ cInspectors--;
+}
+
+int TInspector::modify()
+{
+ if (!focused || !dbg)
+    return 0;
+ char exp[widthWtExp];
+ if (focused->value)
+    strncpyZ(exp,focused->value,widthWtExp);
+ else
+    exp[0]=0;
+ if (execDialog(createEditExp(__("Modify variable")),exp)==cmOK)
+   {
+    if (dbg->AssigngVar(focused,exp))
+      {
+       theLBox->drawView();
+       return 1;
+      }
+    ShowErrorInMsgBox();
+   }
+ return 0;
+}
+
+void TInspector::setState(uint16 aState, Boolean enable)
+{
+ TDialog::setState(aState,enable);
+ // Update the commands when we become active.
+ if (aState==sfActive && enable)
+    updateCommands();
+}
+
+void TInspector::recycle()
+{
+ if (!outOfScope)
+    return;
+ if (!tree && exp)
+   {// It was loaded from disk and we are recreating it
+    tree=new TPVarTree(exp);
+    if (tree->isOK())
+      {
+       delete[] exp; exp=NULL;
+       tree->applyTreeState(tstate);
+       delete[] tstate; tstate=NULL;
+       outOfScope=0;
+       theLBox->newList(tree);
+       updateCommands();
+      }
+    else
+       delete tree;
+    return;
+   }
+ if (tree->recycle())
+   {
+    outOfScope=0;
+    theLBox->setRange(tree->GetCount());
+    theLBox->focusItem(0);
+    updateCommands();
+   }
+}
+
+void TInspector::expand()
+{
+ if (outOfScope || !focused || !focused->numchild || focused->opened)
+    return;
+ tree->expand(focused);
+ theLBox->setRange(tree->GetCount());
+ theLBox->drawView();
+ updateCommands();
+}
+
+void TInspector::collapse()
+{
+ if (outOfScope || !focused || !focused->numchild || !focused->opened)
+    return;
+ tree->collapse(focused);
+ theLBox->setRange(tree->GetCount());
+ theLBox->drawView();
+ updateCommands();
+}
+
+void TInspector::updateCommands()
+{
+ // Compute the new status:
+ int cond1=dbg && dbg->GetState()==MIDebugger::stopped;
+ int cond2=cond1 && focused;
+ int cond=cond2 && focused->numchild;
+ int niStatus;
+ const char *cStatus;
+ if (outOfScope)
+   {
+    niStatus=stOutOfScope;
+    cStatus=TVIntl::getText(cInspNoScope,icInspNoScope);
+   }
+ else if (!cond1)
+   {
+    niStatus=stWaitGDB;
+    cStatus=TVIntl::getText(cInspWait,icInspWait);
+   }
+ else
+   {
+    niStatus=stOk;
+    cStatus=TVIntl::getText(cInspOk,icInspOk);
+   }
+ // Update according it
+ TSetEditorApp::setCmdState(cmInspect,cond2 && focused->ispointer ?
+                            True : False);
+ TSetEditorApp::setCmdState(cmExpand,cond && !focused->opened ? True : False);
+ TSetEditorApp::setCmdState(cmCollapse,cond && focused->opened ? True : False);
+ TSetEditorApp::setCmdState(cmRecycle,cond1 && outOfScope ? True : False);
+ TSetEditorApp::setCmdState(cmModifyIns,cond2 && !focused->numchild &&
+                            focused->attr==MI_ATTR_EDITABLE ? True : False);
+ if (niStatus!=iStatus)
+   {
+    iStatus=niStatus;
+    status->setText(cStatus);
+    TSetEditorApp::setCmdState(cmFormatIns,cond2 ? True : False);
+   }
+}
+
+void TInspector::updateVars(mi_gvar_chg *changed)
+{
+ if (outOfScope)
+    return;
+
+ mi_gvar_chg *ch=changed;
+ const char *n=tree->mainVarName();
+ int l=strlen(n);
+ int nchanged=0;
+
+ while (ch)
+   {
+    if (ch->name && strncmp(n,ch->name,l)==0 &&
+        (!ch->name[l] || ch->name[l]=='.'))
+      {
+       int depth=0;
+       char *s;
+       if (ch->name[l])
+          for (depth=1, s=ch->name+l+1; *s; s++)
+              if (*s=='.') depth++;
+       dbgPr("Changed var: %s (%d)\n",ch->name,depth);
+       if (depth==0 && (!ch->in_scope || ch->new_type))
+         {// TODO: solve it:
+          if (ch->new_type)
+             printf("It happened!!! type changed for gdb var\n");
+          dbgPr("Disabling var\n");
+          tree->undefine();
+          outOfScope=1;
+          updateCommands();
+          return;
+         }
+       nchanged+=tree->markChanged(ch->name,depth);
+      }
+    ch=ch->next;
+   }
+ if (nchanged)
+    theLBox->drawView();
+}
+
+static
+TDialog *createFormatInst()
+{
+ TSViewCol *col=new TSViewCol(__("Format"));
+
+ // EN: BDHNO
+ col->insert(xTSLeft,yTSUp,
+             TSLabelRadio(__("Format"),
+                          __("~N~atural"),
+                          __("~B~inary"),
+                          __("~D~ecimal"),
+                          __("~H~exadecimal"),
+                          __("~O~ctal"),0));
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(cmFormatIns);
+ delete col;
+ return d;
+}
+
+int TInspector::format()
+{
+ if (!dbg || !focused || iStatus!=stOk)
+    return 0;
+ uint32 box=(uint32)focused->format;
+ if (execDialog(createFormatInst(),&box)==cmOK)
+   {
+    if (dbg->SetFormatgVar(focused,(enum mi_gvar_fmt)box))
+      {
+       focused->changed=1;
+       theLBox->drawView();
+       return 1;
+      }
+    ShowErrorInMsgBox();
+   }
+ return 0;
+}
+
+void TInspector::handleEvent(TEvent &event)
+{
+ TDialog::handleEvent(event);
+ if (event.what==evCommand)
+   {
+    switch (event.message.command)
+      {
+       case cmInspect:
+            inspect();
+            break;
+       case cmExpand:
+            expand();
+            break;
+       case cmCollapse:
+            collapse();
+            break;
+       case cmRecycle:
+            recycle();
+            break;
+       case cmClose:
+            close();
+            break;
+       case cmModifyIns:
+            modify();
+            break;
+       case cmFormatIns:
+            format();
+            break;
+       case cmDbgChgState:
+            // I don't know if it will be needed but is safer.
+            if (!dbg || (dbg->GetState()==MIDebugger::disconnected ||
+                dbg->GetState()==MIDebugger::connected))
+              {
+               if (tree)
+                  tree->disable();
+               outOfScope=1;
+              }
+            updateCommands();
+            break;
+       default:
+            return;
+      }
+    clearEvent(event);
+   }
+ else if (event.what==evBroadcast)
+   {
+    switch (event.message.command)
+      {
+       case cmListItemFocused:
+            nFocused=((TListViewer *)event.message.infoPtr)->focused;
+            focused=tree->getItem(nFocused);
+            updateCommands();
+            break;
+       case cmVarChanged:
+            updateVars((mi_gvar_chg *)event.message.infoPtr);
+            break;
+       case cmDbgChgState:
+            if (!dbg || (dbg->GetState()==MIDebugger::disconnected ||
+                dbg->GetState()==MIDebugger::connected))
+              {
+               if (tree)
+                  tree->disable();
+               outOfScope=1;
+              }
+            updateCommands();
+            break;
+       default:
+            return;
+      }
+    clearEvent(event);
+   }
+}
+
+void TInspector::inspect()
+{
+ char *e=tree->getExpression(nFocused);
+ dbgPr("Expression: %s\n",e);
+ OpenInspector(e);
+ free(e);
+}
+
+TInspector::TInspector(TPVarTree *p) :
+    TWindowInit(TInspector::initFrame),
+    TDialog(TRect(-1,-1,-1,-1),__("Inspector"))
+{
+ flags=wfMove | wfClose | wfGrow | wfZoom;
+ growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+ outOfScope=0;
+
+ focused=NULL;
+ exp=tstate=NULL;
+ TSetEditorApp::setCmdState(cmInspect,False);
+ TSetEditorApp::setCmdState(cmExpand,False);
+ TSetEditorApp::setCmdState(cmCollapse,False);
+
+ TSViewCol *col=new TSViewCol(this);
+ TRect r=GetDeskTopSize();
+
+ tree=p;
+ int hMax=r.b.y-r.a.y-3-2-2;
+ int wMax=(r.b.x-r.a.x)*8/10, w;
+ int h=hMax;
+ w=wMax;
+
+ TSStringableListBox *lbox=new TSStringableListBox(w,h,tsslbVertical | tsslbHorizontal);
+ theLBox=(TStringableListBox *)(lbox->view);
+ theLBox->hScrollBar->setParams(0,0,5000,w,1);
+ theLBox->growMode=gfGrowHiX | gfGrowHiY;
+
+ col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),0));
+
+ col->doItCenter(hcInspector);
+ delete col;
+
+ cInspectors++;
+}
+
+TInspector::TInspector(const TRect &aR, char *anExp, char *aTState) :
+    TWindowInit(TInspector::initFrame),
+    TDialog(aR,__("Inspector"))
+{
+ flags=wfMove | wfClose | wfGrow | wfZoom;
+ growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+
+ outOfScope=1;
+ focused=NULL;
+ tree=NULL;
+ exp=anExp;
+ tstate=aTState;
+
+ TSViewCol *col=new TSViewCol(this);
+
+ int w=aR.b.x-aR.a.x-4;
+ int h=aR.b.y-aR.a.y-3;
+
+ TSStringableListBox *lbox=new TSStringableListBox(w,h,tsslbVertical | tsslbHorizontal);
+ theLBox=(TStringableListBox *)(lbox->view);
+ theLBox->hScrollBar->setParams(0,0,5000,w,1);
+ theLBox->growMode=gfGrowHiX | gfGrowHiY;
+ theLBox->newList(new TPVarTree(anExp,True));
+
+ col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),0));
+
+ col->doIt();
+ helpCtx=hcInspector;
+ delete col;
+
+ updateCommands();
+
+ cInspectors++;
+}
+
+TSNoStaticText *TInspector::CreateStatus()
+{
+ const char *m1=TVIntl::getText(cInspOk,icInspOk);
+ const char *m2=TVIntl::getText(cInspWait,icInspWait);
+ const char *m3=TVIntl::getText(cInspNoScope,icInspNoScope);
+ int l1=strlen(m1), l2=strlen(m2), l=l1;
+ if (l2>l) l=l2;
+ l2=strlen(m3);
+ if (l2>l) l=l2;
+
+ char b[l+1];
+ memset(b,' ',l);
+ b[l]=0;
+ TSNoStaticText *st=new TSNoStaticText(b);
+ status=(TNoStaticText *)st->view;
+ status->growMode=gfGrowHiY | gfGrowLoY;
+ iStatus=stNone;
+
+ return st;
+}
+
+class TDskInspector : public TDskWin
+{
+public:
+ TDskInspector(TInspector *w);
+ ~TDskInspector() {};
+
+ char *GetText(char *dest, short maxLen);
+ void saveData(opstream &os);
+ static void readData(ipstream &is, char version);
+
+protected:
+ TInspector *inspector;
+};
+
+TDskInspector::TDskInspector(TInspector *w)
+{
+ view=inspector=w;
+ type=dktDbgIns;
+ CanBeDeletedFromDisk=0;
+ CanBeSaved=0;
+ ZOrder=-1;
+}
+
+char *TDskInspector::GetText(char *dest, short maxLen)
+{
+ TVIntl::snprintf(dest,maxLen,__("   Inspector %s"),inspector->getVar());
+ return dest;
+}
+
+void TDskInspector::saveData(opstream &os)
+{
+ unsigned wS=TScreen::getCols();
+ unsigned hS=TScreen::getRows();
+ TRect size=inspector->getBounds();
+ // size
+ SaveExpandedRect(os,size,wS,hS);
+ // z-order
+ os << (int)(TProgram::deskTop->indexOf(view));
+ // expression
+ os.writeString(inspector->getVar());
+ // tree state
+ char *state=inspector->getTreeState();
+ os.writeString(state);
+ delete[] state;
+}
+
+void TDskInspector::readData(ipstream &is, char version)
+{
+ unsigned wS=TScreen::getCols();
+ unsigned hS=TScreen::getRows();
+ TRect size;
+
+ // size
+ ReadExpandedRect(is,size,wS,hS);
+ // z-order
+ int ZOrder;
+ is >> ZOrder;
+ // expression
+ char *exp=is.readString();
+ // tree state
+ char *tstate=is.readString();
+
+ // Recreate it
+ TInspector *d=new TInspector(size,exp,tstate);
+ TDskInspector *win=new TDskInspector(d);
+ win->ZOrder=ZOrder;
+ AddNonEditorToHelper(win);
+ InsertInOrder(TProgram::deskTop,win);
+}
+
+static
+void OpenInspector(const char *var)
+{
+ TPVarTree *p=new TPVarTree(var);
+
+ if (p && p->isOK())
+   {
+    TInspector *d=new TInspector(p);
+   
+    TStringableListBoxRec box;
+    box.items=p;
+    box.selection=0;
+    d->setData(&box);
+
+    TDskInspector *win=new TDskInspector(d);
+    AddNonEditorToHelper(win);
+    InsertInOrder(TProgram::deskTop,win);
+   }
+ else
+    ShowErrorInMsgBox();
+}
+
+void TSetEditorApp::DebugInspector(char *startVal)
+{
+ char exp[widthWtExp];
+ if (startVal)
+   {
+    strncpyZ(exp,startVal,widthWtExp);
+    delete[] startVal;
+   }
+ else
+    exp[0]=0;
+ if (execDialog(createEditExp(__("Inspect variable")),exp)==cmOK)
+    OpenInspector(exp);
+}
+
+/*****************************************************************************
+  End of TInspector class and functionality
+*****************************************************************************/
+
+/*****************************************************************************
   TBreakpoints class
 
  RHIDE dialog to be compatible:
@@ -1418,7 +2369,6 @@ void ComputeBreakW(int &wWhere, int &wCond, int maxLen)
  rest=maxLen-(7+wThread+wTimes);
  wWhere=rest*60/100;
  wCond=rest-wWhere;
- //printf("wWhere: %d wCond: %d\n",wWhere,wCond);
  // Add EOS
  wWhere++; wCond++;
 }
@@ -1492,7 +2442,7 @@ void TBreakpoints::add(mi_bkpt *b)
 void TBreakpoints::updateAbs(mi_bkpt *b)
 {
  if (!b->file)
-   {
+   {// TODO: dbgPr
     printf("Bogus breakpoint\n");
     return;
    }
@@ -3019,31 +3969,7 @@ public:
  //int  GoAction(ccIndex i);
  int  DeleteAction(ccIndex i, Boolean fromDiskToo=False);
  char *GetText(char *dest, short maxLen);
- int  Compare(void *p,int t) { return (t==dktDbgMsg); };
-
- void write(opstream& os);
- void *read(ipstream& is);
-
- const char *streamableName() const
-     { return name; }
-
-protected:
- TDskDbgMsg(StreamableInit) { type=dktDbgMsg; CanBeSaved=0; CanBeDeletedFromDisk=0; };
-
-public:
- static const char * const name;
- static TStreamable *build();
 };
-
-inline ipstream& operator >> ( ipstream& is, TDskDbgMsg& cl )
-    { return is >> (TStreamable&)cl; }
-inline ipstream& operator >> ( ipstream& is, TDskDbgMsg*& cl )
-    { return is >> (void *&)cl; }
-
-inline opstream& operator << ( opstream& os, TDskDbgMsg& cl )
-    { return os << (TStreamable&)cl; }
-inline opstream& operator << ( opstream& os, TDskDbgMsg* cl )
-    { return os << (TStreamable *)cl; }
 
 TDskDbgMsg::TDskDbgMsg(TView *w)
 {
@@ -3052,13 +3978,10 @@ TDskDbgMsg::TDskDbgMsg(TView *w)
  CanBeDeletedFromDisk=0;
  CanBeSaved=0;
  ZOrder=-1;
- //wS=TScreen::getCols();
- //hS=TScreen::getRows();
 }
 
 TDskDbgMsg::~TDskDbgMsg()
 {
- dbgPr("~TDskDbgMsg\n");
 }
 
 int TDskDbgMsg::DeleteAction(ccIndex, Boolean)
@@ -3072,22 +3995,6 @@ char *TDskDbgMsg::GetText(char *dest, short maxLen)
  const char *msg=DebugMsgStateName();
  TVIntl::snprintf(dest,maxLen,__("   Debugger Window [%s]"),msg);
  return dest;
-}
-
-const char * const TDskDbgMsg::name="TDskDbgMsg";
-
-TStreamable *TDskDbgMsg::build()
-{
- return new TDskDbgMsg(streamableInit);
-}
-
-void TDskDbgMsg::write(opstream &)
-{
-}
-
-void *TDskDbgMsg::read(ipstream &)
-{
- return this;
 }
 
 /*****************************************************************************
@@ -3364,6 +4271,9 @@ void DebugMsgSetState()
          cleanStop=0;
          break;
    }
+ if (TInspector::getCountInspectors())
+    message(TProgram::deskTop->current,evCommand,cmDbgChgState,NULL);
+
  MsgWindow->SetStatusGDB(msg);
  if (cleanStop)
     MsgWindow->SetStatusStop("");
@@ -3490,6 +4400,7 @@ void DebugMsgSetStopped()
  if (stoppedInfo->reason==sr_wp_scope && stoppedInfo->have_wpno)
    {// Must be disabled
     wpts.unset(stoppedInfo->wpno);
+    // TODO: dbgPr
     printf("Disabling watchpoint %d, out of scope\n",stoppedInfo->wpno);
    }
 }
@@ -3711,34 +4622,9 @@ public:
  TDskDbgWt(TView *w);
  ~TDskDbgWt();
 
- //int  GoAction(ccIndex i);
  int  DeleteAction(ccIndex i, Boolean fromDiskToo=False);
  char *GetText(char *dest, short maxLen);
- int  Compare(void *p,int t) { return (t==dktDbgMsg); };
-
- void write(opstream& os);
- void *read(ipstream& is);
-
- const char *streamableName() const
-     { return name; }
-
-protected:
- TDskDbgWt(StreamableInit) { type=dktDbgMsg; CanBeSaved=0; CanBeDeletedFromDisk=0; };
-
-public:
- static const char * const name;
- static TStreamable *build();
 };
-
-inline ipstream& operator >> ( ipstream& is, TDskDbgWt& cl )
-    { return is >> (TStreamable&)cl; }
-inline ipstream& operator >> ( ipstream& is, TDskDbgWt*& cl )
-    { return is >> (void *&)cl; }
-
-inline opstream& operator << ( opstream& os, TDskDbgWt& cl )
-    { return os << (TStreamable&)cl; }
-inline opstream& operator << ( opstream& os, TDskDbgWt* cl )
-    { return os << (TStreamable *)cl; }
 
 TDskDbgWt::TDskDbgWt(TView *w)
 {
@@ -3747,13 +4633,10 @@ TDskDbgWt::TDskDbgWt(TView *w)
  CanBeDeletedFromDisk=0;
  CanBeSaved=0;
  ZOrder=-1;
- //wS=TScreen::getCols();
- //hS=TScreen::getRows();
 }
 
 TDskDbgWt::~TDskDbgWt()
 {
- dbgPr("~TDskDbgWt\n");
 }
 
 int TDskDbgWt::DeleteAction(ccIndex, Boolean)
@@ -3769,22 +4652,6 @@ char *TDskDbgWt::GetText(char *dest, short maxLen)
     watches=WtCol->getCount();
  TVIntl::snprintf(dest,maxLen,__("   Watches Window (%d watches)"),watches);
  return dest;
-}
-
-const char * const TDskDbgWt::name="TDskDbgWt";
-
-TStreamable *TDskDbgWt::build()
-{
- return new TDskDbgWt(streamableInit);
-}
-
-void TDskDbgWt::write(opstream &)
-{
-}
-
-void *TDskDbgWt::read(ipstream &)
-{
- return this;
 }
 
 /*****************************************************************************
@@ -4017,12 +4884,20 @@ void TSetEditorApp::DebugWatchExp(Boolean wScope, char *val)
 
 void DebugUpdateWatches()
 {
- if (!WtWindow || !WtCol || !WtList)
+ if (!WtWindow || !WtCol || !WtList || !WtCol->getCount())
+   {
+    if (TInspector::getCountInspectors())
+      {
+       mi_gvar_chg *changed;
+       if (!dbg || !dbg->ListChangedgVar(changed))
+          return;
+       message(TProgram::deskTop,evBroadcast,cmVarChanged,changed);
+       mi_free_gvar_chg(changed);
+      }
     return;
+   }
  ccIndex c=WtCol->getCount(), i;
- if (!c)
-    return;
- int changedVars=0, deletedVars=0;
+ int changedVars=0, deletedVars=0, withScope=0;
  // First pass: try to define pending vars and evaluate normal ones.
  for (i=0; i<c; i++)
     {
@@ -4032,7 +4907,12 @@ void DebugUpdateWatches()
         WtCol->Refresh(i);
         changedVars++;
        }
+     else if (gv->type==gvtWScope)
+        withScope++;
     }
+ if (!withScope && !TInspector::getCountInspectors())
+    // Don't bother if we aren't using them
+    return;
  // Now find which variables changed
  mi_gvar_chg *changed;
  if (!dbg->ListChangedgVar(changed))
@@ -4058,38 +4938,46 @@ void DebugUpdateWatches()
       }
    }
 
- ch=changed;
- while (ch)
+ if (withScope)
    {
-    for (i=0; i<c; i++)
-       {
-        gVar *gv=WtCol->At(i);
-        if (gv->v && strcmp(gv->v->name,ch->name)==0)
+    ch=changed;
+    while (ch)
+      {
+       for (i=0; i<c; i++)
           {
-           if (!ch->in_scope)
-             {// Ok, no longer exists
-              if (WtCol->DeleteVar(i))
-                {
-                 c=WtCol->getCount();
-                 deletedVars++;
-                }
-             }
-           else
+           gVar *gv=WtCol->At(i);
+           if (gv->type==gvtWScope && gv->v && strcmp(gv->v->name,ch->name)==0)
              {
-              if (ch->new_type)
-                {// I know it from gdb sources but I don't know how can it happend.
-                 ::free(gv->v->type);
-                 gv->v->type=ch->new_type;
-                 ch->new_type=NULL;
+              // Mark used so TInspectors doesn't need to check it
+              free(ch->name);
+              ch->name=NULL;
+              if (!ch->in_scope)
+                {// Ok, no longer exists
+                 if (WtCol->DeleteVar(i))
+                   {
+                    c=WtCol->getCount();
+                    deletedVars++;
+                   }
                 }
-              WtCol->Refresh(i);
-              changedVars++;
+              else
+                {
+                 if (ch->new_type)
+                   {// I know it from gdb sources but I don't know how can it happend.
+                    ::free(gv->v->type);
+                    gv->v->type=ch->new_type;
+                    ch->new_type=NULL;
+                   }
+                 WtCol->Refresh(i);
+                 changedVars++;
+                }
+              break;
              }
-           break;
           }
-       }
-    ch=ch->next;
+       ch=ch->next;
+      }
    }
+ if (changed)
+    message(TProgram::deskTop,evBroadcast,cmVarChanged,changed);
  mi_free_gvar_chg(changed);
 
  if (changedVars || deletedVars)
@@ -4264,6 +5152,21 @@ void ReadExpandedRect(ipstream &is, TRect &r, unsigned wS, unsigned hS)
  r.b.y=CompactCoord(b,hS);
 }
 
+static
+void SaveInspector(TDskWin *win, void *data)
+{
+ TDskInspector *w=(TDskInspector *)win;
+ opstream *os=(opstream *)data;
+ w->saveData(*os);
+}
+
+static
+void CountInspectors(TDskWin *win, void *data)
+{
+ int *i=(int *)data;
+ (*i)++;
+}
+
 void DebugSaveData(opstream &os)
 {
  unsigned wS=TScreen::getCols();
@@ -4332,6 +5235,13 @@ void DebugSaveData(opstream &os)
  DBG_SaveBreakpoints(os);
  // Watchpoints
  DBG_SaveWatchpoints(os);
+ // Inspectors
+ os << inspVersion;
+ int inspectors=0;
+ TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,CountInspectors,&inspectors);
+ os << inspectors;
+ if (inspectors)
+    TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,SaveInspector,&os);
  // No more data
  os << svAbsent;
 }
@@ -4404,8 +5314,17 @@ void DebugReadData(ipstream &is)
  DBG_ReadBreakpoints(is);
  // Watchpoints
  is >> aux;
- if (aux)
-    DBG_ReadWatchpoints(is,aux);
+ if (!aux)
+    return;
+ DBG_ReadWatchpoints(is,aux);
+ // Inspectors
+ is >> aux;
+ if (!aux)
+    return;
+ int inspectors;
+ is >> inspectors;
+ for (int i=0; i<inspectors; i++)
+     TDskInspector::readData(is,aux);
  // No more data
  is >> aux;
 }
@@ -4437,6 +5356,7 @@ int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
 void TSetEditorApp::DebugEditBreakPts() {}
 void TSetEditorApp::DebugEditWatchPts() {}
+void TSetEditorApp::DebugInspector(char *startVal) { delete[] startVal; }
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}

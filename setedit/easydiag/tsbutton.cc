@@ -74,6 +74,8 @@ void TSButtonBase::fill(int type, const char *aTitle, ushort aCommand, ushort aF
  if (cb!=0)
     b->setCallBack(cb,cbData);
  view=b;
+ // That's the more common ... I guess
+ b->growMode=gfGrowAll;
 }
 
 void TSButtonBase::insert(TDialog *d)
@@ -95,9 +97,9 @@ void EasyInsertOKCancelSp(TSViewCol *col, int sep)
 void EasyInsertOKCancel(TSViewCol *col, int sep)
 {
  TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
- ok->view->growMode=gfGrowAll;
+ //ok->view->growMode=gfGrowAll;
  TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
- cancel->view->growMode=gfGrowAll;
+ //cancel->view->growMode=gfGrowAll;
  TSHzGroup *but12=new TSHzGroup(ok,cancel,sep);
  col->insert(xTSCenter,yTSDown,but12);
 }

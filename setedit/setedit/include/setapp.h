@@ -147,7 +147,7 @@ const int
   cmeDbgWatchExpNorm= cmeBase+123,
   cmeDbgWatchExpScp = cmeBase+124,
   cmeDbgEditWatchPts= cmeBase+125,
-  //Moved - cmeSelWatchesWin  = cmeBase+126,
+  cmeDbgInspector   = cmeBase+126,
   cmeDbgEndSession  = cmeBase+127,
   cmeDbgCloseSession= cmeBase+128,
   cmeDbgGoConnected = cmeBase+129,
@@ -404,6 +404,7 @@ public:
     static void DebugEditBreakPts();
     static void DebugEditWatchPts();
     static void DebugMoveBreakPts();
+    static void DebugInspector(char *startVal);
 
 protected:
 

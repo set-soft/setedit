@@ -28,7 +28,15 @@ const int
       cmBkDel         =0x22A5,
       cmBkEnable      =0x22A6,
       cmBkDisable     =0x22A7,
-      cmBkGo          =0x22A8;
+      cmBkGo          =0x22A8,
+      cmInspect       =0x22A9,
+      cmExpand        =0x22AA,
+      cmCollapse      =0x22AB,
+      cmVarChanged    =0x22AC, // Broadcast
+      cmDbgChgState   =0x22AD, // To current or Broadcast for dis/connected
+      cmRecycle       =0x22AE,
+      cmModifyIns     =0x22AF,
+      cmFormatIns     =0x22B0;
 
 const int
       hcListWin            =0x2110,
@@ -47,6 +55,7 @@ const int
       hcEditBkpt           =0x2270,
       hcEditWp             =0x2278,
       hcBkptDialog         =0x2280,
-      hcWpDialog           =0x2281;
+      hcWpDialog           =0x2281,
+      hcInspector          =0x2290;
 
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -371,4 +371,11 @@ _("Watc~h~ an exp. (w/scope)")
 _("~C~alling stack")
 _("C~l~ose debug session")
 _("~D~estroy debug session (DANGER!)")
+_("~+~ Expand")
+_("~-~ Collapse")
+_("~+~ Enable")
+_("~-~ Disable")
+_("~Ins~ Send command")
+_("~+~ Add w/scope")
 #endif
+
