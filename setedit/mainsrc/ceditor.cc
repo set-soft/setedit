@@ -1385,8 +1385,8 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
           { // If is the first make the empty line
            FirstEmpty=False;
            ushort Val;
-           ((char *)Val)[0]=0x20;
-           ((char *)Val)[1]=color;
+           ((char *)&Val)[0]=0x20;
+           ((char *)&Val)[1]=color;
            for (int i=size.x; i;)
                b[--i]=Val;
           }
