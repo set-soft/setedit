@@ -1363,6 +1363,7 @@ End
 #
 Name=Cascading Style Sheets v2
 Files=css,css2,cs2
+EmacsModes=css,Css,CSS
 HexMarker=#
 OpenComment1=/*
 CloseComment1=*/

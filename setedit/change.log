@@ -1,4 +1,10 @@
 $Log$.
+Revision 1.379  2003/05/20 14:12:42  set
+* Added: A new couple of commands to copy and paste to/from the OS
+clipboard when using the TInputLinePiped input boxes. These commands must
+be used in menu files if you want to use the OS clipboard for it. They are
+called cmtilCopyOS and cmtilPasteOS. From a request by Thiago.
+
 Revision 1.378  2003/05/19 21:03:48  set
 * Fixed: When importing items to the project the editor:
 1) Didn't redraw the project window.
