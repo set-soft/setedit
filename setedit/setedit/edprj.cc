@@ -697,9 +697,19 @@ void OpenProject(char *name, int preLoad)
        return;
    }
  else
-   s=name;
+   {
+    strcpy(fname,name);
+    s=fname;
+   }
 
- if (edTestForFile(s))
+ // The user could specify it without extension
+ int prjFound=edTestForFile(s);
+ if (!prjFound && !strstr(s,".epr")) // TODO: strstr isn't the best, .epr could be in a directory name
+   {
+    strcat(s,".epr");
+    prjFound=edTestForFile(s);
+   }
+ if (prjFound)
    { // Load it
     if (!preLoad) CloseProject(0);
     ReplaceExtension(s,DeskTopFileExt,ProjectFileExt);
@@ -727,7 +737,7 @@ void OpenProject(char *name, int preLoad)
    { // Is a new one
     if (preLoad)
       {
-       TSetEditorApp::loadEditorDesktop(0);
+       TSetEditorApp::loadEditorDesktop(0,NULL,0,preLoad);
        return;
       }
     CloseProject(1);

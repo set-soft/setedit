@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.223  2002/10/24 18:07:12  set
+* Added: "latex" to the TeX extensions. Suggested by Grzegorz.
+
 Revision 1.222  2002/10/07 19:25:22  set
 * Fixed: The "insert key name" option was broken for TV 2.0.0.
 * Added: / to PHP symbols as suggested by Ivan.
