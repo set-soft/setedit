@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.51
-@set update-date 27 Oct 2001
-@set update-month Oct 2001
+@set version 0.4.52
+@set update-date 25 Nov 2001
+@set update-month Nov 2001
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -4247,6 +4247,24 @@ returned and the rest aren't evaluated.
 
   (and 20 4)@*
   Returns 4.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection cond
+
+  (cond @var{condition} @var{exp} [@var{condition2} @var{exp2} ...])
+@paragraph{}
+
+  Evaluates the conditions until one is true and returns the associated
+expression. If all conditions are false returns 0.
+@paragraph{}
+
+  (cond 0 1 2 3)@*
+  Returns 3.
+@paragraph{}
+
+  (cond 1 "Hi!" 0 "Bye")@*
+  Returns "Hi!".
 @paragraph{}
 
 @c --------------------------------------------------------------
