@@ -1,4 +1,17 @@
-$Log$.
+$Log$
+Revision 1.357  2003/05/12 13:45:50  set
+* Added: A dialog to dis/enable any advice dialog (also the Quit + delete
+warning).
+* Modified: Now when you "Quit" (cmeQuitDelete) and the warning dialog pops
+up you can press Escape to abort the process. Suggested by Alex Lozano.
+* Added: Virtual members to TStringable to un/mark items. I used it for the
+new dialog.
+* Added: Un/mark facilities to TStringableListBox for TStringables that
+reports support for it.
+* Updated: Spanish translations.
+* Documented: "Check for modified files" and "Advice dialogs" configuration
+options. Both linked to contexts.
+
 Revision 1.356  2003/05/12 13:44:40  set
 * Fixed: Also infview.mkf needed FOR_EDITOR as extra flags and libset.mkf
 needed FOR_LIBSET.

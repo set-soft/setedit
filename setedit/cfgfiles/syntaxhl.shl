@@ -654,6 +654,8 @@ End
 #
 Name=Python
 Files=py
+EmacsModes=Python,python
+ShellScript=python
 Case=1
 EOLComment1=#
 HexMarker=0x
@@ -863,6 +865,8 @@ End
 #
 Name=TCL/Tk-Eggdrop
 Files=tcl,TCL,Tcl,tCL,tcL,TcL,tCl,TCl
+EmacsModes=tcl,TCL,Tcl
+ShellScript=tclsh
 Case=1
 RelaxNumberCheck=1
 EOLComment1=#
