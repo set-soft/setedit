@@ -172,6 +172,7 @@ $deLocale =$deLocale1.'/LC_MESSAGES';
 $baseFHS=$base;
 $baseFHS.='/share' if $useFHS;
 $doc_dir1=$baseFHS.'/doc';
+$doc_dir1=$base.'/share/doc' if ($os=~/FreeBSD/ && !$useFHS);
 $doc_dir=$doc_dir1.'/setedit';
 $man_dir1=$baseFHS.'/man';
 $man_dir=$man_dir1.'/man1';

@@ -1,4 +1,9 @@
 $Log$.
+Revision 1.86  2002/05/13 12:36:53  set
+* Modified: [UNIX] Now the INSTALL.LINUX script is just called INSTALL.
+The script will work for FreeBSD and Solaris and is stupid to ask a BSD
+user to run "INSTALL.LINUX" ;-)
+
 Revision 1.85  2002/05/13 12:32:51  set
 * Fixed: Currently gettext is preconfigured only for djgpp so we should
 copy the djgpp.h to config.h header anyways.
