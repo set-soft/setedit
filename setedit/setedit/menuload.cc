@@ -1222,6 +1222,15 @@ TMultiMenu::~TMultiMenu()
     delete next;
 }
 
+TMultiMenuBar *TMultiMenuBar::createMultiMenuBar(const TRect &bounds,
+                                                 TMultiMenu *aMenu)
+{
+ TMultiMenu *m=aMenu;
+ while (m->next)
+    m=m->next;
+ return new TMultiMenuBar(bounds,aMenu,m);
+}
+
 void TMultiMenuBar::findMenu()
 {// The last is the default
  TMultiMenu *p=menuList;
@@ -1433,7 +1442,7 @@ TMultiMenuBar *GetTVMenu(char *fileName, TRect &rect)
 {
  if (Error) return 0;
  if (!firstMenu && !LoadMenuAndStatus(fileName)) return 0;
- return new TMultiMenuBar(rect,firstMenu);
+ return TMultiMenuBar::createMultiMenuBar(rect,firstMenu);
 }
 
 TStatusLine *GetTVStatusLine(char *fileName, TRect &rect)

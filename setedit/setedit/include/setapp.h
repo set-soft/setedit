@@ -207,8 +207,12 @@ class TMultiMenuBar : public TMenuBar
 public:
  TMultiMenuBar(const TRect &bounds, TMultiMenu *aMenu) :
   TMenuBar(bounds,aMenu) { menuList=aMenu; helpCtx=(unsigned)-1; };
+ TMultiMenuBar(const TRect &bounds, TMultiMenu *aMenu, TMultiMenu *cur) :
+  TMenuBar(bounds,cur) { menuList=aMenu; helpCtx=(unsigned)-1; };
  void update();
  void findMenu();
+ static TMultiMenuBar *createMultiMenuBar(const TRect &bounds,
+                                          TMultiMenu *aMenu);
 
  unsigned helpCtx;
  TMultiMenu *menuList;

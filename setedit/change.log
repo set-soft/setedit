@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.568  2004/08/09 21:21:43  set
+* Fixed: [DOC] @xref in sdg.tx without period.
+* Fixed: DOS' end of file in djmdr.s.
+* Both from Oswald.
+
 Revision 1.567  2004/08/09 20:59:24  set
 * Added: Context sensitive menues. Also extended the .smn file language to
 create such a thing. Currently used only for the data window.
