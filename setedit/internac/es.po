@@ -1608,7 +1608,7 @@ msgstr "~T~ama¤o del tab"
 
 #: ../mainsrc/deedidia.cc:263 ../mainsrc/deedidia.cc:315
 msgid "Indent si~z~e"
-msgstr "In~d~entado"
+msgstr "Indentad~o~"
 
 #: ../mainsrc/deedidia.cc:264 ../mainsrc/deedidia.cc:316
 msgid "Wrap co~l~umn"
