@@ -52,6 +52,14 @@ calendar.
  extern void *dlsym(void *, const char *);
  extern void  dlclose(void *);
  const int RTLD_NOW=0, RTLD_GLOBAL=0;
+ #ifdef SEComp_BCPP
+ // BC++ 5.5 is just crap in terms of optimization. It can't even see
+ // unreachable code like if (0) { dlopen() }
+ char *dlerror() { return NULL; }
+ void *dlopen(char *, int ) { return NULL; }
+ void *dlsym(void *, const char *) { return NULL; }
+ void  dlclose(void *) {};
+ #endif
 #endif
 
 #define DEBUG 0

@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.534  2004/06/28 17:55:02  set
+* Fixed: Missing CleanUpHolidays() for targets that doesn't support dlopen.
+Additionaly I modified the code to use if (xxxx) instead of plain
+preprocessor.
+* Fixed: [djgpp] Problems in calcu.cc because of unconditional definition
+of NULL in locale.h.
+
 Revision 1.533  2004/06/25 19:46:21  set
 * Fixed: SUP_PCRE could be redefined :-(, added protection.
 
