@@ -506,9 +506,7 @@ int ResetVideoMode(int mode, int redraw)
  else
     TProgram::application->setScreenMode(mode);
  // We ever use intense mode I don't need blinks
- #if TV_MAJOR_VERSION<2
- setIntenseState();
- #endif
+ //setIntenseState();
  // Restore the user palette
  RestorePaletteSystem();
  // Redraw ALL
@@ -1840,8 +1838,8 @@ void DestroyCMDLine()
 static
 struct CLY_option longopts[] =
 {
-  { "bios-keyb",      0, 0, 'b' },
-  { "no-bios-keyb",   0, 0, 'B' },
+  { "bios-keyb",      0, 0, 'b' }, // obsolete
+  { "no-bios-keyb",   0, 0, 'B' }, // obsolete
   { "cascade",        0, 0, 'c' },
   { "stack-dbg",      1, 0, 'd' },
   { "file-list",      1, 0, 'f' },
@@ -1865,13 +1863,7 @@ void ParseCommandLine(int argc, char *argv[])
 {
  if (CommandLineParsed)
     return;
-
- // Revert the default, I changed my mind because that's too limited
- #if TV_MAJOR_VERSION==2
- TGKey::SetKbdMapping(TGKey::dosUseDirect);
- #else
- TGKey::useBIOS=0;
- #endif
+ TProgInit::config=new TVMainConfigFile();
 
  int optc;
  char *ExtraCMDLine=getenv("SET_CMDLINE");
@@ -1911,20 +1903,6 @@ void ParseCommandLine(int argc, char *argv[])
    {
     switch (optc)
       {
-       case 'b':
-            #if TV_MAJOR_VERSION==2
-            TGKey::SetKbdMapping(TGKey::dosUseBIOS);
-            #else
-            TGKey::useBIOS=1;
-            #endif
-            break;
-       case 'B':
-            #if TV_MAJOR_VERSION==2
-            TGKey::SetKbdMapping(TGKey::dosUseDirect);
-            #else
-            TGKey::useBIOS=0;
-            #endif
-            break;
        case 'c':
             SE_CascadeWindows=1;
             break;
@@ -1971,11 +1949,20 @@ void ParseCommandLine(int argc, char *argv[])
        case 'T':
             TileHorizontal=1;
             break;
+
+       case 'b':
+            TVMainConfigFile::Add("DOS","BIOSKey",1);
+            break;
+
+       case 'B':
+            TVMainConfigFile::Add("DOS","BIOSKey",0L);
+            break;
+
        case 'h':
        default:
-            TScreen::suspend();
             #define PrintHelp(a) printf(a)
             #define FlushHelp()  fflush(stdout)
+            TScreen::suspend();
             PrintHelp(_("Setedit "TCEDITOR_VERSION_STR". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
             PrintHelp(_("setedit [options] [file_name ...]\n\n"));
             PrintHelp(_("Valid options are:\n"));
@@ -1983,10 +1970,6 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         file in the list and should be specified after the\n"
                         "                         options. If the line number is omitted you'll jump to\n"
                         "                         the end of the text. Example: +6 file\n"));
-            #ifdef SECompf_djgpp // Don't name it under Linux
-            PrintHelp(_("-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"));
-            PrintHelp(_("-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster, default].\n"));
-            #endif
             PrintHelp(_("-c, --cascade:           arranges the windows using cascade style.\n"));
             PrintHelp(_("-d, --stack-dbg=n:       indicates which methode will be used in the event of a\n"
                         "                         crash. The default methode is 0.\n"
@@ -2396,7 +2379,6 @@ int main(int argc, char *argv[])
  // starting the application. A good example is the window size, is much better
  // to create a window of the desired size than creating an 80x25 window and
  // the resize.
- TProgInit::config=new TVMainConfigFile();
  TSetEditorApp::preLoadDesktop(ProjectAskedByUser,CLY_optind<Argc);
 
  editorApp=new TSetEditorApp();

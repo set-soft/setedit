@@ -86,11 +86,13 @@ void EditorSignal(int num)
 
 #ifdef SECompf_djgpp
 #include <sys/exceptn.h>
+#include <go32.h>
 void CtrlCOff(void)
 {
  // Interrupt key: RightShift+Ctrl+Del
  __djgpp_set_sigint_key(0x553);
  __djgpp_set_sigquit_key(0x553);
+ _go32_want_ctrl_break(1);
 }
 #endif
 
