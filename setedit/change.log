@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.657  2005/02/23 19:21:40  set
+* Fixed(?): When loading a project file with a smaller screen size than the
+last used and using vertical desktop windows you could get a crash.
+Reported by Grzegorz.
+* Fixed: MSVC doesn't support the mechanism to compare files by its inode.
+For this reason the searches by file name must be smarter and expand the
+names to the full path. Patch by Grzegorz.
+
 Revision 1.656  2005/02/21 19:06:26  set
 * Added: [Standalone InfView] Menu entry to copy to the OS clipboard. Patch
 by Thiago.

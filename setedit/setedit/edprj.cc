@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -387,6 +387,9 @@ void TEditorProjectListBox::getText(char *dest,ccIndex item,short maxlen)
 
 char *TPrjItemColl::applyPrjPath(const char *name)
 {
+ if (CLY_IsUNC(name))
+    // Don't modify the name if that's a Windows UNC
+    return string_dup(name);
  char *dest=NULL;
  string_cat(dest,referenceCurDelta,DIRSEPARATOR_,name,0);
  return dest;
