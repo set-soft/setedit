@@ -138,25 +138,24 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *ret;
  fI.len=strlen(endOfLine+1);
  fI.offset=endOfLine-buf+1;
- if (offset)
-   {
-    ret=strdup(buf);
+ ret=strdup(buf);
+ char bFile[PATH_MAX];
+ if (offset || buf[0]=='/' || buf[0]=='\\')
+   { // Absolute path
     *endOfName=0;
-    fileName=strdup(buf);
+    strcpy(bFile,buf);
    }
  else
-   {
-    DynStrCatStruct msgLine;
-    DynStrCatInit(&msgLine,ActualPath);
-    DynStrCat(&msgLine,buf);
-    ret=msgLine.str;
-    fI.offset+=strlen(ActualPath);
-   
-    DynStrCatStruct File;
-    DynStrCatInit(&File,ActualPath);
-    DynStrCat(&File,buf,endOfName-buf);
-    fileName=File.str;
+   { // Relative path
+    // Put the actual directory
+    strcpy(bFile,ActualPath);
+    // Now the name
+    *endOfName=0;
+    strcat(bFile,buf);
    }
+ // Fix it to avoid things like /dir/../dir/file
+ CLY_fexpand(bFile);
+ fileName=strdup(bFile);
 
  *endOfLine=0;
  fI.Line=atoi(endOfName+1);
