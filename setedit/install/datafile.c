@@ -723,7 +723,12 @@ void initialize_datafile_types()
 *****************************************************************************/
 
 
-#include "allegro/aintern.h"
+#if ALLEGRO_VERSION<4
+ #include "allegro/aintern.h"
+#else
+ #include "allegro/internal/aintern.h"
+ #define datafile_type _datafile_type
+#endif
 
 /* read_block:
  *  Reads a block of size bytes from a file, allocating memory to store it.
