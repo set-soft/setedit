@@ -8,12 +8,13 @@
 
 *****************************************************************************/
 
-#include <ctype.h>
 #include <math.h>
 #include <setjmp.h>
-#include <stdio.h>
-#include <stdlib.h>
+#define Uses_ctype
+#define Uses_stdio
+#define Uses_stdlib
 #define Uses_string
+#define CLY_DoNotDefineUTypes
 #include <compatlayer.h>
 
 #define	isintvar(STR) (STR == '_' || (STR >= 'a' && STR	<= 'z')	|| (STR	>= 'A' && STR <= 'Z') || (STR >= '0' &&	STR <= '9'))

@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define Uses_string
+#define CLY_DoNotDefineUTypes
 #include <compatlayer.h>
 
 #define isprenum(STR) (STR == '.' || (STR >= '0' && STR <= '9'))
