@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.169  2002/08/12 16:18:20  set
+* Added: Three incomplete SFT files and a simple program to generate them
+from raw fonts. They just contain the first 256 symbols (CP 437) and in
+some cases the real symbols are just in the ASCII range the others are
+regular.
+
 Revision 1.168  2002/08/12 16:15:54  set
 * Fixed: Memory leaks in the new fonts code.
 

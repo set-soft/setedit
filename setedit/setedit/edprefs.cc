@@ -1252,6 +1252,9 @@ typedef struct
 // An easydiag wrapper for TVBitmapFontDescLBox
 ListBoxSpecialize(TSVBitmapFontDescLBox);
 ListBoxImplement(VBitmapFontDescLBox);
+// An easydiag wrapper for TVBitmapFontSizeLBox
+ListBoxSpecialize(TSVBitmapFontSizeLBox);
+ListBoxImplement(VBitmapFontSizeLBox);
 
 // A TDialog class to connect the primary font with the available sizes
 class TDiaFont : public TDialog
@@ -1295,9 +1298,8 @@ void TDiaFont::handleEvent(TEvent& event)
           unsigned w,h;
           if (TScreen::getFontGeometry(w,h))
             {
-             char buffer[64];
-             TVFontCollection::Size2Str(buffer,w,h);
-             if (!p->sizes->search((void *)buffer,box.selection))
+             TVBitmapFontSize sz={w,h};
+             if (!p->sizes->search((void *)&sz,box.selection))
                 box.selection=0;
             }
           else
@@ -1356,12 +1358,13 @@ TScreenFont256 *FontRequestCallBack(int which, unsigned w, unsigned h)
  return f;
 }
 
-void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priSize,
+void SetEditorFonts(uchar priUse, char *priName, char *priFile,
+                    TVBitmapFontSize *priSize,
                     uchar secUse, char *secName, char *secFile)
 {
  // Transfer the options
  unsigned w,h;
- TVFontCollection::Str2Size(priSize,w,h);
+ w=priSize->w; h=priSize->h;
  int sizeChanged=(w!=foPriW) || (h!=foPriH);
  if (sizeChanged)
    {
@@ -1508,15 +1511,15 @@ void FontsOptions()
  TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont),*sec;
  box.priSizes=pri->sizes;
  int filled=0;
- char buffer[64];
- TVFontCollection::Size2Str(buffer,foPriW,foPriH);
- if (!foPriName || !pri->sizes->search(buffer,box.priSize))
+ TVBitmapFontSize sizeSt;
+ sizeSt.w=foPriW; sizeSt.h=foPriH;
+ if (!foPriName || !pri->sizes->search(&sizeSt,box.priSize))
    {
     unsigned w,h;
     if (TScreen::getFontGeometry(w,h))
       {
-       TVFontCollection::Size2Str(buffer,foPriW,foPriH);
-       if (pri->sizes->search(buffer,box.priSize))
+       sizeSt.w=w; sizeSt.h=h;
+       if (pri->sizes->search(&sizeSt,box.priSize))
           filled=1;
       }
     if (!filled)
@@ -1537,7 +1540,7 @@ void FontsOptions()
     priOps->makeSameW();
    
     // Size
-    TSSortedListBox *priSz=new TSSortedListBox(wForced,height,tsslbVertical);
+    TSVBitmapFontSizeLBox *priSz=new TSVBitmapFontSizeLBox(12,height,tsslbVertical);
     TSLabel *priSzl=new TSLabel(_("S~i~ze"),priSz);
    
     // Secondary font options, only if available
@@ -1567,26 +1570,26 @@ void FontsOptions()
       {
        pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
        sec=(TVBitmapFontDesc *)fonts->at(box.secFont);
-       const char *fontSize=(const char *)pri->sizes->at(box.priSize);
+       TVBitmapFontSize *fontSize=(TVBitmapFontSize *)pri->sizes->at(box.priSize);
        // We know the requested size for the primary font will work, but we don't
        // know if the secondary font supports it.
        if (box.secUse)
          {
-          const char *s;
+          TVBitmapFontSize *s;
           if (box.priUse)
              s=fontSize;
           else
             {
              unsigned w=8,h=16;
              TScreen::getFontGeometry(w,h);
-             TVFontCollection::Size2Str(buffer,foPriW,foPriH);
-             s=buffer;
+             sizeSt.w=w; sizeSt.h=h;
+             s=&sizeSt;
             }
           ccIndex pos;
           if (!sec->sizes->search((void *)s,pos))
             {
              retry=1;
-             messageBox(mfError | mfOKButton,_("The selected secondary font doesn't support the primary size (%s)"),s);
+             messageBox(mfError | mfOKButton,_("The selected secondary font doesn't support the primary size (%dx%d)"),s->w,s->h);
             }
          }
        if (!retry)

@@ -1,8 +1,30 @@
+/**[txh]********************************************************************
+
+  Copyright (c) 2002 by Salvador E. Tropea
+  Covered by the GPL License
+
+  Description:
+  This program was used to generate .sft files from .pcf font files (XFree86
+uses this format).@*
+  The code is a hack, I don't even bothered looking for the PCF format, I
+just figured out where is located what I need. It works for the fonts I have
+and isn't really generic. In fact I solve some missing symbols using
+knowledge about the fonts it converts.@*
+  If you successfully convert another fonts to the SFT format please
+consider contributing them to the Turbo Vision and SETEdit projects.@*
+  This code compiles and runs under Linux and most probably is ok for other
+POSIX systems. I used gcc specific extensions. The code assumes gzip is
+available and uses it to uncompress .gz files, at least in Debian all X
+fonts are compressed using gzip.
+
+***************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 
+// Linux stdlib defines LITTLE_ENDIAN
 #define MY_LITTLE_ENDIAN
 //#define MY_BIG_ENDIAN
 typedef unsigned char u8;

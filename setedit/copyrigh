@@ -1,5 +1,5 @@
 This program is copyrighted by Salvador Eduardo Tropea.
-Copyright (c) 1996,1997,1998,1999,2000,2001
+Copyright (c) 1996,1997,1998,1999,2000,2001,2002
 For contact information see at the bottom of the file.
 
   SET's editor is a very complex program. It currently have more than 1.45Mb
@@ -367,6 +367,29 @@ Alfons Hoogervorst <alfons@hoogervorst.demon.nl> is the maintainer of
 this. I think RegDos can be obtained from http://www.hoogervorst.demon.nl.
 
 Note: Also used in the installer.
+---------- Terminus Font ----------------------------------------------------
+The terminus font is Copyright (C) 2002 Dimitar Zhekov
+
+The font is distributed using a GPL program. I took the shapes from the
+Debian package generated using the X (pcf) fonts.
+I also changed some shapes of this font.
+---------- X Font -----------------------------------------------------------
+The XFont.sft file was created using the XFree86 misc fonts.
+
+They say: Public domain font. Share and enjoy.
+So the SFT files for X Fonts are also Public Domain.
+---------- Rest of the fonts ------------------------------------------------
+The rest of the fonts come from raw files floating around the net without
+any copyright in them.
+As they are shapes I don't think anybody can really claim rights over them.
+I found references in internet that follows the following rationale: The
+shapes itself can be freely used, otherwise the owner could ask for royalties
+over the printed/displayed output produced by the shapes. Just imagine
+somebody trying to ask news papers to pay for each character printed or
+similar silly things. That's why what companies protect are names or specific
+formats, but not the shapes itself.
+I don't know how accurate is this, for this reason I put clear the origin of
+each font.
 -----------------------------------------------------------------------------
 
 *****************************************************************************
