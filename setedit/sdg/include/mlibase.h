@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIBase) && !defined(__TMLIBase__)
 #define __TMLIBase__
-const int MLIBaseCommands=18;
+const int MLIBaseCommands=19;
 const int MLIBaseConstants=1;
 const int MLIBaseSymbols=5;
 
