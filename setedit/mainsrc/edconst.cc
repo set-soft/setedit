@@ -1,10 +1,11 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #define Uses_TCEditor_Commands
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_TCEditor_Internal
 #define Uses_TInputLinePipedConst
+#define Uses_MsgBox
 // InfView requests
 #include <infr.h>
 
@@ -269,6 +270,19 @@ static edCList SetFlags[] =
 {"ExtString3"    ,ExtString3    },
 {"InsideCom"     ,InsideCom     }, // All commented
 {"InsideCom2"    ,InsideCom2    }, // All commented with { }
+
+// Message Box
+{"MBCancelButton",mfCancelButton},
+{"MBConfirmation",mfConfirmation},
+{"MBError"       ,mfError       },
+{"MBInformation" ,mfInformation },
+{"MBNoButton"    ,mfNoButton    },
+{"MBOKButton"    ,mfOKButton    },
+{"MBOKCancel"    ,mfOKCancel    },
+{"MBWarning"     ,mfWarning     },
+{"MBYesButton"   ,mfYesButton   },
+{"MBYesNoCancel" ,mfYesNoCancel },
+
 {"Prepro"        ,Prepro        }, // Starts with #
 {"StartCom"      ,StartCom      }, // /*
 {"StartCom2"     ,StartCom2     }, // {
