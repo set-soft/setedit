@@ -523,7 +523,7 @@ void LoadProject(char *name)
  int h=open(name, O_RDONLY | O_BINARY);
  fpstream *f=new fpstream(h);
  #else
- fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+ fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
  #endif
 
  if (!f)
@@ -578,7 +578,7 @@ static void UpdateResume(void *p, void *)
 
 static void SaveOnlyProject(void)
 {
- fpstream *f=new fpstream(prjWin->getFileName(),CLY_std(ios::out)|CLY_IOSBin);
+ fpstream *f=new fpstream(prjWin->getFileName(),CLY_IOSOut | CLY_IOSBin);
 
  if (f)
    {

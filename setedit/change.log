@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.299  2003/04/21 19:38:34  set
+* Fixed: wrong rules to create internac/colors.cc.
+
 Revision 1.298  2003/04/21 18:30:05  set
 * Modified: i18n files to remove TV messages, now they are in a separated
 catalog (tvision domain).

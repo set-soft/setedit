@@ -507,7 +507,7 @@ Boolean TSetEditorApp::retrieveDesktop(TSetEditorApp *app, const char *name,
     int h=open(name,O_RDONLY | O_BINARY);
     fpstream *f=new fpstream(h);
     #else
-    fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+    fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
     #endif
 
     if (!f)
@@ -580,7 +580,7 @@ void TSetEditorApp::saveDesktop(const char *fName, int makeBkp)
 
  dbprintf("Opened %s file, got %d handle\n",fName,h);
  #else
- fpstream *f=new fpstream(fName,CLY_std(ios::out) | CLY_IOSBin);
+ fpstream *f=new fpstream(fName,CLY_IOSOut | CLY_IOSBin);
  #endif
 
  if (f)

@@ -163,7 +163,7 @@ const int Version=0x100;
 
 void TListDiag::SaveList(char *name)
 {
- fpstream *f=new fpstream(name,CLY_std(ios::out)|CLY_IOSBin);
+ fpstream *f=new fpstream(name,CLY_IOSOut|CLY_IOSBin);
 
  if (f)
    {
@@ -236,7 +236,7 @@ void TListDiag::LoadList(char *name)
  int h=open(name, O_RDONLY | O_BINARY);
  fpstream *f=new fpstream(h);
  #else
- fpstream *f=new fpstream(name,CLY_std(ios::in) | CLY_IOSBin);
+ fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
  #endif
  
  if (!f)

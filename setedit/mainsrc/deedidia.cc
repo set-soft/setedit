@@ -6,8 +6,6 @@
 #define Uses_stdlib
 #define Uses_stdio
 #define Uses_string
-#define Uses_StrStream
-#define Uses_iomanip
 #define Uses_AllocLocal
 
 #define Uses_TDialog
