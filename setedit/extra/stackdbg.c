@@ -265,7 +265,7 @@ void WriteHex(int fd, unsigned long value)
   Core routines.
 *****************************************************************************/
 
-#if defined(__i386__) && defined(__GNUC__)
+#if defined(SECPU_x86) && defined(__GNUC__)
 /**[txh]********************************************************************
 
   Description:
