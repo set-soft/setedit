@@ -833,7 +833,8 @@ char *TMLIBase::cNames[MLIBaseCommands]=
  "ShortFileName",
  "strcmp",
  "strcasecmp",
- "length"/*,
+ "length",
+ "progn"/*,
  "for"*/
 };
 
@@ -856,7 +857,8 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIShortFileName,
  MLIBaseStrCmp,
  MLIBaseStrCaseCmp,
- MLIBaseLength/*,
+ MLIBaseLength,
+ MLIBaseEval/*,
  MLIBaseFor*/
 };
 
