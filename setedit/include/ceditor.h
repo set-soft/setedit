@@ -88,15 +88,15 @@
 #endif
 
 #ifdef _INCL_DIR
-#include <dir.h>
+#define Uses_dir
 #endif
 
 #ifdef _INCL_CTYPE
-#include <ctype.h>
+#define Uses_ctype
 #endif
 
 #ifdef _INCL_TIME_H_
-#include <time.h>
+#define Uses_time
 #endif
 
 #include <settvuti.h>
