@@ -1,6 +1,31 @@
 $Log$
-Revision 1.29  2001/11/29 17:59:50  set
-+
+Revision 1.513  2001/12/04 03:12:56  root
+* Added: A new sLisp command ShowInMessageWindow to print information in
+the message window. Suggested by Thiago.
+
+Revision 1.512  2001/12/04 02:28:14  set
+* Added: A new sLisp command contributed by Thiago: EvalString, it
+evaluates a string as sLisp code.
+* Fixed: Evaluate selected sLisp code didn't flush the line in edition.
+* Fixed: The sLisp interpreter didn't release the objects in the sLisp
+stack when an error ocurred. It generated memory leaks. It was this way
+because in this way was easier to report the exact point of the error
+without risking to use memory that we freed. It changed the strategy and I
+think this code must be tested and perhaps a branch will be needed if we'll
+release a 0.4.52 again.
+To achieve it now the code snapshot is taked just when the error appears.
+* Fixed: Some GetXXXX sLisp variable macros tried to use the returned
+object even if it was NULL generating SIGSEGVs.
+* Note: Most of this was triggered by a report by Thiago about problems to
+implement the new command.
+
+Revision 1.511  2001/12/03 23:55:52  set
+* Fixed: The ^Z key had a collision in the "redmond.smn" file. It was
+assigned to undo and scroll up confusing users. Now this key is assigned
+only by the menu and the redmond.smn doesn't have a short-cut for scroll
+up. Reported by David J. Hughes <David.J.Hughes@nokia.com>.
+* Added: Some notes about errors in xterm description shipped with Mandrake
+8.1 to Linux FAQ.
 
 Revision 1.510  2001/11/29 00:10:33  set
 * Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
@@ -3580,7 +3605,7 @@ Revision 1.17  1999/02/11 00:21:08  set
 the tips at 9:00 pm in my case ;-)
 * Fixed: The printing routines used gmtime instead of localtime. I fixed it
 because I made a global search for gmtime ;-))
-.
+
 Revision 1.16  1999/02/11 00:14:35  set
 * Added support for Windows clipboard in the InfView windows. Suggested by
 Ivan Baldo <lubaldo@adinet.com.uy>.
@@ -3664,5 +3689,5 @@ Revision 1.3  1999/01/25 23:08:07  set
 .
 Revision 1.2  1999/01/19 23:47:24  set
 * Passed the files to a CVS repository.
-.
+
 
