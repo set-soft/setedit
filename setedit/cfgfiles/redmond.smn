@@ -64,9 +64,9 @@ SubMenu: "~E~dit", kbAlE
 # You can use the following lines to use the Windows clipboard instead of the
 # internal one.
 #
-# MenuItemC: "Cu~t~", cmcCutClipWin, kbCtX, "Ctrl+X"
-# MenuItemC: "~C~opy", cmcCopyClipWin, kbCtC, "Ctrl+C"
-# MenuItemC: "~P~aste", cmcPasteClipWin, kbCtV, "Ctrl+V"
+# MenuItemC: "Cu~t~", cmcCutOSClip, kbCtX, "Ctrl+X"
+# MenuItemC: "~C~opy", cmcCopyOSClip, kbCtC, "Ctrl+C"
+# MenuItemC: "~P~aste", cmcPasteOSClip, kbCtV, "Ctrl+V"
 #
 # And the commands for Linux can be:
 #
@@ -81,11 +81,11 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "E~x~pand all tabs", cmcExpandAllTabs
  MenuItemC: "C~o~mpact text", cmcCompactBuffer
  $if DOS or WIN32
- MenuItemC: "Copy to ~W~indows Clip.", cmcCopyClipWin
- MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteClipWin
+ MenuItemC: "Copy to ~W~indows Clip.", cmcCopyOSClip
+ MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteOSClip
  $else
- MenuItemC: "Copy to OS Clipboar~d~", cmcCopyClipWin
- MenuItemC: "Paste from OS Clip~b~oard", cmcPasteClipWin
+ MenuItemC: "Copy to OS Clipboar~d~", cmcCopyOSClip
+ MenuItemC: "Paste from OS Clip~b~oard", cmcPasteOSClip
  MenuItemC: "Cop~y~ to file Clipboard", cmcCopyClipFile
  MenuItemC: "Paste ~f~rom file Clipboard", cmcPasteClipFile
  $endif
@@ -412,7 +412,7 @@ StatusEntry: "~Alt+F8~ Next", cmeNextMessage, kbAlF8
 StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
 StatusEntry: "Save As", cmcSaveAs, kbUnknown
 StatusEntry: "~Ctrl+Ins~ Copy", cmcCopy, kbCtInsert
-#StatusEntry: "~Ctrl+Ins~ Copy", cmcCopyClipWin, kbCtInsert
+#StatusEntry: "~Ctrl+Ins~ Copy", cmcCopyOSClip, kbCtInsert
 StatusHiddenEntry: cmZoom, kbF5
 StatusHiddenEntry: cmeLastHelp, kbAlF1
 EndStatusRange

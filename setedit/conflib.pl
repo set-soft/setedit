@@ -14,7 +14,7 @@ $OS='';
 $OSf='';
 # x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium, Unknown
 $CPU='';
-# GCC, BCPP, MSVC
+# GCC, BCPP, MSC
 $Comp='';
 # djgpp, MinGW, Cygwin
 $Compf='';

@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.555  2004/07/29 20:33:37  set
+* Added: The edit breakpoint dialog now disables the unneeded options. So
+if you will specify the location using file:line then you can't say the
+function or address.
+
 Revision 1.554  2004/07/28 21:03:23  set
 * Added: The second part of the "Breakpoints" dialog. Now is possible to
 add, modify, remove, enable, disable and jump to breakpoit locations. Some

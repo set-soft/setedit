@@ -9,6 +9,7 @@ editor. @x{TMLIBase (class)}.@p
 
 ***************************************************************************/
 
+#include <configed.h>
 #define Uses_stdio
 #define Uses_ctype
 #define Uses_string
@@ -23,6 +24,7 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_MsgBox
 #define Uses_TNoCaseStringCollection
 #define Uses_TStringable // needed for keytrans.h
+#define Uses_TScreen
 #include <settvuti.h>
 #include <mli.h>
 #define Uses_TCEditor_Commands
@@ -929,6 +931,50 @@ CleanUp:
  CLY_destroy(seq);
 }
 
+// (GetSystemInfo which)
+DecFun(MLIGetSystemInfo)
+{
+ LocVarInt(which);
+
+ CheckNumParams(cant!=1);
+
+ GetInteger(0,which);
+ switch (which->val)
+   {
+    case edfInfTVDriver:
+         MLIRetString(TScreen::getDriverShortName());
+         break;
+    case edfInfOS:
+         MLIRetString(SEOS_STR);
+         break;
+    case edfInfOSFlavor:
+         #ifdef SEOSf_STR
+         MLIRetString(SEOSf_STR);
+         #else
+         MLIRetString("");
+         #endif
+         break;
+    case edfInfCPU:
+         MLIRetString(SECPU_STR);
+         break;
+    case edfInfCompiler:
+         MLIRetString(SEComp_STR);
+         break;
+    case edfInfCompilerFlavor:
+         #ifdef SECompf_STR
+         MLIRetString(SECompf_STR);
+         #else
+         MLIRetString("");
+         #endif
+         break;
+    default:
+         MLIRetString("");
+   }
+
+CleanUp:
+ destroyFloatVar(which);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -963,7 +1009,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "GetCurWindowNumber",
  "GetMaxWindowNumber",
  "KeyBindings",
- "BindKey"
+ "BindKey",
+ "GetSystemInfo"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -1000,7 +1047,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetCurWindowNumber,
  MLIGetMaxWindowNumber,
  MLIKeyBindings,
- MLIBindKey
+ MLIBindKey,
+ MLIGetSystemInfo
 };
 
 

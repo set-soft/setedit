@@ -118,8 +118,10 @@ const int
   cmbColorsChanged     = 107,
   cmbLoadFileUnderCur  = 108,
   cmbSearchComplement  = 109,
-  cmbCopyClipWin       = 110,
-  cmbPasteClipWin      = 111,
+  cmbCopyClipWin       = 110, // Old name, deprecated
+  cmbCopyOSClip        = 110,
+  cmbPasteClipWin      = 111, // Old name, deprecated
+  cmbPasteOSClip       = 111,
   cmbIntelIndentMode   = 112,
   cmbDelCharClear      = 113,
   cmbSave              = 114,
@@ -146,6 +148,7 @@ const int
   cmbToggleCharCase    = 135,
   cmbJumpToPrototype   = 136,
   cmbCutClipWin        = 137,
+  cmbCutOSClip         = 137,
   cmbQuotedPrintDecode = 138,
   cmbArbitraryIndent   = 139,
   cmbLastColInScreen   = 140,

@@ -44,5 +44,7 @@ const int
       hcDebugMsgWin        =0x2250,
       hcWatchesWin         =0x2260,
       hcWatchesWinEdit     =0x2261,
-      hcEditBkpt           =0x2270;
+      hcEditBkpt           =0x2270,
+      hcBkptDialog         =0x2280;
+
 

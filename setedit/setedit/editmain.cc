@@ -1379,11 +1379,11 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeDbgWatchExpNorm:
-              DebugWatchExp(False);
+              DebugWatchExp(False,GetWordUnderCursor(250));
               break;
 
          case cmeDbgWatchExpScp:
-              DebugWatchExp(True);
+              DebugWatchExp(True,GetWordUnderCursor(250));
               break;
 
          case cmeDbgEndSession:
@@ -1817,6 +1817,7 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len,
     messageBox(__("This line no longer exists"),mfOKButton);
     return 0;
    }
+ TView *oldCur=editorApp->deskTop->current;
  TCEditWindow *edw=editorApp->openEditor(file,True,NULL,oedDontOpenEmpty);
  if (edw)
    {
@@ -1824,8 +1825,12 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len,
     ed->lock();
     ed->GoAndSelectLine(line,normalLine);
     if (!normalLine)
+      {
        DebugSetCPULine(line,file);
-    ed->trackCursor(True);
+       ed->trackCursor(oldCur==editorApp->deskTop->current ? False : True);
+      }
+    else
+       ed->trackCursor(True);
     if (normalLine)
        ed->update(ufView); // Be sure we cleared the last hit
     if (msg)

@@ -16,6 +16,7 @@
 #include <inf.h>
 #include <editcoma.h>
 #include <dskwin.h>
+#include <mliedito.h>
 
 typedef struct
 {
@@ -43,8 +44,10 @@ static edCList List[] =
 { "CopyBlock", 94 },
 { "CopyClipFile", 150 },
 { "CopyClipWin", 110 },
+{ "CopyOSClip", 110 },
 { "Cut", 72 },
 { "CutClipWin", 137 },
+{ "CutOSClip", 137 },
 { "DelChar", 62 },
 { "DelCharClear", 113 },
 { "DelEnd", 65 },
@@ -108,6 +111,7 @@ static edCList List[] =
 { "PasteClipFile", 151 },
 { "PasteClipWin", 111 },
 { "PasteEmacsMode", 129 },
+{ "PasteOSClip", 111 },
 { "PlayMacro", 91 },
 { "PopCursorPos", 134 },
 { "ProfileEditor", 106 },
@@ -134,10 +138,10 @@ static edCList List[] =
 { "RunSel_sLisp", 148 },
 { "Save", 114 },
 { "SaveAs", 115 },
-{ "SaveAsDOS", 93 },   // Alias for cmcSaveAsConvertEOL
-{ "SaveAsUNIX", 93 },  // Alias for cmcSaveAsConvertEOL
 { "SaveAsConvertEOL", 93 },
+{ "SaveAsDOS", 93 },   // Alias for cmcSaveAsConvertEOL
 { "SaveAsNoConvertEOL", 155 },
+{ "SaveAsUNIX", 93 },  // Alias for cmcSaveAsConvertEOL
 { "SaveSameTime", 121 },
 { "ScrollDown", 23 },
 { "ScrollUp", 24 },
@@ -285,8 +289,8 @@ static edCList SetApp[] =
 { "ScreenSaverOpts", 62  },
 { "SearchTag"      , 80  },
 { "SeeScanCodes"   , 29  },
-{ "SelDebugWin"    ,125  },
-{ "SelWatchesWin"  ,126  },
+{ "SelDebugWin"    ,163  },
+{ "SelWatchesWin"  ,164  },
 { "SelWinMessage"  ,109  },
 { "SelWinPrj"      ,108  },
 { "SelWindow1"     , 89  },
@@ -353,6 +357,13 @@ static edCList SetFlags[] =
 {"FromCursor"     ,efFromCursorSL     },
 
 //{"InSelection"    ,efInSelection      },
+{"InfCPU"         ,edfInfCPU          },
+{"InfCompiler"    ,edfInfCompiler     },
+{"InfCompilerFlavor",edfInfCompilerFlavor},
+{"InfOS"          ,edfInfOS           },
+{"InfOSFlavor"    ,edfInfOSFlavor     },
+{"InfTVDriver"    ,edfInfTVDriver     },
+
 {"InsideCom"      ,InsideCom          }, // All commented
 {"InsideCom2"     ,InsideCom2         }, // All commented with { }
 
@@ -414,7 +425,6 @@ static edCList SetFlags[] =
 {"WinDebugger"    ,-dktDbgMsg         },
 {"WinWatches"     ,-dktDbgWt          }
 };
-
 
 
 
@@ -486,6 +496,12 @@ TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void)
 static edCList Simple[] =
 {
 #define C(a) { #a, cm##a }
+ C(BkAdd),
+ C(BkDel),
+ C(BkDisable),
+ C(BkEnable),
+ C(BkGo),
+ C(BkModify),
  C(ChangeSort),
  C(Close),
  C(DelFile),
@@ -544,6 +560,7 @@ int SearchSimpleCommand(char *name)
 #define C(a) { #a, hc##a }
 static edCList HelpCtx[] =
 {
+ C(BkptDialog),
  C(Calculator),
  C(DebugMsgWin),
  C(EditKeys),

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -26,6 +26,9 @@
 #define Uses_TStatusItem
 #define Uses_TStatusDef
 #define Uses_TVCodePage
+#define Uses_TScreen
+#define Uses_AllocLocal
+#define Uses_snprintf
 #include <ceditor.h>
 #define Uses_SETAppConst
 #define Uses_SETAppVarious
@@ -60,7 +63,8 @@ const int errMLExpectedStr=1,
           errMLEmptyStatusLine=22,
           errMLNoHelpContext=23,
           errMLTooDeep=24,
-          errMLUnmatchedEndIf=25;
+          errMLUnmatchedEndIf=25,
+          errMLMacroRedefined=26;
 
 static const char *ErrorNames[] =
 {
@@ -89,7 +93,8 @@ static const char *ErrorNames[] =
  __("Empty status line"),
  __("Wrong help context name or number"),
  __("Too much conditionals nested"),
- __("Unmatched $endif")
+ __("Unmatched $endif"),
+ __("Preprocessor value redefined")
 };
 
 static int Error=0;
@@ -104,30 +109,122 @@ typedef struct
  char *sIf,*sElse,*sEnd;
  char *sDefined,*sIfDef,*sIfNDef;
  char *sAnd,*sOr,sNot;
+ char *sDefine, *sUndef;
  int  depth;
  char stack[maxDepth];
 } stPreproInfo;
 
 static stPreproInfo PreproInfo={'$',0,"if","else","endif","defined","ifdef","ifndef",
-                                "and","or",'!'};
+                                "and","or",'!',"define","undef"};
+static DynStrCatStruct res={0,NULL};
 
 const unsigned prliASCIIZ=1,prliNoASCIIZ=0;
 const unsigned prliEatSpaces=2,prliNoEatSpaces=0;
 const int prlisNoPL=0,prlisPLContinue=1,prlisPLOK=2;
 const int prlieNoErr=0,prlieSyntax=-1,prlieElse=2,prlieEnd=3;
-const int prlieNoOp=4,prlieAnd=5,prlieOr=6;
+const int prlieNoOp=4,prlieAnd=5,prlieOr=6,prlieDefine=7,prlieUndef=8;
+
+class TDef;
 
 static int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str,
-                            int PreproValue, TStringCollection *defs, char *buf,
-                            FILE *f);
+                            int PreproValue, TDef *defs, char *buf, FILE *f);
+static char *ExpandPreprocessor(char *buf, stPreproInfo *p, TDef *defs);
 
 #define GetLine() { fgets(buf,maxLineLen,f); Line++; }
+
+struct stDef
+{
+ char *var;
+ char *val;
+};
+
+class TDef : public TStringCollection
+{
+public:
+ TDef() : TStringCollection(20,5) {};
+
+ stDef *At(ccIndex i) { return (stDef *)at(i); };
+ virtual void *keyOf(void *item);
+ virtual void freeItem(void *s);
+ void insert(const char *var, const char *val=NULL);
+ Boolean isDefined(char *s, int l);
+ stDef  *getMacro(char *s, int l);
+ Boolean undef(char *s, int l);
+};
+
+Boolean TDef::isDefined(char *s, int l)
+{
+ char val=s[l];
+ s[l]=0;
+ ccIndex pos;
+ Boolean ret=search(s,pos);
+ s[l]=val;
+
+ return ret;
+}
+
+stDef *TDef::getMacro(char *s, int l)
+{
+ char val=s[l];
+ s[l]=0;
+ ccIndex pos;
+ Boolean ret=search(s,pos);
+ s[l]=val;
+
+ return ret ? At(pos) : NULL;
+}
+
+Boolean TDef::undef(char *s, int l)
+{
+ char val=s[l];
+ s[l]=0;
+ ccIndex pos;
+ Boolean ret=search(s,pos);
+ s[l]=val;
+ if (ret)
+    atFree(pos);
+
+ return ret;
+}
+
+void *TDef::keyOf(void *item)
+{
+ return ((stDef *)item)->var;
+}
+
+void TDef::freeItem(void *s)
+{
+ stDef *p=(stDef *)s;
+ delete[] p->var;
+ delete[] p->val;
+ delete p;
+}
+
+void TDef::insert(const char *var, const char *val)
+{
+ stDef *p=new stDef;
+ p->var=newStr(var);
+ p->val=newStr(val);
+ TStringCollection::insert(p);
+}
 
 char *SkipBlanks(char *buf)
 {
  char *s;
  for (s=buf; *s!='\n' && *s && ucisspace(*s); s++);
  return s;
+}
+
+static
+char *SkipToEndNoBlanks(char *buf)
+{
+ char *s, *last;
+ for (last=s=buf; *s!='\n' && *s; s++)
+     if (!ucisspace(*s))
+        last=s;
+ if (!ucisspace(*last))
+    last++;
+ return last;
 }
 
 static
@@ -400,7 +497,7 @@ TMenuItem *GetMenuItem(char *s,int copyContext)
 
 static
 TSubMenu *GetSubMenu(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
-                     DynStrCatStruct *Cat, TStringCollection *defs, int &PreproValue)
+                     DynStrCatStruct *Cat, TDef *defs, int &PreproValue)
 {
  char *sEnd,*name;
  int key,context=hcNoContext;
@@ -440,6 +537,7 @@ TSubMenu *GetSubMenu(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
     if (*s!='#' && *s!='\n' && PreproValue) // Skip comment lines
       {
        newMenu=0;
+       s=ExpandPreprocessor(s,PreproInfo,defs);
        if (strncasecmp(s,"SubMenu:",8)==0)
          { // Recursive menues
           newMenu=(TMenuItem *)GetSubMenu(f,buf,s+8,PreproInfo,Cat,defs,PreproValue);
@@ -537,7 +635,7 @@ TStatusItem *GetStatusItem(char *s, int hidden)
 
 static
 TStatusDef *GetStatusDef(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
-                         DynStrCatStruct *Cat, TStringCollection *defs,
+                         DynStrCatStruct *Cat, TDef *defs,
                          int &PreproValue)
 {
  int from,quantity,to;
@@ -577,6 +675,7 @@ TStatusDef *GetStatusDef(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
     else
     if (*s!='#' && *s!='\n' && PreproValue) // Skip comment lines
       {
+       s=ExpandPreprocessor(s,PreproInfo,defs);
        newItem=0;
        if (strncasecmp(s,"StatusEntry:",12)==0)
          {
@@ -714,18 +813,38 @@ int GetLenOfWord(char *&str)
  return r;
 }
 
+static inline
+char *SkipString(char *s)
+{
+ for (s++; *s && *s!='\n' && *s!='\"'; s++);
+ if (*s=='"') s++;
+ return s;
+}
+
 static
-int PreproLine_InterpretIfDef(char *s, stPreproInfo *, TStringCollection *defs,
+int GetLenOfWholeWord(char *&str)
+{
+ char *s=str;
+ while (*s && !(TVCodePage::isAlpha(*s)  || *s=='_'))
+   {
+    if (*s=='"')
+       s=SkipString(s);
+    else
+       s++;
+   }
+ str=s;
+ while (*s && (TVCodePage::isAlNum(*s) || *s=='_')) s++;
+ int r=s-str;
+ return r;
+}
+
+static
+int PreproLine_InterpretIfDef(char *s, stPreproInfo *, TDef *defs,
                               int yes)
 {
  int l=GetLenOfWord(s),Value;
- ccIndex pos;
- char val;
 
- val=s[l];
- s[l]=0;
- Value=defs->search(s,pos)==True ? 1 : 0;
- s[l]=val;
+ Value=defs->isDefined(s,l)==True ? 1 : 0;
 
  if (!yes)
     Value=Value ? 0 : 1;
@@ -734,11 +853,11 @@ int PreproLine_InterpretIfDef(char *s, stPreproInfo *, TStringCollection *defs,
 }
 
 static
-int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TStringCollection *defs,
+int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TDef *defs,
                            int nested=0);
 
 static
-int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TStringCollection *defs)
+int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TDef *defs)
 {
  char *s=str;
 
@@ -757,8 +876,6 @@ int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TStringCollection *defs
    }
  int Value=prlieSyntax;
  int l=GetLenOfWord(s);
- char val;
- ccIndex pos;
  if (strncasecmp(s,p->sDefined,l)==0)
    {
     s+=l;
@@ -768,10 +885,8 @@ int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TStringCollection *defs
     s=SkipBlanks(s);
     l=GetLenOfWord(s);
     if (!l) return prlieSyntax;
-    val=s[l]; s[l]=0;
-    Value=defs->search(s,pos)==True ? 1 : 0;
+    Value=defs->isDefined(s,l)==True ? 1 : 0;
     if (invert) Value=Value ? 0 : 1;
-    s[l]=val;
     s+=l;
     s=SkipBlanks(s);
     if (*s!=')') return prlieSyntax;
@@ -780,10 +895,8 @@ int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TStringCollection *defs
  else
    {
     if (!l) return prlieSyntax;
-    val=s[l]; s[l]=0;
-    Value=defs->search(s,pos)==True ? 1 : 0;
+    Value=defs->isDefined(s,l)==True ? 1 : 0;
     if (invert) Value=Value ? 0 : 1;
-    s[l]=val;
     s+=l;
    }
  str=s;
@@ -791,7 +904,7 @@ int PreproLine_SolveOperand(char *&str, stPreproInfo *p, TStringCollection *defs
 }
 
 static
-int PreproLine_GetOperation(char *&str, stPreproInfo *p, TStringCollection *)
+int PreproLine_GetOperation(char *&str, stPreproInfo *p, TDef *)
 {
  int l=GetLenOfWord(str);
  if (!l)
@@ -812,7 +925,7 @@ int PreproLine_GetOperation(char *&str, stPreproInfo *p, TStringCollection *)
 }
 
 static
-int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TStringCollection *defs,
+int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TDef *defs,
                            int nested)
 {
  int Value,Operand=prlieNoOp,RetVal=prlieSyntax;
@@ -861,10 +974,64 @@ int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TStringCollection *defs,
  return RetVal;
 }
 
+static
+int PreproLine_InterpretDefine(char *str, stPreproInfo *p, TDef *defs,
+                               int PreproValue)
+{
+ if (!PreproValue)
+    return prlieDefine;
+ char *s=str;
+
+ // Get macro name
+ // TODO: support for name(args)
+ int l=GetLenOfWord(s);
+ if (!l) return prlieSyntax;
+
+ // Is already there?
+ if (defs->isDefined(s,l))
+   {
+    Error=errMLMacroRedefined;
+    return prlieDefine;
+   }
+
+ // Copy the name
+ AllocLocalStr(name,l+1);
+ memcpy(name,s,l);
+ name[l]=0;
+
+ // Get the definition
+ s+=l;
+ s=SkipBlanks(s);
+ char *end=SkipToEndNoBlanks(s);
+ char v=*end; *end=0;
+ defs->insert(name,s);
+ *end=v;
+
+ return prlieDefine;
+}
 
 static
-int PreproLine_Interpret(stPreproInfo *p, DynStrCatStruct *str,
-                         TStringCollection *defs)
+int PreproLine_InterpretUndef(char *str, stPreproInfo *p, TDef *defs,
+                              int PreproValue)
+{
+ if (PreproValue)
+   {
+    char *s=str;
+   
+    // Get macro name
+    int l=GetLenOfWord(s);
+    if (!l) return prlieSyntax;
+   
+    // Remove it
+    defs->undef(s,l);
+   }
+
+ return prlieUndef;
+}
+
+static
+int PreproLine_Interpret(stPreproInfo *p, DynStrCatStruct *str, TDef *defs,
+                         int PreproValue)
 {
  char *s=str->str;
  int l,ret=prlieSyntax;
@@ -875,18 +1042,18 @@ int PreproLine_Interpret(stPreproInfo *p, DynStrCatStruct *str,
     s+=l;
     ret=PreproLine_InterpretIf(s,p,defs);
    }
- else
- if (strncasecmp(s,p->sIfDef,l)==0)
+ else if (strncasecmp(s,p->sIfDef,l)==0)
     ret=PreproLine_InterpretIfDef(s+l,p,defs,1);
- else
- if (strncasecmp(s,p->sIfNDef,l)==0)
+ else if (strncasecmp(s,p->sIfNDef,l)==0)
     ret=PreproLine_InterpretIfDef(s+l,p,defs,0);
- else
- if (strncasecmp(s,p->sElse,l)==0)
+ else if (strncasecmp(s,p->sElse,l)==0)
     ret=prlieElse;
- else
- if (strncasecmp(s,p->sEnd,l)==0)
+ else if (strncasecmp(s,p->sEnd,l)==0)
     ret=prlieEnd;
+ else if (strncasecmp(s,p->sDefine,l)==0)
+    ret=PreproLine_InterpretDefine(s+l,p,defs,PreproValue);
+ else if (strncasecmp(s,p->sUndef,l)==0)
+    ret=PreproLine_InterpretUndef(s+l,p,defs,PreproValue);
  free(str->str);
  return ret;
 }
@@ -925,7 +1092,7 @@ int PreproToggle(stPreproInfo *p, int PreproValue)
 
 static
 int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str, int PreproValue,
-                     TStringCollection *defs, char *buf, FILE *f)
+                     TDef *defs, char *buf, FILE *f)
 {
  int ret;
  ret=PreproLine_Start(s,0,prliNoEatSpaces | prliASCIIZ,p,str);
@@ -942,7 +1109,7 @@ int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str, int PreproV
        Error=errMLSyntax;
     else
       {
-       ret=PreproLine_Interpret(p,str,defs);
+       ret=PreproLine_Interpret(p,str,defs,PreproValue);
        switch (ret)
          {
           case 0:
@@ -966,6 +1133,52 @@ int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str, int PreproV
  return PreproValue;
 }
 
+static
+char *ExpandPreprocessor(char *buf, stPreproInfo *p, TDef *defs)
+{
+ int l;
+ char *s=buf, *prev=buf;
+ if (res.str)
+   {
+    free(res.str);
+    res.str=NULL;
+   }
+
+ do
+   {// Get by words
+    l=GetLenOfWholeWord(s);
+    if (l)
+      {// Search this word
+       stDef *p=defs->getMacro(s,l);
+       if (p)
+         {// Replace it
+          if (res.str==NULL)
+            {// Not started, copy upto here
+             DynStrCatInit(&res,buf,s-buf);
+            }
+          else
+             DynStrCat(&res,prev,s-prev);
+          if (p->val)
+             DynStrCat(&res,p->val);
+          s+=l;
+          prev=s;
+         }
+       else
+         {// Not found
+          s+=l;
+         }
+      }
+   }
+ while (l);
+
+ if (res.str)
+   {
+    if (prev!=s)
+       DynStrCat(&res,prev,s-prev);
+    return res.str;
+   }
+ return buf;
+}
 
 static char MenuAndStatusLoaded=0;
 static TSubMenu   *subMenu=0;
@@ -998,37 +1211,50 @@ int LoadTVMenuAndStatus(char *fileName)
  if (!f)
     return 0;
  FileName=newStr(fileName);
- TStringCollection *defs=new TStringCollection(1,1);
- #if   defined(SEOS_DOS)
- defs->insert(newStr("DOS"));
- #elif defined(SEOS_Win32)
- defs->insert(strdup("WIN32"));
- #elif defined(SEOS_UNIX)
- defs->insert(newStr("UNIX"));
-  #ifdef SEOSf_Linux
-  defs->insert(newStr("Linux"));
-  #endif
+ TDef *defs=new TDef();
+
+ // All of the configuration details
+ defs->insert(SEOS_STR);
+ #ifdef SEOSf_STR
+ defs->insert(SEOSf_STR);
  #endif
+ defs->insert(SECPU_STR);
+ defs->insert(SEComp_STR);
+ #ifdef SECompf_STR
+ defs->insert(SECompf_STR);
+ #endif
+ // The current TV driver
+ const char *drv=TScreen::getDriverShortName();
+ int l=strlen(drv)+4;
+ AllocLocalStr(drvName,l);
+ CLY_snprintf(drvName,l,"Drv%s",drv);
+ defs->insert(drvName);
+
+ // For compatibility (Win32!=WIN32)
+ #if defined(SEOS_Win32)
+ defs->insert("WIN32");
+ #endif
+
  #if WITH_MP3
- defs->insert(newStr("MP3"));
+ defs->insert("MP3");
  #endif
  #if HAVE_PCRE_LIB
- defs->insert(newStr("PCRE"));
+ defs->insert("PCRE");
  #endif
  #if HAVE_BZIP2
- defs->insert(newStr("BZIP2"));
+ defs->insert("BZIP2");
  #endif
  #if HAVE_MIXER
- defs->insert(newStr("MIXER"));
+ defs->insert("MIXER");
  #endif
  #if HAVE_GDB_MI
- defs->insert(newStr("DEBUG"));
+ defs->insert("DEBUG");
  #endif
  #if HAVE_CALCULATOR
- defs->insert(newStr("CALCULATOR"));
+ defs->insert("CALCULATOR");
  #endif
  #if HAVE_CALENDAR
- defs->insert(newStr("CALENDAR"));
+ defs->insert("CALENDAR");
  #endif
 
  PreproInfo.depth=0;
@@ -1043,6 +1269,7 @@ int LoadTVMenuAndStatus(char *fileName)
     else
     if (*s!='#' && *s!='\n' && PreproValue) // Skip comment lines
       {
+       s=ExpandPreprocessor(s,&PreproInfo,defs);
        if (strncasecmp(s,"SubMenu:",8)==0)
          {
           TSubMenu *m=GetSubMenu(f,buf,s+8,&PreproInfo,&Cat,defs,PreproValue);
@@ -1133,6 +1360,8 @@ void UnLoadTVMenu(void)
  delete[] FileName;
  FileName=0;
  UnRegisterMacroCommands();
+ free(res.str);
+ res.str=NULL;
 }
 
 

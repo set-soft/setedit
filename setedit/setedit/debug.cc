@@ -760,8 +760,6 @@ void TSetEditorApp::DebugCommandsForDisc()
  TView::curCommandSet-=cmeDbgReturnNow;
  TView::curCommandSet-=cmeDbgStop;
  TView::curCommandSet-=cmeDbgKill;
- TView::curCommandSet-=cmeSelDebugWin;
- TView::curCommandSet-=cmeSelWatchesWin;
  TView::curCommandSet-=cmeDbgEndSession;
  TView::curCommandSet-=cmeDbgCloseSession;
  TView::curCommandSet-=cmGDBCommand;
@@ -2198,7 +2196,7 @@ TDiagBrk::TDiagBrk(const TRect &r) :
              new TSButton(__("D~i~sable"),cmBkDisable),
              new TSButton(__("~S~how")   ,cmBkGo),0));
 
- col->doItCenter(cmeDbgEditBreakPts);
+ col->doItCenter(hcBkptDialog);
  delete col;
 }
 
@@ -2537,7 +2535,7 @@ TDialog *createCmdDlg()
 
  // EN: C
  TSLabel *o1=new TSLabel(__("~C~ommand, be careful!"),
-                         new TSInputLine(widthGDBCom,maxGDBComBox));
+            new TSInputLinePiped(widthGDBCom,1,hID_DbgCommand,maxGDBComBox));
 
  col->insert(xTSLeft,yTSUp,o1);
  EasyInsertOKCancel(col);
@@ -3033,7 +3031,7 @@ public:
  virtual void close(void);
  virtual void handleEvent(TEvent &event);
 
- int AddWatch(Boolean wScope);
+ int AddWatch(Boolean wScope, char *val=NULL);
  int DeleteWatch();
  int EditWatch();
  int EditExpression(char *exp, char *tit);
@@ -3179,6 +3177,9 @@ int TWatchesDialog::InsertExp(char *exp, Boolean wScope)
    {
     WtList->setRange(WtCol->getCount());
     WtList->drawView();
+    show();
+    if (owner->current!=this)
+       select();
    }
  return res;
 }
@@ -3189,7 +3190,7 @@ TDialog *createEditExp(char *tit)
 
  // EN: E
  TSLabel *o1=new TSLabel(__("~E~xpression"),
-                         new TSInputLine(widthWtExp,maxWtBox));
+           new TSInputLinePiped(widthWtExp,1,hID_DbgEvalModifyExp,maxWtBox));
 
  col->insert(xTSLeft,yTSUp,o1);
  EasyInsertOKCancel(col);
@@ -3206,10 +3207,13 @@ int TWatchesDialog::EditExpression(char *exp, char *tit)
  return 0;
 }
 
-int TWatchesDialog::AddWatch(Boolean wScope)
+int TWatchesDialog::AddWatch(Boolean wScope, char *val)
 {
  char exp[widthWtExp];
- exp[0]=0;
+ if (val)
+    strncpyZ(exp,val,widthWtExp);
+ else
+    exp[0]=0;
  if (!EditExpression(exp,__("Add to watch list")))
     return 0;
  InsertExp(exp,wScope);
@@ -3334,10 +3338,11 @@ void WatchesClose()
     WtWindow->close();
 }
 
-void TSetEditorApp::DebugWatchExp(Boolean wScope)
+void TSetEditorApp::DebugWatchExp(Boolean wScope, char *val)
 {
  WatchesInit();
- WtWindow->AddWatch(wScope);
+ WtWindow->AddWatch(wScope,val);
+ delete[] val;
 }
 
 

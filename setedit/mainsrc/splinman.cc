@@ -378,7 +378,7 @@ int SpLineGetOldValueOf(int line, char *fName, int type, Boolean *found)
     ccIndex i;
     for (i=0; i<c; i++)
        {
-        stSpLine *st=p->At(Pos);
+        stSpLine *st=p->At(i);
         if (st->nline==line && (type==idsplAny || st->id==type))
           {
            if (found)

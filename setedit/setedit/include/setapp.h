@@ -146,8 +146,8 @@ const int
   cmeDbgOptsMsgs    = cmeBase+122,
   cmeDbgWatchExpNorm= cmeBase+123,
   cmeDbgWatchExpScp = cmeBase+124,
-  cmeSelDebugWin    = cmeBase+125,
-  cmeSelWatchesWin  = cmeBase+126,
+  //Moved - cmeSelDebugWin    = cmeBase+125,
+  //Moved - cmeSelWatchesWin  = cmeBase+126,
   cmeDbgEndSession  = cmeBase+127,
   cmeDbgCloseSession= cmeBase+128,
   cmeDbgGoConnected = cmeBase+129,
@@ -160,7 +160,9 @@ const int
   //-------------------------------------------------------------------------
   cmeSourceList     = cmeBase+160,
   cmeGPushCursorPos = cmeBase+161,
-  cmeGPopCursorPos  = cmeBase+162;
+  cmeGPopCursorPos  = cmeBase+162,
+  cmeSelDebugWin    = cmeBase+163,
+  cmeSelWatchesWin  = cmeBase+164;
 
 #endif
 
@@ -394,7 +396,7 @@ public:
     static char *DebugEvalExpression(char *exp);
     static char *DebugModifyExpression(char *exp, char *newVal);
     static void DebugOptsMsgs();
-    static void DebugWatchExp(Boolean wScope);
+    static void DebugWatchExp(Boolean wScope, char *val);
     static int  DebugConfirmEndSession(Boolean directRequest=False);
     static void DebugCloseSession();
     static void DebugCommandsForDisc();

@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.5.3
-@set update-date 25 June 2004
-@set update-month June 2004
+@set version 0.5.4
+@set update-date 30 July 2004
+@set update-month July 2004
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -3858,15 +3858,50 @@ tested.
 @p{}
 
 @table2{Variable,Meaning}
-@titemR{DOS,The binary was compiled for DOS}
-@titemR{Linux,The binary was compiled for Linux}
-@titemR{UNIX,The binary was compiled for a UNIX style OS (Linux included)}
-@titemR{Win32,The binary was compiled for Windows}
-@titemR{MP3,Support to play MP3 included}
-@titemR{MIXER,Support for the audio mixer included}
-@titemR{PCRE,Support for Perl RegEx included}
+@titemR{Alpha,The binary was compiled for Alpha (DEC) CPUs}
+@titemR{BCPP,The binary was compiled using Borland C++}
 @titemR{BZIP2,Support for bzip2 compressed files included}
+@titemR{CALCULATOR,Built-in calculator is available}
+@titemR{CALENDAR,Built-in calendar is available}
+@titemR{Cygwin,The binary was compiled using Cygwin}
+@titemR{djgpp,The binary was compiled using djgpp}
+@titemR{DOS,The binary was compiled for DOS}
+@titemR{DrvDOS,The editor using the DOS TV driver}
+@titemR{DrvQNX,The editor using the QNX RtP TV driver}
+@titemR{DrvQNX4,The editor using the QNX 4 TV driver}
+@titemR{DrvUNIX,The editor using the generic UNIX TV driver}
+@titemR{DrvWin32,The editor using the Win32 TV driver}
+@titemR{DrvWinGr,The editor using the WinGr TV driver}
+@titemR{DrvWinNT,The editor using the WinNT TV driver}
+@titemR{DrvX11,The editor using the X11 TV driver}
+@titemR{DrvXTerm,The editor using the XTerm TV driver}
+@titemR{FreeBSD,The binary was compiled for FreeBSD}
+@titemR{GCC,The binary was compiled using gcc}
+@titemR{HPPA,The binary was compiled for HP-PA Risc CPUs}
+@titemR{Itanium,The binary was compiled for IA64 CPUs}
+@titemR{Linux,The binary was compiled for Linux}
+@titemR{MinGW,The binary was compiled using MinGW}
+@titemR{MIPS,The binary was compiled for MIPS CPUs}
+@titemR{MIXER,Support for the audio mixer included}
+@titemR{MP3,Support to play MP3 included}
+@titemR{MSC,The binary was compiled using Microsoft C}
+@titemR{PCRE,Support for Perl RegEx included}
+@titemR{PPC,The binary was compiled for Power PC CPUs}
+@titemR{QNXRtP,The binary was compiled for QNX}
+@titemR{Solaris,The binary was compiled for Solaris}
+@titemR{SPARC,The binary was compiled for 32 bits SPARC CPUs}
+@titemR{SPARC64,The binary was compiled for 64 bits SPARC CPUs}
+@titemR{UNIX,The binary was compiled for a UNIX style OS (Linux included)}
+@titemR{Unknown,The binary was compiled for an unknown CPUs}
+@titemR{Win32,The binary was compiled for Windows}
+@titemR{x86,The binary was compiled for IA32 CPUs}
 @endtable-{}
+
+  In addition to the above mentioned methode you can also define small macros
+using the @code{$define} directive. You can also undefine them using
+@code{$undef} directive. These directives doesn't support multiline
+definitions, or worst, they do but this won't work as you should spect.
+@p{}
 
 @c --------------------------------------------------------------------------
 @section Comments in menu files
@@ -5312,6 +5347,34 @@ zero.
   Returns the window number for the edition window with the biggest window
 number. The lowest number is two.
 @p{}
+
+@c --------------------------------------------------------------
+@subsection GetSystemInfo
+
+  (GetSystemInfo @var{which})
+@p{}
+
+  Returns information about the system and similar stuff. The @var{which}
+argument selects which kind of information is returned. Available values are:
+@p{}
+
+@itemize @bullet
+  @item edfInfTVDriver: The short name of the Turbo Vision driver in use.
+Some of the possible drivers are: DOS, Linux, QNX, QNX4, UNIX, Win32, WinGr,
+WinNT, X11 and XTerm.
+  @item edfInfOS: The name of the operating system. Some of the possible
+names are: DOS, UNIX and Win32.
+  @item edfInfOSFlavor: Some of the possible flavors are: Linux, FreeBSD,
+Solaris and QNXRtP.
+  @item edfInfCPU: The CPU family used to compile the editor. Some of the
+possible names are: x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium
+and Unknown.
+  @item edfInfCompiler: The compiler used to compile the editor. Some of the
+possible compilers are: GCC, BCPP and MSVC.
+  @item edfInfCompilerFlavor: Some of the possible flavors are: djgpp,
+MinGW and Cygwin.
+@end itemize
+
 
 @c --------------------------------------------------------------
 @subsection getenv

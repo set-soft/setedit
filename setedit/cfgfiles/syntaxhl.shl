@@ -372,7 +372,7 @@ Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
 Keywords=cond,ShowInMessageWindow,SelectionExists,FindString,loop,GetCursorX
 Keywords=GetCursorY,SetCursorXY,repeat,GetSyntaxLang,FindAgain,ReplaceString
 Keywords=exitloop,ReplaceAgain,BindKey,SelectWindowNumber,GetCurWindowNumber
-Keywords=GetMaxWindowNumber,KeyBindings,tostr,prex
+Keywords=GetMaxWindowNumber,KeyBindings,tostr,prex,GetSystemInfo
 # Flags
 Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
 Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom
@@ -387,7 +387,8 @@ Keywords=edfNoOptimizeRegEx,edfNormalText,edfOnlySelection,edfOptimizeRegEx
 Keywords=edfPerlRegEx,edfPromptOnReplace,edfRegularEx,edfReplaceAll,edfSearchInComm
 Keywords=edfSearchOutComm,edfShowFuncName,edfTagsText,edfWholeWordsOnly
 Keywords=edfWinASCII,edfWinCalendar,edfWinClipboard,edfWinHelp,edfWinMP3,edfWinMan
-Keywords=edfWinMessage,edfWinPrj
+Keywords=edfWinMessage,edfWinPrj,edfInfTVDriver,edfInfOS,edfInfOSFlavor
+Keywords=edfInfCPU,edfInfCompiler,edfInfCompilerFlavor
 End
 
 # ---------------- Menu File ------------------
