@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.136  2002/07/01 13:09:50  set
+* Added: Support for the new TVOSClipboard I added to Turbo Vision 2.0
+replacing the old extra/winoldap.cc code.
+* Added: Support for a secondary OS clipboard used to copy/paste
+selections. That's for the X11 XA_PRIMARY selection mechanism. Now every
+time text is selected in the editor this is "copied" to X11 clipboard. The
+middle mouse button does the paste.
+
 Revision 1.135  2002/06/28 12:37:20  set
 * Fixed: A read out of bounds in the input line of the calculator. I must
 check it better because I think that's a bug in Turbo Vision. It isn't

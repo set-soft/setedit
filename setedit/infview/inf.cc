@@ -567,7 +567,7 @@ void TInfViewer::draw()
        {
         topic->getCrossRef(keyCount++, keyPoint, keyLength, keyRef, Exceso);
        }
-      while ( (keyCount <= NumCrossRefs) && (keyPoint.y <= delta.y));
+      while ( (keyCount < NumCrossRefs) && (keyPoint.y <= delta.y));
      }
 
  for (i = 1, LineaReal=delta.y+1; i <= size.y; ++i,LineaReal++)
