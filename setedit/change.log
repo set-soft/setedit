@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.359  2003/05/12 15:23:33  set
+* Modified: The imk generator to generate one dependency in each line. This
+makes files bigger (5.5 % for editor.imk) but reduces the CVS traffic
+because when a dependency is added only one line is affected and no all the
+lines after it.
+
 Revision 1.358  2003/05/12 14:39:33  set
 * Added: Emacs modes and shell names for Tcl and Python. Suggested by
 Grzegorz.

@@ -798,17 +798,22 @@ int TakeScriptPrg(char *buffer, int lenBuf, char *ext)
  *ext=0;
  // Kill any space before the path (also /)
  for (buffer+=2; buffer<end && (ucisspace(*buffer) || *buffer=='/'); buffer++);
+ int i;
  do
    {
-    int i;
     if (*buffer=='/')
        buffer++;
     for (i=0; buffer<end && *buffer!='/' && *buffer!=' ' && CLY_IsntEOL(*buffer); buffer++)
         if (i<MaxExtension-1)
            ext[i++]=*buffer;
     ext[i]=0;
+    if (strcmp(ext,"env")==0 && *buffer==' ')
+      {
+       for (; buffer<end && ucisspace(*buffer); buffer++);
+       i=-1;
+      }
    }
- while (*buffer=='/');
+ while (*buffer=='/' || i==-1);
  return *ext;
 }
 
@@ -950,7 +955,20 @@ int SHLSelect(TCEditor &e, char *buffer, int lenBuf)
 
  // If not present then check if the file is a UNIX script
  if (!found && TakeScriptPrg(buffer,lenBuf,Extension))
+   {
     found=SearchSHLForIt(e,Extension,i,extShellScript);
+    if (!found)
+      {
+       char *s=Extension;
+       // Try without the numbers. Example: python2.2 => try python
+       for (; *s && !ucisdigit(*s); s++);
+       if (*s)
+         {
+          *s=0;
+          found=SearchSHLForIt(e,Extension,i,extShellScript);
+         }
+      }
+   }
 
  // Try RegEx with the full name
  if (!found)
