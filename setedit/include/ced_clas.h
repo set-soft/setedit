@@ -612,7 +612,7 @@ void regexRecUpdate(TRegexDialogRec &r)
 // That's a structure to hold the most important information of an
 // editor window.
 // The coordinates are short because a 32768 screen is big enough ;-)
-typedef struct
+struct EditorResumeV2
 {
  uchar version,dummy;
  uchar shl,subshl;
@@ -622,9 +622,9 @@ typedef struct
  short zorigin_x,zorigin_y;
  short zsize_x,zsize_y;
  uint16 ed_flags,prj_flags;
-} EditorResumeV2;
+};
 
-typedef struct
+struct EditorResumeV3
 {
  uchar version,dummy;
  uchar shl,subshl;
@@ -634,9 +634,9 @@ typedef struct
  short zorigin_x,zorigin_y;
  short zsize_x,zsize_y;
  uint32 ed_flags,prj_flags;
-} EditorResumeV3;
+};
 
-typedef struct
+struct EditorResume
 {
  uchar version,dummy;
  uchar shl,subshl;
@@ -647,7 +647,7 @@ typedef struct
  short zsize_x,zsize_y;
  uint32 ed_flags,prj_flags;
  unsigned tabSize,indentSize,wrapCol;
-} EditorResume;
+};
 
 #define CopyEditorResume(dst,sou) memcpy(dst,sou,sizeof(EditorResume))
 

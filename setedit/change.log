@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.129  2002/06/24 16:02:14  set
+* Fixed: Patchen.pl script.
+
 Revision 1.128  2002/06/24 16:01:28  set
 * Fixed: mp3play.h should be included only for the editor and not InfView
 in the codepage part.
