@@ -88,7 +88,6 @@ static char *BUFFER;
 static TCEditor *EDITOR;
 static uint32 lineptr;
 
-#ifdef CACHED_COLORS
 /*
 by Robert:
 
@@ -111,22 +110,32 @@ by Robert:
    with caching:     about 100 lines/second
 */
 
-static unsigned char cached_colors[cNumColors];
+uchar TCEditor::cachedColors[cNumColors];
 
 void TCEditor::CacheColors()
 {
  int i;
- for (i=1;i<cNumColors;i++)
-     cached_colors[i] = getColor(i);
+ for (i=1; i<cNumColors; i++)
+     cachedColors[i]=getColor(i);
 }
 
-#define GetColor(a) cached_colors[a]
+/**[txh]********************************************************************
 
-#else
+  Description:
+  Fills the colors cache with correlative numbers. This can be used to get
+SHL id values instead of colors so you can analyze according to the data
+type instead of the color.
+  
+***************************************************************************/
 
-#define GetColor EDITOR->getColor
+void TCEditor::ColorsCacheToIDs()
+{
+ int i;
+ for (i=1; i<cNumColors; i++)
+     cachedColors[i]=i;
+}
 
-#endif
+#define GetColor(a) TCEditor::cachedColors[a]
 
 #define NormalColor  GetColor(cNormal)
 #define CommentColor GetColor(cComment)

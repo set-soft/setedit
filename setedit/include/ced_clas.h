@@ -192,6 +192,8 @@ public:
     void ExpandAllTabs(void);
     void CompactBuffer();
     void SourceToHTML(FILE *f, unsigned *pal, unsigned flags);
+    void SourceToHTML_Old(FILE *f, unsigned *pal, unsigned flags);
+    void SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags);
     uint32 CompactFlags(void);
     void ExpandFlags(uint32 t,Boolean allowUndo=True);
     Boolean selRectCopy(Boolean allowUndo=True);
@@ -332,6 +334,7 @@ public:
     void RecalculateLineAttributes(void);
     void ProfileEditor(void);
     void CacheColors(void);
+    void ColorsCacheToIDs(void);
 
     void InsertCharInLine(char cVal, Boolean allowUndo=True);
     void MakeEfectiveLineInEdition();
@@ -482,6 +485,7 @@ public:
     static shlState strCtype;   // What type is cached (all or just user words)
     static void InvalidateSHLCache() { strCid=-2; };
     static int      SHLCant;    // Number of SHLs defined
+    static const char *shlNames[]; // Compact names for the colors
     static TStringCollection *SHLGenList; // Names of the SHLs tp choose one
     static dflOptions dflOps;   // Default options settings for SHL=none
 
@@ -559,6 +563,8 @@ public:
 
     // If 1 the colors are already cached
     static int colorsCached;
+    // Colors cache
+    static uchar cachedColors[];
 
     // For the pseudo macros by now only one
     static TPMCollection *PMColl;

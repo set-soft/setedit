@@ -111,6 +111,7 @@ const unsigned
   xhtmlBackground = 2,
   xhtmlMonoFont   = 4,
   xhtmlBoldFont   = 8,
+  xhtmlUseCSS     =16,
   xhtmlUseColors  = 0x10000;
 
 const int maxArbitraryStrLen=250;

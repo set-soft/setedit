@@ -24,8 +24,6 @@
 // definition.
 
 // ** Shared options
-// Cache the colors in editorfo.cc to avoid calling getColor() all the time
-#define CACHED_COLORS
 // Gzip support is inside the editor using libz. The support for external
 // gzip is broken and I don't think is a good idea to fix it.
 #define SUP_GZ

@@ -368,7 +368,8 @@ TDialog *createHTMLExportOps()
                              __("~F~ile name as title"),
                              __("Same ~b~ackground color as the editor"),
                              __("~M~onospacied font"),
-                             __("Bo~l~d attribute"),0),
+                             __("Bo~l~d attribute"),
+                             __("~U~se CSS and HTML 4.01"),0),
                 TSLabelRadio(__("Colors"),__("Use ~c~olors"),
                              __("~D~on't use colors"),0)
                 );

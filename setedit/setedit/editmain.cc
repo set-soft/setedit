@@ -588,7 +588,8 @@ void ExportAsHTML(void)
      uint32 flags;
      uint32 color;
     } flags;
-    flags.flags=xhtmlTitle | xhtmlBackground | xhtmlMonoFont | xhtmlBoldFont;
+    flags.flags=xhtmlTitle | xhtmlBackground | xhtmlMonoFont | xhtmlBoldFont |
+                xhtmlUseCSS;
     flags.color=0;
     if (!TCEditor::editorDialog(edExportHTMLOps,&flags)) return;
    

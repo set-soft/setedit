@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.226  2002/11/05 13:15:33  set
+* Fixed: applycvs.pl failed to apply new files in the root of the module.
+
 Revision 1.225  2002/11/05 13:13:33  set
 * Fixed: Now when choosing to "never remember windows" the options "resume"
 isn't applied. Note it was possible to choose such a behavior by choosing

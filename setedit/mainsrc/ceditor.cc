@@ -1325,13 +1325,11 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
  int OffXr1=0,OffXr2=0,Off;
  char ColRect=0;
 
-#ifdef CACHED_COLORS
  if (!colorsCached)
    {
     CacheColors();
     colorsCached=1;
    }
-#endif
  CacheSyntaxHLData(GenericSHL);
 
  // Set IsPostRectOn only if really needed
@@ -4155,10 +4153,26 @@ xhtmlTitle:      File name as title.@*
 xhtmlBackground: Same background color as the editor.@*
 xhtmlMonoFont:   Monospacied font.@*
 xhtmlBoldFont:   Bold attribute.@*
+xhtmlUseCSS:     Use CSS and HTML 4.01.@*
 
 ***************************************************************************/
 
 void TCEditor::SourceToHTML(FILE *f, unsigned *pal, unsigned flags)
+{
+ if (flags & xhtmlUseCSS)
+    SourceToHTML_CSS(f,pal,flags);
+ else
+    SourceToHTML_Old(f,pal,flags);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  This version uses plain old HTML. @x{::SourceToHTML}.
+  
+***************************************************************************/
+
+void TCEditor::SourceToHTML_Old(FILE *f, unsigned *pal, unsigned flags)
 {
  flushLine();
 
@@ -4243,6 +4257,148 @@ void TCEditor::SourceToHTML(FILE *f, unsigned *pal, unsigned flags)
  fputs("</Body></HTML>",f);
 
  free(b);
+}
+
+const char *TCEditor::shlNames[]=
+{
+ "",
+ "Normal",
+ "Marked",
+ "Comment",
+ "Reserved",
+ "Ident",
+ "Symbol",
+ "String",
+ "Integer",
+ "Float",
+ "Octal",
+ "Hex",
+ "Char",
+ "Pre",
+ "Illegal",
+ "User",
+ "CPU",
+ "Break",
+ "Symbol2",
+ "CrossCur",
+ "StatusLi",
+ "MPHighL",
+ "RectSel",
+ "OddTab",
+ "EvenTab",
+ "ColMark"
+};
+
+/**[txh]********************************************************************
+
+  Description:
+  This variant uses CSS and HTML 4.01 Strict. @x{::SourceToHTML}.
+
+***************************************************************************/
+
+void TCEditor::SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags)
+{
+ flushLine();
+
+ ushort *b=(ushort *)malloc(limit.x*sizeof(ushort));
+ if (!b)
+    return;
+ int bSize=limit.x,thisSize,x,i;
+ uint32 linePtr=0;
+ uint16 color=getColor(0x0201);
+ uchar *bc=(uchar *)b;
+ uchar col,antcol=0x10,fontOpen=0,val;
+ uchar aColors[cNumColors];
+
+ // Head
+ fputs("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\">\n<HTML><HEAD>\n",f);
+ // Name of file
+ if (flags & xhtmlTitle)
+    fprintf(f,"<Title>%s</Title>",fileName);
+ // Common options, needs some adjusts, could be better
+ fputs("<Meta name=\"GENERATOR\" content=\"SETEdit "TCEDITOR_VERSION_STR"\">\n",f);
+ fputs("<meta name=\"resource-type\" content=\"document\">\n",f);
+ fputs("<meta name=\"distribution\" content=\"global\">\n",f);
+ fputs("<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">\n",f);
+ fputs("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n",f);
+ // Embedded stylesheet, the user should move it to a file
+ fputs("<style type=\"text/css\">\n<!--\n",f);
+ // Background color as in the editor
+ if (flags & xhtmlBackground)
+    fprintf(f,"body { background:#%06X }\n",pal[(color>>4) & 0xF]);
+ // A tricky but compact solution:
+ for (i=1; i<cNumColors; i++)
+    {
+     aColors[i]=col=getColor(i);
+     fprintf(f,"b.%s { color:#%06X; background:#%06X; ",shlNames[i],
+             pal[col & 0xF],pal[col>>4]);
+     // Bold is needed or the letters become hard to read
+     if (!(flags & xhtmlBoldFont))
+        fputs("font-weight:normal; ",f);
+     // That's a normal monospacied font
+     if (flags & xhtmlMonoFont)
+        fputs("font-family:Courier New; ",f);
+     fputs("}\n",f);
+    }
+ fputs("-->\n</style>\n",f);
+ // End of head
+ fputs("</HEAD><p>",f);
+ ColorsCacheToIDs();
+ for (int y=0; y<limit.y; y++)
+    {
+     char *s=buffer+linePtr;
+     thisSize=LenWithoutCRLF(y,s);
+     for (x=0,i=0; i<thisSize; s++,i++)
+        { AdvanceWithTab(*s,x); }
+     if (x>bSize)
+       {
+        b=(ushort *)realloc(b,x*sizeof(ushort));
+        if (!b) return;
+        bc=(uchar *)b;
+        bSize=x;
+       }
+     (this->*formatLinePtr)(b,linePtr,x,color,x,lenLines.getAttr(y),y,0);
+     for (i=0; i<x; i++)
+        {
+         col=bc[i*2+1];
+         val=bc[i*2];
+         if ((flags & xhtmlUseColors) && col!=antcol &&
+             (val!=' ' || (aColors[col] & 0xF0)!=(aColors[antcol] & 0xF0)))
+           {
+            if (fontOpen)
+               fputs("</b>",f);
+            else
+               fontOpen=1;
+            fprintf(f,"<b class=%s>",shlNames[col]);
+            antcol=col;
+           }
+         switch (val)
+           {
+            case ' ':
+                 if (i && i+1<x && bc[(i+1)*2]!=' ')
+                    fputc(' ',f);
+                 else
+                    fputs("&nbsp;",f);
+                 break;
+            case '>':
+                 fputs("&gt;",f);
+                 break;
+            case '<':
+                 fputs("&lt;",f);
+                 break;
+            default:
+                 fputc(val,f);
+           }
+        }
+     fputs("<br>\n",f);
+     linePtr+=lenLines[y];
+    }
+ if (fontOpen)
+    fputs("</b>",f);
+ fputs("</Body></HTML>",f);
+
+ free(b);
+ CacheColors();
 }
 
 /****************************************************************************
