@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.238  2002/11/26 12:51:12  set
+* Added: An LRU algorithm to remove entries in the closed list, as
+suggested by Ivan. I changed (once again) the resume structure to add the
+time stamp of the resume. Spect all kind of stupid side effects, flames
+go to Ivan for the idea ;-)
+
 Revision 1.237  2002/11/26 12:50:17  set
 * Fixed: The GetSelection sLisp command read one extra character in a
 string copy. Only detectable thanks to efence (not harmful).

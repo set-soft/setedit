@@ -30,74 +30,161 @@ INDEX:
 
 0. IMPORTANT:
 
-  Like the old releases I'm testing new features and bug fixes, some of them
-will be part of RHIDE so I need them tested.
+  This is a major release and also a "dot zero" release. So you should expect
+big changes and also some annoying side effects. Please be patient and try to
+help me to solve any problem. I use the editor every day and compiled using
+"Electric Fence", it means that in my system the editor is really stable, but
+the editor supports too much systems and options.
 
   Changes in v@@v@@ (for more details read the change.log file):
 [taking last stable release (0.4.54) as reference]
+[41 new things and 25 fixes]
 
-New [1 things]:
+New [41 things]:
 
-+ Various []
++ Various [16]
 
+* FreeBSD support.
+* Solaris support.
+* QNX support.
+* Big endian CPUs support (runs quite well on SPARC machines).
+* X11 (X Window) native support.
+* Support for X11 clipboards and mouse wheel.
+* Much better XTerm and Eterm support.
+* New screen, fonts and encoding dialogs with more and better options.
+* An option to select a "Color Theme", currently only the "Default", "FTE
+like" and "Console + VIM" themes are available.
+* Euro symbol to the fonts.
+* More fonts are available.
+* Now is possible to indicate a project to load without the extension in the
+command line.
+* Option to generate HTML 4.01 + CSS in the HTML export.
+* Now if you unindent uncommenting the editor checks that at least the first
+line is already indented, if not the operation is aborted.
+* Now the matchpair and the complementary element jumps are affected
+by the syntax highlight.
+* An LRU algorithm to remove entries in the closed list.
 
-+ Configuration []
++ Configuration [4]
 
+* Configuration questions in the installer [DOS and Linux .deb files].
+* Now ~/.tcedit.dst have more priority than ~/tcedit.dst.
+* Option to save a desktop file in the current directory.
+* Independent set of options are stored for each driver used (DOS, Linux,
+X11, etc.) in the desktop files.
 
-+ InfView []
++ InfView/ManView [3]
 
+* Ctrl+Arrows support.
+* Support fot copy from man page to: editor's clipboard, main OS clipboard
+and secondary OS clipboard.
+* The default ManView colors as suggested by Ivan, now they are more coherent
+with InfView.
 
-+ List of functions []
++ List of functions [2]
 
+* If two identical functions (most probably only one is really used at compile
+time) both are listed in the list of functions.
+* PHP functions parser. Ivan Baldo <lubaldo@adinet.com.uy>
 
-+ Run external programs and message window []
++ Run external programs and message window [4]
 
+* Options to avoid reseting the horizontal position of the message window
+when new entries are added.
+* Options to indicate when we reached the last/first item in the errors list.
+* "Vertical project window" options.
+* Tasm 2.02 errors parser.
 
-+ Edition modes []
++ Edition modes [1]
 
-
-+ Editor commands []
-
+* When the user sets the "Use Tabs" option the editor checks if
+other options commonly used with tabs are also coherent. If not an advice
+dialog is created.
 
 + Sound system []
 
+* Solaris support.
 
-+ Syntax highlight and pmacros [1]
++ Syntax highlight and pmacros [6]
 
 * Lua. David A. Capello <dacap@users.sourceforge.net>.
+* Flat Assembler. Matt C. <talktomatt@egl.net>
+* PHP. Richard Vrijhof <R.J.Vrijhof@bigfoot.com>.
+* POV-ray. Martijn Versteegh <m.versteegh@hccnet.nl>.
+* Turbo Vision configuration files.
+* XML [Very limited!!]
 
-+ sLisp []
++ Linux [2]
 
+* A clipboard mechanism based on a special file.
+* AA-lib plasma screen saver.
 
-+ Linux []
++ Cosmetic [2]
 
-
-+ Windows []
-
-
-+ Cosmetic []
-
-
-
-
-Fixed [0 things]:
-
-+ Fatal  []
-
-
-+ Not fatal []
+* The editor now checks if the screen saver is suitable for the current
+driver.
+* When the editor loads a file the "busy indicator" is used (different mouse
+cursor under X11).
 
 
-+ Undo []
+Fixed [25 things]:
 
++ Fatal  [5]
 
-+ Linux []
+* SIGSEGVs when using "Tool&Ops|Options|Run program" when no desktop file was
+loaded.
+* Buffer overflow in temporary names created by infview (L_tmpnam).
+* When starting the editor with a remmembered file that no longer
+exists located in a directory where we don't want backups the editor
+removed the dektop structure from the list and inmediatly used it.
+* Crash in InfView when no desktop file was available.
+* Some problems that made the editor crash when opening a file from
+the windows list dialog and this process needed to show a messageBox.
 
++ Not fatal [12]
 
-+ Cosmetic []
+* A bug in InfView parser. When a node had a lot of cross references
+that started in a line and ended in another *and* the last cross reference
+was near to the end of the node *and* the hide options were enabled.
+* Code generated for a recorded macro now uses \t instead of an ASCII 9
+embedded in the string.
+* The show match pair on the fly without waiting had an interaction with the
+syntax highlight computation.
+* C++ operators parsing in the list of functions.
+* When browsing the list of errors and selecting an error reported
+in a non-existant file the editor opened an empty buffer.
+* When the editor fails to load a desktop file (wrong version,
+corrupted file, wrong access rights, ect.) the editor tries to load the
+global desktop file.
+* One preprocessor combination that fooled the functions parser.
+* When typing in overwrite mode the line length was wrongly computed.
+* The editor didn't allow to save ReadOnly files using "Save As".
+* The selection adjust done when we leave a line under edition failed if the
+line had extra spaces at the end.
+* Now when choosing to "never remember windows" the options "resume" isn't
+applied.
+* When indenting a block using the arbitrary indent or comment indent the
+syntax highlight wasn't recomputed.
 
++ Undo [1]
 
+* Bug in the undo of text typed while using overwrite mode.
 
++ DOS [3]
+
+* The installer now uses cwsdpmi and a regular stub (much more reliable than
+pmodedj).
+* Ctrl+Break is now blocked.
+* When using the editor without djgpp the editor failed to find the
+internationalization files.
+
++ Cosmetic [4]
+
+* The ASCII window grown after a window resize.
+* "Shell" instead of "DOS shell".
+* Error in docs about delete left/right word.
+* When restoring the settings of a closed window (or project item) the
+"overwrite" status wasn't reflected in the cursor shape.
 
   For information about older releases and more read the change.log file.
 
@@ -114,13 +201,13 @@ Note for DOS users:
 * 2 Mb of memory or more.
 * 2.4 Mb of free disk during installation and about 1.5 Mb once installed.
 * DOS version 5.0 or posterior or any compatible OS (Win '9x, Win 3.1, OS/2,
-MS-DOS, etc.). The NT platform isn't fully supported, I don't have NT, if you
-need support for NT send me a licensed copy of NT ;-). I did my best to
-support it, but as I don't have one at home I can't do more.
+MS-DOS, etc.).
 Note: A native windows version is available but is just for testing.
 or
-* Linux with ELF support for the Linux version. For console use you need gpm
-1.14, older versions are incompatible.
+* Linux with ELF support.
+or
+* FreeBSD, QNX and Solaris are supported but you'll need to compile from
+sources.
 * A VGA card.
 * DJGPP users normally have it.
 
@@ -235,7 +322,7 @@ General.
 
 
 
-4. MP3: [Only in the DOS and Linux versions]
+4. MP3: [Only in the DOS, Linux and Solaris versions]
 
   Linux users doesn't need to configure any special thing.
   DOS users:
