@@ -74,9 +74,9 @@ compilation, if you then need to change things I'll suggest using RHIDE.
 release doesn't include the patches to fix it.
 * GCC 2.7.x/2.8.x/2.9.x or EGCS 1.x. Currently I use gcc 2.95.2. You'll need
 the C++ stuff.
-* RHIDE 1.4.7.6, a previous version won't work and 1.4 will probably crash if
+* RHIDE 1.4.9, a previous version won't work and 1.4 will probably crash if
 you try to load the project files included here. You can just use make
-instead.
+instead. Download from http://www.rhide.com/.
 * The last release of Turbo Vision. As I'm the maintainer I release a version
 each time I release the editor.
 * Allegro 3.1/3.11/3.12 (with my 16 bits mixing routines ;-). Download it
@@ -136,8 +136,9 @@ used 2.2.10 for distributions.
 libc5 and adding gettext as library. See the rhide.env file for adding
 "magical" libraries without touching the projects. The configure script
 doesn't detect it because I don't have any system with libc5 at hand.
-* RHIDE 1.4.7.5, a previous version won't work and 1.4 will probably crash if
+* RHIDE 1.4.9, a previous version won't work and 1.4 will probably crash if
 you try to load the project files included here. Or just use make instead.
+Download from http://www.rhide.com/
 * The last release of Turbo Vision. As I'm the maintainer I release a version
 each time I release the editor.
 * ZLib 1.1.2 or compatible. Sources are included in libz directory, compile
