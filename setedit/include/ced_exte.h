@@ -59,7 +59,8 @@ const int
   edJumpToPrototype = 31,
   edArbitraryIndent = 32,
   edFileCompMant    = 33,
-  edCreateTMPError  = 34;
+  edCreateTMPError  = 34,
+  edSearchAndNoSel  = 35;
 
 // ************* Various flags
 const int
@@ -74,7 +75,8 @@ const int
 
   efOptimizedRegex  = 0x00000200,
   efDoReplace       = 0x00000400,
-  //efInSelection     = 0x00000800, This flag isn't used
+  efSearchBack      = 0x00000800,
+
   efBackupFiles     = 0x00001000,
   efSaveEOLasis     = 0x00002000,
   efScrollLock      = 0x00004000,

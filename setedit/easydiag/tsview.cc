@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSView
 #include <easydia1.h>
@@ -21,5 +21,23 @@ void TSView::insert(TDialog *d)
  d->insert(view);
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  When 2 objects doesn't belong to the same vertical group but they are in
+column (special cases of the flow inside the dialog) you make then of the
+same width using it.
+  
+***************************************************************************/
+
+void TSView::makeSameW(TSView *o1, TSView *o2)
+{
+ if (o1->w>o2->w)
+    o2->setWidth(o1->w);
+ else if (o1->w<o2->w)
+    o1->setWidth(o2->w);
+}
+
 int TSView::xDefSep=1;
 int TSView::yDefSep=1;
+

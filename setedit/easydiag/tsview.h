@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TSView) && !defined(__TSView_Defined__)
 #define __TSView_Defined__
@@ -21,8 +21,12 @@ public:
  virtual void setWidth(int aW) { w=aW; };
  virtual int  howManyHz() { return 1; };
  virtual void setGrowMode(unsigned val) { view->growMode=val; };
+ // Used to make two objects of the same width when they aren't part of a
+ // vertical group.
+ static void makeSameW(TSView *o1, TSView *o2);
  static int xDefSep,yDefSep;
 };
+
 
 int  EDMaxWidth(TSView *first, ...);
 void EDForceSameWidth(TSView *first, ...);

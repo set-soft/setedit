@@ -185,7 +185,7 @@ void MakeBeep()
 static
 char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
 {
- char *endOfName,*endOfLine=0;
+ char *endOfName,*endOfLine=0,*startOfColumn=0;
  int offset=0;
  int IsLineNumber=0;
 
@@ -203,7 +203,14 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     for (s=endOfName+2; *s!=':' && ucisdigit(*s); s++);
     IsLineNumber=*s==':';
     if (IsLineNumber)
-      {// Check if the error is empty ...
+      {// Optional column
+       for (s=endOfLine+1; *s!=':' && ucisdigit(*s); s++);
+       if (*s==':')
+         {
+          startOfColumn=endOfLine+1;
+          endOfLine=s;
+         }
+       // Check if the error is empty ...
        for (s=endOfLine+1; *s && ucisspace(*s); s++);
        if (!*s) // in this case invalidate it
           endOfName=0;
@@ -270,7 +277,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
 
  *endOfLine=0;
  fI.Line=atoi(endOfName+1);
- fI.Column=1;
+ fI.Column=startOfColumn ? atoi(startOfColumn) : 1;
 
  return ret;
 }

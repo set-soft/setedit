@@ -13,18 +13,20 @@ const int maxFindStrLenEd=80,
 
 struct TFindCDialogRec
 {
- TFindCDialogRec( const char *str, unsigned flgs, unsigned insel,
-                  unsigned from_where )
-   {
-    strcpy( find, str );
-    options = flgs;
-    in_sel = insel;
-    from = from_where;
-   }
+ TFindCDialogRec(const char *str, unsigned flgs, unsigned insel,
+                 unsigned from_where)
+ {
+  strcpy(find,str);
+  options=flgs;
+  in_sel=insel;
+  from=from_where;
+  direction=(flgs & efSearchBack) ? 1 : 0;
+ }
  char find[maxFindStrLenEd];
  uint32 options;
  uint32 in_sel;
  uint32 from;
+ uint32 direction;
 };
 
 #endif  // Uses_TFindCDialogRec
@@ -35,20 +37,22 @@ struct TFindCDialogRec
 
 struct TReplaceCDialogRec
 {
- TReplaceCDialogRec( const char *str, const char *rep, unsigned flgs,
-                     unsigned insel, unsigned from_where )
-    {
-     strcpy( find, str );
-     strcpy( replace, rep );
-     options = flgs;
-     in_sel = insel;
-     from = from_where;
-    }
+ TReplaceCDialogRec(const char *str, const char *rep, unsigned flgs,
+                    unsigned insel, unsigned from_where)
+ {
+  strcpy(find,str);
+  strcpy(replace,rep);
+  options=flgs;
+  in_sel=insel;
+  from=from_where;
+  direction=(flgs & efSearchBack) ? 1 : 0;
+ }
  char find[maxFindStrLenEd];
  char replace[maxReplaceStrLenEd];
  uint32 options;
  uint32 in_sel;
  uint32 from;
+ uint32 direction;
 };
 
 #endif  // Uses_TReplaceCDialogRec
@@ -366,7 +370,7 @@ public:
     void UpdateSelecting(void);
     void MoveToMouse( TPoint m, uchar selMode );
     void MoveCursorTo(unsigned x, unsigned y, Boolean undo=False);
-    void GoAndSelectLine(int line, Boolean selectLine=True);
+    void GoAndSelectLine(int line, int column=1, Boolean selectLine=True);
     int  IsFirstCharInLine(void);
     void GotoOffSet(unsigned o);
     void JumpEndOfText();
@@ -534,6 +538,7 @@ public:
     Boolean IsFoundOn;
     static int    CompileSearch(char *searchStr, char *replaceStr=0);
     static uint32 MakeASearch(char *text, uint32 len, int &matchLen);
+    static uint32 MakeASearchBack(char *text, uint32 len, int &matchLen);
     static char  *GetTheReplace(int &mustDelete, uint32 &len);
     static int    CompileReplace(char *replaceStr);
     static char  *GetNormalReplace(int &mustDelete, uint32 &len);

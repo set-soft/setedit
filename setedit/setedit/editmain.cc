@@ -1775,7 +1775,7 @@ opens it.
 
 ***************************************************************************/
 
-int ShowFileLine(int line, char *file)
+int ShowFileLine(int line, int column, char *file)
 {
  if (!line)
     return 0;
@@ -1784,7 +1784,7 @@ int ShowFileLine(int line, char *file)
    {
     TCEditor *ed=edw->editor;
     ed->lock();
-    ed->GoAndSelectLine(line);
+    ed->GoAndSelectLine(line,column);
     ed->trackCursor(True);
     ed->update(ufView);
     ed->unlock();
@@ -1868,8 +1868,8 @@ the line isn't "selected", instead we set the "CPU Line" for this line.
 
 ***************************************************************************/
 
-int GotoFileLine(int line, char *file, char *msg, int off, int len,
-                 unsigned flags)
+int GotoFileLine(int line, int column, char *file, char *msg, int off,
+                 int len, unsigned flags)
 {
  if (!line)
    {
@@ -1886,7 +1886,7 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len,
    {
     TCEditor *ed=edw->editor;
     ed->lock();
-    ed->GoAndSelectLine(line,notCPULine);
+    ed->GoAndSelectLine(line,column,notCPULine);
     if (!notCPULine)
       {
        DebugSetCPULine(line,file);

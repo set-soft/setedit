@@ -128,7 +128,7 @@ void TSOSListBoxMsg::focusItem(ccIndex item)
       {
        //TApplication::deskTop->lock();
        char *fileName=Stack->GetStrOf(Stack->GetPreviousOf(aux));
-       ShowFileLine(SpLineGetNewValueOf(fI->Line,fileName),fileName);
+       ShowFileLine(SpLineGetNewValueOf(fI->Line,fileName),fI->Column,fileName);
        //this->owner->select();
        //TApplication::deskTop->unlock();
       }
@@ -149,8 +149,8 @@ void TSOSListBoxMsg::selectItem(ccIndex item)
     if (fI->Line>=0)
       {
        char *fileName=Stack->GetStrOf(Stack->GetPreviousOf(aux));
-       selectOK=GotoFileLine(SpLineGetNewValueOf(fI->Line,fileName),fileName,msg,
-                             fI->offset,fI->len);
+       selectOK=GotoFileLine(SpLineGetNewValueOf(fI->Line,fileName),fI->Column,
+                             fileName,msg,fI->offset,fI->len);
       }
    }
 }

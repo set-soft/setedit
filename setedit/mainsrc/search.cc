@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -74,6 +74,35 @@ uint32 TCEditor::MakeASearch(char *text, uint32 len, int &matchLen)
        return MakeARegExSearch(text,len,matchLen);
    }
  return MakeANormalSearch(text,len,matchLen);
+}
+
+uint32 TCEditor::MakeASearchBack(char *text, uint32 len, int &matchLen)
+{
+ // Go line by line
+ char *thisLine=text;
+ uint32 lenThisLine=1;
+ len++;
+ uint32 lenOri=len;
+ while (len)
+   {
+    uint32 res=MakeASearch(thisLine,lenThisLine,matchLen);
+    if (res!=sfSearchFailed)
+       return (lenOri-len)+res;
+    thisLine--;
+    lenThisLine++;
+    len--;
+    if (len && CLY_IsEOL(*thisLine))
+      {
+       do
+         {
+          thisLine--;
+          len--;
+         }
+       while (len && CLY_IsEOL(*thisLine));
+       lenThisLine=1;
+      }
+   }
+ return sfSearchFailed;
 }
 
 char *TCEditor::GetTheReplace(int &mustDelete, uint32 &len)

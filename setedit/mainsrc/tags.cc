@@ -1532,7 +1532,7 @@ void JumpToTag(TListBoxRec &br, Boolean isClassCol)
    }
  GPushCursorPos();
  if (p->flags & sttFgLine)
-   GotoFileLine(p->line,b,desc);
+   GotoFileLine(p->line,1,b,desc);
  else
    GotoFileText((char *)p->regex,b,desc);
 }

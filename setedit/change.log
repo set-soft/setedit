@@ -1,4 +1,9 @@
 $Log$
+Revision 1.641  2004/11/29 18:10:59  set
+* Modified: Version to 0.5.5.
+* Updated: [WWW] To reflect the new release.
+* Added: Python heuristic for the list of functions, contributed by
+Grzegorz.
 
 -------- CVS TAG r0_5_4DOS
 

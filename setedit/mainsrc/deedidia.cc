@@ -107,7 +107,7 @@ int RegExDialog(unsigned , void *)
  return btcbGoOn;
 }
 
-// Eng: CEFGHIKOSTUWX
+// Eng: BCDEFGHIKOSTUWX
 TDialog *createFindDialog(void *regexBox)
 {
  boxRegEx=regexBox;
@@ -125,6 +125,8 @@ TDialog *createFindDialog(void *regexBox)
              TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),0),
              TSLabelRadio(__("Origin"),__("~F~rom cursor"),
                           __("~E~ntire scope"),0),
+             TSLabelRadio(__("Direction"),__("Forwar~d~"),
+                          __("~B~ackward"),0),
              0);
  Options->makeSameW();
 
@@ -143,7 +145,7 @@ TDialog *createFindDialog(void *regexBox)
 }
 
 
-// Eng: ACEFGHIKNOPRSTWX
+// Eng: ABCDEFGHIKNOPRSTWX
 TDialog *createReplaceDialog(void *regexBox)
 {
  boxRegEx=regexBox;
@@ -163,13 +165,13 @@ TDialog *createReplaceDialog(void *regexBox)
                   __("~P~rompt on replace"),__("~R~eplace all"),0);
  Options->setWidth(FixWTest);
 
- TSLabel *Origin=TSLabelRadio(__("Scope"),__("~G~lobal"),
-                              __("~S~elected text"),0);
- Origin->setWidth(FixWTest);
-
- TSLabel *Scope=TSLabelRadio(__("Or~i~gin"),__("~F~rom cursor"),
-                             __("~E~ntire scope"),0);
- Scope->setWidth(FixWTest);
+ TSVeGroup *OriScoDir=
+ MakeVeGroup(tsveMakeSameW, // All together + same width
+             TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),0),
+             TSLabelRadio(__("Or~i~gin"),__("~F~rom cursor"),__("~E~ntire scope"),0),
+             TSLabelRadio(__("Direction"),__("Forwar~d~"),__("~B~ackward"),0),
+             0);
+ TSView::makeSameW(newText,OriScoDir);
 
  TSHzGroup *but123=MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                                new TSButton(__("Replace ~A~ll"),cmYes),
@@ -181,8 +183,7 @@ TDialog *createReplaceDialog(void *regexBox)
  col->insert(xTSLeft,yTSUp,TextToFind);
  col->insert(xTSRightOf,yTSUp,newText,TextToFind);
  col->insert(xTSLeft,yTSUnder,Options,0,TextToFind);
- col->insert(xTSRightOf,yTSUnder,Origin,TextToFind,newText);
- col->insert(xTSRightOf,yTSUnder,Scope,TextToFind,Origin);
+ col->insert(xTSRightOf,yTSUnder,OriScoDir,TextToFind,newText);
  col->insert(xTSCenter,yTSDown,but123);
 
  TDialog *d=col->doItCenter(cmcReplace);

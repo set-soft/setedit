@@ -531,9 +531,9 @@ extern Boolean focusChanged;
 extern void CopyHelp2Clip(char *b, long l);
 extern void ShowHelpTopic(char *file, char *node);
 extern void closeView(TView *p, void *p1);
-extern int ShowFileLine(int line,char *name);
-extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0,
-                        unsigned flags=0);
+extern int ShowFileLine(int line, int column, char *name);
+extern int GotoFileLine(int line, int column, char *name, char *msg=0, int off=-1,
+                        int len=0, unsigned flags=0);
 extern int GotoFileText(char *search, char *file, char *msg=0, int off=-1, int len=0);
 extern TCEditWindow *GetEditorWindowForFile(char *file);
 extern void GPushCursorPos();

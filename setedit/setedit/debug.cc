@@ -2258,7 +2258,7 @@ int TDisAsmEdWin::jumpToFrame(mi_frames *f)
  stAdd2Line *a=a2l->At(pos);
  curLine=a->sourceL;
  editor->lock();
- editor->GoAndSelectLine(a->line,False);
+ editor->GoAndSelectLine(a->line,1,False);
  editor->trackCursor(newCode);
  // The CPU line
  TSpCollection *nSpLine=new TSpCollection(1);
@@ -4329,7 +4329,7 @@ void TSetEditorApp::DebugEditBreakPts()
  box.selection=0;
 
  if (execDialog(d,&box)==cmBkGo)
-    GotoFileLine(TDiagBrk::line,(char *)TDiagBrk::file);
+    GotoFileLine(TDiagBrk::line,1,(char *)TDiagBrk::file);
 }
 
 static
@@ -7236,14 +7236,14 @@ int DebugMsgJumpToFrame(mi_frames *f, char *msg, int l)
        int line;
        char *file=SolveFileName(TDisAsmWin::getFileLine(line));
        if (file)
-          GotoFileLine(f->line,file,msg,-1,l,gflCPULine|gflDontSelect);
+          GotoFileLine(f->line,1,file,msg,-1,l,gflCPULine|gflDontSelect);
       }
     else
       {// Try to jump to the source line.
        if (f->file)
          {
           char *file=SolveFileName(f->file);
-          if (file && GotoFileLine(f->line,file,msg,-1,l,gflCPULine))
+          if (file && GotoFileLine(f->line,1,file,msg,-1,l,gflCPULine))
              jumped=1;
           if (IsDisAsmWinAvailable())
              TDisAsmWin::jumpToFrame(f);

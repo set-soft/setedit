@@ -314,11 +314,11 @@ TCEditor::TCEditor( const TRect& bounds,
  eventMask = evMouseDown | evKeyDown | evCommand | evBroadcast;
  showCursor();
  initBuffer();
- if ( buffer != 0 )
+ if (buffer)
     isValid = True;
  else
    {
-    editorDialog( edOutOfMemory );
+    editorDialog(edOutOfMemory);
     bufSize = 0;
     isValid = False;
    }
@@ -758,21 +758,23 @@ void TCEditor::doneBuffer()
  free(buffer);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void doSearchReplace()
-
-   Type: TCEditor member.
-
-   Objetive: Make a Search or Replace in the text.
-
-****************************************************************************/
+  Description: Make a Search or Replace in the text.
+  
+***************************************************************************/
 
 Boolean TCEditor::doSearchReplace()
 {
  int i;
  int oldPromptOnReplace=editorFlags & efPromptOnReplace;
  Boolean ret=False, needsUnlock=True;
+
+ if (SearchInSel && !hasVisibleSelection())
+   {
+    editorDialog(edSearchAndNoSel);
+    return False;
+   }
 
  lock();
  do
@@ -1510,17 +1512,11 @@ int PipeTCEditor(unsigned PosRel)
  return -1;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void find()
-
-   Type: TCEditor member.
-
-   Objetive: Make the dialog and search in the text.
-
-   by SET.
-
-****************************************************************************/
+  Description: Make the dialog and search in the text.
+  
+***************************************************************************/
 
 void TCEditor::find()
 {
@@ -1540,12 +1536,16 @@ void TCEditor::find()
  if (editorDialog(edFind,&findRec,&regexRec)!=cmCancel)
    {
     regexRecUpdate(regexRec);
-    strcpy( findStr, findRec.find );
-    editorFlags = findRec.options & ~efDoReplace;
-    SearchInSel = findRec.in_sel;
-    FromWhere = findRec.from;
+    strcpy(findStr,findRec.find);
+    editorFlags=findRec.options & ~efDoReplace;
+    SearchInSel=findRec.in_sel;
+    FromWhere=findRec.from;
+    if (findRec.direction)
+       editorFlags|=efSearchBack;
+    else
+       editorFlags&=~efSearchBack;
     if (FromWhere)
-       StartOfSearch=0; // All
+       StartOfSearch=editorFlags & efSearchBack ? bufLen-1 : 0; // All
     else
        StartOfSearch=(unsigned)(ColToPointer()-buffer);
     if (CompileSearch(findStr))
@@ -4226,18 +4226,16 @@ void TCEditor::JumpEndOfText()
   Description:
   Goes to the specified 'line' number and selects the line. Is used by
 cmcGotoEditorLine.
-@p
-  by SET
 
 *****************************************************************************/
 
-void TCEditor::GoAndSelectLine(int line, Boolean selectLine)
+void TCEditor::GoAndSelectLine(int line, int column, Boolean selectLine)
 {
  if (line<0)
     line=0;
  if (line>limit.y)
     line=limit.y;
- MoveCursorTo(0,--line,True);
+ MoveCursorTo(column-1,--line,True);
  if (selectLine)
    {
     /* Use selStartF and selEndF here so any real selection
@@ -9016,17 +9014,11 @@ void TCEditor::EditLine()
  attrInEdit=lenLines.getAttr(lineInEdition);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void replace()
-
-   Type: TCEditor member.
-
-   Objetive: Create the dialog for Search & Replace and execute it.
-
-   by SET.
-
-****************************************************************************/
+  Description: Create the dialog for Search & Replace and execute it.
+  
+***************************************************************************/
 
 void TCEditor::replace()
 {
@@ -9048,15 +9040,19 @@ void TCEditor::replace()
  if ((ret=editorDialog(edReplace,&replaceRec,&regexRec))!=cmCancel)
    {
     regexRecUpdate(regexRec);
-    strcpy( findStr, replaceRec.find );
-    strcpy( replaceStr, replaceRec.replace );
-    editorFlags = replaceRec.options | efDoReplace;
+    strcpy(findStr,replaceRec.find);
+    strcpy(replaceStr,replaceRec.replace);
+    editorFlags=replaceRec.options | efDoReplace;
+    if (replaceRec.direction)
+       editorFlags|=efSearchBack;
+    else
+       editorFlags&=~efSearchBack;
     if (ret==cmYes)
-        editorFlags |= efReplaceAll;
-    SearchInSel = replaceRec.in_sel;
-    FromWhere = replaceRec.from;
+        editorFlags|=efReplaceAll;
+    SearchInSel=replaceRec.in_sel;
+    FromWhere=replaceRec.from;
     if (FromWhere)
-       StartOfSearch=0; // All
+       StartOfSearch=editorFlags & efSearchBack ? bufLen-1 : 0; // All
     else
        StartOfSearch=(unsigned)(ColToPointer()-buffer);
     if (CompileSearch(findStr,replaceStr))
@@ -9189,21 +9185,14 @@ uint32 TCEditor::SyntaxHighlightExtraFor(char *lineStart, char *posTarget,
  return extra;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: Boolean search( const char *findStr, unsigned opts )
-
-   Type: TCEditor member.
-
-   Objetive: Make a Search with/out Replace calling scan and iScan.
-
-   Parameters:
-   findStr: The string to search.
-   opts: flags to indicate the action and type of search.
-
-   by SET.
-
-****************************************************************************/
+  Description:
+  Make a Search with/out Replace calling scan and iScan. @var{findStr} is
+the string to search and @var{opts} are the flags to indicate the action and
+type of search.
+  
+***************************************************************************/
 
 Boolean TCEditor::search(const char *, unsigned opts)
 {
@@ -9211,47 +9200,74 @@ Boolean TCEditor::search(const char *, unsigned opts)
  unsigned i=sfSearchFailed;
  int MatchLen=0,scrllCenter;
 
- if (SearchInSel)
+ if (editorFlags & efSearchBack)
    {
-    pos=max(StartOfSearch,selStart);
-    end_s=selEnd;
+    if (SearchInSel)
+      {
+       pos=min(StartOfSearch,selEnd);
+       end_s=selStart;
+      }
+    else
+      {
+       pos=StartOfSearch;
+       end_s=0;
+      }
    }
  else
    {
-    pos=StartOfSearch;
-    end_s=bufLen;
+    if (SearchInSel)
+      {
+       pos=max(StartOfSearch,selStart);
+       end_s=selEnd;
+      }
+    else
+      {
+       pos=StartOfSearch;
+       end_s=bufLen;
+      }
    }
 
  do
-  {
-   if (pos<end_s)
-      i=MakeASearch(&buffer[pos],end_s-pos,MatchLen);
-
-   if (i!=sfSearchFailed)
-     {
-      i+=pos;
-      int takeThisHit=1;
-      // Whole Words, the following can be expressed in one line, but I doubt gcc
-      // will generate better code; what I'm sure is that then is very hard to understand
-      if (opts & efWholeWordsOnly)
-        {// The letter before the first character can't be another letter
-         if (i && isWordChar(bufChar(i-1)))
-            takeThisHit=0;
-         else // The letter after the match can't be another letter
-            if (i+MatchLen<bufLen && isWordChar(bufChar(i+MatchLen)))
-               takeThisHit=0;
-        }
-      // In/Outside comments
-      if (takeThisHit && SyntaxHL!=shlNoSyntax &&
-          (opts & (efSearchInComm | efSearchOutComm)))
-        {// Find the attributes of this point
-         uint32 attr=SyntaxHighlightForOffset(i);
-         if (attr & IsInsideCom)
-            takeThisHit=opts & efSearchInComm;
-         else
-            takeThisHit=opts & efSearchOutComm;
-        }
-      if (takeThisHit)
+   {
+    if (editorFlags & efSearchBack)
+      {
+       if (pos>end_s)
+          i=MakeASearchBack(&buffer[pos],pos-end_s,MatchLen);
+      }
+    else
+      {
+       if (pos<end_s)
+          i=MakeASearch(&buffer[pos],end_s-pos,MatchLen);
+      }
+ 
+    if (i!=sfSearchFailed)
+      {
+       if (editorFlags & efSearchBack)
+          i=pos-i;
+       else
+          i+=pos;
+       int takeThisHit=1;
+       // Whole Words, the following can be expressed in one line, but I doubt gcc
+       // will generate better code; what I'm sure is that then is very hard to understand
+       if (opts & efWholeWordsOnly)
+         {// The letter before the first character can't be another letter
+          if (i && isWordChar(bufChar(i-1)))
+             takeThisHit=0;
+          else // The letter after the match can't be another letter
+             if (i+MatchLen<bufLen && isWordChar(bufChar(i+MatchLen)))
+                takeThisHit=0;
+         }
+       // In/Outside comments
+       if (takeThisHit && SyntaxHL!=shlNoSyntax &&
+           (opts & (efSearchInComm | efSearchOutComm)))
+         {// Find the attributes of this point
+          uint32 attr=SyntaxHighlightForOffset(i);
+          if (attr & IsInsideCom)
+             takeThisHit=opts & efSearchInComm;
+          else
+             takeThisHit=opts & efSearchOutComm;
+         }
+       if (takeThisHit)
          {
           lock();
           selStartF=i;
@@ -9268,11 +9284,11 @@ Boolean TCEditor::search(const char *, unsigned opts)
           unlock();
           return True;
          }
-      else
-          pos=i+1;
-     }
-   }
-  while(i!=sfSearchFailed);
+       else
+          pos=editorFlags & efSearchBack ? i+MatchLen-1 : i+1;
+      }
+    }
+ while(i!=sfSearchFailed);
  return False;
 }
 

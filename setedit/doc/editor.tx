@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.5.4
-@set update-date 17 September 2004
-@set update-month September 2004
+@set version 0.5.5
+@set update-date 1 December 2004
+@set update-month December 2004
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1371,6 +1371,11 @@ option takes precedence.
 selected text.
   @item Origin - From cursor: The search will start from the position of the cursor.
   @item Origin - Entire scope: The search will start from the beginning of the text.
+  @item Direction - Forward: The search is performed advancing in the text.
+  @item Direction - Backward: The search is performed going backwards in the
+text. This process is slower than a forward search. Additionally some regular
+expression searchs could fail when doing it, in particular when the
+expression searchs at the beggining or the end of the line.
 @end itemize
 
 The regular expressions search is slow and this can be noticed in large

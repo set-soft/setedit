@@ -273,6 +273,10 @@ unsigned doEditDialog(int dialog, va_list arg)
 
     case edFileCompMant:
          return messageBox(__("The file is compressed. Do you want to save with compression?"),mfInformation | mfYesNoCancel);
+
+    case edSearchAndNoSel:
+         messageBox(__("Searching inside a selection but nothing is selected"),mfError | mfOKButton);
+         break;
    }
  return 0;
 }
