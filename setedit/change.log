@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.473  2003/11/24 15:48:19  set
+* Added: Some rudimentary $(VARIABLE) expansion to the "File under cursor"
+files list. Suggested by Grzegorz.
+* Added: To also search in the same directory where a file is located when
+using the "File under cursor" stuff. Suggested by Grzegorz.
+
 Revision 1.472  2003/11/24 15:47:10  set
 * Added: AltKeysSetting TV config keyword.
 

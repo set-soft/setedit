@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 18 October 2003
-@set update-month October 2003
+@set update-date 23 November 2003
+@set update-month November 2003
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1965,32 +1965,36 @@ if you want to.
 
 Pops up the List of Windows dialog. This dialog contains the list of all the
 editor windows, the special windows and the closed windows.
-@paragraph{}
+@p{}
 
 The editor windows are numbered starting from two and the list is sorted by
 number. If a window isn't saved an asterisk is placed between the number and
 the name.
-@paragraph{}
+@p{}
 
 The special windows are: the message window (the number of lines is
 indicated), the project window, the clipboard window (the bytes used by it
 is indicated) and the InfView windows.
-@paragraph{}
+@p{}
 
 The closed windows list is sorted alphabetically and holds the last closed
 windows. The editor stores important information about these windows so if
 you close and re-open one of them the size of the window and other values
 are restored.
-@paragraph{}
+@p{}
 
 You can jump to any of the windows by selecting it with the mouse, with
 the arrow keys and @key{ENTER}, double clicking, or by using the
 @il{Go} button.
-@paragraph{}
+@p{}
 
 A press of @key{Delete} or using the @il{Delete} button will delete the
 closed windows or close any open editor window.
-@paragraph{}
+@p{}
+
+Using the @il{ReEnumerate} button you can force to compute the window numbers
+so all become continuous.
+@p{}
 
 @refMenu{cmeListWin,Alt+0}
 
@@ -2902,6 +2906,19 @@ try to find where the name starts and ends.
 
 If the file isn't located in the current directory the editor will try to
 find the file in the list of directories indicated by this option.
+@p{}
+
+You can use environment variables for this list. Here is an example that
+shows how to use the content of the @code{ALLEGRO} environment variable:
+@p{}
+
+@example
+$(ALLEGRO)/include
+@end example
+
+If the editor failed to find the file and a project is loaded a search in the
+project is performed. If this also fails the editor looks for the file in the
+same directory of the file you are editing.
 @p{}
 
 This list is stored in the desktop file.

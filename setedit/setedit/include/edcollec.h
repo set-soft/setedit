@@ -27,6 +27,7 @@ public:
  void reIdEditors(void);
  void sortClosed(void);
  int  GetMaxWindowNumber(void);
+ void ReEnumerate();
  int Editors;
  int Closed;
  int nonEditors;

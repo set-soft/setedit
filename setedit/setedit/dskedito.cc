@@ -88,3 +88,8 @@ int TDskWinEditor::GetNumber()
  return number;
 }
 
+void TDskWinEditor::SetNumber(int aNumber)
+{
+ edw->number=number=aNumber;
+}
+

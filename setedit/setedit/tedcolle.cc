@@ -900,6 +900,17 @@ int TEditorCollection::GetMaxWindowNumber()
  return st->number;
 }
 
+void TEditorCollection::ReEnumerate()
+{
+ if (!Editors)
+    return;
+ for (int i=0; i<Editors; i++)
+    {
+     TDskWinEditor *st=(TDskWinEditor *)at(i);
+     st->SetNumber(i+2);
+    }
+}
+
 int  TEditorCollection::maxClosedToRemember;
 char TEditorCollection::HaveFilesCL=0;
 char TEditorCollection::DontSortClosed=0;

@@ -98,6 +98,11 @@ void TListWindowsDiag::handleEvent(TEvent &event)
                return;
               }
             break;
+
+       case cmReEnumerate:
+            TSetEditorApp::edHelper->ReEnumerate();
+            redraw();
+            return;
  
        default:
             return;
@@ -134,6 +139,7 @@ void BringListOfWindows(void)
    new TSButton(__("~G~o"),cmGo,bfDefault),
    new TSButton(__("~D~elete"),cmDelete),
    new TSButton(__("~O~pen"),cmInsert),
+   new TSButton(__("Re~E~numerate"),cmReEnumerate),
    new TSButton(__("Cancel"),cmCancel),0);
  col->insert(xTSLeft,yTSUp,list);
  col->insert(xTSCenter,yTSUnder,buttons,0,list);

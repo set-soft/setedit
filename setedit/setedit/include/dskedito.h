@@ -12,6 +12,7 @@ public:
  char *GetText(char *dest, short maxLen);
  int  Compare(void *p,int t) { return (t==dktEditor) && (p==edw); };
  int  GetNumber();
+ void SetNumber(int number);
 
  TCEditWindow *edw;
  int number;

@@ -16,7 +16,8 @@ const int
       cmDelete      = 0x2291,
       cmInsert      = 0x2292,
       cmDelFile     = 0x2293,
-      cmChangeSort  = 0x2294;
+      cmChangeSort  = 0x2294,
+      cmReEnumerate = 0x2295;
 
 const int
       hcListWin            = 0x2110,
