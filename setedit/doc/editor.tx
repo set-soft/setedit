@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.2
-@set update-date 5 October 2003
+@set update-date 11 October 2003
 @set update-month October 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -4578,6 +4578,123 @@ Passing 1 for @var{flags} the character isn't concatenated.
 @p{}
 
 @c --------------------------------------------------------------
+@subsection FindAgain
+
+  (FindAgain)
+@p{}
+
+  Repeats the last search. It should be used when you didn't gave control to
+the user since the last search because the user could perform a different
+search changing the compiled search. Returns the text found or an empty string
+if no match could be found. @x{FindString}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection FindString
+
+  (FindString @var{string} [@var{options_flags}])
+@p{}
+
+  Performs a search for the provided @var{string}. Returns the text found or
+an empty string if no match could be found. This operation moves the cursor
+position as in an interactive search. The match becomes temporally
+highlighted in the text.
+@p{}
+
+  Even when the @var{options_flags} argument is optional it is strongly
+recommended to provide it. If nothing is provided the user options will be
+used instead. The options are provided as flags combined with the @code{|}
+operand. Some of the flags doesn't have any sense when combined with others,
+you should avoid doing it. The available flags are:
+@p{}
+
+Search style:
+@p{}
+
+@itemize @bullet
+  @item edfCaseSensitive: perform a case sensitive search.
+  @item edfWholeWordsOnly: don't match partial words.
+  @item edfRegularEx: the string is a regular expression. Note this flag must
+be indicated in adition to the type of regular expressions used.
+@end itemize
+
+Scope:
+@p{}
+
+@itemize @bullet
+  @item edfSearchInComm: search only inside comments.
+  @item edfSearchOutComm: search only outside comments.
+  @item edfOnlySelection: search only inside the selected text.
+  @item edfFromCursor: start searching from the cursor position. That's the
+default action.
+  @item edfFromBeggining: start searching from the beggining of the selected
+scope.
+@end itemize
+
+Regular expressions options:
+@p{}
+
+@itemize @bullet
+  @item edfBasicRegEx: use basic POSIX regular expressions. Used in
+combination with edfRegularEx.
+  @item edfExtendedRegEx: use extended POSIX regular expressions. Used in
+combination with edfRegularEx.
+  @item edfPerlRegEx: use Perl regular expressions. Used in combination with
+edfRegularEx.
+  @item edfOptimizeRegEx: if the string to search doesn't contain special
+characters and regular expressions are enabled perform a normal search. This
+makes the search much more faster. This is the default action so you don't
+really need to specify this flag.
+  @item edfNoOptimizeRegEx: it is the opposite of edfOptimizeRegEx flag. It
+disables the optimization. Use it when you are sure the string is a regular
+expression even when it doesn't look like a regular expression. This option
+was created just in case the optimization fails to detect a real regular
+expression.
+@end itemize
+
+Others:
+@p{}
+
+@itemize @bullet
+  @item edfShowFuncName: display the name of the function where the match was
+found in the status line.
+@end itemize
+
+  A very important detail about regular expressions: In sLisp the @code{\}
+character is the escape character. It means that you have to use @code{\\} to
+get @code{\}.
+@p{}
+
+  The following example searchs for the @code{Hello} word followed by a digit
+using Perl regular expressions. Then prints the result of the search in the
+message window and after it repeats the search.
+@p{}
+
+@example
+(eval
+ (= "str" (FindString "Hello\\d" (| edfRegularEx edfPerlRegEx)))
+ (if str
+    (ShowInMessageWindow (+ "Found: " str))
+    (ShowInMessageWindow "Not found.")
+ )
+ (= "str" (FindAgain))
+ (if str
+    (ShowInMessageWindow (+ "Found: " str))
+    (ShowInMessageWindow "Not found.")
+ )
+)
+@end example
+
+  To learn more about the search options consult the find command (@x{Find})
+and the regular expression options (@x{Regular Expressions Options}). You
+could be also interested in learning more about POSIX regular expressions
+(@x{Regular Expressions}), for Perl regular expressions consult some Perl
+reference. This command is complemented by @code{FindAgain} (@x{FindAgain}),
+@code{ReplaceString} (@x{ReplaceString}) and @code{ReplaceAgain}
+(@x{ReplaceAgain}) commands.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection ForceUpdate
 
   (ForceUpdate)
@@ -4736,6 +4853,61 @@ the parameter is 1 the action depends on the current editor's setup.
   Opens the file @var{string} in a window and makes it the current one. If the
 file doesn't exist it does nothing. Always returns 1.
 @paragraph{}
+
+
+@c --------------------------------------------------------------
+@subsection ReplaceAgain
+
+  (ReplaceAgain)
+@p{}
+
+  Repeats the last search and replace operation. It should be used when you
+didn't gave control to the user since the last search because the user could
+perform a different search changing the compiled search. Returns a boolean
+value indicating the status of the last search. @x{ReplaceString}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ReplaceString
+
+  (ReplaceString @var{string} @var{replacement} [@var{options_flags}])
+@p{}
+
+  Performs a search and replace operation. Returns a boolean value indicating
+the status of the last search. Consult the @code{Find} command
+(@x{FindString}) and the replace options of the editor
+(@x{Replace}) for more information.
+@p{}
+
+  In addition to the @code{Find} options you have the following options:
+@p{}
+
+@itemize @bullet
+  @item edfPromptOnReplace: ask confirmation to the user.
+  @item edfReplaceAll: repeat the search and replace operation until no match
+can be found in the current scope.
+  @item edfNormalText: used to indicate that the @var{replacement} string is
+a simple text and not a replacement template. This is the default behavior.
+  @item edfTagsText: used to indicate that the @var{replacement} string
+contains @code{$n} tags. For more information consult the section for the
+regular expressions dialog of the editor (@x{Regular Expressions Options}).
+@end itemize
+
+  The following example searchs for the @code{Hello} word followed by a digit
+using Perl regular expressions and replaces the text by the digit followed by
+an space and the @code{Bye} word. Then prints the result of the operation in the
+message window.
+@p{}
+
+@example
+(eval
+ (if (ReplaceString "Hello(\\d)" "$1 Bye"
+      (| edfRegularEx edfPerlRegEx edfTagsText))
+  (ShowInMessageWindow "Replaced.")
+  (ShowInMessageWindow "Not replaced.")
+ )
+)
+@end example
 
 @c --------------------------------------------------------------
 @subsection RunProgram

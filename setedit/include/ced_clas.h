@@ -165,7 +165,7 @@ public:
     void clipFilePaste();
     void deleteRange( unsigned , unsigned, Boolean );
     void doUpdate();
-    void doSearchReplace();
+    Boolean doSearchReplace();
     void drawLines( int, int, unsigned );
     void find();
     Boolean hasSelection() { return Boolean(selStart<selEnd); };

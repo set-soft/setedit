@@ -1,9 +1,10 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #define Uses_TCEditor_Commands
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_TCEditor_Internal
+#define Uses_TCEditor_External
 #define Uses_TInputLinePipedConst
 #define Uses_MsgBox
 // InfView requests
@@ -279,49 +280,78 @@ static edCList SetApp[] =
 // Editor constants used by sLisp (edf*)
 static edCList SetFlags[] =
 {
-{"ComInside"     ,ComInside     }, // C++ comment in this line
-{"EndCom"        ,EndCom        }, // */
-{"EndCom2"       ,EndCom2       }, // }
-{"ExtCom"        ,ExtCom        }, // more /* than */
-{"ExtCom2"       ,ExtCom2       }, // more { than }
-{"ExtOneLineCom" ,ExtOneLineCom },
-{"ExtPrepro"     ,ExtPrepro     }, // Prepro+ends with \ <= be careful
-{"ExtString"     ,ExtString     }, // a String ends with a \ and is continued on the next line
-{"ExtString2"    ,ExtString2    },
-{"ExtString3"    ,ExtString3    },
-{"InsideCom"     ,InsideCom     }, // All commented
-{"InsideCom2"    ,InsideCom2    }, // All commented with { }
+{"BasicRegEx"     ,efBasicRegExSL     },
+
+{"CaseSensitive"  ,efCaseSensitive    },
+{"ComInside"      ,ComInside          }, // C++ comment in this line
+
+{"DoReplace"      ,efDoReplace        },
+
+{"EndCom"         ,EndCom             }, // */
+{"EndCom2"        ,EndCom2            }, // }
+{"ExtCom"         ,ExtCom             }, // more /* than */
+{"ExtCom2"        ,ExtCom2            }, // more { than }
+{"ExtOneLineCom"  ,ExtOneLineCom      },
+{"ExtPrepro"      ,ExtPrepro          }, // Prepro+ends with \ <= be careful
+{"ExtString"      ,ExtString          }, // a String ends with a \ and is continued on the next line
+{"ExtString2"     ,ExtString2         },
+{"ExtString3"     ,ExtString3         },
+{"ExtendedRegEx"  ,efExtendedRegExSL  },
+
+{"FromBeggining"  ,efFromBegginingSL  },
+{"FromCursor"     ,efFromCursorSL     },
+
+//{"InSelection"    ,efInSelection      },
+{"InsideCom"      ,InsideCom          }, // All commented
+{"InsideCom2"     ,InsideCom2         }, // All commented with { }
 
 // Message Box
-{"MBCancelButton",mfCancelButton},
-{"MBConfirmation",mfConfirmation},
-{"MBError"       ,mfError       },
-{"MBInformation" ,mfInformation },
-{"MBNoButton"    ,mfNoButton    },
-{"MBOKButton"    ,mfOKButton    },
-{"MBOKCancel"    ,mfOKCancel    },
-{"MBWarning"     ,mfWarning     },
-{"MBYesButton"   ,mfYesButton   },
-{"MBYesNoCancel" ,mfYesNoCancel },
+{"MBCancelButton" ,mfCancelButton     },
+{"MBConfirmation" ,mfConfirmation     },
+{"MBError"        ,mfError            },
+{"MBInformation"  ,mfInformation      },
+{"MBNoButton"     ,mfNoButton         },
+{"MBOKButton"     ,mfOKButton         },
+{"MBOKCancel"     ,mfOKCancel         },
+{"MBWarning"      ,mfWarning          },
+{"MBYesButton"    ,mfYesButton        },
+{"MBYesNoCancel"  ,mfYesNoCancel      },
 
-{"Prepro"        ,Prepro        }, // Starts with #
+{"NoOptimizeRegEx",efNoOptimizeRegExSL},
+{"NormalText"     ,efNormalTextSL     },
 
-{"RunNoRedirect" ,2             }, // Don't redirect stdout
-{"RunUserScreen" ,1             }, // Use the user screen to run the external command
+{"OnlySelection"  ,efOnlySelectionSL  },
+{"OptimizeRegEx"  ,efOptimizeRegExSL  },
 
-{"StartCom"      ,StartCom      }, // /*
-{"StartCom2"     ,StartCom2     }, // {
-{"StartInCom"    ,StartInCom    }, // The first char is commented
-{"StartInCom2"   ,StartInCom2   }, // The first char is commented
-{"StartString"   ,StartString   }, // the line starts within a string (see ExtString)
-{"StartString2"  ,StartString2  },
-{"StartString3"  ,StartString3  },
-{"WEDisk"        ,3             }, // WhichEditor constants
-{"WEExtension"   ,4             },
-{"WEFull"        ,0             },
-{"WEFullNoExt"   ,1             },
-{"WENameNoExt"   ,5             },
-{"WEPath"        ,2             }
+{"PerlRegEx"      ,efPerlRegExSL      },
+{"Prepro"         ,Prepro             }, // Starts with #
+{"PromptOnReplace",efPromptOnReplace  },
+
+{"RegularEx"      ,efRegularEx        },
+{"ReplaceAll"     ,efReplaceAll       },
+{"RunNoRedirect"  ,2                  }, // Don't redirect stdout
+{"RunUserScreen"  ,1                  }, // Use the user screen to run the external command
+
+{"SearchInComm"   ,efSearchInComm     },
+{"SearchOutComm"  ,efSearchOutComm    },
+{"ShowFuncName"   ,efShowFuncName     },
+{"StartCom"       ,StartCom           }, // /*
+{"StartCom2"      ,StartCom2          }, // {
+{"StartInCom"     ,StartInCom         }, // The first char is commented
+{"StartInCom2"    ,StartInCom2        }, // The first char is commented
+{"StartString"    ,StartString        }, // the line starts within a string (see ExtString)
+{"StartString2"   ,StartString2       },
+{"StartString3"   ,StartString3       },
+
+{"TagsText"       ,efTagsTextSL       },
+
+{"WEDisk"         ,3                  }, // WhichEditor constants
+{"WEExtension"    ,4                  },
+{"WEFull"         ,0                  },
+{"WEFullNoExt"    ,1                  },
+{"WENameNoExt"    ,5                  },
+{"WEPath"         ,2                  },
+{"WholeWordsOnly" ,efWholeWordsOnly   }
 };
 
 static int ptf(const void *ckey, const void *celem)

@@ -761,28 +761,30 @@ void TCEditor::doneBuffer()
 
 ****************************************************************************/
 
-void TCEditor::doSearchReplace()
+Boolean TCEditor::doSearchReplace()
 {
  int i;
  int oldPromptOnReplace=editorFlags & efPromptOnReplace;
+ Boolean ret=False;
  do
   {
    i=cmCancel;
    if (!search(findStr,editorFlags))
      {
-      if ( (editorFlags & (efReplaceAll | efDoReplace)) !=
-           (efReplaceAll | efDoReplace) )
-         editorDialog( edSearchFailed );
+      if (!(editorFlags & efNoFindFailMsg) &&
+          (editorFlags & (efReplaceAll | efDoReplace))!=(efReplaceAll | efDoReplace))
+         editorDialog(edSearchFailed);
+      ret=False;
      }
    else
      {
-      if ( (editorFlags & efDoReplace) != 0 )
+      if (editorFlags & efDoReplace)
         {
-         i = cmYes;
-         if ( (editorFlags & efPromptOnReplace) != 0 )
+         i=cmYes;
+         if (editorFlags & efPromptOnReplace)
            {
-            TPoint c = makeGlobal( cursor );
-            i = editorDialog( edReplacePrompt, &c );
+            TPoint c=makeGlobal(cursor);
+            i=editorDialog(edReplacePrompt,&c);
            }
          if (i==cmOK)
            { // Used to signal ALL
@@ -808,16 +810,20 @@ void TCEditor::doSearchReplace()
             StartOfSearch=selStartF+l;
             unlockUndo();
             unlock();
+            ret=True;
            }
          else
             StartOfSearch=selEndF;
         }
+      else
+         ret=True;
      }
   }
  while(i!=cmCancel && (editorFlags & efReplaceAll)!=0);
 
  // Restore it in case the ALL changed the value
  editorFlags|=oldPromptOnReplace;
+ return ret;
 }
 
 /****************************************************************************
@@ -888,10 +894,10 @@ int TCEditor::TestPropagation(uint32 OldAttr,uint32 NewAttr,
 void TCEditor::doUpdate()
 {
  CacheSyntaxHLData(GenericSHL);
- if ( updateFlags != 0 ) // Only if needed
+ if (updateFlags) // Only if needed
    {
     // moves the hardware cursor
-    setCursor(curPos.x - delta.x, curPos.y - delta.y);
+    setCursor(curPos.x-delta.x,curPos.y-delta.y);
 
     // Repair the highligthed position
     if (IsHLCOn)
@@ -10561,8 +10567,8 @@ void TCEditor::unlock()
 
 void TCEditor::update( uchar aFlags )
 {
- updateFlags |= aFlags;
- if ( lockCount == 0 )
+ updateFlags|=aFlags;
+ if (!lockCount)
     doUpdate();
 }
 

@@ -55,6 +55,8 @@ char *InterpretLispEditor(char *s, Boolean print)
     return NULL;
    }
 
+ if (print)
+    EdShowMessage("Running sLisp macro ...",True);
  Interpreter->Error=0;
  TLispVar *val=Interpreter->Interpret(s);
 
@@ -71,7 +73,7 @@ char *InterpretLispEditor(char *s, Boolean print)
     if (print)
       {
        char *v=val->toStr();
-       EdShowMessageI(__("Return value:"),True);
+       EdShowMessageI(__("Return value:"));
        EdShowMessage(v);
        delete[] v;
       }

@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=24;
+const int MLIEditorCommands=27;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -42,7 +42,13 @@ public:
  static char *AskString(const char *title, const char *message);
  static int  OpenFile(const char *fileName);
  static Boolean SelectionExists();
- static Boolean FindString(char *str, unsigned flags);
+ static Boolean FindOrReplaceString(char *str, char *repl, unsigned flags,
+                                    char *&string, unsigned &len,
+                                    Boolean again=False);
+ static Boolean FindString(char *str, unsigned flags, char *&string, unsigned &len)
+        { return FindOrReplaceString(str,NULL,flags,string,len); }
+ static Boolean FindAgain(char *&string, unsigned &len);
+ static unsigned GetFindFlags();
  static int  GetCursorX();
  static int  GetCursorY();
  static void SetCursorXY(int x, int y);
@@ -53,6 +59,10 @@ public:
 private:
  static char *cNames[MLIEditorCommands];
  static Command cComms[MLIEditorCommands];
+ // Variables used for the Find & Replace interface
+ static char *findAgainStr;
+ static char *replaceAgainStr;
+ static unsigned findAgainFlags;
 };
 
 #endif

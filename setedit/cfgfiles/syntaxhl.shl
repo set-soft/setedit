@@ -369,8 +369,9 @@ Keywords=WhichEditor,GetSelection,left,right,substr,sstr,gstr,setv,strxlt,if
 Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
 Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
 Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
-Keywords=cond,ShowInMessageWindow,SelectionExists,tostr,loop,GetCursorX,Find
-Keywords=GetCursorY,SetCursorXY,exitloop,repeat
+Keywords=cond,ShowInMessageWindow,SelectionExists,FindString,loop,GetCursorX
+Keywords=GetCursorY,SetCursorXY,repeat,GetSyntaxLang,FindAgain,ReplaceString
+Keywords=exitloop,ReplaceAgain,tostr
 # Flags
 Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
 Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom
@@ -379,7 +380,11 @@ Keywords=edfMBInformation,edfMBNoButton,edfMBOKButton,edfMBOKCancel,edfMBWarning
 Keywords=edfMBYesButton,edfMBYesNoCancel,edfPrepro,edfRunNoRedirect,edfRunUserScreen
 Keywords=edfStartCom,edfStartCom2,edfStartInCom,edfStartInCom2,edfStartString
 Keywords=edfStartString2,edfStartString3,edfWEDisk,edfWEExtension,edfWEFull
-Keywords=edfWEFullNoExt,edfWENameNoExt,edfWEPath
+Keywords=edfWEFullNoExt,edfWENameNoExt,edfWEPath,edfBasicRegEx,edfCaseSensitive
+Keywords=edfDoReplace,edfExtendedRegEx,edfFromBeggining,edfFromCursor,edfInSelection
+Keywords=edfNoOptimizeRegEx,edfNormalText,edfOnlySelection,edfOptimizeRegEx
+Keywords=edfPerlRegEx,edfPromptOnReplace,edfRegularEx,edfReplaceAll,edfSearchInComm
+Keywords=edfSearchOutComm,edfShowFuncName,edfTagsText,edfWholeWordsOnly
 End
 
 # ---------------- Menu File ------------------

@@ -192,6 +192,9 @@ int TMLIEditor::InsertText(char *str, int len, int select, int move)
     // I forgot it the first time and produced a hard bug
     if (Editor->IslineInEdition)
        Editor->MakeEfectiveLineInEdition();
+    // Usually an insertion resets the "found" highlight.
+    // So we must do the same here
+    Editor->updateFlags&=~ufFound;
     int ret=Editor->insertBuffer(str,0,len,True,select ? True : False,moveToEnd);
     Editor->trackCursor(False);
     if (Str!=str)
@@ -260,19 +263,134 @@ Boolean TMLIEditor::SelectionExists()
  return Editor->hasVisibleSelection();
 }
 
-Boolean TMLIEditor::FindString(char* str, unsigned flags)
+unsigned TMLIEditor::GetFindFlags()
 {
- int i;
- unsigned start_pos,end_pos, tmp_flags=Editor->editorFlags;
+ unsigned ret=Editor->editorFlags & efFindMaskSL;
+ // Compact the global options inside the flags
+ if (TCEditor::ReplaceStyle==efTagsText)
+    ret|=efTagsTextSL;
+ if (TCEditor::RegExStyle==efExtendedRegEx)
+    ret|=efExtendedRegExSL;
+ else if (TCEditor::RegExStyle==efPerlRegEx)
+    ret|=efPerlRegExSL;
+ if (TCEditor::CanOptimizeRegEx==efNoOptimizeRegEx)
+    ret|=efNoOptimizeRegExSL;
+ return ret;
+}
 
- Editor->editorFlags=flags;
- start_pos=(unsigned)(Editor->ColToPointer()-Editor->buffer);
- end_pos=Editor->bufLen;
- Editor->CompileSearch(str);
- unsigned ret=Editor->MakeASearch(&Editor->buffer[start_pos],end_pos-start_pos,i);
- Editor->editorFlags=tmp_flags;
+static
+char *newStrL(const char *start, int len)
+{
+ char *ret=new char[len+1];
+ memcpy(ret,start,len);
+ ret[len]=0;
+ return ret;
+}
 
- return ret!=sfSearchFailed ? True : False;
+Boolean TMLIEditor::FindOrReplaceString(char *str, char *repl, unsigned flags,
+                                        char *&string, unsigned &len, Boolean again)
+{
+ // Save the current state
+ unsigned tmpFlags=Editor->editorFlags;
+ unsigned tmpStartOfSearch=Editor->StartOfSearch;
+ unsigned tmpRegExStyle=TCEditor::RegExStyle;
+ unsigned tmpReplaceStyle=TCEditor::ReplaceStyle;
+ unsigned tmpCanOptimize=TCEditor::CanOptimizeRegEx;
+ unsigned tmpSearchInSel=TCEditor::SearchInSel;
+ Boolean ret=False;
+
+ // Expand the flags
+ if (flags & efTagsTextSL)
+    TCEditor::ReplaceStyle=efTagsText;
+ else
+    TCEditor::ReplaceStyle=efNormalText;
+ if (flags & efOnlySelectionSL)
+    TCEditor::SearchInSel=1;
+ else
+    TCEditor::SearchInSel=0;
+ switch (flags & efRexExStyleMask)
+   {
+    case efBasicRegExSL:
+         TCEditor::RegExStyle=efBasicRegEx;
+         break;
+    case efExtendedRegExSL:
+         TCEditor::RegExStyle=efExtendedRegEx;
+         break;
+    case efPerlRegExSL:
+         TCEditor::RegExStyle=efPerlRegEx;
+         break;
+   }
+ if (flags & efNoOptimizeRegExSL)
+    TCEditor::CanOptimizeRegEx=efNoOptimizeRegEx;
+ else
+    TCEditor::CanOptimizeRegEx=efOptimizeRegEx;
+ 
+
+ if (!again)
+   {
+    Editor->editorFlags=(flags & efFindMaskSL & ~efOptimizedRegex) | efNoFindFailMsg;
+    if (repl)
+       Editor->editorFlags|=efDoReplace;
+    else
+       Editor->editorFlags&=~efDoReplace;
+
+    // Solve the scope of the search
+    if (flags & efFromBegginingSL)
+       Editor->StartOfSearch=0;
+    else
+       Editor->StartOfSearch=(unsigned)(Editor->ColToPointer()-Editor->buffer);
+    // Memorize the string to search. It is needed during the "find again" and
+    // what we have now are sLisp strings from the sLisp stack that will most
+    // probably disapear before the call to FindAgain
+    DeleteArray(findAgainStr);
+    findAgainStr=newStr(str);
+    // Do it!
+    if (repl)
+      {// Do a search & replace
+       DeleteArray(replaceAgainStr);
+       replaceAgainStr=newStr(repl);
+       if (!Editor->CompileSearch(findAgainStr,replaceAgainStr))
+          ret=Editor->doSearchReplace();
+      }
+    else
+      {// Do the search
+       Editor->CompileSearch(findAgainStr);
+       ret=Editor->search(NULL,flags);
+      }
+    findAgainFlags=Editor->editorFlags | (flags & ~efFindMaskSL);
+   }
+ else
+   {// Repeat the last operation
+    Editor->editorFlags=flags & efFindMaskSL;
+    Editor->StartOfSearch=(unsigned)(Editor->ColToPointer()-Editor->buffer)+1;
+    ret=Editor->doSearchReplace();
+   }
+ if ((Editor->editorFlags & efDoReplace) && ret)
+    Editor->updateFlags&=~ufFound;
+ if ((Editor->editorFlags & efDoReplace) || !ret)
+    string=NULL;
+ else
+   {
+    len=Editor->selEndF-Editor->selStartF;
+    string=newStrL(Editor->buffer+Editor->selStartF,len);
+   }
+
+ // Restore the original state
+ Editor->editorFlags=tmpFlags;
+ Editor->StartOfSearch=tmpStartOfSearch;
+ TCEditor::RegExStyle=tmpRegExStyle;
+ TCEditor::ReplaceStyle=tmpReplaceStyle;
+ TCEditor::CanOptimizeRegEx=tmpCanOptimize;
+ TCEditor::SearchInSel=tmpSearchInSel;
+
+ return ret;
+}
+
+Boolean TMLIEditor::FindAgain(char *&string, unsigned &len)
+{
+ if (!findAgainStr)
+    return False;
+ return FindOrReplaceString(findAgainStr,NULL,findAgainFlags,string,len,True);
 }
 
 int  TMLIEditor::GetCursorX()

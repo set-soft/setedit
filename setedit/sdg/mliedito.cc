@@ -9,8 +9,8 @@ editor. @x{TMLIBase (class)}.@p
 
 ***************************************************************************/
 
-#include <stdio.h>
-#include <ctype.h>
+#define Uses_stdio
+#define Uses_ctype
 #define Uses_string
 #define Uses_TLispVariableCol
 #define Uses_TMLIBase
@@ -46,6 +46,10 @@ void TMacrosColl::freeItem(void *item)
  delete m;
 }
 
+char *TMLIEditor::findAgainStr=NULL;
+char *TMLIEditor::replaceAgainStr=NULL;
+unsigned TMLIEditor::findAgainFlags;
+
 TMLIEditor::TMLIEditor(TMLIArrayBase *a, TLispVariableCol *v, FILE *f) :
             TMLIBase(a,v,f)
 {
@@ -56,6 +60,8 @@ TMLIEditor::~TMLIEditor()
 {
  CLY_destroy(Macros);
  Macros=0;
+ DeleteArray(findAgainStr);
+ DeleteArray(replaceAgainStr);
 }
 
 Command TMLIEditor::WhatCommand(char *s)
@@ -611,41 +617,91 @@ DecFun(MLISelectionExists)
  MLIRetInt(TMLIEditor::SelectionExists() ? 1 : 0);
 }
 
+// FindString(str [flags])
 DecFun(MLIFindString)
 {
- int i=0;
- unsigned flags=0;
- LocVarStr(find_option);
- LocVarStr(find_str);
+ unsigned flags=TMLIEditor::GetFindFlags(), ret;
+ LocVarStr(findStr);
+ LocVarInt(findFlags);
+ char *str;
+ unsigned strLen;
 
- CheckNumParams(cant<1);
+ CheckNumParams(cant!=1 && cant!=2);
+ GetString(0,findStr);
  if (cant>1)
    {
-    // get options
-    while (i<cant-1)
-      {
-       GetString(i,find_option);
-       if (strcmp("MatchCase",find_option->str)) flags|=1;
-       else if (strcmp("MatchWord",find_option->str)) flags|=2;
-       else if (strcmp("RegExp",find_option->str)) flags|=4;
-       else if (strcmp("InsideComments",find_option->str))
-         {
-          if (flags&16==0) flags|=8;
-         }
-       else if (strcmp("OutsideComments",find_option->str))
-         {
-          if (flags&8==0) flags|=16;
-         }
-       i++;
-       destroyFloatVar(find_option);
-      }
+    // Get flags
+    GetInteger(1,findFlags);
+    flags=findFlags->val;
    }
- GetString(i,find_str);
- MLIRetInt(TMLIEditor::FindString(find_str->str,flags));
+ ret=TMLIEditor::FindString(findStr->str,flags,str,strLen);
+ if (!str)
+   {
+    str=newStr("");
+    strLen=0;
+   }
+ MLIRetStrLenExists(str,strLen);
 
 CleanUp:
- destroyFloatVar(find_str);
- destroyFloatVar(find_option);
+ destroyFloatVar(findStr);
+ destroyFloatVar(findFlags);
+}
+
+// ReplaceString(to_find replacement [flags])
+DecFun(MLIReplaceString)
+{
+ unsigned flags=TMLIEditor::GetFindFlags(), ret;
+ LocVarStr(findStr);
+ LocVarStr(replaceStr);
+ LocVarInt(findFlags);
+ char *str;
+ unsigned strLen;
+
+ CheckNumParams(cant!=2 && cant!=3);
+ GetString(0,findStr);
+ GetString(1,replaceStr);
+ if (cant>2)
+   {
+    // Get flags
+    GetInteger(2,findFlags);
+    flags=findFlags->val;
+   }
+ ret=TMLIEditor::FindOrReplaceString(findStr->str,replaceStr->str,flags,str,strLen);
+ if (str)
+    DeleteArray(str);
+ MLIRetInt(ret);
+
+CleanUp:
+ destroyFloatVar(findStr);
+ destroyFloatVar(replaceStr);
+ destroyFloatVar(findFlags);
+}
+
+DecFun(MLIFindAgain)
+{
+ char *str;
+ unsigned strLen;
+
+ CheckNumParams(cant);
+ TMLIEditor::FindAgain(str,strLen);
+ if (!str)
+   {
+    str=newStr("");
+    strLen=0;
+   }
+ MLIRetStrLenExists(str,strLen);
+}
+
+DecFun(MLIReplaceAgain)
+{
+ char *str;
+ unsigned strLen;
+
+ CheckNumParams(cant);
+ Boolean ret=TMLIEditor::FindAgain(str,strLen);
+ if (str)
+    DeleteArray(str);
+ MLIRetInt(ret);
 }
 
 DecFun(MLIGetCursorX)
@@ -713,11 +769,14 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "EvalString",
  "ShowInMessageWindow",
  "SelectionExists",
- "Find",
+ "FindString",
  "GetCursorX",
  "GetCursorY",
  "SetCursorXY",
- "GetSyntaxLang"
+ "GetSyntaxLang",
+ "FindAgain",
+ "ReplaceString",
+ "ReplaceAgain"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -746,7 +805,10 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetCursorX,
  MLIGetCursorY,
  MLISetCursorXY,
- MLIGetSyntaxLang
+ MLIGetSyntaxLang,
+ MLIFindAgain,
+ MLIReplaceString,
+ MLIReplaceAgain
 };
 
 

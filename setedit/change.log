@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.443  2003/10/06 18:49:21  set
+* Added: [WWW] Links to the Windows installer contributed by William.
+
 Revision 1.442  2003/10/06 18:26:17  set
 * Added: Some Ruby syntax highlighting. Contributed by William E. Cullen
 <WECullen@comcast.net>.
