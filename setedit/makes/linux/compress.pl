@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || return 0;
@@ -45,7 +45,7 @@ else
 # Parse command line
 $nextisprefix=0; $nextisfhs=0;
 $iMode=0;  # Installation mode
-$iCompressExe=1;
+$iCompressExe=0;
 $useFHS=0;
 $Strip=1;
 foreach $i (@ARGV)
@@ -72,9 +72,9 @@ foreach $i (@ARGV)
      {
       $iMode=1;
      }
-   elsif ($i eq '--no-compress')
+   elsif ($i eq '--compress')
      {
-      $iCompressExe=0;
+      $iCompressExe=1;
      }
    elsif ($i eq '--no-strip')
      {
@@ -83,7 +83,7 @@ foreach $i (@ARGV)
    else
      {
       print "Unknown command line option: $i\n";
-      print "Usage: compres.pl [--prefix path] [--install] [--no-compress]\n\n";
+      print "Usage: compres.pl [--prefix path] [--install] [--compress]\n\n";
      }
   }
 
