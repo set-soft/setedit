@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-10-18 11:51-0300\n"
+"PO-Revision-Date: 2004-10-18 13:38-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -330,7 +330,7 @@ msgstr "Fehler beim Lesen der Desktopdatei"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2780
+#: ../infview/infmain.cc:662
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -344,7 +344,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2782
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2788
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -4089,7 +4089,7 @@ msgstr ""
 
 #: ../setedit/editdiag.cc:41
 #, fuzzy, c-format
-msgid "That's SET's Editor \"%s\", (c) 1996-2004"
+msgid "That's SET's Editor \"%s\", (c) %s"
 msgstr "Das ist SET's Editor v%lX.%lX.%lX, (c) 1996-1999"
 
 #: ../setedit/editdiag.cc:42
@@ -4302,11 +4302,22 @@ msgstr ""
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2780
+#: ../setedit/editmain.cc:2781
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2781
+#: ../setedit/editmain.cc:2783
+msgid ". Copyright (c) "
+msgstr ""
+
+#: ../setedit/editmain.cc:2785
+#, fuzzy
+msgid ""
+" by Salvador E. Tropea\n"
+"\n"
+msgstr "von Salvador Eduardo Tropea"
+
+#: ../setedit/editmain.cc:2787
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4314,7 +4325,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2783
+#: ../setedit/editmain.cc:2789
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4324,11 +4335,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2787
+#: ../setedit/editmain.cc:2793
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2788
+#: ../setedit/editmain.cc:2794
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4337,14 +4348,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2793
+#: ../setedit/editmain.cc:2799
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2797
+#: ../setedit/editmain.cc:2803
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4353,7 +4364,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2799
+#: ../setedit/editmain.cc:2805
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4361,36 +4372,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2801
+#: ../setedit/editmain.cc:2807
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2803
+#: ../setedit/editmain.cc:2809
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2805
+#: ../setedit/editmain.cc:2811
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2806
+#: ../setedit/editmain.cc:2812
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2807
+#: ../setedit/editmain.cc:2813
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2810
+#: ../setedit/editmain.cc:2816
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2812
+#: ../setedit/editmain.cc:2818
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4399,7 +4410,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2814
+#: ../setedit/editmain.cc:2820
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4407,19 +4418,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2817
+#: ../setedit/editmain.cc:2823
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2819
+#: ../setedit/editmain.cc:2825
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2820
+#: ../setedit/editmain.cc:2826
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"

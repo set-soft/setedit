@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-10-18 11:51-0300\n"
+"PO-Revision-Date: 2004-10-18 13:38-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "InfView v"
 # msgstr "~C~olores ..."
 # msgid "~C~olors ..."
 # msgstr "~C~olores ..."
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2780
+#: ../infview/infmain.cc:662
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -342,7 +342,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2782
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2788
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
@@ -3896,8 +3896,8 @@ msgstr "Versión: %lX.%lX.%lX   Revisión: %d"
 
 #: ../setedit/editdiag.cc:41
 #, c-format
-msgid "That's SET's Editor \"%s\", (c) 1996-2004"
-msgstr "Este es el editor de SET \"%s\", (c) 1996-2004"
+msgid "That's SET's Editor \"%s\", (c) %s"
+msgstr "Este es el editor de SET \"%s\", (c) %s"
 
 #: ../setedit/editdiag.cc:42
 #, c-format
@@ -4091,11 +4091,23 @@ msgstr ""
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2780
+#: ../setedit/editmain.cc:2781
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2781
+#: ../setedit/editmain.cc:2783
+msgid ". Copyright (c) "
+msgstr ". Copyright (c) "
+
+#: ../setedit/editmain.cc:2785
+msgid ""
+" by Salvador E. Tropea\n"
+"\n"
+msgstr ""
+" por Salvador Eduardo Tropea\n"
+"\n"
+
+#: ../setedit/editmain.cc:2787
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4103,7 +4115,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2783
+#: ../setedit/editmain.cc:2789
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4120,11 +4132,11 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2787
+#: ../setedit/editmain.cc:2793
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2788
+#: ../setedit/editmain.cc:2794
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4138,7 +4150,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:2793
+#: ../setedit/editmain.cc:2799
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -4150,7 +4162,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:2797
+#: ../setedit/editmain.cc:2803
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4159,7 +4171,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:2799
+#: ../setedit/editmain.cc:2805
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4167,34 +4179,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2801
+#: ../setedit/editmain.cc:2807
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:2803
+#: ../setedit/editmain.cc:2809
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:2805
+#: ../setedit/editmain.cc:2811
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2806
+#: ../setedit/editmain.cc:2812
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2807
+#: ../setedit/editmain.cc:2813
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:2810
+#: ../setedit/editmain.cc:2816
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:2812
+#: ../setedit/editmain.cc:2818
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4203,7 +4215,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:2814
+#: ../setedit/editmain.cc:2820
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4211,7 +4223,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:2817
+#: ../setedit/editmain.cc:2823
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -4219,12 +4231,12 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:2819
+#: ../setedit/editmain.cc:2825
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:2820
+#: ../setedit/editmain.cc:2826
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
