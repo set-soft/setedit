@@ -413,7 +413,11 @@ char *RedirectStdErrToATemp(int &StdErrOri,int &StdErrNew)
  sprintf(aux,"%serXXXXXX",s);
  StdErrNew=mkstemp(aux);
  if (StdErrNew>0)
-   {
+   {// In UNIX if the program is suid (needed before starting TV) we are
+    // at a point where TV wasn't initialized and hence didn't set the
+    // euid and egid to the real user. So we must ensure the temporal file
+    // is owned by the real user.
+    chown(aux,getuid(),getgid());
     ret=strdup(aux);
     StdErrOri=dup(fileno(stderr));
     fflush(stderr);
