@@ -11,6 +11,10 @@
 
   * warnings about big lens, and also show explicit limit of 1 MB, not here
   but in the input dialog. (Data Window).
+  * go to line in disasm window.
+  * clarify the attach to pid usage.
+  * when we set a breakpoint the cpu line disapears?
+  * clear mi_error when connecting.
 
   * Advices (only project, ...).
   * Don't show again in the confirmation for exit while debugging.
@@ -1632,6 +1636,9 @@ int TSetEditorApp::DebugConfirmEndSession(Boolean directRequest)
 {
  if (!dbg)
     return 1; // Ok, we are not debugging.
+ MIDebugger::eState st=dbg->GetState();
+ if (st!=MIDebugger::stopped && st!=MIDebugger::running)
+    return 1; // We are just connected
  char *msg;
  if (directRequest)
     msg=__("Please confirm you really want to finish the debug session. Breakpoints and other things will be lost.");
@@ -1894,7 +1901,9 @@ TDisAsmEdWin::~TDisAsmEdWin()
 }
 
 char *TDisAsmEdWin::getCodeInfo(char *b, int l)
-{
+{// If we failed to get the code just abort
+ if (!a2l)
+    return NULL;
  b[0]=0;
  int line=editor->curPos.y+1;
  ccIndex pos;
@@ -2320,7 +2329,9 @@ void TDisAsmWin::upCodeInfo()
    {
     codeInfoLine=curL;
     char b[80];
-    codeInfo->setText(edw->getCodeInfo(b,80));
+    char *res=edw->getCodeInfo(b,80);
+    if (res)
+       codeInfo->setText(res);
    }
 }
 
@@ -7839,7 +7850,7 @@ int TSetEditorApp::DebugOptionsEdit()
     ret=1;
    }
  delete cl;
- return 0;
+ return ret;
 }
 
 TDialog *createDebugOpsAdvDialog(TSViewCol *&cl)

@@ -6979,7 +6979,7 @@ Important! 2004/08/17 version 0.5.4: Currently this chapter is incomplete and
 the debugging features of the editor are considered unstable.
 @p{}
 
-Only C and C++ program can be debugged. If you use another language supported
+Only C and C++ programs can be debugged. If you use another language supported
 by gdb and want to help supporting it please contact me. Languages not
 supported by gdb needs more work to get supported, even if the debugger used
 for them is similar to gdb.
@@ -7080,7 +7080,244 @@ displaying data.
 @section Supported debug targets
 @cindex debugging, supported targets
 
+Currently you can especify the following targets:
+@p{}
 
+@itemize @bullet
+@item Local executables. That's the most common case where you debug a
+program you compiled locally.
+@item Remote debugging. In this case you debug a program that runs on another
+machine connected through a serial communication or network.
+@item Already running processes. You can also debug a process that's
+currently running in your local machine.
+@end itemize
+
+Other gdb targets aren't supported.
+@p{}
+
+In all the cases you should have a local copy of the program with debug
+information. When you debug a remote program the remote copy doesn't have to
+include debug information.
+@p{}
+
+@section Available debug options
+
+You can configure the following debug options. Remmember that most of them
+are stored in project files.
+@p{}
+
+@subsection Debug options
+
+This dialog is obtained using the @il{Debug|Options|Program and mode...} menu
+entry.
+@p{}
+
+Here you setup the most relevant debug options. These options are stored in
+project files. For this reason you should use a project if you want to avoid
+setting these options again. The available options are:
+@p{}
+
+@itemize @bullet
+@item Program to debug: Indicates the local copy of the program to debug.
+This copy must be compiled with debug information and the debug information
+must be preserved during the linking stage. Using the @il{Browse} button you
+can choose a file using a dialog to navigate your filesystem.
+@item Mode: It selects the kind of target you will debug.
+@x{Supported debug targets}.
+@item Program arguments: The command line options for the program you want to
+debug. This option is used only for local targets.
+@item Forced terminal: When the editor debugs your program the input and
+output of the program are redirected to a different terminal. This mechanism
+avoids interferences between the editor and the program you want to debug.
+The terminal is selected or created automatically. If you need to force a
+particular terminal fill this option. Otherwise leave it blank.
+@item Remote protocol type: This option is used for remote targets. Here you
+must specify one of the protocols supported by gdb. The most common protocol
+is @il{extended-remote}.
+@item Remote location: Also used for remote debugging. Here you indicate the
+location of the remote machine or the serial device. For TCP/IP you must
+specify the host and the port number using @il{host:port}. For serial links
+you must specify the serial device. Consult gdb documentation for details.
+@end itemize
+
+@refMenu1{cmeDebugOptions}
+
+@subsection Path for sources
+@cindex debugging, path for sources
+
+This dialog is obtained using the @il{Debug|Options|Path for sources...} menu
+entry.
+@p{}
+
+The most common way to compile your program is by indicating the relative
+path for the source file. When you debug your program you can do it from any
+directory. For this reason gdb can have problems to find the source files.
+The editor will analyze your project and extract paths from it. Additionally
+the editor will use the path for the executable as reference. The resulting
+list is passed to gdb. But sometimes it isn't enough and you must indicate
+the location for the files manually.
+@p{}
+
+The easiest way to add a directory is using the @il{Browse} button. It will
+bring a tree view of your filesystem. This dialog supports incremental
+search.
+@p{}
+
+When gdb reports a source file the editor uses this list to find the exact
+location of the file. If the file couldn't be found the editor will ask you
+to select the file using a dialog like the one used to open files. For this
+reason you usually don't need to add the directories manually. The exception
+is when you need to set a breakpoint and you get an error from gdb indicating
+the file couldn't be found. In this case the best recommendation is to add
+the file to the project, but you can add the directory here.
+@p{}
+
+@refMenu1{cmeSourceList}
+
+@subsection Messages displayed
+@cindex debugging, messages from gdb
+
+This dialog is obtained using the @il{Debug|Options|Messages displayed...}
+menu entry.
+@p{}
+
+This dialog controls which messages will be displayed in the Debugger Window.
+You can filter the following kind of messages:
+@p{}
+
+@itemize @bullet
+@item GDB console (CLI): Messages sent to the console. Usually they are human
+readable messages generated by gdb in response to console commands.
+@item Target: The output of the target. This kind of messages are specified
+by gdb documentation but never generated. They are supposed to contain the
+tunneled output of your program.
+@item Log: Messages sent to the gdb log. Usually they contain technical
+information about gdb details.
+@item GDB/MI commands sent to gdb: Machine Interface commands sent by the
+editor to gdb.
+@item GDB/MI responses from gdb: Machine Interface responses from gdb.
+@end itemize
+
+Usually you'll be interested only in the console and log messages. The target
+messages aren't really implemented in gdb and the MI messages are only useful
+to control if the editor is sending the proper information and gdb replying
+to it.
+@p{}
+
+@refMenu1{cmeDbgOptsMsgs}
+
+@subsection Advanced debug options
+@cindex debugger, advanced options
+@cindex debugger, selecting it
+
+This dialog is obtained using the @il{Debug|Options|Advanced...} menu
+entry.
+@p{}
+
+The options contained in this dialog are used to fine tune the debug session.
+Some of these options are dangerous and can produce problems if you don't set
+them properly.
+@p{}
+
+@itemize @bullet
+@item GDB executable: The binary executed as debugger. Use the browse button
+to select it. If you leave it blank the editor will choose the first binary
+called gdb found in your path.
+@item X terminal executable: The binary used to create a terminal for the
+program to debug when the editor is connected to an X server.
+@item Main function: The name of the first function executed in your program.
+For C and C++ programs that's usually @code{main}. Sometimes the name is
+different. One example is the Allegro library where @code{main} is replaced by
+@code{__mangled_main}.
+@item GDB Time out [s]: The ammount of seconds to wait for a gdb response.
+After this time the editor will ask if you want to wait more time or assume
+the response will never arrive. You can't indicate less than two seconds.
+@item Max. lines in Debug window: Maximum lines to hold in the Debugger
+Window. When this value is reached the older lines are discarded. You can't
+indicate less than 100 lines.
+@item No gdb banner after connecting: Suppress the gdb banner printed in the
+Debugger Window when we start gdb.
+@item Enable MI v2 features: Enable a few features only available in gdb MI
+version 2. Currently the editor can't determine the exact version implemented
+in gdb so you must indicate it. Versions newer than 6.0 seems to implement MI
+version 2. But cvs snapshots of gdb doesn't report a useful version.
+@item No symbols bug workaround: Actually the editor implements a workaround
+for a bug in gdb when searching for file names in the table of debug symbols.
+This workaround produces a slower start-up. This bug seems to affect versions
+from 5.3 to 6.2 (inclusive).
+@item No source code in disasm. window: Disables the use of mixed source code
+and assembler in the disassembler window. This is faster.
+@end itemize
+
+All the above options are stored globally and affects all projects. The only
+exception is the name of the main function which is stored in the project
+file.
+@p{}
+
+@refMenu1{cmeDbgOptionsAdv}
+
+@section Debugging states
+@cindex state, debug
+
+Not all operations can be performed at any time. GDB must be running in order
+to run the program and the program running in order to stop it. For this
+reason the editor keeps track of gdb state. The current state is displayed in
+the Debugger Window. The following states are defined:
+@p{}
+
+@itemize @bullet
+@item Disconnected: gdb isn't running.
+@item Connected: gdb is running but no target was selected.
+@item Ready to Run: gdb is running and we selected a target.
+@item Running: owr program is running. Note that currently gdb doesn't
+implement full asynchronous operation. It means that you can't send commands
+to gdb while the state is @il{running}. GDB won't be able to reply commands
+in this state.
+@item Stopped: the program was stopped and can resume its execution.
+@end itemize
+
+Some menu options can be used to force a particular state. So you can
+directly jump to @il{connected} or @il{ready to run} states from the
+@il{disconnected} state. This is useful if you want to send commands to gdb
+that are useful only in these states.
+@p{}
+
+When you specify an action that is invalid for the current state the editor
+will try to reach the proper state. As an example, if you use the @il{Step
+over} option when you are in @il{disconnected} state the editor will first
+try to start gdb and go to @il{connected}, then will try to specify the
+target and go to @il{ready to run} and finally will emulate the step action
+by using a temporal breakpoint on the main function.
+@p{}
+
+The menu entry called @il{Debug|Debug session|Close} is used to go to the
+@il{disconnected} state from any of the other states.
+@p{}
+
+The menu entry called @il{Debug|Stop} is used to go to the @il{stopped} state
+from the @il{running} state. And the @il{Debug|Kill} option is used to go to
+the @il{ready to run} state from the @il{stopped} or @il{running} states.
+@p{}
+
+@section Running the program to debug
+
+This operation is obtained using the @il{Debug|Run/Continue} menu entry.
+@p{}
+
+You must first configure the name of the program you want to debug. If you
+don't do it the editor will ask if you want to do it. @x{Debug options}.
+@p{}
+
+Once your program is running you can stop it using the @il{Debug|Stop}
+option. But usually is better to use breakpoints and watchpoints instead.
+@p{}
+
+While the program is running you can't consult the value of variables.
+That's because gdb gets blocked until your program is stopped.
+@x{Debugging states}.
+@p{}
+
+@refMenu{cmeDbgRunContinue,Shift+F9}
 
 @chapter Miscellaneous
 

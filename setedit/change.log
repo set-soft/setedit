@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.587  2004/08/24 13:16:38  set
+* Fixed: [Debug] A couple of typos in new code.
+
 Revision 1.586  2004/08/24 00:01:16  set
 * Added: [config] libmigdb version detection.
 
