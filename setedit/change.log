@@ -1,4 +1,104 @@
 $Log$
+Revision 1.483  2001/10/27 19:51:12  root
+* Added: ESC close the Message Window. Suggested by Thiago.
+
+Revision 1.482  2001/10/27 19:41:56  set
+* Added: sLisp command progn, that's just an alias for eval. This is how
+regular Lisp calls it. Suggested by Thiago.
+* Added: The last changes to the readme.1st.
+* Added: progn to the shl.
+
+Revision 1.481  2001/10/27 19:25:26  set
+* Added: The "Macro|Enter code to execute" gets the "macro under cursor"
+to offer it as code to execute.
+* Added: When using it the returned value is displayed in the message
+window. Thiago suggested something like it.
+* Added: A ~ operator to sLisp, it replaces the old not that now have a
+more coherent meaning (is like ! in C). Thiago reported problems about it.
+Documented.
+* Added: Hexadecimal shl to sLisp shl because that's supported.
+* Fixed: Now is possible to enter a negative integer in sLisp.
+* Fixed: After running a macro if it generated an error posterior runs
+indicated the same error.
+
+Revision 1.480  2001/10/27 17:21:47  set
+* Fixed: The list of functions stores the name of the function and the line
+number to jump. As the length of the name is arbitrary the line number
+could be stored in memory missaligned. This is not a performance issue
+because the process itself is complex but in SPARC machines generates a
+SIGBUS.
+
+Revision 1.479  2001/10/27 17:16:35  set
+* Fixed: It looks like most systems include locale.h implicitly (with other
+headers) but not Solaris.
+
+Revision 1.478  2001/10/27 17:08:29  set
+* Fixed: InfView code assumed Linux is the only UNIX ;-). Seen on Solaris.
+
+Revision 1.477  2001/10/27 16:09:07  set
+* Added: An example on how to use an external filter with sLisp. The
+example is for formating e-mails and was contributed by Grzegorz. (is in
+the documentation).
+
+Revision 1.476  2001/10/27 15:11:10  set
+* Fixed: [Linux/PPC and SPARC] For some bizarre reason gcc 2.95.2 is
+generating references for the inline TCEditor::TurnOffHighLight() in all
+the files that includes the TCEditor definition. This tries to pull the
+ceditor.cc file where all data members are declared. This isn't a problem
+for the editor but for InfView. So now the codepage.cc file doesn't
+declare TCEditor if it isn't really needed (faster compilation ;-). I saw
+it only on big endian platforms.
+
+Revision 1.475  2001/10/27 15:03:50  set
+* Fixed: When trying to use AM/PM clock and the system had a locale that
+doesn't support it (i.e. LC_ALL=es) strftime doesn't put anything for the
+%p value. It made the buffer of the desktop clock to have 1 character less
+than spected and this character was random. I also enlarged the clock 1
+character to make AM and PM visible and not just A and P. Reported by Ivan.
+
+Revision 1.474  2001/10/25 00:29:41  set
+* Added: A user remind me that some special keyboard combinations (like
+Alt+arrow keys) aren't detected when we use BIOS to extract keystrokes from
+the queue. For this reason I explain it and how to revert to the old methode
+in the readme.1st and windos.faq.
+
+Revision 1.473  2001/10/23 01:15:38  set
+* Fixed: Debian package distributes readme.1st compressed so the editor
+failed to load it. Now the editor can also locate it. In the future I could
+also distribute the file compressed in the tarball.
+
+Revision 1.472  2001/10/23 00:38:28  set
+* Fixed: The search tables used in editorfo.cc were allocated in one memory
+chunk. This generates missaligment. This isn't critic in Intel platforms
+(unless the OS explicitly enables a processor flag), but generates a kernel
+warning log in Linux/PPC platforms and a SIGBUS in Linux/SPARC platforms.
+As I was modifying it I did some more changes to make the code a little bit
+compact.
+
+Revision 1.471  2001/10/22 23:45:25  set
+* Fixed: The KeyTNode structure had a union that contained a short and an
+int value. As C seems to promote integers to int type gcc was choosing the
+int member to store const unsigned short values (instead of the ushort
+version of the union and in a static initialization) as a result of it the
+value was wrongly stored in big endian platforms. Seen on PPC.
+
+Revision 1.470  2001/10/22 23:40:31  set
+* Fixed: The TInfViewer::draw() member uses a function called moveChar() it
+was filling the buffer with character/attribute in an endian dependent
+order. TV expects a fixed order no matters which endianess is used. Seen on
+a Power PC machine (IBM RS/6000 at Source Forge).
+
+Revision 1.469  2001/10/22 23:29:24  set
+* Synchronized with Source Forge CVS including new Debian files.
+
+Revision 1.19  2001/10/28 19:48:44  terrible
+* Added: --no-comp-exe option to configure script, to avoid compressing the
+executables with UPX.
+* Modified: now default behaviour for all platforms is to compress
+executables with UPX, previously on Unix the editor executable was not
+compressed (only the infview was).
+* Updated: Debian packaging to 0.4.51-2.
+
 Revision 1.18  2001/10/22 13:27:34  set
 * Synchronized with my repository.
 
