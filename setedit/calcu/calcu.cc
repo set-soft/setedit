@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -12,6 +12,8 @@
 
 #include <ceditint.h>
 
+// Before the rest because djgpp have a bug in the headers and redefines NULL.
+#include <locale.h>
 #define Uses_stdio
 #define Uses_string
 #define Uses_TEvent
@@ -30,7 +32,6 @@
 #include <ceditor.h>
 #include <calcu.h>
 #include <setapp.h>
-#include <locale.h>
 
 #ifdef FLEX_BISON
 extern "C" char *yyParseString(char *s);

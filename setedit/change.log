@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.533  2004/06/25 19:46:21  set
+* Fixed: SUP_PCRE could be redefined :-(, added protection.
+
 Revision 1.532  2004/06/25 18:28:08  set
 * Added: [sLisp] A new command called "prex" to perform Perl regular
 expressions searches. It is documented and I also added an example to

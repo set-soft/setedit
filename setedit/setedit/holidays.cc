@@ -1,4 +1,4 @@
-/* Copyright (C) 2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -40,7 +40,19 @@ calendar.
 #include <datetools.h>
 
 #ifdef HAVE_DL_LIB
-#include DL_HEADER_NAME
+ #define HolidaysOn 1
+ #include DL_HEADER_NAME
+#else
+ // This makes the code more maintainable and ensures the code will work if
+ // a compiler that didn't support it starts doing it.
+ // The optimizer should remove unreachable code.
+ #define HolidaysOn 0
+ extern char *dlerror();
+ extern void *dlopen(char *b, int flags);
+ extern void *dlsym(void *, const char *);
+ extern void  dlclose(void *);
+ const int RTLD_NOW=0, RTLD_GLOBAL=0;
+#endif
 
 #define DEBUG 0
 
@@ -71,6 +83,8 @@ const char *confVar="SET_FORCED_LANG";
 static
 const char *LookUpCountry(const char *lang, char *buffer, char *name)
 {
+ if (!HolidaysOn)
+    return NULL;
  int i;
  if (!holidaysConfLoaded)
    {
@@ -139,6 +153,8 @@ const char *LookUpCountry(const char *lang, char *buffer, char *name)
 
 char *HolidaysGetLastError()
 {
+ if (!HolidaysOn)
+    return NULL;
  switch (lastError)
    {
     case 1:
@@ -154,7 +170,7 @@ char *HolidaysGetLastError()
 static
 int LoadPlugIn()
 {
- if (plugInLoaded)
+ if (!HolidaysOn || plugInLoaded)
     return 0;
 
  char *dlpath=getenv("SET_LIBS");
@@ -199,8 +215,8 @@ int LoadPlugIn()
 static
 void UnloadPlugIn()
 {
- if (!plugInLoaded)
-    return ;
+ if (!HolidaysOn || !plugInLoaded)
+    return;
 
  dlclose(dlhPlugIn);
  dlclose(dlhDateTools);
@@ -209,7 +225,7 @@ void UnloadPlugIn()
 
 struct dayMonth *GetHolidays(int year, int &cant)
 {
- if (LoadPlugIn())
+ if (!HolidaysOn || LoadPlugIn())
     return NULL;
 
  dayMonth *listOfHolidays=getlist(year,&cant);
@@ -227,6 +243,9 @@ struct dayMonth *GetHolidays(int year, int &cant)
 
 void CleanUpHolidays()
 {
+ if (!HolidaysOn)
+    return;
+
  UnloadPlugIn();
  if (countries)
    {
@@ -243,6 +262,9 @@ void CleanUpHolidays()
 static
 void BroadcastChange()
 {
+ if (!HolidaysOn)
+    return;
+
  message(TProgram::application,evBroadcast,cmCalendarPlugIn,0);
  if (DEBUG)
     printf("Broadcast\n");
@@ -250,6 +272,12 @@ void BroadcastChange()
 
 void ConfigureHolidays()
 {
+ if (!HolidaysOn)
+   {
+    messageBox(__("Holidays plug-ins not supported. Sorry."),mfError|mfOKButton);
+    return;
+   }
+
  LoadPlugIn();
  if (!holidaysConfLoaded)
    {
@@ -307,19 +335,4 @@ void ConfigureHolidays()
       }
    }
 }
-#else
-struct dayMonth *GetHolidays(int , int &)
-{
- return NULL;
-}
 
-char *HolidaysGetLastError()
-{
- return NULL;
-}
-
-void ConfigureHolidays()
-{
- messageBox(__("Holidays plug-ins not supported. Sorry."),mfError|mfOKButton);
-}
-#endif
