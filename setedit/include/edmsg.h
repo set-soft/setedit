@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 typedef struct
 {
@@ -66,11 +66,11 @@ void DumpFileToMessageEnd();
 
 // This is provided by edmsg.cc in the editor or by rhideint.cc in libset
 const uint32 edsmUpdateSpLines=1,edsmRemoveOld=2,edsmDontSelect=4,
-             edsmDontUpdate=8;
+             edsmDontUpdate=8,edsmNoHzReset=16;
 // Mutually exclusive options for the scroll behavior
 const uint32 edsmScrollMask=0xC0000000,edsmEverScroll=0,edsmNeverScroll=0x40000000,
              edsmScrollIfNoFocus=0x80000000,edsmScrollShifter=0x40000000;
-extern void EdShowMessage(char *msg,Boolean remove_old=False);
+extern void EdShowMessage(char *msg,Boolean remove_old=False,Boolean resetHz=True);
 extern void EdShowMessage(char *msg, unsigned Options);
 extern void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
                               unsigned Options=0);

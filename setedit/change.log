@@ -1,4 +1,8 @@
 $Log$
+Revision 1.45  2002/02/01 15:26:51  set
+* Added: Lua syntax highlight. Contributed by David A. Capello
+<dacap@users.sourceforge.net>.
+
 Revision 1.44  2002/01/29 18:05:29  set
 * Updated: Man page version and ~/* paths (now ~/.setedit/*).
 
@@ -3803,7 +3807,7 @@ Revision 1.16  1999/02/11 00:14:35  set
 * Added support for Windows clipboard in the InfView windows. Suggested by
 Ivan Baldo <lubaldo@adinet.com.uy>.
 * Added a Makefile target called 'distrib' to call the distribution scripts.
-.
+
 Revision 1.15  1999/02/10 23:38:04  set
 * Added: Now the command line is more POSIX compliant, well at least supports
 short and long commands. I used the GPL'd getopts_long function in DOS

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -53,10 +53,15 @@
 #include <signal.h>
 #endif
 
+// Values for Options
+const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8;
+const unsigned opshBegin=1,opshEachMessage=2,opshEnd=4;
+
 const int maxCommand=256;
 
 static char     Command[maxCommand]="\x0";
 static uint32   Options=0;
+static uint32   OpsScrHz=opshBegin | opshEnd;
 static char    *CurrentParser=0;
 static char    *ErrorFile=0;
 static char    *incCompiler;
@@ -71,8 +76,6 @@ static char    *RedirInputFile=0;
 const char *Running=__("Running %s");
 const char *BackEd=__("Back in the editor");
 const char *FromPrg=__("From program:");
-// Values for Options
-const unsigned opUseOSScreen=1,opNeverFork=2,opAlwaysBkgd=4,opJumpFirstError=8;
 
 void ConfigureRunCommand(void)
 {
@@ -85,6 +88,7 @@ void ConfigureRunCommand(void)
   char   ComAux[maxCommand]  __attribute__((packed));
   uint32 Options             __attribute__((packed));
   uint32 OpsScroll           __attribute__((packed));
+  uint32 OpsScrHz            __attribute__((packed));
   char   Lines[4]            __attribute__((packed));
   TListBoxRec tl             __attribute__((packed));
  } box;
@@ -92,6 +96,7 @@ void ConfigureRunCommand(void)
  strcpy(box.ComAux,Command);
  box.Options=Options & (~edsmScrollMask);
  box.OpsScroll=(Options & edsmScrollMask)/edsmScrollShifter;
+ box.OpsScrHz=OpsScrHz;
  sprintf(box.Lines,"%d",incLines);
 
  TStringCollection *list=CLEGetList();
@@ -104,7 +109,7 @@ void ConfigureRunCommand(void)
    }
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Command to run")));
- // ADEFJKLNPSVU
+ // ABDEFHJKLMNPSTUV
  TSLabel *progInput=new TSLabel(_("~E~nter the program name"),
          new TSInputLine(maxCommand,40));
  TSLabel *options=TSLabelCheck(__("~O~ptions"),
@@ -114,8 +119,12 @@ void ConfigureRunCommand(void)
          __("~J~ump to the first error"),0);
  TSLabel *opsscroll=TSLabelRadio(__("Message window ~s~croll"),
          __("E~v~er"),__("~N~ever"),__("Only if not ~f~ocused"),0);
+ TSLabel *optscrh=TSLabelCheck(__("~H~orizontal reset"),
+         __("At ~b~eggining"),
+         __("For each ~m~essage"),
+         __("At ~t~he end"),0);
  TSHzLabel *linesInput=new TSHzLabel(_("~L~ines per pass"),new TSInputLine(4));
- TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,linesInput,0);
+ TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,optscrh,linesInput,0);
  grp->makeSameW();
  col->insert(2,1,grp);
 
@@ -137,6 +146,7 @@ void ConfigureRunCommand(void)
    {
     strcpy(Command,box.ComAux);
     Options=box.Options | (box.OpsScroll*edsmScrollShifter);
+    OpsScrHz=box.OpsScrHz;
     incLines=atoi(box.Lines);
     if (validList)
       {
@@ -444,14 +454,18 @@ void IncCleanUp()
    {// Yes, wait.
     if (!PendingCleanUp)
       {
+       uint32 op=scrlOps | edsmDontSelect;
        PendingCleanUp=1;
-       EdShowMessage(_("Waiting ..."),scrlOps | edsmDontSelect);
+       if (!(OpsScrHz & opshEnd))
+          op|=edsmNoHzReset;
+       EdShowMessage(_("Waiting ..."),op);
       }
     return;
    }
  // Ok, we can go on
  ParsingErrors=0;
- EdShowMessage(_(BackEd),scrlOps);
+ EdShowMessage(_(BackEd),scrlOps |
+               ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
  if (incGoBack)
    {
     if (Options & opJumpFirstError)
@@ -485,7 +499,10 @@ void RunExternalProgramIncParse()
        PidChild=0;
     incGoBack=0;
     IndexCLE=CLEGetIndexOfLoad(incCompiler);
-    DumpFileToMessageInit(ErrorFile,FromPrg,Options & edsmScrollMask,
+    uint32 op=Options & edsmScrollMask;
+    if (!(OpsScrHz & opshEachMessage))
+       op|=edsmNoHzReset;
+    DumpFileToMessageInit(ErrorFile,FromPrg,op,
                           IndexCLE<0 ? ParseFun : ParseFunCLE);
    }
 
@@ -546,7 +563,7 @@ void RunExternalProgramStopChild()
     #endif
     PidChild=0;
    }
- EdShowMessage(_("Process interrupted"));
+ EdShowMessage(_("Process interrupted"),((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
  IncCleanUp();
 }
 
@@ -633,7 +650,7 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
     int l=strlen(s)+strlen(_(Running));
     AllocLocalStr(b,l);
     sprintf(b,_(Running),s);
-    EdShowMessage(b,True);
+    EdShowMessage(b,True,((OpsScrHz & opshBegin) ? False : True));
    }
 
  StackPath=new SOStack();
@@ -678,11 +695,11 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
        uint32 scrlOps=Options & edsmScrollMask;
        TProgram::deskTop->lock();
        IndexCLE=CLEGetIndexOfLoad(compiler);
-       goBack=DumpFileToMessage(err,FromPrg,scrlOps,
+       goBack=DumpFileToMessage(err,FromPrg,scrlOps | ((OpsScrHz & opshEachMessage) ? 0 : edsmNoHzReset),
                                 IndexCLE<0 ? ParseFun : ParseFunCLE);
        SpLinesUpdate();
        ErrorFile=0;
-       EdShowMessage(_(BackEd),scrlOps);
+       EdShowMessage(_(BackEd),scrlOps | ((OpsScrHz & opshEnd) ? 0 : edsmNoHzReset));
        if (goBack)
          {
           if (Options & opJumpFirstError)
@@ -715,9 +732,9 @@ void SaveRunCommand(fpstream &s)
 {
  if (Command[0])
    {
-    s << (char)4;
+    s << (char)5;
     s.writeString(Command);
-    s << Options << incLines;
+    s << Options << (uchar)OpsScrHz << incLines;
     s.writeString(CurrentParser);
     return;
    }
@@ -734,6 +751,12 @@ void LoadRunCommand(fpstream &s)
     s.readString(Command,maxCommand);
     if (version>=2)
        s >> Options;
+    if (version>=5)
+      {
+       uchar aux;
+       s >> aux;
+       OpsScrHz=aux;
+      }
     if (version>=4)
        s >> incLines;
     if (version>=3)

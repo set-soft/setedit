@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -39,6 +39,13 @@ static TSOSListBoxMsg *MsgList  =NULL;
 static SOStack        *Stack    =NULL;
 static TSOSCol        *MsgCol   =NULL;
 static TRect MsgWindowRect(-1,-1,-1,-1);
+
+static
+void ResetHz()
+{
+ if (MsgList->hScrollBar)
+    MsgList->hScrollBar->setValue(0);
+}
 
 TEdMsgDialog::TEdMsgDialog(const TRect &aR,const char *t) :
     TDialog(aR,t),
@@ -313,6 +320,7 @@ void TSOSListBoxMsg::selectNext(int offset)
       {
        TSOSListBox::focusItem(nFocus);
        selectItem(focused);
+       ResetHz();
        if (!selectOK)
           owner->select();
        return;
@@ -333,6 +341,7 @@ void TSOSListBoxMsg::selectPrev(int offset)
       {
        TSOSListBox::focusItem(nFocus);
        selectItem(focused);
+       ResetHz();
        if (!selectOK)
           owner->select();
        return;
@@ -463,8 +472,8 @@ void EdShowMessageUpdate(unsigned Options)
 {
  TProgram::deskTop->lock();
  MsgList->updateCommands(1);
- if (MsgList->hScrollBar)
-    MsgList->hScrollBar->setValue(0);
+ if (!(Options & edsmNoHzReset))
+    ResetHz();
  MsgWindow->show();
  if ((Options & edsmDontSelect)==0)
     MsgWindow->select();
@@ -516,11 +525,12 @@ void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
  EdShowMessageUpdate(Options);
 }
 
-void EdShowMessage(char *msg,Boolean remove_old)
+void EdShowMessage(char *msg, Boolean remove_old, Boolean resetHz)
 {
  FileInfo dummy;
  dummy.Line=-1;
- EdShowMessageFile(msg,dummy,0,remove_old ? edsmRemoveOld : 0);
+ EdShowMessageFile(msg,dummy,0,(remove_old ? edsmRemoveOld : 0) |
+                   (resetHz ? edsmNoHzReset : 0));
 }
 
 void EdShowMessage(char *msg, unsigned Options)
@@ -537,6 +547,7 @@ void EdJumpToMessage(ccIndex item)
  if (item<MsgCol->getCount())
    {
     avoidFocusAction=1;
+    ResetHz();
     MsgList->focusItem(item);
     avoidFocusAction=0;
    }
