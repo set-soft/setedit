@@ -1969,6 +1969,18 @@ void TCEditor::handleMouse(TEvent &event)
     return;
    }
 
+ if (event.mouse.buttons==mbButton4)
+   {
+    ScrollLinesUp(5);
+    return;
+   }
+
+ if (event.mouse.buttons==mbButton5)
+   {
+    ScrollLinesDown(5);
+    return;
+   }
+
  if (event.mouse.doubleClick)
     selectMode|=smDouble;
  do
@@ -2001,6 +2013,27 @@ void TCEditor::handleMouse(TEvent &event)
     clipWinCopy(1);
 }
 
+void TCEditor::ScrollLinesUp(int lines)
+{
+ CheckForShiftSelection();
+ addToUndo(undoInMov);
+ MoveLinesUp(lines);
+ delta.y=max(delta.y-lines,0);
+ if (NoInsideTabs)
+    curPos.x=FixPosCharLeft();
+ update(ufView);
+}
+
+void TCEditor::ScrollLinesDown(int lines)
+{
+ CheckForShiftSelection();
+ addToUndo(undoInMov);
+ MoveLinesDown(lines);
+ delta.y=min(delta.y+lines,limit.y);
+ if (NoInsideTabs)
+    curPos.x=FixPosCharLeft();
+ update(ufView);
+}
 
 int TCEditor::handleCommand(ushort command)
 {
@@ -2359,25 +2392,13 @@ int TCEditor::handleCommand(ushort command)
  
            // Full Ok level 2 (Pg Up) + selExtend
            case cmcPageUp:
-                CheckForShiftSelection();
-                addToUndo(undoInMov);
-                MoveLinesUp(size.y-1);
-                delta.y=max(delta.y-(size.y-1),0);
-                if (NoInsideTabs)
-                   curPos.x=FixPosCharLeft();
-                update(ufView);
+                ScrollLinesUp(size.y-1);
                 cursorMoved=1;
                 break;
  
            // Full Ok level 1 (Pg Down) + selExtend
            case cmcPageDown:
-                CheckForShiftSelection();
-                addToUndo(undoInMov);
-                MoveLinesDown(size.y-1);
-                delta.y=min(delta.y+size.y-1,limit.y);
-                if (NoInsideTabs)
-                   curPos.x=FixPosCharLeft();
-                update(ufView);
+                ScrollLinesDown(size.y-1);
                 cursorMoved=1;
                 break;
  

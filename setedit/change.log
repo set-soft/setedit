@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.140  2002/07/02 18:09:39  set
+* Added: [UNIX] Xmu to the X11 libs. It isn't needed for dynamic linking.
+
 Revision 1.139  2002/07/01 13:31:09  set
 * Fixed: One spanish translation pointed out by Ivan.
 

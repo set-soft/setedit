@@ -351,6 +351,8 @@ public:
     void insertSpaces( unsigned length, int X, Boolean canUseTabs=True );
     void MoveLinesUp(int i);
     void MoveLinesDown(int i);
+    void ScrollLinesUp(int lines);
+    void ScrollLinesDown(int lines);
     void SetStartOfSelecting(unsigned startOffSet);
     void UpdateSelecting(void);
     void MoveToMouse( TPoint m, uchar selMode );
