@@ -109,13 +109,12 @@ const int Col1=1,Col2=40,End1=39,End2=72;
 static
 char *SaveClipToTemp(void)
 {
- char *name=new char[PATH_MAX];
+ char *name=unique_name("cl",0);
  if (!name || !TCEditor::clipboard || !TCEditor::clipboard->hasSelection())
    {
     messageBox(_("The clipboard is empty"),mfOKButton);
     return 0;
    }
- tmpnam(name);
  FILE *f=fopen(name,"wt");
  fwrite(TCEditor::clipboard->buffer+TCEditor::clipboard->selStart,
         TCEditor::clipboard->selEnd-TCEditor::clipboard->selStart,1,f);
@@ -414,15 +413,18 @@ void grepWindow(char *patStart)
        return;
       }
     char b[12];
-    char param[PATH_MAX];
+    char *param=0;
     char command[PATH_MAX*2+80];
     char *clipTemp=0;
     int ok=1,absolute=0;
 
-    tmpnam(param);
+    param=unique_name("pa",0);
     FILE *f=fopen(param,"wb");
     if (!f)
+      {
+       string_free(param);
        return;
+      }
     InitParametersFile();
     int i=1;
     b[0]='-';
@@ -534,11 +536,10 @@ void grepWindow(char *patStart)
       }
 
     if (box.sourP==2)
-      {
        unlink(clipTemp);
-       delete clipTemp;
-      }
     unlink(param);
+    string_free(param);
+    string_free(clipTemp);
    }
 }
 

@@ -1457,7 +1457,7 @@ int DefinePath()
             }
           return 1;
          }
-       // He want's to edit
+       // He wants to edit
        char *tmp=tmpnam(0);
        if (!CopyFile(tmp,s,l))
          {

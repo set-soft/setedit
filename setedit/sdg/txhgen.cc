@@ -40,6 +40,7 @@ bastante bueno.
 #include <mli.h>
 #include <txhgen.h>
 #include <bufun.h>
+#include <rhutils.h>
 
 #define MAX_DEFS 16
 #define MAX_LEN  12
@@ -1824,94 +1825,6 @@ static void GenerateAssoc(TNCSAssociative *a, char *name, char *extra, FILE *f)
     }
 }
 
-
-/* That's from RHIDE I think it must be part of an IO library
-   totally independent of RHIDE */
-#include <sys/stat.h> /* for mode definitions */
-
-#define STDOUT 1
-#define STDERR 2
-
-static char *errname = NULL;
-static char *outname = NULL;
-static int h_out,h_outbak;
-static int h_err,h_errbak;
-
-/* returns a malloced unique tempname in $TMPDIR */
-static char *unique_name(char *before,char *retval=NULL)
-{
-/* In RHIDE $TMPDIR is set at startup */
-  char *name,*tmp = getenv("TMPDIR");
-  int fd;
-  if (!tmp)
-    tmp = "/tmp";
-  if (retval)
-  {
-    strcpy(retval,tmp);
-    strcat(retval,"/");
-    strcat(retval,before);
-    strcat(retval,"XXXXXX");
-    name=retval;
-  }
-  else
-  {
-    char buf[PATH_MAX];
-    strcpy(buf,tmp);
-    strcat(buf,"/");
-    strcat(buf,before);
-    strcat(buf,"XXXXXX");
-    name=strdup(buf);
-  }
-  /* Use mkstemp instead of mktemp to be sure, that no one else use
-     that name (can happen, because it is created later than computed ) */
-  #ifndef _WIN32
-  //$todo: implement for Win32 (SAA)
-  fd = mkstemp(name);
-  #endif
-  close(fd);
-  return name;
-}
-
-static char *open_stderr(void)
-{
- if (errname)
-    free(errname);
- errname=unique_name("er");
- h_err = open (errname,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,
-                       S_IREAD | S_IWRITE);
- h_errbak=dup(STDERR);
- fflush(stderr);  /* so any buffered chars will be written out */
- dup2 (h_err,STDERR);
- return errname;
-}
-
-static void close_stderr(void)
-{
- dup2(h_errbak,STDERR);
- close(h_err);
- close(h_errbak);
-}
-
-static char *open_stdout(void)
-{
- if (outname)
-    free(outname);
- outname=unique_name("ou");
- h_out = open (outname,O_WRONLY | O_BINARY | O_CREAT | O_TRUNC,
-                       S_IREAD | S_IWRITE);
- h_outbak=dup(STDOUT);
- fflush(stdout);  /* so any buffered chars will be written out */
- dup2(h_out,STDOUT);
- return outname;
-}
-
-static void close_stdout(void)
-{
- dup2(h_outbak,STDOUT);
- close(h_out);
- close(h_outbak);
-}
-
 static void DumpFile(char *file,char *from,int kill=1)
 {
  FILE *f;
@@ -1997,7 +1910,7 @@ int TXHGenerateAll(void)
  SOStack stk,stkL;
  char FileName[PATH_MAX];
  char LineB[PATH_MAX];
- char tmp1[PATH_MAX],tmp2[PATH_MAX];
+ char *tmp1=0,*tmp2=0;
  int ret=0;
 
  TXHError=0;
@@ -2030,11 +1943,11 @@ int TXHGenerateAll(void)
       
  // Generate the file
  ret=2;
- tmpnam(tmp1);
+ tmp1=unique_name("tx",0);
  if (TXHKeepTemporal)
-    strcpy(tmp2,TXHTempGenFile);
+    tmp2=string_dup(TXHTempGenFile);
  else
-    tmpnam(tmp2);
+    tmp2=unique_name("tg",0);
  TXHNodesFile=f=fopen(tmp1,"wt+");
  if (!f)
    {
@@ -2104,8 +2017,10 @@ CleanUp:
     fclose(d);
 
  unlink(tmp1);
+ string_free(tmp1);
  if (!TXHKeepTemporal)
     unlink(tmp2);
+ string_free(tmp2);
 
  // TVision objects have destroy to check for NULL
  destroy(FunList);

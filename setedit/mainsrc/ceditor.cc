@@ -12181,7 +12181,7 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
 Boolean TCEditor::loadFile(Boolean setSHL)
 {
     int i,crfound=0;
-    char tmp[PATH_MAX];
+    char *tmp=0;
     struct stat s;
     char *wasCompressed=0;
 
@@ -12275,24 +12275,22 @@ Boolean TCEditor::loadFile(Boolean setSHL)
           #ifdef CLY_UseCrLf
           // DOS: Check if the file is in UNIX format, in this case convert it
           if (crfound)
-          {
-            fseek(f,0,SEEK_SET);
-          }
+             fseek(f,0,SEEK_SET);
           else
-          {
-            /* This uses the feature of DJGPP to convert automatically
-               LF's to CR/LF's when writing in TEXT-mode */
-            FILE *ftemp;
-            IsaUNIXFile=True;
-            fseek(f,0,SEEK_SET);
-            tmpnam(tmp);
-            ftemp = fopen(tmp,"w+t");
-            while ((fsize = fread(tmpbuf,1,1024,f)) > 0)
-              fwrite(tmpbuf,1,fsize,ftemp);
-            fclose(ftemp);
-            fclose(f);
-            f = fopen(tmp,"rb");
-          }
+            {
+             /* This uses the feature of DJGPP to convert automatically
+                LF's to CR/LF's when writing in TEXT-mode */
+             FILE *ftemp;
+             IsaUNIXFile=True;
+             fseek(f,0,SEEK_SET);
+             tmp=unique_name("ed",0);
+             ftemp=fopen(tmp,"w+t");
+             while ((fsize = fread(tmpbuf,1,1024,f)) > 0)
+               fwrite(tmpbuf,1,fsize,ftemp);
+             fclose(ftemp);
+             fclose(f);
+             f=fopen(tmp,"rb");
+            }
           #else
           // UNIX: Check if the file is in DOS format, in this case convert it
           if (crfound)
@@ -12300,7 +12298,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              FILE *ftemp;
              IsaUNIXFile=True;
              fseek(f,0,SEEK_SET);
-             tmpnam(tmp);
+             tmp=unique_name("ed",0);
              ftemp=fopen(tmp,"w+t");
 
              ssize_t len;
@@ -12322,10 +12320,9 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              f=fopen(tmp,"rb");
             }
           else
-            {
              fseek(f,0,SEEK_SET);
-            }
          #endif
+         string_free(tmp);
         }
         unsigned long fSize=filelength( fileno(f) );
         if( !setBufSize(fSize) )

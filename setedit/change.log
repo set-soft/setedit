@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.78  2002/05/02 19:34:13  set
+* Added: Support for Electric Fence to the configuration script.
+
 Revision 1.77  2002/05/02 19:33:22  set
 * Added: libdl detection to config.pl. Looks like some new library
 combinations (XFree86 4.2.0 + glibc 2.2.5) needs it. Time will say if this

@@ -1882,7 +1882,7 @@ int TInfFile::ConvertIt(long Pos)
  int ret=0,i;
  char *s;
  FILE *f;
- char Tempo[PATH_MAX],Ori[PATH_MAX];
+ char *Tempo,Ori[PATH_MAX];
  Boolean wasCompressed;
 
  wasCompressed=IsCompressed;
@@ -1906,7 +1906,7 @@ int TInfFile::ConvertIt(long Pos)
           ExpandName(Ori,index->IndOffsets[i].Name,1);
        stream=fopen(Ori,"rb");
       }
-    tmpnam(Tempo);
+    Tempo=unique_name("iz",0);
     f=fopen(Tempo,"wb");
     if (stream==NULL || f==NULL) return ret;
     do
@@ -1927,6 +1927,7 @@ int TInfFile::ConvertIt(long Pos)
     fclose(f);
     fclose(stream);
     Rename(Tempo,Ori);
+    string_free(Tempo);
     i++;
    }
  while (i<=index->indirects && !wasCompressed);
