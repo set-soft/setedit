@@ -1453,7 +1453,8 @@ sub LookForBasicTools
  my $test;
  if (($OS eq 'DOS') || ($OS eq 'Win32'))
    {
-    $test=RunRedirect('rm --version');
+    #$test=RunRedirect('rm --version');
+    $test=RunRedirect('cp --version');
     if (!($test=~/fileutils/))
       {
        print "Please install the fileutils package. The name is usually something like it:\n";
