@@ -102,8 +102,8 @@ TDialog *CreateScreenOpsDialog()
 #pragma pack(1)
 typedef struct
 {
- TCollection *font_enco  __attribute__((packed));
- ccIndex font_encs       __attribute__((packed));
+ TCollection *font_enco  CLY_Packed;
+ ccIndex font_encs       CLY_Packed;
 } ScreenBox;
 #pragma pack()
 
@@ -238,20 +238,20 @@ TDialog *CreateScreenOpsDialog(int disableFonts)
 #pragma pack(1)
 typedef struct
 {
- uint32 mode             __attribute__((packed));
- char   other[10]        __attribute__((packed));
- uint32 font_flg         __attribute__((packed));
- TCollection *font_list  __attribute__((packed));
- ccIndex font_sel        __attribute__((packed));
- uint32 font2_flg        __attribute__((packed));
- TCollection *font2_list __attribute__((packed));
- ccIndex font2_sel       __attribute__((packed));
- TCollection *font_enco  __attribute__((packed));
- ccIndex font_encs       __attribute__((packed));
- TCollection *font2_enco __attribute__((packed));
- ccIndex font2_encs      __attribute__((packed));
- uint32 ext_prg          __attribute__((packed));
- char   command[80]      __attribute__((packed));
+ uint32 mode             CLY_Packed;
+ char   other[10]        CLY_Packed;
+ uint32 font_flg         CLY_Packed;
+ TCollection *font_list  CLY_Packed;
+ ccIndex font_sel        CLY_Packed;
+ uint32 font2_flg        CLY_Packed;
+ TCollection *font2_list CLY_Packed;
+ ccIndex font2_sel       CLY_Packed;
+ TCollection *font_enco  CLY_Packed;
+ ccIndex font_encs       CLY_Packed;
+ TCollection *font2_enco CLY_Packed;
+ ccIndex font2_encs      CLY_Packed;
+ uint32 ext_prg          CLY_Packed;
+ char   command[80]      CLY_Packed;
 } ScreenBox;
 #pragma pack()
 
@@ -631,12 +631,12 @@ void TDiaScrSaver::handleEvent(TEvent& event)
 #pragma pack(1)
 typedef struct
 {
- uint32  scr_on                __attribute__((packed));
- TCollection *savers           __attribute__((packed));
- ccIndex scr_sel               __attribute__((packed));
- char    xtOp[extscrsParMxLen] __attribute__((packed));
- char    time[5]               __attribute__((packed));
- char    timeM[5]              __attribute__((packed));
+ uint32  scr_on                CLY_Packed;
+ TCollection *savers           CLY_Packed;
+ ccIndex scr_sel               CLY_Packed;
+ char    xtOp[extscrsParMxLen] CLY_Packed;
+ char    time[5]               CLY_Packed;
+ char    timeM[5]              CLY_Packed;
 } BoxSavers;
 #pragma pack()
 
@@ -712,11 +712,11 @@ void SetScreenSaversOptions(void)
 #pragma pack(1)
 typedef struct
 {
- uint32 ops          __attribute__((packed));
- uint32 clk_on       __attribute__((packed));
- uint32 clk_mode     __attribute__((packed));
- char   editors[5]   __attribute__((packed));
- char   closed[5]    __attribute__((packed));
+ uint32 ops          CLY_Packed;
+ uint32 clk_on       CLY_Packed;
+ uint32 clk_mode     CLY_Packed;
+ char   editors[5]   CLY_Packed;
+ char   closed[5]    CLY_Packed;
 } BoxGral;
 #pragma pack()
 
@@ -866,9 +866,9 @@ unsigned SetGeneralEditorOptionsMain(void)
 #pragma pack(1)
 typedef struct
 {
- uint32 editors      __attribute__((packed));
- uint32 otherWindows __attribute__((packed));
- uint32 closed       __attribute__((packed));
+ uint32 editors      CLY_Packed;
+ uint32 otherWindows CLY_Packed;
+ uint32 closed       CLY_Packed;
 } BoxMoreDst;
 #pragma pack()
 
@@ -976,11 +976,11 @@ void LoadConvCPOptions(fpstream& s)
 #pragma pack(1)
 typedef struct
 {
- TCollection *lFrom __attribute__((packed));
- ccIndex sFrom      __attribute__((packed));
- TCollection *lTo   __attribute__((packed));
- ccIndex sTo        __attribute__((packed));
- uint32  ops        __attribute__((packed));
+ TCollection *lFrom CLY_Packed;
+ ccIndex sFrom      CLY_Packed;
+ TCollection *lTo   CLY_Packed;
+ ccIndex sTo        CLY_Packed;
+ uint32  ops        CLY_Packed;
 } FromToBox;
 #pragma pack()
 
