@@ -5810,7 +5810,8 @@ void TCEditor::MakeEfectiveLineInEdition(void)
  bufEdit[actual++]='\n';
  bufEdit[actual]=0;
  if (SpacesEated && selLineEnd>0)
-    AdjustLineSel(actual-1,-SpacesEated);
+    // Use the position we had before eating!
+    AdjustLineSel(SpacesEated,-SpacesEated);
 
  int old=lenLines[lineInEdition];
  int dif=actual-old;
@@ -11041,8 +11042,12 @@ void TCEditor::undoOneAction()
        case undoDestroyLine:
             MoveCursorTo(un.X,un.Y);
             deleteRange(curLinePtr,curLinePtr+LenWithoutCRLF(un.Y,curLinePtr),False);
+            // We must be sure the line is inserted at the beginning
+            MoveCursorTo(0,un.Y);
             insertBuffer(un.s,0,un.Length,False,False,False);
             MoveCursorTo(un.X,un.Y);
+            if (un.Flags & undoLineInEd)
+               EditLine();
             break;
 
        case undoIndBlock:
@@ -11377,6 +11382,7 @@ void TCEditor::UndoSaveFinalState(UndoCell &un)
  if (selHided)  un.Flags|=undoSelHidedF;
  if (modified)  un.Flags|=undoModifiedF;
  if (overwrite) un.Flags|=undoOverWriteF;
+ if (IslineInEdition) un.Flags|=undoLineInEd;
 }
 
 
@@ -11411,6 +11417,7 @@ void TCEditor::UndoSaveStartState(UndoCell &un)
  if (selHided)  un.Flags|=undoSelHided;
  if (modified)  un.Flags|=undoModified;
  if (overwrite) un.Flags|=undoOverWrite;
+ if (IslineInEdition) un.Flags|=undoLineInEd;
 }
 
 /****************************************************************************
