@@ -139,7 +139,7 @@ void TSetEditorApp::screenSaver()
 {
  TEvent event;
 
- if (!UseScreenSaver || !MaxRow() || !MaxCol())
+ if (!MaxRow() || !MaxCol())
     return;
 
  int type;
@@ -215,11 +215,7 @@ void TSetEditorApp::screenSaver()
     char *buf;
     buf=new char[len<80 ? 80 : len];
 
-    #if TV_MAJOR_VERSION==2
     TScreen::getCharacters(0,(ushort *)buf,len/2);
-    #else
-    TScreen::getCharacter(0,(ushort *)buf,len/2);
-    #endif
     char *name=unique_name("sc");
     int h=open(name,O_RDWR | O_CREAT | O_TRUNC | O_BINARY,0);
     if (h>=0)

@@ -1512,18 +1512,21 @@ void TSetEditorApp::idle()
     if (Clock)
        KillClock();
 
- int seconds=inIdleTime/clockResolution;
- if (seconds==screenSaverTimeMouse)
+ if (UseScreenSaver && TScreen::useScreenSaver())
    {
-    MouseEventType me;
-    TMouse::getEvent(me);
-    TRect r=deskTop->getExtent();
-    if (me.where.x==r.b.x-1 && me.where.y==0)
+    int seconds=inIdleTime/clockResolution;
+    if (seconds==screenSaverTimeMouse)
+      {
+       MouseEventType me;
+       TMouse::getEvent(me);
+       TRect r=deskTop->getExtent();
+       if (me.where.x==r.b.x-1 && me.where.y==0)
+          screenSaver();
+      }
+    else
+    if (seconds>=screenSaverTime)
        screenSaver();
    }
- else
- if (seconds>=screenSaverTime)
-    screenSaver();
 }
 
 

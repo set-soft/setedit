@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.133  2002/06/27 18:08:58  set
+* Fixed: Another use of a class after releasing the memory. Reported by
+efence.
+
 Revision 1.132  2002/06/25 15:40:38  set
 * Added: Syntax highlight for the Turbo Vision configuration files.
 

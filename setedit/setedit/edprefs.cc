@@ -646,6 +646,12 @@ typedef struct
 
 void SetScreenSaversOptions(void)
 {
+ if (!TScreen::useScreenSaver())
+   {
+    messageBox(_("The screen saver isn't useful for this terminal"),mfInformation | mfOKButton);
+    return;
+   }
+
  // EFHIMNOPRTX
  TDiaScrSaver *diaPrefs=new TDiaScrSaver();
  TSViewCol *col=new TSViewCol(diaPrefs);
