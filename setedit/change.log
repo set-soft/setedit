@@ -1,9 +1,12 @@
 $Log$
+Revision 1.112  2002/06/07 02:18:36  terrible
+* Updated: Debian packaging with small changes.
+
 Revision 1.111  2002/06/06 19:41:12  set
 * Added: [DOS] An entry to the FAQ about problems with the mouse while
 using NT, W2k, XP, and similar crap. From a post to RHIDE list posted by
 James Doyle and Tom Verhoeff.
-.
+
 Revision 1.110  2002/06/04 19:42:57  set
 * Modified: Now the configuration determines the directories where extra
 libraries could be located and adds it to the list of directories.

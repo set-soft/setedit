@@ -1604,9 +1604,11 @@ int main(void)
 }
 ';
  $conf{'X11LibPath'}='/usr/X11R6/lib' unless $conf{'X11LibPath'};
- $conf{'X11IncludePath'}='/usr/X11R6/include' unless $conf{'X11IncludePath'};
  $conf{'X11Lib'}='X11' unless $conf{'X11Lib'};
- $test=RunGCCTest($GCC,'c',$test,"-I$conf{'X11IncludePath'} -L$conf{'X11LibPath'} -l$conf{'X11Lib'}");
+ $o='';
+ $o.='-I'.$conf{'X11IncludePath'} if $conf{'X11IncludePath'};
+ $o.=" -L$conf{'X11LibPath'} -l$conf{'X11Lib'}";
+ $test=RunGCCTest($GCC,'c',$test,$o);
  if ($test=~/OK, (\d+)\.(\d+)/)
    {
     $conf{'HAVE_X11'}='yes';
@@ -1614,6 +1616,17 @@ int main(void)
    }
  else
    {
+    if (!$conf{'X11IncludePath'})
+      {
+       $conf{'X11IncludePath'}='/usr/X11R6/include';
+       $o.="-I$conf{'X11IncludePath'} -L$conf{'X11LibPath'} -l$conf{'X11Lib'}";
+       if ($test=~/OK, (\d+)\.(\d+)/)
+         {
+          $conf{'HAVE_X11'}='yes';
+          print "yes OK (X$1 rev $2)\n";
+          return;
+         }
+      }
     $conf{'HAVE_X11'}='no';
     print "no, disabling X11 version\n";
    }
