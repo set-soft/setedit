@@ -2,7 +2,7 @@ Source: setedit
 Section: editors
 Priority: optional
 Maintainer: Ivan Baldo <lubaldo@adinet.com.uy>
-Build-Depends: perl, rhtvision-dev, gzip, tar, debhelper (>=2.0.54), libpcre3-dev, libz-dev, libbz2-dev, texinfo, recode, gettext, xlibs-dev, libncurses-dev
+Build-Depends: perl | perl5, rhtvision-dev, gzip, tar, debhelper (>=2.0.54), libpcre3-dev | libpcre2-dev, libz-dev, libbz2-dev, texinfo, recode, gettext, xlibs-dev | xlib6g-dev, libncurses-dev
 Standards-Version: 3.5.2.0
 
 Package: setedit

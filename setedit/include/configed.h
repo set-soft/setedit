@@ -22,7 +22,7 @@
 #define HAVE_BZIP2 1
 
 /* old bzip2 version before 1.0 */
-/*#define HAVE_BZIP2PRE1 1*/
+#define HAVE_BZIP2PRE1 1
 
 /* Sound mixer support */
 #define HAVE_MIXER 1
@@ -31,9 +31,9 @@
 /*#define FORCE_INTL_SUPPORT 1*/
 
 /* X11 library and headers */
-/*#define HAVE_X11 1*/
+#define HAVE_X11 1
 
-#define CONFIG_PREFIX ""
+#define CONFIG_PREFIX "/usr"
 
 
 #define SEOS_UNIX

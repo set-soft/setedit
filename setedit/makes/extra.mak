@@ -56,11 +56,10 @@ LOCAL_OPT=$(subst ___~~~___, ,$(subst $(notdir $<)___,,$(filter $(notdir\
 	$<)___%,$(LOCAL_OPTIONS))))
 
 OBJFILES=obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o obj/mixersb.o\
-	obj/mixoss.o obj/stackdbg.o obj/strncpyz.o obj/strndup.o\
-	obj/winoldap.o
+	obj/mixoss.o obj/stackdbg.o obj/strncpyz.o obj/strndup.o
 ALL_OBJFILES=obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o\
 	obj/mixersb.o obj/mixoss.o obj/stackdbg.o obj/strncpyz.o\
-	obj/strndup.o obj/winoldap.o
+	obj/strndup.o
 LIBRARIES=
 SOURCE_NAME=$<
 OUTFILE=$@
@@ -72,7 +71,7 @@ WUC=
 EDITORS=
 MAIN_TARGET=
 PROJECT_ITEMS=djmdr.s dyncat.cc memmove.s mixer.c mixersb.c mixoss.c\
-	stackdbg.c strncpyz.cc strndup.cc winoldap.cc
+	stackdbg.c strncpyz.cc strndup.cc
 DEFAULT_MASK=*.[chmps]*
 RHIDE_BIN_DIR=/usr/bin
 PASCAL_TYPE=GPC
@@ -131,12 +130,19 @@ RHIDE_COMPILE_FORTRAN=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 RHIDE_COMPILE_FORTRAN_FORCE=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_F_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x f77 $(LOCAL_OPT)  -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(RHIDE_OS_CFLAGS)  $(CPPFLAGS) $(CFLAGS) $(LOCAL_OPT) -c\
+	$(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_C_FORCE=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x c $(RHIDE_OS_CFLAGS)  $(CPPFLAGS) $(CFLAGS) $(LOCAL_OPT) -c\
 	$(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(RHIDE_OS_CXXFLAGS)\
+	$(CPPFLAGS) $(CXXFLAGS) $(LOCAL_OPT)   -c $(SOURCE_NAME) -o\
+	$(OUTFILE)
 RHIDE_COMPILE_CC_FORCE=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
 	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(RHIDE_OS_CXXFLAGS)\
@@ -159,7 +165,9 @@ RHIDE_FPC_FLAGS=$(C_FPC_LANG_FLAGS) $(LOCAL_OPT) $(addprefix\
 RHIDE_COMPILE_FPC=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -E- $(SOURCE_NAME)
 RHIDE_COMPILE_FPC_FORCE=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -B -E-\
 	$(SOURCE_NAME)
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS) -o\
+	$(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(RHIDE_LIBS)
 RHIDE_COMPILE_LINK_GPC=$(RHIDE_LD_PASCAL) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS)\
 	-o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LDFLAGS) $(LDFLAGS)\
 	$(RHIDE_LIBS)
@@ -275,28 +283,44 @@ RHIDE_LD=gcc
 RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib ../libbzip2
-RHIDE_OS_LIBS=rhtv ncurses m gpm bz2 mpegsnd z pcre 
-RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
-SUPPORT_INC=../libbzip2
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+SUPPORT_INC= 
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
+	$(RHIDE_LIBS)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS)\
+	$(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib ../libbzip2
-RHIDE_OS_LIBS=rhtv ncurses m gpm bz2 mpegsnd z pcre 
-RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
-SUPPORT_INC=../libbzip2
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+SUPPORT_INC= 
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
+	$(RHIDE_LIBS)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS)\
+	$(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
 %.o: %.c
 	$(RHIDE_COMPILE.c.o)
 %.o: %.i
@@ -376,8 +400,7 @@ all::
 clean::
 	rm -f $(CLEAN_FILES)
 DEPS_0= obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o obj/mixersb.o\
-	obj/mixoss.o obj/stackdbg.o obj/strncpyz.o obj/strndup.o\
-	obj/winoldap.o 
+	obj/mixoss.o obj/stackdbg.o obj/strncpyz.o obj/strndup.o 
 NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 TARGET_0:: $(DEPS_0)
@@ -417,8 +440,5 @@ obj/strncpyz.o:: $(DEPS_8)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_9=strndup.cc
 obj/strndup.o:: $(DEPS_9)
-	$(RHIDE_COMPILE.cc.o)
-DEPS_10=winoldap.cc ../include/configed.h
-obj/winoldap.o:: $(DEPS_10)
 	$(RHIDE_COMPILE.cc.o)
 all:: TARGET_0

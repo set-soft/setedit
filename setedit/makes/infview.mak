@@ -312,13 +312,11 @@ RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
-	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib\
-	../libbzip2 ../libpcre
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
 RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
-RHIDE_OS_LIBS_PATH=../../tvision-head/linuxso ../libbzip2 ../libpcre\
-	/usr/X11R6/lib
-TVISION_INC=../../tvision-head/include
-SUPPORT_INC= ../libbzip2 ../libpcre
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
+TVISION_INC=../../tvision/include
+SUPPORT_INC= 
 RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
 	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
 	$(RHIDE_LIBS)
@@ -336,13 +334,11 @@ RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
-	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib\
-	../libbzip2 ../libpcre
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
 RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
-RHIDE_OS_LIBS_PATH=../../tvision-head/linuxso ../libbzip2 ../libpcre\
-	/usr/X11R6/lib
-TVISION_INC=../../tvision-head/include
-SUPPORT_INC= ../libbzip2 ../libpcre
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
+TVISION_INC=../../tvision/include
+SUPPORT_INC= 
 RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
 	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
 	$(RHIDE_LIBS)
@@ -441,68 +437,59 @@ LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 infview.exe:: $(DEPS_0)
 	$(RHIDE_COMPILE_LINK)
 DEPS_1=codepage.cc ../include/ced_coma.h ../include/ced_inte.h\
-	../include/ceditor.h ../setedit/include/codepage.h\
+	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
+	../setedit/include/calendar.h ../setedit/include/codepage.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tprogdia.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h ../../tvision-head/include/tv/app.h\
-	../../tvision-head/include/tv/backgrnd.h\
-	../../tvision-head/include/tv/button.h\
-	../../tvision-head/include/tv/checkbox.h\
-	../../tvision-head/include/tv/clrdlg.h\
-	../../tvision-head/include/tv/clrselct.h\
-	../../tvision-head/include/tv/cluster.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/colorsel.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/desktop.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/dirlibo.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/frame.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/history.h\
-	../../tvision-head/include/tv/indicato.h\
-	../../tvision-head/include/tv/inputln.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/menubox.h\
-	../../tvision-head/include/tv/menus.h\
-	../../tvision-head/include/tv/menuview.h\
-	../../tvision-head/include/tv/mnoselct.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/program.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/radiobtn.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/screen.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/statslin.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/backgrnd.h\
+	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/checkbox.h\
+	../../tvision/include/tv/clrdlg.h\
+	../../tvision/include/tv/clrselct.h\
+	../../tvision/include/tv/cluster.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/colorsel.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/desktop.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/dirlibo.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/frame.h ../../tvision/include/tv/group.h\
+	../../tvision/include/tv/history.h\
+	../../tvision/include/tv/indicato.h\
+	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/menubox.h ../../tvision/include/tv/menus.h\
+	../../tvision/include/tv/menuview.h\
+	../../tvision/include/tv/mnoselct.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/point.h ../../tvision/include/tv/program.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/radiobtn.h ../../tvision/include/tv/rect.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/screen.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/statslin.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/codepage.o:: $(DEPS_1)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_2=dyncat.cc ../extra/dyncat.h ../include/configed.h
@@ -519,21 +506,17 @@ DEPS_4=fstrcmp.c
 objinf/fstrcmp.o:: $(DEPS_4)
 	$(RHIDE_COMPILE.c.o)
 DEPS_5=gzfiles.cc ../include/ceditint.h ../include/configed.h\
-	../include/gzfiles.h ../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/msgbox.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/views.h
+	../include/gzfiles.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 objinf/gzfiles.o:: $(DEPS_5)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_6=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
@@ -545,67 +528,55 @@ DEPS_6=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
 	../settvuti/include/fiopeaid.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tdiagrow.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tprogrdi.h\
-	../settvuti/include/tprogres.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/button.h\
-	../../tvision-head/include/tv/checkbox.h\
-	../../tvision-head/include/tv/cluster.h\
-	../../tvision-head/include/tv/cmdset.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/filedlg.h\
-	../../tvision-head/include/tv/findrepl.h\
-	../../tvision-head/include/tv/frame.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/history.h\
-	../../tvision-head/include/tv/inputln.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/label.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/menus.h\
-	../../tvision-head/include/tv/msgbox.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/palette.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/radiobtn.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/sitem.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/sortlibo.h\
-	../../tvision-head/include/tv/statslin.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strmblcl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/sttctext.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tkeyext.h\
-	../../tvision-head/include/tv/tkeys.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../settvuti/include/tprogres.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/button.h\
+	../../tvision/include/tv/checkbox.h\
+	../../tvision/include/tv/cluster.h\
+	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/filedlg.h\
+	../../tvision/include/tv/findrepl.h\
+	../../tvision/include/tv/frame.h ../../tvision/include/tv/group.h\
+	../../tvision/include/tv/history.h\
+	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/menus.h ../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/osclipboard.h\
+	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/radiobtn.h ../../tvision/include/tv/rect.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/sitem.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/sortlibo.h\
+	../../tvision/include/tv/statslin.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strmblcl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/sttctext.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tkeyext.h ../../tvision/include/tv/tkeys.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/inf.o:: $(DEPS_6)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_7=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
@@ -613,43 +584,35 @@ DEPS_7=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
 	../librhuti/rhutils.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tprogdia.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/msgbox.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/sortlibo.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strmblcl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../settvuti/include/tprogdia.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/rect.h ../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/sortlibo.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strmblcl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/infbase.o:: $(DEPS_7)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_8=infdummy.cc
@@ -665,66 +628,55 @@ DEPS_9=infmain.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../infview/include/infr.h ../infview/include/manview.h\
 	../setedit/include/codepage.h ../setedit/include/pal.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h ../../tvision-head/include/tv/app.h\
-	../../tvision-head/include/tv/applictn.h\
-	../../tvision-head/include/tv/button.h\
-	../../tvision-head/include/tv/chdirdlg.h\
-	../../tvision-head/include/tv/cmdset.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/desktop.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/editors.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/filedlg.h\
-	../../tvision-head/include/tv/fpbase.h\
-	../../tvision-head/include/tv/fpstream.h\
-	../../tvision-head/include/tv/gkey.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/iopstrm.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/label.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/menus.h\
-	../../tvision-head/include/tv/msgbox.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/palette.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/program.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/screen.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/sortlibo.h\
-	../../tvision-head/include/tv/statslin.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/sttctext.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../settvuti/include/tnocastc.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
+	../../tvision/include/tv/applictn.h\
+	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/chdirdlg.h\
+	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/desktop.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h\
+	../../tvision/include/tv/editors.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/filedlg.h\
+	../../tvision/include/tv/fpbase.h\
+	../../tvision/include/tv/fpstream.h ../../tvision/include/tv/gkey.h\
+	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/iopstrm.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/menus.h ../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
+	../../tvision/include/tv/program.h\
+	../../tvision/include/tv/pstream.h ../../tvision/include/tv/rect.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/screen.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/sortlibo.h\
+	../../tvision/include/tv/statslin.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/sttctext.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/infmain.o:: $(DEPS_9)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_10=infmenu.cc ../include/ced_coma.h ../include/ceditor.h\
@@ -732,63 +684,53 @@ DEPS_10=infmenu.cc ../include/ced_coma.h ../include/ceditor.h\
 	../infview/include/infalone.h ../infview/include/infbase.h\
 	../infview/include/infbaser.h ../infview/include/infr.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h ../../tvision-head/include/tv/app.h\
-	../../tvision-head/include/tv/applictn.h\
-	../../tvision-head/include/tv/cmdset.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/desktop.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/editors.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/filedlg.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/menubar.h\
-	../../tvision-head/include/tv/menuitem.h\
-	../../tvision-head/include/tv/menus.h\
-	../../tvision-head/include/tv/menuview.h\
-	../../tvision-head/include/tv/msgbox.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/palette.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/program.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/statsdef.h\
-	../../tvision-head/include/tv/statsitm.h\
-	../../tvision-head/include/tv/statslin.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/submenu.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tkeys.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../settvuti/include/tnocastc.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
+	../../tvision/include/tv/applictn.h\
+	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/desktop.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h\
+	../../tvision/include/tv/editors.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/filedlg.h ../../tvision/include/tv/group.h\
+	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/menubar.h\
+	../../tvision/include/tv/menuitem.h\
+	../../tvision/include/tv/menus.h\
+	../../tvision/include/tv/menuview.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
+	../../tvision/include/tv/program.h\
+	../../tvision/include/tv/pstream.h ../../tvision/include/tv/rect.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/statsdef.h\
+	../../tvision/include/tv/statsitm.h\
+	../../tvision/include/tv/statslin.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/submenu.h\
+	../../tvision/include/tv/system.h ../../tvision/include/tv/tkeys.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/infmenu.o:: $(DEPS_10)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_11=
@@ -804,118 +746,91 @@ DEPS_12=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../extra/dyncat.h ../include/ced_coma.h ../include/ceditor.h\
 	../infview/include/manview.h ../librhuti/rhutils.h\
 	../setedit/include/codepage.h ../settvuti/include/diaghelp.h\
-	../settvuti/include/settvuti.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h ../../tvision-head/include/tv/app.h\
-	../../tvision-head/include/tv/button.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/desktop.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/frame.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/history.h\
-	../../tvision-head/include/tv/inputln.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/label.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/palette.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/screen.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/sttctext.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tkeyext.h\
-	../../tvision-head/include/tv/tkeys.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
+	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/desktop.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/frame.h ../../tvision/include/tv/group.h\
+	../../tvision/include/tv/history.h\
+	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
+	../../tvision/include/tv/pstream.h ../../tvision/include/tv/rect.h\
+	../../tvision/include/tv/screen.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/sttctext.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tkeyext.h ../../tvision/include/tv/tkeys.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/manview.o:: $(DEPS_12)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_13=nhiscoll.cc ../settvuti/include/settvuti.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/views.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 objinf/nhiscoll.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_14=ninfview.cc ../settvuti/include/settvuti.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/views.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 objinf/ninfview.o:: $(DEPS_14)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_15=ninfwind.cc ../settvuti/include/settvuti.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/views.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 objinf/ninfwind.o:: $(DEPS_15)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_16=nmanwind.cc ../settvuti/include/settvuti.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/views.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 objinf/nmanwind.o:: $(DEPS_16)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_17=
@@ -929,78 +844,62 @@ DEPS_18=sinf.cc ../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
 	../infview/include/infr.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/collectn.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/dialog.h\
-	../../tvision-head/include/tv/dialogs.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/event.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/listbox.h\
-	../../tvision-head/include/tv/lstviewr.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/nssorcol.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/resource.h\
-	../../tvision-head/include/tv/scrlbar.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/sortcoll.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strmblcl.h\
-	../../tvision-head/include/tv/strncoll.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
+	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/listbox.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/rect.h ../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strmblcl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/sinf.o:: $(DEPS_18)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_19=sman.cc ../include/tvsetuti.h ../infview/include/manview.h\
-	../../tvision-head/include/compatlayer.h\
-	../../tvision-head/include/tv.h\
-	../../tvision-head/include/tv/configtv.h\
-	../../tvision-head/include/tv/drawbuf.h\
-	../../tvision-head/include/tv/group.h\
-	../../tvision-head/include/tv/intl.h\
-	../../tvision-head/include/tv/ipstream.h\
-	../../tvision-head/include/tv/no_mss.h\
-	../../tvision-head/include/tv/nscoll.h\
-	../../tvision-head/include/tv/object.h\
-	../../tvision-head/include/tv/objects.h\
-	../../tvision-head/include/tv/opstream.h\
-	../../tvision-head/include/tv/point.h\
-	../../tvision-head/include/tv/pstream.h\
-	../../tvision-head/include/tv/rect.h\
-	../../tvision-head/include/tv/scroller.h\
-	../../tvision-head/include/tv/stddlg.h\
-	../../tvision-head/include/tv/streambl.h\
-	../../tvision-head/include/tv/strmblcl.h\
-	../../tvision-head/include/tv/system.h\
-	../../tvision-head/include/tv/tobjstrm.h\
-	../../tvision-head/include/tv/ttypes.h\
-	../../tvision-head/include/tv/tvconfig.h\
-	../../tvision-head/include/tv/tvobjs.h\
-	../../tvision-head/include/tv/tvutil.h\
-	../../tvision-head/include/tv/view.h\
-	../../tvision-head/include/tv/views.h\
-	../../tvision-head/include/tv/window.h\
-	../../tvision-head/include/tv/yes_mss.h
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/group.h\
+	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/rect.h ../../tvision/include/tv/scroller.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strmblcl.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h
 objinf/sman.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_20=strncpyz.cc
