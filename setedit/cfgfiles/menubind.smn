@@ -329,6 +329,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Return ~n~ow", cmeDbgReturnNow
  MenuItemC: "Sto~p~", cmeDbgStop
  MenuItemC: "Restart (~K~ill)", cmeDbgKill
+ MenuItemC: "Se~l~ect thread", cmeDbgThreadSel
  MenuSeparator
  MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
  SubMenu: "~W~atch an expression", kbUnknown
@@ -341,8 +342,11 @@ SubMenu: "~D~ebug", kbAlD
  EndSubMenu
  MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
  MenuSeparator
- MenuItemC: "C~l~ose debug session", cmeDbgCloseSession
- MenuItemC: "~D~estroy debug session (DANGER!)", cmeDbgEndSession
+ SubMenu: "~D~ebug session", kbUnknown
+  MenuItemC: "Clear deb~u~g elements", cmeDbgCleanElem
+  MenuItemC: "C~l~ose", cmeDbgCloseSession
+  MenuItemC: "~D~estroy (DANGER!)", cmeDbgEndSession
+ EndSubMenu
 EndSubMenu
 $endif
 

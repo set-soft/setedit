@@ -9,23 +9,6 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * Some way to choose the formating of "Eval expression", the normal "print"
-modifiers doesn't apply here.
-
-  * Option to clean all, a dialog with check boxes: breakpoints, watches,
-inspectors, watchpoints and data windows.
-
-  * Join the watchpoint dialog with the word under cursor.
-
-  * When debugging remote programs gdb exposes a nasty bug: When I do next
-at the end of main it replies "running", but then it sends a couple of
-errors to the log (because gdb can't set a temporal breakpoint) and then
-generates an error result record. But it doesn't generate an stopped info.
-So we thing the program is running (gdb told it) but it isn't true. What's
-worst is what happends when we send SIGINT ... finally we hang at exit waiting
-for replies.
-  A workaround for a similar was implemented, must be tested on this scenario.
-
   * GDB meaning of the ignore field is quite different to what I thinked. That's
 a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
 After it the breakpoint becomes "normal". It means that after a program reset it
@@ -41,11 +24,6 @@ may be we should "refresh" the ignores before running.
   * Add some mechanism to enable MI v2. That's much better.
 
   * Advices (only project, ...).
-  * Some mechanism to verify that a location for a breakpoint is OK. GDB
-says ok to everything. -symbol-list-lines could help, but that's only for
-GDB 6.x. Note: GDB accepts breakpoints everywhere and puts the breakpoint
-somewhere close to the indicated point, may be we just need to find where
-is the real breakpoint.
   * Select thread.
   * Disassembler window.
   * Put a limit to the ammount of messages in the debug message window.
@@ -60,6 +38,7 @@ should "move" the breakpoints to their new locations. That's tricky.
 Note: currently we do it if the user used "run program".
   * Time out in the gdb responses to avoid hanging. Also a stop mechanism.
 
+-----------------------------------------------
 Low priority:
 
 Inspectors:
@@ -70,6 +49,12 @@ Watches:
 
 Data Window:
 * Small dialog with all the modes.
+-----------------------------------------------
+Whish gdb could:
+
+Eval/Modify:
+* Set the format for results, currently you must inspect the variable to do it.
+
 
 IMPORTANT NOTES!!!
 
@@ -141,6 +126,7 @@ directories to look for sources.
 #define Uses_TSLabelCheck
 #define Uses_TSNoStaticText
 
+#define Uses_TSSortedListBox
 #define Uses_TDialogAID
 #define Uses_FileOpenAid
 
@@ -840,6 +826,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgEditBreakPts,True);
          TSetEditorApp::setCmdState(cmeDbgStop,False);
          TSetEditorApp::setCmdState(cmeDbgGoReadyToRun,False);
+         TSetEditorApp::setCmdState(cmeDbgCleanElem,True);
          if (st!=MIDebugger::stopped)
            {
             TSetEditorApp::setCmdState(cmeDbgKill,False);
@@ -862,6 +849,7 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgCallStack,False);
          TSetEditorApp::setCmdState(cmGDBCommand,False);
          TSetEditorApp::setCmdState(cmeDbgEditBreakPts,False);
+         TSetEditorApp::setCmdState(cmeDbgCleanElem,False);
          break;
    }
 }
@@ -885,6 +873,7 @@ void TSetEditorApp::DebugCommandsForDisc()
  TView::curCommandSet-=cmeDbgEndSession;
  TView::curCommandSet-=cmeDbgCloseSession;
  TView::curCommandSet-=cmGDBCommand;
+ TView::curCommandSet-=cmeDbgCleanElem;
 }
 
 /**[txh]********************************************************************
@@ -1484,6 +1473,60 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
  TProgram::deskTop->unlock();
 
  return True;
+}
+
+void TSetEditorApp::DebugThreadSel()
+{
+ if (!dbg || dbg->GetState()!=MIDebugger::stopped)
+    return;
+ // Find the possible ids
+ int *list=NULL;
+ int cant=dbg->ThreadListIDs(list);
+ if (cant<=1)
+   {
+    free(list);
+    messageBox(__("No threads to select"),mfError|mfOKButton);
+    return;
+   }
+ // Create a collection with them
+ TStringCollection *ids=new TStringCollection(cant,1);
+ for (int i=0; i<cant; i++)
+    {
+     char buf[32];
+     CLY_snprintf(buf,32,"%10d",list[i]);
+     ids->insert(newStr(buf));
+    }
+ // Create a dialog to select them
+ TSViewCol *col=new TSViewCol(__("Select Thread"));
+
+ int h=cant, hmax=GetDeskTopRows()-6, ops=0;
+ if (h>hmax)
+   {
+    h=hmax;
+    ops=tsslbVertical;
+   }
+ col->insert(xTSCenter,yTSUp,new TSLabel(__("ID"),new TSSortedListBox(16,h,ops)));
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(cmeDbgThreadSel);
+ delete col;
+ // Execute the dialog
+ TListBoxRec box;
+ box.items=ids;
+ box.selection=0;
+ if (execDialog(d,&box)==cmOK)
+   {
+    mi_frames *frame=dbg->ThreadSelect(atoi((char *)ids->at(box.selection)));
+    if (frame)
+      {
+       DebugMsgJumpToFrame(frame,NULL,0);
+       mi_free_frames(frame);
+      }
+    else
+       ShowErrorInMsgBox();
+   }
+ CLY_destroy(ids);
+ free(list);
 }
 
 /*****************************************************************************
@@ -2824,6 +2867,7 @@ public:
  int Disable();
  int Go();
  static void UpdateCommadsForCount(int c);
+ static int  Delete(int which);
 
  static const char *file;
  static int line;
@@ -3088,16 +3132,21 @@ int TDiagBrk::Add()
  return 0;
 }
 
-int TDiagBrk::Delete()
+int TDiagBrk::Delete(int which)
 {
- if (!bkpts.GetCount())
-    return 0; // Just in case
- mi_bkpt *p=bkpts.getItem(focusedB);
+ mi_bkpt *p=bkpts.getItem(which);
  // Delete the current breakpoint
  if (!DeleteFromGDBandSpLines(p))
     return 0;
  bkpts.remove(p);
  return 1;
+}
+
+int TDiagBrk::Delete()
+{
+ if (!bkpts.GetCount())
+    return 0; // Just in case
+ return Delete(focusedB);
 }
 
 int TDiagBrk::Enable()
@@ -3570,7 +3619,7 @@ struct stWpEdit
 class TDiagWp : public TDialog
 {
 public:
- TDiagWp(const TRect &aR);
+ TDiagWp(const TRect &aR, const char *aStartVal);
 
  virtual void handleEvent(TEvent &event);
 
@@ -3580,10 +3629,12 @@ public:
  int Enable();
  int Disable();
  static void UpdateCommadsForCount(int c);
+ static int Delete(int which);
 
 protected:
  int focusedB;
  TStringableListBox *theLBox;
+ const char *startVal;
 
  TDialog *createEdit(const char *title);
  static mi_wp *CreateWpFromBox(stWpEdit &box);
@@ -3697,8 +3748,12 @@ int TDiagWp::Add()
  TDialog *d=createEdit(__("Add watchpoint"));
 
  stWpEdit box;
- memset(&box,0,sizeof(box));
+ box.mode=0;
  box.enabled=1;
+ if (startVal)
+    strncpyZ(box.exp,startVal,wExp);
+ else
+    box.exp[0]=0;
 
  if (execDialog(d,&box)==cmOK)
    {// Note: We know gdb is there.
@@ -3721,16 +3776,21 @@ int TDiagWp::Add()
  return 0;
 }
 
-int TDiagWp::Delete()
+int TDiagWp::Delete(int which)
 {
- if (!wpts.GetCount())
-    return 0; // Just in case
- mi_wp *p=wpts.getItem(focusedB);
+ mi_wp *p=wpts.getItem(which);
  // Delete the current breakpoint
  if (!DeleteFromGDB(p))
     return 0;
  wpts.remove(p);
  return 1;
+}
+
+int TDiagWp::Delete()
+{
+ if (!wpts.GetCount())
+    return 0; // Just in case
+ return Delete(focusedB);
 }
 
 int TDiagWp::Enable()
@@ -3837,13 +3897,14 @@ void TDiagWp::handleEvent(TEvent &event)
    }
 }
 
-TDiagWp::TDiagWp(const TRect &r) :
+TDiagWp::TDiagWp(const TRect &r, const char *aStartVal) :
     TWindowInit(TDiagWp::initFrame),
     TDialog(r,__("Watchpoints"))
 {
  flags=wfMove | wfClose;
  growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
  focusedB=0;
+ startVal=aStartVal;
 
  TSetEditorApp::setCmdState(cmBkEnable,False);
  TSetEditorApp::setCmdState(cmBkDisable,False);
@@ -3871,23 +3932,24 @@ TDiagWp::TDiagWp(const TRect &r) :
  delete col;
 }
 
-void TSetEditorApp::DebugEditWatchPts()
+void TSetEditorApp::DebugEditWatchPts(char *startVal)
 {
  // Currently we allow editing breakpoints only if we can get feadback from
  // gdb. I think its possible to avoid it, but I don't see the point and
  // the consequences can be quite confusing.
- if (!DebugCheckStopped())
-    return;
-
- TRect r=GetDeskTopSize();
- TDiagWp *d=new TDiagWp(TRect(0,0,r.b.x,r.b.y-3));
- TDiagWp::UpdateCommadsForCount(wpts.GetCount());
-
- TStringableListBoxRec box;
- box.items=&wpts;
- box.selection=0;
-
- execDialog(d,&box);
+ if (DebugCheckStopped())
+   {
+    TRect r=GetDeskTopSize();
+    TDiagWp *d=new TDiagWp(TRect(0,0,r.b.x,r.b.y-3),startVal);
+    TDiagWp::UpdateCommadsForCount(wpts.GetCount());
+   
+    TStringableListBoxRec box;
+    box.items=&wpts;
+    box.selection=0;
+   
+    execDialog(d,&box);
+   }
+ delete[] startVal;
 }
 
 /*****************************************************************************
@@ -6795,6 +6857,62 @@ void TSetEditorApp::DebugOptsMsgs()
   End of Configuration dialog
 *****************************************************************************/
 
+const unsigned ceBreakpoints=1, ceWatchpoints=2, ceWatches=4, ceInspectors=8,
+               ceDataWindows=16, ceAll=32-1;
+
+static
+void CloseNonEd(TDskWin *win, void *)
+{
+ TDskDataWin *w=(TDskDataWin *)win;
+ message(w->view,evCommand,cmClose,NULL);
+}
+
+void TSetEditorApp::DebugCleanElem()
+{
+ if (!DebugCheckStopped())
+    return;
+
+ TSViewCol *col=new TSViewCol(__("Clean elements"));
+
+ // EN: ABDIW
+ col->insert(xTSCenter,yTSUp,
+             TSLabelCheck(__("Elements"),
+                          __("~B~reakpoints"),
+                          __("~W~atchpoints"),
+                          __("W~a~tches"),
+                          __("~I~nspectors"),
+                          __("~D~ata windows"),0));
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(cmeDbgCleanElem);
+ delete col;
+
+ uint32 what=ceAll;
+ if (execDialog(d,&what)==cmOK)
+   {
+    int c, i;
+
+    if (what & ceBreakpoints)
+      {
+       c=bkpts.GetCount();
+       for (i=0; i<c; i++)
+           TDiagBrk::Delete(i);
+      }
+    if (what & ceWatchpoints)
+      {
+       c=wpts.GetCount();
+       for (i=0; i<c; i++)
+           TDiagWp::Delete(i);
+      }
+    if (what & ceWatches)
+       WatchesDeInit();
+    if (what & ceInspectors)
+       TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,CloseNonEd,NULL);
+    if (what & ceDataWindows)
+       TSetEditorApp::edHelper->forEachNonEditor(dktDbgDataWin,CloseNonEd,NULL);
+   }
+}
+
 /*****************************************************************************
   Persistence.
   This information is stored only in project files, to do "persistent"
@@ -7078,15 +7196,17 @@ void TSetEditorApp::DebugKill() {}
 void TSetEditorApp::DebugCallStack() {}
 void TSetEditorApp::DebugEvalModify(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugOptsMsgs() {}
-void TSetEditorApp::DebugWatchExp(Boolean ) {}
+void TSetEditorApp::DebugWatchExp(Boolean , char *) {}
 void TSetEditorApp::DebugDeInitVars() {}
 void TSetEditorApp::DebugCloseSession(Boolean ) { return True; }
 int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
 void TSetEditorApp::DebugEditBreakPts() {}
-void TSetEditorApp::DebugEditWatchPts() {}
+void TSetEditorApp::DebugEditWatchPts(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugInspector(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugDataWindow(char *startVal) { delete[] startVal; }
+void TSetEditorApp::DebugCleanElem() {}
+void TSetEditorApp::DebugThreadSel() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}

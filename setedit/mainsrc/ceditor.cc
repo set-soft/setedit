@@ -10743,6 +10743,7 @@ void TCEditor::updateCommands(int full)
     if (isClipboard())
       { // Restrict some stuff for the clipboard
        cmdsAux.disableCmd(cmcCut);
+       cmdsAux.disableCmd(cmcCutClipWin);
        cmdsAux.disableCmd(cmcCopy);
        cmdsAux.disableCmd(cmcCopyClipFile);
        cmdsAux.disableCmd(cmcCopyClipWin);
@@ -10784,13 +10785,15 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcRedo,Boolean(UndoActual<UndoTop));
    
     Boolean hs=hasVisibleSelection();
+    Boolean oscli=TVOSClipboard::isAvailable() ? True : False;
     setCmdState(cmcCut,hs);
+    setCmdState(cmcCutClipWin,(hs && oscli) ? True : False);
     setCmdState(cmcCopy,hs);
     setCmdState(cmcCopyClipFile,hs);
-    setCmdState(cmcCopyClipWin,(hs && TVOSClipboard::isAvailable()) ? True : False);
+    setCmdState(cmcCopyClipWin,(hs && oscli) ? True : False);
     setCmdState(cmcClear,hs);
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
-    setCmdState(cmcPasteClipWin,TVOSClipboard::isAvailable() ? True : False);
+    setCmdState(cmcPasteClipWin,oscli);
    }
 }
 

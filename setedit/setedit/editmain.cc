@@ -1411,7 +1411,7 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeDbgEditWatchPts:
-              DebugEditWatchPts();
+              DebugEditWatchPts(GetWordUnderCursor(250));
               break;
 
          case cmeDbgInspector:
@@ -1424,6 +1424,14 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeDbgStackWindow:
               DebugStackWindow();
+              break;
+
+         case cmeDbgCleanElem:
+              DebugCleanElem();
+              break;
+
+         case cmeDbgThreadSel:
+              DebugThreadSel();
               break;
 
          // These commands are traslated to the original values

@@ -820,7 +820,15 @@ void TEditorCollection::forEachNonEditor(int type, void (*func)(TDskWin *, void 
     {
      st=(TDskWin *)at(i);
      if (st->type==type)
+       {
         func(st,data);
+        ccIndex c=Editors+nonEditors;
+        if (c!=cant)
+          {// The function closed it
+           cant=c;
+           i--;
+          }
+       }
     }
 }
 

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.572  2004/08/11 16:30:07  set
+* Fixed: [DOC] More makeinfo 4.7 details. From Andrea's feedback.
+
 Revision 1.571  2004/08/11 15:08:37  set
 * Added: [Debug] Persistence to the Data Windows. Of course they need to be
 "recycled".

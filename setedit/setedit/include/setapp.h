@@ -155,8 +155,10 @@ const int
   cmeDbgEditBreakPts= cmeBase+131,
   cmeDbgDataWindow  = cmeBase+132,
   cmeDbgStackWindow = cmeBase+133,
+  cmeDbgCleanElem   = cmeBase+134,
+  cmeDbgThreadSel   = cmeBase+135,
   // That isn't a command, is to know the last+1.
-  cmeDbgLastCommand = cmeBase+134,
+  cmeDbgLastCommand = cmeBase+136,
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
@@ -443,11 +445,13 @@ public:
     static void DebugCommandsForDisc();
     static void DebugCommonCleanUp();
     static void DebugEditBreakPts();
-    static void DebugEditWatchPts();
+    static void DebugEditWatchPts(char *startVal);
     static void DebugMoveBreakPts();
     static void DebugInspector(char *startVal);
     static void DebugDataWindow(char *startVal);
     static void DebugStackWindow();
+    static void DebugCleanElem();
+    static void DebugThreadSel();
 
 protected:
 
