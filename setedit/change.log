@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.251  2002/12/09 13:06:10  set
+* Fixed: A bug in the painting shl routine used for user defined syntax
+highlights. Failed for commented lines starting with blank spaces
+(specially tabs) and with text after the end of comment.
+
 Revision 1.250  2002/12/05 17:09:43  set
 * Added: Spanish translations for "Save as DOS" and "Shell". Pointed out
 by Ivan.

@@ -575,10 +575,10 @@ int KeyboardModeSetUp(void)
  d->helpCtx=cmeKeyboardSetUp;
  delete col;
 
- uint32 b=TGKey::GetKbdMapping();
+ uint32 b=TGKey::GetKbdMapping(TGKey::dosGreek737);
  if (execDialog(d,&b)==cmOK)
    {
-    TGKey::SetKbdMapping(b);
+    TGKey::SetKbdMapping(b ? TGKey::dosGreek737 : TGKey::dosUS);
     return 1;
    }
  return 0;
