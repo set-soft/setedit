@@ -2170,7 +2170,9 @@ opened at the same time. By default the value is one, so when you try to open
 a file twice the editor will just show you the first copy. Specifying a value
 different than one will allow you to open more copies of the same file. Only
 the first copy can be modified and the rest are read-only snap-shots of the
-file. For more information: @x{Open Read-only copy}.
+file. Note it only affects the number of read-only copies automatically
+created by the editor, you can open as many as you want using the @il{File |
+Open Read-only copy} menu option. For more information: @x{Open Read-only copy}.
 @paragraph{}
 
 The @il{Max. closed to remember} value specifies how many closed files are

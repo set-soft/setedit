@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.450  2003/10/16 19:38:02  set
+* Added: Project windows are "closed" (hided) when pressing ESC. Suggested
+by Oswald Budden.
+* Added: When opening new windows usually the editor checks if a project is
+opened, in this case windows aren't zoomed. Now if the project window isn't
+visible they are also zoomed, after all they weren't zoomed to avoid
+hidding the project window. Suggested by Oswald Budden.
+
 Revision 1.449  2003/10/16 19:35:20  set
 * Added: [sLisp] KeyBindings and BindKey commands. With them you can change
 key bindings from sLisp.

@@ -438,6 +438,7 @@ extern int ClearForceTargetBits(uint32 bits);
 extern int SetForceTargetBits(uint32 bits);
 extern void ProjectInsertAutoTagFiles();
 extern Boolean ProjectGetSize(TRect &r);
+extern char *GetRelIfFileInPrj(char *name);
 
 // The forceTarget is a bitmap for each target suported by the project.
 // Currently the only target is the TAGs file.

@@ -86,8 +86,6 @@ protected:
   char *bufTitle;
 };
 
-const int TEditorProjectWindow::Version=7;
-
 typedef struct
 {
  char *name;
@@ -95,6 +93,8 @@ typedef struct
  EditorResume resume;
  uint32 forceTarget;  // Read the header for more info
 } PrjItem;
+
+const int TEditorProjectWindow::Version=7;
 
 const int crtInteractive=1, crtUseFullName=2;
 const int prjShortName=0, prjName=1;
@@ -113,7 +113,7 @@ public:
  char *referencePath;
  char *referenceCurDelta;
  Boolean Search(char *file, ccIndex &pos);
- int addFile(char *name, ccIndex &pos, int flags=0);
+ int addFile(char *name, ccIndex &pos, int flags=0, char **test=NULL);
  void analizeReference(const char *filename);
  char *applyPrjPath(const char *name);
  void  changeSorting(int mode);
@@ -121,6 +121,7 @@ public:
  void  toggleSorting(ccIndex &pos)
    { changeSorting(sortMode==prjShortName ? prjName : prjShortName,pos); };
  int   getSortMode() { return sortMode; };
+  PrjItem *At(ccIndex pos) { return (PrjItem *)at(pos); };
 
 private:
  PrjItem *createNewElement(char *name, int flags=0);
@@ -181,6 +182,11 @@ void TPrjItemColl::changeSorting(int mode)
 
 void TPrjItemColl::changeSorting(int mode, ccIndex &pos)
 {
+ if (pos==-1)
+   {
+    changeSorting(mode);
+    return;
+   }
  void *p=at(pos);
  changeSorting(mode);
  search(keyOf(p),pos);
@@ -418,33 +424,56 @@ int TEditorProjectListBox::addFile(char *name, Boolean interactive)
  return 1;
 }
 
-int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags)
+/**[txh]********************************************************************
+
+  Description:
+  Adds a file to the project file collection, but can be used to check if a
+file is already part of the collection.
+  
+***************************************************************************/
+
+int TPrjItemColl::addFile(char *name, ccIndex &pos, int flags, char **test)
 {
  char *sName=GetShortName(name);
- int oldSortMode=sortMode;
+ char *relName;
+ int oldSortMode=sortMode, ret=1;
 
  if (sortMode!=prjShortName)
     // We must be in short mode to make the next search
     changeSorting(prjShortName);
  if (search(sName,pos))
    {
-    PrjItem *st=(PrjItem *)at(pos);
-    char *relName;
+    PrjItem *st=At(pos);
     string_dup(relName,name);
     AbsToRelPath(referencePath,relName,0);
     if (strcmp(relName,st->name)==0 || search(relName,pos))
       {
-       string_free(relName);
-       return 0;
+       ret=0;
+       pos=-1; // Avoid tracking it
       }
-    string_free(relName);
     flags|=crtUseFullName;
    }
- atInsert(pos,name,flags);
+ if (ret)
+   {// Can be inserted
+    if (test)
+      {
+       pos=-1;
+       *test=NULL;
+      }
+    else
+       atInsert(pos,name,flags);
+   }
+ else
+   {// Already there
+    if (test)
+       *test=relName;
+    else
+       string_free(relName);
+   }
  if (oldSortMode!=sortMode)
     // Revert the sorting adjusting the position
     changeSorting(oldSortMode,pos);
- return 1;
+ return ret;
 }
 
 void TEditorProjectListBox::delFile(void)
@@ -1319,5 +1348,17 @@ Boolean ProjectGetSize(TRect &r)
  else
     r=size;
  return True;
+}
+
+char *GetRelIfFileInPrj(char *name)
+{
+ if (!prjWin)
+    return NULL;
+ ccIndex pos;
+ char *relName;
+ // :-P
+ ((TPrjItemColl *)prjWin->window->list->list())->addFile(name,pos,0,&relName);
+
+ return relName;
 }
 
