@@ -45,10 +45,12 @@
 #endif
 
 // PCRE support
-#if defined(HAVE_PCRE_LIB)
- #define SUP_PCRE 1
-#else
- #define SUP_PCRE 0
+#ifndef SUP_PCRE
+ #if defined(HAVE_PCRE_LIB)
+  #define SUP_PCRE 1
+ #else
+  #define SUP_PCRE 0
+ #endif
 #endif
 
 #ifdef HAVE_PCRE206

@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.532  2004/06/25 18:28:08  set
+* Added: [sLisp] A new command called "prex" to perform Perl regular
+expressions searches. It is documented and I also added an example to
+macros.slp, it calls wc and shows the results in the status line.
+* Modified: The SUP_PCRE macro to be 0 or 1 instead of un/defined. This
+could generate compilation problems for platforms where PCRE isn't
+supported, but the code is more clear now.
+
 Revision 1.531  2004/06/23 20:10:00  set
 * Fixed: Assignment of Boolean from int.
 * Fixed: Use of bool type (instead of int or Boolean).
