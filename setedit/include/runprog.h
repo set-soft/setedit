@@ -14,4 +14,4 @@ Boolean RunExternalProgramNotRunning();
 void    RunExternalProgramStopChild();
 void    RunExternalProgramSetInRedir(const char *buffer, unsigned len);
 void    RunExternalProgramRemoveInRedir();
-
+void    RunExternalProgramFreeMemory();

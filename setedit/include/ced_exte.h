@@ -329,6 +329,7 @@ extern unsigned defEditorDialog( int dialog, ... );
 extern int InitTCEditor(char *s,Boolean force);
 extern char *LoadKeyForTCEditorError(void);
 extern int LoadKeysForTCEditor(char *file);
+extern void LoadKeysForTCEditorFreeMemory();
 extern int PipeTCEditor(unsigned);
 // From loadusew.cc:
 extern void LoadUserWords(strSHL *s, int id);
