@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -24,6 +24,7 @@
 #define Uses_TCEditWindow
 #define Uses_TStaticText
 #define Uses_fpstream
+#define Uses_TSOSListBox
 
 // EasyDiag requests
 #define Uses_TSButton
@@ -57,6 +58,9 @@
 #include <advice.h>
 #include <edcollec.h>
 #include <edspecs.h>
+#define STANDALONE
+#define Uses_TSOSListBoxMsg
+#include <edmsg.h>
 
 // Forced width of the encodings and fonts list boxes
 const int wForced=24;
@@ -768,7 +772,8 @@ unsigned SetGeneralEditorOptionsMain(void)
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
                          new TSButton(_("Cancel"),cmCancel),
-                         new TSButton(_("+ Desk~t~op"),cmYes),0));
+                         new TSButton(_("+ Desk~t~op"),cmYes),
+                         new TSButton(_("+ Others"),cmNo),0));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -936,6 +941,49 @@ unsigned SetGeneralEditorOptionsMoreDst(void)
  return command;
 }
 
+#pragma pack(1)
+typedef struct
+{
+ uint32 end   CLY_Packed;
+ uint32 beep  CLY_Packed;
+} BoxOthers;
+#pragma pack()
+
+static
+unsigned SetGeneralEditorOptionsOthers(void)
+{
+ TSViewCol *col=new TSViewCol(__("Other options"));
+
+ TSVeGroup *MsgWin=new TSVeGroup(
+   TSLabelRadio(__("At the end of errors in message window"),
+          __("Just stop"),
+          __("Indicate with a message"),
+          __("Wrap (circular list)"),0),
+   new TSCheckBoxes(new TSItem(_("Make a beep"),0)),
+   0);
+ MsgWin->makeSameW();
+
+ col->insert(xTSLeft,yTSUp,MsgWin);
+ col->insert(xTSCenter,yTSDown,
+             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
+                         new TSButton(_("Cancel"),cmCancel),
+                         new TSButton(_("~M~ain options"),cmYes),0));
+
+ TDialog *d=col->doItCenter(0);
+ delete col;
+
+ BoxOthers box;
+ box.end=TSOSListBoxMsg::opsEnd;
+ box.beep=TSOSListBoxMsg::opsBeep;
+
+ unsigned command=execDialog(d,&box);
+ if (command!=cmCancel)
+   {
+    TSOSListBoxMsg::opsEnd=box.end;
+    TSOSListBoxMsg::opsBeep=box.beep;
+   }
+ return command;
+}
 
 void SetGeneralEditorOptions(void)
 {
@@ -949,15 +997,22 @@ void SetGeneralEditorOptions(void)
             command=SetGeneralEditorOptionsMain();
             if (command==cmYes)
                dialog=1;
+            else if (command==cmNo)
+               dialog=2;
             break;
        case 1:
             command=SetGeneralEditorOptionsMoreDst();
             if (command==cmYes)
                dialog=0;
             break;
+       case 2:
+            command=SetGeneralEditorOptionsOthers();
+            if (command==cmYes)
+               dialog=0;
+            break;
       }
    }
- while (command==cmYes);
+ while (command==cmYes || command==cmNo);
 }
 
 static int fromCP=-1, toCP=-1;

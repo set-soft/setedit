@@ -21,6 +21,7 @@
 #define Uses_TCEditor_External
 #define Uses_TCEditor
 #define Uses_FileOpenAid
+#define Uses_MsgBox
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
@@ -39,6 +40,9 @@ static TSOSListBoxMsg *MsgList  =NULL;
 static SOStack        *Stack    =NULL;
 static TSOSCol        *MsgCol   =NULL;
 static TRect MsgWindowRect(-1,-1,-1,-1);
+
+unsigned TSOSListBoxMsg::opsEnd=lbmReachedMsg;
+unsigned TSOSListBoxMsg::opsBeep=1;
 
 static
 void ResetHz()
@@ -310,8 +314,19 @@ int TSOSListBoxMsg::getLineOf(int pos)
  return fI->Line;
 }
 
+static
+void MakeBeep()
+{
+ #ifdef SEOS_UNIX
+ printf("\x7\n");
+ #else
+ CLY_Beep();
+ #endif
+}
+
 void TSOSListBoxMsg::selectNext(int offset)
 {
+ if (!haveJumpLines) return;
  int nFocus=focused+offset;
 
  while (nFocus<range)
@@ -327,12 +342,23 @@ void TSOSListBoxMsg::selectNext(int offset)
       }
     nFocus++;
    }
+ if (opsBeep)
+    MakeBeep();
+ if (opsEnd==lbmReachedMsg)
+    messageBox(_("Last message in the list"),mfInformation | mfOKButton);
+ else if (opsEnd==lbmWrap)
+    {// Go to the first
+     focused=0;
+     selectNext(0);
+     return;
+    }
  // Try to go to the last
  selectPrev(0);
 }
 
 void TSOSListBoxMsg::selectPrev(int offset)
 {
+ if (!haveJumpLines) return;
  int nFocus=focused-offset;
 
  while (nFocus>=0)
@@ -348,6 +374,16 @@ void TSOSListBoxMsg::selectPrev(int offset)
       }
     nFocus--;
    }
+ if (opsBeep)
+    MakeBeep();
+ if (opsEnd==lbmReachedMsg)
+    messageBox(_("First message in the list"),mfInformation | mfOKButton);
+ else if (opsEnd==lbmWrap)
+    {// Go to the first
+     focused=range;
+     selectPrev(1);
+     return;
+    }
  // Try to go to the first
  selectNext(0);
 }

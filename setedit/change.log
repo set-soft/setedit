@@ -1,4 +1,8 @@
 $Log$
+Revision 1.59  2002/02/15 18:19:46  set
+* Fixed: Missing functions in rhideint.cc and unused variable in dstfile.cc.
+Patch by Andris needed to compile last CVS of RHIDE.
+
 Revision 1.58  2002/02/08 00:33:59  terrible
 * Modified: made distrib/ask_config.sh Unix bourne shell script based on
 distrib/ask_config.pl Perl script as Salvador wanted and removed the Perl
@@ -3760,7 +3764,7 @@ Revision 1.33  1999/02/16 22:04:41  set
 .
 Revision 1.32  1999/02/15 23:09:07  set
 * Added more information in readme.src, mostly details.
-.
+
 Revision 1.31  1999/02/15 22:54:19  set
 * Added a #error stop point in the libamp sources to warn the user if is
 trying to use Allegro 3.0.

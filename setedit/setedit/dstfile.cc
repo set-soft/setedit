@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -27,6 +27,7 @@
 #define Uses_TDeskTopClock
 #define Uses_TStringCollectionW
 #define Uses_TFileCollection
+#define Uses_TSOSListBox
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>
@@ -49,6 +50,8 @@
 #include <mixer.h>
 #include <edspecs.h>
 #include <pathlist.h>
+#define Uses_TSOSListBoxMsg
+#include <edmsg.h>
 
 // Used by edprj.cc to know if we loaded the desktop file from this directory
 char DstLoadedHere=0;
@@ -468,6 +471,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  s << TGKey::GetKbdMapping();
  BoardMixerSave(s);
  PathListSave(s);
+ s << (uchar)TSOSListBoxMsg::opsEnd << (uchar)TSOSListBoxMsg::opsBeep;
  s << 0;
 }
 
@@ -797,6 +801,11 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     BoardMixerLoad(s);
  if (deskTopVersion>=0x449)
     PathListLoad(s);
+ if (deskTopVersion>=0x456)
+   {
+    s >> aux; TSOSListBoxMsg::opsEnd=aux;
+    s >> aux; TSOSListBoxMsg::opsBeep=aux;
+   }
 
  // Even when 0.4.15 doesn't use the Config Files path we ensure it's pointing to
  // the SET_FILES path

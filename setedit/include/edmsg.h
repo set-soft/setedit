@@ -13,11 +13,14 @@ class TSOSListBox;
 class TSOSListBoxMsg;
 
 #ifdef Uses_TSOSListBoxMsg
+
+const unsigned lbmNothing=0, lbmReachedMsg=1, lbmWrap=2;
+
 class TSOSListBoxMsg : public TSOSListBox
 {
 public:
  TSOSListBoxMsg(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar)
- : TSOSListBox(bounds,aNumCols,aScrollBar) {}
+ : TSOSListBox(bounds,aNumCols,aScrollBar) { }
 
  virtual void focusItem(ccIndex item);
  virtual void selectItem(ccIndex item);
@@ -31,8 +34,10 @@ public:
  void save(char *name);
  void copyClipboard();
 
- int selectOK;
- int haveJumpLines;
+ int  selectOK;
+ int  haveJumpLines;
+ static unsigned opsEnd;
+ static unsigned opsBeep;
 };
 #endif
 
