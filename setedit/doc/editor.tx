@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.49
-@set update-date 6 Oct 2001
+@set version 0.4.50
+@set update-date 9 Oct 2001
 @set update-month Oct 2001
 @set name-author Salvador Eduardo Tropea
 
@@ -3341,6 +3341,20 @@ located at the left of the cursor are spaces or tabs.
 @i{Real Tabs} option was disabled. When loading old desktop files the editor
 enables/disables this option based in the @i{Real Tabs} option.
 @paragraph{}
+
+@section Column Markers
+@cindex columns, marking
+
+  Column markers highlight a column of text. This option is useful for
+programming languages where the column is important or when you just need to
+have some column positions as references.
+@p{}
+
+  You can set various column markers at the same time, just enable this
+option and enter a list of columns in the associated text box. The columns
+should be separated by spaces and sorted incrementally. The editor will
+format the list in this way.
+@p{}
 
 @section Syntax Highlight
 @cindex syntax highlight extensions
