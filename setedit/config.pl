@@ -27,8 +27,8 @@ $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
-# 3.9.x are WIPs
-$AllegroNotNeeded='4.0.0';
+# 5.0 will change the API, or maybe 6.0 but an API change is discussed
+$AllegroNotNeeded='5.0.0';
 # I never tested with an older version, you can try reducing it.
 $GPMVersionNeeded='1.10';
 unlink $ErrorLog;
@@ -813,7 +813,7 @@ int main(void)
  if (CompareVersion($test,$vMaxV))
    {
     print "$test -> No, disabling MP3 support.\n";
-    print "\nSorry, I need a non-WIP release\n\n";
+    print "\nSorry, not compatible with this Allegro version\n\n";
     $conf{'HAVE_ALLEGRO'}='no';
     return;
    }
