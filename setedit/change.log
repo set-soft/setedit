@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.623  2004/10/08 14:51:32  set
+* Fixed: [Config] AAlib detection. Reported by Ivan.
+* Added: [Config][Tru64] Detection of Tru64 (OSF1), but the tools I found
+there have some major bugs, so you can't compile all.
+* Added: [DOCs] More info about the supported UNIX systems.
+
 Revision 1.622  2004/10/04 20:24:51  set
 * Fixed: [Config] Typo in last patch, sorry.
 

@@ -1378,7 +1378,8 @@ sub LookForGNUar
     print "gar\n";
     return 'gar';
    }
- if (($OSf eq 'Darwin') || ($OSf eq 'HP-UX') || ($OSf eq 'Tru64'))
+ if (($OSf eq 'Darwin') || ($OSf eq 'HP-UX') || ($OSf eq 'Tru64') ||
+     ($OSf eq 'Solaris'))
    {
     $conf{'GNU_AR'}='ar';
     $conf{'UseRanLib'}=1;
