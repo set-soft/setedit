@@ -1946,7 +1946,7 @@ static int is_octal(const char *name,uint32 l)
  return 1;
 }
 
-unsigned char _table_types_editor_[256]=
+unsigned char TableTypesEditor[256]=
 {
  0, // \0
  0, // 
@@ -2228,7 +2228,7 @@ static int is_symbol(char *name, uint32 l)
 
  while (l--)
   {
-   if ((ret=_table_types_editor_[(uchar)*(name++)] & ttedIsCsymb)==0)
+   if ((ret=TableTypesEditor[(uchar)*(name++)] & ttedIsCsymb)==0)
       return 0;
   }
  return ret & ttedIsCsymb1 ? 1 : 2;
@@ -2258,7 +2258,7 @@ static int is_pascal_symbol(char *name, uint32 l)
 
  while (l--)
   {
-   if ((ret=_table_types_editor_[(uchar)*(name++)] & ttedIsPasSymb)==0)
+   if ((ret=TableTypesEditor[(uchar)*(name++)] & ttedIsPasSymb)==0)
       return 0;
   }
  return ret & ttedIsPasSymb1 ? 1 : 2;
@@ -2288,7 +2288,7 @@ static int is_clipper_symbol(char *name, uint32 l)
 
  while (l--)
   {
-   if ((ret=_table_types_editor_[(uchar)*(name++)] & ttedIsClipSymb)==0)
+   if ((ret=TableTypesEditor[(uchar)*(name++)] & ttedIsClipSymb)==0)
       return 0;
   }
  return 1;
