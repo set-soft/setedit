@@ -332,7 +332,7 @@ static int SearchBalance(char ref, char ref2)
          if (preproLevel==maxPreproStates) preproLevel--;
          preproStates[preproLevel]=0;
         }
-      else if (strncmp(bfBuffer,"#else",5)==0 || strncmp(bfBuffer,"#elsif",6)==0)
+      else if (strncmp(bfBuffer,"#else",5)==0 || strncmp(bfBuffer,"#elif",5)==0)
         {
          preproStates[preproLevel]=1;
         }
