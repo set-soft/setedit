@@ -3569,7 +3569,7 @@ void TCEditor::RemapCodePageBuffer(int sourID, int destID, unsigned ops,
  update(ufView);
 }
 #else
-void TCEditor::RemapCodePageBuffer(int , int , unsigned )
+void TCEditor::RemapCodePageBuffer(int , int , unsigned , Boolean )
 {}
 #endif
 
