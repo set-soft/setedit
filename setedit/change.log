@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.189  2002/09/04 13:13:04  set
+* Modified: The middle button insert text at the cursor position not at the
+mouse position. I found the previous behavior annoying.
+
 Revision 1.188  2002/09/03 13:48:26  set
 * Fixed: Error in docs about delete left/right word. Reported by Chris
 Impens <ci@cage.rug.ac.be>.
