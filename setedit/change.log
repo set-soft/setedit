@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.475  2003/12/03 14:19:54  set
+* Fixed: Removed two comments containing non-ASCII chars. It seems to annoy
+gcc 3.3.1 according to a report by Kevin Alm.
+
 Revision 1.474  2003/11/24 15:54:29  set
 * Added: A button to recompute window numbers in the list of windows.
 Suggested bt Grzegorz.

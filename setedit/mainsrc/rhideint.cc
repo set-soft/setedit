@@ -10,6 +10,7 @@
 #include "rhutils.h"
 
 class TCEditor;
+extern int FindFile(const char *name, char *&fullName);
 
 /**[txh]********************************************************************
 
@@ -259,3 +260,17 @@ char *GetAbsForNameInPrj(const char */*name*/)
 {
  return NULL;
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  My function have an extra argument, this wrapper adapts it to RHIDE's
+version.
+  
+***************************************************************************/
+
+int FindFile(const char *name, char *&fullName, const char *)
+{
+ return FindFile(name,fullName);
+}
+
