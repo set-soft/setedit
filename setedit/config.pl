@@ -313,6 +313,7 @@ sub SeeCommandLine
 {
  my $i;
 
+ $conf{'HAVE_AA_from_user'}='no';
  foreach $i (@ARGV)
    {
     if ($i eq '--help')
@@ -390,10 +391,12 @@ sub SeeCommandLine
     elsif ($i eq '--with-amp')
       {
        $conf{'mp3lib'}='amp';
+       $conf{'mp3'}='yes';
       }
     elsif ($i eq '--with-mpegsnd')
       {
        $conf{'mp3lib'}='mpegsnd';
+       $conf{'mp3'}='yes';
       }
     elsif ($i eq '--without-mp3')
       {
@@ -483,6 +486,7 @@ sub SeeCommandLine
     elsif ($i eq '--without-aa')
       {
        $conf{'HAVE_AA'}='no';
+       $conf{'HAVE_AA_from_user'}='yes';
       }
     else
       {
@@ -1693,10 +1697,12 @@ sub LookForAA
  my ($test);
 
  print 'Looking for AA library: ';
- $test=@conf{'HAVE_AA'};
- if ($test eq 'yes')
+ $test=$conf{'HAVE_AA'};
+ if (($test eq 'yes') || ($conf{'HAVE_AA_from_user'} eq 'yes'))
    {
-    print "$test (cached) OK\n";
+    print "$test ";
+    print (($conf{'HAVE_AA_from_user'} eq 'yes') ? "(user)" : "(cached)");
+    print " OK\n";
     return;
    }
  $test='

@@ -103,17 +103,18 @@ EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.ob
 	+ndskwcal.obj +ndskwcli.obj +ndskwclo.obj +ndskwedi.obj +ndskwhel.obj\
 	+ndskwman.obj +ndskwmes.obj +ndskwmp3.obj +ndskwprj.obj +neditwin.obj\
 	+nfileedi.obj +nsindica.obj +ntedcol.obj +parser.obj +pathlist.obj +pathtool.obj\
-	+pclipper.obj +pmacros.obj +pperl.obj +pvarious.obj +runprog.obj +sceditor.obj\
-	+scresave.obj +sdginter.obj +sdskasci.obj +sdskcale.obj +sdskclip.obj\
-	+sdskclos.obj +sdskedit.obj +sdskhelp.obj +sdskman.obj +sdskmess.obj +sdskmp3.obj\
-	+sdskprj.obj +search.obj +sedcolle.obj +diaghelp.obj +dktclock.obj +fileopen.obj\
-	+fiopeaid.obj +inputsca.obj +ninputsc.obj +nostatex.obj +nprogbar.obj\
-	+nprogres.obj +ntnocast.obj +ntnosost.obj +setstack.obj +sprogbar.obj\
-	+sprogres.obj +stnocast.obj +stnonost.obj +tdiagaid.obj +tdiagrow.obj\
-	+tinppipe.obj +tnocastc.obj +tnosostr.obj +tprogbar.obj +tprogdia.obj\
-	+tprogrdi.obj +tprogres.obj +tstrlbox.obj +uisarray.obj +ussarray.obj\
-	+viewplus.obj +slpinter.obj +splinman.obj +ssindica.obj +ssyntax.obj\
-	+tedcolle.obj +tips.obj +tpaltext.obj +tsindica.obj +txhgen.obj +winlistd.obj
+	+pclipper.obj +pmacros.obj +pperl.obj +pphp.obj +pvarious.obj +runprog.obj\
+	+sceditor.obj +scresave.obj +sdginter.obj +sdskasci.obj +sdskcale.obj\
+	+sdskclip.obj +sdskclos.obj +sdskedit.obj +sdskhelp.obj +sdskman.obj\
+	+sdskmess.obj +sdskmp3.obj +sdskprj.obj +search.obj +sedcolle.obj +diaghelp.obj\
+	+dktclock.obj +fileopen.obj +fiopeaid.obj +inputsca.obj +ninputsc.obj\
+	+nostatex.obj +nprogbar.obj +nprogres.obj +ntnocast.obj +ntnosost.obj\
+	+setstack.obj +sprogbar.obj +sprogres.obj +stnocast.obj +stnonost.obj\
+	+tdiagaid.obj +tdiagrow.obj +tinppipe.obj +tnocastc.obj +tnosostr.obj\
+	+tprogbar.obj +tprogdia.obj +tprogrdi.obj +tprogres.obj +tstrlbox.obj\
+	+uisarray.obj +ussarray.obj +viewplus.obj +slpinter.obj +splinman.obj\
+	+ssindica.obj +ssyntax.obj +tedcolle.obj +tips.obj +tpaltext.obj +tsindica.obj\
+	+txhgen.obj +winlistd.obj
 EDITOR_OBJS = $(EDITOR_OBJS_:+=objs\)
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
