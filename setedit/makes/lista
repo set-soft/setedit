@@ -62,6 +62,7 @@ debian/setedit.postinst
 debian/setedit.prerm
 debian/watch.ex
 *distrib/arranca.bat
+*distrib/ask_config.pl
 -distrib/calltpc7.zip
 distrib/default.map
 *distrib/distrib1.txt

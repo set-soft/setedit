@@ -64,6 +64,101 @@ const char *cDeskTopFileNameHidden=DeskTopFileNameHidden;
 static char *Signature="TEditorApp desktop file\x1A";
 const int   EditorsDelta=10;
 
+// Default Installation Options variables
+typedef struct
+{
+ const char *option;
+ int len,value;
+} stOption;
+
+static stOption Options[]=
+{
+ {"CentralDesktopFile",18,0},
+ {"TabsForIndent",13,0},
+ {"CreateBackUps",13,1}
+};
+
+const int numOptions=sizeof(Options)/sizeof(stOption);
+const char *dioFile="instopts.txt";
+const int dioMaxLine=132;
+
+/**[txh]********************************************************************
+
+  Description:
+  Loads settings configured during installation process. They are just a few
+general and important options.
+  
+***************************************************************************/
+
+static
+void LoadInstallationDefaults()
+{
+ char *name=ExpandHome(dioFile);
+ FILE *f=fopen(name,"rt");
+ if (!f)
+    return;
+ char b[dioMaxLine],*s;
+ int i,val;
+ do
+   {
+    if (fgets(b,dioMaxLine,f) && *b!='#')
+      {
+       for (s=b; *s && ucisspace(*s); s++); // Eat spaces
+       for (i=0; i<numOptions; i++)
+           if (strncasecmp(s,Options[i].option,Options[i].len)==0)
+              break;
+       if (i!=numOptions)
+         {
+          s+=Options[i].len;
+          // Move after =
+          for (; *s && *s!='='; s++);
+          if (*s) s++;
+          for (; *s && ucisspace(*s); s++);
+          // Get the option
+          Options[i].value=*s=='1';
+         }
+      }
+   }
+ while (!feof(f));
+ fclose(f);
+
+ // CentralDesktopFile
+ if (Options[0].value)
+    EnvirResetBits("SET_CREATE_DST",dstCreate);
+ else
+    EnvirSetBits("SET_CREATE_DST",dstCreate);
+
+ // TabsForIndent
+ if (Options[1].value)
+   {
+    TCEditor::staticUseTabs=True;
+    TCEditor::staticAutoIndent=True;
+    TCEditor::staticIntelIndent=False;
+    TCEditor::staticOptimalFill=True;
+    TCEditor::staticNoInsideTabs=True;
+    TCEditor::staticTabIndents=False;
+    TCEditor::staticUseIndentSize=False;
+    TCEditor::staticBackSpUnindents=False;
+   }
+ else
+   {
+    TCEditor::staticUseTabs=False;
+    TCEditor::staticAutoIndent=True;
+    TCEditor::staticIntelIndent=False;
+    TCEditor::staticOptimalFill=False;
+    TCEditor::staticNoInsideTabs=True;
+    TCEditor::staticTabIndents=True;
+    TCEditor::staticUseIndentSize=False;
+    TCEditor::staticBackSpUnindents=True;
+   }
+
+ // CreateBackUps
+ if (Options[2].value)
+    TCEditor::editorFlags|=efBackupFiles;
+ else
+    TCEditor::editorFlags&=~efBackupFiles;
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -150,6 +245,7 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
    }
  #endif
  editorApp->retrieveDesktop(NULL,False);
+ LoadInstallationDefaults();
 }
 
 /**[txh]********************************************************************

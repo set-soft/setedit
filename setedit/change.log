@@ -1,4 +1,7 @@
 $Log$
+Revision 1.55  2002/02/06 14:54:05  set
+* Fixed: The code to use last patched TV 1.1.4 that solves gcc 3.x issues.
+
 Revision 1.54  2002/02/05 14:16:16  set
 * Added: Now when the editor warms about a R.O. file the dialog says the
 name of the file.
@@ -38,7 +41,7 @@ Revision 1.47  2002/02/04 14:16:54  set
 Revision 1.46  2002/02/01 19:04:25  set
 * Added: Options to avoid reseting the horizontal position of the message
 window when new entries are added. Suggested by David A. Capello
-<dacap@users.sourceforge.net>.
+<dacap@users.sourceforge.net>. SF FR # 513607.
 * Changed to v0.4.55 to store new settings.
 
 Revision 1.45  2002/02/01 15:26:51  set
@@ -3828,7 +3831,7 @@ Revision 1.20  1999/02/12 22:16:41  set
 * Fixed: When using Alt+F5 (Show user screen) the editor was polling the
 keyboard without calling idle() and hence eating CPU. Reported for RHIDE by
 Gili <sl@psycode.com>.
-.
+
 Revision 1.19  1999/02/11 00:38:50  set
 * Version 0.4.23 reported by the editor. I already released snapshots of the
 editor with the number inside so is time to reflect it in about and in .dsts.
