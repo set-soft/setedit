@@ -1,5 +1,6 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+#define Uses_stdio
 #define Uses_TEvent
 #define Uses_TKeys
 #define Uses_TSOSSortedListBox
@@ -205,7 +206,9 @@ void TSOSSortedListBox::handleEvent(TEvent& event)
      SearchPos = USHRT_MAX;
  if( event.what == evKeyDown )
      {
-     if( event.keyDown.charScan.charCode != 0 )
+     if( event.keyDown.keyCode != kbEnter &&
+         ( event.keyDown.charScan.charCode != 0 ||
+           event.keyDown.keyCode == kbBack ) )
          {
          value = focused;
          if( value < range )
@@ -217,28 +220,39 @@ void TSOSSortedListBox::handleEvent(TEvent& event)
              {
              if( SearchPos == USHRT_MAX )
                  return;
-             curString[SearchPos] = EOS;
-             SearchPos--;
+             curString[SearchPos--] = EOS;
              if( SearchPos == USHRT_MAX )
-                 {
-                 focusItem(0);
-                 ShiftState = shiftKeys;
-                 return;
-                 }
+                 shiftState = shiftKeys;
              }
          else if( (event.keyDown.charScan.charCode == '.') )
              {
-             char *loc = strchr( curString, '.' );
-             if( loc == 0 )
-                 SearchPos = USHRT_MAX;
+             char *loc = strchr( curString+
+                                 (SearchPos==USHRT_MAX ? 0 : SearchPos), '.' );
+             if( loc )
+               {
+                SearchPos = ushort(loc - curString);
+                if (oldPos == USHRT_MAX)
+                   oldPos = 0;
+               }
              else
-                 SearchPos = ushort(loc - curString);
+               {
+                if (SearchPos == USHRT_MAX)
+                  {
+                   SearchPos++;
+                   curString[SearchPos] = '.';
+                   curString[SearchPos+1] = EOS;
+                   oldPos = 0;
+                  }
+               }
              }
          else
              {
              SearchPos++;
              if( SearchPos == 0 )
+                 {
                  ShiftState = shiftKeys;
+                 oldPos=0;
+                 }
              curString[SearchPos] = event.keyDown.charScan.charCode;
              curString[SearchPos+1] = EOS;
              }

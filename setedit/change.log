@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.321  2003/04/30 16:05:59  set
+* Added: More documentation about tags.
+* Updated: Spanish translations.
+
 Revision 1.320  2003/04/30 14:23:02  set
 * Added: When you add an item to the project it doesn't have to be newer
 than the TAGs file. For this reason I created a new filed in project items
