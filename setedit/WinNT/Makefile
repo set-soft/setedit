@@ -26,13 +26,15 @@ DYNRTLDFLAGS = -WR
 
 CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLDFLAGS) -WC -X -q $(CDEBUGFLAGS) \
 	-D__inline__=inline -DFOR_EDITOR
-CXXFLAGS = -P -RT- -w-hid -w-par $(CFLAGS)
+# Note: rch == Unreachable code. BC++ 5.5 is idiot to detect code that is
+#              disabled on purpose. i.e. if (0) ...
+CXXFLAGS = -P -RT- -w-hid -w-par -w-rch $(CFLAGS)
 LDFLAGS  = $(DYNRTLDFLAGS) -WC
 
 INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
 	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
 	-I..\infview\include -I..\librhuti -I..\sdg\include -I..\mp3 -I..\extra \
-	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2
+	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2 -I..\holidays
 
 {..\setedit}.cc{objs}.obj:
 	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
@@ -85,8 +87,8 @@ EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.ob
 	+dskclose.obj +dskedito.obj +dskhelp.obj +dskman.obj +dskmessa.obj +dskmp3.obj +dskwin.obj\
 	+dstfile.obj +dumpfile.obj +edcolor.obj +edconst.obj +edfonts.obj +editdiag.obj\
 	+editmain.obj +editmenu.obj +editorfo.obj +editpale.obj +editwind.obj +edkeys.obj\
-	+edmsg.obj +edprefs.obj +edprint.obj +edprj.obj +edspecs.obj +djmdr.obj +dyncat.obj\
-	+memmove.obj +mixer.obj +mixersb.obj +mixoss.obj +stackdbg.obj +strncpyz.obj +strndup.obj\
+	+edmsg.obj +edprefs.obj +edprint.obj +edprj.obj +edspecs.obj  +dyncat.obj\
+	 +mixer.obj   +stackdbg.obj +strncpyz.obj +strndup.obj\
 	+fstrcmp.obj +getctxhl.obj +gzfiles.obj +holidays.obj +inf.obj +infbase.obj +manview.obj\
 	+nhiscoll.obj +ninfview.obj +ninfwind.obj +nmanwind.obj +sinf.obj +sman.obj +intgrep.obj\
 	+keytrans.obj +linelen.obj +loadcle.obj +loaddefl.obj +loadfunc.obj +loadnobkp.obj\
@@ -99,7 +101,18 @@ EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.ob
 	+sdskasci.obj +sdskcale.obj +sdskclip.obj +sdskclos.obj +sdskedit.obj +sdskhelp.obj\
 	+sdskman.obj +sdskmess.obj +sdskmp3.obj +sdskprj.obj +search.obj +sedcolle.obj\
 	+slpinter.obj +splinman.obj +ssindica.obj +ssyntax.obj +tags.obj +tedcolle.obj +tips.obj\
-	+tpaltext.obj +tsindica.obj +txhgen.obj +winlistd.obj
+	+tpaltext.obj +tsindica.obj +txhgen.obj +winlistd.obj  +lablchek.obj +lablradi.obj\
+	+snostate.obj +tcheck2.obj +tmiclust.obj +tsbutton.obj +tschkarr.obj +tschkbox.obj\
+	+tshscrol.obj +tshzgrp.obj +tsinplin.obj +tsinplpi.obj +tslabel.obj +tslider.obj\
+	+tslistbo.obj +tsradbot.obj +tssortlb.obj +tssosslb.obj +tstatext.obj +tstextsc.obj\
+	+tstsorlb.obj +tsvegrp.obj +tsview.obj +tsviewco.obj +ttextscr.obj  +diaghelp.obj\
+	+dktclock.obj +fileopen.obj +fiopeaid.obj +inputsca.obj +ninputsc.obj +nostatex.obj\
+	+nprogbar.obj +nprogres.obj +ntnocast.obj +ntnosost.obj +setstack.obj +sprogbar.obj\
+	+sprogres.obj +stnocast.obj +stnonost.obj +tdiagaid.obj +tdiagrow.obj +tinppipe.obj\
+	+tnocastc.obj +tnosostr.obj +tprogbar.obj +tprogdia.obj +tprogrdi.obj +tprogres.obj\
+	+tstrlbox.obj +uisarray.obj +ussarray.obj +viewplus.obj  +abstorel.obj +back2sl.obj\
+	+basename.obj +fexpand.obj +io.obj +specs.obj +splitfn.obj +stricat.obj +stridown.obj\
+	+stridup.obj +strifree.obj
 EDITOR_OBJS = $(EDITOR_OBJS_:+=objs\)
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
