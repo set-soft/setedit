@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TNoStaticText) && !defined(__TNoStaticText_Defined__)
 #define __TNoStaticText_Defined__

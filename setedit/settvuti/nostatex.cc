@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 
@@ -20,12 +20,23 @@ TNoStaticText::TNoStaticText(const TRect& bounds, const char *aText,
 
 void TNoStaticText::setText(const char *s)
 {
- int l=strlen(s);
- int copy=min(startLen,l);
- memcpy((char *)text,s,copy);
- int rest=startLen-copy;
- if (rest)
-    memset((char *)text+copy,' ',rest);
+ if (0)
+   {// Old behavior, I don't think it really helps
+    int l=strlen(s);
+    int copy=min(startLen,l);
+    memcpy((char *)text,s,copy);
+    int rest=startLen-copy;
+    if (rest)
+       memset((char *)text+copy,' ',rest);*/
+   }
+ else
+   {// New behavior, the draw() member will limit the size and also pad with
+    // spaces.
+    delete[] text;
+    text=newStr(s);
+    startLen=strlen(getText());
+   }
+
  TVIntl::freeSt(intlText); // Invalidate i18n cache
  draw();
 }

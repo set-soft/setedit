@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 //#define Uses_stdio // debug
@@ -205,7 +205,10 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
     buffer[w]=0;
     TSNoStaticText *snst=new TSNoStaticText(buffer);
     d->nst=(TNoStaticText *)snst->view;
-    upper=MakeVeGroup(0,upper,new TSStaticText(__("Assigned to:")),snst,0);
+    TSStaticText *labasig=new TSStaticText(__("Assigned to:"));
+    snst->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
+    labasig->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
+    upper=MakeVeGroup(0,upper,labasig,snst,0);
    }
 
  if (flags & aidComMac)

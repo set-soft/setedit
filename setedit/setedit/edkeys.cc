@@ -426,9 +426,8 @@ void UpdateAssignedTo()
          break;
     default:
          {
-          int len=AddKeyDialog->nst->getStartLen();
-          AllocLocalStr(buffer,len+1);
-          KeyTrans.getText(buffer,ret,len);
+          char buffer[257];
+          KeyTrans.getText(buffer,ret,256);
           AddKeyDialog->nst->setText(buffer);
          }
    }

@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.651  2005/01/04 15:55:29  set
+* Added: VHDL heuristic parser.
+* Modified: [Cosmetic] Copyright year to include 2005.
+* Modified: [Cosmetic] The "assigned to" placement to be more clear (as
+Thiago suggested).
+
 Revision 1.650  2005/01/03 19:43:26  set
 * Added: [configuration] When the configure script doesn't detect libmigdb
 now it says where to download it.
