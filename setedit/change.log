@@ -1,4 +1,20 @@
 $Log$
+Revision 1.510  2001/11/29 00:10:33  set
+* Fixed: The DOS' SET_FILES autodetection mechanism was failing. Reported
+by David J. Hughes <David.J.Hughes@nokia.com>.
+
+Revision 1.509  2001/11/28 23:49:06  set
+* Fixed: Some small details in the editor.tx file that made TeX fail to
+generate the documentation (also some box overflows).
+
+Revision 1.508  2001/11/28 23:24:17  set
+* Fixed: getline replacement details. (#ifdef 0 and lack of (char *) cast).
+* Fixed: Use of strerror for Solaris. Another candidate for compatlayer. It
+exists on Linux too.
+ 
+Revision 1.28  2001/11/28 13:56:30  set
++
+
 Revision 1.507  2001/11/28 00:40:45  root
 * Added: Now is possible to execute a selected sLisp code even if it have
 spaces at the beggining. Patch by Thiago.
@@ -3634,7 +3650,7 @@ binaries.
 * Linked with Allegro 3.1 and checked the 16 bits sound and additions to
 avoid linking the whole library were incorporated by Shawn (all OK).
 
-Revision 1.5  1999/01/29 01:41:44  root (set)
+Revision 1.5  1999/01/29 01:41:44  set
 * Created the compress.pl Perl script to create the Linux distribution files.
 .
 Revision 1.4  1999/01/26 00:16:52  set
