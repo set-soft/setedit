@@ -1,4 +1,4 @@
-/* Copyright (C) 1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1997-2001 by Salvador E. Tropea (SET),
    see copying file for details */
 /**[txh]********************************************************************
 
@@ -50,13 +50,12 @@ void terminate(void)
  t=(t2-t1)/18.2;
  printf("Time: %f Frames: %d => %f fps\n",t,Frames,Frames/t);
  printf(
-"Designed and Programmed By Salvador Eduardo Tropea SET. Copyright 1997-1999.
-Original plasma idea By Richard A. Nutman, a.k.a Nutty. Copyright 1997.
-
-There is NO warranty.  You may redistribute this software
-under the terms of the GNU General Public License.
-For more information about these matters, see the files named COPYING.
-"
+"Designed and Programmed By Salvador Eduardo Tropea SET. Copyright 1997-1999.\n"
+"Original plasma idea By Richard A. Nutman, a.k.a Nutty. Copyright 1997.\n"
+"\n"
+"There is NO warranty.  You may redistribute this software\n"
+"under the terms of the GNU General Public License.\n"
+"For more information about these matters, see the files named COPYING.\n"
 );
  exit(100);
 }
@@ -107,32 +106,32 @@ void PassFromOneToOther(void (*f1)(unsigned char *),
 void PrintHelp(void)
 {
  printf(
-"
-Plasma 1 test (c) 1997-1999 by Salvador E. Tropea (SET)
-e-mail: salvador@inti.gov.ar
-
-Use: ps1 [-s] [-h] [-i] [-n]
-
-s: Don't wait for vertical retrace, smooth but you can't meassure the
-   frame rate.
-h: Shows this help.
-i: Shows information.
-n: Descriptive name.
-");
+"\n"
+"Plasma 1 test (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"e-mail: salvador@inti.gov.ar\n"
+"\n"
+"Use: ps1 [-s] [-h] [-i] [-n]\n"
+"\n"
+"s: Don't wait for vertical retrace, smooth but you can't meassure the\n"
+"   frame rate.\n"
+"h: Shows this help.\n"
+"i: Shows information.\n"
+"n: Descriptive name.\n"
+);
 }
 
 void ShowInfo(void)
 {
 printf(
-"
-Name:        Plasma 1
-Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)
-Author:      Designed and Programmed By Salvador Eduardo Tropea SET.
-             Original plasma idea By Richard A. Nutman, a.k.a Nutty.
-             Copyright 1997.
-Description: A sequence of nice plasma effects based in sin/cos look-up
-             tables.
-");
+"\n"
+"Name:        Plasma 1\n"
+"Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"Author:      Designed and Programmed By Salvador Eduardo Tropea SET.\n"
+"             Original plasma idea By Richard A. Nutman, a.k.a Nutty.\n"
+"             Copyright 1997.\n"
+"Description: A sequence of nice plasma effects based in sin/cos look-up\n"
+"             tables.\n"
+);
 }
 
 int main(int argc, char *argv[])

@@ -1,3 +1,5 @@
+/* Copyright (C) 1997-2001 by Salvador E. Tropea (SET),
+   see copying file for details */
 /**[txh]********************************************************************
 
   Description:
@@ -47,34 +49,34 @@ void end_if_user_ready(void)
 void PrintHelp(void)
 {
  printf(
-"
-Plasma 4 test (c) 1997 by Salvador E. Tropea (SET)
-e-mail: salvador@inti.gov.ar
-
-Use: ps4 [-s] [-h] [-t 0|1|3] [-i] [-n]
-
-s: Don't wait for vertical retrace, smooth but you can't meassure the
-   frame rate.
-h: Shows this help.
-t: Sets the amplitud of the start recursion. 0 is smooth and 3 rought.
-   Default: 3.
-i: Shows information.
-n: Descriptive name.
-
-");
+"\n"
+"Plasma 4 test (c) 1997 by Salvador E. Tropea (SET)\n"
+"e-mail: salvador@inti.gov.ar\n"
+"\n"
+"Use: ps4 [-s] [-h] [-t 0|1|3] [-i] [-n]\n"
+"\n"
+"s: Don't wait for vertical retrace, smooth but you can't meassure the\n"
+"   frame rate.\n"
+"h: Shows this help.\n"
+"t: Sets the amplitud of the start recursion. 0 is smooth and 3 rought.\n"
+"   Default: 3.\n"
+"i: Shows information.\n"
+"n: Descriptive name.\n"
+"\n"
+);
 }
 
 void ShowInfo(void)
 {
 printf(
-"
-Name:        Plasma 4
-Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)
-Author:      Designed and Programmed By Salvador Eduardo Tropea SET.
-             Original plasma idea By Tom Dibble. Copyright 1994.
-Description: A sequence of nice plasma effects based the addition of
-             surfaces. The surfaces are randomly generated.
-");
+"\n"
+"Name:        Plasma 4\n"
+"Copyright:   GPL, (c) 1997-1999 by Salvador E. Tropea (SET)\n"
+"Author:      Designed and Programmed By Salvador Eduardo Tropea SET.\n"
+"             Original plasma idea By Tom Dibble. Copyright 1994.\n"
+"Description: A sequence of nice plasma effects based the addition of\n"
+"             surfaces. The surfaces are randomly generated.\n"
+);
 }
 
 
