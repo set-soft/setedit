@@ -163,7 +163,7 @@ void TXTSetOneIndex(int index, PalCol *col)
     case LinuxTerm:
          sprintf(b,"\e]P%1.1X%2.2X%2.2X%2.2X",Index,R,G,B);
          #if TV_MAJOR_VERSION==2
-         TScreenUNIX::SendToTerminal(b);
+         fputs(b,stdout);
          #else
          TScreen::SendToTerminal(b);
          #endif
@@ -172,7 +172,7 @@ void TXTSetOneIndex(int index, PalCol *col)
     case XTerm:
          sprintf(b,"\e]4;%d;#%2.2x%2.2x%2.2x\e\\",Index,R,G,B);
          #if TV_MAJOR_VERSION==2
-         TScreenUNIX::SendToTerminal(b);
+         fputs(b,stdout);
          #else
          TScreen::SendToTerminal(b);
          #endif
@@ -180,7 +180,7 @@ void TXTSetOneIndex(int index, PalCol *col)
            { /* If setting 'black', also set the background */
             sprintf(b,"\e]11;#%2.2x%2.2x%2.2x\e\\",R,G,B);
             #if TV_MAJOR_VERSION==2
-            TScreenUNIX::SendToTerminal(b);
+            fputs(b,stdout);
             #else
             TScreen::SendToTerminal(b);
             #endif
@@ -189,7 +189,7 @@ void TXTSetOneIndex(int index, PalCol *col)
            { /* if setting 'white', also set the foreground */
             sprintf(b,"\e]10;#%2.2x%2.2x%2.2x\e\\",R,G,B);
             #if TV_MAJOR_VERSION==2
-            TScreenUNIX::SendToTerminal(b);
+            fputs(b,stdout);
             #else
             TScreen::SendToTerminal(b);
             #endif

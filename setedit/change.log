@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.100  2002/05/20 17:59:44  set
+* Fixed: Removed linuxRH52 references no longer used by TV 2.0.
+
 Revision 1.99  2002/05/20 16:52:07  set
 * Added: Now InfView sets the window title. Suggested by Ivan.
 
