@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -6,6 +6,7 @@
 
 #include <limits.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifdef HAVE_ALLEGRO
 #include <allegro.h>
@@ -478,7 +479,8 @@ int MP3Player::PlayFileToPlay(char *out)
       }
    }
  // Now create the engine
- MP3Engine=new Mpegwavtoraw(InputStream,out ? ToFile : Player);
+ MP3Engine=new Mpegwavtoraw(InputStream,out ? (Soundplayer *)ToFile :
+                            (Soundplayer *)Player);
  MP3Engine->initialize(FileToPlay);
  GetMP3Info();
  MP3Engine->startplay();
