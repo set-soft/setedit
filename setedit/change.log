@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.654  2005/02/21 18:05:19  set
+* Modified: Now the "Tab" behavior is implemented by an editor command
+(cmcSmartTab). In this way sLisp code can insert "smart tabs". Tabs in
+pseudo macros are translated to this command and the default keyboard
+assigment for Tab is this command. People using a keybind.dat file will
+need to add this assigment in order to keep the same behavior. Added as a
+result of a thread in the mailing list (Arnold and Thiago).
+
 Revision 1.653  2005/01/31 14:13:33  set
 * Fixed: [MSVC] compilation problems in pvhdl.cc. Reported by Grzegorz.
 * Fixed: [TAGS] allocation of -1 for some files. Reported by Grzegorz.

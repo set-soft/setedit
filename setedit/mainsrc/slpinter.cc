@@ -584,7 +584,7 @@ int SLPInterfaceRunString(TCEditor *ed, char *code, Boolean verbose)
 
 void SLPInterfaceRunAsk(TCEditor *ed, char *code)
 {
- TSViewCol *col=new TSViewCol(__("Enter sLisp code to interprete"));
+ TSViewCol *col=new TSViewCol(__("Enter sLisp code to interpret"));
  TSInputLinePiped *inp=new TSInputLinePiped(maxRunAskCode-1,1,hID_sLispMacros,60);
  col->insert(xTSCenter,yTSUp,inp);
  EasyInsertOKCancel(col);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -614,7 +614,7 @@ int KeyPadSetUp(void)
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Key Pad behavior")));
 
  TSLabel *Behave=TSLabelRadio(__("Behavior"),__("Use the ~B~IOS default"),
-                              __("Always interprete shift+arrow as ~m~ovement"),0);
+                              __("Always interpret shift+arrow as ~m~ovement"),0);
  col->insert(2,2,Behave);
  EasyInsertOKCancel(col);
 
