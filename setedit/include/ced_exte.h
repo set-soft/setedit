@@ -4,8 +4,6 @@
 #define __TCEditor_External__
 
 // ************* General definitions
-#define uint16                  unsigned short
-#define uint32                  unsigned int
 #define UnUsed                  __attribute__ ((unused))
 
 // ************* Redraw commands
