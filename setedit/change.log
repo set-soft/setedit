@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.464  2003/11/05 18:51:11  set
+* Fixed: I forgot that global options also mentioned "purge spaces".
+Pointed out by Oswald.
+
 Revision 1.463  2003/11/03 16:19:53  set
 * Added: When "TScreen::avoidMoire" is enabled selected tabs uses '.' to
 indicate they are selected. From a suggestion by Oswald.

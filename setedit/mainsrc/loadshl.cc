@@ -668,13 +668,14 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
 
  l=p2-p1+2;
  if (l<2)
-    return 0;
+    return 1;
 
  if (l>MaxExtension)
     l=MaxExtension;
 
  strncpyZ(ext,&s[p1],l);
  strcpy(buf,ext);
+ //printf("Parsing comment: -*- %s -*-\n",buf);
  // Make a little bit of parsing here
  s=strstr(buf,"mode:");
  if (s)
@@ -720,8 +721,28 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
  if (lenBuf<len)
     len=lenBuf;
 
- if (TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom))
-    return 1;
+ int searchAll=startCom==NULL;
+ int found, lStart, lEnd, totalFound=0;
+ if (searchAll)
+   {
+    startCom=&lStart;
+    endCom=&lEnd;
+   }
+
+ found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+ if (found)
+   {
+    if (!searchAll)
+       return 1;
+    while (found && *endCom+3<len)
+      {
+       totalFound++;
+       *endCom+=3;
+       start+=*endCom;
+       len-=*endCom;
+       found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+      }
+   }
 
  /* If we searched in all the buffer give up */
  if (lenBuf<=searchFromStart)
@@ -731,8 +752,23 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
  start=lenBuf-searchAtEnd;
  if (start<searchFromStart)
     start=searchFromStart;
+ len=lenBuf-start;
 
- return TakeCommentLowLev(buffer+start,lenBuf-start,ext,tab_width,startCom,endCom);
+ found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+ if (found)
+   {
+    if (!searchAll)
+       return 1;
+    while (found && *endCom+3<len)
+      {
+       totalFound++;
+       *endCom+=3;
+       start+=*endCom;
+       len-=*endCom;
+       found=TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom);
+      }
+   }
+ return totalFound;
 }
 
 
