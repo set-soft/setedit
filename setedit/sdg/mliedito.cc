@@ -28,6 +28,7 @@ editor. @x{TMLIBase (class)}.@p
 #include <rhutils.h>
 #include <dyncat.h>
 #include <runprog.h>
+#include <edmsg.h>
 
 // Open a file and insert it in the desktop
 // This function should be defined by RHIDE and is already needed
@@ -572,6 +573,31 @@ CleanUp:
  return;
 }
 
+// (ShowInMessageWindow var [clean])
+DecFun(MLIShowInMessageWindow)
+{
+ LocVar(value);
+ LocVar(clear);
+ Boolean clearMW=False;
+ char *v;
+
+ CheckNumParams(cant!=1 && cant!=2);
+ GetVar(0,value);
+ if (cant>1)
+   {
+    GetVar(1,clear);
+    clearMW=o->MLIBooleanValOf(clear) ? True : False;
+   }
+
+ v=value->toStr();
+ EdShowMessage(v,clearMW);
+ delete[] v;
+
+CleanUp:
+ destroyFloatVar(value);
+ destroyFloatVar(clear);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -591,7 +617,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "AskString",
  "OpenFile",
  "MessageBox",
- "EvalString"
+ "EvalString",
+ "ShowInMessageWindow"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -613,7 +640,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIAskString,
  MLIOpenFile,
  MLIMessageBox,
- MLIEvalString
+ MLIEvalString,
+ MLIShowInMessageWindow
 };
 
 
