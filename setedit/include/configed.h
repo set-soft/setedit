@@ -21,6 +21,9 @@
 /* bzip2 compression support */
 #define HAVE_BZIP2 1
 
+/* old bzip2 version before 1.0 */
+/*#define HAVE_BZIP2PRE1 1*/
+
 /* Sound mixer support */
 #define HAVE_MIXER 1
 
