@@ -10,7 +10,11 @@ gadvFOShiftDirs =5,
 gadvTabsOps     =6,
 gadvTagsOld     =7,
 gadvNoTags      =8,
-gadvDiffModOpts =9;
+gadvDiffModOpts =9,
+gadvDbgNoPrj    =10,
+gadvDbgDestSes  =11,
+gadvDbgSesActive=12,
+gadvDbgKillPrg  =13;
 
 int GiveAdvice(int number);
 void AdviceManager();

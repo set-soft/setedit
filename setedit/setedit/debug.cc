@@ -9,14 +9,9 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * warnings about big lens, and also show explicit limit of 1 MB, not here
-  but in the input dialog. (Data Window).
-
-  * Advices (only project, ...).
-  * Don't show again in the confirmation for exit while debugging.
-  * Add the menubind.smn options to the redmond.smn
   * Document.
   * Document how "ignore" works.
+  * Add the menubind.smn options to the redmond.smn
   * Update spanish translation and ensure it is complete.
 
 -----------------------------------------------
@@ -24,6 +19,8 @@ Low priority:
 
 General:
 * Some stop mechanism to avoid waiting for response time out.
+* Some way to revert the "don't show next time" options. Like with the
+advices. It means we must concentrate them into one place.
 
 Breakpoints:
 * Detect recompilation of the target from "outside", that's without using Run
@@ -44,6 +41,7 @@ Watches:
 Data Window:
 * Small dialog with all the modes.
 * Mouse movement.
+* Configure the max length (same warning).
 * Things ML had:
  - search(-next,-prev) ^S ^N ^P
  - bookmarks?
@@ -88,6 +86,8 @@ It does a complete redraw when 1 char is inserted, it looks like an overkill.
 
 -----------------------------------------------
 Whish gdb could:
+
+HAVE LESS BUGS!!!!
 
 Eval/Modify:
 * Set the format for results, currently you must inspect the variable to do it.
@@ -210,6 +210,7 @@ unaccessable memory.
 #include <edcollec.h>
 #include <edspecs.h>
 #include <loadshl.h> // SHLNumberOf
+#include <advice.h>
 
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
@@ -1680,14 +1681,7 @@ int TSetEditorApp::DebugConfirmEndSession(Boolean directRequest)
  MIDebugger::eState st=dbg->GetState();
  if (st!=MIDebugger::stopped && st!=MIDebugger::running)
     return 1; // We are just connected
- char *msg;
- if (directRequest)
-    msg=__("Please confirm you really want to finish the debug session. Breakpoints and other things will be lost.");
- else
-    msg=__("A debug session is active. Do you want to stop it?");
- if (messageBox(msg,mfConfirmation | mfYesButton | mfNoButton)==cmYes)
-    return 1;
- return 0;
+ return GiveAdvice(directRequest ? gadvDbgDestSes : gadvDbgSesActive)==cmYes;
 }
 
 /**[txh]********************************************************************
@@ -1706,9 +1700,7 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
     MIDebugger::eState st=dbg->GetState();
     if (st==MIDebugger::running || st==MIDebugger::stopped)
       {
-       if (confirm &&
-           messageBox(__("It will kill the program you are debugging. Go ahead?"),
-                      mfConfirmation | mfYesButton | mfNoButton)!=cmYes)
+       if (confirm && GiveAdvice(gadvDbgKillPrg)!=cmYes)
           return False;
       }
     delete dbg; // It will close the debug session
@@ -4966,7 +4958,7 @@ protected:
 
 const int taddNone=-1, taddNewValue=0, taddFrom=1, taddTo=2, taddExp=3,
           taddLength=4, taddValue=5, taddChangeOrig=0x100;
-
+const ulong maxBlockLen=0x100000, warnBlockLen=0x20000;
 
 class TDataViewer: public TView
 {
@@ -5048,6 +5040,7 @@ protected:
  int EnterAddresses(const char *tit, int t1, ulong *v1,
                     const char *startVal=NULL, int t2=taddNone,
                     ulong *v2=NULL, int t3=taddNone, ulong *v3=NULL);
+ void updateIfOverlaps(ulong from, ulong len);
 };
 
 int TDataViewer::cDataViewers=0;
@@ -5430,6 +5423,7 @@ void TDataViewer::recycle()
    {
     if (isValidAddress(origAddrTxt,origAddr))
       {
+       setCommands(True);
        update(origAddr);
        TSetEditorApp::setCmdState(cmRecycle,False);
        outOfScope=0;
@@ -5815,8 +5809,6 @@ int TDataViewer::EnterAddresses(const char *tit, int t1, ulong *v1,
     boxEA.v1[0]=0;
  boxEA.v2[0]=boxEA.v3[0]=0;
 
- TSViewCol *col=new TSViewCol(tit);
-
  Boolean changeOrigTxt=False;
  if (t1 & taddChangeOrig)
    {
@@ -5824,45 +5816,84 @@ int TDataViewer::EnterAddresses(const char *tit, int t1, ulong *v1,
     changeOrigTxt=True;
    }
 
- // EN: EFLNT
- TSLabel *o1=new TSLabel(taddNames[t1],
-           new TSInputLine(widthWtExp,1,hID_DbgEvalModifyExp,maxWtBox));
- col->insert(xTSLeft,yTSUp,o1);
- if (v2)
+ Boolean edit;
+ do
    {
-    TSLabel *o2=new TSLabel(taddNames[t2],
+    TSViewCol *col=new TSViewCol(tit);
+   
+    // EN: EFLNT
+    TSLabel *o1=new TSLabel(taddNames[t1],
               new TSInputLine(widthWtExp,1,hID_DbgEvalModifyExp,maxWtBox));
-    o2->ySep=0;
-    col->insert(xTSLeft,yTSUnder,o2,NULL,o1);
-    if (v3)
+    col->insert(xTSLeft,yTSUp,o1);
+    if (v2)
       {
-       TSLabel *o3=new TSLabel(taddNames[t3],
+       TSLabel *o2=new TSLabel(taddNames[t2],
                  new TSInputLine(widthWtExp,1,hID_DbgEvalModifyExp,maxWtBox));
-       o3->ySep=0;
-       col->insert(xTSLeft,yTSUnder,o3,NULL,o2);
-      }
-   }
- EasyInsertOKCancel(col);
-
- TDialog *d=col->doItCenter(hcDataViewer);
- delete col;
-
- if (execDialog(d,&boxEA)==cmOK)
-   {
-    if (isValidAddress(boxEA.v1,*v1)
-        && (!v2 || (t2>=taddLength ? isValidUL(boxEA.v2,*v2) :
-                                     isValidAddress(boxEA.v2,*v2)))
-        && (!v3 || (t3>=taddLength ? isValidUL(boxEA.v3,*v3) :
-                                     isValidAddress(boxEA.v3,*v3))))
-      {
-       if (changeOrigTxt)
+       o2->ySep=0;
+       col->insert(xTSLeft,yTSUnder,o2,NULL,o1);
+       if (v3)
          {
-          delete[] origAddrTxt;
-          origAddrTxt=newStr(boxEA.v1);
+          TSLabel *o3=new TSLabel(taddNames[t3],
+                    new TSInputLine(widthWtExp,1,hID_DbgEvalModifyExp,maxWtBox));
+          o3->ySep=0;
+          col->insert(xTSLeft,yTSUnder,o3,NULL,o2);
          }
-       return 1;
+      }
+    EasyInsertOKCancel(col);
+   
+    TDialog *d=col->doItCenter(hcDataViewer);
+    delete col;
+
+    edit=True;
+    if (execDialog(d,&boxEA)!=cmOK)
+       edit=False;
+    else
+      {// Ensure all the requested values are filled.
+       if (IsEmpty(boxEA.v1) || (v2 && IsEmpty(boxEA.v2)) || (v3 && IsEmpty(boxEA.v3)))
+         {
+          messageBox(__("Please fill all the requested values"),mfError|mfOKButton);
+          continue;
+         }
+       if (isValidAddress(boxEA.v1,*v1)
+           && (!v2 || (t2>=taddLength ? isValidUL(boxEA.v2,*v2) :
+                                        isValidAddress(boxEA.v2,*v2)))
+           && (!v3 || (t3>=taddLength ? isValidUL(boxEA.v3,*v3) :
+                                        isValidAddress(boxEA.v3,*v3))))
+         {// Avoid huge lengths, warn for large ones.
+          ulong *vLen=NULL;
+          if (t1==taddLength)
+             vLen=v1;
+          else if (t2==taddLength)
+             vLen=v2;
+          else if (t3==taddLength)
+             vLen=v3;
+          if (vLen)
+            {
+             if (*vLen>maxBlockLen)
+               {
+                messageBox(mfError|mfOKButton,
+                  __("For security reasons the maximum length is limited to %lu bytes"),
+                  maxBlockLen);
+                continue;
+               }
+             if (*vLen>warnBlockLen)
+               {
+                if (messageBox(__("This could be slow. Do you want to continue?"),
+                    mfWarning|mfYesButton|mfNoButton)!=cmYes)
+                   continue;
+               }
+            }
+
+          if (changeOrigTxt)
+            {
+             delete[] origAddrTxt;
+             origAddrTxt=newStr(boxEA.v1);
+            }
+          return 1;
+         }
       }
    }
+ while (edit);
  return 0;
 }
 
@@ -5874,8 +5905,6 @@ int getFilename(char *buf, int typ)
      typ ? __("Write block to file") : __("Read block from file"),buf,"*",
      typ ? hID_FileSave : hID_FileOpen,fdDialogForSave)!=cmCancel;
 }
-
-const ulong maxBlockLen=0x100000;
 
 void TDataViewer::printCursorAddress(char *buf, Boolean deref)
 {
@@ -5900,6 +5929,14 @@ void TDataViewer::setCommands(Boolean enable)
        TView::curCommandSet.disableCmd(cmDWFirstCommand,cmDWLastCommand);
       }
    }
+}
+
+void TDataViewer::updateIfOverlaps(ulong from, ulong len)
+{
+ ulong memEnd=memStart+memLen;
+ ulong to=from+len;
+ if (from<memEnd && to>=memStart)
+    update(memStart);
 }
 
 void TDataViewer::handleEvent(TEvent & event)
@@ -6129,20 +6166,29 @@ void TDataViewer::handleEvent(TEvent & event)
        case cmDWFill:           // fill block
             printCursorAddress(buf);
             if (EnterAddresses(__("Fill Block"),taddFrom,&from,buf,
-                taddLength,&len,taddValue,&value) && len<maxBlockLen)
+                taddLength,&len,taddValue,&value))
+              {
                targetFillMem(from,len,value);
+               updateIfOverlaps(from,len);
+              }
             break;
        case cmDWClear:          // clear block
             printCursorAddress(buf);
             if (EnterAddresses(__("Clear Block"),taddFrom,&from,buf,
                 taddLength,&len) && len<maxBlockLen)
+              {
                targetFillMem(from,len,0);
+               updateIfOverlaps(from,len);
+              }
             break;
        case cmDWMove:           // move block
             printCursorAddress(buf);
             if (EnterAddresses(__("Move Block"),taddFrom,&from,buf,
                 taddTo,&to,taddLength,&len) && len<maxBlockLen)
+              {
                targetMoveMem(from,to,len);
+               updateIfOverlaps(to,len);
+              }
             break;
        case cmDWFollowPtnNew:   // follow pointer & open new window
             printCursorAddress(buf,True);
@@ -6161,8 +6207,7 @@ void TDataViewer::handleEvent(TEvent & event)
                    unsigned bRead=readFile(f1,to,len);
                    messageBox(mfOKButton | mfInformation,__("%u bytes read."),
                               bRead);
-                   if (to<memStart+memLen && to+bRead>=memStart)
-                      update(memStart);
+                   updateIfOverlaps(to,bRead);
                   }
                 fclose(f1);
                }
@@ -7923,6 +7968,8 @@ TDialog *createDebugOpsDialog(TSViewCol *&cl)
 
 int TSetEditorApp::DebugOptionsEdit()
 {
+ if (!IsPrjOpened())
+    GiveAdvice(gadvDbgNoPrj);
  if (debugOpsNotIndicated)
    {// Fill the structure with examples and recommendations
     debugOpsNotIndicated=0;

@@ -62,7 +62,15 @@ advice Advices[]=
  { __("This option needs a tags file.\nDo you want to read more about it?"),
    AdviceVar1, 0x00000100, opsSimple | opsButYesNo },
  { __("GNU diff isn't installed.\nFor this reason I can't offer some options."),
-   AdviceVar1, 0x00000200, opsSimple }
+   AdviceVar1, 0x00000200, opsSimple },
+ { __("Debug options are stored in project files. If you don't use a project you'll lose the options"),
+   AdviceVar1, 0x00000400, opsSimple },
+ { __("Please confirm you really want to finish the debug session. Breakpoints and other things will be lost."),
+   AdviceVar1, 0x00000800, opsSimple | opsButYesNo },
+ { __("A debug session is active.\nDo you want to stop it?"),
+   AdviceVar1, 0x00001000, opsSimple | opsButYesNo },
+ { __("It will kill the program you are debugging.\nGo ahead?"),
+   AdviceVar1, 0x00002000, opsSimple | opsButYesNo }
 };
 
 const int cantAdvices=sizeof(Advices)/sizeof(advice);

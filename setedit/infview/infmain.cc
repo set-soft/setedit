@@ -827,8 +827,17 @@ void OpenInfView(TEditorMiApp *editorApp, char *name)
    }
 }
 
+// Some dummies for the editor's specs
 void InsertEnviromentVar(const char *,const char *)
 {
+}
+unsigned EnvirSetBits(const char *, unsigned )
+{
+ return 0;
+}
+unsigned EnvirGetBits(const char *, unsigned , unsigned aDefault)
+{
+ return aDefault;
 }
 
 const char *GetVariable(const char *variable, const char *def)

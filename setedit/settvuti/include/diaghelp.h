@@ -1,9 +1,11 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TDialog;
 ushort execDialogNoDestroy(TDialog *d, void *data, char &lSet);
 void AddOKCancel(TDialog *d);
 ushort messageBoxDSA(const char *msg, ushort aOptions, char *var, ushort defComm);
+ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
+                     unsigned mask, ushort defComm);
 int GetDeskTopCols();
 int GetDeskTopRows();
 TRect GetDeskTopSize();

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TDialog
 #define Uses_TProgram
@@ -52,6 +52,23 @@ ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
       {
        ret&=0x7FFF;
        InsertEnviromentVar(var,"1");
+      }
+    return ret;
+   }
+ return defComm;
+}
+
+ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
+                     unsigned mask, ushort defComm)
+{
+ unsigned val=EnvirGetBits(var,mask);
+ if (!val)
+   {
+    ushort ret=messageBox(msg,aOptions | mfDontShowAgain);
+    if (ret & 0x8000)
+      {
+       ret&=0x7FFF;
+       EnvirSetBits(var,mask);
       }
     return ret;
    }

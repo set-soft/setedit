@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.590  2004/08/26 20:49:05  set
+* Fixed: [MSVC] Calls to min/max with different arguments (unsigned vs
+signed). They generate errors with MSVC 6.0. Patch by Arnold.
+
 Revision 1.589  2004/08/25 20:51:54  set
 * Fixed: [Debug] Crash when gdb failed to report registers. Found because
 a bug in gdb CVS 2004-08-25.
