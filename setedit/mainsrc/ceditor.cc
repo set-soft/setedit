@@ -11147,6 +11147,8 @@ void *TCEditor::read( ipstream& is )
  // stuff related to the drawing machinery.
  updateFlags=0;
  CrossCursorInCol=CrossCursorInRow=False;
+ // We aren't a disassembler window
+ isDisassemblerEditor=0;
  setBufLen(0);
 
  SpecialLines=NULL;

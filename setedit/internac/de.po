@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-09-17 13:23-0300\n"
+"PO-Revision-Date: 2004-09-22 11:26-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1546,20 +1546,20 @@ msgstr "Analysiere Datei"
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11986
+#: ../mainsrc/ceditor.cc:11988
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12197
+#: ../mainsrc/ceditor.cc:12199
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13390
+#: ../mainsrc/ceditor.cc:13392
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13400
+#: ../mainsrc/ceditor.cc:13402
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -6601,28 +6601,28 @@ msgstr "Konnte die Listendatei nicht öffnen"
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""
 
-#: ../setedit/holidays.cc:169
+#: ../setedit/holidays.cc:172
 #, fuzzy
 msgid "Can't find plug-ins directory"
 msgstr "Zielverzeichnis"
 
-#: ../setedit/holidays.cc:285
+#: ../setedit/holidays.cc:288
 msgid "Holidays plug-ins not supported. Sorry."
 msgstr ""
 
-#: ../setedit/holidays.cc:292
+#: ../setedit/holidays.cc:295
 msgid "Failed to load holidays.conf"
 msgstr ""
 
-#: ../setedit/holidays.cc:296
+#: ../setedit/holidays.cc:299
 msgid "Holidays country"
 msgstr ""
 
-#: ../setedit/holidays.cc:313
+#: ../setedit/holidays.cc:316
 msgid "Country"
 msgstr ""
 
-#: ../setedit/holidays.cc:313
+#: ../setedit/holidays.cc:316
 #, fuzzy
 msgid "Force country"
 msgstr "Sekundär encoding"

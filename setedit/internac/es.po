@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-09-17 13:23-0300\n"
+"PO-Revision-Date: 2004-09-22 11:26-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1482,21 +1482,21 @@ msgstr "Analizando el archivo"
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11986
+#: ../mainsrc/ceditor.cc:11988
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12197
+#: ../mainsrc/ceditor.cc:12199
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13390
+#: ../mainsrc/ceditor.cc:13392
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13400
+#: ../mainsrc/ceditor.cc:13402
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -6224,27 +6224,27 @@ msgstr "No pude abrir el archivo"
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
 
-#: ../setedit/holidays.cc:169
+#: ../setedit/holidays.cc:172
 msgid "Can't find plug-ins directory"
 msgstr "No pude encontrar el directorio de plug-ins"
 
-#: ../setedit/holidays.cc:285
+#: ../setedit/holidays.cc:288
 msgid "Holidays plug-ins not supported. Sorry."
 msgstr "Lo lamento, no hay soporte para plug-ins de feriados."
 
-#: ../setedit/holidays.cc:292
+#: ../setedit/holidays.cc:295
 msgid "Failed to load holidays.conf"
 msgstr "Error al cargar holidays.conf"
 
-#: ../setedit/holidays.cc:296
+#: ../setedit/holidays.cc:299
 msgid "Holidays country"
 msgstr "País para los feriados"
 
-#: ../setedit/holidays.cc:313
+#: ../setedit/holidays.cc:316
 msgid "Country"
 msgstr "País"
 
-#: ../setedit/holidays.cc:313
+#: ../setedit/holidays.cc:316
 msgid "Force country"
 msgstr "Forzar el país"
 

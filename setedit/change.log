@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.612  2004/09/20 14:16:01  set
+* Fixed: [MSVC] When you compile for "Debug" the compiler disables *all*
+the optimizations. Including the dead code. For this reason MSVC also needs
+fake references.
+
 Revision 1.611  2004/09/20 14:13:03  set
 * Added: [Config] A command line option to specify a path for includes.
 This path is used for the configuration tests and for the editor.
