@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.409  2003/06/17 13:04:19  set
+* Modified: To support the new CLY_destroy mechanism.
+
 Revision 1.408  2003/06/17 13:02:32  set
 * Added: [Linux] an script to create TV and SETEdit RPMs in one call.
 * Added: Documentation about compilation and installation for BC++, Linux

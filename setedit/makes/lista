@@ -91,8 +91,11 @@ doc/editor.tx
 doc/infeng.tx
 doc/infview.man
 doc/install/bcc.txt
+doc/install/cygwin.txt
 doc/install/djgpp.txt
 doc/install/linux.txt
+doc/install/mingwin.txt
+doc/install/msvc.txt
 doc/install/tools.txt
 doc/install/unix.txt
 doc/gnumake.in

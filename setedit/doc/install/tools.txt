@@ -41,6 +41,13 @@ bzip2:
 
   Optionally (configuration option) used to create the tarball distributions.
 
+cwsdpmi:
+--------
+
+  Optional. Only needed to create the optional DOS installer.
+  The cwsdpmi (DPMI Host for DOS) can be downloaded from:
+  ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2misc/
+
 fileutils:
 ----------
 
@@ -74,6 +81,14 @@ Perl:
 usually contains preconfigured sources that will compile out-of-the-box in
 many systems.
 
+PMODE/DJ:
+---------
+
+  This is optional and only used to create the optional DOS installer. Even
+in this case the package is not used by default.
+  The pmodstub (PMODE/DJ stub) can be downloaded from:
+  ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2misc/
+  
 RHIDE:
 ------
 
@@ -121,6 +136,12 @@ textutils:
   They are cat, split, etc. and all UNIX systems have them. DJGPP users must
 install them.
 
+UPX:
+----
+
+  This is optional. You'll need it if you want to create a compressed
+executable or create the optional DOS installer.
+  It can be downloaded from http://upx.sf.net/
 
 
 LIBRARIES
@@ -132,6 +153,8 @@ Allegro:
   Currently useful only for DOS. Versions 3.1 and newer are ok.
   This library is used for sound support. Without it you won't get MP3
 support.
+  It's also used to create the optional DOS installer. In this case you must
+be sure that the dat and exedat Allegro tools are in the path.
 
 bzlib:
 ------
@@ -149,6 +172,13 @@ gpm:
 1.13, 1.14, 1.17.x and 1.19.x.
   Note: binaries compiled with a version usually fails to work if you change
 the gpm daemon version.
+
+libwin:
+-------
+
+  Optional. Needed only to create the optional DOS installer.
+  libwin 0.1.2 by Richard Dawe and RegDos Group:
+  http://www.bigfoot.com/~richdawe/
 
 ncurses:
 --------

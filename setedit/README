@@ -10,9 +10,8 @@ Hi! That's the readme file for the sources.
 
   This is a really simple explanation, I strongly suggest reading the
 INSTALL.txt file.
-  If you are running Linux or djgpp equiped with most UNIX tools (shell
-utils, file utils, perl, make, etc.) you can try the following:
-[Windows NT users skip it]
+  If you are running Linux, djgpp, Cygwin or MinGW equiped with most UNIX
+tools (shell utils, file utils, perl, make, etc.) you can try the following:
 
 1) Install, configure, make and make install the Turbo Vision library (last
 version available).
@@ -28,17 +27,10 @@ B) If all is OK run "make".
 C) If all is OK just run "make install".
 
   With it you'll get the editor compiled and installed.
-  If the configure script makes a wrong guess about something and you want to
-run it again delete the configure.cache file to force a new fresh
-configuration.
   If the installation prefix directory is wrongly guessed call the configure
 script passing --prefix=dir as argument.
 Example:
   linux:/usr/src/tvision# ./configure --prefix=/usr/local
-
-  If you are using Windows NT just read the WinNT\README file.
-  Note: This mechanism works for MingW32 (Win95/8) but you need some GNU
-tools installed that are not included in the MingW32 package.
 
 
 
