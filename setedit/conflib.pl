@@ -104,7 +104,7 @@ sub LookForFile
 
 sub RunRedirect
 {
- my ($command,$ErrorLog)=@_;
+ my ($command)=@_;
  my $ret;
 
  if ($OS eq 'DOS')
@@ -154,7 +154,7 @@ sub RunGCCTest
  $label=$command.":\n";
  `echo $label >> $ErrorLog`;
 
- RunRedirect($command,$ErrorLog);
+ RunRedirect($command);
  $test=`./test.exe`;
  unlink('test.o',$file,'test.exe');
  $test;
@@ -1035,14 +1035,15 @@ sub LookForGNUMake
     print "$conf{'GNU_Make'} (cached)\n";
     return;
    }
- $test=RunRedirect('make --version',$ErrorLog);
+ `echo make: >> $ErrorLog`;
+ $test=RunRedirect('make --version');
  if ($test=~/GNU Make/)
    {
     $conf{'GNU_Make'}='make';
     print "make\n";
     return;
    }
- $test=RunRedirect('gmake --version',$ErrorLog);
+ $test=RunRedirect('gmake --version');
  if ($test=~/GNU Make/)
    {
     $conf{'GNU_Make'}='gmake';
@@ -1065,14 +1066,15 @@ sub LookForGNUar
     print "$conf{'GNU_AR'} (cached)\n";
     return;
    }
- $test=RunRedirect('ar --version',$ErrorLog);
+ `echo ar: >> $ErrorLog`;
+ $test=RunRedirect('ar --version');
  if ($test=~/GNU ar/)
    {
     $conf{'GNU_AR'}='ar';
     print "ar\n";
     return;
    }
- $test=RunRedirect('gar --version',$ErrorLog);
+ $test=RunRedirect('gar --version');
  if ($test=~/GNU ar/)
    {
     $conf{'GNU_AR'}='gar';

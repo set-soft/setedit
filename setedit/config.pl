@@ -13,6 +13,8 @@ $conf{'mp3lib'}='mpegsnd';
 $conf{'mp3'}='yes';
 $conf{'HAVE_MIXER'}='yes';
 $conf{'intlShipped'}='no';
+$conf{'ToolsInstaller'}='no';
+$conf{'ToolsDistrib'}='no';
 $TVCommandLine=0;
 
 GetCache();
@@ -46,6 +48,7 @@ if ($OS eq 'Win32')
    $conf{'mp3lib'}='';
   }
 
+LookForBasicTools();
 $supportDir='makes/'.$supportDir;
 LookForPrefix();
 # Determine C flags
@@ -91,6 +94,11 @@ LookForGettextTools();
 LookForMakeinfo();
 # Is a usable gpm there?
 LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
+#  Check if we can offer the distrib targets.
+LookForToolsDistrib();
+#  The installer needs tons of things, put it in makefile only if the user
+# have some chance to succeed.
+LookForToolsInstaller() if ($OS eq 'DOS');
 
 print "\n";
 #
@@ -199,6 +207,7 @@ ReplaceText('internac/gnumake.in','internac/Makefile');
 $ReplaceTags{'datadir'}=$conf{'prefix'}.'/share';
 $ReplaceTags{'libdir'}=$conf{'prefix'}.'/lib';
 $ReplaceTags{'CC'}=$GCC;
+$ReplaceTags{'AR'}=$conf{'GNU_AR'};
 $ReplaceTags{'CFLAGS'}=$conf{'CFLAGS'};
 ReplaceText('gettext/Makefile.in','gettext/Makefile');
 `cp gettext/djgpp.h gettext/config.h` if $OS eq 'DOS';
@@ -434,6 +443,16 @@ sub GiveAdvice
  if (@conf{'GNU_Make'} ne 'make')
    {
     print "* Please use $conf{'GNU_Make'} instead of make command.\n";
+   }
+ if (($OS eq 'DOS') && (@conf{'ToolsInstaller'} eq 'no'))
+   {
+    print "* Some tools to create the installer aren't installed or are installed in a\n";
+    print "  directory that I couldn't find. The installer target was disabled.\n";
+   }
+ if (@conf{'ToolsDistrib'} eq 'no')
+   {
+    print "* Some tools to create the distribution aren't installed. The distrib target\n";
+    print "  was disabled.\n";
    }
 }
 
@@ -902,6 +921,7 @@ sub GenerateMakefile
 {
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
+ my ($installer,$distrib);
 
  print "Generating Makefile\n";
 
@@ -922,7 +942,9 @@ sub GenerateMakefile
  $libpcre=@conf{'PCREShipped'} eq 'yes';
  $libintl=@conf{'intlShipped'} eq 'yes';
  $plasmas=$OS eq 'DOS';
- $text.="\n\n.PHONY:" if ($infview || $plasmas || $libbzip2 || $libz || $libmpegsnd || $libamp);
+ $installer=@conf{'ToolsInstaller'} eq 'yes';
+ $distrib=@conf{'ToolsDistrib'} eq 'yes';
+ $text.="\n\n.PHONY: needed";
  $text.=" infview" if ($infview);
  $text.=" plasmas" if ($plasmas);
  $text.=" libbzip2" if ($libbzip2);
@@ -931,11 +953,13 @@ sub GenerateMakefile
  $text.=" libpcre" if ($libpcre);
  $text.=" libamp" if ($libamp);
  $text.=" libintl" if ($libintl);
+ $text.=" installer" if ($installer);
  # all targets
  $text.="\n\nall: editor";
  $text.=" libset" if ($libset);
  $text.=" infview" if ($infview);
  $text.=" plasmas" if ($plasmas);
+ $text.=" installer" if ($installer);
  $text.="\n";
  # libamp
  if ($libamp)
@@ -973,14 +997,16 @@ sub GenerateMakefile
     $text.="\n\nlibintl:\n";
     $text.="\t\$(MAKE) -C gettext";
    }
- # editor
- $text.="\n\neditor:";
+ # needed (by editor)
+ $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
  $text.=" libamp"   if ($libamp);
  $text.=" libmpegsnd"   if ($libmpegsnd);
  $text.=" libbzip2" if ($libbzip2);
  $text.=" libz" if ($libz);
  $text.=" libpcre" if ($libpcre);
  $text.=" libintl" if ($libintl);
+ # editor
+ $text.="\n\neditor: needed";
  $text.="\n\t\$(MAKE) -C makes";
  # libset
  if ($libset)
@@ -999,6 +1025,12 @@ sub GenerateMakefile
    {
     $text.="\n\nplasmas:\n";
     $text.="\tcd scrnsave; \$(MAKE); cd ..";
+   }
+ # installer
+ if ($installer)
+   {
+    $text.="\n\ninstaller: editor\n";
+    $text.="\t\$(MAKE) -C makes installer";
    }
 
  #### Installations ####
@@ -1025,21 +1057,24 @@ sub GenerateMakefile
  $text.=" install-infview" if ($infview);
  $text.="\n";
 
- #### Distribution ####
- # editor
- $text.="\n\ndistrib-editor:\n";
- $text.="\t\$(MAKE) -C internac\n" unless @conf{'xgettext'} eq 'no';
- $text.="\t\$(MAKE) -C makes distrib";
- # infview
- if ($infview)
+ if ($distrib)
    {
-    $text.="\n\ndistrib-infview:\n";
-    $text.="\t\$(MAKE) -C makes distrib-infview";
+    #### Distribution ####
+    # editor
+    $text.="\n\ndistrib-editor:\n";
+    $text.="\t\$(MAKE) -C internac\n" unless @conf{'xgettext'} eq 'no';
+    $text.="\t\$(MAKE) -C makes distrib";
+    # infview
+    if ($infview)
+      {
+       $text.="\n\ndistrib-infview:\n";
+       $text.="\t\$(MAKE) -C makes distrib-infview";
+      }
+    # all targets
+    $text.="\n\ndistrib: distrib-editor";
+    $text.=" distrib-infview" if ($infview);
+    $text.="\n";
    }
- # all targets
- $text.="\n\ndistrib: distrib-editor";
- $text.=" distrib-infview" if ($infview);
- $text.="\n";
 
  $text.="\nclean:\n";
  $text.="\tcd makes; \$(MAKE) clean-o; \$(MAKE) clean-docs; cd ..\n";
@@ -1107,3 +1142,128 @@ int main(void)
  print "$test OK\n";
 }
 
+sub LookForToolsInstaller
+{
+ my ($list,$i,$test);
+
+ print 'Tools for Installer:';
+ if ($conf{'ToolsInstaller'} eq 'yes')
+   {
+    print " yes (cached)\n";
+    return;
+   }
+ # Allegro, already tested
+ if ($conf{'HAVE_ALLEGRO'} ne 'yes')
+   {
+    print " no Allegro library\n";
+    return;
+   }
+ # PCRE, already tested
+ if ($conf{'HAVE_PCRE_LIB'} ne 'yes')
+   {
+    print " no PCRE library\n";
+    return;
+   }
+ # Various programs
+ @list=('cwsdpmi.exe','cwsdpmi.doc','emu387.dxe',
+        'pmodstub.exe','exedat.exe','dat.exe','groff.exe');
+ foreach $i (@list)
+   {
+    print " $i";
+    if (!(-e $ENV{'DJDIR'}.'/bin/'.$i))
+      {
+       print " no\n";
+       return;
+      }
+   }
+ # zip
+ print ' zip';
+ $test=RunRedirect('zip -h');
+ if (!($test=~/zip/))
+   {
+    print " no\n";
+    return;
+   }
+ # upx
+ print ' upx';
+ $test=RunRedirect('upx -V');
+ if (!($test=~/upx/))
+   {
+    print " no\n";
+    return;
+   }
+ # Libwin
+ print ' libwin';
+ $test='
+#include <stdio.h>
+#include <libwin.h>
+void dummy(void) {
+long hKey;
+w95_reg_openkey(HKEY_LOCAL_MACHINE,"SOFTWARE",&hKey); }
+int main(void)
+{
+ printf("Ok\n");
+ return 0;
+}';
+ $test=RunGCCTest($GCC,'c',$test,'-lwin');
+ chop($test);
+ if ($test ne 'Ok')
+   {
+    print " no\n";
+    return;
+   }
+ print " OK!\n";
+ $conf{'ToolsInstaller'}='yes';
+}
+
+sub LookForToolsDistrib
+{
+ my ($test);
+
+ print 'Tools for Distrib:';
+ if ($conf{'ToolsDistrib'} eq 'yes')
+   {
+    print " yes (cached)\n";
+    return;
+   }
+ if ($OS eq 'UNIX')
+   {# Should I test with other switches?
+    # And the compressor? check for gzip?
+    # tar
+    print ' tar';
+    $test=RunRedirect('tar --version');
+    if (!($test=~/tar/))
+      {
+       print " no\n";
+       return;
+      }
+   }
+  else
+    {
+     # zip
+     print ' zip';
+     $test=RunRedirect('zip -h');
+     if (!($test=~/zip/))
+       {
+        print " no\n";
+        return;
+       }
+    }
+ print " OK\n";
+ $conf{'ToolsDistrib'}='yes';
+}
+
+sub LookForBasicTools
+{
+ my $test;
+ if ($OS eq 'DOS')
+   {
+    $test=RunRedirect('rm --version');
+    if (!($test=~/fileutils/))
+      {
+       print "Please install the fileutils package. The name is usually something like it:\n";
+       print "filXXXb.zip where XXX is the version.\n";
+       die "\n";
+      }
+   }
+}
