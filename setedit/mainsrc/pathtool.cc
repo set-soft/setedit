@@ -24,6 +24,7 @@
 #define Uses_TScreen
 #define Uses_TStringCollectionW
 #include <settvuti.h>
+#include <pathtool.h>
 
 #ifdef SEOS_Win32
 #define WIN32_LEAN_AND_MEAN
@@ -726,8 +727,6 @@ void CheckIfCurDirValid(void)
     exit(1);
    }
 }
-
-const int maxSFNSize=68;
 
 #ifdef SEOSf_djgpp
 /**[txh]********************************************************************
