@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.428  2003/07/07 21:12:32  set
+* Added: hh extension as C++ code. SAVANT/TyVis generates code with that
+extension.
+* Added: very basic VHDL syntax highlight.
+
 Revision 1.427  2003/07/07 15:29:41  set
 * Added: The TAGs tutorial to the distribution. It is a big (because of the
 images) but I think it could help users to quickly start using these
