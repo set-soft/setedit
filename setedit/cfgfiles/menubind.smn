@@ -160,7 +160,7 @@ EndSubMenu
 # ABCDEFGHIKLMNOPRSXW
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
-# BCDEFGHKLNOPRSU
+# BCDEFGHIKLNOPRSU
    SubMenu: "~C~olors", kbAlC
      MenuItemC: "~C~ustomize ...", cmeSetColors
      $if DOS or Linux
@@ -185,6 +185,7 @@ SubMenu: "~T~ool&Ops", kbAlT
      $endif
    EndSubMenu
    MenuItemC: "~S~creen Options ...", cmeSetScreenOps
+   MenuItemC: "Encod~i~ngs ...", cmeEncodings
    MenuItemC: "~U~ser words ...", cmeEditUserWords
    MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions

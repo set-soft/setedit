@@ -64,6 +64,7 @@
 #define Uses_TMenuBox
 #define Uses_TStringableListBox
 #define Uses_TVOSClipboard
+#define Uses_TVCodePage
 
 #define Uses_TCEditor
 #define Uses_LineLengthArray

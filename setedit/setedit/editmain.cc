@@ -992,6 +992,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               PathListEdit();
               break;
 
+         case cmeEncodings:
+              EncodingOptions();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

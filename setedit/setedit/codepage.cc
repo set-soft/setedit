@@ -62,6 +62,8 @@ fonts than the BIOS ones.@p
  #define DefaultBkgrnd  TDeskTop::odefaultBkgrnd
 #endif
 
+const unsigned rbgDontRemapLow32=1, rbgOnlySelected=2;
+
 TNoCaseNoOwnerStringCollection *CodePages=0;
 const unsigned maxSymbolDefined=587; // Number of symbols defined (0-460=>461)
 

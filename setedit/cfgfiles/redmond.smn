@@ -183,6 +183,7 @@ SubMenu: "~T~ool&Ops", kbAlT
      $endif
    EndSubMenu
    MenuItemC: "~S~creen Options ...", cmeSetScreenOps
+   MenuItemC: "Encod~i~ngs ...", cmeEncodings
    MenuItemC: "~U~ser words ...", cmeEditUserWords
    MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions

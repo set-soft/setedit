@@ -18,4 +18,4 @@ void SaveConvCPOptions(fpstream& s);
 void LoadConvCPOptions(fpstream& s);
 #endif
 
-const unsigned rbgDontRemapLow32=1, rbgOnlySelected=2;
+//const unsigned rbgDontRemapLow32=1, rbgOnlySelected=2;

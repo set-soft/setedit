@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_SETAppAll
 #define Uses_SETAppConst
@@ -92,7 +92,8 @@ const int
   cmeEditNoBkp      = cmeBase+72,
   cmeIncludeList    = cmeBase+73,
   cmeColorTheme     = cmeBase+74,
-  cmeSaveDesktop    = cmeBase+75;
+  cmeSaveDesktop    = cmeBase+75,
+  cmeEncodings      = cmeBase+76;
 #endif
 
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
@@ -201,6 +202,7 @@ extern int  AboutStartBox(void);
 extern void FullAboutBox(void);
 extern void ShowUserScreenDialog();
 extern int  ChooseConvCPs(int &from, int &to, uint32 &ops);
+extern void EncodingOptions(void);
 class TDskWinMan;
 extern TDskWinMan *ManPageView(const char *name); // From dskman.cc
 #endif

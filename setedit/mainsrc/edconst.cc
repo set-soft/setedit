@@ -203,6 +203,7 @@ static edCList SetApp[] =
 { "EditNoBkp"      , 72 },
 { "EditPalette"    , 36 },
 { "EditUserWords"  , 57 },
+{ "Encodings"      , 76 },
 { "ExportAsHTML"   , 64 },
 { "FileOpenOptions", 61 },
 { "GrepDialog"     , 32 },

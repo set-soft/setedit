@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.151  2002/07/15 18:13:52  set
+* Added: AA-lib support for UNIX targets. Also ported the Plasma effect and
+made it support any resolution.
+
 Revision 1.150  2002/07/12 16:48:42  set
 * Modified: [MSVC] avoided the inclusion of bzlib.h from ceditor.cc because
 it includes windows.h and this hence collides. Also removed _WIN32 from

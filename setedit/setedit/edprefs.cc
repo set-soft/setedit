@@ -25,6 +25,7 @@
 #define Uses_TStaticText
 #define Uses_fpstream
 #define Uses_TSOSListBox
+#define Uses_TVCodePage
 
 // EasyDiag requests
 #define Uses_TSButton
@@ -1103,4 +1104,95 @@ int  ChooseConvCPs(int &From, int &To, uint32 &ops)
  ops=CPNoLow=box.ops;
 
  return ret;
+}
+
+#pragma pack(1)
+typedef struct
+{
+ uint32  appForce      CLY_Packed;
+ TCollection *appList  CLY_Packed;
+ ccIndex appCP         CLY_Packed;
+ uint32  scrForce      CLY_Packed;
+ TCollection *scrList  CLY_Packed;
+ ccIndex scrCP         CLY_Packed;
+ uint32  sndForce      CLY_Packed;
+ TCollection *sndList  CLY_Packed;
+ ccIndex sndCP         CLY_Packed;
+} EncodingBox;
+#pragma pack()
+
+static char enForceApp=0, enForceScr=0, enForceSnd=0;
+static int  enApp=-1, enScr=-1, enSnd=-1;
+// Todo: esto debería poder obtenerlo de TVCodePage, algo tipo default code page.
+//static int  enStartApp=437, enStartScr=437;
+
+// New code pages dialogs
+void EncodingOptions()
+{
+ // Compute the height of the list boxes to use most of the desktop
+ TRect dkt=TProgram::deskTop->getExtent();
+ int height=dkt.b.y-dkt.a.y-10;
+
+ TSVeGroup *appEncode=NULL,*scrEncode=NULL,*sndEncode=NULL;
+
+ appEncode=new TSVeGroup(
+   TSLabelCheck(__("~A~pplication"),__("Force encoding"),0),
+   new TSSortedListBox(wForced,height,tsslbVertical),
+   0);
+ appEncode->makeSameW();
+
+ if (TScreen::codePageVariable())
+   {// Only if the code page is variable
+    scrEncode=new TSVeGroup(
+      TSLabelCheck(__("~S~creen"),__("Force encoding"),0),
+      new TSSortedListBox(wForced,height,tsslbVertical),
+      0);
+    scrEncode->makeSameW();
+
+    if (TScreen::canSetSBFont())
+      {// Only if the secondary font exists
+       sndEncode=new TSVeGroup(
+         TSLabelCheck(__("Second ~f~ont"),__("Force encoding"),0),
+         new TSSortedListBox(wForced,height,tsslbVertical),
+         0);
+       sndEncode->makeSameW();
+      }
+   }
+
+ TSViewCol *col=new TSViewCol(__("Encodings"));
+ col->insert(xTSLeft,yTSUp,MakeHzGroup(appEncode,scrEncode,sndEncode,0));
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doIt();
+ delete col;
+ d->options|=ofCentered;
+ d->helpCtx=cmeEncodings;
+ EncodingBox box;
+
+ // Current TV settings
+ int idScr, idApp;
+ TVCodePage::GetCodePages(idScr,idApp);
+
+ // Currently selected values
+ int appCP, scrCP, sndCP;
+ appCP=TVCodePage::IDToIndex(enForceApp ? enApp : idApp);
+ scrCP=TVCodePage::IDToIndex(enForceScr ? enScr : idScr);
+ sndCP=TVCodePage::IDToIndex(enForceSnd ? enSnd : box.scrCP);
+
+ // Data box
+ box.appForce=enForceApp;
+ box.scrForce=enForceScr;
+ box.sndForce=enForceSnd;
+ box.appCP=appCP;
+ box.scrCP=scrCP;
+ box.sndCP=sndCP;
+ box.appList=box.scrList=box.sndList=TVCodePage::GetList();
+
+ if (execDialog(d,&box)==cmOK)
+   {// Ver si alguno de los force cambió.
+    // Si al menos uno lo hizo hay que recomputar *todo*.
+    // El tema es que depende si estamos o no seteando nosotros las fonts
+    // por eso es que la responsabilidad debería recaer en buena parte en
+    // las rutinas de fonts.
+    //if (appCP!=box.appCP)
+   }
 }
