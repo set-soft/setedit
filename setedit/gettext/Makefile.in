@@ -29,7 +29,7 @@ localedir = $(datadir)/locale
 aliaspath = $(localedir)
 lo = o
 
-AR = ar
+AR = @AR@
 CC = @CC@
 
 DEFS = -DLOCALEDIR=\"$(localedir)\" -DLOCALE_ALIAS_PATH=\"$(aliaspath)\" \
