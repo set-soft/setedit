@@ -33,8 +33,13 @@
 #include <setapp.h>
 
 #ifdef SEOS_Win32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+ #define WIN32_LEAN_AND_MEAN
+ #include <windows.h>
+ #ifndef SECompf_Cygwin
+  #define getuid()
+  #define getgid()
+  #define chown(file,uid,gid)
+ #endif
 #endif
 
 extern const char *GetVariable(const char *variable);
