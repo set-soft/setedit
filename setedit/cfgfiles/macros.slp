@@ -377,5 +377,56 @@
 ;   )
 ;  )
 ; )
-; 
+;
+;-------------------------------------------------------------------------------------------
+;
+; More macros from Thiago, they are short and funny so I let them uncommented.
+;
+;-------------------------------------------------------------------------------------------
+; These 2 macros make cmcIndentBlk and cmcUnIndentBlk behave like
+; cmcCommentIndent and cmcCommentUnIndent, i.e.: if there's no selection,
+; indent/unindent the current line.
+
+(defmacro 'IndentLineOrSelection'
+  (if (SelectionExists)     (SendCommands cmcIndentBlk)
+                            (SendCommands cmcPushCursorPos
+                             cmcLineStart cmcSelectOn cmcLineEnd cmcSelectOff
+                             cmcIndentBlk
+                             cmcPopCursorPos )
+  )
+)
+
+(defmacro 'UnIndentLineOrSelection'
+  (if (SelectionExists)     (SendCommands cmcUnIndentBlk)
+                            (SendCommands cmcPushCursorPos
+                             cmcLineStart cmcSelectOn cmcLineEnd cmcSelectOff
+                             cmcUnIndentBlk
+                             cmcPopCursorPos )
+  )
+)
+
+;-------------------------------------------------------------------------------------------
+; ^Ins and no selection -> copy current word
+
+(defmacro 'CopySelectionOrCurWord'
+  (if (SelectionExists)     (SendCommands cmcCopy)
+                            (SendCommands cmcMarkWord cmcCopy)
+  )
+)
+
+;-------------------------------------------------------------------------------------------
+; Select the entire text
+
+(defmacro 'SelectAll'
+    (SendCommands cmcTextStart cmcSelectOn cmcTextEnd cmcSelectOff)
+)
+
+;-------------------------------------------------------------------------------------------
+; New (and simpler) version of CopyLine: uses cmcMarkLine now
+
+(defmacro 'CopyLine'
+          (SendCommands cmcMarkLine
+                        cmcCopy
+          )
+)
 

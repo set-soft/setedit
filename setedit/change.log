@@ -1,4 +1,9 @@
 $Log$.
+Revision 1.527  2004/06/22 16:01:24  set
+* Fixed: [Cosmetic] Added a ; after the ListBoxImplement(..) macros. They
+looks more "correct" and doesn't confuse my heuristic to search fro
+functions ;-)
+
 Revision 1.526  2004/06/22 15:11:58  set
 * Added: [sLisp] Experimental!!! now you can use cme* commands for
 SendCommands. They are propperly sent to the application instead of the
