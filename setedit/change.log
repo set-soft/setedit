@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.604  2004/09/15 13:10:06  set
+* Fixed: [Config] wrong pcre header selected when using shipped pcre.
+Problem introduced by the recent patch to support pcre/pcre.h.
+
 Revision 1.603  2004/09/14 19:01:11  set
 * Added: [Config] Message warning about the lack of debug support.
 * Added: [Distrib] The list of added/fixed things. 66 new things and 40

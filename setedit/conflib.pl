@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Common configuration routines.
@@ -10,7 +10,7 @@ $MakeDefsRHIDE={};
 $ExtraModifyMakefiles={};
 # DOS, UNIX, Win32
 $OS='';
-# Linux, FreeBSD, Solaris, QNXRtP
+# Linux, FreeBSD, NetBSD, Solaris, QNXRtP
 $OSf='';
 # x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium, Unknown
 $CPU='';
@@ -806,6 +806,15 @@ sub DetectOS
     $defaultCXX='qcc -Y_gpp';
     $supportDir='linux';
    }
+ elsif ($os=~/NetBSD/)
+   {
+    $OS='UNIX';
+    $OSf='NetBSD';
+    $Compf='';
+    $stdcxx='-lstdc++';
+    $defaultCXX='g++';
+    $supportDir='linux';
+   }
  else
    {
     die('Unknown OS, you must do things by yourself');
@@ -1254,6 +1263,8 @@ int main(void)
  printf("MIPS\n");
  #elif defined(__ia64__)
  printf("Itanium\n");
+ #elif defined(__amd64__)
+ printf("AMD64\n");
  #else
  printf("Unknown\n");
  #endif
