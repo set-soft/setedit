@@ -1,4 +1,4 @@
-/* Copyright (C) 2000-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 2000-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -7,9 +7,12 @@
 
 ***************************************************************************/
 
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
+#define Uses_string
+#define Uses_stdio
+#define Uses_ctype
+#define Uses_TVCodePage
+#include <tv.h>
+
 #include <bufun.h>
 
 #if 0
@@ -149,7 +152,7 @@ int GetWord()
             break;
 
        default:
-            if (isalpha(c) || c=='_')
+            if (TVCodePage::isAlpha(c) || c=='_')
               {
                if (IndiceW<MaxLen)
                   bfBuffer[IndiceW++]=c;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -25,6 +25,7 @@
 #define Uses_TStatusLine
 #define Uses_TStatusItem
 #define Uses_TStatusDef
+#define Uses_TVCodePage
 #include <ceditor.h>
 #define Uses_SETAppConst
 #define Uses_SETAppVarious
@@ -186,7 +187,7 @@ char *GetKey(char *s, int &key, int error1, int Optional=0)
     return 0;
    }
  s+=2;
- for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
+ for (ret=s; *ret && (TVCodePage::isAlNum(*ret) || *ret=='_'); ret++);
  char v=*ret; *ret=0;
  ushort code;
  if (InterpretKeyName(s,code))
@@ -251,7 +252,7 @@ char *GetCommand(char *s, int &command, int FirstInLine=0)
    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
  else
    {
-    for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
+    for (ret=s; *ret && (TVCodePage::isAlNum(*ret) || *ret=='_'); ret++);
     char v=*ret; *ret=0;
     if (*(s-1)=='c')
       {
@@ -299,7 +300,7 @@ char *GetHelpCtx(char *s, int &context, int FirstInLine=0)
     return GetNumber(s,context,0,errMLNoHelpContext,0,1);
  s+=2;
 
- for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
+ for (ret=s; *ret && (TVCodePage::isAlNum(*ret) || *ret=='_'); ret++);
  char v=*ret; *ret=0;
 
  context=SearchHelpCtxCommand(s);
@@ -683,7 +684,7 @@ int GetLenOfWord(char *&str)
  char *s=str;
  while (*s && ucisspace(*s)) s++;
  str=s;
- while (*s && (ucisalnum(*s) || *s=='_')) s++;
+ while (*s && (TVCodePage::isAlNum(*s) || *s=='_')) s++;
  int r=s-str;
  //str=s;
  return r;

@@ -33,6 +33,7 @@
 #define Uses_TListBox
 #define Uses_TSOSListBox
 #define Uses_fpstream
+#define Uses_TVCodePage
 #include <ceditor.h>
 #define Uses_SETAppHelper
 #define Uses_SETAppConst
@@ -134,7 +135,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
 
  // Look for file name and line number
  // It fails if: The file is absolute and starts with a number
- if (ucisalpha(buf[0]) && buf[1]==':' && (!ucisdigit(buf[2])))
+ if (TVCodePage::isAlpha(buf[0]) && buf[1]==':' && (!ucisdigit(buf[2])))
     offset=2;
  endOfName=strchr(buf+offset,':');
  if (endOfName)

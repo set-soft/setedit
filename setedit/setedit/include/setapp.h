@@ -234,6 +234,8 @@ public:
     static void SetEditorFonts(uchar priUse, char *priName, char *priFile,
                                TVBitmapFontSize *priSize,
                                uchar secUse, char *secName, char *secFile);
+    static int  ChooseConvCPs(int &From, int &To, uint32 &ops);
+    static char *CreateTitle(const char *title);
 
     static unsigned long deskTopVersion;
 
@@ -307,10 +309,6 @@ extern void SetScreenSaversOptions(void);
 extern int  AboutStartBox(void);
 extern void FullAboutBox(void);
 extern void ShowUserScreenDialog();
-extern int  ChooseConvCPs(int &from, int &to, uint32 &ops);
-/*extern void EncodingOptions(void);
-extern void FontsOptions(void);
-extern void ScreenOptions(void);*/
 class TDskWinMan;
 extern TDskWinMan *ManPageView(const char *name); // From dskman.cc
 #endif
@@ -331,12 +329,6 @@ extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line,char *name);
 extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0);
 extern void SetScreenOps(void);
-extern int LoadEditorFonts(char *prim,char *sec,int cp_prim,int cp_sec);
-extern void UnLoadEditorFonts(void);
-extern int GetCodePageFont(int font);
-extern void ChangeEncodingOfFont(int font, int newEncode);
-extern void SaveFontLoadedInfo(fpstream& s);
-extern void LoadFontLoadedInfo(fpstream& s);
 extern void EditPalette(void);
 extern void SaveEnviromentFile(void);
 extern void ConfigureRunCommand(void);

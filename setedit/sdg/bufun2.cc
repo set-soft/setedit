@@ -1,6 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones(BuFun), Copyright (c) 1996-2000 by Salvador E. Tropea (SET)
+  Busca Funciones(BuFun), Copyright (c) 1996-2002 by Salvador E. Tropea (SET)
 
   Designed for the TCEditor class to be used by Robert H”hne in your RHIDE.
 
@@ -51,7 +51,7 @@ or the user choose cancel the routine returns -1.
 
 inline int IsWordChar(char c)
 {
- return c=='_' || ucisalpha(c);
+ return c=='_' || TVCodePage::isAlpha(c);
 }
 
 static char Buffer[256];
@@ -111,7 +111,7 @@ static int TakeWord(int TakeOneCharToo)
         Buffer[Used++]=c;
         c=GetAChar();
        }
-      while (c!=EOF && Used<255 && (ucisalnum(c) || c==':' || c=='_' || c=='~'));
+      while (c!=EOF && Used<255 && (TVCodePage::isAlNum(c) || c==':' || c=='_' || c=='~'));
       Buffer[Used]=0;
       if (c!=EOF)
          UnGetAChar(c);

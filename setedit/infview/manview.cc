@@ -17,6 +17,7 @@
 #define Uses_TScrollBar
 #define Uses_TKeys
 #define Uses_TKeys_Extended
+#define Uses_TVCodePage
 
 #define Uses_TSLabel
 #define Uses_TSVeGroup
@@ -636,16 +637,14 @@ void TManWindow::handleEvent(TEvent& event)
             title=newStr((char *)event.message.infoPtr);
             frame->draw();
             break;
-       #if defined(FOR_EDITOR)
        case cmcUpdateCodePage:
-            RemapNStringCodePage((uchar *)hScrollBar->chars,
-                                 (uchar *)TScrollBar::ohChars,
-                                 (ushort *)event.message.infoPtr,5);
-            RemapNStringCodePage((uchar *)vScrollBar->chars,
-                                 (uchar *)TScrollBar::ovChars,
-                                 (ushort *)event.message.infoPtr,5);
+            TVCodePage::RemapNString((uchar *)hScrollBar->chars,
+                                     (uchar *)TScrollBar::ohChars,
+                                     (ushort *)event.message.infoPtr,5);
+            TVCodePage::RemapNString((uchar *)vScrollBar->chars,
+                                     (uchar *)TScrollBar::ovChars,
+                                     (ushort *)event.message.infoPtr,5);
             break;
-       #endif
       }
    }
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 
@@ -7,14 +7,13 @@
 #define Uses_TDeskTop
 #define Uses_MsgBox
 #define Uses_TCEditWindow
+#define Uses_TVCodePage
 #include <ceditor.h>
 #define Uses_SETAppVarious
 
 #include <setapp.h>
 #include <ctype.h>
 #include <ucdefs.h>
-
-#include <codepage.h>
 
 static void ExpandAccents(TCEditor *e);
 static void CompactAccents(TCEditor *e);
@@ -209,7 +208,7 @@ static
 void ExpandAccents(TCEditor *e)
 {
  // Get the map for the current code page
- ushort *map=GetCodePage128Translate(GetCodePageFont(1));
+ ushort *map=TVCodePage::GetTranslate(TVCodePage::GetAppCodePage());
 
  e->lock();
  e->lockUndo();
@@ -250,7 +249,7 @@ static
 void CompactAccents(TCEditor *e)
 {
  // Get the map for the current code page
- ushort *map=GetCodePage128Translate(GetCodePageFont(1));
+ ushort *map=TVCodePage::GetTranslate(TVCodePage::GetAppCodePage());
 
  e->lock();
  e->lockUndo();
@@ -269,7 +268,7 @@ void CompactAccents(TCEditor *e)
     posStart=pos;
     // Take the word
     index=0; pos++;
-    while (pos<len && isalpha(s[pos]) && index<6)
+    while (pos<len && TVCodePage::isAlpha(s[pos]) && index<6)
       {
        buf[index++]=s[pos];
        pos++;
@@ -278,7 +277,7 @@ void CompactAccents(TCEditor *e)
     buf[index]=0;
     if (pos<len)
       {
-       if (isalpha(s[pos]))
+       if (TVCodePage::isAlpha(s[pos]))
           continue;
        if (s[pos]==';')
           lenW++;
@@ -311,12 +310,4 @@ void CompactAccents(TCEditor *e)
  e->unlock();
 }
 
-/*
-#define Uses_MsgBox
-#include <tv.h>
-
-void HTMLAcc_Entry(void)
-{
- messageBox(_("Not implemented in Linux"),mfError | mfOKButton);
-}*/
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -8,6 +8,7 @@
 #define Uses_TCEditor_Internal
 #define Uses_TCEditor_External
 #define Uses_TCEditor
+#define Uses_TVCodePage
 #include <ceditor.h>
 #include <loadshl.h>
 
@@ -96,8 +97,8 @@ void PutInTables(int len, char *s, unsigned flag, ushort *Table, int Case)
     if (!Case)
       {
        for (i=0; i<len; i++)
-           s[i]=uctoupper(s[i]);
-       Table[uctolower(*s)]|=flag;
+           s[i]=TVCodePage::toUpper(s[i]);
+       Table[TVCodePage::toLower(*s)]|=flag;
       }
     Table[*s]|=flag;
    }
@@ -215,7 +216,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
      hl[def].Keywords=0;
      isCase=preLoad=0;
      for (i=0; i<256; i++)
-         if (ucisalnum(i) || i=='_')
+         if (TVCodePage::isAlNum(i) || i=='_')
             hl[def].SymbolT[i]|=shl_INSNAME | shl_BEGNAME;
      do
        {
@@ -325,7 +326,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
            GetUpTo(4,pos,hl[def].HexStart,hl[def].lHexStart);
            if (!isCase)
               for (i_l=0; i_l<4; i_l++)
-                  hl[def].HexStart[i_l]=uctoupper(hl[def].HexStart[i_l]);
+                  hl[def].HexStart[i_l]=TVCodePage::toUpper(hl[def].HexStart[i_l]);
           }
         else
         if (strncasecmp(b,"Symbols1",8)==0)
@@ -661,7 +662,7 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int &tab_width)
     s+=5;
     for (;*s && ucisspace(*s); s++);
     char *end=s;
-    for (;*end && (ucisalnum(*end) || *end=='-' || *end=='-'); end++);
+    for (;*end && (TVCodePage::isAlNum(*end) || *end=='-'); end++);
     *end=0;
     strcpy(ext,s);
     *end=';';

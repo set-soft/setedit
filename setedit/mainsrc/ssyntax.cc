@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -25,6 +25,7 @@ void SyntaxSearch_ShutDown(void);@*
 #define Uses_TDialogAID
 #define Uses_fpstream
 #define Uses_MsgBox
+#define Uses_TVCodePage
 // EasyDiag requests
 #define Uses_TSInputLine
 #define Uses_TSButton
@@ -654,7 +655,7 @@ void SearchExact(char *word,entryInfo *file,TNodeCollection *nodes)
 
  // no case sensitive
  char aux[2],*candidate;
- aux[0]=uctolower(word[0]);
+ aux[0]=TVCodePage::toLower(word[0]);
  aux[1]=0;
  int cant=items->getCount();
  items->search(aux,pos);
@@ -668,7 +669,7 @@ void SearchExact(char *word,entryInfo *file,TNodeCollection *nodes)
        AddNewNode(file,nodes,pos,strcmp(word,candidate)==0 ? 1000 : 500);
     pos++;
    }
- aux[0]=uctoupper(aux[0]);
+ aux[0]=TVCodePage::toUpper(aux[0]);
  items->search(aux,pos);
  while (pos<cant)
    {
@@ -743,7 +744,7 @@ int StrStrUCase(char *s, char *find)
           if ((sc=*s++)==0)
              return 0;
          }
-       while (uctoupper(sc)!=c);
+       while (TVCodePage::toUpper(sc)!=c);
       }
     while (strncasecmp(s,find,len)!=0);
     s--;
@@ -790,7 +791,7 @@ int FuzzyNoCase(char *s, char *find)
  /* string copy limiting the size and converting to uppercase */
  int i;
  for (i=0; i<MAX_NODE_NAME-1 && s[i]; i++)
-     upper[i]=uctoupper(s[i]);
+     upper[i]=TVCodePage::toUpper(s[i]);
  upper[i]=0;
 
  int result=(int)(fstrcmp(upper,find)*maxFuzzy);

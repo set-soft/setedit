@@ -160,18 +160,6 @@ void RunExternalProgramRemoveInRedir()
 /**[txh]********************************************************************
 
   Description:
-  Dummy for the codepage translation.
-
-***************************************************************************/
-
-void RemapNStringCodePage(unsigned char *, unsigned char *, unsigned short *,
-                          int )
-{
-}
-
-/**[txh]********************************************************************
-
-  Description:
   Dummy for the Special Lines Manager (spliman.cc)
 
 ***************************************************************************/

@@ -409,9 +409,9 @@ void TEditorProjectWindow::handleEvent(TEvent& event)
  TDialog::handleEvent(event);
  if (event.what==evBroadcast && event.message.command==cmcUpdateCodePage)
    {
-    RemapNStringCodePage((uchar *)scrollbar->chars,
-                         (uchar *)TScrollBar::ohChars,
-                         (ushort *)event.message.infoPtr,5);
+    TVCodePage::RemapNString((uchar *)scrollbar->chars,
+                             (uchar *)TScrollBar::ohChars,
+                             (ushort *)event.message.infoPtr,5);
    }
 }
 

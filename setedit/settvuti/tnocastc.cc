@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TEvent
 #define Uses_TKeys
@@ -12,6 +12,7 @@
 #define Uses_TSOSCol
 #define Uses_TSOSListBox
 #define Uses_ctype
+#define Uses_TVCodePage
 #include <settvuti.h>
 
 #define shiftKeys (char)(event.keyDown.shiftState & 0xFF)
@@ -261,7 +262,7 @@ void TSOSSortedListBox::handleEvent(TEvent& event)
          else
              SearchPos = oldPos;
          if( SearchPos != oldPos ||
-             ucisalpha( event.keyDown.charScan.charCode )
+             TVCodePage::isAlpha( event.keyDown.charScan.charCode )
            )
              clearEvent(event);
          }

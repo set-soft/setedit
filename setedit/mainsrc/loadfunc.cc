@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #define Uses_string
@@ -100,7 +100,7 @@ int isValidForFile(char *c, char *start)
  if (*c==':')
    {
     if (c==start) return 0;
-    if (!ucisalpha(c[-1])) return 0;
+    if (!TVCodePage::isAlpha(c[-1])) return 0;
     if (c==start-1) return 1;
     uchar b=(uchar)c[-2];
     return ucisspace(b) || !ucisprint(b) || b=='\"' || b=='>' || b=='<' || b=='|';

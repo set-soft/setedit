@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /******************************************************************************
 
@@ -47,6 +47,7 @@
 #define Uses_TCEditor
 #define Uses_TCEditor_Internal
 #define Uses_ctype
+#define Uses_TVCodePage
 #include <ceditor.h>
 
 #define Uses_SOStack
@@ -1283,7 +1284,7 @@ static int SETSE_PR_Search(char *s, int l)
       {
        // Take the pos of the first string of this length
        int pos=stPR.firstWithLength[l];
-       uchar c=uctolower(*s);
+       uchar c=TVCodePage::toLower(*s);
        do
          {
           // Search a string of this length that starts with the same character
@@ -1292,7 +1293,7 @@ static int SETSE_PR_Search(char *s, int l)
              int equals=1;
              // Compare the string
              char *aux=stPR.mainTable[pos]+1;
-             s++; c=uctolower(*s);
+             s++; c=TVCodePage::toLower(*s);
 PRProxSSearch1:
              if (--l==0) // Eureka!
                 return pos+1;
@@ -1301,7 +1302,7 @@ PRProxSSearch2:
                {
                 // Next char
                 equals++;
-                s++; c=uctolower(*s);
+                s++; c=TVCodePage::toLower(*s);
                 aux++;
                 goto PRProxSSearch1;
                }
@@ -1334,7 +1335,7 @@ static int SETSE_CR_Search(char *s, int l)
       {
        // Take the pos of the first string of this length
        int pos=stCR.firstWithLength[l];
-       uchar c=uctolower(*s);
+       uchar c=TVCodePage::toLower(*s);
        do
          {
           // Search a string of this length that starts with the same character
@@ -1343,7 +1344,7 @@ static int SETSE_CR_Search(char *s, int l)
              int equals=1;
              // Compare the string
              char *aux=stCR.mainTable[pos]+1;
-             s++; c=uctolower(*s);
+             s++; c=TVCodePage::toLower(*s);
 CRProxSSearch1:
              if (--l==0) // Eureka!
                 return pos+1;
@@ -1352,7 +1353,7 @@ CRProxSSearch2:
                {
                 // Next char
                 equals++;
-                s++; c=uctolower(*s);
+                s++; c=TVCodePage::toLower(*s);
                 aux++;
                 goto CRProxSSearch1;
                }
@@ -1385,7 +1386,7 @@ int isGeneralReservedWord(char *s, int l, int CaseSens, strSETSE &st)
       {
        // Take the pos of the first string of this length
        int pos=st.firstWithLength[l];
-       uchar c = CaseSens ? *s : uctolower(*s);
+       uchar c = CaseSens ? *s : TVCodePage::toLower(*s);
        do
          {
           // Search a string of this length that starts with the same character
@@ -1394,7 +1395,7 @@ int isGeneralReservedWord(char *s, int l, int CaseSens, strSETSE &st)
              int equals=1;
              // Compare the string
              char *aux=st.mainTable[pos]+1;
-             s++; c=CaseSens ? *s : uctolower(*s);
+             s++; c=CaseSens ? *s : TVCodePage::toLower(*s);
 stProxSSearch1:
              if (--l==0) // Eureka!
                 return pos+1;
@@ -1403,7 +1404,7 @@ stProxSSearch2:
                {
                 // Next char
                 equals++;
-                s++; c=CaseSens ? *s : uctolower(*s);
+                s++; c=CaseSens ? *s : TVCodePage::toLower(*s);
                 aux++;
                 goto stProxSSearch1;
                }
@@ -1470,7 +1471,7 @@ int isPartialKeyword(char *s, int l, int CaseSens, TStringCollection *keywords,
    {
     for (i=0; i<len; i++)
        {
-        if (s[i]!=uctolower(test[i]))
+        if (s[i]!=TVCodePage::toLower(test[i]))
            return 0;
        }
    }
@@ -1624,7 +1625,7 @@ static int is_integer_float(const char *name, uint32 &dispo)
          goto TryFloat1;
       if (*name=='.')
          goto TryFloat0;
-      if (!ucisalpha(*name))
+      if (!TVCodePage::isAlpha(*name))
         {
          dispo++;
          return 1;
@@ -1651,7 +1652,7 @@ TryFloat0:
           OkIfSepRet(2);
           return 0;
          }
-       if (ucisalpha(*name) || *name=='.')
+       if (TVCodePage::isAlpha(*name) || *name=='.')
           return 0;
        else
          {
@@ -1680,7 +1681,7 @@ TryFloat1:
           OkIfSepRet(2);
           return 0;
          }
-       if (ucisalpha(*name)) return 0;
+       if (TVCodePage::isAlpha(*name)) return 0;
        dispo++;
        return 2;
       }
@@ -1720,7 +1721,7 @@ static int is_pascal_integer_float(const char *name, uint32 &dispo)
          goto TryFloat1;
       if (*name=='.')
          goto TryFloat0;
-      if (!ucisalpha(*name))
+      if (!TVCodePage::isAlpha(*name))
         {
          dispo++;
          return 1;
@@ -1742,7 +1743,7 @@ TryFloat0:
       {
        if (*name=='E' || *name=='e')
           goto TryFloat1;
-       if (ucisalpha(*name))
+       if (TVCodePage::isAlpha(*name))
           return 0;
        if (*name=='.')
          {
@@ -1768,7 +1769,7 @@ TryFloat1:
    {
     if (!ucisdigit(*name))
       {
-       if (ucisalpha(*name)) return 0;
+       if (TVCodePage::isAlpha(*name)) return 0;
        return 2;
       }
     name++;
@@ -2260,18 +2261,18 @@ static int is_clipper_symbol(char *name, uint32 l)
 inline
 static int isWordChar(char c)
 {
-  return ucisalnum(c) || c == '_';
+  return TVCodePage::isAlNum(c) || c == '_';
 }
 
 
 void SyntaxFormatLine( TCEditor * editor,
                        char *DrawBuf,
-		       uint32 LinePtr,
-		       int Width,
+                       uint32 LinePtr,
+                       int Width,
                        uint32 Attr,
                        unsigned lineLength,
                        int      seeTabs
-		     )
+                     )
 {
   unsigned bufptr;
   unsigned offset;
@@ -2326,7 +2327,7 @@ void SyntaxFormatLine( TCEditor * editor,
          c2 = name[1];
         }
 
-      if (ucisalpha(c1))
+      if (TVCodePage::isAlpha(c1))
         color = IdentColor;
       else
         color = NormalColor;
@@ -2441,10 +2442,10 @@ void SyntaxFormatLine( TCEditor * editor,
               } // Is c comment
            }
       else
-         if ((ucislower(c1) || c1=='_') && is_reserved(name,LenOfName))
+         if ((TVCodePage::isLower(c1) || c1=='_') && is_reserved(name,LenOfName))
             color = ResColor;
       else
-         if ((ucisalpha(c1) || c1=='_') && is_user_word(name,LenOfName,1))
+         if ((TVCodePage::isAlpha(c1) || c1=='_') && is_user_word(name,LenOfName,1))
             color = UserColor;
       else
          if (ucisdigit(c1))
@@ -2603,7 +2604,7 @@ void SyntaxFormatLinePascal( TCEditor * editor,
            c2 = BUFFER[lineptr+offset+1];
           }
 
-        if (ucisalpha(c1))
+        if (TVCodePage::isAlpha(c1))
           color = IdentColor;
         else
           color = NormalColor;
@@ -2862,7 +2863,7 @@ void SyntaxFormatLineClipper( TCEditor * editor,
            c3 = BUFFER[lineptr+offset+2];
           }
 
-        if (ucisalpha(c1))
+        if (TVCodePage::isAlpha(c1))
           color = IdentColor;
         else
           color = NormalColor;
@@ -3036,7 +3037,7 @@ void SyntaxFormatLineClipper( TCEditor * editor,
              }
         else
            // .t. .f. .and. .or. are special
-           if (c1=='.' && c2_valid && ucisalpha(c2))
+           if (c1=='.' && c2_valid && TVCodePage::isAlpha(c2))
              {
               uint32 ll=lineLength-1;
               int ok=0;
@@ -3076,7 +3077,7 @@ void SyntaxFormatLineClipper( TCEditor * editor,
                        color = IlegalColor;
                     break;
                    }
-                 if (!ucisalpha(*s))
+                 if (!TVCodePage::isAlpha(*s))
                    {
                     color = IlegalColor;
                     break;
@@ -3127,7 +3128,7 @@ int CheckForSequence(char *s, int len, int available, char *d)
  if (CheckSeqCase)
     for (pos=0; pos<len && s[pos]==d[pos]; pos++);
  else
-    for (pos=0; pos<len && s[pos]==uctoupper(d[pos]); pos++);
+    for (pos=0; pos<len && s[pos]==TVCodePage::toUpper(d[pos]); pos++);
  return pos==len;
 }
 
@@ -3141,19 +3142,19 @@ int CheckForSequenceNotFirst(char *s, int len, int available, char *d)
  if (CheckSeqCase)
     for (pos=1; pos<len && s[pos]==d[pos]; pos++);
  else
-    for (pos=1; pos<len && s[pos]==uctoupper(d[pos]); pos++);
+    for (pos=1; pos<len && s[pos]==TVCodePage::toUpper(d[pos]); pos++);
  return pos==len;
 }
 
 
-void SyntaxFormatLineGeneric( TCEditor * editor,
-                       char *DrawBuf,
-		       uint32 LinePtr,
-		       int Width,
-                       uint32 Attr,
-                       unsigned lineLength,
-                       int      seeTabs
-		     )
+void SyntaxFormatLineGeneric(TCEditor * editor,
+                             char *DrawBuf,
+                             uint32 LinePtr,
+                             int Width,
+                             uint32 Attr,
+                             unsigned lineLength,
+                             int      seeTabs
+                            )
 {
   unsigned bufptr;
   unsigned offset;
@@ -3265,7 +3266,7 @@ void SyntaxFormatLineGeneric( TCEditor * editor,
          c2 = name[1];
         }
 
-      if (ucisalpha(c1))
+      if (TVCodePage::isAlpha(c1))
         color = IdentColor;
       else
         color = NormalColor;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -26,10 +26,14 @@
 #define Uses_getopt
 #define Uses_TCEditor_Commands
 #define Uses_TNSSortedCollection
+#define Uses_TVCodePage
 
 #define Uses_TSSortedListBox
 #define Uses_TSLabel
 #define Uses_TSButton
+#define Uses_TSVeGroup
+#define Uses_TSHzGroup
+#define Uses_TSLabelCheck
 // InfView requests
 #include <infr.h>
 
@@ -48,7 +52,7 @@
 #include <manview.h>
 #include <codepage.h>
 
-#define INFVIEW_VERSION_STR "0.2.7"
+#define INFVIEW_VERSION_STR "0.2.8"
 const char *EditorFile="setedit";
 
 TStatusLine *createStatusForInfView(TRect r);
@@ -137,7 +141,7 @@ TEditorMiApp::TEditorMiApp() :
 {// Disable all the commands that needs at least one view opened
  TInfViewer::DisableAllCommands();
  SetPluralCommands(False);
- curCodePage=GetCurrentOSCodePage();
+ createDefaultSO();
 }
 
 void TEditorMiApp::dosShell()
@@ -299,58 +303,142 @@ TPalette& TEditorMiApp::getPalette() const
 
 /************************* Code page options ***********************************/
 
-TDialog *CreateScreenOpsDialog()
+// This code is a cut&paste of the TSetEditorApp::EncodingOptions()
+// should be unified, but is complex.
+char *TEditorMiApp::createTitle(const char *title)
 {
- TSViewCol *col=new TSViewCol(__("Screen Options"));
-
- TSLabel *lbe1=new TSLabel(_("Primary ~e~ncoding"),
-                           new TSSortedListBox(24,10,tsslbVertical));
- col->insert(2,2,lbe1);
- EasyInsertOKCancel(col);
-
- TDialog *d=col->doIt();
- delete col;
-
- d->options|=ofCentered;
- return d;
+ const char *t=_(title);
+ const char *d=TScreen::getDriverShortName();
+ char *res=new char[strlen(t)+3+strlen(d)+1];
+ strcpy(res,t);
+ strcat(res," - ");
+ strcat(res,d);
+ return res;
 }
 
 #pragma pack(1)
 typedef struct
 {
- TCollection *font_enco  CLY_Packed;
- ccIndex font_encs       CLY_Packed;
-} ScreenBox;
+ uint32  appForce      CLY_Packed;
+ TCollection *appList  CLY_Packed;
+ ccIndex appCP         CLY_Packed;
+ uint32  inpForce      CLY_Packed;
+ TCollection *inpList  CLY_Packed;
+ ccIndex inpCP         CLY_Packed;
+ uint32  scrForce      CLY_Packed;
+ TCollection *scrList  CLY_Packed;
+ ccIndex scrCP         CLY_Packed;
+} EncodingBox;
 #pragma pack()
 
-void TEditorMiApp::SetCodePage(int cp)
-{
- curCodePage=cp;
- RemapCharactersFor(curCodePage);
- deskTop->setState(sfVisible,True);
- deskTop->Redraw();
- //redraw();
-}
+// Forced width of the encodings and fonts list boxes
+const int wForced=24;
 
-void TEditorMiApp::SetScreenOps(void)
+stScreenOptions *TEditorMiApp::so=NULL;
+
+void TEditorMiApp::SetScreenOps()
 {
- if (!TScreen::codePageVariable())
-   {
-    messageBox(_("This terminal have a fixed code page"),mfError | mfOKButton);
-    return;
+ if (!so) return; // Sanity check
+ // Compute the height of the list boxes to use most of the desktop
+ TRect dkt=TProgram::deskTop->getExtent();
+ int height=dkt.b.y-dkt.a.y-10;
+ if (TScreen::codePageVariable())
+    height=(height-2)/2;
+
+ TSVeGroup *appEncode=NULL,*scrEncode=NULL,*inpEncode=NULL;
+
+ appEncode=new TSVeGroup(
+   TSLabelCheck(__("~A~pplication"),__("Force encoding"),0),
+   new TSSortedListBox(wForced,height,tsslbVertical),
+   0);
+ appEncode->makeSameW();
+
+ inpEncode=new TSVeGroup(
+   TSLabelCheck(__("~I~nput"),__("Force encoding"),0),
+   new TSSortedListBox(wForced,height,tsslbVertical),
+   0);
+ inpEncode->makeSameW();
+
+ TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,0);
+ TSView *lowerCPs=NULL;
+
+ if (TScreen::codePageVariable())
+   {// Only if the code page is variable
+    scrEncode=new TSVeGroup(
+      TSLabelCheck(__("~S~creen"),__("Force encoding"),0),
+      new TSSortedListBox(wForced,height,tsslbVertical),
+      0);
+    scrEncode->makeSameW();
+    lowerCPs=scrEncode;
    }
- ccIndex oldE1;
 
- ScreenBox box;
- box.font_enco=GetCodePagesList();
- oldE1=box.font_encs=CodePageIDToIndex(curCodePage);
 
- TDialog *d=CreateScreenOpsDialog();
+ char *title=createTitle(__("Encodings"));
+ TSViewCol *col=new TSViewCol(title);
+ DeleteArray(title);
+ col->insert(xTSLeft,yTSUp,upperCPs);
+ if (lowerCPs)
+    col->insert(xTSCenter,yTSUnder,lowerCPs,0,upperCPs);
+ col->insert(xTSCenter,yTSDown,
+             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
+                         new TSButton(_("Cancel"),cmCancel),
+                         new TSButton(_("Set ~D~efaults"),cmYes),0));
+ TDialog *d=col->doIt();
+ delete col;
+ d->options|=ofCentered;
+ //d->helpCtx=cmeEncodings;
+ EncodingBox box;
 
- if (execDialog(d,&box)==cmOK && oldE1!=box.font_encs)
-    SetCodePage(IndexToCodePageID(box.font_encs));
+ // Current TV settings
+ int idDefScr, idDefApp, idDefInp;
+ TVCodePage::GetDefaultCodePages(idDefScr,idDefApp,idDefInp);
+
+ // Currently selected values
+ int appCP, scrCP, inpCP;
+ appCP=TVCodePage::IDToIndex(so->enForceApp && so->enApp!=-1 ? so->enApp : idDefApp);
+ inpCP=TVCodePage::IDToIndex(so->enForceInp && so->enInp!=-1 ? so->enInp : idDefInp);
+ scrCP=TVCodePage::IDToIndex(so->enForceScr && so->enScr!=-1 ? so->enScr : idDefScr);
+
+ // Data box
+ box.appForce=so->enForceApp;
+ box.inpForce=so->enForceInp;
+ box.scrForce=so->enForceScr;
+ box.appCP=appCP;
+ box.inpCP=inpCP;
+ box.scrCP=scrCP;
+ box.appList=box.inpList=box.scrList=TVCodePage::GetList();
+
+ unsigned ret=execDialog(d,&box);
+ if (ret==cmYes)
+   {// Set defaults
+    so->enForceApp=so->enForceInp=so->enForceScr=0;
+    so->enApp=idDefApp;
+    so->enInp=idDefInp;
+    so->enScr=idDefScr;
+    TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
+    // This is a full redraw, not just a refresh from the buffers
+    TProgram::application->Redraw();
+   }
+ else if (ret==cmOK)
+   {
+    int appChanged=box.appForce!=so->enForceApp || (so->enForceApp && box.appCP!=appCP);
+    int inpChanged=box.inpForce!=so->enForceInp || (so->enForceInp && box.inpCP!=inpCP);
+    int priChanged=box.scrForce!=so->enForceScr || (so->enForceScr && box.scrCP!=scrCP);
+    if (appChanged || inpChanged || priChanged)
+      {// At least one changed       
+       so->enForceApp=box.appForce;
+       so->enForceInp=box.inpForce;
+       so->enForceScr=box.scrForce;
+       // Transfer the settings or just revert to defaults
+       so->enApp=so->enForceApp ? TVCodePage::IndexToID(box.appCP) : idDefApp;
+       so->enInp=so->enForceInp ? TVCodePage::IndexToID(box.inpCP) : idDefInp;
+       so->enScr=so->enForceScr ? TVCodePage::IndexToID(box.scrCP) : idDefScr;
+       TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
+       // This is a full redraw, not just a refresh from the buffers
+       TProgram::application->Redraw();
+      }
+   }
 }
-
 
 
 /************************* READ/WRITE desktop files ***********************************/
@@ -391,8 +479,10 @@ void writeView(TView *p, void *strm)
 
 void TEditorMiApp::storeDesktop(fpstream& s)
 {
- s << 2; // Version
- s << curCodePage << TInfViewer::BookMark;
+ s << 3; // Version
+ s << so->enForceApp << so->enForceScr << so->enForceInp
+   << so->enApp      << so->enScr      << so->enInp
+   << TInfViewer::BookMark;
  deskTop->forEach(::writeView,&s);
  s << 0;
 }
@@ -430,6 +520,7 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
       }
     delete f;
    }
+ TVCodePage::SetCodePage(so->enApp,so->enScr,so->enInp);
 }
 
 static
@@ -438,20 +529,37 @@ void closeView(TView *p, void *p1)
  message(p, evCommand, cmClose, p1);
 }
 
+void TEditorMiApp::createDefaultSO()
+{
+ if (!so)
+    so=new stScreenOptions;
+ so->enForceApp=so->enForceScr=so->enForceInp=0;
+ so->enApp=so->enScr=so->enInp=-1;
+}
+
 void TEditorMiApp::loadDesktop(fpstream &s, int loadWindows)
 {
  TView  *p;
  int version;
+
+ createDefaultSO();
 
  if (deskTop->valid(cmClose))
    {
     if (loadWindows)
        deskTop->forEach(::closeView,0);  // Clear the desktop
     s >> version;
-    if (version>=2)
+    if (version==2)
       {
+       int curCodePage;
        s >> curCodePage;
-       SetCodePage(curCodePage);
+       so->enForceScr=1;
+       so->enScr=curCodePage;
+      }
+    else if (version>2)
+      {
+       s >> so->enForceApp >> so->enForceScr >> so->enForceInp
+         >> so->enApp      >> so->enScr      >> so->enInp;
       }
     s >> TInfViewer::BookMark;
     if (!loadWindows)
@@ -550,7 +658,7 @@ void ParseCommandLine(int argc, char *argv[])
        case 'h':
        default:
             TScreen::suspend();
-            fprintf(stderr,_("InfView v"INFVIEW_VERSION_STR". Copyright (c) 1996-2001 by Salvador E. Tropea\n\n"));
+            fprintf(stderr,_("InfView v"INFVIEW_VERSION_STR". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
             fprintf(stderr,_("infview [option]... [info_file [menu_item...]]\n\n"));
             fprintf(stderr,_("Valid options are:\n"));
             fprintf(stderr,_("-d, --directory DIR      adds a directory to the list of directories to search\n"

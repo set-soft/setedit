@@ -84,13 +84,6 @@
 #include <loadnobkp.h>
 #include <pathlist.h>
 
-// Needed for recoding stuff only!
-#include <mp3play.h>
-#include <calendar.h>
-// From the screen saver
-extern char *coFormaScreenSaverStars[];
-extern char *cFormaScreenSaverStars[];
-
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
 static void ExportAsHTML(void);
@@ -117,8 +110,6 @@ int      TSetEditorApp::DeleteFilesOnExit=0;
 char     TSetEditorApp::ExtScrSaverOpts[extscrsParMxLen]="";
 unsigned TSetEditorApp::geFlags=0;
 int      TSetEditorApp::widthVertWindows=24;
-TVCodePageCallBack
-         TSetEditorApp::oldCPCallBack=NULL;
 unsigned long
          TSetEditorApp::deskTopVersion;
 
@@ -2170,30 +2161,6 @@ void InitPCRELibrary()
 }
 #endif
 
-void TSetEditorApp::cpCallBack(ushort *map)
-{
- int i;
-
- #define C(cla,name) TVCodePage::RemapString((uchar *)cla::name,(uchar *)cla::o##name,map)
- #ifdef SUP_MP3
- C(MP3Player,butRew);
- C(MP3Player,butStop);
- C(MP3Player,butPlay);
- C(MP3Player,butPause);
- C(MP3Player,butFfw);
- #endif
- #undef C
- #define C(cla,name) cla::name=TVCodePage::RemapChar(cla::o##name,map)
- C(TCEditor,TabChar);
- C(TCalendarView,upArrowChar);
- C(TCalendarView,downArrowChar);
- #undef C
- #define C(num,o,n) for (i=0; i<num; i++) n[i][0]=TVCodePage::RemapChar(o[i][0],map)
- C(4,coFormaScreenSaverStars,cFormaScreenSaverStars);
- #undef C
- ProgBar_CurrentChar=TVCodePage::RemapChar(ProgBar_DefaultChar,map);
-}
-
 int main(int argc, char *argv[])
 {
  TSetEditorApp::oldCPCallBack=TVCodePage::SetCallBack(TSetEditorApp::cpCallBack);
@@ -2515,7 +2482,6 @@ int main(int argc, char *argv[])
     delete TCEditor::RightClickMenu;
  destroy(editorApp);
  delete[] TSetEditorApp::WhichScrSaver; // static member
- UnLoadEditorFonts();
  SLPInterfaceDeInit();
  destroy(ReservedWords);
  destroy(UserWords);

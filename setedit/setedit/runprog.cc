@@ -20,6 +20,7 @@
 #define Uses_TDeskTop
 #define Uses_TStringCollection
 #define Uses_TScreen
+#define Uses_TVCodePage
 
 #define Uses_TSInputLine
 #define Uses_TSLabel
@@ -169,7 +170,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
 
  // Look for file name and line number
  // It fails if: The file is absolute and starts with a number
- if (ucisalpha(buf[0]) && buf[1]==':' && (!ucisdigit(buf[2])))
+ if (TVCodePage::isAlpha(buf[0]) && buf[1]==':' && (!ucisdigit(buf[2])))
     offset=2;
  endOfName=strchr(buf+offset,':');
  if (endOfName)

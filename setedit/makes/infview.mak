@@ -59,32 +59,32 @@ C_EXTRA_FLAGS=-DFOR_EDITOR -DNoEditorSpecific
 LOCAL_OPT=$(subst ___~~~___, ,$(subst $(notdir $<)___,,$(filter $(notdir\
 	$<)___%,$(LOCAL_OPTIONS))))
 
-OBJFILES=objinf/codepage.o objinf/dyncat.o objinf/fstrcmp.o\
-	objinf/gzfiles.o objinf/inf.o objinf/infbase.o objinf/infdummy.o\
-	objinf/infmain.o objinf/infmenu.o objinf/manview.o\
-	objinf/nhiscoll.o objinf/ninfview.o objinf/ninfwind.o\
-	objinf/nmanwind.o objinf/sinf.o objinf/sman.o objinf/strncpyz.o
-ALL_OBJFILES=objinf/codepage.o objinf/dyncat.o obj/lablchek.o\
-	obj/lablradi.o obj/snostate.o obj/tcheck2.o obj/tmiclust.o\
-	obj/tsbutton.o obj/tschkarr.o obj/tschkbox.o obj/tshscrol.o\
-	obj/tshzgrp.o obj/tsinplin.o obj/tsinplpi.o obj/tslabel.o\
-	obj/tslider.o obj/tslistbo.o obj/tsradbot.o obj/tssortlb.o\
-	obj/tssosslb.o obj/tstatext.o obj/tstextsc.o obj/tstsorlb.o\
-	obj/tsvegrp.o obj/tsview.o obj/tsviewco.o obj/ttextscr.o\
-	objinf/fstrcmp.o objinf/gzfiles.o objinf/inf.o objinf/infbase.o\
-	objinf/infdummy.o objinf/infmain.o objinf/infmenu.o obj/abstorel.o\
-	obj/back2sl.o obj/basename.o obj/fexpand.o obj/io.o obj/specs.o\
-	obj/splitfn.o obj/stricat.o obj/stridown.o obj/stridup.o\
-	obj/strifree.o objinf/manview.o objinf/nhiscoll.o objinf/ninfview.o\
-	objinf/ninfwind.o objinf/nmanwind.o obj/diaghelp.o obj/dktclock.o\
-	obj/fileopen.o obj/fiopeaid.o obj/inputsca.o obj/ninputsc.o\
-	obj/nostatex.o obj/nprogbar.o obj/nprogres.o obj/ntnocast.o\
-	obj/ntnosost.o obj/setstack.o obj/sprogbar.o obj/sprogres.o\
-	obj/stnocast.o obj/stnonost.o obj/tdiagaid.o obj/tdiagrow.o\
-	obj/tinppipe.o obj/tnocastc.o obj/tnosostr.o obj/tprogbar.o\
-	obj/tprogdia.o obj/tprogrdi.o obj/tprogres.o obj/tstrlbox.o\
-	obj/uisarray.o obj/ussarray.o obj/viewplus.o objinf/sinf.o\
+OBJFILES=objinf/dyncat.o objinf/fstrcmp.o objinf/gzfiles.o objinf/inf.o\
+	objinf/infbase.o objinf/infdummy.o objinf/infmain.o\
+	objinf/infmenu.o objinf/manview.o objinf/nhiscoll.o\
+	objinf/ninfview.o objinf/ninfwind.o objinf/nmanwind.o objinf/sinf.o\
 	objinf/sman.o objinf/strncpyz.o
+ALL_OBJFILES=objinf/dyncat.o obj/lablchek.o obj/lablradi.o obj/snostate.o\
+	obj/tcheck2.o obj/tmiclust.o obj/tsbutton.o obj/tschkarr.o\
+	obj/tschkbox.o obj/tshscrol.o obj/tshzgrp.o obj/tsinplin.o\
+	obj/tsinplpi.o obj/tslabel.o obj/tslider.o obj/tslistbo.o\
+	obj/tsradbot.o obj/tssortlb.o obj/tssosslb.o obj/tstatext.o\
+	obj/tstextsc.o obj/tstsorlb.o obj/tsvegrp.o obj/tsview.o\
+	obj/tsviewco.o obj/ttextscr.o objinf/fstrcmp.o objinf/gzfiles.o\
+	objinf/inf.o objinf/infbase.o objinf/infdummy.o objinf/infmain.o\
+	objinf/infmenu.o obj/abstorel.o obj/back2sl.o obj/basename.o\
+	obj/fexpand.o obj/io.o obj/specs.o obj/splitfn.o obj/stricat.o\
+	obj/stridown.o obj/stridup.o obj/strifree.o objinf/manview.o\
+	objinf/nhiscoll.o objinf/ninfview.o objinf/ninfwind.o\
+	objinf/nmanwind.o obj/diaghelp.o obj/dktclock.o obj/fileopen.o\
+	obj/fiopeaid.o obj/inputsca.o obj/ninputsc.o obj/nostatex.o\
+	obj/nprogbar.o obj/nprogres.o obj/ntnocast.o obj/ntnosost.o\
+	obj/setstack.o obj/sprogbar.o obj/sprogres.o obj/stnocast.o\
+	obj/stnonost.o obj/tdiagaid.o obj/tdiagrow.o obj/tinppipe.o\
+	obj/tnocastc.o obj/tnosostr.o obj/tprogbar.o obj/tprogdia.o\
+	obj/tprogrdi.o obj/tprogres.o obj/tstrlbox.o obj/uisarray.o\
+	obj/ussarray.o obj/viewplus.o objinf/sinf.o objinf/sman.o\
+	objinf/strncpyz.o
 LIBRARIES=libeasyd.a librhuti.a libsettv.a
 SOURCE_NAME=$<
 OUTFILE=$@
@@ -96,10 +96,10 @@ SRC_DIRS=../infview ../settvuti ../extra ../infview/names\
 WUC=
 EDITORS=
 MAIN_TARGET=infview.exe
-PROJECT_ITEMS=codepage.cc dyncat.cc easydiag.gpr fstrcmp.c gzfiles.cc\
-	inf.cc infbase.cc infdummy.cc infmain.cc infmenu.cc librhuti.gpr\
-	manview.cc nhiscoll.cc ninfview.cc ninfwind.cc nmanwind.cc\
-	settv.gpr sinf.cc sman.cc strncpyz.cc
+PROJECT_ITEMS=dyncat.cc easydiag.gpr fstrcmp.c gzfiles.cc inf.cc infbase.cc\
+	infdummy.cc infmain.cc infmenu.cc librhuti.gpr manview.cc\
+	nhiscoll.cc ninfview.cc ninfwind.cc nmanwind.cc settv.gpr sinf.cc\
+	sman.cc strncpyz.cc
 DEFAULT_MASK=*
 RHIDE_BIN_DIR=/usr/bin
 PASCAL_TYPE=GPC
@@ -300,10 +300,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -314,10 +314,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -402,8 +402,8 @@ include rhide.env
 all::
 clean::
 	rm -f $(CLEAN_FILES)
-DEPS_0= objinf/codepage.o objinf/dyncat.o objinf/fstrcmp.o objinf/gzfiles.o\
-	objinf/inf.o objinf/infbase.o objinf/infdummy.o objinf/infmain.o\
+DEPS_0= objinf/dyncat.o objinf/fstrcmp.o objinf/gzfiles.o objinf/inf.o\
+	objinf/infbase.o objinf/infdummy.o objinf/infmain.o\
 	objinf/infmenu.o objinf/manview.o objinf/nhiscoll.o\
 	objinf/ninfview.o objinf/ninfwind.o objinf/nmanwind.o objinf/sinf.o\
 	objinf/sman.o objinf/strncpyz.o libeasyd.a librhuti.a libsettv.a
@@ -411,76 +411,20 @@ NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 infview.exe:: $(DEPS_0)
 	$(RHIDE_COMPILE_LINK)
-DEPS_1=codepage.cc ../include/ced_coma.h ../include/ced_inte.h\
-	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
-	../setedit/include/calendar.h ../setedit/include/codepage.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tprogdia.h\
-	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
-	../../tvision/include/tv/app.h ../../tvision/include/tv/backgrnd.h\
-	../../tvision/include/tv/button.h\
-	../../tvision/include/tv/checkbox.h\
-	../../tvision/include/tv/clrdlg.h\
-	../../tvision/include/tv/clrselct.h\
-	../../tvision/include/tv/cluster.h\
-	../../tvision/include/tv/collectn.h\
-	../../tvision/include/tv/colorsel.h\
-	../../tvision/include/tv/configtv.h\
-	../../tvision/include/tv/desktop.h\
-	../../tvision/include/tv/dialog.h\
-	../../tvision/include/tv/dialogs.h\
-	../../tvision/include/tv/dirlibo.h\
-	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
-	../../tvision/include/tv/frame.h ../../tvision/include/tv/group.h\
-	../../tvision/include/tv/history.h\
-	../../tvision/include/tv/indicato.h\
-	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
-	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/listbox.h\
-	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/menubox.h ../../tvision/include/tv/menus.h\
-	../../tvision/include/tv/menuview.h\
-	../../tvision/include/tv/mnoselct.h\
-	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
-	../../tvision/include/tv/nssorcol.h\
-	../../tvision/include/tv/object.h\
-	../../tvision/include/tv/objects.h\
-	../../tvision/include/tv/opstream.h\
-	../../tvision/include/tv/point.h ../../tvision/include/tv/program.h\
-	../../tvision/include/tv/pstream.h\
-	../../tvision/include/tv/radiobtn.h ../../tvision/include/tv/rect.h\
-	../../tvision/include/tv/resource.h\
-	../../tvision/include/tv/screen.h\
-	../../tvision/include/tv/scrlbar.h\
-	../../tvision/include/tv/sortcoll.h\
-	../../tvision/include/tv/statslin.h\
-	../../tvision/include/tv/stddlg.h\
-	../../tvision/include/tv/streambl.h\
-	../../tvision/include/tv/strncoll.h\
-	../../tvision/include/tv/system.h\
-	../../tvision/include/tv/tobjstrm.h\
-	../../tvision/include/tv/ttypes.h\
-	../../tvision/include/tv/tvconfig.h\
-	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h
-objinf/codepage.o:: $(DEPS_1)
+DEPS_1=dyncat.cc ../extra/dyncat.h ../include/configed.h
+objinf/dyncat.o:: $(DEPS_1)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_2=dyncat.cc ../extra/dyncat.h ../include/configed.h
-objinf/dyncat.o:: $(DEPS_2)
-	$(RHIDE_COMPILE.cc.o)
-DEPS_3=
+DEPS_2=
 .PHONY: easydiag.gpr.force
 all:: easydiag.gpr.force
 easydiag.gpr.force:
 	$(MAKE) -f easydiag.mak $(FLAGS_FOR_SUBPROJECTS)
 clean::
 	
-DEPS_4=fstrcmp.c
-objinf/fstrcmp.o:: $(DEPS_4)
+DEPS_3=fstrcmp.c
+objinf/fstrcmp.o:: $(DEPS_3)
 	$(RHIDE_COMPILE.c.o)
-DEPS_5=gzfiles.cc ../include/ceditint.h ../include/configed.h\
+DEPS_4=gzfiles.cc ../include/ceditint.h ../include/configed.h\
 	../include/gzfiles.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -492,9 +436,9 @@ DEPS_5=gzfiles.cc ../include/ceditint.h ../include/configed.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objinf/gzfiles.o:: $(DEPS_5)
+objinf/gzfiles.o:: $(DEPS_4)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_6=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
+DEPS_5=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
 	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
 	../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
@@ -508,6 +452,7 @@ DEPS_6=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
 	../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
@@ -552,15 +497,16 @@ DEPS_6=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/inf.o:: $(DEPS_6)
+objinf/inf.o:: $(DEPS_5)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_7=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
+DEPS_6=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
 	../include/configed.h ../include/gzfiles.h ../include/tvsetuti.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
 	../librhuti/rhutils.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tprogdia.h ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/codepage.h\
+	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
@@ -588,14 +534,15 @@ DEPS_7=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/infbase.o:: $(DEPS_7)
+objinf/infbase.o:: $(DEPS_6)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_8=infdummy.cc
-objinf/infdummy.o:: $(DEPS_8)
+DEPS_7=infdummy.cc
+objinf/infdummy.o:: $(DEPS_7)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_9=infmain.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
-	../easydiag/tsbutton.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
-	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
+DEPS_8=infmain.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../easydiag/tsbutton.h ../easydiag/tshzgrp.h ../easydiag/tslabel.h\
+	../easydiag/tslistbo.h ../easydiag/tssortlb.h\
+	../easydiag/tssortva.h ../easydiag/tsvegrp.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_coma.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infalone.h\
@@ -609,6 +556,7 @@ DEPS_9=infmain.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/chdirdlg.h\
 	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -652,9 +600,9 @@ DEPS_9=infmain.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/infmain.o:: $(DEPS_9)
+objinf/infmain.o:: $(DEPS_8)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_10=infmenu.cc ../include/ced_coma.h ../include/ceditor.h\
+DEPS_9=infmenu.cc ../include/ced_coma.h ../include/ceditor.h\
 	../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infalone.h ../infview/include/infbase.h\
 	../infview/include/infbaser.h ../infview/include/infr.h\
@@ -706,16 +654,16 @@ DEPS_10=infmenu.cc ../include/ced_coma.h ../include/ceditor.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/infmenu.o:: $(DEPS_10)
+objinf/infmenu.o:: $(DEPS_9)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_11=
+DEPS_10=
 .PHONY: librhuti.gpr.force
 all:: librhuti.gpr.force
 librhuti.gpr.force:
 	$(MAKE) -f librhuti.mak $(FLAGS_FOR_SUBPROJECTS)
 clean::
 	
-DEPS_12=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_11=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tsinplin.h ../easydiag/tslabel.h\
 	../easydiag/tsvegrp.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
 	../extra/dyncat.h ../include/ced_coma.h ../include/ceditor.h\
@@ -724,6 +672,7 @@ DEPS_12=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
@@ -733,10 +682,12 @@ DEPS_12=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/history.h\
 	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/label.h ../../tvision/include/tv/no_mss.h\
-	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/osclipboard.h\
 	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
 	../../tvision/include/tv/pstream.h ../../tvision/include/tv/rect.h\
 	../../tvision/include/tv/screen.h\
@@ -754,9 +705,9 @@ DEPS_12=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/manview.o:: $(DEPS_12)
+objinf/manview.o:: $(DEPS_11)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_13=nhiscoll.cc ../settvuti/include/settvuti.h\
+DEPS_12=nhiscoll.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -767,9 +718,9 @@ DEPS_13=nhiscoll.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objinf/nhiscoll.o:: $(DEPS_13)
+objinf/nhiscoll.o:: $(DEPS_12)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_14=ninfview.cc ../settvuti/include/settvuti.h\
+DEPS_13=ninfview.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -780,9 +731,9 @@ DEPS_14=ninfview.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objinf/ninfview.o:: $(DEPS_14)
+objinf/ninfview.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_15=ninfwind.cc ../settvuti/include/settvuti.h\
+DEPS_14=ninfwind.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -793,9 +744,9 @@ DEPS_15=ninfwind.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objinf/ninfwind.o:: $(DEPS_15)
+objinf/ninfwind.o:: $(DEPS_14)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_16=nmanwind.cc ../settvuti/include/settvuti.h\
+DEPS_15=nmanwind.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -806,16 +757,16 @@ DEPS_16=nmanwind.cc ../settvuti/include/settvuti.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-objinf/nmanwind.o:: $(DEPS_16)
+objinf/nmanwind.o:: $(DEPS_15)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_17=
+DEPS_16=
 .PHONY: settv.gpr.force
 all:: settv.gpr.force
 settv.gpr.force:
 	$(MAKE) -f settv.mak $(FLAGS_FOR_SUBPROJECTS)
 clean::
 	
-DEPS_18=sinf.cc ../include/tvsetuti.h ../infview/include/inf.h\
+DEPS_17=sinf.cc ../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
 	../infview/include/infr.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
@@ -851,9 +802,9 @@ DEPS_18=sinf.cc ../include/tvsetuti.h ../infview/include/inf.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/sinf.o:: $(DEPS_18)
+objinf/sinf.o:: $(DEPS_17)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_19=sman.cc ../include/tvsetuti.h ../infview/include/manview.h\
+DEPS_18=sman.cc ../include/tvsetuti.h ../infview/include/manview.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/group.h\
@@ -875,9 +826,9 @@ DEPS_19=sman.cc ../include/tvsetuti.h ../infview/include/manview.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-objinf/sman.o:: $(DEPS_19)
+objinf/sman.o:: $(DEPS_18)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_20=strncpyz.cc
-objinf/strncpyz.o:: $(DEPS_20)
+DEPS_19=strncpyz.cc
+objinf/strncpyz.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
 all:: infview.exe

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -33,6 +33,7 @@
 #define Uses_ctype
 #define Uses_limits
 #define Uses_filelength
+#define Uses_TVCodePage
 // InfView requests
 #include <infbaser.h>
 #include <settvuti.h>
@@ -147,7 +148,7 @@ static void CopiarDatosDe(char *Tipo,char *Dest,char *Ori,int maxlen)
 static inline
 int isWord(int a)
 {
- return ucisalnum(a) || a=='_';
+ return TVCodePage::isAlNum(a) || a=='_';
 }
 
 #ifdef InfV_UseBinaryFile
@@ -407,7 +408,7 @@ static void TakeName(char *Buf,char *Nom,int &ini,int &largo,int &Linea, int &li
     {
      if (*ori==':')
        {
-        if ((!ucisalpha(ori[1]) && ori[1]!=':') || ( ori[1]==':' && IsDelimiterDeXX(ori[2]) ) )
+        if ((!TVCodePage::isAlpha(ori[1]) && ori[1]!=':') || ( ori[1]==':' && IsDelimiterDeXX(ori[2]) ) )
            break;
         if (warnpos)
            break;
@@ -534,7 +535,7 @@ static void TakeName(char *Buf,char *Nom,char *Nom2,int &ini,int &largo,int &Lin
     {
      if (*ori==':')
        {
-        if ((!ucisalpha(ori[1]) && ori[1]!=':') || ( ori[1]==':' && IsDelimiterDeXX(ori[2]) ) )
+        if ((!TVCodePage::isAlpha(ori[1]) && ori[1]!=':') || ( ori[1]==':' && IsDelimiterDeXX(ori[2]) ) )
            break;
         if (warnpos)
            break;
@@ -926,16 +927,9 @@ int TInfTopic::getLine( int line, char *buffer )
 }
 
 
-/*static int MatchFirstLet(char *s,int Val)
-{
- for (;*s && !ucisalpha(*s);s++);
- return (uctoupper(*s)==Val);
-}*/
-
-
 static int MatchCross(char *s,char *match,int l,int &vislen)
 {
- for (vislen=l;*s && !ucisalpha(*s);s++,vislen++);
+ for (vislen=l;*s && !TVCodePage::isAlpha(*s);s++,vislen++);
  return strncasecmp(s,match,l)==0;
 }
 
@@ -988,7 +982,7 @@ int TInfTopic::selBestMatch(char *match, int &PerfectMatch, unsigned opts)
     {
      // Copy & struppr
      s1=opts & bestMVisibleName ? crossRefs[i].Name2 : crossRefs[i].Name;
-     for (s2=Buf; *s1; s1++,s2++) *s2=uctoupper(*s1); *s2=0;
+     for (s2=Buf; *s1; s1++,s2++) *s2=TVCodePage::toUpper(*s1); *s2=0;
      // Compare
      for (s1=Buf, s2=match, j=0; *s1==*s2 && *s1; s1++,s2++,j++);
      if (j>BestPoints ||

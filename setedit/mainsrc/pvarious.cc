@@ -12,7 +12,9 @@
 #define Uses_stdio
 #define Uses_ctype
 #define Uses_string
-#include <compatlayer.h>
+#define Uses_TVCodePage
+#include <tv.h>
+
 #include <bufun.h>
 
 //#define STANDALONE
@@ -55,7 +57,7 @@ int SearchSHLDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
  while (Index<len)
    {
     GetLine(); Line++;
-    if (strncasecmp(bfBuffer,"Name",4)==0 && !isalpha((uchar)bfBuffer[4]))
+    if (strncasecmp(bfBuffer,"Name",4)==0 && !TVCodePage::isAlpha((uchar)bfBuffer[4]))
       {
        char *pos=MoveAfterEqual(bfBuffer);
        ReplaceCRby0(pos);

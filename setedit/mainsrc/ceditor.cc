@@ -1865,16 +1865,14 @@ void TCEditor::handleEvent( TEvent& event )
                   CacheColors();
                   break;
 
-             #if defined(STANDALONE)
              case cmcUpdateCodePage:
-                  RemapNStringCodePage((uchar *)hScrollBar->chars,
-                                       (uchar *)TScrollBar::ohChars,
-                                       (ushort *)event.message.infoPtr,5);
-                  RemapNStringCodePage((uchar *)vScrollBar->chars,
-                                       (uchar *)TScrollBar::ovChars,
-                                       (ushort *)event.message.infoPtr,5);
+                  TVCodePage::RemapNString((uchar *)hScrollBar->chars,
+                                           (uchar *)TScrollBar::ohChars,
+                                           (ushort *)event.message.infoPtr,5);
+                  TVCodePage::RemapNString((uchar *)vScrollBar->chars,
+                                           (uchar *)TScrollBar::ovChars,
+                                           (ushort *)event.message.infoPtr,5);
                   return;
-             #endif
      
              default:
                   return;
@@ -3784,7 +3782,7 @@ void TCEditor::RemapCodePageBuffer(int sourID, int destID, unsigned ops,
        p->sourID=sourID; p->destID=destID; p->ops=ops;
        un.s2.Recode=p;
       }
-    RemapBufferGeneric(sourID,destID,(uchar *)s,selEnd-selStart,ops);
+    TVCodePage::RemapBufferGeneric(sourID,destID,(uchar *)s,selEnd-selStart,ops);
     // Add the undo info to the array
     if (allowUndo)
        BlockUndoInfoEndFill(un);
@@ -3794,7 +3792,7 @@ void TCEditor::RemapCodePageBuffer(int sourID, int destID, unsigned ops,
     if (editorDialog(edActionWOUndo)!=cmYes)
        return;
     flushLine();
-    RemapBufferGeneric(sourID,destID,(uchar *)buffer,bufLen,ops);
+    TVCodePage::RemapBufferGeneric(sourID,destID,(uchar *)buffer,bufLen,ops);
     flushUndoInfo();
    }
 
@@ -4523,7 +4521,7 @@ void TCEditor::selRectToUpper()
  char *s=selRectClip->s;
  char *end=s+size;
  for (; s<end; s++)
-     *s=uctoupper(*s);
+     *s=TVCodePage::toUpper(*s);
 
  selRectPaste(selRectClip,Xr1,Yr1);
 }
@@ -4549,7 +4547,7 @@ void TCEditor::selRectToLower()
  char *s=selRectClip->s;
  char *end=s+size;
  for (; s<end; s++)
-     *s=uctolower(*s);
+     *s=TVCodePage::toLower(*s);
 
  selRectPaste(selRectClip,Xr1,Yr1);
 }
@@ -5753,28 +5751,28 @@ void TCEditor::BlockCaseChange(UndoState action, Boolean allowUndo)
       {
        case undoToLower:
             for (; s<end; s++)
-                 *s=uctolower(*s);
+                 *s=TVCodePage::toLower(*s);
             break;
        case undoToUpper:
             for (; s<end; s++)
-                 *s=uctoupper(*s);
+                 *s=TVCodePage::toUpper(*s);
             break;
        case undoInvertCase:
             for (; s<end; s++)
-                if (ucislower(*s))
-                   *s=uctoupper(*s);
+                if (TVCodePage::isLower(*s))
+                   *s=TVCodePage::toUpper(*s);
                 else
-                   *s=uctolower(*s);
+                   *s=TVCodePage::toLower(*s);
             break;
        case undoAltCase:
             ff=0;
             for (; s<end; s++)
-                if (ucisalpha(*s))
+                if (TVCodePage::isAlpha(*s))
                   {
                    if (ff & 1)
-                      *s=uctolower(*s);
+                      *s=TVCodePage::toLower(*s);
                    else
-                      *s=uctoupper(*s);
+                      *s=TVCodePage::toUpper(*s);
                    ff++;
                   }
             break;
@@ -5807,8 +5805,8 @@ void TCEditor::SetCharCase(int option)
  char *s=ColToPointer(dif);
  if (dif) // Only if over a char
     return;
- uchar upper=uctoupper(*s);
- uchar lower=uctolower(*s),result;
+ uchar upper=TVCodePage::toUpper(*s);
+ uchar lower=TVCodePage::toLower(*s),result;
  switch (option)
    {
     case 0:

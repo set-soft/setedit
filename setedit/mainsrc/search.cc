@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -13,7 +13,7 @@ search, RegEx and PCRE is a little complex and messy.
 #include <stddef.h>
 #define Uses_regex
 #define Uses_string
-#define Uses_ctype
+#define Uses_TVCodePage
 #include <stdio.h>
 
 #ifdef SUP_PCRE
@@ -566,7 +566,7 @@ unsigned TCEditor_iScan(const void *block, unsigned size, const char *str)
  uint32 ret=0;
  while (size--)
   {
-   if (uctoupper(Block[ret])==uctoupper(str[0]))
+   if (TVCodePage::toUpper(Block[ret])==TVCodePage::toUpper(str[0]))
      {
       uint32 i=0;
       do
@@ -577,7 +577,7 @@ unsigned TCEditor_iScan(const void *block, unsigned size, const char *str)
          if (size<i)
             return sfSearchFailed;
         }
-      while (uctoupper(Block[ret+i])==uctoupper(str[i]));
+      while (TVCodePage::toUpper(Block[ret+i])==TVCodePage::toUpper(str[i]));
      }
    ret++;
   }

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.205  2002/09/11 12:58:44  set
+* Fixed: The encoding options dialog failed to revert default values when
+the user disabled the "force" option.
+
 Revision 1.204  2002/09/10 19:07:29  set
 * Fixed: [Big Endian] the hexadecimal syntax highlight could use unaligned
 memory.

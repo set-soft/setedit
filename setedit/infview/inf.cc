@@ -153,11 +153,6 @@ adjustments, for example I didn't take care about names crossing lines.
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
 
-#ifdef FOR_EDITOR
-// Is from codepage.h
-extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned short *map, int len);
-#endif
-
 #define Uses_TStreamableClass
 #define Uses_TPoint
 #define Uses_TStreamable
@@ -188,6 +183,7 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #define Uses_TFileDialog
 #define Uses_TCommandSet
 #define Uses_TVOSClipboard
+#define Uses_TVCodePage
 
 #define Uses_TCEditor_External
 #define Uses_TCEditor_Commands
@@ -1103,9 +1099,9 @@ void TInfViewer::NextWord(int selectMode, int x, int y)
     s=b;
     vScrollBar->setValue(y);
    }
- if (ucisalpha(*s))
-    for (; *s && ucisalpha(*s); s++, x++);
- for (; *s && !ucisalpha(*s); s++, x++);
+ if (TVCodePage::isAlpha(*s))
+    for (; *s && TVCodePage::isAlpha(*s); s++, x++);
+ for (; *s && !TVCodePage::isAlpha(*s); s++, x++);
  hScrollBar->setValue(x);
  if (selectMode && (ox!=x || oy!=y))
    {
@@ -1133,9 +1129,9 @@ void TInfViewer::PrevWord(int selectMode, int x, int y)
  topic->getLine(y+1,b);
  s=b+x;
  s--; x--;
- if (!ucisalpha(*s))
-    for (; s!=b && !ucisalpha(*s); s--, x--);
- for (; s!=b && ucisalpha(*s); s--, x--);
+ if (!TVCodePage::isAlpha(*s))
+    for (; s!=b && !TVCodePage::isAlpha(*s); s--, x--);
+ for (; s!=b && TVCodePage::isAlpha(*s); s--, x--);
  if (s!=b)
    {
     s++;
@@ -1487,7 +1483,7 @@ void TInfViewer::handleEvent( TEvent& event )
                   break;
 
              default:
-                 int Key=uctoupper(event.keyDown.charScan.charCode);
+                 int Key=TVCodePage::toUpper(event.keyDown.charScan.charCode);
                  if ((key>=kbA && key<=kbZ) || key==kbSpace || Key=='_')
                    {
                     if (QuickLen<MAX_NODE_NAME)
@@ -1588,19 +1584,17 @@ void TInfViewer::handleEvent( TEvent& event )
              PasteToClipboard(OSInsertRoutine1);
           break;
 
-     #if defined(FOR_EDITOR)
      case evBroadcast:
           if (event.message.command==cmcUpdateCodePage)
             {
-             RemapNStringCodePage((uchar *)hScrollBar->chars,
-                                  (uchar *)TScrollBar::ohChars,
-                                  (ushort *)event.message.infoPtr,5);
-             RemapNStringCodePage((uchar *)vScrollBar->chars,
-                                  (uchar *)TScrollBar::ovChars,
-                                  (ushort *)event.message.infoPtr,5);
+             TVCodePage::RemapNString((uchar *)hScrollBar->chars,
+                                      (uchar *)TScrollBar::ohChars,
+                                      (ushort *)event.message.infoPtr,5);
+             TVCodePage::RemapNString((uchar *)vScrollBar->chars,
+                                      (uchar *)TScrollBar::ovChars,
+                                      (ushort *)event.message.infoPtr,5);
             }
           break;
-     #endif
      }
 }
 
@@ -1708,11 +1702,10 @@ void TInfViewer::BookMarksDialog(void)
 
 int StrNCmp(const char *s1, const char *s2, size_t n)
 {
-
   if (n == 0) return 0;
   do
    {
-    if (uctoupper(*s1) != *s2++) return 1;
+    if (TVCodePage::toUpper(*s1) != *s2++) return 1;
     if (*s1++ == 0)
       break;
    }
@@ -1738,7 +1731,7 @@ char *ScanStr(char *s, char *find, int &Linea, int &Col)
       {
       do
         {
-	 if ((sc = *s++) == 0) return 0;
+         if ((sc = *s++) == 0) return 0;
          if (sc=='\n')
            {
             Col=0;
@@ -1747,7 +1740,7 @@ char *ScanStr(char *s, char *find, int &Linea, int &Col)
          else
             Col++;
         }
-      while (uctoupper(sc) != c);
+      while (TVCodePage::toUpper(sc) != c);
       }
     while (StrNCmp(s, find, len) != 0);
     s--;
@@ -1804,7 +1797,7 @@ int TInfViewer::searchInCurrentTopic(int Linea,int Col,int largo)
      {
       if ( !(findType & fitWWord) ||  // (!Whole word or
          // is a whole word)
-         (!ucisalpha(*(lastSearch-1)) && !ucisalpha(*(lastSearch+largo))) )
+         (!TVCodePage::isAlpha(*(lastSearch-1)) && !TVCodePage::isAlpha(*(lastSearch+largo))) )
         {
          LineEndSelect=LineStartSelect=Linea+1;
          ColStartSelect=Col;

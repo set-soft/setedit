@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -34,6 +34,7 @@ bastante bueno.
 #define Uses_TNoCaseSOSStringCollection
 #define Uses_TNCSAssociative
 #define Uses_TNSSOSCol
+#define Uses_TVCodePage
 #include <settvuti.h>
 
 #define Uses_TMLISDGDefs
@@ -1056,7 +1057,7 @@ void OutPutString(char *s, char *e,FILE *f)
                    fputc(*s,f);
                }
              else
-             if (*(s+1)=='p' && !ucisalpha(*(s+2)))
+             if (*(s+1)=='p' && !TVCodePage::isAlpha(*(s+2)))
                {
                 fprintf(f,"\n%s\n",EndOfPar);
                 s++;

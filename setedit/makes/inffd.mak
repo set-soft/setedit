@@ -275,10 +275,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -289,10 +289,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -396,6 +396,7 @@ DEPS_1=inf.cc ../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
 	../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/cmdset.h\
+	../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
@@ -448,7 +449,8 @@ DEPS_2=infbase.cc ../extra/dyncat.h ../include/ceditint.h\
 	../librhuti/rhutils.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tprogdia.h ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/codepage.h\
+	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
@@ -487,6 +489,7 @@ DEPS_3=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
@@ -496,10 +499,12 @@ DEPS_3=manview.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/history.h\
 	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/label.h ../../tvision/include/tv/no_mss.h\
-	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/osclipboard.h\
 	../../tvision/include/tv/palette.h ../../tvision/include/tv/point.h\
 	../../tvision/include/tv/pstream.h ../../tvision/include/tv/rect.h\
 	../../tvision/include/tv/screen.h\

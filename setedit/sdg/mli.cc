@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -26,6 +26,7 @@ code is inflated in some cases ... I moved mlivar.cc to this code.
 #define Uses_TLispVarDefs
 #define Uses_TMLIArraySimple
 #define Uses_TMLIBase
+#define Uses_TVCodePage
 #include <mli.h>
 
 #include <dyncat.h>
@@ -1203,7 +1204,7 @@ TLispVar *TMLIBase::InterpretNoClean(char *s)
             while (*Code!='\n' && *Code) Code++;
             break;
        default:
-            if (ucisalpha(*Code))
+            if (TVCodePage::isAlpha(*Code))
               { // That could be a var or a command
                if (ParseVarOrCommand(Params,Commands))
                   return NULL;
@@ -1290,7 +1291,7 @@ int TMLIBase::ParseVarOrCommand(int &Params,int &Commands)
  char *start=s,v;
  Command p;
 
- for (;*s && (ucisalnum(*s) || *s=='_'); s++);
+ for (;*s && (TVCodePage::isAlNum(*s) || *s=='_'); s++);
  Code=s;
  v=*s;
  *s=0;

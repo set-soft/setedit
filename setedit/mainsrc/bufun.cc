@@ -1,6 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2001 by Salvador E. Tropea (SET)
+  Busca Funciones (BuFun), Copyright (c) 1996-2002 by Salvador E. Tropea (SET)
 
   Designed for the TCEditor class to be used by Robert H”hne in your RHIDE.
 
@@ -55,6 +55,7 @@ or the user choose cancel the routine returns -1.
 #define Uses_TDialog
 #define Uses_TEvent
 #define Uses_TApplication
+#define Uses_TVCodePage
 
 #define Uses_TCEditor_External // For mode constants
 #define Uses_TCEditor_Commands // For the cmcJumpToFunction context
@@ -86,7 +87,7 @@ extern ushort execDialog( TDialog *d, void *data );
 
 inline int IsWordChar(char c)
 {
- return c=='_' || ucisalpha(c);
+ return c=='_' || TVCodePage::isAlpha(c);
 }
 
 char bfBuffer[MaxLenWith0];
@@ -182,7 +183,7 @@ int TakeWord(int TakeOneCharToo)
         bfBuffer[Used++]=c;
         c=GetAChar();
        }
-      while (c!=EOF && Used<MaxLen && (ucisalnum(c) || c==':' || c=='_' || c=='~'));
+      while (c!=EOF && Used<MaxLen && (TVCodePage::isAlNum(c) || c==':' || c=='_' || c=='~'));
       bfBuffer[Used]=0;
       if (c!=EOF)
          UnGetAChar(c);
@@ -271,7 +272,7 @@ int TakeWord(int TakeOneCharToo)
                 bfBuffer[Used++]=c;
                 c=GetAChar();
                }
-              while (c!=EOF && Used<MaxLen && ucisalpha(c));
+              while (c!=EOF && Used<MaxLen && TVCodePage::isAlpha(c));
               bfBuffer[Used]=0;
               if (c==EOF || Used==0)
                  return 0;

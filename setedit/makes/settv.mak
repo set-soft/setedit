@@ -287,10 +287,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -301,10 +301,10 @@ RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
-RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
+RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
+RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 dl bz2 mpegsnd z pcre 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
 SUPPORT_INC=
@@ -687,9 +687,12 @@ DEPS_16=stnonost.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/tnosostr.h
 obj/stnonost.o:: $(DEPS_16)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_17=tdiagaid.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/button.h\
+DEPS_17=tdiagaid.cc ../setedit/include/setapp.h\
+	../settvuti/include/diaghelp.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
+	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/button.h\
 	../../tvision/include/tv/cluster.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -718,10 +721,7 @@ DEPS_17=tdiagaid.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../setedit/include/setapp.h\
-	../settvuti/include/diaghelp.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
-	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h
+	../../tvision/include/tv/window.h
 obj/tdiagaid.o:: $(DEPS_17)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_18=tdiagrow.cc ../../tvision/include/compatlayer.h\
@@ -783,8 +783,11 @@ DEPS_19=tinppipe.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/viewplus.h
 obj/tinppipe.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_20=tnocastc.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+DEPS_20=tnocastc.cc ../include/tvsetuti.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/codepage.h\
+	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -809,9 +812,7 @@ DEPS_20=tnocastc.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/yes_mss.h ../include/tvsetuti.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/yes_mss.h
 obj/tnocastc.o:: $(DEPS_20)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_21=tnosostr.cc ../../tvision/include/compatlayer.h\
