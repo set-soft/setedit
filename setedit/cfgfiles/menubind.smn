@@ -384,6 +384,7 @@ StatusEntry: "~Alt+F8~ Next", cmeNextMessage, kbAlF8
 StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
 StatusEntry: "Save As", cmcSaveAs, kbUnknown
 StatusEntry: "~Ctrl+Ins~ Copy", cmcCopy, kbCtInsert
+StatusEntry: "Copy OS clip.", cmcCopyClipWin, kbUnknown
 StatusHiddenEntry: cmZoom, kbF5
 StatusHiddenEntry: cmeLastHelp, kbAlF1
 EndStatusRange

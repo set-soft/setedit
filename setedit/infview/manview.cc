@@ -436,17 +436,6 @@ void TManPageView::handleEvent( TEvent& event )
     if (TVOSClipboard::isAvailable()>1)
        clipWinCopy(1);
    }
- else if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
-   {
-    if (owner->state & sfModal)
-       endModal(cmCancel);
-    else
-      {
-       event.what = evCommand;
-       event.message.command = cmClose;
-       putEvent(event);
-      }
-   }
  else if (event.what==evCommand)
    {
     switch (event.message.command)
@@ -634,6 +623,8 @@ void TManWindow::handleEvent(TEvent& event)
             break;
       }
    }
+ else if (event.what==evKeyDown && event.keyDown.keyCode==kbEsc)
+    close();
 }
 
 // These members are needed to initialize page propperly

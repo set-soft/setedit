@@ -26,6 +26,7 @@
 #define Uses_TVCodePage
 #define Uses_TScreen
 #define Uses_TDeskTop
+#define Uses_TVOSClipboard
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
@@ -179,11 +180,13 @@ void TSOSListBoxMsg::updateCommands(int enable)
  if (enable && l && l->getCount()!=0)
    {
     enableCommand(cmcCopy);
+    enableCommand(cmcCopyClipWin);
     enableCommand(cmcSaveAs);
    }
  else
    {
     disableCommand(cmcCopy);
+    disableCommand(cmcCopyClipWin);
     disableCommand(cmcSaveAs);
    }
 }
@@ -219,7 +222,7 @@ void TSOSListBoxMsg::save(char *name)
  fclose(f);
 }
 
-void TSOSListBoxMsg::copyClipboard()
+void TSOSListBoxMsg::copyClipboard(Boolean osClipboard)
 {
  if (!TCEditor::clipboard)
     return;
@@ -245,7 +248,13 @@ void TSOSListBoxMsg::copyClipboard()
      lacu+=CLY_LenEOL;
     }
 
- TCEditor::clipboard->insertText(buffer,lacu,True);
+ if (osClipboard)
+   {
+    if (TVOSClipboard::isAvailable())
+       TVOSClipboard::copy(0,buffer,lacu);
+   }
+ else
+    TCEditor::clipboard->insertText(buffer,lacu,True);
 
  delete[] buffer;
 }
@@ -294,7 +303,11 @@ void TSOSListBoxMsg::handleEvent(TEvent& event)
               clearEvent(event);
               break;
          case cmcCopy:
-              copyClipboard();
+              copyClipboard(False);
+              clearEvent(event);
+              break;
+         case cmcCopyClipWin:
+              copyClipboard(True);
               clearEvent(event);
               break;
         }

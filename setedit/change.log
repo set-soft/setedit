@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.413  2003/06/17 15:50:25  set
+* Fixed: Find whole words and out/inside comments didn't work together.
+Reported by Alain <alainm@pobox.com>.
+
 Revision 1.412  2003/06/17 14:43:45  set
 * Added: SQL emacs modes and sequence keyword. Suggested by Grzegorz.
 

@@ -35,7 +35,7 @@ public:
  void updateCommands(int enable);
  void saveAs();
  void save(char *name);
- void copyClipboard();
+ void copyClipboard(Boolean osClipboard);
 
  int  selectOK;
  int  haveJumpLines;
