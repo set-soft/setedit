@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.659  2005/03/07 14:50:49  set
+* Added: InfView now tries to guess the INFOPATH using the SET_FILES
+environment variable. The editor also tries to guess SET_FILES so we have
+a good chance here ;-) Suggested by Arnold.
+* Fixed(?): To disable the "match pair on the fly" pending paint if the
+buffer is modified before the pair is painted. That's useful for sLisp
+macros where various operations are performed before the buffer is updated.
+It works cleaning the request in the "MarkAsModified" member.
+
 Revision 1.658  2005/02/23 19:36:19  set
 * Fixed: [Win32] Avoid to add the relative path to project items when they
 are UNCs. Pointed out by Grzegorz.

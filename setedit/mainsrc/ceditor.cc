@@ -12037,7 +12037,7 @@ void TCEditor::undoOneAction()
       {
        #ifndef DISABLE_INSERT_PATCH
        /* Never purge spaces if they are part of the undo */
-       if (un.Type==undoInsert)
+       //if (un.Type==undoInsert)
           DontPurge=1;
        #endif
        MakeEfectiveLineInEdition();
