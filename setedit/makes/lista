@@ -490,15 +490,12 @@ makes/tmp/delete.me
 makes/yamddos.env
 miscperl.pl
 mp3/ampdiag.cc
-mp3/audio.h
 mp3/consts.h
-mp3/formats.h
-mp3/getbits.h
 mp3/intermp3.cc
 mp3/intermp3.h
-mp3/libamp.h
 mp3/libamp/.cvsignore
 mp3/libamp/amp.h
+mp3/libamp/audio.h
 mp3/libamp/audioalg.c
 mp3/libamp/audioio.h
 mp3/libamp/audiolib.c
@@ -507,7 +504,9 @@ mp3/libamp/config.h
 mp3/libamp/controldata.h
 mp3/libamp/dump.c
 mp3/libamp/dump.h
+mp3/libamp/formats.h
 mp3/libamp/formats.c
+mp3/libamp/getbits.h
 mp3/libamp/getbits.c
 mp3/libamp/getdata.c
 mp3/libamp/getdata.h
@@ -519,6 +518,7 @@ mp3/libamp/layer2.c
 mp3/libamp/layer2.h
 mp3/libamp/layer3.c
 mp3/libamp/layer3.h
+mp3/libamp/libamp.h
 -mp3/libamp/libamp.gpr
 mp3/libamp/libamp.mkf
 mp3/libamp/misc2.c

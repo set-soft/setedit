@@ -157,6 +157,18 @@ $TVInclude='../'.$TVInclude if (substr($TVInclude,0,2) eq '..');
 if ($OS eq 'DOS')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=$(DJDIR)/include $(DJDIR)/lang/cxx $(DJDIR)/lib/gcc-lib';
+   # DJGPP's gcc includes djgpp.ver from the same directory where specs
+   $a=`redir -eo $GCC -v`;
+   if ($a=~/(\w:)(.*)\/specs/i)
+     {
+      $here=RunRedirect('pwd',$ErrorLog);
+      chop($here);
+      chdir("$1$2");
+      $a=RunRedirect('pwd',$ErrorLog);
+      chop($a);
+      chdir($here);
+      $MakeDefsRHIDE[0].=" $a"
+     }
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=-lrhtv ';
    $MakeDefsRHIDE[1].='-l'.substr($stdcxx,2).' ';
    $MakeDefsRHIDE[1].='-lintl ' unless (@conf{'intl'} eq 'no');

@@ -22,28 +22,28 @@
 	$(RHIDE_COMPILE_ARCHIVE)
 
 obj/audioalg$(ExOBJ):: audioalg.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/libamp.h \
 	amp.h \
+	audio.h \
 	audioio.h \
 	config.h \
+	libamp.h \
 	proto.h \
 	transform.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/audiolib$(ExOBJ):: audiolib.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h \
-	$(MP3_PREV_DIR)/getbits.h \
-	$(MP3_PREV_DIR)/libamp.h \
 	amp.h \
+	audio.h \
 	config.h \
 	controldata.h \
+	formats.h \
+	getbits.h \
 	guicontrol.h \
 	huffman.h \
 	layer2.h \
 	layer3.h \
+	libamp.h \
 	position.h \
 	proto.h \
 	rtbuf.h \
@@ -52,34 +52,34 @@ obj/audiolib$(ExOBJ):: audiolib.c \
 	$(RHIDE_COMPILE_C)
 
 obj/dump$(ExOBJ):: dump.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
+	audio.h \
 	dump.h \
+	getbits.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/formats$(ExOBJ):: formats.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h \
+	audio.h \
+	formats.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/getbits$(ExOBJ):: getbits.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
+	formats.h \
+	getbits.h \
 	proto.h \
 	rtbuf.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/getdata$(ExOBJ):: getdata.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
+	getbits.h \
 	getdata.h \
 	huffman.h \
 	proto.h \
@@ -87,12 +87,12 @@ obj/getdata$(ExOBJ):: getdata.c \
 	$(RHIDE_COMPILE_C)
 
 obj/guicontr$(ExOBJ):: guicontr.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/formats.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
 	controldata.h \
+	formats.h \
+	getbits.h \
 	huffman.h \
 	layer2.h \
 	layer3.h \
@@ -104,17 +104,17 @@ obj/guicontr$(ExOBJ):: guicontr.c \
 	$(RHIDE_COMPILE_C)
 
 obj/huffman$(ExOBJ):: huffman.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
+	audio.h \
+	getbits.h \
 	huffman.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/layer2$(ExOBJ):: layer2.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
+	getbits.h \
 	layer2.h \
 	proto.h \
 	transform.h \
@@ -122,11 +122,11 @@ obj/layer2$(ExOBJ):: layer2.c \
 	$(RHIDE_COMPILE_C)
 
 obj/layer3$(ExOBJ):: layer3.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
 	dump.h \
+	getbits.h \
 	getdata.h \
 	huffman.h \
 	layer3.h \
@@ -138,8 +138,8 @@ obj/layer3$(ExOBJ):: layer3.c \
 	$(RHIDE_COMPILE_C)
 
 obj/misc2$(ExOBJ):: misc2.c \
-	$(MP3_PREV_DIR)/audio.h \
 	amp.h \
+	audio.h \
 	config.h \
 	getdata.h \
 	huffman.h \
@@ -149,20 +149,20 @@ obj/misc2$(ExOBJ):: misc2.c \
 	$(RHIDE_COMPILE_C)
 
 obj/position$(ExOBJ):: position.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
+	getbits.h \
 	position.h \
 	proto.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
 obj/rtbuf$(ExOBJ):: rtbuf.c \
-	$(MP3_PREV_DIR)/audio.h \
-	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
+	audio.h \
 	config.h \
+	getbits.h \
 	layer3.h \
 	proto.h \
 	rtbuf.h \
@@ -171,7 +171,7 @@ obj/rtbuf$(ExOBJ):: rtbuf.c \
 	$(RHIDE_COMPILE_C)
 
 obj/transfor$(ExOBJ):: transfor.c \
-	$(MP3_PREV_DIR)/audio.h \
+	audio.h \
 	getdata.h \
 	misc2.h \
 	transform.h \
@@ -179,8 +179,8 @@ obj/transfor$(ExOBJ):: transfor.c \
 	$(RHIDE_COMPILE_C)
 
 obj/util$(ExOBJ):: util.c \
-	$(MP3_PREV_DIR)/audio.h \
 	amp.h \
+	audio.h \
 	config.h \
 	proto.h \
 	$(MAKEFILE_DEPS) 

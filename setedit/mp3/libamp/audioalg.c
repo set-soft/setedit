@@ -328,61 +328,61 @@ audioBufferWrite(char *buffer, int count)
   if (instereo) {
    if (amp_reverse_phase) {
     int d1,d2,d3,d4;
-    asm volatile ("
-     0:
-     lodsw
-     addw $0x8000,%%ax
-     movw %%ax,(%%edi)
-     lodsw
-     addw $0x8000,%%ax
-      notw %%ax
-     movw %%ax,(%%ebx)
-     addl $2,%%edi
-     addl $2,%%ebx
-     decl %%ecx
-     jnz 0b
-    " : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
+    asm volatile (
+    "0:                \n"
+    "lodsw             \n"
+    "addw $0x8000,%%ax \n"
+    "movw %%ax,(%%edi) \n"
+    "lodsw             \n"
+    "addw $0x8000,%%ax \n"
+    "notw %%ax         \n"
+    "movw %%ax,(%%ebx) \n"
+    "addl $2,%%edi     \n"
+    "addl $2,%%ebx     \n"
+    "decl %%ecx        \n"
+    "jnz 0b            \n"
+      : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
       : "S" (buffer), "D" (buffer_left+buffer_head), "b" (buffer_right+buffer_head), "c" (cnt)
       : "ax", "memory" );
    }
    else {
     int d1,d2,d3,d4;
-    asm volatile ("
-     0:
-     lodsw
-     addw $0x8000,%%ax
-     movw %%ax,(%%edi)
-     lodsw
-     addw $0x8000,%%ax
-     movw %%ax,(%%ebx)
-     addl $2,%%edi
-     addl $2,%%ebx
-     decl %%ecx
-     jnz 0b
-    " : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
+    asm volatile (
+     "0:                  \n"
+     "lodsw               \n"
+     "addw $0x8000,%%ax   \n"
+     "movw %%ax,(%%edi)   \n"
+     "lodsw               \n"
+     "addw $0x8000,%%ax   \n"
+     "movw %%ax,(%%ebx)   \n"
+     "addl $2,%%edi       \n"
+     "addl $2,%%ebx       \n"
+     "decl %%ecx          \n"
+     "jnz 0b              \n"
+      : "=b" (d1), "=c" (d2), "=S" (d3), "=D" (d4)
       : "S" (buffer), "D" (buffer_left+buffer_head), "b" (buffer_right+buffer_head), "c" (cnt)
       : "ax", "memory" );
    }
   } else {
    int d2,d3,d4;
-   asm volatile ("
-    0:
-    lodsw
-    addw $0x8000,%%ax
-    stosw
-    decl %%ecx
-    jnz 0b
-   " : "=c" (d2), "=S" (d3), "=D" (d4)
+   asm volatile (
+    "0:                  \n"
+    "lodsw               \n"
+    "addw $0x8000,%%ax   \n"
+    "stosw               \n"
+    "decl %%ecx          \n"
+    "jnz 0b              \n"
+     : "=c" (d2), "=S" (d3), "=D" (d4)
      : "S" (buffer), "D" (buffer_left+buffer_head), "c" (cnt)
      : "ax", "memory" );
   }
 #ifdef TRACK_FRAME
   {
   int d3,d4;
-  asm volatile ("
-   rep
-   stosl
-  " : "=c" (d2), "=D" (d4)
+  asm volatile (
+   "rep                 \n"
+   "stosl               \n"
+    : "=c" (d2), "=D" (d4)
     : "a" (amp_dec_frame), "D" (buffer_frame+buffer_head), "c" (cnt)
     : "memory" );
   }

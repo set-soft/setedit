@@ -1,4 +1,10 @@
 $Log$
+
+-------- CVS TAG r0_5_4
+
+Revision 1.639  2004/11/23 00:42:57  terrible
+* Updated: Debian packaging to version 0.5.4-3 (no changes really).
+
 Revision 1.638  2004/11/22 14:42:08  set
 * Fixed: [X11+sLisp] When the OS had a secondary clipboard (selection
 clipboard) the selection was stopped after copying. This interferes with
