@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -41,7 +41,17 @@ const int
       cmInfGoto    = 0x2106,
       cmInfOpen    = 0x2107,
       cmInfDir     = 0x2108,
-      cmInfTop     = 0x2109;
+      cmInfTop     = 0x2109,
+      cmInfLastLink= 0x210A,
+      cmInfLink1   = 0x2140,
+      cmInfLink2   = 0x2141,
+      cmInfLink3   = 0x2142,
+      cmInfLink4   = 0x2143,
+      cmInfLink5   = 0x2144,
+      cmInfLink6   = 0x2145,
+      cmInfLink7   = 0x2146,
+      cmInfLink8   = 0x2147,
+      cmInfLink9   = 0x2148;
 const int // first 16 bits are for selBestMatch
       jmpXRSubStr  = 0x10000;
       

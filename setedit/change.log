@@ -1,4 +1,7 @@
 $Log$.
+Revision 1.581  2004/08/18 14:15:42  set
+* Fixed: [BC++] Lack of sys/time.h used in debug.cc.
+
 Revision 1.580  2004/08/18 14:14:47  set
 * Fixed: [gcc] Some gcc 3.4.1 requirements:
 1) Default argument values for function pointers no longer allowed.

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -1293,16 +1293,38 @@ void TInfViewer::handleEvent( TEvent& event )
                    }
                    break;
 
-             case cmClose:
-             case cmCancel:
-                  // When the help is called from a modal window we use a modal
-                  // help. In this case we must release the focus with endModal.
-                  if (owner->state & sfModal)
-                     endModal(event.message.command);
-                  else
-                  // For the rest the default is applied, it means close() is called.
-                     return;
-                  break;
+              case cmInfLastLink:
+                   if (topic->numRefs)
+                      switchToTopic(topic->crossRefs[topic->numRefs-1].Name);
+                   break;
+
+              case cmInfLink1:
+              case cmInfLink2:
+              case cmInfLink3:
+              case cmInfLink4:
+              case cmInfLink5:
+              case cmInfLink6:
+              case cmInfLink7:
+              case cmInfLink8:
+              case cmInfLink9:
+                   key=event.message.command-cmInfLink1;
+                   if (key<topic->numRefs)
+                     {
+                      switchToTopic(topic->crossRefs[key].Name);
+                      QuickLen=0;
+                     }
+                   break;
+
+              case cmClose:
+              case cmCancel:
+                   // When the help is called from a modal window we use a modal
+                   // help. In this case we must release the focus with endModal.
+                   if (owner->state & sfModal)
+                      endModal(event.message.command);
+                   else
+                   // For the rest the default is applied, it means close() is called.
+                      return;
+                   break;
                   
               default:
                    return;
@@ -1376,8 +1398,9 @@ void TInfViewer::handleEvent( TEvent& event )
                      endModal(cmCancel);
                   else
                     {
-                     event.what = evCommand;
-                     event.message.command = cmClose;
+                     event.what=evCommand;
+                     event.message.command=cmClose;
+                     event.message.infoPtr=NULL;
                      putEvent(event);
                     }
                  QuickLen=0;

@@ -42,19 +42,22 @@ breakpoints.
 Inspectors:
 * Highlight changed values.
 * Add "graphic lines" to the tree.
+* Mouse click to un/fold sections.
 
 Watches:
 * Highlight changed values.
 
 Data Window:
 * Small dialog with all the modes.
+* Mouse movement.
 
 Debug Window:
 * Save content to disk.
 
 Disassembler Window:
 * Keys or similar to change the size used by the registers and the code.
-* Some, slow, way to choose the format for the registers.
+* Some, slow, way to choose the format for the registers. It will imply
+fetching its values by batchs with the same format.
 -----------------------------------------------
 Whish gdb could:
 
