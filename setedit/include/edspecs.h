@@ -3,7 +3,7 @@
 #ifndef EDSPECS_H_INCLUDED
 #define EDSPECS_H_INCLUDED
 
-extern void InsertEnviromentVar(const char *variable, const char *contents);
+extern void InsertEnvironmentVar(const char *variable, const char *contents);
 extern void InitEnvirVariables(void);
 extern void DeInitEnvirVariables(void);
 extern const char *GetVariable(const char *variable, const char *def=NULL);

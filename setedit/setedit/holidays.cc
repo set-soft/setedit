@@ -330,7 +330,7 @@ void ConfigureHolidays()
       {
        UnloadPlugIn();
        numUsedCountry=box.country;
-       InsertEnviromentVar(confVar,countries[numUsedCountry].lang);
+       InsertEnvironmentVar(confVar,countries[numUsedCountry].lang);
        if (DEBUG)
           printf("Forced: %s\n",countries[numUsedCountry].lang);
        BroadcastChange();
@@ -338,7 +338,7 @@ void ConfigureHolidays()
     else if (!box.force && forcedCountry)
       {
        UnloadPlugIn();
-       InsertEnviromentVar(confVar,NULL);
+       InsertEnvironmentVar(confVar,NULL);
        BroadcastChange();
       }
    }

@@ -51,7 +51,7 @@ ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
     if (ret & 0x8000)
       {
        ret&=0x7FFF;
-       InsertEnviromentVar(var,"1");
+       InsertEnvironmentVar(var,"1");
       }
     return ret;
    }

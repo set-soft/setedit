@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -828,7 +828,7 @@ void OpenInfView(TEditorMiApp *editorApp, char *name)
 }
 
 // Some dummies for the editor's specs
-void InsertEnviromentVar(const char *,const char *)
+void InsertEnvironmentVar(const char *,const char *)
 {
 }
 unsigned EnvirSetBits(const char *, unsigned )

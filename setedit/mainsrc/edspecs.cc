@@ -37,7 +37,7 @@ void add_variable(const char *variable, const char *contents)
  vars[var_count*2-1]=contents ? strdup(contents) : NULL;
 }
 
-void InsertEnviromentVar(const char *variable, const char *contents)
+void InsertEnvironmentVar(const char *variable, const char *contents)
 {
  int i;
  for (i=0;i<var_count;i++)
@@ -97,7 +97,7 @@ void EnvirSetIntVar(const char *name, unsigned Value)
 {
  char buf[32];
  sprintf(buf,"0x%X",Value);
- InsertEnviromentVar(name,buf);
+ InsertEnvironmentVar(name,buf);
 }
 
 unsigned EnvirSetBits(const char *name, unsigned Value)
@@ -152,7 +152,7 @@ void ReadEnviromentFile(void)
              fGetStr(Name,f);
              fGetStr(Val,f);
              if (!feof(f))
-                InsertEnviromentVar(Name,Val);
+                InsertEnvironmentVar(Name,Val);
             }
           while (!feof(f));
          }
@@ -229,7 +229,7 @@ void InitEnvirVariables(void)
         char var[256];
         memcpy(var,environ[i],(int)(contents-environ[i])-1);
         var[(int)(contents-environ[i])-1] = 0;
-        InsertEnviromentVar(var,contents);
+        InsertEnvironmentVar(var,contents);
        }
     }
  // Now fix old version flags to new version

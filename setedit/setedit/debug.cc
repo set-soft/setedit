@@ -385,7 +385,7 @@ const char *GetGDBExeNoD()
 static inline
 void SetGDBExe(const char *name)
 {
- InsertEnviromentVar("SET_GDB_EXE",IsEmpty(name) ? NULL: name);
+ InsertEnvironmentVar("SET_GDB_EXE",IsEmpty(name) ? NULL: name);
 }
 
 static inline
@@ -403,7 +403,7 @@ const char *GetXTermExeNoD()
 static inline
 void SetXTermExe(const char *name)
 {
- InsertEnviromentVar("SET_XTERM_EXE",IsEmpty(name) ? NULL: name);
+ InsertEnvironmentVar("SET_XTERM_EXE",IsEmpty(name) ? NULL: name);
 }
 
 static inline

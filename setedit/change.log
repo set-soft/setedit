@@ -1,4 +1,8 @@
 $Log$
+Revision 1.594  2004/09/06 13:30:20  set
+* Fixed: [Debug] cmInspect command collision with RHIDE's command. Reported
+by Vik Heyndrickx <v/pandora/be>.
+.
 Revision 1.593  2004/09/01 20:24:44  set
 * Fixed: [Debug] cmDWGotoAddress doesn't have to validate if the address
 is valid, that's just a reference.

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_stdlib
@@ -231,7 +231,7 @@ void AdvManagedItems::apply()
         ops&= ~Advices[i].mask;
      EnvirSetIntVar(Advices[i].variable,ops);
     }
- InsertEnviromentVar("SET_CONFQUIT",items[i].state ? "1" : "0");
+ InsertEnvironmentVar("SET_CONFQUIT",items[i].state ? "1" : "0");
 }
 
 void AdviceManager()

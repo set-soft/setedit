@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdlib.h>
@@ -328,7 +328,7 @@ void ShowTips(char *fileName, int forceDialog)
  // Store the change if the user asked for it
  Today=time(NULL);
  sprintf(aux,"%d,%d,%ld",TipStyle,LastTip,(long)Today);
- InsertEnviromentVar((char *)envTipStyle,aux);
+ InsertEnvironmentVar((char *)envTipStyle,aux);
 }
 
 
