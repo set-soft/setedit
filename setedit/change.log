@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.528  2004/06/22 16:30:43  set
+* Added: [sLisp] More macros from Thiago. They are short and quite
+interesting because they show how to add particular behaviors or
+funtionalities with small code.
+
 Revision 1.527  2004/06/22 16:01:24  set
 * Fixed: [Cosmetic] Added a ; after the ListBoxImplement(..) macros. They
 looks more "correct" and doesn't confuse my heuristic to search fro

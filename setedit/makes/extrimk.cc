@@ -312,6 +312,26 @@ int AddFixedDeps(FILE *d, int l)
 }
 
 static
+char *SearchSrc(char *toStat)
+{
+ struct stat st;
+ if (stat(toStat,&st))
+   {
+    int i;
+    char buf[PATH_MAX];
+    for (i=0; srcDirs[i]; i++)
+       {
+        strcpy(buf,srcDirs[i]);
+        strcat(buf,"/");
+        strcat(buf,toStat);
+        if (stat(buf,&st)==0)
+           return strdup(buf);
+       }
+   }
+ return toStat;
+}
+
+static
 void GenerateDepFor(node *p, FILE *d, stMak &mk)
 {
  char *baseName=strdup(p->name);
@@ -323,7 +343,10 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
  if (strcmp(ext,"o")==0 || strcmp(ext,"a")==0)
     return;
 
- int l=fprintf(d,"%s/%s$(ExOBJ):: %s ",mk.objDir,baseName,p->name);
+ char *relName=SearchSrc(p->name);
+ int l=fprintf(d,"%s/%s$(ExOBJ):: %s ",mk.objDir,baseName,relName);
+ if (relName!=p->name)
+    free(relName);
  node *c=p->deps;
  while (c)
    {

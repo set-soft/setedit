@@ -22,6 +22,7 @@ DEST_SET_DIR=c:\setedit
 !include makes\config.bcc
 !else
 !include makes\config.nmk
+MAKE=nmake
 !endif
 
 #
@@ -31,12 +32,12 @@ all: editor infview
 
 editor: libs
 	-cd makes
-	make MKF_EXT="$(MKF_EXT)" -f editor.bmk
+	$(MAKE) MKF_EXT="$(MKF_EXT)" -f editor.bmk
 	-cd ..
 
 infview: libs
 	-cd makes
-	make MKF_EXT="$(MKF_EXT)" -f infview.bmk
+	$(MAKE) MKF_EXT="$(MKF_EXT)" -f infview.bmk
 	-cd ..
 
 #
