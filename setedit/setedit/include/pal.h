@@ -161,10 +161,10 @@
         S(77,Black,Lightgray,editor statusline) \
         S(78,Lightred,Lightgray,parens matching) \
         S(79,White,Magenta,rectangle block) \
-        S(7A,Black,Green,Odd tab) \
-        S(7B,Black,Red,Even tab) \
+        S(7A,Black,Green,odd tab) \
+        S(7B,Black,Red,even tab) \
+        S(7C,Black,Red,column markers) \
         \
-        S(7C,Black,Black,reserved) \
         S(7D,Black,Black,reserved) \
         S(7E,Black,Black,reserved) \
         S(7F,Black,Black,reserved) \
@@ -339,10 +339,10 @@
         M(77,Inverse,editor statusline) \
         M(78,Inverse,matching paranthesis) \
         M(79,Inverse,rectangular blocks) \
-        M(7A,Inverse,Odd tab) \
-        M(7B,Underline,Even tab) \
+        M(7A,Inverse,odd tab) \
+        M(7B,Underline,even tab) \
+        M(7C,Inverse,column markers) \
         \
-        M(7C,Empty,reserved) \
         M(7D,Empty,reserved) \
         M(7E,Empty,reserved) \
         M(7F,Empty,reserved) \

@@ -40,6 +40,7 @@
 #define Uses_regex
 #define Uses_utime
 #define Uses_filelength
+#define Uses_itoa
 
 #define Uses_TKeys
 #define Uses_TFindCDialogRec
@@ -285,6 +286,8 @@ TCEditor::TCEditor( const TRect& bounds,
  BackSpUnindents=staticBackSpUnindents;
  UseIndentSize=staticUseIndentSize;
  DontPurgeSpaces=staticDontPurgeSpaces;
+ ColumnMarkers=staticColumnMarkers;
+ colMarkers=CopyColMarkers(staticColMarkers);
  
  CrossCursorY2=size.y;
  CrossCursorX2=size.x;
@@ -353,6 +356,7 @@ TCEditor::~TCEditor()
     delete bufEdit;
  flushUndoInfo();
  delete selRectClip;
+ delete[] colMarkers;
 }
 
 /****************************************************************************
@@ -1260,14 +1264,18 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
            selStart=selLineStart;
            selEnd=selLineEnd;
            buffer=bufEdit;
-           (this->*formatLinePtr)( b, 0, width, color,(unsigned)(inEditPtr+restCharsInLine-bufEdit),attrInEdit,yInFile);
+           (this->*formatLinePtr)(b,0,width,color,(unsigned)(inEditPtr+restCharsInLine-bufEdit),
+                                  attrInEdit,yInFile,ColumnMarkers ? colMarkers : 0);
            buffer=bb;
            selEnd=e;
            selStart=s;
            bufLen=bs;
           }
         else
-           (this->*formatLinePtr)( b, linePtr, width, color, LenWithoutCRLF(yInFile,buffer+linePtr), lenLines.getAttr(yInFile),yInFile);
+           (this->*formatLinePtr)(b,linePtr,width,color,
+                                  LenWithoutCRLF(yInFile,buffer+linePtr),
+                                  lenLines.getAttr(yInFile),yInFile,
+                                  ColumnMarkers ? colMarkers : 0);
 
         if (IsPostRectOn)
           {
@@ -1586,23 +1594,19 @@ void TCEditor::MoveToMouse( TPoint m, uchar selMode )
  update(ufView);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: TPalette& getPalette() const
-             
-   Type: TCEditor member.
-
-   Objetive: Return the palette for the editor.
-
-   Return: a reference to the palette.
-
-   From Borland's TV 1.03.
-
-****************************************************************************/
+  Description:
+  Return the palette for the editor. Currently that's a palette created by
+Robert that have space for all the colors used by the editor.
+  
+  Return: a reference to the palette.
+  
+***************************************************************************/
 
 TPalette& TCEditor::getPalette() const
 {
- static TPalette palette( cpEditor, sizeof( cpEditor )-1 );
+ static TPalette palette(cpEditor,sizeof(cpEditor)-1);
  return palette;
 }
 
@@ -3080,12 +3084,7 @@ int TCEditor::handleCommand(ushort command)
            // From the menu
            case cmcSetLocalOptions:
                 {
-                 struct {
-                         uint32 t1;
-                         char tab[3];
-                         char ind[3];
-                         char wcol[4];
-                        } temp1;
+                 LocalOptionsRect temp1;
                  ShlDiagBox temp2;
                  temp1.t1=CompactFlags();
                  temp2.t2=SyntaxHL;
@@ -3094,6 +3093,7 @@ int TCEditor::handleCommand(ushort command)
                  sprintf(temp1.tab,"%2u",tabSize);
                  sprintf(temp1.ind,"%2u",indentSize);
                  sprintf(temp1.wcol,"%3u",WrapCol);
+                 ColMarkers2Str(colMarkers,temp1.colMarkers,colMarkersStrLen-1);
                  if (editorDialog(edSetLocalOptions,&temp1,&temp2))
                    {
                     ExpandFlags(temp1.t1);
@@ -3101,6 +3101,8 @@ int TCEditor::handleCommand(ushort command)
                     tabSize=max(atoi(temp1.tab),1);
                     indentSize=max(atoi(temp1.ind),1);
                     WrapCol=max(atoi(temp1.wcol),8);
+                    delete[] colMarkers;
+                    colMarkers=Str2ColMarkers(temp1.colMarkers);
                     update(ufView);
                    }
                 }
@@ -3986,7 +3988,7 @@ void TCEditor::SourceToHTML(FILE *f, unsigned *pal, unsigned flags)
         bc=(uchar *)b;
         bSize=x;
        }
-     (this->*formatLinePtr)(b,linePtr,x,color,x,lenLines.getAttr(y),y);
+     (this->*formatLinePtr)(b,linePtr,x,color,x,lenLines.getAttr(y),y,0);
      for (i=0; i<x; i++)
         {
          col=bc[i*2+1] & 0xF;
@@ -4086,6 +4088,7 @@ void TCEditor::ExpandGlobalOptions(GlobalOptionsRect *temp)
  S(UseIndentSize);
  S(DontPurgeSpaces);
  S(BackSpUnindents);
+ S(ColumnMarkers);
  #undef S
  if (temp->t1 & goScrollLock)
     editorFlags|=efScrollLock;
@@ -4094,6 +4097,8 @@ void TCEditor::ExpandGlobalOptions(GlobalOptionsRect *temp)
  staticTabSize=max(atoi(temp->tab),1);
  staticIndentSize=max(atoi(temp->ind),1);
  staticWrapCol=max(atoi(temp->wcol),8);
+ delete[] staticColMarkers;
+ staticColMarkers=Str2ColMarkers(temp->colMarkers);
 }
 
 
@@ -4128,12 +4133,14 @@ void TCEditor::CompactGlobalOptions(GlobalOptionsRect *temp)
  S(UseIndentSize);
  S(DontPurgeSpaces);
  S(BackSpUnindents);
+ S(ColumnMarkers);
  #undef S
  if (editorFlags & efScrollLock) temp->t1|=goScrollLock;
 
  sprintf(temp->tab,"%2u",staticTabSize);
  sprintf(temp->ind,"%2u",staticIndentSize);
  sprintf(temp->wcol,"%3u",staticWrapCol);
+ ColMarkers2Str(staticColMarkers,temp->colMarkers,colMarkersStrLen-1);
 }
 
 
@@ -4167,11 +4174,14 @@ void TCEditor::ExpandGlobalOptionsLocally(GlobalOptionsRect *temp)
  UseIndentSize   = (temp->t1 & goUseIndentSize) ? True : False;
  DontPurgeSpaces = (temp->t1 & goDontPurgeSpaces) ? True : False;
  BackSpUnindents = (temp->t1 & goBackSpUnindents) ? True : False;
+ ColumnMarkers   = (temp->t1 & goColumnMarkers) ? True : False;
 
  staticNoMoveToEndPaste=(temp->t1 & goNoMoveToEndPaste) ? True : False;
  tabSize=max(atoi(temp->tab),1);
  indentSize=max(atoi(temp->ind),1);
  WrapCol=max(atoi(temp->wcol),8);
+ delete[] colMarkers;
+ colMarkers=Str2ColMarkers(temp->colMarkers);
  if (TransparentSel!=oldTra)
     SetHighlightTo(SyntaxHL,GenericSHL);
  update(ufView);
@@ -4837,6 +4847,7 @@ uint32 TCEditor::CompactFlags(void)
  if (UseIndentSize)    t|=loUseIndentSize;
  if (DontPurgeSpaces)  t|=loDontPurgeSpaces;
  if (BackSpUnindents)  t|=loBackSpUnindents;
+ if (ColumnMarkers)    t|=loColumnMarkers;
 
  return t;
 }
@@ -4875,7 +4886,8 @@ void TCEditor::ExpandFlags(uint32 t, Boolean allowUndo)
  TabIndents       = (t & loTabIndents)       ? True : False;
  UseIndentSize    = (t & loUseIndentSize)    ? True : False;
  DontPurgeSpaces  = (t & loDontPurgeSpaces)  ? True : False;
- BackSpUnindents  = (t & loBackSpUnindents)   ? True : False;
+ BackSpUnindents  = (t & loBackSpUnindents)  ? True : False;
+ ColumnMarkers    = (t & loColumnMarkers)    ? True : False;
 }
 
 
@@ -10221,8 +10233,8 @@ void TCEditor::write( opstream& os )
  ;
  os << CompactFlags() << tabSize << indentSize;
 
- // From v0.4.1 the wrap thing
- os << WrapCol;
+ SaveColMarkers(os,colMarkers);  // 0.4.50
+ os << WrapCol; // From v0.4.1 the wrap thing
 
  // From v0.4.27 the generic shl. name (was type from 0.3.1 to 0.4.26)
  os.writeString(SHLNameOf(GenericSHL));
@@ -10320,6 +10332,11 @@ void *TCEditor::read( ipstream& is )
        flags=oldFlags;
       }
 
+    if (LoadingVersion<0x450)
+       colMarkers=CopyColMarkers(staticColMarkers);
+    else
+       colMarkers=LoadColMarkers(is);
+
     if (LoadingVersion>=0x401)
        is >> WrapCol;
     else
@@ -10346,6 +10363,8 @@ void *TCEditor::read( ipstream& is )
        flags|=loTabIndents;
     if (LoadingVersion<0x445 && !(flags & loUseTabs))
        flags|=loBackSpUnindents;
+    if (LoadingVersion<0x450 && staticColumnMarkers)
+       flags|=loColumnMarkers;
     ExpandFlags(flags,False);
     // Be sure the cursor is coherent with the insert/overwrite mode
     setState(sfCursorIns,overwrite);
@@ -12500,6 +12519,145 @@ Boolean TCEditor::valid( ushort command )
 
 /**[txh]********************************************************************
 
+  Description:
+  Computes the length of the column markers array.
+  
+***************************************************************************/
+
+int TCEditor::LenColMarkers(uint32 *markers)
+{
+ if (!markers) return 0;
+ int i=0;
+ while (markers[i]!=lastColMarker)
+   i++;
+ return i;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Creates a copy of the column markers array.
+  
+***************************************************************************/
+
+uint32 *TCEditor::CopyColMarkers(uint32 *markers)
+{
+ int l=LenColMarkers(markers);
+ if (!l) return 0;
+ l++;
+ uint32 *ret=new uint32[l];
+ memcpy(ret,markers,l*sizeof(uint32));
+ return ret;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Reads the columns markers array from disk.
+  
+***************************************************************************/
+
+uint32 *TCEditor::LoadColMarkers(ipstream& is)
+{
+ uchar aux;
+ is >> aux; // Version
+ is >> aux; // How many?
+
+ if (!aux) return 0;
+
+ int c=aux;
+ uint32 *ret=new uint32[c+1];
+ is.readBytes(ret,c*sizeof(uint32));
+ ret[c]=lastColMarker;
+
+ return ret;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Writes the columns markers array to disk.
+  
+***************************************************************************/
+
+void TCEditor::SaveColMarkers(opstream& os, uint32 *markers)
+{
+ const uchar version=1;
+ os << version;
+ uchar c=(uchar)LenColMarkers(markers);
+ os << c;
+
+ if (c)
+    os.writeBytes(markers,c*sizeof(uint32));
+}
+
+void TCEditor::ColMarkers2Str(uint32 *markers, char *str, unsigned maxLen)
+{
+ char b[64];
+ int l=LenColMarkers(markers),i;
+ unsigned lenThis,len=0;
+
+ str[0]=0;
+ for (i=0; i<l; i++)
+    {
+     itoa(markers[i],b,10);
+     lenThis=strlen(b);
+     if (len+lenThis+2<maxLen)
+       {
+        strcat(str,b);
+        len+=lenThis;
+        if (i+1<l)
+          {
+           strcat(str," ");
+           len++;
+          }
+       }
+    }
+}
+
+static
+int compareUint32(const void *k1, const void *k2)
+{
+ return *((uint32 *)k1)-*((uint32 *)k2);
+}
+
+uint32 *TCEditor::Str2ColMarkers(char *str)
+{
+ char *s=str,*end;
+ int count=0,i;
+
+ do
+   {
+    strtoul(s,&end,10);
+    if (s!=end)
+      {
+       s=end;
+       if (*s) s++;
+       count++;
+      }
+    else
+       break;
+   }
+ while (1);
+
+ if (!count)
+    return 0;
+
+ uint32 *markers=new uint32[count+1];
+ for (i=0, s=str; i<count; i++)
+    {
+     markers[i]=(uint32)strtoul(s,&end,10);
+     s=end;
+     if (*s) s++;
+    }
+ markers[count]=lastColMarker;
+ qsort(markers,count,sizeof(uint32),compareUint32);
+
+ return markers;
+}
+
+/**[txh]********************************************************************
+
   Description: 
   Is the default function to handle the dialogs, the editor must define a
 real one.
@@ -12577,6 +12735,8 @@ Boolean  TCEditor::staticUseIndentSize=False;
 Boolean  TCEditor::staticWrapLine=False;
 Boolean  TCEditor::staticBackSpUnindents=True;
 Boolean  TCEditor::staticNoMoveToEndPaste=False;
+Boolean  TCEditor::staticColumnMarkers=False;
+uint32  *TCEditor::staticColMarkers=0;
 char     TCEditor::oTabChar='±';
 char     TCEditor::TabChar='±';
 ushort   TCEditor::SearchInSel=0;

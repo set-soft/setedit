@@ -111,6 +111,8 @@ protected:
  int pushPos,basePos;
 };
 
+const unsigned lastColMarker=(unsigned)-1;
+
 class TCEditor : public TViewPlus
 {
 public:
@@ -272,8 +274,22 @@ public:
     static  Boolean staticBackSpUnindents;// the static version
     Boolean UseIndentSize;               // Use the indent size instead of the tab size
     static  Boolean staticUseIndentSize; // the static version
-    unsigned indentSize;             // The ammount to indent when the above is true
-    static unsigned staticIndentSize;// the static version
+    unsigned indentSize;                 // The ammount to indent when the above is true
+    static unsigned staticIndentSize;    // the static version
+    Boolean ColumnMarkers;               // Are column markers enabled?
+    static Boolean staticColumnMarkers;  // the static version
+
+    // Column markers
+    uint32 *colMarkers;              // Columns to be highlighted, an array terminated by (unsigned)-1
+    static uint32 *staticColMarkers; // the static version
+    // Helper functions
+    static int     LenColMarkers(uint32 *markers);
+    static uint32 *CopyColMarkers(uint32 *markers);
+    static uint32 *LoadColMarkers(ipstream& is);
+    static void    SaveColMarkers(opstream& os, uint32 *markers);
+    static void    ColMarkers2Str(uint32 *markers, char *str, unsigned maxLen);
+    static uint32 *Str2ColMarkers(char *str);
+
     Boolean IsaUNIXFile;             // True if we are in DOS an the file was UNIX
     int IsaCompressedFile;           // !=0 if we loaded a .gz or .bz2 file and hence we must
                                      // save a compressed file.
@@ -293,11 +309,11 @@ public:
     uchar updateFlags;
     int keyState;
     unsigned WantedCol;
-    void formatLine(void *, unsigned, int, unsigned short, unsigned, uint32, unsigned);
-    void formatLineHighLight(void *, unsigned, int, unsigned short, unsigned, uint32,unsigned);
-    void formatLineHighLightPascal(void *,unsigned,int,unsigned short,unsigned,uint32,unsigned);
-    void formatLineHighLightClipper(void *,unsigned,int,unsigned short,unsigned,uint32,unsigned);
-    void formatLineHighLightGeneric( void *,unsigned,int,unsigned short,unsigned,uint32,unsigned);
+    void formatLine(void *, unsigned, int, unsigned short, unsigned, uint32,unsigned,uint32 *);
+    void formatLineHighLight(void *, unsigned, int, unsigned short, unsigned, uint32,unsigned,uint32 *);
+    void formatLineHighLightPascal(void *,unsigned,int,unsigned short,unsigned,uint32,unsigned,uint32 *);
+    void formatLineHighLightClipper(void *,unsigned,int,unsigned short,unsigned,uint32,unsigned,uint32 *);
+    void formatLineHighLightGeneric( void *,unsigned,int,unsigned short,unsigned,uint32,unsigned,uint32 *);
     unsigned lineMove( unsigned p, int count );
     void TurnOffHighLight(void) {  formatLinePtr=&TCEditor::formatLine; SyntaxHL=shlNoSyntax; SHLValueSelected=-1; };
     void TurnOnCHighLight(void);
@@ -445,7 +461,7 @@ public:
     int UndoBase,UndoActual,UndoTop; // Index in the array
 
     // a pointer to the function to format the line to be displayed.
-    void (TCEditor::*formatLinePtr)(void *, unsigned, int, unsigned short, unsigned, uint32, unsigned );
+    void (TCEditor::*formatLinePtr)(void *, unsigned, int, unsigned short, unsigned, uint32, unsigned, uint32 *);
     // a pointer to the function to format calculate the s. hl. attributes
     unsigned (*LineMeassure)(char *, char *, uint32 &);
     shlState SyntaxHL;        // Says the type of syntax highlight used

@@ -243,7 +243,7 @@ int SHLSubDiag(unsigned )
 }
 
 TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
-{ // English: ABCDEFGHIKLMNOPRSTUWYZ 123
+{ // English: ABCDEFGHIKLMNOPRSTUWYZ 1234
   // BEGJQVXZ
  TSViewCol *col=new TSViewCol(__("Local Options"));
  SHL_Box=shlBox;
@@ -255,13 +255,17 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
          __("Tra~n~sparent Blocks"),__("Optimal ~F~ill"),__("~W~rap words"),
          __("S~e~e tabs"),__("Don't move inside ta~b~s"),
          __("Tab ~s~mart indents"),__("Use in~d~ent size"),
-         __("Don't pur~g~e spaces"),__("Backspace unindents ~2~"),0);
+         __("Don't pur~g~e spaces"),__("Backspace unindents ~2~"),
+         __("Column markers ~4~"),0);
 
  TSHzGroup *Inputs=MakeHzGroup(3,
             new TSHzLabel(_("~T~ab size"),new TSInputLine(3)),
             new TSHzLabel(_("Indent si~z~e"),new TSInputLine(3)),
             new TSHzLabel(_("Wrap co~l~umn"),new TSInputLine(4)),
             0);
+ TSHzLabel *colMarkers=new TSHzLabel(_("Column markers"),
+                                     new TSInputLine(colMarkersStrLen,30));
+ TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
 
  TSHzGroup *but123=MakeHzGroup(
             new TSButton(_("O~K~"),cmOK,bfDefault),
@@ -269,9 +273,8 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
             new TSButton(_("Syntax ~H~L Options"),cmSHLOptions,bfNormal,SHLSubDiag),
             0);
             
- col->insert(xTSCenter,yTSUp,Options);
- col->insert(xTSCenter,yTSUnder,Inputs,0,Options);
- col->insert(xTSCenter,yTSUnder,but123,0,Inputs);
+ col->insert(xTSCenter,yTSUp,Ops);
+ col->insert(xTSCenter,yTSDown,but123);
 
  TDialog *d=col->doItCenter(cmcSetLocalOptions);
  delete col;
@@ -279,7 +282,7 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
 }
 
 
-// Shortcuts: English: ABCDEFGHIKLMNOPRSTUWYZ 568
+// Shortcuts: English: ABCDEFGHIKLMNOPRSTUWYZ 5689
 TDialog *createSetGlobalOptions()
 {
  TSViewCol *col=new TSViewCol(__("Global Options"));
@@ -305,22 +308,23 @@ TDialog *createSetGlobalOptions()
           __("Use indent size ~6~"),
           __("Don't pur~g~e spaces"),
           __("Backspace unindents ~8~"),
-          0);
-
+          __("Column markers ~9~"),
+         0);
  TSHzGroup *Inputs=MakeHzGroup(3,
             new TSHzLabel(_("~T~ab size"),new TSInputLine(3)),
             new TSHzLabel(_("Indent si~z~e"),new TSInputLine(3)),
             new TSHzLabel(_("Wrap co~l~umn"),new TSInputLine(4)),
             0);
- //Inputs->ySep=0;
+ TSHzLabel *colMarkers=new TSHzLabel(_("Column markers"),
+                                     new TSInputLine(colMarkersStrLen,30));
+ TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
 
  TSHzGroup *but123=MakeHzGroup(new TSButton(_("T~o~ all"), cmYes),
                                new TSButton(_("O~K~"), cmOK, bfDefault),
                                new TSButton(_("Cancel"), cmCancel),
                                0);
 
- col->insert(xTSCenter,yTSUp,Options);
- col->insert(xTSCenter,yTSUnder,Inputs,0,Options);
+ col->insert(xTSCenter,yTSUp,Ops);
  col->insert(xTSCenter,yTSDown,but123);
 
  TDialog *d=col->doItCenter(cmcSetGlobalOptions);

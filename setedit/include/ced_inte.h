@@ -1,7 +1,7 @@
 /* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#define TCEDITOR_VERSION 0x000449UL
-#define TCEDITOR_VERSION_STR "v0.4.49"
+#define TCEDITOR_VERSION 0x000450UL
+#define TCEDITOR_VERSION_STR "v0.4.50"
 
 #if defined( Uses_TCEditor_Internal ) && !defined( TCEditor_Internal_H )
 #define TCEditor_Internal_H
@@ -107,8 +107,9 @@ extern unsigned short kbFunCtrlKShift[128];
 #define cRectSel  22
 #define cOddTab   23
 #define cEvenTab  24
+#define cColMark  25
 
-#define cNumColors 25
+#define cNumColors 26
 
 
 /************************* Rectangular Selection defs *****************/
@@ -220,9 +221,9 @@ inline int isWordCharColon(unsigned char ch)
 */
 #define CheckForShiftSelection()
 
-// New Palette from Robert.
+// New Palette based on Robert's palette
 #define cpEditor "\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\x10"\
-	 	 "\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D"
+                 "\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E"
 /* colors for the editor
   1 : normal text
   2 : marked text
@@ -248,6 +249,7 @@ inline int isWordCharColon(unsigned char ch)
  22 : rectangular selection
  23 : odd tabs
  24 : even tabs
+ 25 : column markers
 */
 
 // ************ Generic Syntax Highlight flags
