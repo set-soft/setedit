@@ -111,7 +111,7 @@ public:
  virtual void  freeItem(void* item);
  void Insert(stScreenOptions *p);
  void transfer2TV();
- SetDefStreamMembers(TScOptsCol,TSortedCollection);
+ SetDefStreamMembers(TScOptsCol,TSortedCollection)
 };
 SetDefStreamOperators(TScOptsCol)
 #endif

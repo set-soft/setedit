@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.253  2002/12/09 13:21:39  set
+* Fixed: [Win32] gdi32 is needed to link. (new WinGr driver)
+* Fixed: configuration library to output less error messages during tests.
+* Fixed: default values in function declarations used in pphp.cc.
+* Modified: [MinGW] edprefs.cc to workaround a name space pollution in
+MinGW headers. (grp1 and grp2).
+
 Revision 1.252  2002/12/09 13:07:08  set
 * Fixed: [DOS] The greek hack. It should go away.
 

@@ -542,7 +542,7 @@ int TSetEditorApp::resetVideoMode(Boolean redraw)
  if (so->scOptions==scfMode)
    {
     if (so->scOptions==7 || so->scOptions==3)
-       return TScreen::screenMode!=so->scOptions;
+       return (unsigned)TScreen::screenMode!=so->scOptions;
     return TScreen::screenMode==3 || TScreen::screenMode==7;
    }
  return 0;// ?

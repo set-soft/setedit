@@ -109,7 +109,7 @@ inline static bool atStartOfString()
     return false;
 }
 
-inline static bool atStartOfComment()
+static bool atStartOfComment()
 {
     if(atEndOfBuf()) return false;
     if(*curBufPtr=='#')
@@ -122,7 +122,7 @@ inline static bool atStartOfComment()
 
 //Skip blanks leaving curBufPtr after the blanks.
 //Returns true if it has skipped something.
-inline static bool eatBlanks()
+static bool eatBlanks()
 {
     const char * const p = curBufPtr;
     for(; !atEndOfBuf() && isspace(*curBufPtr); curBufPtr++)
@@ -131,7 +131,7 @@ inline static bool eatBlanks()
 }
 
 //Skip the rest of a line leaving curBufPtr at the beginning of the new line.
-inline static void eatLine()
+static void eatLine()
 {
     for(; !atEndOfBuf(); curBufPtr++)
         if(*curBufPtr=='\n') {
@@ -143,7 +143,7 @@ inline static void eatLine()
 
 //Skip a comment, leaving curBufPtr after it.
 //Returns true if it has skipped something.
-inline static bool eatComment()
+static bool eatComment()
 {
     if(atEndOfBuf()) return false;
     if(*curBufPtr=='#') {
@@ -173,7 +173,7 @@ character). You should be positioned at the starting character of the string.
 for that.
     Returns true if it has found the string and skipped it.
 */
-inline static bool eatString()
+static bool eatString()
 {
     if(!atStartOfString()) return false;
     const char endChar=*curBufPtr;
@@ -193,7 +193,7 @@ inline static bool eatString()
 
 //Skip blanks or comments leaving curBufPtr after them.
 //Returns true if it has skipped something.
-inline static bool eatBlanksOrComments()
+static bool eatBlanksOrComments()
 {
     const char * const p = curBufPtr;
     const char *lastBufPtr=0;
@@ -207,7 +207,7 @@ inline static bool eatBlanksOrComments()
 
 //Skip blanks, comments or strings, leaving curBufPtr after them.
 //Returns true if it has skipped something.
-inline static bool eatBlanksOrCommentsOrStrings()
+static bool eatBlanksOrCommentsOrStrings()
 {
     const char * const p = curBufPtr;
     const char *lastBufPtr=0;
@@ -226,7 +226,7 @@ case insensitively.
     This functions avoid calling the strncasecmp libc function and speed up
 things, while at the same time not crossing the end of the buffer.
 */
-inline static bool saysFunction()
+static bool saysFunction()
 {
     if(*curBufPtr!='f' && *curBufPtr!='F') return false;
     if(*(curBufPtr+1)!='u' && *(curBufPtr+1)!='U') return false;
@@ -239,7 +239,7 @@ inline static bool saysFunction()
     if(*(curBufPtr+7)!='n' && *(curBufPtr+7)!='N') return false;
     return true;
 }
-inline static bool saysClass()
+static bool saysClass()
 {
     if(*curBufPtr!='c' && *curBufPtr!='C') return false;
     if(*(curBufPtr+1)!='l' && *(curBufPtr+1)!='L') return false;
