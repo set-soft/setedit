@@ -1,4 +1,10 @@
 $Log$
+Revision 1.248  2002/12/03 12:36:28  set
+* Fixed: The editor configured the secondary font using "screen" encoding
+at start-up.
+* Fixed: We didn't signal the need of loading a secondary font at start-up,
+I forgot to implement it in TV.
+
 Revision 1.247  2002/12/03 12:35:53  set
 * Added: [DOS] FAQ entry explaining that NT doesn't implement WinOldAP and
 hence you can't copy/paste using it.
@@ -8,7 +14,7 @@ also added an entry explaining how to give access to /dev/vcs* to users.
 
 Revision 1.246  2002/12/03 12:35:10  set
 * Modified: Default global settings to be more similar to what a Windows
-user spects. Suggested by Ivan.
+user expects. Suggested by Ivan.
 
 Revision 1.245  2002/12/03 12:34:18  set
 * Modified: Removed all the conditionals for TV<2 and modified the
@@ -46,7 +52,7 @@ Revision 1.239  2002/11/27 13:11:58  set
 Revision 1.238  2002/11/26 12:51:12  set
 * Added: An LRU algorithm to remove entries in the closed list, as
 suggested by Ivan. I changed (once again) the resume structure to add the
-time stamp of the resume. Spect all kind of stupid side effects, flames
+time stamp of the resume. Expect all kind of stupid side effects, flames
 go to Ivan for the idea ;-)
 
 Revision 1.237  2002/11/26 12:50:17  set
@@ -1477,7 +1483,7 @@ Revision 1.475  2001/10/27 15:03:50  set
 * Fixed: When trying to use AM/PM clock and the system had a locale that
 doesn't support it (i.e. LC_ALL=es) strftime doesn't put anything for the
 %p value. It made the buffer of the desktop clock to have 1 character less
-than spected and this character was random. I also enlarged the clock 1
+than expected and this character was random. I also enlarged the clock 1
 character to make AM and PM visible and not just A and P. Reported by Ivan.
 
 Revision 1.474  2001/10/25 00:29:41  set
@@ -3878,7 +3884,7 @@ or just editing a text file.
 important change is that I no longer use a SOSStack for the syntax highlight
 strings, now all are separated strings. So the call to
 LoadSyntaxHighLightFile changed a little bit.
-* Note: This is all very new and not very well tested, don't spect 100%
+* Note: This is all very new and not very well tested, don't expect 100%
 reliable behavior and report any strange thing.
 
 Revision 1.149  1999/07/09 19:31:27  set
