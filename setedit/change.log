@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.448  2003/10/16 19:34:02  set
+* Fixed: When the alternative sorting mode of the project window was
+enabled some internal searches failed because they expected the old sorting
+mode. Now the sorting mode is temporally changed.
+* Fixed: When switching between sorting modes the focused item changed.
+
 Revision 1.447  2003/10/16 19:12:45  set
 * Modified: [Configuration] TV 2.0.3 dependency because I'm currently using
 a couple of additions to the API and hence users needs CVS version.

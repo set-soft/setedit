@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=30;
+const int MLIEditorCommands=32;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -18,6 +18,31 @@ public:
  TMacrosColl() : TNoCaseStringCollection(10,10) {};
  virtual void freeItem(void *item);
 };
+
+class TKeySeqCol;
+struct KeyTTable;
+class TLispKeyBind : public TLispVar
+{
+public:
+ TLispKeyBind(TKeySeqCol *aSKeys, void *aData, int aBindType);
+ virtual ~TLispKeyBind();
+ virtual int print(FILE *);
+ virtual char *toStr();
+
+ TKeySeqCol *sKeys;
+ void *data;
+ int bindType;
+};
+
+#define GetKeyBind(pos,obj) \
+{ obj=(TLispKeyBind *)o->Solve(start+pos); \
+  if(!obj) goto CleanUp; \
+  if ((obj->type>>12)!=MLIGKeyBind) \
+    { o->Error=MLITypeParam; goto CleanUp; } \
+}
+#define MLIRetKeyBind(skeys,data,type) \
+        o->array->ReplaceItem(start-1,new TLispKeyBind(skeys,data,type))
+#define LocVarKeyBind(a) TLispKeyBind *a=NULL
 
 class TMLIEditor : public TMLIBase
 {
@@ -56,6 +81,11 @@ public:
  static int  SelectWindowNumber(int num);
  static int  GetCurWindowNumber();
  static int  GetMaxWindowNumber();
+ // Key binding operations
+ static int  StartKeyBind();
+ static void EndKeyBind();
+ static void AbortKeyBind();
+ static int  BindKey(TKeySeqCol *sKeys, void *data, int Type);
 
  static TCEditor *Editor;
 
@@ -66,6 +96,9 @@ private:
  static char *findAgainStr;
  static char *replaceAgainStr;
  static unsigned findAgainFlags;
+ // Variables used for key binding operations
+ static KeyTTable *oriKeyTable;
+ static int oriCanBeDeleted;
 };
 
 #endif

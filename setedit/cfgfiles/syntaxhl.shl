@@ -371,8 +371,8 @@ Keywords=or,and,GetSyntaxAtCursor,ForceUpdate,ShortFileName,AskString,strcmp
 Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
 Keywords=cond,ShowInMessageWindow,SelectionExists,FindString,loop,GetCursorX
 Keywords=GetCursorY,SetCursorXY,repeat,GetSyntaxLang,FindAgain,ReplaceString
-Keywords=exitloop,ReplaceAgain,tostr,SelectWindowNumber,GetCurWindowNumber
-Keywords=GetMaxWindowNumber
+Keywords=exitloop,ReplaceAgain,BindKey,SelectWindowNumber,GetCurWindowNumber
+Keywords=GetMaxWindowNumber,KeyBindings,tostr
 # Flags
 Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
 Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom

@@ -4,7 +4,7 @@
 
 #if defined(Uses_TKeyTranslate) && !defined(__TKeyTranslate__)
 #define __TKeyTranslate__
-const int kbtIsComm=0, kbtIsSComm=1, kbtIsMacro=2, kbtIsSeq=3;
+const int kbtIsComm=0, kbtIsSComm=1, kbtIsMacro=2, kbtIsSeq=3, kbtDelOp=0x8000;
 const int kbtStatic=0, kbtDynamic=1, kbtExpanded=2;
 
 typedef struct
@@ -32,12 +32,12 @@ typedef struct
  } d;
 } KeyTNode;
 
-typedef struct
+struct KeyTTable
 {
  unsigned cant;  // Number of entries in this table
  unsigned total; // Number of keys in this table and all the associated
  KeyTNode nodes[0];
-} KeyTTable;
+};
 
 class TKeySeqCol;
 

@@ -1589,7 +1589,8 @@ char *TMLIBase::SyntaxError[]=
  __("undefined variable"),
  __("undefined symbol"),
  __("operation not defined"),
- __("invalid character for a name")
+ __("invalid character for a name"),
+ __("invalid key sequence")
 };
 
 char *TMLIBase::GetTypeError()

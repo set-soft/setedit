@@ -571,6 +571,11 @@ void GenerateTXI_NUM(void)
        HTMLPrep(bl,fo);
     else
        InsertNumber(bl,Nodes[i-1].Number,fo);
+    if (lev>=0 && strcmp(name,"Top"))
+      {
+       fprintf(fo2,"@cindex %s\n",name);
+       fprintf(fo,"@cindex %s\n",name);
+      }
    }
  while (!feof(fi));
  fclose(fo);

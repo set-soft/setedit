@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.5.2
-@set update-date 11 October 2003
+@set version 0.5.3
+@set update-date 12 October 2003
 @set update-month October 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -229,6 +229,171 @@ Argentina
 @paragraph{}
 
 @my-flag{}
+
+@chapter Documentation guide
+
+  This document is very extensive and was created while developing the editor
+starting in 1996. For this reason sometimes is complex to find what you want
+or to even know that something is possible. This chapter was created to try
+to alleviate this problem. If you have any suggestions about what to include
+here don't hesitate and contact me.
+@p{}
+
+@section What can be configured to make easier the operation
+
+  Here is a list of what can be configured to customize the editor input.
+@p{}
+
+@itemize @bullet
+@item The keyboard can be configured @x{Keyboard configuration}.
+@item The keyboard can be also configured using sLisp command.
+@x{sLisp macros}.
+@item The menues be also configured. @x{Menues configuration}.
+@item The shortcuts displayed at the bottom of the screen are called
+@il{status bar} and can be configured in the same way menues are configured.
+@x{Menues configuration}.
+@item The small menu that pops up when you right click on editor windows is
+also configurable using the menu configuration. @x{Menues configuration}.
+@item You can define some abbreviations that can then expanded using
+@kbd{^Space}. They are language sensitive and they are called pseudo-macros
+or pmacros. @x{Pseudo Macros}.
+@item You can ask the editor to record a group of operations and then
+reproduce them. This is what this documentation calls a macro. The operations
+to record and play macros can be found in the @il{Macro} menu (@x{Macro}). You
+can also generate the sLisp code for a macro and store it in the
+@file{macros.slp} file to use it from the menues or just bind it to a key.
+@item If you want to automate more complex operations you can use sLisp
+macros. They use a very simple language that is quite similar to Lisp or
+Scheme languages. @x{sLisp macros}. sLisp macros can be called using the
+@il{Macro|Choose...} or @il{Macro|Repeat} menu options. You can also add menu
+entries that start certain sLisp macro or bind a sLisp macro to a key.
+Additionally you can bind a small piece of sLisp code to a key or menu entry.
+@end itemize
+
+@section What can be configured to change the look of the editor
+
+  Here are some things you can change to ajust how the editor looks.
+@p{}
+
+@itemize @bullet
+@item The colors used for different elements of the editor can be customized
+using the @il{Tool&Ops | Options | Colors | Customize...} menu option.
+@x{Customize Colors}.
+@item Some predefined color schemes are available in the
+@il{Tool&Ops | Options | Colors | Theme...} menu option. You can contribute
+your own color scheme sending me you desktop file (desktop files have .dst as
+extension). @x{Color Theme}.
+@item The color palette can be customized using the @il{Tool&Ops | Options |
+Colors | Palette...} menu. This is available for most OSs and terminals, but
+not for all. @x{Color Palette}.
+@item The character encodings used by the editor can be also configured. This
+is in the @il{Tool&Ops | Options | Encodings...} menu. @x{Encodings}.
+@item Some terminals supports changing the screen or window size. This is in
+the @il{Tool&Ops | Options | Screen Options...} menu. @x{Screen Options}.
+@item Some terminals supports changing the font and/or the font size. The
+editor includes various fonts suitable for it. This is in the @il{Tool&Ops |
+Options | Fonts...} menu. @x{Fonts}.
+@end itemize
+
+@section What can be configured to change the syntax highlighting
+
+  The editor highlights different elements in the code using different colors
+here are things you can do to modify it.
+@p{}
+
+@itemize @bullet
+@item The colors used for it can be configured.
+@x{What can be configured to change the look of the editor}.
+@item The syntax highlighting can be configured and/or extended editing the
+@file{syntaxhl.shl} file. @x{Syntax Highlighting File}.
+@item You can define some words as special words. An example of use is to
+highlight your own data types. They are called @il{user words} and you can
+define them for each supported syntax highlighting. @x{User Words}.
+@end itemize
+
+@section Things to get help or find some definition
+
+  When coding you usually need to access to help files describing the
+language reference or you need to search in your files. This is a list of the
+most important tools for it.
+@p{}
+
+@itemize @bullet
+@item If the language and/or library you are using have documentation in the
+@il{info} format (the format used by the GNU project for on-line
+documentation) you can configure the editor to search the syntax of a command
+when pressing @kbd{^F1}. @x{Syntax help}.
+@item You can browse info files using the InfView info browser. The editor
+also have a man page viewer. Both can be accessed from the @il{Help} menu.
+@x{Help}.
+@item The editor have a search and replace dialog that supports regular
+expressions and also supports replacement using @il{templates}. The @il{Search
+| Find} (@x{Find}) and @il{Search | Replace} (@x{Replace}) menu entries are
+used for it.
+@item You can search for text using regular expressions. The @il{Powered Grep}
+dialog allows searching in project items and directories, also recursivelly.
+@x{Grep}.
+@item Using @il{tag files} the editor can search for definitions, do word
+completion and browse classes. @x{TAGS files}.
+@item For some languages the editor can parse your code and extract the
+function definitions. @x{Jump to function}.
+@end itemize
+
+@section Running external programs (compilers/filters/others)
+
+  You can run external programs to compile, apply filters or any other thing.
+Here are some related options.
+@p{}
+
+@itemize @bullet
+@item You run a external program using @il{Tool&Ops | Run program}
+menu option (@x{Run program}). To configure it you can use the
+@il{Tool&Ops | Options | Run program (which one)} menu option
+(@x{Run program (which one)}).
+@item The editor collects the messages from the external program and displays
+them in the @il{message window}. @x{Message Window}.
+@item The editor parses the messages from the external program looking for
+errors. The parser can be selected using the @il{Tool&Ops | Options |
+Run program (which one)} menu option. You can add your own parsers editing
+the @file{errors.cle} file. @x{Error messages from an external application}.
+@item You can call external programs binding a sLisp macro to a key or menu
+entry. @x{sLisp macros}, @x{Keyboard configuration}, @x{Menues configuration}.
+@item You can also call external filters using sLisp macros.
+@x{Writing macros that use text filters}.
+@end itemize
+
+@section Configuration files
+@cindex configuration files, list
+
+  Here is a list of the most important configuration files.
+@p{}
+
+@itemize @bullet
+@item The editor can read configuration files from various directories.
+@x{Configuration files location}.
+@item @file{syntaxhl.shl} configures the syntax highlghting.
+@x{Syntax Highlighting File}.
+@item @file{pmacros.pmc} and other @il{.pmc} files are used to configure the
+pmacros (pseudo-macros). @x{Pseudo Macros}.
+@item @file{errors.cle} configures the error parsers. They are used to
+collect error messages from external programs.
+@x{Error messages from an external application}.
+@item @file{macros.slp} defines the available sLisp macros. @x{sLisp macros}.
+@item @file{userword.txt} defines the user reserved words for syntax
+highlighting. @x{User Words}.
+@item @file{deflopts.txt} configures the default edition options for each
+syntax highlighting style. @x{Default global edition}.
+@item @file{nobkp.txt} configures for which files the editor won't create
+back-ups. @x{Do not create backups for}.
+@item @file{tcedit.dst} and other @il{.dst} files. They are desktop files and
+contains information about opened windows and configuration options. They can
+be local (one per directory) or global (one for all the system). Projects
+also have its own desktop file. The format is binary.
+@item @il{.epr} files. They are project files. The format is binary.
+@item @file{keybind.dat} contains keyboard binding information. The format is
+binary.
+@item @file{setenvir.dat} contains some global settings in binary form.
+@end itemize
 
 @chapter Available commands and keys assignments
 
@@ -522,11 +687,12 @@ report that like a bug. That is the way it works!
   The editor can be configured to trigger one or more commands pressing one key or an
 arbitrary sequence of keys. Unlike old versions, now the sequence of keys isn't limited.
 Additionally you no longer need to configure the editor for non-US keyboards.
-@paragraph{}
+@p{}
 
-  If you used an old version of the editor you'll note that now the keyboard
-configuration is a lot easier and much more powerful.
-@paragraph{}
+  You can also assing sLisp defined macros to keys or even small portions of
+sLisp code to keys. In addition you can change the key assignments using
+sLisp macros.
+@p{}
 
 @section How to configure the keyboard
 
@@ -637,6 +803,7 @@ one of many possible arrangements.
 If you need or want to configure the shortcuts activating the menues or
 menue options look at the @file{menubind.smn} file. The format is self explanatory
 and the editor supports syntax highlighting for these files.
+@x{Menues configuration}.
 @paragraph{}
 
 @c --------------------------------------------------------------------------
@@ -3400,6 +3567,278 @@ was found the editor jumps to this node. @xref{Syntax help}.
 @refMenu{cmeSyntaxHelp,^F1}
 
 @c --------------------------------------------------------------------------
+@chapter Menues configuration
+
+  If you need or want to configure the shortcuts activating the menues or
+menue options look at the @file{menubind.smn} file. The format is self explanatory
+and the editor supports syntax highlighting for these files.
+@p{}
+
+  This file also configures the @il{status bar}, that's the line at the bottom
+of the screen. This line is context sensitive and also contains shortcuts.
+Some of the shortcuts can be invisible.
+@p{}
+
+  Finally you can also configure the menu displayed when you click over an
+editor window using the right mouse button.
+@p{}
+
+  The menues and status bar can be used to complement the keyboard
+assignments. You can assing editor commands, sLisp macros or small portions of
+sLisp code to them.
+@p{}
+
+  This chapter is a small reference about the commands you can use in the
+@file{menubind.smn} file.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section SubMenu and EndSubMenu
+
+  The @code{SubMenu} command starts a menu definition. It can be nested. When
+used at top level defines a new entry in the menu bar. When used inside
+another @code{SubMenu} section defines a child menu.
+@p{}
+
+  The @code{EndSubMenu} marks the end of a menu section.
+@p{}
+
+  The syntax for @code{SubMenu} is:
+@p{}
+
+@example
+  SubMenu: "Visible name", key
+  ...
+  EndSubMenu
+@end example
+
+ The visible name is what you'll see in the menu bar or the entry in the
+parent menu. Usually you assign a key to submenues so they can be easily
+selected. That's what you put in the @il{key} field. To highlight the key you
+can use the @code{~} character. This character indicates the beggining and
+the end of a highlighted text. The following example shows a submenu called
+File that's triggered when @kbd{Alt+F} is pressed and that marks the @il{F}
+with a different color:
+@p{}
+
+@example
+  SubMenu: "~F~ile", kbAlF
+@end example
+
+@c --------------------------------------------------------------------------
+@section Key names
+
+  When defining a menu entry you must indicate the name of the key or key
+combination. The editor have a command specially designed to help you with
+it, look in the @il{Tool&Ops} menu (@x{Insert key name}). Here is a small
+explanation about how those names are created.
+@p{}
+
+  In menues all key combinations start with the @code{kb} preffix. Then
+follows the key modifiers. They can be:
+@p{}
+
+@table2{name,key}
+@titemR{Sh,Shift}
+@titemR{Ct,Control}
+@titemR{al,Right Alt}
+@titemR{Al,Left Alt}
+@endtable-{}
+
+  Avoid using the right alt definitions unless you know very well the side
+effects. You can specify more than one modifier but they must be in the order
+shown in the table. Suppose you want to indicate a complex key combination
+where shift, control and the left alt key must be pressed together the
+result is @code{kbShCtAl}. Note that is not valid if you change the order. As
+an example @code{kbShAlCt} is invalid.
+@p{}
+
+  After the modifier comes the key name. The key name is usually the
+character you obtain by pressing the key or the name of the character you
+obtain. For the alphabet characters is quite simple, @code{kbA} is just the
+key that generates the @code{a}. The same is for numbers. Function keys are
+also easy, they are named F and the number of the function key.
+@p{}
+
+  Things becomes more complex and even confusing for other characters. At
+first you must know the name I gave to each symbol and then you must
+understand a small complexity created by the fact that some shifted keys
+generates non-related symbols. Here is an example: @code{kbSh1} is valid but
+you won't get this combination because when you press @key{1} plus shift what
+you obtain is @code{!}. The editor will interpret it as @code{kbAdmid}.
+@p{}
+
+  Here is a list of the names, but the best is to use the @il{Insert key name}
+option: OpenBrace, BackSlash, CloseBrace, Pause, Esc, BackSpace, Tab, Enter,
+Colon, Quote, Grave, Comma, Stop, Slash, Asterisk, Space, Minus, Plus, PrnScr,
+Equal, Home, Up, PgUp, Left, Right, End, Down, PgDn, Insert, Delete, Caret,
+Admid, DobleQuote, Numeral, Dolar, Percent, Amper, OpenPar, ClosePar, DoubleDot,
+LessThan, GreaterThan, Question, A_Roba, Or, UnderLine, OpenCurly, CloseCurly,
+Tilde, Macro, WinLeft, WinRight and WinSel.
+@p{}
+
+  When you have to indicate that no key the @code{kbUnknown} name can be
+used.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section MenuItem entries
+
+  To add a menu entry you can use the @code{MenuItem} command. The syntax is:
+@p{}
+
+@example
+MenuItem: "Name", Command[, Key [, Context [,"KeyName"]]]
+@end example
+
+  The name is the visible entry in the menu. The command is the command
+assigned to this menu entry. If this menu entry have a shortcut it must be
+indicated in the key field. The context field is used to indicate a help
+context. The keyname field is just an string that is displayed at the right
+of the name of the menu entry to show the shortcut. This syntax is not very
+common because you usually don't want to specify a particular help context.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section Commands in menu items
+
+  You can use any of the editor commands in the commands field. They are
+listed in the commands index (@x{Index of key commands}). Additionally you
+can specify the name of a sLisp macro or a small piece of sLisp code.
+@p{}
+
+  To indicate the name of a sLisp macro just use the following syntax:
+@code{cm(NAME)}. To enter a small portion of sLisp code use it:
+@code{cm((CODE))}. Here is an example that just prints a message in the
+message window: @code{cm((ShowInMessageWindow 'Hi! ;-)'))}.
+@p{}
+
+@section MenuItemC entries
+
+  This is the most common way to add a menu entry. The syntax is:
+@p{}
+
+@example
+MenuItemC: "Name", Command[, Key [,"KeyName"]]
+@end example
+
+  The only difference with @code{MenuItem} (@x{MenuItem entries}) is that you
+don't have to specify a help context. Help contexts are numbers that
+associates a context in the editor with some text in the on-line help.
+Usually the number is the same used for the command. The @code{MenuItemC}
+assumes the help context is the same as the command number.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section MenuSeparator
+
+  It adds a division line to the menu. Use it to visually group related menu
+entries.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section The special submenu used for the right click
+
+  To define the menu associated with the right mouse button you must define a
+top-level submenu called @il{Editor Right Click}. This submenu will pop up when
+you right click over an edition window and is just like any other submenu.
+
+@c --------------------------------------------------------------------------
+@section Status bar ranges
+
+  The content of the status bar is context sensitive. For this reason the
+content of the status bar is defined for a help context or for a range of
+help context values. The ranges can overlap and the first match is used. For
+this reason the order is important.
+@p{}
+
+  Ranges are started using the @code{StatusRange} command and closed using
+the @code{EndStatusRange} command. The syntax for the first is:
+@p{}
+
+@example
+  StatusRange: first_context, number_of_contexts
+@end example
+
+@c --------------------------------------------------------------------------
+@section Visible status bar entries
+
+  The syntax for visible entries is:
+@p{}
+
+@example
+  StatusEntry: Label, Command, Key
+@end example
+
+  The label is the visible text and the rest of the values are just like the
+ones used by the @code{MenuItem} entries. @x{MenuItem entries}.
+@p{}
+
+@c --------------------------------------------------------------------------
+@section Invisible status bar entries
+
+  The syntax is almost the same used by the visible ones, the most important
+difference is that they doesn't need a label. @x{Visible status bar entries}.
+@p{}
+
+@example
+  StatusHiddenEntry: Command, Key
+@end example
+
+@c --------------------------------------------------------------------------
+@section Conditional menu entries
+
+  The @file{menubind.smn} files support some conditional statements. They are
+quite similar to the preprocessor conditionals used in C language and can be
+used to exclude or include some menu entries according to the operating
+system and other configuration details.
+@p{}
+
+  The most important structure is:
+@p{}
+
+@example
+  $if CONDITION
+  ...
+  $else
+  ...
+  $endif
+@end example
+
+  The @code{else} section is optional. In this case if the @il{CONDITION} is
+true the entries in the first section are used, otherwise the entries in the
+@code{else} section are used.
+@p{}
+
+  Contitions can use and, or and not boolean operations. The @code{and} and
+@code{or} operators are used for the first two and the @code{!} operator for
+not. Currently you can use parentheses in conditionals but this is not fully
+tested.
+@p{}
+
+  The available variables to evaluate are:
+@p{}
+
+@table2{Variable,Meaning}
+@titemR{DOS,The binary was compiled for DOS}
+@titemR{Linux,The binary was compiled for Linux}
+@titemR{UNIX,The binary was compiled for a UNIX style OS (Linux included)}
+@titemR{Win32,The binary was compiled for Windows}
+@titemR{MP3,Support to play MP3 included}
+@titemR{MIXER,Support for the audio mixer included}
+@titemR{PCRE,Support for Perl RegEx included}
+@titemR{BZIP2,Support for bzip2 compressed files included}
+@endtable-{}
+
+@c --------------------------------------------------------------------------
+@section Comments in menu files
+
+  You can add comments to menu files, they must start with the @code{#}
+character and it must be in the first column. Lines starting with @code{#} are
+ignored when parsing menu files.
+@p{}
+
+@c --------------------------------------------------------------------------
 @chapter Editing Modes
 
   The editor has various settings that control the function and aspect of
@@ -4069,6 +4508,7 @@ name of this program and searches it in the @code{ShellScript} definition.
   The highlighting can be customized editing the @file{syntaxhl.shl} file. You can add
 syntax highlighting to almost any kind of files, a good example is the fact that the files
 used to configure the editor have their own syntax highlighting.
+@x{Configuration files location}.
 @paragraph{}
 
   The file declares the settings for each kind of files. Each declaration ends with an
@@ -4388,7 +4828,7 @@ file. @xref{Syntax Highlighting File}. In the case of C/C++ the file is called
 @file{cpmacros.pmc} and is located in the same directory where the rest of the
 configuration files are installed. This file contains the definitions for each
 pseudo macro that can be triggered in C/C++ files. You can define as many
-pseudo macros as you want.
+pseudo macros as you want. @x{Configuration files location}.
 @paragraph{}
 
   Important: If you are using RHIDE consult the RHIDE documentation to know
@@ -4455,7 +4895,7 @@ languages please send me the file and I'll add it to the next release.
 @cindex menues and macros
 
   The editor uses a lisp like language to store macros. The macros are stored in a file
-called @file{macros.slp}.
+called @file{macros.slp}. @x{Configuration files location}.
 @paragraph{}
 
   The macros can be assigned to keys (@x{How to configure the keyboard}), selected
@@ -4562,6 +5002,50 @@ To learn more about the message window @x{Message Window}.
 
   Pops up a dialog asking for user input. The text is returned as an sLisp
 string variable. If the user canceled the input, the string has zero length.
+
+@c --------------------------------------------------------------
+@subsection BindKey
+
+  (BindKey @var{key_seq} @var{macro})@*
+  (BindKey @var{key_seq} @var{command} ...)
+@p{}
+
+  This command creates a key binding data type. It doesn't change anything
+alone and must be used with the @code{KeyBindings} command.
+@p{}
+
+  You can assign a defined sLisp macro or a piece of sLisp code using the
+first syntax. When assigning a sLisp code it must begin with @code{(} and end
+with @code{)}.
+@p{}
+
+  You can also assign a one command or a sequence of commands using the
+second syntax. The commands are specified using the same constants used for
+@code{SendCommands}. @x{SendCommands}.
+@p{}
+
+  The @var{key_seq} argument must be a string containing the key sequence
+used to trigger this definition.
+@p{}
+
+  The following example defines two keyboard sequences. The first is
+triggered when @key{Ctrl} and @key{K} are pressed together, then released and
+then @key{Z} is pressed (all in lower case mode). This sequence moves the
+cursor one line up and then one character to the left. The second sequence
+(@kbd{^K-X}) triggers a small sLisp sentence that prints a message in the
+message window.
+@p{}
+
+@example
+(KeyBindings
+ (BindKey "CtK,Z" cmcLineUp cmcCharLeft)
+ (BindKey "CtK,X" "(ShowInMessageWindow 'Hi! ;-)')")
+)
+@end example
+
+  When writing a key sequence you can use the @il{Insert key name} menu option
+if you don't know the name of a key combination. @x{Insert key name}.
+@p{}
 
 @c --------------------------------------------------------------
 @subsection ComplChoose
@@ -4873,6 +5357,23 @@ the parameter is 1 the action depends on the current editor's setup.
 @paragraph{}
 
 @c --------------------------------------------------------------
+@subsection KeyBindings
+
+  (KeyBindings @var{key_binding} ...)
+@p{}
+
+  Adds the @var{key_binding} to the keyboard definitions. As the operation to
+insert a key in the keyboard definitions is slow this command is used to
+group all the operations in just one operation. Currently the only command
+that returns a key binding is @code{BindKey}. @x{BindKey}.
+@p{}
+
+  It returns zero if the operation failed and one if the operation succeed.
+If any of the specified key bindings fails the keyboard configuration isn't
+altered.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection MessageBox
 
   (MessageBox @var{message} [@var{options}])
@@ -5003,7 +5504,7 @@ string.
   Additionally you can specify a text to send to the standard input of the
 program you are calling. You can easily call external filters with it. I provide
 an example of how to replace a selected text with the output of an external
-filter in the @file{macros.slp} file.
+filter in the @file{macros.slp} file. @x{Configuration files location}.
 @p{}
 
   Be careful, that's a very powerful command, but very dangerous too.
@@ -5731,7 +6232,7 @@ as that, all the power you wanted at your finger tips.
 @p{}
 
 @c --------------------------------------------------------------
-@subsubsection Step 1. Building your macro.
+@subsubsection Step 1 - Building your macro
 
 Macros are written in sLisp, and stored somewhere in a @file{macros.slp}
 file. This file can be a global read-only file or it can be located at
@@ -5785,7 +6286,7 @@ Please change that to point at your filter script.
 @p{}
 
 @c --------------------------------------------------------------
-@subsubsection Step 2. The filter program.
+@subsubsection Step 2 - The filter program
 
 The filter program has to be simple: receives text lines as input
 and prints the result to stdout. You can say: @il{Hey, that calls some
@@ -5919,7 +6420,7 @@ etc... you put the limit, not the program.
 @p{}
 
 @c --------------------------------------------------------------
-@subsubsection Step 3. Binding your script to a keystroke.
+@subsubsection Step 3 - Binding your script to a keystroke
 
 Nice, we have the macro, we have the script, but how do we run
 it? In a horrible world you would have to reproduce these steps to
@@ -5959,7 +6460,7 @@ selection" feature of the editor.
 @p{}
 
 @c --------------------------------------------------------------
-@subsubsection Examples.
+@subsubsection Examples
 
 I prepared some examples so you could see the good things of all
 this work. All the examples are the result of selecting all lines
@@ -6304,6 +6805,94 @@ a variable (int, float, @il{etc.}) is.
 @p{}
 
 @chapter Miscellaneous
+
+@section Configuration files location
+@cindex configuration files, location
+
+  The configuration files are read from various directories allowing to use
+system wide defaults and also user defined settings. The mechanism used to
+determine which file to load depends on the OS. For DOS and Windows the
+editor doesn't know much about users and uses an approach that's different
+to the one used for POSIX systems (Linux, FreeBSD, QNX, Solaris, @il{etc.}).
+The Cygwin version of the editor is considered as a POSIX version even when
+that's a Windows binary.
+@p{}
+
+
+@subsection Configuration directories for DOS and Windows
+
+  Here is the list of directories where the editor looks for a configuration
+file. Note that Cygwin binaries are an exception and they behave as binaries
+compiled for POSIX systems. @x{Configuration directories for POSIX systems}.
+@p{}
+
+  One concept used during the search is the @il{home directory}. It is
+determined using the @code{HOME} environment variable. If this variable isn't
+defined the editor tries with @code{HOMEDIR}. We represent it using @code{~}.
+@p{}
+
+  To represent the content of an environment variable the examples use
+@code{%VARIABLE%}. In the examples we will represent the configuration file
+naming it @il{FILE}.
+@p{}
+
+@enumerate
+@item @file{~/FILE}
+@item @file{%SET_FILES%/FILE}
+@item The directory where you started the editor.
+@end enumerate
+
+  The @code{SET_FILES} environment variable should point to the directory
+where system wide configuration files are stored. Note that if the
+@code{SET_FILES} environment variable isn't defined the editor tries to
+figure out it using the following sequence:
+@p{}
+
+@enumerate
+@item The installation directory detected or specified at compilation time
+adding the @file{share/setedit} directory.
+@item The directory where the binary is located eliminating the @file{bin}
+part and adding @file{share/setedit} directory.
+@end enumerate
+
+@subsection Configuration directories for POSIX systems
+
+  Here is the list of directories where the editor looks for a configuration
+file. Note it includes Cygwin binaries.
+@p{}
+
+  One concept used during the search is the @il{home directory}. It is
+determined using the @code{HOME} environment variable. If this variable isn't
+defined the editor tries with @code{HOMEDIR}. We represent it using @code{~}.
+@p{}
+
+  To represent the content of an environment variable the examples use
+@code{$VARIABLE}. In the examples we will represent the configuration file
+naming it @il{FILE}. In POSIX systems a hidden file is created using a dot a
+preffix.
+@p{}
+
+@enumerate
+@item @file{~/.setedit/FILE} (Note: this directory is created if it doesn't
+exist).
+@item @file{~/.setedit/.FILE}
+@item @file{~/FILE}
+@item @file{~/.FILE}
+@item @file{$SET_FILES/FILE}
+@end enumerate
+
+  The @code{SET_FILES} environment variable should point to the directory
+where system wide configuration files are stored. Note that if the
+@code{SET_FILES} environment variable isn't defined the editor tries to
+figure out it using the following sequence:
+@p{}
+
+@enumerate
+@item The installation directory detected or specified at compilation time
+adding the @file{share/setedit} directory.
+@item @file{/usr/share/setedit}
+@item @file{/usr/local/share/setedit}
+@end enumerate
 
 @section Clipboard
 
@@ -6795,7 +7384,8 @@ the day, the output of an external program, etc.
 @paragraph{}
 
 The message window doesn't have a number but can be accessed from the list of
-windows (default @kbd{Alt+0}).
+windows (default @kbd{Alt+0}) or from the @il{Windows | Message Window} menu
+option.
 @paragraph{}
 
 If the messages are errors or hits from grep you can use @kbd{Alt+F7} and
@@ -6828,10 +7418,10 @@ doing it in a configurable way. So starting with v0.4.41 the editor can be
 configured to parse the errors from an external application.
 @paragraph{}
 
-The configuration is stored in a file called @file{errors.cel}. The syntax is
+The configuration is stored in a file called @file{errors.cle}. The syntax is
 very similar to the one used in the @file{syntaxhl.shl} file. All definitions
 start with a @code{Name} declaration that indicates the name of the parsing
-options and ends with an @code{End} marker.
+options and ends with an @code{End} marker. @x{Configuration files location}.
 @paragraph{}
 
 The @code{Pattern} entry tells the editor how to parse a line containing an
@@ -6896,7 +7486,7 @@ the time. Another use is when you need to pass options to the editor and you
 are using Eterm; which can't pass command line options, so you
 must use this mechanism.
 
-@section UNIX: How to run setedit remotely without root installation
+@section How to run setedit remotely without root installation (UNIX)
 
 This text was contributed by Grzegorz Adam Hankiewicz:
 @p{}

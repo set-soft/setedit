@@ -42,6 +42,10 @@ class TSOSListBox;
 #include <completi.h>
 #include <edhists.h>
 #include <slpinter.h>
+#define Uses_TKeyTranslate
+#define Uses_TKeySeqCol
+#define Uses_TComSeqCol
+#include <keytrans.h>
 
 TCEditor *TMLIEditor::Editor;
 
@@ -438,6 +442,60 @@ int TMLIEditor::GetCurWindowNumber()
 int TMLIEditor::GetMaxWindowNumber()
 {
  return ::GetMaxWindowNumber();
+}
+
+/*****************************************************************************
+  Key binding operations
+*****************************************************************************/
+
+KeyTTable *TMLIEditor::oriKeyTable=NULL;
+int TMLIEditor::oriCanBeDeleted;
+
+int TMLIEditor::StartKeyBind()
+{
+ printf("StartKeyBind\n");
+ if (oriKeyTable)
+    return 0;
+ oriKeyTable=KeyTrans.expand(oriCanBeDeleted);
+ return oriKeyTable!=NULL;
+}
+
+void TMLIEditor::EndKeyBind()
+{
+ printf("EndKeyBind\n");
+ if (!oriKeyTable)
+    return;
+ if (oriCanBeDeleted)
+    delete oriKeyTable;
+ KeyTrans.compact();
+ oriKeyTable=NULL;
+}
+
+void TMLIEditor::AbortKeyBind()
+{
+ printf("AbortKeyBind\n");
+ if (!oriKeyTable)
+    return;
+ KeyTrans.ChangeTable(oriKeyTable,oriCanBeDeleted ? kbtDynamic : kbtStatic);
+ oriKeyTable=NULL;
+}
+
+int TMLIEditor::BindKey(TKeySeqCol *sKeys, void *data, int Type)
+{
+ printf("BindKey\n");
+ int ret=KeyTrans.addKey(sKeys,data,Type);
+ if (ret>=0)
+   {
+    KeyTrans.deleteKey(ret);
+    KeyTrans.addKey(sKeys,data,Type);
+   }
+ else
+   if (ret==-1)
+     {
+      // TODO: Solve it
+      return 0;
+     }
+ return 1;
 }
 
 #define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \

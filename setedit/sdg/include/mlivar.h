@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TMLIArrayBase;
 class TMLIBase;
@@ -14,7 +14,8 @@ const int
       MLITypeCommand=0x3000,
       MLITypeVar    =0x4000,
       MLITypeCode   =0x5000,
-      MLITypeSDGvar =0x6000;
+      MLITypeSDGvar =0x6000,
+      MLITypeKeyBind=0x7000; // Used by the editor
 
 const int
       MLIGString =0x1,
@@ -22,7 +23,8 @@ const int
       MLIGCommand=0x3,
       MLIGVar    =0x4,
       MLIGCode   =0x5,
-      MLIGSDGvar =0x6;
+      MLIGSDGvar =0x6,
+      MLIGKeyBind=0x7;
 
 const int
       MLIEStrNoEnd  =0x1000, // Parse errors
@@ -39,7 +41,8 @@ const int
       MLIUndefVar   =0x2005,
       MLIUndefSymbol=0x2006,
       MLIUndefOp    =0x2007,
-      MLIInvaForName=0x2008;
+      MLIInvaForName=0x2008,
+      MLIInvaKeySeq =0x2009;
 
 // Just an arbitrary limit to stop infinite recursion that will end in a crash
 const int maxNestedsLisp=1024;

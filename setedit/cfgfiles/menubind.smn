@@ -237,7 +237,7 @@ SubMenu: "~T~ool&Ops", kbAlT
  MenuItemC: "~G~rep...", cmeGrepDialog, kbShF2, "Shift+F2"
  MenuItemC: "~A~SCII Chart", cmeASCIIChart
  MenuItemC: "Ca~l~endar", cmeCalendar
-#$ifdef DOS
+ $if MP3
  SubMenu: "MP~3~ songs", kbUnknown
    MenuItemC: "~S~elect a song", cmeMP3Open
    MenuItemC: "~P~lay selected", cmeMP3Start
@@ -248,9 +248,11 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "P~l~ay list", cmeMP3PlayList
    MenuItemC: "St~o~p list", cmeMP3StopList
    MenuSeparator
+   $if MIXER
    MenuItemC: "Sound board mi~x~er", cmeBoardMixer
+   $endif
  EndSubMenu
-#$endif
+ $endif
  SubMenu: "~H~TML Accents", kbUnknown
    MenuItemC: "Convert ~a~ccents to tags", cmeHTMLAccents
    MenuItemC: "Convert ~t~ags to accents", cmeHTMLTag2Accent

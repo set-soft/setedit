@@ -492,7 +492,8 @@ TSubMenu *GetSubMenu(FILE *f, char *buf, char *s, stPreproInfo *PreproInfo,
     if (!Error)
        GetLine();
    }
- Error=errMLUnclosedSubMenu;
+ if (!Error)
+    Error=errMLUnclosedSubMenu;
  return 0;
 }
 
@@ -786,6 +787,8 @@ static
 int PreproLine_GetOperation(char *&str, stPreproInfo *p, TStringCollection *)
 {
  int l=GetLenOfWord(str);
+ if (!l)
+    return prlieNoOp;
  if (strncasecmp(str,p->sAnd,l)==0)
    {
     str+=l;
@@ -834,7 +837,10 @@ int PreproLine_InterpretIf(char *&str, stPreproInfo *p, TStringCollection *defs,
        if (nested)
          {
           if (*s==')')
+            {
+             s++;
              break;
+            }
           else
              return prlieSyntax;
          }
@@ -960,7 +966,22 @@ int LoadTVMenuAndStatus(char *fileName)
  #elif defined(SEOS_Win32)
  defs->insert(strdup("WIN32"));
  #elif defined(SEOS_UNIX)
- defs->insert(newStr("Linux"));
+ defs->insert(newStr("UNIX"));
+  #ifdef SEOSf_Linux
+  defs->insert(newStr("Linux"));
+  #endif
+ #endif
+ #if WITH_MP3
+ defs->insert(newStr("MP3"));
+ #endif
+ #if HAVE_PCRE_LIB
+ defs->insert(newStr("PCRE"));
+ #endif
+ #if HAVE_BZIP2
+ defs->insert(newStr("BZIP2"));
+ #endif
+ #if HAVE_MIXER
+ defs->insert(newStr("MIXER"));
  #endif
 
  GetLine();

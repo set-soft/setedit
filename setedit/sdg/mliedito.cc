@@ -12,6 +12,7 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_stdio
 #define Uses_ctype
 #define Uses_string
+#define Uses_AllocLocal
 #define Uses_TLispVariableCol
 #define Uses_TMLIBase
 #define Uses_TLispBaseVars
@@ -21,6 +22,7 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_TLispSDGstring
 #define Uses_MsgBox
 #define Uses_TNoCaseStringCollection
+#define Uses_TStringable // needed for keytrans.h
 #include <settvuti.h>
 #include <mli.h>
 #define Uses_TCEditor_Commands
@@ -29,6 +31,10 @@ editor. @x{TMLIBase (class)}.@p
 #include <dyncat.h>
 #include <runprog.h>
 #include <edmsg.h>
+#define Uses_TKeyTranslate
+#define Uses_TKeySeqCol
+#define Uses_TComSeqCol
+#include <keytrans.h>
 
 // Open a file and insert it in the desktop
 // This function should be defined by RHIDE and is already needed
@@ -774,6 +780,147 @@ DecFun(MLIGetMaxWindowNumber)
  MLIRetInt(TMLIEditor::GetMaxWindowNumber());
 }
 
+// (KeyBindings keyBindOp [keyBindOp ...])
+DecFun(MLIKeyBindings)
+{
+ int i, abortOperation=0;
+ LocVarKeyBind(key);
+
+ CheckNumParams(cant<1);
+
+ if (!TMLIEditor::StartKeyBind())
+   {// Most probably a nested call
+    MLIRetInt(0);
+    goto CleanUp;
+   }
+ abortOperation=1;
+ for (i=0; i<cant; i++)
+    {
+     GetKeyBind(i,key);
+     if (!TMLIEditor::BindKey(key->sKeys,key->data,key->bindType))
+       {
+        MLIRetInt(0);
+        goto CleanUp;
+       }
+     destroyFloatVar(key);
+     key=NULL;
+    }
+ MLIRetInt(1);
+ abortOperation=0;
+ TMLIEditor::EndKeyBind();
+
+CleanUp:
+ destroyFloatVar(key);
+ if (abortOperation)
+    TMLIEditor::AbortKeyBind();
+}
+
+TLispKeyBind::TLispKeyBind(TKeySeqCol *aSKeys, void *aData, int aBindType)
+{
+ sKeys=aSKeys;
+ data=aData;
+ bindType=aBindType;
+ type=MLITypeKeyBind;
+}
+
+TLispKeyBind::~TLispKeyBind()
+{
+ if (bindType!=kbtDelOp)
+   {
+    CLY_destroy(sKeys);
+    if (bindType==kbtIsSeq)
+       CLY_destroy((TComSeqCol *)data);
+    else
+       delete[] (char *)data;
+   }
+}
+
+int TLispKeyBind::print(FILE *) { return 0; }
+char *TLispKeyBind::toStr() { return NULL; }
+
+TKeySeqCol *ParseKeySeq(char *str, int len)
+{
+ ushort code;
+ // Make a local copy
+ AllocLocalStr(s,len+1);
+ memcpy(s,str,len);
+ s[len]=0;
+ // Create the collection
+ TKeySeqCol *ret=new TKeySeqCol(2,2);
+ // Parse it
+ char *key=strtok(s,", ");
+ do
+   {
+    if (InterpretKeyName(key,code))
+      {
+       CLY_destroy(ret);
+       return NULL;
+      }
+    ret->insert(code);
+    key=strtok(NULL,", ");
+   }
+ while (key);
+
+ return ret;
+}
+
+// (BindKey "key1,key2" command [commands ...])
+// (BindKey "key1,key2" "macro")
+DecFun(MLIBindKey)
+{
+ LocVarStr(keySeqStr);
+ LocVar(first);
+ LocVarInt(command);
+ TKeySeqCol *seq=NULL;
+ TComSeqCol *comms=NULL;
+ int i;
+
+ CheckNumParams(cant<2);
+
+ // Get the key sequence
+ GetString(0,keySeqStr);
+ seq=ParseKeySeq(keySeqStr->str,keySeqStr->len);
+ CheckForError(!seq,MLIInvaKeySeq);
+
+ // Get the first as a generic variable to determine the type
+ GetVar(1,first);
+ switch (GroupTypeOf(first))
+   {
+    case MLIGInteger:
+         // Commands
+         comms=new TComSeqCol(2,2);
+         comms->insert(MLIAsIntVal(first));
+         for (i=2; i<cant; i++)
+            {
+             GetInteger(i,command);
+             comms->insert(command->val);
+             destroyFloatVar(command);
+             command=NULL;
+            }
+         MLIRetKeyBind(seq,comms,kbtIsSeq);
+         // They are now part of the return value
+         comms=NULL;
+         seq=NULL;
+         break;
+    case MLIGString:
+         // A macro or sLisp code
+         CheckForError(cant>2,MLINumParam);
+         MLIRetKeyBind(seq,strdup(MLIAsStrVal(first)),kbtIsMacro);
+         // Now part of the return value
+         seq=NULL;
+         break;
+    default:
+         CheckForError(1,MLITypeParam);
+   }
+
+CleanUp:
+ destroyFloatVar(keySeqStr);
+ destroyFloatVar(first);
+ destroyFloatVar(command);
+ CLY_destroy(comms);
+ CLY_destroy(seq);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -806,7 +953,9 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "ReplaceAgain",
  "SelectWindowNumber",
  "GetCurWindowNumber",
- "GetMaxWindowNumber"
+ "GetMaxWindowNumber",
+ "KeyBindings",
+ "BindKey"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -841,7 +990,9 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIReplaceAgain,
  MLISelectWindowNumber,
  MLIGetCurWindowNumber,
- MLIGetMaxWindowNumber
+ MLIGetMaxWindowNumber,
+ MLIKeyBindings,
+ MLIBindKey
 };
 
 
