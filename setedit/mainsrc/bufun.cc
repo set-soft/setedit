@@ -557,12 +557,20 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
 static TNoCaseSOSStringCollection *glFunList;
 static SOStack *glStk;
 
+inline
+void AlignLen(int &len)
+{
+ if (len & 3)
+    len+=4-(len & 3);
+}
+
 static
 void StrDup(char *s, int len, int line, int lineEnd)
 {
  stkHandler h;
  char *d;
 
+ AlignLen(len);
  h=glStk->alloc(len+sizeof(int)*2);
  d=glStk->GetStrOf(h);
  strcpy(d,s);
@@ -667,8 +675,9 @@ static
 char *GetNameLine(TNoCaseSOSStringCollection *FunList, int i, int *line)
 {
  char *s=FunList->atStr(i);
- int length=strlen(s);
- *line=*(int *)(s+length+1);
+ int length=strlen(s)+1;
+ AlignLen(length);
+ *line=*(int *)(s+length);
  return s;
 }
 
@@ -884,8 +893,9 @@ int SearchFunctionByLine(int line, int &start, int &end, char *&name)
  for (i=0; i<c; i++)
     {
      char *s=lstBufun->atStr(i);
-     len=strlen(s);
-     l=(int *)(s+len+1);
+     len=strlen(s)+1;
+     AlignLen(len);
+     l=(int *)(s+len);
      lineS=l[0];
      lineE=l[1];
      if (lineE==-1)
@@ -893,8 +903,9 @@ int SearchFunctionByLine(int line, int &start, int &end, char *&name)
         if (i+1<c)
           {
            char *s=lstBufun->atStr(i+1);
-           len=strlen(s);
-           l=(int *)(s+len+1);
+           len=strlen(s)+1;
+           AlignLen(len);
+           l=(int *)(s+len);
            lineE=l[0]-1;
           }
         else
@@ -913,8 +924,9 @@ int SearchFunctionByLine(int line, int &start, int &end, char *&name)
 static void writeStr(void *p, void *)
 {
  char *s=(char *)p;
- int l=strlen(s);
- printf("%s %d\n",s,*(int *)(s+l+1));
+ int l=strlen(s)+1;
+ AlignLen(l);
+ printf("%s %d\n",s,*(int *)(s+l));
 }
 
 int main(int argc, char *argv[])
