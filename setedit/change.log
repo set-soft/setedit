@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.358  2003/05/12 14:39:33  set
+* Added: Emacs modes and shell names for Tcl and Python. Suggested by
+Grzegorz.
+
 Revision 1.357  2003/05/12 13:45:50  set
 * Added: A dialog to dis/enable any advice dialog (also the Quit + delete
 warning).

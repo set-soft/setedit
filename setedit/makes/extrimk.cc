@@ -3,6 +3,8 @@
 #include <string.h>
 #include <sys/stat.h>
 
+#define ONE_DEP_BY_LINE 1
+
 const int maxLine=1024;
 unsigned maxCol=78;
 
@@ -164,22 +166,50 @@ void ExtractDeps(FILE *f, node *p)
 }
 
 static
+int PrintDep(FILE *d, int l, const char *s)
+{
+ if (ONE_DEP_BY_LINE)
+   {
+    fputs("\\\n\t",d);
+    l=8+fprintf(d,"%s ",s);
+   }
+ else
+   {
+    if (l+strlen(s)+2>maxCol)
+      {
+       fputs("\\\n\t",d);
+       l=8;
+      }
+    l+=fprintf(d,"%s ",s);
+   }
+ return l;
+}
+
+static
+int PrintDepDir(FILE *d, int l, const char *s,int lenDir, const char *dir)
+{
+ if (ONE_DEP_BY_LINE)
+   {
+    fputs("\\\n\t",d);
+    l=8+fprintf(d,"%s/%s ",dir,s);
+   }
+ else
+   {
+    if (l+strlen(s)+3+lenDir>maxCol)
+      {
+       fputs("\\\n\t",d);
+       l=8;
+      }
+    l+=fprintf(d,"%s/%s ",dir,s);
+   }
+ return l;
+}
+
+static
 int AddFixedDeps(FILE *d, int l)
 {
- char *s="rhide.env";
- if (l+strlen(s)+2>maxCol)
-   {
-    fputs("\\\n\t",d);
-    l=8;
-   }
- l+=fprintf(d,"%s ",s);
- s="common.imk";
- if (l+strlen(s)+2>maxCol)
-   {
-    fputs("\\\n\t",d);
-    l=8;
-   }
- l+=fprintf(d,"%s ",s);
+ l=PrintDep(d,l,"rhide.env");
+ l=PrintDep(d,l,"common.imk");
  return l;
 }
 
@@ -231,12 +261,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
           exit(4);
          }
       }
-    if (l+strlen(s)+2>maxCol)
-      {
-       fputs("\\\n\t",d);
-       l=8;
-      }
-    l+=fprintf(d,"%s ",s);
+    l=PrintDep(d,l,s);
     if (s!=c->name)
        free(s);
     c=c->next;
@@ -335,22 +360,12 @@ int ListTargetItems(FILE *d, int l, stMak &mk)
        char *ext=strrchr(s,'.');
        if (strcmp(ext,".o")==0 || strcmp(ext,".a")==0)
          {
-          if (l+strlen(s)+2>maxCol)
-            {
-             fputs("\\\n\t",d);
-             l=8;
-            }
-          l+=fprintf(d,"%s ",s);
+          l=PrintDep(d,l,s);
          }
        else
          {
           strcpy(ext,".o");
-          if (l+strlen(s)+3+lenObjDir>maxCol)
-            {
-             fputs("\\\n\t",d);
-             l=8;
-            }
-          l+=fprintf(d,"%s/%s ",mk.objDir,s);
+          l=PrintDepDir(d,l,s,lenObjDir,mk.objDir);
          }
        free(s);
       }
@@ -368,7 +383,7 @@ int CollectTargets(FILE *d, const char *name, stMak &mk, int l)
 {
  if (mk.mainTarget && *mk.mainTarget)
    {// Simple, it have a lib
-    l+=fprintf(d,"%s ",mk.mainTarget);
+    l=PrintDep(d,l,mk.mainTarget);
    }
  else
    {// More complex
@@ -440,12 +455,7 @@ int ListTargetOItems(FILE *d, int l, stMak &mk)
           char *s=strdup(p->name);
           if (strcmp(ext,".o"))
              strcpy(strrchr(s,'.'),".o");
-          if (l+strlen(s)+3+lenObjDir>maxCol)
-            {
-             fputs("\\\n\t",d);
-             l=8;
-            }
-          l+=fprintf(d,"%s/%s ",mk.objDir,s);
+          l=PrintDepDir(d,l,s,lenObjDir,mk.objDir);
           free(s);
          }
       }
@@ -480,13 +490,7 @@ int ListTargetAItems(FILE *d, int l, stMak &mk)
  node *p=mk.base;
  if (mk.mainTarget && *mk.mainTarget)
    {
-    char *s=mk.mainTarget;
-    if (l+strlen(s)+2>maxCol)
-      {
-       fputs("\\\n\t",d);
-       l=8;
-      }
-    l+=fprintf(d,"%s ",s);
+    l=PrintDep(d,l,mk.mainTarget);
    }
  else
    {
@@ -498,14 +502,7 @@ int ListTargetAItems(FILE *d, int l, stMak &mk)
          {
           char *ext=strrchr(p->name,'.');
           if (strcmp(ext,".a")==0)
-            {
-             if (l+strlen(p->name)+2>maxCol)
-               {
-                fputs("\\\n\t",d);
-                l=8;
-               }
-             l+=fprintf(d,"%s ",p->name);
-            }
+             l=PrintDep(d,l,p->name);
          }
        p=p->next;
       }
@@ -526,14 +523,7 @@ void GenerateLibs(FILE *f, stMak &mk)
       {
        char *ext=strrchr(p->name,'.');
        if (strcmp(ext,".a")==0)
-         {
-          if (l+strlen(p->name)+2>maxCol)
-            {
-             fputs("\\\n\t",f);
-             l=8;
-            }
-          l+=fprintf(f,"%s ",p->name);
-         }
+          l=PrintDep(f,l,p->name);
       }
     p=p->next;
    }
