@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.452  2003/10/16 19:40:54  set
+* Fixed: The "Jump" button in the main window of the class browser produced
+SIGSEGVs. I went too far reusing code ;-). Reported by Ivan.
+
 Revision 1.451  2003/10/16 19:39:10  set
 * Added: Some clarification in the docs about the meaning of the maximum
 number of R.O. copies.

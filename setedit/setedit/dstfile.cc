@@ -306,6 +306,11 @@ void TSetEditorApp::displayDetectCallBack()
    {
     // Ok, we had the options for this driver
     so=(stScreenOptions *)soCol->at(pos);
+    // The following is needed only if the desktop file was damaged by v0.5.0 to 0.5.2
+    if (!TScreen::codePageVariable())
+      {// This driver have a fixed screen code page, we must use it.
+       so->enForceScr=0;
+      }
    }
  else
    {// We don't know about it ...
@@ -314,6 +319,10 @@ void TSetEditorApp::displayDetectCallBack()
        so=(stScreenOptions *)soCol->at(pos);
        DeleteArray(so->driverName);
        so->driverName=newStr(drv);
+       if (!TScreen::codePageVariable())
+         {// This driver have a fixed screen code page, we must use it.
+          so->enForceScr=0;
+         }
        adjustVideoMode=1;
       }
     else
@@ -342,6 +351,10 @@ void TSetEditorApp::displayDetectCallBack()
           CP(foSecName);
           CP(scCommand);
           #undef CP
+          if (!TScreen::codePageVariable())
+            {// This driver have a fixed screen code page, we must use it.
+             so->enForceScr=0;
+            }
           transferSetting2TV(so);
           soCol->Insert(so);
          }
