@@ -722,7 +722,7 @@ void OpenProject(char *name, int preLoad)
     else
        loaded=TSetEditorApp::retrieveDesktop(editorApp,s,True,preLoad);
     if (!loaded)
-       TSetEditorApp::loadEditorDesktop(0);
+       TSetEditorApp::loadEditorDesktop(0,0,0,preLoad);
     if (preLoad)
        return;
     LoadProject(ReplaceExtension(s,ProjectFileExt,DeskTopFileExt));

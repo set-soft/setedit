@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.208  2002/09/12 18:13:31  set
+* Modified: The default ManView colors as suggested by Ivan, now they are
+more coherent with InfView.
+
 Revision 1.207  2002/09/12 01:16:26  terrible
 * Fixed: typo in internac/es.po.
 * Updated: Debian packaging to version 0.5.0-0.3.
