@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.542  2004/07/20 19:33:17  set
+* Fixed: Added dummies to allow compilation when libmigdb isn't installed.
+
 Revision 1.541  2004/07/20 16:27:09  set
 * Added: The first part of the code to support debugging using libmigdb.
 * Synchronized some CVS details with my home CVS.

@@ -737,6 +737,8 @@ void LoadProject(char *name)
 
        if (LoadingPrjVersion>1)
           SDGInterfaceReadData(f);
+       // KEEP it at the end, the load is conditional.
+       // We don't load it if libmigdb doesn't exist.
        if (LoadingPrjVersion>=8)
           DebugReadData(*f);
        if (prjWin)

@@ -66,6 +66,7 @@ directories to look for sources.
 
 ***************************************************************************/
 
+#include <ceditint.h>
 #define Uses_stdio
 #define Uses_unistd
 #define Uses_snprintf
@@ -144,6 +145,7 @@ const char debugDataVersion=1;
 const int maxWBox=70, widthFiles=256, widthShort=80;
 const int widthWtExp=widthFiles, maxWtBox=maxWBox;
 const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
+const int widthPID=32;
 const int dmLocal=0, dmPID=1, dmRemote=2;
 
 struct DebugOptionsStruct
@@ -373,6 +375,33 @@ int TSetEditorApp::DebugConnect()
  return res;
 }
 
+
+static
+TDialog *createPidDlg()
+{
+ TSViewCol *col=new TSViewCol(__("PID (Process ID) of the running process"));
+
+ // EN: P
+ TSHzLabel *o1=new TSHzLabel(__("~P~ID:"),new TSInputLine(widthPID));
+
+ col->insert(xTSLeft,yTSUpSep,o1);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doItCenter(cmGDBCommand);
+ delete col;
+ return d;
+}
+
+static
+int GetPID()
+{
+ char pid[widthPID];
+ pid[0]=0;
+ if (execDialog(createPidDlg(),pid)==cmOK)
+    return atoi(pid);
+ return 0;
+}
+
 static
 int IsEmpty(const char *s)
 {
@@ -404,8 +433,9 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
        return 0;
    }
 
- int res=0;
+ int res=0, pid;
  char *args, *tty, *aux;
+ mi_frames *fr;
 
  if (!edTestForFile(dOps.program))
    {// Don't even try if the program doesn't exist
@@ -431,8 +461,25 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
          break;
 
     case dmPID:
-         messageBox(__("Not yet implemented, sorry"),mfOKButton | mfInformation);
-         return 0;
+         pid=GetPID();
+         if (!pid)
+            return 0;
+         if (pid==getpid())
+           {
+            messageBox(__("Hey! That's my PID!"),mfError | mfOKButton);
+            return 0;
+           }
+         fr=dbg->SelectTargetPID(dOps.program,pid);
+         if (fr)
+           {
+            res=1;
+            // TODO: i18n
+            char b[maxWStatus];
+            int l=CLY_snprintf(b,maxWStatus,__("Attached to PID %d"),pid);
+            DebugMsgJumpToFrame(fr,b,l);
+            mi_free_frames(fr);
+           }
+         break;
 
     case dmRemote:
          if (IsEmpty(dOps.rtype) || IsEmpty(dOps.rparam))
@@ -498,6 +545,15 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmGDBCommand,True);
          TSetEditorApp::setCmdState(cmeDbgGoConnected,False);
          TSetEditorApp::setCmdState(cmeDbgGoReadyToRun,True);
+         // When a PID exits we go directly to connected:
+         TSetEditorApp::setCmdState(cmeBreakpoint,True);
+         TSetEditorApp::setCmdState(cmeDbgRunContinue,True);
+         TSetEditorApp::setCmdState(cmeDbgStepOver,True);
+         TSetEditorApp::setCmdState(cmeDbgTraceInto,True);
+         TSetEditorApp::setCmdState(cmeDbgGoToCursor,True);
+         TSetEditorApp::setCmdState(cmeDbgStop,False);
+         TSetEditorApp::setCmdState(cmeDbgKill,False);
+         TSetEditorApp::setCmdState(cmeDbgCallStack,False);
          break;
     case MIDebugger::stopped:
          TSetEditorApp::setCmdState(cmeDbgFinishFun,True);
@@ -604,7 +660,10 @@ void TSetEditorApp::DebugPoll()
     if (stoppedInfo)
        DebugMsgSetStopped();
     else
+      {
        DebugMsgSetError();
+       DebugMsgSetState();
+      }
     return;
    }
 
@@ -623,7 +682,10 @@ void TSetEditorApp::DebugPoll()
     if (stoppedInfo)
        DebugMsgSetStopped();
     else
+      {
        DebugMsgSetError();
+       DebugMsgSetState();
+      }
    }
 }
 
