@@ -342,7 +342,7 @@ char *TranslateEdCommand(int cmc_Com)
  for (i=0; i<NumCommands; i++)
      if (List[i].command==cmc_Com)
         return List[i].name;
- return 0;
+ return "Unknown";
 }
 
 TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void)
