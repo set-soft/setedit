@@ -1,9 +1,10 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 typedef struct
 {
  int Line;
  int Column;
+ int offset,len;
 } FileInfo;
 
 #ifdef STANDALONE
@@ -22,8 +23,8 @@ public:
  virtual void selectItem(ccIndex item);
  virtual void handleEvent(TEvent& event);
  virtual void setState(uint16 aState, Boolean enable);
- void selectNext(void);
- void selectPrev(void);
+ void selectNext(int offset=1);
+ void selectPrev(int offset=1);
  int  getLineOf(int pos);
  void updateCommands(int enable);
  void saveAs();
