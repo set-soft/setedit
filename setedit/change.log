@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.442  2003/10/06 18:26:17  set
+* Added: Some Ruby syntax highlighting. Contributed by William E. Cullen
+<WECullen@comcast.net>.
+
 Revision 1.441  2003/09/02 13:49:37  set
 * Updated: QNX configuration. Patch from Mike.
 
