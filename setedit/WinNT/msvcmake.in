@@ -111,7 +111,11 @@ clean-bzip2:
 clean-libs: clean-zlib clean-pcre clean-bzip2
 
 setedit.exe: $(EXTRA_LIBS) $(EDITOR_OBJS)
-	$(LD) -o setedit.exe -link $(EDITOR_OBJS) $(LDFLAGS) $(EXTRA_LIBS)
+	link @<<
+	$(EDITOR_OBJS)
+	/out:setedit.exe
+	$(TV_LIB) user32.lib $(EXTRA_LIBS)
+<<
 
 install: setedit.exe doc
 	echo dummy >a.exe

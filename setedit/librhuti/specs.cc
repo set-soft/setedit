@@ -133,7 +133,7 @@ static void set_internal_var(const char *name,const char *value)
     _set_variable(internal_vars, internal_var_count, name, value);
 }
 
-const char * GetVariable(const char *variable)
+const char *RHGetVariable(const char *variable)
 {
   return GetVariable(variable,1);
 }

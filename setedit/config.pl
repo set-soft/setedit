@@ -974,7 +974,7 @@ sub LookForBZ2Lib
 #include <bzlib.h>
 int main(void)
 {
- printf("%s",BZ2_bzlibVersion());
+ printf("%s",bzlibVersion());
  return 0;
 }';
  $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
@@ -1002,18 +1002,6 @@ int main(void)
  return 0;
 }';
     $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
-    if (!length($ver))
-      {# Versions prior 1.x didn't use BZ2_ prefix
-       $test='
-#include <stdio.h>
-#include <bzlib.h>
-int main(void)
-{
- printf("%s",bzlibVersion());
- return 0;
-}';
-       $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
-      }
     if (length($ver))
       {
        if (CompareVersion($ver,$vNeed))
