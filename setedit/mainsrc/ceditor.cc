@@ -3887,16 +3887,48 @@ Boolean TCEditor::SearchMatchOnTheFly()
 void TCEditor::PasteEmacsMode()
 {
  if (isReadOnly) return;
- char *text=SHLConstructEmacsModeComment(*this);
+ int sizeSt, sizeEnd;
+ char *text=SHLConstructEmacsModeComment(*this,sizeSt,sizeEnd);
+
  if (text)
    {
-    flushLine();
-    addToUndo(undoInMov);
-    GotoOffSet(0);      // Jump
-    insertBuffer(text,0,strlen(text),canUndo,True,False);
-    drawLine=drawPtr=0; // Synchronize the drawing
+    int lenText=strlen(text);
+    // Check if already there
+    char buf[MaxExtension];
+    int start,end;
+    if (TakeCommentEmacs(buffer,bufLen,buf,NULL,&start,&end))
+      {
+       int stComp=start-1-sizeSt;
+       // Is there, check if we pasted it:
+       if (stComp>=0 && strncmp(buffer+stComp,text,sizeSt)==0 &&
+           (!sizeEnd || ((unsigned)end+3+sizeEnd<bufLen &&
+             strncmp(text+lenText-CLY_LenEOL-sizeEnd,buffer+end+3,sizeEnd+CLY_LenEOL)==0)))
+         {// Yes, delete it
+          deleteRange(buffer+stComp,buffer+end+3+sizeEnd+CLY_LenEOL,canUndo);
+         }
+       else
+         {// Nope, is too risky to silently delete it.
+          messageBox(__("Emacs mode already pasted without this editor"),mfError|mfOKButton);
+          ::free(text);
+          return;
+         }
+      }
+
+    // Beggining of text
+    handleCommand(cmcTextStart);
+    // Avoid pasting before a `bangline'
+    if (bufLen>3 && *buffer=='#' && buffer[1]=='!')
+      {// One line down
+       handleCommand(cmcLineDown);
+       if (curPos.y==0)
+         {// It failed, one line file
+          handleCommand(cmcLineEnd);
+          newLine();
+         }
+      }
+
+    insertBuffer(text,0,lenText,canUndo,True,False);
     ::free(text);
-    update(ufView);
    }
 }
 

@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.360  2003/05/12 15:55:23  set
+* Modified: Made more robust the "shell script" shl detection/ It now
+supports: "#!.../env command" => command and "#!.../commandVERSION" =>
+command (example python2.2 => python). From Grzegorz suggestions.
+
 Revision 1.359  2003/05/12 15:23:33  set
 * Modified: The imk generator to generate one dependency in each line. This
 makes files bigger (5.5 % for editor.imk) but reduces the CVS traffic

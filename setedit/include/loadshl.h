@@ -15,6 +15,8 @@ pcre *PCRECompileRegEx(char *text, PCREData &p);
 int   PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p);
 #define PCREDataDestroy(p) PCREInitCompiler(p)
 
+#define MaxExtension 80
+
 struct strSHL;
 class  TStringCollection;
 extern int   LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,
@@ -24,8 +26,10 @@ extern void  UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list,int 
 extern char *SHLNameOf(unsigned number);
 extern int   SHLNumberOf(char *name);
 class TCEditor;
-extern char *SHLConstructEmacsModeComment(TCEditor &e);
+extern char *SHLConstructEmacsModeComment(TCEditor &e, int &sizeSt, int &sizeEnd);
 extern int   SHLSelect(TCEditor &e, char *buffer, int lenBuf);
 extern void  SHLTransferDefaultsNewFile(TCEditor &e);
+extern int   TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
+                              int *startCom=NULL, int *endCom=NULL);
 
 #endif // LOADSHL_H_INCLUDED

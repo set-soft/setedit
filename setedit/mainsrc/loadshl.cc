@@ -594,7 +594,6 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
  delete[] nameSHLFile;
 }
 
-#define MaxExtension 80
 extern char *strncpyZ(char *dest, const char *orig, int size);
 
 static
@@ -627,7 +626,8 @@ int TakeExtension(char *file, char *ext)
 }
 
 static
-int TakeCommentLowLev(char *buffer, int l, char *ext, int &tab_width)
+int TakeCommentLowLev(char *buffer, int l, char *ext, int *tab_width,
+                      int *startCom, int *endCom)
 {
  int i;
  char buf[MaxExtension];
@@ -659,6 +659,10 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int &tab_width)
  if (p2==-1)
     return 0;
 
+ if (startCom)
+    *startCom=p1;
+ if (endCom)
+    *endCom=p2;
  for (p1+=3; ucisspace(s[p1]); p1++);
  for (p2--;  ucisspace(s[p2]); p2--);
 
@@ -683,23 +687,26 @@ int TakeCommentLowLev(char *buffer, int l, char *ext, int &tab_width)
     strcpy(ext,s);
     *end=';';
    }
- s=strstr(buf,"tab-width:");
- if (s)
+ if (tab_width)
    {
-    s+=10;
-    for (;*s && ucisspace(*s); s++);
-    char *end;
-    int temp=strtol(s,&end,0);
-    if (temp>0 && temp<32) // Tabs>32 looks like an error, no?
-       tab_width=temp;
+    s=strstr(buf,"tab-width:");
+    if (s)
+      {
+       s+=10;
+       for (;*s && ucisspace(*s); s++);
+       char *end;
+       int temp=strtol(s,&end,0);
+       if (temp>0 && temp<32) // Tabs>32 looks like an error, no?
+          *tab_width=temp;
+      }
    }
  return 1;
 }
 
 const int searchFromStart=1000, searchAtEnd=3000;
 
-static
-int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int &tab_width)
+int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
+                     int *startCom, int *endCom)
 {
  int len,start;
 
@@ -713,7 +720,7 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int &tab_width)
  if (lenBuf<len)
     len=lenBuf;
 
- if (TakeCommentLowLev(buffer+start,len,ext,tab_width))
+ if (TakeCommentLowLev(buffer+start,len,ext,tab_width,startCom,endCom))
     return 1;
 
  /* If we searched in all the buffer give up */
@@ -725,7 +732,7 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int &tab_width)
  if (start<searchFromStart)
     start=searchFromStart;
 
- return TakeCommentLowLev(buffer+start,lenBuf-start,ext,tab_width);
+ return TakeCommentLowLev(buffer+start,lenBuf-start,ext,tab_width,startCom,endCom);
 }
 
 
@@ -783,7 +790,7 @@ int TakeCommentLocalVars(char *buffer, int lenBuf, char *ext)
 static
 int TakeComment(char *buffer, int lenBuf, char *ext, int &tab_width)
 {
- if (TakeCommentEmacs(buffer,lenBuf,ext,tab_width))
+ if (TakeCommentEmacs(buffer,lenBuf,ext,&tab_width))
     return 1;
  return TakeCommentLocalVars(buffer,lenBuf,ext);
 }
@@ -1068,7 +1075,7 @@ int SHLNumberOf(char *name)
  return -1;
 }
 
-char *SHLConstructEmacsModeComment(TCEditor &e)
+char *SHLConstructEmacsModeComment(TCEditor &e, int &sizeSt, int &sizeEnd)
 {
  int shl=e.SHLValueSelected;
  if (shl<0 || shl>=e.SHLCant || !e.SHLArray[shl].EmacsModes)
@@ -1085,16 +1092,28 @@ char *SHLConstructEmacsModeComment(TCEditor &e)
 
  DynStrCatStruct cat;
  if (useEOL)
+   {
     DynStrCatInit(&cat,e.SHLArray[shl].EOLCom1,e.SHLArray[shl].lEOLCom1);
+    sizeSt=e.SHLArray[shl].lEOLCom1;
+   }
  else
+   {
     DynStrCatInit(&cat,e.SHLArray[shl].OpenCom1,e.SHLArray[shl].lOpenCom1);
+    sizeSt=e.SHLArray[shl].lOpenCom1;
+   }
  DynStrCat(&cat," -""*- mode:");
  DynStrCat(&cat,tok);
  char buf[32];
- int l=sprintf(buf,"; tab-width: %d -""*- ",e.tabSize);
+ int l=sprintf(buf,"; tab-width: %d -""*-",e.tabSize);
  DynStrCat(&cat,buf,l);
- if (!useEOL)
+ if (useEOL)
+    sizeEnd=0;
+ else
+   {
+    DynStrCat(&cat," ",1);
+    sizeEnd=e.SHLArray[shl].lCloseCom1+1;
     DynStrCat(&cat,e.SHLArray[shl].CloseCom1,e.SHLArray[shl].lCloseCom1);
+   }
  DynStrCat(&cat,(char *)CLY_crlf);
 
  return cat.str;
