@@ -35,7 +35,7 @@ CC = gcc
 DEFS = -DLOCALEDIR=\"$(localedir)\" -DLOCALE_ALIAS_PATH=\"$(aliaspath)\" \
 -DLIBDIR=\"$(libdir)\" -DHAVE_CONFIG_H=1
 CPPFLAGS =
-CFLAGS = -O2 -gstabs+3 -pipe
+CFLAGS = -O2 -Wall -Werror -gstabs+3 -pipe
 LDFLAGS =
 
 COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS)

@@ -25,7 +25,7 @@ DYNRTLDFLAGS = -WR
 !endif
 
 CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLDFLAGS) -WC -X -q $(CDEBUGFLAGS) \
-	-D__inline__=inline
+	-D__inline__=inline -DFOR_EDITOR
 CXXFLAGS = -P -RT- -w-hid -w-par $(CFLAGS)
 LDFLAGS  = $(DYNRTLDFLAGS) -WC
 
@@ -79,42 +79,27 @@ INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
 objs\edspecs.obj: ..\mainsrc\edspecs.cc
 objs\bufun.obj: ..\mainsrc\bufun.cc
 
-EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.obj\
-	+mp3play.obj +ascii.obj +boardmix.obj +bufun.obj +calcu.obj +calendar.obj\
-	+ceditor.obj +codepage.obj +completi.obj +deedidia.obj +doedidia.obj\
-	+dskascii.obj +dskcalen.obj +dskclip.obj +dskclose.obj +dskedito.obj +dskhelp.obj\
-	+dskman.obj +dskmessa.obj +dskmp3.obj +dskwin.obj +dstfile.obj +dumpfile.obj\
-	+lablchek.obj +lablradi.obj +snostate.obj +tcheck2.obj +tmiclust.obj\
-	+tsbutton.obj +tschkarr.obj +tschkbox.obj +tshscrol.obj +tshzgrp.obj\
-	+tsinplin.obj +tsinplpi.obj +tslabel.obj +tslider.obj +tslistbo.obj +tsradbot.obj\
-	+tssortlb.obj +tssosslb.obj +tstatext.obj +tstextsc.obj +tstsorlb.obj\
-	+tsvegrp.obj +tsview.obj +tsviewco.obj +ttextscr.obj +edcolor.obj +edconst.obj\
-	+edfonts.obj +editdiag.obj +editmain.obj +editmenu.obj +editorfo.obj\
-	+editpale.obj +editwind.obj +edkeys.obj +edmsg.obj +edprefs.obj +edprint.obj\
-	+edprj.obj +edspecs.obj  +dyncat.obj  +mixer.obj \
-	 +stackdbg.obj +strncpyz.obj +strndup.obj +fstrcmp.obj +getctxhl.obj\
-	+gzfiles.obj +holidays.obj +inf.obj +infbase.obj +manview.obj +nhiscoll.obj\
-	+ninfview.obj +ninfwind.obj +nmanwind.obj +sinf.obj +sman.obj +intgrep.obj\
-	+keytrans.obj +abstorel.obj +back2sl.obj +basename.obj +fexpand.obj +io.obj\
-	+specs.obj +splitfn.obj +stricat.obj +stridown.obj +stridup.obj +strifree.obj\
-	+linelen.obj +loadcle.obj +loaddefl.obj +loadfunc.obj +loadnobkp.obj +loadshl.obj\
-	+loadusew.obj +macrocom.obj +menuload.obj +mli.obj +mliasimp.obj +mlicsdg.obj\
+EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.obj +mp3play.obj\
+	+ascii.obj +boardmix.obj +bufun.obj +calcu.obj +calendar.obj +ceditor.obj +codepage.obj\
+	+completi.obj +deedidia.obj +doedidia.obj +dskascii.obj +dskcalen.obj +dskclip.obj\
+	+dskclose.obj +dskedito.obj +dskhelp.obj +dskman.obj +dskmessa.obj +dskmp3.obj +dskwin.obj\
+	+dstfile.obj +dumpfile.obj +edcolor.obj +edconst.obj +edfonts.obj +editdiag.obj\
+	+editmain.obj +editmenu.obj +editorfo.obj +editpale.obj +editwind.obj +edkeys.obj\
+	+edmsg.obj +edprefs.obj +edprint.obj +edprj.obj +edspecs.obj +djmdr.obj +dyncat.obj\
+	+memmove.obj +mixer.obj +mixersb.obj +mixoss.obj +stackdbg.obj +strncpyz.obj +strndup.obj\
+	+fstrcmp.obj +getctxhl.obj +gzfiles.obj +holidays.obj +inf.obj +infbase.obj +manview.obj\
+	+nhiscoll.obj +ninfview.obj +ninfwind.obj +nmanwind.obj +sinf.obj +sman.obj +intgrep.obj\
+	+keytrans.obj +linelen.obj +loadcle.obj +loaddefl.obj +loadfunc.obj +loadnobkp.obj\
+	+loadshl.obj +loadusew.obj +macrocom.obj +menuload.obj +mli.obj +mliasimp.obj +mlicsdg.obj\
 	+mliediti.obj +mliedito.obj +mlisdg.obj +msignal.obj +nceditor.obj +ndskwasc.obj\
-	+ndskwcal.obj +ndskwcli.obj +ndskwclo.obj +ndskwedi.obj +ndskwhel.obj\
-	+ndskwman.obj +ndskwmes.obj +ndskwmp3.obj +ndskwprj.obj +neditwin.obj\
-	+nfileedi.obj +nsindica.obj +ntedcol.obj +parser.obj +pathlist.obj +pathtool.obj\
-	+pclipper.obj +pmacros.obj +pperl.obj +pphp.obj +pvarious.obj +runprog.obj\
-	+sceditor.obj +scresave.obj +sdginter.obj +sdskasci.obj +sdskcale.obj\
-	+sdskclip.obj +sdskclos.obj +sdskedit.obj +sdskhelp.obj +sdskman.obj\
-	+sdskmess.obj +sdskmp3.obj +sdskprj.obj +search.obj +sedcolle.obj +diaghelp.obj\
-	+dktclock.obj +fileopen.obj +fiopeaid.obj +inputsca.obj +ninputsc.obj\
-	+nostatex.obj +nprogbar.obj +nprogres.obj +ntnocast.obj +ntnosost.obj\
-	+setstack.obj +sprogbar.obj +sprogres.obj +stnocast.obj +stnonost.obj\
-	+tdiagaid.obj +tdiagrow.obj +tinppipe.obj +tnocastc.obj +tnosostr.obj\
-	+tprogbar.obj +tprogdia.obj +tprogrdi.obj +tprogres.obj +tstrlbox.obj\
-	+uisarray.obj +ussarray.obj +viewplus.obj +slpinter.obj +splinman.obj\
-	+ssindica.obj +ssyntax.obj +tags.obj +tedcolle.obj +tips.obj +tpaltext.obj\
-	+tsindica.obj +txhgen.obj +winlistd.obj
+	+ndskwcal.obj +ndskwcli.obj +ndskwclo.obj +ndskwedi.obj +ndskwhel.obj +ndskwman.obj\
+	+ndskwmes.obj +ndskwmp3.obj +ndskwprj.obj +neditwin.obj +nfileedi.obj +nsindica.obj\
+	+ntedcol.obj +parser.obj +pathlist.obj +pathtool.obj +pclipper.obj +pmacros.obj +pperl.obj\
+	+pphp.obj +pvarious.obj +runprog.obj +sceditor.obj +scresave.obj +sdginter.obj\
+	+sdskasci.obj +sdskcale.obj +sdskclip.obj +sdskclos.obj +sdskedit.obj +sdskhelp.obj\
+	+sdskman.obj +sdskmess.obj +sdskmp3.obj +sdskprj.obj +search.obj +sedcolle.obj\
+	+slpinter.obj +splinman.obj +ssindica.obj +ssyntax.obj +tags.obj +tedcolle.obj +tips.obj\
+	+tpaltext.obj +tsindica.obj +txhgen.obj +winlistd.obj
 EDITOR_OBJS = $(EDITOR_OBJS_:+=objs\)
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib

@@ -2,8 +2,10 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
-sdg.exe:: objsdg/bufun2.o objsdg/mli.o objsdg/mliasimp.o objsdg/mlicsdg.o \
-	objsdg/mlisdg.o objsdg/ntnocast.o objsdg/setstack.o \
+sdg.exe:: objsdg/bufun2.o obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o \
+	obj/mixersb.o obj/mixoss.o obj/stackdbg.o obj/strncpyz.o \
+	obj/strndup.o librhuti.a objsdg/mli.o objsdg/mliasimp.o \
+	objsdg/mlicsdg.o objsdg/mlisdg.o objsdg/ntnocast.o objsdg/setstack.o \
 	objsdg/stnocast.o objsdg/tnocastc.o objsdg/txhgen.o objsdg/txhmain.o \
 	rhide.env common.imk 
 	$(RHIDE_COMPILE_LINK)
@@ -30,6 +32,8 @@ objsdg/bufun2.o:: bufun2.cc $(INCLUDE_DIR)/ucdefs.h \
 	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
+
+include extra.imk
 
 objsdg/mli.o:: mli.cc $(EXTRA_INC_DIR)/dyncat.h $(INCLUDE_DIR)/pathtool.h \
 	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
@@ -180,9 +184,11 @@ objsdg/txhmain.o:: txhmain.cc $(INCLUDE_DIR)/ceditint.h \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
-OBJFILES=objsdg/bufun2.o objsdg/mli.o objsdg/mliasimp.o objsdg/mlicsdg.o \
+OBJFILES=objsdg/bufun2.o obj/djmdr.o obj/dyncat.o obj/memmove.o obj/mixer.o \
+	obj/mixersb.o obj/mixoss.o obj/stackdbg.o obj/strncpyz.o \
+	obj/strndup.o objsdg/mli.o objsdg/mliasimp.o objsdg/mlicsdg.o \
 	objsdg/mlisdg.o objsdg/ntnocast.o objsdg/setstack.o \
 	objsdg/stnocast.o objsdg/tnocastc.o objsdg/txhgen.o objsdg/txhmain.o 
 
-LIBRARIES=
+LIBRARIES=librhuti.a 
 
