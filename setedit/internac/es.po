@@ -1,3 +1,18 @@
+# Este es el archivo de traducci¢n a espa¤ol para el SETEdit.
+# Copyright (C) 2001 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: setedit 0.4.49\n"
+"PO-Revision-Date: 2001-09-25 22:45-0300\n"
+"Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
+"Language-Team: Spanish <set@ieee.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP850\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 #: ../calcu/calcu.cc:73
 msgid "~E~xpression"
 msgstr "~E~xpresi¢n"
@@ -277,6 +292,14 @@ msgstr "Error al leer el archivo de escritorio"
 #: ../infview/infmain.cc:540
 msgid "InfView v"
 msgstr "InfView v"
+
+#: ../infview/infmain.cc:540 ../setedit/editmain.cc:1868
+msgid ""
+". Copyright (c) 1996-2001 by Salvador E. Tropea\n"
+"\n"
+msgstr ""
+". Copyright (c) 1996-2001 por Salvador E. Tropea\n"
+"\n"
 
 #: ../infview/infmain.cc:541
 msgid ""
@@ -696,8 +719,7 @@ msgstr "Una copia del autoexec.bat original fue guardada como autoexec.bak"
 
 #: ../install/install.cc:1363
 msgid "SET Edit installer v1.10, copyright (c) 1999 by Salvador E. Tropea"
-msgstr ""
-"Instalador de SET Edit v1.10, copyright (c) 1999 by Salvador E. Tropea"
+msgstr "Instalador de SET Edit v1.10, copyright (c) 1999 by Salvador E. Tropea"
 
 #: ../install/install.cc:1368
 msgid "Failed, disabling all or part of the Win9x specific stuff"
@@ -1185,6 +1207,7 @@ msgstr ""
 "%f caracteres/seg"
 
 #: ../mainsrc/ceditor.cc:3916
+#, c-format
 msgid ""
 "Time: %f seconds\n"
 "Speed: %f lines/second\n"
@@ -2574,11 +2597,14 @@ msgstr ""
 
 #: ../setedit/editmain.cc:1876
 msgid "-b, --bios-keyb:         use BIOS for the keyboard [safer, default].\n"
-msgstr "-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, p/defecto].\n"
+msgstr ""
+"-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, p/"
+"defecto].\n"
 
 #: ../setedit/editmain.cc:1877
 msgid "-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster].\n"
-msgstr "-B, --no-bios-keyb:      no usar el BIOS para el teclado [m s r pido].\n"
+msgstr ""
+"-B, --no-bios-keyb:      no usar el BIOS para el teclado [m s r pido].\n"
 
 #: ../setedit/editmain.cc:1879
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
@@ -4247,21 +4273,6 @@ msgstr "Comando~s~"
 msgid "Assignmen~t~"
 msgstr "Asi~g~naci¢n"
 
-# Este es el archivo de traducci¢n a espa¤ol.
-# Copyright (C) 2001 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001.
-#
-#, fuzzy
-#~ msgid ""
-#~ msgstr ""
-#~ "Project-Id-Version: setedit 0.4.49\n"
-#~ "PO-Revision-Date: 2001-09-25 22:45 -0300\n"
-#~ "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
-#~ "Language-Team: Spanish <set@ieee.org>\n"
-#~ "MIME-Version: 1.0\n"
-#~ "Content-Type: text/plain; charset=CP850\n"
-#~ "Content-Transfer-Encoding: 8bit\n"
-
 #~ msgid "~N~ew InfView window"
 #~ msgstr "~N~ueva ventana de InfView"
 
@@ -4347,7 +4358,8 @@ msgstr "Asi~g~naci¢n"
 #~ msgstr "­Atenci¢n no puedo abrir el archivo de ayuda!"
 
 #~ msgid ""
-#~ "-s, --no-signal:         disables the hook of signals to save the modified\n"
+#~ "-s, --no-signal:         disables the hook of signals to save the "
+#~ "modified\n"
 #~ "                         buffers during a crash. Could be needed if the "
 #~ "editor\n"
 #~ "                         hangs in an extraordinary way.\n"
@@ -4382,5 +4394,5 @@ msgstr "Asi~g~naci¢n"
 
 #~ msgid "Attention !! this file is in DOS format,"
 #~ msgstr ""
-#~ "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga una "
-#~ "copia primero"
+#~ "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga "
+#~ "una copia primero"
