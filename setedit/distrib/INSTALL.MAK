@@ -1,4 +1,4 @@
-# Copyright (C) 1998,1999,2000 by Salvador E. Tropea
+# Copyright (C) 1998-2002 by Salvador E. Tropea
 # Copyright (C) 1996-1998 Robert H”hne, see COPYING.RH for details
 # This file is part of RHIDE. 
 
@@ -46,6 +46,9 @@ $(prefix)/$(bin_dir)/%: $(bin_dir)/%
 $(prefix)/$(bin_dir)/e:
 	# IVAN: Create a RELATIVE symlink:
 	cd $(prefix)/bin; ln -s setedit e
+
+$(prefix)/share/setedit/install.log:
+	export PREFIX=$(prefix); ./ask_config.sh
 
 $(prefix)/%: %
 	$(INSTALL_DIR) $(dir $@)

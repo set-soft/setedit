@@ -45,8 +45,6 @@
 # script and make file ;-).
 #
 
-./ask_config.sh
-
 ./REMOVE_UNNEEDED
 
 # Because I'm not so familar with shell scripts, I use

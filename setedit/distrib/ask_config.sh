@@ -15,7 +15,7 @@ TabsForIndent=1
 CreateBackUps=2
 
 # Configuration file:
-cfgFile="share/setedit/install.log"
+cfgFile=$PREFIX/share/setedit/install.log
 
 echo "SETEdit UNIX installation script"
 echo "================================"

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.67  2002/04/29 14:58:24  set
+* Fixed: roll-back of a FreeBSD patch that makes Linux use -lintl, this is
+not the way.
+* Fixed: Now ask_config.sh is copied to the editor's distribution.
+
 Revision 1.66  2002/04/22 19:00:05  set
 * Modified: Some details to cleanly compile under FreeBSD. Some details
 still need a solution. Some things changed: use of gmake instead of make,
