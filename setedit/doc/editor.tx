@@ -3104,7 +3104,12 @@ lines. For more information @x{Indentation}.
 This command inserts a comment at the start of each line of the selected
 block. The comment used is the one defined in the syntax highlighting file as
 @code{EOLComment1}; if none is defined or the file doesn't have any syntax
-highlighting or no block is selected this command does nothing. @x{EOLComment1}.
+highlighting this command does nothing. @x{EOLComment1}.
+@p{}
+
+If no text is selected this command first selects the current line and then
+applies the indentation.
+@p{}
 
 @refMenu1{cmcCommentIndent}
 
@@ -3114,12 +3119,17 @@ highlighting or no block is selected this command does nothing. @x{EOLComment1}.
 This command removes as many chars from each selected line as the length of
 a comment sequence. The comment used is the one defined in the syntax
 highlighting file as @code{EOLComment1}; if none is defined or the file doesn't
-have any syntax highlighting or no block is selected this command does nothing.
+have any syntax highlighting this command does nothing.
 @x{EOLComment1}.
-@paragraph{}
+@p{}
 
 This command doesn't check if each line you selected starts with the defined
 comment, so be careful.
+@p{}
+
+If no text is selected this command first selects the current line and then
+applies the indentation.
+@p{}
 
 @refMenu1{cmcCommentUnIndent}
 
@@ -4670,6 +4680,16 @@ places to see what you get:
   Something very important is that the editor will only analyze the line up
 to the cursor's position. So if the cursor is inside a string the editor
 will think this line extends a string.
+
+@c --------------------------------------------------------------
+@subsection GetSyntaxLang
+
+  (GetSyntaxLang)
+@p{}
+
+  Returns the language used for syntax highlight in the current editor. If
+none syntax highlight is in use it returns an empty string.
+@p{}
 
 @c --------------------------------------------------------------
 @subsection InsertText

@@ -455,11 +455,12 @@ public:
     unsigned selLineEnd;      // selEnd in a line
     unsigned selNewStart;     // The value of selXXX when the line in edition
     unsigned selNewEnd;       // will be put in the buffer
-    Boolean  selHided;       // True if the selection is invisible
-    uint32 selStartOffSet;   // The start of a selecting operation
+    Boolean  selHided;        // True if the selection is invisible
+    uint32 selStartOffSet;    // The start of a selecting operation
+    void MarkLine(Boolean moveCursor); // Select current line and move cursor to the beggining
     void SetMarker(unsigned marker);
-    unsigned Markers[10];    // 0=does't exist != It's a marker
-    int MarkersInLine[10];   // -1 Isn't in this line other offset in the line
+    unsigned Markers[10];     // 0=does't exist != It's a marker
+    int MarkersInLine[10];    // -1 Isn't in this line other offset in the line
 
     XYRingStack CurPosStack; // Cursor position stack, works as a ring
     void PushCursorPosition();

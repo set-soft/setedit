@@ -12,8 +12,8 @@ better integration of the editor with your system.
   In order to create the .deb files you need to install:
 
 A) Some packages used to create .deb files. I don't have a complete list at
-the moment but in my system I have: debianutils, debhelper, debconf-utils and
-dpkg-dev.
+the moment but in my system I have: debianutils, debhelper, debconf-utils,
+dpkg-dev and devscripts.
 
 B) Some development packages. They are listed in the "Build-Depends" section
 of the debian/control file. If any of them is missing the Debian scripts will

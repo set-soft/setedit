@@ -41,7 +41,7 @@ TLispVar::~TLispVar() {}
 
 /************************************* Lisp Objects ********************************/
 
-TLispString::TLispString(char *s, tlsMode mode)
+TLispString::TLispString(const char *s, tlsMode mode)
 { // Support for escaped C characters, is that C Lisp? ;-) only the most common
  len=strlen(s);
  str=new char[len+1];
@@ -93,11 +93,11 @@ TLispString::TLispString(char *s, tlsMode mode)
  flags=StrOwner;
 }
 
-TLispString::TLispString(char *s, int l, int flgs, int extraType)
+TLispString::TLispString(const char *s, int l, int flgs, int extraType)
 {
  len=l;
  if (flgs & StrAlreadyAllocated)
-    str=s;
+    str=(char *)s;
  else
    {
     str=new char[l+1];
@@ -127,18 +127,18 @@ TLispString::~TLispString()
     delete[] str;
 }
 
-TLispConstString::TLispConstString(char *s)
+TLispConstString::TLispConstString(const char *s)
 {
  len=strlen(s);
- str=s;
+ str=(char *)s;
  type=MLITypeString;
  flags=StrOwner;
 }
 
-TLispConstString::TLispConstString(char *s, int l, int flgs, int extraType)
+TLispConstString::TLispConstString(const char *s, int l, int flgs, int extraType)
 {
  len=l;
- str=s;
+ str=(char *)s;
  flags=flgs;
  type=MLITypeString | extraType;
 }

@@ -290,6 +290,12 @@ void TMLIEditor::SetCursorXY(int x, int y)
  Editor->MoveCursorTo(x,y,True);
 }
 
+const char *TMLIEditor::GetSyntaxLang()
+{
+ Editor->CacheSyntaxHLData(Editor->GenericSHL);
+ return Editor->SyntaxHL!=shlNoSyntax ? Editor->strC.Name : "";
+}
+
 #define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
                              CLY_snprintf(buf,256,aux,b); \
                              EdShowMessage(buf); \

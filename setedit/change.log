@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.410  2003/06/17 13:09:25  set
+* Added: install instructions for djgpp, Cygwin, MinGW and MSVC.
+
 Revision 1.409  2003/06/17 13:04:19  set
 * Modified: To support the new CLY_destroy mechanism.
 

@@ -90,8 +90,8 @@ typedef enum { tlsRaw, tlsParse } tlsMode;
 class TLispString : public TLispVar
 {
 public:
- TLispString(char *s, tlsMode mode=tlsRaw);
- TLispString(char *s, int len, int flags=StrOwner, int extraType=0);
+ TLispString(const char *s, tlsMode mode=tlsRaw);
+ TLispString(const char *s, int len, int flags=StrOwner, int extraType=0);
  TLispString() {}; // Default constructor does nothing, needed by TLispConstString
  virtual ~TLispString();
  virtual int print(FILE *s);
@@ -105,8 +105,8 @@ public:
 class TLispConstString : public TLispString
 {
 public:
- TLispConstString(char *s);
- TLispConstString(char *s, int len, int flags=StrOwner, int extraType=0);
+ TLispConstString(const char *s);
+ TLispConstString(const char *s, int len, int flags=StrOwner, int extraType=0);
  virtual ~TLispConstString();
 };
 

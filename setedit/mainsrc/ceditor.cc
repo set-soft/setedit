@@ -3115,14 +3115,7 @@ int TCEditor::handleCommand(ushort command)
  
            // ^KL Full Ok Level 2
            case cmcMarkLine:
-                if (IslineInEdition)
-                   MakeEfectiveLineInEdition();
-                addToUndo(undoInMov);
-                selHided=False;
-                selStart=(uint32)(curLinePtr-buffer);
-                selEnd=selStart+lenLines[curPos.y];
-                curPos.x=0;
-                update(ufView);
+                MarkLine(True);
                 break;
  
            // ^KT Full Ok Level 2
@@ -3556,6 +3549,27 @@ int TCEditor::handleCommand(ushort command)
 /**[txh]********************************************************************
 
   Description:
+  Select the current line and optionally move the cursor to the beggining.
+  
+***************************************************************************/
+
+void TCEditor::MarkLine(Boolean moveCursor)
+{
+ flushLine();
+ if (moveCursor)
+   {
+    addToUndo(undoInMov);
+    curPos.x=0;
+   }
+ selHided=False;
+ selStart=(uint32)(curLinePtr-buffer);
+ selEnd=selStart+lenLines[curPos.y];
+ update(ufView);
+}
+
+/**[txh]********************************************************************
+
+  Description:
   Gets the sLisp code under the cursor position. You must specify the
 maximun length of the returned string.@p
   The routine supports the pipe feature to connect the word with an input
@@ -3661,15 +3675,18 @@ void TCEditor::ArbitraryIndent()
 /**[txh]********************************************************************
 
   Description:
-  Indents a block using a line comment if available.
+  Indents a block using a line comment if available. If nothing is selected
+the line where the cursor is located is selected and then indented.
 
 ***************************************************************************/
 
 void TCEditor::CommentIndent()
 {
  int l=TCEditor::strC.lEOLCom1; // For clarity, I hope gcc is smart enough
- if (isReadOnly || !hasVisibleSelection() || !l)
+ if (isReadOnly || !l)
     return;
+ if (!hasVisibleSelection())
+    MarkLine(True);
  AllocLocalStr(b,l+2);
  strncpy(b,TCEditor::strC.EOLCom1,l);
  b[l]=' ';
@@ -3681,15 +3698,19 @@ void TCEditor::CommentIndent()
 
   Description:
   Unindents a block using a line comment if available. No check to see if
-each line really starts with the comment is done.
+each line really starts with the comment is done. If nothing is selected
+the line where the cursor is located is selected and then indented.
 
 ***************************************************************************/
 
 void TCEditor::CommentUnIndent()
 {
  int l=TCEditor::strC.lEOLCom1; // For clarity, I hope gcc is smart enough
- if (isReadOnly || !hasVisibleSelection() || !l)
+ if (isReadOnly || !l)
     return;
+
+ if (!hasVisibleSelection())
+    MarkLine(False);
 
  // Update the line and go to the first selected line
  flushLine();

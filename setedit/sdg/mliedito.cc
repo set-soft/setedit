@@ -685,6 +685,11 @@ CleanUp:
  destroyFloatVar(Y);
 }
 
+DecFun(MLIGetSyntaxLang)
+{
+ CheckNumParams(cant!=0);
+ MLIRetString(TMLIEditor::GetSyntaxLang());
+}
 
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
@@ -711,7 +716,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "Find",
  "GetCursorX",
  "GetCursorY",
- "SetCursorXY"
+ "SetCursorXY",
+ "GetSyntaxLang"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -739,7 +745,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIFindString,
  MLIGetCursorX,
  MLIGetCursorY,
- MLISetCursorXY
+ MLISetCursorXY,
+ MLIGetSyntaxLang
 };
 
 
