@@ -2068,6 +2068,9 @@ int main(int argc, char *argv[])
  ParseCommandLine(argc,argv);
  CheckIfCurDirValid();
 
+ //  The point where the exe was loaded is a reference. Before SET_FILES because I use
+ //  it to guess.
+ SetReferencePath(Argv[0]);
  //  That's a new policy, after releasing v0.4.1 and saw that nobody bothers about
  //  reading the readme.1st (mainly because of the distribution structure) now the
  //  editor assumes that:
@@ -2091,9 +2094,6 @@ int main(int argc, char *argv[])
  TFileCollection::sortOptions=fcolAlphabetical | fcolCaseInsensitive;
  // Be sure we can store temporals, or at least do our best
  CheckForValidTMPDIR();
- //  The point where the exe was loaded is a reference. Before SET_FILES because I use
- //  it to guess.
- SetReferencePath(Argv[0]);
 
  //  After SET_FILES because it needs SET_FILES.
  InitEnvirVariables();
