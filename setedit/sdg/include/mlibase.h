@@ -1,10 +1,10 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIBase) && !defined(__TMLIBase__)
 #define __TMLIBase__
 const int MLIBaseCommands=18;
 const int MLIBaseConstants=1;
-const int MLIBaseSymbols=4;
+const int MLIBaseSymbols=5;
 
 class TMLIBase
 {

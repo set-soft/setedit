@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #include <ctype.h>
@@ -53,6 +53,11 @@ int TLispSDGstring::print(FILE *s)
       }
    }
  return ret;
+}
+
+char *TLispSDGstring::toStr()
+{// Not implemented
+ return newStr("");
 }
 
 int MLISDGError;

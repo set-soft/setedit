@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TMLIArrayBase;
 class TMLIBase;
@@ -48,6 +48,7 @@ public:
  TLispVar() {};
  virtual ~TLispVar();
  virtual int print(FILE *) = 0;
+ virtual char *toStr() = 0;
 
  int type;
 };
@@ -90,6 +91,7 @@ public:
  TLispString() {}; // Default constructor does nothing, needed by TLispConstString
  virtual ~TLispString();
  virtual int print(FILE *s);
+ virtual char *toStr();
 
  char *str;
  int len;
@@ -110,6 +112,7 @@ public:
  TLispInteger(int v);
  virtual ~TLispInteger() {};
  virtual int print(FILE *s);
+ virtual char *toStr();
 
  int val;
 };
@@ -120,6 +123,7 @@ public:
  TLispCommand(Command c);
  virtual ~TLispCommand() {};
  virtual int print(FILE *s);
+ virtual char *toStr();
 
  Command command;
 };
@@ -130,6 +134,7 @@ public:
  TLispVariable(char *v, TLispVar *o);
  virtual ~TLispVariable();
  virtual int print(FILE *s);
+ virtual char *toStr();
 
  TLispVar *val;
  char *var;
@@ -141,6 +146,7 @@ public:
  TLispCode(char *s, char *e);
  virtual ~TLispCode() {};
  virtual int print(FILE *s);
+ virtual char *toStr();
 
  char *start;
  char *end;
