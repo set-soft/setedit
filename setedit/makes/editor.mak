@@ -2,10 +2,10 @@
 # created with the command:
 # gpr2mak editor.gpr
 ifeq ($(strip $(RHIDE_OS_LIBS_PATH)),)
-RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2 ../libpcre
+RHIDE_OS_LIBS_PATH=
 endif
 ifeq ($(strip $(SUPPORT_INC)),)
-SUPPORT_INC=../libbzip2 ../libpcre
+SUPPORT_INC=
 endif
 ifeq ($(strip $(TVISION_INC)),)
 TVISION_INC=
@@ -83,12 +83,18 @@ RHIDE_COMPILE_FORTRAN=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 RHIDE_COMPILE_FORTRAN_FORCE=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_F_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x f77 $(LOCAL_OPT)  -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT)  $(CPPFLAGS) $(CFLAGS) $(RHIDE_OS_CFLAGS) -c\
+	$(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_C_FORCE=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x c $(LOCAL_OPT)  $(CPPFLAGS) $(CFLAGS) $(RHIDE_OS_CFLAGS) -c\
 	$(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(CPPFLAGS) $(CXXFLAGS)\
+	$(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT)   -c $(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_CC_FORCE=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
 	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(CPPFLAGS) $(CXXFLAGS)\
@@ -111,7 +117,9 @@ RHIDE_FPC_FLAGS=$(C_FPC_LANG_FLAGS) $(LOCAL_OPT) $(addprefix\
 RHIDE_COMPILE_FPC=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -E- $(SOURCE_NAME)
 RHIDE_COMPILE_FPC_FORCE=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -B -E-\
 	$(SOURCE_NAME)
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS) -o\
+	$(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(RHIDE_LIBS)
 RHIDE_COMPILE_LINK_GPC=$(RHIDE_LD_PASCAL) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS)\
 	-o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LDFLAGS) $(LDFLAGS)\
 	$(RHIDE_LIBS)
@@ -211,14 +219,24 @@ RHIDE_PATH_SEPARATOR_Linux=:
 RHIDE_PATH_SEPARATOR=$(RHIDE_PATH_SEPARATOR_$(RHIDE_OS))
 RHIDE_OS_CFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib ../libbzip2 ../libpcre
-RHIDE_OS_LIBS=ncurses gpm m bz2  mpegsnd
-RHIDE_OS_LIBS_PATH=../../tvision/linux ../libbzip2 ../libpcre
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib\
+	../libbzip2
+RHIDE_OS_LIBS=ncurses m gpm bz2 mpegsnd 
+RHIDE_OS_LIBS_PATH=../../tvision/linuxso ../libbzip2
 TVISION_INC=../../tvision/include
-SUPPORT_INC=../libbzip2 ../libpcre
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) -static $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+SUPPORT_INC= ../libbzip2
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
+	$(RHIDE_LIBS)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS)\
+	$(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_AR=ar
 INCLUDE_DIRS=../include ../setedit/include ../settvuti/include\
 	../sdg/include ../infview/include $(TVISION_INC) ../extra\
 	../easydiag ../librhuti $(SUPPORT_INC) ../mp3 ../calcu
@@ -260,14 +278,15 @@ OBJFILES=obj/accehtml.o obj/advice.o obj/ampdiag.o obj/intermp3.o\
 	obj/ndskwcli.o obj/ndskwclo.o obj/ndskwedi.o obj/ndskwhel.o\
 	obj/ndskwman.o obj/ndskwmes.o obj/ndskwmp3.o obj/ndskwprj.o\
 	obj/neditwin.o obj/nfileedi.o obj/nsindica.o obj/ntedcol.o\
-	obj/parser.o obj/pathtool.o obj/pclipper.o obj/pmacros.o\
-	obj/pperl.o obj/runprog.o obj/sceditor.o obj/scresave.o\
-	obj/sdginter.o obj/sdskasci.o obj/sdskcale.o obj/sdskclip.o\
-	obj/sdskclos.o obj/sdskedit.o obj/sdskhelp.o obj/sdskman.o\
-	obj/sdskmess.o obj/sdskmp3.o obj/sdskprj.o obj/search.o\
-	obj/sedcolle.o obj/slpinter.o obj/splinman.o obj/ssindica.o\
-	obj/ssyntax.o obj/tedcolle.o obj/tips.o obj/tpaltext.o\
-	obj/tsindica.o obj/txhgen.o obj/winlistd.o
+	obj/parser.o obj/pathlist.o obj/pathtool.o obj/pclipper.o\
+	obj/pmacros.o obj/pperl.o obj/pvarious.o obj/runprog.o\
+	obj/sceditor.o obj/scresave.o obj/sdginter.o obj/sdskasci.o\
+	obj/sdskcale.o obj/sdskclip.o obj/sdskclos.o obj/sdskedit.o\
+	obj/sdskhelp.o obj/sdskman.o obj/sdskmess.o obj/sdskmp3.o\
+	obj/sdskprj.o obj/search.o obj/sedcolle.o obj/slpinter.o\
+	obj/splinman.o obj/ssindica.o obj/ssyntax.o obj/tedcolle.o\
+	obj/tips.o obj/tpaltext.o obj/tsindica.o obj/txhgen.o\
+	obj/winlistd.o
 LIBRARIES=libeasyd.a librhuti.a libsettv.a
 SOURCE_NAME=$<
 OUTFILE=$@
@@ -305,13 +324,13 @@ PROJECT_ITEMS=accehtml.cc advice.cc amp3.gpr ascii.cc boardmix.cc bufun.cc\
 	mliedito.cc mlisdg.cc msignal.cc nceditor.cc ndskwasc.cc\
 	ndskwcal.cc ndskwcli.cc ndskwclo.cc ndskwedi.cc ndskwhel.cc\
 	ndskwman.cc ndskwmes.cc ndskwmp3.cc ndskwprj.cc neditwin.cc\
-	nfileedi.cc nsindica.cc ntedcol.cc parser.c pathtool.cc pclipper.cc\
-	pmacros.cc pperl.cc runprog.cc sceditor.cc scresave.cc sdginter.cc\
-	sdskasci.cc sdskcale.cc sdskclip.cc sdskclos.cc sdskedit.cc\
-	sdskhelp.cc sdskman.cc sdskmess.cc sdskmp3.cc sdskprj.cc search.cc\
-	sedcolle.cc settv.gpr slpinter.cc splinman.cc ssindica.cc\
-	ssyntax.cc tedcolle.cc tips.cc tpaltext.cc tsindica.cc txhgen.cc\
-	winlistd.cc
+	nfileedi.cc nsindica.cc ntedcol.cc parser.c pathlist.cc pathtool.cc\
+	pclipper.cc pmacros.cc pperl.cc pvarious.cc runprog.cc sceditor.cc\
+	scresave.cc sdginter.cc sdskasci.cc sdskcale.cc sdskclip.cc\
+	sdskclos.cc sdskedit.cc sdskhelp.cc sdskman.cc sdskmess.cc\
+	sdskmp3.cc sdskprj.cc search.cc sedcolle.cc settv.gpr slpinter.cc\
+	splinman.cc ssindica.cc ssyntax.cc tedcolle.cc tips.cc tpaltext.cc\
+	tsindica.cc txhgen.cc winlistd.cc
 DEFAULT_MASK=*
 RHIDE_BIN_DIR=/usr/bin
 PASCAL_TYPE=GPC
@@ -413,15 +432,15 @@ DEPS_0= obj/accehtml.o obj/advice.o obj/ampdiag.o obj/intermp3.o\
 	obj/ndskwcli.o obj/ndskwclo.o obj/ndskwedi.o obj/ndskwhel.o\
 	obj/ndskwman.o obj/ndskwmes.o obj/ndskwmp3.o obj/ndskwprj.o\
 	obj/neditwin.o obj/nfileedi.o obj/nsindica.o obj/ntedcol.o\
-	obj/parser.o obj/pathtool.o obj/pclipper.o obj/pmacros.o\
-	obj/pperl.o obj/runprog.o obj/sceditor.o obj/scresave.o\
-	obj/sdginter.o obj/sdskasci.o obj/sdskcale.o obj/sdskclip.o\
-	obj/sdskclos.o obj/sdskedit.o obj/sdskhelp.o obj/sdskman.o\
-	obj/sdskmess.o obj/sdskmp3.o obj/sdskprj.o obj/search.o\
-	obj/sedcolle.o obj/slpinter.o obj/splinman.o obj/ssindica.o\
-	obj/ssyntax.o obj/tedcolle.o obj/tips.o obj/tpaltext.o\
-	obj/tsindica.o obj/txhgen.o obj/winlistd.o libeasyd.a librhuti.a\
-	libsettv.a
+	obj/parser.o obj/pathlist.o obj/pathtool.o obj/pclipper.o\
+	obj/pmacros.o obj/pperl.o obj/pvarious.o obj/runprog.o\
+	obj/sceditor.o obj/scresave.o obj/sdginter.o obj/sdskasci.o\
+	obj/sdskcale.o obj/sdskclip.o obj/sdskclos.o obj/sdskedit.o\
+	obj/sdskhelp.o obj/sdskman.o obj/sdskmess.o obj/sdskmp3.o\
+	obj/sdskprj.o obj/search.o obj/sedcolle.o obj/slpinter.o\
+	obj/splinman.o obj/ssindica.o obj/ssyntax.o obj/tedcolle.o\
+	obj/tips.o obj/tpaltext.o obj/tsindica.o obj/txhgen.o\
+	obj/winlistd.o libeasyd.a librhuti.a libsettv.a
 NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 editor.exe:: $(DEPS_0)
@@ -436,7 +455,8 @@ DEPS_1=accehtml.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -455,7 +475,8 @@ DEPS_1=accehtml.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h ../include/ucdefs.h\
 	../setedit/include/codepage.h ../setedit/include/setapp.h\
@@ -475,7 +496,8 @@ DEPS_2=advice.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/group.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
@@ -489,7 +511,8 @@ DEPS_2=advice.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tschkbox.h ../easydiag/tshzgrp.h ../easydiag/tstatext.h\
 	../easydiag/tsview.h ../easydiag/tsviewco.h ../include/edspecs.h\
@@ -540,8 +563,8 @@ DEPS_5=boardmix.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/iopstrm.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
-	../../tvision/include/tv/object.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
@@ -555,7 +578,8 @@ DEPS_5=boardmix.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tschkbox.h ../easydiag/tslider.h ../easydiag/tstatext.h\
 	../easydiag/tsview.h ../easydiag/tsviewco.h ../extra/mixer.h\
@@ -576,7 +600,8 @@ DEPS_6=bufun.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -597,7 +622,8 @@ DEPS_6=bufun.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
 	../easydiag/tslabel.h ../easydiag/tslistbo.h ../easydiag/tssortva.h\
 	../easydiag/tssosslb.h ../easydiag/tstatext.h ../easydiag/tsview.h\
@@ -624,7 +650,7 @@ DEPS_7=calcu.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/msgbox.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -644,7 +670,8 @@ DEPS_7=calcu.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../calcu/calcu.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../calcu/calcu.h\
 	../include/ced_clas.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
@@ -696,7 +723,8 @@ DEPS_9=ceditor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/menuitem.h\
 	../../tvision/include/tv/menus.h\
 	../../tvision/include/tv/menuview.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -718,7 +746,8 @@ DEPS_9=ceditor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../extra/dyncat.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
 	../extra/winoldap.h ../include/bufun.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ced_inte.h\
 	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
@@ -759,7 +788,7 @@ DEPS_10=codepage.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/menubox.h ../../tvision/include/tv/menus.h\
 	../../tvision/include/tv/menuview.h\
 	../../tvision/include/tv/mnoselct.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -781,7 +810,8 @@ DEPS_10=codepage.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ced_inte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/codepage.h\
@@ -803,7 +833,7 @@ DEPS_11=completi.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -824,12 +854,13 @@ DEPS_11=completi.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
-	../include/ceditor.h ../include/completi.h ../include/pmcoll.h\
-	../include/sindicat.h ../include/tvsetuti.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
+	../include/ced_exte.h ../include/ced_inte.h ../include/ceditor.h\
+	../include/completi.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
 obj/completi.o:: $(DEPS_11)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_12=deedidia.cc ../../tvision/include/compatlayer.h\
@@ -853,7 +884,8 @@ DEPS_12=deedidia.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -875,7 +907,8 @@ DEPS_12=deedidia.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tschkbox.h ../easydiag/tshzgrp.h ../easydiag/tsinplin.h\
 	../easydiag/tsinplpi.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
@@ -905,7 +938,8 @@ DEPS_13=doedidia.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/iopstrm.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -923,12 +957,12 @@ DEPS_13=doedidia.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/bufun.h ../include/ced_coma.h ../include/ced_exte.h\
-	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
-	../include/setconst.h ../settvuti/include/edhists.h\
-	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/yes_mss.h ../include/bufun.h\
+	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
+	../include/ceditor.h ../include/configed.h ../include/setconst.h\
+	../settvuti/include/edhists.h ../settvuti/include/fileopen.h\
+	../settvuti/include/fiopeaid.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
 obj/doedidia.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_14=dskascii.cc ../../tvision/include/compatlayer.h\
@@ -995,7 +1029,7 @@ DEPS_16=dskclip.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1014,7 +1048,8 @@ DEPS_16=dskclip.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskclip.h\
@@ -1037,7 +1072,7 @@ DEPS_17=dskclose.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1056,7 +1091,8 @@ DEPS_17=dskclose.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskclose.h\
@@ -1080,7 +1116,7 @@ DEPS_18=dskedito.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1099,7 +1135,8 @@ DEPS_18=dskedito.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskedito.h\
@@ -1124,7 +1161,7 @@ DEPS_19=dskhelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1144,7 +1181,8 @@ DEPS_19=dskhelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../infview/include/inf.h\
@@ -1158,16 +1196,14 @@ obj/dskhelp.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_20=dskman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
-	../../tvision/include/tv/group.h ../../tvision/include/tv/history.h\
-	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/label.h ../../tvision/include/tv/msgbox.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
 	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
@@ -1176,17 +1212,14 @@ DEPS_20=dskman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/scroller.h\
 	../../tvision/include/tv/stddlg.h\
 	../../tvision/include/tv/streambl.h\
-	../../tvision/include/tv/sttctext.h\
 	../../tvision/include/tv/system.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../easydiag/tsbutton.h\
-	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tsvegrp.h\
-	../easydiag/tsview.h ../easydiag/tsviewco.h ../include/ceditint.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ceditint.h\
 	../include/configed.h ../infview/include/manview.h\
 	../librhuti/rhutils.h ../setedit/include/dskman.h\
 	../setedit/include/dskwin.h ../setedit/include/setapp.h
@@ -1288,7 +1321,8 @@ DEPS_24=dstfile.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1311,7 +1345,8 @@ DEPS_24=dstfile.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../extra/mixer.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../extra/mixer.h\
 	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
 	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
 	../include/edspecs.h ../include/pathtool.h ../include/pmcoll.h\
@@ -1320,12 +1355,13 @@ DEPS_24=dstfile.cc ../../tvision/include/compatlayer.h\
 	../setedit/include/codepage.h ../setedit/include/dskclip.h\
 	../setedit/include/dskhelp.h ../setedit/include/dskwin.h\
 	../setedit/include/edcollec.h ../setedit/include/edprint.h\
-	../setedit/include/setapp.h ../setedit/include/tpaltext.h\
-	../settvuti/include/dktclock.h ../settvuti/include/edhists.h\
-	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
+	../setedit/include/pathlist.h ../setedit/include/setapp.h\
+	../setedit/include/tpaltext.h ../settvuti/include/dktclock.h\
+	../settvuti/include/edhists.h ../settvuti/include/fileopen.h\
+	../settvuti/include/fiopeaid.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
 obj/dstfile.o:: $(DEPS_24)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_25=dumpfile.cc ../../tvision/include/compatlayer.h\
@@ -1361,7 +1397,7 @@ DEPS_27=edcolor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1381,7 +1417,8 @@ DEPS_27=edcolor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/pal.h ../setedit/include/setapp.h\
@@ -1400,7 +1437,7 @@ DEPS_28=edconst.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1419,7 +1456,8 @@ DEPS_28=edconst.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_coma.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_coma.h\
 	../include/ced_inte.h ../include/ceditor.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
 	../setedit/include/editcoma.h ../setedit/include/setapp.h\
@@ -1434,7 +1472,7 @@ DEPS_29=edfonts.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/fpstream.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/iopstrm.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1451,10 +1489,10 @@ DEPS_29=edfonts.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/ced_inte.h\
-	../include/ceditor.h ../setedit/include/codepage.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/ced_inte.h ../include/ceditor.h\
+	../setedit/include/codepage.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
 obj/edfonts.o:: $(DEPS_29)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_30=editdiag.cc ../../tvision/include/compatlayer.h\
@@ -1471,7 +1509,7 @@ DEPS_30=editdiag.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1494,7 +1532,8 @@ DEPS_30=editdiag.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tstatext.h ../easydiag/tstextsc.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../easydiag/ttextscr.h ../include/ced_inte.h\
@@ -1524,7 +1563,8 @@ DEPS_31=editmain.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/lstviewr.h\
 	../../tvision/include/tv/menubar.h ../../tvision/include/tv/menus.h\
 	../../tvision/include/tv/menuview.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1548,7 +1588,8 @@ DEPS_31=editmain.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../extra/mixer.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../extra/mixer.h\
 	../extra/stackdbg.h ../extra/winoldap.h ../include/bufun.h\
 	../include/ced_clas.h ../include/ced_coma.h ../include/ced_exte.h\
 	../include/ced_inte.h ../include/ceditint.h ../include/ceditor.h\
@@ -1563,13 +1604,14 @@ DEPS_31=editmain.cc ../../tvision/include/compatlayer.h\
 	../setedit/include/dskwin.h ../setedit/include/edcollec.h\
 	../setedit/include/edprint.h ../setedit/include/loadcle.h\
 	../setedit/include/loadnobkp.h ../setedit/include/pal.h\
-	../setedit/include/setapp.h ../setedit/include/tpaltext.h\
-	../settvuti/include/diaghelp.h ../settvuti/include/dktclock.h\
-	../settvuti/include/edhists.h ../settvuti/include/fileopen.h\
-	../settvuti/include/fiopeaid.h ../settvuti/include/sarray.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tnosostr.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
+	../setedit/include/pathlist.h ../setedit/include/setapp.h\
+	../setedit/include/tpaltext.h ../settvuti/include/diaghelp.h\
+	../settvuti/include/dktclock.h ../settvuti/include/edhists.h\
+	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
+	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tnosostr.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
 obj/editmain.o:: $(DEPS_31)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_32=editmenu.cc ../../tvision/include/compatlayer.h\
@@ -1590,7 +1632,8 @@ DEPS_32=editmenu.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/menuitem.h\
 	../../tvision/include/tv/menus.h\
 	../../tvision/include/tv/menuview.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1615,7 +1658,8 @@ DEPS_32=editmenu.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/pmcoll.h\
 	../include/setconst.h ../include/sindicat.h ../include/tvsetuti.h\
@@ -1633,7 +1677,7 @@ DEPS_33=editorfo.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1651,9 +1695,10 @@ DEPS_33=editorfo.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
-	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
-	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
+	../include/ced_exte.h ../include/ced_inte.h ../include/ceditint.h\
+	../include/ceditor.h ../include/configed.h ../include/pmcoll.h\
+	../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
@@ -1697,7 +1742,7 @@ DEPS_35=editwind.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/frame.h ../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1717,7 +1762,8 @@ DEPS_35=editwind.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
@@ -1741,7 +1787,8 @@ DEPS_36=edkeys.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1764,7 +1811,8 @@ DEPS_36=edkeys.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tslabel.h\
 	../easydiag/tsview.h ../easydiag/tsviewco.h ../extra/dyncat.h\
 	../include/ced_coma.h ../include/ced_inte.h ../include/ceditint.h\
@@ -1794,7 +1842,8 @@ DEPS_37=edmsg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1813,7 +1862,8 @@ DEPS_37=edmsg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/edmsg.h\
 	../include/pmcoll.h ../include/sindicat.h ../include/splinman.h\
@@ -1849,7 +1899,8 @@ DEPS_38=edprefs.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1874,7 +1925,8 @@ DEPS_38=edprefs.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tschkbox.h ../easydiag/tshzgrp.h ../easydiag/tsinplin.h\
 	../easydiag/tslabel.h ../easydiag/tslistbo.h ../easydiag/tsradbot.h\
@@ -1908,7 +1960,8 @@ DEPS_39=edprint.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/iopstrm.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/msgbox.h\
-	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
@@ -1922,7 +1975,8 @@ DEPS_39=edprint.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tschkbox.h ../easydiag/tshzgrp.h ../easydiag/tsinplin.h\
 	../easydiag/tslabel.h ../easydiag/tsradbot.h ../easydiag/tsview.h\
@@ -1950,7 +2004,8 @@ DEPS_40=edprj.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -1972,7 +2027,8 @@ DEPS_40=edprj.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/edspecs.h\
 	../include/pathtool.h ../include/pmcoll.h ../include/sdginter.h\
@@ -2022,7 +2078,7 @@ DEPS_44=getctxhl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2042,7 +2098,8 @@ DEPS_44=getctxhl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditor.h\
 	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
@@ -2094,7 +2151,8 @@ DEPS_47=intgrep.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2115,7 +2173,8 @@ DEPS_47=intgrep.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../extra/dyncat.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
 	../include/ced_clas.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/edmsg.h\
 	../include/pathtool.h ../include/pmcoll.h ../include/sindicat.h\
@@ -2128,23 +2187,33 @@ DEPS_47=intgrep.cc ../../tvision/include/compatlayer.h\
 obj/intgrep.o:: $(DEPS_47)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_48=keytrans.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/event.h ../../tvision/include/tv/gkey.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
-	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
+	../../tvision/include/tv/resource.h\
+	../../tvision/include/tv/sortcoll.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strncoll.h\
+	../../tvision/include/tv/system.h\
 	../../tvision/include/tv/tkeyext.h ../../tvision/include/tv/tkeys.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../extra/dyncat.h\
-	../include/ced_coma.h ../include/keytrans.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tstringa.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../extra/dyncat.h ../include/ced_coma.h ../include/ced_exte.h\
+	../include/ceditor.h ../include/keytrans.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h
 obj/keytrans.o:: $(DEPS_48)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_49=
@@ -2170,7 +2239,7 @@ DEPS_51=loadcle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2186,8 +2255,8 @@ DEPS_51=loadcle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../extra/dyncat.h\
-	../include/ceditint.h ../include/configed.h\
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../extra/dyncat.h ../include/ceditint.h ../include/configed.h\
 	../setedit/include/loadcle.h
 obj/loadcle.o:: $(DEPS_51)
 	$(RHIDE_COMPILE.cc.o)
@@ -2206,7 +2275,8 @@ DEPS_52=loaddefl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2226,7 +2296,8 @@ DEPS_52=loaddefl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
@@ -2234,11 +2305,11 @@ DEPS_52=loaddefl.cc ../../tvision/include/compatlayer.h\
 	../include/ced_inte.h ../include/ceditor.h ../include/loadshl.h\
 	../include/pathtool.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/setapp.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tdiagaid.h\
-	../settvuti/include/tdiagrow.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h\
-	../settvuti/include/viewplus.h
+	../setedit/include/setapp.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/tstrlbox.h ../settvuti/include/viewplus.h
 obj/loaddefl.o:: $(DEPS_52)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_53=loadfunc.cc ../../tvision/include/compatlayer.h\
@@ -2268,7 +2339,8 @@ DEPS_54=loadnobkp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2287,16 +2359,17 @@ DEPS_54=loadnobkp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/loadshl.h\
 	../setedit/include/setapp.h ../setedit/include/loadnobkp.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
-	../settvuti/include/tstrlbox.h
+	../setedit/include/setapp.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tdiagaid.h\
+	../settvuti/include/tdiagrow.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h
 obj/loadnobkp.o:: $(DEPS_54)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_55=loadshl.cc ../../tvision/include/compatlayer.h\
@@ -2305,7 +2378,7 @@ DEPS_55=loadshl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2323,13 +2396,14 @@ DEPS_55=loadshl.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../extra/dyncat.h ../include/ced_clas.h ../include/ced_exte.h\
-	../include/ced_inte.h ../include/ceditint.h ../include/ceditor.h\
-	../include/configed.h ../include/loadshl.h ../include/pmcoll.h\
-	../include/sindicat.h ../include/tvsetuti.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
+	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
+	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
+	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
+	../include/loadshl.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
 obj/loadshl.o:: $(DEPS_55)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_56=loadusew.cc ../../tvision/include/compatlayer.h\
@@ -2347,7 +2421,7 @@ DEPS_56=loadusew.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2367,7 +2441,8 @@ DEPS_56=loadusew.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
@@ -2375,11 +2450,11 @@ DEPS_56=loadusew.cc ../../tvision/include/compatlayer.h\
 	../include/ced_inte.h ../include/ceditor.h ../include/loadshl.h\
 	../include/pathtool.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/setapp.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tdiagaid.h\
-	../settvuti/include/tdiagrow.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h\
-	../settvuti/include/viewplus.h
+	../setedit/include/setapp.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/tstrlbox.h ../settvuti/include/viewplus.h
 obj/loadusew.o:: $(DEPS_56)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_57=macrocom.cc ../../tvision/include/compatlayer.h\
@@ -2392,7 +2467,7 @@ DEPS_57=macrocom.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2411,7 +2486,8 @@ DEPS_57=macrocom.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/slpinter.h ../include/tvsetuti.h\
 	../setedit/include/setapp.h ../settvuti/include/sarray.h\
@@ -2430,7 +2506,8 @@ DEPS_58=menuload.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/menuitem.h\
 	../../tvision/include/tv/menus.h\
 	../../tvision/include/tv/menuview.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2452,20 +2529,20 @@ DEPS_58=menuload.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../extra/dyncat.h ../include/ced_clas.h ../include/ced_coma.h\
-	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
-	../include/configed.h ../include/keytrans.h ../include/pmcoll.h\
-	../include/sindicat.h ../include/tvsetuti.h\
-	../setedit/include/setapp.h ../settvuti/include/sarray.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
-	../settvuti/include/viewplus.h
+	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
+	../include/ced_clas.h ../include/ced_coma.h ../include/ced_exte.h\
+	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
+	../include/keytrans.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../setedit/include/setapp.h\
+	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
 obj/menuload.o:: $(DEPS_58)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_59=mli.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/opstream.h\
@@ -2475,8 +2552,8 @@ DEPS_59=mli.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../extra/dyncat.h\
-	../include/pathtool.h ../sdg/include/mli.h\
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../extra/dyncat.h ../include/pathtool.h ../sdg/include/mli.h\
 	../sdg/include/mliabase.h ../sdg/include/mliasimp.h\
 	../sdg/include/mlibase.h ../sdg/include/mlivar.h
 obj/mli.o:: $(DEPS_59)
@@ -2488,7 +2565,7 @@ obj/mliasimp.o:: $(DEPS_60)
 DEPS_61=mlicsdg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/opstream.h\
@@ -2498,8 +2575,8 @@ DEPS_61=mlicsdg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/ucdefs.h\
-	../sdg/include/mli.h ../sdg/include/mliabase.h\
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/ucdefs.h ../sdg/include/mli.h ../sdg/include/mliabase.h\
 	../sdg/include/mlibase.h ../sdg/include/mlicsdg.h\
 	../sdg/include/mlisdg.h ../sdg/include/mlisdgi.h\
 	../sdg/include/mlivar.h
@@ -2509,7 +2586,7 @@ DEPS_62=mliediti.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2525,19 +2602,19 @@ DEPS_62=mliediti.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/tvsetuti.h\
-	../sdg/include/mli.h ../sdg/include/mliabase.h\
-	../sdg/include/mliasimp.h ../sdg/include/mlibase.h\
-	../sdg/include/mlieditd.h ../sdg/include/mliedito.h\
-	../sdg/include/mlivar.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/tvsetuti.h ../sdg/include/mli.h\
+	../sdg/include/mliabase.h ../sdg/include/mliasimp.h\
+	../sdg/include/mlibase.h ../sdg/include/mlieditd.h\
+	../sdg/include/mliedito.h ../sdg/include/mlivar.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
 obj/mliediti.o:: $(DEPS_62)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_63=mliedito.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2553,20 +2630,20 @@ DEPS_63=mliedito.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../extra/dyncat.h\
-	../include/ced_coma.h ../include/ceditor.h ../include/runprog.h\
-	../include/tvsetuti.h ../librhuti/rhutils.h ../sdg/include/mli.h\
-	../sdg/include/mliabase.h ../sdg/include/mlibase.h\
-	../sdg/include/mlieditd.h ../sdg/include/mliedito.h\
-	../sdg/include/mlisdg.h ../sdg/include/mlisdgi.h\
-	../sdg/include/mlivar.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../extra/dyncat.h ../include/ced_coma.h ../include/ceditor.h\
+	../include/runprog.h ../include/tvsetuti.h ../librhuti/rhutils.h\
+	../sdg/include/mli.h ../sdg/include/mliabase.h\
+	../sdg/include/mlibase.h ../sdg/include/mlieditd.h\
+	../sdg/include/mliedito.h ../sdg/include/mlisdg.h\
+	../sdg/include/mlisdgi.h ../sdg/include/mlivar.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
 obj/mliedito.o:: $(DEPS_63)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_64=mlisdg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/opstream.h\
@@ -2576,11 +2653,11 @@ DEPS_64=mlisdg.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../sdg/include/mli.h\
-	../sdg/include/mliabase.h ../sdg/include/mliasimp.h\
-	../sdg/include/mlibase.h ../sdg/include/mlicsdg.h\
-	../sdg/include/mlisdg.h ../sdg/include/mlisdgi.h\
-	../sdg/include/mlivar.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../sdg/include/mli.h ../sdg/include/mliabase.h\
+	../sdg/include/mliasimp.h ../sdg/include/mlibase.h\
+	../sdg/include/mlicsdg.h ../sdg/include/mlisdg.h\
+	../sdg/include/mlisdgi.h ../sdg/include/mlivar.h
 obj/mlisdg.o:: $(DEPS_64)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_65=msignal.cc ../../tvision/include/compatlayer.h\
@@ -2600,74 +2677,132 @@ DEPS_65=msignal.cc ../../tvision/include/compatlayer.h\
 	../include/configed.h
 obj/msignal.o:: $(DEPS_65)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_66=nceditor.cc ../../tvision/include/tv/ttypes.h\
+DEPS_66=nceditor.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/nceditor.o:: $(DEPS_66)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_67=ndskwasc.cc ../../tvision/include/tv/ttypes.h\
+DEPS_67=ndskwasc.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwasc.o:: $(DEPS_67)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_68=ndskwcal.cc ../../tvision/include/tv/ttypes.h\
+DEPS_68=ndskwcal.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwcal.o:: $(DEPS_68)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_69=ndskwcli.cc ../../tvision/include/tv/ttypes.h\
+DEPS_69=ndskwcli.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwcli.o:: $(DEPS_69)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_70=ndskwclo.cc ../../tvision/include/tv/ttypes.h\
+DEPS_70=ndskwclo.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwclo.o:: $(DEPS_70)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_71=ndskwedi.cc ../../tvision/include/tv/ttypes.h\
+DEPS_71=ndskwedi.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwedi.o:: $(DEPS_71)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_72=ndskwhel.cc ../../tvision/include/tv/ttypes.h\
+DEPS_72=ndskwhel.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwhel.o:: $(DEPS_72)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_73=ndskwman.cc ../../tvision/include/tv/ttypes.h\
+DEPS_73=ndskwman.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwman.o:: $(DEPS_73)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_74=ndskwmes.cc ../../tvision/include/tv/ttypes.h\
+DEPS_74=ndskwmes.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwmes.o:: $(DEPS_74)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_75=ndskwmp3.cc ../../tvision/include/tv/ttypes.h\
+DEPS_75=ndskwmp3.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwmp3.o:: $(DEPS_75)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_76=ndskwprj.cc ../../tvision/include/tv/ttypes.h\
+DEPS_76=ndskwprj.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/ndskwprj.o:: $(DEPS_76)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_77=neditwin.cc ../../tvision/include/tv/ttypes.h\
+DEPS_77=neditwin.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/neditwin.o:: $(DEPS_77)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_78=nfileedi.cc ../../tvision/include/tv/ttypes.h\
+DEPS_78=nfileedi.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/nfileedi.o:: $(DEPS_78)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_79=nsindica.cc ../../tvision/include/tv/ttypes.h\
+DEPS_79=nsindica.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/tvutil.h
 obj/nsindica.o:: $(DEPS_79)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_80=ntedcol.cc ../../tvision/include/tv/ttypes.h ../include/tvsetuti.h
+DEPS_80=ntedcol.cc ../include/tvsetuti.h
 obj/ntedcol.o:: $(DEPS_80)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_81=parser.c ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/configtv.h
 obj/parser.o:: $(DEPS_81)
 	$(RHIDE_COMPILE.c.o)
-DEPS_82=pathtool.cc ../../tvision/include/compatlayer.h\
+DEPS_82=pathlist.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
+	../../tvision/include/tv/button.h\
+	../../tvision/include/tv/collectn.h\
+	../../tvision/include/tv/configtv.h\
+	../../tvision/include/tv/desktop.h\
+	../../tvision/include/tv/dialog.h\
+	../../tvision/include/tv/dialogs.h\
+	../../tvision/include/tv/drawbuf.h\
+	../../tvision/include/tv/fpbase.h\
+	../../tvision/include/tv/fpstream.h\
+	../../tvision/include/tv/group.h ../../tvision/include/tv/history.h\
+	../../tvision/include/tv/inputln.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/iopstrm.h\
+	../../tvision/include/tv/ipstream.h\
+	../../tvision/include/tv/label.h\
+	../../tvision/include/tv/lstviewr.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h ../../tvision/include/tv/object.h\
+	../../tvision/include/tv/objects.h\
+	../../tvision/include/tv/opstream.h\
+	../../tvision/include/tv/point.h ../../tvision/include/tv/pstream.h\
+	../../tvision/include/tv/rect.h ../../tvision/include/tv/scrlbar.h\
+	../../tvision/include/tv/stddlg.h\
+	../../tvision/include/tv/streambl.h\
+	../../tvision/include/tv/strmblcl.h\
+	../../tvision/include/tv/sttctext.h\
+	../../tvision/include/tv/system.h\
+	../../tvision/include/tv/tobjstrm.h\
+	../../tvision/include/tv/ttypes.h\
+	../../tvision/include/tv/tvconfig.h\
+	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
+	../easydiag/easydiag.h ../easydiag/tsbutton.h\
+	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tsview.h\
+	../easydiag/tsviewco.h ../include/ceditint.h ../include/configed.h\
+	../include/tvsetuti.h ../setedit/include/setapp.h\
+	../setedit/include/setapp.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
+	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h
+obj/pathlist.o:: $(DEPS_82)
+	$(RHIDE_COMPILE.cc.o)
+DEPS_83=pathtool.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2684,19 +2819,22 @@ DEPS_82=pathtool.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/ceditint.h\
-	../include/configed.h ../include/tvsetuti.h ../librhuti/rhutils.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
-obj/pathtool.o:: $(DEPS_82)
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/ceditint.h ../include/configed.h ../include/pathtool.h\
+	../include/tvsetuti.h ../librhuti/rhutils.h\
+	../setedit/include/pathlist.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h
+obj/pathtool.o:: $(DEPS_83)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_83=pclipper.cc ../include/bufun.h
-obj/pclipper.o:: $(DEPS_83)
+DEPS_84=pclipper.cc ../include/bufun.h
+obj/pclipper.o:: $(DEPS_84)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_84=pmacros.cc ../../tvision/include/compatlayer.h\
+DEPS_85=pmacros.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2712,15 +2850,19 @@ DEPS_84=pmacros.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/ceditor.h\
-	../include/pmcoll.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tstringa.h
-obj/pmacros.o:: $(DEPS_84)
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/ceditor.h ../include/pmcoll.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tstringa.h
+obj/pmacros.o:: $(DEPS_85)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_85=pperl.cc ../include/bufun.h
-obj/pperl.o:: $(DEPS_85)
+DEPS_86=pperl.cc ../include/bufun.h
+obj/pperl.o:: $(DEPS_86)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_86=runprog.cc ../../tvision/include/compatlayer.h\
+DEPS_87=pvarious.cc ../../tvision/include/compatlayer.h\
+	../../tvision/include/tv/configtv.h ../include/bufun.h
+obj/pvarious.o:: $(DEPS_87)
+	$(RHIDE_COMPILE.cc.o)
+DEPS_88=runprog.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/button.h\
@@ -2738,7 +2880,8 @@ DEPS_86=runprog.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2759,7 +2902,8 @@ DEPS_86=runprog.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsvegrp.h\
@@ -2769,16 +2913,16 @@ DEPS_86=runprog.cc ../../tvision/include/compatlayer.h\
 	../librhuti/rhutils.h ../mp3/intermp3.h\
 	../setedit/include/loadcle.h ../setedit/include/setapp.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h
-obj/runprog.o:: $(DEPS_86)
+obj/runprog.o:: $(DEPS_88)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_87=sceditor.cc ../../tvision/include/compatlayer.h\
+DEPS_89=sceditor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2797,16 +2941,17 @@ DEPS_87=sceditor.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../settvuti/include/sarray.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
 	../settvuti/include/viewplus.h
-obj/sceditor.o:: $(DEPS_87)
+obj/sceditor.o:: $(DEPS_89)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_88=scresave.cc ../../tvision/include/compatlayer.h\
+DEPS_90=scresave.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/collectn.h\
@@ -2817,7 +2962,7 @@ DEPS_88=scresave.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2837,7 +2982,8 @@ DEPS_88=scresave.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../extra/dyncat.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../extra/dyncat.h\
 	../include/ced_clas.h ../include/ced_exte.h ../include/ceditint.h\
 	../include/ceditor.h ../include/configed.h ../include/pathtool.h\
 	../include/pmcoll.h ../include/runprog.h ../include/sindicat.h\
@@ -2846,9 +2992,9 @@ DEPS_88=scresave.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
 	../settvuti/include/viewplus.h
-obj/scresave.o:: $(DEPS_88)
+obj/scresave.o:: $(DEPS_90)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_89=sdginter.cc ../../tvision/include/compatlayer.h\
+DEPS_91=sdginter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/button.h\
 	../../tvision/include/tv/checkbox.h\
 	../../tvision/include/tv/cluster.h\
@@ -2880,9 +3026,9 @@ DEPS_89=sdginter.cc ../../tvision/include/compatlayer.h\
 	../include/configed.h ../include/edmsg.h ../sdg/include/mli.h\
 	../sdg/include/mlisdgi.h ../sdg/include/txhgen.h\
 	../setedit/include/setapp.h
-obj/sdginter.o:: $(DEPS_89)
+obj/sdginter.o:: $(DEPS_91)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_90=sdskasci.cc ../../tvision/include/compatlayer.h\
+DEPS_92=sdskasci.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -2896,9 +3042,9 @@ DEPS_90=sdskasci.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../setedit/include/dskascii.h ../setedit/include/dskwin.h
-obj/sdskasci.o:: $(DEPS_90)
+obj/sdskasci.o:: $(DEPS_92)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_91=sdskcale.cc ../../tvision/include/compatlayer.h\
+DEPS_93=sdskcale.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -2912,16 +3058,16 @@ DEPS_91=sdskcale.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../setedit/include/dskcalen.h ../setedit/include/dskwin.h
-obj/sdskcale.o:: $(DEPS_91)
+obj/sdskcale.o:: $(DEPS_93)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_92=sdskclip.cc ../../tvision/include/compatlayer.h\
+DEPS_94=sdskclip.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2940,23 +3086,24 @@ DEPS_92=sdskclip.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskclip.h ../setedit/include/dskwin.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskclip.o:: $(DEPS_92)
+obj/sdskclip.o:: $(DEPS_94)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_93=sdskclos.cc ../../tvision/include/compatlayer.h\
+DEPS_95=sdskclos.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -2975,23 +3122,24 @@ DEPS_93=sdskclos.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskclose.h ../setedit/include/dskwin.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskclos.o:: $(DEPS_93)
+obj/sdskclos.o:: $(DEPS_95)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_94=sdskedit.cc ../../tvision/include/compatlayer.h\
+DEPS_96=sdskedit.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3010,16 +3158,17 @@ DEPS_94=sdskedit.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskedito.h ../setedit/include/dskwin.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskedit.o:: $(DEPS_94)
+obj/sdskedit.o:: $(DEPS_96)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_95=sdskhelp.cc ../../tvision/include/compatlayer.h\
+DEPS_97=sdskhelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
@@ -3030,7 +3179,7 @@ DEPS_95=sdskhelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3050,7 +3199,8 @@ DEPS_95=sdskhelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../infview/include/inf.h ../infview/include/infbase.h\
@@ -3058,9 +3208,9 @@ DEPS_95=sdskhelp.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskhelp.o:: $(DEPS_95)
+obj/sdskhelp.o:: $(DEPS_97)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_96=sdskman.cc ../../tvision/include/compatlayer.h\
+DEPS_98=sdskman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -3074,16 +3224,16 @@ DEPS_96=sdskman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../setedit/include/dskman.h ../setedit/include/dskwin.h
-obj/sdskman.o:: $(DEPS_96)
+obj/sdskman.o:: $(DEPS_98)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_97=sdskmess.cc ../../tvision/include/compatlayer.h\
+DEPS_99=sdskmess.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3102,16 +3252,17 @@ DEPS_97=sdskmess.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskmessa.h ../setedit/include/dskwin.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskmess.o:: $(DEPS_97)
+obj/sdskmess.o:: $(DEPS_99)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_98=sdskmp3.cc ../../tvision/include/compatlayer.h\
+DEPS_100=sdskmp3.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -3125,16 +3276,16 @@ DEPS_98=sdskmp3.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../setedit/include/dskmp3.h ../setedit/include/dskwin.h
-obj/sdskmp3.o:: $(DEPS_98)
+obj/sdskmp3.o:: $(DEPS_100)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_99=sdskprj.cc ../../tvision/include/compatlayer.h\
+DEPS_101=sdskprj.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3153,22 +3304,24 @@ DEPS_99=sdskprj.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskprj.h ../setedit/include/dskwin.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sdskprj.o:: $(DEPS_99)
+obj/sdskprj.o:: $(DEPS_101)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_100=search.cc ../../tvision/include/compatlayer.h\
+DEPS_102=search.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3186,15 +3339,16 @@ DEPS_100=search.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
-	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
-	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
+	../include/ced_exte.h ../include/ced_inte.h ../include/ceditint.h\
+	../include/ceditor.h ../include/configed.h ../include/pmcoll.h\
+	../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/search.o:: $(DEPS_100)
+obj/search.o:: $(DEPS_102)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_101=sedcolle.cc ../../tvision/include/compatlayer.h\
+DEPS_103=sedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
@@ -3204,7 +3358,7 @@ DEPS_101=sedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3223,21 +3377,22 @@ DEPS_101=sedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/ced_clas.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/tvsetuti.h\
 	../setedit/include/dskwin.h ../setedit/include/edcollec.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/sedcolle.o:: $(DEPS_101)
+obj/sedcolle.o:: $(DEPS_103)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_102=
+DEPS_104=
 .PHONY: settv.gpr.force
 all:: settv.gpr.force
 settv.gpr.force:
 	$(MAKE) -f settv.mak
-DEPS_103=slpinter.cc ../../tvision/include/compatlayer.h\
+DEPS_105=slpinter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/collectn.h\
@@ -3252,7 +3407,8 @@ DEPS_103=slpinter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3272,7 +3428,8 @@ DEPS_103=slpinter.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tsinplpi.h ../easydiag/tslabel.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_clas.h ../include/ced_coma.h\
@@ -3286,15 +3443,15 @@ DEPS_103=slpinter.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tinppipe.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/slpinter.o:: $(DEPS_103)
+obj/slpinter.o:: $(DEPS_105)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_104=splinman.cc ../../tvision/include/compatlayer.h\
+DEPS_106=splinman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3312,15 +3469,16 @@ DEPS_104=splinman.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ced_clas.h ../include/ced_exte.h ../include/ced_inte.h\
-	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
-	../include/splinman.h ../include/tvsetuti.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
-	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/splinman.o:: $(DEPS_104)
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
+	../include/ced_exte.h ../include/ced_inte.h ../include/ceditor.h\
+	../include/pmcoll.h ../include/sindicat.h ../include/splinman.h\
+	../include/tvsetuti.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
+	../settvuti/include/viewplus.h
+obj/splinman.o:: $(DEPS_106)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_105=ssindica.cc ../../tvision/include/compatlayer.h\
+DEPS_107=ssindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
@@ -3340,9 +3498,9 @@ DEPS_105=ssindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../include/ceditor.h ../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/settvuti.h
-obj/ssindica.o:: $(DEPS_105)
+obj/ssindica.o:: $(DEPS_107)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_106=ssyntax.cc ../../tvision/include/compatlayer.h\
+DEPS_108=ssyntax.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/collectn.h\
@@ -3359,7 +3517,8 @@ DEPS_106=ssyntax.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/label.h ../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3380,7 +3539,8 @@ DEPS_106=ssyntax.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h\
 	../easydiag/tsinplin.h ../easydiag/tslabel.h ../easydiag/tslistbo.h\
 	../easydiag/tssortva.h ../easydiag/tstsorlb.h ../easydiag/tsvegrp.h\
@@ -3392,9 +3552,9 @@ DEPS_106=ssyntax.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/tdiagaid.h ../settvuti/include/tdiagrow.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
 	../settvuti/include/tstrlbox.h
-obj/ssyntax.o:: $(DEPS_106)
+obj/ssyntax.o:: $(DEPS_108)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_107=tedcolle.cc ../../tvision/include/compatlayer.h\
+DEPS_109=tedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/collectn.h\
@@ -3408,7 +3568,7 @@ DEPS_107=tedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3429,7 +3589,8 @@ DEPS_107=tedcolle.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tslistbo.h\
 	../easydiag/tssortlb.h ../easydiag/tssortva.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_clas.h ../include/ced_coma.h\
@@ -3442,9 +3603,9 @@ DEPS_107=tedcolle.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
 	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
 	../settvuti/include/viewplus.h
-obj/tedcolle.o:: $(DEPS_107)
+obj/tedcolle.o:: $(DEPS_109)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_108=tips.cc ../../tvision/include/compatlayer.h\
+DEPS_110=tips.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/button.h\
@@ -3457,7 +3618,8 @@ DEPS_108=tips.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/group.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/label.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/label.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3481,15 +3643,16 @@ DEPS_108=tips.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
 	../easydiag/tslabel.h ../easydiag/tsradbot.h ../easydiag/tstextsc.h\
 	../easydiag/tsview.h ../easydiag/tsviewco.h ../easydiag/ttextscr.h\
 	../include/ceditint.h ../include/configed.h ../include/edmsg.h\
 	../include/edspecs.h ../setedit/include/setapp.h
-obj/tips.o:: $(DEPS_108)
+obj/tips.o:: $(DEPS_110)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_109=tpaltext.cc ../../tvision/include/compatlayer.h\
+DEPS_111=tpaltext.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/fpbase.h\
 	../../tvision/include/tv/fpstream.h ../../tvision/include/tv/intl.h\
@@ -3504,15 +3667,15 @@ DEPS_109=tpaltext.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
 	../setedit/include/tpaltext.h
-obj/tpaltext.o:: $(DEPS_109)
+obj/tpaltext.o:: $(DEPS_111)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_110=tsindica.cc ../../tvision/include/compatlayer.h\
+DEPS_112=tsindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/indicato.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3531,18 +3694,19 @@ DEPS_110=tsindica.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ced_clas.h ../include/ced_exte.h ../include/ceditor.h\
-	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
+	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
+	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
+	../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/tsindica.o:: $(DEPS_110)
+obj/tsindica.o:: $(DEPS_112)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_111=txhgen.cc ../../tvision/include/compatlayer.h\
+DEPS_113=txhgen.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
-	../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/no_mss.h ../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3558,13 +3722,13 @@ DEPS_111=txhgen.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../include/bufun.h\
-	../sdg/include/mli.h ../sdg/include/mlisdgi.h\
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
+	../include/bufun.h ../sdg/include/mli.h ../sdg/include/mlisdgi.h\
 	../sdg/include/txhgen.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h
-obj/txhgen.o:: $(DEPS_111)
+obj/txhgen.o:: $(DEPS_113)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_112=winlistd.cc ../../tvision/include/compatlayer.h\
+DEPS_114=winlistd.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/applictn.h\
 	../../tvision/include/tv/button.h\
@@ -3579,7 +3743,8 @@ DEPS_112=winlistd.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/listbox.h\
 	../../tvision/include/tv/lstviewr.h\
-	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/nscoll.h\
+	../../tvision/include/tv/msgbox.h ../../tvision/include/tv/no_mss.h\
+	../../tvision/include/tv/nscoll.h\
 	../../tvision/include/tv/nssorcol.h\
 	../../tvision/include/tv/object.h\
 	../../tvision/include/tv/objects.h\
@@ -3598,7 +3763,8 @@ DEPS_112=winlistd.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
+	../../tvision/include/tv/window.h\
+	../../tvision/include/tv/yes_mss.h ../easydiag/easydia1.h\
 	../easydiag/easydiag.h ../easydiag/tsbutton.h ../easydiag/tshzgrp.h\
 	../easydiag/tslistbo.h ../easydiag/tssortva.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../include/ced_clas.h ../include/ced_exte.h\
@@ -3609,6 +3775,6 @@ DEPS_112=winlistd.cc ../../tvision/include/compatlayer.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
 	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h
-obj/winlistd.o:: $(DEPS_112)
+obj/winlistd.o:: $(DEPS_114)
 	$(RHIDE_COMPILE.cc.o)
 all:: editor.exe

@@ -120,7 +120,7 @@ void EnlargeFontInOne(uchar *dest, uchar *ori, int num, int height)
 }
 
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <dpmi.h>
 #include <sys/movedata.h>
 #include <go32.h>
@@ -216,7 +216,7 @@ void TFontEditor::SetFont(TFontColl *fCol, int height, int bank, int noForce, in
     TFont::SelectFont(height,8,bank,noForce,modeRecalculate);
    }
 }
-#else // __DJGPP__
+#else // DJGPP
 static
 void SetDualCharacter(int , int ) {}
 

@@ -10,31 +10,38 @@
 export DH_COMPAT=1
 
 build: build-stamp
-build-stamp:
+build-stamp: backup-stamp
 	dh_testdir
-# Add here commands to compile the package.
 	./configure --prefix=$(shell pwd)/debian/tmp/usr --fhs
 	$(MAKE)
 	touch build-stamp
 
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
+clean: clean-debian backup-stamp
 # Heh, for cleaning we need to run the configure script in order to create the makefile that cleans! :-)))
 	./configure
 	$(MAKE) clean
-	dh_clean
-
+# Restore upstream provided regenerated files (if backup exists):
+	for file in $$(cat debian/files_to_backup) ; do test -e "$$file.bkpdeb" && mv "$$file.bkpdeb" "$$file" ; done ; exit 0
+	rm -f backup-stamp
+	rm -f doc/Makefile internac/Makefile mp3/libamp/rhide.env internac/de_iso.po \
+		internac/es_iso.po internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
+		internac/de_iso.mo internac/es.mo internac/es_iso.mo
 
 clean-debian:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp install-stamp
+	rm -f build-stamp
 	dh_clean
 
 
+backup-stamp:
+	dh_testdir
+# Backup upstream provided regenerated files (if no previous backups exists):
+	for file in $$(cat debian/files_to_backup) ; do test -e "$$file" && cp "$$file" "$$file.bkpdeb" ; done ; exit 0
+	touch backup-stamp
+
+	
 install: build
 	dh_testdir
 	dh_testroot
@@ -45,7 +52,9 @@ install: build
 	mv debian/tmp/usr/share/doc/setedit/change.log.gz debian/tmp/usr/share/doc/setedit/changelog.gz
 	dh_link usr/share/man/man1/setedit.1.gz usr/share/man/man1/e.1.gz
 # We need to move files for other packages than the first one in the control file:
-	dh_movefiles -p infview usr/bin/infview usr/share/doc/infview usr/share/infview usr/share/man/man1/infview.1.gz
+	dh_movefiles -p infview usr/bin/infview usr/share/doc/infview/ usr/share/infview/ usr/share/man/man1/infview.1.gz
+# I don't know why dh_movefiles doesn't remove the directories I requested for moving to the infview package, so I move them by hand (anyway I don't know why that command exists in the first place!):
+	rm -rf debian/tmp/usr/share/doc/infview/ debian/tmp/usr/share/infview/
 	mkdir debian/infview/usr/share/info
 	cp debian/tmp/usr/share/info/infview.info.gz debian/infview/usr/share/info/infview.info.gz
 
@@ -70,7 +79,8 @@ binary-arch: build install
 	chmod 4755 debian/infview/usr/bin/infview
 	dh_installdeb
 	dh_shlibdeps
-	dh_gencontrol
+	dh_gencontrol -p setedit
+	dh_gencontrol -p infview -- -v$$(cat infview/version.txt)-$$(head -n1 debian/changelog | sed 's/.* (.*-//' | sed 's/) .*//')
 #	dh_makeshlibs  This is for libraries.
 	dh_md5sums
 	dh_builddeb

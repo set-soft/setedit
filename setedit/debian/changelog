@@ -1,16 +1,40 @@
-setedit (0.4.49-1) unstable; urgency=low
+setedit (0.4.49-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts
 
  -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sun, 23 Sep 2001 11:52:36 -0300
 
-setedit (0.4.48-1) unstable; urgency=low
+setedit (0.4.48-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts
 
  -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 22 Sep 2001 10:28:11 -0300
 
+setedit (0.4.47-2) unstable; urgency=low
+
+  * Create infview package with its own version and not setedit one,
+    beware that I have not used an epoch, so the packaging tools will
+    think that you are downgrading and that this version of infview is
+    older.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sat, 29 Sep 2001 23:41:40 -0300
+
 setedit (0.4.47-1) unstable; urgency=low
+
+  * New upstream version.
+  * Now clean target uses clean-debian target for the Debian cleaning.
+  * Now it backups and restores original upstream files that are
+    modified during the building process.
+  * No more empty infview directories in the setedit package! I don't
+    know why dh_movefiles doesn't remove the directory. I also
+    discovered something funny: I allways check what the packages have
+    inside using Midnight Commander, but it doesn't show empty
+    directories so I didn't know of the problem until Salvador told me!
+    Extracting with dpkg-deb that directories appear.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sat, 29 Sep 2001 12:16:59 -0300
+
+setedit (0.4.47-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts
 
