@@ -3188,7 +3188,7 @@ msgstr "Abrir una ~c~opia de solo lectura"
 
 #: ../setedit/editmenu.cc:218
 msgid "Save w/same ~t~ime..."
-msgstr "G~u~ardar c/igual ~h~ora..."
+msgstr "Guardar c/igual ~h~ora..."
 
 #: ../setedit/editmenu.cc:219
 msgid "~P~rint"
@@ -4805,6 +4805,9 @@ msgstr "Asi~g~naci¢n"
 
 msgid "Sa~v~e as DOS..."
 msgstr "Guardar en formato ~D~OS ..."
+
+msgid "Save a~l~l"
+msgstr "Guardar ~t~odo"
 
 #~ msgid ""
 #~ "-b, --bios-keyb:         use BIOS for the keyboard [safer, limited].\n"

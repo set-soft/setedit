@@ -12,6 +12,7 @@ SubMenu: "~F~ile", kbAlF
  MenuItemC: "~N~ew", cmeNew
  MenuItemC: "~S~ave", cmcSave, kbF2, "F2"
  MenuItemC: "S~a~ve as...", cmcSaveAs, kbUnknown
+ MenuItemC: "Save a~l~l", cmeSaveAll
  MenuSeparator
 # MenuItemC: "~C~hange dir...", cmeChangeDrct
  MenuItemC: "E~x~it", cmeQuit, kbAlF4, "Alt+F4"

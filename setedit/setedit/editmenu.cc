@@ -216,6 +216,7 @@ void TSetEditorApp::outOfMemory()
 // The following are here just for internationalization purposes
 _("Open Read-only ~c~opy")
 _("Save w/same ~t~ime...")
+_("Save a~l~l")
 _("~P~rint")
 _("Pr~i~nt Setup...")
 _("S~e~t Local options")

@@ -1033,6 +1033,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               FontsOptions();
               break;
 
+         case cmeSaveAll:
+              SaveAllEditors();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

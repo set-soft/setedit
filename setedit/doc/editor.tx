@@ -726,6 +726,14 @@ constants.
 @refMenu1{cmcSaveSameTime}
 
 @c --------------------------------------------------------------------------
+@subsection Save all
+
+Forces to save all the modified editing windows.
+@paragraph{}
+
+@refMenu1{cmcSaveAll}
+
+@c --------------------------------------------------------------------------
 @subsection Print
 
 This option prints the current editor window. Don't use this option without

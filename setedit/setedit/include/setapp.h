@@ -94,7 +94,8 @@ const int
   cmeColorTheme     = cmeBase+74,
   cmeSaveDesktop    = cmeBase+75,
   cmeEncodings      = cmeBase+76,
-  cmeFonts          = cmeBase+77;
+  cmeFonts          = cmeBase+77,
+  cmeSaveAll        = cmeBase+78;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.

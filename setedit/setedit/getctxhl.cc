@@ -122,6 +122,7 @@ static helpNode helpList[]=
  HHc(SaveAs,"Save as"),
  HHc(SaveAsUNIX,"Save as UNIX"),
  HHc(SaveSameTime,"Save with same time"),
+ HHe(SaveAll,"Save all"),
  Hc(Undo),
  Hc(Redo),
  Hc(Cut),

@@ -37,6 +37,7 @@ SubMenu: "~F~ile", kbAlF
  MenuItemC: "Sa~v~e as DOS...", cmcSaveAsDOS
  $endif
  MenuItemC: "Save w/same ~t~ime...", cmcSaveSameTime
+ MenuItemC: "Save a~l~l", cmeSaveAll
  MenuSeparator
  MenuItemC: "~P~rint", cmePrintEditor
  MenuItemC: "Pr~i~nt Setup...", cmeSetUpPrinter
