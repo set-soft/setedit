@@ -2465,7 +2465,7 @@ int TCEditor::handleCommand(ushort command)
                 else
                   {
                    char *s=ColToPointer();
-                   if (IsntEOL(*s))
+                   if (CLY_IsntEOL(*s))
                       deleteRange(s,curLinePtr+LenWithoutCRLF(curPos.y,curLinePtr));
                   }
                 break;
@@ -3518,8 +3518,8 @@ void TCEditor::QuotedPrintDecode()
    {
     if (buffer[i]=='=' && i+2<selEnd)
       {
-       if (strncmp(buffer+i+1,crlf,LenEOL)==0)
-          i+=LenEOL+1;
+       if (strncmp(buffer+i+1,CLY_crlf,CLY_LenEOL)==0)
+          i+=CLY_LenEOL+1;
        else
          {
           bf[j++]=ASCII2Hex(buffer+i+1);
@@ -3722,7 +3722,7 @@ void TCEditor::MacroGenerateCode(void)
  Recording=False;
  if (isReadOnly || !MacroCount)
     return;
- len=sprintf(buf,"(defmacro 'Recorded macro'%s (eval%s",crlf,crlf);
+ len=sprintf(buf,"(defmacro 'Recorded macro'%s (eval%s",CLY_crlf,CLY_crlf);
  insertText(buf,len,False);
  for (i=0; i<MacroCount; i++)
     {
@@ -3741,7 +3741,7 @@ void TCEditor::MacroGenerateCode(void)
            }
         buf[pos]=0;
         strcat(buf,"\")");
-        strcat(buf,crlf);
+        strcat(buf,CLY_crlf);
         insertText(buf,strlen(buf),False);
         if (i<MacroCount)
            i--;
@@ -3755,19 +3755,19 @@ void TCEditor::MacroGenerateCode(void)
            {
             if ((i & 3)==3)
               {
-               len=sprintf(buf,"%s  ",crlf);
+               len=sprintf(buf,"%s  ",CLY_crlf);
                insertText(buf,len,False);
               }
             len=sprintf(buf," cmc%s",TranslateEdCommand(MacroArray(i) & 0xFFFF));
             insertText(buf,len,False);
            }
-        len=sprintf(buf,")%s",crlf);
+        len=sprintf(buf,")%s",CLY_crlf);
         insertText(buf,len,False);
         if (i<MacroCount)
            i--;
        }
     }
- len=sprintf(buf," )%s)%s",crlf,crlf);
+ len=sprintf(buf," )%s)%s",CLY_crlf,CLY_crlf);
  insertText(buf,len,False);
 }
 
@@ -4780,7 +4780,7 @@ Boolean TCEditor::selRectDelete(int X1, int Y1, int X2, int Y2, Boolean allowUnd
    {
     if (EnsureXDontTab(curLinePtr,X1,Width,&stop))
       {
-       if (stop!=NULL && IsntEOL(*stop)) // If stop==NULL nothing to do
+       if (stop!=NULL && CLY_IsntEOL(*stop)) // If stop==NULL nothing to do
          { // Delete from stop to the end of the line
           deleteRange(stop,curLinePtr+LenWithoutCRLF(curPos.y,curLinePtr),False);
          }
@@ -5140,12 +5140,12 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
    
           do
            {
-            for (;IsntEOL(*s) && !ucisspace(*s); s++) // While letters
+            for (;CLY_IsntEOL(*s) && !ucisspace(*s); s++) // While letters
                 { AdvanceWithTab(*s,X); }
-            for (;IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
+            for (;CLY_IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
                 { AdvanceWithTab(*s,X); }
            }
-          while (IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
+          while (CLY_IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
           if (X>Xact)
              X-=Xact;
           else
@@ -5252,7 +5252,7 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
        addToUndo(undoInMov);
        GotoOffSet(ColToPointer()-buffer-dif);
        // Insert a CR
-       insertText(crlf, LenEOL, False);
+       insertText(CLY_crlf,CLY_LenEOL,False);
        // Go to the correct position
        addToUndo(undoInMov);
        GotoOffSet(ColToPointer()-buffer+dif);
@@ -5804,9 +5804,9 @@ void TCEditor::MakeEfectiveLineInEdition(void)
     if (SpacesEated && SeeTabs)
        update(ufView); // Not just the line, we are leaving it!
    }
-#ifdef USE_CRLF
+ #ifdef CLY_UseCrLf
  bufEdit[actual++]='\r';
-#endif
+ #endif
  bufEdit[actual++]='\n';
  bufEdit[actual]=0;
  if (SpacesEated && selLineEnd>0)
@@ -6352,7 +6352,7 @@ Boolean TCEditor::insertBuffer( char *p,
     }
  // is outside the real line? AND the inserted text won't destroy the new
  // spaces (| we won't purge spaces).
- if (x<curPos.x && (IsntEOL(*p) || DontPurgeSpaces))
+ if (x<curPos.x && (CLY_IsntEOL(*p) || DontPurgeSpaces))
     extraSpaces=CalcNeededCharsToFill(x,curPos.x,tabSize,OptimalFill);
  else
     extraSpaces=0;
@@ -6363,7 +6363,7 @@ Boolean TCEditor::insertBuffer( char *p,
  // insertion point as offset
  unsigned point=(unsigned)(s-buffer);
 
- if (allowUndo && !DontPurgeSpaces && IsEOL(*p)) // Don't purge spaces if we can't undo
+ if (allowUndo && !DontPurgeSpaces && CLY_IsEOL(*p)) // Don't purge spaces if we can't undo
    { // Search for spaces at the end of the new inserted line
     char *s1;
     for (s1=s-1; (*s1==' ' || *s1=='\t') && s1>=curLinePtr; s1--);
@@ -6499,7 +6499,7 @@ Boolean TCEditor::insertBuffer( char *p,
           if (*s=='\t')
              MoveWithTab(curPos.x);
           else
-             if (IsntEOL(*s))
+             if (CLY_IsntEOL(*s))
                 curPos.x++;
        }
     curPos.y=x;
@@ -6593,7 +6593,7 @@ unsigned TCEditor::CopySelToBuffer(char *b, unsigned l)
     char *start=buffer+selStart;
     char *end=buffer+selEnd;
 
-    for (;copied<l && IsntEOL(*start) && start<end; copied++, start++, b++)
+    for (;copied<l && CLY_IsntEOL(*start) && start<end; copied++, start++, b++)
         *b=*start;
     *b=0;
    }
@@ -7441,7 +7441,7 @@ void TCEditor::newLine()
     larAnt=larThis=lenLines[lineAnalize];
     while (lineAnalize>=0)
      {
-      if (larAnt>LenEOL)
+      if (larAnt>CLY_LenEOL)
         { // This line seems to have something, check it
          firstUsedPos=prevLine;
          while (*firstUsedPos==' ' || *firstUsedPos=='\t')
@@ -7462,7 +7462,7 @@ void TCEditor::newLine()
      }
    }
 
- insertText(crlf, LenEOL, False);
+ insertText(CLY_crlf,CLY_LenEOL,False);
 
  if (intelIndent && curPos.y>0)
    {
@@ -7482,7 +7482,7 @@ void TCEditor::newLine()
       prevLine-=larAnt;
       i++;
      }
-    while (i<=curPos.y && larAnt<=LenEOL);
+    while (i<=curPos.y && larAnt<=CLY_LenEOL);
     firstUsedPos=prevLine;
 
     //   This code search the position of the first used char and your
@@ -7511,7 +7511,7 @@ void TCEditor::newLine()
     Boolean makeUnIndent=False;
 
     TargetCol=AnalizeLineForIndent(firstUsedPos,firstUsedCol,makeUnIndent,
-                                   larAnt-LenEOL,tabSize,(int)(firstUsedPos-buffer));
+                                   larAnt-CLY_LenEOL,tabSize,(int)(firstUsedPos-buffer));
 
     // Avoid a backspace at the start of the line
     if (!TargetCol && makeUnIndent)
@@ -7562,7 +7562,7 @@ void TCEditor::newLine()
 
     if ((unsigned)curPos.x<TargetCol)
       {
-       if (larThis>LenEOL)
+       if (larThis>CLY_LenEOL)
          { // The line have chars
           insertSpaces(TargetCol-curPos.x,curPos.x);
          }
@@ -7600,7 +7600,7 @@ void TCEditor::newLine()
    
        if ((unsigned)curPos.x<firstUsedCol)
          {
-          if (larThis>LenEOL)
+          if (larThis>CLY_LenEOL)
             { // The line have chars
              insertSpaces(firstUsedCol-curPos.x,curPos.x);
             }
@@ -7635,7 +7635,7 @@ char *TCEditor::ColToPointer()
  char *s=curLinePtr,*end=buffer+bufLen;
  int x,xDest=curPos.x;
 
- for (x=0; IsntEOL(*s) && x<xDest && s<end; s++)
+ for (x=0; CLY_IsntEOL(*s) && x<xDest && s<end; s++)
     {
      AdvanceWithTab(*s,x);
     }
@@ -7665,7 +7665,7 @@ char *TCEditor::ColToPointer(int &Dif)
  char *s=curLinePtr;
  int x,xDest=curPos.x;
 
- for (x=0; IsntEOL(*s) && x<xDest; s++)
+ for (x=0; CLY_IsntEOL(*s) && x<xDest; s++)
     {
      AdvanceWithTab(*s,x);
     }
@@ -7697,7 +7697,7 @@ char *TCEditor::ColToPointerPost()
  char *s=curLinePtr;
  int x,xDest=curPos.x;
 
- for (x=0; IsntEOL(*s) && x<xDest; s++)
+ for (x=0; CLY_IsntEOL(*s) && x<xDest; s++)
     {
      AdvanceWithTab(*s,x);
     }
@@ -7717,7 +7717,7 @@ int TCEditor::PosLeftChar()
  char *s=curLinePtr,*end=buffer+bufLen;
  int x,xDest=curPos.x,xold;
 
- for (x=0,xold=0; IsntEOL(*s) && x<xDest && s<end; s++)
+ for (x=0,xold=0; CLY_IsntEOL(*s) && x<xDest && s<end; s++)
     {
      AdvanceWithTab(*s,x);
      if (x<xDest)
@@ -7741,7 +7741,7 @@ int TCEditor::FixPosCharLeft()
  char *s=curLinePtr,*end=buffer+bufLen;
  int x,xDest=curPos.x,xold;
 
- for (x=0,xold=0; IsntEOL(*s) && x<xDest && s<end; s++)
+ for (x=0,xold=0; CLY_IsntEOL(*s) && x<xDest && s<end; s++)
     {
      AdvanceWithTab(*s,x);
      if (x<=xDest)
@@ -7907,10 +7907,10 @@ int TCEditor::prevWord(Boolean moveCursor)
  else
    {
     // Get out of the start of the word or the EOL or we'll stay here
-    if (isWordChar(*p) || IsEOL(*p))
+    if (isWordChar(*p) || CLY_IsEOL(*p))
        p--;
     // Skip the spaces but stop in EOLs
-    while (p>buffer && !isWordChar(*p) && IsntEOL(*p)) p--;
+    while (p>buffer && !isWordChar(*p) && CLY_IsntEOL(*p)) p--;
     if (isWordChar(*p))
       { // We found a word
        // Go to the start
@@ -7963,23 +7963,23 @@ int TCEditor::nextWord()
     p--;
    }
 
- if (IsEOL(*p))
+ if (CLY_IsEOL(*p))
    {
-    if (!IsTrueEOL(*p))
-       do { p++; } while (p<end && !IsTrueEOL(*p));
-    p+=LenEOL;
+    if (!CLY_IsTrueEOL(*p))
+       do { p++; } while (p<end && !CLY_IsTrueEOL(*p));
+    p+=CLY_LenEOL;
     if (p>=end)
        return 0;
    }
  else
    {
     if (!isWordChar(*p))
-       while (p<end && IsntEOL(*p) && !isWordChar(*p)) p++;
+       while (p<end && CLY_IsntEOL(*p) && !isWordChar(*p)) p++;
     else
        while (p<end && isWordChar(*p)) p++;
    }
- if (IsntEOL(*p))
-    while (p<end && !isWordChar(*p) && IsntEOL(*p)) p++;
+ if (CLY_IsntEOL(*p))
+    while (p<end && !isWordChar(*p) && CLY_IsntEOL(*p)) p++;
  if (p==end) p--;
  if (ori>p)
     p=ori;
@@ -8041,9 +8041,9 @@ int TCEditor::nextCWord()
     p--;
    }
 
- if (IsEOL(*p))
+ if (CLY_IsEOL(*p))
    { // If we are at the end of the line delete the EOL
-    p+=LenEOL;
+    p+=CLY_LenEOL;
     if (p>=end)
        return 0;
    }
@@ -8059,8 +8059,8 @@ int TCEditor::nextCWord()
       }
    }
  // Eat ONLY the remaining spaces
- if (IsntEOL(*p))
-    while (p<end && ucisspace(*p) && IsntEOL(*p)) p++;
+ if (CLY_IsntEOL(*p))
+    while (p<end && ucisspace(*p) && CLY_IsntEOL(*p)) p++;
  // Here are some safety checks that don't remember when are needed
  if (p==end) p--;
  if (ori>p)
@@ -8598,7 +8598,7 @@ unsigned LineMeassureC(char *s, char *end, uint32 &Attr)
         }
       else
         // A line ended with \ is concatenated with the next line
-        if (*s=='\\' && (s==end2 || IsEOL(*(s+1))))
+        if (*s=='\\' && (s==end2 || CLY_IsEOL(*(s+1))))
           {
            if (in_string)
               attr|=ExtString;
@@ -8746,7 +8746,7 @@ unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr)
          }
       }
     else
-      if (*s=='\\' && (s==end2 || IsEOL(*(s+1))))
+      if (*s=='\\' && (s==end2 || CLY_IsEOL(*(s+1))))
        {
          if (in_prepro)
              attr|=ExtPrepro;
@@ -8964,7 +8964,7 @@ unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr)
                    break;
 
               case ';':
-                   if ((s==end2 || IsEOL(*(s+1))) && in_prepro)
+                   if ((s==end2 || CLY_IsEOL(*(s+1))) && in_prepro)
                       attr|=ExtPrepro;
                    firstchar=0;
                    break;
@@ -9104,7 +9104,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
    {
     if (/*!in_prepro && */!type_com) // Yes, strings exist inside preprocessor.
       {
-       if (escapeAnywhere && *s==TCEditor::strC.Escape && IsntEOL(*(s+1)))
+       if (escapeAnywhere && *s==TCEditor::strC.Escape && CLY_IsntEOL(*(s+1)))
          {
           s+=2;
           continue;
@@ -9121,7 +9121,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
             {
              if (*s==TCEditor::strC.Escape)
                {
-                if (!(s==end2 || IsEOL(*(s+1))))
+                if (!(s==end2 || CLY_IsEOL(*(s+1))))
                    s++;
                }
              else
@@ -9154,7 +9154,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
             {
              if (*s==TCEditor::strC.Escape)
                {
-                if (!(s==end2 || IsEOL(*(s+1))))
+                if (!(s==end2 || CLY_IsEOL(*(s+1))))
                    s++;
                }
              else
@@ -9187,7 +9187,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
             {
              if (*s==TCEditor::strC.Escape)
                {
-                if (!(s==end2 || IsEOL(*(s+1))))
+                if (!(s==end2 || CLY_IsEOL(*(s+1))))
                    s++;
                }
              else
@@ -9241,7 +9241,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
           continue;
          }
       }
-    if (in_prepro && *s==TCEditor::strC.Escape && (s==end2 || IsEOL(*(s+1))))
+    if (in_prepro && *s==TCEditor::strC.Escape && (s==end2 || CLY_IsEOL(*(s+1))))
       {
        attr|=ExtPrepro;
        s++;
@@ -9417,7 +9417,7 @@ void TCEditor::setBufLen( uint32 length )
      else
        if (buffer[conta]==0)
           haveASCII0=1;
-#ifdef USE_CRLF
+       #ifdef CLY_UseCrLf
        else
          if (buffer[conta]=='\n')
            {
@@ -9437,7 +9437,7 @@ void TCEditor::setBufLen( uint32 length )
                buffer[conta-1]='\r';
               }
            }
-#endif
+     #endif
     }
 
  if (haveASCII0)
@@ -10493,7 +10493,7 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
        char *s=curLinePtr;
 
        // Search the column of the first non-blank in the first line of the block
-       for (Xact=curPos.x; IsntEOL(*s) && ucisspace(*s); s++)
+       for (Xact=curPos.x; CLY_IsntEOL(*s) && ucisspace(*s); s++)
            { AdvanceWithTab(*s,Xact); }
        if (curPos.y>0)
          { // Search a hole in the last line
@@ -10501,12 +10501,12 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
 
           do
            {
-            for (;IsntEOL(*s) && !ucisspace(*s); s++) // While letters
+            for (;CLY_IsntEOL(*s) && !ucisspace(*s); s++) // While letters
                 { AdvanceWithTab(*s,X); }
-            for (;IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
+            for (;CLY_IsntEOL(*s) && ucisspace(*s); s++)  // While spaces
                 { AdvanceWithTab(*s,X); }
            }
-          while (IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
+          while (CLY_IsntEOL(*s) && X<=Xact); // to a mayor X or the end of line
           if (X>Xact)
              Amount=X-Xact;
           else
@@ -10651,7 +10651,7 @@ void TCEditor::UnIndentBlock(uint32 Amount, Boolean allowUndo)
         int Y,X,Xact;
 
         // Search the column of the first non-blank in the first line of the block
-        for (Xact=curPos.x; IsntEOL(*s) && ucisspace(*s); s++)
+        for (Xact=curPos.x; CLY_IsntEOL(*s) && ucisspace(*s); s++)
             { AdvanceWithTab(*s,Xact); }
         s=curLinePtr;
         X=Xact;
@@ -10659,7 +10659,7 @@ void TCEditor::UnIndentBlock(uint32 Amount, Boolean allowUndo)
         while (Y && X>=Xact)
           {
            s-=lenLines[--Y];
-           for (p=s,X=0; IsntEOL(*p) && ucisspace(*p) && X<Xact; p++)
+           for (p=s,X=0; CLY_IsntEOL(*p) && ucisspace(*p) && X<Xact; p++)
                { AdvanceWithTab(*p,X); }
           }
         if (X>=Xact)
@@ -10793,7 +10793,7 @@ void TCEditor::BackSpace(Boolean allowUndo)
     if (curLinePtr!=buffer)
       {
        flushLine();
-       deleteRange(curLinePtr-LenEOL,curLinePtr,allowUndo);
+       deleteRange(curLinePtr-CLY_LenEOL,curLinePtr,allowUndo);
       }
    }
  else
@@ -10821,9 +10821,9 @@ void TCEditor::BackSpace(Boolean allowUndo)
        while (Y && X>=Xact)
          {
           s-=lenLines[--Y];
-          for (p=s,X=0; IsntEOL(*p) && ucisspace(*p) && X<Xact; p++)
+          for (p=s,X=0; CLY_IsntEOL(*p) && ucisspace(*p) && X<Xact; p++)
               { AdvanceWithTab(*p,X); }
-          if (IsEOL(*p))
+          if (CLY_IsEOL(*p))
              X=Xact;   // if that's an empty line force to ignore it
          }
        if (X>=Xact)
@@ -11926,7 +11926,7 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
 
 ****************************************************************************/
 
-#ifdef USE_CRLF
+#ifdef CLY_UseCrLf
 #define RemoveTemporal() if (wasCompressed) { remove(wasCompressed); \
                                               delete wasCompressed; \
                                               wasCompressed=0; } \
@@ -12024,7 +12024,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
                if (tmpbuf[i] == 10)
                   break;
           }
-#ifdef USE_CRLF
+          #ifdef CLY_UseCrLf
           // DOS: Check if the file is in UNIX format, in this case convert it
           if (crfound)
           {
@@ -12045,7 +12045,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
             fclose(f);
             f = fopen(tmp,"rb");
           }
-#else
+          #else
           // UNIX: Check if the file is in DOS format, in this case convert it
           if (crfound)
             {
@@ -12077,7 +12077,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
             {
              fseek(f,0,SEEK_SET);
             }
-#endif
+         #endif
         }
         unsigned long fSize=filelength( fileno(f) );
         if( !setBufSize(fSize) )
@@ -12378,7 +12378,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
              }
            memcpy(s,cur,l);
            cur+=l;
-           #ifdef USE_CRLF
+           #ifdef CLY_UseCrLf
            if (s[l-1]=='\n' && s[l-2]=='\r')
              {
               s[l-2]='\n';

@@ -476,7 +476,7 @@ static void PaintPreproNoSel(unsigned offset,char *db,char *buffer,unsigned line
   {
    c=buffer[offset++];
    x++;
-   if (IsEOL(c)) break;
+   if (CLY_IsEOL(c)) break;
    if (in_com)
      {
       if (c=='*' && buffer[offset]=='/')
