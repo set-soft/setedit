@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.417  2003/06/23 14:31:44  set
+* Added: some TODO entries I want to add after the next release.
+* Updated: the copyrigh file.
+* Updated: the readme files for distribution. Copyright dates and also a
+more accurate description about keyboard under X11.
+
 Revision 1.416  2003/06/23 14:27:48  set
 * Fixed: [InfView] the code to paste the current selection to the secondary
 OS clipboard wrongly computed the condition to determine if the selection

@@ -2771,7 +2771,7 @@ msgstr ""
 
 #: ../setedit/advice.cc:92
 msgid "Advice"
-msgstr "Concejo"
+msgstr "Consejo"
 
 #: ../setedit/advice.cc:107 ../setedit/editdiag.cc:85
 msgid "Don't show it next time"
@@ -2779,7 +2779,7 @@ msgstr "No mostrar esto la próxima vez"
 
 #: ../setedit/advice.cc:231
 msgid "Advice dialogs"
-msgstr "Diálogos de concejo"
+msgstr "Diálogos de consejo"
 
 #: ../setedit/advice.cc:237
 msgid "Select which advice dialogs are enabled"
@@ -3852,7 +3852,7 @@ msgstr "~N~o crear respaldos para..."
 
 #: ../setedit/editmenu.cc:296
 msgid "~T~ip of the day"
-msgstr "~C~oncejo del día"
+msgstr "~C~onsejo del día"
 
 #: ../setedit/editmenu.cc:297
 msgid "~S~yntax help"
@@ -3956,7 +3956,7 @@ msgstr "~V~erificar archivos modificados..."
 
 #: ../setedit/editmenu.cc:323
 msgid "Advice dialogs..."
-msgstr "Diálogos de concejo..."
+msgstr "Diálogos de consejo..."
 
 #: ../setedit/editmenu.cc:324
 msgid "Jump to ~l~ast cursor position"
@@ -5170,12 +5170,12 @@ msgstr ""
 
 #: ../setedit/tips.cc:181 ../setedit/tips.cc:256
 msgid "Tip of the day"
-msgstr "Concejo del día"
+msgstr "Consejo del día"
 
 #: ../setedit/tips.cc:185
 #, c-format
 msgid "~T~ip %d"
-msgstr "~C~oncejo %d"
+msgstr "~C~onsejo %d"
 
 #: ../setedit/tips.cc:207
 msgid "Don't ~s~how it again"
