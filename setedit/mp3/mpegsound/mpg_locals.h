@@ -19,49 +19,31 @@ inline int Mpegtoraw::getbyte(void)
 
 inline int Mpegtoraw::getbits9(int bits)
 {
-  unsigned a;
-#ifndef WORDS_BIGENDIAN
+   register unsigned short a;
   {
-    int offset=bitindex>>3;
-
-    a=(((unsigned char)buffer[offset])<<8) | ((unsigned char)buffer[offset+1]);
+     int offset=bitindex>>3;
+ 
+     a=(((unsigned char)buffer[offset])<<8) | ((unsigned char)buffer[offset+1]);
   }
-#else
-  {
-    int offset=bitindex>>3;
-
-    a=(((unsigned char)buffer[offset+1])<<8) | ((unsigned char)buffer[offset]);
-    //a=*((unsigned short *)(buffer+offset));
-  }
-#endif
 
   a<<=(bitindex&7);
   bitindex+=bits;
-  return (int)((a & 0xFFFF)>>(16-bits));
+  return (int)((unsigned int)(a>>(16-bits)));
 };
 
 inline int Mpegtoraw::getbits8(void)
 {
-  unsigned a;
+   register unsigned short a;
 
-#ifndef WORDS_BIGENDIAN
   {
-    int offset=bitindex>>3;
-
-    a=(((unsigned char)buffer[offset])<<8) | ((unsigned char)buffer[offset+1]);
+     int offset=bitindex>>3;
+ 
+     a=(((unsigned char)buffer[offset])<<8) | ((unsigned char)buffer[offset+1]);
   }
-#else
-  {
-    int offset=bitindex>>3;
-
-    a=(((unsigned char)buffer[offset+1])<<8) | ((unsigned char)buffer[offset]);
-    //a=*((unsigned short *)(buffer+offset));
-  }
-#endif
 
   a<<=(bitindex&7);
   bitindex+=8;
-  return (int)((a & 0xFFFF)>>8);
+  return (int)((unsigned int)(a>>8));
 };
 
 inline int Mpegtoraw::getbit(void)

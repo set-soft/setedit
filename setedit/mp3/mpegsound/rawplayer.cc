@@ -214,10 +214,18 @@ int Rawplayer::getblocksize(void)
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+// Stream ioctls:
+#include <sys/types.h>
+#include <stropts.h>
+#include <sys/conf.h>
 // Solaris header that defines /dev/audio interface
 #include <sys/audioio.h>
 
 #include "mpegsound.h"
+
+// If the buffer drops this size we send more data.
+// I don't know the limit so that's just experimental
+#define minBufferedSize 16384 //(4608*4)
 
 char *Rawplayer::defaultdevice="/dev/audio";
 
@@ -238,12 +246,15 @@ Rawplayer::~Rawplayer()
     close(audiohandle);
 }
 
+static char *theFilename=0;
+
 bool Rawplayer::initialize(char *filename)
 {
  int flag;
 
  rawbuffersize=0;
  quota=0;
+ theFilename=filename;
 
  if ((audiohandle=open(filename,O_WRONLY | O_NONBLOCK,0))==-1)
     return seterrorcode(SOUND_ERROR_DEVOPENFAIL);
@@ -257,16 +268,18 @@ bool Rawplayer::initialize(char *filename)
  if (audiobuffersize<4 || audiobuffersize>65536)
     return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
 
- // I don't know how much a stream support, it works
- //bufSize=900*64;
-bufSize=0;
+ bufSize=0;
  return true;
 }
 
 void Rawplayer::abort(void)
 {
- //int a;
- //IOCTL(audiohandle,SNDCTL_DSP_RESET,a);
+ if (audiohandle==-1) return;
+ int a=FLUSHW;
+ fprintf(stderr,"I_FLUSH: %d\n",ioctl(audiohandle,I_FLUSH,a));
+ fprintf(stderr,"AUDIO_DRAIN: %d\n",ioctl(audiohandle,AUDIO_DRAIN,0));
+ close(audiohandle);
+ audiohandle=-1;
 }
 
 int Rawplayer::getprocessed(void)
@@ -281,10 +294,9 @@ bool Rawplayer::roomformore(unsigned size)
 {
  audio_info_t info;
  ioctl(audiohandle,AUDIO_GETINFO,&info);
-fprintf(stderr,"played: %d bufSize %d\n",info.play.samples*sizeSamp,bufSize);
+ fprintf(stderr,"played: %d bufSize %d\n",info.play.samples*sizeSamp,bufSize);
   
- //return bufSize-info.play.samples*sizeSamp>=size ? true : false;
-return bufSize>info.play.samples*sizeSamp ? false : true;
+ return bufSize-info.play.samples*sizeSamp>minBufferedSize ? false : true;
 }
 
 bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
@@ -303,6 +315,13 @@ bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
 
 bool Rawplayer::resetsoundtype(void)
 {
+ if (audiohandle==-1)
+   {
+    if ((audiohandle=open(theFilename,O_WRONLY | O_NONBLOCK,0))==-1)
+       return seterrorcode(SOUND_ERROR_DEVOPENFAIL);
+    bufSize=0;
+   }
+       
  audio_info_t info;
  
  ioctl(audiohandle,AUDIO_GETINFO,&info);

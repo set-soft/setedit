@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.101  2002/05/20 18:08:31  set
+* Fixed: References to SendToTerminal, no longer used in TV 2.0.
+
 Revision 1.100  2002/05/20 17:59:44  set
 * Fixed: Removed linuxRH52 references no longer used by TV 2.0.
 
