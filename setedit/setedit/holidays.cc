@@ -267,6 +267,8 @@ void CleanUpHolidays()
         delete[] countries[i].module;
        }
     delete[] countries;
+    countries=NULL;
+    holidaysConfLoaded=0;
    }
 }
 
