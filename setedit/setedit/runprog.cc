@@ -64,6 +64,7 @@ static int      IndexCLE;
 static int      incGoBack, incLines=20;
 static pid_t    PidChild=0;
 static char     ParsingErrors=0;
+static char     PendingCleanUp=0;
 static SOStack *StackPath;
 
 const char *Running=__("Running %s");
@@ -426,11 +427,29 @@ Boolean RunExternalProgramNotRunning()
 static
 void IncCleanUp()
 {
- TView::disableCommand(cmeStopChild);
- DumpFileToMessageEnd();
- ParsingErrors=0;
- RemoveErrorFile();
  uint32 scrlOps=Options & edsmScrollMask;
+ if (!PendingCleanUp)
+   {
+    TView::disableCommand(cmeStopChild);
+    DumpFileToMessageEnd();
+    RemoveErrorFile();
+    delete StackPath;
+    StackPath=0;
+    DeleteArray(incCompiler);
+   }
+ // Check if the desktop is executing a modal dialog
+ TView *p=TApplication::deskTop->current;
+ if (p && (p->state & sfModal))
+   {// Yes, wait.
+    if (!PendingCleanUp)
+      {
+       PendingCleanUp=1;
+       EdShowMessage(_("Waiting ..."),scrlOps | edsmDontSelect);
+      }
+    return;
+   }
+ // Ok, we can go on
+ ParsingErrors=0;
  EdShowMessage(_(BackEd),scrlOps);
  if (incGoBack)
    {
@@ -440,9 +459,6 @@ void IncCleanUp()
       if (scrlOps==edsmEverScroll)
          EdJumpToMessage(0);
    }
- delete StackPath;
- StackPath=0;
- DeleteArray(incCompiler);
  ReLoadModifEditors();
 }
 
