@@ -580,7 +580,8 @@ int main(void)
  if (hits!=1) return 1;
  printf("OK\n");
  return 0;
-}';
+}
+';
  $test206=$test205.'0,'.$t2;
  $test205.=$t2;
 
