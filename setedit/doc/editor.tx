@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.48
-@set update-date 22 Sep 2001
+@set version 0.4.49
+@set update-date 23 Sep 2001
 @set update-month Sep 2001
 @set name-author Salvador Eduardo Tropea
 
@@ -2177,6 +2177,25 @@ by the editor.
 @p{}
 
 @refMenu1{cmeEditNoBkp}
+
+@c --------------------------------------------------------------------------
+@subsubsection Search files under cursor in
+@cindex files, search
+
+When you press @kbd{Ctrl+Enter} the editor tries to load the file that's in
+the text at the cursor position. If the cursor is in an include line the
+editor will extract the name of the header. In any other case the editor will
+try to find where the name starts and ends.
+@p{}
+
+If the file isn't located in the current directory the editor will try to
+find the file in the list of directories indicated by this option.
+@p{}
+
+This list is stored in the desktop file.
+@p{}
+
+@refMenu1{cmeIncludeList}
 
 @c --------------------------------------------------------------------------
 @subsection Calculator (command/menu)
