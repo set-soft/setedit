@@ -643,7 +643,8 @@ int main(void)
 {
  printf("%d.%d.%d",TV_MAJOR_VERSION,TV_MIDDLE_VERSION,TV_MINOR_VERSION);
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GXX,'cc',$test,"$stdcxx -I$TVInclude");
  if (!CompareVersion($test,$vNeed))
    {
