@@ -762,6 +762,14 @@ tools/symify.cc
 tools/TVpo.pl
 version.txt
 *windos.faq
+www-site/announce.html
+www-site/change.html
+www-site/Cygwin_install.txt
+www-site/index.html
+www-site/infview.html
+www-site/readme.html
+www-site/readmeinf.html
++www-site/update
 WinNT/configed.h
 -WinNT/makeinfo/makeinfo.exe
 WinNT/bccmake.in

@@ -1,0 +1,534 @@
+<HTML><Title>readme.1st for setedit</Title><Body><Pre>
+
+                            SET's editor v0.5.0
+                                  by SET
+
+  That's the official distribution of SET's editor v0.5.0
+  The editor is Copyrighted by Salvador Eduardo Tropea &lt;set@ieee.org&gt;.
+(c) 1996-2002 and distributed under the GPL license.
+  It's free and you don't need to pay for it. Any kind of donations are
+accepted ;-).
+
+INDEX:
+
+0.  IMPORTANT (modifications and fixes in this release and the previous)
+1.  REQUIREMENTS
+2.  INSTALL
+3.  MORE INFO
+4.  MP3 player
+5.  EXAMPLES (SDG, and others)
+6.  LEGAL ISSUE
+7.  KEYBOARD PREFERENCES
+8.  KEYBOARD EXTENDER [DOS version only]
+9.  KEYBOARD FEATURES UNDER X [Linux version only]
+10. DOWNLOAD
+11. MAILING LIST
+12. DONATIONS
+13. THANKS TO
+
+
+
+0. IMPORTANT:
+
+  This is a major release and also a "dot zero" release. So you should expect
+big changes and also some annoying side effects. Please be patient and try to
+help me to solve any problem. I use the editor every day and compiled using
+"Electric Fence", it means that in my system the editor is really stable, but
+the editor supports too much systems and options.
+
+  Changes in v0.5.0 (for more details read the change.log file):
+[taking last stable release (0.4.54) as reference]
+[41 new things and 26 fixes]
+
+New [41 things]:
+
++ Various [16]
+
+* FreeBSD support.
+* Solaris support.
+* QNX support.
+* Big endian CPUs support (runs quite well on SPARC machines).
+* X11 (X Window) native support.
+* Support for X11 clipboards and mouse wheel.
+* Much better XTerm and Eterm support.
+* New screen, fonts and encoding dialogs with more and better options.
+* An option to select a "Color Theme", currently only the "Default", "FTE
+like" and "Console + VIM" themes are available.
+* Euro symbol to the fonts.
+* More fonts are available.
+* Now is possible to indicate a project to load without the extension in the
+command line.
+* Option to generate HTML 4.01 + CSS in the HTML export.
+* Now if you unindent uncommenting the editor checks that at least the first
+line is already indented, if not the operation is aborted.
+* Now the matchpair and the complementary element jumps are affected
+by the syntax highlight.
+* An LRU algorithm to remove entries in the closed list.
+
++ Configuration [4]
+
+* Configuration questions in the installer [DOS and Linux .deb files].
+* Now ~/.tcedit.dst have more priority than ~/tcedit.dst.
+* Option to save a desktop file in the current directory.
+* Independent set of options are stored for each driver used (DOS, Linux,
+X11, etc.) in the desktop files.
+
++ InfView/ManView [3]
+
+* Ctrl+Arrows support.
+* Support fot copy from man page to: editor's clipboard, main OS clipboard
+and secondary OS clipboard.
+* The default ManView colors as suggested by Ivan, now they are more coherent
+with InfView.
+
++ List of functions [2]
+
+* If two identical functions (most probably only one is really used at compile
+time) both are listed in the list of functions.
+* PHP functions parser. Ivan Baldo &lt;lubaldo@adinet.com.uy&gt;
+
++ Run external programs and message window [4]
+
+* Options to avoid reseting the horizontal position of the message window
+when new entries are added.
+* Options to indicate when we reached the last/first item in the errors list.
+* "Vertical project window" options.
+* Tasm 2.02 errors parser.
+
++ Edition modes [1]
+
+* When the user sets the "Use Tabs" option the editor checks if
+other options commonly used with tabs are also coherent. If not an advice
+dialog is created.
+
++ Sound system []
+
+* Solaris support.
+
++ Syntax highlight and pmacros [6]
+
+* Lua. David A. Capello &lt;dacap@users.sourceforge.net&gt;.
+* Flat Assembler. Matt C. &lt;talktomatt@egl.net&gt;
+* PHP. Richard Vrijhof &lt;R.J.Vrijhof@bigfoot.com&gt;.
+* POV-ray. Martijn Versteegh &lt;m.versteegh@hccnet.nl&gt;.
+* Turbo Vision configuration files.
+* XML [Very limited!!]
+
++ Linux [2]
+
+* A clipboard mechanism based on a special file.
+* AA-lib plasma screen saver.
+
++ Cosmetic [2]
+
+* The editor now checks if the screen saver is suitable for the current
+driver.
+* When the editor loads a file the "busy indicator" is used (different mouse
+cursor under X11).
+
+
+Fixed [26 things]:
+
++ Fatal  [5]
+
+* SIGSEGVs when using "Tool&Ops|Options|Run program" when no desktop file was
+loaded.
+* Buffer overflow in temporary names created by infview (L_tmpnam).
+* When starting the editor with a remmembered file that no longer
+exists located in a directory where we don't want backups the editor
+removed the dektop structure from the list and inmediatly used it.
+* Crash in InfView when no desktop file was available.
+* Some problems that made the editor crash when opening a file from
+the windows list dialog and this process needed to show a messageBox.
+
++ Not fatal [13]
+
+* A bug in InfView parser. When a node had a lot of cross references
+that started in a line and ended in another *and* the last cross reference
+was near to the end of the node *and* the hide options were enabled.
+* Code generated for a recorded macro now uses \t instead of an ASCII 9
+embedded in the string.
+* The show match pair on the fly without waiting had an interaction with the
+syntax highlight computation.
+* C++ operators parsing in the list of functions.
+* When browsing the list of errors and selecting an error reported
+in a non-existant file the editor opened an empty buffer.
+* When the editor fails to load a desktop file (wrong version,
+corrupted file, wrong access rights, ect.) the editor tries to load the
+global desktop file.
+* One preprocessor combination that fooled the functions parser.
+* When typing in overwrite mode the line length was wrongly computed.
+* The editor didn't allow to save ReadOnly files using "Save As".
+* The selection adjust done when we leave a line under edition failed if the
+line had extra spaces at the end.
+* Now when choosing to "never remember windows" the options "resume" isn't
+applied.
+* When indenting a block using the arbitrary indent or comment indent the
+syntax highlight wasn't recomputed.
+* C/C++ functions list parser to support namespaces.
+
++ Undo [1]
+
+* Bug in the undo of text typed while using overwrite mode.
+
++ DOS [3]
+
+* The installer now uses cwsdpmi and a regular stub (much more reliable than
+pmodedj).
+* Ctrl+Break is now blocked.
+* When using the editor without djgpp the editor failed to find the
+internationalization files.
+
++ Cosmetic [4]
+
+* The ASCII window grown after a window resize.
+* "Shell" instead of "DOS shell".
+* Error in docs about delete left/right word.
+* When restoring the settings of a closed window (or project item) the
+"overwrite" status wasn't reflected in the cursor shape.
+
+  For information about older releases and more read the change.log file.
+
+Note for DOS users:
+  %DJDIR% == The content of the enviroment variable %DJDIR%, that's the
+  place where you installed djgpp. You don't need to set this variable,
+  setting DJGPP is enough.
+
+
+
+1. REQUIREMENTS:
+
+* PC 386 compatible or superior computer.
+* 2 Mb of memory or more.
+* 2.4 Mb of free disk during installation and about 1.5 Mb once installed.
+* DOS version 5.0 or posterior or any compatible OS (Win '9x, Win 3.1, OS/2,
+MS-DOS, etc.).
+Note: A native windows version is available but is just for testing.
+or
+* Linux with ELF support.
+or
+* FreeBSD, QNX and Solaris are supported but you'll need to compile from
+sources.
+* A VGA card.
+* DJGPP users normally have it.
+
+
+
+2. INSTALL:
+
+  *Important* To use the powered grep you need the grep program installed in
+your system. To use the man page viewer you need the man program installed in
+your system. Both are found in all Linux systems but not in all DOS systems.
+  Starting with v0.4.26 the DOS version of the editor is distributed with an
+installer, if you have it just run install.exe and follow the instructions.
+If you only have a .zip or .tar.gz file that contains a lot of files continue
+reading this chapter.
+  The following cases are explained:
+  
+A) Installing in DOS for djgpp users.
+B) Installing in DOS for non-djgpp users.
+C) Installing in Linux.
+
+A) Installing in DOS for djgpp users:
+1) Uncompress the file over your djgpp installation in the same way you did
+   with the rest of packages.
+2) If you installed the editor preserving the directory structure you
+   won't need to do it so the following is usually optional:
+   Add the following to your autoexec.bat:
+
+   SET SET_FILES=c:/djgpp/share/setedit
+
+   Replacing c:/djgpp with the place where you installed djgpp.
+   IMPORTANT!! Windows NT (4.0, 2k, XP, etc.) is case sensitive for
+   environment variables, avoid defining things like Set_Files.
+
+B) Installing in DOS for non-djgpp users:
+   Attention: If you don't use the installer you must have some basic DOS
+   knowledge, including: how to set an environment variable, modify your
+   PATH and what is autoexec.bat. If you don't know it use the installer or
+   ask a friend.
+1) Uncompress the file in any directory you like preserving the directory
+   structure. Examples:
+    
+   unzip edi0426b.zip
+    or
+   pkunzip -d edi0426b.zip
+    or
+   using WinZip (be careful to preserve the directories)
+   
+   For the other sections I'll give examples assuming you uncompressed the
+   files in c:/setedit.
+2) If you installed the editor preserving the directory structure you
+   won't need to do it so the following is usually optional:
+   Add the following to your autoexec.bat:
+
+   SET SET_FILES=c:/setedit/share/setedit
+   
+   IMPORTANT!! Windows NT (4.0, 2k, XP, etc.) is case sensitive for
+   environment variables, avoid defining things like Set_Files.
+
+   Replacing c:/setedit by the place where you uncompressed the editor.
+3) Add the c:\setedit\bin (don't forget to replace c:/setedit by the name
+   you used in 1) to the PATH in autoexec.bat.
+   Example:
+
+   PATH=.... &lt;= Line already existent in your autoexec.bat
+   SET PATH=c:\setedit\bin;%PATH%
+
+C) Installing in Linux:
+1) Uncompress the files in /tmp and run ./INSTALL_LINUX. If you want to setup
+   the destination directory read the INSTALL_LINUX script. You'll need the
+   make tool to run it, that's usually installed.
+   Also: the script contains useful information about access rights needed
+   to run the editor.
+2) If you installed the editor in /usr or /usr/local the following is
+   optional:
+    
+   Define the following environment variable (bash syntax):
+
+   export SET_FILES="/usr/share/setedit"
+
+   Replacing /usr by the prefix you used, example: prefix /opt then the
+   editor is in /opt/bin and you must define:
+   
+   export SET_FILES="/opt/share/setedit"
+3) Be sure the directory where setedit binary file is located is included in
+   your PATH environment variable.
+
+Note for bash users: the file where (2) and (3) should be defined is normally
+called .bash_profile or .bashrc in your home directory.
+
+
+
+3. MORE INFO:
+
+  From v0.4.0 the editor doesn't need external files to configure the
+keyboard so forget about the old xxx.txt files used in RHIDE 1.4.
+  You will need to customize the colors from Various|Options|Colors, the ones
+used by default aren't pretty.
+  To save the default colors and settings go to the %SET_FILES% (examples:
+c:/setedit/share/setedit, c:/djgpp/share/setedir, /usr/share/setedit)
+directory, start the editor and set all the options (colors and settings
+with Alt-G). Just exit and the editor will save a file called tcedit.dst.
+Each time you start the editor in a directory where there isn't any *.dst
+file the editor will load this default. Linux users that doesn't have write
+access to the /usr tree can create a default in their home directory. In
+this case the file should be created in ~/.setedit directory.
+  Users that want to have only one tcedit.dst file, and not one in each
+directory, must configure it in Tool&Ops|Options|Editor General.
+  If you are annoyed with the back-up files and .dst files created by the
+editor in all the places just exit with Alt+Q and the editor will delete
+these files. Also see the options available in Tool&Ops|Options|Editor
+General.
+
+
+
+4. MP3: [Only in the DOS, Linux and Solaris versions]
+
+  Linux users doesn't need to configure any special thing.
+  DOS users:
+  The editor supports the Allegro mixing routines with 16 bits of resolution
+(I contributed it to the Allegro project because I needed it for the editor).
+  If you want to enable it create a file called allegro.cfg with the following
+contents:
+
+-------- cut here --------
+[sound]
+sb_freq = 45454
+quality = 1
+-------- cut here --------
+
+  Put the file in the same directory where the editor is located.
+  It will enable the 16 bits routines and mix with the maximun mixing
+frequency.
+  Enable it only if you are a fanatic because it will eat your CPU ;-).
+
+
+
+5. EXAMPLES:
+
+  SDG Example:
+
+  To test the SDG tool you can uncompress the example.zip file in an empty
+directory. Then call the editor with e and follow these steps:
+
+1) Select the menu Project|Open and type test and enter. You'll get a new
+project.
+2) Press Insert and select the three .cc files pressing enter in each one,
+the press ESC. Now you have the project filled.
+3) Select Various|Options|SDG Options, and take a look to the selected
+options, if you have SET_FILES right all must be Ok, so just press ENTER.
+4) Press F9. The message window will appear with some messages.
+5) Open the file out.html, it was generated when you pressed F9 (look the
+syntax highlight).
+
+  Load the file with any web browser and look the results. If you like it
+for your code read the sdg.inf file (from the editor, if you don't know how
+press F1 and then Ctrl-H to learn more about the help system).
+
+  sLisp macros examples:
+
+  In addition to the macros included in macros.slp (you can access these
+macros from the Macros|Choose menu option) I included another, more simple,
+examples in a file called examples.slp. It is located in the same directory
+as the rest of the configuration files (/usr/share/setedit,
+c:/djgpp/share/setedit, etc.).
+
+  Turbo Pascal 7, also for other non-gnu compilers:
+
+  Andreas Leidner &lt;leidner@gmx.net&gt; contributed some wrapper to call TPC7
+from the editor and convert the errors into the FSF format so you can jump to
+the function that originated the error from inside of the editor. This
+examples is included in the directory where other .zip files are located
+(contrib/setedit.bin or texts) and is called calltpc7.zip.
+
+
+
+6. LEGAL ISSUE:
+
+  The editor is free software.  It may be used or distributed in any manner
+you wish, as long as you do not violate the GPL license.  You can't remove
+any copyrigth included in the editor and you can't distribute it without any
+of the original files. You will also distribute the sources if you distribute
+the binaries. The GPL license is included in the package so read it before
+distributing the editor.
+
+  The editor comes with ABSOLUTELY NO WARRANTY; excluding any and all implied
+warranties, including warranties of merchantability and fitness for a
+particular purpose.  There is no warranty or representation, either express
+or implied, with respect to this program, its quality, performance,
+merchantability, or fitness for a particular purpose.  The entire risk
+of using this program is with you.  There will be no liability for special,
+incidental, or consequential damages arising out of or resulting from the use
+or modification of this program.
+
+
+
+7. KEYBOARD PREFERENCES
+
+  The keyboard is fully configurable from the Tool&Ops|Options|Keyboard|Key
+assignment menu option. But this configures the keys used only by the editor
+windows. The menu keys are defined in a text file with the .smn extension.
+The file loaded by the editor for this purpose is called menubind.smn. An
+example of how you can alter it to change some stuff is provided and called
+redmond.smn, I think you can guess what's the effect of this menu
+configuration ;-).
+  If you used the installer one of the options offered was about changing
+redmond.smn by menubind.smn.
+
+
+
+8. KEYBOARD EXTENDER [DOS version only]
+
+  In the contrib/setedit directory you'll find a small program called kextend
+that's a very simple TSR (only needs 432 bytes of memory in my system) to
+extend the BIOS functionallity.
+
+
+
+9.  KEYBOARD FEATURES UNDER X [Linux version only]
+
+  If you want to use the editor under X I recommend installing Eterm 0.8.10
+and follow the instruction found in the readme.txt file located in the eterm
+directory of the configuration files (example:
+/usr/share/setedit/eterm/readme.txt). Using it you'll get all the available
+keyboard combinations (some of them are used by the Window Manager and
+aren't accesible, I recommend Enlightenment as W.M. it uses complex  keyboard
+combinations and is also configurable so you can change them to avoid
+interference).
+  I uploaded sources of Eterm 0.8.10, the patches needed to generate a Debian
+package and my patches to enable the special keyboard mode to Source Forge.
+You must install the sources and apply both sets of patches, finally compile
+and install the package. For those using Debian Potato I also uploaded
+binaries in .deb format. All is in the extra section of the Source Forge site:
+http://sourceforge.net/projects/setedit/
+  If you use xterm you'll experiment some limitations imposed by common UNIX
+terminals, example: Shift+Arrows reported just as arrows.
+  The Linux FAQ included in the distribution explains some common problems.
+
+
+
+10. DOWNLOAD:
+
+ All the OSs:
+ Stable and beta releases, mailing list, cvs, etc.:
+ http://setedit.sourceforge.net/
+
+ DOS: (only stable releases)
+ Any Simtelnet mirror, example:
+ ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/edi*.zip
+
+ Linux:
+ The Linux tarballs can be found in Source Forge.
+
+ Debian GNU/Linux: (only stable releases)
+ An experimental repository is maintained by Ivan in Source Forge.
+ To access the repository, just add the following line to your
+/etc/apt/sources.list:
+
+deb http://setedit.sourceforge.net/debian unstable main
+
+ That's for unstable branch of Debian (currently Sid) for the stable branch
+use:
+
+deb http://setedit.sourceforge.net/debian stable main
+
+ Note that Ivan will upload stable editor releases. For betas look in the
+Source Forge pages.
+ 
+
+
+11. MAILING LIST
+
+ To subscribe visit:
+ http://lists.sourceforge.net/mailman/listinfo/setedit-users
+ I moved the old list at topica to Source Forge.
+
+
+
+12. DONATIONS:
+
+  If you really like the editor and/or the SET's Documentation Generator
+included on it you can send me anything as feedback.
+  If you want to send money I'll be happy, but if you don't have it and
+want to show your gratitude you can send me a postal card from your city
+or some of the things I collect (train tickets, cigarette envelopes and
+boxes, stamps, old money and coins).
+  For more information about how to contact me press F1 in the editor, select
+"Introduction" and then select "About the author".
+
+
+
+13. THANKS TO (random order):
+
+  Ivan Baldo: My Debian packager and friend.
+  Molnar Laszlo: He reported a lot of the fixed bugs and sugested a lot of
+things that I added in the first releases of the 0.4.x serie.
+  Grzegorz Adam Hankiewicz: Another tester and source of bug reports and
+good ideas to add to the editor.
+  José Angel Sanchez Caso: For contributing a lot of code to make TV
+working in other UNIX platforms, not just Linux. I didn't yet incorporated
+all the things he sent me.
+  Vadim Belodorov: For contributing the first port of TV to Win32.
+  Anatoli Soltan: For porting to Win32 using BC++.
+  Alexander Bokovoy: For the information on the russian code pages.
+  Marek Habersack & Martijn Versteegh: For sugestions about the mode that
+doesn't create .dst files in all the dirs.
+  Robert Hoehne: For starting RHIDE project and porting TV to djgpp, it
+made me start this project.
+  The FSF and GNU people for such a good tools.
+  DJ Delorie and colaborators for porting it to DOS.
+  Shawn Hargreaves: For Allegro, the best gaming library. I use the sound
+engine from Allegro.
+  Tomislav Uzelac: For AMP the MP3 engine.
+  Ove Kaaven: For LibAmp, an adaptation of AMP to Allegro.
+  Julian R. Seward: For the bzip2 library.
+  Jean-loup Gailly and Mark Adler: For the zlib.
+  Bjorn Reese: For a lot of ideas about the stack debugger for UNIX.
+  The University of Cambridge: For the Perl Regular expressions package.
+  The University of California, Berkeley and its contributors: after all I
+used your malloc upto v0.4.23, and perhaps I still using some libc function
+from Berkeley.
+
+SET
+</Pre></Body></HTML>

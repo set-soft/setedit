@@ -1,0 +1,135 @@
+Setedit-Cygwin_install-HOWTO
+for setedit-Win32-Cygwin-0_4_54 (unstable)
+
+
+INTRODUCTION
+
+This is just a kind of log of activities I did to get a running version
+of Setedit under my installation of Cygwin. So, if you find it useful
+for your own needs - that's great!
+
+The original home page for Setedit is:
+http://setedit.sourceforge.net
+
+
+BACKGROUND
+
+Right now (as of May 2002), there are two ready to use versions of
+Setedit: one is for DJGPP/DOS and second is for GNU/Linux. For Cygwin
+there is only an executable of Setedit without any accompanying files.
+
+Since Cygwin is a quite fine port of GNU tools onto the Win32 platform,
+I suggest to start with Linux version of Setedit. Then just merge most
+of its files with Cygwin installation and put the mentioned executable
+into Cygwin's /usr/bin.
+
+
+DOWNLOAD
+
+First of all, you need two things.
+
+Linux version of Setedit:
+http://prdownloads.sourceforge.net/setedit/setedit-0.4.54.bin.i386.elf.static.linux.tar.gz
+
+Cygwin executable of Setedit:
+http://prdownloads.sourceforge.net/setedit/setedit-Win32-Cygwin-0_4_54.zip
+
+Eventually, it's possible to use executable produced by free BC++ 5.5
+compiler. It may work fine for you, but we are concerned here with
+running a Cygwin version of Setedit, right? :-)
+
+
+HOW TO DO IT
+
+The idea is to use uncompressed version from home directory and to
+merge most of files from there with current installation of Cygwin.
+
+And now step by step instructions.
+
+
+STEP 1.
+Put the 'setedit-0.4.54.bin.i386.elf.static.linux.tar.gz' and
+'setedit-Win32-Cygwin-0_4_54.zip' files in home directory. Then
+execute the following command:
+
+$ tar -xzf setedit-0.4.54.bin.i386.elf.static.linux.tar.gz
+
+This in an effect should create a subdirectory 'setedit-0.4.54'.
+
+
+STEP 2.
+Merge (install) the Setedit files by executing following commands:
+
+$ cd setedit-0.4.54
+$ ./INSTALL.LINUX
+
+This will install Setedit as it would under GNU/Linux. But for Cygwin
+it's not yet useful! Proceed to STEP 3 to complete installation.
+
+Note 1:
+ The above worked for me well. If you want to check what will
+ be done, or to have a detailed log of the actions undertaken by
+ the INSTALL.LINUX script, you may try one of the following:
+
+* just print the commands, but don't execute them:
+ $ ./INSTALL.LINUX -n
+
+* install Setedit also creating an installation log:
+ ./INSTALL.LINUX | tee ~/setedit-install.log
+
+Note 2:
+ All the files which should go to the Cygwin's /usr/bin directory
+ are really placed in the /bin dir (easily seen in e.g. Windows
+ Explorer), and /usr/bin stays empty all the time -- for some reason,
+ which only people at Cygnus know. Anyway, I can live with it.
+
+
+STEP 3.
+Now one of the most important things - extract and copy Setedit for
+Cygwin executable instead of Linux version:
+
+$ rm /usr/bin/setedit
+$ unzip setedit-Win32-Cygwin-0_4_54.zip
+$ mv seteditW32.exe /usr/bin/setedit.exe
+
+
+STEP 4.
+Finally - polishing the Setedit installation.
+
+If you installed 'texinfo' under Cygwin, it will not read gzipped info
+files by default. It's possible to mess a little with configuration of
+info itself, but easier way is to gunzip Setedit info files by hand:
+
+$ gunzip /usr/info/infview.info.gz
+$ gunzip /usr/info/sdg.info.gz
+$ gunzip /usr/info/setedit.info.gz
+
+Almost the same stands for man page for Setedit, but this time man *do*
+reads the gzipped man pages by default. Anyway, for completness, man
+page may be also gunzipped (note this is not necessary):
+
+$ gunzip /usr/man/man1/setedit.1.gz
+
+If you didn't install XFree86 under Cygwin (which I didn't) or do not
+intend to use 'eterm' (which I don't), then you may freely remove
+the following directory:
+
+$ rm -rf /usr/share/setedit/eterm
+
+
+FINAL WORDS
+
+The above procedure should give you a working installation of Setedit
+under Cygwin. But 'working' and 'well-working' are not (yet) the same.
+Please test it and post your comments to the mailing list:
+
+http://lists.sourceforge.net/mailman/listinfo/setedit-users
+
+or to the autor, Salvador E. Tropea,
+e-mail: salvador@inti.gov.ar.
+
+
+Have fun with Setedit/Cygwin!
+
+Wiktor Wandachowicz,
+e-mail: wiktorw@ics.p.lodz.pl

@@ -1,0 +1,195 @@
+<HTML><Title>readme.1st for InfView</Title><Body><Pre>
+
+                            InfView v0.2.8
+                                by SET
+
+  That's the official distribution of InfView v0.2.8
+  The info viewer is Copyrighted by Salvador Eduardo Tropea. (c) 1996-2002
+and distributed under the GPL license.
+  The info viewer is free and you don't need to pay for it. Any kind of
+donations are accepted ;-).
+
+INDEX:
+
+1.  INTRODUCTION
+2.  IMPORTANT (modifications and fixes in this release and the previous)
+3.  REQUIREMENTS
+4.  INSTALL
+5.  LEGAL ISSUE
+7.  DOWNLOAD
+8.  MAILING LIST
+9.  DONATIONS
+
+
+
+1. INTRODUCTION
+
+  InfView is a good replacement for the info-stantalone program. The main
+objetive of InfView is to give to the user a friendly and easy to learn tool
+to browse the documentation found in info format. This format is used by the
+FSF for all the major tools and of course is used by djgpp.
+  The old info program was designed as a flexible UNIX tool so it have some
+features you won't find in InfView, as an example: InfView doesn't have
+options to write a documentation chapter to the standard output so you can
+capture it and display in other program. InfView was designed as an
+interactive tool instead.
+  InfView uses overlapping windows (real windows, not "screens"), fully
+supports mouse, have pull-down menues and pop-up windows, etc. As the name
+says the emphasis is in the visual component.
+  Unless graphical implementations the program is relative small and quite
+fast (263Kb installation for the first release, I know about one Win32
+implementation that needs over 5Mb and eats more than 5Mb of memory thanks to
+the run time of some visual script language from Redmond that I won't name
+here).
+  The main features of InfView are:
+
+   * Free cursor movement with the keyboard arrows, page-up, etc.
+   * Mouse support.
+   * Highlighted cross references.
+   * Hide of the `*Note' and other confusing things of the info format.
+   * Previous, Next and Up node support.
+   * History support.
+   * Incremental search just typing the first letters of the cross
+     reference.
+   * The same for the whole nodes list.
+   * Support for compressed info files.
+   * Search in the current node, the whole file or all the files.
+   * Bookmarks.
+   * History of the last 40 nodes visited.
+   * Dialog to browse the files on disk.
+   * and more
+
+
+
+2. IMPORTANT:
+
+  If you are a user of SETEdit you'll find this distribution very familiar
+and in fact follows the same gidelines used in the editor's distribution.
+  Changes since 0.2.6 release:
+
+Additions:
+  The last important addition was the man pages viewer.
+  Now is possible to use File|Open Infview if no window is already opened.
+  Added a configuration dialog to set the code page used by the OS screen.
+  Internationalization, currently only spanish is fully soported.
+
+Fixes:
+  Now all options not available when no window is opened are grayed.
+  The "Shell" menu option wasn't functional.
+
+
+3. REQUIREMENTS:
+
+* PC 386 compatible or superior computer.
+* 2 Mb of memory or more.
+* 2.4 Mb of free disk during installation and about 1.5 Mb once installed.
+* DOS version 5.0 or posterior or any compatible OS (Win '95, Win 3.1, OS/2,
+MS-DOS, etc.). The NT platform isn't fully supported, I don't have NT, if you
+need support for NT send me a licensed copy of NT ;-). I did my best to
+support it, but as I don't have one at home I can't do more.
+* Linux with ELF support for the Linux version. For console use you need gpm
+1.13, newer versions are incompatible.
+* A VGA card.
+* DJGPP users normally have it.
+
+
+
+4. INSTALL:
+
+A) Installing in DOS for djgpp users:
+   Uncompress the file over your djgpp installation in the same way you did
+   with the rest of packages.
+
+C) Installing in Linux:
+1) Uncompress the files in /tmp and run ./INSTALL_LINUX. If you want to setup
+   the destination directory read the INSTALL_LINUX script.
+   Also: the script contains useful information about access rights needed
+   to run infview.
+2) Be sure the directory where infview's binary file is located is included
+   in your PATH environment variable.
+
+
+
+5. LEGAL ISSUE:
+
+  InfView is free software.  It may be used or distributed in any manner
+you wish, as long as you do not violate the GPL license.  You can't remove
+any copyrigth included in the files and you can't distribute it without any
+of the original files. You will also distribute the sources if you distribute
+the binaries. The GPL license is included in the package so read it before
+distributing infview.
+
+  InfView comes with ABSOLUTELY NO WARRANTY; excluding any and all implied
+warranties, including warranties of merchantability and fitness for a
+particular purpose.  There is no warranty or representation, either express
+or implied, with respect to this program, its quality, performance,
+merchantability, or fitness for a particular purpose.  The entire risk
+of using this program is with you.  There will be no liability for special,
+incidental, or consequential damages arising out of or resulting from the use
+or modification of this program.
+
+
+
+6. WHERE ARE THE SOURCES?
+
+  Even when I'm distributing the standalone InfView I don't the time,
+bandwidth, motivation, etc. to distribute yet another huge package of
+sources. For this reason the sources are only available in the editor's
+package (SETEdit). So download the editor's source. 90% of the code is shared
+with the editor.
+
+
+
+7. DOWNLOAD:
+
+ All the OSs:
+ Stable and beta releases, mailing list, cvs, etc.:
+ http://setedit.sourceforge.net/
+
+ DOS: (only stable releases)
+ Any Simtelnet mirror, example:
+ ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/inf*.zip
+
+ Linux:
+ The Linux tarballs can be found in Source Forge.
+
+ Debian GNU/Linux: (only stable releases)
+ An experimental repository is maintained by Ivan in Source Forge.
+ To access the repository, just add the following line to your
+/etc/apt/sources.list:
+
+deb http://setedit.sourceforge.net/debian unstable main
+
+ That's for unstable branch of Debian (currently Sid) for the stable branch
+use:
+
+deb http://setedit.sourceforge.net/debian stable main
+
+ Note that Ivan will upload stable editor releases. For betas look in the
+Source Forge pages.
+
+
+
+8. MAILING LIST
+
+ The editor's list is more than suitable to discuse things related to the
+InfView program because it is part of the editor:
+ To subscribe visit:
+ http://lists.sourceforge.net/mailman/listinfo/setedit-users
+ I moved the old list at topica to Source Forge.
+
+
+
+9. DONATIONS:
+
+  If you really like the info viewer you can send me anything as feedback.
+  If you want to send money I'll be happy, but if you don't have it and
+want to show your gratitude you can send me a postal card from your city
+or some of the things I collect (train tickets, cigarette envelopes and
+boxes, stamps, old money and coins).
+  For more information about how to contact me see the select "Introduction"
+chapter and then select "About the author" in the help on help.
+
+
+SET
+</Pre></Body></HTML>

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.282  2003/04/01 13:54:32  set
+* Fixed: Attribute handling for big endian platforms in TViewPlus class.
+
 Revision 1.281  2003/04/01 03:44:38  terrible
 * Updated: Debian packaging to version 0.5.0-1.
 * Modified: tell people to use the distribution name like for example

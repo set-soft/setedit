@@ -1,0 +1,447 @@
+<html>
+<head>
+   <title>SETEDIT, a friendly text editor</title>
+   <meta name="description" content="SETEdit a friendly text editor for DOS, Win32, Linux and other UNIXes">
+   <meta name="keywords" content="SETEdit, setedit, rhide, editor, linux, DOS, console, tui, djgpp, library, download, SET, Salvador, Eduardo, Tropea, PPC, SPARC, Alpha, FreeBSD, Solaris">
+   <meta name="resource-type" content="document">
+   <meta name="distribution" content="global">
+   <meta name="Author" content="Salvador E. Tropea, salvador@inti.gov.ar">
+</head>
+<BODY BGCOLOR="#A0D0FF" TEXT="#000000" LINK="#FF0000" VLINK="#000000">
+
+<p><center>
+<table>
+<tr>
+<td><strong><h1>SETEDIT</h1></strong></td>
+<td align=right><A href="http://sourceforge.net">
+    <IMG valign=center src="http://sourceforge.net/sflogo.php?group_id=32835"
+     width="88" height="31" border="0" alt="SourceForge Logo"></A></td>
+</tr>
+</table>
+</center></p>
+
+I provide a menu because some sections are large and perhaps you are not
+interested in reading all:
+<ul>
+<li> <a href="#intro">Introduction</a>
+<li> <a href="#features">Features</a>
+<li> <a href="#license">License</a>
+<li> <a href="#scrnsht">Screen shots</a>
+<li> <a href="#download">Download</a>
+<li> <a href="#contributing">Contributing</a>
+<li> <a href="#mail-l">Mailing list</a>
+<li> <a href="announce.html" target="_top">Announcement of the last release</a>
+<li> <a href="readme.html" target="_top">Readme first</a>
+<li> <a href="change.html" target="_top">Change log</a>
+<li> <a href="http://sourceforge.net/projects/setedit/" target="_top">Lastest news and summary of the project</a>
+<li> <a href="infview.html">The info viewer as an standalone program: InfView</a>
+</ul>
+
+<!--
+<blink><big>New</big></blink> here are snapshots of the unstable X11 version of setedit:<br>
+Running on Linux using <b>2</b> different fonts: <a href="Snap2Fonts.gif">Only the window (10 Kb)</a>.<br>
+Running on Linux: <a href="setedit-X11.jpg">Only the window (70 Kb)</a>, <a href="setedit-X11-full.jpg">Full
+screen (252 Kb)</a> and <a href="setedit-X11-full-2.jpg">Full screen less compressed (450 Kb)</a>.<br>
+Running on Solaris: <a href="setedit2.sun.jpg">Full screen (268 Kb)</a> and <a href="setedit.sun.jpg">Full screen less compressed (447 Kb)</a>.
+Thanks goes to Alex Lozano for testing on Solaris and taking the snapshots.<p>
+ -->
+
+<a name="intro"></a>
+SETEDIT is my best program, I started it around june of 1996. When I
+discovered djgpp (<a href="#djgpp">read it if you don't know what djgpp is</a>)
+one thing that annoyed me was the lack of intuitive tools.
+I was a user of <a href="http://www.borland.com" target="_top">Borland</a> products since
+1993 and I really missed the BC++ IDE, but soon I found
+<a href="http://www.rhide.com/" target="_top">RHIDE</a>. Lamentably
+RHIDE was in your early beta stage, the editor was really dumb, no help
+system, no debugger, tons of bugs, etc. So, instead of giving up I started
+to help Robert with RHIDE. Very soon I solved the lack of help system with
+my InfView class and then I started with something bigger: replacing the old
+editor by a new one. I did it using the already existing one so we had
+something working pretty soon. My objective was to make an editor as good as
+the one found in BC++.<p>
+Today I'm confident my editor is better than BC++'s one in most of the
+fields, here is a list of features:<p>
+
+<a name="features"></a>
+<b>Supported platforms</b>:<p>
+<ul>
+<li> DOS or any other that can emulate DOS in a decent way.
+<li> GNU/Linux for i386. (There is some effort to support Alpha Linux too).
+</ul>
+
+<b>Edition</b>:<p>
+<ul>
+<li> Selection:
+ <ul>
+ <li> Wordstar mode (^K-B/^K-K, etc.)
+ <li> Using shift key plus any movement
+ <li> Mouse
+ <li> Rectangular blocks supported, very useful to move/copy/delete columns
+ <li> Support for Windows clipboard and gpm (Linux) copy/paste
+ <li> Persistent and no persistent selections
+ <li> Read/write from/to disk
+ <li> Mark a line or word with one keystroke
+ <li> "Transparent" selections (you don't lose the highlight) [option]
+ </ul>
+<li> Indentation:
+ <ul>
+ <li> Autoindent [option]
+ <li> Tab indents/delete unindents [option]
+ <li> Block indent/unindent (one space, one tab or a level)
+ <li> Intelligent auto indent [option]
+ </ul>
+<li> Pairs of braces, brackets, etc.
+ <ul>
+ <li> Highlighting when you type [option]
+ <li> Reporting the position if the pair is outside the screen [option]
+ <li> Jump to the matching pair, for a specific or generic case
+ </ul>
+<li> Macros:
+ <ul>
+ <li> Pmacros, typing the first two letters you can expand a text or structure
+ <li> Recordable macros
+ <li> Small macro language based on Lisp
+ </ul>
+<li> Jump in the text:
+ <ul>
+ <li> Ten easy to access markers to jump
+ <li> Jump to a line
+ <li> Jump to a function, just place the cursor over the name of a function that's declared in the source and pressing a couple of keys you jump to it
+ </ul>
+<li> Search and Replace:
+ <ul>
+ <li> In the text using:
+  <ul>
+  <li> Normal text or basic, extended or Perl regular expressions
+  <li> Case sensitive or not
+  <li> Whole words or just part
+  <li> Inside the selected text or in the whole document
+  <li> From the cursor or for the full scope of the search.
+  <li> Normal replace or expanding subexpressions (with $n like in Perl)
+  </ul>
+ <li> Outside the text:
+  <ul>
+  <li> Using all the power of grep
+  <li> Basic and extended regular expressions
+  <li> Case sensitive or not
+  <li> Whole words or just part
+  <li> Whole line or just part
+  <li> In the files of the project or in a list of directories
+  <li> You can specify the mask of files to search for
+  <li> Recursive search for subdirectories available
+  </ul>
+ </ul>
+<li> Movement:
+ <ul>
+ <li> Arrow keys, page up, page down, home, end, etc.
+ <li> First/last line in the screen
+ <li> First/last character in file
+ <li> Next/previous word
+ <li> First/last character in the selection
+ <li> Cursor ever centered [option]
+ <li> Scroll window
+ </ul>
+<li> Tabs support:
+ <ul>
+ <li> Adjustable size
+ <li> Use tabs in the text or not
+ <li> Conversion of tabs into spaces and viceversa
+ <li> Optimal fill (fills gaps with tabs) [option]
+ <li> Visible tabs [option]
+ <li> Move inside or around tabs
+ </ul>
+<li> Miscellaneous:
+ <ul>
+ <li> Block toupper/lower
+ <li> Number of bytes selected
+ <li> Normal, column, line or cross cursor
+ </ul>
+</ul>
+
+<b>Other features</b>:<p>
+<ul>
+<li> Intuitive interface using windows and mouse. I use
+     <a href="http://tvision.sourceforge.net/" target="_top">Turbo Vision</a> for it.
+<li> The state of all windows is remembered
+<li> Configurable keyboard
+<li> Configurable menus
+<li> You can run external programs pressing a key or using the menu
+<li> Projects to group files with some relation
+<li> Undo
+<li> Documentation generator
+<li> Very fast (and yet configurable) syntax highlight for:
+ <ul>
+ <li> 4DOS batch files
+ <li> 80x86 assembler (AT&T syntax)
+ <li> 80x86 assembler (Intel syntax)
+ <li> 8x51 assembler
+ <li> Ada
+ <li> BASIC
+ <li> C/C++
+ <li> Cascading Style Sheets version 2
+ <li> Clipper 5.x
+ <li> Command Line Errors File
+ <li> Environment files
+ <li> Fortran
+ <li> HTML
+ <li> Internationalization files (.po)
+ <li> Java
+ <li> Java Script
+ <li> Makefiles
+ <li> Menu files [config. file of the editor]
+ <li> Modula 2
+ <li> Netwide Assembler (NASM)
+ <li> Objetive C
+ <li> Pascal
+ <li> PDP11 assembler
+ <li> Perl
+ <li> PIC assembler (Microchip)
+ <li> PLM/51
+ <li> PMacros files [config. file of the editor]
+ <li> PostScript
+ <li> Python
+ <li> SDG format files [config. file of the editor]
+ <li> sLisp macros [config. file of the editor]
+ <li> SQL
+ <li> The syntax highlight file itself [config. file of the editor]
+ <li> TCL/Tk
+ <li> TeX
+ <li> Texinfo
+ <li> UNIX shell scripts
+ </ul>
+<li> Support for UNIX files for DOS and DOS files for Linux.
+<li> Transparent support for compressed text files
+<li> Context sensitive help system
+<li> Syntax help system
+<li> Reader for .info help files with many features as bookmark, open more
+     than one window, search, mouse, etc.
+<li> Code pages support
+<li> Customizable colors
+<li> Clock
+<li> Calculator
+<li> Tips
+<li> Customizable palette of colors
+<li> MP3 player!
+</ul>
+
+<b>Special features only available for DOS</b>:
+<ul>
+<li> Various video modes, including VESA text modes
+<li> Fonts
+</ul>
+
+And much more things that I don't remember right now.<p>
+
+<a name="license"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th><Font Color="#FFFFFF">LICENSE</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+The editor is distributed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_top">GPL</a>
+license. It basically means the code is free and you don't need to pay for it
+and you are free to change it, but any derived work will become GPL too. Most
+of the software available for Linux is distributed under these terms. This
+license protects my rights over the code (I hold the copyright) and protects
+the users ensuring they are free to use the code. If you plan to use parts or
+the whole code of the editor be sure you read the GPL license carefully.<br>
+Note that GPL implies a disclaimer of guaranty, so if you must use it in an
+enterprise where you need to be able to sue software's authors in case of
+direct or indirect problems created by it just forget about the editor. By
+the way, I don't know about even one big company (Microsoft included) that doesn't
+included a disclaim of guaranty in your license.<br>
+Even when you don't need to pay for the editor I accept any kind of help ;-).
+The best way to help me is contributing in one of the ways I mention
+<a href="#help">here</a>.<br>
+</td></tr></table><p>
+
+<a name="scrnsht"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Screen Shots</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td>OS: Win95, 94x34, font: 8x16. Editors: C and Perl files. ASCII table,
+Calculator and Calendar</td>
+<td>
+<a href="se1.gif"><img border=0 src="se1t.gif" alt="29451 bytes" width=160 height=116></a>
+</td>
+<td>OS: Win95, 94x34, font: 8x16. Editors: C, Perl, Environment and Makefile.
+See the rectangular and regular selections. Also the visible tabs in the makefile</td>
+<td>
+<a href="se2.gif"><img border=0 src="se2t.gif" alt="22398 bytes" width=160 height=116></a>
+</td>
+</tr>
+<tr BGCOLOR="#80A0FF">
+<td>OS: Linux, using X11 driver and two different fonts</td>
+<td>
+<a href="Snap2Fonts.gif"><img border=0 src="se3t.gif" alt="10500 bytes" width=160 height=100></a>
+</td>
+<td>OS: Solaris, using X11 driver, this is from one of the first test versions.</td>
+<td>
+<a href="setedit2.sun.jpg"><img border=0 src="se4t.gif" alt="274865 bytes" width=160 height=128></a>
+</td>
+</tr>
+<tr BGCOLOR="#80A0FF">
+<td>OS: Linux, using X11 driver and a nice Enlightenment theme ;-)</td>
+<td>
+<a href="setedit-X11-full-2.jpg"><img border=0 src="se5t.gif" alt="487382 bytes" width=160 height=120></a>
+</td>
+<td></td>
+<td>
+</td>
+</tr>
+</table>
+<p>
+
+<a name="download"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">DOWNLOAD</th></tr>
+<tr BGCOLOR="#80A0FF"><th colspan=2>DOS v0.5.0</th><th colspan=2>Linux v0.5.0</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi050i.zip">Binaries</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi050s.zip">Sources</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit_0.5.0-1_i386.deb">Debian Woody</a>
+            <a href="http://prdownloads.sourceforge.net/setedit/setedit-0.5.0-4.i386.rpm">Red Hat 7.3</a>
+            <a href="http://prdownloads.sourceforge.net/setedit/setedit-0.5.0-4.i686.rpm">SuSE 8.1</a>
+</td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.5.0.tar.gz">Sources</a></td>
+</tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>To compile the editor you'll also need the
+<a href="http://tvision.sourceforge.net/" target="_top">Turbo Vision</a> library <b>(v2.0.1)</b>.</td></tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>You can find the DOS binaries and sources in Simtelnet too,
+they are in: <a href="ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/" target="_top">ftp://ftp.simtel.net/pub/simtelnet/gnu/djgpp/v2apps/</a>
+directory.</td></tr>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">IMPORTANT!</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>Only the most common files are listed here, for a complete list
+of available files go to the Source Forge Summary page or click
+<a href="http://sourceforge.net/project/showfiles.php?group_id=32835">here</a>.
+</td></tr>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Documentation in other formats</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-html-0_5_0.zip">HTML</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-dvi-0_5_0.zip">DVI</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-ps-0_5_0.zip">PS</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-pdf-0_5_0.zip">PDF</a></td>
+</tr>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Previous version</th></tr>
+<tr BGCOLOR="#80A0FF"><th colspan=2>DOS v0.4.54</th><th colspan=2>Linux v0.4.54</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi0454i.zip">Binaries</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi0454s.zip">Sources</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.4.54.bin.i386.elf.static.linux.tar.gz">Binaries</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.4.54.tar.gz">Sources</a></td>
+</tr>
+<!--
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Setedit v0.4.51 BETA</th></tr>
+<tr BGCOLOR="#80A0FF"><th colspan=2>DOS</th><th colspan=2>Linux</th></tr>
+
+<tr BGCOLOR="#80A0FF"><td colspan=2><a href="http://prdownloads.sourceforge.net/setedit/edi0451s.zip">Sources</a></td><td colspan=2><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.4.51.tar.gz">Sources</a></td></tr>
+
+<tr BGCOLOR="#80A0FF">
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi0451i.zip">Binaries</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/edi0451s.zip">Sources</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.4.51.bin.i386.elf.static.linux.tar.gz">Binaries</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/setedit-0.4.51.tar.gz">Sources</a></td>
+</tr>
+-->
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Setedit Win32 BETA</th></tr>
+<tr BGCOLOR="#80A0FF"><td colspan=4>
+<b>Note</b>: The links to binaries are old, we'll have v0.5.0 compiled for Win32 soon.<br>
+<b>Cywin users</b>: <a href="mailto:wiktorw@ics.p.lodz.pl">Wiktor Wandachowicz</a> wrote a
+step by step <a href="Cygwin_install.txt">tutorial</a> explaining how to install the editor
+in a Cygwin system.<p>
+The editor can be compiled for Win32 using Borland C++ 5.5 <b>free</b> compiler.
+To compile the editor you need BC++ 5.5 command line compiler and tools.
+The compilation is quite similar to the DOS version, you just need the zip file used
+for DOS (and <a href="http://tvision.sourceforge.net/" target="_top">Turbo Vision</a>).<br>
+A precompiled binary can be downloaded
+<a href="http://prdownloads.sourceforge.net/setedit/setedit-Win32-BCpp-0_4_53.exe">here</a>.
+To use it just install the DOS version and replace setedit.exe by this executable.<br>
+Note that even when this program looks like the DOS version it is a true Win32 application
+and should behave much better under Windows NT, 2000, XP and similars.<br>
+It is beta because I don't use it and I need feedback.<br>
+I also made available a version compiled with Cygwin. That's even more unstable because
+I only got feed back from the BC++ version so far. The file is available
+<a href="http://prdownloads.sourceforge.net/setedit/setedit-Win32-Cygwin-0_4_53.exe">here</a>.<br>
+</td>
+</tr>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">CVS</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>CVS web: <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit">http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit</a></td>
+</tr>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Debian GNU/Linux</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>A Debian repository is maintained by Ivan, you can add the
+following to your /etc/apt/sources.list:<br>
+deb http://setedit.sourceforge.net/debian woody main<br>
+That's for Woody, replace woody by potato for Potato.
+</td></tr>
+</table>
+<p>
+
+<a name="contributing"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">CONTRIBUTING</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+There are a lot of ways you can contribute, here are some of them:<p>
+
+<ul>
+<li> Giving useful bug reports, it means providing a good description of the
+     bug and how to reproduce it.
+<li> Helping with the documentation. Even when I try to keep the documentation
+     up to date that's a lot of work and there are a lot of issues not covered
+     by the documentation. You could just take one of these topics and
+     investigate about it to then write a small chapter about it.
+<li> Writing examples of use or <i>mini-howto</i>s. I'll be glad to include
+     them with the editor.
+<li> Helping with the web pages.
+<li> Helping with the distribution, e.g. if you have an internet host or you
+     can help with the announcements and uploads.
+<li> Packaging the editor. Currently
+     <a href="mailto:lubaldo@adinet.com.uy">Ivan Baldo</a> is working with the
+     Debian packages, perhaps you can do it for other formats or platforms.
+<li> Porting the code to other platforms. Currently the Linux/PPC and Linux/SPARC
+     are usable. The Linux/Alpha version needs some adjustments (is
+     corrupting memory). The FreeBSD target is supported but I don't have much
+     information about it. We are also working to get the editor compiled for
+     Solaris.
+<li> Helping with the internationalization. Even when my language is spanish
+     the editor have documentation and messages only in english, it means I
+     don't even have time to keep up to date the support for my own language.
+<li> Making additions to the code. I really need people writing code. I have
+     a lot of ideas but I can't code all.
+<li> Sending a post card from your city or some of the things I collect
+     (train tickets, cigarette envelopes and boxes, stamps, old money and
+     coins) you'll help to keep my interest in the project.
+<li> Of course I'll accept money from you or any hardware, but I know that's
+     very hard for most people, specially because I'm in Argentina.
+</ul>
+</td></tr></table><p>
+
+
+<a name="mail-l"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Mailing List</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+That's a list to talk about the editor, proposed features, bugs, ideas, etc.<br>
+The list is hosted by <a href="http://www.sf.net" target="_top">Source Forge</a>.<br>
+To subscribe please visit:
+<a href="http://lists.sourceforge.net/mailman/listinfo/setedit-users">
+http://lists.sourceforge.net/mailman/listinfo/setedit-users</a>
+</td></tr></table><p>
+
+<i>Copyright &copy; 1999-2003 by Salvador E. Tropea, e-mail: <a href="mailto:set@users.sf.net">set@users.sf.net</a>.</i><br>
+<p><hr></p>
+
+Some notes:<p>
+
+<a name="djgpp"><b>What's djgpp?</b></a><p>
+Is a port of the GNU tools to the DOS environment. The main purpose is bring
+the power of the free GNU C/C++ compiler called gcc. You can find more about
+it in <a href="http://www.delorie.com" target="_top">http://www.delorie.com</a>.<p>
+
+<p><hr><p>
+<P>Visited since May 24, 1999: <a href="http://member.linkexchange.com/cgi-bin/fc/fastcounter-login?1289519" target="_top"><img border="0" src="http://fastcounter.linkexchange.com/fastcounter?1289519+2579045"></a><font face="arial" size="1"><a href="http://fastcounter.linkexchange.com/fc-join" target="_top">(FastCounter by LinkExchange)</a></font><br></p>
+<Font Size=-1>Last update: Apr 01 14:44:40 (GMT) 2003</Font>
+</body>

@@ -1,0 +1,165 @@
+<html>
+<head>
+   <title>InfView, an info files viewer</title>
+   <meta name="description" content="InfView, an info files viewer, good replacement for info">
+   <meta name="keywords" content="InfView, info, texinfo, viewer, SETEdit, setedit, rhide, editor, linux, DOS, console, tui, djgpp, library, download, SET, Salvador, Eduardo, Tropea">
+   <meta name="resource-type" content="document">
+   <meta name="distribution" content="global">
+   <meta name="Author" content="Salvador E. Tropea, set@users.sf.net">
+</head>
+<BODY BGCOLOR="#A0D0FF" TEXT="#000000" LINK="#FF0000" VLINK="#000000">
+
+<p><center>
+<table>
+<tr>
+<td><strong><h1>InfView</h1></strong></td>
+<td align=right><A href="http://sourceforge.net">
+    <IMG valign=center src="http://sourceforge.net/sflogo.php?group_id=32835"
+     width="88" height="31" border="0" alt="SourceForge Logo"></A></td>
+</tr>
+</table>
+</center></p>
+
+I provide a menu because some sections are large and perhaps you are not
+interested in reading all:
+<ul>
+<li> <a href="#intro">Introduction</a>
+<li> <a href="#features">Features</a>
+<li> <a href="#license">License</a>
+<li> <a href="#download">Download</a>
+<li> <a href="#contributing">Contributing</a>
+<li> <a href="readmeinf.html" target="_top">Readme first</a>
+</ul>
+
+<a name="intro"></a>
+InfView is an easy to use info viwer. The command line have the most relevant
+options provided by info and the user interface is much more intuitive. It
+makes InfView a good replacement for the info-stantalone program. The main
+objetive of InfView is to give to the user a friendly and easy to learn tool
+to browse the documentation found in info format. This format is used by the
+FSF for all the major tools and of course is used by djgpp.<p>
+The old info program was designed as a flexible UNIX tool so it have some
+features you won't find in InfView, as an example: InfView doesn't have
+options to write a documentation chapter to the standard output so you can
+capture it and display in other program. InfView was designed as an
+interactive tool instead.<p>
+InfView uses overlapping windows (real windows, not "screens"), fully
+supports mouse, have pull-down menues and pop-up windows, etc. As the name
+says the emphasis is in the visual component.<p>
+Unless graphical implementations the program is relative small and quite
+fast (263Kb installation for the first release, I know about one Win32
+implementation that needs over 5Mb and eats more than 5Mb of memory thanks to
+the run time of some visual script language from Redmond that I won't name
+here).<p>
+I started to develop InfView in 1996 to add help to
+<a href="http://www.rhide.com/" target="_top">RHIDE</a>. It was a
+big step for RHIDE. My next contribution was a text editor. Currently the
+editor is also distributed as an standalone program and of course have InfView
+as help system. I created a standalone InfView because many users asked for
+it. The advantages of an standalone program are:
+
+<ul>
+ <li> Smaller memory requirements.
+ <li> Specialized command line.
+ <li> Specialized menues.
+ <li> Specialized features (example: InfView windows are tileable).
+</ul>
+
+<a name="features"></a>
+The main features of InfView are:
+
+<ul>
+ <li> Free cursor movement with the keyboard arrows, page-up, etc.
+ <li> Mouse support.
+ <li> Highlighted cross references.
+ <li> Hide of the `*Note' and other confusing things of the info format.
+ <li> Previous, Next and Up node support.
+ <li> History support.
+ <li> Incremental search just typing the first letters of the cross reference.
+ <li> The same for the whole nodes list.
+ <li> Support for compressed info files.
+ <li> Search in the current node, the whole file or all the files.
+ <li> Bookmarks.
+ <li> History of the last 40 nodes visited.
+ <li> Dialog to browse the files on disk.
+ <li> info like command line for people already acustomed to info.
+ <li> Many overlapping windows containing different info files can be opened at the same time. Only limited by available memory.
+ <li> and more
+</ul>
+
+<a name="license"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th><Font Color="#FFFFFF">LICENSE</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+InfView is distributed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_top">GPL</a>
+license. It basically means the code is free and you don't need to pay for it
+and you are free to change it, but any derived work will become GPL too. Most
+of the software available for Linux is distributed under these terms. This
+license protects my rights over the code (I hold the copyright) and protects
+the users ensuring they are free to use the code. If you plan to use parts or
+the whole code of InfView be sure you read the GPL license carefully.<br>
+Note that GPL implies a disclaimer of guaranty, so if you must use it in an
+enterprise where you need to be able to sue software's authors in case of
+direct or indirect problems created by it just forget about InfView. By
+the way, I don't know about even one big company (Microsoft included) that doesn't
+included a disclaim of guaranty in your license.<br>
+Even when you don't need to pay for InfView I accept any kind of help ;-).
+The best way to help me is contributing in one of the ways I mention
+<a href="#help">here</a>.<br>
+</td></tr></table><p>
+
+<a name="download"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">DOWNLOAD<br>
+Important: check <a href="http://sourceforge.net/projects/setedit/">http://sourceforge.net/projects/setedit/</a>
+for the last news and beta releases.</th></tr>
+<tr BGCOLOR="#80A0FF"><th colspan=2>DOS v0.2.8</th><th colspan=2>Linux v0.2.8</th></tr>
+<tr BGCOLOR="#80A0FF">
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/inf028b.zip">Binaries</a></td>
+<td><Center><a href="http://setedit.sourceforge.net/">Sources</a></td>
+<td><Center><a href="http://prdownloads.sourceforge.net/setedit/infview_0.2.8-0.5.0-1_i386.deb">Debian Woody</a></td>
+<td><Center><a href="http://setedit.sourceforge.net/">Sources</a></td>
+</tr>
+<tr BGCOLOR="#80A0FF">
+<td colspan=4>The sources are the same as the sources for the editor so the
+links points to the editor's page. Get the last snap shot available.<br>
+To compile InfView you'll also need the
+<a href="http://tvision.sf.net/" target="_top">Turbo Vision</a> library.</td></tr>
+</table>
+<p>
+
+<a name="contributing"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">CONTRIBUTING</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+There are a lot of ways you can contribute, here are some of them:<p>
+
+<ul>
+<li> Giving useful bug reports, it means providing a good description of the
+     bug and how to reproduce it.
+<li> Writing examples of use or <i>mini-howto</i>s. I'll be glad to include
+     them with InfView.
+<li> Helping with the web pages.
+<li> Helping with the distribution, e.g. if you have an internet host or you
+     can help with the announcements and uploads.
+<li> Packaging InfView.
+<li> Porting the code to other platforms. Currently
+     <a href="mailto:zager@post.comstar.ru">Dim Zegebart</a> is helping with the
+     Alpha/Linux platform.
+<li> Helping with the internationalization. Even when my language is spanish
+     InfView have documentation and messages only in english, it means I
+     don't even have time to keep upto date the support for my own language.
+<li> Making additions to the code.
+<li> Sending a post card from your city or some of the things I collect
+     (train tickets, cigarette envelopes and boxes, stamps, old money and
+     coins) you'll help to keep my interest in the project.
+<li> Of course I'll accept money from you or any hardware, but I know that's
+     very hard for most people, specially because I'm in Argentina.
+</ul>
+</td></tr></table><p>
+
+<i>Copyright &copy; 1999-2003 by Salvador E. Tropea, e-mail: <a href="mailto:set@users.sf.net">set@users.sf.net</a>.</i><br>
+<p><hr><p>
+<Font Size=-1>Last update: Tue Apr 01 17:49:57 (GMT) 2003</Font>
+</body>
+</html>
