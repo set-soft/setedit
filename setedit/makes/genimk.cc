@@ -27,6 +27,29 @@ void ChangeExt(char *s, const char *newE)
  strcpy(s+(l-lE),newE);
 }
 
+// Needed to force a make of the wrong files.
+static
+void RemoveGen(int argc, char *argv[])
+{
+ int i;
+
+ for (i=2; i<argc; i++)
+    {
+     if (strstr(argv[i],".gpr"))
+       {
+        char *gpr=argv[i];
+        char *imk=strdup(gpr);
+        char *umk=strdup(gpr);
+        ChangeExt(imk,".imk");
+        ChangeExt(umk,".umk");
+        unlink(imk);
+        unlink(umk);
+        free(imk);
+        free(umk);
+       }
+    }
+}
+
 int main(int argc, char *argv[])
 {
  if (argc<3)
@@ -94,9 +117,13 @@ int main(int argc, char *argv[])
         sprintf(b,"./extrimk.exe %s > %s",mak,imk);
         int ret=system(b);
         if (ret)
+          {
+           RemoveGen(argc,argv);
            return ret>256 ? ret>>8 : ret;
+          }
         if (stat(mak,&stImk)!=0)
           {
+           RemoveGen(argc,argv);
            fprintf(stderr,"%s: Can't create .imk file for %s\n",argv[0],mak);
            return 22;
           }
@@ -105,12 +132,14 @@ int main(int argc, char *argv[])
         FILE *ori=fopen(imk,"rt");
         if (!ori)
           {
+           RemoveGen(argc,argv);
            fprintf(stderr,"%s: Can't open .imk file for %s\n",argv[0],mak);
            return 23;
           }
         FILE *des=fopen(umk,"wt");
         if (!des)
           {
+           RemoveGen(argc,argv);
            fprintf(stderr,"%s: Can't create .umk file for %s\n",argv[0],mak);
            return 24;
           }
@@ -118,13 +147,14 @@ int main(int argc, char *argv[])
         int skip=0;
         while (fgets(b,maxLine,ori))
           {
-           if (isalpha(b[0]) && (sep=strchr(b,':'))!=0)
+           if ((isalpha(b[0]) || b[0]=='.') && (sep=strchr(b,':'))!=0)
              {
               char *ext=sep-1;
               for (;*ext!='$' && ext>b; ext--);
               if (*ext!='$')
                 {
                  fprintf(stderr,"%s: Parser error (ext): %s\n",argv[0],b);
+                 RemoveGen(argc,argv);
                  return 25;
                 }
               if (ext[4]=='O')

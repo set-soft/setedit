@@ -1,4 +1,15 @@
-$Log$.
+$Log$
+Revision 1.398  2003/06/05 20:08:57  set
+* Fixed: Compilation problems with gcc 3.3 patch from Andris. It fixes:
+1) The order we call the contructors for the base classes.
+2) Multiline strings no longer supported by gcc.
+3) Gcc no longer supports char values as array index.
+Comments:
+1) I don't understand why, I think it should be enforced only if the
+sequence is ambiguous, after all compilers are supposed to help people.
+2) I don't understand why, is so easy to support.
+3) I don't understand why it can be promoted to int as in any other place.
+
 Revision 1.397  2003/06/04 20:45:13  set
 * Added: A new command called cmcJumpLastCursorPos. It works similar to
 cmcLastPosCur but uses a different mechanism. I assigned this command to
