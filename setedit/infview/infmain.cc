@@ -48,6 +48,12 @@
 #include <manview.h>
 #include <codepage.h>
 
+#if TV_MAJOR_VERSION>=2
+#define TV_System TScreen::System
+#define Uses_TScreen
+#include <tv/screen.h>
+#endif
+
 #define INFVIEW_VERSION_STR "0.2.7"
 const char *EditorFile="setedit";
 
@@ -776,8 +782,13 @@ int main(int argc, char *argv[])
 
  editorApp=new TEditorMiApp();
  #ifdef TVOSf_Linux
+  #if TV_MAJOR_VERSION==2
+ if (UseRH52)
+    TGKey::SetKbdMapping(TGKey::linuxRH52);
+  #else
  if (UseRH52)
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
+  #endif
  #endif
  if (FileToLoad)
    {
