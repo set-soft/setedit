@@ -295,15 +295,6 @@ unsigned TMLIEditor::GetFindFlags()
  return ret;
 }
 
-static
-char *newStrL(const char *start, int len)
-{
- char *ret=new char[len+1];
- memcpy(ret,start,len);
- ret[len]=0;
- return ret;
-}
-
 Boolean TMLIEditor::FindOrReplaceString(char *str, char *repl, unsigned flags,
                                         char *&string, unsigned &len, Boolean again)
 {

@@ -334,9 +334,16 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
        ain->editor->handleCommand(cmcTextStart);
     if (options & oedNoSelect)
       {
-       ain->options&= ~ofSelectable;
-       ain->makeFirst();
-       ain->options|=ofSelectable;
+       if (deskTop->current->prev()!=ain)
+         {
+          deskTop->lock();
+          TView *c=deskTop->current;
+          ain->options&= ~ofSelectable;
+          ain->makeFirst();
+          ain->options|=ofSelectable;
+          c->select();
+          deskTop->unlock();
+         }
       }
     else
        ain->select();
@@ -389,7 +396,16 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
            !(dstOps & (dstNoCursorPos | dstEdNever)) &&
            !(options & oedForgetResume))
           ain->ApplyResume(r);
-       deskTop->insert(p);
+       if (options & oedNoSelect)
+         {
+          deskTop->lock();
+          TView *c=deskTop->current;
+          deskTop->insert(p);
+          c->select();
+          deskTop->unlock();
+         }
+       else
+          deskTop->insert(p);
 
        if (!validResume)
          {
@@ -1270,6 +1286,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               SetTagFilesGenerationOptions();
               break;
 
+         case cmeTagsAutoRegen:
+              TagsAutoRegen();
+              break;
+
          case cmeHolidaysConf:
               ConfigureHolidays();
               break;
@@ -1436,6 +1456,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeDbgOptionsAdv:
               DebugOptionsAdv();
+              break;
+
+         case cmeDbgDisAsmWin:
+              DebugDisAsmWin();
               break;
 
          // These commands are traslated to the original values
@@ -1841,7 +1865,7 @@ the line isn't "selected", instead we set the "CPU Line" for this line.
 ***************************************************************************/
 
 int GotoFileLine(int line, char *file, char *msg, int off, int len,
-                 Boolean normalLine)
+                 unsigned flags)
 {
  if (!line)
    {
@@ -1849,20 +1873,24 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len,
     return 0;
    }
  TView *oldCur=editorApp->deskTop->current;
- TCEditWindow *edw=editorApp->openEditor(file,True,NULL,oedDontOpenEmpty);
+ int options=oedDontOpenEmpty;
+ if (flags & gflDontSelect)
+    options|=oedNoSelect;
+ TCEditWindow *edw=editorApp->openEditor(file,True,NULL,options);
+ Boolean notCPULine=flags & gflCPULine ? False : True;
  if (edw)
    {
     TCEditor *ed=edw->editor;
     ed->lock();
-    ed->GoAndSelectLine(line,normalLine);
-    if (!normalLine)
+    ed->GoAndSelectLine(line,notCPULine);
+    if (!notCPULine)
       {
        DebugSetCPULine(line,file);
        ed->trackCursor(oldCur==editorApp->deskTop->current ? False : True);
       }
     else
        ed->trackCursor(True);
-    if (normalLine)
+    if (notCPULine)
        ed->update(ufView); // Be sure we cleared the last hit
     if (msg)
       {// Show only a portion if they asked for it
@@ -1880,6 +1908,11 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len,
     return 1;
    }
  return 0;
+}
+
+TCEditWindow *GetEditorWindowForFile(char *file)
+{
+ return editorApp->openEditor(file,True,NULL,oedDontOpenEmpty | oedNoSelect);
 }
 
 int GotoFileText(char *search, char *file, char *msg, int off, int len)
@@ -2226,6 +2259,7 @@ void TSetEditorApp::idle()
  setCmdState(cmeCascade,genState);
  setCmdState(cmeSaveDesktop,IsPrjOpened() ? False : True);
  setCmdState(cmeGPopCursorPos,stkPos.getCount() ? True : False);
+ setCmdState(cmeTagsAutoRegen,GetAutoGenMode()==stfAutoCentral ? True : False);
  // Disable "Local Options" if no editors are available
  TCEditor *e;
  if ((e=GetCurrentIfEditor())!=0)

@@ -9,6 +9,7 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
+  * Modify registers in disassembler window.
   * GDB meaning of the ignore field is quite different to what I thinked. That's
 a one shot option, you say "ignore 2" and then the next 2 passes are ignored.
 After it the breakpoint becomes "normal". It means that after a program reset it
@@ -29,7 +30,6 @@ We already have the option.
   * Use other context for selecting a path for file, not open file.
 
   * Advices (only project, ...).
-  * Disassembler window.
   * Add the menubind.smn options to the redmond.smn
   * Don't show again in the confirmation for exit while debugging.
   * Detect recompilations (target time stamp), then ask to the user if we
@@ -54,11 +54,18 @@ Data Window:
 
 Debug Window:
 * Save content to disk.
+
+Disassembler Window:
+* Keys or similar to change the size used by the registers and the code.
+* Some, slow, way to choose the format for the registers.
 -----------------------------------------------
 Whish gdb could:
 
 Eval/Modify:
 * Set the format for results, currently you must inspect the variable to do it.
+
+Disassembler Window:
+* Choose the format for registers individualy, not for all.
 
 
 IMPORTANT NOTES!!!
@@ -134,6 +141,7 @@ directories to look for sources.
 #define Uses_TSSortedListBox
 #define Uses_TDialogAID
 #define Uses_FileOpenAid
+#define Uses_TCEditWindow
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -152,6 +160,7 @@ directories to look for sources.
  #include <mi_gdb.h>
  #define Uses_TBreakpoints
  #define Uses_TWatchpoints
+ #define Uses_TDisAsmWin
 #endif
 #include <debug.h>
 #include <dyncat.h>
@@ -162,6 +171,7 @@ directories to look for sources.
 #include <pathtool.h> // FindFile
 #include <edcollec.h>
 #include <edspecs.h>
+#include <loadshl.h> // SHLNumberOf
 
 #include <sys/time.h> // Profile
 
@@ -211,7 +221,7 @@ static DebugOptionsStruct dOps;
 
 const int defaultTimeOut=MI_DEFAULT_TIME_OUT, defaultLinesMsg=1000;
 const int maxWDbgSt=20, maxWStatus=256;
-const unsigned miscNoBanner=1, miscMIv2=2, miscSymWA=4;
+const unsigned miscNoBanner=1, miscMIv2=2, miscSymWA=4, miscNoSourceInAsm=8;
 
 const int modeX11=0, modeLinux=1;
 static int localMode;
@@ -255,6 +265,7 @@ static TDialog *createEditExp(char *tit);
 static void ShowErrorInMsgBox();
 static void SaveExpandedRect(opstream &os, TRect &r, unsigned wS, unsigned hS);
 static void ReadExpandedRect(ipstream &is, TRect &r, unsigned wS, unsigned hS);
+static int  IsDisAsmWinCurrent();
 
 static
 int IsEmpty(const char *s)
@@ -352,6 +363,12 @@ void SetMainFunc(const char *mf, Boolean copy)
  return MIDebugger::SetMainFunc(mf);
 }
 
+static inline
+int IsStopped()
+{
+ return dbg && dbg->GetState()==MIDebugger::stopped;
+}
+
 /*****************************************************************************
   Sources files cache:
   This cache holds the list of files we know where are located.
@@ -420,6 +437,8 @@ void DeInitSourcesCache()
 static
 char *SolveFileName(const char *s)
 {
+ if (!s)
+    return NULL;
  if (CheckIfPathAbsolute(s))
     return edTestForFile(s) ? newStr(s) : NULL;
  // Look if we already know about it
@@ -949,6 +968,8 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmeDbgInspector,True);
          TSetEditorApp::setCmdState(cmeDbgDataWindow,True);
          TSetEditorApp::setCmdState(cmeDbgStackWindow,True);
+         TSetEditorApp::setCmdState(cmeDbgDisAsmWin,True);
+         TSetEditorApp::setCmdState(cmeDbgThreadSel,True);
     case MIDebugger::target_specified:
          TSetEditorApp::setCmdState(cmeBreakpoint,True);
          TSetEditorApp::setCmdState(cmeDbgRunContinue,True);
@@ -983,6 +1004,8 @@ void TSetEditorApp::DebugUpdateCommands()
          TSetEditorApp::setCmdState(cmGDBCommand,False);
          TSetEditorApp::setCmdState(cmeDbgEditBreakPts,False);
          TSetEditorApp::setCmdState(cmeDbgCleanElem,False);
+         TSetEditorApp::setCmdState(cmeDbgDisAsmWin,False);
+         TSetEditorApp::setCmdState(cmeDbgThreadSel,False);
          break;
    }
 }
@@ -1007,6 +1030,8 @@ void TSetEditorApp::DebugCommandsForDisc()
  TView::curCommandSet-=cmeDbgCloseSession;
  TView::curCommandSet-=cmGDBCommand;
  TView::curCommandSet-=cmeDbgCleanElem;
+ TView::curCommandSet-=cmeDbgDisAsmWin;
+ TView::curCommandSet-=cmeDbgThreadSel;
 }
 
 /**[txh]********************************************************************
@@ -1046,6 +1071,8 @@ void TSetEditorApp::DebugPoll()
 {
  if (!dbg)
     return;
+
+ TDisAsmWin::updateCodeInfo();
 
  // We want to communicate a change
  if (pendingStoppedInfo)
@@ -1097,7 +1124,7 @@ void TSetEditorApp::DebugStepOver()
 {
  if (!DebugCheckStopped())
     return;
- if (dbg->StepOver())
+ if (dbg->StepOver(IsDisAsmWinCurrent()))
     DebugMsgSetState();
  else
     DebugMsgSetError();
@@ -1114,7 +1141,7 @@ void TSetEditorApp::DebugTraceInto()
 {
  if (!DebugCheckStopped())
     return;
- if (dbg->TraceInto())
+ if (dbg->TraceInto(IsDisAsmWinCurrent()))
     DebugMsgSetState();
  else
     DebugMsgSetError();
@@ -1672,7 +1699,7 @@ void TFramesList::getText(char *dest, unsigned item, int maxLen)
 
 void TSetEditorApp::DebugThreadSel()
 {
- if (!dbg || dbg->GetState()!=MIDebugger::stopped)
+ if (!IsStopped())
     return;
  // Find the possible ids
  int *list=NULL;
@@ -1740,6 +1767,507 @@ void TSetEditorApp::DebugThreadSel()
    }
  delete fl;
  free(list);
+}
+
+//---------------------------------------------------------------------------
+
+const int disAsmAfterPC=500;
+
+// Collection to convert an address into a line number inside the assembler text
+Boolean TAdd2Line::searchL(int line, ccIndex &pos)
+{
+ byLine=1;
+ Boolean ret=search((void *)line,pos);
+ byLine=0;
+ return ret;
+}
+
+void *TAdd2Line::keyOf(void *item)
+{
+ stAdd2Line *p=(stAdd2Line *)item;
+ return byLine ? (void *)p->line : p->addr;
+}
+
+int TAdd2Line::compare(void *s1, void *s2)
+{
+ return (char *)s1-(char *)s2;
+}
+
+void TAdd2Line::freeItem(void *s)
+{
+ delete (stAdd2Line *)s;
+}
+
+void TAdd2Line::insert(void *addr, int line, mi_asm_insns *sl, mi_asm_insn *al)
+{
+ stAdd2Line *p=new stAdd2Line;
+ p->addr=addr;
+ p->line=line;
+ p->sourceL=sl;
+ p->asmL=al;
+ TNSSortedCollection::insert(p);
+}
+
+TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
+    TWindowInit(TDisAsmEdWin::initFrame),
+    TCEditWindow(aR,NULL,wnNoNumber,False)
+{// Can't be: moved, zoomed, resized, etc.
+ flags=0;
+ // Doesn't have a shadow
+ state&=~sfShadow;
+ // Usualy windows climbs to the top when selected. But here we are in a dialog
+ // and doing this changes the objects order generating a real mess.
+ // The net result is that after a couple of selections no TView can be
+ // selected.
+ options&=~ofTopSelect;
+ growMode=gfGrowHiX | gfGrowHiY;
+ // Enable some special hacks for this case
+ editor->isDisassemblerEditor=1;
+ // We start without code
+ lines=NULL;
+ a2l=NULL;
+ from=to=NULL;
+ spLine=NULL;
+ curLine=NULL;
+ // TODO: Support other CPUs
+ editor->SetHighlightTo(shlGenericSyntax,
+                        SHLNumberOf("80x86 asm (AT&T syntax)"));
+}
+
+const char *TDisAsmEdWin::getTitle(short)
+{
+ return __("Code");
+}
+
+TPalette &TDisAsmEdWin::getPalette() const
+{
+ static TPalette
+ pal(cpDisAsmEd,sizeof(cpDisAsmEd)-1);
+
+ return pal;
+}
+
+TDisAsmEdWin::~TDisAsmEdWin()
+{
+ mi_free_asm_insns(lines);
+ destroy0(a2l);
+ destroy0(spLine);
+}
+
+char *TDisAsmEdWin::getCodeInfo(char *b, int l)
+{
+ b[0]=0;
+ int line=editor->curPos.y+1;
+ ccIndex pos;
+ if (a2l->searchL(line,pos))
+   {
+    mi_asm_insn *p=a2l->At(pos)->asmL;
+    if (p->func)
+       CLY_snprintf(b,l,"%p <%s+%d>",p->addr,p->func,p->offset);
+    else
+       CLY_snprintf(b,l,"%p",p->addr);
+   }
+ return b;
+}
+
+void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
+{
+ mi_free_asm_insns(lines);
+ lines=aLines;
+ destroy0(a2l);
+
+ // Create the new content
+ char *curFunc=NULL;
+ DynStrCatStruct tx;
+ DynStrCatInit(&tx);
+ mi_asm_insns *c=lines;
+ mi_asm_insn *a;
+ // First pass: create a list of jump targets
+ TStringCollection *col=new TStringCollection(10,10);
+ // TODO: What about DOS files with \r\n?
+ // We are creating a pure UNIX text.
+ while (c)
+   {
+    a=c->ins;
+    while (a)
+      {
+       char *s=a->inst;
+       if (s)
+         {
+          int l=strlen(s);
+          if (l && s[l-1]=='>')
+            {
+             int ls=l-2;
+             for (; ls>=0 && s[ls]!='<'; ls--);
+             if (s[ls]=='<')
+               {
+                char *label=newStrL(s+ls+1,l-ls-2);
+                col->insert(label);
+                dbgPr("Label: <%s>\n",label);
+               }
+            }
+         }
+       a=a->next;
+      }
+    c=c->next;
+   }
+ // Second pass: generate the text
+ c=lines;
+ a2l=new TAdd2Line();
+ from=to=NULL;
+ int line=1;
+ // Variables used to obtain source lines
+ char *curFile=NULL;
+ LineHandler lh;
+ unsigned misc=GetGDBMisc();
+ while (c)
+   {// If source file info is available add it
+    if (c->file)
+      {// We insert the info commented
+       DynStrCat(&tx,"# ",2);
+       char added=0;
+       if (!(misc & miscNoSourceInAsm))
+         {// Try adding the source code
+          if (!curFile || strcmp(curFile,c->file))
+            {
+             curFile=c->file;
+             TCEditWindow *edw=NULL;
+             char *curSolvedFile=SolveFileName(c->file);
+             if (curSolvedFile)
+                edw=GetEditorWindowForFile(curSolvedFile);
+             lh.setEditor(edw ? edw->editor : NULL);
+            }
+          unsigned len;
+          char *s=lh.getLine(c->line-1,len);
+          if (s && len)
+            {// Avoid mixing with a DOS EOL
+             if (len>1 && s[len-2]=='\r')
+               {
+                s[len-2]='\n';
+                len--;
+               }
+             DynStrCat(&tx,s,len);
+             // Ensure we have an EOL
+             if (s[len-1]!='\n')
+                DynStrCat(&tx,"\n",1);
+             added=1;
+            }
+         }
+       if (!added)
+         {// Failed or the user doesn't want source.
+          // So put the file and line number.
+          DynStrCat(&tx,c->file);
+          DynStrCat(&tx,":",1);
+          char b[32];
+          int l=CLY_snprintf(b,32,"%d\n",c->line);
+          DynStrCat(&tx,b,l);
+         }
+       line++;
+      }
+    a=c->ins;
+    while (a)
+      {
+       int lf=0;
+       if (a->func)
+          lf=strlen(a->func);
+       // Put a label if we changed function
+       if (a->func && (!curFunc || strcmp(curFunc,a->func)))
+         {
+          DynStrCat(&tx,a->func,lf);
+          DynStrCat(&tx,":\n",2);
+          curFunc=a->func;
+          line++;
+         }
+       // Put a jump label we detected a jump to this location
+       if (a->offset && a->func)
+         {
+          AllocLocalStr(b,lf+32);
+          int l=CLY_snprintf(b,lf+32,"%s+%d",a->func,a->offset);
+          ccIndex pos;
+          if (col->search(b,pos))
+            {
+             DynStrCat(&tx,b,l);
+             DynStrCat(&tx,":\n",2);
+             line++;
+            }
+         }
+       // Add the assembler code
+       DynStrCat(&tx,"    ",4);
+       if (a->inst)
+         {
+          DynStrCat(&tx,a->inst);
+          a2l->insert(a->addr,line,c,a);
+         }
+       DynStrCat(&tx,"\n",1);
+       line++;
+       if (!from)
+          to=from=a->addr;
+       else
+          to=a->addr;
+       a=a->next;
+      }
+    c=c->next;
+   }
+ destroy(col);
+ editor->lock();
+ // Clear the current content
+ if (editor->bufLen)
+    editor->setBufLen(0);
+ // Insert the new content
+ editor->isReadOnly=False;
+ editor->insertText(tx.str,tx.len,False);
+ editor->isReadOnly=True;
+ // Avoid the question about saving it ;-)
+ editor->modified=False;
+ editor->unlock();
+ free(tx.str);
+}
+
+int TDisAsmEdWin::dissasembleFrame(mi_frames *f)
+{
+ mi_asm_insns *r;
+ // Disassemble according to the info we have
+ if (f->file)
+   {// We have file & line. We can ask for the whole function.
+    r=dbg->Disassemble(f->file,f->line,-1,MI_DIS_SRC_ASM);
+   }
+ else
+   {// We don't know the source file so it doesn't have debug info.
+    if (!f->addr)
+       // Hope never happend
+       return 0;
+    char end[32];
+    CLY_snprintf(end,32,"%p",(char *)f->addr+disAsmAfterPC);
+    if (f->func)
+      {// We know the function name, get from the beggining
+       r=dbg->Disassemble(f->func,end,MI_DIS_ASM);
+      }
+    else
+      {// We know nothing! get from the $PC
+       char start[32];
+       CLY_snprintf(end,32,"%p",f->addr);
+       r=dbg->Disassemble(start,end,MI_DIS_ASM);
+      }
+   }
+ if (!r)
+   {
+    ShowErrorInMsgBox();
+    return 0;
+   }
+
+ if (0)
+   {// Debug code
+    mi_asm_insns *c=r;
+    mi_asm_insn *a;
+    while (c)
+      {
+       if (c->file)
+          printf("Source: %s:%d\n",c->file,c->line);
+       a=c->ins;
+       while (a)
+         {
+          printf("%p: %s [%s+%d]\n",a->addr,a->inst,a->func,a->offset);
+          a=a->next;
+         }
+       c=c->next;
+      }
+    mi_free_asm_insns(r);
+   }
+
+ setCode(r);
+ return 1;
+}
+
+int TDisAsmEdWin::jumpToFrame(mi_frames *f)
+{
+ Boolean newCode=False;
+ curLine=NULL;
+ // Make sure we have the address in our range
+ // TODO: we should lock the editor until the end, that's annoying because of the unlocks on fails
+ if (f->addr<from || f->addr>to)
+   {
+    if (!dissasembleFrame(f))
+       return 0;
+    newCode=True;
+   }
+ // Get the line for this address
+ ccIndex pos;
+ Boolean res=a2l->search(f->addr,pos);
+ if (!res)
+    printf("Oops! no line\n");
+ if (pos<0 || pos>=a2l->getCount())
+    return 0;
+ stAdd2Line *a=a2l->At(pos);
+ curLine=a->sourceL;
+ editor->lock();
+ editor->GoAndSelectLine(a->line,False);
+ editor->trackCursor(newCode);
+ // The CPU line
+ TSpCollection *nSpLine=new TSpCollection(1);
+ nSpLine->insert(a->line-1,idsplRunLine);
+ editor->SetSpecialLines(nSpLine);
+ destroy(spLine);
+ spLine=nSpLine;
+ // Unlock
+ editor->unlock();
+ return 1;
+}
+
+TRegisters::TRegisters(mi_chg_reg *aRegs, int cRegs)
+{
+ regs=aRegs;
+ Count=cRegs;
+}
+
+TRegisters::~TRegisters()
+{
+ mi_free_chg_reg(regs);
+}
+
+void TRegisters::getText(char *dest, unsigned item, int maxLen)
+{
+ mi_chg_reg *p=getItem(item);
+ CLY_snprintf(dest,maxLen,"%c %s=%s",p->updated ? '*' : ' ',p->name,p->val);
+}
+
+mi_chg_reg *TRegisters::getItem(int num)
+{
+ mi_chg_reg *p=regs;
+ while (num && p)
+   {
+    num--;
+    p=p->next;
+   }
+ return num ? NULL : p;
+}
+
+int TRegisters::update()
+{
+ return dbg->UpdateRegisters(regs);
+}
+
+TDisAsmWin::TDisAsmWin(const TRect &aR) :
+    TWindowInit(TDisAsmWin::initFrame),
+    TDialog(aR,__("Disassembler Window"))
+{
+ flags=wfMove | wfClose | wfGrow | wfZoom;
+ //growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+
+ // Code
+ TRect r=getExtent();
+ int rbx=r.b.x;
+ r.a.x+=2; r.a.y++; r.b.y-=2; r.b.x/=2;
+ edw=new TDisAsmEdWin(r);
+ // An editor inside a dialog!!
+ // That's the meaning of code reuse ;-)
+ insert(edw);
+
+ // Code Info
+ char b[81];
+ memset(b,' ',80);
+ b[80]=0;
+ int ray=r.a.y;
+ r.a.y=r.b.y; r.b.y=r.a.y+1;
+ codeInfo=new TNoStaticText(r,b);
+ codeInfo->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
+ insert(codeInfo);
+ codeInfoLine=-1;
+
+ int cRegs;
+ mi_chg_reg *rg=dbg->GetRegisterNames(&cRegs);
+ if (rg && !dbg->GetRegisterValues(rg))
+   {
+    mi_free_chg_reg(rg);
+    rg=NULL;
+   }
+ if (rg)
+   {
+    regs=new TRegisters(rg,cRegs);
+    // Registers
+    r.a.x=r.b.x; r.b.x=rbx-2; r.a.y=ray; r.b.y--;
+    TScrollBar *vScrollBar=new TScrollBar(TRect(r.b.x,1,r.b.x+1,r.b.y));
+    TScrollBar *hScrollBar=new TScrollBar(TRect(r.a.x,r.b.y,r.b.x,r.b.y+1));
+    hScrollBar->growMode=gfGrowAll;
+    hScrollBar->setRange(0,100);
+    bRegs=new TStringableListBox(r,1,hScrollBar,vScrollBar);
+    bRegs->newList(regs);
+    bRegs->growMode=gfGrowLoX | gfGrowHiX | gfGrowHiY;
+    insert(vScrollBar);
+    insert(hScrollBar);
+    insert(bRegs);
+   }
+ else
+   {
+    regs=NULL;
+    bRegs=NULL;
+    ShowErrorInMsgBox();
+   }
+
+ // Select the code window
+ selectNext(True);
+ theDisAsmWin=this;
+}
+
+TDisAsmWin::~TDisAsmWin()
+{
+ delete regs;
+}
+
+int IsDisAsmWinCurrent()
+{
+ return TDisAsmWin::isDisAsmWinCurrent();
+}
+
+int IsDisAsmWinAvailable()
+{
+ return TDisAsmWin::isDisAsmWinAvailable();
+}
+
+void TDisAsmWin::close(void)
+{
+ theDisAsmWin=NULL;
+ TDialog::close();
+}
+
+TPalette &TDisAsmWin::getPalette() const
+{
+ static TPalette
+ pal(cpDisAsmWin,sizeof(cpDisAsmWin)-1);
+
+ return pal;
+}
+
+void TDisAsmWin::upCodeInfo()
+{
+ int curL=edw->editor->curPos.y;
+ if (codeInfoLine!=curL)
+   {
+    codeInfoLine=curL;
+    char b[80];
+    codeInfo->setText(edw->getCodeInfo(b,80));
+   }
+}
+
+static
+void DisAsmWin()
+{
+ if (TDisAsmWin::windowCreated())
+   {
+    TDisAsmWin::beSelected();
+    return;
+   }
+ TRect re=GetDeskTopSize();
+ re.grow(-6,-6);
+ TDisAsmWin *w=new TDisAsmWin(re);
+ TProgram::deskTop->insert(w);
+}
+
+void TSetEditorApp::DebugDisAsmWin()
+{
+ if (!IsStopped() || !stoppedInfo || !stoppedInfo->frame)
+    return;
+ DisAsmWin();
+ TDisAsmWin::jumpToFrame(stoppedInfo->frame);
 }
 
 /*****************************************************************************
@@ -5843,16 +6371,61 @@ char prefixList[]="CTL><";
 
 void DBG_GenericCB(const char *m, void *p)
 {
+ static DynStrCatStruct st={0,NULL};
  int l=strlen(m);
- char *b=new char[l+4];
- b[0]=*((char *)p);
- b[1]=':';
- b[2]=' ';
- memcpy(b+3,m,l+1);
- // Remove LF if present
- if (b[l+2]=='\n')
-    b[l+2]=0;
- DebugMsgAdd(b);
+ if (!l)
+    return;
+
+ if (*((char *)p)!='>')
+   {
+    char *b=new char[l+4];
+    b[0]=*((char *)p);
+    b[1]=':';
+    b[2]=' ';
+    memcpy(b+3,m,l+1);
+    // Remove LF
+    if (b[l+2]=='\n')
+       b[l+2]=0;
+    DebugMsgAdd(b);
+    return;
+   }
+
+ // Concatenate commands sent to gdb until we get \n
+ if (st.str)
+   {// Concatenating
+    DynStrCat(&st,m,l);
+    if (m[l-1]=='\n')
+      {// EOL, send it
+       st.str[st.len-1]=0;
+       DebugMsgAdd(newStr(st.str));
+       free(st.str);
+       st.str=NULL;
+      }
+   }
+ else
+   {// First message
+    if (m[l-1]=='\n')
+      {// Whole line, send it
+       char *b=new char[l+4];
+       b[0]=*((char *)p);
+       b[1]=':';
+       b[2]=' ';
+       memcpy(b+3,m,l+1);
+       // Remove LF
+       b[l+2]=0;
+       DebugMsgAdd(b);
+      }
+    else
+      {// Partial line
+       char b[4];
+       b[0]=*((char *)p);
+       b[1]=':';
+       b[2]=' ';
+       b[3]=0;
+       DynStrCatInit(&st,b,3);
+       DynStrCat(&st,m,l);
+      }
+   }
 }
 
 void DBG_SetCallBacks()
@@ -6335,12 +6908,30 @@ int DebugMsgJumpToFrame(mi_frames *f, char *msg, int l)
  // Jump to the line where we stopped
  int jumped=0;
  if (f)
-   {// Try to jump to the source line.
-    if (f->file)
-      {
-       char *file=SolveFileName(f->file);
-       if (file && GotoFileLine(f->line,file,msg,-1,l,False))
-          jumped=1;
+   {
+    if (IsDisAsmWinCurrent())
+      {// The disassembler window is the active one, jump there
+       jumped=TDisAsmWin::jumpToFrame(f);
+       int line;
+       char *file=SolveFileName(TDisAsmWin::getFileLine(line));
+       if (file)
+          GotoFileLine(f->line,file,msg,-1,l,gflCPULine|gflDontSelect);
+      }
+    else
+      {// Try to jump to the source line.
+       if (f->file)
+         {
+          char *file=SolveFileName(f->file);
+          if (file && GotoFileLine(f->line,file,msg,-1,l,gflCPULine))
+             jumped=1;
+          if (IsDisAsmWinAvailable())
+             TDisAsmWin::jumpToFrame(f);
+         }
+       else
+         {// No file name => use disassembler window
+          DisAsmWin();
+          TDisAsmWin::jumpToFrame(f);
+         }
       }
    }
  return jumped;
@@ -6362,10 +6953,14 @@ int DebugMsgFillReason(mi_frames *f, char *b, Boolean stop)
  if (f && l+10<maxWStatus)
    {
     const char *unknown=TVIntl::getText(__("unknown"),icUnknown);
-    l+=CLY_snprintf(b+l,maxWStatus-l," [%s:%s:%d]",
-                    f->func ? f->func : unknown,
-                    f->file ? f->file : unknown,
-                    f->line);
+    if (!f->file)
+       l+=CLY_snprintf(b+l,maxWStatus-l," [%s:%p]",
+                       f->func ? f->func : unknown,f->addr);
+    else
+       l+=CLY_snprintf(b+l,maxWStatus-l," [%s:%s:%d]",
+                       f->func ? f->func : unknown,
+                       f->file ? f->file : unknown,
+                       f->line);
    }   
  MsgWindow->SetStatusStop(b);
 
@@ -7059,7 +7654,7 @@ TDialog *createDebugOpsAdvDialog()
 {
  TSViewCol *col=new TSViewCol(__("Advanced Debug Options"));
 
- // EN: BFGILMSTX
+ // EN: BCFGILMSTX
  // ES:
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
@@ -7075,7 +7670,8 @@ TDialog *createDebugOpsAdvDialog()
    TSLabelCheck(__("M~i~scellaneous"),
                 __("No gdb ~b~anner after connecting"),
                 __("Enable MI v2 ~f~eatures"),
-                __("No ~s~ymbols bug workaround"),0),0);
+                __("No ~s~ymbols bug workaround"),
+                __("No source ~c~ode in disasm. window"),0),0);
  o1->makeSameW();
 
  col->insert(xTSLeft,yTSUp,o1);
@@ -7534,6 +8130,9 @@ void TSetEditorApp::DebugInspector(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugDataWindow(char *startVal) { delete[] startVal; }
 void TSetEditorApp::DebugCleanElem() {}
 void TSetEditorApp::DebugThreadSel() {}
+void TSetEditorApp::DebugTimeOut(void *) { return 0; }
+void TSetEditorApp::DebugOptionsAdv() { return 0; }
+void TSetEditorApp::DebugDisAsmWin() {};
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}

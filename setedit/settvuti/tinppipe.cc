@@ -14,6 +14,7 @@ editor's buffer.
 *****************************************************************************/
 
 #define Uses_string
+#define Uses_AllocLocal
 #define Uses_TInputLinePiped
 #define Uses_TEvent
 #define Uses_TKeys
@@ -148,10 +149,16 @@ void TInputLinePiped::CopyFromClip(void)
 {
  if (mFlags & tilpNoPaste)
     return;
- TCEditor::clipboard->CopySelToBuffer(data,maxLen);
- selStart = 0;
- curPos = selEnd = strlen(data);
- drawView();
+ AllocLocalStr(b,maxLen);
+ TCEditor::clipboard->CopySelToBuffer(b,maxLen);
+ int size=strlen(b);
+ for (int i=0; i<size; i++)
+    {
+     TInputLine::insertChar(b[i]);
+     selStart=selEnd=0; // Reset the selection or we will delete the last insertion
+    }
+ makeVisible();
+ //drawView();
 }
 
 void TInputLinePiped::CopyToClipOS(void)

@@ -126,11 +126,11 @@ void TSOSListBoxMsg::focusItem(ccIndex item)
     FileInfo *fI=(FileInfo *)(Stack->GetPointerOf(aux));
     if (fI->Line>=0)
       {
-       TApplication::deskTop->lock();
+       //TApplication::deskTop->lock();
        char *fileName=Stack->GetStrOf(Stack->GetPreviousOf(aux));
        ShowFileLine(SpLineGetNewValueOf(fI->Line,fileName),fileName);
-       this->owner->select();
-       TApplication::deskTop->unlock();
+       //this->owner->select();
+       //TApplication::deskTop->unlock();
       }
    }
 }

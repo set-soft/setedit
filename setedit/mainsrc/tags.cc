@@ -74,6 +74,7 @@ static int InitTagsCollection();
 // Variables for this module
 static TTagCollection *tags=NULL;
 static uint32   autoGenMode=0;
+static char     forceRegen=0;
 
 /* Uncomment it to get stats about the length of the id tags printed to stdout.
    I got this for SETEdit + TVision (may 5th 2003)
@@ -870,6 +871,11 @@ int TTagCollection::refresh(Boolean advice)
         // Is that the central file?
         if (strcmp(p->file,"tags")==0)
           {
+           if (forceRegen)
+             {
+              unlink(p->file);
+              forceRegen=0;
+             }
            struct stat st;
            int retStat=stat(p->file,&st);
            // Create a list with files newer than tags file
@@ -1929,11 +1935,10 @@ char *TagsWordCompletion(int x, int y, char *word)
     return NULL;
 
  TStringCollection *list=new TNoCaseStringCollection(10,4);
- int len=0,cant=0;
+ int len=0;
  while (strncasecmp(p->id,word,lenW)==0)
    {
     list->insert((char *)p->id);
-    cant++;
     tLen=strlen(p->id);
     if (tLen>len)
        len=tLen;
@@ -1943,7 +1948,7 @@ char *TagsWordCompletion(int x, int y, char *word)
     p=tags->atPos(pos);
    }
 
- char *ret=CompletionChooseFromList(list,cant,len,x-lenW,y,0,lenW);
+ char *ret=CompletionChooseFromList(list,list->getCount(),len,x-lenW,y,0,lenW);
  delete list;
 
  return ret;
@@ -2052,3 +2057,13 @@ uint32 GetAutoGenMode()
 {
  return autoGenMode;
 }
+
+void TagsAutoRegen()
+{
+ if (tags)
+   {
+    forceRegen=1;
+    tags->refresh(False);
+   }
+}
+

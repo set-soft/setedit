@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <configed.h>
 #include <string.h>
@@ -20,10 +20,10 @@ DynStrCatInit(&stru,0,0);
 
 ***************************************************************************/
 
-void DynStrCatInit(DynStrCatStruct *Struct, char *str, int len)
+void DynStrCatInit(DynStrCatStruct *Struct, const char *str, int len)
 {
  if (len<0)
-    len=strlen(str);
+    len=str ? strlen(str) : 0;
  Struct->str=(char *)malloc(len+1);
  if (str)
     strncpy(Struct->str,str,len);
@@ -38,7 +38,7 @@ void DynStrCatInit(DynStrCatStruct *Struct, char *str, int len)
 
 ***************************************************************************/
 
-void DynStrCat(DynStrCatStruct *Struct, char *str, int len)
+void DynStrCat(DynStrCatStruct *Struct, const char *str, int len)
 {
  int oldLen=Struct->len;
 
@@ -49,3 +49,12 @@ void DynStrCat(DynStrCatStruct *Struct, char *str, int len)
  memcpy(Struct->str+oldLen,str,len);
  Struct->str[Struct->len]=0;
 }
+
+char *newStrL(const char *start, int len)
+{
+ char *ret=new char[len+1];
+ memcpy(ret,start,len);
+ ret[len]=0;
+ return ret;
+}
+

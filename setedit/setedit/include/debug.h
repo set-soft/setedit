@@ -109,3 +109,130 @@ protected:
 };
 #endif // Uses_TWatchpoints
 
+#if defined(Uses_TDisAsmWin) && !defined(TDisAsmWin_Defined)
+#define TDisAsmWin_Defined
+struct stAdd2Line
+{
+ void *addr;
+ int line;
+ mi_asm_insns *sourceL;
+ mi_asm_insn *asmL;
+};
+
+class TAdd2Line : public TNSSortedCollection
+{
+public:
+ TAdd2Line() : TNSSortedCollection(50,50) { byLine=0; };
+
+ void insert(void *addr, int line, mi_asm_insns *sl, mi_asm_insn *al);
+ stAdd2Line *At(ccIndex pos) { return (stAdd2Line *)at(pos); };
+ Boolean searchL(int line, ccIndex &pos);
+
+ virtual void *keyOf(void *item);
+ virtual int compare(void *s1, void *s2);
+ virtual void freeItem(void *s);
+
+protected:
+ int byLine;
+};
+
+class TRegisters : public TStringable
+{
+public:
+ TRegisters(mi_chg_reg *aRegs, int cRegs);
+ ~TRegisters();
+
+ virtual void getText(char *dest, unsigned item, int maxLen);
+ mi_chg_reg *getItem(int index);
+ int update();
+
+protected:
+ mi_chg_reg *regs;
+};
+
+#define cpDisAsmEd \
+  "\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2A\x2B\x2C"\
+  "\x2D\x2E\x2F\x30\x31\x32\x33\x34\x35\x36\x37\x38"\
+  "\x39\x3A\x3B\x3C\x3D\x3E"
+
+class TDisAsmEdWin : public TCEditWindow
+{
+public:
+ TDisAsmEdWin(const TRect &aR);
+ ~TDisAsmEdWin();
+
+ virtual TPalette &getPalette() const;
+ virtual const char *getTitle(short);
+
+ int jumpToFrame(mi_frames *f);
+ char *getFileLine(int &line)
+ {
+  if (!curLine)
+     return NULL;
+  line=curLine->line;
+  return curLine->file;
+ }
+ char *getCodeInfo(char *b, int l);
+
+protected:
+ mi_asm_insns *lines;
+ TAdd2Line *a2l;
+ void *from, *to;
+ TSpCollection *spLine;
+ mi_asm_insns *curLine;
+
+ void setCode(mi_asm_insns *aLines);
+ int  dissasembleFrame(mi_frames *f);
+};
+
+// Hack: An editor inside a dialog needs a special palette:
+#define cpDisAsmWin \
+  /* TDialog palette */ \
+  "\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2A\x2B\x2C\x2D\x2E\x2F"\
+  "\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x3A\x3B\x3C\x3D\x3E\x3F"\
+  /* TCEditWindow palette */ \
+  "\x08\x09\x0A\x0B\x0C\x40\x41\x42\x43\x44\x45\x46"\
+  "\x47\x48\x49\x4A\x4B\x4C\x4D\x4E\x4F\x50\x51\x76"\
+  "\x77\x78\x79\x7A\x7B\x7C"
+
+class TDisAsmWin : public TDialog
+{
+public:
+ TDisAsmWin(const TRect &aR);
+ ~TDisAsmWin();
+
+ virtual TPalette &getPalette() const;
+ virtual void close(void);
+
+ static int  windowCreated() { return theDisAsmWin!=NULL; }
+ static void beSelected() { theDisAsmWin->select(); }
+ static int  jumpToFrame(mi_frames *f)
+ {
+  int ret=theDisAsmWin->edw->jumpToFrame(f);
+  if (theDisAsmWin->regs->update())
+     theDisAsmWin->bRegs->drawView();
+  return ret;
+ }
+ static int  isDisAsmWinCurrent()
+  { return theDisAsmWin && TProgram::deskTop->current==theDisAsmWin; }
+ static int  isDisAsmWinAvailable()
+  { return theDisAsmWin!=NULL; }
+ static char *getFileLine(int &line)
+  { return theDisAsmWin->edw->getFileLine(line); }
+ static void updateCodeInfo()
+  { if (theDisAsmWin) theDisAsmWin->upCodeInfo(); }
+
+protected:
+ static TDisAsmWin *theDisAsmWin;
+ TDisAsmEdWin *edw;
+ TNoStaticText *codeInfo;
+ TStringableListBox *bRegs;
+ TRegisters *regs;
+
+ int codeInfoLine;
+ void upCodeInfo();
+};
+
+TDisAsmWin *TDisAsmWin::theDisAsmWin=NULL;
+#endif // Uses_TDisAsmWin
+

@@ -224,6 +224,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    SubMenu: "T~a~g files", kbAlA
      MenuItemC: "~L~ist of tag files...", cmeTagFiles
      MenuItemC: "~O~ptions...", cmeTagsOps
+     MenuItemC: "~R~egenerate central file", cmeTagsAutoRegen
    EndSubMenu
    $if CALENDAR
    MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf

@@ -292,6 +292,7 @@ TCEditor::TCEditor( const TRect& bounds,
  ColumnMarkers=staticColumnMarkers;
  colMarkers=CopyColMarkers(staticColMarkers);
  forceNextTimeCheck=False;
+ isDisassemblerEditor=0;
  
  CrossCursorY2=size.y;
  CrossCursorX2=size.x;
@@ -1947,6 +1948,14 @@ void TCEditor::handleEvent( TEvent& event )
 
 void TCEditor::handleKey(TEvent &event)
 {
+ // Hack: disassembler windows must work as a widget
+ if (isDisassemblerEditor && owner && owner->owner &&
+     event.keyDown.keyCode==kbTab)
+   {    
+    owner->owner->selectNext(True);
+    clearEvent(event);
+    return;
+   }
  // First translate it to a command
  KeyTNode node;
  int ret=KeyTrans.get(event.keyDown.keyCode,&node);
@@ -4763,29 +4772,37 @@ void TCEditor::ExpandGlobalOptionsLocally(GlobalOptionsRect *temp)
  update(ufView);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: unsigned GetOffSetOffLine(int y)
-
-   Type: TCEditor member.
-
-   Objetive: Calculates the offset of the start of a line in the buffer.
-
-   Parameters:
-   y: the line.
-
-   Returns: The offset.
-
-   by SET.
-
-****************************************************************************/
+  Description:
+  Calculates the offset of the start of a line in the buffer.
+  
+  Return: The offset.
+  
+***************************************************************************/
 
 unsigned TCEditor::GetOffSetOffLine(int y)
 {
- int deltaCur=y-curPos.y;
+ return GetOffsetGeneric(y,curPos.y,(unsigned)(curLinePtr-buffer));
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Computes the offset for a specified line @var{y}. You have to specify an
+already know reference. The @var{yRef} is the line for the reference and
+@var{lOff} is its offset.
+  
+  Return: The offset of the indicated line in the buffer.
+  
+***************************************************************************/
+
+unsigned TCEditor::GetOffsetGeneric(int y, int yRef, unsigned lOff)
+{
+ int deltaCur=y-yRef;
 
  if (deltaCur==0)
-    return (unsigned)(curLinePtr-buffer);
+    return lOff;
 
  if (abs(deltaCur)>y)
    {
@@ -4800,21 +4817,31 @@ unsigned TCEditor::GetOffSetOffLine(int y)
     if (deltaCur<0)
       {
        deltaCur=-deltaCur;
-       unsigned o=(unsigned)(curLinePtr-buffer);
-       int i=curPos.y;
+       unsigned o=lOff;
+       int i=yRef;
        while (deltaCur--)
           o-=lenLines[--i];
        return o;
       }
     else
       {
-       unsigned o=(unsigned)(curLinePtr-buffer);
-       int i=curPos.y;
+       unsigned o=lOff;
+       int i=yRef;
        while (deltaCur--)
           o+=lenLines[i++];
        return o;
       }
    }
+}
+
+char *LineHandler::getLine(int y, unsigned &len)
+{
+ if (!isReady() || (unsigned)y>ed->totalLines)
+    return NULL;
+ offset=ed->GetOffsetGeneric(y,line,offset);
+ line=y;
+ len=ed->lenLines[line];
+ return ed->buffer+offset;
 }
 
 /**[txh]********************************************************************

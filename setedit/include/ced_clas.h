@@ -316,6 +316,7 @@ public:
                                     // editor commands when it get/releases the focus
     uchar lockCount;
     uchar updateFlags;
+    uchar isDisassemblerEditor;
     int keyState;
     unsigned WantedCol;
     void formatLine(void *, unsigned, int, unsigned short, unsigned, uint32,unsigned,uint32 *);
@@ -410,6 +411,7 @@ public:
     void RecalculateXofLineInEdit(void);
     Boolean hasRectSel(void) { return Boolean(!selRectHided && Xr1<Xr2 && Yr1<=Yr2); };
     unsigned GetOffSetOffLine(int y);
+    unsigned GetOffsetGeneric(int y, int yRef, unsigned lOff);
     int FindLineForOffSet(unsigned offset, unsigned &rest);
     int EnsureXDontTab(char *s,int x,int w,char **stop);
     void lockUndo(void) { undoLockCount++; };
@@ -597,6 +599,21 @@ public:
 };
 
 SetDefStreamOperators(TCEditor)
+
+// A class to get lines from a TCEditor
+class LineHandler
+{
+public:
+ LineHandler() { ed=NULL; }
+ void setEditor(TCEditor *anEd) { ed=anEd; offset=0; line=0; }
+ int isReady() { return ed!=NULL; }
+ char *getLine(int y, unsigned &len);
+
+protected:
+ unsigned offset;
+ int line;
+ TCEditor *ed;
+};
 
 #endif  // Uses_TCEditor
 

@@ -2997,6 +2997,17 @@ from this file aren't removed. If this is annoying just remove the
 @refMenu1{cmeTagsOps}
 
 @c --------------------------------------------------------------------------
+@subsubsection Regenerate central file
+
+The central file is maintained using the incremental features of ctags. Some
+times ctags fails to remove obsolete entries in the tags file. This bug can
+become really annoying. In this case you can use this command to regenerate
+the file from scratch.
+@p{}
+
+@refMenu1{cmeTagsAutoRegen}
+
+@c --------------------------------------------------------------------------
 @subsubsection Calendar options
 
 The editor can mark holidays in the calendar using a different color. As

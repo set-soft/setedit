@@ -232,6 +232,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    SubMenu: "T~a~g files", kbAlA
      MenuItemC: "~L~ist of tag files...", cmeTagFiles
      MenuItemC: "~O~ptions...", cmeTagsOps
+     MenuItemC: "~R~egenerate central file", cmeTagsAutoRegen
    EndSubMenu
    $if CALENDAR
    MenuItemC: "Calendar (holida~y~s)...", cmeHolidaysConf
@@ -302,7 +303,7 @@ SubMenu: "~P~roject", kbAlP
 EndSubMenu
 
 $if DEBUG
-# EN: ABCDEGHIKLNOPRSTW 3
+# EN: ABCDEGHIKLMNOPRSTW 3
 # ES: BCDEILMNPRTUVX 12
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
@@ -332,6 +333,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Restart (~K~ill)", cmeDbgKill
  MenuItemC: "Se~l~ect thread", cmeDbgThreadSel
  MenuSeparator
+ MenuItemC: "Disasse~m~bler Window", cmeDbgDisAsmWin
  MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
  SubMenu: "~W~atch an expression", kbUnknown
 # EN: DNSUW
@@ -579,11 +581,12 @@ EndStatusRange
 StatusRange: hcWatchesWin, 0
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ins~ Add", cmInsert, kbInsert
-StatusEntry: "~+~ Add w/scope", cmInsertWScope, kbPlus
+StatusEntry: "~Ctrl+A/+~ Add w/scope", cmInsertWScope, kbPlus
 StatusEntry: "~Del~ Delete", cmDelete, kbDelete
 StatusEntry: "~Enter~ Edit", cmEditWatch, kbEnter
 StatusEntry: "~F5~ Zoom", cmZoom, kbF5
 StatusEntry: "~Alt+X", cmeQuit, kbAlX
+StatusHiddenEntry: cmInsertWScope, kbCtA
 EndStatusRange
 
 #

@@ -158,8 +158,9 @@ const int
   cmeDbgCleanElem   = cmeBase+134,
   cmeDbgThreadSel   = cmeBase+135,
   cmeDbgOptionsAdv  = cmeBase+136,
+  cmeDbgDisAsmWin   = cmeBase+137,
   // That isn't a command, is to know the last+1.
-  cmeDbgLastCommand = cmeBase+137,
+  cmeDbgLastCommand = cmeBase+138,
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
@@ -167,7 +168,8 @@ const int
   cmeGPushCursorPos = cmeBase+161,
   cmeGPopCursorPos  = cmeBase+162,
   cmeSelDebugWin    = cmeBase+163,
-  cmeSelWatchesWin  = cmeBase+164;
+  cmeSelWatchesWin  = cmeBase+164,
+  cmeTagsAutoRegen  = cmeBase+165;
 
 #endif
 
@@ -455,6 +457,7 @@ public:
     static void DebugThreadSel();
     static int  DebugTimeOut(void *data);
     static int  DebugOptionsAdv();
+    static void DebugDisAsmWin();
 
 protected:
 
@@ -519,6 +522,8 @@ class TCEditWindow;
 class TDskWin;
 struct stEditorId;
 
+const unsigned gflCPULine=1, gflDontSelect=2;
+
 extern TView *setFocusTo;
 extern Boolean focusChanged;
 extern void CopyHelp2Clip(char *b, long l);
@@ -526,8 +531,9 @@ extern void ShowHelpTopic(char *file, char *node);
 extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line,char *name);
 extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0,
-                        Boolean selectLine=True);
+                        unsigned flags=0);
 extern int GotoFileText(char *search, char *file, char *msg=0, int off=-1, int len=0);
+extern TCEditWindow *GetEditorWindowForFile(char *file);
 extern void GPushCursorPos();
 extern void GPopCursorPos();
 extern void SetScreenOps(void);

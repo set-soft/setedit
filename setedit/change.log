@@ -1,4 +1,14 @@
-$Log$.
+$Log$
+Revision 1.577  2004/08/13 20:49:21  set
+* Modified: [Debug] +/- keys in the inspector gives problems when using
+italian keyboards and Linux console. So now + can be replaced by E and -
+by C (Expand/Collapse). Both work so the user can choose.
+* Modified: [Debug] Added more error checking to the inspectors creation.
+A bug in gdb makes it die when evaluating some expressions. So now the code
+checks it and goes to "disconnected" state. It will need much more adjusts
+before a gdb crash doesn't affect the editor.
+* Both from Andrea's reports.
+
 Revision 1.576  2004/08/13 19:01:51  set
 * Fixed: [DOC] txt generation details when using makeinfo 4.7. From more
 info provided by Andrea.

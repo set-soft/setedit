@@ -160,15 +160,18 @@ char *CompletionChooseFromList(TStringCollection *list, int cant, int len,
 
  TNoFrame *group=new TNoFrame(TRect(x,y,x+w,y+h));
  TListBoxRec r={list,0};
- TScrollBar *ts=new TScrollBar(TRect(w-1,0,w,h));
- TCompletionBox *b=new TCompletionBox(TRect(0,0,w-1,h),ts);
+ TScrollBar *ts=h<cant ? new TScrollBar(TRect(w-1,0,w,h)) : NULL;
+ TCompletionBox *b=new TCompletionBox(TRect(0,0,w-(ts ? 1 : 0),h),ts);
  b->setData(&r);
  if (lPartial)
     b->setSearchPos(lPartial);
  group->insert(b);
  b->setState(sfSelected | sfActive,True);
- group->insert(ts);
- ts->show();
+ if (ts)
+   {
+    group->insert(ts);
+    ts->show();
+   }
 
  char *ret;
  if (TProgram::deskTop->execView(group)==cmOK)
