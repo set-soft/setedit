@@ -14,8 +14,6 @@ int   DeleteWildcard(char *mask);
 char *GetPathRelativeToRunPoint(char *dest, const char *binReplace, char *file);
 void  SetReferencePath(char *orig);
 char *RedirectStdErrToATemp(int &StdErrOri,int &StdErrNew);
-char *ExpandFileNameToUserHome(const char *s);
-char *ExpandFileNameToUserHomeNoDot(const char *s);
 int  FileCopy(const char *orig, const char *dest);
 void CheckForValidTMPDIR();
 int  IsADirectory(const char *name);
@@ -39,13 +37,5 @@ char *ExpandHome(const char *s)
 {
  return ExpandFileNameToThePointWhereTheProgramWasLoaded(s);
 }
-
-#ifdef __DJGPP__
-// In DOS is like the load
-#define ExpandHomeSave(a) ExpandHome(a)
-#else
-// In Linux we can't write in the share so that's a fixed expand to
-// the user's home
-#define ExpandHomeSave(a) ExpandFileNameToUserHome(a)
-#endif
+char *ExpandHomeSave(const char *s);
 #endif
