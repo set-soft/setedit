@@ -217,7 +217,7 @@ void ProcessFile(const char *file, const char *tag, const char *module,
        ChopEOL(b);
        if (strncmp(b,"revision",8)!=0)
          {
-          printf("Errror revision expected in:\n%s\n",b);
+          printf("Error revision expected in:\n%s\n",b);
           return;
          }
        print=0;
@@ -236,7 +236,7 @@ void ProcessFile(const char *file, const char *tag, const char *module,
           if (fgets(b,maxLine-1,f))
             {
              ChopEOL(b);
-             if (strncmp(b,"----------------------------",28)==0)
+             if (strncmp(b,"----------------------------",28)==0 && b[28]!='-')
                 break;
              if (strncmp(b,"============================",28)==0)
                {
@@ -389,6 +389,7 @@ int main(int argc, char *argv[])
  system(b);
 
  //ProcessFile(cft,"i0447","setedit","makes/*.mak",1);
+ //fprintf(stderr,"Tag: %s, proyecto: %s\n",argv[2],argv[1]);
  ProcessFile(cft,argv[2],argv[1],argv[3],0);
 
  unlink(cft);
