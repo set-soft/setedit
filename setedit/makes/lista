@@ -286,6 +286,7 @@ internac/fix.c
 internac/gnumake.in
 internac/Makefile
 internac/makelist.pl
+internac/po_list
 internac/tvision.cc
 internac/utod.pl
 libbzip2/Makefile

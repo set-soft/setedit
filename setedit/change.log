@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.173  2002/08/12 16:31:18  set
+* Modified: The default menu to say "Shell" instead of "DOS shell".
+* Added: "Window|User screen" disabled if it doesn't exist.
+
 Revision 1.172  2002/08/12 16:30:31  set
 * Added: Code to avoid calling a shell if TScreen::noUserScreen() returns
 True. Also for InfView and for the Run Program "Use OS screen" option.

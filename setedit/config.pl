@@ -1350,8 +1350,11 @@ sub GenerateMakefile
  $text.=" libz" if ($libz);
  $text.=" libpcre" if ($libpcre);
  $text.=" libintl" if ($libintl);
- $text.=" internac" if ($internac);
- $text.=" doc-basic" if ($docbasic);
+ #
+ # MinGW tools I tested are broken and can't generate these targets
+ #
+ $text.=" internac" if ($internac) && ($Compf ne 'MinGW');
+ $text.=" doc-basic" if ($docbasic) && ($Compf ne 'MinGW');
  # editor
  $text.="\n\neditor: needed";
  $text.="\n\t\$(MAKE) -C makes";
