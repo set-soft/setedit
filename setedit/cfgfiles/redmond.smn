@@ -112,6 +112,9 @@ SubMenu: "~M~acro", kbAlM
  MenuItemC: "~C~hoose ...", cmcChooseMacro
  MenuItemC: "R~e~peat", cmcRepeatMacro, kbShF3, "Shift+F3"
  MenuItemC: "~G~enerate Code", cmcGenCodeForMacro
+ MenuItemC: "Ru~n~ selected code", cmcRunSel_sLisp
+ MenuItemC: "Enter c~o~de to run", cmcRunEnter_sLisp
+ MenuSeparator
  MenuItemC: "Pse~u~do macros ...", cmcChoosePMacrosList
 EndSubMenu
 

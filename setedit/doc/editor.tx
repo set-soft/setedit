@@ -1353,6 +1353,23 @@ To learn more about these macros: @x{sLisp macros}.
 @refMenu1{cmcGenCodeForMacro}
 
 @c --------------------------------------------------------------------------
+@subsection Run selected code
+
+It takes the selected text and interprets it as an sLisp macro.
+@p{}
+
+@refMenu1{cmcRunSel_sLisp}
+
+@c --------------------------------------------------------------------------
+@subsection Enter code to run
+
+It asks for a text and interprets it as an sLisp macro. The maximun length is
+one kilobyte.
+@p{}
+
+@refMenu1{cmcRunEnter_sLisp}
+
+@c --------------------------------------------------------------------------
 @subsection Pseudo Macro (menu)
 
 It shows a list of all the pseudo macros available for the current syntax
