@@ -1,4 +1,7 @@
 $Log$
+Revision 1.40  2002/01/29 17:42:43  set
+* Modified: Included libamp in Linux sources distro again.
+
 Revision 1.39  2002/01/29 17:39:08  set
 * Fixed: asm51.pmc and html.frt wasn't marked as files that must be
 converted to native EOL by fromdos/unix scripts.
@@ -2853,7 +2856,7 @@ strings, now all are separated strings. So the call to
 LoadSyntaxHighLightFile changed a little bit.
 * Note: This is all very new and not very well tested, don't spect 100%
 reliable behavior and report any strange thing.
-.
+
 Revision 1.149  1999/07/09 19:31:27  set
 * Fixed: The documentation of RunProgram* to say @var{program_name} instead
 of @var{program name} to avoid confusion. Reported by Endlisnis.

@@ -164,7 +164,7 @@ $binManifest.=$d."\n";
 if (!(-e $d) or (-M $d > -M $o))
   {
    system("cp -p $o .");
-   system("zip -9u $result/dbgcopy.zip infview.exe") unless($iMode);
+   system("zip -9u $result/infview-$version-DOS-debug.zip infview.exe") unless($iMode);
    # I could use --best but is slooooowwwwwwwww and doesn't compress much in
    # the case of the editor.
    system('upx -9 infview.exe') unless $iCompressExe==0;
