@@ -1,8 +1,9 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
 #ifdef SUP_MP3
+#define Uses_string
 #define Uses_TView
 #define Uses_MsgBox
 #define Uses_TProgram

@@ -5,6 +5,7 @@
 #include <ceditint.h>
 #include <signal.h>
 #define Uses_unistd
+#define Uses_string
 #define Uses_TScreen
 #define Uses_TEventQueue
 #include <ced_inte.h>
