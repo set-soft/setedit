@@ -4339,10 +4339,31 @@ value is 0.
 @paragraph{}
 
   (not "")@*
-  Returns 0xFFFFFFFF.
+  Returns 1.
 @paragraph{}
 
   (not 1)@*
+  Returns 0.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection Operator ~
+
+  (~ @var{value})
+@paragraph{}
+
+  Returns the @var{value} negated (at bit level).
+@paragraph{}
+
+  (~ "hello")@*
+  Returns 0.
+@paragraph{}
+
+  (~ "")@*
+  Returns 0xFFFFFFFF.
+@paragraph{}
+
+  (~ 1)@*
   Returns -2.
 @paragraph{}
 
