@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.481  2003/12/09 18:28:08  set
+* Added: Errors parser for Perl. Contributed by Thiago.
+
 Revision 1.480  2003/12/09 16:48:51  set
 * Fixed: When aborting an overwrite (in save as) the name of the window
 was changed anyway :-P
