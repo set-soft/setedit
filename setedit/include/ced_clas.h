@@ -386,6 +386,7 @@ public:
     void SetSpecialLines(int *a) { SpecialLines=a; };
     void PasteEmacsMode();
     void QuotedPrintDecode();
+    void InsertKeyName();
     void ShowWhichFunInStatus();
     unsigned JumpLineStartSelection();
     void UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP, unsigned lastLine);

@@ -155,8 +155,9 @@ const int
   cmbCommentUnIndent   = 144,
   cmbInvertCase        = 145,
   cmbAltCase           = 146,
+  cmbInsertKeyName     = 147,
   
-  cmbLastCommand       = 147;
+  cmbLastCommand       = 148;
 
 
 const int
@@ -307,7 +308,8 @@ const int
   cmcCommentIndent     = cmbCommentIndent+cmbBaseNumber,
   cmcCommentUnIndent   = cmbCommentUnIndent+cmbBaseNumber,
   cmcInvertCase        = cmbInvertCase+cmbBaseNumber,
-  cmcAltCase           = cmbAltCase+cmbBaseNumber;
+  cmcAltCase           = cmbAltCase+cmbBaseNumber,
+  cmcInsertKeyName     = cmbInsertKeyName+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

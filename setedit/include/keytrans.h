@@ -1,11 +1,6 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <dyncat.h>
-
-#if defined(Uses_KeyAssignCtx) && !defined(__KeyAssignCtx__)
-#define __KeyAssignCtx__
-const int
-#endif
 
 #if defined(Uses_TKeyTranslate) && !defined(__TKeyTranslate__)
 #define __TKeyTranslate__
@@ -145,4 +140,9 @@ public:
 };
 #endif
 
+const int tktMaxKeyName=40;
+
 extern int InterpretKeyName(char *s, ushort &code);
+extern void TCEditor_MakeKeyName(char *s, unsigned short key);
+// edkeys.cc
+extern unsigned short TCEditor_SelectAKey(void);

@@ -143,7 +143,7 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
 EndSubMenu
 
-# ABCDEFGHIKLMOPRSXW
+# ABCDEFGHIKLMNOPRSXW
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
 # BCDEFGKLNOPRSU
@@ -199,6 +199,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "Convert ~t~ags to accents", cmeHTMLTag2Accent
  EndSubMenu
  MenuItemC: "E~x~port as HTML ...", cmeExportAsHTML
+ MenuItemC: "Insert key ~n~ame", cmcInsertKeyName
  MenuItemC: "Re~m~ap code page ...", cmeRemapCodePage
  MenuItemC: "~P~rofile Editor", cmcProfileEditor
  MenuItemC: "Paste ~E~macs mode", cmcPasteEmacsMode
