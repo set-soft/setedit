@@ -40,7 +40,7 @@ class TSOSListBox;
 #include <edhists.h>
 #include <slpinter.h>
 
-static TCEditor *Editor;
+TCEditor *TMLIEditor::Editor;
 
 
 char *TMLIEditor::GetWordUnderCursor(int lenMax, int &len, unsigned options)
@@ -252,6 +252,11 @@ char *TMLIEditor::AskString(const char *title, const char *message)
  return newStr("");
 }
 
+Boolean TMLIEditor::SelectionExists()
+{
+ return Editor->hasVisibleSelection();
+}
+
 static void SLPShowError(void)
 {
  char buf[256];
@@ -272,7 +277,7 @@ void SLPInterfaceInit(char *file)
     return;
  FILE *f;
  // avoid problems if somebody tries to access an editor
- Editor=0;
+ TMLIEditor::Editor=0;
  if (!InitLispEditor())
     return;
  f=fopen(file,"rb");
@@ -312,12 +317,12 @@ void SLPInterfaceRunSelection(TCEditor *ed)
       {
        memcpy(s,ed->buffer+ed->selStart,l);
        s[l]=0;
-       Editor=ed;
+       TMLIEditor::Editor=ed;
        if (!InterpretLispEditor(s,True))
           SLPShowError();
        free(s);
        ed->update(ufView);
-       Editor=0;
+       TMLIEditor::Editor=0;
       }
    }
 }
@@ -337,11 +342,11 @@ void SLPInterfaceRunAsk(TCEditor *ed, char *code)
  if (execDialog(d,b)!=cmCancel)
    {
     b[maxRunAskCode-1]=0;
-    Editor=ed;
+    TMLIEditor::Editor=ed;
     if (!InterpretLispEditor(b,True))
        SLPShowError();
     ed->update(ufView);
-    Editor=0;
+    TMLIEditor::Editor=0;
    }
 }
 
@@ -349,7 +354,7 @@ void SLPInterfaceRun(TCEditor *ed)
 {
  if (!slpFile)
     return;
- Editor=ed;
+ TMLIEditor::Editor=ed;
 
  switch (ChooseAndRunLispEditor())
    {
@@ -363,21 +368,21 @@ void SLPInterfaceRun(TCEditor *ed)
  // Is better to redraw it because in some cases is needed, for example when the
  // line is in edition and the series of commands moves the cursor outside the line
  ed->update(ufView);
- Editor=0;
+ TMLIEditor::Editor=0;
 }
 
 void SLPInterfaceReRun(TCEditor *ed)
 {
  if (!slpFile)
     return;
- Editor=ed;
+ TMLIEditor::Editor=ed;
 
  if (ReRunLastChooseLispEditor()==SLP_ERROR)
     SLPShowError();
  // Is better to redraw it because in some cases is needed, for example when the
  // line is in edition and the series of commands moves the cursor outside the line
  ed->update(ufView);
- Editor=0;
+ TMLIEditor::Editor=0;
 }
 
 #define AnDiag 36
@@ -440,14 +445,14 @@ int SLPSearchMacro(TCEditor *ed,char *name)
 {
  if (!name)
     return SLP_NO_CHOOSE;
- Editor=ed;
+ TMLIEditor::Editor=ed;
 
  int ret=MLIEdSeachAndRunCom(name);
  if (ret==SLP_ERROR)
     SLPShowError();
 
  ed->update(ufView);
- Editor=0;
+ TMLIEditor::Editor=0;
  return ret==SLP_OK;
 }
 
