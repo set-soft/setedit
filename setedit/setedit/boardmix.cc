@@ -163,15 +163,18 @@ void BoardMixerSave(fpstream& s)
 {
  s << Version << (JoinChannels | SaveToDisk);
  elements=0; cantElements=0;
- if (!Disabled && MixerInit())
-    elements=GetElements(&cantElements);
- if (!SaveToDisk)
+ if (SaveToDisk)
+   {
+    if (!Disabled && MixerInit())
+       elements=GetElements(&cantElements);
+   }
+ else
     cantElements=0;
  s << cantElements;
  int i;
  for (i=0; i<cantElements; i++)
      s << elements[i].id << elements[i].right << elements[i].left;
- if (!Disabled) MixerDeInit();
+ if (!Disabled && SaveToDisk) MixerDeInit();
 }
 
 void BoardMixerLoad(fpstream& s)
@@ -182,13 +185,14 @@ void BoardMixerLoad(fpstream& s)
  JoinChannels=flags & 1;
  SaveToDisk=flags & 2;
 
- if (!Disabled) MixerInit();
+ if (!Disabled && SaveToDisk) MixerInit();
  s >> cantElements;
  int i;
  for (i=0; i<cantElements; i++)
     {
      s >> id >> right >> left;
-     SetMixerValue(id,left,right);
+     if (SaveToDisk)
+        SetMixerValue(id,left,right);
     }
- if (!Disabled) MixerDeInit();
+ if (!Disabled && SaveToDisk) MixerDeInit();
 }
