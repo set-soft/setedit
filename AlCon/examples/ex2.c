@@ -24,13 +24,13 @@ int main(void)
  cprintf("Hola");
  
  cprintf("funka?");
- gotoxy(1,25);
+ gotoxy(1,AlCon_ScreenRows());
  
  cprintf("Last line");
  getch();
  
  cprintf("\nScrollg");
- gotoxy(7,25);
+ gotoxy(7,AlCon_ScreenRows());
  
  for (off=0; off<16; off++)
     {

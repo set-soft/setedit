@@ -6,15 +6,7 @@ be provided in the same package.
 #include <stdio.h>
 #include <string.h>
 #include "AlCon.h"
-#include "allegro/aintern.h"
-
-#if !defined(ALLEGRO_SUB_VERSION) || ALLEGRO_SUB_VERSION<9
- #define END_OF_MAIN()
- #define acquire_bitmap(a)
- #define release_bitmap(a)
- #define poll_mouse()
- #define set_uformat(a)
-#endif
+#include <allegro/internal/aintern.h>
 
 FONT sfont;
 FONT_GLYPH *ascii_data[256];
@@ -523,13 +515,14 @@ void AlCon_Init(int w, int h)
     set_color_depth(desktop_color_depth());
  else
     set_color_depth(BPP);
- if (set_gfx_mode(GFX_AUTODETECT,8*w,16*h,0,0))
+ if (set_gfx_mode(GFX_SAFE,8*w,16*h,0,0))
    {
     set_gfx_mode(GFX_TEXT,0,0,0,0);
     allegro_message("Can't initialize graphics mode\n%s\n",allegro_error);
     exit(2);
    }
 
+ w = SCREEN_W/8; h = SCREEN_H/16;
  maxX=w; maxY=h;
 
  /* Create an Allegro mono font from it */
