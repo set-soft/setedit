@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.230  2002/11/11 16:21:22  set
+* Fixed: A bug introduced by the 1.197 (SF number) revision. It fixed
+problems in the overwrite undo but introduced problems in the normal
+overwrite use ;-). Now I reverted part of the patch and added a specific
+fix. *** Overwrite still unstable ***
+
 Revision 1.229  2002/11/08 12:42:45  set
 * Added: Some keywords to HTML syntax highlight.
 

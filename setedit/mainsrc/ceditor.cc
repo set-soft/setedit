@@ -3673,6 +3673,14 @@ void TCEditor::CommentUnIndent()
  addToUndo(undoInMov);
  unsigned Pos=JumpLineStartSelection();
 
+ // Verify that at least the first line is already indented
+ AllocLocalStr(b,l+2);
+ strncpy(b,TCEditor::strC.EOLCom1,l);
+ b[l]=' ';
+ b[l+1]=0;
+ if (strncmp(curLinePtr,b,l+1)!=0)
+    return; // Nope, abort.
+
  // How many lines?
  unsigned Lines,PosAux,y;
  for (Lines=0,y=curPos.y,PosAux=Pos; PosAux<selEnd-1;)
@@ -10913,12 +10921,15 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
  if (isReadOnly) return;
  if (hasVisibleSelection())
    {
-    // This routing is pretty Waco:
+    // This code is pretty Waco:
     flushLine();
 
     if (allowUndo)
        addToUndo(undoPre1IndBlock,NULL);
     unsigned Pos=JumpLineStartSelection();
+    // Save info to update de shl
+    unsigned firstLine=curPos.y;
+    char *firstTouchedP=curLinePtr;
 
     unsigned Amount;
 
@@ -10965,6 +10976,7 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
         PosAux+=lenLines[y++];
         Lines++;
        }
+    unsigned lastLine=firstLine+Lines;
 
     // Now let's go, do the work.
 
@@ -11004,8 +11016,8 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
         Total-=Amount;
        }
 
+    UpdateSyntaxHLBlock(firstLine,firstTouchedP,lastLine);
     MarkAsModified();
-
     update(ufView);
    }
 }
