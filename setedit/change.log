@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.561  2004/08/04 20:09:47  set
+* Added: Inspectors!!! They are quite different to the RHIDE inspectors.
+They are suitable for complex structures and you can have various in the
+desktop.
+
 Revision 1.560  2004/08/02 15:23:03  set
 * Fixed: makeinfo 4.7 enforces the use of @pxref for (@x{...}).
 * Fixed(?): makeinfo 4.7 no longer supports "@end xxxx" commands inside

@@ -468,7 +468,11 @@
 ; and provide the comment string yourself. This macro makes this automatic.
 
 (defmacro 'CommentIndent'
+ (progn
+    (if (not (SelectionExists))    (SendCommands cmcMarkLine))
+
     (if (== (GetSyntaxLang) '' )    (SendCommands cmcArbitraryIndent)
                                     (SendCommands cmcCommentIndent)
     )
-)
+ )
+) 
