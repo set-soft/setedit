@@ -141,7 +141,7 @@ const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
 
-#define DEBUG_ME 1
+#define DEBUG_ME 0
 #if DEBUG_ME
  #define dbgPr(format, args...) printf(format , ## args)
 #else
@@ -3188,6 +3188,7 @@ void TSetEditorApp::DebugDeInitVars() {}
 void TSetEditorApp::DebugCloseSession() {}
 int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
 int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
+void TSetEditorApp::DebugEditBreakPts() {}
 void DebugSetCPULine(int , char *) {}
 void TSetEditorApp::DebugPoll() {}
 void DebugReadData(ipstream &) {}
