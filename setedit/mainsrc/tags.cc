@@ -847,7 +847,8 @@ TStringCollection *TTagCollection::getTagFilesList()
 *****************************************************************************/
 
 TTagClassCol::TTagClassCol(TSpTagCollection *from) :
-  TStringCollection(20,10)
+  TNoCaseStringCollection(20,10)
+  //TStringCollection(20,10)
 {
  ccIndex c=from->getCount(),i;
  for (i=0; i<c; i++)
@@ -1570,9 +1571,10 @@ int BrowseThisAParents(stClassTagInfo *cl, TTagClassCol *clist, Boolean sorted,
 }
 
 static
-void BrowseClass(ccIndex index, TTagClassCol *clist)
+Boolean BrowseClass(ccIndex index, TTagClassCol *clist)
 {
  int ret;
+ Boolean jumped=False;
  do
    {
     stClassTagInfo *cl=clist->atPos(index);
@@ -1611,17 +1613,21 @@ void BrowseClass(ccIndex index, TTagClassCol *clist)
          {
           case cmThisClass:
                ret=BrowseClassMembers(cl);
+               jumped=ret==cmCancel;
                break;
           case cmThisAParents:
                ret=BrowseThisAParents(cl,clist,False,index);
+               jumped=ret==cmCancel;
                break;
           case cmSorted:
                ret=BrowseThisAParents(cl,clist,True,index);
+               jumped=ret==cmCancel;
                break;
          }
       }
    }
  while (ret!=cmCancel);
+ return jumped;
 }
 
 static
@@ -1633,8 +1639,8 @@ void BrowseClasses(TListBoxRec &br, TTagClassCol *clist)
     ret=execDialog(createDialogCl(),&br);
     if (ret==cmYes)
        JumpToTag(br);
-    if (ret==cmOK)
-       BrowseClass(br.selection,clist);
+    if (ret==cmOK && BrowseClass(br.selection,clist))
+       break;
    }
  while (ret==cmOK);
 }

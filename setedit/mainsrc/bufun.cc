@@ -727,6 +727,7 @@ static TDialog *createDialog( )
  int w=r.b.x-r.a.x-15;
 
  TSSOSSortedListBox *ListaH=new TSSOSSortedListBox(w,h,tsslbVertical|tsslbHorizontal,1,256);
+ ((TListViewer *)ListaH->view)->handleSpace=False;
  ListaH->view->growMode=gfMoveBottomCorner;
  TSLabel *lista=new TSLabel(__("List of functions"),ListaH);
 

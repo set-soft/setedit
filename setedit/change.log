@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.331  2003/05/05 14:03:21  set
+* Added: A new option to control the size of newly opened files. When
+enabled the windows tries to avoid overlapping the message and project
+windows. The algorithm searchs for the bigger available rectangle that
+doesn't overlap. The code also ensures a minimal size of 24x6 and ensures
+the window is visible (not outside desktop). It was suggested by Iván.
+* Documented and updated spanish translations.
+
 Revision 1.330  2003/05/05 13:57:49  set
 * Fixed: Some pmacros (Perl was the most notable) didn't indicate the right
 editing mode flags. It could make them fail to generate properly indented

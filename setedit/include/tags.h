@@ -196,7 +196,7 @@ protected:
  int abortInit;
 };
 
-class TTagClassCol : public TStringCollection
+class TTagClassCol : public TNoCaseStringCollection //TStringCollection
 {
 public:
  TTagClassCol(TSpTagCollection *from);

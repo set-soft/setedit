@@ -3058,6 +3058,7 @@ int TCEditor::handleCommand(ushort command)
                  int line;
                  char *Word;
 
+                 CacheSyntaxHLData(GenericSHL);
                  Word=WordUnderCursor(80/*,wucIncludeColon*/);
                  if (editorDialog(command==cmcJumpToFunction ? edJumpToFunction :
                      edJumpToPrototype,&line,buffer,bufLen,Word,fileName,strC.Name))
