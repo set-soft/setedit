@@ -368,9 +368,23 @@ void CLEGetMatch(int match, char *buf, int maxLen)
  memcpy(buf,BufSearch+start,len);
  buf[len]=0;
 }
+
+void CLEGetMatch(int match, int &offset, int &len)
+{
+ if (match==-1 || match>LastHits)
+   {
+    offset=-1; len=0;
+    return;
+   }
+ offset=PCREMatchs[match*2];
+ int end=PCREMatchs[match*2+1];
+ len=end-offset;
+}
 #else
 static pcre *PCRECompileRegEx(char *, int&) {return 0;}
 int CLEDoSearch(char *, int , pcre *) {return 0;}
 void CLEGetMatch(int , char *, int ) {;}
+void CLEGetMatch(int match, int &offset, int &len)
+{ if (match) match=0; offset=-1; len=0; }
 #endif
 

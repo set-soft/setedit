@@ -1226,7 +1226,7 @@ opens it.
 
 ***************************************************************************/
 
-int GotoFileLine(int line, char *file, char *msg)
+int GotoFileLine(int line, char *file, char *msg, int off, int len)
 {
  if (line<0)
    {
@@ -1242,7 +1242,17 @@ int GotoFileLine(int line, char *file, char *msg)
     ed->trackCursor(True);
     ed->update(ufView); // Be sure we cleared the last hit
     if (msg)
-       ed->setStatusLine(msg);
+      {// Show only a portion if they asked for it
+       if (off>=0)
+         {
+          char oldV=msg[off+len];
+          msg[off+len]=0;
+          ed->setStatusLine(msg+off);
+          msg[off+len]=oldV;
+         }
+       else
+         ed->setStatusLine(msg);
+      }
     ed->unlock();
     return 1;
    }

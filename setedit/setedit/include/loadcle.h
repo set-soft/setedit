@@ -49,3 +49,4 @@ extern int CLEGetIndexOf(const char *name);
 extern int CLEGetIndexOfLoad(const char *name);
 extern int CLEDoSearch(char *search, int len, pcre *CompiledPCRE);
 extern void CLEGetMatch(int match, char *buf, int maxLen);
+extern void CLEGetMatch(int match, int &offset, int &len);
