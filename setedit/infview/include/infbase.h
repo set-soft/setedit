@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -26,7 +26,7 @@
 #define cInfWindow     "\x40\x41\x42\x43\x44\x45\x46\x47\x48\x49"
 #endif
 
-#ifndef __STDIO_H
+/*#ifndef __STDIO_H
 #if defined(TVCompf_djgpp) && defined(NULL)
 #undef NULL
 #endif
@@ -39,7 +39,7 @@
 #endif //__STDIO_H
 
 #define Uses_TNoCaseSOSStringCollection
-#include <settvuti.h>
+#include <settvuti.h>*/
 
 // 90 because the Ralf Brown list can make that
 #define MAX_NODE_NAME 90

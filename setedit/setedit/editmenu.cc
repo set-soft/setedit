@@ -18,9 +18,10 @@
 #define Uses_TFileDialog
 #define Uses_TDeskTop
 #define Uses_TStringCollection
-//#define Uses_fpstream
 #define Uses_TSortedListBox
 #define Uses_TKeys
+// InfView requests
+#include <infr.h>
 
 #define Uses_TInputLinePipedConst
 #define Uses_TCEditWindow

@@ -28,6 +28,8 @@
 #define Uses_TSSortedListBox
 #define Uses_TSLabel
 #define Uses_TSButton
+// InfView requests
+#include <infr.h>
 
 // First include creates the dependencies
 #include <easydia1.h>

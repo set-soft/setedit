@@ -194,15 +194,16 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #define Uses_Progress
 #define Uses_string
 #define Uses_ctype
+
+// InfView stuff
+#define Uses_TGrowDialog
+#define Uses_TSOSSortedListBox
+#include <infr.h>
+
 #include <ceditor.h>
 #include <diaghelp.h>
 #include <dyncat.h>
-
-#define Uses_TGrowDialog
-#define Uses_TSOSSortedListBox
 #include <inf.h>
-
-#include <ctype.h>
 
 #ifndef TVOSf_Linux
 # include <io.h>

@@ -33,7 +33,9 @@
 #define Uses_ctype
 #define Uses_limits
 #define Uses_filelength
-#include <tv.h>
+// InfView requests
+#include <infbaser.h>
+#include <settvuti.h>
 
 #include <fcntl.h> // open
 #include <gzfiles.h>

@@ -8,14 +8,16 @@
 #define Uses_TCEditWindow
 #define Uses_TProgram
 #define Uses_TDeskTop
+// InfView requests
+#include <infr.h>
 #include <ceditor.h>
+#include <inf.h>
 #define Uses_SETAppVarious
 #define Uses_TSetEditorApp
 #include <setapp.h>
 #include <dskwin.h>
 #include <dskhelp.h>
 #include <stdio.h>
-#include <inf.h>
 #include <edcollec.h>
 
 inline void SetInfManager(TDskWinHelp *p)

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -35,6 +35,8 @@ void SyntaxSearch_ShutDown(void);@*
 #define Uses_TSVeGroup
 #define Uses_string
 #define Uses_ctype
+// InfView requests
+#include <infr.h>
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -43,7 +45,6 @@ void SyntaxSearch_ShutDown(void);@*
 #include <easydiag.h>
 
 #include <inf.h>
-
 #include <ssyntax.h>
 
 // Help context:

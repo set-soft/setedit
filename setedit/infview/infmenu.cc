@@ -16,6 +16,8 @@
 #define Uses_MsgBox
 #define Uses_TFileDialog
 #define Uses_TDeskTop
+// InfView requests
+#include <infr.h>
 
 #define Uses_TCEditor_Commands
 #include <ceditor.h>

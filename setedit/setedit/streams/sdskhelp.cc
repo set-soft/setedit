@@ -6,6 +6,8 @@
 #define Uses_TStreamableClass
 #define Uses_TStreamable
 #define Uses_string
+// InfView requests
+#include <infr.h>
 #include <ceditor.h>
 #include <dskwin.h>
 #include <dskhelp.h>

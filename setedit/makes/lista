@@ -235,8 +235,10 @@ include/tvsetuti.h
 include/ucdefs.h
 infview/change.log
 infview/include/inf.h
+infview/include/infr.h
 infview/include/infalone.h
 infview/include/infbase.h
+infview/include/infbaser.h
 infview/include/manview.h
 infview/inf.cc
 infview/infbase.cc
