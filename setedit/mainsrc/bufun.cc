@@ -499,6 +499,9 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
             // A bizarre case: try/catch not inside the body
             else if (strcmp(bfBuffer,"try")==0)
                SkipCatch=SearchOpen=Eureka=1;
+            // List of exceptions that can be thrown
+            else if (strcmp(bfBuffer,"throw")==0)
+               SearchOpen=Eureka=1;
            }
         }
       if (Eureka)
