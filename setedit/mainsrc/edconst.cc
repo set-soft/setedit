@@ -193,6 +193,7 @@ static edCList SetApp[] =
 { "ChangeDrct"     , 2  },
 { "Close"          , 24 },
 { "ClosePrj"       , 12 },
+{ "ColorTheme"     , 74 },
 { "ConfRunCommand" , 39 },
 { "DeleteBkps"     , 55 },
 { "DosShell"       , 3  },

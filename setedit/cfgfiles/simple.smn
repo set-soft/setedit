@@ -76,7 +76,10 @@ EndSubMenu
 
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
-   MenuItemC: "~C~olors", cmeSetColors
+   SubMenu: "~C~olors", kbAlC
+     MenuItemC: "~C~ustomize ...", cmeSetColors
+     MenuItemC: "~T~heme ...", cmeColorTheme
+   EndSubMenu
    MenuItemC: "~L~ocal edition", cmcSetLocalOptions, kbAlL, "Alt+L"
    MenuItemC: "Glo~b~al edition", cmcSetGlobalOptions, kbAlG, "Alt+G"
    MenuItemC: "Scr~e~en saver", cmeScreenSaverOpts

@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.4.56
-@set update-date 19 Feb 2002
-@set update-month Feb 2002
+@set update-date 28 Apr 2002
+@set update-month Apr 2002
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1683,7 +1683,7 @@ This submenu contains the configuration submenues.
 @paragraph{}
 
 @c --------------------------------------------------------------------------
-@subsubsection Colors
+@subsubsection Customize Colors
 
 This command allows to customize the colors used by the editor. Almost all
 the colors are configurable.
@@ -1740,6 +1740,18 @@ These settings are stored in the desktop file. @x{Desktop Files}.
 @paragraph{}
 
 @refMenu1{cmeEditPalette}
+
+@c --------------------------------------------------------------------------
+@subsubsection Color Theme
+
+With this option you can choose from a list of predefined groups of colors.
+@p{}
+
+Currently only a couple of color themes are available, users are encouraged to
+contribute their own themes.
+@p{}
+
+@refMenu1{cmeColorTheme}
 
 @c --------------------------------------------------------------------------
 @subsubsection Editor General
@@ -3290,7 +3302,7 @@ of the line with your eyes because it's ever in the same place.
   In this mode the tabs are highlighted, two colors are used for this purpose,
 one for even and the other for odd tabs. In this way you can clearly see where
 a tab is located and the size of the tab. The colors can be customized from
-the Colors menu option. @xref{Colors}.
+the Colors menu option. @xref{Customize Colors}.
 @paragraph{}
 
   This mode was introduced in v0.4.23 and is globally enabled by default.
@@ -5279,7 +5291,7 @@ and Windows in USA and part of Europe) and have your comments in russian
 @paragraph{}
 
 To learn how to customize the palette: @x{Color Palette}.@*
-To learn how to assign colors to the things used in the editor: @x{Colors}.@*
+To learn how to assign colors to the things used in the editor: @x{Customize Colors}.@*
 To learn how to select a font and an encoding: @x{Screen Options}.@*
 
 @section File Open

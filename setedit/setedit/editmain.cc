@@ -615,7 +615,6 @@ void PrintEditor(void)
    messageBox(_("This window can't be printed select an editor"),mfError | mfOKButton);
 }
 
-void Colors(void);
 #define T(a) \
 case cme##a:\
      event.message.command=cm##a;\
@@ -858,6 +857,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeSetColors:
               Colors();
+              break;
+
+         case cmeColorTheme:
+              ColorTheme();
               break;
 
          case cmePrintEditor:

@@ -159,10 +159,13 @@ EndSubMenu
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
 # BCDEFGHKLNOPRSU
-   MenuItemC: "~C~olors ...", cmeSetColors
-   $if DOS or Linux
-   MenuItemC: "Color ~P~alette ...", cmeEditPalette
-   $endif
+   SubMenu: "~C~olors", kbAlC
+     MenuItemC: "~C~ustomize ...", cmeSetColors
+     $if DOS or Linux
+     MenuItemC: "~P~alette ...", cmeEditPalette
+     $endif
+     MenuItemC: "~T~heme ...", cmeColorTheme
+   EndSubMenu
    MenuItemC: "~L~ocal edition ...", cmcSetLocalOptions, kbAlL, "Alt+L"
    MenuItemC: "Glo~b~al edition ...", cmcSetGlobalOptions, kbAlG, "Alt+G"
    MenuItemC: "Editor ~G~eneral ...", cmeEdGralOptions

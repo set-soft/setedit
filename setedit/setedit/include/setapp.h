@@ -90,7 +90,8 @@ const int
   cmeBoardMixer     = cmeBase+70,
   cmeStopChild      = cmeBase+71,
   cmeEditNoBkp      = cmeBase+72,
-  cmeIncludeList    = cmeBase+73;
+  cmeIncludeList    = cmeBase+73,
+  cmeColorTheme     = cmeBase+74;
 #endif
 
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
@@ -254,6 +255,10 @@ extern char *TranslateCommandToMacro(unsigned command);
 extern int RegisterMacroCommand(char *name);
 extern int isAMacroInMenu(unsigned command);
 extern void UnRegisterMacroCommands(void);
+
+// From edcolor.cc
+extern void Colors();
+extern void ColorTheme();
 
 void FullSuspendScreen();
 void FullResumeScreen();

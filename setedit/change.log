@@ -1,4 +1,7 @@
 $Log$
+Revision 1.68  2002/04/29 15:00:10  set
+* Fixed: [Linux] Now ask_config is executed only once.
+.
 Revision 1.67  2002/04/29 14:58:24  set
 * Fixed: roll-back of a FreeBSD patch that makes Linux use -lintl, this is
 not the way.
