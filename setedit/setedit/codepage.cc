@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -1010,6 +1010,8 @@ void CreateToUpLowTablesFor(CodePage *)
 }
 #endif
 
+// InfView doesn't have to mess with it that pulls editorfo.cc
+#ifndef NoEditorSpecific
 static
 void CreateIsWordCharFor(CodePage *p)
 {
@@ -1030,6 +1032,13 @@ void CreateIsWordCharFor(CodePage *p)
  for (s=(uchar *)p->MoreLetters; *s; s++)
      TableTypesEditor[*s]|=ttedIsWordChar;
 }
+#else
+static
+void CreateIsWordCharFor(CodePage *p)
+{
+ if (p) p=0;
+}
+#endif
 
 static uchar Similar[]=
 {
@@ -1139,7 +1148,9 @@ void RemapCharactersFor(int id)
  C(TMenuBox,rightArrow);
  C(TRadioButtons,check);
  C(TIndicator,modifiedStar);
+ #ifndef NoEditorSpecific
  C(TCEditor,TabChar);
+ #endif
  #undef C
 
  int i;
@@ -1155,9 +1166,11 @@ void RemapCharactersFor(int id)
  C(TScrollBar,hChars,5);
  #undef C
 
+ #ifndef NoEditorSpecific
  #define C(num,o,n) for (i=0; i<num; i++) n[i][0]=RemapCharCodePage(o[i][0],map)
  C(4,coFormaScreenSaverStars,cFormaScreenSaverStars);
  #undef C
+ #endif
 
  TBackground *bkg=TProgram::deskTop->getBackground();
  bkg->changePattern(RemapCharCodePage(TDeskTop::defaultBkgrnd,map));
