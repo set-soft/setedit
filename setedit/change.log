@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.592  2004/08/30 15:34:05  set
+* Fixed: [Tags] Abort when doing word completion and the starting word was
+"bigger" than the last tag in the list. Reported by Juan Pablo.
+
 Revision 1.591  2004/08/27 18:27:00  set
 * Fixed: [Debug] Data Window commands not enabled after recycling a data
 window.

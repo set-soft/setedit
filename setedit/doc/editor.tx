@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.4
-@set update-date 31 July 2004
-@set update-month July 2004
+@set update-date 1 September 2004
+@set update-month September 2004
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -7279,7 +7279,7 @@ in this state.
 Some menu options can be used to force a particular state. So you can
 directly jump to @il{connected} or @il{ready to run} states from the
 @il{disconnected} state. This is useful if you want to send commands to gdb
-that are useful only in these states.
+that only works in these states.
 @p{}
 
 When you specify an action that is invalid for the current state the editor
@@ -7299,9 +7299,46 @@ from the @il{running} state. And the @il{Debug|Kill} option is used to go to
 the @il{ready to run} state from the @il{stopped} or @il{running} states.
 @p{}
 
-@section Running the program to debug
+@subsection Going to the connected debug state
 
-This operation is obtained using the @il{Debug|Run/Continue} menu entry.
+This operation is obtained using the @il{Debug|Go to state|Connected} menu
+entry.
+@p{}
+
+With this function the editor will try to reach the @il{Connected} debugging
+state. @x{Debugging states}.
+@p{}
+
+It can be used when the debugger isn't running and you want to start it
+without specifying the target to debug. In this way you can send commands to
+gdb that are useful only before you specify the target.
+@p{}
+
+@refMenu1{cmeDbgGoConnected}
+
+@subsection Going to the ready to run debug state
+
+This operation is obtained using the @il{Debug|Go to state|Ready to run} menu
+entry.
+@p{}
+
+With this function the editor will try to reach the @il{Ready to run} debugging
+state. @x{Debugging states}.
+@p{}
+
+This operation will try to reach the @il{Connected} state first.
+@x{Going to the connected debug state}. If this is achieved then the editor
+will indicate to gdb which target do you want to debug. For local debugging
+the program won't be started so you can send to gdb commands that apply only
+before starting the program to debug.
+@p{}
+
+@refMenu1{cmeDbgGoReadyToRun}
+
+@section Running the program to debug
+@cindex debug, run
+
+This operation is obtained using the @il{Debug|Run/Continue/Atach} menu entry.
 @p{}
 
 You must first configure the name of the program you want to debug. If you
@@ -7317,7 +7354,1048 @@ That's because gdb gets blocked until your program is stopped.
 @x{Debugging states}.
 @p{}
 
+This command have other uses. If your program is already stopped it resumes
+its execution. @x{Continue execution}. If you are debugging a program that is
+already running this command will atach to the running process and stop the
+execution.
+@p{}
+
 @refMenu{cmeDbgRunContinue,Shift+F9}
+
+@section Stopping the program you are debugging
+@cindex debug, stop
+
+Once your program is running you can stop it using the @il{Debug|Stop}
+option. But usually is better to use breakpoints and watchpoints instead.
+@p{}
+
+Using breakpoints you can stop the execution at a desired point of your
+program. Using watchpoints you can stop the execution when some data value
+changes or is accessed. Note that gdb watchpoints aren't fully reliable.
+@p{}
+
+@refMenu1{cmeDbgStop}
+
+@subsection Breakpoints
+@cindex debug, breakpoints
+
+Breakpoints are stop points in your program. The easiest way to create a
+breakpoint is by using the @il{Debug|Breakpoint} menu option. This will
+create a breakpoint at the current file and line. To remove it just use the
+same menu option. Breakpoint lines are highlighted. The default color is red.
+@x{Customize Colors}.
+@p{}
+
+Note that gdb accepts breakpoints even for source lines that didn't generate
+code. In this case gdb will stop the execution when the nearest source line
+is reached.
+@p{}
+
+When you edit your program breakpoints are automatically moved. If you use
+the editor options to call an external program in order to recompile your
+program the editor will inform gdb the new place for the breakpoints.
+@p{}
+
+To create more complex breakpoints you have to use the
+@il{Debug|Edit breakpoints...} menu option. @x{Advanced breakpoint options}.
+@p{}
+
+@refMenu{cmeBreakpoint,Ctrl+F8}
+
+@subsection Advanced breakpoint options
+@cindex debug, breakpoints advanced
+@cindex Edit breakpoints
+
+This dialog is obtained using the @il{Debug|Edit breakpoints...} menu entry.
+Using this dialog you can:
+@p{}
+
+@itemize @bullet
+@item Modify existing breakpoints. Modify button.
+@item Add new breakpoints. New button.
+@item Remove breakpoints. Delete button.
+@item Enable or disable a breakpoint. Enable and Disable buttons. Note that
+currently this is not the same concept implemented in gdb. I.e. we remove the
+breakpoint from gdb but not from the editor list.
+@item Jump to the source file where the breakpoint is located. Show button.
+@end itemize
+
+The list of breakpoints contains the following information:
+@p{}
+
+@itemize @bullet
+@item E: an asterisk if enabled.
+@item Where: breakpoint location.
+@item Condition: the additional condition for conditional breakpoints.
+@item Count: the number of times this breakpoint will be ignored when
+enabled.
+@item Thre.: the thread affected by this breakpoint. All threads are
+affected by default.
+@end itemize
+
+When you add or modify a breakpoint a dialog offering the following options
+is used:
+@p{}
+
+@itemize @bullet
+@item Type: This is the kind of specification for the breakpoint location.
+GDB supports four ways to specify a breakpoint combining the source file
+name, the line, function and code address.
+@item Condition: If this field contains a condition the breakpoint will stop
+the program execution when the location is reached and the condition is
+satisfied.
+@item Count: When this value is specified the breakpoint will be ignored this
+ammount of times. Note that gdb keeps a counter that is reset every time you
+set the breakpoint. When the program is started the editor will force a
+refresh on this value. That isn't the normal gdb behavior. It means that a
+count of five will make the breakpoint to be ignored the first five times it
+was reached after starting your program.
+@item Thread: You can specify a thread id here.
+@item Enabled: Indicates if the breakpoint is enabled.
+@item Hardware assisted: When you are debugging code that is located in a
+read only memory space you have to use hardware assisted breakpoints. Read
+the gdb documentation for more information.
+@end itemize
+
+When a breakpoint fails to apply the editor will disable it to avoid farther
+gdb errors.
+@p{}
+
+@refMenu1{cmeDbgEditBreakPts}
+
+@subsection Watchpoints
+@cindex debug, watchpoints
+@cindex data breakpoints
+
+This dialog is obtained using the @il{Debug|Edit watchpoints...} menu entry.
+@p{}
+
+Unlike breakpoints the watchpoints are data related. Some people calls them
+@il{data breakpoints}. Watchpoints can stop the execution when a data value
+is:
+@p{}
+
+@itemize @bullet
+@item Written
+@item Read
+@item Accessed (Written or Read)
+@end itemize
+
+Note that in order to get usable results this needs hardware assistance. It
+means that not all platforms supports it. Additionally the number of
+watchpoints is limited and gdb imposes more restrictions to what can be used
+as a watchpoint. In some cases gdb tries to emulate it using software and the
+result can be really bad. During development I found a case where gdb did it
+and as a result it eated all the CPU time and was really hard to stop.
+@p{}
+
+Using this dialog you can:
+@p{}
+
+@itemize @bullet
+@item Modify existing watchpoints. Modify button.
+@item Add new watchpoints. New button.
+@item Remove watchpoints. Delete button.
+@item Enable or disable a watchpoint. Enable and Disable buttons.
+@end itemize
+
+The list of watchpoints contains the following information:
+@p{}
+
+@itemize @bullet
+@item E: an asterisk if enabled.
+@item R/W: type of watchpoint (Read, Write or Read+Write)
+@item Expression: The expression to monitor.
+@end itemize
+
+When you add or modify a watchpoint a dialog offering the following options
+is used:
+@p{}
+
+@itemize @bullet
+@item Expression: the expression that will be monitored.
+@item Type: the action that will stop the execution.
+@item Enabled: indicates if the watchpoint is enabled.
+@end itemize
+
+@refMenu1{cmeDbgEditWatchPts}
+
+@section Examining data
+@cindex debug, examining data
+
+There are many tools to examine data values of the program you are debugging.
+You can:
+@p{}
+
+@itemize @bullet
+@item Evaluate an expression to know the resulting value.
+@x{Evaluate or Modify expression}.
+@item Monitor a simple value as the program flows. @x{Watch an expression}.
+@item Monitor an expression with scope. @x{Watch an expression with scope}.
+@item Monitor a complex data structure. @x{Inspectors}.
+@item Examine the memory space. @x{Data Window}.
+@item Examine the stack. @x{Stack window}.
+@end itemize
+
+@subsection Evaluate or Modify expression
+@cindex debug, evaluate expression
+@cindex debug, modify expression
+
+This dialog is obtained using the @il{Debug|Evaluate/Modify...} menu entry.
+@p{}
+
+The first input line is used to enter the expression you want to evaluate.
+The result is obtained using the @il{Evaluate} button. That's the default
+button so you can just press @kbd{Enter}. The resulting value is displayed in
+the @il{Result} input line.
+@p{}
+
+To assign a different value to the expression you must use the @il{New value}
+input line and press the @il{Change} button. Note that the value used in
+@il{Expression} must be expressed in a way that can be used for an
+assignment (@il{Expression} = @il{New Value}).
+@p{}
+
+The @il{Copy} button will copy the @il{Result} value to the editor's
+clipboard. The @il{Paste} value will paste from the editor's clipboard to the
+@il{Expression} input line.
+@p{}
+
+Using the @il{Inspect} button you can create an Inspector Window based on the
+@il{Expression}. @x{Inspectors}.
+@p{}
+
+This dialog is modal and is used to evaluate a value just once. To see how a
+value changes as yourt program flows use watches or inspectors.
+@p{}
+
+@refMenu{cmeDbgEvalModify,Ctrl+F4}
+
+@subsection Watch an expression
+@cindex watches
+@cindex debug, monitor expression
+
+This functionality is obtained using the @il{Debug|Watch an expression|Normal
+watch} menu entry.
+@p{}
+
+Using this option you can add an expression to the Watches Window. This
+expression will be evaluated every time the program stops and the result will
+be updated in the Watches Window.
+@p{}
+
+Adding too much watches could slow down the debug process. Also note that the
+expression will be evaluated in the current scope. If you need to monitor an
+expression in a fixed scope use a watch with scope.
+@x{Watch an expression with scope}. For complex data structures you'll get
+better results using Inspectors. @x{Inspectors}.
+@p{}
+
+@refMenu{cmeDbgWatchExpNorm,Ctrl+F7}
+
+@subsection Watch an expression with scope
+@cindex watches w/scope
+
+This functionality is obtained using the @il{Debug|Watch an expression|With
+scope} menu entry.
+@p{}
+
+Using this option you can add an expression to the Watches Window. This
+expression will be evaluated every time the program stops and the result will
+be updated in the Watches Window.
+@p{}
+
+Adding too much watches could slow down the debug process. These watches are
+implemented using a gdb mechanism that is faster when only a few expressions
+changes in each execution.
+@p{}
+
+Unlike normal watches the scope of the expression is fixed. It means you'll
+be monitoring the same value all the time and not different variables. Also
+note that when their scope is finished they are deleted from the list.
+@p{}
+
+For complex data structures you'll get better results using Inspectors.
+@x{Inspectors}.
+@p{}
+
+@refMenu1{cmeDbgWatchExpScp}
+
+@subsection Inspectors
+@cindex debug, inspectors
+@cindex debug, structures
+
+This functionality is obtained using the @il{Debug|Watch an expression|Using
+the Inspector} menu entry.
+@p{}
+
+Inspectors are used to monitor complex data structures as the program flows
+or just navigate them to verify them. I.e. you can navigate a linked list using
+an inspector.
+@p{}
+
+Unlike watches each expression you evaluate have its own window. You can have
+as many inspector windows as you like. The windows are resizable and have
+scroll bars.
+@p{}
+
+The representation of the data inside an inspector is a tree. You can expand
+or collapse the branches using the @kbd{E} and @kbd{C} keys. On most systems
+you can also use the @kbd{+} and @kbd{-} keys. If a line begins with a @il{+}
+it means that you can expand the tree from this point. If it starts with a
+@il{-} you can collapse it. After the name of the data member you'll find its
+data type enclosed in brackets. At the end of the line the value of the data
+member is displayed.
+@p{}
+
+Some lines will look a like this: @il{varXX.public}. That's just the way gdb
+indicates the accesibility of the members. The @il{varXX} part is the name
+of the internal gdb value. You don't have to worry about this name.
+@p{}
+
+When you select a line containing some data type that looks like a pointer
+the @il{Inspect} option of the status bar will be enabled. Using it you'll
+get a new inspector for the data pointed by the selected pointer. The
+@kbd{Enter} key can be used for this.
+@p{}
+
+When the line contains a data value that can be modified the @il{Modify}
+option of the status bar will be enabled. The @kbd{Ctrl}+@kbd{M} key can
+be used to modify the selected value.
+@p{}
+
+You can also use the @il{Format} option (key @kbd{Ctrl}+@kbd{F}) to change
+the format used to represent the selected member.
+@p{}
+
+Inspectors are evaluated in the scope they were created. When its scope is
+finished they stop working. If you enter to the same scope, or another where
+the expression is valid, you can use the @il{Recycle} option. The keyboard
+shortcut for it is @kbd{Ctrl}+@kbd{R}.
+@p{}
+
+@refMenu{cmeDbgInspector,Ctrl+F6}
+
+@subsection Data Window
+
+This functionality is obtained using the @il{Debug|Watch an expression|Data
+window} menu entry.
+@p{}
+
+The Data Window can be used to examine and/or modify the memory. Its
+functionality can be compared with an hexadecimal editor. The number of
+operations and options related to the Data Window are really big. For this
+reason the Data Window have its own menu. When you select a Data Window the
+menu will change to show the Data Window commands.
+@p{}
+
+The original code for the Data Window was contributed by Molnar Laszlo. He
+designed it for RHIDE, but RHIDE doesn't document all the available
+functionality of the Data Window.
+@p{}
+
+When you modify the memory in the Data Window the changes aren't reflected to
+the real memory space. In order to reflect the changes you must use the
+@kbd{Enter} key or the @il{Various|Update memory} menu option. Every time the
+program stops the content of the Data Window is updated and the changes
+highlighted. You can force the editor to recompute the original expression
+used to get the memory address used in the Data Window in each update. To
+achieve it use the @il{Mode|Toggle auto follow} menu option.
+@p{}
+
+The following is a description of the special menu used for the Data Window.
+Only the commands related to the Data Window are explained.
+@p{}
+
+@refMenu1{cmeDbgDataWindow}
+
+@subsubsection File - Read block (DW)
+
+Used to read data from a file and store it in the memory space of the program
+you are debugging. You have to choose a file and then indicate the
+destination address and the maximum ammounts of bytes to read from the file.
+@p{}
+
+Some general limits and functionality common to the Data Window operations
+applies. @x{Data Window Limitations and Details}.
+@p{}
+
+@refMenu{cmDWRead,Ctrl+R}
+
+@subsubsection File - Write block (DW)
+
+Used to write data from the memory space of the program you are debugging to
+a file. You have to indicate the source address and the how much data to
+write and then choose a file name.
+@p{}
+
+Some general limits and functionality common to the Data Window operations
+applies. @x{Data Window Limitations and Details}.
+@p{}
+
+@refMenu{cmDWWrite,Ctrl+W}
+
+@subsubsection Move - Up (DW)
+
+Moves the cursor position one row up. If the cursor is at the top row the
+starting address will be decremented by the bytes contained in a row and the
+whole block will be fetched.
+@p{}
+
+Changes not tranferred to the target will be lost if a new block of data is
+fetched.
+@p{}
+
+@refMenu{cmDWUp,Cursor up}
+
+@subsubsection Move - Down (DW)
+
+Moves the cursor position one row down. If the cursor is at the bottom row the
+starting address will be incremented by the bytes contained in a row and the
+whole block will be fetched.
+@p{}
+
+Changes not tranferred to the target will be lost if a new block of data is
+fetched.
+@p{}
+
+@refMenu{cmDWDown,Cursor down}
+
+@subsubsection Move - Right (DW)
+
+Moves the cursor to the right. If the cursor is in the rightmost column it
+will remain there.
+@p{}
+
+@refMenu{cmDWRight,->}
+
+@subsubsection Move - Left (DW)
+
+Moves the cursor to the left. If the cursor is in the leftmost column it
+will remain there.
+@p{}
+
+@refMenu{cmDWLeft,<-}
+
+@subsubsection Move - Page down (DW)
+
+Increments the starting memory address by the number of bytes contained in a
+row multiplied by the number of rows.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWPgDn,Page Down}
+
+@subsubsection Move - Page up (DW)
+
+Decrements the starting memory address by the number of bytes contained in a
+row multiplied by the number of rows.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWPgUp,Page Up}
+
+@subsubsection Move - First column (DW)
+
+Moves the cursor to the leftmost column.
+@p{}
+
+@refMenu{cmDWFirstColumn,Home}
+
+@subsubsection Move - Last column (DW)
+
+Moves the cursor to the rightmost column.
+@p{}
+
+@refMenu{cmDWLastColumn,End}
+
+@subsubsection Move - First row (DW)
+
+Moves the cursor to the first row in the same column.
+@p{}
+
+@refMenu{cmDWFirstRow,Ctrl+Home}
+
+@subsubsection Move - Last row (DW)
+
+Moves the cursor to the last row in the same column.
+@p{}
+
+@refMenu{cmDWLastRow,Ctrl+End}
+
+@subsubsection Move - First addr increment (DW)
+
+Increments the starting memory address by one.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWBaseIncrement,Ctrl+->}
+
+@subsubsection Move - First addr decrement (DW)
+
+Decrements the starting memory address by one.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWBaseDecrement,Ctrl+<-}
+
+@subsubsection Address - Change base address (DW)
+
+When you open a new Data Window the addresses displayed are the same used by
+the program you are debugging. If you need to convert them into relative you
+can change the base address. When you specify a new base address it is used
+as reference.
+@p{}
+
+@refMenu{cmDWBaseAddress,Ctrl+B}
+
+@subsubsection Address - Go to new address (DW)
+
+Used to change the expression used to determine the starting address of the
+Data Window. The address corresponding to this expression is always
+highlighted used a different color.
+@p{}
+
+@refMenu{cmDWGotoAddress,Ctrl+G}
+
+@subsubsection Address - Follow pointer (DW)
+
+Interprets the memory at the cursor position as a pointer to another block of
+memory. This pointer is used as the new expression for the Data Window.
+@p{}
+
+@refMenu{cmDWFollowPointer,Ctrl+F}
+
+@subsubsection Address - Follow pointer in new window (DW)
+
+Interprets the memory at the cursor position as a pointer to another block of
+memory. This pointer is used as the expression for a new Data Window. The
+extra asterisk is to cancel an @code{&} added by the editor.
+@p{}
+
+@refMenu{cmDWFollowPtnNew,Ctrl+O}
+
+@subsubsection Address - Recompute address (DW)
+
+Evaluates the original expression to determine the new starting address. You
+can do it automatically every time the program stops using the auto follow
+mode. @x{Mode - Toggle auto follow (DW)}.
+@p{}
+
+@refMenu{cmDWRecompute,Ctrl+H}
+
+@subsubsection Mode - Toggle auto follow (DW)
+
+Toggles the auto follow mode. When the auto follow mode is enabled the
+expression supplied to determine the memory displayed by the Data Window is
+automatically recomputed every time the program stops.
+@p{}
+
+The auto follow mode is indicated with an @il{A} in the indicator widget
+located at the bottom right of the Data Window.
+@p{}
+
+@refMenu{cmDWTogAutoF,Ctrl+A}
+
+@subsubsection Mode - Change display mode (DW)
+
+Changes the display mode to the next in the list of available modes. The
+available modes are:
+@p{}
+
+@itemize @bullet
+@item Bytes: each cell represents one byte in memory. The right side of the
+window contains its ASCII representations. Note that ASCII representation is
+suppressed when you select decimal radix.
+@item Word: each cell represents two bytes.
+@item Double Word: each cell represents four bytes.
+@item ASCII: Only the ASCII representation is displayed. In this mode you can
+simply type characters to change the memory.
+@end itemize
+
+@refMenu{cmDWDispMode,Ctrl+D}
+
+@subsubsection Mode - Toggle endian mode (DW)
+
+Toggles the endian mode. When a new Data Window is created the data is
+displayed using the endian type of the program you are debugging. You can
+change the endian mode at any time.
+@p{}
+
+Little endian mode is indicated in the indicator widget located at the
+bottom right of the Data Window using an @il{e} and big endian using @il{E}.
+@p{}
+
+@refMenu{cmDWTogEndian,Ctrl+E}
+
+@subsubsection Mode - Change radix (DW)
+
+Changes the radix of the represented numbers. The available radices are
+hexadecimal and decimal.
+@p{}
+
+Hexadecimal radix is indicated in the indicator widget located at the
+bottom right of the Data Window using an @il{X} and decimal using @il{D}.
+@p{}
+
+@refMenu{cmDWRadix,Ctrl+X}
+
+@subsubsection Block - Fill (DW)
+
+Fills a memory block with an indicated data value. You have to indicate the
+destination address, how many bytes will be filled and the value used to fill
+the block.
+@p{}
+
+Some general limits and functionality common to the Data Window operations
+applies. @x{Data Window Limitations and Details}.
+@p{}
+
+@refMenu{cmDWFill,Ctrl+I}
+
+@subsubsection Block - Clear (DW)
+
+Fills a memory block with zeroes. You have to indicate the destination
+address and how many bytes will be filled.
+@p{}
+
+Some general limits and functionality common to the Data Window operations
+applies. @x{Data Window Limitations and Details}.
+@p{}
+
+@refMenu{cmDWClear,Ctrl+L}
+
+@subsubsection Block - Move (DW)
+
+Copies a block of memory to another memory location. You have to indicate the
+source address, the destination address and how many data will be copied.
+@p{}
+
+Some general limits and functionality common to the Data Window operations
+applies. @x{Data Window Limitations and Details}.
+@p{}
+
+@refMenu{cmDWMove,Ctrl+M}
+
+@subsubsection Various - Less bytes per line (DW)
+
+Decrements the ammount of data cells displayed in each row.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWLessLines,-}
+
+@subsubsection Various - More bytes per line (DW)
+
+Increments the ammount of data cells displayed in each row.
+@p{}
+
+Changes not tranferred to the target will be lost.
+@p{}
+
+@refMenu{cmDWMoreLines,+}
+
+@subsubsection Various - Update memory (DW)
+
+Transfers changes to the memory space of the program you are debugging.
+@p{}
+
+@refMenu{cmDWUpdateMemory,Enter}
+
+@subsubsection Data Window Limitations and Details
+
+Most Data Window operations uses a common dialog that adapts its fields to
+the operation you want to perform. For this reason the operations shares the
+same functionality and limitations.
+@p{}
+
+All the fields (New Value, From, To, Expression, Length and Value) accepts
+any kind of expression supported by gdb. You can include arithmetic
+operations, variables, @il{etc.}
+@p{}
+
+The Length and Value fields are evaluated as an unsigned value. The other
+values are evaluated as addresses. In the last case the editor tries to
+determine if you typed an address (something starting with a digit), an
+explicit reference (@code{&} C/C++ operator) or a CPU register (they start
+with @code{$} in gdb). If the editor thinks you didn't specify an address the
+@code{&} operator will be automatically added. If you have a local variable
+called @il{var} and you specify it then the editor will use @il{&var}.
+@p{}
+
+In most cases the transferring big memory blocks between the target program
+and the editor is an slow process. For this reason the editor will show a
+warning if the size of the block is bigger than 128 KB and will refuse to
+operate with more than 1 MB. This is also a security meassurement. If you
+think this is a wrong idea please tell me.
+@p{}
+
+@subsection Stack window
+
+The stack window is a specialized version of the Data Window. It starts using
+the @code{esp} register as starting address, one cell in each line, four
+bytes cells and auto follow mode enabled. @x{Data Window}.
+@p{}
+
+Currently this is implemented only for the IA32 architecture. If you know the
+name of the stack pointer register for your architecture please contact me so
+I can add support for it. Also note that this window uses the @code{esp}
+register and not the stack frame register (@code{ebp}). I don't know if users
+will be interested on having a similar window for the stack frame.
+@p{}
+
+@refMenu1{cmeDbgStackWindow}
+
+@section Resuming the execution of the program
+
+Once you stopped the execution of your program and you examined its data
+you'll most probably want to resume its execution. This section describes
+various operations to do it controlling how much code will be executed.
+@p{}
+
+You can resume execution until a breakpoint, watchpoint or the end of program
+is reached. @x{Continue execution}.
+@p{}
+
+You can execute until the next line of code is reached. You can achieve it
+using two different commands. The first won't stop inside a function called
+during by the execution (@xp{Step over}) and the second will do it
+(@xp{Trace into}).
+@p{}
+
+You can also execute until a line of code is reached.
+@x{Executing until cursor position is reached}.
+@p{}
+
+Another option is to run the code until the current function is finished.
+@x{Executing until return}. It's also possible to return immediatly without
+executing the rest of the function. @x{Returning immediatly}.
+@p{}
+
+@subsection Continue execution
+
+When the program is stopped the menu entry named
+@il{Debug|Run/Continue/Atach} can be used to resume the execution.
+@p{}
+
+If the program isn't started this command is used to start the execution
+(Run) or atach to an already running process (Atach).
+@p{}
+
+@refMenu{cmeDbgRunContinue,Shift+F9}
+
+@subsection Step over
+
+This functionality is obtained using the @il{Debug|Step over} menu entry.
+@p{}
+
+This command resumes the execution of a stopped program until the next line
+of code is reached. Function calls that appear within the line of code are
+executed without stopping.
+@p{}
+
+When applied to the Assembler Window it works at instruction level.
+@p{}
+
+@refMenu{cmeDbgStepOver,F8}
+
+@subsection Trace into
+
+This functionality is obtained using the @il{Debug|Trace into} menu entry.
+@p{}
+
+Continue running your program until control reaches a different source line,
+then stops it. If a function call is found this command will enter the
+function unless it doesn't have debug information.
+@p{}
+
+When applied to the Assembler Window it works at instruction level and no
+debug information is needed to enter functio calls.
+@p{}
+
+@refMenu{cmeDbgTraceInto,F7}
+
+@subsection Executing until cursor position is reached
+
+This functionality is obtained using the @il{Debug|Go to cursor} menu entry.
+@p{}
+
+Runs your program until control reaches the source line where the cursor is
+located.
+@p{}
+
+@refMenu{cmeDbgGoToCursor,F4}
+
+@subsection Executing until return
+
+This functionality is obtained using the @il{Debug|Until return} menu entry.
+@p{}
+
+Resumes the execution until the current function is finished. This command
+can't be used in the main function. If you want to return from the current
+function without executing the remaining code use the @il{Return now} option.
+@x{Returning immediatly}.
+@p{}
+
+@refMenu1{cmeDbgFinishFun}
+
+@subsection Returning immediatly
+
+This functionality is obtained using the @il{Debug|Return now} menu entry.
+@p{}
+
+This command doesn't realy resume the execution. Instead it simulates a
+function return and the control is passed to the calling function. If you
+want to execute the rest of the code use the @il{Until return} option.
+@x{Executing until return}.
+@p{}
+
+@refMenu1{cmeDbgReturnNow}
+
+@section Finishing and restarting a debug session
+
+Sometimes you'll want to finish the process you are currently debugging
+without farther execution or even finish the whole debug session. This
+section describes the available options related to it.
+@p{}
+
+If you want to finish the current process without wainting until it finishes
+you can @il{kill} it. @x{Killing the program you are debugging}. This
+operation is also called restart.
+@p{}
+
+You can @il{kill} the process and finish the debug session. In this case the
+debugger will also finish execution. @x{Closing the debug session}.
+@p{}
+
+Finally you can @il{kill} the process, @il{kill} the debugger and instruct
+the editor to forget about breakpoints, watchpoints, @il{etc.} That's a
+dangerous operation used only when no other operation helps.
+@x{Destroying the debug session}.
+@p{}
+
+@subsection Killing the program you are debugging
+@cindex debug, kill
+
+This functionality is obtained using the @il{Debug|Restart (Kill)} menu entry.
+@p{}
+
+This operation will finish the execution of the program you are debugging and
+go to the @il{Ready to Run} state. @x{Debugging states}.
+@p{}
+
+After it you can start executing your program from the beginning.
+@p{}
+
+@refMenu1{cmeDbgKill}
+
+@subsection Closing the debug session
+@cindex debug, close
+
+This functionality is obtained using the @il{Debug|Debug session|Close} menu
+entry.
+@p{}
+
+This operation will finish the execution of the program you are debugging and
+then will finish the debugger. After it the state will be @il{Disconnected}.
+@x{Debugging states}.
+@p{}
+
+After it you can start a new debug session.
+@p{}
+
+@refMenu1{cmeDbgCloseSession}
+
+@subsection Destroying the debug session
+
+This functionality is obtained using the @il{Debug|Debug session|Destroy} menu
+entry.
+@p{}
+
+This operation isn't recommended for normal use. In addition to kill the
+program you are debugging and finishing the debugger it also makes the editor
+to forget about breakpoints, watchpoints and other settings related to the
+debug session.
+@p{}
+
+After it you can start a new debug session.
+@p{}
+
+@refMenu1{cmeDbgEndSession}
+
+@section Examining the calling stack
+@cindex debug, frames
+@cindex debug, call stack
+
+This functionality is obtained using the @il{Debug|Calling stack} menu
+entry.
+@p{}
+
+When your program stopped you may want to know which functions were called in
+order to reach the current source line. Using this command the editor will
+send the list of functions to the Message Window. @x{Message Window}.
+@p{}
+
+After sending the list of functions to the Message Window the editor will
+jump to the first one. Using @kbd{Alt}+@kbd{F7} and @kbd{Alt}+@kbd{F8} you
+can navigate this list.
+@p{}
+
+In addition to the source file, function name, line of code and memory
+address you'll also find the arguments of the function.
+@p{}
+
+@refMenu{cmeDbgCallStack,Ctrl+F3}
+
+@section Cleaning the debug session
+@cindex debug, forget
+@cindex debug, clean
+
+This dialog is obtained using the @il{Debug|Debug session|Clear debug elements}
+menu entry.
+@p{}
+
+Usually you'll want the editor to remmeber the breakpoints, watchpoints,
+watches, @il{etc.@:} used in your last debug session. For this reason this
+data is stored in the project file. But sometimes you could want to clean all
+and do a fresh start. This command allows you to delete all of this or just a
+portion. You erase items of the following types:
+@p{}
+
+@itemize @bullet
+@item Breakpoints. @x{Advanced breakpoint options}.
+@item Watchpoints. @x{Watchpoints}.
+@item Watches. @x{Watch an expression}.
+@item Inspectors. @x{Inspectors}.
+@item Data windows. @x{Data Window}.
+@end itemize
+
+@refMenu1{cmeDbgCleanElem}
+
+@section Selecting the thread to debug
+
+This dialog is obtained using the @il{Debug|Select thread} menu entry.
+@p{}
+
+GDB can debug multithread programs that uses POSIX threads. The starting
+thread is the one you'll stop, step, trace, @il{etc.} If you want to select
+another thread to debug you can use this option. Note that gdb uses its own
+thread ids. The editor will offer a list of known threads and indicate which
+one is the current thread. GDB doesn't have any MI command to know which one
+is the current thread, for this reason the editor assumes that's the last
+thread id informed during a stop.
+@p{}
+
+Debugging multithread programs is complicated and I don't have good test
+examples. If you need to enhance the current options and want to cooperate
+with me please contact me.
+@p{}
+
+@refMenu1{cmeDbgThreadSel}
+
+@section Disassembler Window
+
+This functionality is obtained using the @il{Debug|Disassembler Window} menu
+entry.
+@p{}
+
+If you need to debug your program at the instruction level or debug some code
+that lacks debug information that's the tool you need.
+@p{}
+
+The Disassembler Window is divided in two sections. The left side contains
+the assembler code and the right side the CPU registers. The code side
+displays the assembler using a read-only edition window. If the code have
+debug information you'll see the source code mixed as comments.
+@p{}
+
+The @il{Step over}, @il{Trace into} and @il{Go to cursor} operations works at
+instruction level when applied to this window.
+@p{}
+
+You can manually open this window. Additionlly the editor will open this
+window every time the execution stops in a function without debug
+information. When the editor can determine the function name and the source
+file that contains it the whole function will be disassembled. If only the
+function name can be determined the editor will disassemble from the
+beginning of the function upto 500 bytes after the current location. If
+nothing can be determined the editor will disassemble 500 bytes from the
+current location.
+@p{}
+
+Sometimes gdb informs bogus function locations. What's worst is that
+disassembling from the informed place upto the current location can be too
+slow and even make gdb to SIGSEGV. To avoid it the editor won't disassemble
+from the beginning of the function if the distance is bigger than 20000
+bytes.
+@p{}
+
+When this window is opened the code section is selected. You can switch to
+the registers section using the @kbd{Tab} key. Selecting a register and using
+the @kbd{Enter} key you can modify its value.
+@p{}
+
+If you get an error from gdb stating @il{bad register number} when you open
+this window please try upgrading gdb. That's a bug in the MI code. I
+submitted a patch to fix this problem to the proper list. It seems to affect
+gdb 6.1 and 6.2.
+@p{}
+
+@refMenu1{cmeDbgDisAsmWin}
+
+@section Debugging already running processes
+@cindex debug, pid
+@cindex debug, already running
+
+You can debug a process that's already running in memory. This is really
+useful when your program exposes an uncommon bug that's hard to reproduce.
+@p{}
+
+The steps to do it are almost the same used for regular programs. Only a few
+details changes:
+@p{}
+
+@itemize @bullet
+@item As the program is already running you have to stop it instead of run
+it.
+@item When you finish debugging you could want to let it run without farther
+intrusion.
+@end itemize
+
+The first action is called @il{atach} and the second @il{detach}.
+@p{}
+
+To start debugging an already running process you must select this option in
+the @il{Debug Options} dialog. @x{Debug options}. Then you must know the
+process id for the process you want to debug. This can be found using the
+@code{ps} POSIX command.
+@p{}
+
+To atach gdb to the running process you must use the
+@il{Debug|Run/Continue/Atach} menu option. It will ask you the process id
+(pid).
+@p{}
+
+Once gdb is atached to the running process it is stopped and the state is
+changed to @il{Stopped}. @x{Debugging states}.
+@p{}
+
+When you no longer need to debug the process you can detach from it using the
+@il{Debug|Debug session|Detach} menu option. The process will resume its
+normal execution.
+@p{}
+
+@refMenu1{cmeDbgDetach}
 
 @chapter Miscellaneous
 

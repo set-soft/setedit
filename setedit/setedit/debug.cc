@@ -10,7 +10,10 @@
   The most important unimplemented features and unsolved things are:
 
   * Document.
-  * Document how "ignore" works.
+  * Join help context values to documentation
+  * Annoy fucking idiots maintaining gdb to apply the trivial patch that
+fixes the bug in the registers stuff.
+  * Fix menu entries that uses dialogs and lacks ...
   * Add the menubind.smn options to the redmond.smn
   * Update spanish translation and ensure it is complete.
 
@@ -58,6 +61,7 @@ fetching its values by batchs with the same format.
 * Support syntax hl. for other CPUs.
 * The "code" created is pure UNIX \n text, but what about DOS files with
 \r\n? (I mean source C/C++ files mixed with asm code).
+* Option to avoid the "auto open" (current behavior)
 
 by Function:
 void TSetEditorApp::DebugFinishFun()
@@ -1707,6 +1711,7 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
     dbg=NULL;
    }
  TProgram::deskTop->lock();
+ DebugMsgSetState();
  DebugMsgClose();
  WatchesClose();
  DebugCommonCleanUp();
@@ -5064,6 +5069,22 @@ int isValidAddress(const char *taddr, unsigned long &addr)
 }
 
 static
+int isValidAddressNA(const char *taddr, unsigned long &addr)
+{
+ if (!dbg)
+    return 0;
+ int na, res;
+ uchar test;
+ int convAddr=!(isdigit(*taddr) || *taddr=='&' || *taddr=='$');
+
+ res=dbg->ReadMemory(taddr,1,&test,na,convAddr,&addr);
+ if (!res)
+    ShowErrorInMsgBox();
+
+ return res;
+}
+
+static
 int isValidUL(const char *exp, unsigned long &val)
 {
  if (!dbg)
@@ -5854,7 +5875,8 @@ int TDataViewer::EnterAddresses(const char *tit, int t1, ulong *v1,
           messageBox(__("Please fill all the requested values"),mfError|mfOKButton);
           continue;
          }
-       if (isValidAddress(boxEA.v1,*v1)
+       if ((t1==taddNewValue ? isValidAddressNA(boxEA.v1,*v1) :
+                               isValidAddress(boxEA.v1,*v1))
            && (!v2 || (t2>=taddLength ? isValidUL(boxEA.v2,*v2) :
                                         isValidAddress(boxEA.v2,*v2)))
            && (!v3 || (t3>=taddLength ? isValidUL(boxEA.v3,*v3) :
@@ -5908,7 +5930,7 @@ int getFilename(char *buf, int typ)
 
 void TDataViewer::printCursorAddress(char *buf, Boolean deref)
 {
- sprintf(buf,deref ? "*0x%lx" : "0x%lx",curs2memo()-memo+memStart);
+ sprintf(buf,deref ? "**0x%lx" : "0x%lx",curs2memo()-memo+memStart);
 }
 
 void TDataViewer::setCommands(Boolean enable)
@@ -7076,24 +7098,25 @@ void DebugMsgSetState()
  const char *msg=DebugMsgStateName();
  // Execute associated actions
  int cleanStop=1;
- switch (dbg->GetState())
-   {
-    case MIDebugger::disconnected:
-         break;
-    case MIDebugger::connected:
-         break;
-    case MIDebugger::target_specified:
-         DebugClearCPULine();
-         cleanStop=0;
-         break;
-    case MIDebugger::running:
-         DebugClearCPULine();
-         break;
-    case MIDebugger::stopped:
-         DebugUpdateWatches();
-         cleanStop=0;
-         break;
-   }
+ if (dbg)
+    switch (dbg->GetState())
+      {
+       case MIDebugger::disconnected:
+            break;
+       case MIDebugger::connected:
+            break;
+       case MIDebugger::target_specified:
+            DebugClearCPULine();
+            cleanStop=0;
+            break;
+       case MIDebugger::running:
+            DebugClearCPULine();
+            break;
+       case MIDebugger::stopped:
+            DebugUpdateWatches();
+            cleanStop=0;
+            break;
+      }
  if (TInspector::getCountInspectors() || TDataViewer::getCountDataViewers())
     message(TProgram::deskTop,evBroadcast,cmDbgChgState,NULL);
 

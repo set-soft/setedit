@@ -12413,7 +12413,7 @@ void TCEditor::addToUndo(UndoState st, void *p)
     return;
    }
 
- // First cames a predelete and then the deletebuf
+ // First comes a predelete and then the deletebuf
  if (st==undoDeleteBuf)
    {
     char *s=(char *)UndoArray[UndoActual].s;
@@ -12595,21 +12595,22 @@ void TCEditor::freeUndoCell(int Index)
     case undoOvrPutChar:
     case undoRecodeBlock:
          delete UndoArray[Index].s2.s;
-    case undoPutChar:
+    case undoAltCase:
     case undoDelChar:
     case undoDelCharDel:
     case undoDelete:
-    case undoInsert:
-    case undoUnIndBlock:
+    case undoDeleteBuf:
     case undoIndBlock:
-    case undoToUpper:
-    case undoToLower:
+    case undoInsert:
     case undoInvertCase:
-    case undoAltCase:
-    case undoRectPaste:
+    case undoPutChar:
     case undoRectDel:
-    case undoRectStart:
     case undoRectEnd:
+    case undoRectPaste:
+    case undoRectStart:
+    case undoToLower:
+    case undoToUpper:
+    case undoUnIndBlock:
          DeleteArray(UndoArray[Index].s);
          break;
     default:

@@ -413,6 +413,8 @@ SubMenu: "~M~ove", kbAlM
  MenuItemC: "L~a~st column", cmDWLastColumn, kbEnd, "End"
  MenuItemC: "First ro~w~", cmDWFirstRow, kbCtHome, "Ctrl+Home"
  MenuItemC: "Las~t~ row", cmDWLastRow, kbCtEnd, "Ctrl+End"
+ MenuItemC: "First addr. ~i~ncrement", cmDWBaseIncrement, kbCtRight, "Ctrl+->"
+ MenuItemC: "~F~irst addr. decrement", cmDWBaseDecrement, kbCtLeft, "Ctrl+<-"
 EndSubMenu
 
 SubMenu: "~A~ddress", kbAlA
@@ -422,8 +424,6 @@ SubMenu: "~A~ddress", kbAlA
  MenuItemC: "Follow ~p~ointer", cmDWFollowPointer, kbCtF, "Ctrl+F"
  MenuItemC: "Follow pointer in ~n~ew window", cmDWFollowPtnNew, kbCtO, "Ctrl+O"
  MenuItemC: "~R~ecompute address", cmDWRecompute, kbCtH, "Ctrl+H"
- MenuItemC: "First addr. ~i~ncrement", cmDWBaseIncrement, kbCtRight, "Ctrl+->"
- MenuItemC: "~F~irst addr. decrement", cmDWBaseDecrement, kbCtLeft, "Ctrl+<-"
 EndSubMenu
 
 SubMenu: "M~o~de", kbAlO
