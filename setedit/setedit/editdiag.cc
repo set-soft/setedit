@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -61,7 +61,7 @@ int AboutStartBox(void)
 
  TRect r(2,2,52,3);
  char b[54];
- sprintf(b,_("That's SET's Editor v%lX.%lX.%lX, (c) 1996-2002"),TCEDITOR_VERSION>>16,
+ sprintf(b,_("That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),TCEDITOR_VERSION>>16,
          (TCEDITOR_VERSION>>8) & 0xFF,TCEDITOR_VERSION & 0xFF);
  d->insert(new TStaticText(r,b));
  r.move(0,1);
@@ -100,7 +100,7 @@ void FullAboutBox(void)
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("About")));
 
  TSView::yDefSep=0;
- sprintf(b,_("SET's Editor v%lX.%lX.%lX, (c) 1996-2002"),TCEDITOR_VERSION>>16,
+ sprintf(b,_("SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),TCEDITOR_VERSION>>16,
          (TCEDITOR_VERSION>>8) & 0xFF,TCEDITOR_VERSION & 0xFF);
  ant=new TSStaticText(b);
  col->insert(xTSCenter,2,ant);

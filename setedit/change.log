@@ -1,8 +1,15 @@
 $Log$
+Revision 1.276  2003/02/06 18:55:29  set
+* Added: Save all option to save all unsaved editors. As suggested by
+Álvaro (Cristina ;-) and Iván.
+
 Revision 1.275  2003/01/31 15:55:59  set
 * Fixed: When "match pair on the fly" was enabled the editor forced a
-center cursor periódically interfering with the movement using the scroll
+center cursor periodically interfering with the movement using the scroll
 bars. Reported by Iván and Álvaro.
+
+------------------------------------------------------------------------------
+v0.5.0 Release Candidate 1
 
 Revision 1.274  2003/01/29 12:45:58  set
 * Updated: project and makefiles because I added the PHP parser to libset
