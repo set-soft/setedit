@@ -186,7 +186,7 @@ char *GetKey(char *s, int &key, int error1, int Optional=0)
     return 0;
    }
  s+=2;
- for (ret=s; *ret && ucisalnum(*ret); ret++);
+ for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
  char v=*ret; *ret=0;
  ushort code;
  if (InterpretKeyName(s,code))
@@ -251,7 +251,7 @@ char *GetCommand(char *s, int &command, int FirstInLine=0)
    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
  else
    {
-    for (ret=s; *ret && ucisalnum(*ret); ret++);
+    for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
     char v=*ret; *ret=0;
     if (*(s-1)=='c')
       {
@@ -299,7 +299,7 @@ char *GetHelpCtx(char *s, int &context, int FirstInLine=0)
     return GetNumber(s,context,0,errMLNoHelpContext,0,1);
  s+=2;
 
- for (ret=s; *ret && ucisalnum(*ret); ret++);
+ for (ret=s; *ret && (ucisalnum(*ret) || *ret=='_'); ret++);
  char v=*ret; *ret=0;
 
  context=SearchHelpCtxCommand(s);
