@@ -16,7 +16,7 @@ if ($r!~/$version/)
    chdir('../../debian');
    @ENV{'DEBEMAIL'}='salvador@inti.gov.ar';
    @ENV{'DEBFULLNAME'}='Salvador E. Tropea (SET)';
-   system("dch -v$version"."-1 \"New version automatically modified by version update scripts\"");
+   system("dch -v$version"."-0.1 \"New version automatically modified by version update scripts\"");
    chdir('../makes/linux');
   }
 
