@@ -626,13 +626,37 @@ void ExportAsHTML(void)
 }
 
 static
-char *GetWordUnderCursor(unsigned size)
+char *GetWordUnderCursor(unsigned size, unsigned options=0)
 {
  TCEditor *e;
 
  if ((e=GetCurrentIfEditor())!=0)
-    return e->WordUnderCursor(size);
+    return e->WordUnderCursor(size,options);
  return 0;
+}
+
+static
+void MakeTagsWordCompletion()
+{
+ TCEditor *e;
+
+ if ((e=GetCurrentIfEditor())!=0)
+   {
+    char *word=e->WordUnderCursor(80,wucTakeOneLeft);
+    if (word)
+      {
+       char *exp=TagsWordCompletion(e->cursor.x+e->owner->origin.x,
+                                    e->cursor.y+e->owner->origin.y+1,word);
+       if (exp)
+         {
+          char *cursor=e->ColToPointerPost();
+          e->deleteRange(cursor-strlen(word),cursor,True);
+          e->insertText(exp,strlen(exp),False);
+          DeleteArray(exp);
+         }
+       DeleteArray(word);
+      }
+   }
 }
 
 static
@@ -1051,6 +1075,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeClassBrowser:
               TagsClassBrowser(GetWordUnderCursor(80));
+              break;
+
+         case cmeWordCompletion:
+              MakeTagsWordCompletion();
               break;
 
          // These commands are traslated to the original values

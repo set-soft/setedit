@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.309  2003/04/28 13:56:15  set
+* Added: A class browser based on TAGs info. It allows to know which are
+the parents and childs for a class, also which members are declared, jump
+to any of them, see a list of the members plus the members of the parents
+and more. I coded it in less than 5 hours, don't spect perfect code.
+* Added: A new constant called tsveMakeSameW, when used (with or) for
+MakeVeGroup forces a call to makeSameW().
+
 Revision 1.308  2003/04/28 13:54:25  set
 * Fixed: When a directory contained a project with a desktop file newer
 than the current setedit version and a default desktop file from a version

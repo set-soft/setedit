@@ -98,7 +98,8 @@ const int
   cmeSaveAll        = cmeBase+78,
   cmeTagFiles       = cmeBase+79,
   cmeSearchTag      = cmeBase+80,
-  cmeClassBrowser   = cmeBase+81;
+  cmeClassBrowser   = cmeBase+81,
+  cmeWordCompletion = cmeBase+82;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.

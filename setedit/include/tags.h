@@ -206,4 +206,5 @@ void TagsFreeMemory();
 void EditTagFiles();
 void SearchTag(char *word);
 void TagsClassBrowser(char *word);
+char *TagsWordCompletion(int x, int y, char *word);
 

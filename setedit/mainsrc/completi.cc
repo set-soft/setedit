@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #include <ctype.h>
@@ -31,11 +31,27 @@ class TCompletionBox : public TSortedListBox
 {
 public:
  TCompletionBox(const TRect& bounds, TScrollBar *aScrollBar) :
-   TSortedListBox(bounds,1,aScrollBar) {};
+   TSortedListBox(bounds,1,aScrollBar) { moveIt=0; };
+
+ virtual void draw();
+ void setSearchPos(ushort val) { searchPos=val-1; moveIt=1; };
+ virtual void handleEvent(TEvent& event);
 
  char endChar;
- virtual void handleEvent(TEvent& event);
+
+protected:
+ char moveIt;
 };
+
+void TCompletionBox::draw()
+{
+ TSortedListBox::draw();
+ if (moveIt && (state & (sfSelected | sfActive))==(sfSelected | sfActive) && range>0)
+   {
+    moveIt=0;
+    setCursor(cursor.x+searchPos,cursor.y);
+   }
+}
 
 void TCompletionBox::handleEvent(TEvent& event)
 {
@@ -109,9 +125,8 @@ void TNoFrame::setCursor(int x, int y)
 }
 
 
-static
-char *ChooseFromList(TStringCollection *list, int cant, int len, int xC, int yC,
-                     unsigned ops)
+char *CompletionChooseFromList(TStringCollection *list, int cant, int len,
+                               int xC, int yC, unsigned ops, int lPartial)
 {
  // Don't pop-up if the answer is obvious
  if (cant<1)
@@ -148,6 +163,8 @@ char *ChooseFromList(TStringCollection *list, int cant, int len, int xC, int yC,
  TScrollBar *ts=new TScrollBar(TRect(w-1,0,w,h));
  TCompletionBox *b=new TCompletionBox(TRect(0,0,w-1,h),ts);
  b->setData(&r);
+ if (lPartial)
+    b->setSearchPos(lPartial);
  group->insert(b);
  b->setState(sfSelected | sfActive,True);
  group->insert(ts);
@@ -204,7 +221,7 @@ char *CompletionChoose(char *options, const char *delimiter, int x, int y,
    }
  while (curPos);
 
- char *ret=ChooseFromList(list,list->getCount(),maxLen,x,y,ops);
+ char *ret=CompletionChooseFromList(list,list->getCount(),maxLen,x,y,ops);
 
  // Restore it
  curPos=options;

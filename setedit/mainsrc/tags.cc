@@ -46,6 +46,7 @@ TODO: make a SortedStringableListBox
 #define Uses_TStringable
 #define Uses_TDialogAID
 #define Uses_FileOpenAid
+#define Uses_TNoCaseStringCollection
 
 #include <easydia1.h>
 #include <ceditor.h>
@@ -58,6 +59,7 @@ TODO: make a SortedStringableListBox
 #include <setapp.h>
 #include <rhutils.h>
 #include <pathtool.h>
+#include <completi.h>
 
 static int InitTagsCollection();
 
@@ -1413,5 +1415,40 @@ void TagsClassBrowser(char *word)
     BrowseClasses(br,classList);
 
  destroy(classList);
+}
+
+/*****************************************************************************
+ Word Completion
+*****************************************************************************/
+
+char *TagsWordCompletion(int x, int y, char *word)
+{
+ if (!word || InitTagsCollection()) return NULL;
+ tags->refresh();
+
+ // Search a tag that matches
+ int lenW=strlen(word),tLen;
+ ccIndex pos;
+ tags->search(word,pos);
+ stTag *p=tags->atPos(pos);
+ if (strncasecmp(p->id,word,lenW)!=0)
+    return NULL;
+
+ TStringCollection *list=new TNoCaseStringCollection(10,4);
+ int len=0,cant=0;
+ while (strncasecmp(p->id,word,lenW)==0)
+   {
+    list->insert((char *)p->id);
+    cant++;
+    tLen=strlen(p->id);
+    if (tLen>len)
+       len=tLen;
+    p=tags->atPos(++pos);
+   }
+
+ char *ret=CompletionChooseFromList(list,cant,len,x-lenW,y,0,lenW);
+ delete list;
+
+ return ret;
 }
 

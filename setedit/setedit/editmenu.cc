@@ -312,4 +312,5 @@ _("S~h~ell")
 _("T~a~g files ...")
 _("Jump ~t~o symbol")
 _("~C~lass browser")
+_("~W~ord completion")
 #endif

@@ -113,6 +113,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "Jump ~t~o symbol", cmeSearchTag, kbCtF2, "Ctrl+F2"
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
  MenuItemC: "~C~lass browser", cmeClassBrowser
+ MenuItemC: "~W~ord completion", cmeWordCompletion, kbAlRight, "Alt+Right"
 EndSubMenu
 
 # CEGMNOPRSU

@@ -264,6 +264,7 @@ static edCList SetApp[] =
 { "Tile"           , 20 },
 { "TipOfTheDay"    , 40 },
 { "UserScreen"     , 9  },
+{ "WordCompletion" , 82 },
 { "Zoom"           , 19 }
 };
 
