@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.609  2004/09/17 18:51:55  set
+* Fixed: [MSVC] Another min/max mix. Reported by Arnold.
+
 Revision 1.608  2004/09/17 16:38:35  set
 * Added: [Cygwin] Workaround for bugs in Cygwin's perl. Cygwin is
 configured to use DOS files, but when parsing DOS files you must match the
