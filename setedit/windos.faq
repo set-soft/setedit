@@ -24,7 +24,7 @@ running windowed under W9x, why?
 
 6. Keyboard problems
 6.1 The editor doesn't catch all the keyboard combinations, why?
-
+6.2 I get random keys pressed all the time, why?
 =============================================================================
 1. Video questions.
 
@@ -217,12 +217,19 @@ or .pif file used.
   Others are more obscure. Ctrl+ ` 1 4 5 7 8 9 0 = ; ' , . and / and the
 Macro key are never detected by BIOS. To detect this keys you can use a small
 resident (TSR) program included in the kextend.zip file of this distribution.
-  And other cases are because we are using BIOS to detect if a key was
-pressed and extract it. In v0.4.41 we used special routines to extract keys
-dierctly from the BIOS queue, but some new motherboards seems to have a
-strange BIOS that handles the queue in a different way breaking this methode.
-For this reason we switched to BIOS by default. You can use the -B option to
-use the old mechanism and see if all work ok.
+  And other cases could be because you are using BIOS keyboard mode (to
+detect if a key was pressed and extract it). If you use the -b option you'll
+lose some keyboard combinations.
+
+6.2 I get random keys pressed all the time, why?
+
+A: We use special routines to extract keys directly from the BIOS queue, but
+some new motherboards seems to have a strange BIOS that handles the queue in
+a different way breaking this methode. You can try using the -b option to
+force the editor to use BIOS to extract keys. You'll lose some keyboard
+combinations.
+  We need volunteers that have this problem to help as find the problem, so,
+if you experiment it please send me an e-mail.
 =============================================================================
 End of file
 
