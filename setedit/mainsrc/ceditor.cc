@@ -116,10 +116,10 @@
  #define CheckScrollLockCenters ((TGKey::sFlags & 16) && (editorFlags & efScrollLock))
 #endif
 
-static unsigned LineMeassureC(char *s, char *end, uint32 &Attr);
-static unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr);
-static unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr);
-static unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr);
+static unsigned LineMeassureC(char *s, char *end, uint32 &Attr, uint32 *extra=0);
+static unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr, uint32 *extra=0);
+static unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr, uint32 *extra=0);
+static unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra=0);
 static void readBlock(TCEditor *editor);
 static void writeBlock(TCEditor *editor);
 static uint32 MakeItGranular( uint32 value );
@@ -5669,34 +5669,29 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
  // This must be *after* the wrap because:
  // 1) Can flush the line and it complicates the wrap.
  // 2) The pair could be moved.
- if (ShowMatchPair)
+ if (ShowMatchPair && cVal && strchr("{}()[]",cVal))
    {
     int pos=-2;
 
+    flushLine();
     switch (cVal)
       {
        case '}':
-            flushLine();
             pos=SearchOpenSymbolXY('{','}',XHLCC,YHLCC);
             break;
        case ')':
-            flushLine();
             pos=SearchOpenSymbolXY('(',')',XHLCC,YHLCC);
             break;
        case ']':
-            flushLine();
             pos=SearchOpenSymbolXY('[',']',XHLCC,YHLCC);
             break;
        case '{':
-            flushLine();
             pos=SearchCloseSymbolXY('{','}',XHLCC,YHLCC);
             break;
        case '(':
-            flushLine();
             pos=SearchCloseSymbolXY('(',')',XHLCC,YHLCC);
             break;
        case '[':
-            flushLine();
             pos=SearchCloseSymbolXY('[',']',XHLCC,YHLCC);
             break;
       }
@@ -6000,16 +5995,34 @@ int TCEditor::SearchOpenSymbol(char open, char close)
 {
  unsigned Count=1;
  char *s=ColToPointer();
+ char *start=curLinePtr;
+ int  y=curPos.y;
+ uint32 extraStart=SyntaxHighlightExtraFor(start,s,y);
 
  while (s!=buffer)
    {
     if (*--s==open)
       {
-       if (!--Count)
+       uint32 extraEnd=SyntaxHighlightExtraFor(start,s,y);
+       if (extraStart==extraEnd && !--Count)
           return (int)(s-buffer);
       }
-    else if (*s==close)
-            Count++;
+    else
+      {
+       if (*s==close)
+         {
+          uint32 extraEnd=SyntaxHighlightExtraFor(start,s,y);
+          if (extraStart==extraEnd)
+             Count++;
+         }
+       else
+          if (*s=='\n')
+            {
+             y--;
+             if (y>=0)
+                start-=lenLines[y];
+            }
+      }
    }
  return -1;
 }
@@ -6033,10 +6046,14 @@ this value.@*
 int TCEditor::SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *pos)
 {
  unsigned Count=1;
- char *s=pos ? pos : ColToPointer(),*start;
+ char *s=pos ? pos : ColToPointer(),*start=curLinePtr;
 
  if (s==buffer)
     return -1;
+
+ // Compute the SHL for this char
+ uint32 extraStart=SyntaxHighlightExtraFor(start,s,curPos.y);
+
  s--;
  Y=curPos.y;
  X=0;
@@ -6045,15 +6062,9 @@ int TCEditor::SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *po
     s--;
     if (*s==open)
       {
-       if (!--Count)
+       uint32 extraEnd=SyntaxHighlightExtraFor(start,s,Y);
+       if (extraEnd==extraStart && !--Count)
          {
-          if (Y==0)
-             start=buffer;
-          else
-            {
-             for (start=s; *start!='\n'; start--);
-             start++;
-            }
           while (start!=s)
             {
              AdvanceWithTab(*start,X);
@@ -6063,11 +6074,22 @@ int TCEditor::SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *po
          }
       }
     else
+      {
        if (*s==close)
-          Count++;
+         {
+          uint32 extraEnd=SyntaxHighlightExtraFor(start,s,Y);
+          if (extraEnd==extraStart) Count++;
+         }
        else
+         {
           if (*s=='\n')
+            {
              Y--;
+             if (Y>=0)
+                start-=lenLines[Y];
+            }
+         }
+      }
    }
  return -1;
 }
@@ -6094,13 +6116,18 @@ int TCEditor::SearchCloseSymbolXY(char open, char close, int &X, int &Y, char *p
  X=0;
  Y=curPos.y;
  lastl=curLinePtr;
+
+ // Compute the SHL for this char
+ uint32 extraStart=SyntaxHighlightExtraFor(lastl,s,Y);
+
  if (s!=end)
    {
     while (s!=end)
       {
        if (*s==close)
          {
-          if (!--Count)
+          uint32 extraEnd=SyntaxHighlightExtraFor(lastl,s,Y);
+          if (extraEnd==extraStart && !--Count)
             {
              while (lastl!=s)
                {
@@ -6111,14 +6138,19 @@ int TCEditor::SearchCloseSymbolXY(char open, char close, int &X, int &Y, char *p
             }
          }
        else
+         {
           if (*s==open)
-             Count++;
+            {
+             uint32 extraEnd=SyntaxHighlightExtraFor(lastl,s,Y);
+             if (extraEnd==extraStart) Count++;
+            }
           else
              if (*s=='\n')
                {
                 Y++;
                 lastl=s+1;
                }
+         }
        s++;
       }
    }
@@ -6149,6 +6181,10 @@ int TCEditor::SearchCloseSymbol(char open, char close)
  int dif;
  char *s=ColToPointer(dif);
  char *end=buffer+bufLen;
+ char *lastl=curLinePtr;
+ int   y=curPos.y;
+ // Compute the SHL for this char
+ uint32 extraStart=SyntaxHighlightExtraFor(lastl,s,y);
 
  if (s!=end)
    {
@@ -6158,11 +6194,24 @@ int TCEditor::SearchCloseSymbol(char open, char close)
       {
        if (*s==close)
          {
-          if (!--Count)
+          uint32 extraEnd=SyntaxHighlightExtraFor(lastl,s,y);
+          if (extraEnd==extraStart && !--Count)
              return (int)(s-buffer);
          }
-       else if (*s==open)
-               Count++;
+       else
+         {
+          if (*s==open)
+            {
+             uint32 extraEnd=SyntaxHighlightExtraFor(lastl,s,y);
+             if (extraEnd==extraStart) Count++;
+            }
+          else
+             if (*s=='\n')
+               {
+                y++;
+                lastl=s+1;
+               }
+         }
        s++;
       }
    }
@@ -8839,6 +8888,48 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
 }
 
 
+/**[txh]********************************************************************
+
+  Description:
+  Finds the syntax highlight for a character pointed by an offset in the
+file.
+  
+  Return: The shl flags.
+  
+***************************************************************************/
+
+uint32 TCEditor::SyntaxHighlightForOffset(unsigned offset)
+{
+ if (SyntaxHL==shlNoSyntax)
+    return 0;
+ unsigned rest;
+ int y=FindLineForOffSet(offset,rest);
+ uint32 attr=lenLines.getAttr(y);
+ LineMeassure(buffer+offset-rest,buffer+offset,attr);
+ return attr;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Finds the extra SHL attributes for a position. We must know the pointer
+to the line start, a pointer to the character and the line number.
+  
+  Return: The extra attributes (in string, comment and/or preprocessor).
+  
+***************************************************************************/
+
+uint32 TCEditor::SyntaxHighlightExtraFor(char *lineStart, char *posTarget,
+                                         int line)
+{
+ if (SyntaxHL==shlNoSyntax)
+    return 0;
+ uint32 attr=lenLines.getAttr(line);
+ uint32 extra;
+ LineMeassure(lineStart,posTarget,attr,&extra);
+ return extra;
+}
+
 /****************************************************************************
 
    Function: Boolean search( const char *findStr, unsigned opts )
@@ -8894,11 +8985,8 @@ Boolean TCEditor::search(const char *, unsigned opts)
       // In/Outside comments
       if (SyntaxHL!=shlNoSyntax && (opts & (efSearchInComm | efSearchOutComm)))
         {// Find the attributes of this point
-         unsigned rest;
-         int y=FindLineForOffSet(i,rest);
-         uint32 attr=lenLines.getAttr(y);
-         LineMeassure(buffer+i-rest,buffer+i,attr);
-         if (attr & (ComInside | InsideCom | ExtCom | InsideCom2 | ExtCom2))
+         uint32 attr=SyntaxHighlightForOffset(i);
+         if (attr & IsInsideCom)
             takeThisHit=opts & efSearchInComm;
          else
             takeThisHit=opts & efSearchOutComm;
@@ -8961,7 +9049,7 @@ Boolean TCEditor::search(const char *, unsigned opts)
 
 
 static
-unsigned LineMeassureC(char *s, char *end, uint32 &Attr)
+unsigned LineMeassureC(char *s, char *end, uint32 &Attr, uint32 *extra)
 {
  uint32 l=0;
  char *end2=end-1;
@@ -9116,6 +9204,14 @@ unsigned LineMeassureC(char *s, char *end, uint32 &Attr)
  if (in_prepro && (attr & ExtCom))
     attr|=ExtPrepro;
  Attr=attr;
+ if (extra)
+   {
+    *extra=0;
+    if (in_string) *extra|=InString;
+    if (in_char)   *extra|=InString2;
+    if (in_com)    *extra|=InComment;
+    if (in_prepro) *extra|=InPrepro;
+   }
 #if 0
  if (l && *s=='\n') l++;
 #else
@@ -9127,7 +9223,7 @@ unsigned LineMeassureC(char *s, char *end, uint32 &Attr)
 
 
 static
-unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr)
+unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr, uint32 *extra)
 {
  uint32 l=0;
  char *end2=end-1;
@@ -9254,6 +9350,14 @@ unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr)
     ++s;
    }
  Attr=attr;
+ if (extra)
+   {
+    *extra=0;
+    if (in_string) *extra|=InString;
+    if (in_com1 ||
+        in_com2)   *extra|=InComment;
+    if (in_prepro) *extra|=InPrepro;
+   }
 #if 0
  if (l && *s=='\n') l++;
 #else
@@ -9265,7 +9369,7 @@ unsigned LineMeassurePascal(char *s, char *end, uint32 &Attr)
 
 
 static
-unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr)
+unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr, uint32 *extra)
 {
  uint32 l=0;
  char *end2=end-1;
@@ -9411,6 +9515,14 @@ unsigned LineMeassureClipper(char *s, char *end, uint32 &Attr)
     ++s;
    }
  Attr=attr;
+ if (extra)
+   {
+    *extra=0;
+    if (in_string) *extra|=InString;
+    if (in_char)   *extra|=InString2;
+    if (in_com)    *extra|=InComment;
+    if (in_prepro) *extra|=InPrepro;
+   }
 #if 0
  if (l && *s=='\n') l++;
 #else
@@ -9430,7 +9542,7 @@ is a dissaster in comparisson with the specialized C version.
 *****************************************************************************/
 
 static
-unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
+unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
 {
  uint32 l=0;
  char *end2=end-1;
@@ -9769,6 +9881,15 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr)
  if (in_prepro && (attr & (ExtCom | ExtCom2)))
     attr|=ExtPrepro;
  Attr=attr;
+ if (extra)
+   {
+    *extra=0;
+    if (in_string)  *extra|=InString;
+    if (in_string2) *extra|=InString2;
+    if (in_string3) *extra|=InString3;
+    if (type_com)   *extra|=InComment;
+    if (in_prepro)  *extra|=InPrepro;
+   }
  l=s-start;
 #if 0
  if (l && *s=='\n') l++;

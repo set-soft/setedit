@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.231  2002/11/11 17:43:20  set
+* Added: Now if you unindent uncommenting the editor checks that at least
+the first line is already indented, if not the operation is aborted.
+* Fixed: When indenting a block using the arbitrary indent or comment
+indent the syntax highlight wasn't recomputed.
+
 Revision 1.230  2002/11/11 16:21:22  set
 * Fixed: A bug introduced by the 1.197 (SF number) revision. It fixed
 problems in the overwrite undo but introduced problems in the normal

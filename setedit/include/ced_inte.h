@@ -39,6 +39,12 @@ const int
 #define ExtString2     0x20000
 #define StartString3   0x40000
 #define ExtString3     0x80000
+// Extra flags not useful for a line start
+#define InString       0x00001
+#define InString2      0x00002
+#define InString3      0x00004
+#define InComment      0x00008
+#define InPrepro       0x00010
 
 #define Not_ComInside      (~ComInside)
 #define Not_InsideCom      (~InsideCom)
@@ -60,6 +66,9 @@ const int
 #define Not_StartString2   (~StartString2)
 #define Not_ExtString3     (~ExtString3)
 #define Not_StartString3   (~StartString3)
+#define Not_InString       (~InString)
+#define Not_InString2      (~InString2)
+#define Not_InString3      (~InString3)
 #define FilterHere         (Not_ComInside & Not_StartCom & Not_EndCom & \
                             Not_ExtPrepro & Not_StartCom2 & Not_EndCom2 & \
                             Not_ExtString & Not_StartString & Not_ExtString2 & \
@@ -71,6 +80,8 @@ const int
 #define InsideGenericCom   (InsideCom | InsideCom2)
 #define StartInPascalCom   (StartInCom | StartInCom2)
 #define StartInGenericCom  (StartInCom | StartInCom2)
+#define IsInsideCom        (ComInside | InsideCom | ExtCom | InsideCom2 | ExtCom2)
+#define IsInsideStr        (InString | InString2 | InString3)
 
 // *************** Keyboard binding tables declared in kbfun.h included by
 //                 kbfun.cc and used in the editor class.
