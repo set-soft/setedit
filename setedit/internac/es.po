@@ -2360,9 +2360,8 @@ msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
 #: ../mainsrc/tags.cc:1500
-#, fuzzy
 msgid "Unknown line"
-msgstr "Desconocido"
+msgstr "Línea desconocida"
 
 #: ../mainsrc/tags.cc:1544 ../mainsrc/tags.cc:1715 ../mainsrc/tags.cc:1731
 msgid "Members"
@@ -2568,7 +2567,6 @@ msgid "Select a file"
 msgstr "Seleccione un archivo"
 
 #: ../mp3/mp3list.cc:120
-#, fuzzy
 msgid "Save file list"
 msgstr "Grabar la lista de archivos"
 
@@ -2687,7 +2685,7 @@ msgstr "operación no definida"
 
 #: ../sdg/mli.cc:1592
 msgid "invalid character for a name"
-msgstr ""
+msgstr "caracter inválido para un nombre"
 
 #: ../setedit/advice.cc:46
 msgid ""
@@ -4064,6 +4062,90 @@ msgstr "Ventana 18"
 msgid "Window 19"
 msgstr "Ventana 19"
 
+#: ../setedit/editmenu.cc:327
+msgid "Pro~j~ect Window"
+msgstr "Ventana del ~P~royecto"
+
+#: ../setedit/editmenu.cc:328
+msgid "~M~essage Window"
+msgstr "Ventana de Me~n~sajes"
+
+#: ../setedit/editmenu.cc:329
+msgid "~E~dition Windows"
+msgstr "Ventanas de Ed~i~ción"
+
+#: ../setedit/editmenu.cc:330
+msgid "Window  ~2~"
+msgstr "Ventana  ~2~"
+
+#: ../setedit/editmenu.cc:331
+msgid "Window  ~3~"
+msgstr "Ventana  ~3~"
+
+#: ../setedit/editmenu.cc:332
+msgid "Window  ~4~"
+msgstr "Ventana  ~4~"
+
+#: ../setedit/editmenu.cc:333
+msgid "Window  ~5~"
+msgstr "Ventana  ~5~"
+
+#: ../setedit/editmenu.cc:334
+msgid "Window  ~6~"
+msgstr "Ventana  ~6~"
+
+#: ../setedit/editmenu.cc:335
+msgid "Window  ~7~"
+msgstr "Ventana  ~7~"
+
+#: ../setedit/editmenu.cc:336
+msgid "Window  ~8~"
+msgstr "Ventana  ~8~"
+
+#: ../setedit/editmenu.cc:337
+msgid "Window  ~9~"
+msgstr "Ventana  ~9~"
+
+#: ../setedit/editmenu.cc:338
+msgid "Window 10"
+msgstr "Ventana 10"
+
+#: ../setedit/editmenu.cc:339
+msgid "Window 11"
+msgstr "Ventana 11"
+
+#: ../setedit/editmenu.cc:340
+msgid "Window 12"
+msgstr "Ventana 12"
+
+#: ../setedit/editmenu.cc:341
+msgid "Window 13"
+msgstr "Ventana 13"
+
+#: ../setedit/editmenu.cc:342
+msgid "Window 14"
+msgstr "Ventana 14"
+
+#: ../setedit/editmenu.cc:343
+msgid "Window 15"
+msgstr "Ventana 15"
+
+#: ../setedit/editmenu.cc:344
+msgid "Window 16"
+msgstr "Ventana 16"
+
+#: ../setedit/editmenu.cc:345
+msgid "Window 17"
+msgstr "Ventana 17"
+
+#: ../setedit/editmenu.cc:346
+msgid "Window 18"
+msgstr "Ventana 18"
+
+#: ../setedit/editmenu.cc:347
+msgid "Window 19"
+msgstr "Ventana 19"
+
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"
 msgstr "Paleta del editor"
@@ -5342,6 +5424,10 @@ msgstr "Asi~g~nación"
 #: ../settvuti/tdiagaid.cc:187
 msgid "Command~s~"
 msgstr "Comando~s~"
+
+#: ../settvuti/tdiagaid.cc:188
+msgid "s~L~isp code"
+msgstr "Código s~L~isp"
 
 #: ../settvuti/tdiagaid.cc:188
 msgid "s~L~isp code"
