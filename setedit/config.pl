@@ -684,7 +684,8 @@ int main(void)
  printf("%d.0.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION);
  #endif
  return 0;
-}';
+}
+';
  $MP3Support=0;
  $test=RunGCCTest($GCC,'c',$test,"-lalleg");
  if (!length($test))
