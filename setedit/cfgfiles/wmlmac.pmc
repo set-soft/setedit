@@ -1,0 +1,85 @@
+; Copyright (C) 2004 by Salvador E. Tropea (SET),
+; see copyrigh file for details
+;
+;
+; Some simple WML and HTML macros.
+; Contributed by Diego J. Brengi
+;
+
+Trigger: "<d"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Define-tag
+ "<define-tag @0 endtag=required whitespace=delete>\n"
+ "</define-tag>@1"
+
+Trigger: "<f"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Foreach
+ "<foreach @0></foreach>@1"
+
+Trigger: "<p"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Preserve
+ "<preserve @0 >@1"
+
+Trigger: "<r"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Restore
+ "<restore @0 >@1"
+
+
+Trigger: "<g"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Get-var
+ "<get-var @0>@1"
+
+Trigger: "<w"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: While
+ "<while @0>@1\n"
+ "</while>"
+
+Trigger: "<a"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Link
+ "<a href=\"@0\">@1</a>@2"
+
+Trigger: "<m"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Image
+ "<img src=\"@0\">@1"
+
+Trigger: "<t"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Table
+ "<table>\n"
+ "<tr>@0</tr>\n"
+ "</table>@1"
+
+Trigger: "me"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Meta tag
+ "<meta name=\"@0\" content=\"@1\">"
+
+Trigger: "<!"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Comment
+ "<!-- @0 -->@1"
+
+Trigger: "<f"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Font
+ "<font @0>@1</font>"
+
+Trigger: "ma"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Squeleton
+ "<HTML><head>\n"
+ "<title>@0</title>\n"
+ "</head>\n"
+ "<body>\n"
+ "@1\n"
+ "</body>\n"
+ "</HTML>\n"
+
+

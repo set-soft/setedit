@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Syntax highlight file for SET's editor
@@ -2244,4 +2244,59 @@ Keywords=Numeric,Object,Proc,Range,Regexp,RuntimeError,SecurityError,SignalExcep
 Keywords=SystemCallError,SystemExit,SystemStackError,ThreadError,Time,TypeError,ZeroDivisionError,fatal
 Keywords=Comparable,Enumerable,Errno,FileTest,GC,Kernel,Marshal,Math,ObjectSpace,Precision,Process
 #---------------------------End Ruby shl-----------------------------------#
+
+# -------------------------------- WML ------------------------------------
+#
+# Very basic WML syntax (I am learning!)
+# Contributed by Diego J. Brengi
+#
+Name=WML
+Files=wml,WML
+#Comment next line if you like to see WML keywords inside strings
+String1="
+Case=0
+#Next two lines ar usefull only if you comment "Preprocessor"
+EOLComment1=#
+EOLCInfirstcol1=1
+#For HTML Comments
+OpenComment1=<!--
+CloseComment1=-->
+CanStartAName=<
+Escape=\
+AllowedInsideNames=/-
+
+#Comment if you don't want to see comments like preprocessor instructions
+Preprocessor=#
+
+Symbols1==,;{}()[]#!
+Symbols2=%><"
+NoCheckNumbers=1
+PMacros=wmlmac.pmc
+
+SpecialSymbol=<
+SpecialSymbolCont=#
+SpecialSymbol=#
+SpecialSymbolCont=>
+
+#------------------words exctracted from /usr/bin/wmd wml_tags(7)------------------------
+Keywords=wml,include,depends,use
+
+Keywords=<add,<and,<array-add-unique,<array-concat,<array-member,<array-pop,<array-push,<array-shift
+Keywords=<array-size,<array-topvalue,<at-end-of-file,</at-end-of-file,<attributes-extract,<attributes-quote
+Keywords=<attributes-remove,<break,<bs,<capitalize,<char-offsets,<comment,</comment,<compound,</compound
+Keywords=<copy-var,<date,<debugfile,<debugging-off,<debugging-on,<debugmode,<decrement,<define-entity
+Keywords=</define-entity,<define-tag,</define-tag,<defvar,<directory-contents,<disjoin,<divert,</divert,<divide
+Keywords=<divnum,<dnl,<downcase,<dq,<eq,<exit,<expand,<file-exists,<foreach,</foreach,<frozen-dump,<function-def
+Keywords=<get-file-properties,<get-hook,<get-regexp-syntax,<get-var-once,<get-var,group,<gt,<if,<ifeq
+Keywords=<ifneq,<include,<increment,<lb,<let,<load,<lt,<match,<max,<min,<modulo,<mp4h-l10n,<mp4h-output-radix
+Keywords=<multiply,<neq,<noexpand,<nostrip,</nostrip,<not,<or,<preserve
+Keywords=<protect,</protect,<provide-tag,</provide-tag,<rb,<real-path,<restore,<return,<set-eol-comment
+Keywords=<set-hook,</set-hook,<set-quotes,<set-regexp-syntax,<set-var-verbatim,<set-var-x,</set-var-x
+Keywords=<set-var,<sort,<string-compare,<string-eq,<string-length,<string-neq,<subst-in-string,<subst-in-var
+Keywords=<substract,<substring,<suck,<symbol-info,<timer,<undef,<undivert,<unset-var,<upcase,<use,<var-case
+Keywords=<var-exists,<warning,<when,</when,<while,</while
+
+Keywords=endtag,whitespace
+End
+
 

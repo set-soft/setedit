@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 6 April 2004
+@set update-date 13 April 2004
 @set update-month April 2004
 @set name-author Salvador Eduardo Tropea
 
@@ -4485,11 +4485,13 @@ are:
     @item Clipper 5.x
     @item Command Line Errors File
     @item Environment files
+    @item Flat assembler
     @item Fortran
     @item HTML
     @item Internationalization files (.po)
     @item Java
     @item Java Script
+    @item Lua
     @item Makefiles
     @item Menu files
     @item Modula 2
@@ -4498,10 +4500,12 @@ are:
     @item Pascal
     @item PDP11 assembler
     @item Perl
+    @item PHP
     @item PIC assembler (Microchip)
     @item PLM/51
     @item PMacros files
     @item PostScript
+    @item POV-ray
     @item Python
     @item Ruby
     @item SDG format files
@@ -4511,7 +4515,11 @@ are:
     @item TCL/Tk
     @item TeX
     @item Texinfo
+    @item Turbo Vision configuration files
     @item UNIX shell scripts
+    @item VHDL
+    @item XML
+    @item WML
 @c Currently SDH doesn't support it in other column that 1, sorry.
 @end itemize
 @end itemize

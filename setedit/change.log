@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.499  2004/04/12 13:17:13  set
+* Fixed: [Holydays] bug in movement and fixed april 2 movement in
+argentinian holydays.
+
 Revision 1.498  2004/04/06 19:10:48  set
 * Fixed: Problems with some texinfo versions reported by Cosmin T. (ctruta\
 hotmail\com).
@@ -933,7 +937,7 @@ selectable and write a mini-doc about how to write those plug-ins.
 Revision 1.332  2003/05/05 14:06:06  set
 * Modified: Now the dialog that shows the list of classes isn't case
 sensitive. That's why I feel that's much more intuitive and easier to use.
-* Fixed: When searching in classes without a perefect match of the word
+* Fixed: When searching in classes without a perfect match of the word
 under cursor and jumping to a member the editor jumped but offered the list
 of classes again.
 * Fixed: The list of "functions" supports things that aren't strcitly
