@@ -301,15 +301,15 @@
 ;                                           (SendCommands cmcNewLine cmcLineUp cmcLineUp)
 ;                                    )
 ; 
-;         (not (strcmp str "in"))    (progn (InsertText "#ifndef _____\n")
-;                                           (InsertText "#define _____\n")
+;         (not (strcmp str "in"))    (progn (InsertText "#ifndef \n")
+;                                           (InsertText "#define \n")
 ;                                           (InsertText "\n")
 ;                                           (InsertText "#endif")
 ;                                           (SendCommands cmcLineUp cmcLineUp cmcLineUp cmcLineEnd)
 ;                                    )
 ;
 ;         (not (strcmp str ".h"))    (progn
-;                                           (setv "filename" (+ "_____" (WhichEditor edfWENameNoExt) "_h_____"))
+;                                           (setv "filename" (+ (WhichEditor edfWENameNoExt) "_h_____"))
 ;                                           (InsertText (+ "#ifndef " filename "\n"))
 ;                                           (InsertText (+ "#define " filename "\n"))
 ;                                           (InsertText "\n")
