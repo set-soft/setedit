@@ -465,7 +465,11 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
       if (!r) break;
       // Now we should find: (a) a { if that's a function or (b) a ; if that's
       // a prototype.
-      r=TakeWord(1);
+      do
+        {
+         r=TakeWord(1);
+        }
+      while (r==3 && bfBuffer[0]=='#');
       if (!r) break;
 
       int SearchOpen=0,SkipCatch=0;

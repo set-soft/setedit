@@ -1,4 +1,7 @@
 $Log$.
+Revision 1.145  2002/07/05 20:29:40  set
+* Fixed: [MSVC] small makefile details from WintiX.
+
 Revision 1.144  2002/07/05 12:49:54  set
 * Fixed: [MSVC] libpcre should be linked statically, added -DSTATIC. From
 warning sent by WintiX.
