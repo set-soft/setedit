@@ -1305,7 +1305,7 @@ sub GenerateMakefile
  if ($libset)
    {
     $text.="\n\nlibset:\n";
-    $text.="\tcd makes; \$(MAKE) -f libset.mkf; cd ..";
+    $text.="\t\$(MAKE) -C makes libset";
    }
  # infview
  if ($infview)

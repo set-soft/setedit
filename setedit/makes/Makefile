@@ -98,6 +98,9 @@ clean-docs:
 infview: makes
 	$(MAKE) -f infview.mkf
 
+libset: makes
+	$(MAKE) -f libset.mkf
+
 ifeq ($(editor_OS),DJGPP)
 scrnsave:
 	$(MAKE) -C ../scrnsave

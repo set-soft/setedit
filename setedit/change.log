@@ -1,4 +1,20 @@
-$Log$
+$Log$.
+Revision 1.364  2003/05/14 16:01:48  set
+* Fixed: For some reason S.F. CVS had a configure script that didn't use
+libset.mkf (used the .mak).
+* Fixed: The code to extract BC++ and MSVC objects failed with the new .imk
+format of 1 dependency by line.
+* Added: RHIDE 1.5 CVS defines vpath for includes as all the include
+directories and then stripts these directories from dependencies. This is
+different to what previous versions used. Now the imks generator supports
+it.
+* Added: RHIDE 1.5 CVS generates some absolute path dependencies, I'm not
+sure if it only happends for old .gpr files. Now the .imk generator tries
+to convert them into relative and scan again looking for the proper include
+directory before giving up.
+* Fixed: The -m option was disabled during the TV 1.x to 2.x process, now
+is enabled again using TV 2.x mechanisms.
+
 Revision 1.363  2003/05/13 14:58:18  set
 * Fixed: Some details needed to compile RHIDE 1.5, CVS snapshot for today.
 
