@@ -668,7 +668,15 @@ void OpenProject(char *name)
  if (edTestForFile(s))
    { // Load it
     CloseProject(0);
-    editorApp->retrieveDesktop(ReplaceExtension(s,DeskTopFileExt,ProjectFileExt),True);
+    ReplaceExtension(s,DeskTopFileExt,ProjectFileExt);
+    char *hidden;
+    if (!edTestForFile(s) && (hidden=MakeItHiddenName(s))!=NULL)
+      {
+       editorApp->retrieveDesktop(hidden,True);
+       delete[] hidden;
+      }
+    else
+       editorApp->retrieveDesktop(s,True);
     LoadProject(ReplaceExtension(s,ProjectFileExt,DeskTopFileExt));
    }
  else
