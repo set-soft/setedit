@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.50
-@set update-date 9 Oct 2001
+@set version 0.4.51
+@set update-date 27 Oct 2001
 @set update-month Oct 2001
 @set name-author Salvador Eduardo Tropea
 
@@ -4540,8 +4540,147 @@ variables must be integer.
   Returns 17.
 @paragraph{}
 
-@c --------------------------------------------------------------
+@c ************************************************************************************
+@section Writing macros that uses text filters
 
+  The sLisp language provides the commands needed to take a selected text
+pass it to an external program and collect their output. You can finally
+replace the original text by the new text. This kind of programs are usually
+called filters. Some applications of this are complex recoding using GNU
+recode, text formating, code indentation using GNU indent, @i{etc.}
+@p{}
+
+  Here is an example contributed by Grzegorz Adam Hankiewicz. This macro can
+be used to reformat e-mails without breaking the quoted text. It uses a
+Python script that uses the fmt program to format text.
+@p{}
+
+  This is the e-mail from Grzegorz:
+@p{}
+
+@example
+> SET
+> I added a second (optional) parameter to RunProgramRedir. It should
+> be a string containing the text to send to the external program.
+> I tested it with "recode ISO8859-1..html" and worked really nice. I
+> added an example to macros.slp.  I also created a MessageBox command,
+> in the example is used to indicate to the user that some text must be
+> selected first (the text that we'll send to the external filter).
+
+Grzegorz Adam Hankiewicz <gradha@@terra.es>:
+
+Wow, that's cool!
+
+Enough for reformatting things. BTW, here's the first script I've
+used with the RunProgramRedir to reformat email messages so they keep
+identation levels and don't get out of the screen. The nice thing is
+that it's very small since it sits on top of the fmt command. In fact,
+this email is reformatted with it...
+@end example
+
+  The sLisp code to call it can be defined like it:
+@p{}
+
+@example
+(defmacro 'Format e-mail'
+ (eval
+  (setv "input" (GetSelection))
+  (if (length input)
+   ; Call the filter
+   (eval
+    (setv "output"
+     (RunProgramRedir "email-fmt.py" input)
+    )
+    (SendCommands cmcCut)
+    (InsertText output 1)
+   )
+   ; Ask the user to select something firt
+   (MessageBox "Please select a text first")
+  )
+ )
+)
+@end example
+
+  And here is the Python script from Grzegorz:
+@p{}
+
+@example
+#!/usr/bin/env python
+
+import sys, string, popen2
+
+class LINE:
+   pass
+
+identation = " \t><:"
+
+
+
+def detect_identation_characters(line):
+   """Returns number of identation chars minus trailing whitespace."""
+   count = 0
+   for f in line:
+      if f in identation: count = count + 1
+      else: break
+      
+   return len(string.rstrip(line[:count])), count
+
+   
+
+def initial_scan(line):
+   """Add attributes to the lines."""
+   l = LINE()
+   l.line = line
+   l.total_length = len(line)
+   l.ident, l.soft_ident = detect_identation_characters(line)
+   l.length = l.total_length - l.soft_ident
+   return l
+
+
+
+def same_identation_lines(lines):
+   """Returns number of lines with same identation level."""
+   f = 1
+   while f < len(lines):
+      if lines[f].ident != lines[0].ident:
+         break
+      else:
+         f = f + 1
+         
+   return f
+
+
+
+def reformat_lines(lines):
+   """Dumps lines in list to fmt command."""
+   assert lines
+   length = max (75 - lines[0].ident, 20)
+
+   stdout, stdin = popen2.popen2 ("fmt -w %d" % length)
+   for f in lines:
+      stdin.write ("%s\n" % string.strip (f.line[lines[0].ident:]))
+   stdin.close()
+
+   padding = ""
+   if lines[0].ident: padding = "%s " % lines[0].line[:lines[0].ident]
+   for f in stdout.readlines():
+      sys.stdout.write ("%s%s" % (padding, f))
+   stdout.close()
+   
+
+
+if __name__ == "__main__":
+   lines = map(initial_scan, map(string.rstrip, map(string.expandtabs, sys.stdin.readlines())))
+   
+   f = 0
+   while f < len(lines):
+      look = same_identation_lines(lines[f:])
+      reformat_lines(lines[f:f+look])
+      f = f + look
+@end example
+  
+@c ************************************************************************************
+@c ************************************************************************************
 @chapter Calculator
 
   The calculator inside the editor was originally made by Laszlo Molnar.
