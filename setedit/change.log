@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.336  2003/05/06 12:31:49  set
+* Added: Conditional to compute statistics about the tags. Reports really
+interesting info.
+* Modified: The way that Tags are displayed in lists to make them more
+readable as suggested by Grzegorz. I used the stats to determine the sizes.
+
 Revision 1.335  2003/05/05 20:40:31  set
 * Added: A configuration file for the "holiday plug-ins", it maps a value
 of the LANG environment variable to a country and .so.
