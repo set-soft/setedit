@@ -1543,7 +1543,7 @@ over a word.
 char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
 {
  char *word,*aux;
- char *word_start,*word_end,*i;
+ char *wordStart,*wordEnd,*i;
  unsigned l;
 
  if (IslineInEdition)
@@ -1557,48 +1557,61 @@ char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
  PipeBuf=buffer;
  PipeBufLen=bufLen;
 
- if (!isWordChar(*s))
+ if (options & wucCanStartColon)
    {
-    if ((options & wucTakeOneLeft) && s>buffer)
-       s--;
+    if (!isWordCharColon(*s))
+      {
+       if ((options & wucTakeOneLeft) && s>buffer)
+          s--;
+       if (!isWordCharColon(*s))
+          return NULL;
+      }
+   }
+ else
+   {
     if (!isWordChar(*s))
-       return NULL;
+      {
+       if ((options & wucTakeOneLeft) && s>buffer)
+          s--;
+       if (!isWordChar(*s))
+          return NULL;
+      }
    }
 
  if (options & wucIncludeColon)
    { // For C++ members
-    word_start = s;
-    while (--word_start>buffer && isWordCharColon(*word_start));
-    if (word_start!=buffer || !isWordCharColon(*word_start))
-       word_start++;
+    wordStart=s;
+    while (--wordStart>buffer && isWordCharColon(*wordStart));
+    if (wordStart!=buffer || !isWordCharColon(*wordStart))
+       wordStart++;
    
-    word_end = s;
-    while (++word_end<end && isWordCharColon(*word_end));
-    if (word_end!=end || !isWordCharColon(*word_end))
-       word_end--;
+    wordEnd=s;
+    while (++wordEnd<end && isWordCharColon(*wordEnd));
+    if (wordEnd!=end || !isWordCharColon(*wordEnd))
+       wordEnd--;
    }
  else
    {
-    word_start = s;
-    while (--word_start>buffer && isWordChar(*word_start));
-    if (word_start!=buffer || !isWordChar(*word_start))
-       word_start++;
+    wordStart = s;
+    while (--wordStart>buffer && isWordChar(*wordStart));
+    if (wordStart!=buffer || !isWordChar(*wordStart))
+       wordStart++;
    
-    word_end = s;
-    while (++word_end<end && isWordChar(*word_end));
-    if (word_end!=end || !isWordChar(*word_end))
-       word_end--;
+    wordEnd = s;
+    while (++wordEnd<end && isWordChar(*wordEnd));
+    if (wordEnd!=end || !isWordChar(*wordEnd))
+       wordEnd--;
    }
 
  // Adjust the pipe
- PipeOrigin=(unsigned)(word_start-buffer);
+ PipeOrigin=(unsigned)(wordStart-buffer);
 
- l=(unsigned)(word_end-word_start+2);
+ l=(unsigned)(wordEnd-wordStart+2);
  if (l>maxLength)
     return NULL;
  word = new char[l];
 
- for (i=word_start,aux=word; i<=word_end; i++)
+ for (i=wordStart,aux=word; i<=wordEnd; i++)
      *aux++ = *i;
  *aux=0;
 

@@ -751,15 +751,28 @@ void MakeTagsWordCompletion()
 
  if ((e=GetCurrentIfEditor())!=0)
    {
-    char *word=e->WordUnderCursor(80,wucTakeOneLeft);
+    char *word=e->WordUnderCursor(80,wucTakeOneLeft | wucIncludeColon | wucCanStartColon);
     if (word)
       {
-       char *exp=TagsWordCompletion(e->cursor.x+e->owner->origin.x,
-                                    e->cursor.y+e->owner->origin.y+1,word);
+       unsigned l=strlen(word);
+       char *exp;
+       Boolean fullInsert=False;
+
+       if (l>2 && word[l-1]==':' && word[l-2]==':')
+         {// That's for C++ classes
+          word[l-2]=0;
+          exp=TagsWordCompletionClass(e->cursor.x+e->owner->origin.x,
+                                      e->cursor.y+e->owner->origin.y+1,word);
+          fullInsert=True;
+         }
+       else
+          exp=TagsWordCompletion(e->cursor.x+e->owner->origin.x,
+                                 e->cursor.y+e->owner->origin.y+1,word);
        if (exp)
          {
           char *cursor=e->ColToPointerPost();
-          e->deleteRange(cursor-strlen(word),cursor,True);
+          if (!fullInsert)
+             e->deleteRange(cursor-strlen(word),cursor,True);
           e->insertText(exp,strlen(exp),False);
           DeleteArray(exp);
          }

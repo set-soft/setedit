@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.459  2003/10/22 19:45:30  set
+* Fixed: When searching outside comments and the match was found in the
+first column of a line after a comment it was ignored. Reported by Alain.
+
 Revision 1.458  2003/10/20 15:33:02  set
 * Fixed: While locking the editor in the S&R y did it wrong and the S&R
 confirmation didn't move to the correct coordinate.

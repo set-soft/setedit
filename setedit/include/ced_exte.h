@@ -119,8 +119,9 @@ const int
 
 // WordUnderCursor
 const unsigned
-  wucTakeOneLeft = 1,
-  wucIncludeColon= 2;
+  wucTakeOneLeft  = 1,
+  wucIncludeColon = 2,
+  wucCanStartColon= 4;
 
 const unsigned
   xhtmlTitle      = 1,

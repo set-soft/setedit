@@ -1842,6 +1842,7 @@ void TagsClassBrowser(char *word)
 
  if (!classList->getCount())
    {
+    CLY_destroy(classList);
     messageBox(__("Sorry, but I can't find any class."),mfError | mfOKButton);
     return;
    }
@@ -1870,6 +1871,17 @@ void TagsClassBrowser(char *word)
  Word Completion
 *****************************************************************************/
 
+static inline
+stTag *SearchTagFor(char *word, int lenW, ccIndex &pos)
+{
+ tags->search(word,pos);
+ stTag *p=tags->atPos(pos);
+ if (strncasecmp(p->id,word,lenW)!=0)
+    return NULL;
+
+ return p;
+}
+
 char *TagsWordCompletion(int x, int y, char *word)
 {
  if (!word || InitTagsCollection()) return NULL;
@@ -1879,9 +1891,8 @@ char *TagsWordCompletion(int x, int y, char *word)
  // Search a tag that matches
  int lenW=strlen(word),tLen;
  ccIndex pos;
- tags->search(word,pos);
- stTag *p=tags->atPos(pos);
- if (strncasecmp(p->id,word,lenW)!=0)
+ stTag *p=SearchTagFor(word,lenW,pos);
+ if (!p)
     return NULL;
 
  TStringCollection *list=new TNoCaseStringCollection(10,4);
@@ -1900,6 +1911,54 @@ char *TagsWordCompletion(int x, int y, char *word)
    }
 
  char *ret=CompletionChooseFromList(list,cant,len,x-lenW,y,0,lenW);
+ delete list;
+
+ return ret;
+}
+
+char *TagsWordCompletionClass(int x, int y, char *word)
+{
+ if (!word || InitTagsCollection()) return NULL;
+ if (tags->refresh()) return NULL;
+ if (!tags->getCount()) return NULL;
+
+ // Search a tag that matches
+ ccIndex pos, max=tags->getCount();
+ if (!tags->search(word,pos))
+    return NULL;
+
+ // Found, now search a class
+ stTag *p=tags->atPos(pos);
+ while (p->kind!='c')
+   {
+    pos++;
+    if (pos>=max)
+       return NULL;
+    p=tags->atPos(pos);
+    if (strcmp(p->id,word))
+       return NULL;
+   }
+
+ // Found a class. Go and collect the members
+ TStringCollection *list=new TNoCaseStringCollection(10,4);
+ ccIndex c=tags->getCount(),i;
+ int len=0,cant=0,tLen=0;
+ for (i=0; i<c; i++)
+    {
+     stTag *p=tags->atPos(i);
+     if ((p->flags & sttFgPMask)==sttFgClass && strcmp(word,p->partof)==0)
+       {
+        list->insert((char *)p->id);
+        cant++;
+        tLen=strlen(p->id);
+        if (tLen>len)
+           len=tLen;
+       }
+    }
+
+ char *ret=NULL;
+ if (cant)
+    ret=CompletionChooseFromList(list,cant,len,x,y,0);
  delete list;
 
  return ret;
