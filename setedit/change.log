@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.611  2004/09/20 14:13:03  set
+* Added: [Config] A command line option to specify a path for includes.
+This path is used for the configuration tests and for the editor.
+
 Revision 1.610  2004/09/17 20:52:41  set
 * Added: [WWW] Some changes towards the next release.
 
