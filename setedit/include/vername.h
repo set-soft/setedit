@@ -1,3 +1,3 @@
 #define VERSION_NAME "Iguazu II"
-#define VERSION_REV  1001
+#define VERSION_REV  1007
 
