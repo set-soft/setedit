@@ -11973,6 +11973,7 @@ static void writeBlock(TCEditor *editor)
    {
     FILE *f;
     struct stat st;
+    int error=0;
     if (stat(fname,&st)==0)
       {
        if (S_ISREG(st.st_mode))
@@ -11987,9 +11988,17 @@ static void writeBlock(TCEditor *editor)
          }
       }
     f=fopen(fname,"w+b");
-    flushLine2(editor);
-    fwrite(editor->buffer+editor->selStart,1,editor->selEnd-editor->selStart,f);
-    fclose(f);
+    if (f)
+      {
+       flushLine2(editor);
+       fwrite(editor->buffer+editor->selStart,1,editor->selEnd-editor->selStart,f);
+       error=ferror(f);
+       fclose(f);
+      }
+    else
+      error=1;
+    if (error)
+       TCEditor::editorDialog(edWriteError,fname);
    }
 }
 
