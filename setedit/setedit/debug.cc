@@ -122,6 +122,14 @@ directories to look for sources.
 #include <dskwin.h>
 #include <pathlist.h>
 
+const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
+static uint32 msgOps=msgConsole | msgTarget | msgLog;
+const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
+const char bkptsVersion=1;
+const char debugDataVersion=1;
+
+#ifdef HAVE_GDB_MI
+
 #include <mi_gdb.h>
 
 #define DEBUG_ME 0
@@ -149,8 +157,6 @@ struct DebugOptionsStruct
 };
 static int debugOpsNotIndicated=1;
 static DebugOptionsStruct dOps;
-const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
-static uint32 msgOps=msgConsole | msgTarget | msgLog;
 // End of Variables for the configuration
 
 const int maxWDbgSt=20, maxWStatus=256;
@@ -166,7 +172,6 @@ static char killAfterStop=0;
 // TODO: Move to app class
 static char *cpuLFile=NULL;
 static int   cpuLLine;
-const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
 
 /*****************************************************************************
   Editor debug commands
@@ -1288,8 +1293,9 @@ void DBG_SaveBreakpoints(opstream &os)
     count++;
     p=p->next;
    }
+ // CAUTION!!! update the dummy
  // Save them
- os << (char)1 << count;
+ os << bkptsVersion << count;
  dbgPr("%d Breakpoints\n",count);
  p=firstB;
  while (p)
@@ -2634,7 +2640,6 @@ void TSetEditorApp::DebugOptsMsgs()
 debugging the user needs a project, for "casual" use the project isn't needed.
 *****************************************************************************/
 
-static char debugDataVersion=1;
 // Allow -2*size to 2*size
 const unsigned maxRef=1000000000;
 
@@ -2693,6 +2698,7 @@ void DebugSaveData(opstream &os)
  unsigned wS=TScreen::getCols();
  unsigned hS=TScreen::getRows();
 
+ // CAUTION!!! update the dummy
  os << debugDataVersion;
 
  // Target options
@@ -2829,4 +2835,57 @@ void DebugReadData(ipstream &is)
 /*****************************************************************************
   End of Persistence.
 *****************************************************************************/
+#else // !HAVE_GDB_MI
+
+void TSetEditorApp::DebugCommandsForDisc() {}
+int  TSetEditorApp::DebugConfirmEndSession(Boolean ) { return 1; }
+void TSetEditorApp::DebugToggleBreakpoint() {}
+int  TSetEditorApp::DebugOptionsEdit() { return 0; }
+void TSetEditorApp::DebugRunOrContinue() {}
+void TSetEditorApp::DebugStepOver() {}
+void TSetEditorApp::DebugTraceInto() {}
+void TSetEditorApp::DebugGoToCursor() {}
+void TSetEditorApp::DebugFinishFun() {}
+void TSetEditorApp::DebugReturnNow() {}
+void TSetEditorApp::DebugStop() {}
+void TSetEditorApp::DebugKill() {}
+void TSetEditorApp::DebugCallStack() {}
+void TSetEditorApp::DebugEvalModify(char *startVal) { delete[] startVal; }
+void TSetEditorApp::DebugOptsMsgs() {}
+void TSetEditorApp::DebugWatchExp(Boolean ) {}
+void TSetEditorApp::DebugDeInitVars() {}
+void TSetEditorApp::DebugCloseSession() {}
+int  TSetEditorApp::DebugCheckAcceptCmd(Boolean ) { return 0; }
+int  TSetEditorApp::DebugCheckStopped(Boolean ) { return 1; }
+void DebugSetCPULine(int , char *) {}
+void TSetEditorApp::DebugPoll() {}
+void DebugReadData(ipstream &) {}
+
+void DBG_SaveBreakpoints(opstream &os)
+{
+ int32 count=0;
+ // Save them
+ os << bkptsVersion << count;
+}
+
+void DebugSaveData(opstream &os)
+{
+ os << debugDataVersion;
+ // Target options
+ os << (uchar)1;
+ // Type of Messages
+ os << (uchar)msgOps;
+ // Debug window information
+ os << svAbsent;
+ // Watches
+ os << svAbsent;
+ // Watches window information
+ os << svAbsent;
+ // Breakpoints
+ DBG_SaveBreakpoints(os);
+ // No more data
+ os << svAbsent;
+}
+
+#endif // HAVE_GDB_MI
 
