@@ -18,7 +18,7 @@ $changelog=~/Revision \d\.(\d*) /;
 $revision=$1;
 die "Can't determine the revision number\n" unless $revision;
 # Source Forge CVS was created around revision 1.515
-$revision+=515 unless $changelog=~/Revision 1\.926  2003\/06\/17 22\:09\:57  set/;
+$revision+=514 unless $changelog=~/Revision 1\.926  2003\/06\/17 22\:09\:57  set/;
 $vername=~s/VERSION_REV\s+\d+/VERSION_REV  $revision/;
 replace('include/vername.h',$vername);
 
