@@ -11,7 +11,7 @@ CC       = cl /nologo
 CXX      = $(CC) /TP
 LD       = $(CXX)
 
-CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
+CFLAGS   = -O2 $(INC) /GR- /GX-
 LDFLAGS  =
 
 !endif

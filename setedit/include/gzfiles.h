@@ -17,8 +17,9 @@ int GZFiles_ExpandHL(char *dest, char *orig);
 #ifndef HAVE_BZIP2
  #define BZFILE void
 #else
- #if defined(Uses_GZInterfaceOnly) && defined(TVComp_BCPP)
-  // Don't ask me why but BC++ dies if bzlib.h includes windows.h again
+ #if defined(Uses_GZInterfaceOnly) && (defined(TVComp_BCPP) || defined(TVComp_MSC))
+  // Don't ask me why but BC++ dies if bzlib.h includes windows.h again.
+  // Collisions appears if we include windows.h in MSVC from ceditor.cc.
   #define BZFILE void
  #else
   #include <bzlib.h>
