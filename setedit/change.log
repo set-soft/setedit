@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.201  2002/09/09 13:33:54  set
+* Fixed: InfView compilation detail, problem introduced in last rev (1.715
+in my home CVS 1.200 @SF)
+
 Revision 1.200  2002/09/09 13:32:41  set
 * Added: Support for the secondary OS clipboard to InfView (X11 selection).
 * Added: Support fot copy from man page to: editor's clipboard, main OS

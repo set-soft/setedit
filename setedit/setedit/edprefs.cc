@@ -67,320 +67,6 @@
 // Forced width of the encodings and fonts list boxes
 const int wForced=24;
 
-/**[txh]********************************************************************
-
-  Description:
-  That's common between DOS and Linux.
-
-***************************************************************************/
-
-static
-void PrimaryEncoding(TSSortedListBox *&enco1, TSLabel *&lbe1, int disableFonts)
-{
- //-------------- Encoding Primary -------------------
- enco1=new TSSortedListBox(wForced,6,tsslbVertical);
- lbe1=new TSLabel(disableFonts ? _("No fonts found") : _("Primary ~e~ncoding"),enco1);
- //----------- End of Encoding Primary ---------------
-}
-
-
-#ifndef TVCompf_djgpp
-
-TDialog *CreateScreenOpsDialog()
-{
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Screen Options")));
-
- TSSortedListBox *enco1;
- TSLabel *lbe1;
- PrimaryEncoding(enco1,lbe1,0);
-
- col->insert(2,2,lbe1);
- EasyInsertOKCancel(col);
-
- TDialog *d=col->doIt();
- delete col;
-
- d->options|=ofCentered;
- d->helpCtx=cmeSetScreenOps;
- return d;
-}
-
-#pragma pack(1)
-typedef struct
-{
- TCollection *font_enco  CLY_Packed;
- ccIndex font_encs       CLY_Packed;
-} ScreenBox;
-#pragma pack()
-
-void SetScreenOps(void)
-{
- if (!TScreen::codePageVariable())
-   {
-    messageBox(_("This terminal have a fixed code page"),mfError | mfOKButton);
-    return;
-   }
- ccIndex oldE1;
- char setDta=1;
-
- ScreenBox box;
- box.font_enco=GetCodePagesList();
- oldE1=box.font_encs=CodePageIDToIndex(GetCodePageFont(1));
-
- TDialog *d=CreateScreenOpsDialog();
-
- if (execDialogNoDestroy(d,&box,setDta)==cmOK)
-   {
-    if (oldE1!=box.font_encs)
-      {
-       ChangeEncodingOfFont(1,IndexToCodePageID(box.font_encs));
-       ResetVideoMode(TScreen::screenMode);
-      }
-   }
-
- destroy(d);
-}
-
-#else
-#include <tpaltext.h>
-
-extern void InsertEnviromentVar(char *variable,char *contents);
-extern void setIntenseState(void);
-// From edfonts.cc
-TStringCollection *CreateListOfFonts(char *dir, uint32 &IsPrimOn, ccIndex &indexPrim,
-                                     uint32 &IsSecoOn, ccIndex &indexSeco);
-
-const ushort OtherOp=13;
-
-TDialog *CreateScreenOpsDialog(int disableFonts)
-{
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Screen Options")));
-
- //------------ Video mode stuff ------------------
- TSLabel *mode=TSLabelRadio(__("~S~creen mode"),
-          "8~0~x25",  // 0x003 8/9x16 VGA
-          "80x~2~8",  // 0x103        VGA+scanlines
-          "~8~0x35",  // 0x203
-          "80x~4~0",  // 0x303
-          "80x4~3~",  // 0x403 8x8
-          "80x~5~0",  // 0x503 8/9x8
-          "80x30",    // 0x703 8x16   VGA+tweaked
-          "80x34",    // 0x803 8x14
-          "90x30",    // 0x903 8x16
-          "90x34",    // 0xA03 8x14
-          "94x30",    // 0xB03 8x16
-          "94x34",    // 0xC03 8x14
-          "82x25",    // 0xD03 8x16 fonts
-          __("other"),0);
- // Other mode
- TSInputLine *other=new TSInputLine(10);
- TSVeGroup *Mode=new TSVeGroup(mode,other,0);
- Mode->makeSameW();
- //-------- End of Video mode stuff ---------------
-
- //---------------- Primary Font ---------------------
- TSLabel *font=TSLabelRadio(disableFonts ? __("No fonts found") :
-                                           __("~P~rimary font (intense)"),
-                            __("~R~OM BIOS fonts"),_("O~t~her font"),0);
- TSSortedListBox *lb=new TSSortedListBox(wForced,4,tsslbVertical);
- TSVeGroup *PFont=new TSVeGroup(font,lb,0);
- PFont->makeSameW();
- //------------ End of Primary Font ------------------
-
- //---------------- Secondary Font -------------------
- TSLabel *font2=TSLabelRadio(disableFonts ? __("No fonts found") :
-                                            __("~S~econdary font"),
-                             __("~D~on't use it"),_("Other ~f~ont"),0);
- TSSortedListBox *lb2=new TSSortedListBox(wForced,4,tsslbVertical);
- TSVeGroup *SFont=new TSVeGroup(font2,lb2,0);
- SFont->makeSameW();
- //------------ End of Secondary Font ----------------
-
- //-------------- Encoding Primary -------------------
- TSSortedListBox *enco1;
- TSLabel *lbe1;
- PrimaryEncoding(enco1,lbe1,disableFonts);
- //----------- End of Encoding Primary ---------------
-
- //-------------- Encoding Secondary -----------------
- TSSortedListBox *enco2=new TSSortedListBox(wForced,6,tsslbVertical);
- TSLabel *lbe2=new TSLabel(disableFonts ? _("No fonts found") :
-                                          _("Secondary encoding"),enco2);
- //----------- End of Encoding Secondary -------------
-
- //----------- External video mode -------------------
- TSHzGroup *ext=new TSHzGroup(new TSCheckBoxes(new TSItem(_("Use external program"),0)),
-                              new TSInputLine(80,36),
-                              0);
- ext->ySep=0;
- //--------- End of External video mode --------------
-
- if (disableFonts)
-   {
-    ((TSRadioButtons *)(font->linked))->view->options&=~ofSelectable;
-    lb->view->options&=~ofSelectable;
-    ((TSRadioButtons *)(font2->linked))->view->options&=~ofSelectable;
-    lb2->view->options&=~ofSelectable;
-    enco1->view->options&=~ofSelectable;
-    enco2->view->options&=~ofSelectable;
-   }
-
- col->insert(2,1,Mode);
- col->insert(xTSRightOf,1,PFont,Mode);
- col->insert(xTSRightOf,yTSUnder,SFont,Mode,PFont);
- col->insert(xTSRightOf,1,lbe1,PFont);
- col->insert(xTSRightOf,yTSUnder,lbe2,SFont,lbe1);
- col->insert(2,yTSUnder,ext,0,Mode);
- EasyInsertOKCancel(col);
-
- TDialog *d=col->doIt();
- delete col;
-
- d->options|=ofCentered;
- d->helpCtx=cmeSetScreenOps;
- return d;
-}
-
-#pragma pack(1)
-typedef struct
-{
- uint32 mode             CLY_Packed;
- char   other[10]        CLY_Packed;
- uint32 font_flg         CLY_Packed;
- TCollection *font_list  CLY_Packed;
- ccIndex font_sel        CLY_Packed;
- uint32 font2_flg        CLY_Packed;
- TCollection *font2_list CLY_Packed;
- ccIndex font2_sel       CLY_Packed;
- TCollection *font_enco  CLY_Packed;
- ccIndex font_encs       CLY_Packed;
- TCollection *font2_enco CLY_Packed;
- ccIndex font2_encs      CLY_Packed;
- uint32 ext_prg          CLY_Packed;
- char   command[80]      CLY_Packed;
-} ScreenBox;
-#pragma pack()
-
-static
-ushort ModeToOption(ushort mode)
-{
- if ((mode & 0xFF)==3)
-   {
-    ushort m=mode>>8;
-    if (m>5)
-       m--;
-    if (m>12)
-       return OtherOp;
-    return m;
-   }
- return OtherOp;
-}
-
-static
-ushort OptionToMode(ScreenBox &box)
-{
- char *end;
-
- if (box.mode==OtherOp)
-    return strtol(box.other,&end,0);
- if (box.mode>5)
-    box.mode++;
- return box.mode<<8 | 3;
-}
-
-
-void SetScreenOps(void)
-{
- int repeat=1,fontChanged=0;
- ushort oldmode=TScreen::screenMode;
- ushort oldFontFlg,oldFont2Flg;
- ccIndex oldFontSel,oldFont2Sel,oldE1,oldE2;
- char setDta=1,extChange;
-
- ScreenBox box;
- box.mode=ModeToOption(oldmode);
- sprintf(box.other,"0x%03X",oldmode);
- box.font_list=box.font2_list=CreateListOfFonts((char *)GetVariable("SET_FILES"),
-                                                box.font_flg,box.font_sel,box.font2_flg,
-                                                box.font2_sel);
- box.font_enco=box.font2_enco=GetCodePagesList();
- oldE1=box.font_encs=CodePageIDToIndex(GetCodePageFont(1));
- oldE2=box.font2_encs=CodePageIDToIndex(GetCodePageFont(2));
-
- oldFontFlg=box.font_flg;
- oldFontSel=box.font_sel;
- oldFont2Flg=box.font2_flg;
- oldFont2Sel=box.font2_sel;
- TDialog *d=CreateScreenOpsDialog(box.font_list->getCount()==0);
- box.ext_prg=TSetEditorApp::UseExternPrgForMode;
- strcpy(box.command,TSetEditorApp::ExternalPrgMode);
-
- while (repeat)
-   {
-    repeat=0;
-    if (execDialogNoDestroy(d,&box,setDta)==cmOK)
-      {
-       if (oldFontSel!=box.font_sel || oldFontFlg!=box.font_flg ||
-           oldFont2Flg!=box.font2_flg || oldFont2Sel!=box.font2_sel)
-         {
-          fontChanged=1;
-          if (box.font_flg==0) // ROM?
-             LoadEditorFonts(0,0,IndexToCodePageID(box.font_encs),
-                             IndexToCodePageID(box.font2_encs));
-          else
-            {
-             char *p=(char *)(box.font_list->at(box.font_sel));
-             p+=strlen(p)+1;
-             char *s=0;
-             if (box.font2_flg==1)
-               {
-                s=(char *)(box.font2_list->at(box.font2_sel));
-                s+=strlen(s)+1;
-               }
-             LoadEditorFonts(p,s,IndexToCodePageID(box.font_encs),
-                             IndexToCodePageID(box.font2_encs));
-            }
-         }
-       else
-       if (oldE1!=box.font_encs || oldE2!=box.font2_encs)
-         {
-          if (oldE1!=box.font_encs)
-            {
-             ChangeEncodingOfFont(1,IndexToCodePageID(box.font_encs));
-             fontChanged=1;
-            }
-          if (oldE2!=box.font2_encs)
-            {
-             ChangeEncodingOfFont(2,IndexToCodePageID(box.font2_encs));
-             fontChanged=1;
-            }
-         }
-       extChange=strcmp(TSetEditorApp::ExternalPrgMode,box.command)!=0;
-       strcpy(TSetEditorApp::ExternalPrgMode,box.command);
-       if (TSetEditorApp::UseExternPrgForMode!=(char)box.ext_prg ||
-           (box.ext_prg && extChange))
-          fontChanged=1; // Not the font but force it ;-)
-       TSetEditorApp::UseExternPrgForMode=box.ext_prg;
-
-       ushort newmode=OptionToMode(box);
-       if (oldmode!=newmode || fontChanged)
-         {
-          if (ResetVideoMode(newmode))
-            {
-             messageBox(mfError | mfOKButton,_("This video mode (0x%03x) is not"
-                        " supported by the Turbo Vision library"),newmode);
-             repeat=1;
-             //fprintf(stderr,"Modo no soportado: %03x, seg£n TV: %03x\n",newmode,TScreen::screenMode);
-            }
-         }
-      }
-   }
-
- destroy(box.font_list);
- destroy(d);
-}
-#endif
-
 /******************************* File Open Dialog options ****************************/
 typedef struct
 {
@@ -1043,6 +729,7 @@ void SetGeneralEditorOptions(void)
  while (command==cmYes || command==cmNo);
 }
 
+/************************** Code page convert dialogs **************************/
 static int fromCP=-1, toCP=-1;
 static uint32 CPNoLow=0;
 const uchar Version=1;
@@ -1121,7 +808,7 @@ char *CreateTitle(const char *title)
 
 stScreenOptions *TSetEditorApp::so=NULL;
 
-/************************** New code pages dialogs **************************/
+/************************** Code pages dialogs **************************/
 #pragma pack(1)
 typedef struct
 {
@@ -1267,7 +954,7 @@ void TSetEditorApp::EncodingOptions()
    }
 }
 
-/***************************** New fonts dialogs ****************************/
+/***************************** Fonts dialogs ****************************/
 
 #pragma pack(1)
 typedef struct
@@ -1644,7 +1331,7 @@ void TSetEditorApp::FontsOptions()
  while (retry);
 }
 
-/***************************** New screen dialogs ****************************/
+/***************************** Screen dialogs ****************************/
 
 #pragma pack(1)
 typedef struct
