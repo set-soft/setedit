@@ -1,4 +1,16 @@
-$Log$.
+$Log$
+Revision 1.328  2003/05/05 13:51:10  set
+* Added: A warning to configset.bat because people thinks thats "set
+configuration" and not "configuration for SET" ;-)
+* Added: Now if shell utils aren't installed (I think djgpp is the only
+that can lack it) the configuration stops and explains the problem.
+* Modified: gcc 3.x doesn't like (unsigned char)var when var is unsigned.
+* Modified: [DOS] looks like djgpp defines time_t in a way that gcc can't
+see the difference between time_t and unsigned.
+* Modified: Looks like gcc 3.2.2 (may be all 3.x) doesn't support the
+__attribute__((constructor)) stuff for C++ code. So now I'm using C++ code
+for that, which is quite logical but ugly.
+
 Revision 1.327  2003/05/05 13:45:13  set
 * Modified: Now the tags file automagically maintained by the editor can't
 be removed manually from the list of tag files. Also: it isn't saved to the

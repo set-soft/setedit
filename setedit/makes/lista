@@ -759,6 +759,7 @@ tools/cvssyncput.cc
 tools/kbv.c
 *tools/makediff.bat
 +tools/makediff.pl
+tools/mapa.cc
 tools/mft.c
 tools/mft.gpr
 tools/mideline.cc
