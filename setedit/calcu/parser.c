@@ -93,7 +93,7 @@ static void error (char *str)
    longjmp (jmp, 1);
 }
 
-static char *My_strndup (char *ptr, int len)
+static char *strndup (char *ptr, int len)
 {
    char *dat = malloc (len + 1);
    memmove (dat, ptr, len);
@@ -149,7 +149,7 @@ static ftype *findvar (char *top, char *end)
    {
       resize (varn, c + 1);
       resize (varv, c + 1);
-      varn [c] = My_strndup (top, (int) (end - top));
+      varn [c] = strndup (top, (int) (end - top));
       varv [c] = 0;
       nvar ++;
    }
@@ -275,7 +275,7 @@ static ftype readnum (void)
          resize (funa, c + 1);
          resize (func, c + 1);
       redef:
-         funn [c] = My_strndup (top, (int) (end - top));
+         funn [c] = strndup (top, (int) (end - top));
          funa [c] = NULL;
 
          readops (); d = 0;
@@ -284,7 +284,7 @@ static ftype readnum (void)
          {
             for (top = str; isintvar (*str); str ++);
             resize (funa [c], d + 1);
-            funa [c] [d] = My_strndup (top, (int) (str - top));
+            funa [c] [d] = strndup (top, (int) (str - top));
             readops ();
             d ++;
             if (matchops (")", 1))
