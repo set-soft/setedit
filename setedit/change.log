@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.460  2003/10/28 21:09:42  set
+* Added: When asking for word completion if the word at the left looks like
+Class:: then the editor looks for the class and offers the members.
+Suggested by Ivan.
+
 Revision 1.459  2003/10/22 19:45:30  set
 * Fixed: When searching outside comments and the match was found in the
 first column of a line after a comment it was ignored. Reported by Alain.
