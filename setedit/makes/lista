@@ -27,6 +27,7 @@ cfgfiles/eterm/xterm-eterm-tv
 *cfgfiles/simple.tip
 *cfgfiles/syntaxhl.shl
 change.log
+change0.log
 config.pl
 confignt.pl
 +configset

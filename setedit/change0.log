@@ -1,0 +1,1705 @@
+Revision 0.424 1998/11/19 set
+* Fixed: The message box wasn't updated when the first message was displayed.
+
+Revision 0.423 1998/11/12 set
+* Added: Copy and Paste buttons in the calculator dialog to make it more
+evident.
+
+Revision 0.422 1998/11/12 set
+* Added: Now InfView shows some progress signs while searching. I added it
+because with large info files you could think the editor is hanged.
+
+Revision 0.421 1998/11/12 set
+* Fixed: "Powered Grep" handled wrong links to directories because (1) They
+can be recursive and (2) We can't return to the previous directory with cd ..
+An example is the /usr/linux of my machine where /usr/linux/ncurses points to
+/usr/linux.
+
+Revision 0.420 1998/11/11 set
+* Fixed: Four errors in editor.tx documentation source that stopped makeinfo
+1.68 compiling the HTML docs. Reported by Andris. (Texinfo v3.12).
+
+Revision 0.419 1998/11/11 set
+* Fixed: Some stuff in INSTALL.LINUX and other scripts. Suggested by Ivan
+Baldo.
+
+Revision 0.418 1998/11/11 set
+* Fixed: The Linux version didn't respond to the code page broadcast because
+the code was under a #ifdef __DJGPP__. Reported by Ivan Baldo. *NHP*
+
+Revision 0.417 1998/11/11 set
+* Version 0.4.22 because a new option is saved and I released a couple of
+0.4.21 versions (Ivan Baldo and www.linux.org.ar have these copies).
+
+Revision 0.416 1998/11/11 set
+* Fixed: A bug in InfView when using local messages larger than the english
+version. Patch by Robert.
+
+Revision 0.415 1998/11/06 set
+* Added: An option to run external programs switching the screen because if
+the external program destroys the screen content the editor won't repaint.
+
+Revision 0.414 1998/11/06 set
+* Added: transparent support for gzip compressed files. Currently it only
+works OK if the editor is linked with zlib. The compressed files are
+decompressed to a temporal because the editor then analize the \r\n or \n
+mode. When saving the editor just writes the compressed file using zlib.
+(5-6)
+
+Revision 0.413 1998/11/05 set
+* Added: support for -\*-mode:C;tab-width:8-\*- (note I escaped * ;-)
+settings. In this case the editor will use C syntax highlight and set the
+tabSize to 8. So now users can even use it as a feature of the editor.
+
+Revision 0.412 1998/11/05 set
+* Fixed: If the file had a fake Emacs like mode signaled with "mode:name", for
+example the loadshl.cc itself, the file ends without highlight. Now in this
+case the editor tries with the extension.
+
+Revision 0.411 1998/11/04 set
+* Added: That's a potential source of bugs but I think is a needed feature:
+Now the editor reads the attributes of the file before editing it and after a
+save the attributes are restored to this value. In this way hidden DOS files
+and executable UNIX files are preserved. The DOS attribute called Archive is
+set to 1 *ever* because it means the file changed since the last backup. The
+default attributes for Linux are 644, that's the same I got before modifying
+the routines so I guess is OK, but it could be an option. Now under DOS
+hidden and system files doesn't report a wrong message telling they are
+"read-only", that's a feature(?) of djgpp's libc to prevent users writing
+system sensitive files but is silly from my point of view. A new member
+"mode_t ModeOfFile;" was created to hold this information.
+
+Revision 0.410 1998/11/03 set
+* Added: Linux: when Alt or AltGr is pressed the control of the mouse is let
+to gpm so the user can use it to copy/paste. Was suggested by various Linux
+users because that's what mc does.
+
+Revision 0.409 1998/11/03 set
+* Fixed: when selecting "Open Info" button from the InfView control dialog
+produced a SIGSEGV under Linux because the editor was trying to write in a
+constant string (allocated in code segment).
+
+Revision 0.408 1998/11/03 set
+* Fixed: a bug in the match pair repainting that painted wrong text after a
+whole redraw was done. Reported by Endlisnis <s257m@unb.ca>.
+
+Revision 0.407 1998/11/03 set
+* Fixed: updateflags wasn't initialized. I think it was the reason of a blank
+character drawed in new files drawed randomly from time to time.
+
+Revision 0.406 1998/11/02 set
+* Added: Support for internationalization under Linux using glibc2's gettext.
+
+Revision 0.405 1998/11/02 set
+* Fixed: Now the change directory and palette customization menu options
+doesn't appear under Linux because they aren't ported. Reported by Ivan
+Baldo.
+
+Revision 0.404 1998/11/02 set
+* Fixed: The Syntax Help (Ctrl+F1) failed with info files where the node name
+is different of the name of the function. That's the case of glibc. Reported
+by Ivan Baldo. *NHP*
+
+Revision 0.403 1998/11/02 set
+* Fixed: The screen savers weren't triggered under Linux in the 0.4.21 alpha.
+Reported by Ivan Baldo. *NHP*
+
+Revision 0.402 1998/11/02 set
+* Modified: The Linux distribution is in .tar.gz format now. Already planned
+and Ivan claimed for it ;-))
+
+Revision 0.401 1998/11/01 set
+* Fixed: In the InfView when incrementally typing a name of a node if the
+currently selected link was 0 (none) the editor was accessing to the -1
+element of an array. I saw the crash in Linux and I guess Daniel reported it
+before but wasn't able to explain how to reproduce.
+
+Revision 0.400 1998/11/01 set
+* Fixed: In Linux when pressing Ctrl+RightArrow and editing a DOS file the
+editor stopped in the last character of the line (no move to the next).
+Reported by Andris Pavenis <pavenis@lanet.lv>.
+
+Revision 0.399 1998/11/01 set
+* Fixed: A bug when parsing macros.slp: if a function was commented it failed.
+(The editor reports the error but RHIDE crashes ?!)
+
+Revision 0.398 1998/11/01 set
+* Fixed: Now after running SDG the editor checks if any of the files under
+edition was modified and asks for reload. Normal case if you are taking a
+look to the output file ;-)
+
+Revision 0.397 1998/11/01 set
+* Fixed: The 9Xx34 video modes. The vertical display end was 480 instead of
+476 (14*34). Reported by Ivan Baldo <lubaldo@adinet.com.uy>.
+
+Revision 0.396 1998/11/01 set
+* Added: Syntax highlight support for 8x51 assembler. Contributed by Alex.
+
+Revision 0.395 1998/11/01 set
+* Fixed: The tip of the day didn't advance when it was displayed in the
+message window. Reported by Alex.
+
+Revision 0.394 1998/11/01 set
+* Fixed: a bug in setv sLisp command when an error ocurred in one of the
+parameters (crash). Similar to the one killed yesterday.
+
+Revision 0.393 1998/11/01 set
+* Added: Documentation for some old sLisp commands that I almost forgot. They
+are: left, right, substr, sstr, gstr and setv. And some commands not well
+documented: SendCommands, InsertText, defmacro, eval and Operator +.
+
+Revision 0.392 1998/10/31 set
+* Fixed: A bug in the sLisp interpreter when the code have errors inside a
+eval command that have more than one parameter. The interpreter didn't stop
+at the error and followed parsing with the error condition producing a crash.
+
+Revision 0.391 1998/10/31 set
+* Added: Documentation for WhichEditor and GetSelection.
+
+Revision 0.390 1998/10/31 set
+* Added: A new sLisp command called GetSelection it return the currently
+selected text. A user proposed it to get context help from an external
+program. Suggested by Martijn Versteegh <versteegh@kvi.nl>.
+
+Revision 0.389 1998/10/31 set
+* Fixed: A bug in TestForPropagation accessing 1 line outside the lineLen
+array. I put conditionals in other places that makes access to this array
+checking the index. It produced a random SIGSEGV in Linux when opening a
+string (double quote). Robert detected it and sent a patch but I fixed it in
+a different way.
+
+Revision 0.388 1998/10/31 set
+* Added (or fixed?): Now the recorded macros can record find, replace and find
+again actions. Reported by Burton Radons <loth@gec.net> (CA).
+
+Revision 0.387 1998/10/31 set
+* Fixed: A bug in recorded macros introduced by the new keyboard handling
+(well, new is just an expression it have 1 year ;-), the command associated
+to key strokes recorded wasn't initialized and hence had a random value
+producing random fails.
+
+Revision 0.386 1998/10/31 set
+* Added: Four new values for the sLisp WhicEditor command (2 path, 3 drive, 4
+extention and 5 name without extention). Suggested by Tomas Kouba
+<kouba@fzu.cz>
+
+Revision 0.385 1998/10/21 set
+* Fixed: A bug in SDG, it failed if one of the project files was opened.
+
+Revision 0.384 1998/10/04 set
+* Added: A command line switch to avoid hooking the mouse. It helps to run the
+editor under NT.
+
+Revision 0.383 1998/10/01 set
+* Fixed: The keypad 4 key wasn't mapped to left arrow in my gkey.cc. Reported
+by Gili <sl@psycode.com>.
+
+Revision 0.382 1998/09/30 set
+* Fixed(?): A couple of bugs in the undo related to the fact that the editor
+purges the extra spaces in the lines. The undo still broken but I think I
+won't fix all in 0.4.x but in 0.5.x. There are potential problems when using
+tabs. To see the bugs in older versions just open a new C file, type /*,
+expand it, undo and see how it crash. The other: open a new file, type a
+letter, then a space, enter and try to undo. (Reported by Alex).
+
+Revision 0.381 1998/09/24 set
+* Modified: Now the parser that looks for "errors" reported by external
+programs is more strict about the line number, it must be :nnnn: or will be
+rejected. I did it because "ls -la drive:/file" generates a fake error
+pattern.
+
+Revision 0.380 1998/09/24 set
+* Modified: Some internal stuff about TMLIEditor to simplify the things. Now I
+don't use a callback instead I use static members.
+
+Revision 0.379 1998/09/24 set
+* Added: A new sLisp command (WichEditor [n]). It just returns the name of the
+current editor. The parameter is currently limited to 0 or 1, 0 returns the
+name as-is and 1 without extention. Suggested by Tomas Kouba <kouba@fzu.cz>.
+
+Revision 0.378 1998/09/16 set
+* Added: A new command cmcMouseToggle, that's specially designed for Linux, it
+just enable/disable the mouse (TMouse::suspend/resume), making that the user
+can switch between TVision behavior and default gpm behavior. So disabling
+the mouse and pressing the right button you can paste text from gpm or copy
+text from the screen to the gpm buffer; then pressing the same key sequence
+the mouse is controled by TVision again. Lamentably I didn't found any
+clipboard like routine in the gpm.info documentation.
+
+Revision 0.377 1998/09/15 set
+* Incorporated v0.4.17 to RHIDE 1.4.5.1 experimentally, for that I made some
+adjusts in the editor's code and a couple of patches in RHIDE. Diffs sent to
+Robert.
+
+Revision 0.376 1998/09/14 set
+* Added: An 'R' to the read-only editors in the Windows List.
+
+Revision 0.375 1998/09/14 set
+* Fixed: Paste didn't update the the limit.x value. I think it was the reason
+that triggered the bug killed on 13.08.1998.
+
+Revision 0.374 1998/09/14 set
+* Modified: Now the main project doesn't use small libraries, instead I'm
+using the new RHIDE feature of collecting the .o files living the Project
+Name in blank. It saves disk space and helps to integrate the editor with
+RHIDE.
+
+Revision 0.373 1998/09/12 set
+* Modified: The tool to make the diffs is now a Perl script instead a C++
+program the script is a little bit better and smaller but is slow and uses
+the file utils too much. Conclution: More flexible, faster to code but
+clearly inferior. makediff.cc and makediff.gpr removed from the source tree.
+
+Revision 0.372 1998/09/11 set
+* Added: Support for macros from the menu so you can add menu items for
+different type of compilations. Suggested by Tomas Kouba <kouba@fzu.cz>.
+
+Revision 0.371 1998/09/11 set
+* Added: --help command line option to show the available options.
+
+Revision 0.370 1998/09/11 set
+* Added: --project command line option to load an specific project file.
+Suggested by Brett Porter <blp01@uow.edu.au>.
+
+Revision 0.369 1998/09/09 set
+* Modified: The internal way the editor calls the TCEditor::editorDialog
+member ***** IMPORTANT ***** The member points to the same type of function
+but the default dialogs provided in doedidia.cc are called with a different
+set of parameters. It must be take in count for RHIDE. More about it in the
+doEditDialogLocal function comment in editmain.cc. Was needed to hook the
+file overwrite warning to check if the new name belongs to an already opened
+file.
+
+Revision 0.368 1998/09/09 set
+* Fixed: Under the same situation if you choosing as new name the name of the
+file already opened was posible, it created two copies of the same memory and
+unsynchronized. Now isn't allowed. The same bug exist in RHIDE.
+
+Revision 0.367 1998/09/09 set
+* Fixed: When saving a new file (untitled) if the new name already existed and
+you answered NO to overwrite the name was set anyways. So exiting and
+entering again you get 2 copies of the same file. I saw it while patching
+other stuff.
+
+Revision 0.366 1998/09/09 set
+* Fixed: A silly question like that: "The disk copy of is newer, reload it?"
+triggered because the file didn't exist on disk (new file). RHIDE have the
+same stupid bug.
+
+Revision 0.365 1998/09/09 set
+* Sent the patchs of 08.09 to Robert. I think I sent some patches repeated.
+
+Revision 0.364 1998/09/09 set
+* Fixed: a bug in the HTML accents (10.08.1998). The editor didn't jump to the
+start of the text it could unsinchronize the offset to the first line
+displayed in the screen messing the drawing. *NHP*.
+
+Revision 0.363 1998/09/08 set
+* Fixed: 1) tfiledia.cc to create an input line (TFileInputLine) of PATH_MAX
+characters instead of just 79. 2) tfileinp.cc (TFileInputLine) to copy only
+maxLen+1 bytes instead of anything. Bug reported and studied by Andris
+Pavenis <pavenis@lanet.lv>.
+
+Revision 0.362 1998/09/06 set
+* All TVision patches (10 and 19.08 and 05.09) sent to Robert.
+
+Revision 0.361 1998/09/05 set
+* Fixed: A bug in TFileInfoPane that was writing out of the TDrawBuffer::data
+member when the path was >= 132 characters. Reported by: Daniel Horchner
+<dbjhorchner@hotmail.com>, Patch suggested by: Andris Pavenis
+<pavenis@lanet.lv>. As a result the TDrawBuffer module was rewrited.
+
+Revision 0.360 1998/09/04 set
+* Added: The editor windows that are read-only have and 'R' in the place where
+the modified editors have a star.
+***** IMPORTANT ***** I did an internal change, now the editor class doesn't
+use a TIndicator, instead uses a TSIndicator. TSIndicators are derivated from
+TIndicator but have a pointer to the editor's owner and uses the data
+directly. It simplifies the things and gives more power to the indicator. So
+I did yet another change in the desktop files. Was hard to support the older
+ones because the old indicators are inserted in the Windows and I must remove
+and replace the indicator.
+Version 0.4.21.
+
+Revision 0.359 1998/09/04 set
+* Fixed: a bug in the v0.4.18 desktop files (thanks god this version wasn't
+distributed). In these files the last character of the syntax help data was
+saved as an integer and then the read routine reads a character. I discovered
+it when TSetEditorApp::maxOpenEditorsSame wasn't restored correctly. *NHP*
+(it means Never Hit People, that's because the bug was in a non-released
+version).
+
+Revision 0.358 1998/09/04 set
+* Added: A mechanism to open more than one editor for the same file. The first
+opened is read/write the rest are read-only and shows an snapshot of the file
+at the time you opened it. Read-only editors can't be modified (at least I
+did my best to avoid it ;-) and can't be saved. The number of copies is 1 by
+default to emulate the old behavior, but can be modified from the general
+options menu. This value (TSetEditorApp::maxOpenEditorsSame) is saved in the
+desktop file so the version changed:
+Version 0.4.20. (3-4).
+
+Revision 0.357 1998/09/03 set
+* Version 0.4.19. Triggered by a new value saved (isReadOnly).
+
+Revision 0.356 1998/09/03 set
+* Fixed: I was writing in const chars when remapping the characters of the
+stars screen saver. In DOS that's OK, but Linux doesn't allow it because the
+strings are located in the CS.
+
+Revision 0.355 1998/09/03 set
+* Enabled the code page remaping stuff under Linux. Now is possible to see the
+ISO-8859-1 fonts in the screen without messing the frames. That's the final
+step of the things done in 18-19.08. (30-31.08).
+
+Revision 0.354 1998/08/28 set
+* Added: Inferno 1 and Smoker 1 screen savers for DOS.
+
+Revision 0.353 1998/08/19 set
+* Added: Two variants to the ISO-1 code page to match the lat1-16.psf and
+lat1u-16.psf Linux fonts. That's the first step toward the support of accents
+under Linux. (18-19).
+
+Revision 0.352 1998/08/19 set
+* Enhanced the code page support to provide "similars" for codes under 32.
+That's needed for fonts like lat1-16.psf provided with Debian Linux. BTW: I
+think they are broken by design.
+
+Revision 0.351 1998/08/19 set
+* Modified: Three TVision classes (TMenuBox, TIndicator and TRadioButtons) to
+support code pages.
+
+Revision 0.350 1998/08/18 set
+* Added: 22 new symbols to the fonts to support the things described in the
+next lines.
+
+Revision 0.349 1998/08/16 set
+* Fixed: Another bug in the keyboard assigment routines. Yes another one not
+catched under DOS! Was in the CompactTable routine, a call to memcpy used
+"size" as size instead of "aux".
+
+Revision 0.348 1998/08/16 set
+* Fixed: The editor was saving the keybind.dat in the share directory instead
+of the home directory [Linux specific].
+
+Revision 0.347 1998/08/16 set
+* Fixed: a problem in the keyboard assigment routines. The bug was related to
+one variable (base) not updated after a realloc and hence becoming an invalid
+pointer. It was detected under Linux because in DOS the block wasn't reused
+and the content still valid.
+
+Revision 0.346 1998/08/16 set
+* Fixed: Now the Linux version generates and uses the same desktop files that
+the DOS. I forgot to save/restore the palette information in the Linux
+version. It produced a SIGSEGV while loading DOS desktop files. Now v0.4.18
+desktop files are compatible (DOS <-> Linux). The Linux version can load
+desktop files created with previous Linux versions but not with previous DOS
+versions.
+
+Revision 0.345 1998/08/16 set
+* Fixed: a problem in the conditional menues (8/8/98). I was adding constant
+strings to a collection :-P, Linux free was upset.
+
+Revision 0.344 1998/08/13 set
+* Fixed: A problem in Save As UNIX. It used the maximun line width to allocate
+a temporal buffer in the stack but this value (limit.x) could be
+unsynchronized (is used only for the scroll bars) and in this case the stack
+was corrupted. Now I allocate it in the heap and check if the len is enough
+for each line, if not I realloc the buffer and adjust limit.x. Reported by
+Brett Porter <blp01@uow.edu.au>.
+Interesting Notes: was an interesting analisis of the trace back collected by
+the editor. Additionally Brett didn't lost the changes because the editor
+saved the buffer correctly in the error file.
+
+Revision 0.343 1998/08/13 set
+* Fixed: The routine that meassure the size of the nodes in InfView. I never
+saw a side effect but it had a potential flaw.
+
+Revision 0.342 1998/08/13 set
+* Fixed: InfView didn't take in count the last entry of the dir files created
+by Debian Linux, these files aren't true info files and hence needs some
+special treatment. Reported by Daniel Mizyrycki (mdaniel@balug.org.ar).
+
+Revision 0.341 1998/08/12 set
+* Fixed: All the declarations of consts without specifying the type (default
+int) that's reported as a warning by egcs (not reported by gcc 2.7.x or
+2.8.x). Reported by Andris Pavenis <pavenis@lanet.lv>. Some interesting
+things: to do it I did a masive search for 'const' using the grep tool of the
+editor I got 910 lines in the message window and I opened 180 files using
+ALT+F8 Wow!
+
+Revision 0.340 1998/08/12 set
+* Fixed: Now using localtime instead of gmtime for the editor's clock.
+(Reported by Laszlo Molnar <molnarl@cdata.tvnet.hu>).
+
+Revision 0.339 1998/08/12 set
+* Fixed: The way the editor copy text to the Windows clipboard. Now the
+clipboard is first erased and then the text is passed as OEM text instead of
+just text. Reported by Endlisnis <s257m@unb.ca>, ideas for solutions by:
+Michael Mauch <michael.mauch@gmx.de> and Eli Zaretskii <eliz@is.elta.co.il>.
+
+Revision 0.338 1998/08/12 set
+* Fixed: Autoindent didn't take in count the first line of the file. (Reported
+by Brett Porter <blp01@uow.edu.au>).
+
+Revision 0.337 1998/08/12 set
+* Applied a patch from Robert to initialize Extention in SHLSelect of
+loadshl.cc.
+
+Revision 0.336 1998/08/12 set
+* Fixed: An annoying 'flash' when selecting in a line under edition and the
+old selection was hided. This was annoying me since I made the selection work
+with messages to avoid reading the shift state.
+
+Revision 0.335 1998/08/11 set
+* Modified: Now the default screen saver for DOS>=7.00 (Winshit) is a text
+mode screen saver because a user reported problems when the editor switchs to
+graphics mode and is windowed. It works 100% ok in most of the machines but
+I'm using a safe default. I hate winblows. Problem reported by Brett Porter
+<blp01@uow.edu.au> and I saw an strange behavior (just ones) in the Alex's
+computer.
+
+Revision 0.334 1998/08/11 set
+* Fixed: The progress bar now is "code page" friendly.
+
+Revision 0.333 1998/08/11 set
+* Adjusted: Some things in the syntax search. Enlarged the window to choose
+the match, now doesn't say that no matchs were found if you cancel and
+reduced the length for the info file name.
+
+Revision 0.332 1998/08/10 set
+* Fixed: The project window now supports code page remapping.
+
+Revision 0.331 1998/08/10 set
+* Fixed: The TListViewer TVision's class to support code page remaping of the
+column separator character. Needed for the project window.
+
+Revision 0.330 1998/08/10 set
+* Added a tool to convert accented characters to HTML tags. The editor used
+the HTML entities like Oacute. The tool takes in count the selected code page
+so it will work ala WYSIWYG. For example: The oacute of PC437 is the cents
+symbol in ISO-1 so if you call the tool while 437 is selected you'll get
+&oacute; but if you do it while ISO-1 is selected you'll get &cent;. I need
+it for my pages in spanish ;-) (9-10).
+
+Revision 0.329 1998/08/09 set
+* Fixed a bug in the ISO-1 fonts. The editor was using &reg; for both &reg;
+and &copy; (HTML notation).
+
+Revision 0.328 1998/08/08 set
+* Added "Save As DOS" for Linux isn't very well tested, just tried and seems
+to work.
+
+Revision 0.327 1998/08/08 set
+* Added shortcuts for Grep and jump to function in the menu. Added various
+menu entries just to show the key to make the action and help new users.
+Added labels with the keys assigned to various commands specially in
+"Rectangle". Various changes in the menues. Jump to Function suggested by
+Brett Porter <blp01@uow.edu.au>. Local/Global edition options repeated in
+Options suggested by Ivan Baldo <lubaldo@adinet.com.uy>
+
+Revision 0.326 1998/08/08 set
+* Added a primitive conditional support in the menu files to define menu
+options dependent of the OS.
+
+Revision 0.325 1998/08/02 set
+* Added support for HP laser printers. Now the initialization string created
+by the HP button works with: LaserJet 4L, 5M, DeskJet 500+, 560C, 670 and I
+guess most of the Laser/DeskJet modern models. Problem reported by "Roger H."
+<rogerh40@aa.net>, solutions by: Roger, Mariano Alvarez Fernandez
+<malfer@teleline.es> and me.
+
+Revision 0.324 1998/08/01 set
+* Added syntax highlight for Perl submited by Daniel Mizyrycki
+(mdaniel@balug.org.ar).
+
+Revision 0.323 1998/08/01 set
+* Added a progress bar in InfView, displayed when InfView loads a large index
+(20 seconds for rbint).
+
+Revision 0.322 1998/07/30 set
+* Added syntax help to the editor. (27-30). Similar to the RHIDE but with many
+improvements: Sort by score, a dialog to set up the list of nodes to search,
+information about the number of nodes from each file, etc.
+
+Revision 0.321 1998/07/30 set
+* Killed a bug in InfView introduced by the modifications made 17.06.1998. In
+seekToNode(const char *Name).
+
+Revision 0.320 1998/07/26 set
+* Applied parser v0.66 from Laszlo. It now supports expression,x to convert
+the expression into hexadecimal notation (o=octal, d=decimal and b=binary).
+
+----------------------------------------------------------------------
+Revision 0.319 1998/07/21 set
+* Version 0.4.17. 5th public release. Diffs sent to Robert. Linux release
+available in the web.
+
+Revision 0.318 1998/07/19 set
+* Fixed: The powered grep under Linux because it uses response files (not
+supported by bash). Now the editor writes an script and runs the script ;-)
+
+Revision 0.317 1998/07/19 set
+* Now the editor restores the ALT+Fn console keys when it dies under Linux. I
+added a call to suspend_keyboard() in the routine that handles the hard
+signal.
+
+Revision 0.316 1998/07/19 set
+* More adjustments in the places where the files are stored when running under
+Linux. Now the editor's enviroment variables are stored in ~/.setenvir.dat.
+The readme.1st file is loaded from SET_FILES.
+
+Revision 0.315 1998/07/19 set
+* The @0 marker in pmacros now can be placed in a position where there is no
+text (for example because the editor will purge the spaces at the end of
+line). It was the cause of a bug in Linux: after expanding a pmacro like "#d"
+the cursor was moved to the next line and another bug in DOS: the cursor was
+positioned in the \r. I don't know how dangerous was the DOS bug because I
+never saw the side effect but looks like a bad one. (Now the @0 is stored as
+an X,Y coordinate).
+
+Revision 0.314 1998/07/18 set
+* Killed a bug in the "Match pair highligth" option. When typing three
+consecutive symbols one weren't correctly un-highligthed.
+
+Revision 0.313 1998/07/18 set
+* Added a new sLisp command to call external programs. The syntax is:
+(RunProgram "prg1;prg2;..."). It calls the program/s specified, captures the
+stderr and show the errors in the message window. With that the user can
+assign any program to any key. It was added because a comment of Tomas Kouba
+<kouba@fzu.cz> about the need of running different makefiles from the same
+project. To avoid conflicts with RHIDE the function that calls the external
+program is part of the editor and a dummy is provided in rhideint.cc. Robert:
+you should fill the body of this dummy with a call to a function that makes
+this work inside RHIDE. Note: The editor currently capture stderr AND stdout,
+so all is callected. As an example I did a vey simple macro that shows the
+contents of the current directory using "ls -la".
+
+Revision 0.312 1998/07/18 set
+* Added support for Emacs style syntax highlight selection. Added because a
+request of Gili <sl@psycode.com> about the fact that new C++ standards (dead
+brain ones) specify headers without extentions. For this reason now Boolean
+TCEditor::loadFile() takes a parameter, Boolean setSHL, when true the
+function sets the syntax highlight searching for -*- SHL name -*- in the
+first Kb and the last 3Kb of the file as Eli suggested (Emacs behavior), if
+that isn't found the extention is used. The only place where loadFile is
+called in this way is in the constructor. By default the parameter is False
+making the function call compatible with previous versions. The other place
+where the SHL is set automatically is in the SaveAs member. Additionally I
+added support for some strange files (from SGI and HP found in GNU C++
+libraries) that uses a "mode:C++" keyword. The editor uses the list of
+extentions as valid modes so I added "C++" as an extention (see syntaxhl.shl
+file).
+
+Revision 0.311 1998/06/17 set
+* Various modifications in the paths used to load/store the configuration
+files under Linux. Mainly: now the user saves in your home hidden files and
+the editor looks first for these files and then in the share directory. Not
+tested.
+
+Revision 0.310 1998/06/17 set
+* Modified the Linux version to open the redirected stderr file in the home
+directory instead of the share. (Suggested by Laszlo).
+
+Revision 0.309 1998/06/17 set
+* Fixed a bug in InfView. It was jumping to nodes of similar names in DOS
+files (fade_interpolate v.s. fade_in in Allegro 3.0 info). It was because
+both pass a test with strncmp(s1,s2,strlen(s2)). (Reported by Gili).
+
+Revision 0.308 1998/06/16 set
+* Replaced the libc __dpmi_yield by the new version provided by Eli.
+
+Revision 0.307 1998/06/15 set
+* Added a dialog to configur the Num-Lock behavior. Suggested by Eli.
+
+Revision 0.306 1998/06/14 set
+* Patched Allegro to mix the sound in 16 bits instead of 8 bits. Patches sent
+to Shawn. (13-14).
+
+Revision 0.305 1998/05/25 set
+* Fixed some things in the MP3 stuff, patched Allegro to save 150Kb in the exe
+file. Patches sent to Shawn.
+
+Revision 0.304 1998/05/24 set
+* Added: MP3 songs player! I think the exe will explode ;-)
+
+Revision 0.303 1998/05/24 set
+* Fixed: In the key bindings, when selecting a command, now the commands list
+have the focuse at start and not "Cancel".
+
+Revision 0.302 1998/05/24 set
+* Added: Insert shortcut in the list of windows dialogs.
+
+Revision 0.301 1998/05/24 set
+* Added: Insert & Delete shortcuts in the key binding dialogs.
+
+Revision 0.300 1998/05/23 set
+* Added: Built-in support for gziped .info files (no more calls to gzip).
+
+Revision 0.299 1998/05/23 set
+* Rearranged some directories for PCRE and ZLib.
+
+Revision 0.298 1998/05/22 set
+* Added: When jumping to a function now the editor searchs the closest name to
+the word under cursor and selects it in the list (Suggested by Alex).
+
+Revision 0.297 1998/05/22 set
+* Updated this change.log file. (21-22).
+
+Revision 0.296 1998/05/20 set
+* Moved various dialogs to new files to allow Robert to use my dialogs.
+
+Revision 0.295 1998/05/20 set
+* Applied the patchs I did in Linux to the mainversion.
+
+Revision 0.294 1998/05/19 set
+* Added: Now file open stores the path+mask in the history.
+
+Revision 0.293 1998/05/17 set
+* Fixed: A double call to free in the dskwin that handles InfView. It produced
+a SIGSEGV in Linux during the exit.
+
+Revision 0.292 1998/05/17 set
+* Ported to Linux. It was the first time I did it. Sent copies to Dim (RU) and
+Laszlo (HU) for testing.
+
+Revision 0.291 1998/05/15 set
+* Fixed: A typo (ligth en lugar de light). (Reported by a Linux user).
+
+Revision 0.290 1998/05/15 set
+* Fixed: Applied various small patchs from Robert mainly related to Linux.
+
+Revision 0.289 1998/05/15 set
+* Added: Mapped Shift+BackSpace to BackSpace by default. Mapped Shift+Enter to
+Enter. (Suggested by Peter Palotas <blizzar@hem1.passagen.se>).
+
+Revision 0.288 1998/05/15 set
+* Fixed: GKey: Num-Lock OFF, Shift+Gray Number is reported by BIOS like a
+number instead an arrow key. (Reported by Gili <sl@psycode.com>).
+
+Revision 0.287 1998/05/14 set
+* Fixed: Compact text doesn't have undo so using undo produced problems.
+(Reported by Peter Palotas <blizzar@hem1.passagen.se>).
+
+Revision 0.286 1998/05/13 set
+* Version 0.4.16.
+
+Revision 0.285 1998/05/13 set
+* Added: New search & replace system, includes tags in the replace and
+Perl-Compatible Regular Expressions. (9-13). (Suggested by Laszlo).
+
+Revision 0.284 1998/04/08 set
+* Version 0.4.15.
+
+Revision 0.283 1998/05/08 set
+* Added: The search & replace options are stored in disk. (Suggested by Elias
+Pschernig <f.x.gruber-museum-arnsdorf@ magnet.at>).
+
+Revision 0.282 1998/05/08 set
+* Added: Now the file open dialog memorize the points where the files are
+stored/loaded and have a Home button to go back to the point where the editor
+was loaded.
+
+Revision 0.281 1998/05/07 set
+* Added: Now the editor warns if gzip or grep aren't installed and they are
+needed. Only under DOS.
+
+Revision 0.280 1998/05/07 set
+* Added: About window.
+
+Revision 0.279 1998/05/07 set
+* Finished: Tips in the message window.
+
+Revision 0.278 1998/05/06 set
+* Added: Now if the user doesn't define SET_FILES and/or INFOPATH the editor
+tries to guess and only complains if fails in the guess.
+
+Revision 0.277 1998/05/06 set
+* Fixed: Now the readme.1st is loaded just once even is the user doesn't
+disable the mini-about dialog.
+
+Revision 0.276 1998/05/06 set
+* Fixed: Now instead of using _truename+_fixpath (see 14.12.1997) I use the
+device number and starting i-node to know if the file is already opened. The
+first methode fails under DOS+NETX (Novell). (Reported by Alex, Suggested by
+Eli,IL).
+
+Revision 0.275 1998/05/06 set
+* Fixed: Now to know if a file is read only I use stat and not fstat because
+it fails in DOS+NETX (Novell). (Reported by Alex).
+
+Revision 0.274 1998/05/06 set
+* Added: All in the window that asks for replace. (Suggested by a user).
+
+Revision 0.273 1998/05/06 set
+* Added: Dialogs with my easydiag library.
+
+Revision 0.272 1998/05/06 set
+* Added: Tip of the day.
+
+Revision 0.271 1998/05/06 set
+* The following wasn't made in this day but in the last two weeks.
+
+Revision 0.270 1998/04/22 set
+* Fixed: InfView failed to handle splitted .info files when the file weren't
+located in the INFOPATH directories.
+
+Revision 0.269 1998/03/26 set
+* Added: Help for the pull down menues. (25 and 26).
+
+Revision 0.268 1998/03/18 set
+* Added: Enabled Ctrl+Shift+9 and Ctrl+Shift+0 to match parentheses. But for
+this you'll need to load my TSR that expands the BIOS functionallity because
+BIOS doesn't report some keyboard combinations.
+
+Revision 0.267 1998/03/18 set
+* Added: Now the command to search the complementary pair (parentheses, etc.)
+is mapped to Ctrl+Q-ESC like in BC. (Wasn't asigned in v0.4.x).
+
+Revision 0.266 1998/03/18 set
+* Fixed: A silly limitation of 99 columns in the wrap column setting (Reported
+by Brett Porter,AU).
+
+Revision 0.265 1998/03/03 set
+* Added: After selecting a project item with an incremental search the search
+is restored to 0 length allowing another search.
+
+Revision 0.264 1998/03/02 set
+* Bug Killed: The .dst files weren't closed avoiding the deletion of these
+files by ALT+Q. (Only under W95).
+
+-----------------------------------------------------------------------------
+Revision 0.263 1998/02/28 set
+* Version: 0.4.14. Sent to Robert and included in RHIDE 1.4.5 (?)
+
+Revision 0.262 1998/02/28 set
+* Added: When searching and the match is at the right of the screen now all
+the word is showed and no just the first character. (Suggested by Ivan
+Baldo,UY).
+
+Revision 0.261 1998/02/28 set
+* Added: A warning in files with ASCII 0 (Suggested by Laszlo).
+
+Revision 0.260 1998/01/27 set
+* Bug Killed: Problems to change the read-only mode in plain DOS because the
+file was opened (it works in W95).
+
+Revision 0.259 1998/01/21 set
+* Bug Killed: When using a generic SHL in lines with many spaces at the end of
+the visible line the painting buffer overflowed generating a GPF.
+
+Revision 0.258 1998/01/18 set
+* Fixed: 0x SHL failed when Case=0.
+
+Revision 0.257 1998/01/18 set
+* Added: A new command to the SHL language.
+
+Revision 0.256 1998/01/18 set
+* Added: SHL for NASM files (Ivan,IT).
+
+Revision 0.255 1998/01/03 set
+* Version 0.4.13 released to the public (4th).
+
+Revision 0.254 1998/01/03 set
+* Bug Killed: A huge bug in truename producing a rename of the directory
+instead of the back up file under W95. (Reported by Ilya,RU).
+
+Revision 0.253 1997/12/27 set
+* Bug Killed: Another bug in autoindent.
+
+Revision 0.252 1997/12/27 set
+* Added: A warning when opening read-only files and a try to revert the flag.
+
+Revision 0.251 1997/12/27 set
+* Bug Killed: A GPF if the open file failed. (Reported by Ilya,RU).
+
+Revision 0.250 1997/12/27 set
+* Bug Killed: When running the editor by first time or with a .dst older than
+v0.3.0 the selected code page were -1 selecting ISO Latin 1. (Reported by Ed
+<Myknees@aol.com>).
+
+Revision 0.249 1997/12/27 set
+* Fixed: Some russian and normal chars in 3 fonts. (Reported by Alexander
+Bokovoy,BY).
+
+Revision 0.248 1997/12/14 set
+* Release v0.4.12 to the public (3rd).
+
+Revision 0.247 1997/12/14 set
+* Bug Killed: The grep interface showed a double slash for root directories.
+(Reported by Laszlo).
+
+Revision 0.246 1997/12/14 set
+* Added: ESC now is mapped to un/hide the selection instead of an ASCII 27.
+(Suggested by Laszlo).
+
+Revision 0.245 1997/12/14 set
+* Added: F5 to zoom the keyboard dialogs. (Suggested by Laszlo).
+
+Revision 0.244 1997/12/14 set
+* Bug Killed: The editor allowed to save files with long names in no LFN
+systems it allowed the user to open the same file twice, now the editor calls
+truename to solve it.
+
+Revision 0.243 1997/12/14 set
+* Bug Killed: Save As didn't ask for overwrite.
+
+Revision 0.242 1997/12/14 set
+* Modified: Hidded the mouse in the screen savers and made the text mode
+screen savers more multitasker friendly. (Suggested by Gili
+<sl@psycode.com>).
+
+Revision 0.241 1997/11/29 set
+* Version 0.4.12. Beta testing version sent to Hungary, Byelorrussia and USA.
+
+Revision 0.240 1997/11/29 set
+* Bug Killed: Some options in Ctrl+Q-A where in reverse order.
+
+Revision 0.239 1997/11/23 set
+* Added: Support for code pages that remaps graphic characters under the ASCII
+128.
+
+Revision 0.238 1997/11/23 set
+* Bug Killed: A memory corruption in the scroll bars when changing the code
+page.
+
+Revision 0.237 1997/11/22 set
+* Hey man a record, 15 things in a day ;-)
+
+Revision 0.236 1997/11/22 set
+* Bug Killed: When shelling to DOS the editor didn't turn off the stderr
+redirection.
+
+Revision 0.235 1997/11/22 set
+* Modified: Now the EXE makes the stderr redirection and not the batch so now
+is possible to run two copies of the editor under a multitasker without
+problems.
+
+Revision 0.234 1997/11/22 set
+* Added: A mode where the editor creates only one .dst file and not one by
+directory. (Suggested by Marek Habersack & Martijn Versteegh).
+
+Revision 0.233 1997/11/22 set
+* Added: When making a search and the string to search is composed only by
+letters and regex is enabled the editor makes a normal search (that's 10
+times faster) (Suggested by Laszlo).
+
+Revision 0.232 1997/11/22 set
+* Modified: File|Open now uses * instead of *.* (Suggested by Laszlo)
+
+Revision 0.231 1997/11/22 set
+* Added: A different color for non-reserved words. (Patch by Robert).
+
+Revision 0.230 1997/11/22 set
+* Modified: Now under DOS when calling grep I force command.com as the shell
+because bash fails. (Reported by Laszlo).
+
+Revision 0.229 1997/11/22 set
+* Modified: The name of the message window in the ALT+0 list (box to window).
+(Reported by Laszlo).
+
+Revision 0.228 1997/11/22 set
+* Bug Killed: A complex thing in the video mode setting solved some time ago
+but not enabled.
+
+Revision 0.227 1997/11/22 set
+* Added: Dialogs with re-size in the keyboard setting (Suggested by Laszlo).
+
+Revision 0.226 1997/11/22 set
+* Added: Zoom with F5 key in the "Jump to function" dialog. (Suggested by
+Laszlo).
+
+Revision 0.225 1997/11/22 set
+* Bug Killed: Problems with Ctrl+F5 (and then Shift+Arrow) because of the new
+keyboard system. (Reported by Laszlo).
+
+Revision 0.224 1997/11/22 set
+* Modified: A problem in strftime producing ":00" in the clock at 24 hs.
+(Patch from Laszlo).
+
+Revision 0.223 1997/11/22 set
+* Added: Code page support for InfView and message windows.
+
+Revision 0.222 1997/11/22 set
+* Bug Killed: The code page change broadcast message were stoped in the first
+editor window because a clearEvent. (Reported by Laszlo).
+
+Revision 0.221 1997/11/21 set
+* Added: __dpmi_yield to cooperate with multitaskers (Suggested by Gili
+<sl@psycode.com>, an OS/2 user).
+
+Revision 0.220 1997/11/21 set
+* Bug Killed: The options in the "windows" menu now are dis/enabled in the
+idle loop.
+
+Revision 0.219 1997/11/21 set
+* Bug Killed: A GPF when selecting the previous windows and the desktop was
+empty. (Reported by Laszlo).
+
+Revision 0.218 1997/11/21 set
+* Added: Support for russian code pages: CP866, Win1251, KOI-8 and ISO-5.
+(With information from Alexander Bokovoy).
+
+Revision 0.217 1997/11/13 set
+* Bug Killed: Fails in the position of the clock after changing the video
+mode.
+
+Revision 0.216 1997/11/13 set
+* Bug Killed: The starts screen saver weren't remaped when using code pages.
+
+Revision 0.215 1997/11/13 set
+* Bug Killed: Problems with underscores when using incremental searchs in
+InfView. (Reported by Laszlo).
+
+Revision 0.214 1997/11/05 set
+* Bug Killed: Wrap were affected by the Intelligent C indent mode, now it
+inserts a pure CR/LF.
+
+Revision 0.213 1997/11/03 set
+* Bug Killed: When parsing absolute paths reported by grep it failed. I fixed
+it with an heuristic, I don't know if that's the definitive solution.
+
+Revision 0.212 1997/11/03 set
+* Bug Fixed: The grep interface didn't work for files opened or in the
+project. (Reported by Laszlo).
+
+Revision 0.211 1997/11/03 set
+* Added: The video mode can be set using an external program. (Suggested by
+Laszlo).
+
+Revision 0.210 1997/11/02 set
+* Version 0.4.10.
+
+Revision 0.209 1997/11/02 set
+* Added: The screen saver settings are stored in the desktop file.
+
+Revision 0.208 1997/11/02 set
+* Added: Dialog for the screen saver parameters.
+
+Revision 0.207 1997/11/02 set
+* Added: Text mode screen savers for UNIX.
+
+Revision 0.206 1997/10/31 set
+* Added: Plasma screen saver.
+
+Revision 0.205 1997/10/31 set
+* Version 0.4.9.
+
+Revision 0.204 1997/10/31 set
+* Added: Clock, dialog and save of the setting. (Requested by Laszlo).
+
+Revision 0.203 1997/10/31 set
+* Modified: The Aacute and Agrave in the ROM font.
+
+Revision 0.202 1997/10/31 set
+* Added: Now you can use keys to customize the palette (rRgGbB). (Requested by
+Laszlo).
+
+Revision 0.201 1997/10/30 set
+* Added: Now the menues are configured with symbols and you don't need to
+compile the file. The file have .smn (Set MeNu) extention.
+
+Revision 0.200 1997/10/29 set
+* Added: ISO Latin 2 code page.
+
+Revision 0.199 1997/10/29 set
+* Version 0.4.8 released. Second public release.
+
+Revision 0.198 1997/10/29 set
+* Added: More help (sLisp and Keyboard).
+
+Revision 0.197 1997/10/29 set
+* Added: After running a DOS command the editor checks if some file were
+altered and asks to reload.
+
+Revision 0.196 1997/10/29 set
+* Added: When a file is opened the window is zoomed but pressing F5 you can
+reduce the size enough to see the message window.
+
+Revision 0.195 1997/10/28 set
+* Added: More help (Modes and SHL).
+
+Revision 0.194 1997/10/28 set
+* Modified: The message window now is ever hidded when the editor starts
+because is even empty.
+
+Revision 0.193 1997/10/28 set
+* Added: The editor reports the version during a GPF to allow me run symify
+with the right .EXE.
+
+Revision 0.192 1997/10/28 set
+* Version 0.4.8.
+
+Revision 0.191 1997/10/28 set
+* Now the grep options are stored in the desktop file.
+
+Revision 0.190 1997/10/28 set
+* Bug Fixed: The special lines were shifted by one.
+
+Revision 0.189 1997/10/28 set
+* Bug Fixed: In the grep interface, not using the dirs. when the recursive
+mode were off.
+
+Revision 0.188 1997/10/28 set
+* Bug Fixed: More problems in autoindent.
+
+Revision 0.187 1997/10/28 set
+* Bug Fixed: A wrong order of the options in the Search & replace dilaog.
+
+Revision 0.186 1997/10/28 set
+* Added: Now the editor saves all the modified buffers when makes a call to
+DOS.
+
+Revision 0.185 1997/10/28 set
+* Bug Killed: Introduced in the changes for autoindent.
+
+Revision 0.184 1997/10/28 set
+* Modified: The readme.1st for the v0.4.7.
+
+Revision 0.183 1997/10/27 set
+* Modified: Now Autoindent looks in the text BEFORE inserting the CR and not
+AFTER. Looks that's the right way.
+
+Revision 0.182 1997/10/27 set
+* Added: The editor loads automagically the readme.1st each time you install a
+new version.
+
+Revision 0.181 1997/10/26 set
+* Hey man I added it on my birthday!
+
+Revision 0.180 1997/10/26 set
+* Added: Support for the way that make uses to report when it enters and
+leaves a directory.
+
+Revision 0.179 1997/10/26 set
+* Bug Killed: Grep were called recursively all the time.
+
+Revision 0.178 1997/10/25 set
+* Added: Code to enable the "special lines" feature of the editor so if you
+add lines to the code the line numbers of the errors are adjusted.
+
+Revision 0.177 1997/10/25 set
+* Added: Errors parsing for GNU tools so you can jump to the offending line.
+
+Revision 0.176 1997/10/24 set
+* Added: Pressing a key starts a configurable system command (make as
+default).
+
+Revision 0.175 1997/10/24 set
+* Added: A mode where Scroll Lock centers the screen.
+
+Revision 0.174 1997/10/24 set
+* Added: Regular expressions in search & replace. There are some limitations
+like: the match at the start & end of a line commands fails (Suggested by
+Erwin Waterlander <waterlan@xs4all.nl>).
+
+Revision 0.173 1997/10/23 set
+* Version 0.4.2.
+
+Revision 0.172 1997/10/23 set
+* Added: A dialog to turn on the save UNIX as UNIX and the creation of .BKP
+files. Stored this information in the desktop file.
+
+Revision 0.171 1997/10/23 set
+* Added: A flag to store the UNIX files in UNIX format under DOS. (Suggested
+by Laszlo).
+
+Revision 0.170 1997/10/23 set
+* Bug Killed: Ctrl+BackSpace wrongly mapped to Ctrl+BackSlash. (Reported by
+Laszlo).
+
+Revision 0.169 1997/10/23 set
+* Bug Killed: When the editor were used without a syntax.shl and using the
+local options produced a GPF. (Reported by Laszlo).
+
+Revision 0.168 1997/10/23 set
+* Added: A binary file for enviroment variables to store persistent and global
+settings.
+
+Revision 0.167 1997/10/23 set
+* Added: "Don't ask again" in TVision for the QUIT dialog.
+
+Revision 0.166 1997/10/23 set
+* Modified: Now if SET_FILES isn't declared the editor doesn't run.
+
+Revision 0.165 1997/10/23 set
+* Bug Killed: Now ESC in the Quit dialog doesn't mean OK (Alex).
+
+Revision 0.164 1997/10/23 set
+* Modified: The message showed but Quit to be more specific (asked by
+Myknees@aol.com).
+
+Revision 0.163 1997/10/23 set
+* Bug Fixed: When pasting and selecting.
+
+Revision 0.162 1997/10/23 set
+* Added: 82x25 mode (8x16 fonts).
+
+Revision 0.161 1997/10/22 set
+* Added: Palette customization.
+
+Revision 0.160 1997/10/21 set
+* Various things added these days: Fonts, dual fonts and code pages for fonts.
+Grep interface.
+
+Revision 0.159 1997/10/07 set
+* Version 0.4.1. First public release of the standalone editor.
+
+Revision 0.158 1997/10/07 set
+* Modified: In "#define xxxx\n" now the color is used only upto the \n and not
+in the rest of the line (StarLost request).
+
+Revision 0.157 1997/10/07 set
+* Bug Killed: "#define .... /* ....\n.....*/ \\\n more" then "more" were
+outside the preprossesor (wrong) (rep. by Robert).
+
+Revision 0.156 1997/10/07 set
+* Added: Use of pipes under Linux to print.
+
+Revision 0.155 1997/10/07 set
+* Added: Commands to print in an HP deskjet.
+
+Revision 0.154 1997/10/07 set
+* Modified: The options to configure the ALT keys.
+
+Revision 0.153 1997/10/06 set
+* Added: Save without altering the date and time.
+
+Revision 0.152 1997/10/06 set
+* Bug Fixed: In the selection.
+
+Revision 0.151 1997/10/05 set
+* Modified: Now cmcDelCharClear is the default for DEL because the M$ products
+use it and the people is too used to it. (Suggested by Peter Palotas
+<blizzar@hem1.passagen.se>).
+
+Revision 0.150 1997/10/05 set
+* Bug Killed: Sequence: "\n\nfoo The up and ^T ^T and finally Undo Undo" =>
+the f dissapears. It was a complex bug in the Undo logic, the fix wasn't so
+clean and clear.
+
+Revision 0.149 1997/10/05 set
+* Added: Support for 105 keys keyboards.
+
+Revision 0.148 1997/10/05 set
+* Added: Support in TVision to configure wich of the two ALT keys are used for
+the menu (can be both).
+
+Revision 0.147 1997/10/05 set
+* Modified: Redesigned the keyboard configuration dialogs.
+
+Revision 0.146 1997/10/03 set
+* Compacted all the symbol tables used for SHL (C, Pascal and Clipper) in one.
+Now the routine to determine if a character is or not part of a word doesn't
+use isalpha() (broken in djgpp because doesn't understand values over 128).
+Now it uses the same table used for symbols.
+
+Revision 0.145 1997/10/02 set
+* Version 0.4.0. As you can see it was a revolution ;-)
+
+Revision 0.144 1997/10/02 set
+* Splitted handleEvent in sub-routines to make it easier to understand.
+
+Revision 0.143 1997/10/02 set
+* Now the recorded macros are stored in a different way so the sLisp generated
+code is different.
+
+Revision 0.142 1997/10/02 set
+* Modified the selection system now it uses only messages it have as a side
+effect that now behaves like the BC one (I don't like it).
+
+Revision 0.141 1997/10/02 set
+* Modified the TVision library and the editor for the new keyboard routines.
+It produced various internal changes. (1 and 2).
+
+Revision 0.140 1997/09/30 set
+* Bug Killed: Ctrl+T weren't moved when the cursor were positioned over a tab.
+
+Revision 0.139 1997/09/30 set
+* Bug Killed: Optimal Fill weren't included when applying global options "To
+All".
+
+Revision 0.138 1997/09/30 set
+* Modified: Ctrl+T now is 99,99% like the BC (I can be sure is 100% equal ;-)
+asked by Michael (a Linux user).
+
+Revision 0.137 1997/09/30 set
+* Bug Killed: When the Optimal fill were on the editor failed to calculate
+some coordinates producing at least two important bugs. It mostly produced
+strange cusrsor jumps. Reported by Blizzar.
+
+Revision 0.136 1997/09/29 set
+* Redesigned the TVision's keyboard system (27, 28 and 29).
+
+Revision 0.135 1997/09/26 set
+* Added: Printing routings. (15 and 26).
+
+Revision 0.134 1997/09/24 set
+* Bug Killed: In the sLisp interface: the text insert didn't flush the editors
+line cache.
+
+Revision 0.133 1997/09/22 set
+* Bug Killed: The sLisp "floating" variables were deleted twice.
+
+Revision 0.132 1997/09/22 set
+* Bug Killed: In the sLisp's variable stack, it was growing all the time
+without reuse of the memory.
+
+Revision 0.131 1997/09/22 set
+* Bug Killed: Two bugs in the sLisp strings concatenation (+).
+
+Revision 0.130 1997/09/19 set
+* Added: Keyboard configuration with dialogs. (16,17,18 and 19).
+
+Revision 0.129 1997/09/15 set
+* Modified: Now all the editors share the same recorded macro and the size is
+dynamically adjusted.
+
+Revision 0.128 1997/09/14 set
+* Added: Convertion from recorded macros to sLisp sources. (SendCommSel) (12
+and 14).
+
+Revision 0.127 1997/09/11 set
+* Bug Killed: Sometimes when trying to expand a pmacro in a new file it
+failed.
+
+Revision 0.126 1997/09/11 set
+* Added: sLisp macros. (10 and 11).
+
+Revision 0.125 1997/09/08 set
+* Bug Killed: Enabled the key pad handling of TVision.
+
+Revision 0.124 1997/09/08 set
+* Version 0.3.9.
+
+Revision 0.123 1997/09/08 set
+* Bug Killed: Some static variables of the class (global settings) weren't
+stored in the desktop file.
+
+Revision 0.122 1997/09/08 set
+* Added: Customizable menu. Now the editor loads it from a file. It was
+developed in 6, 7 and 8.
+
+Revision 0.121 1997/09/05 set
+* Added: Exit deleting the extra files created in the current directory.
+
+Revision 0.120 1997/09/05 set
+* Version 0.3.8.
+
+Revision 0.119 1997/09/05 set
+* Added: Now all the histories are stored in the desktop file.
+
+Revision 0.118 1997/09/05 set
+* Bug Killed: The InfView's search used findRec producing a mess with the
+strings.
+
+Revision 0.117 1997/09/05 set
+* Bug Killed: Now each part of the editor uses your own history.
+
+Revision 0.116 1997/09/05 set
+* Version 0.3.7.
+
+Revision 0.115 1997/09/05 set
+* Added: Support for color customization.
+
+Revision 0.114 1997/09/04 set
+* Added: Now the window number 1 is reserved for the project so ALT+1 ever
+selects the project.
+
+Revision 0.113 1997/09/04 set
+* Added: Now the windows doesn't use all the screen if the editor window is
+opened.
+
+Revision 0.112 1997/09/04 set
+* Bug Killed: When applying "To all" the global options it selected C/C++
+generic SHL for all the windows with generic SHL.
+
+Revision 0.111 1997/09/04 set
+* Added: A mask to load compressed files in the file open dialog of InfView.
+
+Revision 0.110 1997/09/02 set
+* Added: Enhanced the control dialog of InfView and added an option to load
+.info files with a file open dialog.
+
+Revision 0.109 1997/08/26 set
+* Bug Killed: SDG failed to calculate the line number of the function
+producing some fails in the selected prototipe.
+
+Revision 0.108 1997/08/26 set
+* Bug Killed: In the SDG interface the message window didn't set the range to
+0 after a clean producing an abort.
+
+Revision 0.107 1997/08/26 set
+* Bug Killed: ASCII 255 were interpreted as EOF in bufun.cc. Reported by
+Laszlo.
+
+Revision 0.106 1997/08/25 set
+* Added: An easier way to select the items for the project.
+
+Revision 0.105 1997/08/25 set
+* Bug Killed: Se pod¡a agregar m s de una vez el mismo al proyecto.
+
+Revision 0.104 1997/08/24 set
+* Added a cmbDelCharClear command to create a del with clear instead of cut.
+
+Revision 0.103 1997/08/24 set
+* Added a check to avoid selecting outside the buffer (that was the problem:
+selStart>bufLen).
+
+Revision 0.102 1997/08/24 set
+* Killed a garbage bug in new files.
+
+Revision 0.101 1997/08/24 set
+* Updated keybind.h with the Copy/Paste for Windows.
+
+Revision 0.100 1997/08/24 set
+* Added a command to toggle the C intelligent indent, is Ctrl+P by default.
+
+Revision 0.99 1997/08/24 set
+* Applied two small patchs from Robert (in inf.cc and winoldap.cc).
+
+-----------------------------------------------------------------------------
+Revision 0.98 1997/08/17 set
+* v0.3.6 sent to Robert. That's the version included in RHIDE 1.4.
+
+Revision 0.97 1997/08/17 set
+* Added: Now the position and size of the message dialog is stored in the
+desktop file.
+
+Revision 0.96 1997/08/12 set
+* Added: SHL for the pmacros files (.pmc) and the SHL file (.shl).
+
+Revision 0.95 1997/08/12 set
+* Added: Now the PMacros can be defined for a particular SHL.
+
+Revision 0.94 1997/08/12 set
+* Added: EOLCInFirstCol and NoCheckNumbers to the SHL configuration language,
+specially to highlight the configuration files.
+
+Revision 0.93 1997/08/10 set
+* Added: Support for Winblows clipboard.
+
+Revision 0.92 1997/08/08 set
+* Fixed: Now asks for saving modified buffers.
+
+Revision 0.91 1997/08/08 set
+* Added: A help context for the calculator.
+
+Revision 0.90 1997/08/08 set
+* Modified: The strategy of TInputLinePiped so now is messages oriented and
+not function oriented.
+
+Revision 0.89 1997/08/07 set
+* Added: Copy & Paste in TInputLinePiped class. Used in the calculator so you
+can paste the result in the code.
+
+Revision 0.88 1997/08/07 set
+* Version 0.3.6
+
+Revision 0.87 1997/08/07 set
+* Now the project stores the most relevant information about the windows, so
+if the file were opened and is no longer listed in the closed list the editor
+will retreive information from the project.
+
+Revision 0.86 1997/08/06 set
+* Added: full support for SDG, a configuration dialog for it and a message
+window to log the errors.
+
+Revision 0.85 1997/07/29 set
+* Bug Killed: Some fails in the match pair highlighting.
+
+Revision 0.84 1997/07/29 set
+* Modified: The status line now is showed in the first line if the cursor is
+over the last one.
+
+Revision 0.83 1997/07/29 set
+* Modified: Now you can save a buffer only if it was modified.
+
+Revision 0.82 1997/07/29 set
+* Created a new file (nonansi.c) to store the routines not present in Linux's
+libc.
+
+Revision 0.81 1997/07/29 set
+* Applied patchs from Robert.
+
+Revision 0.80 1997/07/29 set
+* In the last month I created the SET's Documentation Generator and SET's
+Documentation helper. They are incorporated in the editor now. For that I
+added support for projects.
+
+Revision 0.79 1997/06/23 set
+* Bug Killed: The first key recorded in a macro sometimes failed because the
+shift state weren't correctly stored.
+
+Revision 0.78 1997/06/19 set
+* Bug Killed: The symbol tables of the generic SHL were using chars instead of
+unsigned chars as index.
+
+Revision 0.77 1997/06/19 set
+* Bug Killed: The start of comment were case sensitive in the generic SHL, it
+created problems with REM in BASIC sources.
+
+Revision 0.76 1997/06/19 set
+* Modified: the routines that choose the right SHL according to the extention.
+
+Revision 0.75 1997/06/16 set
+* Bug Killed: If for some the reason the user were able to put the cursor over
+a \n character (hard to make) the editor behavior were unpredictable.
+
+Revision 0.74 1997/06/15 set
+* Various bugs related to the new LF handle were fixed in the last two weeks.
+
+Revision 0.73 1997/06/01 set
+* Version 0.3.3.
+
+Revision 0.72 1997/06/01 set
+* Various corrections in the internationalization file.
+
+Revision 0.71 1997/06/01 set
+* Bug Killed: Ctr+K-C and Ctrl+K-V moved the cursor regardless the selected
+mode.
+
+Revision 0.70 1997/06/01 set
+* Bug Killed: Ctrl+Shift+Insert failed when the editor where in the mode that
+doesn't move the cursor after a paste.
+
+Revision 0.69 1997/06/01 set
+* Bug Killed: When inserting at the end of the buffer.
+
+Revision 0.68 1997/06/01 set
+* Robert added support for lines with only LF under Linux. It introduced a big
+number of bugs.
+
+Revision 0.67 1997/05/21 set
+* Bug Killed: Ctrl+K-V used the clipboard.
+
+Revision 0.66 1997/05/20 set
+* Bug Killed: 08e1 is a flot for gcc and not an invalid octal like the editor
+were reporting.
+
+Revision 0.65 1997/04/24 set
+* Bug Killed: In the SHL of floats. For example: in 10e2; the last ; were
+highlighted as part of the float.
+
+Revision 0.64 1997/04/08 set
+* Added: Now you can select which extentions are highlighted defining
+enviroment variables like SET_SHL.pas=Pascal.
+
+Revision 0.63 1997/04/08 set
+* Added an enviroment variable to indicate where the configuration files are
+stores (SET_FILES).
+
+Revision 0.62 1997/04/08 set
+* Added Ctrl+Q-ESC to jump to the pair matching {,},(,),[ or ].
+
+Revision 0.61 1997/03/17 set
+* Changed the realloc strategy for the editor buffer. Now it allocs less than
+a page to avoid problems related to the djgpp 2^n strategy.
+
+Revision 0.60 1997/03/14 set
+* Version 0.3.2 Robert still having v0.2.18b.
+
+Revision 0.59 1997/03/14 set
+* Eliminated no longer used members: charPos, charPtr, nextChar, prevChar,
+lineEnd, lineStart, nextLine, prevLine and setCurPtr. They were only for
+compatibility with the old TEditor class.
+
+Revision 0.58 1997/03/14 set
+* TCFileEditor class joined to TCEditor class.
+
+Revision 0.57 1997/03/11 set
+* Source directory structure reorganized.
+
+Revision 0.56 1997/03/11 set
+* Bug Killed: In the restore of the previous color of a match-pair.
+
+Revision 0.55 1997/03/11 set
+* Bug Killed: When deleting a block ending in a column where there is no text.
+
+Revision 0.54 1997/03/11 set
+* Bug Killed: In the Intelligent C indent when parsing comments.
+
+Revision 0.53 1997/02/12 set
+* Bug Killed: When deleting blocks including "text" outside of the line.
+
+Revision 0.52 1997/02/04 set
+* Added: Replace all, by Laszlo.
+
+----------------------------------------------------------------------
+Revision 0.51 1997/02/04 set
+* Version 0.2.18 sent to Robert.
+
+Revision 0.50 1997/02/02 set
+* Modified: Now the "Jump to function" dialog supports Zoom.
+
+Revision 0.49 1997/02/01 set
+* Fixes in the update of the selected area.
+
+Revision 0.48 1997/01/29 set
+* Bug Killed: In the draw of the last line when Transparent block is on and
+the line is preprocessor + comments.
+
+Revision 0.47 1997/01/26 set
+* Fixes in the update of the selected area.
+
+Revision 0.46 1997/01/25 set
+* Added: Now the replace input in the S&R dialog is piped to the text as the
+search was (Laszlo's idea).
+
+Revision 0.45 1997/01/25 set
+* Modified: Now ^KL moves the cursor to the start of the line (Laszlo's idea).
+
+Revision 0.44 1997/01/24 set
+* Bug Fixed: When pasting in the last line of the text.
+
+----------------------------------------------------------------------
+Revision 0.43 1997/01/12 set
+* Version 0.2.17 sent to Robert.
+
+Revision 0.42 1997/01/12 set
+* Bug Fixed: when selecting a preprosessor line that is the end of a multiline
+comment.
+
+Revision 0.41 1997/01/12 set
+* Bug Fixed: when typing in the last column a character that produces a change
+in the highlight.
+
+Revision 0.40 1997/01/10 set
+* Added: In InfView: A dialog to choose any node of the file.
+
+Revision 0.39 1997/01/10 set
+* Bug Fixed: Now the items in the first line below the Menu entry is taked in
+count.
+
+Revision 0.38 1997/01/10 set
+* Added: In InfView: Ported to Linux (no shift arrows, double click emulated).
+
+Revision 0.37 1997/01/10 set
+* Added: In InfView: Better support for Tabs.
+
+Revision 0.36 1997/01/09 set
+* Added: In InfView: Support for files without Tag Table (just plain text
+files with delimiters 0x1F).
+
+Revision 0.35 1997/01/09 set
+* Added: Support for hexa-numbers like that: 0x0000012345678 that previously
+were taked as wrong values (reported by Robert).
+
+Revision 0.34 1997/01/09 set
+* Bug Fixed: Pascal doesn't support u,U,l and L modifiers. (by Robert).
+
+Revision 0.33 1997/01/08 set
+* Bug Fixed: In the paint of preprocessor lines, this bug generated an
+asertion when editing the limits.h file line 30.
+
+Revision 0.32 1997/01/08 set
+* Modified: Now the colors are cached to speed up the draw (Robert's idea).
+
+Revision 0.31 1997/01/04 set
+* Added: In InfView: Mouse selection.
+
+Revision 0.30 1997/01/04 set
+* Added: In InfView: Selection with End,Home,Page Up and Page Down.
+
+Revision 0.29 1997/01/04 set
+* Modidied: In InfView: The behaviour of End.
+
+Revision 0.28 1997/01/04 set
+* Added: In InfView: Selection in reverse direction.
+
+Revision 0.27 1997/01/04 set
+* Added: In InfView: now the selection disapears when we change of topic.
+
+Revision 0.26 1996/12/29 set
+* Bug Fixed: In the Search dialog in the input line pressing the left arrow
+the dialog ever got a char from the editor.
+
+Revision 0.25 1996/12/29 set
+* Bug Fixed: In the update of the selected area when backspace deleted across
+an end of the selected area.
+
+Revision 0.24 1996/12/29 set
+* Bugs Fixed: With \ inside of chars and reserved words. (fixed by Robert).
+
+Revision 0.23 1996/12/29 set
+* Modified: Now InfView doesn't add extra entries in the history when
+searching across files. (reported by Artur).
+
+Revision 0.22 1996/12/29 set
+* Modified: Now when resizing the window the cursor still visible. (reported
+by Artur).
+
+Revision 0.21 1996/12/29 set
+* Bug fixed: When typing outside the visible window. (reported by Artur).
+
+Revision 0.20 1996/12/18 set
+* ^KC now doesn't touch the clipboard. (Reported by Laszlo)
+
+----------------------------------------------------------------------
+Revision 0.19 1996/12/11 set
+* Diffs sent to Robert.
+
+Revision 0.18 1996/12/10 set
+* Bug fixed: When using find the undo doesn't work.
+
+Revision 0.17 1996/12/10 set
+* Bug fixed: In the undo due to a report of Artur.
+
+----------------------------------------------------------------------
+Revision 0.16 1996/12/09 set
+* Version 0.2.16 sent to Robert.
+
+Revision 0.15 1996/12/09 set
+* Bug fixed: When deleting the fisrt tab in a line.
+
+Revision 0.14 1996/12/08 set
+* Modified: The Jump to Function list now isn't case sensitive.
+
+Revision 0.13 1996/12/08 set
+* Added: Now the Compact Buffer doesn't affect the strings and comments (NIK's
+idea).
+
+Revision 0.12 1996/12/07 set
+* Added: Support for ull,lul,llu,ll,lu,etc modifiers.
+
+Revision 0.11 1996/12/07 set
+* Added: An string opened in one line must be closed some where or the whole
+code is an string, GCC suppose that.
+
+Revision 0.10 1996/12/07 set
+* Added: New mode called Optimal Fill to use tabs instead of spaces to fill
+holes (Reported by Leon and NIK).
+
+Revision 0.9 1996/12/07 set
+* Modified: Now the undo restore tabs in the undo of insert.
+
+Revision 0.8 1996/12/07 set
+* Bug fixed: When pasting text that had tabs.
+
+Revision 0.7 1996/12/05 set
+* Bug fixed: When typing characters the editor didn't update the X limit
+(Reported by NIK).
+
+Revision 0.6 1996/12/05 set
+* Bug fixed: When using the scroll bar the editor failed to update the screen
+:-P (Reported by NIK).
+
+Revision 0.5 1996/12/04 set
+* Modified: Now in non-persistent mode the pasted text isn't selected to allow
+multiple pastes (Yamaha's idea).
+
+Revision 0.4 1996/12/03 set
+* Modified: When the mouse selection starts in a tab the tab is included
+(NIK's idea).
+
+Revision 0.3 1996/12/03 set
+* Added: Now the editor supports lines with \n, \r, \r\r\n, etc as end of
+line.
+
+Revision 0.2 1996/12/03 set
+* Bug fixed: In the update of the selected area when the selection started at
+the begining of the edited line.
+
+Revision 0.1 1996/12/03 set
+* Bug fixed: In the undo due to a report of Artur Zaroda.
+
