@@ -117,7 +117,7 @@ $TVInclude='../'.$TVInclude if (substr($TVInclude,0,2) eq '..');
 if ($OS eq 'DOS')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=$(DJDIR)/include $(DJDIR)/lang/cxx $(DJDIR)/lib/gcc-lib';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=';
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv ';
    $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='iconv ' if (@conf{'iconv'} eq 'yes');
    if ((@conf{'mp3'} eq 'yes') && (@conf{'HAVE_ALLEGRO'} eq 'yes'))
@@ -141,11 +141,14 @@ elsif ($OS eq 'UNIX')
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++';
-   $MakeDefsRHIDE[1].=' intl' unless (@conf{'intl'} eq 'no');
-   $MakeDefsRHIDE[1].=' bz2' if (@conf{'HAVE_BZIP2'} eq 'yes');
-   $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++ ';
+   $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
+   $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
   }
+$MakeDefsRHIDE[1].='z ';
+$MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
+$MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
@@ -168,6 +171,12 @@ else
   {
    $MakeDefsRHIDE[5]='RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)';
   }
+#$MakeDefsRHIDE[5].=' -lrhtv '.@conf{'prefix'}.'/lib/libmss.a' if (@conf{'mss'} eq 'yes');
+#if (@conf{'mss'} eq 'yes')
+#  {
+#   $test=@conf{'prefix'}.'/lib/libmss.a $(LIBRARIES)';
+#   $MakeDefsRHIDE[5]=~s/\$\(LIBRARIES\)/$test/;
+#  }
 # Take out the CFLAGS and CPPFLAGS variables
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
@@ -407,6 +416,14 @@ sub SeeCommandLine
       {
        $conf{'compressExe'}='no';
       }
+    elsif ($i eq '--with-mss')
+      {
+       $conf{'mss'}='yes';
+      }
+    elsif ($i eq '--without-mss')
+      {
+       $conf{'mss'}='no';
+      }
     else
       {
        ShowHelp();
@@ -446,11 +463,13 @@ sub ShowHelp
  print "--without-mixer: don't include code to control the mixer\n";
  print "--shipped-intl : force to use the shipped gettext library [DOS only]\n";
  print "--tv-include=pa: path for Turbo Vision includes\n";
+ print "  Note: if you use --tv-include you should also use --tv-lib\n";
  print "--tv-lib=path  : path for Turbo Vision libraries\n";
  print "--no-prefix-h  : don't define the prefix in the configuration header\n";
  print "--comp-exe     : compress all executables with UPX\n";
  print "--no-comp-exe  : don't compress any executables with UPX\n";
- print "  Note: if you use --tv-include you should also use --tv-lib\n";
+ print "--with-mss     : compiles with MSS memory debugger.\n";
+ print "--without-mss  : compiles without MSS [default].\n";
 }
 
 sub GiveAdvice
@@ -1044,6 +1063,7 @@ sub CreateConfigH
  $text.="#define SECPU_$CPU\n";
  $text.="#define SEComp_$Comp\n";
  $text.="#define SECompf_$Compf\n";
+ $text.="\n#define MSS\n#include <mss.h>\n" if @conf{'mss'} eq 'yes';
 
  $old=cat('include/configed.h');
  if ($text eq $old)
