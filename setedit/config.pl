@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -7,6 +7,7 @@ require "miscperl.pl";
 require "conflib.pl";
 
 $conf{'infview'}='yes';
+$conf{'HAVE_BZIP2'}='yes';
 $conf{'parser'}='parserbr.c';
 $conf{'mp3lib'}='mpegsnd';
 $conf{'mp3'}='yes';
@@ -19,12 +20,13 @@ GetVersion('');
 
 $TVVersionNeeded='1.1.0';
 $ZLibVersionNeeded='1.1.2';
-$BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
 # 3.9.x are WIPs
 $AllegroNotNeeded='3.9.0';
+# I never tested with an older version, you can try reducing it.
+$GPMVersionNeeded='1.10';
 unlink $ErrorLog;
 
 SeeCommandLine();
@@ -54,6 +56,12 @@ $CXXFLAGS=FindCXXFLAGS();
 FindXCXXFLAGS();
 # Test for a working gcc
 $GCC=CheckGCC();
+# Which architecture are we using?
+DetectCPU();
+# Only gnu make have the command line and commands we use.
+LookForGNUMake();
+# Same for ar, it could be `gar'
+LookForGNUar();
 # Check if gcc can compile C++
 $GXX=CheckGXX();
 
@@ -76,13 +84,13 @@ LookForIntlSupport();
 LookForPCRE();
 # Is ZLib available?
 LookForZLib($ZLibVersionNeeded);
-# Is BZip2 library available?
-LookForBZ2Lib($BZ2LibVersionNeeded);
 # Look for recode and version
 LookForRecode();
 # Look for xgettext
 LookForGettextTools();
 LookForMakeinfo();
+# Is a usable gpm there?
+LookForGPM($GPMVersionNeeded) if ($OS eq 'UNIX');
 
 print "\n";
 #
@@ -100,31 +108,36 @@ if ($OS eq 'DOS')
      {
       $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' alleg ';
      }
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
   }
 elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
-   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=ncurses gpm m';
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
-   $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
+   $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=';
+   # RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
+   # be added for things like FreeBSD or SunOS.
+   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSflavor eq 'Linux');
+   $MakeDefsRHIDE[1].='ncurses m ';
+   $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
+   $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
+   $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
   }
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++';
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].=' bz2' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
+$MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'HAVE_BZIP2'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
 $test='';
 $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
-$test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
+$test.=' ../libbzip2' if (@conf{'HAVE_BZIP2'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
@@ -141,9 +154,10 @@ else
 # Take out the CFLAGS and CPPFLAGS variables
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
+$MakeDefsRHIDE[8]='RHIDE_AR='.$conf{'GNU_AR'};
 if ($OSflavor eq 'Mingw')
   {
-   $MakeDefsRHIDE[8]='SPECIAL_LDFLAGS=-mconsole';
+   $MakeDefsRHIDE[9]='SPECIAL_LDFLAGS=-mconsole';
   }
 CreateRHIDEenvs('makes/rhide.env','+mp3/libamp/rhide.env',
                 '+mp3/mpegsound/rhide.env');
@@ -276,19 +290,17 @@ sub SeeCommandLine
       {
        $conf{'infview'}='yes';
       }
+    elsif ($i eq '--no-infview')
+      {
+       $conf{'infview'}='no';
+      }
     elsif ($i eq '--no-bzip2')
       {
        $conf{'HAVE_BZIP2'}='no';
-       $conf{'bz2libShipped'}='no';
-       $conf{'bz2lib'}='no';
       }
     elsif ($i eq '--bzip2')
       {
        $conf{'HAVE_BZIP2'}='yes';
-      }
-    elsif ($i eq '--no-infview')
-      {
-       $conf{'infview'}='no';
       }
     elsif ($i eq '--parser-adv')
       {
@@ -321,6 +333,14 @@ sub SeeCommandLine
     elsif ($i=~'--Xcppflags=(.*)')
       {
        $conf{'XCXXFLAGS'}=$1;
+      }
+    elsif ($i=~'--cflags=(.*)')
+      {
+       $conf{'CFLAGS'}=$1;
+      }
+    elsif ($i=~'--cxxflags=(.*)')
+      {
+       $conf{'CXXFLAGS'}=$1;
       }
     elsif ($i eq '--with-mixer')
       {
@@ -373,6 +393,8 @@ sub ShowHelp
  print "--with-amp     : use libamp for MP3 support [DOS only]\n";
  print "--with-mpegsnd : use libmpegsnd for MP3 support [default]\n";
  print "--without-mp3  : disable MP3 support\n";
+ print "--cflags=val   : normal C flags [default is env. CFLAGS]\n";
+ print "--cppflags=val : normal C++ flags [default is env. CXXFLAGS]\n";
  print "--Xcflags=val  : special C flags used for MP3 libraries\n";
  print "--Xcppflags=val: special C++ flags used for MP3 libraries\n";
  print "--with-mixer   : include code to control the mixer [default]\n";
@@ -408,6 +430,10 @@ sub GiveAdvice
  if (@conf{'makeinfo'} eq 'no')
    {
     print "* The 'makeinfo' tool isn't installed documentation can't be created.\n";
+   }
+ if (@conf{'GNU_Make'} ne 'make')
+   {
+    print "* Please use $conf{'GNU_Make'} instead of make command.\n";
    }
 }
 
@@ -584,8 +610,7 @@ int main(void)
  if (hits!=1) return 1;
  printf("OK\n");
  return 0;
-}
-';
+}';
  $test206=$test205.'0,'.$t2;
  $test205.=$t2;
 
@@ -647,8 +672,7 @@ int main(void)
 {
  printf("%d.%d.%d",TV_MAJOR_VERSION,TV_MIDDLE_VERSION,TV_MINOR_VERSION);
  return 0;
-}
-';
+}';
  $test=RunGCCTest($GXX,'cc',$test,"$stdcxx -I$TVInclude");
  if (!CompareVersion($test,$vNeed))
    {
@@ -688,8 +712,7 @@ int main(void)
  printf("%d.0.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION);
  #endif
  return 0;
-}
-';
+}';
  $MP3Support=0;
  $test=RunGCCTest($GCC,'c',$test,"-lalleg");
  if (!length($test))
@@ -769,85 +792,6 @@ int main(void)
  $conf{'zlibShipped'}='yes';
  $conf{'zlib'}='shipped'; #$test
 }
-
-sub LookForBZ2Lib
-{
- my $vNeed=$_[0];
- my $test,$ver;
-
- print 'Looking for BZip2 library: ';
- $test=@conf{'bz2lib'};
- if ($test)
-   {
-    print "$test (cached) OK\n";
-    return;
-   }
- $test='
-#include <stdio.h>
-#include <bzlib.h>
-int main(void)
-{
- printf("%s",bzlibVersion());
- return 0;
-}';
- $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
- if (length($ver))
-   {
-    if (CompareVersion($ver,$vNeed))
-      {
-       print "$ver OK\n";
-       $conf{'bz2libShipped'}='no';
-       $conf{'bz2lib'}=$ver;
-       $conf{'bz2libPre1'}='yes';
-       $conf{'HAVE_BZIP2'}='yes';
-       $conf{'HAVE_BZIP2PRE1'}='yes';
-       return;
-      }
-   }
- else
-   {
-    $test='
-#include <stdio.h>
-#include <bzlib.h>
-int main(void)
-{
- printf("%s",BZ2_bzlibVersion());
- return 0;
-}';
-    $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
-    if (length($ver))
-      {
-       if (CompareVersion($ver,$vNeed))
-         {
-           print "$ver OK\n";
-           $conf{'bz2libShipped'}='no';
-           $conf{'bz2lib'}=$ver;
-           $conf{'bz2libPre1'}='no';
-           $conf{'HAVE_BZIP2'}='yes';
-           return;
-         }
-       print "no $vNeed+, ";
-      }
-    else
-      {
-       print 'not installed, ';
-      }
-   }
- #$test=RunGCCTest($GCC,'c',$test,"-lz -Isupport -L$supportDir");
- #if (!CompareVersion($test,$vNeed))
- #  {
- #   print "no shipped\n";
- #   print "\n\nError: Can't find an installed version, please install zlib 1.1.2 or better first.\n";
- #   CreateCache();
- #   die "Missing library\n";
- #  }
- print "using shipped one\n";
- $conf{'bz2libShipped'}='yes';
- $conf{'bz2lib'}='shipped'; #$test
- $conf{'bz2libPre1'}='no';
- $conf{'HAVE_BZIP2'}='yes';
-}
-
 
 sub LookForIntlSupport
 {
@@ -944,11 +888,11 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_PCRE_LIB','Perl Compatible Regular Expressions support');
  $text.=ConfigIncDefYes('HAVE_PCRE206','PCRE version 2.0.6 or newer');
  $text.=ConfigIncDefYes('HAVE_BZIP2','bzip2 compression support');
- $text.=ConfigIncDefYes('HAVE_BZIP2PRE1','old bzip2 version before 1.0') if(@conf{'HAVE_BZIP2'} eq 'yes');
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  $text.="\n\n";
  $text.="#define SEOS_$OS\n#define SEOSf_$OSflavor\n";
+ $text.="#define SECPU_$conf{'TV_CPU'}\n";
 
  $old=cat('include/configed.h');
  replace('include/configed.h',$text) unless $text eq $old;
@@ -973,8 +917,8 @@ sub GenerateMakefile
  $libamp=@conf{'HAVE_AMP'} eq 'yes';
  $libmpegsnd=@conf{'HAVE_MPEGSOUND'} eq 'yes';
  $infview=@conf{'infview'} eq 'yes';
+ $libbzip2=@conf{'HAVE_BZIP2'};
  $libz=@conf{'zlibShipped'} eq 'yes';
- $libbzip2=@conf{'bz2libShipped'} eq 'yes';
  $libpcre=@conf{'PCREShipped'} eq 'yes';
  $libintl=@conf{'intlShipped'} eq 'yes';
  $plasmas=$OS eq 'DOS';
@@ -1114,5 +1058,51 @@ sub GenerateMakefile
  $text.="\t\$(MAKE) -C libpcre clean\n" if ($libpcre);
 
  replace('Makefile',$text);
+}
+
+sub LookForGPM
+{
+ my $vNeed=$_[0],$test;
+
+ print 'Looking for gpm library: ';
+ if (@conf{'gpm'})
+   {
+    print "@conf{'gpm'} (cached) OK\n";
+    return;
+   }
+ $test='
+#include <stdio.h>
+#include <gpm.h>
+int main(void)
+{
+ int version;
+ printf("%s",Gpm_GetLibVersion(&version));
+ return 0;
+}';
+ $test=RunGCCTest($GCC,'c',$test,'-lgpm');
+ if (!length($test))
+   {
+    #print "\nError: gpm library not found, please install gpm $vNeed or newer\n";
+    #print "Look in $ErrorLog for potential compile errors of the test\n";
+    #CreateCache();
+    #die "Missing library\n";
+    $conf{'HAVE_GPM'}='no';
+    print " no, disabling mouse support\n";
+    return;
+   }
+ if (!CompareVersion($test,$vNeed))
+   {
+    #print "$test, too old\n";
+    #print "Please upgrade your gpm library to version $vNeed or newer.\n";
+    #print "You can try with $test forcing the configure scripts.\n";
+    #CreateCache();
+    #die "Old library\n";
+    $conf{'HAVE_GPM'}='no';
+    print " too old, disabling mouse support\n";
+    return;
+   }
+ $conf{'gpm'}=$test;
+ $conf{'HAVE_GPM'}='yes';
+ print "$test OK\n";
 }
 
