@@ -249,7 +249,17 @@ FullFile files[]={
 {fgDJGPP ,"contrib/setedit.bin/","copying.lgp",0,0},
 {fgDJGPP ,"contrib/setedit.bin/","copying.rh",0,0},
 {fgDJGPP ,"contrib/setedit.bin/","readme.faq",0,0},
+// Examples
+{fgDJGPP ,"contrib/setedit.bin/examples/","tvrc",0,0},
+{fgDJGPP ,"contrib/setedit.bin/examples/","examp1.epr",0,0},
+{fgDJGPP ,"contrib/setedit.bin/examples/","examp1.dst",0,0},
+{fgDJGPP ,"contrib/setedit.bin/examples/","test1.cc",0,0},
+// Tags tutorial
 {fgDJGPP ,"contrib/setedit.bin/","tags.html",0,0},
+{fgDJGPP ,"contrib/setedit.bin/","my_file1.html",0,0},
+{fgDJGPP ,"contrib/setedit.bin/","my_file2.html",0,0},
+{fgDJGPP ,"contrib/setedit.bin/","my_file3.html",0,0},
+{fgDJGPP ,"contrib/setedit.bin/","examples.css",0,0},
 {fgDJGPP ,"contrib/setedit.bin/tag_imgs/","a_project.png",0,0},
 {fgDJGPP ,"contrib/setedit.bin/tag_imgs/","advice_tags.png",0,0},
 {fgDJGPP ,"contrib/setedit.bin/tag_imgs/","class_child1.png",0,0},
@@ -279,6 +289,11 @@ FullFile files[]={
 {fgNoDJ  ,"texts/","copying.lgp",0,0},
 {fgNoDJ  ,"texts/","copying.rh",0,0},
 {fgNoDJ  ,"texts/","readme.faq",0,0},
+// Examples
+{fgNoDJ ,"texts/examples/","tvrc",0,0},
+{fgNoDJ ,"texts/examples/","examp1.epr",0,0},
+{fgNoDJ ,"texts/examples/","examp1.dst",0,0},
+{fgNoDJ ,"texts/examples/","test1.cc",0,0},
 {fgAll   ,"share/setedit/","version.txt",0,0},
 {fgExScSv,"share/setedit/","ps1.exe",0,0},
 {fgExScSv,"share/setedit/","ps2.exe",0,0},
@@ -831,7 +846,6 @@ int ConfirmValues()
 
  aux=TVIntl::getTextNew(cTypeOfInstall);
  strs->insert((void *)aux);
- DeleteArray(aux);
  switch (TypeInstallation)
    {
     case instNormal:
@@ -845,27 +859,24 @@ int ConfirmValues()
          break;
    }
  strs->insert((void *)aux);
- DeleteArray(aux);
- strs->insert((void *)"");
+ strs->insert((void *)newStr(""));
  lines+=3;
 
  aux=TVIntl::getTextNew(cDestinationDir);
  strs->insert((void *)aux);
- DeleteArray(aux);
  char *dp=(char *)alloca(strlen(Destination)+1+2);
  strcpy(dp,"  ");
  strcat(dp,Destination);
- strs->insert(dp);
- strs->insert((void *)"");
+ strs->insert((void *)newStr(dp));
+ strs->insert((void *)newStr(""));
  lines+=2;
 
  aux=TVIntl::getTextNew(cMiscOps);
  strs->insert((void *)aux);
- DeleteArray(aux);
  lines++;
  #define I(ops) if(ops) { char *a=TVIntl::getTextNew(c##ops); \
                           char *s=(char *)alloca(strlen(a)+3); \
-                          strcpy(s,"  "); strcat(s,a); strs->insert(s); lines++; \
+                          strcpy(s,"  "); strcat(s,a); strs->insert(newStr(s)); lines++; \
                           DeleteArray(a); }
  I(AddToDesktop)
  I(AddToMenu)
@@ -874,7 +885,7 @@ int ConfirmValues()
 
  #undef I
  #define I(ops) s=AddOps2(ops,c##ops##Tit,c##ops##0,c##ops##1); \
-                strs->insert(s); /*delete[] s;*/ lines++
+                strs->insert(s); lines++
  if (TypeInstallation!=instNormal)
    {
     char *s;
@@ -896,6 +907,7 @@ int ConfirmValues()
     return retNext;
  if (ret==cmNo)
     return retPrev;
+ CLY_destroy(strs);
  return retExit;
 }
 

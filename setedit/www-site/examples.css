@@ -1,0 +1,26 @@
+body { background:#0000A8 }
+b.Normal { color:#FCFC54; background:#0000A8; font-family:Courier New; }
+b.Marked { color:#0000A8; background:#A8A8A8; font-family:Courier New; }
+b.Comment { color:#A8A8A8; background:#0000A8; font-family:Courier New; }
+b.Reserved { color:#5454FC; background:#0000A8; font-family:Courier New; }
+b.Ident { color:#FCFC54; background:#0000A8; font-family:Courier New; }
+b.Symbol { color:#FCFCFC; background:#0000A8; font-family:Courier New; }
+b.String { color:#54FCFC; background:#0000A8; font-family:Courier New; }
+b.Integer { color:#A800A8; background:#0000A8; font-family:Courier New; }
+b.Float { color:#A85400; background:#0000A8; font-family:Courier New; }
+b.Octal { color:#FCFCFC; background:#00A8A8; font-family:Courier New; }
+b.Hex { color:#54FCFC; background:#00A800; font-family:Courier New; }
+b.Char { color:#FC54FC; background:#0000A8; font-family:Courier New; }
+b.Pre { color:#54FC54; background:#0000A8; font-family:Courier New; }
+b.Illegal { color:#000000; background:#A80000; font-family:Courier New; }
+b.User { color:#00A800; background:#0000A8; font-family:Courier New; }
+b.CPU { color:#000000; background:#00A8A8; font-family:Courier New; }
+b.Break { color:#FCFCFC; background:#A80000; font-family:Courier New; }
+b.Symbol2 { color:#FC5454; background:#0000A8; font-family:Courier New; }
+b.CrossCur { color:#A8A8A8; background:#000000; font-family:Courier New; }
+b.StatusLi { color:#000000; background:#A8A8A8; font-family:Courier New; }
+b.MPHighL { color:#FC5454; background:#A8A8A8; font-family:Courier New; }
+b.RectSel { color:#FCFCFC; background:#A800A8; font-family:Courier New; }
+b.OddTab { color:#000000; background:#00A800; font-family:Courier New; }
+b.EvenTab { color:#000000; background:#A80000; font-family:Courier New; }
+b.ColMark { color:#000000; background:#A80000; font-family:Courier New; }

@@ -828,11 +828,12 @@ updaterev.pl
 www-site/announce.html
 www-site/change.html
 www-site/Cygwin_install.txt
+www-site/examples.css
 www-site/index.html
 www-site/infview.html
-www-site/my_file_example.html
-www-site/my_file_example2.html
-www-site/my_file_example3.html
+www-site/my_file1.html
+www-site/my_file2.html
+www-site/my_file3.html
 www-site/tag_imgs/a_project.png
 www-site/tag_imgs/advice_tags.png
 www-site/tag_imgs/class_child1.png

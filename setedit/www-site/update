@@ -1,2 +1,2 @@
 #!/bin/sh
-scp *.html *.txt set@setedit.sourceforge.net:/home/groups/s/se/setedit/htdocs/
+scp *.html *.txt *.css set@setedit.sourceforge.net:/home/groups/s/se/setedit/htdocs/

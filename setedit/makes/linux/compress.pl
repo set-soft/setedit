@@ -322,6 +322,10 @@ CopyIf('copying.rh','makes/linux/'.$doc_dir.'/copying.rh');
 CopyIfCpr('change.log','makes/linux/'.$doc_dir.'/change.log');
 # Tags stuff
 CopyIf('www-site/tags.html','makes/linux/'.$doc_dir.'/tags.html');
+CopyIf('www-site/my_file1.html','makes/linux/'.$doc_dir.'/my_file1.html');
+CopyIf('www-site/my_file2.html','makes/linux/'.$doc_dir.'/my_file2.html');
+CopyIf('www-site/my_file3.html','makes/linux/'.$doc_dir.'/my_file3.html');
+CopyIf('www-site/examples.css','makes/linux/'.$doc_dir.'/examples.css');
 @a=glob('www-site/tag_imgs/*.png');
 foreach $o (@a)
   {
