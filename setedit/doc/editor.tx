@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.2
-@set update-date 11 May 2003
+@set update-date 12 May 2003
 @set update-month May 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -2338,8 +2338,10 @@ the original values.
 @subsubsection Consult scan codes
 
 Used to consult the keyboard scan codes: @x{Consulting scan codes}.
-(Ed.: Can only be closed with the mouse ??)
-@paragraph{}
+This dialog must be closed using the mouse to press the @code{OK} button
+because it displays the scan codes for the keys, even for @key{ESC} and
+@key{ENTER}.
+@p{}
 
 @refMenu1{cmeSeeScanCodes}
 
@@ -2717,8 +2719,8 @@ works if you are using a project.
 
 When this option is enabled and you perform a search that involves tags the
 editor will automatically check if any of the files included in your project
-is newer than the tags files. If newer files were found the editor will
-invoke ctags to update the tags. If you delete the tags files the editor will
+is newer than the tag files. If newer files were found the editor will
+invoke ctags to update the tags. If you delete the tag files the editor will
 create a new one.
 @p{}
 
@@ -3535,7 +3537,7 @@ number of parentheses is balanced, then will analyze this line. If the whole
 line still generates an unbalanced situation the editor will go to the
 first used column in the line that was found the first time. But if this
 line will leave all brackets balanced the editor will take the first word on the
-line and will use it as reference (Ed.: Is this what you meant ???).
+line and will use it as reference.
 @paragraph{}
   At last, and according to the word found, the editor will use this
 word as reference. The editor recognises the following keywords:
@@ -3832,7 +3834,7 @@ to position the cursor in these spaces, only in the first space.
   When @il{Use real tabs} option is disabled the editor will insert enough
 spaces to move the cursor to the next tab-stop or indent position. But if
 this option is enabled the editor will insert enough spaces to move the
-cursor to the next word boundary(Ed.:??) in the line directly above.
+cursor to the beggining of the next word in the previous line.
 Confused? Sorry for my English, an example will clarify that:
 @paragraph{}
 
@@ -5102,7 +5104,7 @@ sensitive. @x{strcmp}.
 
   This function compares @var{s1} and @var{s2}. The returned value is zero
 if the strings are equal, a positive number if @var{s1} comes after @var{s2}
-in the ASCII collating(Ed.:??) sequence, else a negative number.
+in the ASCII table, else a negative number.
 @paragraph{}
 
 @c --------------------------------------------------------------
@@ -5686,7 +5688,7 @@ referreded as tags in the rest of the sections.
 @p{}
 
 I strongly recommend reading the documentation of the program to generate the
-tags files.
+tag files.
 @p{}
 
 @section What are tags?
@@ -5701,15 +5703,15 @@ a bigger construct like a class.
 
 This information is very useful to do searches. The editor implements
 facilities to jump to any defined symbol, browse classes and do word
-completion using information from tags files.
+completion using information from tag files.
 @p{}
 
-@section Which program is used to generate tags files?
+@section Which program is used to generate TAGS files?
 @cindex tags, program to generate
 
-A lot of programs generate tags files but the editor uses special features
+A lot of programs generate tag files but the editor uses special features
 only found in the @il{Exuberant Ctags} program. For this reason I recommend
-using this program to generate the tags files. You can find this program at
+using this program to generate the tag files. You can find this program at
 Source Forge (http://ctags.sourceforge.net).
 @p{}
 
@@ -5722,7 +5724,7 @@ editor and another for the Turbo Vision library. The best is to refresh the
 tags file using the same makefile you use to compile your project. If your
 system isn't very fast or your project is too big you could try using one
 tags file for each directory in your project. The editor can be configured to
-collect symbols from various tags files.
+collect symbols from various tag files.
 @p{}
 
 The command line options I recommend to use with @file{ctags} are:
@@ -5741,7 +5743,7 @@ browser.
 @section Can these files be created and updated by the editor?
 @cindex tags, how to maintain
 
-I recommend using makefiles to maintain tags files because you have all
+I recommend using makefiles to maintain tag files because you have all
 the control over when and how they are updated. But if you are using a fast
 machine and want to simplify the process you can let the editor create and
 maintain a tags file for your project. You'll find options for it in the
@@ -5758,7 +5760,7 @@ Here is an explanation about how to quickly use tag files:
 @item Create a project (Project | Open). @x{Open (Project)}.
 @item Add all the files you want to include to the project. You can import
 the list of files from a text file. @x{Import project items}.
-@item Enable automatic tags generation using a central file (Tool&Ops |
+@item Enable automatic tag generation using a central file (Tool&Ops |
 Options | Tag files | Options). @x{Tag files options}.
 @item Perform a search, the tags file will be generated during this process
 so be patient if your system is slow or your project is huge.
@@ -5784,7 +5786,7 @@ of the file on disk. For this reason I recommend to avoid generating symbols
 for files you don't need.
 @p{}
 
-The time to parse and load tags files can be annoying on slow systems. For
+The time to parse and load tag files can be annoying on slow systems. For
 this reason the editor never loads the tag files until they are really
 needed. That's why you'll notice a delay for the first search, because the
 files are loaded at this time and not when the editor is started.
@@ -5931,10 +5933,10 @@ It normally matches any single character from the list (but see below).
 If the list begins with `^', it matches any single character (but see
 below) @emph{not} from the rest of the list.  If two characters in the
 list are separated by `-', this is shorthand for the full @emph{range}
-of characters between those two (inclusive) in the collating sequence,
+of characters between those two (inclusive) in the used character set,
 e.g. `[0-9]' matches any decimal digit in ASCII.  It is illegal(*) for
 two ranges to share an endpoint, e.g. `a-c-e'.  Ranges are very
-collating-sequence-dependent, and portable programs should avoid relying
+character set-dependent, and portable programs should avoid relying
 on them.
 @paragraph{}
 

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.361  2003/05/12 19:31:18  set
+* Modified: Made the "Paste Emacs mode" more robust. If the first line is
+"#!..." the comment is pasted in the second. If the mode was already
+pasted by the editor it is first deleted. Suggested by Grzegorz.
+
 Revision 1.360  2003/05/12 15:55:23  set
 * Modified: Made more robust the "shell script" shl detection/ It now
 supports: "#!.../env command" => command and "#!.../commandVERSION" =>
