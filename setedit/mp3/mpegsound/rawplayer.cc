@@ -194,6 +194,119 @@ int Rawplayer::getblocksize(void)
   return audiobuffersize;
 }
 #endif
+
+#ifdef __sun__
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <sys/audioio.h>
+
+#include "mpegsound.h"
+
+char *Rawplayer::defaultdevice="/dev/audio";
+static int sizeSamp,bufSize;
+
+/* Volume */
+int Rawplayer::setvolume(int volume)
+{
+ return (r&0xFF);
+}
+
+/*******************/
+/* Rawplayer class */
+/*******************/
+// Rawplayer class
+Rawplayer::~Rawplayer()
+{
+ if (audiohandle!=-1)
+    close(audiohandle);
+}
+
+bool Rawplayer::initialize(char *filename)
+{
+ int flag;
+
+ rawbuffersize=0;
+ quota=0;
+
+ if ((audiohandle=open(filename,O_WRONLY | O_NONBLOCK,0))==-1)
+    return seterrorcode(SOUND_ERROR_DEVOPENFAIL);
+
+ audio_info_t info;
+ if (ioctl(audiohandle,AUDIO_GETINFO,&info)==-1)
+    return seterrorcode(SOUND_ERROR_DEVCTRLERROR);
+ audiobuffersize=info.play.buffer_size;
+ if (audiobuffersize<4 || audiobuffersize>65536)
+    return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
+
+ return true;
+}
+
+void Rawplayer::abort(void)
+{
+ //int a;
+ //IOCTL(audiohandle,SNDCTL_DSP_RESET,a);
+}
+
+int Rawplayer::getprocessed(void)
+{
+ audio_info_t info;
+ ioctl(audiohandle,AUDIO_GETINFO,&info);
+
+ return bufSize/sizeSamp-info.play.samples;
+}
+
+bool Rawplayer::roomformore(unsigned size)
+{
+ audio_info_t info;
+ ioctl(audiohandle,AUDIO_GETINFO,&info);
+ 
+ return bufSize-info.play.samples*sizeSamp>=size ? true : false;
+}
+
+bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
+{
+ rawstereo=stereo;
+ rawsamplesize=samplesize;
+ rawspeed=speed;
+ forcetomono=forceto8=false;
+ sizeSamp=1;
+ if (stereo) sizeSamp*=2;
+ if (samplesize==16) sizeSamp*=2;
+
+ return resetsoundtype();
+}
+
+bool Rawplayer::resetsoundtype(void)
+{
+ audio_info_t info;
+ 
+ ioctl(h,AUDIO_GETINFO,&info);
+ info.play.encoding=AUDIO_ENCODING_LINEAR;
+ info.play.precision=rawsamplesize;
+ info.play.channels=rawstereo ? 2 : 1;
+ info.play.sample_rate=rawspeed;
+ ioctl(h,AUDIO_SETINFO,&info);
+ ioctl(h,AUDIO_GETINFO,&info);
+ 
+ return info.play.sample_rate==rawspeed && info.play.precision==rawsamplesize ? true : false;
+}
+
+bool Rawplayer::putblock(void *buffer,int size)
+{
+ if (quota)
+    while (getprocessed()>quota) usleep(3);
+ bufSize=write(audiohandle,buffer,size);
+
+ return true;
+}
+
+int Rawplayer::getblocksize(void)
+{
+  return audiobuffersize;
+}
+#endif
+
 #ifdef __DJGPP__
 
 #include <string.h>
