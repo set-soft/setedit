@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.603  2004/09/14 19:01:11  set
+* Added: [Config] Message warning about the lack of debug support.
+* Added: [Distrib] The list of added/fixed things. 66 new things and 40
+fixes.
+
 Revision 1.602  2004/09/10 19:55:06  set
 * Modified: To include libmigdb in the distro (if available).
 * Modified: [Config] To use the shipped libmigdb if none installed.

@@ -934,7 +934,7 @@ int main(void)
  $conf{'HAVE_PCRE_LIB'}='yes';
  $conf{'HAVE_PCRE206'}='yes';
  $conf{'PCREShipped'}='yes';
- $conf{'PCRE_HEADER'}='<pcre/pcre.h>';
+ $conf{'PCRE_HEADER'}='<pcre.h>';
  print "using shipped one.\n";
 }
 
