@@ -21,9 +21,9 @@
 
 //#define __S(color) #color
 //#define _S(bg,fg) __S(\x##bg##fg)
-#define _S(bg,fg) 0x##bg##fg ,
-#define S(index,foreground,background,name) _S(background,foreground)
-#define SS(index,foreground,background,name,group) _S(background,foreground)
+#define SE_S(bg,fg) 0x##bg##fg ,
+#define S(index,foreground,background,name) SE_S(background,foreground)
+#define SS(index,foreground,background,name,group) SE_S(background,foreground)
 
 /* This is the palette for the system when in color mode */
 #define SE_cpColor\
@@ -200,8 +200,8 @@
 
 //#define __M(color) #color
 //#define _M(col) __M(\x##col)
-#define _M(color) 0x##color ,
-#define M(index,color,name) _M(color)
+#define SE_M(color) 0x##color ,
+#define M(index,color,name) SE_M(color)
 
 /* This is the palette for the system when in monochrome mode */
 #define SE_cpMonochrome\
