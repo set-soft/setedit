@@ -741,6 +741,12 @@ redmond.smn, I think you can guess what's the effect of this menu
 configuration ;-).
   If you used the installer one of the options offered was about changing
 redmond.smn by menubind.smn.
+  DOS Important: starting with setedit 0.4.51 the editor uses BIOS to get
+keys from the keyboard queue. This is safer but some keyboard combinations
+aren't reported. Try running the editor with --no-bios-keyb (-B) option, if
+the keyboard works OK you'll catch more keyboard combinations and faster.
+Note you can put this option in the SET_CMDLINE environment variable to avoid
+passing it all the time or edit the e.bat script to achieve it.
 
 
 
