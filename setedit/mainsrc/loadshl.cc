@@ -799,9 +799,9 @@ int TakeCommentEmacs(char *buffer, int lenBuf, char *ext, int *tab_width,
 
 
 static
-int TakeLocalVarLowLev(char *buffer, int lenBuf, char *ext)
+int TakeLocalVarLowLev(char *buffer, int lenBuf, char *ext, int *tab_width)
 {
- unsigned lv,mode,end,i;
+ unsigned lv,mode,end,i,tabWidth;
  char *s=buffer;
 
  if (!buffer || lenBuf<25)
@@ -809,7 +809,7 @@ int TakeLocalVarLowLev(char *buffer, int lenBuf, char *ext)
 
  // Search these magic words, quit if one isn't there, ensure they are in the right
  // order
- lv=TCEditor_scan(s,lenBuf,"Local Variables:");
+ lv=TCEditor_iScan(s,lenBuf,"Local Variables:");
  if (lv==sfSearchFailed)
     return 0;
 
@@ -817,18 +817,25 @@ int TakeLocalVarLowLev(char *buffer, int lenBuf, char *ext)
  s+=lv;
  if (lenBuf<5)
     return 0;
- mode=TCEditor_scan(s,lenBuf,"mode:");
- if (mode==sfSearchFailed)
-    return 0;
-
- lenBuf-=mode;
- s+=mode;
- if (lenBuf<5)
-    return 0;
- end=TCEditor_scan(s,lenBuf,"End:");
+ end=TCEditor_iScan(s,lenBuf,"End");
  if (end==sfSearchFailed)
     return 0;
 
+ if (tab_width)
+   {
+    tabWidth=TCEditor_iScan(s,end,"tab-width:");
+    if (tabWidth!=sfSearchFailed)
+      {
+       unsigned offset=tabWidth+10;
+       for (; offset<end && isspace(s[offset]); offset++);
+       if (offset<end && isdigit(s[offset]))
+          *tab_width=atoi(s+offset);
+      }
+   }
+
+ mode=TCEditor_iScan(s,end,"mode:");
+ if (mode==sfSearchFailed)
+    return 0;
  s=buffer+lv+mode+5;
  for (i=0; i<MaxExtension-1 && s[i]!='\n' && s[i]!='\r'; i++)
      ext[i]=s[i];
@@ -837,7 +844,7 @@ int TakeLocalVarLowLev(char *buffer, int lenBuf, char *ext)
 }
 
 static
-int TakeCommentLocalVars(char *buffer, int lenBuf, char *ext)
+int TakeCommentLocalVars(char *buffer, int lenBuf, char *ext, int *tab_width)
 {
  int start;
 
@@ -846,7 +853,7 @@ int TakeCommentLocalVars(char *buffer, int lenBuf, char *ext)
  if (start<0)
     start=0;
 
- return TakeLocalVarLowLev(buffer+start,lenBuf-start,ext);
+ return TakeLocalVarLowLev(buffer+start,lenBuf-start,ext,tab_width);
 }
 
 static
@@ -854,7 +861,7 @@ int TakeComment(char *buffer, int lenBuf, char *ext, int &tab_width)
 {
  if (TakeCommentEmacs(buffer,lenBuf,ext,&tab_width))
     return 1;
- return TakeCommentLocalVars(buffer,lenBuf,ext);
+ return TakeCommentLocalVars(buffer,lenBuf,ext,&tab_width);
 }
 
 static

@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.469  2003/11/17 16:10:39  set
+* Added: Now if you don't specify any path to "search files under cursor"
+the editor tries to automagically fills this list using the output of cpp.
+From a suggestion by Oswald.
+* Added: If the Ctrl+Enter fails to find the file under cursor now that's
+informed in the "status line" of the current editor. Suggested by Oswald.
+* Added: If the editor fails to find the file under cursor now it also
+looks for it in the project. From a suggestion by Oswald.
+
 Revision 1.468  2003/11/17 16:09:45  set
 * Fixed: When starting a project using a different window size the project
 window could get wrong size and even become outside the screen. Reported
