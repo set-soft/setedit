@@ -2068,3 +2068,21 @@ Keywords=VGABIOSState,SaveVGAState,DontMoveHiddenCursor,AppCP,ScrCP,InpCP
 Keywords=PollMouse
 End
 
+#--------------------------------- XML ------------------------------------
+# Very limited XML support
+#
+Name=XML
+Files=xml
+OpenComment1=<!--
+CloseComment1=-->
+AllowedInsideNames=!?
+CanStartAName=<#?
+String1="
+Escape=\
+Symbols1=</>=,;{}()[]%
+Symbols2=?+*|
+NoCheckNumbers=1
+Keywords=<?xml,version,encoding,<!DOCTYPE,<!ELEMENT,<!ATTLIST,EMPTY,CDATA
+Keywords=#IMPLIED,#REQUIRED,#PCDATA
+End
+

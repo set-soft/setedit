@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.227  2002/11/06 16:17:04  set
+* Added: An option to generate HTML 4.01 + CSS in the HTML export.
+
 Revision 1.226  2002/11/05 13:15:33  set
 * Fixed: applycvs.pl failed to apply new files in the root of the module.
 
