@@ -1229,7 +1229,7 @@ Currently only a few languages are supported, they are:
 @end itemize
 
 In C sources fails are common if your code have an unbalanced number of
-curly brackets. Here is a piece of code that makes the heuristic get
+curly brackets. Here is a piece of code that made the heuristic get
 lost:
 @paragraph{}
 
@@ -1247,7 +1247,7 @@ lost:
    @}
 @end example
 
-Here the editor will see two curly brackets opened and then just one closed.
+Here the editor saw two curly brackets opened and then just one closed.
 To avoid it you could do it:
 @paragraph{}
 
@@ -1259,6 +1259,10 @@ To avoid it you could do it:
    @}
 #endif
 @end example
+
+Currently the parser tries to be smarter and takes only half of the sequence,
+just like if all @code{#if} conditions were true. It means the parser won't
+get lost with it, but very complex situations could make it fail.
 
 @refMenu{cmcJumpToFunction,Alt+F2}
 
