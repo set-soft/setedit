@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.95  2002/05/16 21:24:21  set
+* Fixed: TV link in copyrigh.
+
 Revision 1.94  2002/05/16 21:23:44  set
 * Modified: When the editor generates code for a recorded macro it now uses
 \t instead of an ASCII 9 embedded in the string. Suggested by Thiago.

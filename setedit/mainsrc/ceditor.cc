@@ -3777,7 +3777,12 @@ void TCEditor::SearchMatchOnTheFly()
    { // Don't flush the line if that isn't really necesary
     if (!*inEditPtr || !strchr("{}()[]",*inEditPtr)) return;
    }
- flushLine();
+ int wasInEdition=0;
+ if (IslineInEdition)
+   {
+    MakeEfectiveLineInEdition();
+    wasInEdition=1;
+   }
  int Pos;
  char *s=ColToPointer();
  switch (*s)
@@ -3811,6 +3816,8 @@ void TCEditor::SearchMatchOnTheFly()
     YHLCO=curPos.y;
     if (x>=0 && x<size.x && y>=0 && y<size.y)
        update(ufHLChar);
+    if (wasInEdition && ShowMatchPairNow)
+       EditLine();
    }
 }
 
