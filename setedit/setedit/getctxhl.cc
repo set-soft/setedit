@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TApplication
 #define Uses_TEvent
@@ -83,6 +83,7 @@ static helpNode helpList[]=
  HHe(HTMLAccents,"Convert accents to tags"),
  HHe(HTMLTag2Accent,"Convert tags to accents"),
  HHe(ExportAsHTML,"Export as HTML"),
+ HHc(InsertKeyName,"Insert key name"),
  HHe(RemapCodePage,"Remap code page"),
  HHe(ReDraw,"Redraw screen"),
  HHc(QuotedPrintDecode,"Block quoted printable decode"),

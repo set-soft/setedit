@@ -349,8 +349,7 @@ void TDialogK::handleEvent(TEvent& event)
 
 static char *press_key=__("Press a key");
 
-static
-unsigned short SelectAKey(void)
+unsigned short TCEditor_SelectAKey(void)
 {
  TDialogK *d=new TDialogK(TRect(0,0,30,5),_("Key selector"));
  d->options|=ofCentered;
@@ -373,7 +372,7 @@ int DeleteKeyInSeq(int wich)
 static
 int AddNewKeyInSeq(void)
 {
- unsigned short k=SelectAKey();
+ unsigned short k=TCEditor_SelectAKey();
  if (k)
    {
     KSequence->insert(k);
@@ -385,7 +384,7 @@ int AddNewKeyInSeq(void)
 static
 int InsNewKeyInSeq(int wich)
 {
- unsigned short k=SelectAKey();
+ unsigned short k=TCEditor_SelectAKey();
  if (k)
    {
     KSequence->atInsert(wich,(void *)(unsigned)k);
