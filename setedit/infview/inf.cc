@@ -493,6 +493,8 @@ void TInfViewer::InitCommandSet()
 
 void TInfViewer::DisableAllCommands()
 {
+ if (!ts)
+    InitCommandSet();
  if (ts)
     disableCommands(*ts);
 }

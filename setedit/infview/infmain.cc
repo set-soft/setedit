@@ -72,41 +72,6 @@ int TInfViewList::compare(void *key1, void *key2)
 TInfViewList *List=0;
 
 static
-void SetCommands()
-{
- TCommandSet ts;
-
- ts.enableCmd(cmcFind);
- ts.enableCmd(cmcCopyClipWin);
- ts.enableCmd(cmcCopy);
- ts.enableCmd(cmcSearchAgain);
-
- ts.enableCmd(cmInfHelp);
- ts.enableCmd(cmInfControl);
- ts.enableCmd(cmInfBack);
- ts.enableCmd(cmInfPasteIn);
- ts.enableCmd(cmInfBookM);
- ts.enableCmd(cmInfNodes);
- ts.enableCmd(cmInfGoto);
- ts.enableCmd(cmInfOpen);
- ts.enableCmd(cmInfDir);
- ts.enableCmd(cmInfTop);
-
- ts.enableCmd(chcdNext);
- ts.enableCmd(chcdPrev);
- ts.enableCmd(chcdUp);
- ts.enableCmd(chcdPrevH);
- ts.enableCmd(chcdHide);
- ts.enableCmd(chcdNodeList);
- ts.enableCmd(chcdBookMarks);
- ts.enableCmd(chcdConfigDia);
- ts.enableCmd(chcdOpenInfo);
- ts.enableCmd(chcdHistSel);
-
- TView::disableCommands(ts);
-}
-
-static
 void SetPluralCommands(Boolean enable)
 {
  if (enable)
@@ -168,7 +133,7 @@ TEditorMiApp::TEditorMiApp() :
              ),
     TApplication()
 {// Disable all the commands that needs at least one view opened
- SetCommands();
+ TInfViewer::DisableAllCommands();
  SetPluralCommands(False);
  curCodePage=GetCurrentOSCodePage();
 }
@@ -176,11 +141,9 @@ TEditorMiApp::TEditorMiApp() :
 void TEditorMiApp::dosShell()
 {
  suspend();
- system("cls");
- cout << "Type EXIT to return...";
- system(getenv( "COMSPEC"));
+ TV_System(CLY_GetShellName());
  resume();
- redraw();
+ Redraw();
 }
 
 void TEditorMiApp::tile()
@@ -295,6 +258,10 @@ void TEditorMiApp::handleEvent( TEvent& event )
 
          case cmScreenConf:
               SetScreenOps();
+              break;
+
+         case cmDosShell:
+              dosShell();
               break;
 
          default:
