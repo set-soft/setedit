@@ -1,0 +1,64 @@
+# Makefile for zlib for compiling by Borland C++ 5.5
+
+!ifndef _SUBMAKE
+
+CC       = bcc32
+LD       = bcc32
+
+!ifdef DEBUG
+CDEBUGFLAGS = -v -vi -y -6 -Od
+!else
+CDEBUGFLAGS = -O2 -6 -T -DNDEBUG
+!endif
+
+!ifdef DYNRTL
+DYNRTLFLAGS = -WR
+!endif
+
+CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLFLAGS) -WC -X -q $(CDEBUGFLAGS)
+LDFLAGS  = $(DYNRTLDFLAGS) -WC
+
+!endif
+
+O        = .obj
+
+# variables
+OBJ = blocksort$(O) huffman$(O) crctable$(O) randtable$(O) compress$(O) \
+  decompress$(O) bzlib$(O)
+
+all:  bzip2.lib
+
+blocksort.obj: blocksort.c
+	$(CC) -c $(CFLAGS) $*.c
+
+huffman.obj: huffman.c
+	$(CC) -c $(CFLAGS) $*.c
+
+crctable.obj: crctable.c
+	$(CC) -c $(CFLAGS) $*.c
+
+randtable.obj: randtable.c
+	$(CC) -c $(CFLAGS) $*.c
+
+compress.obj: compress.c
+	$(CC) -c $(CFLAGS) $*.c
+
+decompress.obj: decompress.c
+	$(CC) -c $(CFLAGS) $*.c
+
+bzlib.obj: bzlib.c
+	$(CC) -c $(CFLAGS) $*.c
+
+bzip2.lib: $(OBJ)
+	del $@
+	tlib /E $@ @&&!
++$(**: = &^
++)
+!
+
+clean:
+	del *.obj
+	del *.exe
+	del *.dll
+	del *.lib
+	del *.tds

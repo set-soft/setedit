@@ -1,0 +1,190 @@
+.\" Process this file with
+.\" groff -man -Tascii setedit.man
+.\"
+.TH SETEDIT 1 "SEPTEMBER 2001" "v0.4.47"
+.SH NAME
+setedit \- a friendly text editor
+.SH SYNOPSIS
+.B setedit [
+.I options
+.B ] [
+.I file_name
+.B ...]
+.SH DESCRIPTION
+.B setedit
+is a friendly console text editor with the look and feel of the Borland
+editors for DOS. This man page only describes the command line options of
+the editor. You can get full help about the editor using the help of the
+editor.
+.PP
+Any number of file names can be specified after the options and they will be
+automatically loaded by the editor in the same order you listed them.
+.PP
+You can pass extra command line options using the SET_CMDLINE environment
+variable. Read the documentation for more information about this feature.
+.SH OPTIONS
+.IP "+[line number]"
+Makes the editor jump to the specified line. This option only affects the
+next file in the list. It should be used after any option starting
+with minus and before the file name you want affect. If the line number is
+omitted the editor jumps to the end of the text. Example: +6 p.txt it loads
+the file called p.txt and jumps to the line number 6. That's very similar to
+the VI behavior.
+.IP "-c, --cascade"
+After opening all the files the windows are arranged using cascade style.
+Only editor windows are affected.
+.IP "-d, --stack-dbg=n"
+It indicates which methode will be used in the event of an editor crash.
+The default methode is 0 but you can override it using the SET_STACKDBG
+environment variable. The available methodes are:
+0: dump unsaved buffers and stack calls.
+1: do nothings (conservative). You should use it if the editor is
+experimenting very catastrphic crashes.
+2:
+.B "[Only for Linux]"
+dump unsaved buffers and call debugger to get information. Finally die.
+3:
+.B "[Only for Linux]"
+like 2 but stay in the debugger.
+The 0 option disables the hook of signals to save the modified buffers
+during a crash. Could be needed if the editor hangs in an extraordinary
+way. Usually the editor dumps to
+.B stderr
+all the files you didn't save, as the
+.B stderr
+is redirected by the editor to a temporal file you can recover unsaved data.
+This temporal file is stored in your home directory for
+.SM Linux
+and in
+.I %DJDIR%/share/setedit
+for
+.SM DOS.
+To use the options 2 and 3 you must have a binary with debug information
+and also the
+.B nm
+and
+.B gdb
+tools installed in your system. If you use the option 3, the editor is
+running in X and
+.B xterm
+is installed then the debugger will be started in a separated window.
+.IP "-f, --file-list file_name"
+Loads the files listed in the specified file. The file must contain one name
+by line. You can specify more than one list.
+.IP "-h, --help"
+Displays the command line options of the editor.
+.IP "-k, --use-rh-52-keys"
+.B "[Only for Linux]"
+Enables the Red Hat 5.2 style keyboard mapping. That's needed if you are
+experimenting some strange function keys behavior. Some keyboard mapping
+files redefines the function key numbers in a good way but really
+incompatible with the old way. I first found it in Red Hat 5.2.
+.IP "-K, --keybind file_name"
+Uses the specified name as keybinding file. The file should be full
+qualified, the editor will use this name for reading and writing keyboard
+configuration.
+.IP "-l, --force-no-lfn"
+.B "[Only for DOS]"
+Avoids the use of long file names under W9x. Even if the
+.B LFN
+environment variable says the reverse.
+.IP "-L, --force-lfn"
+.B "[Only for DOS]"
+Forces the use of long file names under W9x. Even if the
+.B LFN
+environment variable says the reverse.
+.IP "-m, --no-mouse-hook"
+.B "[Only for DOS]"
+Don't hook the mouse interrupt. Currently this is done automagically if
+.I "Windows NT"
+is detected but it could help if you are having serious problems with the
+mouse.
+.IP "-M, --no-mixer"
+If the editor was compiled with board level sound mixer support this option
+completly disables it. That's here to prevent any interference with other
+programs using the mixer or potential missbehavior due to the use of I/O
+ports during the detection process under DOS.
+.IP "-p, --project file_name"
+Loads the indicated project, if the file doesn't exist the editor creates
+a new one.
+.IP "-r, --no-redirect"
+Disables the stderr redirection. Only used during debugging process, if you
+don't do it while debugging you won't be able to collect debugging
+information sent to the
+.B stderr
+output.
+.IP "-t, --tile-vert"
+After opening all the files the windows are arranged using vertical tile
+style. Only editor windows are affected.
+.IP "-T, --tile-horiz"
+After opening all the files the windows are arranged using horizontal tile
+style. Only editor windows are affected.
+.SH FILES
+.I "/usr/share/setedit/*.pmc %DJDIR%/share/setedit/*.pmc"
+.RS
+Pseudo macro files.
+.RE
+.I "%DJDIR%/share/setedit/*.sft"
+.RS
+Editor fonts.
+.RE
+.I "~/.deflopts.txt %DJDIR%/share/setedit/deflopts.txt"
+.RS
+Default edition options for each syntax highlight mode.
+.RE
+.I "/usr/share/setedit/editor.tip %DJDIR%/share/setedit/editor.tip"
+.RS
+Tip of the day file.
+.RE
+.I "%DJDIR%/share/setedit/extrscsv.txt"
+.RS
+External screen savers list.
+.RE
+.I "/usr/share/setedit/*.frt %DJDIR%/share/setedit/*.frt"
+.RS
+Format files for the documentation generator module.
+.RE
+.I "%DJDIR%/share/setedit/install.log"
+.RS
+Log file created by the installer.
+.RE
+.I "~/.keybind.dat %DJDIR%/share/setedit/keybind.dat"
+.RS
+Keyboard bindings configured by the user.
+.RE
+.I "/usr/share/setedit/macros.slp %DJDIR%/share/setedit/macros.slp"
+.RS
+sLisp macros file.
+.RE
+.I "/usr/share/setedit/menubind.smn %DJDIR%/share/setedit/menubind.smn"
+.RS
+Menu bindings.
+.RE
+.I "~/.setenvir.dat %DJDIR%/share/setedit/setenvir.dat"
+.RS
+Environment variables visible only while inside the editor.
+.RE
+.I "/usr/share/setedit/syntaxhl.shl %DJDIR%/share/setedit/syntaxhl.shl"
+.RS
+Syntax highlight configuration file.
+.RE
+.I "~/.userword.txt %DJDIR%/share/setedit/userword.txt"
+.RS
+User words for each syntax highlight.
+.SH ENVIRONMENT
+.IP SET_CMDLINE
+Indicates default command line options. Please read the "Passing extra
+command line options" section of the "Miscellaneous" chapter of the
+manual to understand how it works.
+.IP SET_FILES
+Indicates where the configuration files are located. If not defined the
+editor will guess the location.
+.IP SET_STACKDBG
+Indicates the default value for the
+.B --stack-dbg
+command line option.
+.IP INFOPATH
+Indicates where help files in info format are located. If not defined the
+editor will guess the location.
+.SH AUTHOR
+Salvador Eduardo Tropea <salvador@inti.gov.ar>

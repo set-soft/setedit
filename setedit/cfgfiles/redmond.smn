@@ -1,0 +1,367 @@
+# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# see copyrigh file for details
+#
+# That's an example of a menu file that changes the following commands:
+#
+# Cut             = ^X
+# Copy            = ^C
+# Paste           = ^V
+# Close Window    = Ctrl+F4
+# Close Program   = Alt+F4
+# Next Window     = Ctrl+Tab
+# Previous Window = Shift+Ctrl+Tab
+# Undo            = ^Z
+# Redo            = ^Y
+#
+# You can figure out why the name of the file ;-)
+#
+# Note: that some of these commands are used by the editor and using this
+# menu they are hided and if you want to use these commands you should
+# reconfigure the keyboard.
+#
+# Note: I don't plan to update this file, that's just an example. This means
+# that new menu commands won't be here. It was created for v0.4.23 pre
+# release. If you really like this configuration you could help me to keep it
+# uptodate, in this case contact me.
+#
+
+SubMenu: "~F~ile", kbAlF
+ MenuItemC: "~O~pen...", cmeOpen, kbF3, "F3"
+ MenuItemC: "~N~ew", cmeNew
+ MenuItemC: "Open Read-only ~c~opy", cmeOpenROCopy
+ MenuItemC: "~S~ave", cmcSave, kbF2, "F2"
+ MenuItemC: "S~a~ve as...", cmcSaveAs, kbUnknown
+ $if DOS or WIN32
+ MenuItemC: "Save as ~U~NIX...", cmcSaveAsUNIX
+ $else
+ MenuItemC: "Sa~v~e as DOS...", cmcSaveAsDOS
+ $endif
+ MenuItemC: "Save w/same ~t~ime...", cmcSaveSameTime
+ MenuSeparator
+ MenuItemC: "~P~rint", cmePrintEditor
+ MenuItemC: "Pr~i~nt Setup...", cmeSetUpPrinter
+ MenuSeparator
+ $if DOS or WIN32
+ MenuItemC: "~D~OS shell", cmeDosShell
+ $else
+ MenuItemC: "S~h~ell", cmeDosShell
+ $endif
+ MenuItemC: "~Q~uit", cmeQuitDelete, kbAlQ, "Alt+Q"
+ MenuItemC: "E~x~it", cmeQuit, kbAlF4, "Alt+F4"
+EndSubMenu
+
+SubMenu: "~E~dit", kbAlE
+ MenuItemC: "~U~ndo", cmcUndo, kbCtZ, "Ctrl+Z"
+ MenuItemC: "~R~edo", cmcRedo, kbCtY, "Ctrl+Y"
+ MenuSeparator
+ MenuItemC: "Cu~t~", cmcCut, kbCtX, "Ctrl+X"
+ MenuItemC: "~C~opy", cmcCopy, kbCtC, "Ctrl+C"
+ MenuItemC: "~P~aste", cmcPaste, kbCtV, "Ctrl+V"
+#
+# You can use the following lines to use the Windows clipboard instead of the
+# internal one.
+#
+# MenuItemC: "Cu~t~", cmcCutClipWin, kbCtX, "Ctrl+X"
+# MenuItemC: "~C~opy", cmcCopyClipWin, kbCtC, "Ctrl+C"
+# MenuItemC: "~P~aste", cmcPasteClipWin, kbCtV, "Ctrl+V"
+#
+ MenuItemC: "~S~how clipboard", cmeShowClip
+ MenuItemC: "C~l~ear", cmcClear, kbCtDelete, "Ctrl+Del"
+ MenuSeparator
+ MenuItemC: "S~e~t Local options", cmcSetLocalOptions, kbAlL, "Alt+L"
+ MenuItemC: "Set ~G~lobal options", cmcSetGlobalOptions, kbAlG, "Alt+G"
+ MenuSeparator
+ MenuItemC: "E~x~pand all tabs", cmcExpandAllTabs
+ MenuItemC: "C~o~mpact text", cmcCompactBuffer
+ $if DOS or WIN32
+ MenuItemC: "Copy to ~W~indows Clip.", cmcCopyClipWin
+ MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteClipWin
+ $endif
+ SubMenu: "~M~acro", kbAlM
+  MenuItemC: "~R~ecord", cmcRecordMacro, kbShF10, "Shift+F10"
+  MenuItemC: "~S~top", cmcStopMacro, kbAlF10, "Alt+F10"
+  MenuItemC: "~P~lay", cmcPlayMacro, kbCtF10, "Ctrl+F10"
+ EndSubMenu
+ MenuItemC: "Pus~h~ cursor position", cmcPushCursorPos
+ MenuItemC: "Pop cursor pos~i~tion", cmcPopCursorPos
+ SubMenu: "C~a~se (upper/lower)", kbAlA
+  MenuItemC: "Block to ~u~pper", cmcToUpper
+  MenuItemC: "Block to ~l~ower", cmcToLower
+  MenuItemC: "~C~haracter toggle", cmcToggleCharCase
+  MenuItemC: "Block ~i~nvert", cmcInvertCase
+  MenuItemC: "Block ~a~lternate", cmcAltCase
+ EndSubMenu
+EndSubMenu
+
+SubMenu: "~S~earch", kbAlS
+ MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
+ MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
+ MenuItemC: "~S~earch again", cmcSearchAgain, kbUnknown, "Ctrl+L"
+ MenuSeparator
+ MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"
+ MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
+ MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
+EndSubMenu
+
+SubMenu: "~M~acro", kbAlM
+ MenuItemC: "~R~ecord", cmcRecordMacro, kbShF10, "Shift+F10"
+ MenuItemC: "~S~top", cmcStopMacro, kbAlF10, "Alt+F10"
+ MenuItemC: "~P~lay", cmcPlayMacro, kbCtF10, "Ctrl+F10"
+ MenuSeparator
+ MenuItemC: "~C~hoose ...", cmcChooseMacro
+ MenuItemC: "R~e~peat", cmcRepeatMacro, kbShF3, "Shift+F3"
+ MenuItemC: "~G~enerate Code", cmcGenCodeForMacro
+ MenuItemC: "Pse~u~do macros ...", cmcChoosePMacrosList
+EndSubMenu
+
+SubMenu: "Re~c~tangle", kbAlR
+ MenuItemC: "~S~tart", cmcSelRectStart, kbUnknown, "Ctrl+K-Shift+B"
+ MenuItemC: "~E~nd",   cmcSelRectEnd, kbUnknown, "Ctrl+K-Shift+K"
+ MenuItemC: "~H~ide", cmcSelRectHide, kbUnknown, "Ctrl+K-Shift+H"
+ MenuSeparator
+ MenuItemC: "~C~opy",  cmcSelRectCopy, kbUnknown, "Ctrl+K-Shift+C"
+ MenuItemC: "~P~aste", cmcSelRectPaste, kbUnknown, "Ctrl+K-Shift+P"
+ MenuItemC: "Cu~t~",   cmcSelRectCut, kbUnknown, "Ctrl+K-Shift+T"
+ MenuItemC: "C~l~ear", cmcSelRectDel, kbUnknown, "Ctrl+K-Shift+L"
+ MenuItemC: "~M~ove",  cmcSelRectMove, kbUnknown, "Ctrl+K-Shift+M"
+ MenuSeparator
+ MenuItemC: "To ~u~pper",  cmcSelRectToUpper, kbUnknown
+ MenuItemC: "To l~o~wer",  cmcSelRectToLower, kbUnknown
+EndSubMenu
+
+SubMenu: "~W~indows", kbAlW
+ MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
+ MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
+ MenuItemC: "~T~ile", cmeTile
+ MenuItemC: "C~a~scade", cmeCascade
+ MenuItemC: "~N~ext", cmeNext, kbCtTab, "Ctrl+Tab"
+ MenuItemC: "~P~revious", cmePrev, kbShCtTab, "Ctrl+Shift+Tab"
+ MenuItemC: "~C~lose", cmeClose, kbCtF4, "Ctrl+F4"
+ MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
+EndSubMenu
+
+SubMenu: "~T~ool&Ops", kbAlT
+ SubMenu: "~O~ptions", kbUnknown
+   MenuItemC: "~C~olors ...", cmeSetColors
+   $if DOS or Linux
+   MenuItemC: "Color ~P~alette ...", cmeEditPalette
+   $endif
+   MenuItemC: "~L~ocal edition ...", cmcSetLocalOptions, kbAlL, "Alt+L"
+   MenuItemC: "Glo~b~al edition ...", cmcSetGlobalOptions, kbAlG, "Alt+G"
+   MenuItemC: "Editor ~G~eneral ...", cmeEdGralOptions
+   MenuItemC: "Scr~e~en saver ...", cmeScreenSaverOpts
+   MenuItemC: "S~D~G Options ...", cmeSDGDialog
+   MenuItemC: "~R~un program (which one) ...", cmeConfRunCommand
+   SubMenu: "~K~eyboard", kbAlK
+     MenuItemC: "~K~ey assigment", cmeEditKeyBind
+     MenuItemC: "~S~etup Alt keys", cmeSetUpAltKeys
+     MenuItemC: "Key ~p~ad behavior", cmeKeyPadBehavior
+     MenuItemC: "~B~ack to defaults", cmeKbBackDefault
+     MenuItemC: "Consult ~s~can codes", cmeSeeScanCodes
+     $ifdef DOS
+     MenuItemC: "Keyboard t~y~pe", cmeKeyboardSetUp
+     $endif
+   EndSubMenu
+   MenuItemC: "~S~creen Options ...", cmeSetScreenOps
+   MenuItemC: "~U~ser words ...", cmeEditUserWords
+   MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
+   MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions
+   MenuItemC: "Do~n~'t create backups for ...", cmeEditNoBkp
+ EndSubMenu
+ MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
+ MenuItemC: "Poc~k~et calculator", cmePocketCalc
+ MenuItemC: "~S~DG", cmeSDG, kbF9, "F9"
+ MenuItemC: "~R~un program", cmeRunCommand, kbCtF9, "Ctrl+F9"
+ MenuItemC: "~G~rep ...", cmeGrepDialog, kbShF2, "Shift+F2"
+ MenuItemC: "~A~SCII Chart", cmeASCIIChart
+ MenuItemC: "Ca~l~endar", cmeCalendar
+#$ifdef DOS
+ SubMenu: "~M~P3 songs", kbUnknown
+   MenuItemC: "~S~elect a song", cmeMP3Open
+   MenuItemC: "~P~lay selected", cmeMP3Start
+   MenuItemC: "S~t~op selected", cmeMP3Stop
+   MenuItemC: "~C~onvert to WAV", cmeMP3Convert
+   MenuSeparator
+   MenuItemC: "~E~dit/Create list", cmeMP3EditPlayList
+   MenuItemC: "P~l~ay list", cmeMP3PlayList
+   MenuItemC: "St~o~p list", cmeMP3StopList
+   MenuSeparator
+   MenuItemC: "Sound board mi~x~er", cmeBoardMixer
+ EndSubMenu
+#$endif
+ SubMenu: "~H~TML Accents", kbUnknown
+   MenuItemC: "Convert ~a~ccents to tags", cmeHTMLAccents
+   MenuItemC: "Convert ~t~ags to accents", cmeHTMLTag2Accent
+ EndSubMenu
+ MenuItemC: "E~x~port as HTML ...", cmeExportAsHTML
+ MenuItemC: "Re~m~ap code page ...", cmeRemapCodePage
+ MenuItemC: "~P~rofile Editor", cmcProfileEditor
+ MenuItemC: "Paste ~E~macs mode", cmcPasteEmacsMode
+ MenuItemC: "Redra~w~ screen", cmeReDraw
+ MenuItemC: "~B~lock quoted printable decode", cmcQuotedPrintDecode
+ SubMenu: "Un/~I~ndent block", kbUnknown
+   MenuItemC: "Indent ~o~ne space", cmcIndentBlkOne
+   MenuItemC: "Unindent o~n~e character", cmcUnIndentBlkOne
+   MenuItemC: "Indent one ~t~ab/gap", cmcIndentBlk
+   MenuItemC: "~U~nindent one tab/gap", cmcUnIndentBlk
+   MenuItemC: "~C~omment indent", cmcCommentIndent
+   MenuItemC: "Comment unin~d~ent", cmcCommentUnIndent
+   MenuItemC: "~A~rbitrary indent", cmcArbitraryIndent
+ EndSubMenu
+ MenuItemC: "Test of macro from menu", cm(Test RunProgram)
+ MenuItemC: "~D~elete memorized backups", cmeDeleteBkps
+EndSubMenu
+
+SubMenu: "~P~roject", kbAlP
+ MenuItemC: "~O~pen...", cmeOpenPrj
+ MenuItemC: "~C~lose", cmeClosePrj
+ MenuItemC: "~S~ave", cmeSavePrj
+EndSubMenu
+
+SubMenu: "~H~elp", kbAlH
+ MenuItemC: "~I~NF View", cmeInfView, kbF1, "F1"
+ MenuItemC: "~A~nother InfView", cmeAnotherInfView
+ MenuItemC: "~T~ip of the day", cmeTipOfTheDay
+ SubMenu: "~S~yntax help", kbUnknown
+   MenuItemC: "~O~ptions", cmeSyntaxHelpOps
+   MenuItemC: "~F~iles to search", cmeSyntaxHelpFiles
+   MenuItemC: "~S~earch", cmeSyntaxHelp, kbCtF1, "Ctrl+F1"
+ EndSubMenu
+ MenuItemC: "A~b~out", cmeAboutBox
+EndSubMenu
+
+#
+#   That's a special menu, it pop-ups when you right click in an editor
+# window. The cursor is first moved to the mouse position and the the
+# menu is displayed.
+#
+SubMenu: "Editor Right Click", kbUnknown
+ MenuItemC: "~S~yntax help", cmeSyntaxHelp, kbCtF1, "Ctrl+F1"
+ MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
+ MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
+ MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"
+ MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
+ MenuSeparator
+ MenuItemC: "~C~opy", cmcCopy, kbCtC, "Ctrl+C"
+ MenuItemC: "~P~aste", cmcPaste, kbCtV, "Ctrl+V"
+ MenuItemC: "Cu~t~", cmcCut, kbCtX, "Ctrl+X"
+EndSubMenu
+
+#
+#   The following is the declaration for the status line of the editor. It
+# contains short cuts. They are context sensitive so they apply to a range
+# of "help contexts".
+#
+# StatusRange: first context, number of contexts
+# Starts a declaration.
+#
+# StatusEntry: Label, Command, Key
+# Declares a short cut.
+#
+# StatusHiddenEntry: Command, Key
+# Declares a short cut that is invisible.
+#
+# EndStatusRange
+# Closes the declaration
+#
+
+#
+# Default short cuts for low range of contexts
+#
+StatusRange: 0, 255
+StatusEntry: "~F2~ Save", cmcSave, kbF2
+StatusEntry: "~F3~ Open", cmeOpen, kbF3
+StatusEntry: "~Ctrl+F4~ Close", cmeClose, kbCtF4
+StatusEntry: "~F5~ Zoom", cmeZoom, kbF5
+StatusEntry: "~Ctrl+Tab~ Next", cmeNext, kbCtTab
+StatusEntry: "~F10~ Menu", cmMenu, kbF10
+StatusHiddenEntry: cmeResize, kbCtF5
+StatusHiddenEntry: cmeLastHelp, kbAlF1
+StatusHiddenEntry: cmeNextMessage, kbAlF8
+StatusHiddenEntry: cmePrevMessage, kbAlF7
+StatusHiddenEntry: cmeInfView, kbF1
+EndStatusRange
+
+#
+# Find & replace
+#
+StatusRange: hcReplace, 2
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
+StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+EndStatusRange
+
+#
+# InfView short cuts
+#
+StatusRange: hcInfView, 4
+StatusEntry: "~Alt+F1~ Back", cmInfBack, kbAlF1
+StatusEntry: "~Alt+F10~ Control", cmInfControl, kbAlF10
+StatusEntry: "~^H~ Help", cmInfHelp, kbCtH
+StatusEntry: "~ESC~ Close", cmClose, kbEsc
+StatusEntry: "~Alt+I~ Include", cmInfPasteIn, kbAlI
+StatusEntry: "~Alt+B~ Bookmark", cmInfBookM, kbAlB
+StatusHiddenEntry: cmZoom, kbF5
+EndStatusRange
+
+#
+# List of windows (Alt+0)
+#
+StatusRange: hcListWin, 4
+StatusEntry: "~Del~ Close", cmDelete, kbDelete
+StatusEntry: "~Ins~ Open", cmInsert, kbInsert
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ctrl+Del~ Delete File", cmDelFile, kbCtDelete
+EndStatusRange
+
+#
+# Project window
+#
+StatusRange: hcEditorProjectWindow, 4
+StatusEntry: "~Ins~ Insert", cmInsert, kbInsert
+StatusEntry: "~Del~ Delete", cmDelete, kbDelete
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusHiddenEntry: cmeLastHelp, kbAlF1
+EndStatusRange
+
+#
+# Message window
+#
+StatusRange: hcMessageWindow, 1
+StatusEntry: "~Alt+F7~ Previous", cmePrevMessage, kbAlF7
+StatusEntry: "~Alt+F8~ Next", cmeNextMessage, kbAlF8
+StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
+StatusEntry: "Save As", cmcSaveAs, kbUnknown
+StatusEntry: "~Ctrl+Ins~ Copy", cmcCopy, kbCtInsert
+StatusHiddenEntry: cmZoom, kbF5
+StatusHiddenEntry: cmeLastHelp, kbAlF1
+EndStatusRange
+
+#
+# Calculator
+#
+StatusRange: hcCalculator, 4
+StatusEntry: "~ENTER~ Evaluate", cmEval, kbEnter
+StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
+StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+EndStatusRange
+
+#
+# Grep window
+#
+StatusRange: hcGrepDialog, 1
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ctrl+C~ Copy", cmtilCopy, kbCtC
+StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
+EndStatusRange
+
+#
+# Deafault for the rest
+#
+StatusRange: 0, 0xFFFF
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+EndStatusRange
+

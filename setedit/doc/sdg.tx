@@ -1,0 +1,1023 @@
+\input texinfo  @c -*-texinfo-*-
+@c Copyright (C) 1997,1998,1999,2000 by Salvador Eduardo Tropea.
+@c The first 75 lines configures all, the rest is the real doc.
+
+@comment %**start of header
+
+@setfilename sdg.info
+@set version 0.0.1
+@set update-date 5 July 1999
+@set update-month July 1999
+@set name-author Salvador Eduardo Tropea
+
+@settitle SET's Documentation Generator (SDG) v @value{version}
+
+@footnotestyle separate
+@paragraphindent asis
+@iftex
+@afourpaper
+@end iftex
+
+@comment %**end of header
+
+@c ---- Includes according to the output format
+@ifset html
+@include set.htm
+@clear text
+@end ifset
+
+@ifset text
+@include set.txt
+@clear html
+@end ifset
+
+@ifclear html
+@ifclear text
+@include set.txi
+@end ifclear
+@end ifclear
+
+@macro SSET{}
+@mail{@value{name-author},salvador@@inti.gov.ar}
+@end macro
+@set title-printed SET's Documentation Generator
+@set minidesc-printed A C/C++ documentation generator
+@set year-copyr 1997,1998,1999,2000
+@set info-file  sdg.info
+
+@c --------------------------------------------------------------
+@c Now we have 3 different headers:
+@c 1) For the printed manual, is called titlepage
+@c 2) For Info files
+@c 3) For HTML files
+@c I tried to automate it.
+@c --------------------------------------------------------------
+
+@c --- pre1 is the name of the program and the purpose
+@set text-pre1   This document describes the use of the @value{title-printed}; this program can be used to generate good documentation from some special comments in your source code.
+
+@c --- pre2 and 3 are copyrights for copies
+@set text-pre2  Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice and this permission notice are preserved on all copies.
+
+@set text-pre3   Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.
+
+@HeaderPage1{}
+@ifinfo
+@ifset html
+@include sdg.ctx
+@end ifset
+@top SDG
+@end ifinfo
+@HeaderPage2{}
+
+@chapter Introduction
+
+That's the documentation for the SET's Documentation Generator (SDG) program.
+@paragraph{}
+The objetive of the program is generate documentation of your source code using
+some special comments in your code. The program simplifies the task a lot because
+you don't need to type things like the prototype of your functions, file where the
+functions are located, class, etc.
+
+@section About the Author
+
+@my_flag{}
+
+SDG was made by Salvador Eduardo Tropea (SET).
+
+@display
+E-Mail: @SSET{}
+
+Telephone: (+5411) 4759-0013
+Postal Address:
+Salvador E. Tropea
+Curapalig@value{uuml}e 2124
+(1678) Caseros - 3 de Febrero
+Prov: Buenos Aires
+Argentina
+@end display
+@paragraph{}
+
+@my_flag{}
+
+@chapter How to use it quickly
+@cindex How to use
+@cindex Starting
+@cindex Quick start
+
+Even when SDG is a complex tool you can use it without a deep knowledge of the program.
+This chapter explains the basic steps to use SDG, you'll consult the advanced
+reference for an in deep explanation.
+
+@section What I must add to my sources?
+@cindex Special comments
+@cindex Comments in the sources
+@cindex Source comments
+@cindex What you need in your sources
+@vindex Function
+@vindex Class
+@vindex Include
+@vindex Module
+@vindex Prototype
+@vindex Description
+@vindex Return
+@vindex Example
+@vindex Comments
+
+You must add some special comments in your code. To make the task easier I created
+some pseudo-macros for my editor; they are @code{/t} and @code{/d} and are expanded
+to:
+@paragraph{}
+@example
+/**[txh]**********************************************************************
+
+ Function:
+ Class:
+ Include:
+ Module:
+ Prototype:
+ Description:
+
+ Return:
+ Example:
+
+*****************************************************************************/
+@end example
+
+@example
+/**[txh]**********************************************************************
+
+  Description:
+
+  Return:
+  Example:
+
+*****************************************************************************/
+@end example
+
+You must fill one or more of these fields. Some of them are filled automatically.
+The following table shows how these fields work.
+@paragraph{}
+
+@table3{Variable,Meaning,Behavior}
+@c ----- makeinfo is too weak! and TeX is totally idiot, I can put a cross
+@c       reference in a parameter.
+   @titem_{@code{Function},Is the name of the function,Automatic (type 5)}
+   @titem_{@code{Class},Used for member functions,Automatic (type 4)}
+   @titem_{@code{Include},Is the file that contains the prototype,Semiautomatic (type 2)}
+   @titem_{@code{Module},The module@comma{} library or category of the function,Semiautomatic (type 2)}
+   @titem_{@code{Prototype},The prototype of the function,Automatic (type 3)}
+   @titem_{@code{Description},How the function works,Manual (type 1)}
+   @titem_{@code{Return},Value returned; type and meaning,Manual (type 1)}
+   @titem_{@code{Example},How to use it,Manual (type 1)}
+@endtable_{}
+
+As you can see most of the fields are filled automatically. The @code{/t} macro is
+normally used for the first function in your file; it sets the @code{Include} and
+@code{Module} fields for the rest of the functions. As @code{Function}, @code{Class}
+and @code{Prototype} are filled automatically most of the time you'll need to use
+the @code{/d} macro.
+@paragraph{}
+
+Additionally you'll need to add very complet comments for inline members because their
+prototypes are declared in the class and hence the program can't fill the fields
+automatocally.
+@paragraph{}
+
+If you want to get a better result you can add another comments to your sources.
+These comments looks like this:
+@paragraph{}
+
+@example
+/**[txh]**********************************************************************
+
+  XXXXX:
+  Comments:
+
+*****************************************************************************/
+@end example
+
+The field @code{XXXXX} can be one of the following: @code{Class} or @code{Module}.
+This special comment can be used ones per class or module and is the description
+of this class or module. Comments is a @x{Variables type 6}.
+@paragraph{}
+
+@section What can I assign to the fields?
+
+SDG have some macro and formating facilties. SDG defines some macros and you can define
+your own macros in the format file. Because SDG must recognize the macros some
+characters have an special meaning and you aren't totally free to use them.
+@paragraph{}
+
+As this section is a little hard I'll provide a little subsection explaining the
+basic concepts. If you are in a hurry or read only this first section.
+@paragraph{}
+
+@subsection The basics syntax
+@cindex Syntax
+@cindex Basic syntax
+@cindex @@
+@vindex @@
+@cindex End of paragraph
+@cindex paragraph
+@cindex Harcoded macros
+@cindex Default macros
+@cindex Line break
+@cindex Breaking a line
+@vindex @@p
+@vindex @@*
+@cindex Cross references (basic)
+@cindex Referencing
+@vindex @@x@{@}
+@cindex Macros, hardcoded
+@cindex Macros, default
+@cindex Subtitles
+@cindex How to add examples
+@cindex Examples
+@c *******
+@c IMPORTANT! I MUST use < and > here because makeinfo gets mad if I use
+@c the lt and gt macros. It works for HTML because my htmlidx program
+@c traslates it to &lt; and &gt;
+@c *******
+@vindex @@<pre>
+@vindex @@</pre>
+@vindex @@<subtitle>@{@}
+
+The macros starts with @code{@@} so you can put a single @code{@@} in your comments.
+If you need to put a @code{@@} use two, like this @code{@@@@}.
+@paragraph{}
+
+SDG have some special macros hardcoded they are @code{@@p}, @code{@@*} and @code{@@x}.
+Use @code{@@p} to indicate an end of paragraph and @code{@@*} to break a line inside
+of a paragraph.
+@paragraph{}
+
+The syntax for cross references is more complex so I'll show you it with some
+examples.
+@paragraph{}
+
+@itemize @bullet
+@item To indicate a function use @@x@{Name@}.
+@item To indicate another member of the same class @@x@{::Name@}.
+@item To indicate a member of another class @@x@{Class::Name@}.
+@end itemize
+
+Additionally you can use some macros that I defined in the format files, they are:
+@paragraph{}
+
+@itemize @bullet
+@item @@@lt{}subtitle@gt{}@{Name@} generates a title.
+@item @@@lt{}pre@gt{}  starts a preformated text. Is used for examples.
+@item @@@lt{}/pre@gt{} ends a preformated text.
+@end itemize
+
+As you can see the @{ and @} characters are used too. You can use these characters
+freely but avoid using it in a cross reference or in a title because if you make
+the following:
+@paragraph{}
+
+@example
+@@@lt{}subtitle@gt{}@{That's a subtitle with a @}@}
+@end example
+
+SDG can be confused by the @} and end the title in the wrong place. To avoid it use
+@@@{ and @@@}.
+@paragraph{}
+
+@subsection More about cross references
+@cindex Cross references (in deep)
+@cindex Referencing (in deep)
+@vindex @@x@{@} (in deep)
+
+As you saw in the previous chapter is hard to explain what's the syntax for it so here
+is a detailed explanation on how it works.
+@paragraph{}
+
+To understand it better you must know more about what's generated by a cross reference,
+for it consult the @x{Commands,Commands section}.
+@paragraph{}
+
+Basically a cross reference have two parts; the visible name and the name of the node
+pointed by it. In the following explanations I'll call 0 to the visible name and 1 to
+the node. The available cases are:
+@paragraph{}
+
+@enumerate
+@item @code2{@@x@ocb{}A@comma{}B@ccb{}} here 0 is A and 1 is B.
+@item @code2{@@x@{A@}} here 0 and 1 contains A.
+@item @code2{@@x@{::A@}} here 0 is A and 1 is A (class name).
+@item @code2{@@x@{A::B@}} here 0 is B and 1 is B (A).
+@end enumerate
+
+To generalize three I must say that the reference generated is A (Distinguish). Here
+Distinguish is the variable indicated in the @x{Variables,Variables section}.
+@paragraph{}
+
+SDG first fills the values of the variables 0 and 1 and then expands the code defined
+for the cross reference.
+@paragraph{}
+
+@subsection More about macros
+@cindex Defined macros
+@cindex Macros, in deep
+@vindex @@<macro>@{@}
+@vindex @@@{
+@vindex @@@}
+
+The general syntax for the macros is:
+@paragraph{}
+
+@example
+@@@lt{}Macro Name@gt{}@{List of parameters@}
+@end example
+
+The parameters are separated by @code2{@comma{}}. You can't use @code2{@ccb{}} and @code2{@ocb{}} inside
+the parameters. Use @@@{ and @@@} instead. For similar reasons you can't use @gt{} in the
+name of the macro; use @@@gt{} instead.@*
+You can use @@@{ and @@@} in any place safetly but is necesary only in the case named
+above.
+@paragraph{}
+
+You can define your own macros, for that look the
+@x{DefinedCommands,DefinedCommands section}.
+@paragraph{}
+
+The parameters of the macros are passed by the macro expander so you can use macros
+here too. For example:
+@paragraph{}
+@example
+@@@lt{}xx@@@gt{}@gt{}@{That's @@@lt{}xx2@gt{}@{too@} complex @@@} thing@}
+@end example
+
+That will call to the macro xx@gt{} passing to it:
+@paragraph{}
+
+@example
+That's @@@lt{}xx2@gt{}@{too@} complex @@@} thing
+@end example
+
+As the parameter 0, then it will evaluate the parameter calling to the macro xx2
+passing the word @code{too} as parameter 0.
+@paragraph{}
+
+As you can see you can make complex things with it but SDG wasn't designed to be a
+complex interpreter so be carreful and be aware that you'll find some limitations.
+@paragraph{}
+
+The number of parameters passed to a macro can be range from zero to ten. You can use
+the following syntax for zero parameters:
+@paragraph{}
+
+@example
+@@@lt{}Macro Name@gt{}
+@end example
+
+If the name of the macro doesn't match with any defined macro you won't get a warning,
+instead SDG will output the name of the macro as-is. As an example you can generate
+an HTML tag making the following:
+@paragraph{}
+
+@example
+@@@lt{}@lt{}any tag@@@gt{}@gt{}
+@end example
+
+That's no recomended because you are limiting the output format to HTML but you can
+do it.
+@paragraph{}
+
+@section What I will get after adding it?
+@cindex What SDG generates
+@cindex Generated documentation
+@cindex Documentation generated
+@cindex Alphabetical lists
+
+SDG will generate a documentation with:
+@paragraph{}
+
+@enumerate 
+@item
+An alphabetical list of the functions.
+@item
+An alphabetical list of the classes and the member functions of each one.
+@item
+An alphabetical list of the modules and the member functions of each one.
+@item
+An alphabetical list of the files and the member functions of each one.
+@end enumerate
+
+For each function you'll get a references filled with the fields previouslly mentioned.
+Additionally SDG will include the file where the function is and the line of the
+prototype.
+@paragraph{}
+
+@section What other thing are needed to be tunned?
+@cindex What you must configure
+@cindex How to configure, basic
+@cindex Title, author, etc
+@cindex Section Replace
+@cindex Replace section
+@vindex Replace
+
+SDG uses a @file{.fmt} file to generate the documentation. You'll need to tune some
+constants of the section @code{[Replace]} of this file.
+@paragraph{}
+
+These constants controls the name of the documentation and other similar things. They
+are dependent of the format generated so I can make a general description of these
+constants.
+@paragraph{}
+
+@chapter How to control the generated documentation
+@cindex How to configure, deep
+@cindex Format files
+@cindex fmt files
+@cindex Changing the output
+@cindex Tuning the output
+@cindex Comments in fmt files
+@cindex Sections in fmt files
+@vindex #
+@vindex [section]
+
+This chapter explains how to configure SDG. SDG is very versatile and can be
+configured to behave very different to the original configuration.
+@paragraph{}
+
+SDG uses a format file (@file{.fmt}) to generate the documentation. Actually I have
+two format files; one for @file{.info}, @file{.html} and @file{.txt} files and
+other for @file{.html} files. The former is called @file{multi.fmt} and the
+last is called @file{html.fmt}.If you are wondering why I have a separated file for
+@file{.html} when the other works for HTML the answer is easy; @file{html.fmt}
+generated much better @file{.html} files and doesn't need the help of @file{makeinfo}.
+@paragraph{}
+
+The syntax used in format files is tricky but is easy for easy tasks.
+@paragraph{}
+
+@section Format files syntax
+
+Format files are divided in sections. Each section is started by a label with the
+following format: @samp{[Section name]}. The rules are the following:
+@paragraph{}
+
+@enumerate 
+@item
+The starting @code{[} must be in the first column.
+@item
+Any character is allowed inside the section name.
+@item
+A @code{]} delimites the name and the rest of the characters are ignored.
+@item
+The name is case sensitive.
+@end enumerate
+
+Any line starting with @code{#} or a blanck character is ignored. There are exceptions
+for it. In the @code{Replace} section the variables defined are strings, these strings
+can use more than one line; inside of these strings you can't use comments. In the
+@code{Gen*} sections the @code{#} are allowed but the blank lines aren't skipped.
+Even when these rules can look a little stupid now you'll see they are logic.
+@paragraph{}
+
+The lines are limited to 200 characters, if they are longer will be cutted.
+@paragraph{}
+
+Here is a list of the sections of the format file.
+@paragraph{}
+
+@subsection Configuration
+@cindex Section Configuration
+@cindex Configuration section
+@vindex Configuration
+@cindex Program called to generate the output
+@cindex Post procesing
+
+This section indicates what programs are used to generate the documentation and what
+formats are generated with this format file. An example is:
+@paragraph{}
+
+@example
+CommandLine=makeinfo --no-validate --fill-column 78 -o ~1.info ~0
+Name=Info (.info) file format
+CommandLine=makeinfo --no-validate --fill-column 78 -Dhtml -o ~1.html ~0
+Name=HTML file format
+CommandLine=makeinfo --no-validate --fill-column 78 -Dtext -o ~1.txt ~0
+Name=Text (.txt) file format
+@end example
+
+That indicates that three formats are generated. @code{CommandLine} must be used before
+@code{Name} and you @strong{must} provide pairs.
+@paragraph{}
+
+@subsubsection CommandLine
+@vindex CommandLine
+
+This variable indicates what program is called. The ~0 mark is replaced by the name of
+the temporary file created by SDG. ~1 is replaced by the name of the outuput file,
+you must provide the extention.
+@paragraph{}
+If you need a long command line or various commands use a batch or script file.
+@paragraph{}
+
+@subsubsection Name
+@vindex Name
+
+This variable indicates the name of the format generated, make it descriptive but
+avoid making it too long.
+@paragraph{}
+
+@subsection Delimiters
+@cindex Delimiters for the special comments
+@cindex Where start a special comment
+@cindex Special comments, start and end
+@cindex Delimiters section
+@cindex Section Delimiters
+@vindex Delimiters
+
+This section defines the delimiters used to detect the special comments. SDG will
+search for these delimiters in the source files. For example:
+@paragraph{}
+
+@example
+SectionStart=/**[txh]**
+SectionEnd=*********/
+@end example
+
+@subsubsection SectionStart
+@vindex SectionStart
+
+This variable defines the start of the comments. The variable is limited to 11
+characters. A line containing it will be taked as the start of the comment and the
+rest of the line will be discarded.
+@paragraph{}
+
+@subsubsection SectionEnd
+@vindex SectionEnd
+
+This variable defines the end of the special comments. The variable is limited to 11
+characters. A line containing it will be taked as the end of the special comment and
+the rest of the line will be discarded.
+@paragraph{}
+
+@subsection Variables
+@cindex Fields used in the comments
+@cindex How to indicate a field
+@cindex Variables
+@cindex Variables section
+@cindex Section Variables
+@vindex Variables
+@vindex file name
+@vindex line number
+@vindex AddDefinition
+@vindex Distinguish
+@cindex Distinguish
+@cindex Differencing two functions with the same name
+@cindex Functions with the same name
+
+This is a very important section; it defines the fields recognized inside of the
+special comments.
+@paragraph{}
+
+You can define up to 16 variables. Each variable have a number; the first defined is
+the variable 0, the next 1, etc. The variable 0 is special and normally is used for
+the name of the functions because this variable is used for the main index and the
+associations.
+@paragraph{}
+
+Additionally there are some special variables created internally:
+@paragraph{}
+
+@table2{Number,Meaning}
+@clear table-set-center
+  @titem_{@code{90},Name of the file}
+  @titem_{@code{91},Line number of the end of the comment}
+  @titem_{@code{92},Name of the var 0 in the format: ~0 ~~Distinguish@ocb{}(~Distinguish)~@ccb{} (node name)}
+@endtable_{}
+@paragraph{}
+
+To define a variable you'll use the following syntax:
+@paragraph{}
+@example
+AddDefinition=Name of Variable,Type
+@end example
+
+One problem that appears here is the fact that two functions can have the same name.
+To avoid problems you must avoid the automatic function name detection and put the
+name of the function by hand adding to the name some thing to distinguish it from
+the other.
+@paragraph{}
+
+A very special case is the one of the classes, is very common to find members with
+the same name in two classes. In this case is very hard to add some distinguish code
+by hand so SDG can do it automatically. For this you must say what other variable
+is the one used to make the difference. The syntax is:
+@paragraph{}
+
+@example
+Distinguish=Number of the variable
+@end example
+
+With that SDG will add the name of this variable to the name of the variable 0. If the
+variable doesn't exist for that function SDG will skip it. The distingish variable
+appears between parentheses. For more information see the section
+@x{More about cross references}.
+@paragraph{}
+
+The allowed types for variables are:
+@paragraph{}
+
+@subsubsection Variables type 1
+@cindex Variables type 1
+@cindex Normal variables
+@vindex Type 1
+
+These are normal variables they put your content if exist.
+@paragraph{}
+
+@subsubsection Variables type 2
+@cindex Variables type 2
+@cindex Repeat variables
+@vindex Type 2
+
+They are "Repeat" variables. If one of them appears in one comment the default for
+this variable is set with this value. If the variable doesn't exist in one comment
+SDG will use the default.
+@paragraph{}
+
+A good example is the @code{Include} variable. Normally all the functions of one
+source have your prototypes in one header so indicating that in the first comment
+SDG will assume that all the functions are in the same include.
+@paragraph{}
+
+SDG provides two special values that you can use in the comments to stop the use of
+the default value. If you use @code{~no} SDG will not use the default for this
+function. If you use @code{~clear} SDG will delete the default value.
+@paragraph{}
+
+@subsubsection Variables type 3
+@cindex Variables type 3
+@cindex Function prototype variable
+@vindex Type 3
+
+If this variable isn't in the comment SDG will try to replace it with the function
+prototype. It uses an heuristic so isn't perfect.
+@paragraph{}
+
+@subsubsection Variables type 4
+@cindex Variables type 4
+@cindex Class name variable
+@vindex Type 4
+
+If this variable isn't in the comment SDG will try to replace it with the class of
+the function. It uses an heuristic so isn't perfect.
+@paragraph{}
+
+@subsubsection Variables type 5
+@cindex Variables type 5
+@cindex Function name variable
+@vindex Type 5
+
+If this variable isn't in the comment SDG will try to replace it with the name of
+the function. It uses an heuristic so isn't perfect.
+@paragraph{}
+
+@subsubsection Variables type 6
+@cindex Variables type 6
+@cindex Comments for classes and modules
+@vindex Type 6
+
+That's a very special kind of variables. They disable the node generation for this
+comment. The variable is stored in the first variable that have associations and is
+in the comment. Is used to create comments for modules and classes.
+@paragraph{}
+
+@subsection Associations
+@cindex Associations section
+@cindex Alphabetical lists, how to configure
+@cindex Groups of functions
+@cindex Section Associations
+@vindex Associations
+@vindex AddAssoc
+
+The associations are used to make groups of functions with a particular relation.
+You can define up to 8 associations. Each association associates the 0 variable and
+another variable.
+@paragraph{}
+
+That's used to create for example a list of classes and your members.
+@paragraph{}
+
+The syntax is the following:
+@paragraph{}
+
+@example
+AddAssoc=Title of the menu for it,Name of the node,Variable,Distinguish
+@end example
+
+SDG will create a chapter (node) for this list called @code{Name of the node} that
+will be available from the main menu with the name @code{Title of the menu for it}.
+Additionally to distinguish this chapter from the name of a function SDG will add
+the @code{Distinguish} string, that's optional.
+@paragraph{}
+
+A good example for @code{Distinguish} are classes where the constructor could make a
+collition with the class name.
+@paragraph{}
+
+Here is an example:
+@paragraph{}
+
+@example
+AddAssoc=List by classes,Classes,1,(class)
+AddAssoc=List by modules,Modules,3
+AddAssoc=List by files,Files,90
+@end example
+
+@subsection Replace
+@cindex Constants
+@cindex Section Replace
+@cindex Replace Section
+@vindex Replace
+@vindex Constant
+
+This section is used to define constants that can be called latter in the Gen* section.
+@paragraph{}
+
+Each constant have the following syntax:
+@paragraph{}
+
+@example
+Constant="Value"
+@end example
+
+Value can be extended various lines and is ended with the second @code{"}.
+@paragraph{}
+
+You can use @x{More about macros,macros}, inside the constants. An example is:
+@paragraph{}
+
+@example
+Constant="This document describes the functions of my library
+@@p
+This document applies to version 0.0.1
+of the program named A Real World
+@@p"
+@end example
+
+@subsection Commands
+@cindex End of paragraph, configuring
+@cindex paragraph, configuring
+@cindex Harcoded macros, configuring
+@cindex Line break, configuring
+@cindex Breaking a line, configuring
+@vindex @@p, configuring
+@vindex @@*, configuring
+@cindex Macros, hardcoded (configuring)
+@vindex EndOfPar
+@vindex BreakLine
+@vindex CrossRef
+@vindex Double@@
+@vindex Commands
+@cindex Commands section
+@cindex Section Commands
+
+This section controls the the hardcoded macros of SDG.
+@paragraph{}
+
+There are three hardcoded macros they are:
+@paragraph{}
+@itemize @bullet
+@item
+End of paragraph, is represented as @code{@@p} and you can define the code
+generated by it setting the variable @code{EndOfPar}.
+@item
+Line break, is represented as @code{@@*} and you can control it with the
+@code{BreakLine} variable.
+@item
+Cross references, they are represented as @code{@@x@{parameters@}}. The generated code
+is controled by @code{CrossRef}. This macro takes two parameters and you can indicate
+where to put these values with the ~0 and ~1 markers.
+@end itemize
+
+In this section you can control what is generated when SDG finds a @@@@ sequence. As
+@file{makeinfo} uses @@ in a similar way that SDG you'll need to indicate that this
+sequence must be passed as-is to @file{makeinfo}. For this you can use the
+@code{Double@@} variable.
+@paragraph{}
+
+The following is an example of these variables for the HTML format:
+@paragraph{}
+
+@example
+EndOfPar=@lt{}p@gt{}
+BreakLine=@lt{}br@gt{}
+CrossRef=@lt{}a href="#~1"@gt{}~0@lt{}/a@gt{}
+Double@@=@
+@end example
+
+For more information see the section @x{More about cross references}.
+@paragraph{}
+
+@subsection DefinedCommands
+@vindex DefinedCommands
+@cindex DefinedCommands section
+@cindex Section DefinedCommands
+@cindex Macros, creating
+@cindex How to add macros
+@cindex Configuting macros
+@vindex @@<pre>, configuring
+@vindex @@</pre>, configuring
+@vindex @@<subtitle>@{@}, configuring
+@cindex Macros, default (configuring)
+@cindex Default macros, configuring
+
+This section defines the user macros. The syntax is the following:
+@paragraph{}
+
+@example
+Name of macro=Code generated
+@end example
+
+You can recall the values of the parameters in the @code{Code generated} part using
+the @code{~n} markers. For more information about how @code{~n} works look the
+@x{GenNode,GenNode section}.
+@paragraph{}
+
+An example is:
+@paragraph{}
+
+@example
+subtitle=@lt{}Font Size=+1@gt{}@lt{}u@gt{}~0@lt{}/u@gt{}@lt{}/Font@gt{}@lt{}p@gt{}
+@end example
+
+With this definition the following code
+@paragraph{}
+
+@example
+@@@lt{}subtitle@gt{}@{Hello@}
+@end example
+
+Will generate:
+@paragraph{}
+
+@example
+@lt{}Font Size=+1@gt{}@lt{}u@gt{}Hello@lt{}/u@gt{}@lt{}/Font@gt{}@lt{}p@gt{}
+@end example
+
+
+Read the @x{More about macros} section for more information about it.
+@paragraph{}
+
+@subsection ASCIIConvert
+@vindex ASCIIConvert
+@cindex ASCIIConvert section
+@cindex Section ASCIIConvert
+@cindex Accents
+@cindex Foreing characters
+@cindex ASCII specials
+
+This section is used to indicate how to handle special characters. A good example are
+the accents. The syntax is the following:
+@paragraph{}
+
+@example
+ASCII=code
+@end example
+
+Code will be passed directly to the output without expanding macros or escaping
+characters.
+@paragraph{}
+
+@subsection GenNode
+@vindex GenNode
+@cindex GenNode section
+@cindex Section GenNode
+@cindex Text generated for each function
+@cindex Documentation for functions
+@cindex Functions, generated information
+
+This section is used to indicate what code is generated for each function. The
+text included in this function is processed in the following way:
+@paragraph{}
+
+@enumerate
+@item The macros aren't expanded.
+@item The ASCII characters aren't translated.
+@item ~n is interpreted as a variable and is expanded with the value of the
+corresponding variable. The content of the variable is passed by the macro expander.
+@item ~~n is a conditional, the code affected is delimited with @{ and ~@}. This
+code will be passed to the output only if the variable ~~n have a value.
+@end enumerate
+
+In the @code{GenNode} section the variables are the variables from the
+@x{Variables, @code{Variables} section}. So 0 to 15 are the fields of the comment
+and 90 to 92 are the values mentioned in that section.
+@paragraph{}
+
+@subsection GenMenu
+@vindex GenMenu
+@cindex GenMenu section
+@cindex Section GenMenu
+@cindex Menus, configuring
+@vindex Start
+@vindex End
+@vindex Entry
+
+This section is used to indicate how to create a menu in the output file.
+@paragraph{}
+
+You must define three variables:
+@paragraph{}
+@enumerate
+@item @code{Start} defines how to start a menu.
+@item @code{Entry} defines how to create an entry in the menu. It takes two parameters,
+the parameter @code{1} is the name of the menu item and the parameter @code{2} is the
+cross reference to it.
+@item @code{End} defines how to end a menu.
+@end enumerate
+
+The values assigned to these variables are processed in the same way explained in
+@x{GenNode,GenNode section}.
+@paragraph{}
+
+Here is the HTML code example:
+@paragraph{}
+
+@example
+Start=@lt{}Menu@gt{}
+Entry=@lt{}li@gt{}@lt{}a href="#~2"@gt{}~1@lt{}/a@gt{}
+End=@lt{}/Menu@gt{}
+@end example
+
+@subsection GenAssoMain
+@vindex GenAssoMain
+@cindex GenAssoMain section
+@cindex Section GenAssoMain
+@cindex Associations, generated text
+@cindex Alphabetical lists, how to configure
+@cindex Groups of functions
+@cindex Section Associations
+
+This section is used to indicate how to create the first node for an association. The
+text included in this function is processed in the way explained in the
+@x{GenNode,GenNode section}.
+@paragraph{}
+
+The variables available are @code{~1} the name of the association and @code{~2} the
+menu for it generated with the information in the @x{GenMenu,GenMenu section}.
+@paragraph{}
+
+See the @x{GenAssoRest,GenAssoRest}, for more information.
+@paragraph{}
+
+@subsection GenAssoRest
+@vindex GenAssoRest
+@cindex GenAssoRest section
+@cindex Section GenAssoRest
+
+This section is used to indicate how to create the rest of the nodes for an association.
+The text included in this function is processed in the way explained in the
+@x{GenNode,GenNode section}.
+@paragraph{}
+
+The variables available are @code{~1} the name of the association, @code{~2} is the
+same name but without the distingish, @code{~3} is the comment collected for it
+using a @x{Variables type 6,variable type 6}. and @code{~4} the menu for this
+association generated with the information in the @x{GenMenu,GenMenu section}.
+@paragraph{}
+
+@subsection GenMain
+@vindex GenMain
+@cindex GenMain section
+@cindex Section GenMain
+@cindex Generated text, configuring
+@cindex Order of the things in the output file
+
+This section is used to indicate how to create the output file. The text included in
+this function is processed in the way explained in the @x{GenNode,GenNode section}.
+@paragraph{}
+
+The variables available are @code{~1} the main menu, @code{~2} the name of the function
+list node, @code{~3} the menu for all the functions, @code{~4} the code for all the
+associations generated according to the information in the
+@x{GenAssoMain}. and @x{GenAssoRest}. sections and @code{~5} all the function
+nodes.@*
+The menus are generated with the information in the @x{GenMenu,GenMenu section}.
+@paragraph{}
+
+Additionally all the constants defined in the @x{Replace,Replace section}, can be
+recalled adding 50 to it. For example the @code{~50} recalls the constant number 0,
+that's the first defined.
+@paragraph{}
+
+@chapter Index
+
+@conindex{cindex.idx,cindex.tdx}
+
+@chapter Index of variables and commands
+
+@varindex{vindex.idx,vindex.tdx}
+
+@c @summarycontents
+@EOFTOC
+
+@bye
+

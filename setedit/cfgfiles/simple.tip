@@ -1,0 +1,111 @@
+~~~Start
+Hi! that's a tip. You can disable this
+dialog or you can choose to display
+the hints in the message window.
+The hints are showed ones a day to
+avoid annoying you, you can read the
+tips from the Help menu.
+In the dialog: at the right can appear
+one or more links to related topics,
+like the "About the Author" now. Just
+click in the button to go to this help
+topic.
+~~~End
+About the Author
+~~~Start
+When you press tab in the editor it
+normally insert a tab character
+but you can configure the editor to
+insert spaces in your text.
+~~~End
+Real Tabs
+Set Global
+Set Local
+Compact text
+Expand all tabs
+~~~Start
+You can save the default options to
+avoid configuring the editor again and
+again.
+For that just run the editor in the
+directory pointed by the SET_FILES
+environment variable, configure the
+editor and exit with ALT-X.
+If you never defined it the directory
+is the one called share/setedit
+starting from the point where you
+installed the editor.
+~~~End
+~~~Start
+You can reconfigure the keyboard to
+behave like you want. You can assign a
+command, a sequence of commands or a
+macro to any keyboard combination.
+~~~End
+Keyboard configuration
+~~~Start
+You have various features to indent
+your code. You can indent blocks by a
+space, by a tab or using a smart
+algorithm.
+~~~End
+Indentation
+~~~Start
+The editor supports macros. You can
+record the macros typing the sequence
+or write the macro in a language called
+sLisp.
+~~~End
+Macro
+sLisp macros
+~~~Start
+Under Windows GUI you can copy text to
+the clipboard using "Edit|Copy to
+Windows Clip." options. You can paste
+text from the clipboard using
+"Edit|Paste from Wind. Clip.".
+~~~End
+Clipboard
+~~~Start
+You can select a column of text using
+the rectangular blocks feature of the
+editor. Then you can move, copy or
+delete this column of text.
+~~~End
+Rectangular Blocks
+~~~Start
+You can use project files to group
+files that you usually edit together.
+~~~End
+Project
+~~~Start
+You can reconfigure the whole menu just
+editing a text file.
+As you installed the editor with normal
+option (instead of programmer options)
+the menu is smaller and doesn't show
+the advanced features, just replace it
+by the one called default.smn to get
+all the available options.
+~~~End
+Pull-down menus
+~~~Start
+The editor supports fonts and code
+pages. You can use the encoding
+features of the editor to read texts in
+an encoding different than the one used
+by your OS. For example to read Linux
+text under DOS when it have ASCIIs over
+than 127.
+~~~End
+Screen Options
+~~~Start
+The editor contains a powerful
+built-in calculator made by Molnar
+Laszlo. It supports binary, octal,
+decimal and hexadecimal conversions and
+most of the functions of a cientific
+calculator.
+~~~End
+Calculator
+

@@ -1,0 +1,78 @@
+/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+typedef struct
+{
+ int Line;
+ int Column;
+} FileInfo;
+
+#ifdef STANDALONE
+// This file is used by the standalone editor to declare more things
+class TSOSListBox;
+class TSOSListBoxMsg;
+
+#ifdef Uses_TSOSListBoxMsg
+class TSOSListBoxMsg : public TSOSListBox
+{
+public:
+ TSOSListBoxMsg(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar)
+ : TSOSListBox(bounds,aNumCols,aScrollBar) {}
+
+ virtual void focusItem(ccIndex item);
+ virtual void selectItem(ccIndex item);
+ virtual void handleEvent(TEvent& event);
+ virtual void setState(uint16 aState, Boolean enable);
+ void selectNext(void);
+ void selectPrev(void);
+ int  getLineOf(int pos);
+ void updateCommands(int enable);
+ void saveAs();
+ void save(char *name);
+ void copyClipboard();
+
+ int selectOK;
+ int haveJumpLines;
+};
+#endif
+
+class TEdMsgDialog : public TDialog
+{
+public:
+  TEdMsgDialog(const TRect &r,const char *t);
+  virtual void changeBounds(const TRect &);
+  virtual void close(void);
+  virtual void handleEvent(TEvent& event);
+  TSOSListBoxMsg *MsgList;
+  ~TEdMsgDialog();
+};
+
+extern TEdMsgDialog *EdMessageWindowInit(int Insert=1);
+extern int  EdMessageCantMessages(void);
+extern void EdMessageSelectNext(void);
+extern void EdMessageSelectPrev(void);
+extern void EdJumpToFirstError(void);
+
+#endif
+
+int  DumpFileToMessage(char *file, const char *from, uint32 SMOps,
+                       char *(*ParseFun)(char *buf,FileInfo &fI,char *&fileName)=0,
+                       int kill=1);
+// Incremental version of the DumpFileToMessage
+void DumpFileToMessageInit(char *file, const char *from, uint32 SMOps,
+                           char *(*ParseFun)(char *buf,FileInfo &fI,char *&fileName)=0);
+int  DumpFileToMessageParseMore(int Lines, int *goBack);
+void DumpFileToMessageEnd();
+
+// This is provided by edmsg.cc in the editor or by rhideint.cc in libset
+const uint32 edsmUpdateSpLines=1,edsmRemoveOld=2,edsmDontSelect=4,
+             edsmDontUpdate=8;
+// Mutually exclusive options for the scroll behavior
+const uint32 edsmScrollMask=0xC0000000,edsmEverScroll=0,edsmNeverScroll=0x40000000,
+             edsmScrollIfNoFocus=0x80000000,edsmScrollShifter=0x40000000;
+extern void EdShowMessage(char *msg,Boolean remove_old=False);
+extern void EdShowMessage(char *msg, unsigned Options);
+extern void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
+                              unsigned Options=0);
+extern void EdShowMessageUpdate(unsigned Options);
+extern void EdJumpToMessage(ccIndex item);
+

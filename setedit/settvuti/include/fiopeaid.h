@@ -1,0 +1,20 @@
+/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+#ifndef FIOPEAID_H__
+#define FIOPEAID_H__
+class fpstream;
+
+typedef struct
+{
+ int id;
+ char *dir;
+ char *mask;
+ int helpCtx;
+} AsoID;
+
+AsoID *GetFileIDDirBuffer(int id);
+void  SetFileIDDirValue(int id, char *dir, char *mask=0);
+int   GenericFileDialog(char *title, char *file, char *mask, int id, unsigned flags=0);
+void  LoadFileIDDirs(fpstream &s, Boolean isLocal);
+void  SaveFileIDDirs(fpstream &s);
+#endif

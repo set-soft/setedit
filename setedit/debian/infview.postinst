@@ -1,0 +1,14 @@
+#!/bin/sh
+# When upgrading the following doesn't need to be done...
+if [ $1 != "upgrade" ] ; then
+    # Install alternative. The priority is the same as the pinfo package.
+    update-alternatives --install /usr/bin/infobrowser infobrowser /usr/bin/infview 50 \
+        --slave /usr/share/man/man1/infobrowser.1.gz infobrowser.1.gz /usr/share/man/man1/infview.1.gz
+
+    # Doing this manually because the debian/info file doesn't seem to work, take a
+    # look in debian/info.ex and tell me what is wrong with it!
+    # We don't need to provide a description, it is provided in the info file itself.
+    install-info --quiet --section "Documentation" "Documentation" /usr/share/info/infview.info.gz
+fi
+
+#DEBHELPER#

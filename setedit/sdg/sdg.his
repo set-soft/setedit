@@ -1,0 +1,29 @@
+That's the history file of the SET's Documentation Generator:
+
+29/07/97
+  First alpha release sent to: Laszlo Molnar, Robert Hoehne and George Foot
+v0.0.1
+30/07/97
+  Enhanced the reported errors.
+01/08/97
+  Defined the interface to SDG to be modular.
+02-03/08/97
+  Added left, right, substr, gstr, sstr, setv and eval to the Lisp
+interpreter
+  Added vars and CR constant to the interpreter.
+04/08/97
+  Cleaned the includes and made through a distributor file.
+  Sent to DWI the Alpha 0.0.1.
+  Moved from the under-development dir to the sdg dir.
+05/08/97
+  Interface with the editor.
+  Sent to StarLost the Alpha 0.0.1
+  Changed the extern copy to one internal (Robert's sugestion).
+  Fixed wrong references in HTML files with multi.frt (Robert's report).
+  Added Up and Previous in info files but not in the right way ( " " ).
+06/08/97
+  Messages in the editor.
+  Dialog to set the parameters.
+  Save/Restore values.
+  TXHFilesDir to allow the search of .frt files in other directory.
+  Added ~90 in the command lines to allow -I TXHFilesDir.

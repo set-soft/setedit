@@ -1,0 +1,150 @@
+That's the announcement that I released the SET's editor v@@v@@:
+
+What's SET's editor?
+
+  Is the same editor you can find inside RHIDE but without the IDE itself,
+as it's the last version have more features (and bugs?, I hope it have
+less ;-), seriously, I killed a huge number of bugs most small but some very
+annoying).
+  For the people that doesn't know about RHIDE:
+  Is an editor specially designed for C/C++ programmers, but suitable to edit
+any kind of text file.
+
+Main features:
+* Easy to use for DOS users because have a lot of CUA and Wordstar commands
+used in the editors of other compilers.
+* Full configurable keyboard.
+* Full configurable menu (OS dependent features and macros in menues (new)).
+* Advanced features: Rectangular blocks, intelligent indent, configurable
+syntax highlight and more.
+* Simple macro language, will be expanded only if the people is interested
+and helps a bit (which starting to happend).
+* PMacros for fast writing.
+* Real macros.
+* Documentation tool for libraries or large projects.
+* Fonts, code pages, screen modes and palette customization.
+* You can run make or grep from the editor collecting the errors/hints.
+* Clock and screen saver.
+* Linux version.
+
+Why I could want to download it if RHIDE exists?
+
+  The editor is the newest version v@@v@@ and have a lot of differences with
+the one included in RHIDE 1.4 (v0.3.6). Attention! Robert released a new
+beta of RHIDE (1.4.7) containing the editor v0.4.17. And Andris released
+another beta (1.4.7.4) using v0.4.39.
+  Here are some of the reasons you could have:
+
+1) You like the editor and want to use it without needing to start the whole
+IDE. The editor have a half of the size of RHIDE mainly because GDB isn't
+inside of the editor. I use my editor to edit all the files I create ;-).
+2) You are a RHIDE fanatic and want to test the new features or check if
+some bug was killed. I specially recommend it for people that have problems
+with the bugs in "Optimal fill" and for the ones who wants to see macros or
+word wrap in RHIDE.
+3) You are a djgpp fanatic and want to collect anything made with djgpp (I'm
+one of these crazy mans ;-).
+4) You don't like RHIDE at all, you think it sucks, but you think you can
+help to make it a really good thing.
+
+Note: Actually Robert is working to incorporate it to RHIDE. But so slowly
+...
+
+Ok, where can I get it?
+
+ http://www.geocities.com/set-soft/setedit.html
+
+(DOS/Linux sources/binaries are available from this page).
+
+---------------------------------------------------------------------------
+
+New [23 things]:
+
+* Configurable mechanism to parse the errors collected from an external
+application. It uses Perl RegEx to do the job. Suggested by Gregorio.
+* Now you can pass extra command line options using an environment variable
+called SET_CMDLINE.
+* Menu option to save the project manually. Suggested by Jeremy W.
+Murphy <jwm@amc.com.au>
+* Project window also says the name of the project file. Suggested by Jeremy
+W. Murphy <jwm@amc.com.au>.
+* Command line option +[line number], like in VI. Suggested by Ivan.
+* When calling the man page viewer the editor offers the word under cursor
+as man page.
+* Shl flag "EscapeAnywhere" this switch makes the editor parse the escape
+character outside strings.
+* Syntax highlight for PLM/51 contributed by Jari Korhonen
+<jari.korhonen@ponsse.fi>. (Intel's long-gone not-so-highlevel language for
+8051 CPUs).
+* Command line switch to specify files to load from an external list of files
+where each line is a file. Suggested by SpaZe.
+* Three command line switches: --tile-vert, --tile-horiz and --cascade
+to make these operations after loading the files from the desktop file or
+named in the command line. Suggested by Spaze.
+* The reverse operation for "HTML accents". Suggested by Gregorio.
+* Now the file open dialog is resizeble. Suggested by Gregorio.
+* Yet another tab mode. "Tab indents", it is by default enabled because
+that's what the editor ever did. Disabling it the editor will behave like
+when using tabs but will insert spaces instead of tabs.
+
++ Linux
+
+* Debian package for InfView.
+* ISO-8859-1 spanish messages.
+* InfView man page. Pointed out by Ivan,
+* Now the convert HTML accents feature also works in Linux, was just matter
+of enabling it.
+* Now the editor disables the Xon/Xoff mode of the terminal so ^Q/^S aren't
+used for it. It enables the use of ^Q and ^S when running in an Xterm, Eterm,
+etc.
+
++ DOS
+
+* Now the editor also looks for HOME and HOMEDIR when loading configuration
+files. Also: the directory where the exe is located is the one looked at last.
+
++ Cosmetic:
+
+* Now the message window shows ^M if the line contains /r.
+* Changed the way the INFOPATH is guessed under DOS. A djgpp user installed
+the editor outside the djgpp tree and then the editor used INFOPATH but
+failed to find the setedit.inf file. Now the editor also adds your tree even
+if INFOPATH is defined. Reported by Sylvia <smlew@ifocus.com.sg>.
+* Now if you use "load only specified files" the editor doesn't really load
+the files to then close'm like before. It makes things faster.
+* Now the new option to search the word when you press ^F1 inside
+the node takes the visible name you choose from the list and not the word
+under cursor. Suggested by Gregorio.
+
+
+Fixed [10 things]:
+
+* Problems with info files created with the new Texinfo 4.0 package.
+* Abort when pressing ENTER in the message window without items.
+* Bug in sLisp when handling strings with escape sequences (\n, \t, etc.).
+Reported by Uwe Steinmann <steinm@majestix.fernuni-hagen.de>.
+* GPF/SIGSEGV when using BackSpace in the functions list to delete the first
+letter in the incremental search. Reported by Gregorio.
+* Crashes when starting the editor and it was playing an MP3 file that doesn't
+exist anymore.
+
++ Linux:
+
+* Problems when saving files in DOS format. Reported by Gregorio.
+* When switching from hidden to normal desktop files the editor left the
+hidden version of the desktop file generating potential confusions. Now the
+hidden file is removed.
+
++ DOS:
+
+* Problems with project files. Reported by Ryan Owen <ryan@eyring.com>.
+
++ Cosmetic:
+
+* The ~K~eep short-cut in the SDG options was used for O~K~. Reported
+by Gregorio.
+* When inserting items to the project the editor used the *.epr mask instead
+of the one used to open regular files. Reported by Gregorio.
+
+There are more small changes just take a look to change.log.
+

@@ -1,0 +1,216 @@
+SET's Editor under Linux FAQ:
+
+0) Installation problems
+0.1) Q: I type e in the shell and the editor doesn't start, why?
+0.2) Q: The editor complains about something related to SET_FILES not defined
+0.3) Q: I get "wrong command name at line NN of menubind.smn", what's up?
+
+1) Keyboard problems
+1.1) Q: Why the right Alt key doesn't work for menues?
+1.2) Q: If I start the editor from midnight commander the keyboard doesn't
+work very well, why?
+1.3) Q: I use Red Hat 5.2 and the function keys works funny, some works
+others are moved to other places ... what's going on?
+Old questions, no longer apply but could help:
+1.4)
+Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
+is shifted.
+Q: Why pseudo-macros doesn't work?
+Q: Why delete previous word doesn't work?
+
+2) Mouse problems
+2.1) Q: Why mouse doesn't work?
+2.2) Q: Why the mouse isn't very interactive in xterm?
+2.3) Q: How can I copy/paste using gpm?
+
+3) Video problems
+3.1) Q: I have ISO Latin-1 fonts loaded, as root I selected this code page
+and all works OK, but as a common user the characters aren't right and I must
+select CP437. Why?
+3.2) Q: SETEdit can't open /dev/ptyX device, why?
+
+0) Installation problems
+
+0.1) Q: I type e in the shell and the editor doesn't start, why?
+
+A: After installing the editor by defualt it is located in /usr/bin so
+if your path doesn't contain this directory you must add it.
+  If you are using bash you must edit the .bash_profile file and include this
+directory in the definition of the PATH variable. Here is how it looks in my
+system:
+
+PATH=".:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11"
+
+0.2) Q: The editor complains about something related to SET_FILES not defined
+
+*** Currently it only happens if you don't install in /usr/bin or ***
+*** /usr/local/bin ***                                            ***
+A: You must read the readme.1st. By default the file is located on the
+/usr/doc/setedit directory.
+  Basically you must add the definition of the variable:
+
+SET_FILES="/usr/share/setedit"
+
+  And export it with the export command, here is an example:
+
+export PATH PS1 RHIDESRC SET_FILES ESCDELAY
+
+Note: This syntax is for bash, I don't use other shell in UNIX.
+
+0.3) Q: I get "wrong command name at line NN of menubind.smn", what's up?
+
+  Be sure you don't have another version of the editor installed in your
+system. I changed the default installation directory from /usr/local/bin to
+/usr/bin so perhaps you have the old copy and it is *first* in your path so
+you are loading the new menu files with the old version of the binary.
+
+------------------------------------------------------------------------------
+1) Keyboard problems
+
+1.1) Q: Why the right Alt key doesn't work for menues?
+
+A:In v0.4.26 I taked the desition to make Alt keys different by default. You
+can change it from "Tool&Ops|Options|Keyboard|Setup Alt keys".
+  I did it so you can paste using gpm. For it you can use the right alt+mouse
+middle button. If both alt keys are interpreted as the same key the pasted
+text will be interpreted as Alt+keys and won't be correctly pasted.
+  If you don't use the paste feature of gpm you can setup thealt keys to be
+the same key.
+  You can't reverse it, I mean, you can't use left alt for gpm and right alt
+for menues. That's currently a limitation.
+
+
+1.2) Q: If I start the editor from midnight commander the keyboard doesn't
+work, why?
+
+A: Is a fault in mc, this program runs your childs in a ttypN console (like
+when you telnet) so the childs doesn't have full access to some IOCTLs and
+devices. Just avoid using the editor from inside programs that doesn't
+cooperate with the OS to work in a multitasking environment. Run the editor
+in other virtual console.
+
+
+1.3) Q: I use Red Hat 5.2 and the function keys works funny, some works
+others are moved to places ... what's going on?
+
+A: The kbd package shipped with Red Hat 5.2 (not sure if all RH 5.2 does it,
+looks like just some CDs were shipped with it and most not) introduces some
+changes in the keyboard configuration. The function keys are reported a
+little bit different. Try using the --use-rh-52-keys command line option, it
+should fix the problem. Note: Use a script to call the editor passing this
+switch.
+  I'm also including the default.map file I use in the .tar.gz distribution.
+You can try using it instead or run a diff to see what's difference are
+introduced in yours.
+
+
+1.4)
+Q: Why Shift+PageUp/PageDown doesn't move up and selects? Instead the screen
+is shifted.
+Q: Why pseudo-macros doesn't work?
+Q: Why delete previous word doesn't work?
+
+*** As now I maintain the Turbo Vision port I taked the desition to patch ***
+*** more keyboard combinations, so it shouldn't happend                   ***
+A: That's because Linux is configured by default to do it. As the editor is
+using curses to read the keyboard and as we (Robert and me) want maximun
+compatibility we don't mess the keyboard tables (Or at least not too much
+;-). We did it in early versions of RHIDE and the result wasn't very good.
+Currently only few combinations are patched by TVision.
+ So if you want to change it you must change the keyboard mapping. For that
+you should read loadkeys(1), dumpkeys(1), showkey(1) and related man pages.
+ Here is an example to disable this behavior:
+
+ % loadkeys
+ shift keycode 104 = Prior
+ [Press Ctrl+D here]
+
+ It instructs the kernel to map Shift+PageUp (104, to find it use showkey),
+to just page up (by default is Scroll_Backward and is used by the kernel).
+ Note that these changes affects all the consoles.
+ To make the changes permanent edit /etc/kbd/default.map (Debian) or the
+equivalent in your system (look in the man pages).
+ "But SET making it I lose Scroll_Backward, that's a usefull thing!". If you
+want to have it too just map it to other key, like AltGR+Shift+PageUp.
+
+Examples:
+
+# Map Shift+PageUp to PageUp
+shift keycode 104 = Prior
+alt shift keycode 104 = Scroll_Backward
+# Map Shift+PageDown to PageDown
+shift keycode 109 = Next
+alt shift keycode 109 = Scroll_Forward
+# Map Control+Backspace (Backspace)
+control keycode 14 = Delete
+# Map Control+Space (on purppose null)
+control keycode 57 = space
+
+ I included my default.map file in the tar.gz of the distribution.
+
+
+------------------------------------------------------------------------------
+2) Mouse problems
+
+2.1) Q: Why mouse doesn't work?
+
+A: If you are not running in a ttyN device the mouse won't work (xterm is an
+exception). To know it type tty at the command prompt, if it looks like
+/dev/tty3 it keep reading.
+  The editor needs gpm loaded, most Linux distributions installs it. To be
+sure run "ps wax | grep gpm", you should get two lines, one of gpm itself and
+the other containing "grep gpm", if you only get the last then gpm is not
+running in your system.
+  The editor is compiled statically in the .tar.gz distribution, that's
+needed because a lot of people is using libc 5. I couldn't find any way to
+link libgpm dynamically and the rest statically so the editor uses gpm 1.13,
+lamentably gpm >= 1.14 is incompatible with previous versions.
+  If you can't install gpm 1.13 in your system just compile the editor from
+sources.
+
+
+2.2) Q: Why the mouse isn't very interactive in xterm?
+
+A: Because xterm reports only mouse clicks and not moves.
+
+
+2.3) Q: How can I copy/paste using gpm?
+
+A: Hold down the right Alt key and do the selection or copy or paste as you
+normally do with gpm.
+   When the right alt key is pressed the control of the mouse is left to
+gpm.
+   Note that gpm doesn't work in X terminals.
+
+   
+------------------------------------------------------------------------------
+3) Video problems
+
+3.1) Q: I have ISO Latin-1 fonts loaded, as root I selected this code page
+and all works OK, but as a common user the characters aren't right and I must
+select CP437. Why?
+
+A: Terminals doesn't use the fonts you loaded, they have an special mapping
+so the setting that is correct for the root (that have access to the real
+console) is not good for the user (who only have access to a tty terminal).
+  There are many solutions, one is just don't share desktop files and
+configure the desktop files of the user for CP437 and the desktop files for
+the root as ISO-1.
+  But the best choice is to give access to the user to the /dev/vcsa devices.
+The editor includes a script that puts these devices in a special group
+called "vcsa", just run it and then add the users to this group.
+  If you are lazy or doesn't have annoying users logging in your computer
+just change the vcsa right access flags to "rw-rw--w-" so any user can write
+to the virtual consoles, that's enough for the editor (works better if have
+read access).
+
+3.2) Q: SETEdit can't open /dev/ptyX device, why?
+
+A: I know it isn't for a FAQ but the case of Attila is quite interesting:
+
+"I found the fault. I opend the ssh connection as root an then made a su to
+my normal user account. But setedit couldn't open the pty device since it
+was owned by root.
+
+Attila Kinali"
+

@@ -1,0 +1,153 @@
+DEST_BIN_DIR = @DEST_BIN_DIR@
+DEST_SET_DIR = @DEST_SET_DIR@
+
+TV_LIB   = ..\..\tvision\winnt\rhtv.lib
+
+@DYNRTL@
+
+all: setedit.exe
+
+# Borland C++
+
+CC       = bcc32
+LD       = bcc32
+CXX      = $(CC)
+INC      = -I.\include -I..\include
+
+!ifdef DEBUG
+CDEBUGFLAGS = -v -vi -y -6 -Od
+!else
+CDEBUGFLAGS = -O2 -6 -T -DNDEBUG
+!endif
+
+!ifdef DYNRTL
+DYNRTLDFLAGS = -WR
+!endif
+
+CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLDFLAGS) -WC -X -q $(CDEBUGFLAGS) \
+	-D__inline__=inline
+CXXFLAGS = -P -RT- -w-hid -w-par $(CFLAGS)
+LDFLAGS  = $(DYNRTLDFLAGS) -WC
+
+INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
+	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
+	-I..\infview\include -I..\librhuti -I..\sdg\include -I..\mp3 -I..\extra \
+	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2
+
+{..\setedit}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\setedit\streams}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\streams}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\names}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\librhuti}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\easydiag}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\infview}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\infview\streams}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\infview\names}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\calcu}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\settvuti}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\settvuti\streams}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\settvuti\names}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\sdg}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\extra}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\mp3}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+{..\mainsrc}.cc{objs}.obj:
+	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<
+
+{..\mainsrc}.c{objs}.obj:
+	$(CC) -c $(CFLAGS) $(INC) -nobjs $<
+{..\calcu}.c{objs}.obj:
+	$(CC) -c $(CFLAGS) $(INC) -nobjs $<
+{..\extra}.c{objs}.obj:
+	$(CC) -c $(CFLAGS) $(INC) -nobjs $<
+	
+objs\edspecs.obj: ..\mainsrc\edspecs.cc
+objs\bufun.obj: ..\mainsrc\bufun.cc
+
+EDITOR_OBJS_ = @EDITOR_OBJS@
+EDITOR_OBJS = $(EDITOR_OBJS_:+=objs\)
+
+EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
+
+EXTRALIB_MAKE_ARGS = _SUBMAKE=1 CC="$(CC)" LD="$(LD)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" -f Makefile.bcc
+
+libs: $(EXTRA_LIBS)
+
+..\libz\zlib.lib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+	
+..\libpcre\pcre.lib:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+
+..\libbzip2\bzip2.lib:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS)
+	cd ..\winnt
+	
+clean-zlib:
+	cd ..\libz
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+	
+clean-pcre:
+	cd ..\libpcre
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+	
+clean-bzip2:
+	cd ..\libbzip2
+	$(MAKE) $(EXTRALIB_MAKE_ARGS) clean
+	cd ..\winnt
+	
+clean-libs: clean-zlib clean-pcre clean-bzip2
+
+setedit.exe: $(EXTRA_LIBS) $(EDITOR_OBJS) 
+	$(LD) $(LDFLAGS) -esetedit $(EDITOR_OBJS) $(EXTRA_LIBS) $(TV_LIB)
+
+install: setedit.exe doc
+	echo dummy >a.exe
+	xcopy /I *.exe $(DEST_BIN_DIR)
+	-del a.exe
+	-del $(DEST_BIN_DIR)\a.exe
+	xcopy /I /S /E ..\cfgfiles\*.* $(DEST_SET_DIR)
+	cd ..\doc
+	make -f Makefile.bcc DEST_SET_DIR=$(DEST_SET_DIR) install
+	cd ..\winnt
+
+doc:
+	cd ..\doc
+	make -f Makefile.bcc
+	cd ..\winnt
+
+clean-doc:
+	cd ..\doc
+	make -f Makefile.bcc clean
+	cd ..\winnt
+
+clean:
+	-del objs\*.obj
+	-del *.exe
+	-del *.obj
+	-del *.lib
+	-del *.tds
+	
+clean-all: clean clean-libs clean-doc

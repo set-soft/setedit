@@ -1,0 +1,2 @@
+?package(setedit):needs="text" section="Apps/Editors"\
+  title="SET's Editor" command="/usr/bin/setedit"

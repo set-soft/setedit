@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# It removes files from previous versions not needed anymore
+#
+rm -f /usr/info/editor.inf
+rm -f /usr/info/infview.inf
+rm -f /usr/info/sdg.inf
+rm -f /usr/info/editor.info
+rm -f /usr/info/infview.info
+rm -f /usr/info/sdg.info
+rm -f /usr/info/editor.info.gz
+rm -f /usr/local/info/editor.inf
+rm -f /usr/local/info/infview.inf
+rm -f /usr/local/info/sdg.inf
+rm -f /usr/local/info/editor.info
+rm -f /usr/local/info/infview.info
+rm -f /usr/local/info/sdg.info
+rm -f /usr/local/info/editor.info.gz
+rm -f /usr/doc/setedit/*.txt
+rm -f /usr/local/doc/setedit/*.txt
+
+

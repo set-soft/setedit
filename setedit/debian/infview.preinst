@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ install = "$1" ]; then
+    dpkg-divert --package infview --add --rename \
+        --divert /usr/share/info/infview-setedit.info.gz /usr/share/info/infview.info.gz
+fi
+
+#DEBHELPER#
+

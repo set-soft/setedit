@@ -1,0 +1,13 @@
+/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+#ifndef __DYNCAT_H__
+#define __DYNCAT_H__
+typedef struct
+{
+ int  len;
+ char *str;
+} DynStrCatStruct;
+
+void DynStrCatInit(DynStrCatStruct *Struct, char *str, int len=-1);
+void DynStrCat(DynStrCatStruct *Struct, char *str, int len=-1);
+#endif

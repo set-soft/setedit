@@ -1,0 +1,6 @@
+*.mo
+po_list
+potfiles.po
+es_iso.po
+de_iso.po
+Makefile

@@ -1,0 +1,2 @@
+?package(infview):needs="text" section="Help"\
+  title="SET's InfoViewer" command="/usr/bin/infview"

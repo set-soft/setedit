@@ -1,0 +1,75 @@
+This text explains how to write an external screen saver for the editor.
+
+  An external screen saver is just a simple program that follows some special
+rules.
+
+1. Command line options that must be supported:
+2. Command line parameters passed by the editor:
+3. Returned value:
+4. How do I make the editor know about a new screen saver?
+5. Some notes
+
+-----------------------------------------------------------------------------
+1. Command line options that must be supported:
+
+-i
+Provides information about the screen saver to stdout.
+Maximun size of the text: 72 columns and 17 lines.
+Note: Including additional \n at the start.
+
+-h
+Command line options explained.
+Maximun size of the text: 72 columns, 17 lines max.
+Including additional \n at the start.
+
+-n
+Descriptive name.
+Just one line, no more than 40 characters and must end with \n. 24 is the
+current size of the dialog.
+
+-----------------------------------------------------------------------------
+2. Command line parameters passed by the editor:
+
+The first three parameters are filled by the editor and means:
+
+A) Number of columns.
+B) Number of lines.
+C) Flags about the video mode, currently that's 1 meaning we are in text
+mode.
+D) A file handle for a file that contains the contents of the screen.
+
+All values are in hexadecimal, except (D), example for 80x25 text mode:
+
+0x0050 0x0019 0x00000001 22
+
+-----------------------------------------------------------------------------
+3. Returned value:
+
+The value returned by the application have some special meaning:
+
+100 The screen and video mode where altered so a full restore must be done.
+    That's the only behavior you'll get currently.
+101 All is like before calling, a redraw is enough. (*)
+etc.
+
+(*) Not implemented yet.
+-----------------------------------------------------------------------------
+4. How do I make the editor know about a new screen saver?
+
+A) Copy the program to the directory where the configuration files are
+located.
+B) Edit the file named extrscsv.txt to name it. The format of the file is
+really simple the first line is the name of the screen saver, the next is the
+program name and so on.
+
+-----------------------------------------------------------------------------
+5. Some notes
+
+  When the external screen saver is running the editor doesn't have the
+control so if the screen saver doesn't release the CPU it will consume as
+much CPU as possible. You must also understand that the editor can't play MP3
+files while the other program is running.
+
+-----------------------------------------------------------------------------
+End of file
+

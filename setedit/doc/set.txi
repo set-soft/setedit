@@ -1,0 +1,317 @@
+@c  set.txi: -*- Texinfo -*-
+
+@c -------------------------------------------------------------------------
+@c
+@c Macros for making SET's documentation in TeX and INFO format.
+@c
+@c Author: Salvador Eduardo Tropea (salvador@inti.gov.ar)
+@c         July 1997.
+@c
+@c It includes the rhidemac.txi file from Robert H”hne, Eli Zaretskii and
+@c Brian J. Fox.
+@c
+@c -------------------------------------------------------------------------
+
+@include rhidemac.txi
+
+@macro table4{title1,title2,title3,title4}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@set table-title4 \title4\
+@itemize @bullet
+@end macro
+
+@macro table3{title1,title2,title3}
+@set table-title2 \title2\
+@set table-title3 \title3\
+@clear table-title4
+@itemize @bullet
+@end macro
+
+@macro table2{title1,title2}
+@set table-title2 \title2\
+@clear table-title3
+@clear table-title4
+@itemize @bullet
+@end macro
+
+@macro table2_auto{title1,title2}
+@table2{\title1\,\title2\}
+@end macro
+
+@ifclear dvi
+@macro titem_{col1,col2,col3,col4}
+@item \col1\
+@*- @value{table-title2}: \col2\
+@ifset table-title3
+@*@ @ @ - @value{table-title3}: \col3\
+@end ifset
+@ifset table-title4
+@*@ @ @ - @value{table-title4}: \col4\
+@end ifset
+@end macro
+@end ifclear
+
+@ifset dvi
+@macro titem_{col1,col2,col3,col4}
+@item \col1\
+@itemize @minus
+@item @value{table-title2}: \col2\
+@ifset table-title3
+@item @value{table-title3}: \col3\
+@end ifset
+@ifset table-title4
+@item @value{table-title4}: \col4\
+@end ifset
+@end itemize
+@end macro
+@end ifset
+
+@macro endtable_{}
+@end itemize
+@paragraph{}
+@end macro
+
+@iftex
+@set tex
+@set aacute @'a
+@set eacute @'e
+@set iacute @'i
+@set oacute @'o
+@set uacute @'u
+@set ntilde @~n
+@set Ntilde @~N
+@set auml @"a
+@set euml @"e
+@set iuml @"i
+@set ouml @"o
+@set uuml @"u
+@set Uuml @"U
+@set agrave @`a
+@set egrave @`e
+@set igrave @`i
+@set ograve @`o
+@set ugrave @`u
+@end iftex
+
+@ifclear tex
+@set aacute  
+@set eacute ‚
+@set iacute Ў
+@set oacute ў
+@set uacute Ј
+@set ntilde ¤
+@set Ntilde Ґ
+@macro exclamdown
+­
+@end macro
+@macro questiondown
+Ё
+@end macro
+@set auml „
+@set euml ‰
+@set iuml ‹
+@set ouml ”
+@set uuml Ѓ
+@set Uuml љ
+@set agrave …
+@set egrave Љ
+@set igrave Ќ
+@set ograve •
+@set ugrave —
+@end ifclear
+
+@macro lt
+<
+@end macro
+@macro gt
+>
+@end macro
+
+@c --- Local crossrefences are @x
+@macro x{node,name}
+@xref{\node\,\name\}
+@end macro
+
+@c --- Entries for menues
+@c @unmacro mitem
+@macro mitem2{node,name}
+* \node\:: \name\.
+@end macro
+@macro mitem{node}
+* \node\::
+@end macro
+
+@c --- Workaround for a bug
+@set open-curly @{
+@set close-curly @}
+@macro ocb
+@value{open-curly}
+@end macro
+@macro ccb
+@value{close-curly}
+@end macro
+
+@c --- to put a comma in a parameter
+@set comma-val ,
+@macro comma
+@value{comma-val}
+@end macro
+
+@c --- The following are because HTML replaces it
+@macro end_format
+@end format
+@end macro
+@macro end_table
+@end table
+@end macro
+@macro end_itemize
+@end itemize
+@end macro
+@macro end_enumerate
+@end enumerate
+@end macro
+@macro end_example
+@end example
+@end macro
+@macro end_smallexample
+@end smallexample
+@end macro
+@macro end_display
+@end display
+@end macro
+@macro end_quotation
+@end quotation
+@end macro
+@macro end_menu
+@end menu
+@end macro
+
+@macro node_{name,prox,prev,up}
+@node \name\, \prox\, \prev\, \up\
+@end macro
+
+@c --- Header of the text
+@macro HeaderPage1
+
+@c Smaller amounts of whitespace between chapters
+@c and sections.
+@iftex
+@global@chapheadingskip = 15pt plus 4pt minus 2pt
+@global@secheadingskip = 12pt plus 3pt minus 2pt
+@global@subsecheadingskip = 9pt plus 2pt minus 2pt
+@end iftex
+
+@c Smaller amounts of whitespace between paragraphs
+@iftex
+@global@parskip 6pt plus 2pt minus 2pt
+@end iftex
+
+@c @@finalout
+@setchapternewpage odd
+
+@c --- The title page is for printed manuals and is ignored in the on-line
+@c --- formats (text, html and info).
+@titlepage
+@title @value{title-printed}
+@subtitle @sc{@value{minidesc-printed}}
+@subtitle Version @value{version}
+@subtitle @value{update-month}
+
+@author by @value{name-author}
+@author @ii{last updated @value{update-date}}
+
+@page
+
+@value{text-pre1}
+
+@value{text-pre2}
+
+@value{text-pre3}
+
+@tex
+@vskip 0pt plus 1filll
+@end tex
+Copyright @copyright{} 1996, 1997 by @value{name-author}
+
+@end titlepage
+
+@ifinfo
+@direntry
+* @value{title-printed}: (@value{info-file}). @value{minidesc-printed}.
+@end direntry
+
+This is the documentation for @value{title-printed}.
+@paragraph{}
+
+Copyright @copyright{} @value{year-copyr} @value{name-author}
+@paragraph{}
+
+This documentation may be freely distributed, provided this copyright notice
+is left intact on all copies.
+@end ifinfo
+@end macro
+
+@macro HeaderPage2
+@ifinfo
+This is the documentation for @value{title-printed}.
+@paragraph{}
+
+Copyright @copyright{} @value{year-copyr} @value{name-author}
+@paragraph{}
+
+This documentation may be freely distributed, provided this copyright notice
+is left intact on all copies.
+@paragraph{}
+
+@ifclear text
+  The following master menu lists the major topics in this documentation,
+including all the indices.
+@end ifclear
+@end ifinfo
+@end macro
+
+@macro EOFTOC
+@contents
+@end macro
+
+@c --- That generates a very good effect in InfView, Info? who cares about
+@c --- it? ;-)
+@macro my_flag
+@ifinfo
+@*
+0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ@*
+0FЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ@*
+0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+@end ifinfo
+@end macro
+
+
+@c --- TeX is really idiot handling complex things like expanding a { inside
+@c --- a parameter so some code are conditional
+@macro code2{a}
+'\a\'
+@end macro
+
+@macro varindex{h,t}
+@printindex vr
+@end macro
+
+@macro conindex{h,t}
+@printindex cp
+@end macro
+
+@macro keyindex{h,t}
+@printindex ky
+@end macro
+
+@ifclear dvi
+@macro i{valor}
+`\valor\'
+@end macro
+@end ifclear
+
+@macro p{}
+@c @sp 1
+@end macro
+

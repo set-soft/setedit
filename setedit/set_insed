@@ -1,0 +1,4 @@
+#!/bin/sh
+# This script is used to just install the editor without stripping
+#
+make EXTRA_INS_OPS=--no-strip install-editor

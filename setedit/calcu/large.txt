@@ -1,0 +1,70 @@
+brcalcu is a small, semi-powerful, probably portable calculator.  Now
+there's no reason not to have an expression evaluator in your project.
+
+The parser implements a very weird language that probably looks odder
+than it is due to its similarity to C.  For example, while has a return
+value so you can use it in the middle of expressions.  There is no need
+for if, since you can just use ? : for anything.
+
+I haven't thought the language completely through or worked out all
+behaviour.  It's too complex.  Simplify, simplify, simplify!
+
+Define a new variable by simple giving it's value, as in "x = 4".  Other
+value-setting ops are available, see the list.  Define a new function by
+giving its name, the argument name list, and its value as an =, for
+example "f(x) = x*2".  The arguments are normally pre-expanded, meaning
+that they are as in C; when you call the function, they are expanded.
+Not so if you prefix an argument name immediately with '.  When the
+argument is used in the function it will only be expanded on request.
+For example:
+   f(x) = y=4'x
+   f(y) -> 0
+   
+   f('x) = z=4'x
+   f(z) -> 4
+
+This is useful for building more complex commands from the base control-flow
+structures.  For example:
+   for ('start, 'test, 'body) = start' while (test) body
+
+The most surprised person that this worked was definitely myself.  I
+thought the code was wrong.  It's still ugly, but I find it amusing.
+
+   x { y	Returns x or y, whichever is smallest.
+   x } y	Returns x or y, whichever is smallest.
+   -----
+   x ' y	Returns y.  In C, this is ","; I thought ' would be better
+   x ³ y        since it allows it in arguments of functions (For what
+                that's worth).  The second variant is alt-179 in ASCII.
+
+                Note that this IS ",", NOT ";".  You don't use it to end
+                a statement, you use it to start a new one.
+   x ;		Return x.  This is not necessary normally; mostly for
+                control flow functions like while to serve as }.
+
+                Consider this:
+                   rad(r, x) = radix = r³x
+                I think this boils down an expression quite well, although
+                ' is jarring (I tried ., but that's required for a decimal
+                point).  Only that which is necessary is described.  The
+                equivalent in C is:
+                   rad (r, x) { radix = r; return x; }
+                I didn't put the return or types in because that would be
+                unfair.  The point is that this language I'm defining is
+                dreadfully compact.
+   ' x		This is a subtle difference to x ' y but has a world of
+                effect.  It is only for calling functions -- user
+                functions to be exact.  When the first character in an
+                argument is a tick, the contents of the argument are
+                passed, not the result.  This "forces" it to use a macro
+                result.  Moreover, if the ticked value is a local argument,
+                then what's passed is a pointer to THAT value's expansion
+                allowing you to pass ticked arguments down the tree.  If
+                the ticked value is a local argument that is not a quoted,
+                then just the normal value is passed.
+
+   rad (r, x)	Set display radix to r, return x.
+   while (test) body; Expands body so long as test is true.  Returns
+                the last value of body.  For example:
+   		   while (x < 10) x ++; -> 10
+
