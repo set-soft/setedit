@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.183  2002/08/27 17:21:41  set
+* Added: DontResizeToCells TV configuration keyword.
+
 Revision 1.182  2002/08/26 13:41:48  set
 * Added: ExtProgVideoMode and VideoMode TV config file keywords.
 * Added: More code for the video mode options. Next step will be save the

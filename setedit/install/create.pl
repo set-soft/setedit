@@ -1,7 +1,11 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
+
+# Configuration options:
+$usePMode=0;
+
 open(FIL,'../version.txt') || die;
 $version=<FIL>;
 chop($version);
@@ -54,14 +58,23 @@ if (!(-e $instdist) || (-M $bindist < -M $instdist) || (-M 'install.exe' < -M $i
    $d='install.exe';
    die 'The install.exe is missing?!' unless (-e $d);
    system("upx $d");
-   trySystem("exe2coff $d");
-   $stub="$djdir/bin/pmodstub.exe";
-   $stub =~ s/\//\\/g;
-   trySystem("copy /B $stub + install $d");
-   unlink('install');
+   if ($usePMode)
+     {
+      trySystem("exe2coff $d");
+      $stub="$djdir/bin/pmodstub.exe";
+      $stub =~ s/\//\\/g;
+      trySystem("copy /B $stub + install $d");
+      unlink('install');
+      $dpmi='';
+     }
+   else
+     {
+      trySystem("cp $djdir/bin/cwsdpmi.exe .");
+      $dpmi='cwsdpmi.exe';
+     }
    trySystem("exedat $d install.dat");
    trySystem("cp $djdir/bin/emu387.dxe .");
-   trySystem("zip -9 $instdist $d emu387.dxe");
+   trySystem("zip -9 $instdist $d emu387.dxe $dpmi");
    unlink('emu387.dxe');
    trySystem("mkdir es");
    trySystem("mkdir es\\LC_MESSAGES");
