@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.310  2003/04/28 13:58:19  set
+* Added: Word completion stuff! is based on the code I wrote for sLisp and
+Lemur. I used Alt+Right for it but I'm not sure if that's a good idea.
+Currently is only on user request, some options about it could be added.
+
 Revision 1.309  2003/04/28 13:56:15  set
 * Added: A class browser based on TAGs info. It allows to know which are
 the parents and childs for a class, also which members are declared, jump

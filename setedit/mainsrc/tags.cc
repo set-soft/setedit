@@ -634,7 +634,7 @@ void TTagCollection::refresh()
        }
      if (reload)
        {
-        printf("Trying to reload %s\n",p->file);
+        //printf("Trying to reload %s\n",p->file);
         loadTagsFromFile(p);
        }
     }
@@ -1270,7 +1270,7 @@ TDialog *createDialogVCl(stClassTagInfo *cl)
  TSVeGroup *grp=MakeVeGroup(tsveMakeSameW,
                             new TSStaticText(__("View")),
                             new TSButton(__("~T~his class"),cmThisClass,bfDefault),
-                            new TSButton(__("This & ~P~arents"),cmThisAParents),
+                            new TSButton(__("This & Pa~r~ents"),cmThisAParents),
                             new TSButton(__("~S~orted"),cmSorted),
                             new TSButton(__("E~x~it"),cmExit),
                             relations,
@@ -1347,8 +1347,6 @@ void BrowseClass(ccIndex index, TTagClassCol *clist)
        childs=next;
       }   
     ret=execDialog(createDialogVCl(cl),&box);
-    printf("commandCB: %d\n",commandCB);
-    printf("ret: %d\n",ret);
     if (commandCB==cmParent)
       {
        clist->search(cl->parents->at(parents->selection),index);

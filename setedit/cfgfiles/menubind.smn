@@ -100,8 +100,8 @@ SubMenu: "~E~dit", kbAlE
  EndSubMenu
 EndSubMenu
 
-# English: CFGJNPRST
-# Spanish: BEINPRS
+# English: CFGJNPRSTW
+# Spanish: BCEILNOPRST
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
