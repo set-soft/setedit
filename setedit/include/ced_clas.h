@@ -536,6 +536,10 @@ public:
     unsigned StartOfSearch;
     unsigned selStartF,selEndF;
     Boolean IsFoundOn;
+    // Variables for the "selection" search
+    static Boolean newSelection;
+    static char    findStrSel[maxFindStrLenEd];
+
     static int    CompileSearch(char *searchStr, char *replaceStr=0);
     static uint32 MakeASearch(char *text, uint32 len, int &matchLen);
     static uint32 MakeASearchBack(char *text, uint32 len, int &matchLen);
@@ -554,7 +558,7 @@ public:
     Boolean       SearchSelForB(Boolean back);
     Boolean       SearchSelForward();
     Boolean       SearchSelBackward();
-    Boolean       CopySelToFindStr(char *destination, unsigned max);
+    void          UpdateSearchSelBuffer();
 
     // Highligth of one char
     int XHLCO,YHLCO,XHLCC,YHLCC,XHLCo,YHLCo,XHLCc,YHLCc;

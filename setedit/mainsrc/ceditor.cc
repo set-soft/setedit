@@ -163,33 +163,22 @@ void DisableCommands(TCommandSet &cmdsAux)
  TView::setCommands(cmdsAux);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: int InitTCEditor(char *s,Boolean force)
+  Description: 
+  Intialize all the things needed by the class. The function is
+automagically called by the constructor if never was called but can be
+called by hand to force some things.@p
+  This function loads the pseudo macros file, creates the pseudo hash tables
+for the reserved words (if compiled STANDALONE) and disables all the editor
+commands.@p
+  The @var{s} argument is the name of the Pseudo Macros file and the
+@var{force} argument can be used to force the initialization.
 
-   Type: Normal function.
-
-   Objetive: Intialize all the things needed by the class.
-             The function is automagically called by the constructor if never
-   was called but can be called by hand to force some things.
-
-   Things that this function make:
-   1) Loads the pseudo macros file.
-   2) Creates the pseudo hash tables for the reserved words (if STANDALONE).
-   3) Disable all the editor commands.
-
-   Parameters:
-   char *s: The name of the Pseudo Macros file.
-   Boolean force: If true forces the initialization.
-
-   Returns:
-   0 if all OK or the class is already initialized.
-   Flags:
-   1 The Pseudo macros couldn't be loaded.
-
-   by SET.
-
-****************************************************************************/
+  Return: if all OK or the class is already initialized. 1 if the Pseudo
+macros couldn't be loaded.
+  
+***************************************************************************/
 
 int InitTCEditor(char *s,Boolean force)
 {
@@ -203,9 +192,10 @@ int InitTCEditor(char *s,Boolean force)
        ret|=1;
     TView::getCommands(TCEditor::cmdsAux);
     DisableCommands(TCEditor::cmdsAux);
-#ifdef STANDALONE
+    TCEditor::findStrSel[0]=0;
+    #ifdef STANDALONE
     CreateSHShortCutTables();
-#endif
+    #endif
 
     ClassInitialized=1;
     atexit(DeInitTCEditor);
@@ -2087,6 +2077,7 @@ void TCEditor::handleMouse(TEvent &event)
    }
  while (mouseEvent(event,evMouseMove+evMouseAuto));
  clearEvent(event);
+ UpdateSearchSelBuffer();
  if (TVOSClipboard::isAvailable()>1)
     clipWinCopy(1);
 }
@@ -3665,47 +3656,6 @@ int TCEditor::handleCommand(ushort command)
 /**[txh]********************************************************************
 
   Description:
-  Copies the selected text to the @var{destination} buffer. If nothing is
-selected informs it to the user. If the selection contains \n also informs it
-to the user. It also checks for @var{max} bytes.
-  
-  Return: True if the selection was copied.
-  
-***************************************************************************/
-
-Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
-{
- flushLine();
- // Must have a selection.
- // Note: the command is disabled when no selection is available.
- if (!hasVisibleSelection())
-   {
-    editorDialog(edNothingSelected);
-    return False;
-   }
- // Must be less than maxFindStrLenEd chars
- unsigned selLen=selEnd-selStart;
- if (selLen>=max)
-   {
-    editorDialog(edSelTooBig,max);
-    return False;
-   }
- // Shouldn't contain more than a line
- for (unsigned offset=selStart; offset<selEnd; offset++)
-     if (CLY_IsEOL(buffer[offset]))
-       {
-        editorDialog(esSelHaveEOL);
-        return False;
-       }
- // Now is safe to copy
- strncpyZ(destination,buffer+selStart,selLen+1);
- return True;
-}
-
-
-/**[txh]********************************************************************
-
-  Description:
   Searchs the selected text forward or backward from the cursor position. If
 @var{back} is True the search is backward.
   
@@ -3717,9 +3667,23 @@ Boolean TCEditor::SearchSelForB(Boolean back)
 {
  if (!bufLen)     // Sanity check
     return False;
- char tmp[maxFindStrLenEd];
- if (!CopySelToFindStr(tmp,maxFindStrLenEd))
+
+ if (findStrSel[0]==0)
+   {
+    editorDialog(edNothingSelected);
     return False;
+   }
+ if (newSelection)
+   {
+    newSelection=False;
+    // Shouldn't contain more than a line
+    for (unsigned offset=0; findStrSel[offset]; offset++)
+        if (CLY_IsEOL(findStrSel[offset]))
+          {
+           editorDialog(esSelHaveEOL);
+           return False;
+          }
+   }
  // Remmember the old search settings
  unsigned oldOps=editorFlags;
  ushort   oldSearchInSel=SearchInSel;
@@ -3728,12 +3692,13 @@ Boolean TCEditor::SearchSelForB(Boolean back)
  editorFlags&=~(efCaseSensitive | efWholeWordsOnly | efRegularEx |
                 efSearchInComm | efSearchOutComm | efDoReplace |
                 efSearchBack);
- editorFlags|=efCaseSensitive;
+ if (strC.Flags1 & FG1_CaseSensitive)
+    editorFlags|=efCaseSensitive;
  if (back)
     editorFlags|=efSearchBack;
  SearchInSel=FromWhere=0;
  // Compile the search
- if (CompileSearch(tmp))
+ if (CompileSearch(findStrSel))
     return False;
 
  StartOfSearch=(unsigned)(ColToPointer()-buffer);
@@ -3744,7 +3709,7 @@ Boolean TCEditor::SearchSelForB(Boolean back)
    }
  else
     StartOfSearch++;
- Boolean found=search(tmp,editorFlags);
+ Boolean found=search(findStrSel,editorFlags);
 
  if (!found)
    {// Start from the other end
@@ -3752,7 +3717,7 @@ Boolean TCEditor::SearchSelForB(Boolean back)
        StartOfSearch=bufLen-1;
     else
        StartOfSearch=0;
-    search(tmp,editorFlags);
+    search(findStrSel,editorFlags);
    }
 
  // Restore previous settings
@@ -8643,18 +8608,32 @@ void TCEditor::SetStartOfSelecting(uint32 startOffSet)
  selecting=True;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void UpdateSelecting(void)
+  Description:
+  Copies current selection to the "selection" search buffer.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
+void TCEditor::UpdateSearchSelBuffer()
+{
+ // Used for the "selection" search, indicates we have a new selection
+ newSelection=True;
+ unsigned len=selEnd-selStart;
+ if (len>=maxFindStrLenEd)
+    len=maxFindStrLenEd-1;
+ memcpy(findStrSel,buffer+selStart,len);
+ findStrSel[len]=0;
+}
 
-   Objetive: Update the selected area according to the new position of the
-   cursor.
+/**[txh]********************************************************************
 
-   by SET.
-
-****************************************************************************/
+  Description:
+  Update the selected area according to the new position of the cursor. It
+also makes a copy of the selection to the auxiliar OS clipboard (selection
+clipboard) and the "selection" search clipboard.
+  
+***************************************************************************/
 
 void TCEditor::UpdateSelecting(void)
 {
@@ -8675,6 +8654,8 @@ void TCEditor::UpdateSelecting(void)
     selStart=bufLen;
  if (selEnd>bufLen)
     selEnd=bufLen;
+
+ UpdateSearchSelBuffer();
 
  if (TVOSClipboard::isAvailable()>1)
     clipWinCopy(1);
@@ -14027,6 +14008,8 @@ int      TCEditor::MacroCount=0;
 int      TCEditor::staticWrapCol=78;
 int      TCEditor::DontPurge=0;
 int      TCEditor::DontLoadFile=0;
+Boolean  TCEditor::newSelection=False;
+char     TCEditor::findStrSel[maxFindStrLenEd];
 TCEditor *TCEditor::showMatchPairFlyCache=NULL;
 TSubMenu *TCEditor::RightClickMenu=0;
 TPMCollection *TCEditor::PMColl=NULL;

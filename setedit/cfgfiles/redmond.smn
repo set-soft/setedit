@@ -111,8 +111,8 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
  MenuItemC: "~S~earch again", cmcSearchAgain, kbUnknown, "Ctrl+L"
  MenuSeparator
- MenuItemC: "S~e~arch selection forward", cmcSearchSelForward
- MenuItemC: "Search selection ~b~ackward", cmcSearchSelBackward
+ MenuItemC: "S~e~arch selection forward", cmcSearchSelForward, kbShF8, "Shift+F8"
+ MenuItemC: "Search selection ~b~ackward", cmcSearchSelBackward, kbShF7, "Shift+F7"
  MenuSeparator
  MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"

@@ -110,8 +110,8 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
  MenuItemC: "~S~earch again", cmcSearchAgain, kbUnknown, "Ctrl+L"
  MenuSeparator
- MenuItemC: "S~e~arch selection forward", cmcSearchSelForward
- MenuItemC: "Search selection ~b~ackward", cmcSearchSelBackward
+ MenuItemC: "S~e~arch selection forward", cmcSearchSelForward, kbShF8, "Shift+F8"
+ MenuItemC: "Search selection ~b~ackward", cmcSearchSelBackward, kbShF7, "Shift+F7"
  MenuSeparator
  MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"
@@ -735,4 +735,62 @@ StatusRange: 0, 0xFFFF
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~F5~ Zoom", cmZoom, kbF5
 EndStatusRange
+
+#
+#  Table for the assigned function keys.
+#  Note I: I think F11 and F12 should be left for user usage.
+#  Note II: Complex combinations (i.e. Shift+Alt+Fx) should be used carefully
+#  because they aren't supported by all terminals and because they should be
+#  reserved for OS level tasks or Window Manager.
+#
+# F1       Help
+# Ctrl+F1  Syntax help
+# Alt+F1   Last help
+# 
+# F2       Save
+# Ctrl+F2  Jump symbol
+# Alt+F2   Jump function
+# Shift+F2 Grep
+# 
+# F3       Open
+# Shift+F3 Repeat macro
+# Alt+F3   Close
+# Ctrl+F3  Calling stack (debug)
+# 
+# F4       Go to cursor (debug)
+# Alt+F4   Calculator
+# Ctrl+F4  Evaluate/Modify (debug)
+# 
+# F5       Zoom
+# Ctrl+F5  Size/Move
+# Alt+F5   User screen
+# 
+# F6       Next Window
+# Shift+F6 Previous Window
+# Ctrl+F6  Inspector (debug)
+# 
+# F7       Trace into (debug)
+# Ctrl+F7  Normal watch (debug)
+# Alt+F7   Previous message
+# Shift+F7 Search sel backwards
+# 
+# F8       Step over (debug)
+# Ctrl+F8  Breakpoint (debug)
+# Alt+F8   Next message
+# Shift+F7 Search sel forward
+# 
+# F9       SDG
+# Ctrl+F9  Run program
+# Shift+F9 Run (debug)
+# 
+# F10       Menu
+# Shift+F10 Record macro
+# Alt+F10   Stop recording macro | Control dialog when InfView
+# Ctrl+F10  Play recorded macro
+# 
+#           F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
+# Alone      X  X  X  X  X  X  X  X  X   X   U   U
+# Shift         X  X        X  X  X  X   X   U   U
+# Ctrl       X  X  X  X  X  X  X  X  X   X   U   U
+# Alt        X  X  X  X  X     X  X      X   U   U
 

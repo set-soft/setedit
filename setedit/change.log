@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.645  2004/12/02 20:34:12  set
+* Fixed: Both new menu extries were for forward search ;-)
+* Added: The new menu entries to be i15d.
+
 Revision 1.644  2004/12/02 20:07:17  set
 * Added: Two new commands to emulate what Ivan and Sergio described as
 a search mechanism using the selected text. Needs some adjustments.
