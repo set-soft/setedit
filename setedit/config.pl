@@ -634,7 +634,8 @@ int main(void)
  if (hits!=1) return 1;
  printf("OK\n");
  return 0;
-}';
+}
+';
  $test206=$test205.'0,'.$t2;
  $test205.=$t2;
 
@@ -696,7 +697,8 @@ int main(void)
 {
  printf("%d.%d.%d",TV_MAJOR_VERSION,TV_MIDDLE_VERSION,TV_MINOR_VERSION);
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GXX,'cc',$test,"$stdcxx -I$TVInclude");
  if (!CompareVersion($test,$vNeed))
    {
@@ -736,7 +738,8 @@ int main(void)
  printf("%d.0.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION);
  #endif
  return 0;
-}';
+}
+';
  $MP3Support=0;
  $test=RunGCCTest($GCC,'c',$test,"-lalleg");
  if (!length($test))
@@ -787,7 +790,8 @@ int main(void)
  f=gzopen("","rb");
  printf("%s",ZLIB_VERSION);
  return 0;
-}';
+}
+';
  $ver=RunGCCTest($GCC,'c',$test,'-lz');
  if (length($ver))
    {
@@ -868,7 +872,8 @@ int main(void)
 {
  printf("%s\n",_("OK"));
  return 0;
-}';
+}
+';
  $intllib=(($OS eq 'DOS') || ($OS eq 'Win32')) ? '-lintl' : '';
  $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib);
  if ($test ne "OK\n")
@@ -1122,7 +1127,8 @@ int main(void)
  int version;
  printf("%s",Gpm_GetLibVersion(&version));
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GCC,'c',$test,'-lgpm');
  if (!length($test))
    {
@@ -1212,7 +1218,8 @@ int main(void)
 {
  printf("Ok\n");
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GCC,'c',$test,'-lwin');
  chop($test);
  if ($test ne 'Ok')

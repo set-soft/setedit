@@ -355,7 +355,8 @@ int main(void)
 {
  cout << "OK" << endl;
  return 0;
-}';
+}
+';
  $test=RunGCCTest($cc,'cc',$test,$stdcxx);
  if ($test eq "OK\n")
    {
@@ -418,7 +419,7 @@ sub CheckGXX
 
 sub CheckGXXReal
 {
- my $test;
+ my ($test,$res,@list,$i);
 
  print 'Looking for the C++ compiler: ';
  $test='#include <iostream.h>
@@ -426,15 +427,20 @@ int main(void)
 {
  cout << "OK" << endl;
  return 0;
-}';
- $test=RunGCCTest($defaultCXX,'cc',$test,$stdcxx);
- if ($test ne "OK\n")
+}
+';
+ @list=split(/:/,$defaultCXX);
+ foreach $i (@list)
    {
-    CreateCache();
-    die('can not find it');
+    $res=RunGCCTest($i,'cc',$test,$stdcxx);
+    if ($res eq "OK\n")
+      {
+       print "$i\n";
+       return $i;
+      }
    }
- print "$defaultCXX\n";
- $defaultCXX;
+ CreateCache();
+ die('can not find it');
 }
 
 ###[txh]####################################################################
@@ -469,7 +475,8 @@ int main(void)
 {
  printf("%d.0.%d",DJGPP,DJGPP_MINOR);
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GCC,'c',$test,'');
  if (!CompareVersion($test,$vNeed))
    {
@@ -673,7 +680,7 @@ sub DetectOS
     $OSf='';
     $Compf='djgpp';
     $stdcxx='-lstdcxx';
-    $defaultCXX='gxx';
+    $defaultCXX='gpp:gxx';
     $supportDir='djgpp';
    }
  elsif ($os=~/[Ll]inux/)
@@ -747,7 +754,8 @@ int main(void)
  printf("MinGW\n");
  #endif
  return 0;
-}';
+}
+';
        $Compf=RunGCCTest($GCC,'c',$test,'');
        chop($Compf);
        $conf{'Cygwin/MinGW'}=$Compf;
@@ -1075,7 +1083,8 @@ int main(void)
  printf("Unknown\n");
  #endif
  return 0;
-}';
+}
+';
  $test=RunGCCTest($GCC,'c',$test,'');
  chop($test);
  $CPU=$conf{'TV_CPU'}=$test;
