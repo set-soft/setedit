@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.143  2002/07/04 19:30:45  set
+* Fixed: [MSVC] warnings from nmake in libz/Makefile.nmk. Patch from
+WintiX, he successfuly used it to create libz.lib.
+* Added: [MSVC] libbzip2 and libpcre makefiles.
+
 Revision 1.142  2002/07/03 18:27:49  set
 * Added: First versions of MSVC makefile and libz makefile.
 

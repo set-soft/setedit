@@ -8,6 +8,7 @@
 .SUFFIXES: .cc .cpp .c
 
 CC       = cl /nologo
+CXX      = $(CC) /TP
 LD       = $(CXX)
 
 CFLAGS   = -O2 $(INC) -D_WIN32 /GR- /GX-
