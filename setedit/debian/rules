@@ -12,7 +12,7 @@ export DH_COMPAT=1
 build: build-stamp
 build-stamp: debianbackup.tar
 	dh_testdir
-	./configure --prefix=$(shell pwd)/debian/tmp/usr --fhs
+	./configure --prefix=$(shell pwd)/debian/tmp/usr --fhs --no-comp-exe
 	$(MAKE)
 	touch build-stamp
 

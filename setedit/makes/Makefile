@@ -74,7 +74,7 @@ install: editor
 	cd djgpp; compress.bat $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install; cd ..
 
 install-infview: infview
-	cd djgpp; perl compinf.pl --prefix $(inst_prefix) --install; cd ..
+	cd djgpp; perl compinf.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install; cd ..
 
 else
 #
@@ -100,5 +100,5 @@ install: editor
 	cd linux; perl ./compress.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install --fhs $(SET_USE_FHS); cd ..
 
 install-infview: infview
-	cd linux; perl ./compinf.pl --prefix $(inst_prefix) --install --fhs $(SET_USE_FHS); cd ..
+	cd linux; perl ./compinf.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install --fhs $(SET_USE_FHS); cd ..
 endif

@@ -1,3 +1,16 @@
+setedit (0.4.51-2) unstable; urgency=low
+
+  * Updated upstream sources from CVS, it has small bugfixes and tweaks
+    here and there.
+  * Now that I have installed UPX on my system, I realized that the
+    infview binary is allways packed with UPX if it is available, and
+    unfortunately upstream didn't provide an easy way of avoiding this,
+    so I just modified upstream building system to be able to specify
+    a new "--no-comp-exe" option to the configure script and we use
+    that on debian/rules.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun, 28 Oct 2001 15:59:16 -0300
+
 setedit (0.4.51-1) unstable; urgency=low
 
   * New upstream version (still a development release).

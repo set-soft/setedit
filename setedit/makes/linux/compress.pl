@@ -47,7 +47,7 @@ else
 # Parse command line
 $nextisprefix=0; $nextisfhs=0;
 $iMode=0;  # Installation mode
-$iCompressExe=0;
+$iCompressExe=1;
 $useFHS=0;
 $Strip=1;
 foreach $i (@ARGV)
@@ -74,9 +74,9 @@ foreach $i (@ARGV)
      {
       $iMode=1;
      }
-   elsif ($i eq '--compress')
+   elsif ($i eq '--no-compress')
      {
-      $iCompressExe=1;
+      $iCompressExe=0;
      }
    elsif ($i eq '--no-strip')
      {
@@ -85,7 +85,7 @@ foreach $i (@ARGV)
    else
      {
       print "Unknown command line option: $i\n";
-      print "Usage: compres.pl [--prefix path] [--install] [--compress]\n\n";
+      print "Usage: compres.pl [--prefix path] [--install] [--no-compress]\n\n";
      }
   }
 
