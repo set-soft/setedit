@@ -83,7 +83,7 @@ void EditorSignal(int num)
  raise(num);
 }
 
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 #include <sys/exceptn.h>
 void CtrlCOff(void)
 {

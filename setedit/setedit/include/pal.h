@@ -375,7 +375,7 @@
 
 // SAA changed it but I don't think that's really needed
 // I keep the code just in case
-//#ifdef __TURBOC__
+//#ifdef TVComp_BCPP
 //#define _S(bg,fg) 0x##bg##fg ,
 //extern char SE___cpColor[];
 // #define SE_cpColor SE___cpColor

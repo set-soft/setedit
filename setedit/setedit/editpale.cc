@@ -1,8 +1,8 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <configed.h>
 
-#if defined(SEOSf_djgpp) || defined(SEOSf_Linux)
+#if defined(SECompf_djgpp) || defined(SEOSf_Linux)
 #include <stdio.h>
 
 #define Uses_TDialog

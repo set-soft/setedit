@@ -1,14 +1,10 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#ifdef TVOSf_djgpp
-#include <conio.h>
-#endif
+
+#define Uses_stdio
+#define Uses_string
 #define Uses_fpstream
 #include <tv.h>
-
-#include <stdio.h>
-#define Uses_string
-
 #include <tpaltext.h>
 
 PalCol TTextPalette::OriginalPalette[16];
@@ -16,7 +12,7 @@ PalCol TTextPalette::ActualPalette[16];
 
 /********************** DJGPP Working version ************************/
 /* Implemented with BIOS to increase compatibility                   */
-#ifdef TVOSf_djgpp
+#ifdef TVCompf_djgpp
 #include <dpmi.h>
 #include <go32.h>
 #include <sys/movedata.h>
@@ -92,7 +88,7 @@ void TXTGetOneIndex(int index, PalCol *col)
 }
 /**************** End of  DJGPP Working version **********************/
 #define PAL_DEFINED
-#endif // __DJGPP__
+#endif // DJGPP
 
 
 

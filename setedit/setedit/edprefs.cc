@@ -78,7 +78,7 @@ void PrimaryEncoding(TSSortedListBox *&enco1, TSLabel *&lbe1, int disableFonts)
 }
 
 
-#ifndef __DJGPP__
+#ifndef TVCompf_djgpp
 
 TDialog *CreateScreenOpsDialog()
 {

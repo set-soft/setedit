@@ -85,7 +85,7 @@ int AboutStartBox(void)
  return 1;
 }
 
-#ifndef __DJGPP__
+#ifdef TVOS_UNIX
 void ShowUserScreenDialog()
 {
  GiveAdvice(gadvUserScreen);
