@@ -2848,6 +2848,8 @@ int main(int argc, char *argv[])
  editorApp=new TSetEditorApp();
  // We finished the preload stuff
  TSetEditorApp::finishPreLoadDesktop();
+ if (TScreen::avoidMoire)
+    TCEditor::TabChar=TCEditor::oTabChar='.';
 
  // Set's the window title for our application (W9x,X,etc.)
  editorApp->SetTitle();
