@@ -35,6 +35,9 @@ public:
  char *Code;
 
 private:
+ char *CopyCodeError();
+ TLispVar *InterpretNoClean(char *s);
+ 
  FILE *fileOut;
  static char *cNames[MLIBaseCommands];
  static Command cComms[MLIBaseCommands];
@@ -45,6 +48,7 @@ private:
  static char *SyntaxError[];
  static char *cNamesConst[MLIBaseConstants];
  static TLispVar *cConstants[MLIBaseConstants];
+ char  ErrorReported;
  char *StartCode;
 
  friend void MLIBasePrint(TMLIBase *o,int start ,int cant);
@@ -71,11 +75,13 @@ void MLIRetString(TMLIBase *o,int stkPos,char *str);
 
 #define GetString(pos,obj) \
 { obj=(TLispString *)o->Solve(start+pos); \
+  if(!obj) goto CleanUp; \
   if ((obj->type>>12)!=MLIGString) \
     { o->Error=MLITypeParam; goto CleanUp; } \
 }
 #define GetInteger(pos,obj) \
 { obj=(TLispInteger *)o->Solve(start+pos); \
+  if(!obj) goto CleanUp; \
   if ((obj->type>>12)!=MLIGInteger) \
     { o->Error=MLITypeParam; goto CleanUp; } \
 }
@@ -86,11 +92,13 @@ void MLIRetString(TMLIBase *o,int stkPos,char *str);
     { dest=ops; } \
  else \
     { obj=(TLispInteger *)o->Solve(start+pos); \
+      if(!obj) goto CleanUp; \
       if ((obj->type>>12)!=MLIGInteger) \
         { o->Error=MLITypeParam; goto CleanUp; } \
       dest=obj->val; } }
 #define GetCode(pos,obj) \
 { obj=(TLispCode *)(o->array->Get(start+pos)); \
+  if(!obj) goto CleanUp; \
   if ((obj->type>>12)!=MLIGCode) \
     { o->Error=MLITypeParam; goto CleanUp; } \
 }

@@ -548,6 +548,30 @@ CleanUp:
  destroyFloatVar(options);
 }
 
+// (EvalString <string>)
+DecFun(MLIEvalString)
+{
+ CheckNumParams(cant!=1);
+
+ LocVarStr(code);
+ TLispVar *return_value;
+
+ GetString(0,code);
+ return_value=o->Interpret(code->str);
+ destroyFloatVar(code);
+
+ if (!return_value)
+   {
+    MLIRetNULL();
+    return;
+   }
+
+ MLIRetObj(return_value);
+
+CleanUp:
+ return;
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -566,7 +590,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "ForceUpdate",
  "AskString",
  "OpenFile",
- "MessageBox"
+ "MessageBox",
+ "EvalString"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -587,7 +612,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIForceUpdate,
  MLIAskString,
  MLIOpenFile,
- MLIMessageBox
+ MLIMessageBox,
+ MLIEvalString
 };
 
 
