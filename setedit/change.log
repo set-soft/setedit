@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.132  2002/06/25 15:40:38  set
+* Added: Syntax highlight for the Turbo Vision configuration files.
+
 Revision 1.131  2002/06/24 19:48:28  set
 * Added: PHP syntax highlight, contributed by "Richard Vrijhof"
 <R.J.Vrijhof@bigfoot.com>.
