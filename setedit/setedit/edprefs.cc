@@ -1108,6 +1108,8 @@ int  ChooseConvCPs(int &From, int &To, uint32 &ops)
 }
 
 /************************** New code pages dialogs **************************/
+void SetEditorFontsEncoding(int priChanged, int enPri, int sndChanged, int enSec);
+
 #pragma pack(1)
 typedef struct
 {
@@ -1202,10 +1204,10 @@ void EncodingOptions()
    }
  else if (ret==cmOK)
    {
-    if (box.appForce!=enForceApp || box.scrForce!=enForceScr || box.sndForce!=enForceSnd ||
-        (enForceApp && box.appCP!=appCP) ||
-        (enForceScr && box.scrCP!=scrCP) ||
-        (enForceSnd && box.sndCP!=sndCP))
+    int appChanged=box.appForce!=enForceApp || (enForceApp && box.appCP!=appCP);
+    int priChanged=box.scrForce!=enForceScr || (enForceScr && box.scrCP!=scrCP);
+    int sndChanged=box.sndForce!=enForceSnd || (enForceSnd && box.sndCP!=sndCP);
+    if (appChanged || priChanged || sndChanged)
       {// At least one changed
        enForceApp=box.appForce;
        enForceScr=box.scrForce;
@@ -1215,7 +1217,8 @@ void EncodingOptions()
        if (enForceScr) enScr=TVCodePage::IndexToID(box.scrCP);
        if (enForceSnd) enSnd=TVCodePage::IndexToID(box.sndCP);
        TVCodePage::SetCodePage(enApp,enScr);
-       // Acá debería asegurarse de que las fonts reflejen estos seteos
+       SetEditorFontsEncoding(priChanged,enForceScr ? enScr : idDefScr,
+                              sndChanged,enForceSnd ? enSnd : idDefScr);
        // This is a full redraw, not just a refresh from the buffers
        TProgram::application->Redraw();
       }
@@ -1225,8 +1228,11 @@ void EncodingOptions()
 /***************************** New fonts dialogs ****************************/
 
 static uchar foPriLoad=0, foSecLoad=0;
+static uchar foPriLoaded=0, foSecLoaded=0;
 static char *foPriName=NULL, *foSecName=NULL;
+static char *foPriFile=NULL, *foSecFile=NULL;
 static unsigned foPriW=8,foPriH=16;
+static TVFontCollection *foPri=NULL, *foSec=NULL;
 
 #pragma pack(1)
 typedef struct
@@ -1302,6 +1308,137 @@ void TDiaFont::handleEvent(TEvent& event)
    }
 }
 
+void SetEditorFontsEncoding(int priChanged, int enPri, int sndChanged, int enSec)
+{
+ int prC=0, seC=0;
+ TScreenFont256 primary,secondary,*prF=NULL,*seF=NULL;
+
+ if (priChanged && foPriLoaded && foPri)
+   {
+    foPri->SetCodePage(enPri);
+    primary.w=foPriW;
+    primary.h=foPriH;
+    primary.data=foPri->GetFont(foPriW,foPriH);
+    prF=&primary;
+    prC=1;
+   }
+ if (sndChanged && foSecLoaded && foSec)
+   {
+    foSec->SetCodePage(enSec);
+    secondary.w=foPriW;
+    secondary.h=foPriH;
+    secondary.data=foSec->GetFont(foPriW,foPriH);
+    seF=&secondary;
+    seC=1;
+   }
+ if (prC || seC)
+    TScreen::setFont(prC,prF,seC,seF);
+}
+
+void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priSize,
+                    uchar secUse, char *secName, char *secFile)
+{
+ // Transfer the options
+ unsigned w,h;
+ TVFontCollection::Str2Size(priSize,w,h);
+ int sizeChanged=(w!=foPriW) || (h!=foPriH);
+ if (sizeChanged)
+   {
+    foPriW=w;
+    foPriH=h;
+   }
+
+ int priNameChanged=!foPriName || strcmp(foPriName,priName)!=0;
+ if (priNameChanged)
+   {
+    DeleteArray(foPriName);
+    foPriName=newStr(priName);
+    DeleteArray(foPriFile);
+    foPriFile=newStr(priFile);
+   }
+ else
+   {
+    DeleteArray(priName);
+    DeleteArray(priFile);
+   }
+
+ int priUseChanged=priUse!=foPriLoad;
+ foPriLoad=priUse;
+
+ int secNameChanged=!foSecName || strcmp(foSecName,secName)!=0;
+ if (secNameChanged)
+   {
+    DeleteArray(foSecName);
+    foSecName=newStr(secName);
+    DeleteArray(foSecFile);
+    foSecFile=newStr(secFile);
+   }
+ else
+   {
+    DeleteArray(secName);
+    DeleteArray(secFile);
+   }
+
+ int secUseChanged=secUse!=foSecLoad;
+ foSecLoad=secUse;
+
+ // Make it efective
+ int idDefScr, idDefApp;
+ TVCodePage::GetDefaultCodePages(idDefScr,idDefApp);
+ if (!TScreen::canSetBFont()) return;
+
+ TScreenFont256 primary,secondary,*prF=NULL,*seF=NULL;
+ int secChanged=0;
+ int priChanged=priNameChanged || priUseChanged || sizeChanged;
+ if (priNameChanged)
+   {// Create a collection for this font
+    if (enScr==-1) enScr=idDefScr;
+    if (foPri) delete foPri;
+    foPri=new TVFontCollection(foPriFile,enScr);
+    if (foPri->GetError())
+      {
+       if (foPri) delete foPri;
+       foPri=NULL;
+      }
+   }
+ if (priChanged && foPriLoad && foPri)
+   {
+    primary.w=foPriW;
+    primary.h=foPriH;
+    primary.data=foPri->GetFont(foPriW,foPriH);
+    prF=&primary;
+   }
+
+ if (TScreen::canSetSBFont())
+   {
+    secChanged=secNameChanged || secUseChanged || sizeChanged;
+    if (secNameChanged)
+      {// Create a collection for this font
+       if (enSnd==-1) enSnd=idDefScr;
+       if (foSec) delete foSec;
+       foSec=new TVFontCollection(foSecFile,enSnd);
+       if (foSec->GetError())
+         {
+          delete foSec;
+          foSec=NULL;
+         }
+      }
+    if (secChanged && foSecLoad && foSec)
+      {
+       secondary.w=foPriW;
+       secondary.h=foPriH;
+       secondary.data=foSec->GetFont(foPriW,foPriH);
+       seF=&secondary;
+      }
+   }
+ if (TScreen::setFont(priChanged,prF,secChanged,seF,enScr))
+   {
+    if (priChanged)
+       foPriLoaded=prF!=NULL;
+    if (secChanged)
+       foSecLoaded=seF!=NULL;
+   }
+}
 
 void FontsOptions()
 {
@@ -1340,7 +1477,7 @@ void FontsOptions()
  if (!foSecName || !fonts->search(foSecName,box.secFont))
     box.secFont=0;
 
- TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
+ TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont),*sec;
  box.priSizes=pri->sizes;
  int filled=0;
  char buffer[64];
@@ -1362,51 +1499,73 @@ void FontsOptions()
  TRect dkt=TProgram::deskTop->getExtent();
  int height=dkt.b.y-dkt.a.y-10;
 
- // Primary font label, check box and list
- TSLabel *priLBl=TSLabelCheck(__("~P~rimary"),__("~L~oad font"),0);
- TSVBitmapFontDescLBox *priLB=new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical);
- TSVeGroup *priOps=new TSVeGroup(priLBl,priLB,0);
- priOps->makeSameW();
-
- // Size
- TSSortedListBox *priSz=new TSSortedListBox(wForced,height,tsslbVertical);
- TSLabel *priSzl=new TSLabel(_("S~i~ze"),priSz);
-
- // Secondary font options, only if available
- TSVeGroup *secOps=NULL;
- if (TScreen::canSetSBFont())
+ int retry;
+ do
    {
-    secOps=new TSVeGroup(TSLabelCheck(__("~S~econdary"),__("Lo~a~d font"),0),
-                         new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical),0);
-    secOps->makeSameW();
+    // Primary font label, check box and list
+    TSLabel *priLBl=TSLabelCheck(__("~P~rimary"),__("~L~oad font"),0);
+    TSVBitmapFontDescLBox *priLB=new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical);
+    TSVeGroup *priOps=new TSVeGroup(priLBl,priLB,0);
+    priOps->makeSameW();
+   
+    // Size
+    TSSortedListBox *priSz=new TSSortedListBox(wForced,height,tsslbVertical);
+    TSLabel *priSzl=new TSLabel(_("S~i~ze"),priSz);
+   
+    // Secondary font options, only if available
+    TSVeGroup *secOps=NULL;
+    if (TScreen::canSetSBFont())
+      {
+       secOps=new TSVeGroup(TSLabelCheck(__("~S~econdary"),__("Lo~a~d font"),0),
+                            new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical),0);
+       secOps->makeSameW();
+      }
+
+    retry=0;
+    TDiaFont *d=new TDiaFont();
+    // Setup the members used to do the connection
+    d->pri=(TVBitmapFontDescLBox *)priLB->view;
+    d->sizes=(TSortedListBox *)priSz->view;
+    d->selected=box.priSize;
+    d->fonts=fonts;
+    // Now create the EasyDiag collection
+    TSViewCol *col=new TSViewCol(d);
+    col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,0));
+    EasyInsertOKCancel(col);
+    col->doIt();
+    delete col;
+   
+    if (execDialog(d,&box)==cmOK)
+      {
+       pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
+       sec=(TVBitmapFontDesc *)fonts->at(box.secFont);
+       const char *fontSize=(const char *)pri->sizes->at(box.priSize);
+       // We know the requested size for the primary font will work, but we don't
+       // know if the secondary font supports it.
+       if (box.secUse)
+         {
+          const char *s;
+          if (box.priUse)
+             s=fontSize;
+          else
+            {
+             unsigned w=8,h=16;
+             TScreen::getFontGeometry(w,h);
+             TVFontCollection::Size2Str(buffer,foPriW,foPriH);
+             s=buffer;
+            }
+          ccIndex pos;
+          if (!sec->sizes->search((void *)s,pos))
+            {
+             retry=1;
+             messageBox(mfError | mfOKButton,_("The selected secondary font doesn't support the primary size (%s)"),s);
+            }
+         }
+       if (!retry)
+          SetEditorFonts(box.priUse,newStr(pri->name),newStr(pri->file),fontSize,
+                         box.secUse,newStr(sec->name),newStr(sec->file));
+      }
    }
-
- TDiaFont *d=new TDiaFont();
- // Setup the members used to do the connection
- d->pri=(TVBitmapFontDescLBox *)priLB->view;
- d->sizes=(TSortedListBox *)priSz->view;
- d->selected=box.priSize;
- d->fonts=fonts;
- // Now create the EasyDiag collection
- TSViewCol *col=new TSViewCol(d);
- col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,0));
- EasyInsertOKCancel(col);
- col->doIt();
- delete col;
-
- if (execDialog(d,&box)==cmOK)
-   {
-    foPriLoad=box.priUse;
-    foSecLoad=box.secUse;
-
-    pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
-    DeleteArray(foPriName);
-    foPriName=newStr(pri->name);
-    TVFontCollection::Str2Size((const char *)pri->sizes->at(box.priSize),foPriW,foPriH);
-
-    pri=(TVBitmapFontDesc *)fonts->at(box.secFont);
-    DeleteArray(foSecName);
-    foSecName=newStr(pri->name);
-   }
+ while (retry);
 }
 
