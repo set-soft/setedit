@@ -84,7 +84,7 @@ protected:
   char *bufTitle;
 };
 
-const int TEditorProjectWindow::Version=6;
+const int TEditorProjectWindow::Version=7;
 
 typedef struct
 {
@@ -95,6 +95,7 @@ typedef struct
 } PrjItem;
 
 const int crtInteractive=1, crtUseFullName=2;
+const int prjShortName=0, prjName=1;
 
 class TPrjItemColl : public TStringCollection
 {
@@ -103,13 +104,20 @@ public:
  ~TPrjItemColl();
  void atInsert(ccIndex pos, char *s, int flags=crtInteractive);
  void freeItem(void *);
- void *keyOf(void *item) { return (void *)((PrjItem *)item)->shortName; };
+ void *keyOf(void *item)
+   { return sortMode==prjShortName ? (void *)((PrjItem *)item)->shortName :
+            (void *)((PrjItem *)item)->name; };
+ const char *keyOf(ccIndex item) { return (const char *)keyOf(at(item)); }
  char *referencePath;
  char *referenceCurDelta;
  Boolean Search(char *file, ccIndex &pos);
  int addFile(char *name, ccIndex &pos, int flags=0);
  void analizeReference(const char *filename);
  char *applyPrjPath(const char *name);
+ void  changeSorting(int mode);
+ void  toggleSorting()
+   { changeSorting(sortMode==prjShortName ? prjName : prjShortName); };
+ int   getSortMode() { return sortMode; };
 
 private:
  PrjItem *createNewElement(char *name, int flags=0);
@@ -121,6 +129,8 @@ private:
 
 protected:
  TPrjItemColl(StreamableInit);
+ int  sortMode; // prjShortName or prjName
+ void initClass();
 
 public:
  static const char *name;
@@ -136,26 +146,34 @@ static TPrjItemColl *ProjectList=NULL;
 TPrjItemColl::TPrjItemColl(ccIndex aLimit, ccIndex aDelta) :
      TStringCollection(aLimit,aDelta)
 {
- referencePath=getcwd(0,PATH_MAX);
- referenceCurDelta=NULL;
- if (!referencePath)
-    string_dup(referencePath,"");
-};
+ initClass();
+}
 
 TPrjItemColl::TPrjItemColl(StreamableInit) :
-     TStringCollection( streamableInit )
+     TStringCollection(streamableInit)
+{
+ initClass();
+}
+
+void TPrjItemColl::initClass()
 {
  referencePath=getcwd(0,PATH_MAX);
  referenceCurDelta=NULL;
  if (!referencePath)
     string_dup(referencePath,"");
-};
-
+ sortMode=prjShortName;
+}
 
 TPrjItemColl::~TPrjItemColl()
 {
  ::free(referencePath);
  ::free(referenceCurDelta);
+}
+
+void TPrjItemColl::changeSorting(int mode)
+{
+ sortMode=mode;
+ reSort();
 }
 
 void TPrjItemColl::analizeReference(const char *filename)
@@ -317,8 +335,9 @@ TEditorProjectListBox::TEditorProjectListBox(const TRect& bounds, ushort aNumCol
 
 void TEditorProjectListBox::getText(char *dest,ccIndex item,short maxlen)
 {
-  strncpy(dest,((PrjItem *)(list()->at(item)))->shortName,maxlen);
-  dest[maxlen] = EOS;
+ TPrjItemColl *p=(TPrjItemColl *)list();
+ strncpy(dest,p->keyOf(item),maxlen);
+ dest[maxlen]=EOS;
 }
 
 
@@ -428,6 +447,10 @@ void TEditorProjectListBox::handleEvent(TEvent &event)
                  GenericFileDialog(__("Add File"),name,"*",hID_FileOpen,
                                    fdMultipleSel | fdAddButton);
                  break;
+            case cmChangeSort:
+                 ((TPrjItemColl *)list())->toggleSorting();
+                 draw();
+                 break;                 
             default:
                  return;
            }
@@ -450,7 +473,7 @@ void TEditorProjectListBox::handleEvent(TEvent &event)
 
 TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
                                            const char *tit) :
-	TWindowInit(TEditorProjectWindow::initFrame),
+        TWindowInit(TEditorProjectWindow::initFrame),
         TDialog(rect,tit)
 {
  if (!ProjectList)
@@ -624,6 +647,13 @@ void LoadProject(char *name)
           hS=TScreen::getRows();
          }
        *f >> prjWin;
+       if (LoadingPrjVersion>6)
+         {
+          char aux;
+          *f >> aux;
+          if (ProjectList)
+             ProjectList->changeSorting(aux);
+         }
        prjWin->wS=wS;
        prjWin->hS=hS;
 
@@ -667,7 +697,8 @@ static void SaveOnlyProject(void)
     f->writeString(Signature);
     // Save the version & project
     ushort wS=TScreen::getCols(), hS=TScreen::getRows();
-    *f << TEditorProjectWindow::Version << wS << hS << prjWin;
+    *f << TEditorProjectWindow::Version << wS << hS << prjWin
+       << (char)ProjectList->getSortMode();
     SDGInterfaceSaveData(f);
     if (!f)
       {

@@ -3187,6 +3187,11 @@ By default the project window is located at the bottom of the desktop, but
 you can change this. @x{Editor General}.
 @p{}
 
+This window shows only the names of the files and the relative path only when
+names are repeated. You can change it to display the relative path for all
+files pressing @kbd{Alt+V} when the project window is selected.
+@p{}
+
 @c --------------------------------------------------------------------------
 @subsection Open (Project)
 

@@ -422,6 +422,7 @@ TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void)
 static edCList Simple[] =
 {
 #define C(a) { #a, cm##a }
+ C(ChangeSort),
  C(Close),
  C(DelFile),
  C(Delete),

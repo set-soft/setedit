@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.444  2003/10/14 15:39:27  set
+* Added: [sLisp] FindString, FindAgain, ReplaceString and ReplaceAgain sLisp
+commands. Based on code an ideas by Bernd.
+
 Revision 1.443  2003/10/06 18:49:21  set
 * Added: [WWW] Links to the Windows installer contributed by William.
 

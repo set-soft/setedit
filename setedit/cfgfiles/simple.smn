@@ -205,6 +205,7 @@ StatusRange: hcEditorProjectWindow, 4
 StatusEntry: "~Ins~ Insert", cmInsert, kbInsert
 StatusEntry: "~Del~ Delete", cmDelete, kbDelete
 StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~Alt+V~ View mode", cmChangeSort, kbAlV
 StatusHiddenEntry: cmeLastHelp, kbAlF1
 EndStatusRange
 

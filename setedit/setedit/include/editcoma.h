@@ -11,11 +11,12 @@ const int
       cmSHLOptions  = 0x2219,
 // Calendar broadcast
       cmCalendarPlugIn=0x221A,
-// List of windows (ALT+0)
+// List of windows (ALT+0) also project Window
       cmGo          = 0x2290,
       cmDelete      = 0x2291,
       cmInsert      = 0x2292,
-      cmDelFile     = 0x2293;
+      cmDelFile     = 0x2293,
+      cmChangeSort  = 0x2294;
 
 const int
       hcListWin            = 0x2110,
