@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.445  2003/10/14 15:51:26  set
+* Added: In the project window now you can choose between a way to display
+files that's easier to find by name and another suitable to find them by
+their directory. From suggestions by Sam Thursfield <samth@mail.ru> and
+Alain <alainm@pobox.com>, but I think others also asked for it.
+
 Revision 1.444  2003/10/14 15:39:27  set
 * Added: [sLisp] FindString, FindAgain, ReplaceString and ReplaceAgain sLisp
 commands. Based on code an ideas by Bernd.

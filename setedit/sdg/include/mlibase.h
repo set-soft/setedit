@@ -21,6 +21,7 @@ public:
  virtual Command   WhatSymbol(char *s);
  virtual TLispVar *WhatConstant(char *s);
  char *SkipCode();
+ static char *SkipCode(char *&code, int &error);
  TLispVar *Solve(int i);
  virtual char *GetTypeError();
  virtual char *GetError();

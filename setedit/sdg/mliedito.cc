@@ -161,7 +161,7 @@ CleanUp:
 DecFun(MLIdefmacro)
 {
  ccIndex ind;
- int len;
+ int len, i;
  MLIMacro *macro;
  TMacrosColl *Macros=((TMLIEditor *)o)->Macros;
  LocVarStr(string);
@@ -170,6 +170,9 @@ DecFun(MLIdefmacro)
  CheckNumParams(cant!=2);
  GetString(0,string);
  GetCode(1,code);
+
+ for (i=0; i<string->len; i++)
+     CheckForError(string->str[i]=='(' || string->str[i]==')',MLIInvaForName);
 
  macro=new MLIMacro;
  // Copy the name

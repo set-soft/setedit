@@ -32,6 +32,8 @@
 #define Uses_TSLabel
 #define Uses_TSButton
 #define Uses_TSStaticText
+#define Uses_TSInputLine
+#define Uses_TSVeGroup
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -119,6 +121,8 @@ static TStringableListBoxRec NewComBox;
 static TDialog *CommandsDialog=0;
 static TListBoxRec ComBox;
 static TNoCaseNoOwnerStringCollection *Commands=0;
+
+static TDialog *sLispCodeDialog=0;
 
 //------------------------------ Helper functions, can be moved
 
@@ -222,6 +226,7 @@ static void DeInitVariables(void)
  Destroy(CommandsDialog)
  Destroy(Commands)
  Destroy(MacrosDialog)
+ Destroy(sLispCodeDialog)
 }
 
 //---------- First dialog: Add/Delete keys
@@ -289,15 +294,55 @@ static int AddNewKey(void)
 }
 
 static
+TDialog *CreateLispCodeDialog()
+{
+ TSViewCol *col=new TSViewCol(__("sLisp code"));
+
+
+ col->insert(xTSCenter,yTSUpSep,
+             MakeVeGroup(new TSStaticText(__("Enter the sLisp code, it must start with (\n"
+                                             "and end with )")),
+                         new TSInputLine(255,1,hID_sLispKeyCode,40),
+                         0));
+ EasyInsertOKCancel(col,3);
+
+ TDialog *d=col->doItCenter(hcEditKeysLisp);
+ delete col;
+ return d;
+}
+
+static
+char *AddsLispCode()
+{
+ char isFirstTime=1;
+
+ if (!MacrosDialog)
+    sLispCodeDialog=CreateLispCodeDialog();
+
+ char b[256];
+ strcpy(b,"()");
+ if (execDialogNoDestroy(sLispCodeDialog,b,isFirstTime)==cmCancel)
+    return 0;
+
+ return strdup(b);
+}
+
+static
 int AddCommOrMacro(void)
 {
  AddKeyDialog->getData(&NewKeyBox);
 
- if (NewKeyBox.ops)
+ if (NewKeyBox.ops==1) // Macro
    {
     char *m=AddMacro();
     if (m)
        return addKey(KSequence,strdup(m),kbtIsMacro);
+   }
+ else if (NewKeyBox.ops==2) // sLisp code
+   {
+    char *m=AddsLispCode();
+    if (m)
+       return addKey(KSequence,m,kbtIsMacro);
    }
  else
    {
@@ -408,7 +453,7 @@ char *AddMacro(void)
 
  if (execDialogNoDestroy(MacrosDialog,&MacBox,isFirstTime)==cmCancel)
     return 0;
- if (MacBox.items->getCount() == 0)
+ if (!MacBox.items->getCount())
     return 0;
  return (char *)(MacBox.items->at(MacBox.selection));
 }

@@ -165,3 +165,14 @@ int MLIEdSeachAndRunCom(char *name)
     }
  return SLP_NO_CHOOSE;
 }
+
+int MLIEdIsolateCode(char *start, char *&end)
+{
+ int error;
+ char *ret=TMLIBase::SkipCode(start,error);
+ if (!ret)
+    return SLP_ERROR;
+ end=ret;
+ return SLP_OK;
+}
+

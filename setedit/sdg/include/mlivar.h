@@ -38,7 +38,8 @@ const int
       MLITypeParam  =0x2004,
       MLIUndefVar   =0x2005,
       MLIUndefSymbol=0x2006,
-      MLIUndefOp    =0x2007;
+      MLIUndefOp    =0x2007,
+      MLIInvaForName=0x2008;
 
 // Just an arbitrary limit to stop infinite recursion that will end in a crash
 const int maxNestedsLisp=1024;

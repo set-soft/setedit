@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIEditorDefs) && !defined(__TMLIEditorDefs__)
 #define __TMLIEditorDefs__
@@ -12,6 +12,7 @@ extern int   InterpretLispEditorFile(char *s);
 extern int   ReRunLastChooseLispEditor(void);
 extern int   MLIEdSeachAndRunCom(char *name);
 extern TNoCaseStringCollection *GetMacrosList(void);
+extern int   MLIEdIsolateCode(char *start, char *&end);
 
 // Definitions for move
 #define SLP_MOVE_CURSOR      -1

@@ -251,6 +251,8 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "~A~rbitrary indent", cmcArbitraryIndent
  EndSubMenu
  MenuItemC: "Test of macro from menu", cm(Test RunProgram)
+# Here is an example of how you can to execute a piece of sLisp code.
+#MenuItemC: "Test of macro from menu", cm((ShowInMessageWindow "Hi! ;-)"))
  MenuItemC: "~D~elete memorized backups", cmeDeleteBkps
 EndSubMenu
 

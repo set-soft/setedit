@@ -28,5 +28,6 @@ hID_SaveMP3           = hID_Start+14,
 hID_GotoLine          = hID_Start+15,
 hID_sLispMacros       = hID_Start+16,
 hID_SelectTagFile     = hID_Start+17,
-hID_ExportProjectItems= hID_Start+18;
+hID_ExportProjectItems= hID_Start+18,
+hID_sLispKeyCode      = hID_Start+19;
 #endif

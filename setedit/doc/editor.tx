@@ -584,6 +584,18 @@ the @file{macros.slp} file. @x{sLisp macros}.
 insert text in your code.
 @paragraph{}
 
+@subsection Assigning sLisp code
+@cindex slisp code to a key
+
+  A window called @il{sLisp code} will appear. This window shows allows
+entering a small portion of sLisp code. For long code use define a macro.
+@x{sLisp macros}.
+@p{}
+
+  The sLisp code must start with @code{(} and end with @code{)} or you'll get
+parser errors.
+@p{}
+
 @section Alt key configuration
 
   The editor can distinguish the left and right @key{Alt} keys. As old versions didn't
@@ -623,7 +635,7 @@ one of many possible arrangements.
 @paragraph{}
 
 If you need or want to configure the shortcuts activating the menues or
-menue options look at the @file{menubind.smn} file. Zhe format is self explanatory
+menue options look at the @file{menubind.smn} file. The format is self explanatory
 and the editor supports syntax highlighting for these files.
 @paragraph{}
 
@@ -4449,17 +4461,32 @@ called @file{macros.slp}.
   The macros can be assigned to keys (@x{How to configure the keyboard}), selected
 from the @il{Macro} menu or from the menu. From the @il{Macro} menu you can choose a
 macro from the list. If you want to repeat it you can do so with one keystroke.
-@paragraph{}
+@p{}
 
   To add a new macro to the list you must edit the @file{macros.slp} file. You can
 write the new macro by hand or you can use the @il{Macro} menu to record a macro and
 then generate the sLisp code for this macro.
-@paragraph{}
+@p{}
 
   To assign a macro to a menu entry you must edit the @file{menubind.smn}. The macros
 are called using @code{cm(name)} where @il{name} is the name of the macro you want to
 trigger.
-@paragraph{}
+@p{}
+
+  To assign a piece of sLisp code to a menu entry you must use
+@code{cm((code))}. Here is an example:
+@p{}
+
+@example
+ MenuItemC: "Test macro from menu", cm((ShowInMessageWindow "Hi! ;-)"))
+@end example
+
+  Don't insert spaces between the starting and ending parentheses pairs.
+@p{}
+
+  You can also assing a piece of sLisp code to a key.
+@x{How to configure the keyboard}.
+@p{}
 
 @section How to write a sLisp macro
 

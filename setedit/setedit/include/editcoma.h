@@ -28,5 +28,5 @@ const int
       hcEditKeysSeq        = 0x2241,
       hcEditKeysMac        = 0x2242,
       hcEditKeysCom        = 0x2243,
-      hcEditAltKeys        = 0x2244;  // Not used
+      hcEditKeysLisp       = 0x2244;
 

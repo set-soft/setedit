@@ -184,7 +184,8 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
 
  if (flags & aidComMac)
    {
-    TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),0);
+    TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),
+                             __("s~L~isp code"),0);
     tl->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
     TSVeGroup *up=new TSVeGroup(slb,tl,0);
     upper=up;

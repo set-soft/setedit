@@ -32,6 +32,8 @@
 #include <setapp.h>
 
 #include <keytrans.h>
+#define Uses_TMLIEditorDefs
+#include <mli.h>
 
 const int maxLineLen=255;
 const int errMLExpectedStr=1,
@@ -234,7 +236,20 @@ char *GetCommand(char *s, int &command, int FirstInLine=0)
 
  if (isAMacro)
    {
-    for (ret=s; *ret && *ret!=')'; ret++);
+    ret=s;
+    if (*ret=='(')
+      {// cm((lisp code))
+       char *end;
+       if (MLIEdIsolateCode(ret,end)!=SLP_OK)
+         {
+          Error=errMLUnfinishedMacro;
+          return 0;
+         }
+       ret=end+1;
+      }
+    else
+       // cm(macro name)
+       for (; *ret && *ret!=')'; ret++);
     if (*ret!=')')
       {
        Error=errMLUnfinishedMacro;
@@ -242,6 +257,7 @@ char *GetCommand(char *s, int &command, int FirstInLine=0)
       }
     char v=*ret; *ret=0;
     command=RegisterMacroCommand(s);
+    //printf("Registrando %s\n",s);
     *ret=v;
     ret++; // Skip the last parethesis
     if (command==-1)

@@ -476,14 +476,25 @@ void SLPInterfaceRunSelection(TCEditor *ed)
       {
        memcpy(s,ed->buffer+ed->selStart,l);
        s[l]=0;
-       TMLIEditor::Editor=ed;
-       if (!InterpretLispEditor(s,True))
-          SLPShowError();
+       SLPInterfaceRunString(ed,s);
        free(s);
-       ed->update(ufView);
-       TMLIEditor::Editor=0;
       }
    }
+}
+
+int SLPInterfaceRunString(TCEditor *ed, char *code)
+{
+ int ret=SLP_OK;
+ TMLIEditor::Editor=ed;
+ if (!InterpretLispEditor(code,True))
+   {
+    SLPShowError();
+    ret=SLP_ERROR;
+   }
+ ed->update(ufView);
+ TMLIEditor::Editor=0;
+
+ return ret;
 }
 
 void SLPInterfaceRunAsk(TCEditor *ed, char *code)
@@ -501,11 +512,7 @@ void SLPInterfaceRunAsk(TCEditor *ed, char *code)
  if (execDialog(d,b)!=cmCancel)
    {
     b[maxRunAskCode-1]=0;
-    TMLIEditor::Editor=ed;
-    if (!InterpretLispEditor(b,True))
-       SLPShowError();
-    ed->update(ufView);
-    TMLIEditor::Editor=0;
+    SLPInterfaceRunString(ed,b);
    }
 }
 
@@ -604,6 +611,11 @@ int SLPSearchMacro(TCEditor *ed,char *name)
 {
  if (!name)
     return SLP_NO_CHOOSE;
+
+ // Macro names can't start with (, it must be a piece of code
+ if (*name=='(')
+    return SLPInterfaceRunString(ed,name);
+
  TMLIEditor::Editor=ed;
 
  int ret=MLIEdSeachAndRunCom(name);
@@ -612,6 +624,6 @@ int SLPSearchMacro(TCEditor *ed,char *name)
 
  ed->update(ufView);
  TMLIEditor::Editor=0;
- return ret==SLP_OK;
+ return ret;
 }
 

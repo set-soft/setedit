@@ -83,7 +83,7 @@ int RegisterMacroCommand(char *name)
 /**[txh]********************************************************************
 
   Description:
-  Un registers all the macro commands. Just to free the allocated memory.
+  Unregisters all the macro commands. Just to free the allocated memory.
 Called by menuload.cc.
 
 ***************************************************************************/

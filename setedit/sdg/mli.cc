@@ -1259,9 +1259,9 @@ Command TMLIBase::WhatSymbol(char *s)
  return 0;
 }
 
-char *TMLIBase::SkipCode()
+char *TMLIBase::SkipCode(char *&code, int &error)
 {
- char *s=Code+1,*start;
+ char *s=code+1,*start;
  int level;
 
  for (level=0; *s && (*s!=')' || level!=0); s++)
@@ -1274,8 +1274,8 @@ char *TMLIBase::SkipCode()
                s++;
         if (*s!='"')
           {
-           Code=start;
-           Error=MLIEStrNoEnd;
+           code=start;
+           error=MLIEStrNoEnd;
            return 0;
           }
        }
@@ -1288,8 +1288,8 @@ char *TMLIBase::SkipCode()
                s++;
         if (*s!='\'')
           {
-           Code=start;
-           Error=MLIEStrNoEnd;
+           code=start;
+           error=MLIEStrNoEnd;
            return 0;
           }
        }
@@ -1307,10 +1307,15 @@ char *TMLIBase::SkipCode()
     }
  if (*s!=')')
    {
-    Error=MLIENoEnd;
+    error=MLIENoEnd;
     return 0;
    }
  return s;
+}
+
+char *TMLIBase::SkipCode()
+{
+ return SkipCode(Code,Error);
 }
 
 TLispVar *TMLIBase::Interpret(char *s)
@@ -1583,7 +1588,8 @@ char *TMLIBase::SyntaxError[]=
  __("wrong parameter type"),
  __("undefined variable"),
  __("undefined symbol"),
- __("operation not defined")
+ __("operation not defined"),
+ __("invalid character for a name")
 };
 
 char *TMLIBase::GetTypeError()
