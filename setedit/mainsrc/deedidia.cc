@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -103,7 +103,7 @@ TDialog *createRegExOpsDialog()
 static void *boxRegEx;
 
 static
-int RegExDialog(unsigned )
+int RegExDialog(unsigned , void *)
 {
  execDialog(createRegExOpsDialog(),boxRegEx);
  return btcbGoOn;
@@ -212,7 +212,7 @@ TDialog *createGotoLineDialog()
 static ShlDiagBox *SHL_Box;
 
 static
-int SHLSubDiag(unsigned )
+int SHLSubDiag(unsigned , void *)
 {
  TSViewCol *col=new TSViewCol(__("Syntax Highlighting"));
  

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSButton
 #define Uses_TSViewCol
@@ -11,50 +11,50 @@ const int tpTButton=0, tpTButtonRef=1;
 
 TSButton::TSButton(const char *aTitle, ushort aCommand, ushort aFlags, int wForced)
 {
- fill(tpTButton,aTitle,aCommand,aFlags,wForced,0);
+ fill(tpTButton,aTitle,aCommand,aFlags,wForced,0,NULL);
 }
 
 TSButton::TSButton(const char *aTitle, ushort aCommand, ushort aFlags)
 {
- fill(tpTButton,aTitle,aCommand,aFlags,-1,0);
+ fill(tpTButton,aTitle,aCommand,aFlags,-1,0,NULL);
 }
 
 TSButton::TSButton(const char *aTitle, ushort aCommand, ushort aFlags,
-                           int wForced, TButtonCallBack cb)
+                           int wForced, TButtonCallBack cb, void *cbData)
 {
- fill(tpTButton,aTitle,aCommand,aFlags,wForced,cb);
+ fill(tpTButton,aTitle,aCommand,aFlags,wForced,cb,cbData);
 }
 
 TSButton::TSButton(const char *aTitle, ushort aCommand, ushort aFlags,
-                           TButtonCallBack cb)
+                           TButtonCallBack cb, void *cbData)
 {
- fill(tpTButton,aTitle,aCommand,aFlags,-1,cb);
+ fill(tpTButton,aTitle,aCommand,aFlags,-1,cb,cbData);
 }
 
 TSButtonRef::TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags, int wForced)
 {
- fill(tpTButtonRef,aTitle,aCommand,aFlags,wForced,0);
+ fill(tpTButtonRef,aTitle,aCommand,aFlags,wForced,0,NULL);
 }
 
 TSButtonRef::TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags)
 {
- fill(tpTButtonRef,aTitle,aCommand,aFlags,-1,0);
+ fill(tpTButtonRef,aTitle,aCommand,aFlags,-1,0,NULL);
 }
 
 TSButtonRef::TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags,
-                           int wForced, TButtonCallBack cb)
+                           int wForced, TButtonCallBack cb, void *cbData)
 {
- fill(tpTButtonRef,aTitle,aCommand,aFlags,wForced,cb);
+ fill(tpTButtonRef,aTitle,aCommand,aFlags,wForced,cb,cbData);
 }
 
 TSButtonRef::TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags,
-                           TButtonCallBack cb)
+                           TButtonCallBack cb, void *cbData)
 {
- fill(tpTButtonRef,aTitle,aCommand,aFlags,-1,cb);
+ fill(tpTButtonRef,aTitle,aCommand,aFlags,-1,cb,cbData);
 }
 
 void TSButtonBase::fill(int type, const char *aTitle, ushort aCommand, ushort aFlags,
-                        int wForced, TButtonCallBack cb)
+                        int wForced, TButtonCallBack cb, void *cbData)
 {
  if (wForced>=0)
     w=wForced;
@@ -72,7 +72,7 @@ void TSButtonBase::fill(int type, const char *aTitle, ushort aCommand, ushort aF
  else if (type==tpTButtonRef)
     b=new TButtonRef(TRect(0,0,w+1,h),aTitle,aCommand,aFlags);
  if (cb!=0)
-    b->setCallBack(cb);
+    b->setCallBack(cb,cbData);
  view=b;
 }
 

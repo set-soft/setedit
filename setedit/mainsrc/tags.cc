@@ -1676,7 +1676,7 @@ const unsigned
 // This small trick saves me from creating an specialized TDialog
 static unsigned commandCB;
 static
-int buttonsCB_VCl(unsigned command)
+int buttonsCB_VCl(unsigned command, void *)
 {
  commandCB=command;
  return btcbEndModal;

@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.505  2004/05/07 20:07:31  set
+* Fixed: A couple of calls to memcpy to use CLY_memcpy. Reported by
+valgrind.
+* Added: Avoid a no-op copy reported by Oswald.
+* Fixed: Use of unitialized undo counter in some rectangular selection
+operations. Reported by valgrind.
+
 Revision 1.504  2004/05/06 19:33:09  set
 * Fixed: Some malloc/new/new[] v.s. free/delete/delete[] calls. Reported
 by Oswald using valgrind.
