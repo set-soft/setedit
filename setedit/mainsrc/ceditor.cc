@@ -12116,7 +12116,7 @@ ssize_t getstr(char **lineptr, size_t *n, FILE *stream, char terminator,
  if (!*lineptr)
    {
     *n=MIN_CHUNK;
-    *lineptr=malloc(*n);
+    *lineptr=(char *)malloc(*n);
     if (!*lineptr)
       {
        errno=ENOMEM;
@@ -12157,7 +12157,7 @@ ssize_t getstr(char **lineptr, size_t *n, FILE *stream, char terminator,
           *n+=MIN_CHUNK;
 
        nchars_avail=*n+*lineptr-read_pos;
-       *lineptr=realloc(*lineptr,*n);
+       *lineptr=(char *)realloc(*lineptr,*n);
        if (!*lineptr)
          {
           errno=ENOMEM;
@@ -12186,7 +12186,7 @@ ssize_t getstr(char **lineptr, size_t *n, FILE *stream, char terminator,
       }
 
     /* SET: Why in the hell a low level function should do it? */
-    #ifdef 0 /*_WIN32*/
+    #if 0 /*_WIN32*/
     /* Text mode translation, CR/LF pairs into LF */
     if (terminator=='\n' && c=='\r')
        continue;
