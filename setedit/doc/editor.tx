@@ -283,16 +283,16 @@ using the @il{Tool&Ops | Options | Colors | Customize...} menu option.
 @il{Tool&Ops | Options | Colors | Theme...} menu option. You can contribute
 your own color scheme sending me you desktop file (desktop files have .dst as
 extension). @x{Color Theme}.
-@item The color palette can be customized using the @il{Tool&Ops | Options |
-Colors | Palette...} menu. This is available for most OSs and terminals, but
-not for all. @x{Color Palette}.
+@item The color palette can be customized using the
+@il{Tool&Ops | Options | Colors | Palette...} menu. This is available for
+most OSs and terminals, but not for all. @x{Color Palette}.
 @item The character encodings used by the editor can be also configured. This
 is in the @il{Tool&Ops | Options | Encodings...} menu. @x{Encodings}.
 @item Some terminals supports changing the screen or window size. This is in
 the @il{Tool&Ops | Options | Screen Options...} menu. @x{Screen Options}.
 @item Some terminals supports changing the font and/or the font size. The
-editor includes various fonts suitable for it. This is in the @il{Tool&Ops |
-Options | Fonts...} menu. @x{Fonts}.
+editor includes various fonts suitable for it. This is in the
+@il{Tool&Ops | Options | Fonts...} menu. @x{Fonts}.
 @end itemize
 
 @section What can be configured to change the syntax highlighting
