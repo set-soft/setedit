@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.425  2003/06/30 13:10:18  set
+* Added: List of new and fixed stuff to the readme. Also the release name
+and revision.
+* Added: Link to TAGs tutorial in the docs.
+
 Revision 1.424  2003/06/30 13:09:15  set
 * Fixed: [BC++] a bug in the EasyDiag label and radio buttons that made
 Alt+L and similars to generate GPFs. This is very interesting: the GPF was

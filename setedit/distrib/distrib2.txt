@@ -68,9 +68,9 @@ Ok, where can I get it?
  QNX/FreeBSD/Solaris versions must be compiled from sources).
 
 ---------------------------------------------------------------------------
-[39 new things and 25 fixes]
+[40 new things and 25 fixes]
 
-New [39 things]:
+New [40 things]:
 
 + Various [19]
 
@@ -135,14 +135,16 @@ Win32 version of the editor with the same facility than gcc.
 * Two constants to be used by RunProgram. They are for the old option (use
 OS/user screen) and the new option to avoid redirecting stdout.
 
-+ Syntax highlight and pmacros [4]
++ Syntax highlight and pmacros [5]
 
 * More python keywords. Contributed by Grzegorz.
-* Emacs modes and shell names for CSS, Tcl and Python. Suggested by Grzegorz.
+* Emacs modes and shell names for CSS, Tcl, Java and Python. Suggested by
+Grzegorz.
 * SQL emacs modes and keywords. Suggested by Grzegorz.
 * Made more robust the "shell script" shl detection. It now supports:
 "#!.../env command" and "#!.../commandVERSION" (i.e. python2.2). From
 Grzegorz suggestions.
+* Errors parser for ANT Java Builder. Contributed by Grzegorz.
 
 + Linux [1]
 

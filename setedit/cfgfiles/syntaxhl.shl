@@ -624,6 +624,7 @@ End
 #
 Name=Java
 Files=j,jav,java
+EmacsModes=java,Java,JAVA
 OpenComment1=/*
 CloseComment1=*/
 EOLComment1=//
@@ -639,7 +640,7 @@ Keywords=const,continue,default,do,double,else,extends,false,final,finally
 Keywords=float,for,future,generic,goto,if,inner,implements,import,instanceof
 Keywords=int,interface,long,native,new,null,operator,outer,package,private
 Keywords=protected,public,rest,return,short,static,super,switch,sychronized
-Keywords=this,threadsafe,throw,transient,true,try,car,void,while
+Keywords=this,threadsafe,throw,transient,true,try,car,void,while,throws
 End
 
 # ------------------------ Environment files ---------------------------------
