@@ -1,11 +1,16 @@
-$Log$.
+$Log$
+Revision 1.111  2002/06/06 19:41:12  set
+* Added: [DOS] An entry to the FAQ about problems with the mouse while
+using NT, W2k, XP, and similar crap. From a post to RHIDE list posted by
+James Doyle and Tom Verhoeff.
+.
 Revision 1.110  2002/06/04 19:42:57  set
 * Modified: Now the configuration determines the directories where extra
 libraries could be located and adds it to the list of directories.
 
 Revision 1.109  2002/06/04 15:36:48  set
 * Modified: To use the moved TView::specialChars (TV 2.0).
-.
+
 Revision 1.108  2002/06/04 13:26:30  set
 * Modified: I dropped the code that workarounds all bugs in libstdc++. I
 think it was in gcc 2.7.x or perhaps 2.6.3. The code still there but just

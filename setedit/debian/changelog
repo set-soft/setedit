@@ -1,3 +1,12 @@
+setedit (0.4.57-0.2) unstable; urgency=low
+
+  * New unstable alpha version from CVS dated 5 Jun 2002.
+  * build-depend on xlibs-dev after confirming that it's needed and
+    also added libncurses-dev and tar to the list, and removed make
+    since it is included on build-essential.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu,  6 Jun 2002 16:46:11 -0300
+
 setedit (0.4.57-0.1) unstable; urgency=low
 
   * New unstable upstream release, now with native X11 support!
