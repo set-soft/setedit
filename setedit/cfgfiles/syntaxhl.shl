@@ -2046,4 +2046,20 @@ Keywords=xslt_set_scheme_handlers
 End
 #------------------------ end of PHP shl definition -------------------------
 
+#--------------------------------- .tvrc ------------------------------------
+# This is the format used for the Turbo Vision configuration files.
+#
+Name=TV Configuration
+NameMatch=\.?tvrc
+Case=1
+EOLComment1=#
+Symbols2==
+Symbols1={}[]
+String1="
+Escape=\
+# Sections
+Keywords=TV,DOS,Linux,QNX,X11,XTerm,Win32,WinNT
+# Variables
+Keywords=Priority,UseVCS,UseMDA,PatchKeys,ShowCursorEver
+End
 
