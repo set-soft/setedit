@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSListBox
 #include <easydia1.h>
@@ -58,5 +58,5 @@ void TSListBox::insert(TDialog *d)
 TView *TSListBoxMakeListBox(const TRect& bounds, unsigned aNumCols,
                             TScrollBar *aHScrollBar, TScrollBar *aVScrollBar)
 {
- return new TListBox(bounds,aNumCols,aHScrollBar,aVScrollBar);
+ return new TListBox(bounds,aNumCols,aHScrollBar,aVScrollBar,True);
 }

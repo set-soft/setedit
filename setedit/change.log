@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.476  2003/12/03 14:44:21  set
+* Fixed: Missing wrapper for RHIDE's version of FindFile. Reported by Kevin
+Alm.
+
 Revision 1.475  2003/12/03 14:19:54  set
 * Fixed: Removed two comments containing non-ASCII chars. It seems to annoy
 gcc 3.3.1 according to a report by Kevin Alm.

@@ -1422,8 +1422,9 @@ public:
  TTagsListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar)
   : TSortedListBox(bounds,aNumCols,aScrollBar) {};
  TTagsListBox(const TRect& bounds, ushort aNumCols,
-              TScrollBar *aHScrollBar, TScrollBar *aVScrollBar)
-  : TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar) {};
+              TScrollBar *aHScrollBar, TScrollBar *aVScrollBar,
+              Boolean aCenterOps=False)
+  : TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar,aCenterOps) {};
  virtual void getText(char *dest, ccIndex item, short maxLen);
 };
 
@@ -1614,8 +1615,9 @@ public:
  TClListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar)
   : TSortedListBox(bounds,aNumCols,aScrollBar) {};
  TClListBox(const TRect& bounds, ushort aNumCols,
-              TScrollBar *aHScrollBar, TScrollBar *aVScrollBar)
-  : TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar) {};
+            TScrollBar *aHScrollBar, TScrollBar *aVScrollBar,
+            Boolean aCenterOps)
+  : TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar,aCenterOps) {};
  virtual void getText(char *dest, ccIndex item, short maxLen);
 };
 

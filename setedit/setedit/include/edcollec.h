@@ -68,8 +68,8 @@ class TListEditors : public TListBox
 {
 public:
  TListEditors(const TRect& bounds, ushort aNumCols, TScrollBar *aHScrollBar,
-              TScrollBar *aVScrollBar) :
-   TListBox(bounds,aNumCols,aHScrollBar,aVScrollBar) {};
+              TScrollBar *aVScrollBar, Boolean aCenterOps=False) :
+   TListBox(bounds,aNumCols,aHScrollBar,aVScrollBar,aCenterOps) {};
  virtual void getText(char *dest, ccIndex item, short maxLen);
 };
 

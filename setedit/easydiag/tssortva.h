@@ -19,7 +19,7 @@ public: \
 TView *TS##className##Make(const TRect& bounds, unsigned aNumCols,\
                            TScrollBar *aHScrollBar, TScrollBar *aVScrollBar)\
 {\
- return new T##className(bounds,aNumCols,aHScrollBar,aVScrollBar);\
+ return new T##className(bounds,aNumCols,aHScrollBar,aVScrollBar,True);\
 }
 
 #endif

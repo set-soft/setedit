@@ -151,8 +151,9 @@ class TSOSSortedListBox : public TSortedListBox
  TSortedListBox(bounds,aNumCols,aScrollBar)
  { SearchPos=USHRT_MAX; ShiftState=0; };
  TSOSSortedListBox(const TRect& bounds, ushort aNumCols,
-                   TScrollBar *aHScrollBar,TScrollBar *aVScrollBar) :
- TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar)
+                   TScrollBar *aHScrollBar,TScrollBar *aVScrollBar,
+                   Boolean aCenterOps=False) :
+ TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar,aCenterOps)
  { SearchPos=USHRT_MAX; ShiftState=0; };
  void getText(char *dest, ccIndex item, short maxLen);
  void handleEvent(TEvent& event);

@@ -17,7 +17,7 @@ class TStringableListBox : public TListViewer
 public:
  TStringableListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar);
  TStringableListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aHScrollBar,
-                    TScrollBar *aVScrollBar);
+                    TScrollBar *aVScrollBar, Boolean aCenterOps=False);
  ~TStringableListBox();
 
  virtual uint32 dataSize();
@@ -27,6 +27,8 @@ public:
  virtual void setData(void *rec);
  virtual void handleEvent(TEvent& event);
  void Update(void);
+
+ Boolean center;
 
  TStringable *list();
 
