@@ -2148,6 +2148,8 @@ int main(int argc, char *argv[])
  I("public");     I("this");        I("template");
  I("throw");      I("catch");       I("virtual");
  I("friend");     I("operator");    I("try");
+ // namespace stuff
+ I("namespace");  I("using");
  ReservedWords->setOwnerShip(False);
  #undef I
 
