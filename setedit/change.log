@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.652  2005/01/05 13:10:32  set
+* Fixed: The growing mode of the "assigned to" widget in the kbd conf.
+Reported by Thiago.
+* Modified: The behavior of TNoStaticText, now the whole string is
+memorized when setText is used.
+
 Revision 1.651  2005/01/04 15:55:29  set
 * Added: VHDL heuristic parser.
 * Modified: [Cosmetic] Copyright year to include 2005.

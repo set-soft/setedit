@@ -15,12 +15,13 @@ fulled, but is fast and small.
 
 //#define STANDALONE_TEST
 
-#include <stdio.h>
-#include <ctype.h>
 #ifndef STANDALONE_TEST
- #include <bufun.h>
  #define Uses_snprintf
+ #define Uses_string
+ #define Uses_stdio
+ #define Uses_ctype
  #include <compatlayer.h>
+ #include <bufun.h>
 #else
  const int MaxLenWith0=256,MaxLen=255,MaxLen_1=254;
  extern char bfBuffer[];
@@ -28,8 +29,10 @@ fulled, but is fast and small.
  extern char bfTempNomFun[];
  typedef void (*tAddFunc)(char *name, int len, int lineStart, int lineEnd);
  #define CLY_snprintf snprintf
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <string.h>
 #endif
-#include <string.h>
 
 static unsigned Index,Line,lenWord,Len;
 static unsigned char *Buffer;

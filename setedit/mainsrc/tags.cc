@@ -1,4 +1,4 @@
-/* Copyright (C) 2003-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -162,6 +162,8 @@ char *toQuestion(char *e)
 static
 char *newStrN(const char *s, int len)
 {
+ if (len<0)
+    len=0;
  char *r=new char[len+1];
  memcpy(r,s,len);
  r[len]=0;
