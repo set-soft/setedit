@@ -163,9 +163,12 @@ extra/stackdbg.c
 extra/stackdbg.h
 extra/strncpyz.cc
 extra/strndup.cc
+fonts/.cvsignore
 fonts/10x20.cc
 -fonts/10x20.sft
 fonts/Makefile
+-fonts/antique.016
+-fonts/antique.sft
 fonts/boxround.cc
 -fonts/boxround.sft
 fonts/boxroun0.000
@@ -175,9 +178,14 @@ fonts/cntdown.cc
 fonts/common1.h
 fonts/common2.h
 fonts/let.txt
+-fonts/medieval.016
+-fonts/medieval.sft
 fonts/ocr0.000
 fonts/ocr.cc
 -fonts/ocr.sft
+fonts/raw2sft.cc
+-fonts/roman.016
+-fonts/roman.sft
 fonts/rombios0.000
 fonts/rombios.cc
 -fonts/rombios.sft
