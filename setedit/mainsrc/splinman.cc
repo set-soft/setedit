@@ -181,7 +181,7 @@ returns the list.
 
 int *SpLinesGetFor(char *fileName)
 {
- if (!SpLines)
+ if (!SpLines || !fileName) // New files doesn't have a name
     return 0;
  ccIndex pos;
  if (SpLines->search(fileName,pos))
