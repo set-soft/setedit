@@ -17,7 +17,7 @@
 #endif
 #include <gzfiles.h>
 
-#if !defined(__linux__) && !defined(SUP_GZ)
+#if !defined(TVOSf_Linux) && !defined(SUP_GZ)
 /*
   This routine checks if gzip is there. If we can't find it we must put a warning
 */
@@ -228,14 +228,14 @@ int GZFiles_ExpandHL(char *dest, char *orig)
  //---- NO libz call gzip
 
  char Buf2[PATH_MAX*3];
-# ifndef __linux__
+# ifndef TVOSf_Linux
 
  // Just run the gzip and get your output in __infc__
  sprintf(Buf2,"gzip -d -c %s > %s",orig,dest);
  if (GZFiles_CheckForGZIP())
     TV_System(Buf2);
 
-# else // __linux__
+# else // TVOSf_Linux
  // Not so easy, here we create another process, extract your output and copy
  // it to __infc__, the DOS technique doesn't work well.
  FILE *f,*d;
@@ -258,7 +258,7 @@ int GZFiles_ExpandHL(char *dest, char *orig)
  pclose(f);
  strcpy(orig,dest);
 
-# endif // !__linux__
+# endif // !TVOSf_Linux
 #endif // !SUP_GZ
 
  return ret;

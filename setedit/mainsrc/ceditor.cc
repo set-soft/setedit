@@ -87,7 +87,7 @@
 #define Uses_GZInterfaceOnly
 #include <gzfiles.h>
 #include <pathtool.h>
-#ifdef __linux__
+#ifdef TVOSf_Linux
 #include <sys/time.h>
 #endif
 #include <rhutils.h>
@@ -3847,7 +3847,7 @@ void TCEditor::ProfileEditor(void)
  delta.y=oldDeltaY;
  update(ufView);
 #else
- #if defined(SEOSf_djgpp) || defined(__TURBOC__)
+ #if defined(SECompf_djgpp) || defined(TVComp_BCPP)
  // That's valid only under DOS where clock is absolute, in UNIX clock
  // gives information about the CPU we consumed
  int oldDeltaY=delta.y;
@@ -9792,7 +9792,7 @@ void TCEditor::toggleInsMode(Boolean allowUndo)
     addToUndo(undoCutInMov);
  overwrite = (!overwrite) ? True : False;
  setState(sfCursorIns,overwrite);
- #ifdef __linux__
+ #ifdef TVOSf_Linux
  // I don't know how to change the cursor shape so an user suggested
  // putting it in the indicator
  update(ufUpdate);
@@ -12138,7 +12138,7 @@ Boolean TCEditor::saveSameTime()
 
 /* No longer used now the user sees the name s/he wants and I use the device and inode
    to differentiate the file (suggested by Eli)
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 static void FExpand(char *name)
 {
  if (_USE_LFN)

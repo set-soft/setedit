@@ -12,12 +12,12 @@
 #define Uses_mkstemp
 #define Uses_dirent
 #define Uses_stdio
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 #include <io.h>    // _chmod
 #include <dpmi.h>  // GetShortNameOf: dpmi_regs, dpmi_int
 #include <go32.h>  // GetShortNameOf: transfer buffer
 #endif
-#ifdef __TURBOC__
+#ifdef TVComp_BCPP
 #include <io.h>
 #endif
 #include <rhutils.h>
@@ -395,10 +395,10 @@ char *RedirectStdErrToATemp(int &StdErrOri,int &StdErrNew)
  char *s=ExpandHomeSave("");
  char *ret=0;
 
- /*#ifdef __TURBOC__
+ /*#ifdef TVComp_BCPP
  sprintf(aux,"%s/",s);
  StdErrNew=creattemp(aux, 0);
- #elif defined(__MINGW32__) || defined(_MSC_VER)
+ #elif defined(TVCompf_MinGW) || defined(TVComp_MSC)
  sprintf(aux,"%s/erXXXXXX",s);
  char *tempName=mktemp(aux);
  StdErrNew=open(tempName,O_RDWR | O_CREAT,S_IRUSR | S_IWUSR);
@@ -474,7 +474,7 @@ int IsADirectory(const char *name)
  struct stat s;
  return stat(name,&s)==0 && S_ISDIR(s.st_mode) && !access(name,X_OK);
  #endif
- #ifdef SEOSf_djgpp
+ #ifdef SECompf_djgpp
  return !access(name,D_OK);
  #endif
  #ifdef SEOS_Win32
@@ -540,7 +540,7 @@ void CheckForValidTMPDIR()
 
  char *b=new char[8+strlen(tmp)];
  sprintf(b,"TMPDIR=%s",tmp);
- #if defined(SEOSf_djgpp) || defined(__TURBOC__)
+ #if defined(SECompf_djgpp) || defined(TVComp_BCPP)
  // Mixing forward and backslashes could produce problems (path\/file is invalid).
  char *s=b;
  for (; *s; s++)
@@ -728,7 +728,7 @@ void CheckIfCurDirValid(void)
    }
 }
 
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
 /**[txh]********************************************************************
 
   Description:
