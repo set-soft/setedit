@@ -79,7 +79,8 @@ binary-arch: build install
 	chmod 4755 debian/infview/usr/bin/infview
 	dh_installdeb
 	dh_shlibdeps
-	dh_gencontrol
+	dh_gencontrol -p setedit
+	dh_gencontrol -p infview -- -v$$(cat infview/version.txt)-$$(head -n1 debian/changelog | sed 's/.* (.*-//' | sed 's/) .*//')
 #	dh_makeshlibs  This is for libraries.
 	dh_md5sums
 	dh_builddeb
