@@ -40,6 +40,7 @@ copying.lgp
 copying.rh
 copyrigh
 debian/README.debian
++debian/buildpackage
 debian/changelog
 debian/control
 debian/copyright
@@ -52,7 +53,7 @@ debian/infview.postrm
 debian/infview.preinst
 debian/infview.prerm
 debian/maintainer.notes
-debian/rules
++debian/rules
 debian/setedit.doc-base
 debian/setedit.menu
 debian/setedit.postinst
