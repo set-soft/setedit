@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || return 0;
@@ -261,6 +261,7 @@ print "done.\n\n";
 
 print "Generating manifest and version files: \n";
 $d="$manifest/edi$version1"."b.ver";
+unlink glob("$manifest/edi*b.ver") unless $iMode;
 open(FIL,">$d") || die "Can't create version file";
 print FIL ("edi".$version1."b SET's editor v$version for DJGPP");
 close(FIL);
@@ -281,6 +282,7 @@ else
   {
    $i="$distPrefix/";
    $binManifest =~ s/$i//g;
+   unlink glob("$manifest/edi*b.mft");
   }
 open(FIL,">$d");
 print FIL ($binManifest);
@@ -305,13 +307,11 @@ else
    
    CopyIfRpl('../../distrib/distrib1.txt',"$result/readme.1st");
    CopyIfRpl('../../distrib/distrib2.txt',"$result/announce.txt");
-   
-   
+      
    print "\n\nCreating source distribution\n";
    $srcmft="manifest/edi$version1".'s.mft';
    $srcver="manifest/edi$version1".'s.ver';
-   
-   
+      
    chdir('../../../..');
    
    open(FIL,'contrib/setedit/makes/lista');
