@@ -62,6 +62,8 @@ struct stTagFile
  TTagInfo   *info;
 };
 
+const uchar stfAutoCentral=1;
+
 // Structures to convert the single letter "kind" field to a descriptive text
 struct stTagKind
 {
@@ -209,4 +211,5 @@ void EditTagFiles();
 void SearchTag(char *word);
 void TagsClassBrowser(char *word);
 char *TagsWordCompletion(int x, int y, char *word);
+void SetTagFilesGenerationOptions();
 
