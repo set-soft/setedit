@@ -53,6 +53,10 @@
 #define Uses_TScreen
 #include <tv/screen.h>
 #endif
+#if TV_MAJOR_VERSION<2
+ #define getWindowTitle GetWindowTitle
+ #define setWindowTitle SetWindowTitle
+#endif
 
 #define INFVIEW_VERSION_STR "0.2.7"
 const char *EditorFile="setedit";
@@ -790,6 +794,7 @@ int main(int argc, char *argv[])
     TGKey::SetKbdMapping(KBD_REDHAT52_STYLE);
   #endif
  #endif
+ TScreen::setWindowTitle("InfView");
  if (FileToLoad)
    {
     OpenInfView(editorApp,FileToLoad);

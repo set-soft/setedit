@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.98  2002/05/17 15:33:04  set
+* Added: "Vertical project window" options, SF FR #553029. Saved to the
+desktop file, documented, updated spanish translations.
+* Changed: version to 0.4.57.
+
 Revision 1.97  2002/05/17 14:29:56  set
 * Added: The first part of Grzegorz request about adding options to create
 message and project windows in the vertical direction.
