@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.628  2004/10/12 15:41:45  set
+* Fixed: "Paste Emacs Mode" not grayed when the mode isn't available.
+Suggested by Grzegorz.
+* Added: [SHL] Emacs mode for shell scripts and XML files. Contributed by
+Grzegorz.
+
 Revision 1.627  2004/10/12 14:59:13  terrible
 * [Fixed][Config] Its weird, but in the Sarge I use at work, included
 scripts must have . ./binary, it isn't enough to have . binary. This change

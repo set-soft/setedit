@@ -47,7 +47,7 @@ RHIDE_COMPILE_ARCHIVE=$(RHIDE_AR) $(RHIDE_ARFLAGS) /OUT:$(OUTFILE) \
 # This is fake, the .S files are used only for DJGPP and they are protected
 # by preprocessor constructions. For this reason they can be used as C sources
 # to generate dummy .obj files.
-RHIDE_COMPILE_ASM_FORCE=$(RHIDE_GCC) -c $(CFLAGS) $(INCLUDE_DIRS) -o$(OUTFILE) \
+RHIDE_COMPILE_ASM_FORCE=$(RHIDE_GCC) -c $(CFLAGS) /TC $(INCLUDE_DIRS) -Fo$(OUTFILE) \
 	$(SOURCE_NAME)
 
 # Are these correct?

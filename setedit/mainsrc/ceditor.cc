@@ -12019,7 +12019,7 @@ void TCEditor::undoOneAction()
        selNewStart=un.selStart;
        selNewEnd=un.selEnd;
       }
-    if (overwrite!=((un.Flags & undoOverWrite)!=0) ? True : False)
+    if (overwrite!=(((un.Flags & undoOverWrite)!=0) ? True : False))
        toggleInsMode(False);
 
     UndoSt=undoNoUndo;
@@ -12083,7 +12083,7 @@ void TCEditor::redo(void)
 
        case undoOvrPutChar:
             MoveCursorTo(un.X,un.Y);
-            if (overwrite!=((un.Flags & undoOverWrite)!=0) ? True : False)
+            if (overwrite!=(((un.Flags & undoOverWrite)!=0) ? True : False))
                toggleInsMode(False);
             EditLine();
             {

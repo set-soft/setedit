@@ -106,7 +106,8 @@ static char *My_strndup (char *ptr, int len)
 
 static void skipspace (void)
 {
-   while (isspace (*str))
+   // The cast is a workaround for a bug in Solaris 9 for SPARC
+   while (isspace ((int)*str))
       str ++;
 }
 

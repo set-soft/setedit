@@ -11,7 +11,8 @@
 TVISION_INC=-I..\..\tvision\winnt\include -I..\..\tvision\include
 TVLIBDIR=..\..\tvision\winnt
 
-CFLAGS   = /nologo -O2 -D_WIN32 -DFOR_EDITOR /GR- /GX-
+CFLAGS   = /nologo -O2 -D_WIN32 -DFOR_EDITOR /GX
+#CFLAGS   = /nologo -O2 -D_WIN32 -DFOR_EDITOR /GR- /GX-
 CXXFLAGS = /TP $(CFLAGS)
 LDFLAGS  = /verbose
 

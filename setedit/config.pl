@@ -99,6 +99,8 @@ LookForPrefix();
 LookForGNUMake();
 # Same for ar, it could be `gar'
 $GAR=LookForGNUar();
+# Similar for install tool.
+LookForGNUinstall();
 # Check if gcc can compile C++
 $GXX=CheckGXX();
 
@@ -1104,7 +1106,9 @@ int main(void)
  printf("%s",bzlibVersion());
  return 0;
 }';
- $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+ # I saw version 1.0.1 on Solaris with a header having BZ2_* but accepting the
+ # old names!? C++ won't let it happend.
+ $ver=RunGCCTest($GXX,'cc',$test,'-lbz2');
  if (length($ver))
    {
     if (CompareVersion($ver,$vNeed))
@@ -1128,7 +1132,7 @@ int main(void)
  printf("%s",BZ2_bzlibVersion());
  return 0;
 }';
-    $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+    $ver=RunGCCTest($GXX,'cc',$test,'-lbz2');
     if (length($ver))
       {
        if (CompareVersion($ver,$vNeed))
@@ -1392,7 +1396,7 @@ sub GenerateMakefile
  $text.="  MPREFIX=$conf{'prefix'}\n";
  $text.="endif\n";
  $text.="ifeq (\$(INSTALL),)\n";
- $text.="  INSTALL=install\n";
+ $text.="  INSTALL=@conf{'GNU_INSTALL'}\n";
  $text.="endif";
  $text.="\nlibdir=\$(MPREFIX)/lib";
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
@@ -1584,8 +1588,8 @@ sub GenerateMakefile
  if ($libset)
    {
     $text.="\n\ninstall-libset: libset\n";
-    $text.="\t\$(INSTALL) -d -m 0755 \$(libdir)\n";
-    $text.="\t\$(INSTALL) -m 0644 makes/libset.a \$(libdir)";
+    $text.="\t".GenInstallDir('0755','$(libdir)');
+    $text.="\t".GenInstallFiles('0644','makes/libset.a','$(libdir)');
    }
  # infview
  if ($infview)

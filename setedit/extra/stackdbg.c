@@ -38,6 +38,7 @@ determine the point where the signal was triggered.
 #ifdef SEOS_UNIX
 #define CLY_DoNotDefineUTypes
 #define Uses_itoa
+#define Uses_alloca
 #include <compatlayer.h>
 #include <assert.h>
 #include <stdio.h>

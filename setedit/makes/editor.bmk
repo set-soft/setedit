@@ -36,7 +36,7 @@ MP3_PREV_DIR=..
 INCLUDE_DIRS=-I../winnt -I$(INCLUDE_DIR) -I$(SETEDIT_INC_DIR) \
 	-I$(SETTVUTI_INC_DIR) -I$(SDG_INC_DIR) -I$(INFVIEW_INC_DIR) \
 	$(TVISION_INC) -I$(EXTRA_INC_DIR) -I$(EASYDIAG_INC_DIR) \
-	-I$(LIBRHUTI_INC_DIR) -I$(SUPPORT_INC) -I$(MP3_INC_DIR) \
+	-I$(LIBRHUTI_INC_DIR) -I$(MP3_INC_DIR) \
 	-I$(CALCU_INC_DIR) -I$(HOLIDAYS_DIR) -I..\libz -I..\libpcre -I..\libbzip2
 C_EXTRA_FLAGS=-DFOR_EDITOR
 RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
