@@ -3431,8 +3431,11 @@ obj/menuload$(ExOBJ):: ../setedit/menuload.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/mli$(ExOBJ):: ../sdg/mli.cc \
+	ced_pcre.h \
 	compatlayer.h \
+	configed.h \
 	dyncat.h \
+	loadshl.h \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
