@@ -177,6 +177,7 @@ $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
+$test.=' '.$conf{'X11IncludePath'} if (@conf{'HAVE_X11'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
 # The support libraries shouldn't generate dependencies
 $MakeDefsRHIDE[0].=$test;
@@ -450,6 +451,14 @@ sub SeeCommandLine
       {
        $conf{'efence'}='no';
       }
+    elsif ($i=~'--x-include=(.*)')
+      {
+       $conf{'X11IncludePath'}=$1;
+      }
+    elsif ($i=~'--x-lib=(.*)')
+      {
+       $conf{'X11LibPath'}=$1;
+      }
     else
       {
        ShowHelp();
@@ -498,6 +507,8 @@ sub ShowHelp
  print "--without-mss   : compiles without MSS [default].\n";
  print "--with-efence   : compiles with Electric Fence memory debugger.\n";
  print "--without-efence: compiles without Electric Fence [default].\n";
+ print "--x-include=path: X11 include path [/usr/X11R6/lib].\n";
+ print "--x-lib=path    : X11 library path [/usr/X11R6/include].\n";
 }
 
 sub GiveAdvice
@@ -1568,8 +1579,9 @@ int main(void)
 }
 ';
  $conf{'X11LibPath'}='/usr/X11R6/lib' unless $conf{'X11LibPath'};
+ $conf{'X11IncludePath'}='/usr/X11R6/include' unless $conf{'X11IncludePath'};
  $conf{'X11Lib'}='X11' unless $conf{'X11Lib'};
- $test=RunGCCTest($GCC,'c',$test,"-L$conf{'X11LibPath'} -l$conf{'X11Lib'}");
+ $test=RunGCCTest($GCC,'c',$test,"-I$conf{'X11IncludePath'} -L$conf{'X11LibPath'} -l$conf{'X11Lib'}");
  if ($test=~/OK, (\d+)\.(\d+)/)
    {
     $conf{'HAVE_X11'}='yes';

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.79  2002/05/02 19:35:38  set
+* Modified: The use of tmpnam, now I use unique_name, based on mkstemp. It
+seems to be more secure.
+
 Revision 1.78  2002/05/02 19:34:13  set
 * Added: Support for Electric Fence to the configuration script.
 
