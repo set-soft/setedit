@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.341  2003/05/07 12:33:16  set
+* Fixed: Second lot of changes to docs from Bernd Becker
+<munin@munin.inka.de>.
+
 Revision 1.340  2003/05/06 20:45:13  set
 * Fixed: Tags: Some languages (the ones after PHP) had errors in the kind
 decoding.

@@ -70,20 +70,32 @@
 
 @macro lista1
 @itemize @bullet
-  @item @sc{@value{rh}} <robert.hoehne@@gmx.net>@*
-    (with some base routines, a lot of patches and reports)
+  @item @sc{Andris Pavenis} <pavenis@@lanet.lv>@*
+    (with a lot of patches and reports)
 
-  @item @sc{Molnar Laszlo} <molnarl@@cdata.tvnet.hu>@*
-    (with the old calculator, tests and a lot of ideas)
-
-  @item @sc{Marek Habersack} <grendel@@ananke.amu.edu.pl>@*
-    (with tests and a lot of ideas)
-
-  @item @sc{Frank Donahoe} <fdonahoe@@wilkes1.wilkes.edu>@*
+  @item @sc{Bernd Becker} <munin@@munin.inka.de>@*
     (with a lot of corrections to this text)
     
   @item @sc{Burton Radons} <loth@@pacificcoast.net>@*
     (with the new calculator, bug reports and ideas)
+    
+  @item @sc{Frank Donahoe} <fdonahoe@@wilkes1.wilkes.edu>@*
+    (with a lot of corrections to this text)
+
+  @item @sc{Grzegorz Adam Hankiewicz} <gradha@@users.sourceforge.net>@*
+    (with tests and a lot of ideas)
+    
+  @item @sc{Ivan Baldo} <ibaldo@@adinet.com.uy>@*
+    (Debian packages, tests and a lot of ideas)
+    
+  @item @sc{Marek Habersack} <grendel@@ananke.amu.edu.pl>@*
+    (with tests and a lot of ideas)
+
+  @item @sc{Molnar Laszlo} <molnarl@@cdata.tvnet.hu>@*
+    (with the old calculator, tests and a lot of ideas)
+
+  @item @sc{@value{rh}} <robert.hoehne@@gmx.net>@*
+    (with some base routines, a lot of patches and reports)
 @end itemize
 @end macro
 
@@ -139,7 +151,7 @@ Pressing F1 when selecting any item of the menu you'll get help about it.
 @value{text-pre3}
 @paragraph{}
 
-  People who helped me develop the editor:
+  People who helped me develop the editor (alphabetically sorted):
 @paragraph{}
 
 @lista1{}
@@ -941,7 +953,7 @@ The first group of options are related to the editing modes.
 @paragraph{}
 
 The syntax highlight group of options allows to choose the type of highlight.
-@x{Syntax Highlight}.
+@x{Syntax Highlighting}.
 @paragraph{}
 
 Additionally the window allows to indicate the tab size and the column where
@@ -2443,7 +2455,7 @@ color different than the color used for reserved words.
 @paragraph{}
 
 The first dialog is used to select the language, the names are the ones
-defined in the syntax highlighting file (@x{Syntax Highlight}). Selecting one of
+defined in the syntax highlighting file (@x{Syntax Highlighting}). Selecting one of
 the names and pressing @key{ENTER} pops up the second dialog.
 @paragraph{}
 
