@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../infview/version.txt') || return 0;
@@ -82,6 +82,25 @@ else
    $prefix_alt='/usr/local';
   }
 
+# Check for make
+$test=`make --version 2> /dev/null`;
+if ($test=~/GNU Make/)
+  {
+   $Make='make';
+  }
+else
+  {
+   $test=`gmake --version 2> /dev/null`;
+   if ($test=~/GNU Make/)
+     {
+      $Make='gmake';
+     }
+   else
+     {
+      die "Where is make!\n";
+     }
+  }
+
 # Check for gzip
 $i=`which gzip`;
 if (!length($i))
@@ -98,7 +117,7 @@ if (!$iMode)
    print "Creating makefile: ";
    #system('cp -p ../linux.env ../rhide.env');
    chdir('..');
-   system('make makes');
+   system($Make.' makes');
    chdir('linux');
    print "done.\n\n";
   }
@@ -182,7 +201,7 @@ if (!length($i))
   }
 else
   {
-   if (system('make txt info')==0)
+   if (system($Make.' txt info')==0)
      {
       CopyIfCpr('infeng.inf','../makes/linux/'.$inf_dir.'/infview.info');
       CopyIfCpr('infeng.txt','../makes/linux/'.$doc_dir.'/infview.txt');
@@ -320,3 +339,5 @@ sub CopyIfRpl
    }
  0;
 }
+
+

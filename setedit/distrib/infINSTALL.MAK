@@ -33,9 +33,10 @@ bin_dir=bin
 data_dir=share
 info_dir=info
 doc_dir=doc
+man_dir=man
 
-files:=$(shell find $(bin_dir) $(data_dir) $(info_dir) $(doc_dir) \
-	-not -type d -print)
+files:=$(shell find $(bin_dir) $(data_dir) $(info_dir) $(doc_dir) $(man_dir)\
+	! -type d -print)
 ALL_FILES=$(addprefix $(prefix)/,$(files))
 
 $(prefix)/$(bin_dir)/%: $(bin_dir)/%

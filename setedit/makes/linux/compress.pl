@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || return 0;
@@ -99,6 +99,25 @@ else
    $prefix_alt='/usr/local';
   }
 
+# Check for make
+$test=`make --version 2> /dev/null`;
+if ($test=~/GNU Make/)
+  {
+   $Make='make';
+  }
+else
+  {
+   $test=`gmake --version 2> /dev/null`;
+   if ($test=~/GNU Make/)
+     {
+      $Make='gmake';
+     }
+   else
+     {
+      die "Where is make!\n";
+     }
+  }
+
 @files=('../../distrib/distrib1.txt','../../distrib/distrib2.txt');
 
 # Check for gzip
@@ -117,7 +136,7 @@ if (!$iMode)
    print "Creating makefile: ";
    #system('cp -p ../linux.env ../rhide.env');
    chdir('..');
-   system('make makes');
+   system($Make.' makes');
    chdir('linux');
    print "done.\n\n";
   }
@@ -180,7 +199,7 @@ if (!(-e $d) or (-M $d > -M $o))
    system("cp -p $o .");
    if ($Strip)
      {
-      system('zip -9u result/dbgcopy.zip editor.exe') unless($iMode);
+      system("zip -9u result/setedit-$version-Linux-debug.zip editor.exe") unless($iMode);
       system('strip editor.exe');
       $i=`which upx`;
       if (length($i))
@@ -227,7 +246,7 @@ if (!length($i))
   }
 else
   {
-   if (system('make txt info')==0)
+   if (system($Make.' txt info')==0)
      {
       CopyIfCpr('editor.inf','../makes/linux/'.$inf_dir.'/setedit.info');
       CopyIfCpr('sdg.inf','../makes/linux/'.$inf_dir.'/sdg.info');

@@ -42,6 +42,25 @@ static unsigned char daysInMonth[] = {
 };
 
 
+#if 1
+// This should be more portable:
+static
+void GetTime(time_t *tt)
+{
+ time(tt);
+}
+#else
+// Funny that ftime is a BSD 4.2 function and doesn't exist for FreeBSD
+// Here just in case is needed.
+static
+void GetTime(time_t *tt)
+{
+ struct timeb tb;
+ ::ftime(&tb);
+ *tt=tb.time;
+}
+#endif
+
 //
 // TCalendarView functions
 //
@@ -49,13 +68,13 @@ static unsigned char daysInMonth[] = {
 TCalendarView::TCalendarView(TRect& r) : TView( r )
 {
     struct tm *tm;
-    struct timeb tb;
+    time_t tt;
 
     options |= ofSelectable;
     eventMask |= evMouseAuto;
 
-    ::ftime(&tb);
-    tm = localtime(&tb.time);
+    GetTime(&tt);
+    tm = localtime(&tt);
     year = curYear = 1900 + tm->tm_year;
     month = curMonth = tm->tm_mon + 1;
     curDay = tm->tm_mday;

@@ -41,9 +41,9 @@
 #include <splinman.h>
 #include <rhutils.h>
 #include <edhists.h>
-#ifndef SEOS_Win32
-#include <ftw.h>
-#endif
+//#if !(defined(SEOS_Win32) || defined(SEOSf_FreeBSD))
+//#include <ftw.h>
+//#endif
 #include <dyncat.h>
 #include <pathtool.h>
 

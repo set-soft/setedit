@@ -5,8 +5,8 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.55
-@set update-date 4 Feb 2002
+@set version 0.4.56
+@set update-date 19 Feb 2002
 @set update-month Feb 2002
 @set name-author Salvador Eduardo Tropea
 
@@ -1751,6 +1751,7 @@ These settings are stored in the desktop file. @x{Desktop Files}.
 @cindex desktop files, style
 @cindex tcedit.dst, style
 @cindex closed windows, number
+@cindex message window, options
 
 This option po-ups the general configuration dialog containing several
 options.
@@ -1848,6 +1849,23 @@ windows.
 @end itemize
 
 The second dialog contains a button to return to the first dialog.
+@p{}
+
+The @code{+ Others} button opens a third dialog containing options to
+configure the behavior of the message window when the last of first error in
+the list is reached.
+@p{}
+
+@itemize @bullet
+@item Just stop: nothing particular is done, the editor just stops.
+@item Indicate with a message: a message indicating you reached the end
+pop-ups.
+@item Wrap (circular list): the list becomes a circular list. So when you
+reach the last message the editor jumps to the first and @i{viceversa}.
+@item Make a beep: a sound is generated.
+@end itemize
+
+This dialog also have a button to go back to the main dialog.
 @p{}
 
 These settings are stored in the desktop file. @x{Desktop Files}.
@@ -5432,6 +5450,10 @@ to the user selection, many formats are supported by the editor and the
 mechanism is configurable. See the next section for more information.
 @paragraph{}
 
+When the last or first error in the list is reached the editor indicates it.
+This behavior can be configured. @x{Editor General}.
+@p{}
+
 You can also delete entries in the message window pressing @key{Delete}. To
 add more flexibility the content of the message window can be stored in a
 file or copied to the clipboard, to do it just use the menu.
@@ -5439,6 +5461,7 @@ file or copied to the clipboard, to do it just use the menu.
 
 For more information about the behavior of the message window when you run
 external programs @x{Run program (which one)}.
+@p{}
 
 @section Error messages from an external application
 @cindex parse, errors

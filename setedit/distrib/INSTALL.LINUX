@@ -52,4 +52,9 @@
 # Because I'm not so familar with shell scripts, I use
 # a makefile, which I know how to write.
 
-make -f INSTALL.MAK install $*
+if which gmake > /dev/null; then
+   gmake -f INSTALL.MAK install $*;
+else
+   make -f INSTALL.MAK install $*;
+fi
+

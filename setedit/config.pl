@@ -144,6 +144,7 @@ elsif ($OS eq 'UNIX')
    # be added for things like FreeBSD or SunOS.
    $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSf eq 'Linux');
    $MakeDefsRHIDE[1].='ncurses m ';
+   $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
    $MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';

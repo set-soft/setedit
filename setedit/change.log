@@ -1,4 +1,14 @@
 $Log$
+Revision 1.570  2002/04/21 14:57:19  set
+* Fixed: Wrong separator detection in tools/cvssget.
+
+Revision 1.569  2002/04/21 14:37:42  set
+* Fixed: Some code that compiled only for TV 2.0.
+
+Revision 1.65  2002/04/15 13:57:48  set
+* Fixed: More potential buffer overflows because of the use of L_tmpnam.
+Patches suggested by Andris.
+
 Revision 1.64  2002/04/08 14:11:53  set
 * Fixed: Buffer overflow in temporary names created by infview. Patch by
 Andris.

@@ -36,7 +36,7 @@ doc_dir=doc
 man_dir=man
 
 files:=$(shell find $(bin_dir) $(data_dir) $(info_dir) $(doc_dir) $(man_dir)\
-	-not -type d -print)
+	! -type d -print)
 ALL_FILES=$(addprefix $(prefix)/,$(files))
 
 $(prefix)/$(bin_dir)/%: $(bin_dir)/%

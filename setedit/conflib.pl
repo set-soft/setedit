@@ -219,7 +219,10 @@ sub LookForPrefix
       }
     else
      {
-      $prefix='/usr';
+      if ($OSf eq 'FreeBSD')
+        { $prefix='/usr/local'; }
+      else
+        { $prefix='/usr'; }
      }
    }
  elsif ($OS eq 'DOS')
