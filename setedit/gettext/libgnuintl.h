@@ -37,7 +37,7 @@
 /* Resolve a platform specific conflict on DJGPP.  GNU gettext takes
    precedence over _conio_gettext.  */
 #ifdef __DJGPP__
-# undef gettext
+/*# undef gettext*/
 /*# define gettext gettext*/
 #endif
 
@@ -55,8 +55,8 @@ extern "C" {
 
 /* Look up MSGID in the current default message catalog for the current
    LC_MESSAGES locale.  If not found, returns MSGID itself (the default
-   text).  */
-extern char *gettext PARAMS ((const char *__msgid));
+   text).
+extern char *gettext PARAMS ((const char *__msgid)); */
 
 /* Look up MSGID in the DOMAINNAME message catalog for the current
    LC_MESSAGES locale.  */
