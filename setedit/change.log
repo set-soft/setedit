@@ -1,5 +1,49 @@
 $Log$
-Revision 1.35  2002/01/04 14:54:01  set
+Revision 1.542  2002/01/27 21:36:49  set
+* Changed to version 0.4.54 for a new release.
+
+Revision 1.541  2002/01/27 16:55:11  set
+* Modified: debian/rules to avoid deleting doc/Makefile and
+internac/Makefile.
+
+Revision 1.540  2002/01/27 16:37:55  set
+* Added: Protection to avoid starting the screen saver if currently the TV
+library says the size of the screen is 0. It looks like Win32 code
+currently can do it if the window isn't visible. This check isn't a
+solution but avoids "div. by 0" problems. Reported by <James_Wilson@i2.com>
+
+Revision 1.539  2002/01/27 16:36:11  set
+* Added: A FAQ comment and warnings in the readme about the fact that Windows
+NT (4.0, 2k, XP, etc.) is case sensitive when looking for environment
+variables. Jim <James_Wilson@i2.com> had problems and all was because he used
+Set_Files=....
+
+Revision 1.538  2002/01/27 16:22:01  set
+* Modified: Test for djgpp/Cygwin fileutils to use cp instead of rm, it seems
+to be more reliable (optimized by djgpp's libc?). Patch by Alex Lozano.
+
+Revision 1.537  2002/01/27 16:19:23  set
+* Fixed: Allegro 4.0 moved the datafile_type definition to a same header but
+another directory and added an underscore. Patch by Andris.
+
+Revision 1.536  2002/01/27 15:43:59  set
+* Fixed: pathtool "defined but not used" warning when compiling libset.a for
+RHIDE. Patch by Andris.
+* Fixed: rhideint lack of tv.h. Patch by Andris.
+
+Revision 1.535  2002/01/27 15:36:10  set
+* Modified: Now Allegro 4.0 is released and supported for audio stuff. The
+configuration script now accepts it. Reported by Andris.
+
+Revision 1.534  2002/01/08 02:25:18  set
+* Fixed: The mpegsound library failed to load the ID3 data (my fault).
+Reported by Alex Lozano <alex@inti.gov.ar>.
+
+Revision 1.36 SF 2002/01/09 03:42:23  terrible
+* Updated: Debian packaging to the "Ivan hates computers after having good
+  vacations" release version 0.4.53-1.
+
+Revision 1.35 SF 2002/01/04 14:54:01  set
 * Synchronized with home CVS.
 
 Revision 1.533  2002/01/02 01:09:57  set
@@ -3735,11 +3779,11 @@ Revision 1.15  1999/02/10 23:38:04  set
 * Added: Now the command line is more POSIX compliant, well at least supports
 short and long commands. I used the GPL'd getopts_long function in DOS
 because djgpp lacks this functionallity.
-.
+
 Revision 1.14  1999/02/10 22:23:58  set
 * Added: now when "Scroll lock centers" is on the searchs are centered too.
 Suggested by SpaZe / ST <stealth.tech@usa.net>.
-.
+
 Revision 1.13  1999/02/10 01:06:25  set
 * Fixed the "Compact text" option. Now it doesn't replaces tabs by spaces
 when only one space will be replaced. Reported by Andy <andygoth@juno.com>.
@@ -3756,7 +3800,7 @@ differences with the help of Tom Aschenbrenner <tom@aschen.com>.
 interesting thing is that a string opened inside a #define extends the
 #define. I hope it will work ok. Bug reported by SpaZe/ST
 <stealth.tech@usa.net>.
-.
+
 Revision 1.10  1999/02/09 23:10:28  set
 * Some fixes in the documentation:
  * Fixed some typos.
@@ -3766,7 +3810,7 @@ Revision 1.10  1999/02/09 23:10:28  set
  (Miscellaneous).
  * Added better information about the current license (GPL).
 * Added the copying.* and copyrigh files to the binary distribution.
-.
+
 Revision 1.9  1999/02/09 00:29:46  set
 * Added a new mode to the editor called "Don't move inside tabs". When this
 mode is on is very hard to put the cursor in the middle of a tab (I hope
@@ -3776,7 +3820,7 @@ A lot of people asked about it, here is a small list: "a.meyer"
 <hexx3000@schaltzentrale.mvnet.de>, MDaniel <mdaniel@balug.org.ar>, Sinan,
 Andy M Goth <andygoth@juno.com>, etc. With this second addition tabs users
 will get a big boost ;-)
-.
+
 Revision 1.8  1999/02/07 16:48:30  set
 * Added code to support the new "Try" button in the Color Dialog that I added
 to TVision (see the TV package for more information).
@@ -3791,7 +3835,7 @@ Revision 1.7  1999/02/07 12:55:02  set
 Expand...() only in standalone (RHIDE uses your own replacement) and renamed
 FindFile to SETFindFile. All from suggestions of Robert after testing the
 first snapshot of 0.4.23 with the new directory structure.
-.
+
 Revision 1.6  1999/01/31 15:37:21  set
 * Included the LibAmp sources in the package to avoid distributing the
 binaries.
