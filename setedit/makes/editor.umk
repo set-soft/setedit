@@ -111,6 +111,7 @@ OBJFILES=\
 	obj/pphp$(ExOBJ) \
 	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
+	obj/pvhdl$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
 	obj/scresave$(ExOBJ) \
@@ -255,6 +256,7 @@ editor$(ExEXE):: \
 	obj/pphp$(ExOBJ) \
 	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
+	obj/pvhdl$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
 	obj/scresave$(ExOBJ) \
@@ -552,6 +554,9 @@ obj/ppython$(ExOBJ):: ../mainsrc/ppython.cc
 	$(RHIDE_COMPILE_CC)
 
 obj/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/pvhdl$(ExOBJ):: ../mainsrc/pvhdl.cc  
 	$(RHIDE_COMPILE_CC)
 
 obj/runprog$(ExOBJ):: ../setedit/runprog.cc  

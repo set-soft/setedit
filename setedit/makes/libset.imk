@@ -47,6 +47,7 @@ libset$(ExLIB):: \
 	objlib/nhiscoll$(ExOBJ) \
 	objlib/ninfview$(ExOBJ) \
 	objlib/ninfwind$(ExOBJ) \
+	objlib/nostatex$(ExOBJ) \
 	objlib/nsindica$(ExOBJ) \
 	objlib/parser$(ExOBJ) \
 	objlib/pathtool$(ExOBJ) \
@@ -56,6 +57,7 @@ libset$(ExLIB):: \
 	objlib/pphp$(ExOBJ) \
 	objlib/ppython$(ExOBJ) \
 	objlib/pvarious$(ExOBJ) \
+	objlib/pvhdl$(ExOBJ) \
 	objlib/rhideint$(ExOBJ) \
 	objlib/sceditor$(ExOBJ) \
 	objlib/sdginter$(ExOBJ) \
@@ -1682,6 +1684,35 @@ objlib/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
+objlib/nostatex$(ExOBJ):: ../settvuti/nostatex.cc \
+	compatlayer.h \
+	nostatex.h \
+	settvuti.h \
+	tv.h \
+	tv/configtv.h \
+	tv/dialogs.h \
+	tv/drawbuf.h \
+	tv/intl.h \
+	tv/ipstream.h \
+	tv/object.h \
+	tv/objects.h \
+	tv/opstream.h \
+	tv/point.h \
+	tv/pstream.h \
+	tv/stddlg.h \
+	tv/streambl.h \
+	tv/sttctext.h \
+	tv/system.h \
+	tv/tobjstrm.h \
+	tv/ttypes.h \
+	tv/tvconfig.h \
+	tv/tvobjs.h \
+	tv/tvutil.h \
+	tv/view.h \
+	tv/views.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
 objlib/nsindica$(ExOBJ):: ../names/nsindica.cc \
 	compatlayer.h \
 	tv/configtv.h \
@@ -1839,6 +1870,13 @@ objlib/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+objlib/pvhdl$(ExOBJ):: ../mainsrc/pvhdl.cc \
+	bufun.h \
+	compatlayer.h \
+	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

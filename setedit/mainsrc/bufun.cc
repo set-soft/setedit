@@ -680,6 +680,7 @@ static stFuncsSHL FuncsAvail[]=
  {"PDP11 asm",SearchAsmLabels},
  {"PHP",SearchPHPFuncs},
  {"Python",SearchPythonSymbols},
+ {"VHDL",SearchVHDLStuff},
  {0,SearchCFuncs}
 };
 

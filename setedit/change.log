@@ -1,4 +1,18 @@
-$Log$
+$Log$.
+Revision 1.650  2005/01/03 19:43:26  set
+* Added: [configuration] When the configure script doesn't detect libmigdb
+now it says where to download it.
+* Added: [Error parsers] Support for Xilinx tools (lamentably not really
+useful is they are used with wine :-(
+* Modified: Now messages in the "message window" that contains \r\n on UNIX
+systems are modified to also remove the \r. Useful when parsing the output
+of programs running with wine ;-)
+* Modified: Small patch from Grzegorz for the Python parser
+(STANDALONE_TEST stuff).
+* Modified: [Cosmetic] The error message generated when the editor can't
+load a desktop file. It now says that the problem could be the file belongs
+to other user.
+
 Revision 1.649  2004/12/13 15:45:52  set
 * Added: When configuring the keyboard the dialog to create a key sequence
 now shows information about what's currently assigned to the sequence we

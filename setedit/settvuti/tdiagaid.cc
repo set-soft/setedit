@@ -205,7 +205,7 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
     buffer[w]=0;
     TSNoStaticText *snst=new TSNoStaticText(buffer);
     d->nst=(TNoStaticText *)snst->view;
-    upper=MakeVeGroup(0,new TSStaticText(__("Assigned to:")),snst,upper,0);
+    upper=MakeVeGroup(0,upper,new TSStaticText(__("Assigned to:")),snst,0);
    }
 
  if (flags & aidComMac)
@@ -213,7 +213,7 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
     TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),
                              __("s~L~isp code"),0);
     tl->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
-    upper=new TSVeGroup(upper,tl,0);;
+    upper=new TSVeGroup(upper,tl,0);
    }
  upper->Flags=wSpan;
 

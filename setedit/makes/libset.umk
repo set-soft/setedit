@@ -47,6 +47,7 @@ libset$(ExLIB):: \
 	objlib/nhiscoll$(ExOBJ) \
 	objlib/ninfview$(ExOBJ) \
 	objlib/ninfwind$(ExOBJ) \
+	objlib/nostatex$(ExOBJ) \
 	objlib/nsindica$(ExOBJ) \
 	objlib/parser$(ExOBJ) \
 	objlib/pathtool$(ExOBJ) \
@@ -56,6 +57,7 @@ libset$(ExLIB):: \
 	objlib/pphp$(ExOBJ) \
 	objlib/ppython$(ExOBJ) \
 	objlib/pvarious$(ExOBJ) \
+	objlib/pvhdl$(ExOBJ) \
 	objlib/rhideint$(ExOBJ) \
 	objlib/sceditor$(ExOBJ) \
 	objlib/sdginter$(ExOBJ) \
@@ -176,6 +178,9 @@ objlib/ninfview$(ExOBJ):: ../infview/names/ninfview.cc
 objlib/ninfwind$(ExOBJ):: ../infview/names/ninfwind.cc  
 	$(RHIDE_COMPILE_CC)
 
+objlib/nostatex$(ExOBJ):: ../settvuti/nostatex.cc  
+	$(RHIDE_COMPILE_CC)
+
 objlib/nsindica$(ExOBJ):: ../names/nsindica.cc  
 	$(RHIDE_COMPILE_CC)
 
@@ -201,6 +206,9 @@ objlib/ppython$(ExOBJ):: ../mainsrc/ppython.cc
 	$(RHIDE_COMPILE_CC)
 
 objlib/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc  
+	$(RHIDE_COMPILE_CC)
+
+objlib/pvhdl$(ExOBJ):: ../mainsrc/pvhdl.cc  
 	$(RHIDE_COMPILE_CC)
 
 objlib/rhideint$(ExOBJ):: ../mainsrc/rhideint.cc  

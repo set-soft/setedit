@@ -111,6 +111,7 @@ OBJFILES=\
 	obj/pphp$(ExOBJ) \
 	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
+	obj/pvhdl$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
 	obj/scresave$(ExOBJ) \
@@ -255,6 +256,7 @@ editor$(ExEXE):: \
 	obj/pphp$(ExOBJ) \
 	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
+	obj/pvhdl$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
 	obj/scresave$(ExOBJ) \
@@ -4248,6 +4250,13 @@ obj/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+obj/pvhdl$(ExOBJ):: ../mainsrc/pvhdl.cc \
+	bufun.h \
+	compatlayer.h \
+	tv/configtv.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
