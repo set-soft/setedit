@@ -332,10 +332,11 @@ SubMenu: "~D~ebug", kbAlD
  MenuSeparator
  MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
  SubMenu: "~W~atch an expression", kbUnknown
-# EN: NUW
+# EN: DNUW
   MenuItemC: "~N~ormal watch", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
   MenuItemC: "~W~ith scope", cmeDbgWatchExpScp
   MenuItemC: "~U~sing the Inspector", cmeDbgInspector
+  MenuItemC: "~D~ata window", cmeDbgDataWindow
  EndSubMenu
  MenuItemC: "~C~alling stack", cmeDbgCallStack
  MenuSeparator

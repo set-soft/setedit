@@ -69,8 +69,8 @@ const int maxCommand=256;
 static char     Command[maxCommand]="\x0";
 static uint32   Options=0;
 static uint32   OpsScrHz=opshBegin | opshEnd;
-static char    *CurrentParser=0;
-static char    *ErrorFile=0;
+static char    *CurrentParser=NULL;
+static char    *ErrorFile=NULL;
 static char    *incCompiler;
 static int      IndexCLE;
 static int      incGoBack, incLines=20;
@@ -830,7 +830,10 @@ void LoadRunCommand(fpstream &s)
     if (version>=4)
        s >> incLines;
     if (version>=3)
+      {
+       delete[] CurrentParser;
        CurrentParser=s.readString();
+      }
    }
  if (!CurrentParser)
     CurrentParser=newStr("GNU");

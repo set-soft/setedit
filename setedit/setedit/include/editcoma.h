@@ -56,6 +56,7 @@ const int
       hcEditWp             =0x2278,
       hcBkptDialog         =0x2280,
       hcWpDialog           =0x2281,
-      hcInspector          =0x2290;
+      hcInspector          =0x2290,
+      hcDataViewer         =0x22A0;
 
 

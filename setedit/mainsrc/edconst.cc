@@ -212,6 +212,7 @@ static edCList SetApp[] =
 { "ConfRunCommand" , 39  },
 { "DbgCallStack"   ,120  },
 { "DbgCloseSession",128  },
+{ "DbgDataWindow"  ,132  },
 { "DbgEditBreakPts",131  },
 { "DbgEditWatchPts",125  },
 { "DbgEndSession"  ,127  },

@@ -175,5 +175,20 @@
   S(91,White,Black,Bold text) \
   S(92,Lightred,Black,Underlined text) \
 \
-  S(93,Black,Black,reserved)
+  S(93,Black,Black,reserved) \
+  S(94,Black,Black,Reserved) \
+  S(95,Black,Black,Reserved) \
+  S(96,Black,Black,Reserved) \
+  \
+  SS(97,Black,Lightgray,Frame disabled,DataWindow) \
+  S(98,White,Lightgray,Frame) \
+  S(99,Lightgreen,Lightgray,Frame icons) \
+  S(9A,Blue,Cyan,Scroll bar page) \
+  S(9B,Blue,Cyan,Scroll bar icons) \
+  S(9C,Black,Cyan,Normal Text(active)) \
+  S(9D,White,Cyan,Normal Text(inactive)) \
+  S(9E,White,Blue,Focused Text) \
+  S(9F,Black,Magenta,Selected Text) \
+  S(A0,Black,Red,Reserved) \
+  S(A1,Black,Cyan,Reserved)
 

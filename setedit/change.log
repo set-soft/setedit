@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.563  2004/08/05 19:26:28  set
+* Fixed(?): [DOC] The complement part of the "@end menu" makeinfo 4.7
+problem. This time for the @itemize.
+* Fixed: [DOC] newer versions of the TeX package defines "html" macro which
+collides with the one in rhidemac.*.
+* Added: [DOC] SDH command line option to avoid numbering chapters. It
+looks like makeinfo 4.7 does it by itself (and by default!).
+From info sent by Andrea Mazzoleni (amadvance/users/sourceforge/net).
+
 Revision 1.562  2004/08/05 18:14:21  set
 * Modified: [sLisp] CommentIndent macro, enhanced version from Thiago.
 

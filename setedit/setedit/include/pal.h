@@ -189,8 +189,22 @@
         S(90,Blue,Green,Selected text) \
         S(91,White,Cyan,Bold text) \
         S(92,Yellow,Cyan,Underlined text) \
-        S(93,Black,Black,Reserved)
-
+        S(93,Black,Black,Reserved) \
+        S(94,Black,Black,Reserved) \
+        S(95,Black,Black,Reserved) \
+        S(96,Black,Black,Reserved) \
+        \
+        SS(97,Black,Lightgray,Frame disabled,DataWindow) \
+        S(98,White,Lightgray,Frame) \
+        S(99,Lightgreen,Lightgray,Frame icons) \
+        S(9A,Blue,Cyan,Scroll bar page) \
+        S(9B,Blue,Cyan,Scroll bar icons) \
+        S(9C,Black,Cyan,Normal Text(active)) \
+        S(9D,White,Cyan,Normal Text(inactive)) \
+        S(9E,White,Blue,Focused Text) \
+        S(9F,Black,Magenta,Selected Text) \
+        S(A0,Black,Red,Reserved) \
+        S(A1,Black,Cyan,Reserved)
 
 #define Normal 07
 #define Light 0F
@@ -368,8 +382,22 @@
         M(91,Light,bold text) \
         M(92,Underline,underlined text) \
         \
-        M(93,Empty,reserved)
-
+        M(93,Empty,reserved) \
+        M(94,Empty,reserved) \
+        M(95,Empty,reserved) \
+        M(96,Empty,reserved) \
+        \
+        M(97,Normal,passive frame) /* Data window */\
+        M(98,Light,active frame) \
+        M(99,Normal,frame icons) \
+        M(9A,Normal,scrollbar) \
+        M(9B,Normal,scrollbar icons) \
+        M(9C,Normal,Normal Text(active)) \
+        M(9D,Normal,Normal Text(inactive)) \
+        M(9E,Light,Focused Text) \
+        M(9F,Light,Selected Text) \
+        M(A0,Empty,reserved) \
+        M(A1,Empty,reserved)
 
 #define SE_cpBlackWhite SE_cpColor
 
