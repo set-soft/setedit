@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.478  2003/12/09 16:07:51  set
+* Added: "File open" dialogs remmembers its size and position. Each kind of
+dialog have its own values, so open and save as are independent. I know it
+could confuse some people but it allows better customization. From a
+suggestion by gradha.
+
 Revision 1.477  2003/12/09 16:06:30  set
 * Added: Most lists (like functions list) now centers the focused item when
 a match is selected. Suggested by gradha.

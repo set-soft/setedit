@@ -104,8 +104,14 @@ TFileDialogHome::TFileDialogHome(const char *aWildCard, const char *aTitle,
 
  if (dialogSize.a.x || dialogSize.b.x)
    {
-    changeBounds(dialogSize);
-    options&=~ofCentered;
+    if (dialogSize.b.x-dialogSize.a.x<49 || dialogSize.b.y-dialogSize.a.y<20)
+       // Avoid using a size smaller than 49x20
+       dialogSize=getBounds();
+    else
+      {
+       changeBounds(dialogSize);
+       options&=~ofCentered;
+      }
    }
  else
     dialogSize=getBounds();
