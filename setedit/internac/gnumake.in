@@ -88,12 +88,12 @@ fix.exe: fix.c
 $(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe
 #if not exist $(T) cp $^ $@
 	touch $@
-	fix $(addprefix h_,$@) $< __.pot
+	./fix.exe $(addprefix h_,$@) $< __.pot
 	-$(msgmerge) --force-po -o __.pon $@ __.pot
 	-$(update_p) __.pon $@
 	rm -f __.pon
 	rm -f __.pot
-	fix $(addprefix h_,$@) $@ $@
+	./fix.exe $(addprefix h_,$@) $@ $@
 #$(addsuffix .mo,$(LANGUAGES)): $(msgfmt)
 
 %.mo: %.po
