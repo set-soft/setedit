@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -44,7 +44,7 @@ class TInputLine;
 class TCalcDialog : public TDialog
 {
 public:
-  TCalcDialog(const TRect & bounds, char *Title, char *StartVal = NULL);
+  TCalcDialog(const TRect & bounds, const char *Title, char *StartVal = NULL);
   virtual void handleEvent(TEvent &);
   TInputLine *input;
   TInputLine *result;
@@ -52,7 +52,7 @@ public:
 
 const int MaxLinePipe=255;
 
-TCalcDialog::TCalcDialog(const TRect & bounds, char *Title, char *StartVal)
+TCalcDialog::TCalcDialog(const TRect & bounds, const char *Title, char *StartVal)
   : TDialog(bounds,Title),
   TWindowInit(TCalcDialog::initFrame)
 {
@@ -161,7 +161,7 @@ void TCalcDialog::handleEvent(TEvent & event)
 void executeCalc(char *startVal)
 {
  TCalcDialog *d;
- d = new TCalcDialog(TRect(10,2,72,11),_("Calculator"),startVal);
+ d=new TCalcDialog(TRect(10,2,72,11),_("Calculator"),startVal);
  TProgram::deskTop->execView(d);
  // Dialogs should be destroyed or your members won't de deleted.
  destroy(d);

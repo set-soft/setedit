@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -456,9 +456,9 @@ stkHandler InsertFileInfo(FileInfo &p)
 }
 
 static
-stkHandler addString(char *str)
+stkHandler addString(const char *str)
 {
- char *s=str;
+ const char *s=str;
  int x;
 
  for (x=0; *s; s++)
@@ -527,7 +527,7 @@ void EdShowMessageUpdate(unsigned Options)
  TProgram::deskTop->unlock();
 }
 
-void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
+void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
                        unsigned Options)
 {
  if (!MsgWindow || (Options & edsmRemoveOld))
@@ -560,7 +560,7 @@ void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
  EdShowMessageUpdate(Options);
 }
 
-void EdShowMessage(char *msg, Boolean remove_old, Boolean resetHz)
+void EdShowMessage(const char *msg, Boolean remove_old, Boolean resetHz)
 {
  FileInfo dummy;
  dummy.Line=-1;
@@ -568,7 +568,7 @@ void EdShowMessage(char *msg, Boolean remove_old, Boolean resetHz)
                    (resetHz ? edsmNoHzReset : 0));
 }
 
-void EdShowMessage(char *msg, unsigned Options)
+void EdShowMessage(const char *msg, unsigned Options)
 {
  FileInfo dummy;
  dummy.Line=-1;

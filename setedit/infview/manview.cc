@@ -1,4 +1,4 @@
-/* Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_ctype
@@ -776,7 +776,7 @@ int CheckForMan(void)
 *****************************************************************************/
 
 ManPageOptions op={"setedit","",""};
-extern char *strncpyZ(char *dest, char *orig, int size);
+extern char *strncpyZ(char *dest, const char *orig, int size);
 
 TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
 {
@@ -784,7 +784,7 @@ TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
     return 0;
 
  if (name)
-    strncpyZ(op.program,(char *)name,80);
+    strncpyZ(op.program,name,80);
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Man page to view")));
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_unistd
@@ -50,9 +50,9 @@ struct MsgRec
 };
 */
 
-void EdShowMessage(char *msg,Boolean /*remove_old*/)
+void EdShowMessage(const char *msg,Boolean /*remove_old*/)
 {
- show_message((const char *)msg,NULL,0,0,2);
+ show_message(msg,NULL,0,0,2);
 }
 
 void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
@@ -172,11 +172,11 @@ void SpLinesUpdate()
 /**[txh]********************************************************************
 
   Description:
-  Dummy for the EdShowMessage(char*,bool,bool)  (edmsg.cc)
+  Dummy for the EdShowMessage(const char*,bool,bool)  (edmsg.cc)
 
 ***************************************************************************/
 
-void EdShowMessage (char *, bool, bool)
+void EdShowMessage (const char *, bool, bool)
 {
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -32,7 +32,7 @@
 
 
 static char *Error=0;
-static void StoreError(char *error,char *file);
+static void StoreError(const char *error,char *file);
 static const char *loadedFile=0;
 
 TKeyTranslate::TKeyTranslate(KeyTTable *aBase, int aType) :
@@ -1129,7 +1129,7 @@ dSeqSel(ShCtPgDn,cmcTextEnd);
 
 TKeyTranslate KeyTrans((KeyTTable *)&base);
 
-static void StoreError(char *error,char *file)
+static void StoreError(const char *error,char *file)
 {
  char buf[PATH_MAX+80];
  sprintf(buf,"%s, file \"%s\"\n",error,file);

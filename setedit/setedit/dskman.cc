@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -55,7 +55,7 @@ void *TDskWinMan::read(ipstream& is)
 
 char *TDskWinMan::GetText(char *dest, short maxLen)
 {
- char *s=_("   Man page: ");
+ const char *s=_("   Man page: ");
  if (strlen(s)<(size_t)maxLen)
     strcpy(dest,s);
  else

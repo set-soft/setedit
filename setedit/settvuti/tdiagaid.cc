@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 
@@ -164,7 +164,7 @@ void InitBotLens(void)
    }
 }
 
-TDialogAID *CreateAddInsDelDialog(int x, int y, char *name, int h, int w,
+TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                                   int flags)
 {
  TDialogAID *d;
@@ -245,7 +245,7 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, char *name, int h, int w,
 
 // That creates the dialog, is generic and is reused
 // Used to: (1) Choose a comand (2) Choose a macro
-TDialog *CreateChooseDialog(int x, int y, char *name, int h, int w)
+TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w)
 {
  TDialog *d;
 

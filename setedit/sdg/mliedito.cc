@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -36,7 +36,7 @@ editor. @x{TMLIBase (class)}.@p
 // shouldn't be needed by RHIDE.
 extern void OpenFileFromEditor(char *fullName);
 
-extern char *strncpyZ(char *dest, char *orig, int size);
+extern char *strncpyZ(char *dest, const char *orig, int size);
 extern char *strndup(char *source, int size);
 
 void TMacrosColl::freeItem(void *item)

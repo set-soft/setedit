@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -25,7 +25,7 @@ hanged.
 // Same as static text, after all we are almost this
 #define cpProgress "\x06"
 
-TProgress::TProgress(const TRect& bounds, char *aMessage) :
+TProgress::TProgress(const TRect& bounds, const char *aMessage) :
    TView(bounds),
    message(newStr(aMessage)),
    state(0)

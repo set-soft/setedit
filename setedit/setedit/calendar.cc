@@ -122,7 +122,7 @@ the calendar. The buffer should have size+1 bytes. (SET)
 
 char *TCalendarView::getMonthStr(char *buffer, int size, int addArrows)
 {
- char *monthName=_(monthNames[month]);
+ const char *monthName=_(monthNames[month]);
  int l=max(strlen(monthName),15)+5;
  if (addArrows)
     l+=2;

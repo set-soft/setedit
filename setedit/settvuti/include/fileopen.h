@@ -1,8 +1,8 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef FILEOPEN_H_INCLUDED
 #define FILEOPEN_H_INCLUDED
-extern int GenericFileDialog(char *title, char *file, char *mask, int histID,
+extern int GenericFileDialog(const char *title, char *file, char *mask, int histID,
                              int buttons, char *dir, unsigned flags, int ctx);
 extern int FileOpenDialog(char *title, char *file, int historyID,
                           unsigned flags=0);

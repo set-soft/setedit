@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TProgress ) && !defined( __TProgress )
 #define __TProgress
@@ -8,7 +8,7 @@ class TRect;
 class TProgress : public TView
 {
 public:
-   TProgress(const TRect& r, char *aMessage);
+   TProgress(const TRect& r, const char *aMessage);
    ~TProgress();
    virtual void draw();
    virtual TPalette& getPalette() const;

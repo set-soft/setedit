@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TDialogAID) && !defined(__TDialogAID__)
 #define __TDialogAID__
@@ -37,8 +37,8 @@ const int aidInsert=1, aidComMac=2, aidOKEnabled=4;
 #endif
 
 // Used to create the dialogs
-TDialogAID *CreateAddInsDelDialog(int x, int y, char *name, int h, int w,
+TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                                   int flags);
-TDialog *CreateChooseDialog(int x, int y, char *name, int h, int w);
+TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w);
 
 #endif

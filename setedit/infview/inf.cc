@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -218,7 +218,7 @@ adjustments, for example I didn't take care about names crossing lines.
 # endif
 #endif
 
-extern char *strncpyZ(char *dest, char *orig, int size);
+extern char *strncpyZ(char *dest, const char *orig, int size);
 extern ushort execDialog( TDialog *d, void *data );
 TDialog *createNodeChooseDialog();
 TDialog *createConfigDialog();

@@ -1,6 +1,6 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-char *strncpyZ(char *dest, char *orig, int size)
+char *strncpyZ(char *dest, const char *orig, int size)
 {
  if (size)
     size--;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -354,7 +354,7 @@ unsigned short TCEditor_SelectAKey(void)
  TDialogK *d=new TDialogK(TRect(0,0,30,5),_("Key selector"));
  d->options|=ofCentered;
 
- char *message=_(press_key);
+ const char *message=_(press_key);
  int x=(30-strlen(message))/2;
  TStaticText *ts=new TStaticText(TRect(x,2,29,3),message);
  d->insert(ts);

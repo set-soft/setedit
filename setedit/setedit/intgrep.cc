@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdlib
@@ -65,8 +65,8 @@ static TStringCollection *Visited=0;
 // Static to avoid consuming 1Kb by recursion in the stack
 static char TempDirName[PATH_MAX];
 
-void FullInputString(int x, int y, int w, int size,int histID, char *name,
-                     unsigned flags, TDialog *d)
+void FullInputString(int x, int y, int w, int size,int histID,
+                     const char *name, unsigned flags, TDialog *d)
 {
  TInputLine *inp=new TInputLinePiped(TRect(x+1,y+1,x+w,y+2),size,flags);
  d->insert(inp);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -43,7 +43,7 @@ void *TPMCollection::keyOf(void *p)
  return ((PMacroStr *)p)->trigger;
 }
 
-extern char *strncpyZ(char *dest, char *orig, int size);
+extern char *strncpyZ(char *dest, const char *orig, int size);
 
 void TPMCollection::getText(char *dest, unsigned item, int maxLen)
 {

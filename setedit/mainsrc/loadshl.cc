@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -595,7 +595,7 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
 }
 
 #define MaxExtension 80
-extern char *strncpyZ(char *dest, char *orig, int size);
+extern char *strncpyZ(char *dest, const char *orig, int size);
 
 static
 int TakeExtension(char *file, char *ext)

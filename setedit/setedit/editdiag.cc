@@ -121,7 +121,7 @@ void FullAboutBox(void)
  TSView::yDefSep=0;
  TNSCollection *text=new TNSCollection(12,5);
  #undef i
- #define i(a) text->insert(a)
+ #define i(a) text->insert((void *)a)
  i(_("The FSF and GNU people for such a good tools"));
  i(_("DJ Delorie and colaborators for porting it to DOS"));
  i(_("Robert H”hne for porting TVision and making RHIDE"));

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -5695,7 +5695,11 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
     if (pos!=-2)
       {
        if (pos==-1)
-          setStatusLine(_("No match found"));
+         {
+          char *s=newStr(_("No match found"));
+          setStatusLine(s);
+          DeleteArray(s);
+         }
        else
          {
           int y=YHLCC-delta.y;

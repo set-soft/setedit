@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -247,7 +247,7 @@ void TFileDialogHome::handleEvent(TEvent& event)
 
 static char *LastMaskUsed=0;
 
-int GenericFileDialog(char *title, char *file, char *mask, int histID, int buttons,
+int GenericFileDialog(const char *title, char *file, char *mask, int histID, int buttons,
                       char *dir, unsigned flags, int ctx)
 {
  char curDir[PATH_MAX];

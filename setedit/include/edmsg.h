@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 typedef struct
 {
@@ -75,9 +75,9 @@ const uint32 edsmUpdateSpLines=1,edsmRemoveOld=2,edsmDontSelect=4,
 // Mutually exclusive options for the scroll behavior
 const uint32 edsmScrollMask=0xC0000000,edsmEverScroll=0,edsmNeverScroll=0x40000000,
              edsmScrollIfNoFocus=0x80000000,edsmScrollShifter=0x40000000;
-extern void EdShowMessage(char *msg,Boolean remove_old=False,Boolean resetHz=True);
-extern void EdShowMessage(char *msg, unsigned Options);
-extern void EdShowMessageFile(char *msg, FileInfo &fInfo, char *fileName,
+extern void EdShowMessage(const char *msg,Boolean remove_old=False,Boolean resetHz=True);
+extern void EdShowMessage(const char *msg, unsigned Options);
+extern void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
                               unsigned Options=0);
 extern void EdShowMessageUpdate(unsigned Options);
 extern void EdJumpToMessage(ccIndex item);

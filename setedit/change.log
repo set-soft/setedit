@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.285  2003/04/02 13:40:10  set
+* Fixed: [MinGW] The configuration script shown the error messages created
+when running non-existent programs appear in the screen generating
+confusion. Now the command are executed redirecting stderr.
+
 Revision 1.284  2003/04/02 13:39:02  set
 * Fixed: Warnings about: return value in TCEditor::loadFile (this is
 because BC++ is idiot to detect the complete flow, but now the code is

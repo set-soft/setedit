@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -19,7 +19,7 @@
 
 #include <calendar.h>
 
-char *strncpyZ(char *dest, char *orig, int size);
+char *strncpyZ(char *dest, const char *orig, int size);
 
 static TDskWinCalendar *helper;
 
@@ -40,7 +40,7 @@ TDskWinCalendar::TDskWinCalendar()
 
 char *TDskWinCalendar::GetText(char *dest, short max)
 {
- char *calendar=_("   Calendar ");
+ const char *calendar=_("   Calendar ");
  int lCal=strlen(calendar);
  AllocLocalStr(buffer,lCal+40+1);
  strcpy(buffer,calendar);

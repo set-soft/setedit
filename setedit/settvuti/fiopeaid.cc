@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -149,7 +149,7 @@ buffer used by the provided id and with the buttons according to the flags.
 
 ***************************************************************************/
 
-int GenericFileDialog(char *title, char *file, char *mask, int id, unsigned flags)
+int GenericFileDialog(const char *title, char *file, char *mask, int id, unsigned flags)
 {
  char *dir=0;
  int buttons=0,ctx;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -269,7 +269,7 @@ static char RegExHitAvailable=0;
 static
 void ShowRegexError(int retval)
 {
- char *s=_("Regular expression error: %s");
+ const char *s=_("Regular expression error: %s");
  int l=strlen(s);
  AllocLocalStr(b,200+l);
 
@@ -384,7 +384,7 @@ static char PCREHitAvailable=0;
 static
 void ShowPCREError(const char *error)
 {
- char *s=_("Regular expression error: %s");
+ const char *s=_("Regular expression error: %s");
  int l=strlen(s)+strlen(error);
  AllocLocalStr(b,l+1);
 

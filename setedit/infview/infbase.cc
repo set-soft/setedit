@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -1843,7 +1843,7 @@ TInfTopic *TInfFile::getTopic(char *NameOri, int Verbose, int modeForTopic,
 TInfTopic *TInfFile::invalidTopic()
 {
  TInfTopic *topic;
- char *invalidText = _("\n Sorry I can't find this link (press ALT-F1).\n");
+ const char *invalidText=_("\n Sorry I can't find this link (press ALT-F1).\n");
 
  topic =  new TInfTopic(0);
  topic->Text = newStr(invalidText);

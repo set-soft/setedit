@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -56,8 +56,8 @@ class TAllScreen : public TView
 public:
  TAllScreen();
  virtual void draw();
- void printAt(int x, int y, char *s);
- void printAt(int x, int y, char *s, char color);
+ void printAt(int x, int y, const char *s);
+ void printAt(int x, int y, const char *s, char color);
  void scrollUp(void);
  char *buffer;
  static uchar curColor;
@@ -79,7 +79,7 @@ TAllScreen::TAllScreen() : TView(TRect(0,0,TScreen::screenWidth,TScreen::screenH
  memset(buffer,0,numRows*numCols*2);
 }
 
-void TAllScreen::printAt(int x, int y, char *s)
+void TAllScreen::printAt(int x, int y, const char *s)
 {
  if (y>numRows-1)
     return;
@@ -94,7 +94,7 @@ void TAllScreen::printAt(int x, int y, char *s)
    }
 }
 
-void TAllScreen::printAt(int x, int y, char *s, char color)
+void TAllScreen::printAt(int x, int y, const char *s, char color)
 {
  char aux=curColor;
  curColor=color;
@@ -751,7 +751,7 @@ static char  cColor[]={0xB,0xB,0x7,0xF};
 static char anX[16],anY[16],anGrado[16];
 static char *cBorra;
 static int nFilRel,nColRel,nStepX,nRow;
-static char *cCartel;
+static const char *cCartel;
 
 static
 void InitTextStars(void)

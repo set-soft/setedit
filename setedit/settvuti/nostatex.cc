@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 
@@ -11,7 +11,7 @@ TNoStaticText::TNoStaticText(const TRect& bounds, const char *aText) :
  startLen=strlen(aText);
 }
 
-void TNoStaticText::setText(char *s)
+void TNoStaticText::setText(const char *s)
 {
  int l=strlen(s);
  int copy=min(startLen,l);
