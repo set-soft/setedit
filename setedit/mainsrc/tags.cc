@@ -39,7 +39,7 @@ TODO: make a SortedStringableListBox
 #define Uses_TSButton
 #define Uses_TSHzGroup
 #define Uses_TSStaticText
-//#define Uses_TSStringableListBox
+#define Uses_TSStringableListBox
 #define Uses_TSVeGroup
 #define Uses_TSSortedListBox
 
@@ -1097,6 +1097,19 @@ int AddNewItem(void)
  return 1;
 }
 
+static
+int ShowVars(int which)
+{
+ TSViewCol *col=new TSViewCol(__("Variables"));
+ col->insert(xTSCenter,yTSUp,new TSStringableListBox(60,8,tsslbVertical|tsslbHorizontal,1,256));
+ col->insert(xTSCenter,yTSDown,new TSButton(__("~O~k"),cmOK,bfDefault));
+ TDialog *d=col->doItCenter(cmeTagFiles);
+ stTagFile *p=tags->tagFiles->atPos(which);
+ TStringableListBoxRec box={p->info,0};
+ execDialog(d,&box);
+ return 0;
+}
+
 void EditTagFiles()
 {
  if (InitTagsCollection()) return;
@@ -1105,7 +1118,7 @@ void EditTagFiles()
  TStringCollection *oldList=tags->getTagFilesList();
 
  TStringableListBoxRec boxParam;
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,__("Tag files"),12,56,0);
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,__("Tag files"),12,56,aidInfo);
  d->helpCtx=cmeTagFiles;
  boxParam.items=tags->tagFiles;
  boxParam.selection=0;
@@ -1113,6 +1126,7 @@ void EditTagFiles()
  d->AddAction=AddNewItem;
  d->OkAction =OkApply;
  d->CancelAction=CancelConfirm;
+ d->InfoAction=ShowVars;
  Modified=0;
 
  if (execDialog(d,&boxParam)==cmCancel && Modified)

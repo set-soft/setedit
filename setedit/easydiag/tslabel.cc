@@ -33,6 +33,12 @@ void TSLabel::setWidth(int aW)
  linked->setWidth(aW);
 }
 
+void TSLabel::setGrowMode(unsigned val)
+{
+ view->growMode=val;
+ linked->setGrowMode(val);
+}
+
 TSHzLabel::TSHzLabel(const char *aText, TSView *link, int separation) :
    TSView()
 {
@@ -62,5 +68,11 @@ void TSHzLabel::setWidth(int aW)
 {
  w=aW;
  linked->setWidth(aW-xSecond);
+}
+
+void TSHzLabel::setGrowMode(unsigned val)
+{
+ view->growMode=val;
+ linked->setGrowMode(val);
 }
 

@@ -38,6 +38,12 @@ void TSVeGroup::setWidth(int aW)
  Ant->setWidth(aW);
 }
 
+void TSVeGroup::setGrowMode(unsigned val)
+{
+ Este->setGrowMode(val);
+ Ant->setGrowMode(val);
+}
+
 TSVeGroup *MakeVeGroup(TSView *este, TSView *ant, ...)
 {
  TSVeGroup *ret;
@@ -72,4 +78,5 @@ TSVeGroup *MakeVeGroup(int sepa, TSView *este, TSView *ant, ...)
     ret->makeSameW();
  return ret;
 }
+
 

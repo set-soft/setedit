@@ -10,6 +10,7 @@ public:
  virtual ~TSLabel() { delete linked; };
  virtual void insert(TDialog *);
  virtual void setWidth(int aW);
+ virtual void setGrowMode(unsigned val);
  TSView *linked;
 };
 
@@ -20,6 +21,7 @@ public:
  virtual ~TSHzLabel() { delete linked; };
  virtual void insert(TDialog *);
  virtual void setWidth(int aW);
+ virtual void setGrowMode(unsigned val);
  TSView *linked;
  int xSecond;
 };

@@ -14,24 +14,33 @@
 #define Uses_TButton
 #define Uses_TRect
 #define Uses_TSortedListBox
+
+#define Uses_TSLabel
+#define Uses_TSButton
+#define Uses_TSHzGroup
+#define Uses_TSStringableListBox
+#define Uses_TSVeGroup
+#define Uses_TSLabelRadio
+
+#include <easydia1.h>
 #include <settvuti.h>
+#include <easydiag.h>
+
 #include <diaghelp.h>
 
 
 TDialogAID::TDialogAID(const TRect& bounds, const char *aTitle,
-                       TScrollBar *sb, TStringableListBox *slb ) :
+                       TStringableListBox *slb ) :
   TGrowDialog(bounds,aTitle),
   TWindowInit(&TDialogAID::initFrame)
 {
- insert(sb);
- slb->growMode=gfMoveBottomCorner;
- insert(slb);
  List=slb;
  AddAction=0;
  InsAction=0;
  DelAction=0;
  OkAction=0;
  CancelAction=0;
+ InfoAction=0;
 }
 
 static
@@ -126,6 +135,10 @@ void TDialogAID::handleEvent(TEvent& event)
             else
                endModal(cmCancel);
             break;
+       case cmInfoAID:
+            if (InfoAction)
+               InfoAction(List->focused);
+            break;
        case cmeZoom:
             event.message.command=cmZoom;
             TDialog::handleEvent(event);
@@ -142,6 +155,7 @@ static char *nbotIns=__("~I~nsert");
 static char *nbotDel=__("~D~elete");
 static char *nbotOk =__("~O~k");
 static char *nbotCan=__("~C~ancel");
+static char *nbotInfo=__("~I~nfo.");
 
 static int lbotAdd=0;
 static int lbotIns;
@@ -167,78 +181,62 @@ void InitBotLens(void)
 TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
                                   int flags)
 {
- TDialogAID *d;
- TRect r=TProgram::deskTop->getExtent();
-
- InitBotLens();
-
- int anBots1=lbotOk+lbotCan+3*lSepb+2;
- int anBots2=lbotAdd+lbotDel+3*lSepb+2;
- if (flags & aidInsert)
-    anBots2+=lbotIns+lSepb;
- int W=max(max(anBots1,anBots2),max(strlen(_(name)),w+3));
- int H=h+7;
- if (flags & aidComMac)
-    H+=3;
-
+ unsigned options=0;
  if (x<=0)
-    x=(r.b.x-W)>>1;
+   {
+    x=1;
+    options|=ofCenterX;
+   }
  if (y<=0)
-    y=(r.b.y-H)>>1;
+   {
+    y=1;
+    options|=ofCenterY;
+   }
 
- int X=x+W;
- int Y=y+H;
-
- TScrollBar *sb=new TScrollBar(TRect(W-3,1,W-2,h+1));
- TStringableListBox *slb=new TStringableListBox(TRect(2,1,W-3,h+1),1,sb);
- d=new TDialogAID(TRect(x,y,X,Y),name,sb,slb);
+ TSStringableListBox *slb=new TSStringableListBox(w,h+1,tsslbVertical);
+ TSView *upper=slb;
+ slb->view->growMode=gfMoveBottomCorner;
+ TDialogAID *d=new TDialogAID(TRect(x,y,1,1),name,
+                              (TStringableListBox *)slb->view);
+ TSViewCol *col=new TSViewCol(d);
 
  if (flags & aidComMac)
    {
-    TRadioButtons32 *type  = new TRadioButtons32( TRect(2,H-8,W-2,H-6 ),
-                             new TSItem( __("Command~s~"),
-                             new TSItem( __("~M~acro"), 0 )));
-    type->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
-    d->insert(type);
-    TLabel *tl=new TLabel(TRect(2,H-9,W-2,H-8),__("Assignmen~t~"),type);
-    tl->growMode=gfGrowHiX | gfGrowHiY | gfGrowLoY;
-    d->insert(tl);
+    TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),0);
+    tl->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
+    TSVeGroup *up=new TSVeGroup(slb,tl,0);
+    upper=up;
    }
+ upper->Flags=wSpan;
 
- //---- Buttons
- int sep;
- sep=(W-lbotOk-lbotCan)/3;
- x=sep-1;
-
- TButton *tb=new TButton(TRect(x,H-5,x+lbotOk+2,H-3),nbotOk,cmOKApply,bfDefault);
- tb->growMode=gfMoveAccording;
- d->insert(tb);
- x+=lbotOk+sep;
- tb=new TButton(TRect(x,H-5,x+lbotCan+2,H-3),nbotCan,cmCancelApply,bfNormal);
- tb->growMode=gfMoveAccording;
- d->insert(tb);
-
- if (flags & aidInsert)
-    sep=(W-(lbotAdd+lbotDel+lbotIns))/4;
- else
-    sep=(W-(lbotAdd+lbotDel))/3;
- x=sep-1;
- tb=new TButton(TRect(x,H-3,x+lbotAdd+2,H-1),nbotAdd,cmAddKey,bfNormal);
- tb->growMode=gfMoveAccording;
- d->insert(tb);
- x+=lbotAdd+sep;
+ TSButton *btInfo=NULL;
+ if (flags & aidInfo)
+    btInfo=new TSButton(nbotInfo,cmInfoAID);
+ TSHzGroup *bt1=MakeHzGroup(new TSButton(nbotOk,cmOKApply,bfDefault),
+                            new TSButton(nbotCan,cmCancelApply),btInfo,0);
+ bt1->setGrowMode(gfMoveAccording);
+ bt1->ySep=0;
+ TSHzGroup *bt2;
  if (flags & aidInsert)
    {
-    tb=new TButton(TRect(x,H-3,x+lbotIns+2,H-1),nbotIns,cmInsertKey,bfNormal);
-    tb->growMode=gfMoveAccording;
-    d->insert(tb);
-    x+=lbotIns+sep;
+    bt2=MakeHzGroup(new TSButton(nbotAdd,cmAddKey),
+                    new TSButton(nbotIns,cmInsertKey),
+                    new TSButton(nbotDel,cmDeleteKey),
+                    0);
    }
- tb=new TButton(TRect(x,H-3,x+lbotDel+2,H-1),nbotDel,cmDeleteKey,bfNormal);
- tb->growMode=gfMoveAccording;
- d->insert(tb);
+ else
+   {
+    bt2=MakeHzGroup(new TSButton(nbotAdd,cmAddKey),
+                    new TSButton(nbotDel,cmDeleteKey),
+                    0);
+   }
+ bt2->setGrowMode(gfMoveAccording);
 
- d->selectNext(False);
+ col->insert(xTSCenter,yTSUp,upper);
+ col->insert(xTSCenter,yTSUnder,bt2,0,upper);
+ col->insert(xTSCenter,yTSUnder,bt1,0,bt2);
+ col->doIt();
+ d->options|=options;
  d->flags=flags;
  return d;
 }

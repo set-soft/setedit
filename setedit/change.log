@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.315  2003/04/29 12:50:44  set
+* Fixed: When doing a search in/outside comments close to the first line
+and having the cursor in the line of the first hit and this line was longer
+than the sum of the previous the editor evaluated line -1 generating a
+GPF. Reported by Bernd Becker <munin@munin.inka.de>.
+
 Revision 1.314  2003/04/28 19:42:28  set
 * Added: An advice dialog to warn about using tag files in format 1. And
 a button to jump to docs.

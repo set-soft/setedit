@@ -7,13 +7,14 @@ class TDialogAID : public TGrowDialog
 {
 public:
  TDialogAID(const TRect& bounds, const char *aTitle,
-            TScrollBar *sb, TStringableListBox *slb);
+            TStringableListBox *slb);
  virtual void handleEvent(TEvent& event);
  int (*AddAction)(void);
  int (*InsAction)(int);
  int (*DelAction)(int);
  int (*OkAction)(void);
  int (*CancelAction)(void);
+ int (*InfoAction)(int);
  TStringableListBox *List;
  unsigned flags;
 };
@@ -25,8 +26,9 @@ const int
       cmAddCommand=0x2243,
       cmAddMacro=0x2244,
       cmOKApply=0x2245,
-      cmCancelApply=0x2246;
-const int aidInsert=1, aidComMac=2, aidOKEnabled=4;
+      cmCancelApply=0x2246,
+      cmInfoAID=0x2247;
+const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8;
 
 #if 1
 // Ugh! nasty, no? Fix me ... some day

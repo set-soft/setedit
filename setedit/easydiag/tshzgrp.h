@@ -11,6 +11,7 @@ public:
  virtual void insert(TDialog *);
  virtual void setWidth(int aW);
  virtual int  howManyHz();
+ virtual void setGrowMode(unsigned val);
  int sepa;
  TSView *Este,*Ant;
 };

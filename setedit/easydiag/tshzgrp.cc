@@ -50,6 +50,13 @@ int TSHzGroup::howManyHz()
  return Este->howManyHz()+Ant->howManyHz();
 }
 
+void TSHzGroup::setGrowMode(unsigned val)
+{
+ Este->setGrowMode(val);
+ Ant->setGrowMode(val);
+}
+
+
 TSHzGroup *MakeHzGroup(TSView *este, TSView *ant, ...)
 {
  TSHzGroup *ret;

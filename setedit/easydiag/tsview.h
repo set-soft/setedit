@@ -20,6 +20,7 @@ public:
  virtual void insert(TDialog *);
  virtual void setWidth(int aW) { w=aW; };
  virtual int  howManyHz() { return 1; };
+ virtual void setGrowMode(unsigned val) { view->growMode=val; };
  static int xDefSep,yDefSep;
 };
 
