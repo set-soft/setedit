@@ -10803,6 +10803,9 @@ void TCEditor::updateCommands(int full)
        cmdsAux.disableCmd(cmcSaveAsConvertEOL);
     else
        cmdsAux.disableCmd(cmcSaveAsNoConvertEOL);
+    if (SHLValueSelected<0 || SHLValueSelected>=SHLCant || !SHLArray ||
+        !SHLArray[SHLValueSelected].EmacsModes)
+       cmdsAux.disableCmd(cmcPasteEmacsMode);
     setCommands(cmdsAux);
    }
 

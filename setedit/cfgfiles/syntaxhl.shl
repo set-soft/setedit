@@ -712,6 +712,7 @@ End
 #
 Name=UNIX shell script
 Files=sh
+EmacsModes=Shell script,shell script
 ShellScript=bash,sh
 Case=1
 EOLComment1=#
@@ -2111,6 +2112,7 @@ End
 #
 Name=XML
 Files=xml
+EmacsModes=XML,xml
 OpenComment1=<!--
 CloseComment1=-->
 AllowedInsideNames=!?

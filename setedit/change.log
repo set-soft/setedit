@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.627  2004/10/12 14:59:13  terrible
+* [Fixed][Config] Its weird, but in the Sarge I use at work, included
+scripts must have . ./binary, it isn't enough to have . binary. This change
+is very small so I am confident it will not break things.
+
 Revision 1.626  2004/10/10 21:13:16  terrible
 * [Debian] Updated to 0.5.4-2, just small cosmetic changes.
 
