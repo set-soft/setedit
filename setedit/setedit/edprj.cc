@@ -1177,19 +1177,27 @@ void ImportProjectItems()
        char *s;
        for (s=buffer; *s && *s!='\r' && *s!='\n'; s++);
        *s=0;
-       //CLY_fexpand(buffer);
-       if (edTestForFile(buffer))
+       char *dest=buffer;
+       if (!CheckIfPathAbsolute(buffer) && ProjectList->referenceCurDelta)
+         {// The project was loaded from another directory, not curdir
+          dest=ProjectList->applyPrjPath(buffer);
+         }
+       if (edTestForFile(dest))
          {
           ccIndex pos;
-          if (ProjectList->addFile(buffer,pos))
+          if (ProjectList->addFile(dest,pos))
              added++;
           else
              repeated++;
          }
        else
           rejected++;
+       if (dest!=buffer)
+          string_free(dest);
       }
    }
+ prjWin->window->list->setRange(ProjectList->getCount());
+ prjWin->window->list->drawView();
  int err=ferror(f);
  if (fclose(f) || err)
     doEditDialog(edReadError,buffer);

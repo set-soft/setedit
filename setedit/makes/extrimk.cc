@@ -291,7 +291,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
                       {
                        s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(toTest+incDirs[i].ldir));
                        sprintf(s,"$(%s)%s",incDirs[i].var,toTest+incDirs[i].ldir);
-                       fprintf(stderr,"%s Da: %s\n",c->name,s);
+                       //fprintf(stderr,"%s Da: %s\n",c->name,s);
                        break;
                       }
                 free(toTest);
