@@ -1,10 +1,13 @@
-$Log$.
+$Log$
+Revision 1.109  2002/06/04 15:36:48  set
+* Modified: To use the moved TView::specialChars (TV 2.0).
+.
 Revision 1.108  2002/06/04 13:26:30  set
 * Modified: I dropped the code that workarounds all bugs in libstdc++. I
 think it was in gcc 2.7.x or perhaps 2.6.3. The code still there but just
 disabled. This will allow working with the new gcc 3.1 that drops any
 kind of C++ connected to a C stream/file handle.
-
+.
 Revision 1.107  2002/06/03 13:53:02  set
 * Fixed: [DOS] TViewPlus to compile with TV 2.0.
 

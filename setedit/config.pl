@@ -58,6 +58,8 @@ FindXCFLAGS();
 # Determine C++ flags
 $CXXFLAGS=FindCXXFLAGS();
 FindXCXXFLAGS();
+# Extra lib directories
+$LDExtraDirs=FindLDExtraDirs();
 # Test for a working gcc
 $GCC=CheckGCC();
 # Which architecture are we using?
@@ -166,7 +168,7 @@ $MakeDefsRHIDE[1].='z ';
 $MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
 $MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[1].='efence ' if @conf{'efence'} eq 'yes';
-$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
+$MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib $LDExtraDirs";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
@@ -1049,7 +1051,7 @@ int main(void)
 sub LookForIntlSupport
 {
  my $vNeed=$_[0];
- my ($test,$a,$djdir,$intllib,$intltest);
+ my ($test,$a,$djdir,$intllib,$intltest,$libdir);
 
  print 'Checking for international support: ';
  $conf{'intlShipped'}='no';
@@ -1099,9 +1101,10 @@ int main(void)
  return 0;
 }
 ';
- $intllib=(($OS eq 'DOS') || ($OS eq 'Win32')) ? '-lintl' : '';
- $intllib='-L/usr/local/lib -lintl' if ($OSf eq 'FreeBSD');
- $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib);
+ $intllib=(($OS eq 'DOS') || ($OS eq 'Win32') || ($OSf eq 'FreeBSD')) ? '-lintl' : '';
+ $libdir=$LDExtraDirs;
+ $libdir=~s/(\S+)/-L$1/g;
+ $test=RunGCCTest($GCC,'c',$intltest,'-Iinclude/ '.$libdir.' '.$intllib);
  if ($test ne "OK\n")
    {
     print "no, additional check required.\n";
