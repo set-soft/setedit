@@ -1,9 +1,15 @@
-setedit (0.4.51-0.1) unstable; urgency=low
+setedit (0.4.51-1) unstable; urgency=low
 
-  * New version automatically modified by version update scripts
+  * New upstream version (still a development release).
+  * Changed Infview Debian package version numbering, yes, again. Now
+    it is of the form "infview_0.2.7-0.4.51-1_i386.deb" and yes, is
+    ugly, but is needed.
+  * Added a Debian specific FAQ to the README.Debian file, explaining
+    why the binaries are SUID root, why the infview package version
+    numbering is like it is, and why the packages are not in Debian.
 
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 13 Oct 2001 19:09:25 -0300
- 
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun, 21 Oct 2001 22:05:26 -0300
+
 setedit (0.4.50-1) unstable; urgency=low
 
   * The "Let's see if I can release while I am sleeping" release.
@@ -21,12 +27,6 @@ setedit (0.4.50-1) unstable; urgency=low
     same time now timestamps are preserved so CVS checkins are faster.
 
  -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu, 11 Oct 2001 23:07:58 -0300
-
-setedit (0.4.50-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Tue,  9 Oct 2001 19:12:31 -0300
 
 setedit (0.4.49-1) unstable; urgency=low
 
