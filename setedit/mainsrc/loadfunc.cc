@@ -1,15 +1,18 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+//#define DEBUG
 #define Uses_string
 #define Uses_stdlib
 #define Uses_alloca
 #define Uses_ctype
-#include <stdio.h>
+#ifdef DEBUG
+#define Uses_MsgBox
+#endif
 #include <tv.h>
 
 #include <pathtool.h>
 
-int isValidForFile(int c);
+int isValidForFile(char *c, char *start);
 extern void OpenFileFromEditor(char *fullName);
 
 /**********************************************************************************
@@ -53,22 +56,22 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
    }
  else
    { // Nope, so make some thing like WordUnderCursor
-    if (isValidForFile(*cursor))
+    if (isValidForFile(cursor,lineStart))
       {
        // Walk backward to the start of the name
-       for (;cursor>lineStart && isValidForFile(*cursor); --cursor);
+       for (;cursor>lineStart && isValidForFile(cursor,lineStart); --cursor);
        if (cursor!=lineStart) cursor++;
       }
     else
       {
        // If isn't in a word walk forward
-       for (;cursor<end && !isValidForFile(*cursor); ++cursor);
-       if (!isValidForFile(*cursor))
+       for (;cursor<end && !isValidForFile(cursor,lineStart); ++cursor);
+       if (!isValidForFile(cursor,lineStart))
           return;
       }
     startWord=cursor;
     // Now forward to the end
-    for (;cursor<end && isValidForFile(*cursor); ++cursor);
+    for (;cursor<end && isValidForFile(cursor,lineStart); ++cursor);
     endWord=cursor;
    }
  // Now we have a file name enclosed
@@ -79,7 +82,7 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
  strncpy(name,startWord,lname);
  name[lname]=0;
  #ifdef DEBUG
- fprintf(stderr,"\"%s\" %d\n",name,lname);
+ messageBox(name,mfOKButton);
  #endif
 
  if (FindFile(name,fullName))
@@ -89,8 +92,22 @@ void LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l)
    }
 }
 
-int isValidForFile(int c)
+int isValidForFile(char *c, char *start)
 {
- return (!ucisspace(c) && ucisprint(c) && c!='\"' && c!='>' && c!='<');
+ if (ucisspace(*c) || !ucisprint(*c) || *c=='\"' || *c=='>' || *c=='<' || *c=='|')
+    return 0;
+ #ifdef CLY_HaveDriveLetters
+ if (*c==':')
+   {
+    if (c==start) return 0;
+    if (!ucisalpha(c[-1])) return 0;
+    if (c==start-1) return 1;
+    uchar b=(uchar)c[-2];
+    return ucisspace(b) || !ucisprint(b) || b=='\"' || b=='>' || b=='<' || b=='|';
+   }
+ return 1;
+ #else
+ return *c!=':';
+ #endif
 }
 
