@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.423  2003/06/30 13:08:17  set
+* Added: [Config] makes directory to the library search path. It makes
+RHIDE projects easier.
+* Added: [Config] --libset to my DOS default config. I finally managed to
+compile RHIDE 1.5 CVS for DOS. It took me a day to figure out the problems
+in my system and workaround gdb make problems.
+* Added: [Config] less to the DOS cvs update batch.
+
 Revision 1.422  2003/06/30 13:07:09  set
 * Added: A script to update from CVS using the options I use. A DOS batch
 file and a shell script are provided.

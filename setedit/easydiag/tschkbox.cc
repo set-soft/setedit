@@ -37,7 +37,6 @@ TSCheckBoxes::TSCheckBoxes(TSItem *aStrings, int wForced, int Columns)
        {
         l=cstrlen(cb->getItemText(item))+6;
         if (l>wMax) wMax=l;
-        itemAux=itemAux->next;
         itY++;
         if (itY==h)
           {

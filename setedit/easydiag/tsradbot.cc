@@ -37,7 +37,6 @@ TSRadioButtons::TSRadioButtons(TSItem *aStrings, int wForced, int Columns)
        {
         l=cstrlen(rb->getItemText(item))+6;
         if (l>wMax) wMax=l;
-        itemAux=itemAux->next;
         itY++;
         if (itY==h)
           {
