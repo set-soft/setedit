@@ -1,6 +1,7 @@
 /*****************************************************************************
 
- SET's Documentation Helper (SDH) Copyright(c) 1997 by Salvador Eduardo Tropea
+ SET's Documentation Helper (SDH) Copyright(c) 1997-2004
+ by Salvador Eduardo Tropea
 
  This program is used to automate the creation of .info, .txt, .html, .dvi
 and .ps files from one source file (.tx).
@@ -31,7 +32,7 @@ license.
 */
 //char *outf=NULL;
 char *inf=NULL;
-FILE *fi,*fo,*fo2;
+FILE *fi,*fo,*fo2,*fo3;
 #define MAX_BL 200
 char bl[MAX_BL];
 char b2[MAX_BL];
@@ -92,7 +93,7 @@ char *SearchNode(char *name);
 void PutCopy(void)
 {
  printf("SET's Documentation Helper (SDH)\n"
-        "Copyright (c) 1997 by Salvador Eduardo Tropea\n\n");
+        "Copyright (c) 1997-2004 by Salvador Eduardo Tropea\n\n");
 }
 
 void PutHelp(int ret)
@@ -447,7 +448,7 @@ char *ProxNodeOf(int i)
  return emptyStr;
 }
 
-void GenMenu(int i,FILE *f)
+void GenMenu(int i, FILE *f, int use_sp_end)
 {
  int lev=Nodes[i].Level;
  fputs("@menu\n",f);
@@ -459,7 +460,10 @@ void GenMenu(int i,FILE *f)
        if (Nodes[i].Level<lev)
           break;
     }
- fputs("@end-menu\n\n",f);
+ if (use_sp_end)
+    fputs("@end-menu\n\n",f);
+ else
+    fputs("@end menu\n\n",f);
 }
 
 void InsertNumber(char *s,char *n,FILE *f)
@@ -529,6 +533,14 @@ void HTMLPrep(char *s,FILE *f)
 #undef s
 }
 
+void ReplaceEndTable(char *b, FILE *f)
+{
+ if (strncmp(b,"@endtable-{}",12)==0)
+    fputs("@end itemize\n@p{}\n",f);
+ else
+    fputs(b,f);
+}
+
 char *dirStr="(dir)";
 
 void GenerateTXI_NUM(void)
@@ -540,6 +552,10 @@ void GenerateTXI_NUM(void)
 
  CreateFile(".txi");
  fo2=fo;
+ // Special hack! a .txi but with numbers, for .info using makeinfo 4.7 or newer
+ // where we cant use @end xxx inside a macro.
+ CreateFile(".nut");
+ fo3=fo;
  CreateFile(".num");
  up[0]=dirStr;
  aprev[0]=dirStr;
@@ -555,10 +571,12 @@ void GenerateTXI_NUM(void)
        if (nlev>levant)
          {
           aprev[nlev]=prev;
-          GenMenu(i,fo);
-          GenMenu(i,fo2);
+          GenMenu(i,fo,1);
+          GenMenu(i,fo2,0);
+          GenMenu(i,fo3,0);
          }
        fprintf(fo2,"@node %s, %s, %s, %s\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
+       fprintf(fo3,"@node %s, %s, %s, %s\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
        fprintf(fo,"@node-{%s, %s, %s, %s}\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
        prev=name;
        aprev[nlev]=prev;
@@ -566,20 +584,28 @@ void GenerateTXI_NUM(void)
        levant=nlev;
        i++;
       }
-    fputs(bl,fo2);
+    ReplaceEndTable(bl,fo2);
     if (lev<0)
+      {
        HTMLPrep(bl,fo);
+       ReplaceEndTable(bl,fo3);
+      }
     else
+      {
        InsertNumber(bl,Nodes[i-1].Number,fo);
+       InsertNumber(bl,Nodes[i-1].Number,fo3);
+      }
     if (lev>=0 && strcmp(name,"Top"))
       {
        fprintf(fo2,"@cindex %s\n",name);
+       fprintf(fo3,"@cindex %s\n",name);
        fprintf(fo,"@cindex %s\n",name);
       }
    }
  while (!feof(fi));
  fclose(fo);
  fclose(fo2);
+ fclose(fo3);
  Rewind();
 }
 
@@ -661,7 +687,7 @@ void GenerateINFO(void)
  int error;
  char s[6*PATH_MAX];
  // No validate because makeinfo can't see through mitem{} (another weak point)
- sprintf(s,"makeinfo %s --no-split --fill-column 75 --no-validate -o %s%s.inf %s%s.num",Include,OutPath,inf,OutPath,inf);
+ sprintf(s,"makeinfo %s --no-split --fill-column 75 --no-validate -o %s%s.inf %s%s.nut",Include,OutPath,inf,OutPath,inf);
  //sprintf(s,"makertf %s --no-split --fill-column 75 --no-validate -o %s%s.inf %s%s.num",Include,OutPath,inf,OutPath,inf);
  error=system(s);
  if (error)
@@ -1153,13 +1179,19 @@ void GenerateTX1(void)
     s=bl;
     do
       {
-       pos=strstr(s,"@x{");
+       char *refSt="@x{";
+       pos=strstr(s,refSt);
+       if (!pos)
+         {
+          refSt="@xp{";
+          pos=strstr(s,refSt);
+         }
        if (pos)
          {
           *pos=0;
           fputs(s,fo);
-          fputs("@x{",fo);
-          for (pos+=3; *pos && ucisspace(*pos); pos++);
+          fputs(refSt,fo);
+          for (pos+=strlen(refSt); *pos && ucisspace(*pos); pos++);
           for (end=pos; *end && *end!=',' && *end!='}'; end++)
               if (*end=='@')
                 {
@@ -1325,7 +1357,7 @@ int main(int argc, char *argv[])
  // Create the numeration for each one
  Numerate();
  DumpNodes();
- // Generate a .TXI, that's simply add the @node with the right prev, up,
+ // Generate a .TXI, it simply add the @node with the right prev, up,
  // down plus the insertion of menus.
  // Generate a .NUM, that's a .TXI but with numbers in the titles and ready
  // for conversion to HTML (it replaces things like @end format by @end-format)
@@ -1369,6 +1401,7 @@ int main(int argc, char *argv[])
    {
     int i;
     DeleteFile(".num");
+    DeleteFile(".nut");
     DeleteFile(".ctx");
     DeleteFile(".txi");
     DeleteFile(".tx1");

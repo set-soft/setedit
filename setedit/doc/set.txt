@@ -142,6 +142,11 @@
 @c @w{\node\}
 @c @end ifclear
 
+@c --- Parenthetical reference @xp
+@macro xp{node,name}
+\name\ \node\
+@end macro
+
 @c --- Workaround for a bug
 @set open-curly @{
 @set close-curly @}

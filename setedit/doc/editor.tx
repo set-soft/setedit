@@ -259,7 +259,7 @@ also configurable using the menu configuration. @x{Menues configuration}.
 or pmacros. @x{Pseudo Macros}.
 @item You can ask the editor to record a group of operations and then
 reproduce them. This is what this documentation calls a macro. The operations
-to record and play macros can be found in the @il{Macro} menu (@x{Macro}). You
+to record and play macros can be found in the @il{Macro} menu (@xp{Macro}). You
 can also generate the sLisp code for a macro and store it in the
 @file{macros.slp} file to use it from the menues or just bind it to a key.
 @item If you want to automate more complex operations you can use sLisp
@@ -328,7 +328,7 @@ also have a man page viewer. Both can be accessed from the @il{Help} menu.
 @x{Help}.
 @item The editor have a search and replace dialog that supports regular
 expressions and also supports replacement using @il{templates}. The @il{Search
-| Find} (@x{Find}) and @il{Search | Replace} (@x{Replace}) menu entries are
+| Find} (@xp{Find}) and @il{Search | Replace} (@xp{Replace}) menu entries are
 used for it.
 @item You can search for text using regular expressions. The @il{Powered Grep}
 dialog allows searching in project items and directories, also recursivelly.
@@ -347,9 +347,9 @@ Here are some related options.
 
 @itemize @bullet
 @item You run a external program using @il{Tool&Ops | Run program}
-menu option (@x{Run program}). To configure it you can use the
+menu option (@xp{Run program}). To configure it you can use the
 @il{Tool&Ops | Options | Run program (which one)} menu option
-(@x{Run program (which one)}).
+(@xp{Run program (which one)}).
 @item The editor collects the messages from the external program and displays
 them in the @il{message window}. @x{Message Window}.
 @item The editor parses the messages from the external program looking for
@@ -529,7 +529,7 @@ and is replaced by the new text.
   In persistent blocks the selection is not replaced and is not lost when
 you move the cursor. From this comes the name "Persistent." In this mode
 you can use @code{cmcMoveBlock} and @code{cmcCopyBlock} without using the Clipboard. In
-addition you can apply indentations to the block (@x{Indentation}),
+addition you can apply indentations to the block (@xp{Indentation}),
 search only inside it, @il{etc.} That's what makes this mode much more powerful than
 the former. If you really like to replace the selected text by the selection
 of the Clipboard, that's the default behaviour of the first mode. You can use
@@ -564,8 +564,8 @@ available cursor commands. @x{Cursor movement}.
 
   You can indent or unindent a block of text using various commands, but you
 must keep in mind that for now the editor is limited in the following way:
-@x{Real Tabs} If you are using tabs to indent your text, don't mix tabs with
-spaces and, if you are using spaces to indent, don't mix them with real tabs.
+If you are using tabs to indent your text, don't mix tabs with spaces and, if
+you are using spaces to indent, don't mix them with real tabs. @x{Real Tabs}.
 @paragraph{}
 
 @table4{Action,Command,Key,Alternate}
@@ -585,7 +585,7 @@ using tabs the editor will operate the Tab command on the first line and
 then will use this amount of indentation on the entire block. @x{Real Tabs}.
 @paragraph{}
 
-@code{cmcUnIndentBlk} acts according to the mode too. @x{Real Tabs} mode.
+@code{cmcUnIndentBlk} acts according to the mode too. @x{Real Tabs}.
 Just like @code{cmcUnIndentBlkOne} it deletes one tab but if you don't use
 tabs the editor uses Backspace on the first used column of the first
 line of the block and unindents by the resulting amount the rest of the
@@ -820,7 +820,7 @@ the program exit functions.
 @c --------------------------------------------------------------------------
 @subsection Open
 
-This option brings the file open dialog (@x{File Open}). From this dialog you can select
+This option brings the file open dialog (@xp{File Open}). From this dialog you can select
 a file to load and edit.
 @paragraph{}
 
@@ -885,7 +885,7 @@ If the window is named @il{Untitled} this command acts like @x{Save as}.
 
 This option allows to save the contents of the current window specifying a
 new name for the file. For this purpose the file open dialog is used
-(@x{File Open}).
+(@xp{File Open}).
 @paragraph{}
 
 If the file already exists a dialog will pop-up asking for confirmation
@@ -904,7 +904,7 @@ This menu entry says @il{Save as UNIX} for DOS or Win32 systems and
 @il{Save as DOS} for UNIX systems.
 @p{}
 
-This option is very similar to the @il{Save as} option (@x{Save as}). The
+This option is very similar to the @il{Save as} option (@xp{Save as}). The
 only difference is that the editor will change the end of line character.
 @p{}
 
@@ -930,7 +930,7 @@ converting the end of line character and you want to force a convertion.
 @c --------------------------------------------------------------------------
 @subsection Save with same time
 
-This option is very similar to the @il{Save} option (@x{Save}). The only
+This option is very similar to the @il{Save} option (@xp{Save}). The only
 difference is that the editor won't modify the creation time. This
 option is very useful to modify header files avoiding the recompilation
 of the whole project. A common case is when you only add constants to a
@@ -991,8 +991,8 @@ excluding the desired margin.
   @item Left margin: The number of columns left blank at the left side of the
 page.
   @item Print line numbers: Select this option to get the line numbers printed
-  @item Time format: The time format specified in the C style. (@x{Time and date modifiers formats}).
-  @item Date format: The date format specified in the C style. (@x{Time and date modifiers formats}).
+  @item Time format: The time format specified in the C style. @x{Time and date modifiers formats}.
+  @item Date format: The date format specified in the C style. @x{Time and date modifiers formats}.
   @item Title: only used in the header.
   @item Author: only used in the header.
   @item Output file: Specify the printer device here. For example: the DOS
@@ -2773,7 +2773,7 @@ color different than the color used for reserved words.
 @paragraph{}
 
 The first dialog is used to select the language, the names are the ones
-defined in the syntax highlighting file (@x{Syntax Highlighting}). Selecting one of
+defined in the syntax highlighting file (@xp{Syntax Highlighting}). Selecting one of
 the names and pressing @key{ENTER} pops up the second dialog.
 @paragraph{}
 
@@ -3573,7 +3573,7 @@ reported.
 @subsubsection Files to search (Syntax help)
 
 Here you can indicate in which info files the editor will search the name of
-the function; the default is OS dependent. @xref{Syntax help}.
+the function; the default is OS dependent. @x{Syntax help}.
 @paragraph{}
 
 You can specify an info node or just the name of the file. In the first case
@@ -3599,7 +3599,7 @@ list.
 @subsubsection Search (Syntax help)
 
 It makes the syntax search and report the matches found. If only one match
-was found the editor jumps to this node. @xref{Syntax help}.
+was found the editor jumps to this node. @x{Syntax help}.
 @paragraph{}
 
 @refMenu{cmeSyntaxHelp,^F1}
@@ -3668,7 +3668,7 @@ with a different color:
 
   When defining a menu entry you must indicate the name of the key or key
 combination. The editor have a command specially designed to help you with
-it, look in the @il{Tool&Ops} menu (@x{Insert key name}). Here is a small
+it, look in the @il{Tool&Ops} menu (@xp{Insert key name}). Here is a small
 explanation about how those names are created.
 @p{}
 
@@ -3741,7 +3741,7 @@ common because you usually don't want to specify a particular help context.
 @section Commands in menu items
 
   You can use any of the editor commands in the commands field. They are
-listed in the commands index (@x{Index of key commands}). Additionally you
+listed in the commands index (@xp{Index of key commands}). Additionally you
 can specify the name of a sLisp macro or a small piece of sLisp code.
 @p{}
 
@@ -3760,7 +3760,7 @@ message window: @code{cm((ShowInMessageWindow 'Hi! ;-)'))}.
 MenuItemC: "Name", Command[, Key [,"KeyName"]]
 @end example
 
-  The only difference with @code{MenuItem} (@x{MenuItem entries}) is that you
+  The only difference with @code{MenuItem} (@xp{MenuItem entries}) is that you
 don't have to specify a help context. Help contexts are numbers that
 associates a context in the editor with some text in the on-line help.
 Usually the number is the same used for the command. The @code{MenuItemC}
@@ -3925,8 +3925,7 @@ the editor.
 @cindex Overwrite
 
   This setting controls if the typed characters are inserted in the buffer or
-replace the original ones. @x{Insert and Delete}
-for a detailed explanation.
+replace the original ones. For a detailed explanation @x{Insert and Delete}.
 
 @section Autoindent
 @cindex Autoindent
@@ -3978,8 +3977,7 @@ Then you'll get much from the editor.
 @il{because I will send the file using an ultra slow link} @il{and I want the compression
 granted by the tabs.} In these cases you can first expand all tabs, then
 work without real tabs and at the finish of your work compact all possible
-spaces and generate a file with tabs.
-@x{Miscellaneous} section.
+spaces and generate a file with tabs. @x{Miscellaneous}.
 @paragraph{}
 
   Most tabs users also like to enable the @il{Optimal Fill} option. @x{Optimal Fill}.@*
@@ -3993,14 +3991,14 @@ Fill} @b{ON}, @il{Do not move inside tabs} @b{ON}, @il{Tab smart indents}
 
   This setting controls the behaviour of the selected area.
 @paragraph{}
-  @x{Block modes} chapter for a detailed explanation.
+  The "Block modes" chapter for a detailed explanation. @x{Block modes}.
 @paragraph{}
 
 @section Intelligent C indent
 @cindex Intelligent C indent
 
   This mode was designed to be used jointly with the Pseudo Macros
-(@x{Pseudo Macros}) and the Real Tabs mode off to achieve an
+(@xp{Pseudo Macros}) and the Real Tabs mode off to achieve an
 easy way to indent the code that does a better job than the Autoindent mode.
 @paragraph{}
 
@@ -4068,7 +4066,7 @@ do the following things:
 @itemize @bullet
   @item Use another way of indentation offered by the editor. For example,
 turn on the Real Tabs mode and indent with tabs.
-  @item Customize the @file{cpmacros.pmc} file (@x{Pseudo Macros}), actually this
+  @item Customize the @file{cpmacros.pmc} file (@xp{Pseudo Macros}), actually this
 file is coherent with this mode.
   @item The editor isn't configurable like Emacs or Brief using a language,
 but is written in C++. If you know C++ contact me and I'll help you to write
@@ -4301,7 +4299,7 @@ inform the situation in the status line too.
   That's very useful when you are typing complex parenthetical expressions or
 a very nested code. You can use it together with the @il{cmcSearchStart},
 @il{cmcSearchEnd}, @il{cmcSearchOpPar}, @il{cmcSearchClPar}, @il{cmcSearchOpCor} and
-@il{cmcSearchClCor} commands. (@x{Miscellaneous}).
+@il{cmcSearchClCor} commands. @x{Miscellaneous}.
 @paragraph{}
 
   If you want to get highlight not only after typing but also when moving the
@@ -4347,7 +4345,7 @@ blocks only the background is affected.
 @cindex Real Tabs when indenting
 
   This mode was added for the people that use ASCII 9 tabulators in their code
-(@x{Real Tabs}). Normally the editor uses spaces to indent the code or, in general,
+(@xp{Real Tabs}). Normally the editor uses spaces to indent the code or, in general,
 to fill any gap in the text. When you enable this mode the editor will use as many
 tabs as possible to fill these gaps. That's what the tab users normally expect.
 
@@ -4385,7 +4383,7 @@ of the line with your eyes because it's always in the same place.
   In this mode the tabs are highlighted, two colors are used for this purpose,
 one for even and the other for odd numbered tabs. In this way you can clearly
 see where a tab is located and the size of the tab. The colors can be
-customized from the Colors menu option. @xref{Customize Colors}.
+customized from the Colors menu option. @x{Customize Colors}.
 @paragraph{}
 
   This mode was introduced in v0.4.23 and is globally enabled by default.
@@ -4860,8 +4858,8 @@ and subindex symbols.
 @section UseInternal
 
   That's optional. When a highlighting mode has this setting the editor will use the internal
-routines and will ignore almost all the settings. Only the extensions (@x{Files}) and
-pseudo macros (@x{PMacros}) settings are used.
+routines and will ignore almost all the settings. Only the extensions (@xp{Files}) and
+pseudo macros (@xp{PMacros}) settings are used.
 @paragraph{}
   The value assigned can be: 1 for GNU C highlighting, 2 for standard Pascal and 3 for
 Clipper.
@@ -4906,7 +4904,7 @@ all. You wrote the hello world program at a very good speed.
 
   It's very easy. Each syntax highlighting has its own pseudo macros file. Which
 file belongs to which syntax highlighting is indicated in the @file{syntaxhl.shl}
-file. @xref{Syntax Highlighting File}. In the case of C/C++ the file is called
+file. @x{Syntax Highlighting File}. In the case of C/C++ the file is called
 @file{cpmacros.pmc} and is located in the same directory where the rest of the
 configuration files are installed. This file contains the definitions for each
 pseudo macro that can be triggered in C/C++ files. You can define as many
@@ -4940,11 +4938,11 @@ the text. The modes are:
 @paragraph{}
 
 @itemize @bullet
-  @item Overwrite               @x{Overwrite}
-  @item Autoindent              @x{Autoindent}
-  @item Use Tabs                @x{Real Tabs}
-  @item Persistent blocks       @x{Block modes}
-  @item Intelligent C indent    @x{Intelligent C indent}
+  @item Overwrite               @x{Overwrite}.
+  @item Autoindent              @x{Autoindent}.
+  @item Use Tabs                @x{Real Tabs}.
+  @item Persistent blocks       @x{Block modes}.
+  @item Intelligent C indent    @x{Intelligent C indent}.
 @end itemize
 
   Each mode can be 0 or 1. The editor will return to the original mode after
@@ -4980,7 +4978,7 @@ languages please send me the file and I'll add it to the next release.
 called @file{macros.slp}. @x{Configuration files location}.
 @paragraph{}
 
-  The macros can be assigned to keys (@x{How to configure the keyboard}), selected
+  The macros can be assigned to keys (@xp{How to configure the keyboard}), selected
 from the @il{Macro} menu or from the menu. From the @il{Macro} menu you can choose a
 macro from the list. If you want to repeat it you can do so with one keystroke.
 @p{}
@@ -5289,13 +5287,13 @@ message window and after it repeats the search.
 )
 @end example
 
-  To learn more about the search options consult the find command (@x{Find})
-and the regular expression options (@x{Regular Expressions Options}). You
+  To learn more about the search options consult the find command (@xp{Find})
+and the regular expression options (@xp{Regular Expressions Options}). You
 could be also interested in learning more about POSIX regular expressions
-(@x{Regular Expressions}), for Perl regular expressions consult some Perl
-reference. This command is complemented by @code{FindAgain} (@x{FindAgain}),
-@code{ReplaceString} (@x{ReplaceString}) and @code{ReplaceAgain}
-(@x{ReplaceAgain}) commands.
+(@xp{Regular Expressions}), for Perl regular expressions consult some Perl
+reference. This command is complemented by @code{FindAgain} (@xp{FindAgain}),
+@code{ReplaceString} (@xp{ReplaceString}) and @code{ReplaceAgain}
+(@xp{ReplaceAgain}) commands.
 @p{}
 
 @c --------------------------------------------------------------
@@ -5543,8 +5541,8 @@ value indicating the status of the last search. @x{ReplaceString}.
 
   Performs a search and replace operation. Returns a boolean value indicating
 the status of the last search. Consult the @code{Find} command
-(@x{FindString}) and the replace options of the editor
-(@x{Replace}) for more information.
+(@xp{FindString}) and the replace options of the editor
+(@xp{Replace}) for more information.
 @p{}
 
   In addition to the @code{Find} options you have the following options:
@@ -5558,7 +5556,7 @@ can be found in the current scope.
 a simple text and not a replacement template. This is the default behavior.
   @item edfTagsText: used to indicate that the @var{replacement} string
 contains @code{$n} tags. For more information consult the section for the
-regular expressions dialog of the editor (@x{Regular Expressions Options}).
+regular expressions dialog of the editor (@xp{Regular Expressions Options}).
 @end itemize
 
   The following example searchs for the @code{Hello} word followed by a digit
@@ -6601,7 +6599,7 @@ time you run setedit, and since we want this for email replies,
 the editor will be run independently for each answer. Ugh!
 @p{}
 
-Luckily you can bind a macro to a key (@x{Assigning a sLisp macro}).
+Luckily you can bind a macro to a key (@xp{Assigning a sLisp macro}).
 The option is located under the menu option
 called Tool&Ops, submenu Options, submenu Keyboard, submenu Key
 assignment. Once you reach that, you can see all the key bindings for

@@ -121,6 +121,18 @@
 @end ifclear
 @end macro
 
+@c --- Parenthetical reference @xp
+@macro xp{node,name}
+@set name_provided__
+@ifeq{"\name\","", @clear name_provided__}
+@ifset name_provided__
+@w{<A HREF="#\node\">\name\</A>}
+@end ifset
+@ifclear name_provided__
+@w{<A HREF="#\node\">\node\</A>}
+@end ifclear
+@end macro
+
 @c --- Entries for menues
 @unmacro mitem
 @macro mitem2{node,name}

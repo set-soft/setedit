@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.559  2004/08/02 13:22:41  set
+* Added: [sLisp] CommentIndent macro contributed by Thiago.
+
 Revision 1.558  2004/08/02 12:50:45  set
 * Added: Watchpoints!!!! now we can easily hunt wild writes ;-)
 * Modified: The breakpoints are moved only if the target changed its time

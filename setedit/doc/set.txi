@@ -67,11 +67,6 @@
 @end macro
 @end ifset
 
-@macro endtable-{}
-@end itemize
-@paragraph{}
-@end macro
-
 @iftex
 @set tex
 @set aacute @'a
@@ -133,6 +128,11 @@
 @xref{\node\,\name\}
 @end macro
 
+@c --- Parenthetical reference @xp
+@macro xp{node,name}
+@pxref{\node\,\name\}
+@end macro
+
 @c --- Entries for menues
 @c @unmacro mitem
 @macro mitem2{node,name}
@@ -156,35 +156,6 @@
 @set comma-val ,
 @macro comma
 @value{comma-val}
-@end macro
-
-@c --- The following are because HTML replaces it
-@macro end-format
-@end format
-@end macro
-@macro end-table
-@end table
-@end macro
-@macro end-itemize
-@end itemize
-@end macro
-@macro end-enumerate
-@end enumerate
-@end macro
-@macro end-example
-@end example
-@end macro
-@macro end-smallexample
-@end smallexample
-@end macro
-@macro end-display
-@end display
-@end macro
-@macro end-quotation
-@end quotation
-@end macro
-@macro end-menu
-@end menu
 @end macro
 
 @macro node-{name,prox,prev,up}
