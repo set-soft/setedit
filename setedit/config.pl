@@ -63,6 +63,12 @@ if (($OS ne 'UNIX') && ($conf{'HAVE_AA'} eq 'yes'))
    print "Currently AA-lib is usable only for UNIX version, please tell me if you think it should be changed.\n";
    $conf{'HAVE_AA'}='no';
   }
+if ($OSf eq 'QNXRtP')
+  {
+   $conf{'mp3'}='no';
+   $conf{'HAVE_MIXER'}='no';
+   $conf{'mp3lib'}='';
+  }
 
 LookForBasicTools();
 $supportDir='makes/'.$supportDir;
@@ -180,11 +186,11 @@ elsif ($OS eq 'UNIX')
    #$MakeDefsRHIDE[1].=$conf{'X11Lib'}.' ' if ($conf{'HAVE_X11'} eq 'yes');
    if ($conf{'dl'} eq 'yes')
      {
-      $MakeDefsRHIDE[1].=($OSf eq 'QNXRtP') ? '-lltdl ' : '-ldl ';
+      $MakeDefsRHIDE[1].=($OSf eq 'QNXRtP') ? '' : '-ldl ';
      }
    $MakeDefsRHIDE[1].='-lbz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].='-l'.@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
-   $MakeDefsRHIDE[1].='-lintl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
+   $MakeDefsRHIDE[1].='-lintl ' if ((($OSf eq 'FreeBSD') || ($OSf eq 'QNXRtP')) && ($conf{'intl'} eq 'yes'));
    $MakeDefsRHIDE[1].='-laa ' if ($conf{'HAVE_AA'} eq 'yes');
   }
 else # Win32
@@ -1197,7 +1203,7 @@ int main(void)
  return 0;
 }
 ';
- $intllib=(($OS eq 'DOS') || ($OS eq 'Win32') || ($OSf eq 'FreeBSD')) ? '-lintl' : '';
+ $intllib=(($OS eq 'DOS') || ($OS eq 'Win32') || ($OSf eq 'FreeBSD') || ($OSf eq 'QNXRtP')) ? '-lintl' : '';
  $libdir=$LDExtraDirs;
  $libdir=~s/(\S+)/-L$1/g;
  $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$libdir.' '.$intllib);

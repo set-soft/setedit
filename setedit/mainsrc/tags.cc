@@ -451,7 +451,7 @@ void TSpTagCollection::getTextType(char *buf, void *item, int maxLen)
 {
  stTag *p=(stTag *)item;
  // Debug info uses | to show the point to replace the name
- char *pos=strchr(p->type,'|');
+ char *pos=strchr((char *)p->type,'|');
  if (!pos)
    {
     CLY_snprintf(buf,maxLen,"%s",p->type);
