@@ -1,4 +1,21 @@
-$Log$.
+$Log$
+Revision 1.591  2004/08/27 18:27:00  set
+* Fixed: [Debug] Data Window commands not enabled after recycling a data
+window.
+* Fixed: [Debug] Data Window: Fill, Clear and Move operations didn't
+update the changes.
+* Added: [Debug] Data Window: Explicit error when trying to use a block
+of more than 1 MB. Warning about speed for more than 128 KB. Not sure if
+those limits are good.
+* Added: [Debug] Option to don't show again to 3 of the confirmations about
+closing the debug session and killing the debuggee.
+* Added: [Debug] Advice about setting debug options without a project.
+* Modified: [Debug] Data Window: When entering a wrong value in the block
+operations now we go back to the dialog so the user can fix the wrong
+value instead of entering all again.
+* Modified: [Debug] Data Window: Warning about empty fields in the dialog
+for addresses. This is much more descriptive than an error from gdb ;-)
+
 Revision 1.590  2004/08/26 20:49:05  set
 * Fixed: [MSVC] Calls to min/max with different arguments (unsigned vs
 signed). They generate errors with MSVC 6.0. Patch by Arnold.

@@ -1922,6 +1922,8 @@ static inline
 stTag *SearchTagFor(char *word, int lenW, ccIndex &pos)
 {
  tags->search(word,pos);
+ if (pos>=tags->getCount())
+    return NULL;
  stTag *p=tags->atPos(pos);
  if (strncasecmp(p->id,word,lenW)!=0)
     return NULL;
