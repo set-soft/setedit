@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.658  2005/02/23 19:36:19  set
+* Fixed: [Win32] Avoid to add the relative path to project items when they
+are UNCs. Pointed out by Grzegorz.
+
 Revision 1.657  2005/02/23 19:21:40  set
 * Fixed(?): When loading a project file with a smaller screen size than the
 last used and using vertical desktop windows you could get a crash.

@@ -239,7 +239,7 @@ public:
     Boolean canUndo;
     Boolean modified;
     unsigned modifiedCounter; // Changes each time the file is modified
-    void MarkAsModified() { modified=True; modifiedCounter++; };
+    void MarkAsModified() { modified=True; modifiedCounter++; updateFlags&=~ufHLChar; };
     Boolean selecting;
     Boolean overwrite;
     Boolean isReadOnly;

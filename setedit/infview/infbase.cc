@@ -1486,6 +1486,22 @@ void GuessInfoPath(DynStrCatStruct *InfoPath)
     DynStrCat(InfoPath,"/info",5);
     return;
    }
+ // Try using SET_FILES as reference
+ char *setfiles=getenv("SET_FILES");
+ if (setfiles)
+   {
+    char *s=strstr(setfiles,"share");
+    if (!s)
+       s=strstr(setfiles,"SHARE");
+    if (s)
+      {
+       DynStrCatInit(InfoPath,setfiles,s-setfiles-1);
+       DynStrCat(InfoPath,"/info",5);
+       if (IsADirectory(InfoPath.str))
+          return;
+       free(InfoPath.str);
+      }
+   }
  DynStrCatInit(InfoPath,".",1);
 }
 #else
@@ -1498,6 +1514,19 @@ static inline
 void GuessInfoPath(DynStrCatStruct *InfoPath)
 {
  DynStrCatInit(InfoPath,"/usr/local/info:/usr/info:/usr/share/info:/usr/local/share/info");
+ // Try using SET_FILES as reference
+ char *setfiles=getenv("SET_FILES");
+ if (setfiles)
+   {
+    char *s=strstr(setfiles,"share");
+    if (s)
+      {
+       DynStrCat(InfoPath,":",1);
+       DynStrCat(InfoPath,setfiles,s-setfiles-1);
+       DynStrCat(InfoPath,"/info",5);
+       //printf(">%s<\n",InfoPath->str);
+      }
+   }
 }
 #endif
 
