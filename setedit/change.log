@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.265  2002/12/30 15:28:22  set
+* Updated: POVRay SHL, from Martijn.
+
 Revision 1.264  2002/12/30 15:24:44  set
 * Modified: Removed the line len limitation in the syntaxhighlight loader.
 Asked by Martijn, he used more than 100 columns for POVRay SHL ;-)
