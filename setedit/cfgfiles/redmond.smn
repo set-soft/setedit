@@ -209,7 +209,7 @@ SubMenu: "~T~ool&Ops", kbAlT
  MenuItemC: "~A~SCII Chart", cmeASCIIChart
  MenuItemC: "Ca~l~endar", cmeCalendar
 #$ifdef DOS
- SubMenu: "~M~P3 songs", kbUnknown
+ SubMenu: "MP~3~ songs", kbUnknown
    MenuItemC: "~S~elect a song", cmeMP3Open
    MenuItemC: "~P~lay selected", cmeMP3Start
    MenuItemC: "S~t~op selected", cmeMP3Stop

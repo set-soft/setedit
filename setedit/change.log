@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.376  2003/05/19 14:12:56  set
+* Modified: [MinGW] Looks like pwd can be called from Perl, at least from
+the Perl I have. Most probably the problem is that MinGW have pwd only as
+an internal shell command.
+* Fixed: [Win32] Collision between Win32 API and GetLastError from holidays
+module.
+
 Revision 1.375  2003/05/19 14:11:09  set
 * Fixed: The confignt.pl script not collected all the object files needed
 for BC++ and MSVC.
