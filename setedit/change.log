@@ -1,4 +1,8 @@
 $Log$.
+Revision 1.632  2004/10/18 16:50:14  set
+* Fixed: [Cosmetic] Copyright year shown in the command line help. Unified
+with the one in the about box.
+
 Revision 1.631  2004/10/14 19:42:23  set
 * Modified: [Compilation] The dependencies extractor to put the OBJFILES
 definition before its use. It should help nmake.

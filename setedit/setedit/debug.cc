@@ -2190,7 +2190,7 @@ int TDisAsmEdWin::dissasembleFrame(mi_frames *f)
        // Find if the function is valid
        unsigned len=strlen(f->func)+20;
        AllocLocalStr(b,len);
-       CLY_snprintf(b,len,"(unsigned long)%s",b);
+       CLY_snprintf(b,len,"(unsigned long)%s",f->func);
        char *res=TSetEditorApp::DebugEvalExpression(b);
        if (res && MIDebugger::GetErrorNumber()==MI_OK)
          {
