@@ -5,7 +5,7 @@ Abstract: This is the documentation for SET's Editor, a friendly text editor.
 Section: Apps/Editors
 
 Format: text
-Files: /usr/share/doc/setedit/editor.txt.gz
+Files: /usr/share/doc/setedit/setedit.txt.gz
 
 Format: info
 Index: /usr/share/info/setedit.info.gz

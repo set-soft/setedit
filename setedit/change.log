@@ -1,4 +1,13 @@
 $Log$
+Revision 1.22  2001/10/29 18:40:35  terrible
+* Modified: added a '--comp-exe' switch to the configure script to force all
+executables produced to be compressed with UPX, and now the default behaviour
+is like before the modifications for the '--no-comp-exe' switch, in Unix the
+editor is not compressed but infview is, the rationale is that it is more
+common to have various editor instances than infview ones, and on other
+architectures they are both compressed since there is not much performance
+loss.
+
 Revision 1.21  2001/10/29 14:40:18  set
 * Added: --no-intl configuration option. Patch sent by jimmy@ncp.infonet.bg.
 
@@ -1368,7 +1377,7 @@ calls to static members specifying an object!).
 in the index. Reported by Gregorio.
 * Modified: Version to 0.4.45.
 .
-Revision 1.318  2000/05/12 23:16:40  root (set)
+Revision 1.318  2000/05/12 23:16:40  set
 * Fixed: The configure script was looking for the dinamic TV when static was
 specified.
 * Fixed: infbase.cc request of filelength.
