@@ -209,7 +209,7 @@ int TakeWord(int TakeOneCharToo)
                 if (c=='\\')
                   {
                    c=GetAChar();
-                   c=GetAChar();
+                   if (c!=EOF) c=0;
                   }
                }
               while (c!=EOF && c!='\"');
@@ -222,7 +222,7 @@ int TakeWord(int TakeOneCharToo)
                 if (c=='\\')
                   {
                    c=GetAChar();
-                   c=GetAChar();
+                   if (c!=EOF) c=0;
                   }
                }
               while (c!=EOF && c!='\'');
