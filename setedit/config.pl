@@ -110,8 +110,6 @@ LookForPCRE();
 LookForZLib($ZLibVersionNeeded);
 # Is BZip2 library available?
 LookForBZ2Lib($BZ2LibVersionNeeded);
-# Look for recode and version
-LookForRecode();
 # Look for xgettext
 LookForGettextTools();
 LookForMakeinfo();
@@ -250,9 +248,6 @@ $conf{'HAVE_MPEGSOUND'}=((@conf{'WITH_MP3'} eq 'yes') && (@conf{'mp3lib'} eq 'mp
 CreateConfigH();
 GenerateMakefile();
 $ReplaceTags{'TVInclude'}=$TVInclude;
-$ReplaceTags{'recode'}=$conf{'recode'} eq 'no' ? '@echo' : 'recode';
-$ReplaceTags{'recode_sep'}=$conf{'recode_sep'};
-$ReplaceTags{'copy_recode'}='perl utod.pl'; #($OS eq 'UNIX') ? 'perl utod.pl' : 'cp';
 $ReplaceTags{'cpp_compiler'}=$GXX;
 ReplaceText('doc/gnumake.in','doc/Makefile');
 ReplaceText('internac/gnumake.in','internac/Makefile');
@@ -556,10 +551,6 @@ sub GiveAdvice
     print "* The MPEG-3 files support was disabled, install Allegro library v$AllegroVersionNeeded\n";
     print "  or newer (not a WIP!) and reconfigure to get support.\n";
    }
- if ((@conf{'recode'} eq 'no') && ($OS eq 'UNIX'))
-   {
-    print "* The 'recode' tool isn't installed internationalization could be broken\n";
-   }
  if (@conf{'xgettext'} eq 'no')
    {
     print "* The 'xgettext' tools aren't installed internat. files can't be created.\n";
@@ -581,37 +572,6 @@ sub GiveAdvice
    {
     print "* Some tools to create the distribution aren't installed. The distrib target\n";
     print "  was disabled.\n";
-   }
-}
-
-sub LookForRecode
-{
- my $test;
-
- print 'Looking for recode: ';
- if (@conf{'recode'})
-   {
-    print @conf{'recode'}." (cached)\n";
-    return;
-   }
- $test=RunRedirect('recode --version',$ErrorLog);
- if ($test=~/(\d+\.\d+(\.\d+)?)/)
-   {
-    print "$1\n";
-    $conf{'recode'}=$1;
-    if (CompareVersion($test,'3.5'))
-      {
-       $conf{'recode_sep'}='..';
-      }
-    else
-      {
-       $conf{'recode_sep'}=':';
-      }
-   }
- else
-   {
-    print "no\n";
-    $conf{'recode'}='no';
    }
 }
 

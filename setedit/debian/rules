@@ -27,9 +27,9 @@ clean: clean-debian debianbackup.tar
 	test -e debianbackup.tar && tar -xf debianbackup.tar
 	rm -f debianbackup.tar
 # FIXME: ask upstream about adding the next files to his clean target:
-	rm -f internac/de_iso.po internac/fix.exe internac/es_iso.po \
+	rm -f internac/fix.exe \
 		internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
-		internac/de_iso.mo internac/es.mo internac/es_iso.mo
+		internac/es.mo
 # Don't delete this files (they are on the tarball but not on CVS):
 #		doc/Makefile internac/Makefile
 

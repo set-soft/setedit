@@ -104,8 +104,6 @@ avoid using libiconv. You can enable it by passing the --shipped-intl
 parameter to the configuration script.
 * PCRE library v2.0.7. That's Perl Compatible Regular Expressions. I also
 included sources of it, look in libpcre. Also compiled by the makefile.
-* GNU Recode 3.4 package to create the international translations. If you use
-version 3.5 you'll get some warnings, just ignore them.
 
   If you don't want MP3 support you can compile the editor without it
 commenting the #define SUP_MP3 line in ceditint.h. And removing the
@@ -160,8 +158,6 @@ are incompatible at binary level.
 uses the keysyms values. The configure script detects it.
 * PCRE library v2.0.7. That's Perl Compatible Regular Expressions. I also
 included sources of it, look in libpcre. Also compiled by the makefile.
-* GNU Recode 3.4 package to create the international translations. If you use
-version 3.5 you'll get some warnings, just ignore them.
 * I included support for MP3s. You can enable/disable it.
 
   If you don't want PCRE support you can compile the editor without Perl

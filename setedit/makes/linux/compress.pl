@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || return 0;
@@ -289,10 +289,8 @@ chdir('makes/linux');
 CopyIfRpl('../../distrib/distrib1.txt',$doc_dir.'/readme.1st');
 CopyIfRpl('../../distrib/distrib1.txt',$cfg_dir.'/readme.1st');
 CopyIf('../../distrib/linux.faq',$doc_dir.'/faq.txt');
-CopyIf('../../internac/es_iso.mo',$spLocale.'/setedit.mo');
-CopyIf('../../internac/es.mo',$spLocale.'/setedit850.mo');
-CopyIf('../../internac/de_iso.mo',$deLocale.'/setedit.mo');
-CopyIf('../../internac/de.mo',$deLocale.'/setedit850.mo');
+CopyIf('../../internac/es.mo',$spLocale.'/setedit.mo');
+CopyIf('../../internac/de.mo',$deLocale.'/setedit.mo');
 print "done.\n\n";
 
 

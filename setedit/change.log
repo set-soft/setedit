@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.291  2003/04/08 19:18:25  set
+* Modified: TWindow, TDialog and TButton use to follow TV.
+
 Revision 1.290  2003/04/08 14:08:01  set
 * Modified: Uses of TStaticText incarnations to follow new TV features. I
 hope the number of bugs is low ;-) This isn't really harmful but I think

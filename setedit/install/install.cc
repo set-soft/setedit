@@ -661,7 +661,7 @@ int GetWindowsInformation()
  return ret;
 }
 
-void AddItem(TSItem **ops, char *value)
+void AddItem(TSItem **ops, const char *value)
 {
  if (*ops==0)
    { // First item
@@ -797,7 +797,7 @@ const int LinesInList=12;
 
 char *AddOps2(char val, const char *title, const char *op0, const char *op1)
 {
- char *a=_(title),*b=_(val ? op1 : op0);
+ const char *a=_(title),*b=_(val ? op1 : op0);
  char *s=new char[strlen(b)+2+strlen(a)+3];
  strcpy(s,"  ");
  strcat(s,a);
@@ -811,23 +811,23 @@ int ConfirmValues()
  TNSCollection *strs=new TNSCollection(8,4);
  int lines=0;
 
- strs->insert(_(cTypeOfInstall));
+ strs->insert((void *)_(cTypeOfInstall));
  switch (TypeInstallation)
    {
     case instNormal:
-         strs->insert(_("  Normal"));
+         strs->insert((void *)_("  Normal"));
          break;
     case instProg:
-         strs->insert(_("  For programmers"));
+         strs->insert((void *)_("  For programmers"));
          break;
     case instDJGPP:
-         strs->insert(_("  For djgpp programmers"));
+         strs->insert((void *)_("  For djgpp programmers"));
          break;
    }
  strs->insert((void *)"");
  lines+=3;
 
- strs->insert(_(cDestinationDir));
+ strs->insert((void *)_(cDestinationDir));
  char *dp=(char *)alloca(strlen(Destination)+1+2);
  strcpy(dp,"  ");
  strcat(dp,Destination);
@@ -835,9 +835,9 @@ int ConfirmValues()
  strs->insert((void *)"");
  lines+=2;
 
- strs->insert(_(cMiscOps));
+ strs->insert((void *)_(cMiscOps));
  lines++;
- #define I(ops) if(ops) { char *a=_(c##ops); char *s=(char *)alloca(strlen(a)+3); \
+ #define I(ops) if(ops) { const char *a=_(c##ops); char *s=(char *)alloca(strlen(a)+3); \
                           strcpy(s,"  "); strcat(s,a); strs->insert(s); lines++; }
  I(AddToDesktop)
  I(AddToMenu)

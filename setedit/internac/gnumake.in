@@ -1,10 +1,6 @@
 # 'make languages' will build the language files
 # 'make install.languages' installs the language files at the correct place
 
-RECODE=@recode@
-RECODE_SEP=@recode_sep@
-COPY_RECODE=@copy_recode@
-
 ifneq ($(strip $(DJDIR)),)
 export editor_OS:=DJGPP
 endif
@@ -32,19 +28,7 @@ po_subdirs=
 
 CFLAGS=-O
 
-all: $(addsuffix .mo,$(LANGUAGES)) es_iso.mo de_iso.mo
-
-es_iso.mo: es_iso.po
-
-es_iso.po: es.po
-	$(COPY_RECODE) es.po es_iso.po
-	$(RECODE) 850$(RECODE_SEP)iso88591 es_iso.po
-
-de_iso.mo: de_iso.po
-
-de_iso.po: de.po
-	$(COPY_RECODE) de.po de_iso.po
-	$(RECODE) 850$(RECODE_SEP)iso88591 de_iso.po
+all: $(addsuffix .mo,$(LANGUAGES))
 
 ifeq ($(xgettext),)
 xgettext=xgettext
