@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-02-21 15:41-0300\n"
+"PO-Revision-Date: 2005-03-07 11:48-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,8 @@ msgstr "~A~uswerten"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1603 ../setedit/editmenu.cc:78
-#: ../setedit/editmenu.cc:108
+#: ../calcu/calcu.cc:99 ../infview/infmenu.cc:43 ../setedit/debug.cc:1603
+#: ../setedit/editmenu.cc:78 ../setedit/editmenu.cc:108
 msgid "~C~opy"
 msgstr "~K~opieren"
 
@@ -113,11 +113,11 @@ msgstr "Sorry, kann den Text nicht finden"
 msgid "Help Control"
 msgstr "Hilfe Kontrolle"
 
-#: ../infview/inf.cc:2300 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:119
+#: ../infview/inf.cc:2300 ../infview/infmenu.cc:70 ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "~N~ächstes"
 
-#: ../infview/inf.cc:2303 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:120
+#: ../infview/inf.cc:2303 ../infview/infmenu.cc:71 ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~V~orherige"
 
@@ -133,11 +133,11 @@ msgstr "Vorh. ~V~erl."
 msgid "Nodes ~L~ist"
 msgstr "Knoten~l~iste"
 
-#: ../infview/inf.cc:2315 ../infview/infmenu.cc:58
+#: ../infview/inf.cc:2315 ../infview/infmenu.cc:61
 msgid "~B~ookmarks"
 msgstr "~L~esezeichen"
 
-#: ../infview/inf.cc:2318 ../infview/infmenu.cc:56
+#: ../infview/inf.cc:2318 ../infview/infmenu.cc:59
 msgid "~C~onfiguration"
 msgstr "~K~onfiguration"
 
@@ -268,7 +268,7 @@ msgstr "InfView"
 msgid "Attention: can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht öffnen!"
 
-#: ../infview/infbase.cc:1846
+#: ../infview/infbase.cc:1875
 #, fuzzy
 msgid ""
 "\n"
@@ -468,132 +468,137 @@ msgstr "~A~lles"
 msgid "E~x~it"
 msgstr "~B~eenden"
 
-#: ../infview/infmenu.cc:42
+#: ../infview/infmenu.cc:42 ../mainsrc/loaddefl.cc:712
+#: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
+msgid "~E~dit"
+msgstr "~B~earbeiten"
+
+#: ../infview/infmenu.cc:45
 #, fuzzy
 msgid "~G~oto"
 msgstr "~G~ehe zu"
 
-#: ../infview/infmenu.cc:43
+#: ../infview/infmenu.cc:46
 msgid "Goto: (~F~ile)Node"
 msgstr ""
 
-#: ../infview/infmenu.cc:44
+#: ../infview/infmenu.cc:47
 #, fuzzy
 msgid "~N~ode list"
 msgstr "~K~noten"
 
-#: ../infview/infmenu.cc:45
+#: ../infview/infmenu.cc:48
 #, fuzzy
 msgid "N~e~xt node"
 msgstr "~Z~ur Codepage"
 
-#: ../infview/infmenu.cc:46
+#: ../infview/infmenu.cc:49
 #, fuzzy
 msgid "~P~revious node"
 msgstr "~V~orherige"
 
-#: ../infview/infmenu.cc:47
+#: ../infview/infmenu.cc:50
 #, fuzzy
 msgid "~U~pper node"
 msgstr "Ö~f~fne Info"
 
-#: ../infview/infmenu.cc:48
+#: ../infview/infmenu.cc:51
 #, fuzzy
 msgid "~T~op node"
 msgstr "~Z~ur Codepage"
 
-#: ../infview/infmenu.cc:49
+#: ../infview/infmenu.cc:52
 #, fuzzy
 msgid "~D~irectory"
 msgstr "Kann Verzeichnis nicht erstellen:"
 
-#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../setedit/editmenu.cc:93
+#: ../infview/infmenu.cc:54 ../infview/infmenu.cc:55 ../setedit/editmenu.cc:93
 msgid "~S~earch"
 msgstr "~S~uche"
 
-#: ../infview/infmenu.cc:53
+#: ../infview/infmenu.cc:56
 #, fuzzy
 msgid "Search ~a~gain"
 msgstr "~W~iederhole Suche"
 
-#: ../infview/infmenu.cc:55
+#: ../infview/infmenu.cc:58
 #, fuzzy
 msgid "~I~nfview"
 msgstr "InfView"
 
-#: ../infview/infmenu.cc:57
+#: ../infview/infmenu.cc:60
 #, fuzzy
 msgid "~H~istory"
 msgstr "~V~erlauf"
 
-#: ../infview/infmenu.cc:59
+#: ../infview/infmenu.cc:62
 #, fuzzy
 msgid "~S~creen configuration"
 msgstr "~K~onfiguration"
 
-#: ../infview/infmenu.cc:60
+#: ../infview/infmenu.cc:63
 #, fuzzy
 msgid "~A~bout"
 msgstr "Ü~b~er"
 
-#: ../infview/infmenu.cc:62 ../setedit/editmenu.cc:114
+#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:114
 msgid "~W~indows"
 msgstr "~F~enster"
 
-#: ../infview/infmenu.cc:63 ../setedit/editmenu.cc:115
+#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:115
 msgid "~S~ize/move"
 msgstr "~G~röße ändern/Bewegen"
 
-#: ../infview/infmenu.cc:64 ../setedit/editmenu.cc:116
+#: ../infview/infmenu.cc:67 ../setedit/editmenu.cc:116
 msgid "~Z~oom"
 msgstr "~Z~oom"
 
-#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:117
+#: ../infview/infmenu.cc:68 ../setedit/editmenu.cc:117
 msgid "~T~ile"
 msgstr "~T~eilen"
 
-#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:118
+#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:118
 msgid "C~a~scade"
 msgstr "Ü~b~erlappend"
 
-#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:121
+#: ../infview/infmenu.cc:72 ../setedit/editmenu.cc:121
 #: ../setedit/editmenu.cc:139
 msgid "~C~lose"
 msgstr "S~c~hließen"
 
-#: ../infview/infmenu.cc:80 ../setedit/editmenu.cc:173
+#: ../infview/infmenu.cc:83 ../setedit/editmenu.cc:173
 msgid "~Alt+F1~ Back"
 msgstr "~Alt+F1~ Zurück"
 
-#: ../infview/infmenu.cc:81 ../setedit/editmenu.cc:174
+#: ../infview/infmenu.cc:84 ../setedit/editmenu.cc:174
 msgid "~Alt+F10~ Control"
 msgstr "~Alt+F10~ Steuerg"
 
-#: ../infview/infmenu.cc:82 ../setedit/editmenu.cc:183
+#: ../infview/infmenu.cc:85 ../setedit/editmenu.cc:183
 #: ../setedit/editmenu.cc:202 ../setedit/editmenu.cc:205
 msgid "~F1~ Help"
 msgstr "~F1~ Hilfe"
 
-#: ../infview/infmenu.cc:83
+#: ../infview/infmenu.cc:86
 #, fuzzy
 msgid "~Ctrl+O~ Index"
 msgstr "~Alt+I~ Include"
 
-#: ../infview/infmenu.cc:84 ../infview/infmenu.cc:86
+#: ../infview/infmenu.cc:87 ../infview/infmenu.cc:89
 #: ../setedit/editmenu.cc:164 ../setedit/editmenu.cc:188
 #: ../setedit/editmenu.cc:206
 msgid "~F5~ Zoom"
 msgstr "~F5~ Zoom"
 
-#: ../infview/infmenu.cc:87 ../setedit/editmenu.cc:165
+#: ../infview/infmenu.cc:90 ../setedit/editmenu.cc:165
 msgid "~F6~ Next"
 msgstr "~F6~ Nächstes"
 
-#: ../infview/infmenu.cc:88 ../setedit/editmenu.cc:166
+#: ../infview/infmenu.cc:91 ../setedit/editmenu.cc:166
 msgid "~F10~ Menu"
 msgstr "~F10~ Menü"
 
-#: ../infview/infmenu.cc:95 ../setedit/editmenu.cc:213
+#: ../infview/infmenu.cc:98 ../setedit/editmenu.cc:213
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
@@ -2249,11 +2254,6 @@ msgstr "Einstellungen"
 #: ../mainsrc/loaddefl.cc:662
 msgid "Default global options"
 msgstr "Standardeinstellungen (global)"
-
-#: ../mainsrc/loaddefl.cc:712 ../mainsrc/loadusew.cc:388
-#: ../setedit/editmenu.cc:73
-msgid "~E~dit"
-msgstr "~B~earbeiten"
 
 #: ../mainsrc/loaddefl.cc:714
 msgid "~N~o SHL"
@@ -6635,69 +6635,69 @@ msgstr "Ausgabe ist ein Programm"
 msgid "~C~ancel"
 msgstr "~A~bbruch"
 
-#: ../setedit/edprj.cc:421
+#: ../setedit/edprj.cc:424
 #, fuzzy
 msgid "File already in project"
 msgstr "Keine Dateien im Projekt"
 
-#: ../setedit/edprj.cc:526
+#: ../setedit/edprj.cc:529
 msgid "Add File"
 msgstr "Datei hinzufügen"
 
-#: ../setedit/edprj.cc:636 ../setedit/edprj.cc:677
+#: ../setedit/edprj.cc:639 ../setedit/edprj.cc:680
 msgid "Project Window"
 msgstr "Projektfenster"
 
-#: ../setedit/edprj.cc:644
+#: ../setedit/edprj.cc:647
 msgid " 1 Project Window"
 msgstr " 1 Projektfenster"
 
-#: ../setedit/edprj.cc:718
+#: ../setedit/edprj.cc:721
 msgid "Could not open project file"
 msgstr "Konnte Projektdatei nicht öffnen"
 
-#: ../setedit/edprj.cc:725
+#: ../setedit/edprj.cc:728
 msgid "Wrong project file."
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:760
+#: ../setedit/edprj.cc:763
 msgid "Error reading project file"
 msgstr "Fehler beim Lesen der Projektdatei"
 
-#: ../setedit/edprj.cc:762 ../setedit/edprj.cc:930
+#: ../setedit/edprj.cc:765 ../setedit/edprj.cc:945
 #, fuzzy
 msgid "Project: "
 msgstr "~P~rojekt"
 
-#: ../setedit/edprj.cc:798
+#: ../setedit/edprj.cc:801
 msgid "Could not save the project."
 msgstr "Konnte das Projekt nicht speichern."
 
-#: ../setedit/edprj.cc:875
+#: ../setedit/edprj.cc:890
 msgid "Open Project"
 msgstr "Projekt öffnen"
 
-#: ../setedit/edprj.cc:1023
+#: ../setedit/edprj.cc:1045
 #, fuzzy, c-format
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1255
+#: ../setedit/edprj.cc:1277
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1292
+#: ../setedit/edprj.cc:1314
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1300
+#: ../setedit/edprj.cc:1322
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1336
+#: ../setedit/edprj.cc:1358
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-02-21 15:41-0300\n"
+"PO-Revision-Date: 2005-03-07 11:48-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,8 @@ msgstr "E~v~aluar"
 msgid "Cancel"
 msgstr "Cancela"
 
-#: ../calcu/calcu.cc:99 ../setedit/debug.cc:1603 ../setedit/editmenu.cc:78
-#: ../setedit/editmenu.cc:108
+#: ../calcu/calcu.cc:99 ../infview/infmenu.cc:43 ../setedit/debug.cc:1603
+#: ../setedit/editmenu.cc:78 ../setedit/editmenu.cc:108
 msgid "~C~opy"
 msgstr "~C~opiar"
 
@@ -112,11 +112,11 @@ msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
-#: ../infview/inf.cc:2300 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:119
+#: ../infview/inf.cc:2300 ../infview/infmenu.cc:70 ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "P~r~óxima"
 
-#: ../infview/inf.cc:2303 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:120
+#: ../infview/inf.cc:2303 ../infview/infmenu.cc:71 ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~A~nterior"
 
@@ -132,11 +132,11 @@ msgstr "Ant. en ~H~ist."
 msgid "Nodes ~L~ist"
 msgstr "~L~ista de temas"
 
-#: ../infview/inf.cc:2315 ../infview/infmenu.cc:58
+#: ../infview/inf.cc:2315 ../infview/infmenu.cc:61
 msgid "~B~ookmarks"
 msgstr "~M~arcadores"
 
-#: ../infview/inf.cc:2318 ../infview/infmenu.cc:56
+#: ../infview/inf.cc:2318 ../infview/infmenu.cc:59
 msgid "~C~onfiguration"
 msgstr "~C~onfiguración"
 
@@ -266,7 +266,7 @@ msgstr "InfView"
 msgid "Attention: can't open the help file '%s'."
 msgstr "Atención: no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1846
+#: ../infview/infbase.cc:1875
 msgid ""
 "\n"
 " Sorry, I can't find this link (press ALT-F1).\n"
@@ -475,119 +475,124 @@ msgstr "~L~ínea de comandos"
 msgid "E~x~it"
 msgstr "~S~alir"
 
-#: ../infview/infmenu.cc:42
+#: ../infview/infmenu.cc:42 ../mainsrc/loaddefl.cc:712
+#: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
+msgid "~E~dit"
+msgstr "~E~ditar"
+
+#: ../infview/infmenu.cc:45
 msgid "~G~oto"
 msgstr "I~r~ a"
 
-#: ../infview/infmenu.cc:43
+#: ../infview/infmenu.cc:46
 msgid "Goto: (~F~ile)Node"
 msgstr "~I~r a: (Archivo)Nodo"
 
-#: ../infview/infmenu.cc:44
+#: ../infview/infmenu.cc:47
 msgid "~N~ode list"
 msgstr "~L~ista de nodos"
 
-#: ../infview/infmenu.cc:45
+#: ../infview/infmenu.cc:48
 msgid "N~e~xt node"
 msgstr "~P~róximo nodo"
 
-#: ../infview/infmenu.cc:46
+#: ../infview/infmenu.cc:49
 msgid "~P~revious node"
 msgstr "Nodo ~a~nterior"
 
-#: ../infview/infmenu.cc:47
+#: ../infview/infmenu.cc:50
 msgid "~U~pper node"
 msgstr "Nodo ~s~uperior"
 
-#: ../infview/infmenu.cc:48
+#: ../infview/infmenu.cc:51
 msgid "~T~op node"
 msgstr "~N~odo principal"
 
-#: ../infview/infmenu.cc:49
+#: ../infview/infmenu.cc:52
 msgid "~D~irectory"
 msgstr "~D~irectorio de ayudas"
 
-#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../setedit/editmenu.cc:93
+#: ../infview/infmenu.cc:54 ../infview/infmenu.cc:55 ../setedit/editmenu.cc:93
 msgid "~S~earch"
 msgstr "~B~uscar"
 
-#: ../infview/infmenu.cc:53
+#: ../infview/infmenu.cc:56
 msgid "Search ~a~gain"
 msgstr "~R~epetir búsqueda"
 
-#: ../infview/infmenu.cc:55
+#: ../infview/infmenu.cc:58
 msgid "~I~nfview"
 msgstr "~I~nfView"
 
-#: ../infview/infmenu.cc:57
+#: ../infview/infmenu.cc:60
 msgid "~H~istory"
 msgstr "Hi~s~toria"
 
-#: ../infview/infmenu.cc:59
+#: ../infview/infmenu.cc:62
 msgid "~S~creen configuration"
 msgstr "Configuración de ~p~antalla"
 
-#: ../infview/infmenu.cc:60
+#: ../infview/infmenu.cc:63
 msgid "~A~bout"
 msgstr "~A~cerca de"
 
-#: ../infview/infmenu.cc:62 ../setedit/editmenu.cc:114
+#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:114
 msgid "~W~indows"
 msgstr "~V~entana"
 
-#: ../infview/infmenu.cc:63 ../setedit/editmenu.cc:115
+#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:115
 msgid "~S~ize/move"
 msgstr "Tamaño/Po~s~ición"
 
-#: ../infview/infmenu.cc:64 ../setedit/editmenu.cc:116
+#: ../infview/infmenu.cc:67 ../setedit/editmenu.cc:116
 msgid "~Z~oom"
 msgstr "~Z~oom"
 
-#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:117
+#: ../infview/infmenu.cc:68 ../setedit/editmenu.cc:117
 msgid "~T~ile"
 msgstr "~M~osaico"
 
-#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:118
+#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:118
 msgid "C~a~scade"
 msgstr "~C~ascada"
 
-#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:121
+#: ../infview/infmenu.cc:72 ../setedit/editmenu.cc:121
 #: ../setedit/editmenu.cc:139
 msgid "~C~lose"
 msgstr "C~e~rrar"
 
-#: ../infview/infmenu.cc:80 ../setedit/editmenu.cc:173
+#: ../infview/infmenu.cc:83 ../setedit/editmenu.cc:173
 msgid "~Alt+F1~ Back"
 msgstr "~Alt+F1~ Atras"
 
-#: ../infview/infmenu.cc:81 ../setedit/editmenu.cc:174
+#: ../infview/infmenu.cc:84 ../setedit/editmenu.cc:174
 msgid "~Alt+F10~ Control"
 msgstr "~Alt+F10~ Control"
 
-#: ../infview/infmenu.cc:82 ../setedit/editmenu.cc:183
+#: ../infview/infmenu.cc:85 ../setedit/editmenu.cc:183
 #: ../setedit/editmenu.cc:202 ../setedit/editmenu.cc:205
 msgid "~F1~ Help"
 msgstr "~F1~ Ayuda"
 
-#: ../infview/infmenu.cc:83
+#: ../infview/infmenu.cc:86
 msgid "~Ctrl+O~ Index"
 msgstr "~Ctrl+O~ Indice"
 
-#: ../infview/infmenu.cc:84 ../infview/infmenu.cc:86
+#: ../infview/infmenu.cc:87 ../infview/infmenu.cc:89
 #: ../setedit/editmenu.cc:164 ../setedit/editmenu.cc:188
 #: ../setedit/editmenu.cc:206
 msgid "~F5~ Zoom"
 msgstr "~F5~ Zoom"
 
-#: ../infview/infmenu.cc:87 ../setedit/editmenu.cc:165
+#: ../infview/infmenu.cc:90 ../setedit/editmenu.cc:165
 msgid "~F6~ Next"
 msgstr "~F6~ Próxima"
 
-#: ../infview/infmenu.cc:88 ../setedit/editmenu.cc:166
+#: ../infview/infmenu.cc:91 ../setedit/editmenu.cc:166
 msgid "~F10~ Menu"
 msgstr "~F10~ Menú"
 
-#: ../infview/infmenu.cc:95 ../setedit/editmenu.cc:213
+#: ../infview/infmenu.cc:98 ../setedit/editmenu.cc:213
 msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operación."
 
@@ -2157,11 +2162,6 @@ msgstr "Seteos"
 #: ../mainsrc/loaddefl.cc:662
 msgid "Default global options"
 msgstr "Opciones globales por defecto"
-
-#: ../mainsrc/loaddefl.cc:712 ../mainsrc/loadusew.cc:388
-#: ../setedit/editmenu.cc:73
-msgid "~E~dit"
-msgstr "~E~ditar"
 
 #: ../mainsrc/loaddefl.cc:714
 msgid "~N~o SHL"
@@ -6253,64 +6253,64 @@ msgstr "Salida es un programa ~1~"
 msgid "~C~ancel"
 msgstr "~C~ancela"
 
-#: ../setedit/edprj.cc:421
+#: ../setedit/edprj.cc:424
 msgid "File already in project"
 msgstr "El archivo ya está en el proyecto"
 
-#: ../setedit/edprj.cc:526
+#: ../setedit/edprj.cc:529
 msgid "Add File"
 msgstr "Agregar Archivo"
 
-#: ../setedit/edprj.cc:636 ../setedit/edprj.cc:677
+#: ../setedit/edprj.cc:639 ../setedit/edprj.cc:680
 msgid "Project Window"
 msgstr "Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:644
+#: ../setedit/edprj.cc:647
 msgid " 1 Project Window"
 msgstr " 1 Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:718
+#: ../setedit/edprj.cc:721
 msgid "Could not open project file"
 msgstr "No puedo abrir el archivo de proyecto"
 
-#: ../setedit/edprj.cc:725
+#: ../setedit/edprj.cc:728
 msgid "Wrong project file."
 msgstr "Archivo de proyecto incorrecto."
 
-#: ../setedit/edprj.cc:760
+#: ../setedit/edprj.cc:763
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:762 ../setedit/edprj.cc:930
+#: ../setedit/edprj.cc:765 ../setedit/edprj.cc:945
 msgid "Project: "
 msgstr "Proyecto: "
 
-#: ../setedit/edprj.cc:798
+#: ../setedit/edprj.cc:801
 msgid "Could not save the project."
 msgstr "No puedo crear el archivo de proyecto."
 
-#: ../setedit/edprj.cc:875
+#: ../setedit/edprj.cc:890
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 
-#: ../setedit/edprj.cc:1023
+#: ../setedit/edprj.cc:1045
 #, c-format
 msgid "Failed to open the file %s"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../setedit/edprj.cc:1255
+#: ../setedit/edprj.cc:1277
 msgid "Export project items"
 msgstr "Exportar los items del proyecto"
 
-#: ../setedit/edprj.cc:1292
+#: ../setedit/edprj.cc:1314
 msgid "Import project items"
 msgstr "Importar items al proyecto"
 
-#: ../setedit/edprj.cc:1300
+#: ../setedit/edprj.cc:1322
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1336
+#: ../setedit/edprj.cc:1358
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
