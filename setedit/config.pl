@@ -100,20 +100,20 @@ if ($OS eq 'DOS')
      {
       $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' alleg ';
      }
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
   }
 elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=ncurses gpm m';
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++';
-   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
@@ -822,7 +822,7 @@ int main(void)
            print "$ver OK\n";
            $conf{'bz2libShipped'}='no';
            $conf{'bz2lib'}=$ver;
-	   $conf{'bz2libPre1'}='no';
+           $conf{'bz2libPre1'}='no';
            $conf{'HAVE_BZIP2'}='yes';
            return;
          }
@@ -1115,3 +1115,4 @@ sub GenerateMakefile
 
  replace('Makefile',$text);
 }
+

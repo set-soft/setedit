@@ -1,4 +1,7 @@
 $Log$
+Revision 1.6  2001/10/01 13:33:14  set
+* Removed: tcedit.dst file from CVS, it was there by accident.
+.
 Revision 1.5  2001/10/01 02:51:07  terrible
 Fixed: if we are not using shipped libbzip2 then use the system include files
 and not the shipped ones.
