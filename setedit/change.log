@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.116  2002/06/10 13:09:45  set
+* Fixed: When browsing the list of errors and selecting an error reported
+in a non-existant file the editor opened an empty buffer.
+
 Revision 1.115  2002/06/10 13:08:36  set
 * Added: Support for try/catch not in the body of a C++ function for the
 list of functions. It passes a couple of tests Andris sent me.

@@ -124,10 +124,10 @@ public:
     TCEditWindow *openEditor(char *fileName, Boolean visible, EditorResume *res=NULL,
                              int options=0);
 
-    void retrieveDesktop(const char *name, Boolean isLocal);
+    Boolean retrieveDesktop(const char *name, Boolean isLocal);
     void saveDesktop(const char *fName, int makeBkp);
     void storeDesktop(fpstream& s);
-    void loadDesktop(fpstream& s, Boolean isLocal);
+    Boolean loadDesktop(fpstream& s, Boolean isLocal);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();

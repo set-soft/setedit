@@ -218,33 +218,37 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
  // 2) Try with the desktop file here
  if (edTestForFile(cDeskTopFileName))
    {
-    editorApp->retrieveDesktop(cDeskTopFileName,True);
-    DstLoadedHere=1;
-    return;
+    if (editorApp->retrieveDesktop(cDeskTopFileName,True))
+      {
+       DstLoadedHere=1;
+       return;
+      }
    }
  #ifdef HIDDEN_DIFFERENT
  // 2.2) Same for hidden version
  if (edTestForFile(cDeskTopFileNameHidden))
    {
-    editorApp->retrieveDesktop(cDeskTopFileNameHidden,True);
-    DstLoadedHere=1;
-    return;
+    if (editorApp->retrieveDesktop(cDeskTopFileNameHidden,True))
+      {
+       DstLoadedHere=1;
+       return;
+      }
    }
  #endif
  // 3) Try with the default desktop file
  char *s=ExpandHome(cDeskTopFileName);
  if (edTestForFile(s))
    {
-    editorApp->retrieveDesktop((const char *)s,False);
-    return;
+    if (editorApp->retrieveDesktop((const char *)s,False))
+       return;
    }
  #ifdef HIDDEN_DIFFERENT
  // 3.2) Same for hidden
  s=ExpandHome(cDeskTopFileNameHidden);
  if (edTestForFile(s))
    {
-    editorApp->retrieveDesktop((const char *)s,False);
-    return;
+    if (editorApp->retrieveDesktop((const char *)s,False))
+       return;
    }
  #endif
  editorApp->retrieveDesktop(NULL,False);
@@ -258,8 +262,9 @@ void LoadEditorDesktop(int LoadPrj, char *suggestedName, int haveFilesCL)
 
 ***************************************************************************/
 
-void TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
+Boolean TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
 {
+ Boolean ret=False;
  if (name)
    {
     #ifdef BROKEN_CPP_OPEN_STREAM
@@ -274,9 +279,13 @@ void TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
        messageBox(_("Could not open desktop file"), mfOKButton | mfError);
     else
       {
-       TSetEditorApp::loadDesktop(*f,isLocal);
+       if (TSetEditorApp::loadDesktop(*f,isLocal))
+          ret=True;
        if (!f)
+         {
           messageBox(_("Error reading desktop file"), mfOKButton | mfError);
+          ret=False;
+         }
        f->close();
       }
     delete f;
@@ -302,6 +311,7 @@ void TSetEditorApp::retrieveDesktop(const char *name, Boolean isLocal)
        edHelper->addNonEditor(InfManager);
       }
    }
+ return ret;
 }
 
 /**[txh]********************************************************************
@@ -573,7 +583,7 @@ inline unsigned MoveFlags(unsigned flags, unsigned mask, unsigned move)
 
 ***************************************************************************/
 
-void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
+Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
 {
  char buffer[80];
  unsigned auxUN;
@@ -583,18 +593,18 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  if (strcmp(buffer,Signature)!=0)
    {
     messageBox(_("Wrong desktop file."), mfOKButton | mfError);
-    return;
+    return False;
    }
  s >> deskTopVersion;
  if (deskTopVersion<0x300)
    {
     messageBox(_("The desktop file is too old."), mfOKButton | mfError);
-    return;
+    return False;
    }
  if (deskTopVersion>TCEDITOR_VERSION)
    {
     messageBox(_("You need a newer editor for this desktop file."), mfOKButton | mfError);
-    return;
+    return False;
    }
 
  if (deskTopVersion>=0x404)
@@ -823,6 +833,7 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     if (r)
        SetFileIDDirValue(hID_ConfigFiles,r);
    }
+ return True;
 }
 #undef L
 /******************** End of save/retrieve desktop functions ****************/
