@@ -130,7 +130,9 @@ extern char SEcpColor[]; // Defined in editmain
 #undef SS
 #include <pal.h>
 #include <palfte.h>
+#include <palconv.h>
 static char SEcpFTE[]={ SE_cpColorFTE 0 };
+static char SEcpConsoleVIM[]={ SE_cpColorConsoleVIM 0 };
 
 typedef struct
 {
@@ -140,11 +142,11 @@ typedef struct
 
 static palTheme Themes[]=
 {
- {"Default",  SEcpColor },
- {"FTE like", SEcpFTE   }
+ {"Default",       SEcpColor },
+ {"FTE like",      SEcpFTE   },
+ {"Console + VIM", SEcpConsoleVIM }
 };
 
-// static TPalette color ( SEcpColor, sizeof( SEcpColor )-1 );
 class TColorThemes : public TStringable
 {
 public:

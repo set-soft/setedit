@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.82  2002/05/07 12:54:46  set
+* Fixed: palfte.h didn't end with \n and failed for gcc 3.x. Patch by
+Andris.
+
 Revision 1.81  2002/05/06 15:13:46  set
 * Added: [FreeBSD] Support for libintl. Changes suggested by miniEleph
 <nyxo@dnuc.polyn.kiae.su>.
