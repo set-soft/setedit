@@ -103,6 +103,7 @@ if ($conf{'tv'}=~/(\d+)\.(\d+)\.(\d+)/)
    $tvMiddle=$2;
    $tvMinor=$3;
   }
+LookForTVConfig();
 
 # Have libc international support? what about libintl or libiconv?
 LookForIntlSupport();
@@ -152,9 +153,9 @@ elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
    if (@conf{'static'} eq 'yes')
-      { $libs=`rhtv-config --slibs`; }
+      { $libs=TVConfigOption('slibs'); }
    else
-      { $libs=`rhtv-config --dlibs`; }
+      { $libs=TVConfigOption('dlibs'); }
    chop $libs;
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS='.$libs.' ';
    #
@@ -179,7 +180,7 @@ elsif ($OS eq 'UNIX')
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
-   $libs=`rhtv-config --slibs`;
+   $libs=TVConfigOption('slibs');
    chop $libs;
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS= '.$libs.' ';
    #$MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ gdi32 ';
@@ -199,7 +200,7 @@ $MakeDefsRHIDE[2].=' -L../gettext '  if (@conf{'intlShipped'} eq 'yes');
 # QNX Workaround
 $MakeDefsRHIDE[2].='-L/lib ' if ($OSf eq 'QNXRtP');
 # Libraries for TV
-$libs=`rhtv-config --dir-libs`;
+$libs=TVConfigOption('dir-libs');
 chop $libs;
 $MakeDefsRHIDE[2].=$libs;
 # Extra libraries path
@@ -703,9 +704,43 @@ sub LookForTV
  $conf{'TV_LIB'}=$TVLib;
 }
 
+sub LookForTVConfig
+{
+ my $test;
+
+ print 'Looking for Turbo Vision config program: ';
+ $test=RunRedirect('rhtv-config --version',$ErrorLog);
+ if ($test=~/Turbo Vision/)
+   {
+    print "installed, OK\n";
+    $tvConfig='rhtv-config';
+   }
+ else
+   {
+    $tvConfig=$TVInclude.'/../rhtv-config';
+    $test=RunRedirect($tvConfig.' --version',$ErrorLog);
+    if ($test=~/Turbo Vision/)
+      {
+       print "$tvConfig, OK\n";
+      }
+    else
+      {
+       print "\nError: Can't find the Turbo Vision configuration program.\n";
+       print "Please try updating TV, then reconfigure TV and compile.\n";
+       CreateCache();
+       die "Missing tool\n";
+      }
+   }
+}
+
+sub TVConfigOption
+{
+ return `$tvConfig --$_[0]`;
+}
+
 sub LookForPCRE
 {
- my $test205,$test206,$t2,$test,$dir;
+ my ($test205,$test206,$t2,$test,$dir);
 
  print 'Looking for PCRE library: ';
  $test=@conf{'HAVE_PCRE_LIB'};
@@ -1171,7 +1206,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_BZIP2PRE1','old bzip2 version before 1.0') if(@conf{'HAVE_BZIP2'} eq 'yes');
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
- $text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
+ #$text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
  $text.=ConfigIncDefYes('HAVE_AA','AA lib');
  $text.=ConfigIncDefYes('HAVE_DL_LIB','Support for runtime dynamic libs');
  $text.="\n#define DL_HEADER_NAME <".$conf{'dl_header'}.".h>\n";
@@ -1258,12 +1293,16 @@ sub GenerateMakefile
  $text.=" doc-basic" if ($docbasic);
  $text.=" holidays" if ($holidays);
  # all targets
- $text.="\n\nall: editor";
+ $text.="\n\nall: Makefile editor";
  $text.=" libset" if ($libset);
  $text.=" infview" if ($infview);
  $text.=" plasmas" if ($plasmas);
  $text.=" installer" if ($installer);
  $text.="\n";
+
+ $text.="\n\nMakefile: config.pl conflib.pl\n";
+ $text.="\t\$(error Please reconfigure the package! Alternative: \"touch Makefile\")";
+
  # libamp
  if ($libamp)
    {

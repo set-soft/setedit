@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.387  2003/05/23 13:23:52  set
+* Fixed: [DOS] Details about the new configuration.
+
 Revision 1.386  2003/05/23 13:20:05  set
 * Modified: Some details about the configuration process. Now the scripts
 takes C flags, C++ flags, libraries and path to libraries from TV
