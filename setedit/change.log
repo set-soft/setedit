@@ -1,4 +1,17 @@
-$Log$.
+$Log$
+Revision 1.118  2002/06/10 13:12:16  set
+* Updated: README to clarify a little bit the available Win32 options. I
+tested MinGW+MSys+SiePerl as suggested by Thiago.
+* Fixed: When no intl lib is available we must try using tvfintl (provided
+by TV lib).
+* Fixed: Targets where the prefix have back-slashes. The prefix is used in
+the code and must contain escaped back-slashes.
+* Added: palconv.h and palfte.h to the distribution.
+* Fixed: patchenv.pl now is more cleaver and solves problems introduced in
+last RHIDE versions. I tried gprexp as Robert suggested but it make things
+even worst.
+* Fixed: PCRE for Win32 targets defaults to a DLL, avoided in editmain.cc.
+
 Revision 1.117  2002/06/10 13:11:19  set
 * Modified: When the editor fails to load a desktop file (wrong version,
 corrupted file, wrong access rights, ect.) the editor tries to load the

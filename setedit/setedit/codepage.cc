@@ -52,7 +52,7 @@ fonts than the BIOS ones.@p
  #define o_SpecialChars o_specialChars
 #else
  #define SpecialChars TView::specialChars
- #define o_SpecialChars TView::o_specialChars
+ #define o_SpecialChars TView::ospecialChars
 #endif
 
 TNoCaseNoOwnerStringCollection *CodePages=0;
