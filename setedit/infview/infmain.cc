@@ -505,7 +505,7 @@ static char  UseRH52=0;
 static char *FileToLoad=0,*JumpTo=0,*desktopIn=0,*desktopOut=0;
 
 static
-struct option longopts[] =
+struct CLY_option longopts[] =
 {
   { "directory", 1, 0, 'd' },
   { "file", 1, 0, 'f' },
@@ -527,7 +527,7 @@ void ParseCommandLine(int argc, char *argv[])
     
  int optc;
 
- while ((optc=getopt_long(argc,argv,"d:f:lLn:kr:s:h",longopts,0))!=EOF)
+ while ((optc=CLY_getopt_long(argc,argv,"d:f:lLn:kr:s:h",longopts,0))!=EOF)
    {
     switch (optc)
       {
@@ -541,19 +541,19 @@ void ParseCommandLine(int argc, char *argv[])
             UseRH52=1;
             break;
        case 'd':
-            InfViewAddInfoDir(optarg);
+            InfViewAddInfoDir(CLY_optarg);
             break;
        case 'f':
-            FileToLoad=optarg;
+            FileToLoad=CLY_optarg;
             break;
        case 'n':
-            JumpTo=optarg;
+            JumpTo=CLY_optarg;
             break;
        case 'r':
-            desktopIn=optarg;
+            desktopIn=CLY_optarg;
             break;
        case 's':
-            desktopOut=optarg;
+            desktopOut=CLY_optarg;
             break;
        case 'h':
        default:
@@ -801,11 +801,11 @@ int main(int argc, char *argv[])
     if (JumpTo)
        startInfo->viewer->switchToTopic(JumpTo);
    }
- while (optind<argc)
+ while (CLY_optind<argc)
    {
     if (!FileToLoad)
       {// First parameter is the info file if no --file option was provided
-       FileToLoad=argv[optind];
+       FileToLoad=argv[CLY_optind];
        OpenInfView(editorApp,FileToLoad);
        if (JumpTo)
           startInfo->viewer->switchToTopic(JumpTo);
@@ -814,16 +814,16 @@ int main(int argc, char *argv[])
       {// The rest are cross references
        if (startInfo && startInfo->viewer)
          {
-          if (!startInfo->viewer->jumpXRefPartial(argv[optind],jmpXRSubStr | bestMVisibleName) &&
+          if (!startInfo->viewer->jumpXRefPartial(argv[CLY_optind],jmpXRSubStr | bestMVisibleName) &&
               // Try with the node name instead of the visible name:
-              !startInfo->viewer->jumpXRefPartial(argv[optind],jmpXRSubStr))
+              !startInfo->viewer->jumpXRefPartial(argv[CLY_optind],jmpXRSubStr))
             {
-             messageBox(mfOKButton | mfError,_("Could not find '%s'."),argv[optind]);
+             messageBox(mfOKButton | mfError,_("Could not find '%s'."),argv[CLY_optind]);
              break;
             }
          }
       }
-    optind++;
+    CLY_optind++;
    } 
  if (JumpTo && !FileToLoad && *JumpTo=='(')
    {

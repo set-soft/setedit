@@ -1826,7 +1826,7 @@ void DestroyCMDLine()
 }
 
 static
-struct option longopts[] =
+struct CLY_option longopts[] =
 {
   { "bios-keyb",      0, 0, 'b' },
   { "no-bios-keyb",   0, 0, 'B' },
@@ -1895,7 +1895,7 @@ void ParseCommandLine(int argc, char *argv[])
  if (ExtraCMDLine)
     StackDbgStrategy=atoi(ExtraCMDLine);
 
- while ((optc=getopt_long(Argc,Argv,"b:BcdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
+ while ((optc=CLY_getopt_long(Argc,Argv,"b:BcdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
    {
     switch (optc)
       {
@@ -1917,16 +1917,16 @@ void ParseCommandLine(int argc, char *argv[])
             SE_CascadeWindows=1;
             break;
        case 'd':
-            StackDbgStrategy=atoi(optarg);
+            StackDbgStrategy=atoi(CLY_optarg);
             break;
        case 'f':
-            AddToListOfFilesToLoad(optarg);
+            AddToListOfFilesToLoad(CLY_optarg);
             break;
        case 'k':
             UseRH52=1;
             break;
        case 'K':
-            KeyBindFNameUser=newStr(optarg);
+            KeyBindFNameUser=newStr(CLY_optarg);
             break;
        case 'l':
             putenv("LFN=N");
@@ -1943,7 +1943,7 @@ void ParseCommandLine(int argc, char *argv[])
             DisableBoardMixer=1;
             break;
        case 'p':
-            ProjectAskedByUser=optarg;
+            ProjectAskedByUser=CLY_optarg;
             break;
        case 'r':
             RedirectStderr=0;
@@ -2387,13 +2387,13 @@ int main(int argc, char *argv[])
  /* Set's the window title for owr application (W9x,X,etc.) */
  editorApp->SetTitle();
 
- LoadEditorDesktop(1,ProjectAskedByUser,optind<Argc);
+ LoadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc);
 
  // Open all the files indicated in the command line
- while (optind<Argc)
+ while (CLY_optind<Argc)
    {
-    LoadSpecifiedFile(Argv[optind]);
-    optind++;
+    LoadSpecifiedFile(Argv[CLY_optind]);
+    CLY_optind++;
    }
  // Open files specified as lists
  if (FilesToLoad)

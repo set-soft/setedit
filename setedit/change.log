@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.158  2002/07/19 20:45:54  set
+* Roll back of bzlib patch.
+* Modified: [MSVC] makefile to avoid command line limitations. Untested.
+* Fixed: Collisions between spec.cc and edspec.cc reported by MSVC from
+output by WintiX.
+
 Revision 1.157  2002/07/19 14:44:57  set
 * Fixed: bzip2 newer than 1.x uses BZ2_bzlibVersion and my test only tried
 bzlibVersion. Pointed out by Andris.
