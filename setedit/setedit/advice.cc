@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #include <stdio.h>
@@ -46,7 +46,9 @@ advice Advices[]=
  { __("With this settings incremental searchs aren't very intuitive, specially when pressing SHIFT. Don't forget it."),
    AdviceVar1, 0x00000010, ops40cols },
  { __("Holding SHIFT the incremental search is done for the directory names, otherwise applies to files. Don't forget it."),
-   AdviceVar1, 0x00000020, ops40cols }
+   AdviceVar1, 0x00000020, ops40cols },
+ { __("When using real tabs the following options are usually desired: Autoindent ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, Tab smart indents OFF, Use indent size OFF and Backspace unindents OFF.\nI see not all are selected this way."),
+   AdviceVar1, 0x00000040, ops60cols }
 };
 
 const int cantAdvices=sizeof(Advices)/sizeof(advice);

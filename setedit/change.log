@@ -1,4 +1,7 @@
 $Log$
+Revision 1.49  2002/02/04 15:32:08  set
+* Fixed: ncurses 5.2 collision in intgrep.cc. Patch by Andris.
+
 Revision 1.48  2002/02/04 15:23:29  set
 * Fixed: The use of tmpnam and mktemp is currently deprecated so I changed
 it to use mkstemp. Pointed out by Andris (last Linux tools reports it).
@@ -1164,7 +1167,7 @@ Revision 1.386  2001/09/09 22:16:36  set
 * Fixed: BC++ doesn't like default argument values in the function itself.
 * Fixed: Missing string.h in pperl.cc (gcc 2.95.2 doesn't report it for
 internal functions).
-.
+
 Revision 1.385  2001/09/09 20:31:58  set
 * Added: A tool to find the empty and fuzzy entries in a .po file. Is
 called emptymsg. If you call it passing the names of the .po files to it

@@ -79,6 +79,7 @@
 #include <slpinter.h>
 #include <bufun.h>
 #include <loadshl.h>
+#include <advice.h>
 
 #include <setconst.h>
 
@@ -3108,6 +3109,13 @@ int TCEditor::handleCommand(ushort command)
                     delete[] colMarkers;
                     colMarkers=Str2ColMarkers(temp1.colMarkers);
                     update(ufView);
+                    // If using a syntax highlight and tabs the user will most probably
+                    // want to indent. Give advice about coherent indentation settings
+                    // for tab users.
+                    if (SyntaxHL!=shlNoSyntax && UseTabs &&
+                        (!autoIndent || intelIndent || !OptimalFill ||
+                        !NoInsideTabs || TabIndents || UseIndentSize || BackSpUnindents))
+                       GiveAdvice(gadvTabsOps);
                    }
                 }
                 break;
@@ -4116,6 +4124,13 @@ void TCEditor::SetGlobalOptions(void)
  if (editorDialog(edSetGlobalOptions,&temp))
    {
     ExpandGlobalOptions(&temp);
+    // If using tabs the user will most probably want to indent. Give advice about
+    // coherent indentation settings for tab users.
+    if (staticUseTabs &&
+        (!staticAutoIndent || staticIntelIndent || !staticOptimalFill ||
+        !staticNoInsideTabs || staticTabIndents || staticUseIndentSize ||
+        staticBackSpUnindents))
+       GiveAdvice(gadvTabsOps);
     //update(ufView);
    }
 }
