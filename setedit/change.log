@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.153  2002/07/16 19:31:18  set
+* Modified: MP3 dialog buttons to behave better after a recode.
+* Added: TSButtonRef wrapper for TButtonRef.
+* Added: First step to adapt the code to the new recoding scheme using a
+callback.
+* Added: Code to the new Encodings dialog, now works but only if no fonts
+are loaded.
+
 Revision 1.152  2002/07/16 13:19:28  set
 * Added: The first part of the new encodings settings stuff. This is
 complex and implies important changes.

@@ -41,6 +41,7 @@
 #define Uses_filelength
 #define Uses_itoa
 #define Uses_getline
+#define Uses_access
 
 #define Uses_TKeys
 #define Uses_TFindCDialogRec
@@ -10230,10 +10231,10 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcCut,hs);
     setCmdState(cmcCopy,hs);
     setCmdState(cmcCopyClipFile,hs);
-    setCmdState(cmcCopyClipWin,hs && TVOSClipboard::isAvailable());
+    setCmdState(cmcCopyClipWin,(hs && TVOSClipboard::isAvailable()) ? True : False);
     setCmdState(cmcClear,hs);
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
-    setCmdState(cmcPasteClipWin,TVOSClipboard::isAvailable());
+    setCmdState(cmcPasteClipWin,TVOSClipboard::isAvailable() ? True : False);
    }
 }
 
