@@ -73,6 +73,7 @@
 #define Uses_TCEditor_Commands
 #define Uses_TStringable
 #define Uses_ProgBar
+#define Uses_TScreen
 #include <ceditor.h>
 #include <tv/tvconfig.h>
 #include <edhists.h>
@@ -10012,10 +10013,15 @@ void TCEditor::toggleInsMode(Boolean allowUndo)
     addToUndo(undoCutInMov);
  overwrite = (!overwrite) ? True : False;
  setState(sfCursorIns,overwrite);
- #ifdef TVOSf_Linux
- // I don't know how to change the cursor shape so an user suggested
- // putting it in the indicator
- update(ufUpdate);
+ #if TV_MAJOR_VERSION<2
+  #ifdef TVOSf_Linux
+  // I don't know how to change the cursor shape so an user suggested
+  // putting it in the indicator
+  update(ufUpdate);
+  #endif
+ #else
+ if (!TScreen::cursorShapes())
+    update(ufUpdate);
  #endif
 }
 

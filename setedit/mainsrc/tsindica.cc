@@ -11,6 +11,7 @@
 #define Uses_ipstream
 #define Uses_TStreamableClass
 #define Uses_TCEditor
+#define Uses_TScreen
 #include <ceditor.h>
 
 void TSIndicator::draw()
@@ -38,10 +39,15 @@ void TSIndicator::draw()
    if (editor->modified)
       b.putChar(0,modifiedStar);
 
- #ifdef TVOSf_Linux
- // I don't know how to change the cursor shape so an user suggested
- // putting it in the indicator
- b.putChar(1,editor->overwrite ? 'O' : 'I');
+ #if TV_MAJOR_VERSION<2
+  #ifdef TVOSf_Linux
+  // I don't know how to change the cursor shape so an user suggested
+  // putting it in the indicator
+  b.putChar(1,editor->overwrite ? 'O' : 'I');
+  #endif
+ #else
+ if (!TScreen::cursorShapes())
+    b.putChar(1,editor->overwrite ? 'O' : 'I');
  #endif
       
  sprintf(s," %d:%d ",editor->curPos.y+1,editor->curPos.x+1);

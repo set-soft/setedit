@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.125  2002/06/19 15:01:19  set
+* Fixed: The Desktop background recoding, it changed in new TV. Also added
+recode to the MP3 and calendar.
+
 Revision 1.124  2002/06/19 15:00:19  set
 * Modified: The applycvs.pl tool to support new files, needs some adjusts
 but can be used.
