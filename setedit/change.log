@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.88  2002/05/13 12:50:21  set
+* Test: for big endian issue.
+
 Revision 1.87  2002/05/13 12:41:04  set
 * Modified: [UNIX] Now the FHS detection is more strict, the existance of
 share/doc is not enough, share/man and shared/info must exist.

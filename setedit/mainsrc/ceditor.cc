@@ -12170,12 +12170,14 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
 #define RemoveTemporal() if (wasCompressed) { remove(wasCompressed); \
                                               free(wasCompressed); \
                                               wasCompressed=0; } \
-                         if (!crfound) remove(tmp);
+                         if (!crfound) remove(tmp); \
+                         string_free(tmp);
 #else
 #define RemoveTemporal() if (wasCompressed) { remove(wasCompressed); \
                                               free(wasCompressed); \
                                               wasCompressed=0; } \
-                         if (crfound) remove(tmp);
+                         if (crfound) remove(tmp); \
+                         string_free(tmp);
 #endif
 
 Boolean TCEditor::loadFile(Boolean setSHL)
@@ -12322,7 +12324,6 @@ Boolean TCEditor::loadFile(Boolean setSHL)
           else
              fseek(f,0,SEEK_SET);
          #endif
-         string_free(tmp);
         }
         unsigned long fSize=filelength( fileno(f) );
         if( !setBufSize(fSize) )
