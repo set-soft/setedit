@@ -59,7 +59,7 @@ static char DrvName[MaxNameLen];
 
 stDriver Drivers[]=
 {
-#ifdef SEOSf_djgpp
+#ifdef SECompf_djgpp
  { SBMixerInit,  SBMixerDeInit,  SBSetMixerValue,
    SBReadMixerValue, SBGetElements, SBGetName }
 #endif

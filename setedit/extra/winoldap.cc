@@ -1,11 +1,12 @@
 /**[txh]********************************************************************
 
-  Copyright (c) 1997 by Salvador Eduardo Tropea.
+  Copyright (c) 1997,2001 by Salvador Eduardo Tropea.
   That's the interface with the Windows Clipboard.
 
 ***************************************************************************/
+#include <configed.h>
 
-#ifdef __DJGPP__
+#ifdef SECompf_djgpp
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -46,7 +47,7 @@ int WINOLDAP_Init(void)
 static int AllocateDOSMem(unsigned long size,unsigned long *BaseAddress)
 {
  __dpmi_regs r;
-#ifdef USE_TB
+ #ifdef USE_TB
  unsigned long tbsize=_go32_info_block.size_of_transfer_buffer;
 
  if (size<=tbsize)
@@ -54,7 +55,7 @@ static int AllocateDOSMem(unsigned long size,unsigned long *BaseAddress)
     *BaseAddress=__tb;
     return 1;
    }
-#endif
+ #endif
  if (size>0x100000)
    {
     Error=WINOLDAP_TooBig;
@@ -75,10 +76,10 @@ static int AllocateDOSMem(unsigned long size,unsigned long *BaseAddress)
 static void FreeDOSMem(unsigned long Address)
 {
  __dpmi_regs r;
-#ifdef USE_TB
+ #ifdef USE_TB
  if (Address==__tb)
     return;
-#endif
+ #endif
  r.h.ah=0x49;
  r.x.es=Address>>4;
  __dpmi_int(0x21,&r);
@@ -213,8 +214,11 @@ int main(void)
  return 0;
 }
 #endif // TEST
-#else  // !__DJGPP__
-#ifdef _WIN32
+#else  // !SECompf_djgpp
+
+
+
+#ifdef SEOS_Win32
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -282,7 +286,7 @@ int WINOLDAP_SetClipboard(char *p, unsigned long len)
  return 0;
 }
 
-#else // _WIN32
+#else // SEOS_Win32
 
 #include <stdlib.h>
 // Linux version. By now does nothing. Perhaps it can use gpm or other
@@ -306,6 +310,6 @@ int WINOLDAP_SetClipboard(char *, unsigned long )
 {
  return 0;
 }
-#endif // _WIN32
-#endif // __DJGPP__
+#endif // SEOS_Win32
+#endif // SECompf_djgpp
 

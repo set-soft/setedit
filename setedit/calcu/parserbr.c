@@ -29,18 +29,18 @@
 #define findtop() for (top = str; isintvar (*str); str ++); end = str;
 #define matchops(NAME, LEN) (!strncmp (ops, NAME, LEN) && skipops (LEN))
 
-#ifdef __GNUC__
+#ifdef TVComp_GCC
 #define ltype long long
 #define lprint "ll"
 #endif
 
-#if defined(__TURBOC__) || defined(_MSC_VER)
+#if defined(TVComp_BCPP) || defined(TVComp_MSC)
 #define ltype   __int64
 #define lprint  "i64"
 #define strncasecmp strnicmp
 #endif
               
-#ifdef __linux__
+#ifdef TVOSf_Linux
 // Why it fails in my machine?!
 #define ftype double
 #define fprint ""

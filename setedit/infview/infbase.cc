@@ -39,10 +39,10 @@
 #include <gzfiles.h>
 #include <dyncat.h>
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 #include <crt0.h>
 #endif
-#ifndef __linux__
+#ifndef TVOSf_Linux
 # include <io.h>
 #endif
 
@@ -339,14 +339,8 @@ void TInfTopic::ReadText(TInfFile &File, int offset, int &y)
  while (Buf[0]!=31 && !feof(f));
 
  // Arriba
- #ifndef __GNUC__
- if (lSize>60000L) Clava("TInfTopic::ReadText: Super¢ los 60Kb\n");
- fseek(f,Pos,SEEK_SET);
- Text = new char[(size_t)lSize+1];
- #else
  fseek(f,Pos,SEEK_SET);
  Text = new char[lSize+1];
- #endif
  for (i=iLines, d=Text; i; --i)
     {
      File.GetLine();
@@ -1303,11 +1297,7 @@ void TInfFile::DoAll( char *Nombre, int Verbose )
  if (stream==NULL)
    {
     if (Verbose)
-#ifndef __GNUC__
-       messageBox(_("Attention can't open the help file."), mfError | mfOKButton);
-#else
        messageBox(mfError|mfOKButton,_("Attention can't open the help file '%s'."), Nombre);
-#endif
     Status=True;
     return;
    }
@@ -1480,7 +1470,7 @@ static int TryWithName(char *s, char *ext, int iExt, Boolean &is_compressed)
  return 1;
 }
 
-#ifdef __DJGPP__
+#ifdef SECompf_djgpp
 void LoadInfoEnviroment(void)
 {
  static int info_env_loaded = 0;
@@ -1654,18 +1644,6 @@ int TInfFile::ExpandName(char *Buf, char *Nombre, int iExt)
    }
  return 0;
 }
-
-#ifndef __DJGPP__
-extern "C" long __filelength(int fhandle);
-/* Already defined in bc.cc of TVision for non-djgpp platforms
-long filelength(int fhandle)
-{
- long p=lseek (fhandle,0,SEEK_CUR); // They doesn't have tell!!!
- long ret=lseek(fhandle,0,SEEK_END);
- lseek(fhandle,p,SEEK_SET);
- return ret;
-}*/
-#endif
 
 FILE *TInfFile::fOpen(char *Nombre)
 {

@@ -17,7 +17,7 @@ int GZFiles_ExpandHL(char *dest, char *orig);
 #ifndef HAVE_BZIP2
  #define BZFILE void
 #else
- #if defined(Uses_GZInterfaceOnly) && defined(__TURBOC__)
+ #if defined(Uses_GZInterfaceOnly) && defined(TVComp_BCPP)
   // Don't ask me why but BC++ dies if bzlib.h includes windows.h again
   #define BZFILE void
  #else
