@@ -938,6 +938,7 @@ TMLIBase::TMLIBase(TMLIArrayBase *a, TLispVariableCol *v, FILE *out)
  fileOut=out;
  EndCode=0;
  Vars=v;
+ ErrorReported=1;
 }
 
 TMLIBase::~TMLIBase()
@@ -1094,6 +1095,22 @@ char *TMLIBase::SkipCode()
 
 TLispVar *TMLIBase::Interpret(char *s)
 {
+ int stkPos=array->GetCount();
+ TLispVar *ret=InterpretNoClean(s);
+ if (ret==NULL)
+   {// Now we can get the error while we are sure the code exists.
+    // The code could be a variable in the stack and be freed soon.
+    CopyCodeError();
+    // If we parsed some parameters and found an error before finishing
+    // destroy these entries in the stack.
+    if (array->firstfree>stkPos)
+       array->FreeItems(array->firstfree-stkPos-1);
+   }
+ return ret;
+}
+
+TLispVar *TMLIBase::InterpretNoClean(char *s)
+{
  int Params=0;
  int Commands=0;
  int stkPos=array->GetCount();
@@ -1141,7 +1158,10 @@ TLispVar *TMLIBase::Interpret(char *s)
              TLispCommand *c=(TLispCommand *)(array->Get(stkPos));
              (c->command)(this,stkPos+1,Params);
              if (Error)
+               {
+                array->FreeItems(Params);
                 return NULL;
+               }
              return array->FreeItems(Params);
             }
        case '"':
@@ -1372,6 +1392,15 @@ static char BufError[64];
 
 char *TMLIBase::GetCodeError()
 {
+ ErrorReported=1; // Now we are ready to memorize another error
+ return BufError;
+}
+
+char *TMLIBase::CopyCodeError()
+{// Remmember the error the first time we are called.
+ if (!ErrorReported) return 0;
+ ErrorReported=0;
+
  char *start=Code-30;
  memset(BufError,0,64);
  if (start<StartCode)
