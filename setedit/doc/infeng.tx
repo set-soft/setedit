@@ -1,13 +1,13 @@
 \input texinfo  @c -*-texinfo-*-
-@c Copyright (C) 1996-1998,1999,2000 by Salvador Eduardo Tropea.
+@c Copyright (C) 1996-2001 by Salvador Eduardo Tropea.
 @c The first 75 lines configures all, the rest is the real doc.
 
 @comment %**start of header
 
 @setfilename infeng.info
-@set version 0.2.3
-@set update-date 10 June 1999
-@set update-month Jane 1999
+@set version 0.2.7
+@set update-date 22 September 2001
+@set update-month September 2001
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -46,7 +46,7 @@
 @end macro
 @set title-printed InfView
 @set minidesc-printed An info viewer
-@set year-copyr 1996, 1997, 1998, 1999, 2000
+@set year-copyr 1996, 1997, 1998, 1999, 2000, 2001
 @set info-file  infeng.info
 
 @c --------------------------------------------------------------
