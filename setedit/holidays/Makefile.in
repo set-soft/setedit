@@ -1,4 +1,5 @@
 CC=@CC@
+CFLAGS=@CFLAGS@
 dyndir=@dyndir@
 dynversion=.1.0.0
 
@@ -9,7 +10,7 @@ all: $(addsuffix .so,$(LIBS))
 libs: $(addsuffix .so,$(LIBS))
 
 %.o: %.c
-	$(CC) -c -fPIC -O2 $<
+	$(CC) -c -fPIC $(CFLAGS) $<
 
 %.so: %.o
 	$(CC) -o $@ $< -shared -Wl,-soname,$(basename $@).so$(dynversion)

@@ -2,6 +2,10 @@
 # Created by Anatoli Soltan
 # Adapted from Makefile by SET
 
+CC=bcc32
+# The following could work for MSVC, never tested.
+#CC=cl
+
 PATH = $(PATH);..\WinNT\makeinfo
 
 # define here the wanted doc's
@@ -27,7 +31,7 @@ sdh_ops=-c -n Index cindex.idx cindex.tdx \
 all: sdh.exe $(all_targets)
 
 sdh.exe: sdh.c
-	bcc32 -I$(incdir) sdh.c
+	$(CC) -I$(incdir) sdh.c
 
 
 editor.inf: editor.tx

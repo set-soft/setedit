@@ -8,6 +8,7 @@
 # easilly with RHIDE.
 #
 
+CC=@CC@
 # Compat Layer headers location
 clheaders=@TVInclude@
 # set srcdir to the directory where the sources are
@@ -36,7 +37,7 @@ all: all_docs
 # I'm using .exe to avoid the sdg. under DOS.
 # I think Linux people can live with sdg.exe.
 sdh.exe: sdh.c
-	gcc -s -o $@ -O2 -I $(clheaders) $<
+	$(CC) -s -o $@ -O2 -I $(clheaders) $<
 
 %.inf: %.tx
 	./sdh.exe -oi $(sdh_ops) -i $*

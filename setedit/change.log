@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.517  2004/06/09 12:29:40  set
+* Fixed: [BC++] Wrong references to rhtv.lib instead of librhtv.lib.
+Reported by Arnold Wiegert (awiegert/telus/net).
+
 Revision 1.516  2004/06/08 13:21:06  set
 * Modified: [Debian] Applied patch #968507 S.F. submitted by Baurjan
 Ismagulov - ibr. Removes extra clean-up.

@@ -1,6 +1,9 @@
 # 'make languages' will build the language files
 # 'make install.languages' installs the language files at the correct place
 
+CXX=@CXX@
+CXXFLAGS=@CXXFLAGS@
+
 ifneq ($(strip $(DJDIR)),)
 export editor_OS:=DJGPP
 endif
@@ -47,7 +50,7 @@ libintl=libintl.a
 endif
 
 getcolors.exe: getcolors.cc
-	@cpp_compiler@ -o getcolors.exe -s -O2 -I../setedit/include getcolors.cc
+	$(CXX) -o getcolors.exe -s $(CXXFLAGS) -I../setedit/include getcolors.cc
 
 colors.cc: getcolors.exe ../setedit/include/pal.h
 	./getcolors.exe > colors.cc
@@ -73,7 +76,7 @@ potfiles.po: po_list
 T=$(subst /,\,$@)
 
 fix.exe: fix.c
-	@cpp_compiler@ -o fix.exe -s -O2 fix.c
+	$(CXX) -o fix.exe -s $(CXXFLAGS) fix.c
 
 $(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe
 #if not exist $(T) cp $^ $@

@@ -5,13 +5,15 @@ platforms. But even with it I give separated instructions for each target.
   The first step is to get a copy of Turbo Vision library, last version
 available, and compile it. Even when you don't need to install Turbo Vision
 in order to compile the editor in some cases you'll need to install Turbo
-Vision to run the editor. You can unpack the Turbo Vision files in any
+Vision to *run* the editor. You can unpack the Turbo Vision files in any
 directory but I recommend to unpack the files in a directory located at the
 same level as setedit sources. Example: if the editor files are located in
 the /usr/src/setedit directory then the Turbo Vision files should be located
 in the /usr/src/tvision. Just unpack both packages in the same directory and
 let them put their files in setedit and tvision dirs.
-  Note: Turbo Vision site is http://tvision.sf.net/
+  Note 1: Turbo Vision site is http://tvision.sf.net/
+  Note 2: The last recommendation is currently mandatory for Borland and
+Microsoft compilers.
 
   Here are the files that describes how to compile for each target:
   [alphabetically sorted]

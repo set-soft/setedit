@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2004 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -292,24 +292,30 @@ CreateConfigH();
 GenerateMakefile();
 UpdateSpec();
 $ReplaceTags{'TVInclude'}=$TVInclude;
-$ReplaceTags{'cpp_compiler'}=$GXX.' '.$stdcxx;
-ReplaceText('doc/gnumake.in','doc/Makefile');
-ReplaceText('internac/gnumake.in','internac/Makefile');
-# Shipped gettext:
 $ReplaceTags{'datadir'}=$conf{'prefix'}.'/share';
 $ReplaceTags{'libdir'}=$conf{'prefix'}.'/lib';
 $ReplaceTags{'CC'}=$GCC;
+$ReplaceTags{'CXX'}=$GXX;
 $ReplaceTags{'AR'}=$conf{'GNU_AR'};
 $ReplaceTags{'CFLAGS'}=$conf{'CFLAGS'};
-ReplaceText('gettext/Makefile.in','gettext/Makefile');
+$ReplaceTags{'XCFLAGS'}=$conf{'XCFLAGS'};
+$ReplaceTags{'CXXFLAGS'}=$conf{'CXXFLAGS'};
 $ReplaceTags{'dyndir'}=$conf{'prefix'}.'/lib/setedit';
+$ReplaceTags{'PREFIX'}=$conf{'prefix'};
+# Makefiles
+ReplaceText('gettext/Makefile.in','gettext/Makefile');
 ReplaceText('holidays/Makefile.in','holidays/Makefile');
+ReplaceText('doc/gnumake.in','doc/Makefile');
+ReplaceText('internac/gnumake.in','internac/Makefile');
+ReplaceText('libbzip2/gnumake.in','libbzip2/Makefile');
+ReplaceText('libpcre/gnumake.in','libpcre/Makefile');
+ReplaceText('libz/gnumake.in','libz/Makefile');
 `cp gettext/djgpp.h gettext/config.h`; # Currently only DOS config is available if $OS eq 'DOS';
 
 #
 # Generate BC++ and MSVC makefiles
 #
-`perl confignt.pl`;
+`perl confignt.pl` if @conf{'MAINTAINER_MODE'} eq 'yes';
 
 #
 # Select the desired parser for the calculator

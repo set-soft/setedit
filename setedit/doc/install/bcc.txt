@@ -49,6 +49,7 @@ process.
 
   Currently I'm in a middle of a transition between an old mechanism and a
 new one (may 2003) so I'll give information about both mechanism.
+  Note: The new one seems to work OK (june 2004).
 
 A) The new mechanism:
 
