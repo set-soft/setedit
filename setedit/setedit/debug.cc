@@ -1907,6 +1907,9 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
  growMode=gfGrowHiX | gfGrowHiY;
  // Enable some special hacks for this case
  editor->isDisassemblerEditor=1;
+ // SPARC code have tabs
+ editor->tabSize=8;
+ editor->SeeTabs=False;
  // We start without code
  lines=NULL;
  a2l=NULL;
@@ -2031,6 +2034,7 @@ void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
    {// If source file info is available add it
     if (c->file)
       {// We insert the info commented
+       // TODO: That isn't the same for all archs. I.e. SPARC uses !
        DynStrCat(&tx,"# ",2);
        char added=0;
        if (!(misc & miscNoSourceInAsm))
@@ -6388,6 +6392,13 @@ TDataWindow *TDataWindow::createNew(const char *naddr, Boolean edit)
  return dw;
 }
 
+const int archIA32=1, archSparc=2, archUnknown=0;
+static char *archSP[]=
+{
+ "$esp", // IA32: Extended Stack Pointer
+ "$sp"   // SPARC: Stack Pointer
+};
+
 TDataWindow *TDataWindow::stackWindow()
 {
  if (!dbg)
@@ -6395,16 +6406,21 @@ TDataWindow *TDataWindow::stackWindow()
  char *res=dbg->Show("architecture");
  if (!res)
     return NULL;
- if (!strstr(res,"i386"))
+ int arch=archUnknown;
+ if (strstr(res,"i386"))
+    arch=archIA32;
+ else if (strstr(res,"sparc"))
+    arch=archSparc;
+ if (arch==archUnknown)
    {
     free(res);
-    messageBox(__("Only implemented for IA32 (i386), please help to implement for your platform"),
+    messageBox(__("Not implemented for your platform, please help to implement it"),
                mfError|mfOKButton);
     return NULL;
    }
  free(res);
 
- TDataWindow *dw=createNew("$esp",False);
+ TDataWindow *dw=createNew(archSP[arch-1],False);
 
  if (dw)
    {
@@ -8578,5 +8594,10 @@ __("Unknown asyn response")
 __("Unknown result response")
 __("Error from gdb")
 __("Unknown")
+__("Time out in gdb response")
+__("GDB suddenly died")
+__("Can't execute X terminal")
+__("Failed to create temporal")
+__("Can't execute the debugger")
 #endif
 

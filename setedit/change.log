@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.596  2004/09/06 17:15:46  set
+* Fixed: [Debug] Problems with the registers list when using gdb 6.x.
+That's a workaround for gdb bug "mi/1770".
+
 Revision 1.595  2004/09/06 16:25:32  set
 * Fixed: [RHIDE] Another name collision (InsertEnviromentVar).
 
