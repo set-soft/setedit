@@ -68,8 +68,9 @@ char *TMLIEditor::GetSelection(int &len)
  if (Editor->hasSelection() && !Editor->selHided)
    {
     len=Editor->selEnd-Editor->selStart;
-    char *s=new char[len];
+    char *s=new char[len+1];
     memcpy(s,&Editor->buffer[Editor->selStart],len);
+    s[len]=0;
     return s;
    }
  char *s=new char[1];

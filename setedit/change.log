@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.236  2002/11/20 17:33:51  terrible
+* Fixed: the editor didn't like the carriage returns, tabs, etc. that the PHP
+parser was giving to him which is something very understandable, so we
+replace them toghether with comments (they disturb in the function list) by
+a single space.
+* Fixed: off by 1 error on the PHP parser, tAddFunc function expects len to
+be the length of the string _including_ the ending 0 instead of the real
+length.
+
 Revision 1.235  2002/11/12 14:09:15  set
 * Fixed: [configuration] The --without-aa option didn't work. Reported by
 Martijn Versteegh.
