@@ -1,3 +1,9 @@
+setedit (0.5.3-0.2) unstable; urgency=low
+
+  * Add an include file required by rhide.
+
+ -- Baurjan Ismagulov <ibr@ata.cs.hun.edu.tr>  Sat, 17 Jul 2004 22:09:30 +0200
+
 setedit (0.5.3-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts

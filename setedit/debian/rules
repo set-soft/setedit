@@ -96,6 +96,7 @@ install: build
 		include/ced_clas.h \
 		include/ced_inte.h \
 		include/ced_coma.h \
+		include/ced_pcre.h \
 		include/loadkbin.h \
 		include/slpinter.h \
 		include/loadshl.h \
