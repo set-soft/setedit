@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.419  2003/06/23 21:09:09  set
+* Updated: default .env files.
+* Added: link to the new nightly snapshots to the web page.
+
 Revision 1.418  2003/06/23 14:50:49  set
 * Fixed: error in spanish translation. Reported by Andres Trapanotto
 <andres_t@inti.gov.ar>.

@@ -31,18 +31,17 @@ editor: $(MAKES_TARGET)
 #                                                                         #
 ###########################################################################
 
-editorprjs=amp3 easydiag editor extra inffd librhuti libset sdgcline \
-				settv testeasy install infview
-
-allprjs=$(editorprjs) ../mp3/libamp/libamp ../mp3/mpegsound/mpegsnd
+main_targets=editor infview libset install sdgcline testeasy
+editorprjs=$(main_targets) amp3 easydiag extra inffd librhuti settv
+mp3_targets=../mp3/libamp/libamp ../mp3/mpegsound/mpegsnd
+allprjs=$(editorprjs) $(mp3_targets)
 
 # The list of "targets"
-mkfs_list=editor infview install libset sdgcline testeasy \
-	../mp3/libamp/libamp ../mp3/mpegsound/mpegsnd
+mkfs_list=$(main_targets) $(mp3_targets)
 # Makefiles for them
 mkfs_files=$(addsuffix .mkf,$(mkfs_list))
 # Dependencies for them
-imks_files=$(addsuffix .imk,$(allprjs))
+imks_files=$(addsuffix .imk,$(mkfs_list))
 
 # Tool to extract dependencies
 extrimk.exe: extrimk.cc

@@ -4397,6 +4397,8 @@ void TCEditor::SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags)
  uchar *bc=(uchar *)b;
  uchar col,antcol=0x10,fontOpen=0,val;
  uchar aColors[cNumColors];
+ Boolean oldSel=selHided;
+ selHided=True; // It interferes with the painting
 
  // Head
  fputs("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\">\n<HTML><HEAD>\n",f);
@@ -4487,6 +4489,7 @@ void TCEditor::SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags)
 
  free(b);
  CacheColors();
+ selHided=oldSel;
 }
 
 /****************************************************************************

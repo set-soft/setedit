@@ -1795,7 +1795,10 @@ char *TagsWordCompletion(int x, int y, char *word)
     tLen=strlen(p->id);
     if (tLen>len)
        len=tLen;
-    p=tags->atPos(++pos);
+    pos++;
+    if (pos>=tags->getCount())
+       break;
+    p=tags->atPos(pos);
    }
 
  char *ret=CompletionChooseFromList(list,cant,len,x-lenW,y,0,lenW);

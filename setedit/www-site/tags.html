@@ -1,0 +1,318 @@
+<html>
+<head>
+   <title>SETEDIT, a friendly text editor: How to use TAGs</title>
+   <meta name="description" content="SETEdit a friendly text editor for DOS, Win32, Linux and other UNIXes">
+   <meta name="keywords" content="SETEdit, setedit, rhide, editor, linux, DOS, console, tui, djgpp, library, download, SET, Salvador, Eduardo, Tropea, PPC, SPARC, Alpha, FreeBSD, Solaris, tags, ctags, exuberant">
+   <meta name="resource-type" content="document">
+   <meta name="distribution" content="global">
+   <meta name="Author" content="Salvador E. Tropea, salvador@inti.gov.ar">
+</head>
+<BODY BGCOLOR="#A0D0FF" TEXT="#000000" LINK="#FF0000" VLINK="#000000">
+
+<p><center>
+<table>
+<tr>
+<td><strong><h1>SETEDIT</h1></strong></td>
+<td align=right><A href="http://sourceforge.net">
+    <IMG valign=center src="http://sourceforge.net/sflogo.php?group_id=32835"
+     width="88" height="31" border="0" alt="SourceForge Logo"></A></td>
+</tr>
+</table>
+</center></p>
+
+<h2>How to use tags</h2>
+<p>
+
+The editor's help have a good description about it, but this page contains an
+ilustrated tutorial.
+<p>
+This tutorial is a simplification of the process and I suggest reading the
+documentation to learn more. So use this tutorial as a quick start-up to get
+see how it works and once you start loving it read more in the docs.
+<p>
+Note: this tutorial can be used to learn other features of the editor. For
+this reason the explanations are very detailed. I'm sorry if you find it too
+detailed. On the other hand, if you find it confusing please report it
+explaining the problems.
+<p>
+
+<h3>What are tags?</h3>
+<p>
+
+TAGS files are plain text files containing a list of symbols from your source
+code. For each symbol the file indicates in which file it's located and how to
+find the symbol inside the file. Modern programs also include very important
+information like which type of symbol is defined and if this symbol is part of
+a bigger construct like a class.
+<p>
+
+This information is very useful to do searches. The editor implements
+facilities to jump to any defined symbol, browse classes and do word
+completion using information from tag files.
+<p>
+
+<h3>What can I do with tags?</h3>
+<p>
+
+With the tag files you can:<p>
+
+<ul>
+ <li> Jump to any defined symbol.
+ <li> Browse class hierarchy (tested only for C++ but other languages are
+supported).
+ <li> Ask the editor to complete a partially typed symbol.
+</ul>
+
+<h3>Which languages are supported?</h3>
+<p>
+
+All the languages supported by the tags tool. For
+<a href="http://ctags.sf.net/">Exuberant CTags</a> that's 33
+<a href="http://ctags.sf.net/">languages</a>.
+<p>
+
+<h3>Using it step by step</h3>
+<p>
+
+This is a really simplified way to use ctags with SETEdit. As with all
+simplified things you lose some control in favor of simplicity. For this
+reason I encourage reading the docs after you get it working and determine
+that's good for you. Note that tags generation could be too slow using the
+methode I describe here and if you are using a slow system and coding a big
+project you'll most probably need to learn more to improve the performance.
+<p>
+
+<h4>Step 1: Get the ctags program</h4>
+
+You'll need the Exuberant CTAGS program. May be other programs are ok but
+this is the only one I tested and it's free software.<p>
+The home page of the project is:
+<a href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a>.<p>
+Linux distributions, like Debian GNU/Linux, includes it and the best is to
+just install the corresponding package.<p>
+
+<h4>Step 2: Create a project for your program</h4>
+
+<ol>
+ <li> Change the working directory to the place where you have the files.
+(i.e. $ cd /usr/src/my_project).
+ <li> Start the editor. (i.e. $ e).
+ <li> Select the "Project | Open" menu option. Figure 1.
+ <li> Give a name to your project. (i.e. my_project). The editor will create
+a .epr file for it. Figure 2.
+ <li> Add the files to your project. You can do it using the insert key or by
+selecting "Project | Import project items" and providing a text file
+containing the names of the files to import.
+</ol>
+<table>
+<tr>
+<td>
+ <img src="tag_imgs/project_open.png" alt="Project|Open" width=496 height=259><br>
+ <center>Figure 1: The "Project | Open" menu option.</center>
+</td>
+<td>
+ <img src="tag_imgs/project_name.png" alt="Project name" width=416 height=259><br>
+ <center>Figure 2: Giving a name to the project.</center>
+</td>
+</tr>
+<tr>
+<td colspan=2>
+ <table>
+ <tr>
+  <td>
+   The ilustrations shows how to create a project called <i>my_project</i>
+  containing a trivial C file called <i>my_file.cc</i>.<br>
+   If you want to copy & paste the example file from your browser here I
+  provide a link to the file exported with the editor as HTML:
+  <a href="my_file_example.html">my_file.cc</a>.<br>
+  <p>
+  Note 1: Isn't beautiful how the export works? ;-)<br>
+  Note 2: The snapshots are from a machine using Linux, pay attention to the
+  different font sizes. In other snapshots you'll see different fonts.
+  </td>
+  <td>
+  <img src="tag_imgs/a_project.png" alt="Project example" width=496 height=377><br>
+  <center>Figure 3: An example of a really trivial project.</center>
+  </td>
+  <td>
+ </tr>
+ </table>
+</td>
+</tr>
+</table>
+
+<h4>Step 3: Generate the tags using the easy way</h4>
+
+<ol>
+ <li> Select the "Search | Jump to symbol" menu option. This option have a
+default short-cut defined as Ctrl+F2, it can be changed editing the
+menubind.smn file. Figure 4.
+ <li> As you don't have a tags file in the working directory the editor will
+offer some advice. The dialog says "This option needs a tags file. Do you want
+to read more about it?". Answer <b>No</b> this time. Figure 5.
+ <li> Now the editor knows you are lazy and hence an information dialog will
+appear saying: "I can try to generate a tag file, go ahead?". Answer
+<b>Yes</b>, in this way the editor will invoke ctags to generate a tags file
+using some rasonable defaults. Figure 6.
+ <li> Finally you'll get the list of symbols defined in your project. You can
+incrementally search any symbol and pressing ENTER you'll jump to its
+definition. For most cases the information you see is not all and you have
+to scroll horizontally to read all. You can also use F5 to zoom the dialog.
+Figure 7.
+</ol>
+
+Note: The editor takes the word under the cursor to do a search in the list
+of symbols. For this reason you can place the cursor over a function call and
+then press Ctrl+F2, if the search matched you can just press ENTER and jump
+to the function definition.
+<p>
+
+<center>
+<table>
+<tr>
+<td>
+ <center><img src="tag_imgs/jump_symbol.png" alt="Search|Jump to symbol" width=449 height=259><br>
+ Figure 4: The "Search | Jump to symbol" menu option.</center>
+</td>
+<td>
+ <center><img src="tag_imgs/advice_tags.png" alt="Tags advice" width=401 height=259><br>
+ Figure 5: The advice suggesting to read the docs.</center>
+</td>
+</tr>
+<tr>
+<td colspan=2>
+ <center><img src="tag_imgs/generate_tags.png" alt="Autogenerate?" width=428 height=259><br>
+ Figure 6: The dialog asking if you want to create a tags file.</center>
+</td>
+</tr>
+<tr>
+<td colspan=2>
+ <center><img src="tag_imgs/symbols_example.png" alt="Symbols" width=656 height=426><br>
+ Figure 7: Symbols from the trivial example.</center>
+</td>
+</tr>
+</table>
+</center>
+
+<h4>Step 4: Configuring the editor to update the tags file</h4>
+
+<ol>
+ <li> Select the "Tool&Ops | Options | Tag Files | Options" menu option. This
+option will show a small dialog. Figure 8.
+ <li> Select the "Using central file" option and press the OK button. Figure
+9 (it shows the default option).
+</ol>
+
+Once you enable it the editor will check the modification date of the files
+you are editing and will update the tags file if you request any operation
+passing the list of modified files to ctags tool.
+<p>
+<b>IMPORTANT!</b> If for some reason the data in the tags file becomes
+inconsistent you can ask the editor to regenerate the tags file just deleting
+the file called <i>tags</i> from the working directory.
+<p>
+
+<center>
+<table>
+<tr>
+<td>
+ <center><img src="tag_imgs/tag_options.png" alt="Tags options menu" width=241 height=367><br>
+ Figure 8: The menu entry for tag options.</center>
+</td>
+<td>
+ <center><img src="tag_imgs/tag_options_d.png" alt="Tags options dialog" width=323 height=216><br>
+ Figure 9: The dialog for the options.</center>
+</td>
+</tr>
+</table>
+</center>
+
+<h4>Step 5: Word completion</h4>
+
+The information from the tags file can be used to ask the editor to complete
+a partially typed symbol. To ilustrate it a suggest adding another function
+to example called <b>That_is_not_my_function</b>. Here is the suggested
+source code: <a href="my_file_example2.html">my_file.cc</a>.<p>
+Now go to any place and type <i>That</i>, then choose the "Search | Word
+completion" menu option (or Ctrl+Tab). You'll get a list showing the
+available options to complete the name of the function. You can move the
+cursor or incrementally search until you reach the desired option. To confirm
+the selection press ENTER or type any symbol. In this case you can confirm
+typing the parenthesis. The figure 10 shows the mentioned example.
+<p>
+
+<center><img src="tag_imgs/w_completion.png" alt="Word completion" width=342 height=134><br>
+Figure 10: The word completion in action.</center>
+
+<h4>Step 6: Browsing classes</h4>
+
+For this example we'll need a more complex source code, here is the proposed
+source code: <a href="my_file_example3.html">my_file.cc</a>.<p>
+
+<ol>
+ <li> Select the "Search | Class browser" menu option. Note: it also looks
+for the word under cursor so you can use it when the cursor is over a class
+name.
+ <li> The editor will show a list of classes. Figure 11.
+ <li> Select the "Class_Child" class.
+ <li> You'll get a dialog showing the parents and children for this class (in
+this case it have only a parent and no children). Figure 12.
+ <li> From this dialog you can jump to related classes. In this example you
+can jump to "Class_Parent" selecting it and using the "Browse parent" button.
+But let this for another moment.
+ <li> Pressing the three first buttons you can get different information
+about the class. Suppose you are looking for information about the data member
+called "data_member_1" and you don't even know to which class belongs. Press
+the "This & parents" button. You'll get a list of members sorted by hierarchy
+(figure 13) and if you press the "Sorted" button you'll get it alphabetically
+sorted (figure 14).
+ <li> Select the "data_member_1" and then press the "View class" button.
+You'll get a dialog quite similar to the figure 12 but with information for
+the "Class_Parent" class.
+ <li> Now press the "This class" button. You'll get a list of the members for
+this class. Figure 15. Note: I resized the dialog to show it better in
+the picture.
+ <li> Select the "data_member_1" and press the "Jump" button (or just ENTER).
+The editor will show the line where this data member is defined.
+</ol>
+
+<center>
+<table>
+ <tr>
+  <td>
+   <center><img src="tag_imgs/class_list.png" alt="List of classes" width=401 height=259><br>
+   Figure 11: The list of classes available for browsing.</center>
+  </td>
+  <td>
+   <center><img src="tag_imgs/class_child1.png" alt="Class_Child" width=257 height=428><br>
+   Figure 12: The dialog showing Class_Child inheritance information.</center>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <center><img src="tag_imgs/this_and_parents.png" alt="This & parents" width=405 height=361><br>
+   Figure 13: The list of members for this class and its parents.</center>
+  </td>
+  <td>
+   <center><img src="tag_imgs/sorted.png" alt="Sorted" width=405 height=361><br>
+   Figure 14: The same list but alphabetically sorted.</center>
+  </td>
+ </tr>
+ <tr>
+  <td colspan=2>
+   <center><img src="tag_imgs/this_class.png" alt="This class" width=763 height=205><br>
+   Figure 15: List of members for this class.</center>
+  </td>
+ </tr>
+</table>
+</center>
+
+<p>
+I think that's enough to show you how powerful are tags. Play a little bit
+with it, if you have a big project you'll soon discover how useful are tags.
+Then read the documentation of the editor and ctags to learn how to
+customize it and how to use more than one tags file.<p>
+Good luck!<p>
+
+</body>
+</html>
