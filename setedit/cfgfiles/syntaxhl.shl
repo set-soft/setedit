@@ -2200,3 +2200,32 @@ Keywords=transport,type,unaffected,units,until,use,variable,wait,when,while
 Keywords=with,xnor,xor
 End
 
+#-----------------------------------Ruby---------------------------------#
+# Hacked By William E. Cullen (WECullen@comcast.net)
+# still neads some work.....Help if you can
+#
+Name=Ruby
+Files=rb
+EOLComment1=#
+EOLCInFirstCol=1
+OpenComment1= =begin
+CloseComment1= =end
+AllowedInsideNames=!?
+Symbols1=+?/.<=>^|
+Symbols2=(){}[]; /n
+String1=""
+String2='
+Keywords=BEGIN,END,alias,and,begin,break,case,class,def,defined,do,else,elsif,end,ensure,false,for,if,in,module,next,nill
+Keywords=not,or,redo,rescue,retry,return,self,super,then,true,undef,unless,until,when,while,yieldKeywords=do,else,elsif,end,ensure,false,for,if,module
+Keywords=Array,Float,Integer,String,at_exit,autoload,binding,caller,catch,chomp,chomp!,chop,chop!,eval,exec,exists
+Keywords=exit,exit!,exp!,fail,fork,format,gets,glob,global_variables,gmtime,goto,gsub,gsub!,gt,hex,import,iterator?,lamda
+Keywords=load,local_variables,loop,open,print,printf,proc,putc,puts,raise,rand,readline,readlines
+Keywords=require,select,sleep,split,sprintf,srand,sub,sub!,syscall,system,test,throw,trace_var,trap,untrace_var
+Keywords=TRUE,FALSE,NIL,STDIN,STDOUT,STDERR,ENV,ARGF,ARGV,DATA,VERSION,RUBY_RELEASE_DATE,RUBY_PLATFORM
+Keywords=ArgumentError,Array,Bignum,Class,Data,Dir,EOFError,Exception,File,Fixnum,Float,Hash,IO
+Keywords=IOError,IndexError,Integer,Interrupt,LoadError,LocalJumpError,MatchingData,Module,NameError,NilClass,NotImplementError
+Keywords=Numeric,Object,Proc,Range,Regexp,RuntimeError,SecurityError,SignalException,StandardError,String,Struct,SyntaxError
+Keywords=SystemCallError,SystemExit,SystemStackError,ThreadError,Time,TypeError,ZeroDivisionError,fatal
+Keywords=Comparable,Enumerable,Errno,FileTest,GC,Kernel,Marshal,Math,ObjectSpace,Precision,Process
+#---------------------------End Ruby shl-----------------------------------#
+

@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.2
-@set update-date 5 July 2003
-@set update-month July 2003
+@set update-date 5 October 2003
+@set update-month October 2003
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -4008,6 +4008,7 @@ are:
     @item PMacros files
     @item PostScript
     @item Python
+    @item Ruby
     @item SDG format files
     @item sLisp macros
     @item SQL
