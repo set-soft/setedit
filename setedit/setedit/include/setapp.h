@@ -110,6 +110,7 @@ public:
  virtual int   compare(void *key1, void *key2);
  virtual void  freeItem(void* item);
  void Insert(stScreenOptions *p);
+ void transfer2TV();
  SetDefStreamMembers(TScOptsCol,TSortedCollection);
 };
 SetDefStreamOperators(TScOptsCol)
@@ -207,8 +208,10 @@ public:
     static void    loadOldFontInfo(fpstream& s, stScreenOptions *scrOps);
     static void    loadEditorDesktop(int LoadPrj, char *name=0,
                                      int haveFilesCL=0, int preLoad=0);
-    static void    transferSetting2TV(stScreenOptions *p);
+    static void    transferSetting2TV(void *p, void *arg=NULL);
     static void    displayDetectCallBack();
+    static void    hotApplyScreenOptions();
+    static int     resetVideoMode(Boolean redraw=False);
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();
@@ -233,6 +236,7 @@ public:
     static char ShowClock;
     static char UseScreenSaver;
     static char UseExternPrgForMode;
+    static char DesktopPreloaded;
     static char *WhichScrSaver;
     static char ExtScrSaverOpts[extscrsParMxLen];
     static int  screenSaverTime;
@@ -273,6 +277,9 @@ protected:
     void CreateClock();
 
     char *OriginalWindowTitle;
+
+    static CLY_StreamPosT posPreload;
+    static char fontCreated;
 };
 
 const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,

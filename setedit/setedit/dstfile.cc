@@ -32,6 +32,7 @@
 #define Uses_TScOptsCol
 #define Uses_TVFontCollection
 #define Uses_TVConfigFile
+#define Uses_TStreamableClass
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>
@@ -299,8 +300,10 @@ void TSetEditorApp::displayDetectCallBack()
 
  // Make "so" member point to a valid set of options
  if (soCol->search((void *)drv,pos))
+   {
     // Ok, we had the options for this driver
     so=(stScreenOptions *)soCol->at(pos);
+   }
  else
    {// We don't know about it ...
     if (soCol->search((void *)defaultDrvName,pos))
@@ -404,7 +407,63 @@ void TSetEditorApp::displayDetectCallBack()
        TVMainConfigFile::Add(drv,"FontHeight",fH);
       }
    }
+ //fprintf(stderr,"TV config:\n");
  //TVMainConfigFile::Print(stderr);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Called when we loaded a desktop v0.5.0+ without preload. That's when we
+close a project or open a new one.
+  
+***************************************************************************/
+
+void TSetEditorApp::hotApplyScreenOptions()
+{// The following ensures so points to a valid set of options.
+ displayDetectCallBack();
+ // Ensure a simple state:
+ TScreen::restoreFonts();
+ // Code pages:
+ if (so->enForceApp || so->enForceScr || so->enForceInp)
+    TVCodePage::SetCodePage(so->enForceApp ? so->enApp : -1,
+                            so->enForceScr ? so->enScr : -1,
+                            so->enForceInp ? so->enInp : -1);
+ // Video mode:
+ fontCreated=0;
+ if (!so->foCallBackSet)
+   {
+    TScreen::setFontRequestCallBack(FontRequestCallBack);
+    so->foCallBackSet=1;
+   }
+ if (so->scOptions!=scfDontForce && TScreen::canSetVideoSize())
+   {
+    resetVideoMode();
+   }
+ // Fonts: fontCreated, should be loaded during the
+ if (!fontCreated && (so->foPriLoad || so->foSecLoad))
+   {
+    TScreenFont256 primary,secondary,*prF=NULL,*seF=NULL;
+    if (so->foPriLoad && so->foPri)
+      {
+       primary.w=so->foPriW;
+       primary.h=so->foPriH;
+       primary.data=so->foPri->GetFont(so->foPriW,so->foPriH);
+       if (primary.data)
+          prF=&primary;
+      }
+    if (so->foSecLoad && so->foSec)
+      {
+       secondary.w=so->foPriW;
+       secondary.h=so->foPriH;
+       secondary.data=so->foSec->GetFont(so->foPriW,so->foPriH);
+       if (secondary.data)
+          seF=&secondary;
+      }
+    TScreen::setFont(prF ? 1 : 0,prF,seF ? 1 : 0,seF,so->enScr);
+    if (prF) DeleteArray(prF->data);
+    if (seF) DeleteArray(seF->data);
+   }
 }
 
 void TSetEditorApp::preLoadDesktop(char *name, int haveFilesCL)
@@ -577,11 +636,28 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  s << TCEDITOR_VERSION;
 
  // Save the video mode & font, first to avoid a lot of redraw
- SaveFontLoadedInfo(s);
- SavePaletteSystem(s);
- s << TScreen::screenMode;
- s << UseExternPrgForMode;
- s.writeString(ExternalPrgMode);
+ if (soCol)
+   {
+    if (so)
+      {// Refresh the information in the structure
+       if (so->scOptions==scfForced && !TScreen::canSetVideoSize())
+          so->scOptions=scfSameLast; // can't be forced ;-)
+       if (so->scOptions!=scfForced)
+         {
+          so->scWidth =TScreen::getCols();
+          so->scHeight=TScreen::getRows();
+          unsigned w,h;
+          if (TScreen::getFontGeometry(w,h))
+            {
+             so->scCharWidth=w;
+             so->scCharHeight=h;
+            }
+         }
+      }
+    s << (char)1 << soCol;
+   }
+ else
+    s << (char)0;
  // Now the 3 palettes for same reason
  SavePalette(apColor,s);
  SavePalette(apMonochrome,s);
@@ -786,29 +862,66 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     return False;
    }
 
- if (deskTopVersion>=0x404)
-    LoadFontLoadedInfo(s);
-
- #ifdef TVCompf_djgpp
- if (deskTopVersion>=0x405)
-    LoadPaletteSystem(s);
- #else
- /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
-    I choose compatibility with these versions */
- if (deskTopVersion>=0x418)
-    LoadPaletteSystem(s);
- #endif
-
- if (deskTopVersion>=0x403)
+ if (!DesktopPreloaded)
    {
-    ushort mode;
-    s >> mode;
-    if (deskTopVersion>=0x411)
+    if (deskTopVersion>=0x500)
       {
-       s >> UseExternPrgForMode;
-       s.readString(ExternalPrgMode,80);
+       char infoSaved;
+       s >> infoSaved;
+       if (infoSaved)
+         {
+          destroy(soCol);
+          s >> soCol;
+          hotApplyScreenOptions();
+         }
       }
-    ResetVideoMode(mode,0);
+    else
+      {
+       if (deskTopVersion>=0x404)
+          LoadFontLoadedInfo(s);
+      
+       #ifdef TVCompf_djgpp
+       if (deskTopVersion>=0x405)
+          LoadPaletteSystem(s);
+       #else
+       /* In v0.4.15 to v0.4.17 of the Linux editor I forgot to save it so here
+          I choose compatibility with these versions */
+       if (deskTopVersion>=0x418)
+          LoadPaletteSystem(s);
+       #endif
+      
+       if (deskTopVersion>=0x403)
+         {
+          ushort mode;
+          s >> mode;
+          if (deskTopVersion>=0x411)
+            {
+             s >> UseExternPrgForMode;
+             s.readString(ExternalPrgMode,80);
+            }
+          ResetVideoMode(mode,0);
+         }
+      }
+   }
+ else
+   {
+    if (deskTopVersion>=0x500)
+      {
+       char infoSaved;
+       s >> infoSaved;
+       if (infoSaved)
+         {
+          TScOptsCol *aux;
+          s >> aux;
+          destroy(aux);
+          // TODO: this is really inefficient, but lamentably TV saves the
+          // information using a crappy indexing stuff. If we skip it the
+          // indexes gets wrong.
+         }
+      }
+    else
+       s.seekg(posPreload);
+    DesktopPreloaded=0;
    }
 
  if (deskTopVersion>=0x307)
@@ -1095,8 +1208,10 @@ void TSetEditorApp::loadOldFontInfo(fpstream& s, stScreenOptions *scrOps)
    }
 }
 
-void TSetEditorApp::transferSetting2TV(stScreenOptions *p)
-{// Driver section
+void TSetEditorApp::transferSetting2TV(void *aP, void *)
+{
+ stScreenOptions *p=(stScreenOptions *)aP;
+ // Driver section
  const char *drv=p->driverName;
  // The _Default goes to the root
  if (*drv=='_')
@@ -1162,9 +1277,6 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
    { // The desktop file is too old
     return False;
    }
- //if (deskTopVersion>TCEDITOR_VERSION)
- // You need a newer editor for this desktop file.
- // TODO: No creo que sea necesario, esto va a tener una versión por separado.
  if (deskTopVersion<0x500)
    {// The preLoad was introduced in the 0.4.x to 0.5.x change.
     // We have to extract the information from the old structure.
@@ -1199,9 +1311,25 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
          }
       }
     scrOps->driverName=newStr(defaultDrvName);
+    if (!soCol)
+       soCol=new TScOptsCol();
     soCol->Insert(scrOps);
     transferSetting2TV(scrOps);
    }
+ else
+   {
+    char soColSaved;
+    s >> soColSaved;
+    if (soColSaved)
+      {
+       s >> soCol;
+       soCol->transfer2TV();
+      }
+    if (!soCol)
+       soCol=new TScOptsCol();
+   }
+ DesktopPreloaded=1;
+ posPreload=s.tellg();
  return True;
 }
 /******************** End of save/retrieve desktop functions ****************/
@@ -1297,6 +1425,12 @@ void TScOptsCol::Insert(stScreenOptions *p)
     atReplace(pos,p);
 }
 
+void TScOptsCol::transfer2TV()
+{
+ forEach(TSetEditorApp::transferSetting2TV,NULL);
+}
+
 const char * const TScOptsCol::name="TScOptsCol";
 
+TStreamableClass RScOptsCol(TScOptsCol::name,TScOptsCol::build,__DELTA(TScOptsCol));
 

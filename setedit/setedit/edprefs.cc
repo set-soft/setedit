@@ -1382,16 +1382,19 @@ void TSetEditorApp::SetEditorFontsEncoding(int priChanged, int enPri,
 TScreenFont256 *TSetEditorApp::FontRequestCallBack(int which, unsigned w, unsigned h)
 {
  if (!so) return NULL; // Sanity check
- so->foPriW=w;
- so->foPriH=h;
  TVFontCollection *col=which ? so->foSec : so->foPri;
  if (!col)
     return NULL;
- uchar *data=col->GetFont(so->foPriW,so->foPriH);
+ uchar *data=col->GetFont(w,h);
  if (!data)
     return NULL;
  TScreenFont256 *f=new TScreenFont256;
+ so->foPriW=w;
+ so->foPriH=h;
  f->data=data;
+ f->w=w;
+ f->h=h;
+ fontCreated=1;
  return f;
 }
 

@@ -524,6 +524,40 @@ int ResetVideoMode(int mode, int redraw)
  return TScreen::screenMode==3 || TScreen::screenMode==7;
 }
 
+int TSetEditorApp::resetVideoMode(Boolean redraw)
+{
+ // Kill the clock because it's never resized correctly
+ editorApp->KillClock();
+ // Set the video mode
+ if (so->scOptions==scfSameLast || so->scOptions==scfForced)
+    TProgram::application->setScreenMode(so->scWidth,so->scHeight,so->scCharWidth,so->scCharHeight);
+ else if (so->scOptions==scfExternal && so->scCommand)
+    TProgram::application->setScreenMode(0xFFFF,so->scCommand);
+ else if (so->scOptions==scfMode)
+    TProgram::application->setScreenMode(so->scModeNumber);
+ // We ever use intense mode I don't need blinks
+ //setIntenseState();
+ // Restore the user palette
+ RestorePaletteSystem();
+ // Redraw ALL
+ if (redraw)
+   { // Force a full redraw
+    TProgram::deskTop->setState(sfVisible,True);
+    TProgram::deskTop->redraw();
+    TProgram::application->redraw();
+   }
+ if (so->scOptions==scfExternal && so->scCommand)
+    return 0;
+ // Check for succesfull change
+ if (so->scOptions==scfMode)
+   {
+    if (so->scOptions==7 || so->scOptions==3)
+       return TScreen::screenMode!=so->scOptions;
+    return TScreen::screenMode==3 || TScreen::screenMode==7;
+   }
+ return 0;// ?
+}
+
 void FullResumeScreen()
 {
  TProgram::application->resume();
@@ -1416,9 +1450,12 @@ clock_t TSetEditorApp::LastTimeUpdate=0;
 char TSetEditorApp::UseScreenSaver=1;
 char TSetEditorApp::ShowClock=1;
 char TSetEditorApp::UseExternPrgForMode=0;
+char TSetEditorApp::DesktopPreloaded=0;
+char TSetEditorApp::fontCreated=0;
 char *TSetEditorApp::WhichScrSaver=0;
 int  TSetEditorApp::screenSaverTime=180;
 int  TSetEditorApp::screenSaverTimeMouse=3;
+CLY_StreamPosT TSetEditorApp::posPreload;
 TDeskTopClock *TSetEditorApp::Clock=0;
 char TSetEditorApp::ExternalPrgMode[80]="c:/etc/stm -t c:/etc/TextConfig 108x30";
 

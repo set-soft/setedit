@@ -3,3 +3,10 @@ That's a list of things to do in the project:
 * Use cwsdpmi for DOS installer, not pmodedj.
 * Fix problems with the code pages in Windows versions. Reference report:
 0001.txt.
+* Check what can be removed from:
+ SaveFontLoadedInfo(s);
+ SavePaletteSystem(s);
+ s << TScreen::screenMode;
+ s << UseExternPrgForMode;
+ s.writeString(ExternalPrgMode);
+
