@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.461  2003/11/03 16:15:52  set
+* Added: A new color scheme called "Classic Borland" contributed by Oswald.
+
 Revision 1.460  2003/10/28 21:09:42  set
 * Added: When asking for word completion if the word at the left looks like
 Class:: then the editor looks for the class and offers the members.
