@@ -312,11 +312,7 @@ int TSOSListBoxMsg::getLineOf(int pos)
 static
 void MakeBeep()
 {
- #ifdef SEOS_UNIX
- printf("\x7\n");
- #else
  CLY_Beep();
- #endif
 }
 
 void TSOSListBoxMsg::selectNext(int offset)

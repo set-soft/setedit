@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.240  2002/11/27 17:35:12  set
+* Fixed: When using Linux (without VCS access) and XTerm drivers and
+calling a child process in background the child shared the output file
+handle producing a nasty side effect. Now the stdout and stderr are dup2'ed
+in the child using the redirected file.
+* Fixed: When creating new entries in the project they had an empty resume
+and it made the editor bomb at load time. Introduced by Ivan's request ...
+I knew it will blow something ;-), now the editor fills the propper field
+before saving and also workarounds wrong projects.
+
 Revision 1.239  2002/11/27 13:11:58  set
 * Added: A resumed list of new and fixed stuff to the distribution list.
 
