@@ -15,7 +15,7 @@ $conf{'HAVE_MIXER'}='yes';
 $conf{'intlShipped'}='no';
 $conf{'ToolsInstaller'}='no';
 $conf{'ToolsDistrib'}='no';
-$conf{'compressExe'}='yes';
+$conf{'compressExe'}='undef';
 $TVCommandLine=0;
 
 GetCache();
@@ -399,6 +399,10 @@ sub SeeCommandLine
        $conf{'TV_LIB'}=$1;
        $TVCommandLine=1;
       }
+    elsif ($i eq '--comp-exe')
+      {
+       $conf{'compressExe'}='yes';
+      }
     elsif ($i eq '--no-comp-exe')
       {
        $conf{'compressExe'}='no';
@@ -444,7 +448,8 @@ sub ShowHelp
  print "--tv-include=pa: path for Turbo Vision includes\n";
  print "--tv-lib=path  : path for Turbo Vision libraries\n";
  print "--no-prefix-h  : don't define the prefix in the configuration header\n";
- print "--no-comp-exe  : don't compress executables with UPX\n";
+ print "--comp-exe     : compress all executables with UPX\n";
+ print "--no-comp-exe  : don't compress any executables with UPX\n";
  print "  Note: if you use --tv-include you should also use --tv-lib\n";
 }
 
@@ -1055,8 +1060,8 @@ sub CreateConfigH
 sub GenerateMakefile
 {
  my $text="# Generated automatically by the configure script";
- my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl,$compressExe);
- my ($installer,$distrib);
+ my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
+ my ($installer,$distrib,$compExeEditor,$compExeInfview);
 
  print "Generating Makefile\n";
 
@@ -1081,7 +1086,25 @@ sub GenerateMakefile
  $distrib=@conf{'ToolsDistrib'} eq 'yes';
  $internac=@conf{'xgettext'} ne 'no';
  $docbasic=@conf{'makeinfo'} ne 'no';
- $compressExe=@conf{'compressExe'} eq 'yes';
+
+ if(@conf{'compressExe'} eq 'undef')
+ {
+ 	if($OS eq 'UNIX')
+	{
+		$compExeEditor=0;
+    }
+    else
+	{
+		$compExeEditor=1;
+    }
+	$compExeInfview=1;
+ }
+ else
+ {
+ 	$compExeEditor=@conf{'compressExe'} eq 'yes';
+ 	$compExeInfview=@conf{'compressExe'} eq 'yes';
+ }
+ 
  $text.="\n\n.PHONY: needed";
  $text.=" infview" if ($infview);
  $text.=" plasmas" if ($plasmas);
@@ -1190,7 +1213,7 @@ sub GenerateMakefile
  # editor
  $text.="\n\ninstall-editor: editor\n";
  $text.="\t\$(MAKE) -C makes install";
- $text.=" EXTRA_INS_OPS=--no-compress" unless ($compressExe);
+ $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeEditor);
  # libset
  if ($libset)
    {
@@ -1203,7 +1226,7 @@ sub GenerateMakefile
    {
     $text.="\n\ninstall-infview: infview\n";
     $text.="\t\$(MAKE) -C makes install-infview";
-    $text.=" EXTRA_INS_OPS=--no-compress" unless ($compressExe);
+    $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeInfview);
    }
  # all targets
  $text.="\n\ninstall: install-editor";
