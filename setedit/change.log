@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.367  2003/05/15 18:04:42  set
+* Fixed: The tool to transport patches from my home to SF CVS skipped some
+patches :-( I think it was the source for various misterious missing
+patches. I hope the new version really solves the problem.
+
 Revision 1.366  2003/05/14 19:54:09  set
 * Added: A check for makeinfo 4.5. It doesn't work and generates
 compilation problems. So now if that's detected the configuration assumes
