@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSRadioButtons
 #include <easydia1.h>
@@ -48,3 +48,13 @@ TSRadioButtons::TSRadioButtons(TSItem *aStrings, int wForced, int Columns)
     if (wMax) w+=wMax;
    }
 }
+
+void TSRadioButtons::setEnableMask(uint32 *masks, TSView **views, int cViews)
+{
+ int i;
+ TView **p=(TView **)views;
+ for (i=0; i<cViews; i++)
+     p[i]=views[i]->view;
+ ((TRadioButtons *)view)->setEnableMask(masks,p,cViews);
+}
+

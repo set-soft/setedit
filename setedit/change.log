@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.554  2004/07/28 21:03:23  set
+* Added: The second part of the "Breakpoints" dialog. Now is possible to
+add, modify, remove, enable, disable and jump to breakpoit locations. Some
+details remains to be adjusted and is lightly tested.
+* Fixed: A leak in SpLines, the new structures needs atFree and not just
+atRemove, found using valgrind, debugged using the editor. Note: gdb is
+quite bad and is sooooo buggy, now that I'm using it from the editor I can
+verify when the problem is in gdb and that's too common :-(
+
 Revision 1.553  2004/07/26 20:36:03  set
 * Modified: Now breakpoints and frames are searched in the "path for
 sources" and not only in the binary reference.

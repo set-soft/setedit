@@ -34,14 +34,16 @@ may be we should "refresh" the ignores before running.
 
   * Advices (only project, ...).
   * Watchpoints.
-  * Dialog to edit breakpoints
   * Some mechanism to verify that a location for a breakpoint is OK. GDB
 says ok to everything. -symbol-list-lines could help, but that's only for
-GDB 6.x.
+GDB 6.x. Note: GDB accepts breakpoints everywhere and puts the breakpoint
+somewhere close to the indicated point, may be we just need to find where
+is the real breakpoint.
   * Inspect variables.
   * Data window.
   * Disassembler window.
   * Put a limit to the ammount of messages in the debug message window.
+Reset it when reseting the session.
   * Allow to configure gdb and XTerm program.
   * Setup the "main" function, currently we have a "run to main", but this
 is C/C++ specific.
@@ -102,6 +104,7 @@ directories to look for sources.
 // Breakpoints
 #define Uses_TSStringableListBox
 #define Uses_TSCheckBoxes
+#define Uses_TSRadioButtons
 
 // Config
 // EasyDiag requests
@@ -1773,6 +1776,8 @@ public:
 protected:
  int focusedB;
  TStringableListBox *theLBox;
+ static TSView *sviews[4];
+ static uint32  vmasks[4];
 
  TDialog *createEdit(const char *title);
  static mi_bkpt *CreateBktFromBox(stBrkEdit &box);
@@ -1782,6 +1787,9 @@ protected:
 };
 
 const char *TDiagBrk::file=NULL;
+// file,func,line,addr:
+TSView *TDiagBrk::sviews[4];
+uint32  TDiagBrk::vmasks[4]={0xA,0x4,0xC,0x1};
 int TDiagBrk::line=0;
 
 void TDiagBrk::UpdateCommadsForCount(int c)
@@ -1827,6 +1835,13 @@ TDialog *TDiagBrk::createEdit(const char *title)
 
  TSVeGroup *all=MakeVeGroup(0,type,file,func,line,addr,cond,c_t,enable,hw,0);
  all->makeSameW();
+
+ // The dependencies:
+ sviews[3]=file;
+ sviews[2]=func;
+ sviews[1]=line;
+ sviews[0]=addr;
+ ((TSRadioButtons *)type->linked)->setEnableMask(vmasks,sviews,4);
 
  col->insert(xTSLeft,yTSUp,all);
  EasyInsertOKCancel(col);
