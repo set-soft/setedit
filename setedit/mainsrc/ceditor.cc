@@ -3794,6 +3794,7 @@ void TCEditor::MacroGenerateCode(void)
  Recording=False;
  if (isReadOnly || !MacroCount)
     return;
+ flushLine();
  len=sprintf(buf,"(defmacro 'Recorded macro'%s (eval%s",CLY_crlf,CLY_crlf);
  insertText(buf,len,False);
  for (i=0; i<MacroCount; i++)
