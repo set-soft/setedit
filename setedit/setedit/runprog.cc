@@ -742,3 +742,9 @@ void LoadRunCommand(fpstream &s)
  if (!CurrentParser)
     CurrentParser=newStr("GNU");
 }
+
+void RunExternalProgramFreeMemory()
+{
+ if (CurrentParser)
+    delete[] CurrentParser;
+}

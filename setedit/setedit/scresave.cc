@@ -828,9 +828,9 @@ char *GetDefaultScreenSaver(void)
  // Use the 'safe' saver for crap 9x
  unsigned short true_dos_version=_get_dos_version(1);
  if (true_dos_version>=0x700)
-    return strdup(SafeSaver.Name);
+    return newStr(SafeSaver.Name);
  // Fuck you Bill
- return strdup(PlasmaRB1.Name);
+ return newStr(PlasmaRB1.Name);
 }
 #else
 static

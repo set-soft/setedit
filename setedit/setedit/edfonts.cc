@@ -35,8 +35,8 @@ void TFontColl::freeItem(void *item)
  Font *p=(Font *)item;
  if (p)
    {
-    delete p->font;
-    delete p->fontFull;
+    delete[] p->font;
+    delete[] p->fontFull;
     delete p;
    }
 }
@@ -426,7 +426,7 @@ int LoadEditorFont(char *name, char *&storeFile, char *&storeName,
  delete storeName;
  storeName=ReadName(f);
  delete storeFile;
- storeFile=strdup(name);
+ storeFile=newStr(name);
 
  for (i=0; i<numfonts; i++)
     {
@@ -484,8 +484,8 @@ int LoadEditorFonts(char *primary, char *secondary, int cp1, int cp2)
 
 void UnLoadEditorFonts(void)
 {
- delete PrimaryFontFile;
- delete PrimaryFontName;
+ delete[] PrimaryFontFile;
+ delete[] PrimaryFontName;
  delete SecondaryFontFile;
  delete SecondaryFontName;
  PrimaryFontFile=0;
@@ -547,8 +547,8 @@ void LoadFontLoadedInfo(fpstream& s)
          }
       }
     LoadEditorFonts(namePrim,nameSeco,cp1,cp2);
-    delete namePrim;
-    delete nameSeco;
+    delete[] namePrim;
+    delete[] nameSeco;
    }
  else
  if (version>=4)
@@ -565,8 +565,8 @@ void LoadFontLoadedInfo(fpstream& s)
           nameSeco=s.readString();
       }
     LoadEditorFonts(namePrim,nameSeco,cp1,cp2);
-    delete namePrim;
-    delete nameSeco;
+    delete[] namePrim;
+    delete[] nameSeco;
    }
  else
    {

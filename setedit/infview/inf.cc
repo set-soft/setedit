@@ -2066,7 +2066,14 @@ TInfWindow::~TInfWindow()
 {
  // Only the main InfView can do it or the rest will lose the BookMark
  if (isTheOne)
+   {
     destroy0(TInfViewer::BookMark); // Avoid releasing it twice
+    if (TInfViewer::ts)
+      {
+       delete TInfViewer::ts;
+       TInfViewer::ts=0;
+      }
+   }
 }
 
 TPalette& TInfWindow::getPalette() const

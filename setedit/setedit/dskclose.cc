@@ -37,7 +37,7 @@ void *TDskWinClosed::read( ipstream& is )
 {
  char fileName[PATH_MAX];
  is.readString(fileName,PATH_MAX);
- Name=strdup(fileName);
+ Name=newStr(fileName);
  if (editorApp->deskTopVersion>=0x306)
     ReadResume(resume,is);
  else
@@ -70,7 +70,7 @@ TDskWinClosed::TDskWinClosed(TCEditWindow *edw)
 
 TDskWinClosed::~TDskWinClosed()
 {
- delete Name;
+ delete[] Name;
 }
 
 int TDskWinClosed::GoAction(ccIndex i)

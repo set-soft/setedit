@@ -549,7 +549,7 @@ void TKeyTranslate::CompactTable(KeyTTable *t)
 void TKeyTranslate::deleteTree(void)
 {
  if (type==kbtDynamic)
-    delete base;
+    delete[] base;
  else
     if (type==kbtExpanded)
        DeleteTree(base);
@@ -1147,6 +1147,11 @@ int LoadKeysForTCEditor(char *name)
 {
  loadedFile=newStr(name);
  return KeyTrans.Load(name);
+}
+
+void LoadKeysForTCEditorFreeMemory()
+{
+ delete[] loadedFile;
 }
 
 int  SaveKeyBind(char *name)
