@@ -14,7 +14,7 @@ Source:    %{name}-%{ver}.tar.bz2
 URL:       http://setedit.sf.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 Docdir:    /usr/doc
-Prereq:    /usr/bin/install-info
+Prereq:    /sbin/install-info
 
 %description 
 Setedit is a text editor specially designed for programmers. It has a nice
@@ -39,8 +39,16 @@ make
 make install prefix=$RPM_BUILD_ROOT/usr all
 
 %post
+/sbin/install-info /usr/info/infview.info.gz /usr/info/dir
+/sbin/install-info /usr/info/sdg.info.gz /usr/info/dir
+/sbin/install-info /usr/info/setedit.info.gz /usr/info/dir
 
 %preun
+if [ $1 = 0 ]; then
+   /sbin/install-info --delete /usr/info/infview.info.gz /usr/info/dir
+   /sbin/install-info --delete /usr/info/sdg.info.gz /usr/info/dir
+   /sbin/install-info --delete /usr/info/setedit.info.gz /usr/info/dir
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
