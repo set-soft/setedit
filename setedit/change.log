@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.277  2003/02/11 13:32:11  set
+* Updated: Copyright date to include 2003 in the about dialog and also the
+date of the last documentation change.
+
 Revision 1.276  2003/02/06 18:55:29  set
 * Added: Save all option to save all unsaved editors. As suggested by
 Álvaro (Cristina ;-) and Iván.
