@@ -127,6 +127,7 @@ void FullAboutBox(void)
  i(_("Robert H”hne for porting TVision and making RHIDE"));
  i(_("Vadim Belodorov for contributing the first port of TV to Win32"));
  i(_("Anatoli Soltan for porting to Win32 using BC++"));
+ i(_("VA Linux and people that maintains Source Forge"));
  i(_("The University of California, Berkeley and its contributors"));
  #ifdef HAVE_PCRE_LIB
  i(_("The University of Cambridge for the PCRE package"));
