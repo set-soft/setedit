@@ -1,8 +1,8 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSSOSSortedListBox
 #include <easydia1.h>
 #include <settvuti.h>
 #include <easydiag.h>
 
-ListBoxImplement(SOSSortedListBox)
+ListBoxImplement(SOSSortedListBox);

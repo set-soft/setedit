@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.526  2004/06/22 15:11:58  set
+* Added: [sLisp] Experimental!!! now you can use cme* commands for
+SendCommands. They are propperly sent to the application instead of the
+current editor.
+
 Revision 1.525  2004/06/18 14:21:19  set
 * Fixed: Some details in the heuristic C++ functions searcher. They address
 problems with the const and throw() attributes.

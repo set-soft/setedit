@@ -1,4 +1,4 @@
-/* Copyright (C) 2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -1435,7 +1435,7 @@ void TTagsListBox::getText(char *dest, ccIndex item, short maxLen)
 }
 
 ListBoxSpecialize(TSTagsListBox);
-ListBoxImplement(TagsListBox)
+ListBoxImplement(TagsListBox);
 
 static
 TDialog *createDialogTags(const char *title, const char *label,
@@ -1634,7 +1634,7 @@ void TClListBox::getText(char *dest, ccIndex item, short maxLen)
 }
 
 ListBoxSpecialize(TSClListBox);
-ListBoxImplement(ClListBox)
+ListBoxImplement(ClListBox);
 
 static TDialog *createDialogCl()
 {

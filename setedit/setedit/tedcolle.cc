@@ -79,7 +79,7 @@ void TListEditors::getText(char *dest, ccIndex item, short maxLen)
 }
 
 // It creates an EasyDiag version of TListEditors called TSListEditors
-ListBoxImplement(ListEditors)
+ListBoxImplement(ListEditors);
 
 /**[txh]**********************************************************************
 
