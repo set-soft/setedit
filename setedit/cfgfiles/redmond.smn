@@ -98,6 +98,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
  MenuItemC: "~S~earch again", cmcSearchAgain, kbUnknown, "Ctrl+L"
  MenuSeparator
+ MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"
  MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
