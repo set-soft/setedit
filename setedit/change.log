@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.220  2002/10/02 13:08:30  set
+* Added: A cursor restore after closing AAlib. That's just to test if it
+solves the SF issue #617251 submitted by Grzegorz. But I think this is a
+bug in AAlib or Linux kernel. I can't reproduce it in my system.
+
 Revision 1.219  2002/10/02 12:59:50  set
 * Added: Documentation for the new Screen, Encodings and Fonts options.
 
