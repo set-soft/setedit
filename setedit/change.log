@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.382  2003/05/21 20:34:08  set
+* Fixed: A lot of pointer casts to compile for 64 bits processors. The code
+compiles for Itanium but isn't stable.
+
 Revision 1.381  2003/05/20 19:02:32  set
 * Modified: Some details of the powered grep to make it more friendly:
 1) During a blocking call to grep the "busy indicator" is enabled.

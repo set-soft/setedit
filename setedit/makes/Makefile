@@ -78,7 +78,7 @@ testeasy.imk: testeasy.gpr easydiag.gpr settv.gpr genimk.cc
 ../mp3/mpegsound/mpegsnd.imk: ../mp3/mpegsound/mpegsnd.gpr genimk.cc
 	@./genimk.exe $@ $^
 
-makes: $(mkfs_files) $(imks_files)
+makes: $(mkfs_files) $(imks_files) extrimk.exe genimk.exe
 
 ###########################################################################
 #                                                                         #
