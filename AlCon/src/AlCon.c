@@ -518,7 +518,11 @@ void AlCon_Init(int w, int h)
  fread(b,4096,1,f);
  fclose(f);
 
- set_color_depth(BPP);
+ /* If we are in a graphic mode and we know the depth use it */
+ if (desktop_color_depth())
+    set_color_depth(desktop_color_depth());
+ else
+    set_color_depth(BPP);
  if (set_gfx_mode(GFX_AUTODETECT,8*w,16*h,0,0))
    {
     set_gfx_mode(GFX_TEXT,0,0,0,0);
