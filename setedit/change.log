@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.474  2003/11/24 15:54:29  set
+* Added: A button to recompute window numbers in the list of windows.
+Suggested bt Grzegorz.
+* Updated: The spanish traslation.
+* Added: Documentation for the last "File under cursor" additions and the
+list of windows addition.
+
 Revision 1.473  2003/11/24 15:48:19  set
 * Added: Some rudimentary $(VARIABLE) expansion to the "File under cursor"
 files list. Suggested by Grzegorz.

@@ -69,9 +69,7 @@ static char Autor[sizeNames+1];
 static char Titulo[sizeNames+1];
 static char Output[sizeNames+1];
 static char *FileName;
-// "P gina: %d L¡neas: %d a %d  D¡a: %s  Hora: %s\xD\xC"
 static char *PiePagina=__("Page: %d Lines: %d to %d  Date: %s  Time: %s%s");
-// "* Fuente: %s * T¡tulo: %s * Autor: %s\n\n"
 static char *Cabecera=__("* Source: %s * Title: %s * Author: %s\n\n");
 
 typedef struct
