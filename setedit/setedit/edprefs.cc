@@ -1233,6 +1233,7 @@ static char *foPriName=NULL, *foSecName=NULL;
 static char *foPriFile=NULL, *foSecFile=NULL;
 static unsigned foPriW=8,foPriH=16;
 static TVFontCollection *foPri=NULL, *foSec=NULL;
+static uchar foCallBackSet=0;
 
 #pragma pack(1)
 typedef struct
@@ -1333,6 +1334,23 @@ void SetEditorFontsEncoding(int priChanged, int enPri, int sndChanged, int enSec
    }
  if (prC || seC)
     TScreen::setFont(prC,prF,seC,seF);
+}
+
+
+TScreenFont256 *FontRequestCallBack(int which, unsigned w, unsigned h)
+{
+ static TScreenFont256 f;
+
+ foPriW=w;
+ foPriH=h;
+ TVFontCollection *col=which ? foSec : foPri;
+ if (!col)
+    return NULL;
+ uchar *data=col->GetFont(foPriW,foPriH);
+ if (!data)
+    return NULL;
+ f.data=data;
+ return &f;
 }
 
 void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priSize,
@@ -1437,6 +1455,11 @@ void SetEditorFonts(uchar priUse, char *priName, char *priFile, const char *priS
        foPriLoaded=prF!=NULL;
     if (secChanged)
        foSecLoaded=seF!=NULL;
+    if (!foCallBackSet)
+      {
+       TScreen::setFontRequestCallBack(FontRequestCallBack);
+       foCallBackSet=1;
+      }
    }
 }
 

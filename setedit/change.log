@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.165  2002/07/24 20:03:22  set
+* Added: The "Fonts" dialog now works, the options aren't stored to disk
+yet but you can play with it. I tested a 2 fonts configuration under X11
+and put a snapshot in the site.
+* Fixed: The command line option -d N generated a SIGSEGV.
+
 Revision 1.164  2002/07/23 16:38:25  set
 * Added: [MSVC] /verbose to the link stage to get more information about
 the linking problems.

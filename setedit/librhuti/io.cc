@@ -23,7 +23,7 @@ static int h_out,h_outbak;
 static int h_err,h_errbak;
 
 /* returns a malloced unique tempname in $TMPDIR */
-char *unique_name(char *before,char *retval)
+char *unique_name(char *before, char *retval)
 {
   char *name,*tmp = getenv("TMPDIR");
   // SET: The next 2 fallbacks aren't usually needed because RHIDE and SETEdit
@@ -55,6 +55,7 @@ char *unique_name(char *before,char *retval)
   if (handler!=-1)
   {
     close(handler);
+    if (retval) strcpy(retval,name);
     return name;
   }
   free(name);

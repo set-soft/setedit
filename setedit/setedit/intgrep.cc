@@ -111,7 +111,7 @@ const int Col1=1,Col2=40,End1=39,End2=72;
 static
 char *SaveClipToTemp(void)
 {
- char *name=unique_name("cl",0);
+ char *name=unique_name("cl");
  if (!name || !TCEditor::clipboard || !TCEditor::clipboard->hasSelection())
    {
     messageBox(_("The clipboard is empty"),mfOKButton);
@@ -420,7 +420,7 @@ void grepWindow(char *patStart)
     char *clipTemp=0;
     int ok=1,absolute=0;
 
-    param=unique_name("pa",0);
+    param=unique_name("pa");
     FILE *f=fopen(param,"wb");
     if (!f)
       {

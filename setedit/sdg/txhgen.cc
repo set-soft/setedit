@@ -1943,11 +1943,11 @@ int TXHGenerateAll(void)
       
  // Generate the file
  ret=2;
- tmp1=unique_name("tx",0);
+ tmp1=unique_name("tx");
  if (TXHKeepTemporal)
     tmp2=string_dup(TXHTempGenFile);
  else
-    tmp2=unique_name("tg",0);
+    tmp2=unique_name("tg");
  TXHNodesFile=f=fopen(tmp1,"wt+");
  if (!f)
    {

@@ -421,7 +421,7 @@ char *CreateTempManPage(char *str)
 {
  DynStrCatStruct st;
 
- char *tmp=unique_name("man",0);
+ char *tmp=unique_name("man");
  char *tmpErr=open_stderr();
  DynStrCatInit(&st,str);
  DynStrCat(&st," > ");

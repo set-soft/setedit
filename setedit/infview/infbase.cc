@@ -1906,7 +1906,7 @@ int TInfFile::ConvertIt(long Pos)
           ExpandName(Ori,index->IndOffsets[i].Name,1);
        stream=fopen(Ori,"rb");
       }
-    Tempo=unique_name("iz",0);
+    Tempo=unique_name("iz");
     f=fopen(Tempo,"wb");
     if (stream==NULL || f==NULL) return ret;
     do

@@ -12362,7 +12362,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              FILE *ftemp;
              IsaUNIXFile=True;
              fseek(f,0,SEEK_SET);
-             tmp=unique_name("ed",0);
+             tmp=unique_name("ed");
              ftemp=fopen(tmp,"w+t");
              while ((fsize = fread(tmpbuf,1,1024,f)) > 0)
                fwrite(tmpbuf,1,fsize,ftemp);
@@ -12377,7 +12377,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              FILE *ftemp;
              IsaUNIXFile=True;
              fseek(f,0,SEEK_SET);
-             tmp=unique_name("ed",0);
+             tmp=unique_name("ed");
              ftemp=fopen(tmp,"w+t");
 
              ssize_t len;

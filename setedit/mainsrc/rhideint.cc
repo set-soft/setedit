@@ -130,7 +130,7 @@ option. Use RunExternalProgramRemoveInRedir to release the used resources.
 void RunExternalProgramSetInRedir(const char *buffer, unsigned len)
 {
  free(RedirInputFile);
- RedirInputFile=unique_name("in",0);
+ RedirInputFile=unique_name("in");
  FILE *f=fopen(RedirInputFile,"wb");
  if (f)
    {
