@@ -949,10 +949,10 @@ void TSetEditorApp::EncodingOptions()
    }
  else if (ret==cmOK)
    {
-    int appChanged=box.appForce!=so->enForceApp || (so->enForceApp && box.appCP!=appCP);
-    int inpChanged=box.inpForce!=so->enForceInp || (so->enForceInp && box.inpCP!=inpCP);
-    int priChanged=box.scrForce!=so->enForceScr || (so->enForceScr && box.scrCP!=scrCP);
-    int sndChanged=box.sndForce!=so->enForceSnd || (so->enForceSnd && box.sndCP!=sndCP);
+    int appChanged=box.appForce!=(uint32)so->enForceApp || (so->enForceApp && box.appCP!=appCP);
+    int inpChanged=box.inpForce!=(uint32)so->enForceInp || (so->enForceInp && box.inpCP!=inpCP);
+    int priChanged=box.scrForce!=(uint32)so->enForceScr || (so->enForceScr && box.scrCP!=scrCP);
+    int sndChanged=box.sndForce!=(uint32)so->enForceSnd || (so->enForceSnd && box.sndCP!=sndCP);
     if (appChanged || inpChanged || priChanged || sndChanged)
       {// At least one changed       
        so->enForceApp=box.appForce;

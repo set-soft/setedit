@@ -479,7 +479,7 @@ void TManPageView::updateCommands()
     setCmdState(cmcCopy,False);
     return;
    }
- Boolean sel=text && text->hasSelection();
+ Boolean sel=(text && text->hasSelection()) ? True : False;
  setCmdState(cmcCopyClipWin,(TVOSClipboard::isAvailable() && sel) ? True : False);
  setCmdState(cmcCopy,(InsertRoutine && sel) ? True : False);
 }

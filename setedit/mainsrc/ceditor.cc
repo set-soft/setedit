@@ -12537,187 +12537,178 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
 
 Boolean TCEditor::loadFile(Boolean setSHL)
 {
-    int i,crfound=0;
-    char *tmp=0;
-    struct stat s;
-    char *wasCompressed=0;
+ int i,crfound=0;
+ char *tmp=0;
+ struct stat s;
+ char *wasCompressed=0;
 
-    FailedToLoad=False;
-    DiskTime=0;
-    IsaUNIXFile=False;
-    // This structure differentiate the file
-    FillEditorId(&EditorId);
+ FailedToLoad=False;
+ DiskTime=0;
+ IsaUNIXFile=False;
+ // This structure differentiate the file
+ FillEditorId(&EditorId);
 
-    // We need some information about the file later. First I tried using fstat
-    // but under DOS stat can give much more accurate information because we
-    // provide the name of the file. In particular fstat fails under DOS+NETX
-    if (stat(fileName,&s)!=0)
-      { // I don't know if that's the best, I just assume the file isn't there
-       if (setSHL)
-          SHLSelect(*this,buffer,0);
-       setBufLen(0);
-       FailedToLoad=True;
-       return True;
-      }
-    // Get the current attributes/rights
-    GetFileMode(&ModeOfFile,&s,fileName);
-    FILE *f=fopen(fileName,"rb");
+ // We need some information about the file later. First I tried using fstat
+ // but under DOS stat can give much more accurate information because we
+ // provide the name of the file. In particular fstat fails under DOS+NETX
+ if (stat(fileName,&s)!=0)
+   { // I don't know if that's the best, I just assume the file isn't there
+    if (setSHL)
+       SHLSelect(*this,buffer,0);
+    setBufLen(0);
+    FailedToLoad=True;
+    return True;
+   }
+ // Get the current attributes/rights
+ GetFileMode(&ModeOfFile,&s,fileName);
+ FILE *f=fopen(fileName,"rb");
 
-    if (!f)
-      { // New file, it's OK
-       if (setSHL)
-          SHLSelect(*this,buffer,0);
-       setBufLen(0);
-       FailedToLoad=True;
-       return True;
-      }
-    else
+ if (!f)
+   { // New file, it's OK
+    if (setSHL)
+       SHLSelect(*this,buffer,0);
+    setBufLen(0);
+    FailedToLoad=True;
+    return True;
+   }
+   
+ // Get the modification time (from stat)
+ DiskTime=s.st_mtime;
+ FillEditorId(&EditorId,0,&s);
+ // Check if we can write
+ if (CLY_FileAttrIsRO(&ModeOfFile))
+   {
+    if (!isReadOnly && !(editorFlags & efDoNotWarnRO) &&
+        editorDialog(edIsReadOnly,fileName)==cmYes)
       {
-       // Get the modification time (from stat)
-       DiskTime=s.st_mtime;
-       FillEditorId(&EditorId,0,&s);
-       // Check if we can write
-       if (CLY_FileAttrIsRO(&ModeOfFile))
+       // Close it, DOS 6 fails if we change the mode while opened
+       fclose(f);
+       CLY_FileAttrReadWrite(&ModeOfFile);
+       if (!CLY_SetFileAttributes(&ModeOfFile,fileName))
          {
-          if (!isReadOnly && !(editorFlags & efDoNotWarnRO) &&
-              editorDialog(edIsReadOnly,fileName)==cmYes)
-            {
-             // Close it, DOS 6 fails if we change the mode while opened
-             fclose(f);
-             CLY_FileAttrReadWrite(&ModeOfFile);
-             if (!CLY_SetFileAttributes(&ModeOfFile,fileName))
-               {
-                editorDialog(edStillReadOnly);
-                // Check if the user wants to mark them as R.O.
-                if (editorFlags & efROasRO)
-                   isReadOnly=True;
-                // Undo the change to reflect reality
-                CLY_FileAttrReadOnly(&ModeOfFile);
-               }
-             f=fopen(fileName,"rb");
-             if (!f)
-               {
-                editorDialog(edReadError,fileName);
-                return False;
-               }
-            }
-          else
-            // Check if the user wants to mark them as R.O.
-            if (editorFlags & efROasRO)
-               isReadOnly=True;
+          editorDialog(edStillReadOnly);
+          // Check if the user wants to mark them as R.O.
+          if (editorFlags & efROasRO)
+             isReadOnly=True;
+          // Undo the change to reflect reality
+          CLY_FileAttrReadOnly(&ModeOfFile);
          }
-
-       Boolean oldBusy=TScreen::showBusyState(True);
-       f=ExpandToTempIfNeeded(f,wasCompressed,fileName,IsaCompressedFile);
+       f=fopen(fileName,"rb");
        if (!f)
          {
-          TScreen::showBusyState(oldBusy);
           editorDialog(edReadError,fileName);
           return False;
          }
+      }
+    else
+      // Check if the user wants to mark them as R.O.
+      if (editorFlags & efROasRO)
+         isReadOnly=True;
+   }
 
- /* check for a unix text file (is a heuristic, because only 1024 chars checked */
-        {
-          char tmpbuf[1024];
-          memset(tmpbuf,0,1024);
-          long fsize = filelength( fileno(f) );
-          if (fsize > 1024) fsize = 1024;
-          fread( tmpbuf, fsize, 1, f);
-          for (i=0;i<fsize;i++)
-          {
-            if (tmpbuf[i] == 13)
-               crfound = 1;
-            else
-               if (tmpbuf[i] == 10)
-                  break;
-          }
-          #ifdef CLY_UseCrLf
-          // DOS: Check if the file is in UNIX format, in this case convert it
-          if (crfound)
-             fseek(f,0,SEEK_SET);
-          else
-            {
-             /* This uses the feature of DJGPP to convert automatically
-                LF's to CR/LF's when writing in TEXT-mode */
-             FILE *ftemp;
-             IsaUNIXFile=True;
-             fseek(f,0,SEEK_SET);
-             tmp=unique_name("ed");
-             ftemp=fopen(tmp,"w+t");
-             while ((fsize = fread(tmpbuf,1,1024,f)) > 0)
-               fwrite(tmpbuf,1,fsize,ftemp);
-             fclose(ftemp);
-             fclose(f);
-             f=fopen(tmp,"rb");
-            }
-          #else
-          // UNIX: Check if the file is in DOS format, in this case convert it
-          if (crfound)
-            {
-             FILE *ftemp;
-             IsaUNIXFile=True;
-             fseek(f,0,SEEK_SET);
-             tmp=unique_name("ed");
-             ftemp=fopen(tmp,"w+t");
+ Boolean oldBusy=TScreen::showBusyState(True);
+ f=ExpandToTempIfNeeded(f,wasCompressed,fileName,IsaCompressedFile);
+ if (!f)
+   {
+    TScreen::showBusyState(oldBusy);
+    editorDialog(edReadError,fileName);
+    return False;
+   }
 
-             ssize_t len;
-             char *line=0;
-             size_t lenLine=0;
-             while ((len=CLY_getline(&line,&lenLine,f))!=-1)
-               {
-                if (len>=2 && line[len-2]=='\r')
-                  {
-                   len--;
-                   line[len-1]='\n';
-                  }
-                fwrite(line,len,1,ftemp);
-               }
-             free(line);
+ // Check for a unix text file (is a heuristic, because only 1024 chars checked
+ {
+  char tmpbuf[1024];
+  memset(tmpbuf,0,1024);
+  long fsize=filelength(fileno(f));
+  if (fsize > 1024) fsize=1024;
+  fread(tmpbuf,fsize,1,f);
+  for (i=0; i<fsize; i++)
+     {
+      if (tmpbuf[i]==13)
+         crfound=1;
+      else
+        if (tmpbuf[i]==10)
+           break;
+     }
+  #ifdef CLY_UseCrLf
+  // DOS: Check if the file is in UNIX format, in this case convert it
+  if (crfound)
+     fseek(f,0,SEEK_SET);
+  else
+    {
+     /* This uses the feature of DJGPP to convert automatically
+        LF's to CR/LF's when writing in TEXT-mode */
+     FILE *ftemp;
+     IsaUNIXFile=True;
+     fseek(f,0,SEEK_SET);
+     tmp=unique_name("ed");
+     ftemp=fopen(tmp,"w+t");
+     while ((fsize = fread(tmpbuf,1,1024,f)) > 0)
+       fwrite(tmpbuf,1,fsize,ftemp);
+     fclose(ftemp);
+     fclose(f);
+     f=fopen(tmp,"rb");
+    }
+  #else
+  // UNIX: Check if the file is in DOS format, in this case convert it
+  if (crfound)
+    {
+     FILE *ftemp;
+     IsaUNIXFile=True;
+     fseek(f,0,SEEK_SET);
+     tmp=unique_name("ed");
+     ftemp=fopen(tmp,"w+t");
 
-             fclose(ftemp);
-             fclose(f);
-             f=fopen(tmp,"rb");
-            }
-          else
-             fseek(f,0,SEEK_SET);
-         #endif
-        }
-        unsigned long fSize=filelength(fileno(f));
-        if (!setBufSize(fSize))
+     ssize_t len;
+     char *line=0;
+     size_t lenLine=0;
+     while ((len=CLY_getline(&line,&lenLine,f))!=-1)
+       {
+        if (len>=2 && line[len-2]=='\r')
           {
-           TScreen::showBusyState(oldBusy);
-           editorDialog(edOutOfMemory);
-           RemoveTemporal();
-           return False;
+           len--;
+           line[len-1]='\n';
           }
-        else
-          {
-           unsigned long real_read;
-           /* On linux you can (like I) mount an MS-DOS filesystem with
-              conv=auto, which converts CR/LF to LF. In that case
-              real_read < fSize [Robert] */
-           real_read=fread(buffer,1,fSize,f);
-           fclose(f);
-           if (real_read==0 && fSize!=0) // 1999/04/08: fSize=0 is not an error ;-)
-             {
-              TScreen::showBusyState(oldBusy);
-              editorDialog(edReadError,fileName);
-              RemoveTemporal();
-              return False;
-             }
-           else
-             {
-              if (setSHL)
-                 SHLSelect(*this,buffer,real_read);
-              isValid=True;
-              setBufLen(real_read);
-              TScreen::showBusyState(oldBusy);
-              RemoveTemporal();
-              return isValid;
-             }
-           TScreen::showBusyState(oldBusy);
-          }
-        }
+        fwrite(line,len,1,ftemp);
+       }
+     free(line);
+
+     fclose(ftemp);
+     fclose(f);
+     f=fopen(tmp,"rb");
+    }
+  else
+     fseek(f,0,SEEK_SET);
+  #endif
+ }
+ unsigned long fSize=filelength(fileno(f));
+ if (!setBufSize(fSize))
+   {
+    TScreen::showBusyState(oldBusy);
+    editorDialog(edOutOfMemory);
+    RemoveTemporal();
+    return False;
+   }
+ unsigned long realRead;
+ /* On linux you can (like I) mount an MS-DOS filesystem with
+    conv=auto, which converts CR/LF to LF. In that case
+    realRead < fSize [Robert] */
+ realRead=fread(buffer,1,fSize,f);
+ fclose(f);
+ if (realRead==0 && fSize!=0) // 1999/04/08: fSize=0 is not an error ;-)
+   {
+    TScreen::showBusyState(oldBusy);
+    editorDialog(edReadError,fileName);
+    RemoveTemporal();
+    return False;
+   }
+ if (setSHL)
+    SHLSelect(*this,buffer,realRead);
+ isValid=True;
+ setBufLen(realRead);
+ TScreen::showBusyState(oldBusy);
+ RemoveTemporal();
+ return isValid;
 }
 
 Boolean TCEditor::reLoadFile()

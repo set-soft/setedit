@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.283  2003/04/01 17:31:34  set
+* Added: The web site to CVS (for easier maintainance) and distro (for more
+information for the user).
+* Updated: The web site for the last release.
+
 Revision 1.282  2003/04/01 13:54:32  set
 * Fixed: Attribute handling for big endian platforms in TViewPlus class.
 
