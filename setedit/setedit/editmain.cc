@@ -272,7 +272,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
        AddToEditorsHelper((TCEditWindow *)p,1);
        unsigned dstOps=GetDSTOptions();
        if (validResume && // If the user doesn't like memories forget it.
-           !(dstOps & dstNoCursorPos) &&
+           !(dstOps & (dstNoCursorPos | dstEdNever)) &&
            !(options & oedForgetResume))
           ain->ApplyResume(r);
        deskTop->insert(p);

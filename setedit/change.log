@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.224  2002/10/29 14:58:25  set
+* Fixed: When specifying a new project from command line the preLoad
+mechanism failed giving a SIGSEGV. Reported by Grzegorz.
+* Fixed: When specifying an existing project from command line the preload
+mechanism loaded the right desktop file but the second pass loaded the
+default desktop. From a report by Grzegorz.
+* Added: Now is possible to indicate a project to load without the
+extension in the command line. From a report by Grzegorz.
+
 Revision 1.223  2002/10/24 18:07:12  set
 * Added: "latex" to the TeX extensions. Suggested by Grzegorz.
 
