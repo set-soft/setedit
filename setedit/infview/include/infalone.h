@@ -19,15 +19,16 @@ const int
   cmSyntax     = 108,
   cmSyntaxOps  = 109,
   cmSyntaxList = 110,
-  cmAbout      = 111;
+  cmAbout      = 111,
+  cmManPage    = 112,
+  cmScreenConf = 113,
+  cmInfMainOpen= 114;
 
 class fpstream;
 
 class TEditorMiApp : public TApplication
 {
-
 public:
-
     TEditorMiApp();
 
     virtual void handleEvent( TEvent& event );
@@ -37,15 +38,19 @@ public:
     virtual TPalette& getPalette() const;
     void saveDesktop(const char *fName);
     void storeDesktop(fpstream &s);
-    void retrieveDesktop(const char *name);
-    void loadDesktop(fpstream &s);
+    void retrieveDesktop(const char *name, int loadWindows);
+    void loadDesktop(fpstream &s, int loadWindows);
     
-private:
-
+protected:
     void dosShell();
     void tile();
     void cascade();
-    void grepWindow();
+    //void grepWindow();
+    void ManPageView();
+    void SetScreenOps(void);
+    void SetCodePage(int cp);
+
+    int curCodePage;
 };
 
 extern TEditWindow *clipWindow;

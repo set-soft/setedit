@@ -1,4 +1,4 @@
-/* Copyright (C) 1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_ctype
@@ -14,8 +14,20 @@
 #define Uses_TPalette
 #define Uses_TEvent
 #define Uses_TFrame
+#define Uses_TScrollBar
 
-#include <tv.h>
+#define Uses_TSLabel
+#define Uses_TSVeGroup
+#define Uses_TSInputLine
+#define Uses_TSButton
+
+#define Uses_TCEditor_Commands
+
+// First include creates the dependencies
+#include <easydia1.h>
+#include <ceditor.h>
+// Second request the headers
+#include <easydiag.h>
 
 #define Uses_TEnhancedText
 #define Uses_TManPageView
@@ -26,6 +38,7 @@
 #include <dyncat.h>
 #include <diaghelp.h>
 #include <rhutils.h>
+#include <codepage.h>
 
 static const char *ExtraOps;
 
@@ -155,6 +168,12 @@ TPalette& TManPageView::getPalette() const
 {
  static TPalette palette(cManPage,sizeof(cManPage)-1);
  return palette;
+}
+
+void TManPageView::getScrollBars(TScrollBar *&hScr, TScrollBar *&vScr)
+{
+ hScr=hScrollBar;
+ vScr=vScrollBar;
 }
 
 void TManPageView::handleEvent( TEvent& event )
@@ -306,8 +325,9 @@ TManWindow::TManWindow(const char *fileName, const char *name,
  options|=ofCentered;
  r.grow(-1,-1);
 
- page=new TManPageView(r,standardScrollBar(sbHorizontal | sbHandleKeyboard),
-                       standardScrollBar(sbVertical | sbHandleKeyboard));
+ hScrollBar=standardScrollBar(sbHorizontal | sbHandleKeyboard);
+ vScrollBar=standardScrollBar(sbVertical | sbHandleKeyboard);
+ page=new TManPageView(r,hScrollBar,vScrollBar);
  page->InsertText(new TEnhancedText(fileName,aCommandLine));
  unlink(fileName);
  insert(page);
@@ -321,22 +341,37 @@ TManWindow::TManWindow(StreamableInit) :
  page=0;
 }
 
-void TManWindow::handleEvent( TEvent& event )
+void TManWindow::handleEvent(TEvent& event)
 {
  TWindow::handleEvent(event);
- if (event.what==evBroadcast && event.message.command==cmMPUpdateTitle)
+ if (event.what==evBroadcast)
    {
-    DeleteArray((char *)title);
-    title=newStr((char *)event.message.infoPtr);
-    frame->draw();
+    switch (event.message.command)
+      {
+       case cmMPUpdateTitle:
+            DeleteArray((char *)title);
+            title=newStr((char *)event.message.infoPtr);
+            frame->draw();
+            break;
+       #if defined(FOR_EDITOR)
+       case cmcUpdateCodePage:
+            RemapNStringCodePage((uchar *)hScrollBar->chars,
+                                 (uchar *)TScrollBar::ohChars,
+                                 (ushort *)event.message.infoPtr,5);
+            RemapNStringCodePage((uchar *)vScrollBar->chars,
+                                 (uchar *)TScrollBar::ovChars,
+                                 (ushort *)event.message.infoPtr,5);
+            break;
+       #endif
+      }
    }
 }
 
 // These members are needed to initialize page propperly
 // Note that page is saved *once*, not twice (from group and explicit)
-#if 1
 void TManWindow::write(opstream &os)
 {
+ options&=~ofCentered;
  TWindow::write(os);
  os << page;
 }
@@ -345,9 +380,9 @@ void *TManWindow::read(ipstream &is)
 {
  TWindow::read(is);
  is >> page;
+ page->getScrollBars(hScrollBar,vScrollBar);
  return this;
 }
-#endif
 
 
 static
@@ -401,7 +436,7 @@ char *CreateCommandLine(const char *file, const char *sections)
    }
  if (sections && !isEmpty(sections))
    {
-    #ifdef __DJGPP__
+    #ifdef TVCompf_djgpp
     DynStrCat(&st," -s ");
     #else
     DynStrCat(&st," -S ");
@@ -427,3 +462,77 @@ TManWindow *CreateManWindow(const char *file, const char *sections,
 
  return ret;
 }
+
+#if defined(SEOS_DOS) || defined(SEOS_Win32)
+/*
+  This routine checks if man is there. If we can't find it we must put a warning
+*/
+#ifdef TVComp_BCPP
+//$todo: Check it better (to SAA)
+#define RET_OK 0
+#else
+#define RET_OK 1
+#endif
+
+int CheckForMan(void)
+{
+ static int isManInstalled=0;
+
+ if (!isManInstalled)
+   {
+    char *err=open_stdout();
+    int ret=TV_System("man");
+    close_stdout();
+    unlink(err);
+
+    if (ret==1)
+       isManInstalled=RET_OK;
+    else
+       messageBox(_("You must install man to use it!"), mfError | mfOKButton);
+   }
+
+ return isManInstalled;
+}
+#else
+int CheckForMan(void)
+{
+ return 1;
+}
+#endif
+
+/*****************************************************************************
+
+  Dialog used to select the manpage
+    
+*****************************************************************************/
+
+ManPageOptions op={"setedit","",""};
+extern char *strncpyZ(char *dest, char *orig, int size);
+
+TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
+{
+ if (!CheckForMan())
+    return 0;
+
+ if (name)
+    strncpyZ(op.program,(char *)name,80);
+
+ TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),_("Man page to view")));
+
+ TSVeGroup *options=
+ MakeVeGroup(new TSLabel(_("~M~an page for ..."),new TSInputLine(prgLen,visibleLen)),
+             new TSLabel(_("~S~ection"),new TSInputLine(sectLen,visibleLen)),
+             new TSLabel(_("~E~xtra options"),new TSInputLine(extraLen,visibleLen)),
+             0);
+
+ col->insert(2,2,options);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doIt();
+ delete col;
+ d->options|=ofCentered;
+
+ *mpo=&op;
+ return d;
+}
+

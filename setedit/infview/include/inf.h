@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -169,6 +169,7 @@ class TBookMarkDialog : public TDialog
  void handleEvent(TEvent& event);
 };
 
+class TCommandSet;
 
 // TInfViewer
 
@@ -243,6 +244,9 @@ public:
     static TNoCaseStringCollection *BookMark;
     void BookMarksDialog(void);
 
+    static void DisableAllCommands();
+    static void InitCommandSet();
+    static TCommandSet *ts;
     static int version;
 
 protected:

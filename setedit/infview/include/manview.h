@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TEnhancedText) && !defined(__TEnhancedText__)
 #define __TEnhancedText__
@@ -47,6 +47,7 @@ public:
  virtual TPalette& getPalette() const;
  virtual void handleEvent( TEvent& event );
  void InsertText(TEnhancedText *aText);
+ void getScrollBars(TScrollBar *&hScr, TScrollBar *&vScr);
 
 protected:
  TEnhancedText *text;
@@ -80,6 +81,7 @@ inline opstream& operator << ( opstream& os, TManPageView* cl )
 class TWindow;
 class TManPageView;
 class TPalette;
+class TScrollBar;
 
 class TManWindow : public TWindow
 {
@@ -91,6 +93,8 @@ public:
 
 protected:
  TManPageView *page;
+ TScrollBar *hScrollBar;
+ TScrollBar *vScrollBar;
 
 private:
  virtual const char *streamableName() const { return name; }
@@ -123,3 +127,18 @@ extern TManWindow *CreateManWindow(const char *file, const char *sections,
                                    const char *extraOps);
 
 #endif // __TManWindow__
+
+const int prgLen=80,sectLen=20,extraLen=80,visibleLen=60;
+
+#pragma pack(1)
+typedef struct
+{
+ char program[prgLen]   CLY_Packed;
+ char section[sectLen]  CLY_Packed;
+ char options[extraLen] CLY_Packed;
+} ManPageOptions;
+#pragma pack()
+
+class TDialog;
+extern int CheckForMan(void);
+extern TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo);
