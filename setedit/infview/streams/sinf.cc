@@ -17,6 +17,9 @@
 
 #include <tvsetuti.h>
 #define Uses_TStreamableClass
+// InfView requests
+#include <infr.h>
+#include <settvuti.h>
 #include <inf.h>
 
 __link( RView )

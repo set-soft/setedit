@@ -38,11 +38,12 @@
 #define Uses_ctype
 #define Uses_unistd
 #ifndef SECompf_djgpp
-#define Uses_TGKey
+ #define Uses_TGKey
 #endif
-#include <ceditor.h>
 #define Uses_FileOpenAid
-#include <inf.h>
+// InfView requests
+#include <infr.h>
+#include <ceditor.h>
 #define Uses_SETAppAll
 #define Uses_SETAppHelper
 #include <setapp.h>

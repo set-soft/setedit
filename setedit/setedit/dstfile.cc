@@ -27,6 +27,8 @@
 #define Uses_TDeskTopClock
 #define Uses_TStringCollectionW
 #define Uses_TFileCollection
+// InfView requests
+#include <infr.h>
 #include <ceditor.h>
 
 #define Uses_TSetEditorApp

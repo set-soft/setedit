@@ -5,6 +5,8 @@
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_TCEditor_Internal
 #define Uses_TInputLinePipedConst
+// InfView requests
+#include <infr.h>
 
 #include <ceditor.h>
 #include <setapp.h>

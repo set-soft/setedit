@@ -7,12 +7,15 @@
 #define Uses_TDeskTop
 #define Uses_TCEditWindow
 #define Uses_TCEditor_Commands
+// InfView requests
+#include <infr.h>
 #include <ceditor.h>
 
 #define Uses_SETAppConst
 #define Uses_TSetEditorApp
 #include <setapp.h>
 
+#include <inf.h>
 #include <dskwin.h>
 #include <dskhelp.h>
 // Various help context

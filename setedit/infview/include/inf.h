@@ -18,24 +18,10 @@
 #if !defined( __Inf_H )
 #define __Inf_H
 
-#define Uses_TStreamable
-#define Uses_TObject
-#define Uses_TPoint
-#define Uses_TRect
-#define Uses_TEvent
-#define Uses_TScroller
-#define Uses_TScrollBar
-#define Uses_TWindow
-#define Uses_TCollection
-#define Uses_TListBox
-#define Uses_TDialog
-
-#define Uses_TNoCaseStringCollection
 #include <infbase.h>
 
 #define MAX_HIST_DEEP 40
 #define MAX_NODE_NAME 90
-
 
 const int
       hcInfView   = 0x2100,
