@@ -173,7 +173,8 @@ protected:
     char *OriginalWindowTitle;
 };
 
-const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8;
+const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
+          oedDontOpenEmpty=16;
 
 extern TSetEditorApp *editorApp;
 extern TCEditWindow *clipWindow;
