@@ -321,7 +321,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "Ed~i~t breakpoints", cmeDbgEditBreakPts
  MenuItemC: "Edit watchpoints ~3~", cmeDbgEditWatchPts
  MenuSeparator
- MenuItemC: "~R~un/Continue", cmeDbgRunContinue
+ MenuItemC: "~R~un/Continue", cmeDbgRunContinue, kbShF9, "Shift+F9"
  MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
  MenuItemC: "~T~race into", cmeDbgTraceInto, kbF7, "F7"
  MenuItemC: "~G~o to cursor", cmeDbgGoToCursor, kbF4, "F4"
@@ -335,11 +335,11 @@ SubMenu: "~D~ebug", kbAlD
 # EN: DNSUW
   MenuItemC: "~N~ormal watch", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
   MenuItemC: "~W~ith scope", cmeDbgWatchExpScp
-  MenuItemC: "~U~sing the Inspector", cmeDbgInspector
+  MenuItemC: "~U~sing the Inspector", cmeDbgInspector, kbCtF6, "Ctrl+F6"
   MenuItemC: "~D~ata window", cmeDbgDataWindow
   MenuItemC: "~S~tack window", cmeDbgStackWindow
  EndSubMenu
- MenuItemC: "~C~alling stack", cmeDbgCallStack
+ MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
  MenuSeparator
  MenuItemC: "C~l~ose debug session", cmeDbgCloseSession
  MenuItemC: "~D~estroy debug session (DANGER!)", cmeDbgEndSession
@@ -613,6 +613,15 @@ StatusEntry: "~^M~ Modify", cmModifyIns, kbCtM
 StatusEntry: "~^F~ Format", cmFormatIns, kbCtF
 StatusHiddenEntry: cmeInfView, kbF1
 StatusHiddenEntry: cmClose, kbEsc
+EndStatusRange
+
+#
+# Data Windows
+#
+StatusRange: hcDataViewer, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~Ctrl+Y~ Recycle", cmRecycle, kbCtY
 EndStatusRange
 
 #

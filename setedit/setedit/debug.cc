@@ -9,6 +9,12 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
+  * Some way to choose the formating of "Eval expression", the normal "print"
+modifiers doesn't apply here.
+
+  * Option to clean all, a dialog with check boxes: breakpoints, watches,
+inspectors, watchpoints and data windows.
+
   * Join the watchpoint dialog with the word under cursor.
 
   * When debugging remote programs gdb exposes a nasty bug: When I do next
@@ -53,6 +59,17 @@ is C/C++ specific.
 should "move" the breakpoints to their new locations. That's tricky.
 Note: currently we do it if the user used "run program".
   * Time out in the gdb responses to avoid hanging. Also a stop mechanism.
+
+Low priority:
+
+Inspectors:
+* Highlight changed values.
+
+Watches:
+* Highlight changed values.
+
+Data Window:
+* Small dialog with all the modes.
 
 IMPORTANT NOTES!!!
 
@@ -165,6 +182,7 @@ const char svPresent=1, svAbsent=0, svYes=1, svNo=0;
 const char bkptsVersion=2;
 const char wptsVersion=1;
 const char inspVersion=1;
+const char dwVersion=1;
 const char debugDataVersion=1;
 
 #ifdef HAVE_GDB_MI
@@ -3908,6 +3926,23 @@ public:
  enum IndiType { iChanged=1, iEndian, iRadix, iAutofollow, iBaseAddress };
  virtual void draw();
  virtual void changeState(IndiType, int);
+ // Some wrappers to make things more clear
+ void setEndian(uchar endian)
+ {
+  changeState(iEndian,"eE"[endian & 1]);
+ }
+ void setRadix(uchar radix)
+ {
+  changeState(iRadix,"XD"[radix & 1]);
+ }
+ void setAutofollow(uchar autoFollow)
+ {
+  changeState(iAutofollow," A"[autoFollow & 1]);
+ }
+ void setBaseAddress(ulong baseAddress)
+ {
+  changeState(iBaseAddress,baseAddress ? 'B' : ' ');
+ }
 
 protected:
   char thestate[10];
@@ -3917,7 +3952,7 @@ class TDataViewer: public TView
 {
 public:
  TDataViewer(const TRect &bounds, TScrollBar *aVScrollBar,
-             const char *addr_txt);
+             const char *addr_txt, TDIndicator *aIndi);
  ~TDataViewer();
  virtual TPalette &getPalette() const;
  virtual void changeBounds(const TRect &bounds);
@@ -3930,6 +3965,33 @@ public:
  void adjustWindow();
  unsigned char *curs2memo();
  void printCursorAddress(char *buf, Boolean deref=False);
+ void saveData(opstream &os);
+ static TDataViewer *readData(ipstream &is, uchar version,
+                              const TRect &bounds, TScrollBar *aVScrollBar,
+                              TDIndicator *aIndi);
+ void recycle();
+
+ // Wrappers to make things more clear
+ void setAutoFollow(uchar nVal)
+ {
+  autoFollow=nVal;
+  indi->setAutofollow(autoFollow);
+ }
+ void setEndian(uchar nVal)
+ {
+  endian=nVal;
+  indi->setEndian(endian);
+ }
+ void setRadix(uchar nVal)
+ {
+  radix=nVal;
+  indi->setRadix(radix);
+ }
+ void setBaseAddress(ulong nVal)
+ {
+  baseAddress=nVal;
+  indi->setBaseAddress(baseAddress);
+ }
 
  TDIndicator *indi;
  unsigned long memStart;
@@ -3940,16 +4002,15 @@ public:
  char *origAddrTxt;
  unsigned bytesPerLine;
 
- enum { dmBytes, dm2Bytes, dm4Bytes, dmChars, dmMAX };
- uchar dispmode;
+ enum { dmBytes=0, dm2Bytes=1, dm4Bytes=2, dmChars=3, dmMAX=4 };
+ uchar dispMode;
 
- enum { rxHex, rxDec, rxMAX };
+ enum { rxHex=0, rxDec=1, rxMAX=2 };
  uchar radix;
  uchar endian;
 
- static signed char targetEndian;
-
- Boolean autoFollow;
+ uchar autoFollow;
+ uchar outOfScope;
  Boolean addressChanged;
  unsigned long baseAddress;
 
@@ -4291,26 +4352,30 @@ unsigned writeFile(FILE *f, ulong from, unsigned len)
 
 //\\//\\//\\//\\//\\//\\ TDataViewer
 
-const signed char enUnknown=-1, enLittle=0, enBig=1;
-signed char TDataViewer::targetEndian=enUnknown;
+const uchar enLittle=0, enBig=1;
 
 TDataViewer::TDataViewer(const TRect & bounds, TScrollBar * aVScrollBar,
-                         const char *taddr):
+                         const char *taddr, TDIndicator *aIndi):
  TView(bounds),
  memStart(0),
  memo(0),
  bytesPerLine(16),
- dispmode(dmBytes),
+ dispMode(dmBytes),
  radix(rxHex),
- autoFollow(False),
+ autoFollow(0),
  addressChanged(False),
  baseAddress(0)
 {
  helpCtx=hcDataViewer;
+ growMode=gfGrowHiX | gfGrowHiY;
  eventMask=evMouseDown | evKeyDown | evCommand | evBroadcast;
+ indi=aIndi; // They are created indicating little endian
  endian=enLittle;
- if (dbg->GetTargetEndian()==MIDebugger::enBig)
+ if (dbg && dbg->GetTargetEndian()==MIDebugger::enBig)
+   {
     endian=enBig;
+    indi->setEndian(endian);
+   }
  origAddrTxt=newStr(taddr);
  isValidAddress(origAddrTxt,origAddr);
  setCursor(addrLen,0);
@@ -4319,6 +4384,42 @@ TDataViewer::TDataViewer(const TRect & bounds, TScrollBar * aVScrollBar,
  memMin=0xFFFFFFFF;
  memMax=0;
  cDataViewers++;
+ outOfScope=0;
+}
+
+TDataViewer *TDataViewer::readData(ipstream &is, uchar , const TRect &bounds,
+                                   TScrollBar *aVScrollBar, TDIndicator *aIndi)
+{
+ char *taddr=is.readString();
+ TDataViewer *dv=new TDataViewer(bounds,aVScrollBar,taddr,aIndi);
+ // state
+ // iChanged and iBaseAddress not saved
+ // iEndian, iRadix, iAutofollow
+ uchar aux;
+ is >> aux;
+ dv->setEndian(aux);
+ is >> aux;
+ dv->setRadix(aux);
+ is >> aux;
+ dv->setAutoFollow(aux);
+ is >> dv->dispMode >> dv->bytesPerLine;
+ dv->outOfScope=1;
+ setCommands(False);
+
+ return dv;
+}
+
+void TDataViewer::recycle()
+{
+ if (outOfScope)
+   {
+    if (isValidAddress(origAddrTxt,origAddr))
+      {
+       update(origAddr);
+       TSetEditorApp::setCmdState(cmRecycle,False);
+       outOfScope=0;
+      }
+   }
 }
 
 TDataViewer::~TDataViewer()
@@ -4326,6 +4427,16 @@ TDataViewer::~TDataViewer()
  delete[] origAddrTxt;
  free(memo);
  cDataViewers--;
+}
+
+void TDataViewer::saveData(opstream &os)
+{
+ os.writeString(origAddrTxt);
+ // state
+ // iChanged and iBaseAddress not saved
+ // iEndian, iRadix, iAutofollow
+ os << endian << radix << autoFollow
+    << dispMode << bytesPerLine;
 }
 
 void TDataViewer::update(ulong addr, Boolean external)
@@ -4455,12 +4566,12 @@ int TDataViewer::getLine(char *buf, char *cols, int row)
  const unsigned bpl=bytesPerLine;
  uchar *mem=memo+row*bpl, *cmem=mem+memLen, uc;
  ushort us;
- const unsigned fl=fieldLen[dispmode][radix]+1;
- const char *fs=fieldStr[dispmode][radix];
+ const unsigned fl=fieldLen[dispMode][radix]+1;
+ const char *fs=fieldStr[dispMode][radix];
  const char *notAcc=notAccess+12-fl;
  const char *bufOri=buf;
 
- switch (dispmode)
+ switch (dispMode)
    {
     case dmBytes:              // 1-byte-length unsigned integers
          for (ic=0; ic<bpl; ic++, buf+=fl, cols+=fl)
@@ -4587,9 +4698,9 @@ void TDataViewer::draw()
        {
         int fl, pos;
 
-        fl=fieldLen[dispmode][radix];
-        pos=addrLen+(origAddr-memStart-ic*bpl)/fieldBytes[dispmode]*(fl+1);
-        if (dispmode==dmChars)
+        fl=fieldLen[dispMode][radix];
+        pos=addrLen+(origAddr-memStart-ic*bpl)/fieldBytes[dispMode]*(fl+1);
+        if (dispMode==dmChars)
            fl=1;
         for (jc=0; jc<fl; jc++)
             b.putAttribute(pos+jc,focusedColor);
@@ -4609,7 +4720,11 @@ void TDataViewer::setState(ushort aState, Boolean enable)
     indi->drawView();
     if (enable)
       {// Check if we have to dis/enable the commands
-       setCommands(dbg && dbg->GetState()==MIDebugger::stopped ? True : False);
+       if (outOfScope)
+          TSetEditorApp::setCmdState(cmRecycle,dbg &&
+            dbg->GetState()==MIDebugger::stopped ? True : False);
+       else
+          setCommands(dbg && dbg->GetState()==MIDebugger::stopped ? True : False);
       }
    }
  // TODO SET: Why? I don't think that's needed
@@ -4630,13 +4745,13 @@ TPalette &TDataViewer::getPalette() const
 void TDataViewer::cursorHoriz(int delta)
 {
  int cx=cursor.x-addrLen;
- unsigned fl=fieldLen[dispmode][radix];
+ unsigned fl=fieldLen[dispMode][radix];
 
  if (fl)
     cx=cx/(fl+1)*fl+(cx%(fl+1));
  if (delta>0)
     cx=min(cx+delta,
-           fl ? fl*bytesPerLine/fieldBytes[dispmode]-1 : bytesPerLine-1);
+           fl ? fl*bytesPerLine/fieldBytes[dispMode]-1 : bytesPerLine-1);
  else
     cx=max(cx+delta,0);
  if (fl)
@@ -4648,10 +4763,10 @@ void TDataViewer::adjustWindow()
 {
  unsigned xnew;
 
- xnew=bytesPerLine/fieldBytes[dispmode]*(1+fieldLen[dispmode][radix]);
- if (dispmode==dmBytes && radix==rxHex)
+ xnew=bytesPerLine/fieldBytes[dispMode]*(1+fieldLen[dispMode][radix]);
+ if (dispMode==dmBytes && radix==rxHex)
     xnew+=bytesPerLine+2;
- if (dispmode==dmChars)
+ if (dispMode==dmChars)
     xnew=bytesPerLine+1;
  owner->growTo(xnew+3+addrLen,owner->size.y);
 }
@@ -4659,7 +4774,7 @@ void TDataViewer::adjustWindow()
 uchar *TDataViewer::curs2memo()
 {
  return memo+bytesPerLine*cursor.y+
-        (cursor.x-addrLen)/(fieldLen[dispmode][radix]+1)*fieldBytes[dispmode];
+        (cursor.x-addrLen)/(fieldLen[dispMode][radix]+1)*fieldBytes[dispMode];
 }
 
 const int taddNone=-1, taddNewValue=0, taddFrom=1, taddTo=2, taddExp=3,
@@ -4793,7 +4908,7 @@ void TDataViewer::handleEvent(TEvent & event)
             unsigned kc=event.keyDown.charScan.charCode;
 
             //fprintf(stderr,"%c",kc);
-            if (dispmode==dmChars) // characters only
+            if (dispMode==dmChars) // characters only
               {
                memo[cursor.y*bytesPerLine+cursor.x-addrLen]=kc;
                // mark changed
@@ -4808,11 +4923,11 @@ void TDataViewer::handleEvent(TEvent & event)
                getLine(buf,buf,cursor.y);
                buf[cursor.x-addrLen]=kc;
                for (kc=cursor.x-addrLen; kc && buf[kc]!=' '; kc--);
-               if (!sscanf(buf+kc,fieldStr[dispmode][radix],&kc))
+               if (!sscanf(buf+kc,fieldStr[dispMode][radix],&kc))
                   break;
                unsigned char *mem=curs2memo();
 
-               switch (dispmode)
+               switch (dispMode)
                  {
                   case dmBytes:
                        *mem=kc;
@@ -4830,7 +4945,7 @@ void TDataViewer::handleEvent(TEvent & event)
                   default:
                        break;
                  }
-               for (kc=0; kc<fieldBytes[dispmode]; kc++)
+               for (kc=0; kc<fieldBytes[dispMode]; kc++)
                    mem[memLen+kc]|=stEdited;
                indi->changeState(TDIndicator::iChanged,'*');
                cursorHoriz(1);
@@ -4856,12 +4971,26 @@ void TDataViewer::handleEvent(TEvent & event)
        case cmDbgChgState:
             if (dbg && dbg->GetState()==MIDebugger::stopped)
               {
-               setCommands(True);
-               update(memStart,True);
+               if (outOfScope)
+                 {
+                  if (owner && owner->current==this)
+                     TSetEditorApp::setCmdState(cmRecycle,True);
+                 }
+               else
+                 {
+                  setCommands(True);
+                  update(memStart,True);
+                 }
               }
             else
               {// Any other state is useless
-               setCommands(False);
+               if (outOfScope)
+                 {
+                  if (owner && owner->current==this)
+                     TSetEditorApp::setCmdState(cmRecycle,False);
+                 }
+               else
+                  setCommands(False);
               }
             break;
       }
@@ -4915,16 +5044,16 @@ void TDataViewer::handleEvent(TEvent & event)
             break;
        // End of cursor movement
        case cmDWLessLines:        // decrease bytes/line
-            if (bytesPerLine>fieldBytes[dispmode])
+            if (bytesPerLine>fieldBytes[dispMode])
               {
-               bytesPerLine-=fieldBytes[dispmode];
+               bytesPerLine-=fieldBytes[dispMode];
                update(memStart);
                adjustWindow();
                setCursor(addrLen,cursor.y);
               }
             break;
        case cmDWMoreLines:         // increase bytes/line
-            bytesPerLine+=fieldBytes[dispmode];
+            bytesPerLine+=fieldBytes[dispMode];
             free(memo);
             memo=NULL;
             update(memStart);
@@ -4935,28 +5064,26 @@ void TDataViewer::handleEvent(TEvent & event)
             drawView();
             break;
        case cmDWTogAutoF:         // toggle auto follow mode
-            autoFollow^=1;
-            indi->changeState(TDIndicator::iAutofollow," A"[autoFollow]);
+            setAutoFollow(autoFollow^1);
             break;
        case cmDWBaseAddress:      // set new base address
             printCursorAddress(buf);
             if (EnterAddresses(__("Base Address"),taddNewValue,&baseAddress,buf))
               {
-               indi->changeState(TDIndicator::iBaseAddress,baseAddress ? 'B' : ' ');
+               setBaseAddress(baseAddress);
                drawView();
               }
             break;
        case cmDWDispMode:         // change display mode
-            dispmode=(dispmode+1) % dmMAX;
-            bytesPerLine&=~(fieldBytes[dispmode]-1);
+            dispMode=(dispMode+1) % dmMAX;
+            bytesPerLine&=~(fieldBytes[dispMode]-1);
             update(memStart);
             adjustWindow();
             setCursor(addrLen,cursor.y);
             break;
        case cmDWTogEndian:       // change endianness
-            endian^=1;
-            indi->changeState(TDIndicator::iEndian,"eE"[endian]);
-            if (fieldBytes[dispmode]>1)
+            setEndian(endian^1);
+            if (fieldBytes[dispMode]>1)
                update(memStart);
             break;
        case cmDWFollowPointer:   // follow pointer
@@ -5039,11 +5166,15 @@ void TDataViewer::handleEvent(TEvent & event)
               }
             break;
        case cmDWRadix:          // change radix
-            radix=(radix+1) % rxMAX;
-            indi->changeState(TDIndicator::iRadix,"XD"[radix]);
+            setRadix((radix+1) % rxMAX);
             update(memStart);
             adjustWindow();
             setCursor(addrLen,cursor.y);
+            break;
+       case cmRecycle:
+            recycle();
+            // Avoid an extra (and wrong) update
+            newAddr=memStart;
             break;
        default:
             return;
@@ -5077,8 +5208,15 @@ public:
  static TDataWindow *createNew(const char *naddr=NULL, Boolean edit=False);
  static TDataWindow *stackWindow();
 
+ void saveData(opstream &os) { viewer->saveData(os); };
+ static TDataWindow *readData(ipstream &is, char version, const TRect &bounds);
+
 protected:
  TDataViewer *viewer;
+ TScrollBar *vs;
+ TDIndicator *indi;
+
+ void loadFromDisk(ipstream &is, char version);
 };
 
 #define cpDataWindow "\x97\x98\x99\x9A\x9B\x9C\x9D\x9E\x9F\xA0\xA1"
@@ -5090,30 +5228,51 @@ TPalette &TDataWindow::getPalette() const
  return pal;
 }
 
-TDataWindow::TDataWindow(const TRect & bounds, const char *aTitle) :
+TDataWindow::TDataWindow(const TRect &bounds, const char *aTitle) :
   TWindowInit(TDataWindow::initFrame),
   TDialog(bounds,aTitle)
 {
- TScrollBar *vs;
- TRect r=getExtent();
+ growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
+ flags|=wfGrow | wfZoom;
+ helpCtx=hcDataViewer;
 
+ TRect r=getExtent();
  r.grow(-1,-1);
 
  vs=new TScrollBar(TRect(r.b.x-1,r.a.y,r.b.x,r.b.y));
  insert(vs);
 
+ indi=new TDIndicator(TRect(2,size.y-1,12,size.y));
+
+ if (aTitle)
+   {
+    r.b.x--;
+    viewer=new TDataViewer(r,vs,aTitle,indi);
+    insert(viewer);
+    insert(indi);
+    viewer->select();
+   }
+}
+
+TDataWindow *TDataWindow::readData(ipstream &is, char version,
+                                   const TRect &bounds)
+{// Two steps
+ TDataWindow *w=new TDataWindow(bounds,NULL);
+ w->loadFromDisk(is,version);
+
+ return w;
+}
+
+void TDataWindow::loadFromDisk(ipstream &is, char version)
+{
+ TRect r=getExtent();
+ r.grow(-1,-1);
  r.b.x--;
- viewer=new TDataViewer(r,vs,aTitle);
+ viewer=TDataViewer::readData(is,version,r,vs,indi);
  insert(viewer);
- viewer->growMode=gfGrowHiX | gfGrowHiY;
- growMode=gfGrowLoY | gfGrowHiX | gfGrowHiY;
- flags|=wfGrow | wfZoom;
-
- viewer->indi=new TDIndicator(TRect(2,size.y-1,12,size.y));
- insert(viewer->indi);
-
+ insert(indi);
  viewer->select();
- helpCtx=hcDataViewer;
+ title=newStr(viewer->origAddrTxt);
 }
 
 TDataWindow *TDataWindow::createNew(const char *naddr, Boolean edit)
@@ -5167,9 +5326,8 @@ TDataWindow *TDataWindow::stackWindow()
  if (dw)
    {
     dw->viewer->bytesPerLine=4;
-    dw->viewer->dispmode=TDataViewer::dm4Bytes;
-    dw->viewer->autoFollow=1;
-    dw->viewer->indi->changeState(TDIndicator::iAutofollow,'A');
+    dw->viewer->dispMode=TDataViewer::dm4Bytes;
+    dw->viewer->setAutoFollow(1);
     dw->viewer->adjustWindow();
    }
  return dw;
@@ -5238,6 +5396,9 @@ public:
  char *GetText(char *dest, short maxLen);
  static void Insert(TDataWindow *w);
 
+ void saveData(opstream &os);
+ static void readData(ipstream &is, char version);
+
 protected:
  TDataWindow *window;
 };
@@ -5260,6 +5421,39 @@ char *TDskDataWin::GetText(char *dest, short maxLen)
 void TDskDataWin::Insert(TDataWindow *w)
 {
  TDskWin *win=new TDskDataWin(w);
+ AddNonEditorToHelper(win);
+ InsertInOrder(TProgram::deskTop,win);
+}
+
+void TDskDataWin::saveData(opstream &os)
+{
+ unsigned wS=TScreen::getCols();
+ unsigned hS=TScreen::getRows();
+ TRect size=window->getBounds();
+ // size
+ SaveExpandedRect(os,size,wS,hS);
+ // z-order
+ os << (int)(TProgram::deskTop->indexOf(view));
+ // expression and state
+ window->saveData(os);
+}
+
+void TDskDataWin::readData(ipstream &is, char version)
+{
+ unsigned wS=TScreen::getCols();
+ unsigned hS=TScreen::getRows();
+ TRect size;
+
+ // size
+ ReadExpandedRect(is,size,wS,hS);
+ // z-order
+ int ZOrder;
+ is >> ZOrder;
+ // expression and state
+ TDataWindow *d=TDataWindow::readData(is,version,size);
+ // Recreate it
+ TDskDataWin *win=new TDskDataWin(d);
+ win->ZOrder=ZOrder;
  AddNonEditorToHelper(win);
  InsertInOrder(TProgram::deskTop,win);
 }
@@ -6669,7 +6863,15 @@ void SaveInspector(TDskWin *win, void *data)
 }
 
 static
-void CountInspectors(TDskWin *win, void *data)
+void SaveDW(TDskWin *win, void *data)
+{
+ TDskDataWin *w=(TDskDataWin *)win;
+ opstream *os=(opstream *)data;
+ w->saveData(*os);
+}
+
+static
+void CountNonEditors(TDskWin *, void *data)
 {
  int *i=(int *)data;
  (*i)++;
@@ -6746,10 +6948,17 @@ void DebugSaveData(opstream &os)
  // Inspectors
  os << inspVersion;
  int inspectors=0;
- TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,CountInspectors,&inspectors);
+ TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,CountNonEditors,&inspectors);
  os << inspectors;
  if (inspectors)
     TSetEditorApp::edHelper->forEachNonEditor(dktDbgIns,SaveInspector,&os);
+ // Data windows
+ os << dwVersion;
+ int dataWindows=0;
+ TSetEditorApp::edHelper->forEachNonEditor(dktDbgDataWin,CountNonEditors,&dataWindows);
+ os << dataWindows;
+ if (dataWindows)
+    TSetEditorApp::edHelper->forEachNonEditor(dktDbgDataWin,SaveDW,&os);
  // No more data
  os << svAbsent;
 }
@@ -6833,6 +7042,14 @@ void DebugReadData(ipstream &is)
  is >> inspectors;
  for (int i=0; i<inspectors; i++)
      TDskInspector::readData(is,aux);
+ // Data Windows
+ is >> aux;
+ if (!aux)
+    return;
+ int dataWindows;
+ is >> dataWindows;
+ for (int i=0; i<dataWindows; i++)
+     TDskDataWin::readData(is,aux);
  // No more data
  is >> aux;
 }
