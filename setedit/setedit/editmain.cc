@@ -1382,12 +1382,14 @@ int  TSetEditorApp::screenSaverTimeMouse=3;
 TDeskTopClock *TSetEditorApp::Clock=0;
 char TSetEditorApp::ExternalPrgMode[80]="c:/etc/stm -t c:/etc/TextConfig 108x30";
 
+const int ClockWidth=7;
+
 void TSetEditorApp::CreateClock()
 {
- // Take the last 6 characters for the clock
+ // Take the last ClockWidth characters for the clock
  TRect r=menuBar->getExtent();
  int start=r.a.x;
- r.a.x=r.b.x-6;
+ r.a.x=r.b.x-ClockWidth;
  Clock=new TDeskTopClock(r);
  insert(Clock);
  // Reduce the menubar
@@ -1405,7 +1407,7 @@ void TSetEditorApp::KillClock()
     Clock=0;
     // Enlarge the menuBar again
     TRect r=menuBar->getExtent();
-    r.b.x+=6;
+    r.b.x+=ClockWidth;
     menuBar->changeBounds(r);
    }
 }
