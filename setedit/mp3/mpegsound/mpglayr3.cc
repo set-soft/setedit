@@ -21,11 +21,18 @@
 #include "mpegsound.h"
 #include "mpg_locals.h"
 
-inline int Mpegtoraw::wgetbit(void)      {return bitwindow.getbit  ();    }
-inline int Mpegtoraw::wgetbits9(int bits){return bitwindow.getbits9(bits);}
-inline int Mpegtoraw::wgetbits(int bits) {return bitwindow.getbits (bits);}
+// Change to 0 if you need to debug the code unoptimized.
+#if 1
+ #define ASK_INLINE inline
+#else
+ #define ASK_INLINE
+#endif
 
-inline void Mpegbitwindow::wrap(void)
+ASK_INLINE int Mpegtoraw::wgetbit(void)      {return bitwindow.getbit  ();    }
+ASK_INLINE int Mpegtoraw::wgetbits9(int bits){return bitwindow.getbits9(bits);}
+ASK_INLINE int Mpegtoraw::wgetbits(int bits) {return bitwindow.getbits (bits);}
+
+ASK_INLINE void Mpegbitwindow::wrap(void)
 {
   int p=bitindex>>3;
   point&=(WINDOWSIZE-1);
@@ -38,7 +45,7 @@ inline void Mpegbitwindow::wrap(void)
   *((int *)(buffer+WINDOWSIZE))=*((int *)buffer);
 }
 
-inline int Mpegbitwindow::getbit(void)
+ASK_INLINE int Mpegbitwindow::getbit(void)
 {
 //  register int r=(buffer[(bitindex>>3)&(WINDOWSIZE-1)]>>(7-(bitindex&7)))&1;
   register int r=(buffer[bitindex>>3]>>(7-(bitindex&7)))&1;
@@ -46,7 +53,7 @@ inline int Mpegbitwindow::getbit(void)
   return r;
 };
 
-inline int Mpegbitwindow::getbits9(int bits)
+ASK_INLINE int Mpegbitwindow::getbits9(int bits)
 {
    register unsigned short a;
 
@@ -79,7 +86,7 @@ inline int Mpegbitwindow::getbits9(int bits)
 #define PI_72  (PI/72.0)
 
 #ifdef NATIVE_ASSEMBLY
-inline void long_memset(void * s,unsigned int c,int count)
+ASK_INLINE void long_memset(void * s,unsigned int c,int count)
 {
 __asm__ __volatile__(
   "cld\n\t"
@@ -288,6 +295,7 @@ bool Mpegtoraw::layer3getsideinfo(void)
 	gi->region0_count   =getbits(4);
 	gi->region1_count   =getbits(3);
 	gi->block_type      =0;
+	gi->mixed_block_flag=0;
       }
       gi->preflag           =getbit();
       gi->scalefac_scale    =getbit();
@@ -349,6 +357,7 @@ bool Mpegtoraw::layer3getsideinfo_2(void)
       gi->region0_count   =getbits(4);
       gi->region1_count   =getbits(3);
       gi->block_type      =0;
+      gi->mixed_block_flag=0;
     }
     gi->scalefac_scale    =getbit();
     gi->count1table_select=getbit();
@@ -626,7 +635,7 @@ typedef unsigned int HUFFBITS;
 /* do the huffman-decoding 						*/
 /* note! for counta,countb -the 4 bit value is returned in y, discard x */
 // Huffman decoder for tablename<32
-inline void Mpegtoraw::huffmandecoder_1(const HUFFMANCODETABLE *h,int *x,int *y)
+ASK_INLINE void Mpegtoraw::huffmandecoder_1(const HUFFMANCODETABLE *h,int *x,int *y)
 {  
   HUFFBITS level=(1<<(sizeof(HUFFBITS)*8-1));
   int point=0;
@@ -680,7 +689,7 @@ inline void Mpegtoraw::huffmandecoder_1(const HUFFMANCODETABLE *h,int *x,int *y)
 }
 
 // Huffman decoder tablenumber>=32
-inline void Mpegtoraw::huffmandecoder_2(const HUFFMANCODETABLE *h,
+ASK_INLINE void Mpegtoraw::huffmandecoder_2(const HUFFMANCODETABLE *h,
 				       int *x,int *y,int *v,int *w)
 {  
   HUFFBITS level=(1<<(sizeof(HUFFBITS)*8-1));
@@ -815,7 +824,7 @@ void Mpegtoraw::layer3huffmandecode(int ch,int gr,int out[SBLIMIT][SSLIMIT])
 
 static int pretab[22]={0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,2,2,3,3,3,2,0};
 
-inline REAL Mpegtoraw::layer3twopow2(int scale,int preflag,
+ASK_INLINE REAL Mpegtoraw::layer3twopow2(int scale,int preflag,
 				     int pretab_offset,int l)
 {
   int index=l;
@@ -824,7 +833,7 @@ inline REAL Mpegtoraw::layer3twopow2(int scale,int preflag,
   return(two_to_negative_half_pow[index<<scale]);
 }
 
-inline REAL Mpegtoraw::layer3twopow2_1(int a,int b,int c)
+ASK_INLINE REAL Mpegtoraw::layer3twopow2_1(int a,int b,int c)
 {
   return POW2_1[a][b][c];
 }
@@ -974,7 +983,7 @@ void Mpegtoraw::layer3dequantizesample(int ch,int gr,
   }
 }
 
-inline void Mpegtoraw::layer3fixtostereo(int gr,REAL in[2][SBLIMIT][SSLIMIT])
+ASK_INLINE void Mpegtoraw::layer3fixtostereo(int gr,REAL in[2][SBLIMIT][SSLIMIT])
 {
   layer3grinfo *gi=&(sideinfo.ch[0].gr[gr]);
   SFBANDINDEX *sfBandIndex=&(sfBandIndextable[version][frequency]);
@@ -1269,7 +1278,7 @@ inline void Mpegtoraw::layer3fixtostereo(int gr,REAL in[2][SBLIMIT][SSLIMIT])
   // channels==2
 }
 
-inline void layer3reorder_1(int version,int frequency,
+ASK_INLINE void layer3reorder_1(int version,int frequency,
 			    REAL  in[SBLIMIT][SSLIMIT],
 			    REAL out[SBLIMIT][SSLIMIT])
 {
@@ -1310,7 +1319,7 @@ inline void layer3reorder_1(int version,int frequency,
   }
 }
 
-inline void layer3reorder_2(int version,int frequency,REAL  in[SBLIMIT][SSLIMIT],
+ASK_INLINE void layer3reorder_2(int version,int frequency,REAL  in[SBLIMIT][SSLIMIT],
 			    REAL out[SBLIMIT][SSLIMIT])
 {
   SFBANDINDEX *sfBandIndex=&(sfBandIndextable[version][frequency]);
@@ -1334,7 +1343,7 @@ inline void layer3reorder_2(int version,int frequency,REAL  in[SBLIMIT][SSLIMIT]
 }
 
 
-inline void layer3antialias_1(REAL  in[SBLIMIT][SSLIMIT])
+ASK_INLINE void layer3antialias_1(REAL  in[SBLIMIT][SSLIMIT])
 {
   for(int ss=0;ss<8;ss++)
   {
@@ -1346,7 +1355,7 @@ inline void layer3antialias_1(REAL  in[SBLIMIT][SSLIMIT])
   }
 }
 
-inline
+ASK_INLINE
 void layer3antialias_2(REAL  in[SBLIMIT][SSLIMIT],
 		       REAL out[SBLIMIT][SSLIMIT])
 {

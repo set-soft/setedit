@@ -81,6 +81,7 @@ bool Rawplayer::initialize(char *filename)
 
   // The following value isn't used by SETEdit's strategy and looks like Jung
   // took it wrong because the value seems to be the granularity (64 in my system).
+  audiobuffersize=0;
   IOCTL(audiohandle,SNDCTL_DSP_GETBLKSIZE,audiobuffersize);
   if(audiobuffersize<4 || audiobuffersize>65536)
     return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
@@ -90,7 +91,7 @@ bool Rawplayer::initialize(char *filename)
 
 void Rawplayer::abort(void)
 {
-  int a;
+  int a=0;
 
   IOCTL(audiohandle,SNDCTL_DSP_RESET,a);
 }
@@ -115,7 +116,7 @@ bool Rawplayer::roomformore(unsigned size)
   audio_buf_info info;
 
   IOCTL(audiohandle,SNDCTL_DSP_GETOSPACE,info);
-  return info.bytes>=size ? true : false;
+  return info.bytes>=(int)size ? true : false;
 }
 
 /* Not all OSS implementations define an endian-independant samplesize.
@@ -209,8 +210,11 @@ bool Rawplayer::putblock(void *buffer,int size)
   if(quota)
     while(getprocessed()>quota)usleep(3);
   write(audiohandle,buffer,modifiedsize);
-  unsigned char *s=(unsigned char *)buffer;
-  //fprintf(stderr,"Ok! %d bytes 0x%02X 0x%02X 0x%02X 0x%02X\n",modifiedsize,s[0],s[1],s[2],s[3]);
+  if (0)
+    {
+     unsigned char *s=(unsigned char *)buffer;
+     fprintf(stderr,"Ok! %d bytes 0x%02X 0x%02X 0x%02X 0x%02X\n",modifiedsize,s[0],s[1],s[2],s[3]);
+    }
 
   return true;
 }

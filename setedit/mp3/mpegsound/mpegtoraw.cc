@@ -640,6 +640,11 @@ bool Mpegtoraw::loadheader(void)
     }
   }
 
+  if(framesize-4>RAWDATASIZE)
+  {// SET: Avoid corrupting data if we got a wrong framesize.
+    seterrorcode(SOUND_ERROR_BAD);
+    return false;
+  }
   if(!fillbuffer(framesize-4))seterrorcode(SOUND_ERROR_FILEREADFAIL);
 
   if(!protection)
