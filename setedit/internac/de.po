@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-01-04 11:32-0300\n"
+"PO-Revision-Date: 2005-02-21 15:41-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "~A~uswerten"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1475 ../mainsrc/tags.cc:1703
+#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1477 ../mainsrc/tags.cc:1705
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
-#: ../mainsrc/tags.cc:1497 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1499 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -87,7 +87,7 @@ msgstr "O~K"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Datei: %s - Knoten: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:449
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:450
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr ""
@@ -463,7 +463,7 @@ msgstr "~D~OS Shell"
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1762 ../setedit/debug.cc:4303
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1764 ../setedit/debug.cc:4303
 #: ../setedit/debug.cc:4910 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~B~eenden"
@@ -597,8 +597,8 @@ msgstr "~F10~ Menü"
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:442
-#: ../mainsrc/ceditor.cc:516
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:443
+#: ../mainsrc/ceditor.cc:517
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
@@ -940,7 +940,7 @@ msgstr ""
 "Umsch+Löschen: Auswahl kopieren und dann löschen\n"
 "Strg+U: Rückgängig (nur eine Aktion)"
 
-#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:582
+#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:581
 #: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:171
 msgid "~O~k"
 msgstr "~O~k"
@@ -1510,32 +1510,32 @@ msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:538
+#: ../mainsrc/ceditor.cc:539
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4224
+#: ../mainsrc/ceditor.cc:4229
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4271 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4276 ../mainsrc/doedidia.cc:143
 #, fuzzy, c-format
 msgid "%d bytes selected, in %d"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4432
+#: ../mainsrc/ceditor.cc:4437
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4451
+#: ../mainsrc/ceditor.cc:4456
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4473
+#: ../mainsrc/ceditor.cc:4478
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1546,7 +1546,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4507
+#: ../mainsrc/ceditor.cc:4512
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1559,16 +1559,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6102
+#: ../mainsrc/ceditor.cc:6121
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6117
+#: ../mainsrc/ceditor.cc:6136
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10468
+#: ../mainsrc/ceditor.cc:10493
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1577,29 +1577,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10483
+#: ../mainsrc/ceditor.cc:10508
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11227
+#: ../mainsrc/ceditor.cc:11252
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12176
+#: ../mainsrc/ceditor.cc:12201
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12387
+#: ../mainsrc/ceditor.cc:12412
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13580
+#: ../mainsrc/ceditor.cc:13605
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13590
+#: ../mainsrc/ceditor.cc:13615
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2186,17 +2186,17 @@ msgstr "Falsche Version"
 msgid "Error while reading"
 msgstr "Fehler während des Lesens"
 
-#: ../mainsrc/keytrans.cc:1143
+#: ../mainsrc/keytrans.cc:1144
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr ""
 
-#: ../mainsrc/keytrans.cc:1152
+#: ../mainsrc/keytrans.cc:1153
 #, fuzzy, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
-#: ../mainsrc/keytrans.cc:1189
+#: ../mainsrc/keytrans.cc:1190
 msgid "You'll lose all the changes"
 msgstr "Sie werden alle Änderungen verlieren"
 
@@ -2237,7 +2237,7 @@ msgstr "Wert:"
 msgid "Associated string"
 msgstr "Verbundener Wert"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1332
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1334
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "Wollen Sie die Änderungen verwerfen?"
@@ -2407,7 +2407,7 @@ msgstr "Ende von SLP"
 
 #: ../mainsrc/slpinter.cc:587
 #, fuzzy
-msgid "Enter sLisp code to interprete"
+msgid "Enter sLisp code to interpret"
 msgstr "Fehler im sLisp Übersetzer:"
 
 #: ../mainsrc/slpinter.cc:616
@@ -2493,169 +2493,169 @@ msgstr "Wählen Sie einen Knoten"
 msgid "No INFO files for syntax help defined"
 msgstr "Keine INFO Dateien für Syntaxsuche angegeben"
 
-#: ../mainsrc/tags.cc:768
+#: ../mainsrc/tags.cc:770
 #, fuzzy
 msgid "Wrong format for tags file!"
 msgstr "Falsche Projektdatei."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:956
+#: ../mainsrc/tags.cc:958
 msgid "I can try to generate a tag file, go ahead?"
 msgstr ""
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:965
+#: ../mainsrc/tags.cc:967
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1313
+#: ../mainsrc/tags.cc:1315
 msgid "This file is automatically maintained"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1342
+#: ../mainsrc/tags.cc:1344
 #, fuzzy
 msgid "Select tags file"
 msgstr "Datei aussuchen"
 
-#: ../mainsrc/tags.cc:1358
+#: ../mainsrc/tags.cc:1360
 msgid "Use relative path for the file?"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1379
+#: ../mainsrc/tags.cc:1381
 #, fuzzy
 msgid "Variables"
 msgstr "Verfügbar"
 
-#: ../mainsrc/tags.cc:1395
+#: ../mainsrc/tags.cc:1397
 #, fuzzy
 msgid "Tag files"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/tags.cc:1497
+#: ../mainsrc/tags.cc:1499
 #, fuzzy
 msgid "Jump to symbol"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/tags.cc:1497
+#: ../mainsrc/tags.cc:1499
 #, fuzzy
 msgid "List of symbols"
 msgstr "Wortliste"
 
-#: ../mainsrc/tags.cc:1498
+#: ../mainsrc/tags.cc:1500
 #, fuzzy
 msgid "~S~earch members"
 msgstr "~S~uche"
 
-#: ../mainsrc/tags.cc:1530
+#: ../mainsrc/tags.cc:1532
 #, fuzzy
 msgid "Unknown line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1776 ../mainsrc/tags.cc:1792
+#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1778 ../mainsrc/tags.cc:1794
 #, fuzzy
 msgid "Members"
 msgstr "Dezember"
 
-#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1702 ../mainsrc/tags.cc:1776
-#: ../mainsrc/tags.cc:1792
+#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1704 ../mainsrc/tags.cc:1778
+#: ../mainsrc/tags.cc:1794
 #, fuzzy
 msgid "~J~ump"
 msgstr "~G~ruppe"
 
-#: ../mainsrc/tags.cc:1584
+#: ../mainsrc/tags.cc:1586
 #, fuzzy
 msgid "Sorry, couldn't find any member"
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:1589
+#: ../mainsrc/tags.cc:1591
 #, fuzzy
 msgid "I don't know any members for this type"
 msgstr "Nicht genug Speicher für diese Operation"
 
-#: ../mainsrc/tags.cc:1686
+#: ../mainsrc/tags.cc:1688
 #, fuzzy
 msgid "Class list"
 msgstr "Spiel~l~iste"
 
-#: ../mainsrc/tags.cc:1697
+#: ../mainsrc/tags.cc:1699
 #, fuzzy
 msgid "List of classes"
 msgstr "Dateiliste"
 
-#: ../mainsrc/tags.cc:1701
+#: ../mainsrc/tags.cc:1703
 #, fuzzy
 msgid "~V~iew"
 msgstr "~N~eu"
 
-#: ../mainsrc/tags.cc:1740
+#: ../mainsrc/tags.cc:1742
 #, fuzzy
 msgid "P~a~rents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1742
+#: ../mainsrc/tags.cc:1744
 msgid "Browse ~p~arent"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1747
+#: ../mainsrc/tags.cc:1749
 msgid "Chil~d~ren"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1749
+#: ../mainsrc/tags.cc:1751
 msgid "Browse ~c~hild"
-msgstr ""
-
-#: ../mainsrc/tags.cc:1758
-#, fuzzy
-msgid "View"
-msgstr "InfView"
-
-#: ../mainsrc/tags.cc:1759
-msgid "~T~his class"
 msgstr ""
 
 #: ../mainsrc/tags.cc:1760
 #, fuzzy
+msgid "View"
+msgstr "InfView"
+
+#: ../mainsrc/tags.cc:1761
+msgid "~T~his class"
+msgstr ""
+
+#: ../mainsrc/tags.cc:1762
+#, fuzzy
 msgid "This & Pa~r~ents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1761
+#: ../mainsrc/tags.cc:1763
 #, fuzzy
 msgid "~S~orted"
 msgstr "~S~ortierungsart"
 
-#: ../mainsrc/tags.cc:1793
+#: ../mainsrc/tags.cc:1795
 msgid "View ~C~lass"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1893
+#: ../mainsrc/tags.cc:1895
 #, fuzzy
 msgid "Sorry, but I can't find any class."
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:2023
+#: ../mainsrc/tags.cc:2025
 msgid "This option is only available when using projects"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2028
+#: ../mainsrc/tags.cc:2030
 #, fuzzy
 msgid "Tags options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/tags.cc:2030
+#: ../mainsrc/tags.cc:2032
 msgid "Automatic generation"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2030
+#: ../mainsrc/tags.cc:2032
 #, fuzzy
 msgid "~D~isabled"
 msgstr "~A~usschalten"
 
-#: ../mainsrc/tags.cc:2031
+#: ../mainsrc/tags.cc:2033
 #, fuzzy
 msgid "~U~sing central file"
 msgstr "Falsche Desktopdatei."
 
-#: ../mainsrc/tags.cc:2045
+#: ../mainsrc/tags.cc:2047
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 
@@ -4585,7 +4585,7 @@ msgstr "~E~rsetzen..."
 msgid "~S~earch again"
 msgstr "~W~iederhole Suche"
 
-#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:213
+#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:216
 msgid "~M~acro"
 msgstr "~M~akro"
 
@@ -5914,58 +5914,58 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: ../setedit/edkeys.cc:481
+#: ../setedit/edkeys.cc:480
 msgid "Macros"
 msgstr "Makros"
 
-#: ../setedit/edkeys.cc:497
+#: ../setedit/edkeys.cc:496
 msgid "Commands"
 msgstr "Befehle"
 
-#: ../setedit/edkeys.cc:526
+#: ../setedit/edkeys.cc:525
 msgid "A command"
 msgstr "Ein Befehl"
 
-#: ../setedit/edkeys.cc:576
+#: ../setedit/edkeys.cc:575
 msgid "Scan Viewer"
 msgstr "Scan Betrachter"
 
-#: ../setedit/edkeys.cc:589
+#: ../setedit/edkeys.cc:588
 msgid "Alt keys settings"
 msgstr "Alt Tasteneinstellungen"
 
-#: ../setedit/edkeys.cc:591
+#: ../setedit/edkeys.cc:590
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~asten von Menüs, etc. benutzt"
 
-#: ../setedit/edkeys.cc:592
+#: ../setedit/edkeys.cc:591
 msgid "~L~eft Alt"
 msgstr "~L~inke Alt"
 
-#: ../setedit/edkeys.cc:592
+#: ../setedit/edkeys.cc:591
 msgid "~R~ight Alt"
 msgstr "~R~echte Alt"
 
-#: ../setedit/edkeys.cc:593
+#: ../setedit/edkeys.cc:592
 msgid "~B~oth Alt"
 msgstr "~B~eide Alt"
 
-#: ../setedit/edkeys.cc:615
+#: ../setedit/edkeys.cc:614
 msgid "Key Pad behavior"
 msgstr "KeyPad Verhalten"
 
-#: ../setedit/edkeys.cc:617
+#: ../setedit/edkeys.cc:616
 msgid "Behavior"
 msgstr "Verhalten"
 
-#: ../setedit/edkeys.cc:617
+#: ../setedit/edkeys.cc:616
 #, fuzzy
 msgid "Use the ~B~IOS default"
 msgstr "Behalte ~B~IOS Standard"
 
-#: ../setedit/edkeys.cc:618
+#: ../setedit/edkeys.cc:617
 #, fuzzy
-msgid "Always interprete shift+arrow as ~m~ovement"
+msgid "Always interpret shift+arrow as ~m~ovement"
 msgstr "U~m~schalt+Pfeil immer als Bewegung"
 
 #: ../setedit/edmsg.cc:353
@@ -7236,15 +7236,15 @@ msgstr "~I~nfo"
 msgid "Assigned to:"
 msgstr "Zuweisun~g~"
 
-#: ../settvuti/tdiagaid.cc:213
+#: ../settvuti/tdiagaid.cc:216
 msgid "Assignmen~t~"
 msgstr "Zuweisun~g~"
 
-#: ../settvuti/tdiagaid.cc:213
+#: ../settvuti/tdiagaid.cc:216
 msgid "Command~s~"
 msgstr "Befehl~e~"
 
-#: ../settvuti/tdiagaid.cc:214
+#: ../settvuti/tdiagaid.cc:217
 #, fuzzy
 msgid "s~L~isp code"
 msgstr "sLisp Makros"

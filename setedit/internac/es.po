@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-01-04 11:32-0300\n"
+"PO-Revision-Date: 2005-02-21 15:41-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1475 ../mainsrc/tags.cc:1703
+#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1477 ../mainsrc/tags.cc:1705
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
-#: ../mainsrc/tags.cc:1497 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1499 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -87,7 +87,7 @@ msgstr "O~k~"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Archivo: %s - Nodo: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:449
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:450
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr "Error al copiar al portapapeles: %s"
@@ -470,7 +470,7 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1762 ../setedit/debug.cc:4303
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1764 ../setedit/debug.cc:4303
 #: ../setedit/debug.cc:4910 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~S~alir"
@@ -591,8 +591,8 @@ msgstr "~F10~ Menú"
 msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operación."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:442
-#: ../mainsrc/ceditor.cc:516
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:443
+#: ../mainsrc/ceditor.cc:517
 msgid "Sorry but no OS specific clipboard is available"
 msgstr "Lo lamento pero no hay ningún portapapeles del sistema disponible"
 
@@ -933,7 +933,7 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acción)"
 
-#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:582
+#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:581
 #: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:171
 msgid "~O~k"
 msgstr "~O~k"
@@ -1441,32 +1441,32 @@ msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:538
+#: ../mainsrc/ceditor.cc:539
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4224
+#: ../mainsrc/ceditor.cc:4229
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4271 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4276 ../mainsrc/doedidia.cc:143
 #, c-format
 msgid "%d bytes selected, in %d"
 msgstr "%d caracteres seleccionados en %d"
 
-#: ../mainsrc/ceditor.cc:4432
+#: ../mainsrc/ceditor.cc:4437
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4451
+#: ../mainsrc/ceditor.cc:4456
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4473
+#: ../mainsrc/ceditor.cc:4478
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1477,7 +1477,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4507
+#: ../mainsrc/ceditor.cc:4512
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1490,16 +1490,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:6102
+#: ../mainsrc/ceditor.cc:6121
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:6117
+#: ../mainsrc/ceditor.cc:6136
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10468
+#: ../mainsrc/ceditor.cc:10493
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1507,29 +1507,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10483
+#: ../mainsrc/ceditor.cc:10508
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11227
+#: ../mainsrc/ceditor.cc:11252
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12176
+#: ../mainsrc/ceditor.cc:12201
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12387
+#: ../mainsrc/ceditor.cc:12412
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13580
+#: ../mainsrc/ceditor.cc:13605
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13590
+#: ../mainsrc/ceditor.cc:13615
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2095,17 +2095,17 @@ msgstr "Versión incorrecta"
 msgid "Error while reading"
 msgstr "Error al leer"
 
-#: ../mainsrc/keytrans.cc:1143
+#: ../mainsrc/keytrans.cc:1144
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr "%s, archivo \"%s\"\n"
 
-#: ../mainsrc/keytrans.cc:1152
+#: ../mainsrc/keytrans.cc:1153
 #, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Error al cargar la configuración de teclado: %s"
 
-#: ../mainsrc/keytrans.cc:1189
+#: ../mainsrc/keytrans.cc:1190
 msgid "You'll lose all the changes"
 msgstr "Perderá todos los cambios"
 
@@ -2145,7 +2145,7 @@ msgstr "Valor:"
 msgid "Associated string"
 msgstr "String asociado"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1332
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1334
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "¿Desea descartar los cambios?"
@@ -2311,7 +2311,7 @@ msgid "End of SLP"
 msgstr "Fin de SLP"
 
 #: ../mainsrc/slpinter.cc:587
-msgid "Enter sLisp code to interprete"
+msgid "Enter sLisp code to interpret"
 msgstr "Ingrese código sLisp a ser interpretado"
 
 #: ../mainsrc/slpinter.cc:616
@@ -2397,147 +2397,147 @@ msgstr "Elegir un nodo"
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
-#: ../mainsrc/tags.cc:768
+#: ../mainsrc/tags.cc:770
 msgid "Wrong format for tags file!"
 msgstr "Formato incorrecto para el archivo de TAGs."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:956
+#: ../mainsrc/tags.cc:958
 msgid "I can try to generate a tag file, go ahead?"
 msgstr "Puedo intentar generar un archivo de TAGS ¿lo hago?"
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:965
+#: ../mainsrc/tags.cc:967
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 "Instale Exuberant Ctags, puede obtenerlo en http://ctags.sourceforge.net"
 
-#: ../mainsrc/tags.cc:1313
+#: ../mainsrc/tags.cc:1315
 msgid "This file is automatically maintained"
 msgstr "Este archivo es mantenido automaticamente"
 
-#: ../mainsrc/tags.cc:1342
+#: ../mainsrc/tags.cc:1344
 msgid "Select tags file"
 msgstr "Seleccione el archivo de TAGs"
 
-#: ../mainsrc/tags.cc:1358
+#: ../mainsrc/tags.cc:1360
 msgid "Use relative path for the file?"
 msgstr "¿Desea usar un camino (path) relativo?"
 
-#: ../mainsrc/tags.cc:1379
+#: ../mainsrc/tags.cc:1381
 msgid "Variables"
 msgstr "Variables"
 
-#: ../mainsrc/tags.cc:1395
+#: ../mainsrc/tags.cc:1397
 msgid "Tag files"
 msgstr "Archivos de TAGs"
 
-#: ../mainsrc/tags.cc:1497
+#: ../mainsrc/tags.cc:1499
 msgid "Jump to symbol"
 msgstr "Saltar a un símbolo"
 
-#: ../mainsrc/tags.cc:1497
+#: ../mainsrc/tags.cc:1499
 msgid "List of symbols"
 msgstr "Lista de símbolos"
 
-#: ../mainsrc/tags.cc:1498
+#: ../mainsrc/tags.cc:1500
 msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
-#: ../mainsrc/tags.cc:1530
+#: ../mainsrc/tags.cc:1532
 msgid "Unknown line"
 msgstr "Línea desconocida"
 
-#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1776 ../mainsrc/tags.cc:1792
+#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1778 ../mainsrc/tags.cc:1794
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1575 ../mainsrc/tags.cc:1702 ../mainsrc/tags.cc:1776
-#: ../mainsrc/tags.cc:1792
+#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1704 ../mainsrc/tags.cc:1778
+#: ../mainsrc/tags.cc:1794
 msgid "~J~ump"
 msgstr "~S~altar"
 
-#: ../mainsrc/tags.cc:1584
+#: ../mainsrc/tags.cc:1586
 msgid "Sorry, couldn't find any member"
 msgstr "Lo lamento, no puedo hallar ningún miembro"
 
-#: ../mainsrc/tags.cc:1589
+#: ../mainsrc/tags.cc:1591
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1686
+#: ../mainsrc/tags.cc:1688
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1697
+#: ../mainsrc/tags.cc:1699
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1701
+#: ../mainsrc/tags.cc:1703
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1740
+#: ../mainsrc/tags.cc:1742
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1742
+#: ../mainsrc/tags.cc:1744
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1747
+#: ../mainsrc/tags.cc:1749
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1749
+#: ../mainsrc/tags.cc:1751
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1758
+#: ../mainsrc/tags.cc:1760
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1759
+#: ../mainsrc/tags.cc:1761
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1760
+#: ../mainsrc/tags.cc:1762
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1761
+#: ../mainsrc/tags.cc:1763
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1793
+#: ../mainsrc/tags.cc:1795
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1893
+#: ../mainsrc/tags.cc:1895
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:2023
+#: ../mainsrc/tags.cc:2025
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:2028
+#: ../mainsrc/tags.cc:2030
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:2030
+#: ../mainsrc/tags.cc:2032
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:2030
+#: ../mainsrc/tags.cc:2032
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:2031
+#: ../mainsrc/tags.cc:2033
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:2045
+#: ../mainsrc/tags.cc:2047
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"
@@ -4381,7 +4381,7 @@ msgstr "R~e~emplazar ..."
 msgid "~S~earch again"
 msgstr "~R~epetir búsqueda"
 
-#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:213
+#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:216
 msgid "~M~acro"
 msgstr "~M~acro"
 
@@ -5570,56 +5570,56 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: ../setedit/edkeys.cc:481
+#: ../setedit/edkeys.cc:480
 msgid "Macros"
 msgstr "Macros"
 
-#: ../setedit/edkeys.cc:497
+#: ../setedit/edkeys.cc:496
 msgid "Commands"
 msgstr "Comandos"
 
-#: ../setedit/edkeys.cc:526
+#: ../setedit/edkeys.cc:525
 msgid "A command"
 msgstr "Un comando"
 
-#: ../setedit/edkeys.cc:576
+#: ../setedit/edkeys.cc:575
 msgid "Scan Viewer"
 msgstr "Visor de códigos scan"
 
-#: ../setedit/edkeys.cc:589
+#: ../setedit/edkeys.cc:588
 msgid "Alt keys settings"
 msgstr "Seteo de las teclas Alt"
 
-#: ../setedit/edkeys.cc:591
+#: ../setedit/edkeys.cc:590
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~eclas usadas por menúes, etc."
 
-#: ../setedit/edkeys.cc:592
+#: ../setedit/edkeys.cc:591
 msgid "~L~eft Alt"
 msgstr "Alt ~I~zquierdo"
 
-#: ../setedit/edkeys.cc:592
+#: ../setedit/edkeys.cc:591
 msgid "~R~ight Alt"
 msgstr "Alt ~D~erecho"
 
-#: ../setedit/edkeys.cc:593
+#: ../setedit/edkeys.cc:592
 msgid "~B~oth Alt"
 msgstr "Am~b~os Alt"
 
-#: ../setedit/edkeys.cc:615
+#: ../setedit/edkeys.cc:614
 msgid "Key Pad behavior"
 msgstr "Comportamiento del teclado numérico"
 
-#: ../setedit/edkeys.cc:617
+#: ../setedit/edkeys.cc:616
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: ../setedit/edkeys.cc:617
+#: ../setedit/edkeys.cc:616
 msgid "Use the ~B~IOS default"
 msgstr "Mantener el valor del ~B~IOS"
 
-#: ../setedit/edkeys.cc:618
-msgid "Always interprete shift+arrow as ~m~ovement"
+#: ../setedit/edkeys.cc:617
+msgid "Always interpret shift+arrow as ~m~ovement"
 msgstr "Siempre interpretar shift+flecha como ~m~ovimiento"
 
 #: ../setedit/edmsg.cc:353
@@ -6821,15 +6821,15 @@ msgstr "~I~nfo."
 msgid "Assigned to:"
 msgstr "Asi~g~nación"
 
-#: ../settvuti/tdiagaid.cc:213
+#: ../settvuti/tdiagaid.cc:216
 msgid "Assignmen~t~"
 msgstr "Asi~g~nación"
 
-#: ../settvuti/tdiagaid.cc:213
+#: ../settvuti/tdiagaid.cc:216
 msgid "Command~s~"
 msgstr "Comando~s~"
 
-#: ../settvuti/tdiagaid.cc:214
+#: ../settvuti/tdiagaid.cc:217
 msgid "s~L~isp code"
 msgstr "Código s~L~isp"
 
