@@ -224,10 +224,17 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
  else
    {
     FixUpName(fileName);
-    p=validView(new TCEditWindow(r,fileName,wnNoNumber));
+    ain=new TCEditWindow(r,fileName,wnNoNumber);
+    if ((options & oedDontOpenEmpty) && ain->editor->FailedToLoad)
+      {
+       destroy(ain);
+       return 0;
+      }
+    p=validView(ain);
     // If fail during load
     if (!p)
        return (TCEditWindow *)p;
+
 
     ain=(TCEditWindow *)p;
     if (openAsReadOnly)
@@ -1239,7 +1246,7 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len)
     messageBox(_("This line no longer exists"),mfOKButton);
     return 0;
    }
- TCEditWindow *edw=editorApp->openEditor(file,True);
+ TCEditWindow *edw=editorApp->openEditor(file,True,NULL,oedDontOpenEmpty);
  if (edw)
    {
     TCEditor *ed=edw->editor;
