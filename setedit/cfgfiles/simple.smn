@@ -173,6 +173,80 @@ SubMenu: "Editor Right Click", kbUnknown
 EndSubMenu
 
 #
+# A special menu for the InfView (help system)
+#
+
+NewMenu: hcInfView, 4
+
+SubMenu: "~F~ile", kbAlF
+ MenuItemC: "~O~pen info file...", cmInfOpen, kbCtA, "Ctrl+A"
+ MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
+EndSubMenu
+
+# EN: CDFHTW
+SubMenu: "~E~dit", kbAlE
+ MenuItemC: "~C~opy", cmcCopy, kbCtInsert, "Ctrl+Ins"
+ $if DOS or WIN32
+ MenuItemC: "Copy to ~W~indows Clip.", cmcCopyOSClip
+ $else
+ MenuItemC: "Copy to OS Clipboar~d~", cmcCopyOSClip
+ $endif
+ $if DOS
+# It only works for the djgpp's reference
+ MenuItemC: "Copy ~h~eader", cmInfPasteIn, kbCtI, "Ctrl+I"
+ $endif
+ MenuSeparator
+ MenuItemC: "Con~f~iguration dialog...", cmhConfigDia, kbCtF, "Ctrl+F"
+ MenuItemC: "Con~t~rol dialog...", cmInfControl, kbAlF10, "Alt+F10"
+EndSubMenu
+
+SubMenu: "~S~earch", kbAlS
+ MenuItemC: "~F~ind...", cmcFind, kbCtS, "Ctrl+S"
+ MenuItemC: "~S~earch again", cmcSearchAgain, kbCtL, "Ctrl+L"
+ MenuSeparator
+ MenuItemC: "~B~ookmarks...", cmInfBookM, kbCtB, "Ctrl+B"
+ MenuItemC: "List of ~n~odes...", cmInfNodes, kbCtO, "Ctrl+O"
+ MenuItemC: "~G~o to '(file)node'...", cmInfGoto, kbCtG, "Ctrl+G"
+EndSubMenu
+
+# EN: DGJLNPTU
+SubMenu: "~N~avigation", kbAlN
+ MenuItemC: "~L~ast visited topic", cmInfBack, kbAlF1, "Alt+F1"
+ MenuItemC: "~N~ext topic", cmhNext, kbCtN, "Ctrl+N"
+ MenuItemC: "~P~revious topic", cmhPrev, kbCtP, "Ctrl+P"
+ MenuItemC: "Go ~u~p in herarchy", cmhUp, kbCtU, "Ctrl+U"
+ MenuItemC: "Main menu for ~t~his file", cmInfTop, kbCtT, "Ctrl+T"
+ MenuItemC: "Info ~d~irectory", cmInfDir, kbCtD, "Ctrl+D"
+ MenuItemC: "~J~ump to last link", cmInfLastLink, kb0, "0"
+ SubMenu: "~G~o to link number", kbAlG
+   MenuItemC: "Link ~1~", cmInfLink1, kb1, "1"
+   MenuItemC: "Link ~2~", cmInfLink2, kb2, "2"
+   MenuItemC: "Link ~3~", cmInfLink3, kb3, "3"
+   MenuItemC: "Link ~4~", cmInfLink4, kb4, "4"
+   MenuItemC: "Link ~5~", cmInfLink5, kb5, "5"
+   MenuItemC: "Link ~6~", cmInfLink6, kb6, "6"
+   MenuItemC: "Link ~7~", cmInfLink7, kb7, "7"
+   MenuItemC: "Link ~8~", cmInfLink8, kb8, "8"
+   MenuItemC: "Link ~9~", cmInfLink9, kb9, "9"
+ EndSubMenu
+EndSubMenu
+
+SubMenu: "~W~indows", kbAlW
+ MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
+ MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
+ MenuItemC: "~N~ext", cmeNext, kbF6, "F6"
+ MenuItemC: "~P~revious", cmePrev, kbShF6, "Shift+F6"
+ MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
+ MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
+EndSubMenu
+
+SubMenu: "~H~elp", kbAlH
+ MenuItemC: "How to use the ~h~elp", cmInfHelp, kbCtH, "Ctrl+H"
+ MenuItemC: "~A~nother InfView", cmeAnotherInfView
+EndSubMenu
+
+#
 #   The following is the declaration for the status line of the editor. It
 # contains short cuts. They are context sensitive so they apply to a range
 # of "help contexts".

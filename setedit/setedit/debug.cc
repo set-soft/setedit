@@ -9,8 +9,6 @@
   TODO:
   The most important unimplemented features and unsolved things are:
 
-  * Add the menubind.smn options to the redmond.smn
-  * Update spanish translation and ensure it is complete.
 
 -----------------------------------------------
 Low priority:

@@ -304,11 +304,11 @@ EndSubMenu
 
 $if DEBUG
 # EN: ABCDEGHIKLMNOPRSTW 3
-# ES: BCDEILMNPRTUVX 12
+# ES: ABCDEILMNOPRSTUVX 3
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
 # EN: AMPS
-# ES: MPS
+# ES: AMPS
   MenuItemC: "~P~rogram and mode...", cmeDebugOptions
   MenuItemC: "Path for ~s~ources...", cmeSourceList
   MenuItemC: "~M~essages displayed...", cmeDbgOptsMsgs
@@ -316,6 +316,7 @@ SubMenu: "~D~ebug", kbAlD
  EndSubMenu
  SubMenu: "Go to st~a~te", kbUnknown
 # EN: CR
+# ES: CL
   MenuItemC: "~C~onnected", cmeDbgGoConnected
   MenuItemC: "~R~eady to run", cmeDbgGoReadyToRun
  EndSubMenu
@@ -337,6 +338,7 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "~E~valuate/Modify...", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
  SubMenu: "~W~atch an expression", kbUnknown
 # EN: DNSUW
+# ES: CENPU
   MenuItemC: "~N~ormal watch...", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
   MenuItemC: "~W~ith scope...", cmeDbgWatchExpScp
   MenuItemC: "~U~sing the Inspector...", cmeDbgInspector, kbCtF6, "Ctrl+F6"
@@ -346,6 +348,8 @@ SubMenu: "~D~ebug", kbAlD
  MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
  MenuSeparator
  SubMenu: "~D~ebug session", kbUnknown
+#EN: DLTU
+#ES: BDES
   MenuItemC: "De~t~ach", cmeDbgDetach
   MenuItemC: "Clear deb~u~g elements...", cmeDbgCleanElem
   MenuItemC: "C~l~ose", cmeDbgCloseSession
@@ -497,7 +501,7 @@ SubMenu: "~S~earch", kbAlS
  MenuSeparator
  MenuItemC: "~B~ookmarks...", cmInfBookM, kbCtB, "Ctrl+B"
  MenuItemC: "List of ~n~odes...", cmInfNodes, kbCtO, "Ctrl+O"
- MenuItemC: "~G~o to '(file)node'", cmInfGoto, kbCtG, "Ctrl+G"
+ MenuItemC: "~G~o to '(file)node'...", cmInfGoto, kbCtG, "Ctrl+G"
 EndSubMenu
 
 # EN: DGJLNPTU

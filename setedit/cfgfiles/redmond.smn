@@ -291,6 +291,58 @@ SubMenu: "~P~roject", kbAlP
  MenuItemC: "~I~mport project items", cmeImportPrj
 EndSubMenu
 
+$if DEBUG
+# EN: ABCDEGHIKLMNOPRSTW 3
+# ES: BCDEILMNPRTUVX 12
+SubMenu: "~D~ebug", kbAlD
+ SubMenu: "~O~ptions", kbUnknown
+# EN: AMPS
+# ES: MPS
+  MenuItemC: "~P~rogram and mode...", cmeDebugOptions
+  MenuItemC: "Path for ~s~ources...", cmeSourceList
+  MenuItemC: "~M~essages displayed...", cmeDbgOptsMsgs
+  MenuItemC: "~A~dvanced...", cmeDbgOptionsAdv
+ EndSubMenu
+ SubMenu: "Go to st~a~te", kbUnknown
+# EN: CR
+  MenuItemC: "~C~onnected", cmeDbgGoConnected
+  MenuItemC: "~R~eady to run", cmeDbgGoReadyToRun
+ EndSubMenu
+ MenuItemC: "~B~reakpoint", cmeBreakpoint, kbCtF8, "Ctrl+F8"
+ MenuItemC: "Ed~i~t breakpoints...", cmeDbgEditBreakPts
+ MenuItemC: "Edit watchpoints... ~3~", cmeDbgEditWatchPts
+ MenuSeparator
+ MenuItemC: "~R~un/Continue/Atach", cmeDbgRunContinue, kbShF9, "Shift+F9"
+ MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
+ MenuItemC: "~T~race into", cmeDbgTraceInto, kbF7, "F7"
+ MenuItemC: "~G~o to cursor", cmeDbgGoToCursor, kbF4, "F4"
+ MenuItemC: "~U~ntil return", cmeDbgFinishFun
+ MenuItemC: "Return ~n~ow", cmeDbgReturnNow
+ MenuItemC: "Sto~p~", cmeDbgStop
+ MenuItemC: "Restart (~K~ill)", cmeDbgKill
+ MenuItemC: "Se~l~ect thread...", cmeDbgThreadSel
+ MenuSeparator
+ MenuItemC: "Disasse~m~bler Window...", cmeDbgDisAsmWin
+ MenuItemC: "~E~valuate/Modify...", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
+ SubMenu: "~W~atch an expression", kbUnknown
+# EN: DNSUW
+  MenuItemC: "~N~ormal watch...", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
+  MenuItemC: "~W~ith scope...", cmeDbgWatchExpScp
+  MenuItemC: "~U~sing the Inspector...", cmeDbgInspector, kbCtF6, "Ctrl+F6"
+  MenuItemC: "~D~ata window...", cmeDbgDataWindow
+  MenuItemC: "~S~tack window", cmeDbgStackWindow
+ EndSubMenu
+ MenuItemC: "~C~alling stack", cmeDbgCallStack, kbCtF3, "Ctrl+F3"
+ MenuSeparator
+ SubMenu: "~D~ebug session", kbUnknown
+  MenuItemC: "De~t~ach", cmeDbgDetach
+  MenuItemC: "Clear deb~u~g elements...", cmeDbgCleanElem
+  MenuItemC: "C~l~ose", cmeDbgCloseSession
+  MenuItemC: "~D~estroy (DANGER!)", cmeDbgEndSession
+ EndSubMenu
+EndSubMenu
+$endif
+
 SubMenu: "~H~elp", kbAlH
  MenuItemC: "~I~NF View", cmeInfView, kbF1, "F1"
  MenuItemC: "~A~nother InfView", cmeAnotherInfView
@@ -318,6 +370,157 @@ SubMenu: "Editor Right Click", kbUnknown
  MenuItemC: "~C~opy", cmcCopy, kbCtC, "Ctrl+C"
  MenuItemC: "~P~aste", cmcPaste, kbCtV, "Ctrl+V"
  MenuItemC: "Cu~t~", cmcCut, kbCtX, "Ctrl+X"
+EndSubMenu
+
+#
+# You can define different menues for different contexts.
+# Currently we have a special menu for the Data Window. That's because this
+# window have tons of commands.
+#
+
+NewMenu: hcDataViewer, 0
+
+SubMenu: "~F~ile", kbAlF
+# EN: RWX
+ MenuItemC: "~R~ead block...", cmDWRead, kbCtR, "Ctrl+R"
+ MenuItemC: "~W~rite block...", cmDWWrite, kbCtW, "Ctrl+W"
+ MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
+EndSubMenu
+
+SubMenu: "~M~ove", kbAlM
+# EN: ADLOPRSTUW
+ MenuItemC: "~U~p", cmDWUp, kbUp, "Cursor up"
+ MenuItemC: "~D~own", cmDWDown, kbDown, "Cursor down"
+ MenuItemC: "~R~ight", cmDWRight, kbRight, "->"
+ MenuItemC: "~L~eft", cmDWLeft, kbLeft, "<-"
+ MenuItemC: "Page d~o~wn", cmDWPgDn, kbPgDn, "Page Down"
+ MenuItemC: "Page u~p~", cmDWPgUp, kbPgUp, "Page Up"
+ MenuItemC: "Fir~s~t column", cmDWFirstColumn, kbHome, "Home"
+ MenuItemC: "L~a~st column", cmDWLastColumn, kbEnd, "End"
+ MenuItemC: "First ro~w~", cmDWFirstRow, kbCtHome, "Ctrl+Home"
+ MenuItemC: "Las~t~ row", cmDWLastRow, kbCtEnd, "Ctrl+End"
+ MenuItemC: "First addr. ~i~ncrement", cmDWBaseIncrement, kbCtRight, "Ctrl+->"
+ MenuItemC: "~F~irst addr. decrement", cmDWBaseDecrement, kbCtLeft, "Ctrl+<-"
+EndSubMenu
+
+SubMenu: "~A~ddress", kbAlA
+# EN: BFGINPR
+ MenuItemC: "Change ~b~ase address...", cmDWBaseAddress, kbCtB, "Ctrl+B"
+ MenuItemC: "~G~o to new address...", cmDWGotoAddress, kbCtG, "Ctrl+G"
+ MenuItemC: "Follow ~p~ointer", cmDWFollowPointer, kbCtF, "Ctrl+F"
+ MenuItemC: "Follow pointer in ~n~ew window", cmDWFollowPtnNew, kbCtO, "Ctrl+O"
+ MenuItemC: "~R~ecompute address", cmDWRecompute, kbCtH, "Ctrl+H"
+EndSubMenu
+
+SubMenu: "M~o~de", kbAlO
+# EN: ADER
+ MenuItemC: "Toggle ~a~uto follow", cmDWTogAutoF, kbCtA, "Ctrl+A"
+ MenuItemC: "Change ~d~isplay mode", cmDWDispMode, kbCtD, "Ctrl+D"
+ MenuItemC: "Toggle ~e~ndian mode", cmDWTogEndian, kbCtE, "Ctrl+E"
+ MenuItemC: "Change ~r~adix", cmDWRadix, kbCtX, "Ctrl+X"
+EndSubMenu
+
+SubMenu: "~B~lock", kbAlB
+# EN: CFM
+ MenuItemC: "~F~ill...", cmDWFill, kbCtI, "Ctrl+I"
+ MenuItemC: "~C~lear...", cmDWClear, kbCtL, "Ctrl+L"
+ MenuItemC: "~M~ove...", cmDWMove, kbCtM, "Ctrl+M"
+EndSubMenu
+
+SubMenu: "~V~arious", kbAlV
+# EN: LMU
+ MenuItemC: "~L~ess bytes per line", cmDWLessLines, kbMinus, "-"
+ MenuItemC: "~M~ore bytes per line", cmDWMoreLines, kbPlus, "+"
+ MenuItemC: "~U~pdate memory", cmDWUpdateMemory, kbEnter, "Enter"
+EndSubMenu
+
+SubMenu: "~W~indows", kbAlW
+# EN: CGJLNPSWZ
+ MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
+ MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
+ MenuItemC: "~N~ext", cmeNext, kbF6, "F6"
+ MenuItemC: "~P~revious", cmePrev, kbShF6, "Shift+F6"
+ MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
+ MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
+ MenuItemC: "Debu~g~ger Window", cmeSelDebugWin
+ MenuItemC: "~W~atches Window", cmeSelWatchesWin
+EndSubMenu
+
+
+
+#
+# A special menu for the InfView (help system)
+#
+
+NewMenu: hcInfView, 4
+
+SubMenu: "~F~ile", kbAlF
+ MenuItemC: "~O~pen info file...", cmInfOpen, kbCtA, "Ctrl+A"
+ MenuItemC: "E~x~it", cmeQuit, kbAlX, "Alt+X"
+EndSubMenu
+
+# EN: CDFHTW
+SubMenu: "~E~dit", kbAlE
+ MenuItemC: "~C~opy", cmcCopy, kbCtInsert, "Ctrl+Ins"
+ $if DOS or WIN32
+ MenuItemC: "Copy to ~W~indows Clip.", cmcCopyOSClip
+ $else
+ MenuItemC: "Copy to OS Clipboar~d~", cmcCopyOSClip
+ $endif
+ $if DOS
+# It only works for the djgpp's reference
+ MenuItemC: "Copy ~h~eader", cmInfPasteIn, kbCtI, "Ctrl+I"
+ $endif
+ MenuSeparator
+ MenuItemC: "Con~f~iguration dialog...", cmhConfigDia, kbCtF, "Ctrl+F"
+ MenuItemC: "Con~t~rol dialog...", cmInfControl, kbAlF10, "Alt+F10"
+EndSubMenu
+
+SubMenu: "~S~earch", kbAlS
+ MenuItemC: "~F~ind...", cmcFind, kbCtS, "Ctrl+S"
+ MenuItemC: "~S~earch again", cmcSearchAgain, kbCtL, "Ctrl+L"
+ MenuSeparator
+ MenuItemC: "~B~ookmarks...", cmInfBookM, kbCtB, "Ctrl+B"
+ MenuItemC: "List of ~n~odes...", cmInfNodes, kbCtO, "Ctrl+O"
+ MenuItemC: "~G~o to '(file)node'...", cmInfGoto, kbCtG, "Ctrl+G"
+EndSubMenu
+
+# EN: DGJLNPTU
+SubMenu: "~N~avigation", kbAlN
+ MenuItemC: "~L~ast visited topic", cmInfBack, kbAlF1, "Alt+F1"
+ MenuItemC: "~N~ext topic", cmhNext, kbCtN, "Ctrl+N"
+ MenuItemC: "~P~revious topic", cmhPrev, kbCtP, "Ctrl+P"
+ MenuItemC: "Go ~u~p in herarchy", cmhUp, kbCtU, "Ctrl+U"
+ MenuItemC: "Main menu for ~t~his file", cmInfTop, kbCtT, "Ctrl+T"
+ MenuItemC: "Info ~d~irectory", cmInfDir, kbCtD, "Ctrl+D"
+ MenuItemC: "~J~ump to last link", cmInfLastLink, kb0, "0"
+ SubMenu: "~G~o to link number", kbAlG
+   MenuItemC: "Link ~1~", cmInfLink1, kb1, "1"
+   MenuItemC: "Link ~2~", cmInfLink2, kb2, "2"
+   MenuItemC: "Link ~3~", cmInfLink3, kb3, "3"
+   MenuItemC: "Link ~4~", cmInfLink4, kb4, "4"
+   MenuItemC: "Link ~5~", cmInfLink5, kb5, "5"
+   MenuItemC: "Link ~6~", cmInfLink6, kb6, "6"
+   MenuItemC: "Link ~7~", cmInfLink7, kb7, "7"
+   MenuItemC: "Link ~8~", cmInfLink8, kb8, "8"
+   MenuItemC: "Link ~9~", cmInfLink9, kb9, "9"
+ EndSubMenu
+EndSubMenu
+
+SubMenu: "~W~indows", kbAlW
+ MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
+ MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
+ MenuItemC: "~N~ext", cmeNext, kbF6, "F6"
+ MenuItemC: "~P~revious", cmePrev, kbShF6, "Shift+F6"
+ MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
+ MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
+EndSubMenu
+
+SubMenu: "~H~elp", kbAlH
+ MenuItemC: "How to use the ~h~elp", cmInfHelp, kbCtH, "Ctrl+H"
+ MenuItemC: "~A~nother InfView", cmeAnotherInfView
 EndSubMenu
 
 #
@@ -440,6 +643,83 @@ StatusEntry: "~Ctrl+V~ Paste", cmtilPaste, kbCtV
 #StatusEntry: "~Ctrl+C~ Copy", cmtilCopyOS, kbCtC
 #StatusEntry: "~Ctrl+V~ Paste", cmtilPasteOS, kbCtV
 StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
+EndStatusRange
+
+#
+# Debug Watches
+#
+StatusRange: hcWatchesWin, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ins~ Add", cmInsert, kbInsert
+StatusEntry: "~Ctrl+A/+~ Add w/scope", cmInsertWScope, kbPlus
+StatusEntry: "~Del~ Delete", cmDelete, kbDelete
+StatusEntry: "~Enter~ Edit", cmEditWatch, kbEnter
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~Alt+X", cmeQuit, kbAlX
+StatusHiddenEntry: cmInsertWScope, kbCtA
+EndStatusRange
+
+#
+# Debug Window
+#
+StatusRange: hcDebugMsgWin, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ins~ Send command", cmGDBCommand, kbInsert
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+EndStatusRange
+
+#
+# Breakpoints window (also Watchpoints)
+#
+StatusRange: hcBkptDialog, 1
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ins~ Add", cmBkAdd, kbInsert
+StatusEntry: "~Del~ Delete", cmBkDel, kbDelete
+StatusEntry: "~+~ Enable", cmBkEnable, kbPlus
+StatusEntry: "~-~ Disable", cmBkDisable, kbMinus
+EndStatusRange
+
+#
+# Inspector windows
+#
+StatusRange: hcInspector, 0
+StatusEntry: "~E/+~ Expand", cmExpand, kbPlus
+StatusEntry: "~C/-~ Collapse", cmCollapse, kbMinus
+StatusEntry: "~ENTER~ Inspect", cmDbgInspect, kbEnter
+StatusEntry: "~^R~ Recycle", cmRecycle, kbCtR
+StatusEntry: "~^M~ Modify", cmModifyIns, kbCtM
+StatusEntry: "~^F~ Format", cmFormatIns, kbCtF
+StatusHiddenEntry: cmeInfView, kbF1
+StatusHiddenEntry: cmClose, kbEsc
+StatusHiddenEntry: cmExpand, kbE
+StatusHiddenEntry: cmCollapse, kbC
+EndStatusRange
+
+#
+# Data Windows
+#
+StatusRange: hcDataViewer, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~Ctrl+Y~ Recycle", cmRecycle, kbCtY
+EndStatusRange
+
+#
+# Disassembler Windows
+#
+StatusRange: hcDisassembler, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~ENTER~ Modify register", cmModifyReg, kbEnter
+StatusHiddenEntry: cmClose, kbEsc
+EndStatusRange
+
+#
+# Deafault for the rest
+#
+StatusRange: 0, 0xFFFF
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
 EndStatusRange
 
 #
