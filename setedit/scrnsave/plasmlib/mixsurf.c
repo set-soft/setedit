@@ -84,7 +84,8 @@ LoopJ:
 	addl (%%esi,%%edx,4),%%eax
 	addl (%%ebx,%%edx,4),%%eax
 	movl %%eax,(%%ecx)
-	incl %%edx   // I moved it here hoping the P5 will pair the 4 instructions
+        // I moved it here hoping the P5 will pair the 4 instructions
+        incl %%edx   
 	addl $4,%%ecx
 	cmpl %%edx,_MS_4+20
 	ja LoopJ
@@ -215,7 +216,8 @@ LoopJ2:
 	addl (%%edi,%%edx,4),%%eax
 	addl (%%esi,%%edx,4),%%eax
 	movl %%eax,(%%ecx)
-	incl %%edx   // I moved it here hoping the P5 will pair the 4 instructions
+        // I moved it here hoping the P5 will pair the 4 instructions
+        incl %%edx   
 	addl $4,%%ecx
 	cmpl %%edx,_MS_4+20
 	ja LoopJ2
