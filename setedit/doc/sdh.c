@@ -53,6 +53,7 @@ char  OutPath[PATH_MAX];
 char *SeachPaths[MAX_SEARCH];
 int   CantSearchs=0;
 char  Include[PATH_MAX];
+int   NoNumberInInf=0;
 
 //#define DEBUG
 
@@ -104,6 +105,7 @@ void PutHelp(int ret)
         "in_file is the BASE name of the documentation (.tx)\n"
         "-p: Put X. instead of X in chapter numbers\n"
         "-n \"name\" file file_txt: for indices\n"
+        "-N: don't put numbers in .info file, let makeinfo do it\n"
         "-c: clean, deletes intermediate files\n"
         "-oX: output format, i=.info h=.html t=.txt d=.dvi p=.ps a=ALL\n"
         "-I path: adds the path to the search paths\n"
@@ -199,6 +201,9 @@ void ParseCommandLine(int argc, char *argv[])
                   }
                 else
                   PutHelp(1);
+                break;
+           case 'N':
+                NoNumberInInf=1;
                 break;
            case 'p':
                 PutPoint=1;
@@ -539,6 +544,8 @@ void ReplaceEndTable(char *b, FILE *f)
     fputs("@end itemize\n@p{}\n",f);
  else
     fputs(b,f);
+ if (strncmp(b,"@table",6)==0)
+    fputs("@itemize @bullet\n",f);
 }
 
 char *dirStr="(dir)";
@@ -593,7 +600,10 @@ void GenerateTXI_NUM(void)
     else
       {
        InsertNumber(bl,Nodes[i-1].Number,fo);
-       InsertNumber(bl,Nodes[i-1].Number,fo3);
+       if (NoNumberInInf)
+          fputs(bl,fo3);
+       else
+          InsertNumber(bl,Nodes[i-1].Number,fo3);
       }
     if (lev>=0 && strcmp(name,"Top"))
       {

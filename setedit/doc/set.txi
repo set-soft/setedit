@@ -18,21 +18,18 @@
 @set table-title2 \title2\
 @set table-title3 \title3\
 @set table-title4 \title4\
-@itemize @bullet
 @end macro
 
 @macro table3{title1,title2,title3}
 @set table-title2 \title2\
 @set table-title3 \title3\
 @clear table-title4
-@itemize @bullet
 @end macro
 
 @macro table2{title1,title2}
 @set table-title2 \title2\
 @clear table-title3
 @clear table-title4
-@itemize @bullet
 @end macro
 
 @macro table2-auto{title1,title2}

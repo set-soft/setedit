@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.562  2004/08/05 18:14:21  set
+* Modified: [sLisp] CommentIndent macro, enhanced version from Thiago.
+
 Revision 1.561  2004/08/04 20:09:47  set
 * Added: Inspectors!!! They are quite different to the RHIDE inspectors.
 They are suitable for complex structures and you can have various in the

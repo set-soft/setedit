@@ -24,7 +24,7 @@
 @c -------------------------------------------------------------------------
 
 
-@macro html
+@macro htmlstart
 @end macro
 
 @macro htmltitle{line}
