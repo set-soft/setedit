@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.0\n"
-"PO-Revision-Date: 2003-04-19 11:46-0300\n"
+"PO-Revision-Date: 2003-04-19 13:48-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,7 @@ msgstr "~A~uswerten"
 #: ../calcu/calcu.cc:92 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
 #: ../infview/inf.cc:2338 ../infview/inf.cc:2361 ../infview/inf.cc:2386
 #: ../infview/inf.cc:2410 ../infview/inf.cc:2465 ../infview/infmain.cc:385
-#: ../install/install.cc:443 ../install/install.cc:451
-#: ../internac/tvision.cc:39 ../mainsrc/bufun.cc:736
+#: ../install/install.cc:443 ../install/install.cc:451 ../mainsrc/bufun.cc:736
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
@@ -40,13 +39,11 @@ msgstr "~A~uswerten"
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: ../calcu/calcu.cc:95 ../internac/tvision.cc:91 ../setedit/editmenu.cc:80
-#: ../setedit/editmenu.cc:110
+#: ../calcu/calcu.cc:95 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
 msgid "~C~opy"
 msgstr "~K~opieren"
 
-#: ../calcu/calcu.cc:98 ../internac/tvision.cc:92 ../setedit/editmenu.cc:81
-#: ../setedit/editmenu.cc:111
+#: ../calcu/calcu.cc:98 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
 msgid "~P~aste"
 msgstr "~E~infügen"
 
@@ -64,7 +61,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:89 ../easydiag/tsbutton.cc:97
-#: ../infview/infmain.cc:384 ../internac/tvision.cc:76 ../mainsrc/bufun.cc:735
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:735
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:177
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
@@ -108,13 +105,11 @@ msgstr "Sorry, kann den Text nicht finden"
 msgid "Help Control"
 msgstr "Hilfe Kontrolle"
 
-#: ../infview/inf.cc:2274 ../infview/infmenu.cc:67 ../internac/tvision.cc:103
-#: ../setedit/editmenu.cc:121
+#: ../infview/inf.cc:2274 ../infview/infmenu.cc:67 ../setedit/editmenu.cc:121
 msgid "~N~ext"
 msgstr "~N~ächstes"
 
-#: ../infview/inf.cc:2277 ../infview/infmenu.cc:68 ../internac/tvision.cc:104
-#: ../setedit/editmenu.cc:122
+#: ../infview/inf.cc:2277 ../infview/infmenu.cc:68 ../setedit/editmenu.cc:122
 msgid "~P~revious"
 msgstr "~V~orherige"
 
@@ -155,17 +150,17 @@ msgid "Inf Find"
 msgstr "Inf Suche"
 
 #. All together
-#: ../infview/inf.cc:2322 ../internac/tvision.cc:73 ../mainsrc/deedidia.cc:121
+#: ../infview/inf.cc:2322 ../mainsrc/deedidia.cc:121
 #: ../mainsrc/deedidia.cc:156
 msgid "~T~ext to find"
 msgstr "~S~uchtext"
 
-#: ../infview/inf.cc:2327 ../internac/tvision.cc:74 ../mainsrc/deedidia.cc:124
+#: ../infview/inf.cc:2327 ../mainsrc/deedidia.cc:124
 #: ../mainsrc/deedidia.cc:163 ../mainsrc/ssyntax.cc:479
 msgid "~C~ase sensitive"
 msgstr "Groß/~K~lein beachten"
 
-#: ../infview/inf.cc:2328 ../internac/tvision.cc:75 ../mainsrc/deedidia.cc:125
+#: ../infview/inf.cc:2328 ../mainsrc/deedidia.cc:125
 #: ../mainsrc/deedidia.cc:163
 msgid "~W~hole words only"
 msgstr "Nur ~g~anze Wörter"
@@ -183,8 +178,8 @@ msgid "In ~a~ll files"
 msgstr "In ~a~llen Dateien"
 
 #: ../infview/inf.cc:2336 ../infview/inf.cc:2359 ../infview/inf.cc:2382
-#: ../infview/inf.cc:2408 ../internac/tvision.cc:25 ../setedit/editdiag.cc:78
-#: ../setedit/editpale.cc:165 ../settvuti/diaghelp.cc:38
+#: ../infview/inf.cc:2408 ../setedit/editdiag.cc:78 ../setedit/editpale.cc:165
+#: ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~K"
 
@@ -221,8 +216,7 @@ msgstr "Verstecke ~L~inknamen"
 msgid "InfView Bookmarks"
 msgstr "InfView Lesezeichen"
 
-#: ../infview/inf.cc:2457 ../internac/tvision.cc:44 ../mp3/mp3list.cc:333
-#: ../settvuti/tdiagaid.cc:140
+#: ../infview/inf.cc:2457 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:140
 msgid "~A~dd"
 msgstr "~H~inzufügen"
 
@@ -431,8 +425,7 @@ msgstr "Konnte `%s' nicht finden."
 
 #. Spanish: ABCEHMPRV
 #. English: CEFHMPSVW
-#: ../infview/infmenu.cc:31 ../internac/tvision.cc:81
-#: ../setedit/editmenu.cc:62
+#: ../infview/infmenu.cc:31 ../setedit/editmenu.cc:62
 msgid "~F~ile"
 msgstr "~D~atei"
 
@@ -453,14 +446,13 @@ msgstr ""
 msgid "~D~OS shell"
 msgstr "~D~OS Shell"
 
-#: ../infview/infmenu.cc:38 ../internac/tvision.cc:86
-#: ../setedit/editmenu.cc:71 ../setedit/editmenu.cc:317
+#: ../infview/infmenu.cc:38 ../setedit/editmenu.cc:71
+#: ../setedit/editmenu.cc:317
 #, fuzzy
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../internac/tvision.cc:87
-#: ../setedit/editmenu.cc:72
+#: ../infview/infmenu.cc:40 ../setedit/editmenu.cc:72
 msgid "E~x~it"
 msgstr "~B~eenden"
 
@@ -503,8 +495,7 @@ msgstr "~Z~ur Codepage"
 msgid "~D~irectory"
 msgstr "Kann Verzeichnis nicht erstellen:"
 
-#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../internac/tvision.cc:94
-#: ../setedit/editmenu.cc:95
+#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../setedit/editmenu.cc:95
 msgid "~S~earch"
 msgstr "~S~uche"
 
@@ -533,33 +524,28 @@ msgstr "~K~onfiguration"
 msgid "~A~bout"
 msgstr "Ü~b~er"
 
-#: ../infview/infmenu.cc:62 ../internac/tvision.cc:98
-#: ../setedit/editmenu.cc:116
+#: ../infview/infmenu.cc:62 ../setedit/editmenu.cc:116
 msgid "~W~indows"
 msgstr "~F~enster"
 
-#: ../infview/infmenu.cc:63 ../internac/tvision.cc:99
-#: ../setedit/editmenu.cc:117
+#: ../infview/infmenu.cc:63 ../setedit/editmenu.cc:117
 msgid "~S~ize/move"
 msgstr "~G~röße ändern/Bewegen"
 
-#: ../infview/infmenu.cc:64 ../internac/tvision.cc:100
-#: ../setedit/editmenu.cc:118
+#: ../infview/infmenu.cc:64 ../setedit/editmenu.cc:118
 msgid "~Z~oom"
 msgstr "~Z~oom"
 
-#: ../infview/infmenu.cc:65 ../internac/tvision.cc:101
-#: ../setedit/editmenu.cc:119
+#: ../infview/infmenu.cc:65 ../setedit/editmenu.cc:119
 msgid "~T~ile"
 msgstr "~T~eilen"
 
-#: ../infview/infmenu.cc:66 ../internac/tvision.cc:102
-#: ../setedit/editmenu.cc:120
+#: ../infview/infmenu.cc:66 ../setedit/editmenu.cc:120
 msgid "C~a~scade"
 msgstr "Ü~b~erlappend"
 
-#: ../infview/infmenu.cc:69 ../internac/tvision.cc:105
-#: ../setedit/editmenu.cc:123 ../setedit/editmenu.cc:141
+#: ../infview/infmenu.cc:69 ../setedit/editmenu.cc:123
+#: ../setedit/editmenu.cc:141
 msgid "~C~lose"
 msgstr "S~c~hließen"
 
@@ -582,23 +568,20 @@ msgid "~Ctrl+O~ Index"
 msgstr "~Alt+I~ Include"
 
 #: ../infview/infmenu.cc:84 ../infview/infmenu.cc:86
-#: ../internac/tvision.cc:110 ../setedit/editmenu.cc:163
-#: ../setedit/editmenu.cc:187 ../setedit/editmenu.cc:205
+#: ../setedit/editmenu.cc:163 ../setedit/editmenu.cc:187
+#: ../setedit/editmenu.cc:205
 msgid "~F5~ Zoom"
 msgstr "~F5~ Zoom"
 
-#: ../infview/infmenu.cc:87 ../internac/tvision.cc:111
-#: ../setedit/editmenu.cc:164
+#: ../infview/infmenu.cc:87 ../setedit/editmenu.cc:164
 msgid "~F6~ Next"
 msgstr "~F6~ Nächstes"
 
-#: ../infview/infmenu.cc:88 ../internac/tvision.cc:106
-#: ../setedit/editmenu.cc:165
+#: ../infview/infmenu.cc:88 ../setedit/editmenu.cc:165
 msgid "~F10~ Menu"
 msgstr "~F10~ Menü"
 
-#: ../infview/infmenu.cc:95 ../internac/tvision.cc:112
-#: ../setedit/editmenu.cc:212
+#: ../infview/infmenu.cc:95 ../setedit/editmenu.cc:212
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
@@ -749,7 +732,7 @@ msgstr "Sind Sie sich sicher, daß Sie die Installation abbrechen wollen?"
 msgid "Select the type"
 msgstr "Typ auswählen"
 
-#: ../install/install.cc:405 ../internac/colors.cc:4 ../internac/tvision.cc:66
+#: ../install/install.cc:405 ../internac/colors.cc:4
 msgid "Normal"
 msgstr "Normal"
 
@@ -777,15 +760,13 @@ msgstr "< ~V~orherige"
 msgid "> ~N~ext"
 msgstr "> ~N~ächste"
 
-#: ../install/install.cc:449 ../internac/tvision.cc:143
-#: ../mainsrc/deedidia.cc:340 ../setedit/advice.cc:101
-#: ../setedit/advice.cc:108
+#: ../install/install.cc:449 ../mainsrc/deedidia.cc:340
+#: ../setedit/advice.cc:101 ../setedit/advice.cc:108
 msgid "~Y~es"
 msgstr "~J~a"
 
-#: ../install/install.cc:450 ../internac/tvision.cc:144
-#: ../mainsrc/deedidia.cc:341 ../setedit/advice.cc:102
-#: ../setedit/advice.cc:107
+#: ../install/install.cc:450 ../mainsrc/deedidia.cc:341
+#: ../setedit/advice.cc:102 ../setedit/advice.cc:107
 msgid "~N~o"
 msgstr "~N~ein"
 
@@ -1025,8 +1006,7 @@ msgstr ", nach einem Neustart können Sie den Editor benutzen"
 msgid "Editor installed succesfully%s. Run it using e.bat"
 msgstr "Editor erfolgreich installiert. Starten Sie ihn mit e.bat"
 
-#: ../internac/colors.cc:1 ../internac/tvision.cc:37
-#: ../setedit/editpale.cc:155
+#: ../internac/colors.cc:1 ../setedit/editpale.cc:155
 msgid "Color"
 msgstr "Farbe"
 
@@ -1426,516 +1406,6 @@ msgstr "~n~ormaler Text"
 msgid "Underlined text"
 msgstr "Einschubtext"
 
-#: ../internac/tvision.cc:1
-msgid "Error"
-msgstr "Fehler"
-
-#: ../internac/tvision.cc:2
-#, fuzzy
-msgid "Pocket Calculator"
-msgstr "~T~aschenrechner"
-
-#: ../internac/tvision.cc:3
-#, fuzzy
-msgid "Can't open file"
-msgstr "Es sind keine Dateien geöffnet"
-
-#: ../internac/tvision.cc:4
-#, fuzzy
-msgid "Comment inside section name"
-msgstr "~A~utoeinschub"
-
-#: ../internac/tvision.cc:5
-#, fuzzy
-msgid "Unterminated section name"
-msgstr "Nicht beendeter Makroname"
-
-#: ../internac/tvision.cc:6
-#, fuzzy
-msgid "Empty section name"
-msgstr "Leeres Untermenü"
-
-#: ../internac/tvision.cc:7 ../setedit/menuload.cc:70
-msgid "Syntax error"
-msgstr "Syntaxfehler"
-
-#: ../internac/tvision.cc:8
-#, fuzzy
-msgid "Missing open section {"
-msgstr "Ende im pseudo macro fehlt"
-
-#: ../internac/tvision.cc:9
-msgid "Missing close section }"
-msgstr ""
-
-#: ../internac/tvision.cc:10
-msgid "Missing equal sign"
-msgstr ""
-
-#: ../internac/tvision.cc:11
-msgid "Missing value after equal"
-msgstr ""
-
-#: ../internac/tvision.cc:12
-#, fuzzy
-msgid "Unterminated string"
-msgstr "Verbundener Wert"
-
-#: ../internac/tvision.cc:13
-msgid "Non branch in base"
-msgstr ""
-
-#: ../internac/tvision.cc:14
-msgid "Trying to overwrite a value with a section"
-msgstr ""
-
-#: ../internac/tvision.cc:15
-msgid "Trying to overwrite a section with a value"
-msgstr ""
-
-#: ../internac/tvision.cc:16
-#, fuzzy
-msgid "Windows not present"
-msgstr "Fensterliste"
-
-#: ../internac/tvision.cc:17
-msgid "Clipboard in use by other application"
-msgstr ""
-
-#: ../internac/tvision.cc:18
-msgid "Clipboard too big for the transfer buffer"
-msgstr ""
-
-#: ../internac/tvision.cc:19
-#, fuzzy
-msgid "Not enough memory"
-msgstr "Nicht genug Speicher für diese Operation"
-
-#: ../internac/tvision.cc:20
-msgid "Windows reports error"
-msgstr ""
-
-#: ../internac/tvision.cc:21
-#, c-format
-msgid "type not registered: %s\n"
-msgstr ""
-
-#: ../internac/tvision.cc:22
-#, fuzzy
-msgid "Change Directory"
-msgstr "Kann Verzeichnis nicht erstellen:"
-
-#: ../internac/tvision.cc:23
-msgid "Directory ~n~ame"
-msgstr ""
-
-#: ../internac/tvision.cc:24
-msgid "Directory ~t~ree"
-msgstr ""
-
-#: ../internac/tvision.cc:26
-#, fuzzy
-msgid "~C~hdir"
-msgstr "~W~echsle Verzeichnis..."
-
-#: ../internac/tvision.cc:27
-#, fuzzy
-msgid "~R~evert"
-msgstr "Ü~b~erschreiben"
-
-#: ../internac/tvision.cc:28
-#, fuzzy
-msgid "Help"
-msgstr "~H~ilfe"
-
-#: ../internac/tvision.cc:29
-msgid "Drives"
-msgstr ""
-
-#: ../internac/tvision.cc:30
-#, fuzzy
-msgid "Invalid directory"
-msgstr "Ungültiges Laufwerk"
-
-#: ../internac/tvision.cc:31 ../mainsrc/deedidia.cc:373
-msgid "Colors"
-msgstr "Farben"
-
-#. Colors Window
-#: ../internac/tvision.cc:32 ../setedit/editmenu.cc:306
-msgid "~G~roup"
-msgstr "~G~ruppe"
-
-#: ../internac/tvision.cc:33 ../setedit/editmenu.cc:307
-msgid "~I~tem"
-msgstr "~E~intrag"
-
-#: ../internac/tvision.cc:34 ../setedit/editmenu.cc:308
-msgid "~F~oreground"
-msgstr "~V~ordergrund"
-
-#: ../internac/tvision.cc:35 ../setedit/editmenu.cc:309
-msgid "~B~ackground"
-msgstr "~H~intergrund"
-
-#: ../internac/tvision.cc:36
-#, fuzzy
-msgid "Text "
-msgstr "Nächstes"
-
-#: ../internac/tvision.cc:38 ../setedit/editmenu.cc:310
-msgid "~T~ry"
-msgstr "~V~ersuch"
-
-#: ../internac/tvision.cc:40 ../mainsrc/editwind.cc:33
-msgid "Clipboard"
-msgstr "Zwischenablage"
-
-#: ../internac/tvision.cc:41 ../mainsrc/editwind.cc:34
-msgid "Untitled"
-msgstr "Unbenannt"
-
-#: ../internac/tvision.cc:42
-msgid "~F~iles"
-msgstr "~D~ateien"
-
-#: ../internac/tvision.cc:43 ../setedit/winlistd.cc:126
-msgid "~O~pen"
-msgstr "Ö~f~fnen"
-
-#: ../internac/tvision.cc:45
-#, fuzzy
-msgid "~S~elect"
-msgstr "~L~ösche"
-
-#: ../internac/tvision.cc:46
-#, fuzzy
-msgid "~R~eplace"
-msgstr "Ersetzen"
-
-#: ../internac/tvision.cc:47 ../setedit/editmenu.cc:84
-msgid "~C~lear"
-msgstr "~L~ösche"
-
-#: ../internac/tvision.cc:48
-msgid "Done"
-msgstr ""
-
-#: ../internac/tvision.cc:49 ../setedit/editmenu.cc:127
-#: ../setedit/edprefs.cc:360
-msgid "~H~elp"
-msgstr "~H~ilfe"
-
-#: ../internac/tvision.cc:50
-#, fuzzy
-msgid "Invalid drive or directory"
-msgstr "Ungültiges Laufwerk"
-
-#: ../internac/tvision.cc:51
-#, fuzzy
-msgid "Invalid file name."
-msgstr "Ungültiges Laufwerk"
-
-#: ../internac/tvision.cc:52
-msgid "Jan"
-msgstr "Jan"
-
-#: ../internac/tvision.cc:53
-msgid "Feb"
-msgstr "Feb"
-
-#: ../internac/tvision.cc:54
-msgid "Mar"
-msgstr "Mär"
-
-#: ../internac/tvision.cc:55
-msgid "Apr"
-msgstr "Apr"
-
-#: ../internac/tvision.cc:56 ../setedit/calendar.cc:40
-msgid "May"
-msgstr "Mai"
-
-#: ../internac/tvision.cc:57
-msgid "Jun"
-msgstr "Jun"
-
-#: ../internac/tvision.cc:58
-msgid "Jul"
-msgstr "Jul"
-
-#: ../internac/tvision.cc:59
-msgid "Aug"
-msgstr "Aug"
-
-#: ../internac/tvision.cc:60
-msgid "Sep"
-msgstr "Sep"
-
-#: ../internac/tvision.cc:61
-msgid "Oct"
-msgstr "Okt"
-
-#: ../internac/tvision.cc:62
-msgid "Nov"
-msgstr "Nov"
-
-#: ../internac/tvision.cc:63
-msgid "Dec"
-msgstr "Dez"
-
-#: ../internac/tvision.cc:64
-#, fuzzy
-msgid "Invalid character in input"
-msgstr "Extra Zeichen in Zeile"
-
-#: ../internac/tvision.cc:65
-msgid "<empty>"
-msgstr ""
-
-#: ../internac/tvision.cc:67
-#, fuzzy
-msgid "Highlight"
-msgstr "Syntax~h~ervorhebung"
-
-#: ../internac/tvision.cc:68
-msgid "Underline"
-msgstr ""
-
-#: ../internac/tvision.cc:69
-msgid "Inverse"
-msgstr ""
-
-#: ../internac/tvision.cc:70
-#, c-format
-msgid "Value not in the range %lu to %lu"
-msgstr ""
-
-#: ../internac/tvision.cc:71
-#, c-format
-msgid "Value not in the range %li to %li"
-msgstr ""
-
-#: ../internac/tvision.cc:72 ../mainsrc/deedidia.cc:117
-msgid "Find"
-msgstr "Suchen"
-
-#: ../internac/tvision.cc:77 ../mainsrc/deedidia.cc:153
-msgid "Replace"
-msgstr "Ersetzen"
-
-#: ../internac/tvision.cc:78 ../mainsrc/deedidia.cc:159
-msgid "~N~ew text"
-msgstr "~N~euer Text"
-
-#: ../internac/tvision.cc:79 ../mainsrc/deedidia.cc:166
-msgid "~P~rompt on replace"
-msgstr "Vorm Ersetzen ~n~achfragen"
-
-#: ../internac/tvision.cc:80 ../mainsrc/deedidia.cc:166
-msgid "~R~eplace all"
-msgstr "Alle e~r~setzen"
-
-#: ../internac/tvision.cc:82 ../setedit/editmenu.cc:65
-msgid "~N~ew"
-msgstr "~N~eu"
-
-#: ../internac/tvision.cc:83 ../mp3/mp3list.cc:336 ../setedit/editmenu.cc:66
-msgid "~S~ave"
-msgstr "~S~peichern"
-
-#: ../internac/tvision.cc:84 ../setedit/editmenu.cc:67
-msgid "S~a~ve as..."
-msgstr "Speichern ~a~ls..."
-
-#: ../internac/tvision.cc:85 ../setedit/editmenu.cc:70
-msgid "~C~hange dir..."
-msgstr "~W~echsle Verzeichnis..."
-
-#: ../internac/tvision.cc:88 ../mainsrc/loaddefl.cc:712
-#: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:75
-msgid "~E~dit"
-msgstr "~B~earbeiten"
-
-#: ../internac/tvision.cc:89 ../setedit/editmenu.cc:76
-msgid "~U~ndo"
-msgstr "~R~ückgängig"
-
-#: ../internac/tvision.cc:90 ../setedit/editmenu.cc:79
-#: ../setedit/editmenu.cc:112
-msgid "Cu~t~"
-msgstr "~A~usschneiden"
-
-#: ../internac/tvision.cc:93 ../setedit/editmenu.cc:82
-msgid "~S~how clipboard"
-msgstr "~Z~wischenablage anzeigen"
-
-#: ../internac/tvision.cc:95 ../setedit/editmenu.cc:96
-msgid "~F~ind..."
-msgstr "~S~uche..."
-
-#: ../internac/tvision.cc:96 ../setedit/editmenu.cc:97
-msgid "~R~eplace..."
-msgstr "~E~rsetzen..."
-
-#: ../internac/tvision.cc:97 ../setedit/editmenu.cc:98
-msgid "~S~earch again"
-msgstr "~W~iederhole Suche"
-
-#: ../internac/tvision.cc:107 ../setedit/editmenu.cc:160
-msgid "~F2~ Save"
-msgstr "~F2~ Speichern"
-
-#: ../internac/tvision.cc:108 ../setedit/editmenu.cc:161
-msgid "~F3~ Open"
-msgstr "~F3~ Öffnen"
-
-#: ../internac/tvision.cc:109 ../setedit/editmenu.cc:162
-msgid "~Alt+F3~ Close"
-msgstr "~Alt+F3~ Weg"
-
-#: ../internac/tvision.cc:113
-#, fuzzy, c-format
-msgid "Error reading file %s."
-msgstr "Fehler beim Lesen der Datei "
-
-#: ../internac/tvision.cc:114
-#, fuzzy, c-format
-msgid "Error writing file %s."
-msgstr "Fehler beim Schreiben der Datei "
-
-#: ../internac/tvision.cc:115
-#, fuzzy, c-format
-msgid "Error creating file %s."
-msgstr "Fehler beim Erstellen von "
-
-#: ../internac/tvision.cc:116 ../mainsrc/doedidia.cc:94
-#, fuzzy, c-format
-msgid "%s has been modified. Save?"
-msgstr " wurde verändert. Speichern?"
-
-#: ../internac/tvision.cc:117 ../mainsrc/doedidia.cc:97
-msgid "Save untitled file?"
-msgstr "Unbenannte Datei speichern?"
-
-#: ../internac/tvision.cc:118 ../mainsrc/doedidia.cc:100
-msgid "Save file as"
-msgstr "Speicher Datei als"
-
-#: ../internac/tvision.cc:119 ../settvuti/fileopen.cc:268
-msgid "~N~ame"
-msgstr "~N~ame"
-
-#: ../internac/tvision.cc:120 ../mainsrc/doedidia.cc:122
-msgid "Search string not found."
-msgstr "Suchtext nicht gefunden."
-
-#: ../internac/tvision.cc:121 ../mainsrc/deedidia.cc:339
-msgid "Replace this occurence?"
-msgstr "Diese Vorkommen ersetzen?"
-
-#: ../internac/tvision.cc:122
-msgid "that's an interactive application, don't redirect stdin"
-msgstr ""
-
-#: ../internac/tvision.cc:123
-msgid "failed to get the name of the current terminal used for input"
-msgstr ""
-
-#: ../internac/tvision.cc:124
-#, fuzzy
-msgid "failed to open the input terminal"
-msgstr "Konnte die Listendatei nicht öffnen"
-
-#: ../internac/tvision.cc:125
-msgid "can't get input terminal attributes"
-msgstr ""
-
-#: ../internac/tvision.cc:126
-msgid "can't set input terminal attributes"
-msgstr ""
-
-#: ../internac/tvision.cc:127
-msgid "ioctl VT_SETMODE failed"
-msgstr ""
-
-#: ../internac/tvision.cc:128
-msgid ""
-"that's an interactive application, don't redirect stdout. If you want to "
-"collect information redirect stderr like this: program 2> file"
-msgstr ""
-
-#: ../internac/tvision.cc:131
-msgid "failed to get the name of the current terminal used for output"
-msgstr ""
-
-#: ../internac/tvision.cc:132
-#, fuzzy
-msgid "failed to open the output terminal"
-msgstr "Konnte die Listendatei nicht öffnen"
-
-#: ../internac/tvision.cc:133
-#, fuzzy
-msgid "can't get output terminal information"
-msgstr "Konnte Ausgabedatei nicht zum Drucken öffnen"
-
-#: ../internac/tvision.cc:134
-msgid "can't configure terminal mode"
-msgstr ""
-
-#: ../internac/tvision.cc:135
-#, fuzzy, c-format
-msgid "Error! %s"
-msgstr "Fehler"
-
-#: ../internac/tvision.cc:136
-msgid "No available selection"
-msgstr ""
-
-#: ../internac/tvision.cc:137
-msgid "Unsupported data type"
-msgstr ""
-
-#: ../internac/tvision.cc:138
-msgid "No data"
-msgstr ""
-
-#: ../internac/tvision.cc:139
-#, fuzzy
-msgid "X11 error"
-msgstr "Kein Fehler"
-
-#: ../internac/tvision.cc:140
-msgid "Another application holds the clipboard"
-msgstr ""
-
-#: ../internac/tvision.cc:141
-#, fuzzy, c-format
-msgid "Could not open '%s' for reading"
-msgstr "Konnte Desktopdatei nicht finden."
-
-#: ../internac/tvision.cc:142
-#, fuzzy
-msgid "Save to file"
-msgstr "Speicher Datei als"
-
-#: ../internac/tvision.cc:145
-msgid "Warning"
-msgstr "Warnung"
-
-#: ../internac/tvision.cc:146 ../setedit/edprefs.cc:304
-msgid "Information"
-msgstr "Information"
-
-#: ../internac/tvision.cc:147
-msgid "Confirm"
-msgstr "Bestätigung"
-
-#: ../internac/tvision.cc:148
-#, fuzzy
-msgid "Don't warn you next time"
-msgstr "Nicht beim nächsten Mal anzeigen"
-
 #: ../mainsrc/accehtml.cc:53
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
@@ -2105,6 +1575,10 @@ msgstr "Versuche ~n~ormale Suche"
 msgid "E~v~er use RegEx"
 msgstr "Immer RegEx ~v~erwenden"
 
+#: ../mainsrc/deedidia.cc:117
+msgid "Find"
+msgstr "Suchen"
+
 #: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:163
 #: ../mainsrc/deedidia.cc:290 ../setedit/tips.cc:210
 msgid "Options"
@@ -2155,10 +1629,26 @@ msgstr "~G~anzer Bereich"
 msgid "RegEx ~O~ps"
 msgstr "~O~ps ExpReg"
 
+#: ../mainsrc/deedidia.cc:153
+msgid "Replace"
+msgstr "Ersetzen"
+
+#: ../mainsrc/deedidia.cc:159
+msgid "~N~ew text"
+msgstr "~N~euer Text"
+
 #: ../mainsrc/deedidia.cc:165
 #, fuzzy
 msgid "S~h~ow function ~n~ame"
 msgstr "~G~ehe zu Funktion"
+
+#: ../mainsrc/deedidia.cc:166
+msgid "~P~rompt on replace"
+msgstr "Vorm Ersetzen ~n~achfragen"
+
+#: ../mainsrc/deedidia.cc:166
+msgid "~R~eplace all"
+msgstr "Alle e~r~setzen"
 
 #: ../mainsrc/deedidia.cc:173
 msgid "Or~i~gin"
@@ -2358,6 +1848,10 @@ msgstr "Für ~a~lle"
 msgid "Search hit"
 msgstr "Suchtreffer"
 
+#: ../mainsrc/deedidia.cc:339
+msgid "Replace this occurence?"
+msgstr "Diese Vorkommen ersetzen?"
+
 #: ../mainsrc/deedidia.cc:342
 msgid "~A~ll"
 msgstr "~A~lles"
@@ -2391,6 +1885,10 @@ msgstr "~F~ettdruck"
 #: ../mainsrc/deedidia.cc:372
 msgid "~U~se CSS and HTML 4.01"
 msgstr ""
+
+#: ../mainsrc/deedidia.cc:373
+msgid "Colors"
+msgstr "Farben"
 
 #: ../mainsrc/deedidia.cc:373
 msgid "Use ~c~olors"
@@ -2442,6 +1940,19 @@ msgstr "Fehler beim Erstellen von "
 msgid "Error creating temporal file, operation aborted"
 msgstr "Fehler beim Lesen der Dateiliste"
 
+#: ../mainsrc/doedidia.cc:94
+#, fuzzy, c-format
+msgid "%s has been modified. Save?"
+msgstr " wurde verändert. Speichern?"
+
+#: ../mainsrc/doedidia.cc:97
+msgid "Save untitled file?"
+msgstr "Unbenannte Datei speichern?"
+
+#: ../mainsrc/doedidia.cc:100
+msgid "Save file as"
+msgstr "Speicher Datei als"
+
 #: ../mainsrc/doedidia.cc:108
 msgid "Write to file"
 msgstr "In Datei schreiben"
@@ -2449,6 +1960,10 @@ msgstr "In Datei schreiben"
 #: ../mainsrc/doedidia.cc:111
 msgid "Read from file"
 msgstr "Lese aus Datei"
+
+#: ../mainsrc/doedidia.cc:122
+msgid "Search string not found."
+msgstr "Suchtext nicht gefunden."
 
 #: ../mainsrc/doedidia.cc:143
 #, fuzzy, c-format
@@ -2509,6 +2024,14 @@ msgstr "Keine pseudo macros verfügbar"
 #: ../mainsrc/doedidia.cc:275
 msgid "The file is compressed. Do you want to save compressing?"
 msgstr ""
+
+#: ../mainsrc/editwind.cc:33
+msgid "Clipboard"
+msgstr "Zwischenablage"
+
+#: ../mainsrc/editwind.cc:34
+msgid "Untitled"
+msgstr "Unbenannt"
 
 #: ../mainsrc/gzfiles.cc:42
 msgid "You must install gzip to browse compressed files!"
@@ -2588,6 +2111,11 @@ msgstr "Einstellungen"
 #: ../mainsrc/loaddefl.cc:661
 msgid "Default global options"
 msgstr "Standardeinstellungen (global)"
+
+#: ../mainsrc/loaddefl.cc:712 ../mainsrc/loadusew.cc:388
+#: ../setedit/editmenu.cc:75
+msgid "~E~dit"
+msgstr "~B~earbeiten"
 
 #: ../mainsrc/loaddefl.cc:714
 msgid "~N~o SHL"
@@ -2962,6 +2490,10 @@ msgstr "Dateiliste"
 msgid "~I~nsert"
 msgstr "~E~infügen"
 
+#: ../mp3/mp3list.cc:336 ../setedit/editmenu.cc:66
+msgid "~S~ave"
+msgstr "~S~peichern"
+
 #: ../mp3/mp3list.cc:337
 msgid "~L~oad"
 msgstr "~L~aden"
@@ -3168,6 +2700,10 @@ msgstr "März"
 #: ../setedit/calendar.cc:40
 msgid "April"
 msgstr "April"
+
+#: ../setedit/calendar.cc:40
+msgid "May"
+msgstr "Mai"
 
 #: ../setedit/calendar.cc:41
 msgid "June"
@@ -3587,7 +3123,7 @@ msgid ""
 "-T, --tile-horiz:        arranges the windows using horizontal tile style.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2441
+#: ../setedit/editmain.cc:2408
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 
@@ -3596,17 +3132,45 @@ msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 msgid "~O~pen..."
 msgstr "Ö~f~fnen..."
 
+#: ../setedit/editmenu.cc:65
+msgid "~N~ew"
+msgstr "~N~eu"
+
+#: ../setedit/editmenu.cc:67
+msgid "S~a~ve as..."
+msgstr "Speichern ~a~ls..."
+
 #: ../setedit/editmenu.cc:68
 msgid "Save as ~U~NIX..."
 msgstr "Als UNI~X~ speichern..."
+
+#: ../setedit/editmenu.cc:70
+msgid "~C~hange dir..."
+msgstr "~W~echsle Verzeichnis..."
 
 #: ../setedit/editmenu.cc:73
 msgid "~Q~uit"
 msgstr "~V~erlassen"
 
+#: ../setedit/editmenu.cc:76
+msgid "~U~ndo"
+msgstr "~R~ückgängig"
+
 #: ../setedit/editmenu.cc:77
 msgid "~R~edo"
 msgstr "~W~iederherstellen"
+
+#: ../setedit/editmenu.cc:79 ../setedit/editmenu.cc:112
+msgid "Cu~t~"
+msgstr "~A~usschneiden"
+
+#: ../setedit/editmenu.cc:82
+msgid "~S~how clipboard"
+msgstr "~Z~wischenablage anzeigen"
+
+#: ../setedit/editmenu.cc:84
+msgid "~C~lear"
+msgstr "~L~ösche"
 
 #: ../setedit/editmenu.cc:86
 msgid "S~e~t Local"
@@ -3631,6 +3195,18 @@ msgstr "~G~ehe zu Funktion"
 #: ../setedit/editmenu.cc:93
 msgid "~P~rofile Editor"
 msgstr "Editor ~t~esten"
+
+#: ../setedit/editmenu.cc:96
+msgid "~F~ind..."
+msgstr "~S~uche..."
+
+#: ../setedit/editmenu.cc:97
+msgid "~R~eplace..."
+msgstr "~E~rsetzen..."
+
+#: ../setedit/editmenu.cc:98
+msgid "~S~earch again"
+msgstr "~W~iederhole Suche"
 
 #: ../setedit/editmenu.cc:100 ../settvuti/tdiagaid.cc:200
 msgid "~M~acro"
@@ -3680,6 +3256,10 @@ msgstr "~L~iste"
 msgid "~U~ser Screen"
 msgstr "Ben~u~tzerbildschirm"
 
+#: ../setedit/editmenu.cc:127 ../setedit/edprefs.cc:360
+msgid "~H~elp"
+msgstr "~H~ilfe"
+
 #: ../setedit/editmenu.cc:128
 msgid "~I~NF View"
 msgstr "~I~NF Betrachter"
@@ -3719,6 +3299,18 @@ msgstr "~F~arben"
 #: ../setedit/editmenu.cc:139
 msgid "~P~roject"
 msgstr "~P~rojekt"
+
+#: ../setedit/editmenu.cc:160
+msgid "~F2~ Save"
+msgstr "~F2~ Speichern"
+
+#: ../setedit/editmenu.cc:161
+msgid "~F3~ Open"
+msgstr "~F3~ Öffnen"
+
+#: ../setedit/editmenu.cc:162
+msgid "~Alt+F3~ Close"
+msgstr "~Alt+F3~ Weg"
 
 #: ../setedit/editmenu.cc:174
 msgid "~^H~ Help"
@@ -4153,6 +3745,27 @@ msgstr ""
 msgid "Scroll ~D~own"
 msgstr ""
 
+#. Colors Window
+#: ../setedit/editmenu.cc:306
+msgid "~G~roup"
+msgstr "~G~ruppe"
+
+#: ../setedit/editmenu.cc:307
+msgid "~I~tem"
+msgstr "~E~intrag"
+
+#: ../setedit/editmenu.cc:308
+msgid "~F~oreground"
+msgstr "~V~ordergrund"
+
+#: ../setedit/editmenu.cc:309
+msgid "~B~ackground"
+msgstr "~H~intergrund"
+
+#: ../setedit/editmenu.cc:310
+msgid "~T~ry"
+msgstr "~V~ersuch"
+
 #: ../setedit/editmenu.cc:311
 #, fuzzy
 msgid "Cop~y~ to file Clipboard"
@@ -4392,6 +4005,10 @@ msgstr "Starte SDG:"
 #: ../setedit/edprefs.cc:220
 msgid "Screen saver"
 msgstr "Bildschirmschoner"
+
+#: ../setedit/edprefs.cc:304
+msgid "Information"
+msgstr "Information"
 
 #: ../setedit/edprefs.cc:310
 msgid "Help for screen saver"
@@ -5126,6 +4743,10 @@ msgstr "Extra Zeichen in Zeile"
 msgid "No number for a context"
 msgstr "Keine Nummer für einen Kontext"
 
+#: ../setedit/menuload.cc:70
+msgid "Syntax error"
+msgstr "Syntaxfehler"
+
 #: ../setedit/menuload.cc:71
 msgid "Empty submenu"
 msgstr "Leeres Untermenü"
@@ -5370,6 +4991,10 @@ msgstr "Sie können es nicht von der Platte löschen"
 msgid "~G~o"
 msgstr "~G~ehe"
 
+#: ../setedit/winlistd.cc:126
+msgid "~O~pen"
+msgstr "Ö~f~fnen"
+
 #: ../settvuti/fileopen.cc:90
 msgid "Ho~m~e"
 msgstr "~S~tart"
@@ -5383,6 +5008,10 @@ msgstr "~B~aum"
 msgid "O~p~tions"
 msgstr "~O~ptionen"
 
+#: ../settvuti/fileopen.cc:268
+msgid "~N~ame"
+msgstr "~N~ame"
+
 #: ../settvuti/tdiagaid.cc:199
 msgid "Command~s~"
 msgstr "Befehl~e~"
@@ -5390,6 +5019,179 @@ msgstr "Befehl~e~"
 #: ../settvuti/tdiagaid.cc:203
 msgid "Assignmen~t~"
 msgstr "Zuweisun~g~"
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#, fuzzy
+#~ msgid "Pocket Calculator"
+#~ msgstr "~T~aschenrechner"
+
+#, fuzzy
+#~ msgid "Can't open file"
+#~ msgstr "Es sind keine Dateien geöffnet"
+
+#, fuzzy
+#~ msgid "Comment inside section name"
+#~ msgstr "~A~utoeinschub"
+
+#, fuzzy
+#~ msgid "Unterminated section name"
+#~ msgstr "Nicht beendeter Makroname"
+
+#, fuzzy
+#~ msgid "Empty section name"
+#~ msgstr "Leeres Untermenü"
+
+#, fuzzy
+#~ msgid "Missing open section {"
+#~ msgstr "Ende im pseudo macro fehlt"
+
+#, fuzzy
+#~ msgid "Unterminated string"
+#~ msgstr "Verbundener Wert"
+
+#, fuzzy
+#~ msgid "Windows not present"
+#~ msgstr "Fensterliste"
+
+#, fuzzy
+#~ msgid "Not enough memory"
+#~ msgstr "Nicht genug Speicher für diese Operation"
+
+#, fuzzy
+#~ msgid "Change Directory"
+#~ msgstr "Kann Verzeichnis nicht erstellen:"
+
+#, fuzzy
+#~ msgid "~C~hdir"
+#~ msgstr "~W~echsle Verzeichnis..."
+
+#, fuzzy
+#~ msgid "~R~evert"
+#~ msgstr "Ü~b~erschreiben"
+
+#, fuzzy
+#~ msgid "Help"
+#~ msgstr "~H~ilfe"
+
+#, fuzzy
+#~ msgid "Invalid directory"
+#~ msgstr "Ungültiges Laufwerk"
+
+#, fuzzy
+#~ msgid "Text "
+#~ msgstr "Nächstes"
+
+#~ msgid "~F~iles"
+#~ msgstr "~D~ateien"
+
+#, fuzzy
+#~ msgid "~S~elect"
+#~ msgstr "~L~ösche"
+
+#, fuzzy
+#~ msgid "~R~eplace"
+#~ msgstr "Ersetzen"
+
+#, fuzzy
+#~ msgid "Invalid drive or directory"
+#~ msgstr "Ungültiges Laufwerk"
+
+#, fuzzy
+#~ msgid "Invalid file name."
+#~ msgstr "Ungültiges Laufwerk"
+
+#~ msgid "Jan"
+#~ msgstr "Jan"
+
+#~ msgid "Feb"
+#~ msgstr "Feb"
+
+#~ msgid "Mar"
+#~ msgstr "Mär"
+
+#~ msgid "Apr"
+#~ msgstr "Apr"
+
+#~ msgid "Jun"
+#~ msgstr "Jun"
+
+#~ msgid "Jul"
+#~ msgstr "Jul"
+
+#~ msgid "Aug"
+#~ msgstr "Aug"
+
+#~ msgid "Sep"
+#~ msgstr "Sep"
+
+#~ msgid "Oct"
+#~ msgstr "Okt"
+
+#~ msgid "Nov"
+#~ msgstr "Nov"
+
+#~ msgid "Dec"
+#~ msgstr "Dez"
+
+#, fuzzy
+#~ msgid "Invalid character in input"
+#~ msgstr "Extra Zeichen in Zeile"
+
+#, fuzzy
+#~ msgid "Highlight"
+#~ msgstr "Syntax~h~ervorhebung"
+
+#, fuzzy
+#~ msgid "Error reading file %s."
+#~ msgstr "Fehler beim Lesen der Datei "
+
+#, fuzzy
+#~ msgid "Error writing file %s."
+#~ msgstr "Fehler beim Schreiben der Datei "
+
+#, fuzzy
+#~ msgid "Error creating file %s."
+#~ msgstr "Fehler beim Erstellen von "
+
+#, fuzzy
+#~ msgid "failed to open the input terminal"
+#~ msgstr "Konnte die Listendatei nicht öffnen"
+
+#, fuzzy
+#~ msgid "failed to open the output terminal"
+#~ msgstr "Konnte die Listendatei nicht öffnen"
+
+#, fuzzy
+#~ msgid "can't get output terminal information"
+#~ msgstr "Konnte Ausgabedatei nicht zum Drucken öffnen"
+
+#, fuzzy
+#~ msgid "Error! %s"
+#~ msgstr "Fehler"
+
+#, fuzzy
+#~ msgid "X11 error"
+#~ msgstr "Kein Fehler"
+
+#, fuzzy
+#~ msgid "Could not open '%s' for reading"
+#~ msgstr "Konnte Desktopdatei nicht finden."
+
+#, fuzzy
+#~ msgid "Save to file"
+#~ msgstr "Speicher Datei als"
+
+#~ msgid "Warning"
+#~ msgstr "Warnung"
+
+#~ msgid "Confirm"
+#~ msgstr "Bestätigung"
+
+#, fuzzy
+#~ msgid "Don't warn you next time"
+#~ msgstr "Nicht beim nächsten Mal anzeigen"
 
 #, fuzzy
 #~ msgid "normal text"

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.297  2003/04/21 18:25:37  set
+* Added: Copy/paste to/from OS clipboard to the list of i18n strings.
+* Fixed: Shortcut collision between it and file clipboard.
+* Updated: Spanish translations, removed \r to shutup msgmerge.
+
 Revision 1.296  2003/04/21 18:23:44  set
 * Fixed: Color names now are coherent, all start with a capital letter.
 * Fixed: The f*ck#ng gettext doesn't like values outside ASCII in msgids so

@@ -2331,50 +2331,17 @@ int main(int argc, char *argv[])
 
  //------ International support
  #ifndef NO_INTL_SUP
- char *locale_dir,localedir[PATH_MAX];
- setlocale(LC_ALL, "");
- // Use the LOCALEDIR var for the directory
- locale_dir=getenv("SET_LOCALEDIR");
- if (!locale_dir) locale_dir=getenv("LOCALEDIR");
-
- if (!locale_dir)
+ #ifdef NoHomeOrientedOS
+ if (!TVIntl::autoInit(EditorFile,getenv("SET_LOCALEDIR")))
    {
-    #ifdef NoHomeOrientedOS
-    // if LOCALEDIR doesn't exists use %DJDIR%/share/locale
-    locale_dir=getenv("DJDIR");
-    if (locale_dir)
-      {
-       strcpy(localedir,locale_dir);
-       strcat(localedir,"/share/locale");
-      }
-    else
-      {
-       #if 0
-       // if DJDIR doesn't exists use SET_FILES
-       locale_dir=(char *)GetVariable("SET_FILES");
-       if (locale_dir)
-          strcpy(localedir,locale_dir);
-       else
-         {
-          // if SET_FILES doesn't exists (imposible) use .
-          // That's only to avoid a GPF in the strcpy and add a little facility
-          localedir[0]='.';
-          localedir[1]=0;
-         }
-       #else
-       GetPathRelativeToRunPoint(localedir,"share/locale","");
-       #endif
-      }
-    #else
-    strcpy(localedir,"/usr/share/locale");
-    #endif
+    char localedir[PATH_MAX];
+    GetPathRelativeToRunPoint(localedir,"share/locale","");
+    TVIntl::autoInit(EditorFile,localedir);
    }
- else
-    strcpy(localedir,locale_dir);
-
- BINDTEXTDOMAIN(EditorFile,localedir);
- TEXTDOMAIN(EditorFile);
+ #else
+ TVIntl::autoInit(EditorFile,getenv("SET_LOCALEDIR"));
  #endif
+ #endif // NO_INTL_SUP
  //------ end of int. support
 
  // Initialize the MP3 Stuff, it must be done before loading the desktop.
