@@ -3,8 +3,8 @@
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
 
-#include <stdlib.h>
-#include <stdio.h>
+#define Uses_stdio
+#define Uses_stdlib
 
 #define Uses_TDialog
 #define Uses_TDeskTop
@@ -19,6 +19,8 @@
 #define Uses_TSButton
 #define Uses_TSStaticText
 #define Uses_TSTextScroller
+#define Uses_TSCheckBoxes
+#define Uses_TSVeGroup
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -31,8 +33,12 @@
 
 #include <edspecs.h>
 #include <advice.h>
+#include <vername.h>
 
-static const char *cSlogan=__("A friendly text editor.");
+static const char *cSlogan=__("\x3 A friendly text editor.");
+static const char *cFormatVersion=__("\x3Version: %lX.%lX.%lX   Revision: %d");
+static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) 1996-2003");
+static const char *cSET=__("\x3 by Salvador Eduardo Tropea");
 
 ushort execDialog( TDialog *d, void *data )
 {
@@ -51,32 +57,37 @@ ushort execDialog( TDialog *d, void *data )
   }
 }
 
+const int bufWidth=80;
+
 int AboutStartBox(void)
 {
  if (EnvirGetBits("SET_VARIOUS1",svr1DontShowAbout))
     return 0;
 
- TDialog *d=new TDialog(TRect(0,0,54,12),__("About"));
- d->options|=ofCentered;
+ TSViewCol *col=new TSViewCol(__("About"));
 
- TRect r(2,2,52,3);
- char b[54];
- TVIntl::snprintf(b,54,__("That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),
+ char v1[bufWidth],v2[bufWidth];
+ TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME);
+ TVIntl::snprintf(v2,bufWidth,cFormatVersion,
                   TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
-                  TCEDITOR_VERSION & 0xFF);
- d->insert(new TStaticText(r,b));
- r.move(0,1);
- d->insert(new TStaticText(r,__("by Salvador Eduardo Tropea")));
- r.move(0,2);
- d->insert(new TStaticText(r,cSlogan));
- r.move(0,2);
- d->insert(new TCheckBoxes32(r,new TSItem(__("Don't show it next time"),0)));
- r.a.x+=15;
- r.b.x-=15;
- r.a.y+=2;
- r.b.y+=3;
- d->insert(new TButton(r,__("~O~K"),cmOK,bfDefault));
- d->selectNext(False);
+                  TCEDITOR_VERSION & 0xFF,VERSION_REV);
+
+ TSVeGroup *ant=
+  MakeVeGroup(tsveMakeSameW,
+              new TSStaticText(v1),
+              new TSStaticText(v2),
+              new TSStaticText(cSET),
+              new TSStaticText(cSlogan),0);
+
+ TSVeGroup *all=
+  MakeVeGroup(1 | tsveMakeSameW,
+              ant,
+              new TSCheckBoxes(new TSItem(__("Don't show it next time"),0)),
+              new TSButton(__("~O~K"),cmOK,bfDefault),0);
+
+ col->insert(xTSCenter,yTSUpSep,all);
+
+ TDialog *d=col->doItCenter();
 
  uint32 op=0;
  execDialog(d,&op);
@@ -95,34 +106,22 @@ void ShowUserScreenDialog()
 
 void FullAboutBox(void)
 {
- char b[54];
- TSStaticText *ant,*cur;
+ TSViewCol *col=new TSViewCol(__("About"));
 
- TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("About")));
-
- TSView::yDefSep=0;
- TVIntl::snprintf(b,54,__("SET's Editor v%lX.%lX.%lX, (c) 1996-2003"),
+ char v1[bufWidth],v2[bufWidth];
+ TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME);
+ TVIntl::snprintf(v2,bufWidth,cFormatVersion,
                   TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
-                  TCEDITOR_VERSION & 0xFF);
- ant=new TSStaticText(b);
- col->insert(xTSCenter,2,ant);
+                  TCEDITOR_VERSION & 0xFF,VERSION_REV);
 
- #define i(a)  cur=new TSStaticText(a); \
-               col->insert(xTSCenter,yTSUnder,cur,0,ant); \
-               ant=cur
- i(__("by Salvador Eduardo Tropea"));
- i(cSlogan);
+ TSVeGroup *ant=
+  MakeVeGroup(tsveMakeSameW,
+              new TSStaticText(v1),
+              new TSStaticText(v2),
+              new TSStaticText(cSET),
+              new TSStaticText(cSlogan),0);
 
- TSView::yDefSep=1;
- i(__("Made in Argentina"));
- #undef i
- #define i(a)  cur=new TSStaticText(a); \
-               col->insert(2,yTSUnder,cur,0,ant); \
-               ant=cur
- i(__("Thanks to:"));
- TSView::yDefSep=0;
  TNSCollection *text=new TNSCollection(12,5);
- #undef i
  #define i(a) text->insert((void *)TVIntl::getTextNew(a));
  i(__("The FSF and GNU people for such good tools"));
  i(__("DJ Delorie and collaborators for porting it to DOS"));
@@ -146,14 +145,23 @@ void FullAboutBox(void)
  #endif
  i(__("Bjorn Reese for a lot of ideas about the stack debugger of UNIX"));
  i(__("All my friends that support my project (Laszlo, Marek, Ivan,"));
- i(__("Grzegorz, etc.)."));
+ i(__("Grzegorz, Andris, etc.)."));
  #undef i
  TSTextScroller *txt=new TSTextScroller(70,10,text,0,1,70);
- col->insert(2,yTSUnder,txt,0,ant);
 
- TSView::yDefSep=1;
- col->insert(xTSCenter,yTSUnder,new TSButton(__("O~K~"),cmOK,bfDefault),0,txt);
+ TSVeGroup *thanks=
+  MakeVeGroup(tsveMakeSameW,
+              new TSStaticText(__("Thanks to:")),
+              txt,0);
 
+ TSVeGroup *all=
+  MakeVeGroup(1 | tsveMakeSameW,
+              ant,
+              new TSStaticText(__("\x3Made in Argentina")),
+              thanks,
+              new TSButton(__("~O~K"),cmOK,bfDefault),0);
+
+ col->insert(xTSCenter,yTSUpSep,all);
  col->exec(0);
  CLY_destroy(text);
  delete col;

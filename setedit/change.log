@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.414  2003/06/18 19:55:12  set
+* Added: Now ManView window can be closed with ESC. Suggested by Thiago.
+* Added: Now you can copy from the message window to the OS clipboard.
+Suggested by Thiago.
+
 Revision 1.413  2003/06/17 15:50:25  set
 * Fixed: Find whole words and out/inside comments didn't work together.
 Reported by Alain <alainm@pobox.com>.

@@ -1300,12 +1300,13 @@ sub GenerateMakefile
 {
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
- my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays);
+ my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays,$mantmode);
  my $aux;
 
  print "Generating Makefile\n";
 
  # Give more priority to "prefix" than hardcoded value
+ $mantmode=@conf{'MAINTAINER_MODE'} eq 'yes';
  $text.="\n\nifneq (\$(strip \$(prefix)),)\n";
  $text.="  MPREFIX=\$(prefix)\n";
  $text.="else\n";
@@ -1315,7 +1316,7 @@ sub GenerateMakefile
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
  $text.="\nCXXFLAGS=$conf{'CXXFLAGS'}";
  $text.="\nSET_USE_FHS=$conf{'fhs'}" if ($OS eq 'UNIX');
- $text.="\nMAINTAINER_MODE=1" if @conf{'MAINTAINER_MODE'} eq 'yes';
+ $text.="\nMAINTAINER_MODE=1" if $mantmode;
  $text.="\nexport";
 
  #### Targets ####
@@ -1346,23 +1347,23 @@ sub GenerateMakefile
    }
  
  $text.="\n\n.PHONY: needed";
- $text.=" infview" if ($infview);
- $text.=" plasmas" if ($plasmas);
- $text.=" libbzip2" if ($libbzip2);
- $text.=" libz" if ($libz);
+ $text.=" infview"    if ($infview);
+ $text.=" plasmas"    if ($plasmas);
+ $text.=" libbzip2"   if ($libbzip2);
+ $text.=" libz"       if ($libz);
  $text.=" libmpegsnd" if ($libmpegsnd);
- $text.=" libpcre" if ($libpcre);
- $text.=" libamp" if ($libamp);
- $text.=" libintl" if ($libintl);
- $text.=" installer" if ($installer);
- $text.=" internac" if ($internac);
- $text.=" doc-basic" if ($docbasic);
- $text.=" holidays" if ($holidays);
+ $text.=" libpcre"    if ($libpcre);
+ $text.=" libamp"     if ($libamp);
+ $text.=" libintl"    if ($libintl);
+ $text.=" installer"  if ($installer);
+ $text.=" internac"   if ($internac);
+ $text.=" doc-basic"  if ($docbasic);
+ $text.=" holidays"   if ($holidays);
  # all targets
  $text.="\n\nall: Makefile editor";
- $text.=" libset" if ($libset);
- $text.=" infview" if ($infview);
- $text.=" plasmas" if ($plasmas);
+ $text.=" libset"    if ($libset);
+ $text.=" infview"   if ($infview);
+ $text.=" plasmas"   if ($plasmas);
  $text.=" installer" if ($installer);
  $text.="\n";
 
@@ -1418,17 +1419,18 @@ sub GenerateMakefile
    }
  # needed (by editor)
  $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
- $text.=" libamp"   if ($libamp);
- $text.=" libmpegsnd"   if ($libmpegsnd);
- $text.=" libbzip2" if ($libbzip2);
- $text.=" libz" if ($libz);
- $text.=" libpcre" if ($libpcre);
- $text.=" libintl" if ($libintl);
- $text.=" holidays" if ($holidays);
+ $text.=" libamp"     if ($libamp);
+ $text.=" libmpegsnd" if ($libmpegsnd);
+ $text.=" libbzip2"   if ($libbzip2);
+ $text.=" libz"       if ($libz);
+ $text.=" libpcre"    if ($libpcre);
+ $text.=" libintl"    if ($libintl);
+ $text.=" holidays"   if ($holidays);
+ $text.=" include/vername.h" if ($mantmode);
  #
  # MinGW tools I tested are broken and can't generate these targets
  #
- $text.=" internac" if ($internac) && ($Compf ne 'MinGW');
+ $text.=" internac"  if ($internac) && ($Compf ne 'MinGW');
  $text.=" doc-basic" if ($docbasic) && ($Compf ne 'MinGW');
  # editor
  $text.="\n\neditor: needed";
@@ -1462,6 +1464,12 @@ sub GenerateMakefile
    {
     $text.="\n\nholidays:\n";
     $text.="\t\$(MAKE) -C holidays";
+   }
+ # version name and revision header
+ if ($mantmode)
+   {
+    $text.="\n\ninclude/vername.h: change.log\n";
+    $text.="\tperl updaterev.pl";
    }
 
  #### Installations ####

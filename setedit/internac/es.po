@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.2\n"
-"PO-Revision-Date: 2003-06-11 22:56-0300\n"
+"PO-Revision-Date: 2003-06-21 17:35-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:456 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
+#: ../mainsrc/slpinter.cc:462 ../mainsrc/tags.cc:1385 ../mainsrc/tags.cc:1558
 #: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
 #: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
 #: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:127
@@ -66,12 +66,11 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
 #: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:455
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:461
 #: ../mainsrc/tags.cc:1407 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
-#: ../setedit/editdiag.cc:155 ../setedit/edprefs.cc:239
-#: ../setedit/edprefs.cc:471 ../setedit/edprefs.cc:616
-#: ../setedit/edprefs.cc:680 ../setedit/edprefs.cc:906
-#: ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
+#: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
+#: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:680
+#: ../setedit/edprefs.cc:906 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~k~"
 
@@ -178,8 +177,8 @@ msgid "In ~a~ll files"
 msgstr "En ~t~odos los archivos"
 
 #: ../infview/inf.cc:2336 ../infview/inf.cc:2359 ../infview/inf.cc:2382
-#: ../infview/inf.cc:2408 ../setedit/editdiag.cc:78 ../setedit/editpale.cc:165
-#: ../settvuti/diaghelp.cc:38
+#: ../infview/inf.cc:2408 ../setedit/editdiag.cc:86 ../setedit/editdiag.cc:162
+#: ../setedit/editpale.cc:165 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~k"
 
@@ -587,23 +586,23 @@ msgstr "No hay suficiente memoria para esta operación."
 msgid "Sorry but no OS specific clipboard is available"
 msgstr "Lo lamento pero no hay ningún portapapeles del sistema disponible"
 
-#: ../infview/manview.cc:760
+#: ../infview/manview.cc:751
 msgid "You must install man to use it!"
 msgstr "¡Debe instalar el programa man para usar esto!"
 
-#: ../infview/manview.cc:789
+#: ../infview/manview.cc:780
 msgid "Man page to view"
 msgstr "Visor de páginas del manual"
 
-#: ../infview/manview.cc:792
+#: ../infview/manview.cc:783
 msgid "~M~an page for ..."
 msgstr "~P~ágina del manual para ..."
 
-#: ../infview/manview.cc:793
+#: ../infview/manview.cc:784
 msgid "~S~ection"
 msgstr "~S~ección"
 
-#: ../infview/manview.cc:794
+#: ../infview/manview.cc:785
 msgid "~E~xtra options"
 msgstr "Opciones ~e~xtra"
 
@@ -1405,20 +1404,20 @@ msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
-#: ../mainsrc/ceditor.cc:3930
+#: ../mainsrc/ceditor.cc:3951
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4129
+#: ../mainsrc/ceditor.cc:4150
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4148
+#: ../mainsrc/ceditor.cc:4169
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4170
+#: ../mainsrc/ceditor.cc:4191
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1429,7 +1428,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4204
+#: ../mainsrc/ceditor.cc:4225
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1442,16 +1441,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5764
+#: ../mainsrc/ceditor.cc:5785
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5779
+#: ../mainsrc/ceditor.cc:5800
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10095
+#: ../mainsrc/ceditor.cc:10117
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1459,29 +1458,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10110
+#: ../mainsrc/ceditor.cc:10132
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:10835
+#: ../mainsrc/ceditor.cc:10857
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11777
+#: ../mainsrc/ceditor.cc:11799
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:11988
+#: ../mainsrc/ceditor.cc:12010
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13175
+#: ../mainsrc/ceditor.cc:13197
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13185
+#: ../mainsrc/ceditor.cc:13207
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -1807,7 +1806,7 @@ msgid "Export Options"
 msgstr "Opciones para exportar"
 
 #: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:416
-#: ../setedit/runprog.cc:121
+#: ../setedit/runprog.cc:122
 msgid "~O~ptions"
 msgstr "~O~pciones"
 
@@ -2171,12 +2170,12 @@ msgstr "(%d) %s en la línea %d"
 msgid "In section %s"
 msgstr "En la sección %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:301
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:307
 #, c-format
 msgid "Type of error: %s"
 msgstr "Tipo de error: %s"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:303
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:309
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Código: ...%s..."
@@ -2218,27 +2217,27 @@ msgstr "Error en la expresión regular: %s"
 msgid "PCRE Exec error"
 msgstr "Error de ejecución del a ExpReg"
 
-#: ../mainsrc/slpinter.cc:300
+#: ../mainsrc/slpinter.cc:306
 msgid "Error in sLisp interpreter:"
 msgstr "Error en el intérprete de sLisp:"
 
-#: ../mainsrc/slpinter.cc:304
+#: ../mainsrc/slpinter.cc:310
 msgid "End of SLP"
 msgstr "Fin de SLP"
 
-#: ../mainsrc/slpinter.cc:367
+#: ../mainsrc/slpinter.cc:373
 msgid "Enter sLisp code to interprete"
 msgstr "Ingrese código sLisp a ser interpretado"
 
-#: ../mainsrc/slpinter.cc:400
+#: ../mainsrc/slpinter.cc:406
 msgid "No macros defined"
 msgstr "No hay macros definidos"
 
-#: ../mainsrc/slpinter.cc:443
+#: ../mainsrc/slpinter.cc:449
 msgid "sLisp macros"
 msgstr "Macros sLisp"
 
-#: ../mainsrc/slpinter.cc:453
+#: ../mainsrc/slpinter.cc:459
 msgid "~M~acros"
 msgstr "~M~acros"
 
@@ -2611,72 +2610,72 @@ msgstr "~C~argar"
 msgid "Return value:"
 msgstr "Valor retornado:"
 
-#: ../sdg/mli.cc:1475
+#: ../sdg/mli.cc:1558
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1480
+#: ../sdg/mli.cc:1563
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1481
+#: ../sdg/mli.cc:1564
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1486
+#: ../sdg/mli.cc:1569
 msgid "string not closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1487
+#: ../sdg/mli.cc:1570
 msgid "no ) at end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1488
+#: ../sdg/mli.cc:1571
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1489
+#: ../sdg/mli.cc:1572
 msgid "wrong number"
 msgstr "número erróneo"
 
-#: ../sdg/mli.cc:1490
+#: ../sdg/mli.cc:1573
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1491
+#: ../sdg/mli.cc:1574
 msgid "stack overflow"
 msgstr "desborde de pila (stack)"
 
-#: ../sdg/mli.cc:1496
+#: ../sdg/mli.cc:1579
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un parámetro"
 
-#: ../sdg/mli.cc:1497
+#: ../sdg/mli.cc:1580
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1498
+#: ../sdg/mli.cc:1581
 msgid "parameter after command"
 msgstr "parámetro luego de un comando"
 
-#: ../sdg/mli.cc:1499
+#: ../sdg/mli.cc:1582
 msgid "wrong number of parameters"
 msgstr "número equivocado de parámetros"
 
-#: ../sdg/mli.cc:1500
+#: ../sdg/mli.cc:1583
 msgid "wrong parameter type"
 msgstr "tipo de parámetro equivocado"
 
-#: ../sdg/mli.cc:1501
+#: ../sdg/mli.cc:1584
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1502
+#: ../sdg/mli.cc:1585
 msgid "undefined symbol"
 msgstr "símbolo no definido"
 
-#: ../sdg/mli.cc:1503
+#: ../sdg/mli.cc:1586
 msgid "operation not defined"
 msgstr "operación no definida"
 
@@ -2774,7 +2773,7 @@ msgstr ""
 msgid "Advice"
 msgstr "Concejo"
 
-#: ../setedit/advice.cc:107 ../setedit/editdiag.cc:73
+#: ../setedit/advice.cc:107 ../setedit/editdiag.cc:85
 msgid "Don't show it next time"
 msgstr "No mostrar esto la próxima vez"
 
@@ -2946,96 +2945,96 @@ msgstr ""
 msgid "Color Themes"
 msgstr "Esquemas de Colores"
 
-#: ../setedit/editdiag.cc:35
-msgid "A friendly text editor."
-msgstr "Un editor de texto amigable."
+#: ../setedit/editdiag.cc:38
+msgid " A friendly text editor."
+msgstr " Un editor de texto amigable."
 
-#: ../setedit/editdiag.cc:59 ../setedit/editdiag.cc:101
+#: ../setedit/editdiag.cc:39
+#, c-format
+msgid "Version: %lX.%lX.%lX   Revision: %d"
+msgstr "Versión: %lX.%lX.%lX   Revisión: %d"
+
+#: ../setedit/editdiag.cc:40
+#, c-format
+msgid "That's SET's Editor \"%s\", (c) 1996-2003"
+msgstr "Este es el editor de SET \"%s\", (c) 1996-2003"
+
+#: ../setedit/editdiag.cc:41
+msgid " by Salvador Eduardo Tropea"
+msgstr " hecho por Salvador Eduardo Tropea"
+
+#: ../setedit/editdiag.cc:67 ../setedit/editdiag.cc:109
 msgid "About"
 msgstr "Acerca de"
 
-#: ../setedit/editdiag.cc:64
-#, c-format
-msgid "That's SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
-msgstr "Este es el editor de SET v%lX.%lX.%lX, (c) 1996-2003"
-
-#: ../setedit/editdiag.cc:69 ../setedit/editdiag.cc:113
-msgid "by Salvador Eduardo Tropea"
-msgstr "hecho por Salvador Eduardo Tropea"
-
-#: ../setedit/editdiag.cc:104
-#, c-format
-msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
-msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
-
-#: ../setedit/editdiag.cc:117
-msgid "Made in Argentina"
-msgstr "Hecho en Argentina"
-
-#: ../setedit/editdiag.cc:122
-msgid "Thanks to:"
-msgstr "Agradecimientos para:"
-
-#: ../setedit/editdiag.cc:127
+#: ../setedit/editdiag.cc:126
 msgid "The FSF and GNU people for such good tools"
 msgstr "La gente de la FSF y el proyecto GNU por tan buenas herramientas"
 
-#: ../setedit/editdiag.cc:128
+#: ../setedit/editdiag.cc:127
 msgid "DJ Delorie and collaborators for porting it to DOS"
 msgstr "DJ Delorie y sus colaboradores por portarlas a DOS"
 
-#: ../setedit/editdiag.cc:129
+#: ../setedit/editdiag.cc:128
 msgid "Robert Hoehne for porting TVision and making RHIDE"
 msgstr "Robert Höhne por portar TV y crear RHIDE"
 
-#: ../setedit/editdiag.cc:130
+#: ../setedit/editdiag.cc:129
 msgid "Vadim Belodorov for contributing the first port of TV to Win32"
 msgstr "Vadim Belodorov por contribuir el primer port de TV a Win32"
 
-#: ../setedit/editdiag.cc:131
+#: ../setedit/editdiag.cc:130
 msgid "Anatoli Soltan for porting to Win32 using BC++"
 msgstr "Anatoli Soltan por portar a Win32 usando BC++"
 
-#: ../setedit/editdiag.cc:132
+#: ../setedit/editdiag.cc:131
 msgid "VA Linux and the people who maintain Source Forge"
 msgstr "El equipo de VA Linux que mantiene Source Forge"
 
-#: ../setedit/editdiag.cc:133
+#: ../setedit/editdiag.cc:132
 msgid "The University of California, Berkeley and its contributors"
 msgstr "La Universidad de California, Berkeley y sus colaboradores"
 
-#: ../setedit/editdiag.cc:135
+#: ../setedit/editdiag.cc:134
 msgid "The University of Cambridge for the PCRE package"
 msgstr "La University of Cambridge por la librería PCRE"
 
-#: ../setedit/editdiag.cc:138
+#: ../setedit/editdiag.cc:137
 msgid "Shawn Hargreaves for Allegro; used as the sound engine"
 msgstr "Shawn Hargreaves por Allegro, usado como motor de sonido"
 
-#: ../setedit/editdiag.cc:140
+#: ../setedit/editdiag.cc:139
 msgid ""
 "Tomislav Uzelac for AMP, MP3 engine and Ove Kaaven for adapting to Allegro"
 msgstr "Tomislav Uzelac por AMP, motor MP3 y Ove Kaaven por adapt. p/Allegro"
 
-#: ../setedit/editdiag.cc:143
+#: ../setedit/editdiag.cc:142
 msgid "Jean-loup Gailly and Mark Adler for the zlib"
 msgstr "Jean-loup Gailly and Mark Adler por la biblioteca zlib"
 
-#: ../setedit/editdiag.cc:145
+#: ../setedit/editdiag.cc:144
 msgid "Julian R. Seward for bzip2 routines included"
 msgstr "Julian R. Seward por las rutinas bzip2 usadas"
 
-#: ../setedit/editdiag.cc:147
+#: ../setedit/editdiag.cc:146
 msgid "Bjorn Reese for a lot of ideas about the stack debugger of UNIX"
 msgstr "Bjorn Reese por varias ideas para el `stack debugger' para UNIX"
 
-#: ../setedit/editdiag.cc:148
+#: ../setedit/editdiag.cc:147
 msgid "All my friends that support my project (Laszlo, Marek, Ivan,"
 msgstr "Todos mis amigos que soportaron mi proyecto (Laszlo, Marek,"
 
-#: ../setedit/editdiag.cc:149
-msgid "Grzegorz, etc.)."
-msgstr "Ivan, Grzegorz, etc.)."
+#: ../setedit/editdiag.cc:148
+msgid "Grzegorz, Andris, etc.)."
+msgstr "Ivan, Grzegorz, Andris, etc.)."
+
+#: ../setedit/editdiag.cc:154
+msgid "Thanks to:"
+msgstr "Agradecimientos para:"
+
+#: ../setedit/editdiag.cc:160
+msgid "Made in Argentina"
+msgstr "Hecho en Argentina"
 
 #: ../setedit/editmain.cc:127
 msgid "Do you want to delete all the .BKP, desktop and project files?"
@@ -4086,15 +4085,15 @@ msgstr "Mantener el valor del ~B~IOS"
 msgid "Always interprete shift+arrow as ~m~ovement"
 msgstr "Siempre interpretar shift+flecha como ~m~ovimiento"
 
-#: ../setedit/edmsg.cc:340
+#: ../setedit/edmsg.cc:353
 msgid "Last message in the list"
 msgstr "Último mensaje en la lista"
 
-#: ../setedit/edmsg.cc:372
+#: ../setedit/edmsg.cc:385
 msgid "First message in the list"
 msgstr "Primer mensaje en la lista"
 
-#: ../setedit/edmsg.cc:429
+#: ../setedit/edmsg.cc:442
 msgid "Message Window"
 msgstr "Ventana de Mensajes"
 
@@ -4342,7 +4341,7 @@ msgstr "S~i~empre"
 msgid "~O~nly if no file specified"
 msgstr "Só~l~o si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:128
+#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:129
 msgid "~N~ever"
 msgstr "~N~unca"
 
@@ -4350,7 +4349,7 @@ msgstr "~N~unca"
 msgid "Remember other windows"
 msgstr "Recordar otras ventanas"
 
-#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:128
+#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:129
 msgid "Al~w~ays"
 msgstr "~S~iempre"
 
@@ -5064,84 +5063,85 @@ msgstr "Desde el programa:"
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
-#. ABDEFHJKLMNPRSTUW
-#: ../setedit/runprog.cc:119
+#. EN: ABDEFHJKLMNPRSTUW
+#. ES: ACEFKIJLNOPRSTUZ
+#: ../setedit/runprog.cc:120
 msgid "~E~nter the program name"
 msgstr "~I~ngrese el nombre del programa"
 
-#: ../setedit/runprog.cc:122
+#: ../setedit/runprog.cc:123
 msgid "~U~se OS screen to run the program"
 msgstr "~U~sar la pantalla del SO"
 
-#: ../setedit/runprog.cc:123
+#: ../setedit/runprog.cc:124
 msgid "~D~on't try to run in background"
 msgstr "No intentar correr en segundo ~p~lano"
 
-#: ../setedit/runprog.cc:124
+#: ../setedit/runprog.cc:125
 msgid "~A~lways parse in background"
 msgstr "Siempre en segundo pl~a~no"
 
-#: ../setedit/runprog.cc:125
+#: ../setedit/runprog.cc:126
 msgid "~J~ump to the first error"
 msgstr "Sal~t~ar al primer error"
 
-#: ../setedit/runprog.cc:126
+#: ../setedit/runprog.cc:127
 msgid "Don't ~r~edirect stdout"
 msgstr "N~o~ redireccionar stdout"
 
-#: ../setedit/runprog.cc:127
+#: ../setedit/runprog.cc:128
 msgid "Message window ~s~croll"
 msgstr "Despla~z~amiento de la ventana de mensajes"
 
-#: ../setedit/runprog.cc:128
+#: ../setedit/runprog.cc:129
 msgid "Only if not ~f~ocused"
 msgstr "Sólo si sele~c~cionada"
 
-#: ../setedit/runprog.cc:129
+#: ../setedit/runprog.cc:130
 msgid "~H~orizontal reset"
 msgstr "Posición horizontal a cero"
 
-#: ../setedit/runprog.cc:130
+#: ../setedit/runprog.cc:131
 msgid "At ~b~eggining"
 msgstr "Al p~r~incipio"
 
-#: ../setedit/runprog.cc:131
+#: ../setedit/runprog.cc:132
 msgid "For each ~m~essage"
 msgstr "En cada mensa~j~e"
 
-#: ../setedit/runprog.cc:132
+#: ../setedit/runprog.cc:133
 msgid "At ~t~he end"
 msgstr "Al ~f~inal"
 
-#: ../setedit/runprog.cc:133
+#: ../setedit/runprog.cc:134
 msgid "~L~ines per pass"
 msgstr "~L~íneas por pasada"
 
-#: ../setedit/runprog.cc:140
+#: ../setedit/runprog.cc:141
 msgid "Error ~p~arser"
 msgstr "Intérprete de ~e~rrores para"
 
-#: ../setedit/runprog.cc:196
+#: ../setedit/runprog.cc:197
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
-#: ../setedit/runprog.cc:219
+#: ../setedit/runprog.cc:220
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:438
+#: ../setedit/runprog.cc:439
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:468
+#: ../setedit/runprog.cc:469
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:573
+#: ../setedit/runprog.cc:574
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:652
+#: ../setedit/runprog.cc:653
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 
@@ -5236,6 +5236,9 @@ msgstr "Asi~g~nación"
 #: ../settvuti/tdiagaid.cc:187
 msgid "Command~s~"
 msgstr "Comando~s~"
+
+#~ msgid "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
+#~ msgstr "SET's Editor v%lX.%lX.%lX, (c) 1996-2003"
 
 #~ msgid "Error of type: %s"
 #~ msgstr "Error de tipo: %s"

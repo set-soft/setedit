@@ -275,6 +275,7 @@ include/ssyntax.h
 include/tags.h
 include/tvsetuti.h
 include/ucdefs.h
+include/vername.h
 infview/change.log
 infview/include/inf.h
 infview/include/infr.h
@@ -820,6 +821,7 @@ tools/mideline.cc
 tools/symify.cc
 tools/TVpo.pl
 version.txt
+updaterev.pl
 *windos.faq
 www-site/announce.html
 www-site/change.html
