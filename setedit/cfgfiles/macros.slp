@@ -241,23 +241,30 @@
 ;   (RunProgram "make")
 ;  )
 ; )
-; 
+;
+; If you are editing a file named "stuff.cpp",
+; this macro takes you to "stuff.h" and vice-versa.
+; (OpenFile) checks first if the file is already open,
+; in which case it just switches to the right window.
+;
 ; (defmacro 'Switch-cpp-h'
 ;  (eval
 ;   (setv "name" (WhichEditor edfWENameNoExt)) ; name without extension
 ;   (setv "ext"  (WhichEditor edfWEExtension)) ; extension
-; 
 ;   (cond (not (strcmp ext ".cpp"))  (OpenFile (+ name ".h"))
 ;         (not (strcmp ext ".h"))    (OpenFile (+ name ".cpp"))
 ;   )
 ;  )
 ; )
 ; 
+; This is an implementation of pseudo-macros in sLisp.
+; Assign to Ctrl-Space.
+;
 ; (defmacro 'pmacro'
 ;  (progn
 ;   (SendCommands cmcSelectOn cmcCharLeft cmcCharLeft cmcSelectOff)
 ;   (setv "str" (GetSelection))
-;   (SendCommands cmcCut)
+;   (SendCommands cmcClear)
 ;   (cond (not (strcmp str "#I"))    (progn  (InsertText '#include ".h"')
 ;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
 ;                                    )
@@ -266,6 +273,8 @@
 ;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
 ;                                    )
 ; 
+;         (not (strcmp str "#d"))    (InsertText '#define ')
+;
 ;         (not (strcmp str "pr"))    (progn  (InsertText 'printf("");')
 ;                                            (SendCommands cmcCharLeft cmcCharLeft cmcCharLeft)
 ;                                    )
@@ -294,6 +303,14 @@
 ;                                           (InsertText "\n")
 ;                                           (InsertText "#endif")
 ;                                           (SendCommands cmcLineUp cmcLineUp cmcLineUp cmcLineEnd)
+;                                    )
+;
+;         (not (strcmp str ".h"))    (progn
+;                                           (setv "filename" (+ "_____" (WhichEditor edfWENameNoExt) "_h_____"))
+;                                           (InsertText (+ "#ifndef " filename "\n"))
+;                                           (InsertText (+ "#define " filename "\n"))
+;                                           (InsertText "\n")
+;                                           (InsertText "#endif")
 ;                                    )
 ; 
 ;         (not (strcmp str "fo"))    (progn (InsertText "for (int i=0; i<; i++)")
