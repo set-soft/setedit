@@ -10,13 +10,12 @@
 
 *****************************************************************************/
 
+#include <ctype.h>
 #include <math.h>
 #include <setjmp.h>
-#define Uses_stdio
-#define Uses_stdlib
-#define Uses_ctype
+#include <stdio.h>
+#include <stdlib.h>
 #define Uses_string
-#define CLY_DoNotDefineUTypes
 #include <compatlayer.h>
 
 #define isprenum(STR) (STR == '.' || (STR >= '0' && STR <= '9'))
