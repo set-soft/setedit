@@ -178,16 +178,16 @@ const unsigned char ttedIsPasSymb =24;
 // !#%&$*+-/:<=>?@^|() [] {} ,;.
 const unsigned char ttedIsClipSymb=32;
 
-extern unsigned char _table_types_editor_[256];
+extern unsigned char TableTypesEditor[256];
 
 inline int isWordChar(unsigned char ch)
 {
- return _table_types_editor_[ch] & ttedIsWordChar ? 1 : 0;
+ return TableTypesEditor[ch] & ttedIsWordChar ? 1 : 0;
 }
 
 inline int isWordCharColon(unsigned char ch)
 {
- return (_table_types_editor_[ch] & ttedIsWordChar) || ch==':';
+ return (TableTypesEditor[ch] & ttedIsWordChar) || ch==':';
 }
 
 #ifdef DEBUG
