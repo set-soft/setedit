@@ -61,7 +61,7 @@ void MLIRetString(TMLIBase *o,int stkPos,char *str);
         o->array->ReplaceItem(start-1,new TLispString(str,len,StrAlreadyAllocated))
 #define MLIRetObj(v) \
         do { \
-        v->type|=1; \
+        if (v) v->type|=1; \
         o->array->ReplaceItem(start-1,v); \
         } while(0)
 #define MLIRetNULL() \
