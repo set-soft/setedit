@@ -831,7 +831,7 @@ void SaveProject(void)
  editorApp->saveDesktop(s,makeBackUp);
  HideDesktop(s,DesktopFilesOptions);
  if (remove)
-    delete s;
+    free(s);
 }
 
 void SaveDesktopHere(void)

@@ -581,7 +581,7 @@ static void TakeName(char *Buf,char *Nom,char *Nom2,int &ini,int &largo,int &Lin
  if (*ori==':')
    {
     ori--;
-    memcpy(ori,ori+2,size_t(Size-(ori-Origin)-2+1));
+    memmove(ori,ori+2,size_t(Size-(ori-Origin)-2+1));
     Size-=2;
     Fin-=2;
     return;

@@ -84,7 +84,7 @@ int GZFiles_ExpandGZ(char *dest, char *orig)
 
  fclose(f);
  gzclose(file);
- delete buf;
+ DeleteArray(buf);
 
  return 0;
 }

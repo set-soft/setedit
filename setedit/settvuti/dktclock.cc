@@ -10,6 +10,7 @@ TDeskTopClock:: TDeskTopClock(const TRect & r) :
   TView(r), curTime(0)
 {
  growMode=gfGrowLoX | gfGrowHiX;
+ putSeparator=0;
 };
 
 void TDeskTopClock::update()

@@ -4814,8 +4814,7 @@ struct selRecSt *DuplicateRectSt(char *block)
  struct selRecSt *auxR;
 
  // Try to get the memory
- if ((auxR=(struct selRecSt *)malloc(size))==0)
-    return 0;
+ auxR=(struct selRecSt *)(new char[size]);
  memcpy(auxR,block,size);
 
  return auxR;
@@ -5227,7 +5226,7 @@ Boolean TCEditor::FillUndoForRectangularPasteClear(int Height,struct UndoCell &u
  // Allocate memory for that
  unsigned size=(unsigned)(end_line-curLinePtr);
  unsigned sizer=sizeof(struct selRecSt);
- aux=(char *)malloc(size+sizer);
+ aux=new char[size+sizer];
  if (aux==NULL)
     return False;
 
@@ -6467,12 +6466,8 @@ void TCEditor::MakeEfectiveLineInEdition(void)
    {
     if (bufSize<bufLen+dif)
        setBufSize(bufLen+dif);
-    memmove(curLinePtr+actual,curLinePtr+old,(size_t)(bufLen-(curLinePtr+old-buffer)));
    }
- else
-   {
-    memcpy(curLinePtr+actual,curLinePtr+old,(size_t)(bufLen-(curLinePtr+old-buffer)));
-   }
+ memmove(curLinePtr+actual,curLinePtr+old,(size_t)(bufLen-(curLinePtr+old-buffer)));
 
  unsigned curLineOff=(unsigned)(curLinePtr-buffer);
  if (selNewStart!=selStart || selNewEnd!=selEnd)
@@ -10338,6 +10333,7 @@ void TCEditor::setBufLen( uint32 length )
  UndoBase=UndoActual=UndoTop=0;
  undoLockCount=undoGroupCount=0;
  UndoArray[0].X=UndoArray[0].Y=0;
+ UndoArray[0].Count=0;
 
  // Initialize the rect. sel
  Xr1=Yr1=Xr2=Yr2=0;
@@ -11049,24 +11045,24 @@ void *TCEditor::read( ipstream& is )
  indicator->editor=this;
 
  is >> bufSize >> temp;
- canUndo = (temp) ? True : False;
- selecting = False;
- overwrite = False;
- autoIndent = False;
- keyState = 0;
+ canUndo=(temp) ? True : False;
+ selecting =False;
+ overwrite =False;
+ autoIndent=False;
+ keyState=0;
  if (DontLoadFile) bufSize=0;
  initBuffer();
- if ( buffer != 0 )
-    isValid = True;
+ if (buffer)
+    isValid=True;
  else
     {
      TCEditor::editorDialog(edOutOfMemory,0);
-     bufSize = 0;
+     bufSize=0;
     }
- lockCount = 0;
+ lockCount=0;
  //lock();
- bufEdit = NULL; // must be initialized before setBufLen()
- bufEditLen = 0;
+ bufEdit=NULL; // must be initialized before setBufLen()
+ bufEditLen=0;
  // Normally the files aren't compressed, if the file is really compressed we will
  // know it in loadFile
  IsaCompressedFile=gzNoCompressed;
@@ -11074,7 +11070,12 @@ void *TCEditor::read( ipstream& is )
                      // pointing to some valid place.
  LineMeassure=LineMeassureC;
  GenericSHL=0;
- setBufLen( 0 );
+ // The setBufLen member does a call to update. So we must initialize some
+ // stuff related to the drawing machinery.
+ updateFlags=0;
+ CrossCursorInCol=CrossCursorInRow=0;
+ //undoGroupCount=0;
+ setBufLen(0);
 
  SpecialLines=NULL;
 
@@ -12535,7 +12536,7 @@ void TCEditor::freeUndoCell(int Index)
     case undoRectDel:
     case undoRectStart:
     case undoRectEnd:
-         delete UndoArray[Index].s;
+         DeleteArray(UndoArray[Index].s);
          break;
     default:
          break;

@@ -60,7 +60,7 @@ char *TDskWinClosed::GetText(char *dest, short maxLen)
 
 TDskWinClosed::TDskWinClosed(TCEditWindow *edw)
 {
- Name=strdup(edw->editor->fileName);
+ Name=newStr(edw->editor->fileName);
  edw->FillResume(resume);
  type=dktClosed;
  CanBeSaved=1;

@@ -951,9 +951,9 @@ void CreateScrSaversList(void)
 char *GetDefaultScreenSaver(void)
 {
  #ifdef HAVE_AA
- return strdup(PlasmaRB1AA.Name);
+ return newStr(PlasmaRB1AA.Name);
  #else
- return strdup(Silly.Name);
+ return newStr(Silly.Name);
  #endif
 }
 #endif
