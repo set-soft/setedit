@@ -222,7 +222,7 @@ public:
     int ConvertIt(long Pos);
     static int SizeOfReadBuf;
 
-    char NameOfTemporal[L_tmpnam];
+    char NameOfTemporal[FILENAME_MAX];
 
     long fileLength;
 

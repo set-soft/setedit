@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.63  2002/03/26 13:40:55  set
+* Fixed: use of popen(...,"rt") that fails for glibc 2.2.5. Patch by Andris.
+
 Revision 1.62  2002/02/22 12:27:51  set
 
 Revision 1.568  2002/02/21 23:47:38  set
