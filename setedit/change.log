@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.647  2004/12/06 17:58:53  set
+* Added: [config] Option to disable libmigdb support.
+* Added: [gcc 3.x] Use of a new macro in TV to cast pointers into 64 bits
+values.
+* Modified: [config] Now TV 2.0.4 is needed.
+
 Revision 1.646  2004/12/06 15:23:28  set
 * Modified: The behavior of the "selection search" to search for the last
 selected text instead of the current local selection.

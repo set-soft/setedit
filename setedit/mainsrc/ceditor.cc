@@ -192,7 +192,6 @@ int InitTCEditor(char *s,Boolean force)
        ret|=1;
     TView::getCommands(TCEditor::cmdsAux);
     DisableCommands(TCEditor::cmdsAux);
-    TCEditor::findStrSel[0]=0;
     #ifdef STANDALONE
     CreateSHShortCutTables();
     #endif
@@ -2077,7 +2076,7 @@ void TCEditor::handleMouse(TEvent &event)
    }
  while (mouseEvent(event,evMouseMove+evMouseAuto));
  clearEvent(event);
- UpdateSearchSelBuffer();
+ SetSelectionBuffer();
  if (TVOSClipboard::isAvailable()>1)
     clipWinCopy(1);
 }
@@ -3652,6 +3651,72 @@ int TCEditor::handleCommand(ushort command)
  return 1;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Indicates that this object contains the current selection. Used for the
+"selection search" mechanism.
+  
+***************************************************************************/
+
+void TCEditor::SetSelectionBuffer()
+{
+ haveCurSelection=this;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Indicates we no longer hold the selection.
+  
+***************************************************************************/
+
+void TCEditor::UnsetSelectionBuffer()
+{
+ if (haveCurSelection==this)
+    haveCurSelection=NULL;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Copies the selected text to the @var{destination} buffer. If nothing is
+selected informs it to the user. If the selection contains \n also informs it
+to the user. It also checks for @var{max} bytes.
+  
+  Return: True if the selection was copied.
+  
+***************************************************************************/
+
+Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
+{
+ flushLine();
+ // Must have a selection.
+ // Note: the command is disabled when no selection is available.
+ if (!hasVisibleSelection())
+   {
+    editorDialog(edNothingSelected);
+    return False;
+   }
+ // Must be less than maxFindStrLenEd chars
+ unsigned selLen=selEnd-selStart;
+ if (selLen>=max)
+   {
+    editorDialog(edSelTooBig,max);
+    return False;
+   }
+ // Shouldn't contain more than a line
+ for (unsigned offset=selStart; offset<selEnd; offset++)
+     if (CLY_IsEOL(buffer[offset]))
+       {
+        editorDialog(esSelHaveEOL);
+        return False;
+       }
+ // Now is safe to copy
+ strncpyZ(destination,buffer+selStart,selLen+1);
+ return True;
+}
+
 
 /**[txh]********************************************************************
 
@@ -3668,22 +3733,16 @@ Boolean TCEditor::SearchSelForB(Boolean back)
  if (!bufLen)     // Sanity check
     return False;
 
- if (findStrSel[0]==0)
-   {
-    editorDialog(edNothingSelected);
+ // Get a copy of the current selection
+ char findStrSel[maxFindStrLenEd];
+ TCEditor *fromEd;
+ if (haveCurSelection && haveCurSelection->hasVisibleSelection())
+    fromEd=haveCurSelection;
+ else
+    fromEd=this;
+ if (!fromEd->CopySelToFindStr(findStrSel,maxFindStrLenEd))
     return False;
-   }
- if (newSelection)
-   {
-    newSelection=False;
-    // Shouldn't contain more than a line
-    for (unsigned offset=0; findStrSel[offset]; offset++)
-        if (CLY_IsEOL(findStrSel[offset]))
-          {
-           editorDialog(esSelHaveEOL);
-           return False;
-          }
-   }
+
  // Remmember the old search settings
  unsigned oldOps=editorFlags;
  ushort   oldSearchInSel=SearchInSel;
@@ -6873,22 +6932,25 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
 
 #define Block ((const char *)(block))
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void hideSelect()
-             
-   Type: TCEditor member.
-
-   Objetive: Hide the selected area.
-
-   by SET.
-
-****************************************************************************/
+  Description: Hide the selected area.
+  
+***************************************************************************/
 
 void TCEditor::hideSelect()
 {
- selecting = False;
- selHided=selHided ? False : True;
+ selecting=False;
+ if (selHided)
+   {
+    selHided=False;
+    UnsetSelectionBuffer();
+   }
+ else
+   {
+    selHided=True;
+    SetSelectionBuffer();
+   }
  update(ufView);
 }
 
@@ -8611,24 +8673,6 @@ void TCEditor::SetStartOfSelecting(uint32 startOffSet)
 /**[txh]********************************************************************
 
   Description:
-  Copies current selection to the "selection" search buffer.
-  
-***************************************************************************/
-
-void TCEditor::UpdateSearchSelBuffer()
-{
- // Used for the "selection" search, indicates we have a new selection
- newSelection=True;
- unsigned len=selEnd-selStart;
- if (len>=maxFindStrLenEd)
-    len=maxFindStrLenEd-1;
- memcpy(findStrSel,buffer+selStart,len);
- findStrSel[len]=0;
-}
-
-/**[txh]********************************************************************
-
-  Description:
   Update the selected area according to the new position of the cursor. It
 also makes a copy of the selection to the auxiliar OS clipboard (selection
 clipboard) and the "selection" search clipboard.
@@ -8655,7 +8699,7 @@ void TCEditor::UpdateSelecting(void)
  if (selEnd>bufLen)
     selEnd=bufLen;
 
- UpdateSearchSelBuffer();
+ SetSelectionBuffer();
 
  if (TVOSClipboard::isAvailable()>1)
     clipWinCopy(1);
@@ -14008,8 +14052,7 @@ int      TCEditor::MacroCount=0;
 int      TCEditor::staticWrapCol=78;
 int      TCEditor::DontPurge=0;
 int      TCEditor::DontLoadFile=0;
-Boolean  TCEditor::newSelection=False;
-char     TCEditor::findStrSel[maxFindStrLenEd];
+TCEditor *TCEditor::haveCurSelection=NULL;
 TCEditor *TCEditor::showMatchPairFlyCache=NULL;
 TSubMenu *TCEditor::RightClickMenu=0;
 TPMCollection *TCEditor::PMColl=NULL;
