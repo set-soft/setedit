@@ -1,11 +1,12 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
+#define Uses_stdlib
+#define Uses_stdio
+#define Uses_string
+#define Uses_AllocLocal
 #define Uses_TDialog
 #define Uses_TDeskTop
 #define Uses_TProgram
@@ -400,4 +401,21 @@ TDialog *createArbitraryIndent(int len)
  TDialog *d=col->doItCenter(cmcArbitraryIndent);
  delete col;
  return d;
+}
+
+void ShowSavePoint(const char *file)
+{
+ const char *s=_("Data saved to file: ");
+ int l=strlen(file); 
+ AllocLocalStr(b,strlen(s)+100);
+ strcpy(b,s);
+ if (l>90)
+   {
+    strcat(b,"~");
+    strcat(b,file+l-90);
+   }
+ else
+   strcat(b,file);
+
+ messageBox(b,mfInformation|mfOKButton);
 }

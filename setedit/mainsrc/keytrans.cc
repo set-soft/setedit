@@ -20,7 +20,8 @@
 #define Uses_TGKey
 #include <settvuti.h>
 #define Uses_TCEditor_Commands
-#include <ced_coma.h>
+#define Uses_TCEditor_External
+#include <ceditor.h>
 //#define NDEBUG
 #include <assert.h>
 #include <dyncat.h>
@@ -32,7 +33,7 @@
 
 static char *Error=0;
 static void StoreError(char *error,char *file);
-
+static const char *loadedFile=0;
 
 TKeyTranslate::TKeyTranslate(KeyTTable *aBase, int aType) :
    TStringable()
@@ -1144,12 +1145,22 @@ void ShowKeyBindError(void)
 
 int LoadKeysForTCEditor(char *name)
 {
+ loadedFile=newStr(name);
  return KeyTrans.Load(name);
 }
 
 int  SaveKeyBind(char *name)
 {
- return KeyTrans.Save(name);
+ if (KeyTrans.Save(name))
+    return 1;
+ if (loadedFile)
+   {
+    if (strcmp(name,loadedFile)!=0)
+       ShowSavePoint(name);
+    DeleteArray(loadedFile);
+    loadedFile=0;
+   }
+ return 0;
 }
 
 int KeyBackToDefault(Boolean ask)

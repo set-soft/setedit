@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -35,8 +35,9 @@ static const char *DefaultOptsFileName="deflopts.txt";
 static const char *noSHL="None";
 static const int   maxDefaultOptLen=80;
 static const int   stateLookingName=0,stateCollecting=1,stateExitLoop=2;
-static char *destFile=0;
-static unsigned localCtxHelp;
+static char       *destFile=0;
+static unsigned    localCtxHelp;
+static char        warnSaveDifDir=1;
 static TNoCaseStringCollection *listSettings;
 
 static void ReplaceCRby0(char *s)
@@ -79,8 +80,8 @@ setting Settings[]=
 {"Overwrite",         9, tyFlag, loOverwrite},
 {"PersistentBlocks", 16, tyFlag, loPersistentBlocks},
 {"SeeTabs",           7, tyFlag, loSeeTabs},
-{"ShowMatchPair",    13, tyFlag, loShowMatchPair},
 {"ShowMatchPairFly", 16, tyFlag, loShowMatchPairFly},
+{"ShowMatchPair",    13, tyFlag, loShowMatchPair},
 {"TabIndents",        5, tyFlag, loTabIndents},
 {"TabSize",           7, tyInt,  loTabSize},
 {"TransparentSel",   14, tyFlag, loTransparentSel},
@@ -379,6 +380,7 @@ void UpdateFile(char *name, TSetting *col)
 {
  char *origFile=ExpandHome(DefaultOptsFileName);
  FILE *dest,*ori;
+ int differentFile=0;
 
  if (edTestForFile(origFile))
    {// We must use the values in this file
@@ -393,6 +395,7 @@ void UpdateFile(char *name, TSetting *col)
     else
       {// Is OK we are creating another
        ori=fopen(origFile,"rt");
+       differentFile=1;
       }
     if (!ori)
        return;
@@ -429,6 +432,11 @@ void UpdateFile(char *name, TSetting *col)
          }
       }
     fclose(ori);
+    if (differentFile && warnSaveDifDir)
+      {
+       ShowSavePoint(destFile);
+       warnSaveDifDir=0;
+      }
    }
  else
    {// Just create a new one
