@@ -66,6 +66,7 @@ static pid_t    PidChild=0;
 static char     ParsingErrors=0;
 static char     PendingCleanUp=0;
 static SOStack *StackPath;
+static char    *RedirInputFile=0;
 
 const char *Running=__("Running %s");
 const char *BackEd=__("Back in the editor");
@@ -552,6 +553,46 @@ void RunExternalProgramStopChild()
 /**[txh]********************************************************************
 
   Description:
+  Saves the indicated data to a temporal file. It can be used to redirect
+the input of a program when calling RunExternalProgram with the repRedirIn
+option. Use RunExternalProgramRemoveInRedir to release the used resources.
+@x{RunExternalProgramRemoveInRedir}.
+  
+***************************************************************************/
+
+void RunExternalProgramSetInRedir(const char *buffer, unsigned len)
+{
+ free(RedirInputFile);
+ RedirInputFile=unique_name("in",0);
+ FILE *f=fopen(RedirInputFile,"wb");
+ if (f)
+   {
+    fwrite(buffer,len,1,f);
+    fclose(f);
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Releases all the resourses allocated by RunExternalProgramSetInRedir.
+@x{RunExternalProgramSetInRedir}.
+  
+***************************************************************************/
+
+void RunExternalProgramRemoveInRedir()
+{
+ if (RedirInputFile)
+   {
+    unlink(RedirInputFile);
+    free(RedirInputFile);
+    RedirInputFile=0;
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
   Runs an external program passed as argument. The stderr and stdout are
 redirected and the result is showed in the message window. If you don't pass
 an argument the program specified by the configuration dialog is used.@*
@@ -562,6 +603,7 @@ the configuration is not showed.@*
 message box, instead the file is available calling
 RunExternalProgramGetFile.@*
   repRestoreScreen: Restore the screen after running the program.@*
+  repDontFork: Don't try to multitask.@*
 
 ***************************************************************************/
 
@@ -601,12 +643,21 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
  strcat(b,"/");
  StackPath->addStr(b);
 
+ // Redirect the input if needed
+ strcpy(b,s);
+ if ((flags & repRedirIn) && RedirInputFile && strlen(RedirInputFile)+
+     strlen(s)+4<PATH_MAX)
+   {
+    strcat(b," < ");
+    strcat(b,RedirInputFile);
+   }
+
  int saveScreen=(Options & opUseOSScreen) || (flags & repRestoreScreen);
  if (saveScreen)
     FullSuspendScreen();
 
  MP3Suspend;
- TV_System(s,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
+ TV_System(b,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
            0 : &PidChild);
  MP3Resume;
 
