@@ -78,6 +78,7 @@
 #include <stackdbg.h>
 #include <loadshl.h>
 #include <loadnobkp.h>
+#include <pathlist.h>
 
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
@@ -948,6 +949,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeEditNoBkp:
               NBKPEdit();
+              break;
+
+         case cmeIncludeList:
+              PathListEdit();
               break;
 
          // These commands are traslated to the original values

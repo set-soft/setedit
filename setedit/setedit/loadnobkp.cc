@@ -9,11 +9,11 @@
 #define Uses_TNSCollection
 #define Uses_MsgBox
 // EasyDiag
-#define Uses_TStringable
 #define Uses_TSHzLabel
 #define Uses_TSInputLine
 #define Uses_TSButton
 // SetTVUti
+#define Uses_TStringable
 #define Uses_TDialogAID
 // TCEditor
 #define Uses_TCEditor_External // execDialog
