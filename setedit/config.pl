@@ -221,14 +221,6 @@ if ($Compf eq 'MinGW')
 CreateRHIDEenvs('makes/rhide.env','+mp3/libamp/rhide.env',
                 '+mp3/mpegsound/rhide.env');
 #
-# Now pass the options in rhide.env to the makefiles
-#
-print "Configuring .mak files\n";
-chdir('makes');
-#system("perl patchenv.pl");
-`perl patchenv.pl`;
-chdir('..');
-#
 # Translate some options into variables suitable for defines and also
 # compute some interdependencies.
 #
@@ -264,33 +256,8 @@ ReplaceText('holidays/Makefile.in','holidays/Makefile');
 `cp gettext/djgpp.h gettext/config.h`; # Currently only DOS config is available if $OS eq 'DOS';
 
 #
-# BC++ Makefile
+# Generate BC++ and MSVC makefiles
 #
-# ** Main sources
-#$column=19;
-#$a=ExtractItemsMak('makes/editor.mak',$column,1);
-## Eliminate assembler modules
-#$a=~s/(\w+)\.s//g;
-## To obj format
-#ToBCCObjs($a);
-#$ReplaceTags{'SETEDIT_OBJS_BCC'}=$a;
-## ** Easydiag library
-#$column=19;
-#$a=ExtractItemsMak('makes/easydiag.mak',$column);
-#ToBCCObjs($a);
-#$ReplaceTags{'EASYDIAG_OBJS_BCC'}=$a;
-## ** Librhuti library
-#$column=19;
-#$a=ExtractItemsMak('makes/librhuti.mak',$column);
-#ToBCCObjs($a);
-#$ReplaceTags{'LIBRHUTI_OBJS_BCC'}=$a;
-## ** SETTVUti
-#$column=19;
-#$a=ExtractItemsMak('makes/settv.mak',$column);
-#ToBCCObjs($a);
-#$ReplaceTags{'SETTVUTI_OBJS_BCC'}=$a;
-#$ReplaceTags{'STATIC_LIB_BCC'}=@conf{'static'} eq 'yes' ? 'cw32.lib' : '';
-#ReplaceText('WinNT/bccmake.in','WinNT/Makefile');
 `perl confignt.pl`;
 
 #
@@ -1272,13 +1239,13 @@ sub GenerateMakefile
  if ($libamp)
    {
     $text.="\n\nlibamp:\n";
-    $text.="\t\$(MAKE) -C mp3/libamp -f libamp.mak";
+    $text.="\t\$(MAKE) -C mp3/libamp -f libamp.mkf";
    }
  # libmpegsnd
  if ($libmpegsnd)
    {
     $text.="\n\nlibmpegsnd:\n";
-    $text.="\t\$(MAKE) -C mp3/mpegsound -f mpegsnd.mak";
+    $text.="\t\$(MAKE) -C mp3/mpegsound -f mpegsnd.mkf";
    }
  # libbzip2
  if ($libbzip2)

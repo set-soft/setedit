@@ -1,0 +1,7 @@
+[TV]
+{
+ [Linux]
+ {
+  UseSecondaryFont=1
+ }
+}

@@ -108,19 +108,15 @@ gpr2mak you can do it in another OS and then copy the .mak files, you just
 need to edit rhide.env. If you don't have access to a platform with RHIDE
 don't desesperate and continue reading.
 
-  To configure the .gpr files you just need to edit the rhide.env file, but it
-isn't valid for the makefiles because the settings are hardcoded by gpr2mak
-during the conversion but don't desesperate I created a perl script to
-transfer the definitions found in rhide.env to all the relevant .mak files.
-You can call it using "perl patchenv.pl" or "make force-patch".
+  To configure the .gpr files you just need to edit the rhide.env file, this
+will also configure the .imk and .mkf files derived from the .mak files.
 
   The steps are:
-0) Read the point 4 for the DOS version.
-A) Edit rhide.env to match your OS and needs. djgppenv.env is what I use in
+1) Read the point 4 for the DOS version.
+2) Edit rhide.env to match your OS and needs. djgppenv.env is what I use in
 DOS and linux.env is what I use in Linux. You should choose the debug
 options, optimization, C++ especific options, etc.
-B) Run "make force-patch".
-C) Run "make".
+3) Run "make".
 
 
 

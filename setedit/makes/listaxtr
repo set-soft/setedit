@@ -1,4 +1,4 @@
-makes/*.mak
-mp3/libamp/libamp.mak
-mp3/mpegsound/mpegsnd.mak
+makes/*.imk
+mp3/libamp/libamp.imk
+mp3/mpegsound/mpegsnd.imk
 

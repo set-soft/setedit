@@ -1,0 +1,605 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+
+const int maxLine=1024;
+unsigned maxCol=78;
+
+struct node;
+
+struct stMak
+{
+ node *base, *last;
+ char *objDir;
+ char *mainTarget;
+ char *baseDir;
+};
+
+struct node
+{
+ char *name;
+ node *deps;
+ node *ldep;
+ node *next;
+ stMak *subprj;
+};
+
+struct stIncDir
+{
+ char *var;
+ char *dir;
+ int   ldir;
+};
+
+stIncDir incDirs[]=
+{
+{"TVISION_INC",      0, 0},
+{"INCLUDE_DIR",      "../include", 0},
+{"SETEDIT_INC_DIR",  "../setedit/include", 0},
+{"SETTVUTI_INC_DIR", "../settvuti/include", 0},
+{"SDG_INC_DIR",      "../sdg/include", 0},
+{"INFVIEW_INC_DIR",  "../infview/include", 0},
+{"EXTRA_INC_DIR",    "../extra", 0},
+{"EASYDIAG_INC_DIR", "../easydiag", 0},
+{"LIBRHUTI_INC_DIR", "../librhuti", 0},
+{"MP3_INC_DIR",      "../mp3", 0},
+{"CALCU_INC_DIR",    "../calcu", 0},
+{"MP3_MAIN_DIR",     "../../include", 0},
+{"MP3_PREV_DIR",     "..", 0},
+{0,0}
+};
+
+static
+void AddFileName(const char *name, stMak &mk)
+{
+ //printf("`%s'\n",name);
+ if (mk.base)
+   {
+    mk.last->next=new node;
+    mk.last=mk.last->next;
+   }
+ else
+    mk.base=mk.last=new node;
+ mk.last->name=strdup(name);
+ mk.last->next=mk.last->deps=mk.last->ldep=NULL;
+ mk.last->subprj=NULL;
+}
+
+static
+void ExtractSources(FILE *f, stMak &mk)
+{
+ char buffer[maxLine];
+ char found=0;
+ do
+   {
+    if (fgets(buffer,maxLine,f))
+       if (strncmp(buffer,"PROJECT_ITEMS",13)==0)
+         {
+          found=1;
+          break;
+         }
+   }
+ while (!feof(f));
+ if (!found)
+   {
+    fprintf(stderr,"Can't find project items\n");
+    exit(1);
+   }
+ char *s=buffer+14;
+ do
+   {
+    char *fName=strtok(s," \t\\\n");
+    while (fName)
+      {
+       if (*fName)
+          AddFileName(fName,mk);
+       fName=strtok(NULL," \t\\\n");
+      }
+    fgets(buffer,maxLine,f);
+    s=buffer;
+   }
+ while (!feof(f) && buffer[0]=='\t');
+}
+
+static
+void AddDependency(const char *name, node *p)
+{
+ if (p->deps)
+   {
+    p->ldep->next=new node;
+    p->ldep=p->ldep->next;
+   }
+ else
+    p->deps=p->ldep=new node;
+ p->ldep->name=strdup(name);
+ p->ldep->next=p->ldep->deps=p->ldep->ldep=NULL;
+ p->ldep->subprj=NULL;
+}
+
+static
+void ExtractDeps(FILE *f, node *p)
+{
+ char buffer[maxLine];
+ char bName[maxLine];
+ char found=0;
+ int depNum;
+ do
+   {
+    if (fgets(buffer,maxLine,f) &&
+        sscanf(buffer,"DEPS_%d=%s ",&depNum,bName)==2 &&
+        depNum)
+      {
+       if (strcmp(bName,p->name))
+         {
+          fprintf(stderr,"Error: unsorted deps? (%d,%s looking for %s)\n",depNum,bName,
+                  p->name);
+          exit(2);
+         }
+       found=1;
+       break;
+      }
+   }
+ while (!feof(f));
+ if (!found)
+   {
+    fprintf(stderr,"Failed to find %s dependencies\n",p->name);
+    exit(3);
+   }
+ char *s=strchr(buffer,'=')+1+strlen(p->name);
+ do
+   {
+    char *fName=strtok(s," \t\\\n");
+    while (fName)
+      {
+       if (*fName)
+          AddDependency(fName,p);
+       fName=strtok(NULL," \t\\\n");
+      }
+    fgets(buffer,maxLine,f);
+    s=buffer;
+   }
+ while (!feof(f) && buffer[0]=='\t');
+}
+
+static
+int AddFixedDeps(FILE *d, int l)
+{
+ char *s="rhide.env";
+ if (l+strlen(s)+2>maxCol)
+   {
+    fputs("\\\n\t",d);
+    l=8;
+   }
+ l+=fprintf(d,"%s ",s);
+ s="common.imk";
+ if (l+strlen(s)+2>maxCol)
+   {
+    fputs("\\\n\t",d);
+    l=8;
+   }
+ l+=fprintf(d,"%s ",s);
+ return l;
+}
+
+static
+void GenerateDepFor(node *p, FILE *d, stMak &mk)
+{
+ char *baseName=strdup(p->name);
+ char *s=strrchr(baseName,'.');
+ char *ext=s+1;
+ *s=0;
+
+ // Already compiled item?
+ if (strcmp(ext,"o")==0 || strcmp(ext,"a")==0)
+    return;
+
+ int l=fprintf(d,"%s/%s.o:: %s ",mk.objDir,baseName,p->name);
+ node *c=p->deps;
+ while (c)
+   {
+    s=c->name;
+    char *toStat;
+    struct stat st;
+    if (mk.baseDir)
+      {
+       toStat=new char[strlen(mk.baseDir)+strlen(s)+1];
+       strcpy(toStat,mk.baseDir);
+       strcat(toStat,s);
+      }
+    else
+       toStat=strdup(s);
+    if (stat(toStat,&st))
+      {
+       fprintf(stderr,"Can't stat %s dependency\n",toStat);
+       exit(12);
+      }
+    free(toStat);
+    int i;
+    if (strchr(s,'/'))
+      {
+       for (i=0; incDirs[i].var; i++)
+           if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
+             {
+              s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
+              sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
+             }
+       if (s==c->name)
+         {
+          fprintf(stderr,"Unknown include dir: %s\n",c->name);
+          exit(4);
+         }
+      }
+    if (l+strlen(s)+2>maxCol)
+      {
+       fputs("\\\n\t",d);
+       l=8;
+      }
+    l+=fprintf(d,"%s ",s);
+    if (s!=c->name)
+       free(s);
+    c=c->next;
+   }
+ l=AddFixedDeps(d,l);
+ fputc('\n',d);
+ if (strcmp(ext,"c")==0)
+    fputs("\t$(RHIDE_COMPILE_C)",d);
+ else if (strcmp(ext,"cc")==0)
+    fputs("\t$(RHIDE_COMPILE_CC)",d);
+ else if (strcmp(ext,"s")==0)
+    fputs("\t$(RHIDE_COMPILE_ASM_FORCE)",d);
+ else
+   {
+    fprintf(stderr,"\nUnknown extension `%s'\n",ext);
+    exit(5);
+   }
+ fputs("\n\n",d);
+ free(baseName);
+}
+
+static
+void ExtractVar(FILE *f, const char *var, char *&dest)
+{
+ char buffer[maxLine];
+ int l=strlen(var);
+ do
+   {
+    if (fgets(buffer,maxLine,f) &&
+        strncmp(buffer,var,l)==0)
+      {
+       char *s=strtok(buffer+l+1,"\n");
+       dest=s ? strdup(s) : strdup("");
+       return;
+      }
+   }
+ while (!feof(f));
+ fprintf(stderr,"Unable to find %s var\n",var);
+ exit(7);
+}
+
+static
+void ExtractObjDir(FILE *f, stMak &mk)
+{
+ ExtractVar(f,"vpath_obj",mk.objDir);
+}
+
+static
+void ExtractTVDir(FILE *f)
+{
+ if (incDirs[0].dir)
+    return;
+ ExtractVar(f,"TVISION_INC",incDirs[0].dir);
+}
+
+static
+void ExtractTarget(FILE *f, stMak &mk)
+{
+ ExtractVar(f,"MAIN_TARGET",mk.mainTarget);
+}
+
+static
+int CollectTargets(FILE *d, const char *name, stMak &mk, int l);
+
+static
+int ListTargetItems(FILE *d, int l, stMak &mk)
+{
+ node *p=mk.base;
+ int lenObjDir=strlen(mk.objDir);
+ while (p)
+   {
+    if (strstr(p->name,".gpr")==NULL)
+      {
+       char *s=strdup(p->name);
+       char *ext=strrchr(s,'.');
+       if (strcmp(ext,".o")==0 || strcmp(ext,".a")==0)
+         {
+          if (l+strlen(s)+2>maxCol)
+            {
+             fputs("\\\n\t",d);
+             l=8;
+            }
+          l+=fprintf(d,"%s ",s);
+         }
+       else
+         {
+          strcpy(ext,".o");
+          if (l+strlen(s)+3+lenObjDir>maxCol)
+            {
+             fputs("\\\n\t",d);
+             l=8;
+            }
+          l+=fprintf(d,"%s/%s ",mk.objDir,s);
+         }
+       free(s);
+      }
+    else
+      {
+       l=CollectTargets(d,p->name,*p->subprj,l);
+      }
+    p=p->next;
+   }
+ return l;
+}
+
+static
+int CollectTargets(FILE *d, const char *name, stMak &mk, int l)
+{
+ if (mk.mainTarget && *mk.mainTarget)
+   {// Simple, it have a lib
+    l+=fprintf(d,"%s ",mk.mainTarget);
+   }
+ else
+   {// More complex
+    l=ListTargetItems(d,l,mk);
+   }
+ return l;
+}
+
+static
+void GenerateTarget(FILE *d, stMak &mk)
+{
+ if (!*mk.mainTarget)
+    return;
+ int l=fprintf(d,"%s:: ",mk.mainTarget);
+ l=ListTargetItems(d,l,mk);
+ l=AddFixedDeps(d,l);
+ char *ext=strrchr(mk.mainTarget,'.')+1;
+ fputc('\n',d);
+ if (strcmp(ext,"exe")==0)
+    fputs("\t$(RHIDE_COMPILE_LINK)",d);
+ else if (strcmp(ext,"a")==0)
+    fputs("\t$(RHIDE_COMPILE_ARCHIVE)",d);
+ else
+   {
+    fprintf(stderr,"\nUnknown extension `%s'\n",ext);
+    exit(8);
+   }
+ fputs("\n\n",d);
+}
+
+static
+void GenerateAll(FILE *f, stMak &mk)
+{
+ GenerateTarget(f,mk);
+ node *p=mk.base;
+ while (p)
+   {
+    if (p->subprj)
+      {
+       if (0)
+          GenerateAll(f,*p->subprj);
+       else
+         {
+          char *s=strdup(p->name);
+          char *ext=strrchr(s,'.');
+          strcpy(ext,".imk");
+          fprintf(f,"include %s\n\n",s);
+          free(s);
+         }
+      }
+    else
+       GenerateDepFor(p,f,mk);
+    p=p->next;
+   }
+}
+
+static
+int ListTargetOItems(FILE *d, int l, stMak &mk)
+{
+ node *p=mk.base;
+ int lenObjDir=strlen(mk.objDir);
+ while (p)
+   {
+    if (strstr(p->name,".gpr")==NULL)
+      {
+       char *ext=strrchr(p->name,'.');
+       if (strcmp(ext,".a"))
+         {
+          char *s=strdup(p->name);
+          if (strcmp(ext,".o"))
+             strcpy(strrchr(s,'.'),".o");
+          if (l+strlen(s)+3+lenObjDir>maxCol)
+            {
+             fputs("\\\n\t",d);
+             l=8;
+            }
+          l+=fprintf(d,"%s/%s ",mk.objDir,s);
+          free(s);
+         }
+      }
+    else
+      {
+       if (!p->subprj->mainTarget || !*p->subprj->mainTarget)
+          l=ListTargetOItems(d,l,*p->subprj);
+      }
+    p=p->next;
+   }
+ return l;
+}
+
+static
+void CollectOTargets(FILE *d, const char *name, stMak &mk)
+{
+
+}
+
+
+static
+void GenerateObjs(FILE *f, stMak &mk)
+{
+ int l=fprintf(f,"OBJFILES=");
+ ListTargetOItems(f,l,mk);
+ fputs("\n\n",f);
+}
+
+static
+int ListTargetAItems(FILE *d, int l, stMak &mk)
+{
+ node *p=mk.base;
+ if (mk.mainTarget && *mk.mainTarget)
+   {
+    char *s=mk.mainTarget;
+    if (l+strlen(s)+2>maxCol)
+      {
+       fputs("\\\n\t",d);
+       l=8;
+      }
+    l+=fprintf(d,"%s ",s);
+   }
+ else
+   {
+    while (p)
+      {
+       if (p->subprj)
+          ListTargetAItems(d,l,*p->subprj);
+       else
+         {
+          char *ext=strrchr(p->name,'.');
+          if (strcmp(ext,".a")==0)
+            {
+             if (l+strlen(p->name)+2>maxCol)
+               {
+                fputs("\\\n\t",d);
+                l=8;
+               }
+             l+=fprintf(d,"%s ",p->name);
+            }
+         }
+       p=p->next;
+      }
+   }
+ return l;
+}
+
+static
+void GenerateLibs(FILE *f, stMak &mk)
+{
+ int l=fprintf(f,"LIBRARIES=");
+ node *p=mk.base;
+ while (p)
+   {
+    if (p->subprj)
+       l=ListTargetAItems(f,l,*p->subprj);
+    else
+      {
+       char *ext=strrchr(p->name,'.');
+       if (strcmp(ext,".a")==0)
+         {
+          if (l+strlen(p->name)+2>maxCol)
+            {
+             fputs("\\\n\t",f);
+             l=8;
+            }
+          l+=fprintf(f,"%s ",p->name);
+         }
+      }
+    p=p->next;
+   }
+ fputs("\n\n",f);
+}
+
+static
+void ExtractBaseDir(const char *mak, stMak &mk)
+{
+ char *s=strrchr(mak,'/');
+ if (s)
+   {
+    int l=s-mak+1;
+    mk.baseDir=new char[l+1];
+    memcpy(mk.baseDir,mak,l);
+    mk.baseDir[l]=0;
+   }
+}
+
+static
+void ProcessMakefile(const char *mak, stMak &mk, int level)
+{
+ //printf("\n\n\nParsing %s makefile\n\n\n",mak);
+ ExtractBaseDir(mak,mk);
+ FILE *f;
+ f=fopen(mak,"rt");
+ if (!f)
+   {
+    fprintf(stderr,"Can't open %s\n",mak);
+    exit(8);
+   }
+ ExtractObjDir(f,mk);
+ ExtractTarget(f,mk);
+ ExtractSources(f,mk);
+ ExtractTVDir(f);
+ int i;
+ if (!incDirs[0].ldir)
+    for (i=0; incDirs[i].var; i++)
+        incDirs[i].ldir=strlen(incDirs[i].dir);
+ node *p;
+ //printf("Should dig:\n");
+ p=mk.base;
+ while (p)
+   {
+    char *s=strstr(p->name,".gpr");
+    if (s)
+      {
+       //printf("%s\n",p->name);
+       p->subprj=new stMak;
+       memset(p->subprj,0,sizeof(stMak));
+       char *subMak=strdup(p->name);
+       s=strstr(subMak,".gpr");
+       strcpy(s,".mak");
+       ProcessMakefile(subMak,*p->subprj,level+1);
+       free(subMak);
+      }
+    p=p->next;
+   }
+ p=mk.base;
+ while (p)
+   {
+    char *ext=strrchr(p->name,'.');
+    if (strcmp(ext,".gpr") && strcmp(ext,".a") && strcmp(ext,".o"))
+       ExtractDeps(f,p);
+    p=p->next;
+   }
+ // Generation
+ if (level)
+    return;
+ fputs("#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n#\n\n",stdout);
+ GenerateAll(stdout,mk);
+ if (mk.mainTarget && *mk.mainTarget)
+   {
+    char *ext=strrchr(mk.mainTarget,'.');
+    if (strcmp(ext,".exe")==0)
+      {
+       GenerateObjs(stdout,mk);
+       GenerateLibs(stdout,mk);
+      }
+   }
+}
+
+int main(int argc, char *argv[])
+{
+ stMak mak;
+ memset(&mak,0,sizeof(mak));
+ ProcessMakefile(argv[1],mak,0);
+ //ExtractSources();
+ return 0;
+}
+

@@ -413,18 +413,24 @@ Makefile
 makes/.cvsignore
 makes/allegro.cfg
 -makes/amp3.gpr
+makes/common.imk
 *makes/djgppenv.env
 makes/djgpp/compinf.pl
 *makes/djgpp/compress.bat
 makes/djgpp/compress.pl
 -makes/easydiag.gpr
 -makes/editor.gpr
+makes/editor.mkf
 -makes/extra.gpr
+makes/extrimk.cc
+makes/genimk.cc
 -makes/inffd.gpr
 -makes/infview.gpr
+makes/infview.mkf
 -makes/install.gpr
 -makes/librhuti.gpr
 -makes/libset.gpr
+makes/libset.mkf
 makes/line.par
 makes/linux.env
 makes/linux_set.env
@@ -438,7 +444,6 @@ makes/objinf/delete.me
 makes/objlib/delete.me
 makes/objsdg/delete.me
 makes/obj/delete.me
-+makes/patchenv.pl
 *makes/readme.txt
 *makes/rhide.env
 *makes/r.bat
@@ -463,6 +468,7 @@ mp3/libamp/amp.h
 mp3/libamp/audioalg.c
 mp3/libamp/audioio.h
 mp3/libamp/audiolib.c
+mp3/libamp/common.imk
 mp3/libamp/config.h
 mp3/libamp/controldata.h
 mp3/libamp/dump.c
@@ -480,6 +486,7 @@ mp3/libamp/layer2.h
 mp3/libamp/layer3.c
 mp3/libamp/layer3.h
 -mp3/libamp/libamp.gpr
+mp3/libamp/libamp.mkf
 mp3/libamp/misc2.c
 mp3/libamp/misc2.h
 mp3/libamp/obj/delete.me
@@ -498,6 +505,7 @@ mp3/mp3list.cc
 mp3/mp3play.cc
 mp3/mp3play.h
 mp3/mpegsound/bitwindow.cc
+mp3/mpegsound/common.imk
 mp3/mpegsound/fileinput.cc
 mp3/mpegsound/fileplayer.cc
 mp3/mpegsound/filter.cc
@@ -519,6 +527,7 @@ mp3/mpegsound/soundinputstream.cc
 mp3/mpegsound/soundplayer.cc
 mp3/mpegsound/wavetoraw.cc
 -mp3/mpegsound/mpegsnd.gpr
+mp3/mpegsound/mpegsnd.mkf
 mp3/mpegsound/mpegsound.h
 mp3/mpegsound/mpg_locals.h
 mp3/mpegsound/rhide.env

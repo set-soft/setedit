@@ -18,10 +18,12 @@ the program.
 #endif
 #include <stdio.h>
 #define Uses_string
+#define Uses_filelength
 #include <stdlib.h>
 #include <txhgen.h>
 #define Uses_TMLISDGDefs
 #include <mli.h>
+#include <tv.h>
 
 static int CountFiles;
 static int CantFiles;
@@ -88,7 +90,9 @@ void PrintMessage(char *s)
 int main(int argc, char *argv[])
 {
  // MUST BE ON or some frt files will fail
+ #ifdef SECompf_djgpp
  __system_flags|=__system_allow_multiple_cmds;
+ #endif
 
  // These variables controls SDG
  TXHGetNextFile=GetNextFile;

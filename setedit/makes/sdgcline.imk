@@ -1,0 +1,188 @@
+#!/usr/bin/make
+# Automatically generated from RHIDE projects, don't edit
+#
+
+sdg.exe:: objsdg/bufun2.o objsdg/mli.o objsdg/mliasimp.o objsdg/mlicsdg.o \
+	objsdg/mlisdg.o objsdg/ntnocast.o objsdg/setstack.o \
+	objsdg/stnocast.o objsdg/tnocastc.o objsdg/txhgen.o objsdg/txhmain.o \
+	rhide.env common.imk 
+	$(RHIDE_COMPILE_LINK)
+
+objsdg/bufun2.o:: bufun2.cc $(INCLUDE_DIR)/ucdefs.h \
+	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/listbox.h $(TVISION_INC)/tv/lstviewr.h \
+	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/point.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/sortlibo.h \
+	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/streambl.h \
+	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mli.o:: mli.cc $(EXTRA_INC_DIR)/dyncat.h $(INCLUDE_DIR)/pathtool.h \
+	$(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h $(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlivar.h $(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/parttree.h $(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mliasimp.o:: mliasimp.cc $(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h $(SDG_INC_DIR)/mliasimp.h \
+	$(SDG_INC_DIR)/mlivar.h rhide.env common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mlicsdg.o:: mlicsdg.cc $(INCLUDE_DIR)/ucdefs.h $(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mliabase.h $(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h $(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/mlivar.h \
+	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/mlisdg.o:: mlisdg.cc $(SDG_INC_DIR)/mli.h $(SDG_INC_DIR)/mliabase.h \
+	$(SDG_INC_DIR)/mliasimp.h $(SDG_INC_DIR)/mlibase.h \
+	$(SDG_INC_DIR)/mlicsdg.h $(SDG_INC_DIR)/mlisdg.h \
+	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/mlivar.h \
+	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/ntnocast.o:: ntnocast.cc $(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/tvutil.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/setstack.o:: setstack.cc $(SETTVUTI_INC_DIR)/setstack.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h $(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/stddlg.h $(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h rhide.env common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/stnocast.o:: stnocast.cc $(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/settvuti.h $(SETTVUTI_INC_DIR)/tnocastc.h \
+	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/intl.h $(TVISION_INC)/tv/ipstream.h \
+	$(TVISION_INC)/tv/no_mss.h $(TVISION_INC)/tv/nscoll.h \
+	$(TVISION_INC)/tv/nssorcol.h $(TVISION_INC)/tv/object.h \
+	$(TVISION_INC)/tv/objects.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strmblcl.h \
+	$(TVISION_INC)/tv/strncoll.h $(TVISION_INC)/tv/system.h \
+	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h \
+	$(TVISION_INC)/tv/yes_mss.h rhide.env common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/tnocastc.o:: tnocastc.cc $(INCLUDE_DIR)/tvsetuti.h \
+	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/compatlayer.h \
+	$(TVISION_INC)/tv.h $(TVISION_INC)/tv/codepage.h \
+	$(TVISION_INC)/tv/collectn.h $(TVISION_INC)/tv/configtv.h \
+	$(TVISION_INC)/tv/dialogs.h $(TVISION_INC)/tv/drawbuf.h \
+	$(TVISION_INC)/tv/event.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/listbox.h \
+	$(TVISION_INC)/tv/lstviewr.h $(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/point.h $(TVISION_INC)/tv/pstream.h \
+	$(TVISION_INC)/tv/resource.h $(TVISION_INC)/tv/sortcoll.h \
+	$(TVISION_INC)/tv/sortlibo.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tkeys.h \
+	$(TVISION_INC)/tv/tobjstrm.h $(TVISION_INC)/tv/ttypes.h \
+	$(TVISION_INC)/tv/tvconfig.h $(TVISION_INC)/tv/tvobjs.h \
+	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/view.h \
+	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/txhgen.o:: txhgen.cc $(INCLUDE_DIR)/bufun.h \
+	$(LIBRHUTI_INC_DIR)/rhutils.h $(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/txhgen.h \
+	$(SETTVUTI_INC_DIR)/setstack.h $(SETTVUTI_INC_DIR)/settvuti.h \
+	$(SETTVUTI_INC_DIR)/tnocastc.h $(TVISION_INC)/cl/unistd.h \
+	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/codepage.h $(TVISION_INC)/tv/collectn.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/no_mss.h \
+	$(TVISION_INC)/tv/nscoll.h $(TVISION_INC)/tv/nssorcol.h \
+	$(TVISION_INC)/tv/object.h $(TVISION_INC)/tv/objects.h \
+	$(TVISION_INC)/tv/opstream.h $(TVISION_INC)/tv/parttree.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/resource.h \
+	$(TVISION_INC)/tv/sortcoll.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/streambl.h $(TVISION_INC)/tv/strncoll.h \
+	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvobjs.h $(TVISION_INC)/tv/tvutil.h \
+	$(TVISION_INC)/tv/views.h $(TVISION_INC)/tv/yes_mss.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+objsdg/txhmain.o:: txhmain.cc $(INCLUDE_DIR)/ceditint.h \
+	$(INCLUDE_DIR)/configed.h $(SDG_INC_DIR)/mli.h \
+	$(SDG_INC_DIR)/mlisdgi.h $(SDG_INC_DIR)/txhgen.h \
+	$(TVISION_INC)/compatlayer.h $(TVISION_INC)/tv.h \
+	$(TVISION_INC)/tv/configtv.h $(TVISION_INC)/tv/intl.h \
+	$(TVISION_INC)/tv/ipstream.h $(TVISION_INC)/tv/opstream.h \
+	$(TVISION_INC)/tv/pstream.h $(TVISION_INC)/tv/stddlg.h \
+	$(TVISION_INC)/tv/system.h $(TVISION_INC)/tv/tobjstrm.h \
+	$(TVISION_INC)/tv/ttypes.h $(TVISION_INC)/tv/tvconfig.h \
+	$(TVISION_INC)/tv/tvutil.h $(TVISION_INC)/tv/views.h rhide.env \
+	common.imk 
+	$(RHIDE_COMPILE_CC)
+
+OBJFILES=objsdg/bufun2.o objsdg/mli.o objsdg/mliasimp.o objsdg/mlicsdg.o \
+	objsdg/mlisdg.o objsdg/ntnocast.o objsdg/setstack.o \
+	objsdg/stnocast.o objsdg/tnocastc.o objsdg/txhgen.o objsdg/txhmain.o 
+
+LIBRARIES=
+

@@ -47,6 +47,7 @@ or the user choose cancel the routine returns -1.
 #define Uses_SOStack
 #define Uses_TNoCaseSOSStringCollection
 #define Uses_TSOSSortedListBox
+#define Uses_TVCodePage
 #include <settvuti.h>
 
 inline int IsWordChar(char c)

@@ -1,0 +1,39 @@
+#!/usr/bin/make
+
+##########################################################################################
+#
+# Beggining of maintained lines
+#
+##########################################################################################
+#
+# Source directories
+#
+vpath_src=
+#
+# Include directories
+#
+MP3_PREV_DIR=..
+MP3_MAIN_DIR=../../include
+INCLUDE_DIRS=. $(MP3_PREV_DIR) $(MP3_MAIN_DIR)
+
+##########################################################################################
+#
+# Beggining of fixed part
+#
+##########################################################################################
+
+#
+# Any configurable detail should come from here.
+#
+include rhide.env
+
+#
+# Common rules used by RHIDE.
+#
+include common.imk
+
+#
+# All the RHIDE data should come from here.
+#
+include mpegsnd.imk
+
