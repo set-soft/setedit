@@ -26,6 +26,7 @@ gdb achieves it. Any help will be appreciated.
 #include <limits.h>
 #include <unistd.h>
 #include <signal.h>
+#include <sys/wait.h>
 
 const int maxLineL=512;
 typedef unsigned long ulong;
