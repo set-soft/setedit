@@ -104,8 +104,8 @@ EDITOR_OBJS =  $(OBJDIR)/accehtml.o $(OBJDIR)/advice.o $(OBJDIR)/ampdiag.o $(OBJ
 	$(OBJDIR)/tdiagaid.o $(OBJDIR)/tdiagrow.o $(OBJDIR)/tinppipe.o $(OBJDIR)/tnocastc.o $(OBJDIR)/tnosostr.o\
 	$(OBJDIR)/tprogbar.o $(OBJDIR)/tprogdia.o $(OBJDIR)/tprogrdi.o $(OBJDIR)/tprogres.o $(OBJDIR)/tstrlbox.o\
 	$(OBJDIR)/uisarray.o $(OBJDIR)/ussarray.o $(OBJDIR)/viewplus.o $(OBJDIR)/slpinter.o $(OBJDIR)/splinman.o\
-	$(OBJDIR)/ssindica.o $(OBJDIR)/ssyntax.o $(OBJDIR)/tedcolle.o $(OBJDIR)/tips.o $(OBJDIR)/tpaltext.o $(OBJDIR)/tsindica.o\
-	$(OBJDIR)/txhgen.o $(OBJDIR)/winlistd.o
+	$(OBJDIR)/ssindica.o $(OBJDIR)/ssyntax.o $(OBJDIR)/tags.o $(OBJDIR)/tedcolle.o $(OBJDIR)/tips.o $(OBJDIR)/tpaltext.o\
+	$(OBJDIR)/tsindica.o $(OBJDIR)/txhgen.o $(OBJDIR)/winlistd.o
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
 

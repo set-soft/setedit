@@ -113,8 +113,8 @@ EDITOR_OBJS_ =  +accehtml.obj +advice.obj +ampdiag.obj +intermp3.obj +mp3list.ob
 	+tdiagaid.obj +tdiagrow.obj +tinppipe.obj +tnocastc.obj +tnosostr.obj\
 	+tprogbar.obj +tprogdia.obj +tprogrdi.obj +tprogres.obj +tstrlbox.obj\
 	+uisarray.obj +ussarray.obj +viewplus.obj +slpinter.obj +splinman.obj\
-	+ssindica.obj +ssyntax.obj +tedcolle.obj +tips.obj +tpaltext.obj +tsindica.obj\
-	+txhgen.obj +winlistd.obj
+	+ssindica.obj +ssyntax.obj +tags.obj +tedcolle.obj +tips.obj +tpaltext.obj\
+	+tsindica.obj +txhgen.obj +winlistd.obj
 EDITOR_OBJS = $(EDITOR_OBJS_:+=objs\)
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
