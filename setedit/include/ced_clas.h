@@ -298,7 +298,7 @@ public:
     static void    ColMarkers2Str(uint32 *markers, char *str, unsigned maxLen);
     static uint32 *Str2ColMarkers(char *str);
 
-    Boolean IsaUNIXFile;             // True if we are in DOS an the file was UNIX
+    Boolean NoNativeEOL;             // True if we are in DOS an the file was UNIX
     int IsaCompressedFile;           // !=0 if we loaded a .gz or .bz2 file and hence we must
                                      // save a compressed file.
     Boolean FailedToLoad;            // Used to indicate when we couldn't load the file and
@@ -424,10 +424,12 @@ public:
     Boolean loadFile(Boolean setSHL=False);
     Boolean reLoadFile();
     Boolean save();
-    Boolean saveAs(Boolean Unix=False);
-    Boolean saveAsUNIX() { return saveAs(True); };
+    Boolean saveAs(Boolean ConvertEOL=False, Boolean AvoidAutoConvert=False);
+    Boolean saveAsConvertEOL() { return saveAs(True); };
+    Boolean saveAsNoConvertEOL() { return saveAs(False,True); };
     Boolean saveSameTime();
-    Boolean saveFile(Boolean Unix=False, Boolean noChangeTime=False);
+    Boolean saveFile(Boolean ConvertEOL=False, Boolean AvoidAutoConvert=False,
+                     Boolean noChangeTime=False);
     char   *saveToTemp();
     Boolean checkDiskCopyChanged(Boolean force=False);
     virtual Boolean valid( ushort );

@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.3
-@set update-date 23 November 2003
-@set update-month November 2003
+@set update-date 13 December 2003
+@set update-month December 2003
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -898,19 +898,34 @@ The title of the window is changed to reflect the new file name.
 @refMenu1{cmcSaveAs}
 
 @c --------------------------------------------------------------------------
-@subsection Save as UNIX
+@subsection Save as UNIX or DOS
+
+This menu entry says @il{Save as UNIX} for DOS or Win32 systems and
+@il{Save as DOS} for UNIX systems.
+@p{}
 
 This option is very similar to the @il{Save as} option (@x{Save as}). The
-only difference is that the editor will use the ASCII 10 as line end instead
-of the 13,10 DOS sequence. That's very useful when you need to compile the
-file under UNIX or you just want to save some bytes on your disk.
-@paragraph{}
+only difference is that the editor will change the end of line character.
+@p{}
 
 Additionally there is an option to save UNIX files as UNIX files without
 converting it to DOS style. @x{Editor General,Tool&Ops|Options|Editor General}.
-@paragraph{}
+@p{}
 
-@refMenu1{cmcSaveAsUNIX}
+@refMenu1{cmcSaveAsConvertEOL}
+
+@c --------------------------------------------------------------------------
+@subsection Save as DOS or UNIX
+
+This menu entry says @il{Save as DOS} for DOS or Win32 systems and
+@il{Save as UNIX} for UNIX systems.
+@p{}
+
+This option is useful when the editor is configured to save files without
+converting the end of line character and you want to force a convertion.
+@p{}
+
+@refMenu1{cmcSaveAsNoConvertEOL}
 
 @c --------------------------------------------------------------------------
 @subsection Save with same time

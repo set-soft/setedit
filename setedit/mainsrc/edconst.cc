@@ -132,8 +132,10 @@ static edCList List[] =
 { "RunSel_sLisp", 148 },
 { "Save", 114 },
 { "SaveAs", 115 },
-{ "SaveAsDOS", 93 },
-{ "SaveAsUNIX", 93 },
+{ "SaveAsDOS", 93 },   // Alias for cmcSaveAsConvertEOL
+{ "SaveAsUNIX", 93 },  // Alias for cmcSaveAsConvertEOL
+{ "SaveAsConvertEOL", 93 },
+{ "SaveAsNoConvertEOL", 155 },
 { "SaveSameTime", 121 },
 { "ScrollDown", 23 },
 { "ScrollUp", 24 },
@@ -421,7 +423,7 @@ int SearchEditFlag(char *name, unsigned &val)
  return 1;
 }
 
-char *TranslateEdCommand(int cmc_Com)
+char *TranslateEdCommand(unsigned cmc_Com)
 {
  int i;
  // Turbo Vision commands are 16 bits long. For some technical reasons some
@@ -504,7 +506,7 @@ int SearchSimpleCommand(char *name)
 {
  edCList *res=(edCList *)bsearch(name,Simple,sizeof(Simple)/sizeof(edCList),
                                  sizeof(edCList),compare);
- return res ? res->command : -1;
+ return res ? (int)res->command : -1;
 }
 
 #define C(a) { #a, hc##a }
@@ -533,7 +535,7 @@ int SearchHelpCtxCommand(char *name)
 {
  edCList *res=(edCList *)bsearch(name,HelpCtx,sizeof(HelpCtx)/sizeof(edCList),
                                  sizeof(edCList),compare);
- return res ? res->command : -1;
+ return res ? (int)res->command : -1;
 }
 
 

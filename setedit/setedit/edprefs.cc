@@ -482,7 +482,7 @@ unsigned SetGeneralEditorOptionsMain(void)
  //------ Arrange the "Save options" ----------
  if (TCEditor::editorFlags & efBackupFiles)
     box.ops|=MAKE_BKPS;
- if (TCEditor::editorFlags & efSaveUNIXasis)
+ if (TCEditor::editorFlags & efSaveEOLasis)
     box.ops|=SAVE_ASIS;
  if (TCEditor::editorFlags & efUNIXBkpStyle)
     box.ops|=UNIX_STYLE_BKPS;
@@ -551,9 +551,9 @@ unsigned SetGeneralEditorOptionsMain(void)
     EnvirSetIntVar("SET_CREATE_DST",DesktopFilesOptions);
 
     if (box.ops & SAVE_ASIS)
-       TCEditor::editorFlags|=efSaveUNIXasis;
+       TCEditor::editorFlags|=efSaveEOLasis;
     else
-       TCEditor::editorFlags&=~efSaveUNIXasis;
+       TCEditor::editorFlags&=~efSaveEOLasis;
     //------ End of the "Save options" ----------
 
     TSetEditorApp::ShowClock=box.clk_on;

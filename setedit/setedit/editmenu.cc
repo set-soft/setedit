@@ -65,7 +65,7 @@ TMenuBar *TSetEditorApp::initMenuBar( TRect r )
    *new TMenuItem( __("~N~ew"), cmeNew, kbNoKey ) +
    *new TMenuItem( __("~S~ave"), cmcSave, kbF2, hcNoContext, "F2" ) +
    *new TMenuItem( __("S~a~ve as..."), cmcSaveAs, kbNoKey ) +
-   *new TMenuItem( __("Save as ~U~NIX..."), cmcSaveAsUNIX, kbNoKey ) +
+   *new TMenuItem( __("Save as ~U~NIX..."), cmcSaveAsConvertEOL, kbNoKey ) +
           newLine() +
    *new TMenuItem( __("~C~hange dir..."), cmeChangeDrct, kbNoKey ) +
    *new TMenuItem( __("S~h~ell"), cmeDosShell, kbNoKey ) +

@@ -249,7 +249,7 @@ TCEditor::TCEditor( const TRect& bounds,
     canUndo( True ),
     selecting( False ),
     overwrite( False ),
-    IsaUNIXFile( False ),
+    NoNativeEOL( False ),
     IsaCompressedFile( gzNoCompressed ),
     lockCount( 0 ),
     updateFlags( 0 ),
@@ -3506,8 +3506,12 @@ int TCEditor::handleCommand(ushort command)
                 writeBlock(this);
                 break;
  
-           case cmcSaveAsUNIX:
-                saveAsUNIX();
+           case cmcSaveAsConvertEOL:
+                saveAsConvertEOL();
+                break;
+ 
+           case cmcSaveAsNoConvertEOL:
+                saveAsNoConvertEOL();
                 break;
  
            case cmcCopyClipWin:
@@ -10709,6 +10713,10 @@ void TCEditor::updateCommands(int full)
       }
     if (!selRectClip)
        cmdsAux.disableCmd(cmcSelRectPaste);
+    if (NoNativeEOL && !(editorFlags & efSaveEOLasis))
+       cmdsAux.disableCmd(cmcSaveAsConvertEOL);
+    else
+       cmdsAux.disableCmd(cmcSaveAsNoConvertEOL);
     setCommands(cmdsAux);
    }
 
@@ -12792,7 +12800,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
  FailedToLoad=False;
  DiskTime=0;
  lastTimeCheck=0;
- IsaUNIXFile=False;
+ NoNativeEOL=False;
  // This structure differentiate the file
  FillEditorId(&EditorId);
 
@@ -12888,7 +12896,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
      /* This uses the feature of DJGPP to convert automatically
         LF's to CR/LF's when writing in TEXT-mode */
      FILE *ftemp;
-     IsaUNIXFile=True;
+     NoNativeEOL=True;
      fseek(f,0,SEEK_SET);
      tmp=unique_name("ed");
      ftemp=fopen(tmp,"w+t");
@@ -12903,7 +12911,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
   if (crfound)
     {
      FILE *ftemp;
-     IsaUNIXFile=True;
+     NoNativeEOL=True;
      fseek(f,0,SEEK_SET);
      tmp=unique_name("ed");
      ftemp=fopen(tmp,"w+t");
@@ -12992,7 +13000,7 @@ Boolean TCEditor::saveSameTime()
  if (isReadOnly)
     return False;
  if (DiskTime && *fileName!=EOS)
-    return saveFile(False,True);
+    return saveFile(False,False,True);
  editorDialog(edNotFromDisk);
  return False;
 }
@@ -13033,7 +13041,7 @@ static void FExpand(char *name)
 
 ****************************************************************************/
 
-Boolean TCEditor::saveAs(Boolean Unix)
+Boolean TCEditor::saveAs(Boolean ConvertEOL, Boolean AvoidAutoConvert)
 {
  Boolean revertToReadOnly=False;
  if (isReadOnly)
@@ -13051,7 +13059,8 @@ Boolean TCEditor::saveAs(Boolean Unix)
     if (access(fileName,F_OK)==0)
       {
        // If the user is trying to save the same file in UNIX format let do it
-       if (editorDialog(edFileExists,fileName,Unix && strcmp(oldName,fileName)==0)!=cmYes)
+       if (editorDialog(edFileExists,fileName,(ConvertEOL || AvoidAutoConvert)
+           && strcmp(oldName,fileName)==0)!=cmYes)
          {
           strcpy(fileName,oldName);
           free(oldName);
@@ -13060,7 +13069,7 @@ Boolean TCEditor::saveAs(Boolean Unix)
       }
     if (IsaCompressedFile && editorDialog(edFileCompMant)==cmNo)
        IsaCompressedFile=0;
-    if ((res=saveFile(Unix))==True)
+    if ((res=saveFile(ConvertEOL,AvoidAutoConvert))==True)
       {
        message(owner,evBroadcast,cmcUpdateTitle,0);
        SHLSelect(*this,buffer,bufLen);
@@ -13126,18 +13135,20 @@ int FileCopyOrMove(char *file, char *newFile, int &whichUsed)
 /**[txh]********************************************************************
 
   Description: Saves the editor buffer to disk as a new file, as is or
-  converting to UNIX format. Boolean Unix: If true removes the \r characters
-  when writing (UNIX).
+converting the EOL format. Boolean ConvertEOL: If true changes the EOL to
+DOS/UNIX according to the current OS. Note that memory buffers are always
+in the native format.
 
   Return:
   True on success
 
 ***************************************************************************/
 
-Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
+Boolean TCEditor::saveFile(Boolean ConvertEOL, Boolean AvoidAutoConvert,
+                           Boolean noChangeTime)
 {
- if (IsaUNIXFile && (editorFlags & efSaveUNIXasis))
-    Unix=True;
+ if (NoNativeEOL && (editorFlags & efSaveEOLasis) && !AvoidAutoConvert)
+    ConvertEOL=True;
 
  int actionUsed=bkpNone;
  if ((editorFlags & efBackupFiles) &&
@@ -13199,7 +13210,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
    {
     flushLine();
 
-    if (!Unix)
+    if (!ConvertEOL)
        f->write(buffer,bufLen);
     else
       {
@@ -13271,8 +13282,10 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
        update(ufUpdate);
        RevertModifFlagInUndo();
        delete f;
-       // If we saved as UNIX file and succeed remmember this status
-       if (Unix) IsaUNIXFile=True;
+       if (NoNativeEOL!=ConvertEOL)
+          updateCommands(1);
+       // The buffer *is* native, if we converted the file is no native.
+       NoNativeEOL=ConvertEOL;
        // If we moved the file to do the backup we created a new file and hence it have
        // the umask default attributes and not the right ones.
        if (actionUsed==bkpMoved)

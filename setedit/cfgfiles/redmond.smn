@@ -32,9 +32,11 @@ SubMenu: "~F~ile", kbAlF
  MenuItemC: "~S~ave", cmcSave, kbF2, "F2"
  MenuItemC: "S~a~ve as...", cmcSaveAs, kbUnknown
  $if DOS or WIN32
- MenuItemC: "Save as ~U~NIX...", cmcSaveAsUNIX
+ MenuItemC: "Save as ~U~NIX...", cmcSaveAsConvertEOL
+ MenuItemC: "Save as ~D~OS...", cmcSaveAsNoConvertEOL
  $else
- MenuItemC: "Sa~v~e as DOS...", cmcSaveAsDOS
+ MenuItemC: "Sa~v~e as DOS...", cmcSaveAsConvertEOL
+ MenuItemC: "Save as ~U~NIX...", cmcSaveAsNoConvertEOL
  $endif
  MenuItemC: "Save w/ same ~t~ime...", cmcSaveSameTime
  MenuItemC: "Save a~l~l", cmeSaveAll

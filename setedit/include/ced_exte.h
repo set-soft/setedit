@@ -76,7 +76,7 @@ const int
   efDoReplace       = 0x00000400,
   //efInSelection     = 0x00000800, This flag isn't used
   efBackupFiles     = 0x00001000,
-  efSaveUNIXasis    = 0x00002000,
+  efSaveEOLasis     = 0x00002000,
   efScrollLock      = 0x00004000,
   efUNIXBkpStyle    = 0x00008000,
   efHiddenBkps      = 0x00010000,

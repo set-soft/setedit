@@ -30,9 +30,9 @@
 # $ifndef. The only tree values defined are DOS, Linux and WIN32.
 #
 
-#            AC   ILNOPQSTUVX
-# DOS/Win32:   D
-# UNIX:         EH           Y
+#            AC  ILNOPQST  X
+# DOS/Win32:   D         UV
+# UNIX:        DH        U
 SubMenu: "~F~ile", kbAlF
  MenuItemC: "~O~pen...", cmeOpen, kbF3, "F3"
  MenuItemC: "~N~ew", cmeNew
@@ -40,9 +40,11 @@ SubMenu: "~F~ile", kbAlF
  MenuItemC: "~S~ave", cmcSave, kbF2, "F2"
  MenuItemC: "S~a~ve as...", cmcSaveAs, kbUnknown
  $if DOS or WIN32
- MenuItemC: "Save as ~U~NIX...", cmcSaveAsUNIX
+ MenuItemC: "Save as ~U~NIX...", cmcSaveAsConvertEOL
+ MenuItemC: "Save as ~D~OS...", cmcSaveAsNoConvertEOL
  $else
- MenuItemC: "Sa~v~e as DOS...", cmcSaveAsDOS
+ MenuItemC: "Sa~v~e as DOS...", cmcSaveAsConvertEOL
+ MenuItemC: "Save as ~U~NIX...", cmcSaveAsNoConvertEOL
  $endif
  MenuItemC: "Save w/ same ~t~ime...", cmcSaveSameTime
  MenuItemC: "Save a~l~l", cmeSaveAll

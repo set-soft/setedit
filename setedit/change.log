@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.483  2003/12/11 19:54:37  set
+* Fixed: Compilation problems with gcc 3.x. Patch from Oswald:
+  - Missing \n at end of palbcc.h
+  - Missing explicit parent constructor call in mp3/ampdiag.cc
+  - Constant out of range in include/ced_exte.h (I also modified
+    edconst.cc accordingly)
+
 Revision 1.482  2003/12/09 19:24:32  set
 * Modified: The 'Compile' macro example. It was contributed by Thiago and
 now he added an example on how to choose the compiler according to the

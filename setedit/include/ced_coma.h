@@ -101,7 +101,7 @@ const int
   cmbStopMacro         =  90,
   cmbPlayMacro         =  91,
   cmbSetGlobalOptions  =  92,
-  cmbSaveAsUNIX        =  93,
+  cmbSaveAsConvertEOL  =  93,
   cmbCopyBlock         =  94,
   cmbSelRectStart      =  95,
   cmbSelRectEnd        =  96,
@@ -163,8 +163,9 @@ const int
   cmbEditorGotFocus    = 152,
   cmbJumpLastCursorPos = 153,
   cmbInsertNewLine     = 154,
+  cmbSaveAsNoConvertEOL= 155,
   
-  cmbLastCommand       = 155;
+  cmbLastCommand       = 156;
 
 
 const int
@@ -262,7 +263,7 @@ const int
   cmcStopMacro         = cmbStopMacro+cmbBaseNumber,
   cmcPlayMacro         = cmbPlayMacro+cmbBaseNumber,
   cmcSetGlobalOptions  = cmbSetGlobalOptions+cmbBaseNumber,
-  cmcSaveAsUNIX        = cmbSaveAsUNIX+cmbBaseNumber,
+  cmcSaveAsConvertEOL  = cmbSaveAsConvertEOL+cmbBaseNumber,
   cmcCopyBlock         = cmbCopyBlock+cmbBaseNumber,
   cmcSelRectStart      = cmbSelRectStart+cmbBaseNumber,
   cmcSelRectEnd        = cmbSelRectEnd+cmbBaseNumber,
@@ -324,7 +325,8 @@ const int
   cmcPasteClipFile     = cmbPasteClipFile+cmbBaseNumber,
   cmcEditorGotFocus    = cmbEditorGotFocus+cmbBaseNumber,
   cmcJumpLastCursorPos = cmbJumpLastCursorPos+cmbBaseNumber,
-  cmcInsertNewLine     = cmbInsertNewLine+cmbBaseNumber;
+  cmcInsertNewLine     = cmbInsertNewLine+cmbBaseNumber,
+  cmcSaveAsNoConvertEOL= cmbSaveAsNoConvertEOL+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;
@@ -334,7 +336,7 @@ extern int SearchEditCommand(char *name);
 extern int SearchEditFlag(char *name, unsigned &val);
 extern int SearchSimpleCommand(char *name);
 extern int SearchHelpCtxCommand(char *name);
-extern char *TranslateEdCommand(int cmc_Com);
+extern char *TranslateEdCommand(unsigned cmc_Com);
 class  TNoCaseNoOwnerStringCollection;
 extern TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void);
 #endif
