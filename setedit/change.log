@@ -1,4 +1,7 @@
 $Log$
+Revision 1.44  2002/01/29 18:05:29  set
+* Updated: Man page version and ~/* paths (now ~/.setedit/*).
+
 Revision 1.43  2002/01/29 17:53:33  set
 * Updated: Documentation version.
 
@@ -1580,7 +1583,7 @@ reference. Sugested by Thiago.
 after removing the comments in the block.
 * Fixed: The undo of the arbitrary indent used the starting selection instead
 of the final one generating problems for long blocks.
-.
+
 Revision 1.339  2001/08/10 02:50:36  set
 * Added: sLisp commands:
   OpenFile: opens a file as a new window. (Asked by "Thiago F.G. Albuquerque"
