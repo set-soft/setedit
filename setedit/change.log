@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.634  2004/10/19 18:10:41  set
+* Fixed: [Compilation][MSVC] More empty -I options, this time in
+infview.bmk. Reported by Grzegorz.
+
 Revision 1.633  2004/10/18 20:58:01  set
 * Fixed: [Debug] when opening the disassembler window the editor failed to
 create the correct expression to find the starting address of the current

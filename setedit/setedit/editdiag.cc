@@ -124,7 +124,7 @@ void FullAboutBox(void)
  TSViewCol *col=new TSViewCol(__("About"));
 
  char v1[bufWidth],v2[bufWidth],v3[bufWidth];
- TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME);
+ TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME,TCEDITOR_C_YEAR);
  TVIntl::snprintf(v2,bufWidth,cFormatVersion,
                   TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
                   TCEDITOR_VERSION & 0xFF,VERSION_REV);
