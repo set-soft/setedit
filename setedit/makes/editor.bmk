@@ -40,7 +40,7 @@ INCLUDE_DIRS=-I../winnt -I$(INCLUDE_DIR) -I$(SETEDIT_INC_DIR) \
 	-I$(CALCU_INC_DIR) -I$(HOLIDAYS_DIR) -I..\libz -I..\libpcre -I..\libbzip2
 C_EXTRA_FLAGS=-DFOR_EDITOR
 RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
-	$(TVLIBDIR)\rhtv.lib
+	$(TVLIBDIR)\librhtv.lib
 
 ##########################################################################################
 #

@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.516  2004/06/08 13:21:06  set
+* Modified: [Debian] Applied patch #968507 S.F. submitted by Baurjan
+Ismagulov - ibr. Removes extra clean-up.
+
 Revision 1.515  2004/06/04 19:19:58  set
 * Fixed: Another strchr call.
 

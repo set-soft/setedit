@@ -11,7 +11,7 @@
 TVISION_INC=-I..\..\tvision\winnt\include -I..\..\tvision\include
 # Why it doesn't work?
 #RHIDE_LIBDIRS=-L..\libz -L..\libpcre -L..\libbzip2
-TVLIBDIR=..\..\tvision\winnt
+TVLIBDIR=..\..\tvision\makes
 
 !ifdef DEBUG
 CDEBUGFLAGS = -v -vi -y -6 -Od
