@@ -1109,10 +1109,19 @@ int main(void)
     $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib.' -liconv');
     if ($test ne "OK\n")
       {
-       print "none found, using shipped one\n";
-       $conf{'intl'}='yes';
-       $conf{'iconv'}='no';
-       $conf{'intlShipped'}='yes';
+       if ($OS eq 'DOS')
+         {
+          print "none found, using shipped one\n";
+          $conf{'intl'}='yes';
+          $conf{'iconv'}='no';
+          $conf{'intlShipped'}='yes';
+         }
+       else
+         {
+          print "not found\n";
+          $conf{'intl'}='no';
+          $conf{'iconv'}='no';
+         }
       }
     else
       {

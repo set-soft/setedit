@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.105  2002/06/03 13:50:54  set
+* Added: [Win32] According to Thiago newer versions of MinGW have their own
+uname command that reports MINGW32_<windows flavor>. Added to the
+conflib.pl.
+
 Revision 1.104  2002/05/30 17:30:05  set
 * Added: Support for the TV 2.0 palette handling. Seems to work for Linux
 console.
