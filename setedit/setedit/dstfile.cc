@@ -28,6 +28,7 @@
 #define Uses_TStringCollectionW
 #define Uses_TFileCollection
 #define Uses_TSOSListBox
+#define Uses_TVCodePage
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>

@@ -23,6 +23,7 @@
 #define Uses_TCEditor
 #define Uses_FileOpenAid
 #define Uses_MsgBox
+#define Uses_TVCodePage
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]**********************************************************************
 
@@ -36,6 +36,7 @@ Closed editors.
 #define Uses_TScreen
 #define Uses_TSSortedListBox
 #define Uses_TCEditor_Commands
+#define Uses_TVCodePage
 #include <easydia1.h>
 #include <ceditor.h>
 #include <easydiag.h>

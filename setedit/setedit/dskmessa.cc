@@ -9,6 +9,7 @@ class TSOSListBox;
 #define Uses_TProgram
 #define Uses_TDeskTop
 #define Uses_TApplication
+#define Uses_TVCodePage
 #include <ceditor.h>
 #include <edmsg.h>
 #include <dskwin.h>

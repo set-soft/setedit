@@ -33,6 +33,9 @@
 /* X11 library and headers */
 #define HAVE_X11 1
 
+/* AA lib */
+#define HAVE_AA 1
+
 #define CONFIG_PREFIX "/usr"
 
 

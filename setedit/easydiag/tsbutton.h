@@ -1,9 +1,17 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TSButton) && !defined(__TSButton_Defined__)
 #define __TSButton_Defined__
 
-class TSButton : public TSView
+class TSButtonBase : public TSView
+{
+public:
+ void fill(int type, const char *aTitle, ushort aCommand, ushort aFlags,
+           int wForced, TButtonCallBack cb);
+ virtual void insert(TDialog *d);
+};
+
+class TSButton : public TSButtonBase
 {
 public:
  TSButton(const char *aTitle, ushort aCommand=cmOK, ushort aFlags=bfNormal);
@@ -12,9 +20,17 @@ public:
           TButtonCallBack cb);
  TSButton(const char *aTitle, ushort aCommand, ushort aFlags, int wForced,
           TButtonCallBack cb);
- void fill(const char *aTitle, ushort aCommand, ushort aFlags, int wForced,
-           TButtonCallBack cb);
- virtual void insert(TDialog *d);
+};
+
+class TSButtonRef : public TSButtonBase
+{
+public:
+ TSButtonRef(const char *aTitle, ushort aCommand=cmOK, ushort aFlags=bfNormal);
+ TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags, int wForced);
+ TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags,
+             TButtonCallBack cb);
+ TSButtonRef(const char *aTitle, ushort aCommand, ushort aFlags, int wForced,
+             TButtonCallBack cb);
 };
 
 class TSViewCol;

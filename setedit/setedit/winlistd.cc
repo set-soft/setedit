@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TRect
 #define Uses_TDialog
@@ -15,6 +15,7 @@
 #define Uses_TSHzGroup
 #define Uses_TSButton
 #define Uses_TSListBox
+#define Uses_TVCodePage
 #include <easydia1.h>
 #include <ceditor.h>
 #include <easydiag.h>

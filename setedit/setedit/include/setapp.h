@@ -159,6 +159,9 @@ public:
     static int DeleteFilesOnExit;
     static unsigned geFlags;
     static int widthVertWindows;
+    static TVCodePageCallBack oldCPCallBack;
+    static void cpCallBack(ushort *map);
+
     void tile();
     void cascade();
     void SetTitle(const char *str1=0, const char *str2=0);

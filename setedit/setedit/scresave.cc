@@ -16,6 +16,7 @@
 #define Uses_TCEditWindow
 #define Uses_TScreen
 #define Uses_TStringCollection
+#define Uses_TVCodePage
 
 #define Uses_TGKey
 #include <ceditor.h>

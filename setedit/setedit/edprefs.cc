@@ -1121,7 +1121,7 @@ typedef struct
 } EncodingBox;
 #pragma pack()
 
-static char enForceApp=0, enForceScr=0, enForceSnd=0;
+static uchar enForceApp=0, enForceScr=0, enForceSnd=0;
 static int  enApp=-1, enScr=-1, enSnd=-1;
 // Todo: esto debería poder obtenerlo de TVCodePage, algo tipo default code page.
 //static int  enStartApp=437, enStartScr=437;
@@ -1161,7 +1161,10 @@ void EncodingOptions()
 
  TSViewCol *col=new TSViewCol(__("Encodings"));
  col->insert(xTSLeft,yTSUp,MakeHzGroup(appEncode,scrEncode,sndEncode,0));
- EasyInsertOKCancel(col);
+ col->insert(xTSCenter,yTSDown,
+             MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
+                         new TSButton(_("Cancel"),cmCancel),
+                         new TSButton(_("Set ~D~efaults"),cmYes),0));
  TDialog *d=col->doIt();
  delete col;
  d->options|=ofCentered;
@@ -1169,14 +1172,14 @@ void EncodingOptions()
  EncodingBox box;
 
  // Current TV settings
- int idScr, idApp;
- TVCodePage::GetCodePages(idScr,idApp);
+ int idDefScr, idDefApp;
+ TVCodePage::GetDefaultCodePages(idDefScr,idDefApp);
 
  // Currently selected values
  int appCP, scrCP, sndCP;
- appCP=TVCodePage::IDToIndex(enForceApp ? enApp : idApp);
- scrCP=TVCodePage::IDToIndex(enForceScr ? enScr : idScr);
- sndCP=TVCodePage::IDToIndex(enForceSnd ? enSnd : box.scrCP);
+ appCP=TVCodePage::IDToIndex(enApp!=-1 ? enApp : idDefApp);
+ scrCP=TVCodePage::IDToIndex(enScr!=-1 ? enScr : idDefScr);
+ sndCP=TVCodePage::IDToIndex(enSnd!=-1 ? enSnd : scrCP);
 
  // Data box
  box.appForce=enForceApp;
@@ -1187,12 +1190,32 @@ void EncodingOptions()
  box.sndCP=sndCP;
  box.appList=box.scrList=box.sndList=TVCodePage::GetList();
 
- if (execDialog(d,&box)==cmOK)
-   {// Ver si alguno de los force cambió.
-    // Si al menos uno lo hizo hay que recomputar *todo*.
-    // El tema es que depende si estamos o no seteando nosotros las fonts
-    // por eso es que la responsabilidad debería recaer en buena parte en
-    // las rutinas de fonts.
-    //if (appCP!=box.appCP)
+ unsigned ret=execDialog(d,&box);
+ if (ret==cmYes)
+   {// Set defaults
+    enForceApp=enForceScr=enForceSnd=0;
+    enApp=idDefApp;
+    enScr=enSnd=idDefScr;
+    // Asegurarse de que se setee
+   }
+ else if (ret==cmOK)
+   {
+    if (box.appForce!=enForceApp || box.scrForce!=enForceScr || box.sndForce!=enForceSnd ||
+        (enForceApp && box.appCP!=appCP) ||
+        (enForceScr && box.scrCP!=scrCP) ||
+        (enForceSnd && box.sndCP!=sndCP))
+      {// At least one changed
+       enForceApp=box.appForce;
+       enForceScr=box.scrForce;
+       enForceSnd=box.sndForce;
+       // Transfer only the settings that will be used
+       if (enForceApp) enApp=TVCodePage::IndexToID(box.appCP);
+       if (enForceScr) enScr=TVCodePage::IndexToID(box.scrCP);
+       if (enForceSnd) enSnd=TVCodePage::IndexToID(box.sndCP);
+       TVCodePage::SetCodePage(enApp,enScr);
+       // Acá debería asegurarse de que las fonts reflejen estos seteos
+       // This is a full redraw, not just a refresh from the buffers
+       TProgram::application->Redraw();
+      }
    }
 }

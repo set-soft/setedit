@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -8,6 +8,7 @@
 #define Uses_TCEditWindow
 #define Uses_TProgram
 #define Uses_TDeskTop
+#define Uses_TVCodePage
 // InfView requests
 #include <infr.h>
 #include <ceditor.h>

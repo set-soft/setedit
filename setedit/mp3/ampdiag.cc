@@ -281,11 +281,11 @@ TAmpDiag *CreateShowDialog()
 
  TSHzGroup *buttons=MakeHzGroup(
                     new TSButton(_("Prev."),cmaMP3Prev),
-                    new TSButton(MP3Player::butRew,cmaMP3Rew),
-                    new TSButton(MP3Player::butStop,cmaMP3Stop,bfDefault),
-                    new TSButton(MP3Player::butPlay,cmaMP3Play),
-                    new TSButton(MP3Player::butPause,cmaMP3Pause),
-                    new TSButton(MP3Player::butFfw,cmaMP3Ffw),
+                    new TSButtonRef(MP3Player::butRew,cmaMP3Rew),
+                    new TSButtonRef(MP3Player::butStop,cmaMP3Stop,bfDefault),
+                    new TSButtonRef(MP3Player::butPlay,cmaMP3Play),
+                    new TSButtonRef(MP3Player::butPause,cmaMP3Pause),
+                    new TSButtonRef(MP3Player::butFfw,cmaMP3Ffw),
                     new TSButton(_("Next"),cmaMP3Next),
                     0);
 

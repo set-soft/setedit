@@ -27,6 +27,7 @@
 #define Uses_IOS_BIN
 #define Uses_fcntl
 #define Uses_filelength
+#define Uses_TVCodePage
 #include <ceditor.h>
 #include <editcoma.h>
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -11,6 +11,7 @@
 #define Uses_TProgram
 #define Uses_TDeskTop
 #define Uses_TListBox
+#define Uses_TVCodePage
 #include <ceditor.h>
 #define Uses_SETAppVarious
 #define Uses_TSetEditorApp

@@ -43,12 +43,16 @@ fonts than the BIOS ones.@p
 #define Uses_ProgBar
 #define Uses_TNoCaseNoOwnerStringCollection
 #define Uses_ctype
+#define Uses_TVCodePage
+#define Uses_TSetEditorApp
+#define Uses_TApplication
 #include <ceditor.h>
 #include <calendar.h>
 #ifndef NoEditorSpecific
  #include <mp3play.h>
 #endif
 #include <ceditint.h>
+#include <setapp.h>
 
 #include <codepage.h>
 
@@ -62,12 +66,12 @@ fonts than the BIOS ones.@p
  #define DefaultBkgrnd  TDeskTop::odefaultBkgrnd
 #endif
 
-const unsigned rbgDontRemapLow32=1, rbgOnlySelected=2;
+//const unsigned rbgDontRemapLow32=1, rbgOnlySelected=2;
 
 TNoCaseNoOwnerStringCollection *CodePages=0;
 const unsigned maxSymbolDefined=587; // Number of symbols defined (0-460=>461)
 
-typedef struct
+/*typedef struct
 {
  char Name[28];
  int id;
@@ -76,7 +80,7 @@ typedef struct
  char *MoreLetters;
  int LowRemapNum;
  ushort *LowRemap;
-} CodePage;
+} CodePage;*/
 
 // PC437 doesn't need traslation, they are the first 256 chars.
 CodePage PC437=

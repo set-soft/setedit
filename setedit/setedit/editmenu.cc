@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -20,6 +20,7 @@
 #define Uses_TStringCollection
 #define Uses_TSortedListBox
 #define Uses_TKeys
+#define Uses_TVCodePage
 // InfView requests
 #include <infr.h>
 
