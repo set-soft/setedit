@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.264  2002/12/30 15:24:44  set
+* Modified: Removed the line len limitation in the syntaxhighlight loader.
+Asked by Martijn, he used more than 100 columns for POVRay SHL ;-)
+
 Revision 1.263  2002/12/27 12:40:40  set
 * Fixed: Added/Removed entries to the list of files.
 * Added: A chmod to make the INSTALL script executable when generating the
