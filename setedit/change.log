@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.97  2002/05/17 14:29:56  set
+* Added: The first part of Grzegorz request about adding options to create
+message and project windows in the vertical direction.
+
 Revision 1.96  2002/05/17 14:27:24  set
 * Fixed: The show match pair on the fly without waiting had another
 interaction with the syntax highlight computation (I already fixed one).

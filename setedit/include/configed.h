@@ -30,7 +30,10 @@
 /* Gettext included with editor */
 /*#define FORCE_INTL_SUPPORT 1*/
 
-#define CONFIG_PREFIX "/usr"
+/* X11 library and headers */
+/*#define HAVE_X11 1*/
+
+#define CONFIG_PREFIX ""
 
 
 #define SEOS_UNIX

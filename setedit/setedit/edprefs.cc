@@ -956,16 +956,18 @@ unsigned SetGeneralEditorOptionsOthers(void)
 {
  TSViewCol *col=new TSViewCol(__("Other options"));
 
+ // ENG: CIJKMRVW
+ // ESP: ADIKPRSV
  TSVeGroup *MsgWin=MakeVeGroup(0,
    TSLabelRadio(__("At the end of errors in message window"),
-          __("Just stop"),
-          __("Indicate with a message"),
-          __("Wrap (circular list)"),0),
+          __("~J~ust stop"),
+          __("~I~ndicate with a message"),
+          __("Wrap (~c~ircular list)"),0),
    new TSCheckBoxes(new TSItem(_("Make a beep"),0)),
    new TSLabel(_("When creating message and similar windows"),
                new TSCheckBoxes(
-                   new TSItem(_("Use the vertical direction"),
-                   new TSItem(_("Use the right side"),0)))),
+                   new TSItem(_("Use the ~v~ertical direction"),
+                   new TSItem(_("Use the ~r~ight side"),0)))),
    new TSHzLabel(_("Reserved ~w~idth"),new TSInputLine(5)),
    0);
  MsgWin->makeSameW();
@@ -976,7 +978,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
                          new TSButton(_("Cancel"),cmCancel),
                          new TSButton(_("~M~ain options"),cmYes),0));
 
- TDialog *d=col->doItCenter(0);
+ TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
 
  BoxOthers box;

@@ -5,9 +5,9 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.56
-@set update-date 28 Apr 2002
-@set update-month Apr 2002
+@set version 0.4.57
+@set update-date 17 May 2002
+@set update-month May 2002
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1764,6 +1764,7 @@ contribute their own themes.
 @cindex tcedit.dst, style
 @cindex closed windows, number
 @cindex message window, options
+@cindex project window, vertical
 
 This option po-ups the general configuration dialog containing several
 options.
@@ -1876,6 +1877,23 @@ pop-ups.
 reach the last message the editor jumps to the first and @i{viceversa}.
 @item Make a beep: a sound is generated.
 @end itemize
+
+Additionally in this dialog you can choose if you want project and message
+windows to be vertically or horizontally oriented.
+@p{}
+
+@itemize @bullet
+@item Use the vertical direction: message and project windows are vertically
+oriented. By default they are positioned at the left side. When this option
+is selected the project window have only one column.
+@item Use the right side: use the right side of the screen instead of the
+left side. That's used only when the direction is vertical.
+@end itemize
+
+One important detail is that this options affects the size of new opened
+files. If you already opened windows in this project the editor will have
+them memorized. So you should setup this options before creating a project.
+@p{}
 
 This dialog also have a button to go back to the main dialog.
 @p{}
@@ -2676,6 +2694,10 @@ files.
 each time you want to search in these files you open this project and
 performe the search.
 @end itemize
+
+By default the project window is located at the bottom of the desktop, you
+can change it. @x{Editor General}.
+@p{}
 
 @c --------------------------------------------------------------------------
 @subsection Open (Project)

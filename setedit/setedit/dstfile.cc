@@ -451,7 +451,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
 
  SyntaxSearch_Save(s);
 
- s << TSetEditorApp::maxOpenEditorsSame;
+ s << maxOpenEditorsSame << geFlags << widthVertWindows;
 
  // If the user wants remember the backup files we created to kill'em latter
  TStringCollectionW *fKill=GetFilesToKill();
@@ -766,7 +766,9 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
     SyntaxSearch_InitWithDefaults();
 
  if (deskTopVersion>=0x420)
-    s >> TSetEditorApp::maxOpenEditorsSame;
+    s >> maxOpenEditorsSame;
+ if (deskTopVersion>=0x457)
+    s >> geFlags >> widthVertWindows;
 
  aux=0;
  if (deskTopVersion>=0x429)
