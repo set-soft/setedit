@@ -257,7 +257,7 @@ int FindFile(const char *name, char *&fullName, const char *reference)
           int found=0;
           if (reference)
             {
-             char *s=strrchr(reference,'/');
+             const char *s=strrchr(reference,'/');
              if (s)
                {
                 int l=s-reference+1;

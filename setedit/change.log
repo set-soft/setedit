@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.514  2004/06/04 13:27:22  set
+* Added: A small script to meassure the number of lines of code. Currently
+over than 108,000. It skips third party libs.
+* Fixed: strstr and strchr are declared different in C++ standard. BC++
+does it (not gcc 2.95.4) and it generated compilation errors when using
+BC++. Reported by Arnold Wiegert.
+
 Revision 1.513  2004/06/02 19:57:43  set
 * Added: [SHL] vbe and vst as VHDL extensions. Used by Alliance for "Vhdl
 BEhavioral" and "Vhdl STructural". Suggested by Juan Pablo.
