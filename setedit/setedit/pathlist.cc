@@ -13,6 +13,7 @@ more memory and disk space but is much more easy to setup.
 #include <ceditint.h>
 #define Uses_string
 #define Uses_limits
+#define Uses_stdlib
 // TV
 #define Uses_TCollection
 #define Uses_TStreamableClass

@@ -30,6 +30,7 @@
 #define Uses_TFileCollection // To set the default sorting
 #define Uses_TNoSortedStringCollection
 #define Uses_TStreamableClass
+#define Uses_TGKey
 #define Uses_string
 #define Uses_alloca
 #define Uses_stdlib
@@ -1745,6 +1746,8 @@ void DestroyCMDLine()
 static
 struct option longopts[] =
 {
+  { "bios-keyb",      0, 0, 'b' },
+  { "no-bios-keyb",   0, 0, 'B' },
   { "cascade",        0, 0, 'c' },
   { "stack-dbg",      1, 0, 'd' },
   { "file-list",      1, 0, 'f' },
@@ -1803,10 +1806,16 @@ void ParseCommandLine(int argc, char *argv[])
  if (ExtraCMDLine)
     StackDbgStrategy=atoi(ExtraCMDLine);
 
- while ((optc=getopt_long(Argc,Argv,"cdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
+ while ((optc=getopt_long(Argc,Argv,"bBcdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
    {
     switch (optc)
       {
+       case 'b':
+            TGKey::useBIOS=1;
+            break;
+       case 'B':
+            TGKey::useBIOS=0;
+            break;
        case 'c':
             SE_CascadeWindows=1;
             break;
@@ -1863,6 +1872,10 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         file in the list and should be specified after the\n"
                         "                         options. If the line number is omitted you'll jump to\n"
                         "                         the end of the text. Example: +6 file\n"));
+            #ifdef SECompf_djgpp // Don't name it under Linux
+            PrintHelp(_("-b, --bios-keyb:         use BIOS for the keyboard [safer, default].\n"));
+            PrintHelp(_("-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster].\n"));
+            #endif
             PrintHelp(_("-c, --cascade:           arranges the windows using cascade style.\n"));
             PrintHelp(_("-d, --stack-dbg=n:       indicates which methode will be used in the event of a\n"
                         "                         crash. The default methode is 0.\n"
@@ -1883,7 +1896,7 @@ void ParseCommandLine(int argc, char *argv[])
             #ifdef SECompf_djgpp // Don't name it under Linux
             PrintHelp(_("-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"));
             PrintHelp(_("-L, --force-lfn:         forces the use of long file names under W9x.\n"));
-            PrintHelp(_("-m, --no-mouse-hook:     don't hook the mouse.\n"));
+            PrintHelp(_("-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"));
             #endif
             #ifdef HAVE_MIXER
             PrintHelp(_("-M, --no-mixer:          disable board level mixer.\n"));
