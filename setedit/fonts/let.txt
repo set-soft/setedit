@@ -472,12 +472,12 @@
 <!=>                  1C0   <U2260> NOT EQUAL TO
                       1C1   <U21B5> DOWNWARDS ARROW WITH CORNER LEFTWARDS
 <Y:>                  1C2   <U0178> LATIN CAPITAL LETTER Y WITH DIAERESIS
-                      1C3   <U0000> Free
+                      1C3   <Uf801> - but half way up
                       1C4   <U2575> BOX DRAWINGS LIGHT UP (Å)-1 Linux
                       1C5   <U2576> BOX DRAWINGS LIGHT RIGHT (Ç)-1 Linux
                       1C6   <U2577> BOX DRAWINGS LIGHT DOWN (Ñ)-1 Linux
                       1C7   <U2574> BOX DRAWINGS LIGHT LEFT (à)-1 Linux
-                      1C8   <U0000> Free
+                      1C8   <Uf803> - but half way down
                       1C9   <U2579> BOX DRAWINGS HEAVY UP (ë)-1 Linux
                       1CA   <U257A> BOX DRAWINGS HEAVY RIGHT (í)-1 Linux
                       1CB   <U257B> BOX DRAWINGS HEAVY DOWN (î)-1 Linux
