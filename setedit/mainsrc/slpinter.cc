@@ -304,6 +304,8 @@ void SLPInterfaceRunSelection(TCEditor *ed)
 {
  if (ed->hasVisibleSelection())
    {
+    if (ed->IslineInEdition)
+       ed->MakeEfectiveLineInEdition();
     unsigned l=ed->selEnd-ed->selStart;
     char *s=(char *)malloc(l+1);
     if (s)
