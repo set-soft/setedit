@@ -1,4 +1,8 @@
 $Log$
+Revision 1.42  2002/01/29 17:50:03  set
+* Fixed: Now the distrib-* targets depends on needed. It allows to use "make
+distrib" even without doing make first.
+
 Revision 1.41  2002/01/29 17:46:40  set
 * Modified: The compression scripts to generate more descriptive name for
 the debug files.
@@ -2881,7 +2885,7 @@ Revision 1.148  1999/07/09 15:22:29  set
 * Fixed: G was used twice as short-cut in the Find Dialog. Reported by
 Jeremy W. Murphy <jwm@amc.com.au>.
 * Added: short-cut for the "RegEx Ops" button (O).
-.
+
 Revision 1.147  1999/07/07 23:59:42  set
 * Added: Help for the "Open Read-only copy" option (documentation and F1).
 .
