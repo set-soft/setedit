@@ -427,6 +427,7 @@ extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
 extern void SaveProject(void);
 extern int  IsPrjOpened(void);
+extern int  IsPrjVisible(void);
 extern void SaveDesktopHere(void);
 extern void ExportProjectItems();
 extern void ImportProjectItems();

@@ -547,6 +547,12 @@ TEditorProjectWindow::~TEditorProjectWindow()
 
 void TEditorProjectWindow::handleEvent(TEvent& event)
 {
+ if (event.what==evKeyboard && event.keyDown.keyCode==kbEsc)
+   {
+    close();
+    clearEvent(event);
+    return;
+   }
  TDialog::handleEvent(event);
 }
 
@@ -1058,6 +1064,12 @@ int IsPrjOpened(void)
  return PrjExists();
 }
 
+int IsPrjVisible(void)
+{
+ if (!PrjExists())
+    return 0;
+ return prjWin->view->state & sfVisible;
+}
 
 struct FileTm
 {

@@ -1,4 +1,18 @@
-$Log$
+$Log$.
+Revision 1.449  2003/10/16 19:35:20  set
+* Added: [sLisp] KeyBindings and BindKey commands. With them you can change
+key bindings from sLisp.
+* Fixed: Errors in the conditionals parser for menu files.
+* Added: More variables to check in menu files: MP3, PCRE, BZIP2, MIXER and
+UNIX. Suggested by Oswald.
+* Added: A new chapter to the docs: Documentation guide. It can be used to
+find other chapters and sections according to the topic they are related
+to.
+* Added: A new chapter to the docs: Menues configuration.
+* Added: A new section to the docs: Configuration files location.
+* Added: Now the index of the documentation also includes all the chapters,
+sections, etc.
+
 Revision 1.448  2003/10/16 19:34:02  set
 * Fixed: When the alternative sorting mode of the project window was
 enabled some internal searches failed because they expected the old sorting

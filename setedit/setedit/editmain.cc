@@ -381,7 +381,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
           ain->ApplyResume(r);
        deskTop->insert(p);
        // When the project is OFF zoom it
-       if (!validResume && !IsPrjOpened())
+       if (!validResume && !(IsPrjOpened() && IsPrjVisible()))
           ain->zoom();
       }
     else
