@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-10-20 17:39-0300\n"
+"PO-Revision-Date: 2004-11-22 11:39-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -598,7 +598,7 @@ msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
 #: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:453
-#: ../mainsrc/ceditor.cc:523
+#: ../mainsrc/ceditor.cc:527
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
@@ -1470,32 +1470,32 @@ msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:545
+#: ../mainsrc/ceditor.cc:549
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4058
+#: ../mainsrc/ceditor.cc:4062
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4105 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4109 ../mainsrc/doedidia.cc:143
 #, fuzzy, c-format
 msgid "%d bytes selected, in %d"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4268
+#: ../mainsrc/ceditor.cc:4272
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4287
+#: ../mainsrc/ceditor.cc:4291
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4309
+#: ../mainsrc/ceditor.cc:4313
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1506,7 +1506,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4343
+#: ../mainsrc/ceditor.cc:4347
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1519,16 +1519,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:5938
+#: ../mainsrc/ceditor.cc:5942
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:5953
+#: ../mainsrc/ceditor.cc:5957
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10285
+#: ../mainsrc/ceditor.cc:10289
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1537,29 +1537,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10300
+#: ../mainsrc/ceditor.cc:10304
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11042
+#: ../mainsrc/ceditor.cc:11046
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11991
+#: ../mainsrc/ceditor.cc:11995
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12202
+#: ../mainsrc/ceditor.cc:12206
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13395
+#: ../mainsrc/ceditor.cc:13399
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13405
+#: ../mainsrc/ceditor.cc:13409
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-10-20 17:39-0300\n"
+"PO-Revision-Date: 2004-11-22 11:39-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -592,7 +592,7 @@ msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operación."
 
 #: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:453
-#: ../mainsrc/ceditor.cc:523
+#: ../mainsrc/ceditor.cc:527
 msgid "Sorry but no OS specific clipboard is available"
 msgstr "Lo lamento pero no hay ningún portapapeles del sistema disponible"
 
@@ -1408,32 +1408,32 @@ msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:545
+#: ../mainsrc/ceditor.cc:549
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4058
+#: ../mainsrc/ceditor.cc:4062
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4105 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4109 ../mainsrc/doedidia.cc:143
 #, c-format
 msgid "%d bytes selected, in %d"
 msgstr "%d caracteres seleccionados en %d"
 
-#: ../mainsrc/ceditor.cc:4268
+#: ../mainsrc/ceditor.cc:4272
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4287
+#: ../mainsrc/ceditor.cc:4291
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4309
+#: ../mainsrc/ceditor.cc:4313
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1444,7 +1444,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4343
+#: ../mainsrc/ceditor.cc:4347
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1457,16 +1457,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:5938
+#: ../mainsrc/ceditor.cc:5942
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:5953
+#: ../mainsrc/ceditor.cc:5957
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10285
+#: ../mainsrc/ceditor.cc:10289
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1474,29 +1474,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10300
+#: ../mainsrc/ceditor.cc:10304
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11042
+#: ../mainsrc/ceditor.cc:11046
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:11991
+#: ../mainsrc/ceditor.cc:11995
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12202
+#: ../mainsrc/ceditor.cc:12206
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13395
+#: ../mainsrc/ceditor.cc:13399
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13405
+#: ../mainsrc/ceditor.cc:13409
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
