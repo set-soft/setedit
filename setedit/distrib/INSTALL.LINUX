@@ -45,7 +45,7 @@
 # script and make file ;-).
 #
 
-./REMOVE_UNNEEDED
+. REMOVE_UNNEEDED
 
 # Because I'm not so familar with shell scripts, I use
 # a makefile, which I know how to write.

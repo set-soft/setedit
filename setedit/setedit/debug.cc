@@ -125,7 +125,10 @@ unaccessable memory.
 
 ***************************************************************************/
 
-#define _GNU_SOURCE
+#ifndef _GNU_SOURCE
+ // SuSE SLES 8 defines it at the command line!
+ #define _GNU_SOURCE
+#endif
 #include <ceditint.h>
 #define Uses_stdio
 #define Uses_unistd
@@ -1872,7 +1875,7 @@ const ulong disAsmMaxDist=20000;
 Boolean TAdd2Line::searchL(int line, ccIndex &pos)
 {
  byLine=1;
- Boolean ret=search((void *)line,pos);
+ Boolean ret=search((void *)(long)line,pos);
  byLine=0;
  return ret;
 }
@@ -1880,7 +1883,7 @@ Boolean TAdd2Line::searchL(int line, ccIndex &pos)
 void *TAdd2Line::keyOf(void *item)
 {
  stAdd2Line *p=(stAdd2Line *)item;
- return byLine ? (void *)p->line : p->addr;
+ return byLine ? (void *)(long)p->line : p->addr;
 }
 
 int TAdd2Line::compare(void *s1, void *s2)

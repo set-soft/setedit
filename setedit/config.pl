@@ -689,7 +689,8 @@ sub GiveAdvice
    }
  if ((@conf{'HAVE_AA'} eq 'no') && ($OS eq 'UNIX'))
    {
-    print "* AA lib is not installed so you won't get a nice console screen saver\n";
+    print "* AA lib is not installed (or isn't functional) so you won't get a nice console\n"
+    print "  screen saver\n";
    }
  if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
    {
@@ -800,6 +801,7 @@ sub LookForTV
  print "\n\tInclude dir: $TVInclude\n";
  @dirsL=($conf{'TV_LIB'},@dirsL) if $conf{'TV_LIB'};
  $TVLib=LookForFile('librhtv.[as]*',@dirsL);
+ $TVLib=LookForFile('librhtv*dylib',@dirsL) if (!length($TVLib));
  if (!length($TVLib))
    {
     print "\nError: Can't find a compiled version, please compile Turbo Vision first.\n";
@@ -1902,7 +1904,8 @@ sub LookForAA
      printf("OK\n");
   return 0;
  }';
- $test=RunGCCTest($GCC,'c',$test,'-laa');
+ # AA lib v1.2 SuSE SLES 8 doesn't work for C++ (wrong typedef for struct)
+ $test=RunGCCTest($GCC,'cc',$test,'-laa');
  $conf{'HAVE_AA'}=($test=~/OK$/) ? 'yes' : 'no';
 
  print "$conf{'HAVE_AA'}\n";

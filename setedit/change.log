@@ -1,4 +1,17 @@
-$Log$.
+$Log$
+Revision 1.619  2004/10/01 21:33:26  set
+* Fixed: [Config] MP3 support must be disabled for any OS different than
+DOS, Linux and Solaris. In this way the user doesn't need to disable it
+by hand.
+* Fixed: [Config] Wrong C++ flags when none specified. Don't know when was
+introduced. Looks like an error while editing the file.
+* Added: Support for Darwin (6.8 MacOS X 10.2), the editor seems to be
+usable using xterm (some glitches are observed).
+  * Added PPC CPU detection in the way that's defined in Darwin.
+  * Added support for the native ar.
+* Added: Support for OpenBSD (3.4).
+* Verified: Working for NetBSD (1.6.1) and FreeBSD (4.8).
+
 Revision 1.618  2004/09/29 20:07:11  set
 * Fixed: [DOCs] Message about pressing F1 in the printed version. Also
 wrong copyright year.
