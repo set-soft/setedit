@@ -135,6 +135,8 @@ SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "To l~o~wer",  cmcSelRectToLower, kbUnknown
 EndSubMenu
 
+# English: ACDLNPRSTUZ
+# Spanish: ABDECLMRSUZ
 SubMenu: "~W~indows", kbAlW
  MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
  MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
@@ -145,6 +147,9 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~C~lose", cmeClose, kbAlF3, "Alt+F3"
  MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
  MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
+ MenuSeparator
+ MenuItemC: "Sc~r~oll Up", cmcScrollUp, kbCtZ, "Ctrl+Z"
+ MenuItemC: "Scroll ~D~own", cmcScrollDown, kbCtW, "Ctrl+W"
 EndSubMenu
 
 # ABCDEFGHIKLMNOPRSXW
