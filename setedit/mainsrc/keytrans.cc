@@ -773,13 +773,8 @@ int TKeyTranslate::Save(char *name)
     fwrite(&cSize,sizeof(cSize),1,f);
     fwrite(base,cSize,1,f);
    }
- #if TV_MAJOR_VERSION==2
- // Fix Me!
- int translateKeyPad=1;
+ int translateKeyPad=TGKey::GetKbdMapping(TGKey::dosTranslateKeypad);
  fwrite(&translateKeyPad,sizeof(translateKeyPad),1,f);
- #else
- fwrite(&TGKey::translateKeyPad,sizeof(TGKey::translateKeyPad),1,f);
- #endif
  fclose(f);
  return 0;
 }
@@ -824,14 +819,11 @@ int TKeyTranslate::Load(char *name)
     GenError(_("Error while reading"));
    }
  if (V>=4)
- #if TV_MAJOR_VERSION==2
    {
     int translateKeyPad;
     fread(&translateKeyPad,sizeof(translateKeyPad),1,f);
+    TGKey::SetKbdMapping(translateKeyPad ? TGKey::dosTranslateKeypad : TGKey::dosNormalKeypad);
    }
- #else
-    fread(&TGKey::translateKeyPad,sizeof(TGKey::translateKeyPad),1,f);
- #endif
  fclose(f);
  if (replaceK)
    {

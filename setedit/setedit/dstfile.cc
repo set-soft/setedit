@@ -746,7 +746,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  s << TFileCollection::sortOptions;
  // Code page conversion options
  SaveConvCPOptions(s);
- s << TGKey::GetKbdMapping();
+ s << TGKey::GetKbdMapping(0);
  BoardMixerSave(s);
  PathListSave(s);
  s << (uchar)TSOSListBoxMsg::opsEnd << (uchar)TSOSListBoxMsg::opsBeep;
@@ -1090,11 +1090,9 @@ Boolean TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
  if (deskTopVersion>=0x437)
     LoadConvCPOptions(s);
  if (deskTopVersion>=0x438)
-   {
+   {// Currently useless
     s >> auxINT;
-    #ifdef TVCompf_djgpp
-    TGKey::SetKbdMapping(auxINT);
-    #endif
+    //TGKey::SetKbdMapping(auxINT);
    }
  if (deskTopVersion>=0x444)
     BoardMixerLoad(s);

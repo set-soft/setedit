@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.242  2002/12/03 12:31:19  set
+* Added: More InfView commands to the commands parser used for sLisp and
+Menu files. I renamed the chcd* commands to cmh* so they can be parsed.
+I added a test example to the menubind.smn file. Closes SF FR #645731
+created by Martijn.
+
 Revision 1.241  2002/11/29 12:50:22  set
 * Modified: Now TV provides CLY_Beep for all platforms.
 
