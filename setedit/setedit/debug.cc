@@ -1916,8 +1916,20 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
  from=to=NULL;
  spLine=NULL;
  curLine=NULL;
- editor->SetHighlightTo(shlGenericSyntax,
-                        SHLNumberOf("80x86 asm (AT&T syntax)"));
+
+ MIDebugger::archType tp=dbg ? dbg->GetTargetArchitecture() : MIDebugger::arUnknown;
+ int shlNum;
+ switch (tp)
+   {
+    case MIDebugger::arSPARC:
+         shlNum=SHLNumberOf("SPARC asm");
+         break;
+    // Use IA32 as default
+    case MIDebugger::arIA32:
+    default:
+         shlNum=SHLNumberOf("80x86 asm (AT&T syntax)");
+   }
+ editor->SetHighlightTo(shlGenericSyntax,shlNum);    
 }
 
 const char *TDisAsmEdWin::getTitle(short)
@@ -1988,6 +2000,9 @@ void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
  lines=aLines;
  destroy0(a2l);
 
+ // For the comments
+ editor->CacheSyntaxHLData(editor->GenericSHL);
+
  // Create the new content
  char *curFunc=NULL;
  DynStrCatStruct tx;
@@ -2034,8 +2049,9 @@ void TDisAsmEdWin::setCode(mi_asm_insns *aLines)
    {// If source file info is available add it
     if (c->file)
       {// We insert the info commented
-       // TODO: That isn't the same for all archs. I.e. SPARC uses !
-       DynStrCat(&tx,"# ",2);
+       // The comment is architecture dependent
+       DynStrCat(&tx,TCEditor::strC.EOLCom1,TCEditor::strC.lEOLCom1);
+       DynStrCat(&tx," ",1);
        char added=0;
        if (!(misc & miscNoSourceInAsm))
          {// Try adding the source code
@@ -6392,35 +6408,27 @@ TDataWindow *TDataWindow::createNew(const char *naddr, Boolean edit)
  return dw;
 }
 
-const int archIA32=1, archSparc=2, archUnknown=0;
-static char *archSP[]=
-{
- "$esp", // IA32: Extended Stack Pointer
- "$sp"   // SPARC: Stack Pointer
-};
-
 TDataWindow *TDataWindow::stackWindow()
 {
  if (!dbg)
     return NULL;
- char *res=dbg->Show("architecture");
- if (!res)
-    return NULL;
- int arch=archUnknown;
- if (strstr(res,"i386"))
-    arch=archIA32;
- else if (strstr(res,"sparc"))
-    arch=archSparc;
- if (arch==archUnknown)
-   {
-    free(res);
-    messageBox(__("Not implemented for your platform, please help to implement it"),
-               mfError|mfOKButton);
-    return NULL;
-   }
- free(res);
 
- TDataWindow *dw=createNew(archSP[arch-1],False);
+ const char *spReg;
+ switch (dbg->GetTargetArchitecture())
+   {
+    case MIDebugger::arIA32:
+         spReg="$esp"; // IA32: Extended Stack Pointer
+         break;
+    case MIDebugger::arSPARC:
+         spReg="$sp";  // SPARC: Stack Pointer
+         break;
+    default:
+         messageBox(__("Not implemented for your platform, please help to implement it"),
+                    mfError|mfOKButton);
+         return NULL;
+   }
+
+ TDataWindow *dw=createNew(spReg,False);
 
  if (dw)
    {

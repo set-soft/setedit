@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.597  2004/09/07 20:00:02  set
+* Added: [Debug] Support for the Stack Window on SPARC machines. Not
+tested.
+* Fixed: [Debug] The disassembler window to hide tabs and use 8 as tab
+size.
+
 Revision 1.596  2004/09/06 17:15:46  set
 * Fixed: [Debug] Problems with the registers list when using gdb 6.x.
 That's a workaround for gdb bug "mi/1770".
