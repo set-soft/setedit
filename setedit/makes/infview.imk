@@ -2,6 +2,29 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
+OBJFILES=\
+	objinf/dyncat$(ExOBJ) \
+	objinf/fstrcmp$(ExOBJ) \
+	objinf/gzfiles$(ExOBJ) \
+	objinf/inf$(ExOBJ) \
+	objinf/infbase$(ExOBJ) \
+	objinf/infdummy$(ExOBJ) \
+	objinf/infmain$(ExOBJ) \
+	objinf/infmenu$(ExOBJ) \
+	objinf/manview$(ExOBJ) \
+	objinf/nhiscoll$(ExOBJ) \
+	objinf/ninfview$(ExOBJ) \
+	objinf/ninfwind$(ExOBJ) \
+	objinf/nmanwind$(ExOBJ) \
+	objinf/sinf$(ExOBJ) \
+	objinf/sman$(ExOBJ) \
+	objinf/strncpyz$(ExOBJ) 
+
+LIBRARIES=\
+	libeasyd$(ExLIB) \
+	librhuti$(ExLIB) \
+	libsettv$(ExLIB) 
+
 infview$(ExEXE):: \
 	objinf/dyncat$(ExOBJ) \
 	libeasyd$(ExLIB) \
@@ -609,27 +632,4 @@ objinf/sman$(ExOBJ):: ../infview/streams/sman.cc \
 objinf/strncpyz$(ExOBJ):: ../extra/strncpyz.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
-
-OBJFILES=\
-	objinf/dyncat$(ExOBJ) \
-	objinf/fstrcmp$(ExOBJ) \
-	objinf/gzfiles$(ExOBJ) \
-	objinf/inf$(ExOBJ) \
-	objinf/infbase$(ExOBJ) \
-	objinf/infdummy$(ExOBJ) \
-	objinf/infmain$(ExOBJ) \
-	objinf/infmenu$(ExOBJ) \
-	objinf/manview$(ExOBJ) \
-	objinf/nhiscoll$(ExOBJ) \
-	objinf/ninfview$(ExOBJ) \
-	objinf/ninfwind$(ExOBJ) \
-	objinf/nmanwind$(ExOBJ) \
-	objinf/sinf$(ExOBJ) \
-	objinf/sman$(ExOBJ) \
-	objinf/strncpyz$(ExOBJ) 
-
-LIBRARIES=\
-	libeasyd$(ExLIB) \
-	librhuti$(ExLIB) \
-	libsettv$(ExLIB) 
 

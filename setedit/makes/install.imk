@@ -2,6 +2,19 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
+OBJFILES=\
+	obj/datafile$(ExOBJ) \
+	obj/install$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogres$(ExOBJ) 
+
+LIBRARIES=\
+	libeasyd$(ExLIB) 
+
 ../install/install$(ExEXE):: \
 	obj/datafile$(ExOBJ) \
 	libeasyd$(ExLIB) \
@@ -117,17 +130,4 @@ obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc \
 obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
-
-OBJFILES=\
-	obj/datafile$(ExOBJ) \
-	obj/install$(ExOBJ) \
-	obj/nostatex$(ExOBJ) \
-	obj/nprogbar$(ExOBJ) \
-	obj/nprogres$(ExOBJ) \
-	obj/tprogbar$(ExOBJ) \
-	obj/tprogdia$(ExOBJ) \
-	obj/tprogres$(ExOBJ) 
-
-LIBRARIES=\
-	libeasyd$(ExLIB) 
 

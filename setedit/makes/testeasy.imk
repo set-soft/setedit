@@ -2,6 +2,13 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
+OBJFILES=\
+	obj/test$(ExOBJ) 
+
+LIBRARIES=\
+	libeasyd$(ExLIB) \
+	libsettv$(ExLIB) 
+
 test$(ExEXE):: \
 	libeasyd$(ExLIB) \
 	libsettv$(ExLIB) \
@@ -86,11 +93,4 @@ obj/test$(ExOBJ):: ../easydiag/test.cc \
 	tv/yes_mss.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
-
-OBJFILES=\
-	obj/test$(ExOBJ) 
-
-LIBRARIES=\
-	libeasyd$(ExLIB) \
-	libsettv$(ExLIB) 
 

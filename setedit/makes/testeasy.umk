@@ -2,6 +2,13 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
+OBJFILES=\
+	obj/test$(ExOBJ) 
+
+LIBRARIES=\
+	libeasyd$(ExLIB) \
+	libsettv$(ExLIB) 
+
 test$(ExEXE):: \
 	libeasyd$(ExLIB) \
 	libsettv$(ExLIB) \
@@ -13,11 +20,4 @@ INCLUDE00=easydiag$(ExIMK)
 
 obj/test$(ExOBJ):: ../easydiag/test.cc  
 	$(RHIDE_COMPILE_CC)
-
-OBJFILES=\
-	obj/test$(ExOBJ) 
-
-LIBRARIES=\
-	libeasyd$(ExLIB) \
-	libsettv$(ExLIB) 
 

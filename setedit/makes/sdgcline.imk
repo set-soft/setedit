@@ -2,6 +2,31 @@
 # Automatically generated from RHIDE projects, don't edit
 #
 
+OBJFILES=\
+	objsdg/bufun2$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	objsdg/mli$(ExOBJ) \
+	objsdg/mliasimp$(ExOBJ) \
+	objsdg/mlicsdg$(ExOBJ) \
+	objsdg/mlisdg$(ExOBJ) \
+	objsdg/ntnocast$(ExOBJ) \
+	objsdg/setstack$(ExOBJ) \
+	objsdg/stnocast$(ExOBJ) \
+	objsdg/tnocastc$(ExOBJ) \
+	objsdg/txhgen$(ExOBJ) \
+	objsdg/txhmain$(ExOBJ) 
+
+LIBRARIES=\
+	librhuti$(ExLIB) 
+
 sdg$(ExEXE):: \
 	objsdg/bufun2$(ExOBJ) \
 	obj/djmdr$(ExOBJ) \
@@ -346,29 +371,4 @@ objsdg/txhmain$(ExOBJ):: ../sdg/txhmain.cc \
 	txhgen.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
-
-OBJFILES=\
-	objsdg/bufun2$(ExOBJ) \
-	obj/djmdr$(ExOBJ) \
-	obj/dyncat$(ExOBJ) \
-	obj/memmove$(ExOBJ) \
-	obj/mixer$(ExOBJ) \
-	obj/mixersb$(ExOBJ) \
-	obj/mixoss$(ExOBJ) \
-	obj/stackdbg$(ExOBJ) \
-	obj/strncpyz$(ExOBJ) \
-	obj/strndup$(ExOBJ) \
-	objsdg/mli$(ExOBJ) \
-	objsdg/mliasimp$(ExOBJ) \
-	objsdg/mlicsdg$(ExOBJ) \
-	objsdg/mlisdg$(ExOBJ) \
-	objsdg/ntnocast$(ExOBJ) \
-	objsdg/setstack$(ExOBJ) \
-	objsdg/stnocast$(ExOBJ) \
-	objsdg/tnocastc$(ExOBJ) \
-	objsdg/txhgen$(ExOBJ) \
-	objsdg/txhmain$(ExOBJ) 
-
-LIBRARIES=\
-	librhuti$(ExLIB) 
 
