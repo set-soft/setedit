@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -21,7 +21,7 @@ $TVCommandLine=0;
 GetCache();
 GetVersion('');
 
-$TVVersionNeeded='1.1.3';
+$TVVersionNeeded='1.1.4';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
