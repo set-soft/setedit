@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef __cplusplus
 extern "C" {
@@ -10,16 +10,16 @@ typedef unsigned char RawPal[768];
 extern __inline__ void RPF_SetAllPal(unsigned char *_pal_ptr)
 {//Sets all 768 6bit color component entries on the VGA.
  int dummy;
- __asm__ __volatile__("
-     movl $0x3c8, %%edx
-     xorl %%eax, %%eax
-     outb %%al, %%dx
-     incl %%edx
-     movl $768, %%ecx
-     cli
-     rep
-     outsb
-     sti"
+ __asm__ __volatile__(
+"     movl $0x3c8, %%edx   \n"
+"     xorl %%eax, %%eax    \n"
+"     outb %%al, %%dx      \n"
+"     incl %%edx           \n"
+"     movl $768, %%ecx     \n"
+"     cli                  \n"
+"     rep                  \n"
+"     outsb                \n"
+"     sti                  \n"
  : "=S" (dummy) : "S" (_pal_ptr) : "%eax", "%ecx", "%edx");
 }
 
