@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.127  2002/06/20 20:11:05  set
+* Fixed: When starting the editor with a remmembered file that no longer
+exists located in a directory where we don't want backups the editor
+removed the dektop structure from the list and inmediatly used it. This
+wasn't detected until it happend with efence linked.
+
 Revision 1.126  2002/06/20 20:09:42  set
 * Modified: Now that TV can inform if the driver supports changing the
 shape of the cursor I use I/O indicator only if needed.

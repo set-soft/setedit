@@ -45,7 +45,9 @@ fonts than the BIOS ones.@p
 #define Uses_ctype
 #include <ceditor.h>
 #include <calendar.h>
-#include <mp3play.h>
+#ifndef NoEditorSpecific
+ #include <mp3play.h>
+#endif
 #include <ceditint.h>
 
 #include <codepage.h>
