@@ -3903,9 +3903,17 @@ void TCEditor::MacroGenerateCode(void)
         for (; MacroArray(i)>=0xF0000 && i<MacroCount; i++)
            {
             val=MacroArray(i)-0xF0000;
-            if (val=='\"')
+            if (val=='\t')
+              {
                buf[pos++]='\\';
-            buf[pos++]=val;
+               buf[pos++]='t';
+              }
+            else
+              {
+               if (val=='\"')
+                  buf[pos++]='\\';
+               buf[pos++]=val;
+              }
            }
         buf[pos]=0;
         strcat(buf,"\")");
