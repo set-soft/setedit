@@ -259,6 +259,9 @@ void FullSuspendScreen();
 void FullResumeScreen();
 // Open a file and insert it in the desktop
 extern void OpenFileFromEditor(char *fullName);
+// Defined in dstfile.cc to indicate we loaded the desktop file from the current
+// directory and not from the default one.
+extern char DstLoadedHere;
 #endif
 
 #ifdef Uses_SETAppProject
