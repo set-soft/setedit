@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.87  2002/05/13 12:41:04  set
+* Modified: [UNIX] Now the FHS detection is more strict, the existance of
+share/doc is not enough, share/man and shared/info must exist.
+* Fixed: [UNIX] The FHS detection looks in $prefix and not in /usr.
+* Added: [FreeBSD] According to miniEleph in this case /share/doc is used
+but not shared/info nor shared/man.
+
 Revision 1.86  2002/05/13 12:36:53  set
 * Modified: [UNIX] Now the INSTALL.LINUX script is just called INSTALL.
 The script will work for FreeBSD and Solaris and is stupid to ask a BSD
