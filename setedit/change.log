@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.77  2002/05/02 19:33:22  set
+* Added: libdl detection to config.pl. Looks like some new library
+combinations (XFree86 4.2.0 + glibc 2.2.5) needs it. Time will say if this
+should be more optional. From problems reported by Andris to create a
+static editor with X11 support.
+
 Revision 1.76  2002/04/30 19:40:13  set
 * Fixed: InfView to compile with TV 2.0. As Andris tried to test it and
 couldn't I though it was time to fix the problems ;-)

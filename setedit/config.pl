@@ -164,6 +164,7 @@ else # Win32
 $MakeDefsRHIDE[1].='z ';
 $MakeDefsRHIDE[1].='pcre ' if @conf{'HAVE_PCRE_LIB'} eq 'yes';
 $MakeDefsRHIDE[1].='mss ' if @conf{'mss'} eq 'yes';
+$MakeDefsRHIDE[1].='efence ' if @conf{'efence'} eq 'yes';
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
@@ -441,6 +442,14 @@ sub SeeCommandLine
       {
        $conf{'mss'}='no';
       }
+    elsif ($i eq '--with-efence')
+      {
+       $conf{'efence'}='yes';
+      }
+    elsif ($i eq '--without-efence')
+      {
+       $conf{'efence'}='no';
+      }
     else
       {
        ShowHelp();
@@ -452,41 +461,43 @@ sub SeeCommandLine
 sub ShowHelp
 {
  print "Available options:\n\n";
- print "--help         : displays this text.\n";
- print "--prefix=path  : defines the base directory for installation.\n";
- print "--no-intl      : don't use international support.\n";
- print "--static       : force to create an statically linked executable.\n";
- print "--dynamic      : generated a dynamically linked executable [default].\n";
- print "--fhs          : force the FHS layout under UNIX.\n";
- print "--no-fhs       : force to not use the FHS layout under UNIX.\n";
- print "--libset       : create libset, needed to compile RHIDE.\n";
- print "--no-libset    : don't create libset [default].\n";
- print "--infview      : also compile InfView [default].\n";
- print "--no-infview   : don't compile InfView, just the editor.\n";
- print "--no-bzip2     : don't include support for bzip2 files.\n";
- print "--bzip2        : include support for bzip2 (in case you disabled it).\n";
- print "--parser-adv   : use the advanced parser for calc. [default]\n";
- print "--parser-brs   : use the small Burton's parser for calculator\n";
- print "--parser-ml    : use the small ML's parser for calculator\n";
- print "--with-amp     : use libamp for MP3 support [DOS only]\n";
- print "--with-mpegsnd : use libmpegsnd for MP3 support [default]\n";
- print "--without-mp3  : disable MP3 support\n";
- print "--cflags=val   : normal C flags [default is env. CFLAGS]\n";
- print "--cppflags=val : normal C++ flags [default is env. CXXFLAGS]\n";
- print "--Xcflags=val  : special C flags used for MP3 libraries\n";
- print "--Xcppflags=val: special C++ flags used for MP3 libraries\n";
- print "--debug        : selects C/C++ switches for debugging\n";
- print "--with-mixer   : include code to control the mixer [default]\n";
- print "--without-mixer: don't include code to control the mixer\n";
- print "--shipped-intl : force to use the shipped gettext library [DOS only]\n";
- print "--tv-include=pa: path for Turbo Vision includes\n";
+ print "--help          : displays this text.\n";
+ print "--prefix=path   : defines the base directory for installation.\n";
+ print "--no-intl       : don't use international support.\n";
+ print "--static        : force to create an statically linked executable.\n";
+ print "--dynamic       : generated a dynamically linked executable [default].\n";
+ print "--fhs           : force the FHS layout under UNIX.\n";
+ print "--no-fhs        : force to not use the FHS layout under UNIX.\n";
+ print "--libset        : create libset, needed to compile RHIDE.\n";
+ print "--no-libset     : don't create libset [default].\n";
+ print "--infview       : also compile InfView [default].\n";
+ print "--no-infview    : don't compile InfView, just the editor.\n";
+ print "--no-bzip2      : don't include support for bzip2 files.\n";
+ print "--bzip2         : include support for bzip2 (in case you disabled it).\n";
+ print "--parser-adv    : use the advanced parser for calc. [default]\n";
+ print "--parser-brs    : use the small Burton's parser for calculator\n";
+ print "--parser-ml     : use the small ML's parser for calculator\n";
+ print "--with-amp      : use libamp for MP3 support [DOS only]\n";
+ print "--with-mpegsnd  : use libmpegsnd for MP3 support [default]\n";
+ print "--without-mp3   : disable MP3 support\n";
+ print "--cflags=val    : normal C flags [default is env. CFLAGS]\n";
+ print "--cppflags=val  : normal C++ flags [default is env. CXXFLAGS]\n";
+ print "--Xcflags=val   : special C flags used for MP3 libraries\n";
+ print "--Xcppflags=val : special C++ flags used for MP3 libraries\n";
+ print "--debug         : selects C/C++ switches for debugging\n";
+ print "--with-mixer    : include code to control the mixer [default]\n";
+ print "--without-mixer : don't include code to control the mixer\n";
+ print "--shipped-intl  : force to use the shipped gettext library [DOS only]\n";
+ print "--tv-include=pat: path for Turbo Vision includes\n";
  print "  Note: if you use --tv-include you should also use --tv-lib\n";
- print "--tv-lib=path  : path for Turbo Vision libraries\n";
- print "--no-prefix-h  : don't define the prefix in the configuration header\n";
- print "--comp-exe     : compress all executables with UPX\n";
- print "--no-comp-exe  : don't compress any executables with UPX\n";
- print "--with-mss     : compiles with MSS memory debugger.\n";
- print "--without-mss  : compiles without MSS [default].\n";
+ print "--tv-lib=path   : path for Turbo Vision libraries\n";
+ print "--no-prefix-h   : don't define the prefix in the configuration header\n";
+ print "--comp-exe      : compress all executables with UPX\n";
+ print "--no-comp-exe   : don't compress any executables with UPX\n";
+ print "--with-mss      : compiles with MSS memory debugger.\n";
+ print "--without-mss   : compiles without MSS [default].\n";
+ print "--with-efence   : compiles with Electric Fence memory debugger.\n";
+ print "--without-efence: compiles without Electric Fence [default].\n";
 }
 
 sub GiveAdvice
