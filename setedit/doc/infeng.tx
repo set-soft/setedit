@@ -47,7 +47,7 @@
 @set title-printed InfView
 @set minidesc-printed An info viewer
 @set year-copyr 1996, 1997, 1998, 1999, 2000, 2001
-@set info-file  infeng.info
+@set info-file  infview
 
 @c --------------------------------------------------------------
 @c Now we have 3 different headers:

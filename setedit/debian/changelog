@@ -1,3 +1,26 @@
+setedit (0.4.52-1) unstable; urgency=low
+
+  * The "Arriba Uruguay nomá!!!" release, Uruguay goes to the Fifa
+    World Soccer Championship Korea-Japan 2002, it was hard but our
+    team made it!
+  * Yes!!! New stable version of the editor!!!
+  * Modified generated info files because Debian's install-info doesn't
+    remove info files that specify "something.info" as their node, it
+    needs "something" specified instead, and also, infview.info was
+    being registered as infeng.info, which prevented it from being
+    accessed from the main info file (the "dir" info file).
+  * The infobrowser alternative (from infview) was being unregistered
+    incorrectly.
+  * Well, that's a lot of bugs I have found just before the stable
+    release! I think two things:
+    1 - I should do a more thorough testing while testing the unstable
+      versions, to avoid surprises like these ones just before a stable
+      release!
+    2 - I don't have good testers of the packages or the people just
+      doesn't bother to report the bugs.
+  
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Mon, 26 Nov 2001 19:36:39 -0300
+
 setedit (0.4.51-4) unstable; urgency=low
 
   * No changes, just a newer upstream source from CVS and I will upload

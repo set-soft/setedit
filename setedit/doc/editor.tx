@@ -47,7 +47,7 @@
 @set title-printed SET's Editor
 @set minidesc-printed A friendly text editor
 @set year-copyr 1996, 1997, 1998, 1999, 2000, 2001
-@set info-file  setedit.info
+@set info-file  setedit
 
 @macro ikey{KEY,DESC}
 @key{\KEY\}
