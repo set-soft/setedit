@@ -1,4 +1,4 @@
-# Copyright (C) 1999-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Command line errors description file for SET's editor
@@ -84,6 +84,22 @@ Name=Watcom
 Pattern=(.+)\((.+)\) : (.+) : (.+)
 File=1
 Line=2
+Description=4
+End
+
+#
+# Turbo Assembler v 2.02
+#
+# Textual description by Alex Lozano <alex@inti.gov.ar>
+#
+# Messages format:
+# **Warning|Error|Fatal** filename(line) [macroname(macroline)] message
+#
+Name=Tasm 2.02
+Pattern=\*+(Error|Warning|Fatal)\*+\s([^\(]*)\((\d+)\)\s(.*)
+Severity=1
+File=2
+Line=3
 Description=4
 End
 
