@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.71  2002/04/29 15:06:01  set
+* Added: Syntax highlight for "Flat Assembler", contributed by "Matt C."
+<talktomatt@egl.net>
+
 Revision 1.70  2002/04/29 15:05:13  set
 * Added: Example on how to bind a key to a filter, contributed by Grzegorz.
 

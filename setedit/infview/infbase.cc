@@ -580,7 +580,7 @@ static void TakeName(char *Buf,char *Nom,char *Nom2,int &ini,int &largo,int &Lin
  if (*ori==':')
    {
     ori--;
-    memcpy(ori,ori+2,size_t(Size-(ori-Origin)-2));
+    memcpy(ori,ori+2,size_t(Size-(ori-Origin)-2+1));
     Size-=2;
     Fin-=2;
     return;
@@ -618,17 +618,12 @@ static void TakeName(char *Buf,char *Nom,char *Nom2,int &ini,int &largo,int &Lin
    {
     if (cutCross)
       {
-       memcpy(cutFrom+1,ori,size_t(Size-(ori-Origin)-1));
        *cutFrom='\n';
-       Size-=ori-cutFrom;
-       Fin-=ori-cutFrom;
+       cutFrom++;
       }
-    else
-      {
-       memcpy(cutFrom,ori,size_t(Size-(ori-Origin)));
-       Size-=ori-cutFrom;
-       Fin-=ori-cutFrom;
-      }
+    memcpy(cutFrom,ori,size_t(Size-(ori-Origin)+1));
+    Size-=ori-cutFrom;
+    Fin-=ori-cutFrom;
    }
 }
 
@@ -654,13 +649,16 @@ void CutNoteStr(char *s)
 void CutNoteStr(char *s, char *ori, long &size, char *&fin)
 {
  int cant;
+ 
  if (s[5]==' ')
     cant=6;
  else
     cant=5;
- memcpy(s,s+cant,size_t(size-(s-ori)-cant));
+ //char eos=*fin;
+ memcpy(s,s+cant,size_t(size-(s-ori)-cant+1));
  size-=cant;
  fin-=cant;
+ //if (!eos) *fin=0;
 }
 
 void TInfTopic::ReadCrossRefs( void )
@@ -675,7 +673,7 @@ void TInfTopic::ReadCrossRefs( void )
 
  // Barrer el texto buscando todos los *?ote y * Menu
  iNotes=0;
- cpMenu=cpFin=Text+(int)lSize-6;
+ cpMenu=cpFin=Text+(int)lSize;
  cpPos=Text;
  Linea=1;
  while (cpPos<cpFin)
