@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.72  2002/04/29 15:07:15  set
+* Fixed: A rare crash in InfView. Reported by Andris.
+
 Revision 1.71  2002/04/29 15:06:01  set
 * Added: Syntax highlight for "Flat Assembler", contributed by "Matt C."
 <talktomatt@egl.net>

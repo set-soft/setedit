@@ -80,7 +80,7 @@ char *ExpandHomeSave(const char *s)
 }
 #else
 static
-char *ExpandHomeWDir(const char *s)
+char *ExpandHomeWDir(const char *s, int hidden=0)
 {
  static int HiddenDirFailed=0;
  char *h=GetHome();
@@ -104,6 +104,7 @@ char *ExpandHomeWDir(const char *s)
        if (access(FileNameToLoad,W_OK)==0)
          {
           strcat(FileNameToLoad,"/");
+          if (hidden) strcat(FileNameToLoad,".");
           strcat(FileNameToLoad,s);
           return FileNameToLoad;
          }
@@ -175,8 +176,13 @@ char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s)
 
  #ifndef NoHomeOrientedOS
  char *r;
- // That's only for UNIX, try a dot-file (hidden)
+ // That's only for UNIX,
+ // Try in the ~/.setedit dir
  r=ExpandHomeWDir(s);
+ if (r && edTestForFile(r))
+    return r;
+ // Try the same place but a dot-file (hidden)
+ r=ExpandHomeWDir(s,1);
  if (r && edTestForFile(r))
     return r;
  r=ExpandHomeCommon(s);
