@@ -3337,6 +3337,10 @@ int TCEditor::handleCommand(ushort command)
            case cmcQuotedPrintDecode:
                 QuotedPrintDecode();
                 break;
+
+           case cmcInsertKeyName:
+                InsertKeyName();
+                break;
  
            default:
                unlock();
@@ -3379,6 +3383,16 @@ int TCEditor::handleCommand(ushort command)
  return 1;
 }
 
+void TCEditor::InsertKeyName()
+{
+ unsigned short k=TCEditor_SelectAKey();
+ if (k)
+   {
+    char b[tktMaxKeyName];
+    TCEditor_MakeKeyName(b,k);
+    insertText(b,strlen(b),True);
+   }
+}
 
 /**[txh]********************************************************************
 
