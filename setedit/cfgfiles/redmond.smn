@@ -113,6 +113,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
  MenuItemC: "Jump ~t~o symbol", cmeSearchTag, kbCtF2, "Ctrl+F2"
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
+ MenuItemC: "~C~lass browser", cmeClassBrowser
 EndSubMenu
 
 SubMenu: "~M~acro", kbAlM

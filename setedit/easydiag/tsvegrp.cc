@@ -61,11 +61,15 @@ TSVeGroup *MakeVeGroup(int sepa, TSView *este, TSView *ant, ...)
  va_list arg;
  va_start(arg,ant);
 
- ret=new TSVeGroup(este,ant,sepa);
+ int sep=sepa & (~tsveMakeSameW);
+ ret=new TSVeGroup(este,ant,sep);
  while ((cur=va_arg(arg,TSView *))!=0)
    {
-    ret=new TSVeGroup(ret,cur,sepa);
+    ret=new TSVeGroup(ret,cur,sep);
    }
  va_end(arg);
+ if (sepa & tsveMakeSameW)
+    ret->makeSameW();
  return ret;
 }
+

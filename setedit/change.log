@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.308  2003/04/28 13:54:25  set
+* Fixed: When a directory contained a project with a desktop file newer
+than the current setedit version and a default desktop file from a version
+older than 0.5.0 the editor rejected the new file but preloaded it doing
+a mess at the time of loading the old file.
+
 Revision 1.307  2003/04/28 13:53:33  set
 * Added: When adding a tag file to list now the editor asks if we want to
 add it using a relative path.

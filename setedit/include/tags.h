@@ -1,7 +1,11 @@
 /* Copyright (C) 2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-   
+
+#ifndef Uses_TagsOnlyFuncs
 typedef unsigned char uchar;
+class TSpTagCollection;
+class TStringCollection;
+class TTagClassCol;
 
 // Flags for a tag
 const uchar
@@ -71,6 +75,14 @@ struct stTagKinds
  stTagKind *kinds;
 };
 
+struct stClassTagInfo
+{
+ stTag *cl;
+ TStringCollection *parents;
+ TStringCollection *childs;
+ TSpTagCollection  *members;
+};
+
 // Class to handle the variables for the tag file
 class TTagInfo : public TStringCollection, public TStringable
 {
@@ -106,12 +118,11 @@ public:
 //SetDefStreamOperators(TTagFiles);
 
 // Class to hold the tags
-class TTagCollection : public TStringCollection, public TStringable
+class TSpTagCollection : public TStringCollection, public TStringable
 {
 public:
- TTagCollection();
- ~TTagCollection();
- int addFile(const char *file, int defer=0);
+ TSpTagCollection(unsigned size);
+ ~TSpTagCollection();
  int addValue(char *s, stTagFile *tf);
  virtual void  freeItem(void *item);
  virtual void *keyOf(void *item);
@@ -122,12 +133,42 @@ public:
  virtual unsigned GetCount(void) { return getCount(); };
 
  stTag *atPos(ccIndex pos) { return (stTag *)at(pos); };
- void refresh();
- void print() { forEach(print1,NULL); };
- static void print1(void *item, void *arg);
  static const char *getKind(stTag *p);
  static const char *getLanguage(stTag *p);
  static void        getText(char *buf, void *item, int maxLen);
+
+protected:
+ TStringCollection *files;
+ static const char *Languages[];
+ static stTagKinds  Kinds[];
+};
+
+class TTagMembersCol : public TSpTagCollection
+{
+public:
+ TTagMembersCol();
+ ~TTagMembersCol();
+ virtual void getText(char *dest, unsigned item, int maxLen);
+ void insert(stTag *tg, int level);
+ void insertSorted(stTag *tg, int level);
+ void collect(stClassTagInfo *p, TTagClassCol *clist,
+              int level=0, Boolean sort=False);
+
+protected:
+ TNSCollection *levels;
+ void collectFromOne(TSpTagCollection *c, int level, Boolean sort);
+};
+
+class TTagCollection : public TSpTagCollection
+{
+public:
+ TTagCollection();
+ ~TTagCollection();
+ int addFile(const char *file, int defer=0);
+
+ void refresh();
+ void print() { forEach(print1,NULL); };
+ static void print1(void *item, void *arg);
  TStringCollection *getTagFilesList();
  void               deleteTagsFor(stTagFile *p);
  int                save(fpstream& s);
@@ -136,13 +177,33 @@ public:
  TTagFiles         *tagFiles;
 
 protected:
- TStringCollection *files;
- static const char *Languages[];
- static stTagKinds  Kinds[];
-
  int loadTagsFromFile(stTagFile *p);
 };
 
-int TagsSave(fpstream& s);
-int TagsLoad(fpstream& s);
+class TTagClassCol : public TStringCollection
+{
+public:
+ TTagClassCol(TSpTagCollection *from);
+
+ stClassTagInfo *atPos(ccIndex pos) { return (stClassTagInfo *)at(pos); };
+ virtual void  freeItem(void *item);
+ virtual void *keyOf(void *item);
+ Boolean searchId(const char *id, ccIndex &pos) { return search((void *)id,pos); };
+
+ void addClass(stTag *p);
+ void addMember(stTag *p);
+ void addChildTo(const char *parent, const char *child);
+ stTag *newFake(const char *id);
+ void deleteFake(stTag *p);
+ stClassTagInfo *newClass();
+ stClassTagInfo *getClassOrFake(const char *id);
+};
+#endif
+
+int  TagsSave(fpstream& s);
+int  TagsLoad(fpstream& s);
+void TagsFreeMemory();
+void EditTagFiles();
+void SearchTag(char *word);
+void TagsClassBrowser(char *word);
 

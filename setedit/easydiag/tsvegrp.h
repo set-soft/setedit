@@ -15,6 +15,7 @@ public:
  TSView *Este,*Ant;
 };
 
+const int tsveMakeSameW=0x8000;
 TSVeGroup *MakeVeGroup(TSView *este, TSView *ant, ...);
 TSVeGroup *MakeVeGroup(int sepa, TSView *este, TSView *ant, ...);
 #endif

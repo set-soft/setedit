@@ -83,6 +83,8 @@
 #include <loadshl.h>
 #include <loadnobkp.h>
 #include <pathlist.h>
+#define Uses_TagsOnlyFuncs
+#include <tags.h>
 
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
@@ -1045,6 +1047,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeSearchTag:
               SearchTag(GetWordUnderCursor(80));
+              break;
+
+         case cmeClassBrowser:
+              TagsClassBrowser(GetWordUnderCursor(80));
               break;
 
          // These commands are traslated to the original values
@@ -2503,6 +2509,7 @@ int main(int argc, char *argv[])
  DestroyFunctionList();
  RunExternalProgramFreeMemory();
  LoadKeysForTCEditorFreeMemory();
+ TagsFreeMemory();
 
  return 0;
 }

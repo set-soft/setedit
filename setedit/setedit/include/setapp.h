@@ -97,7 +97,8 @@ const int
   cmeFonts          = cmeBase+77,
   cmeSaveAll        = cmeBase+78,
   cmeTagFiles       = cmeBase+79,
-  cmeSearchTag      = cmeBase+80;
+  cmeSearchTag      = cmeBase+80,
+  cmeClassBrowser   = cmeBase+81;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -377,10 +378,6 @@ extern void OpenFileFromEditor(char *fullName);
 // Defined in dstfile.cc to indicate we loaded the desktop file from the current
 // directory and not from the default one.
 extern char DstLoadedHere;
-
-// TAGs stuff:
-void EditTagFiles();
-void SearchTag(char *word);
 #endif
 
 #ifdef Uses_SETAppProject

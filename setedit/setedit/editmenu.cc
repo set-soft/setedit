@@ -311,4 +311,5 @@ _("Sa~v~e as DOS...")
 _("S~h~ell")
 _("T~a~g files ...")
 _("Jump ~t~o symbol")
+_("~C~lass browser")
 #endif

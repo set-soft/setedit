@@ -100,7 +100,7 @@ SubMenu: "~E~dit", kbAlE
  EndSubMenu
 EndSubMenu
 
-# English: FGJNPRST
+# English: CFGJNPRST
 # Spanish: BEINPRS
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
@@ -112,6 +112,7 @@ SubMenu: "~S~earch", kbAlS
  MenuItemC: "Jump to ~p~rototype", cmcJumpToPrototype
  MenuItemC: "Jump ~t~o symbol", cmeSearchTag, kbCtF2, "Ctrl+F2"
  MenuItemC: "~G~o to line", cmcGotoEditorLine, kbUnknown, "Ctrl+J"
+ MenuItemC: "~C~lass browser", cmeClassBrowser
 EndSubMenu
 
 # CEGMNOPRSU

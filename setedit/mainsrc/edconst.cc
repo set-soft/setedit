@@ -191,6 +191,7 @@ static edCList SetApp[] =
 { "Calendar"       , 60 },
 { "Cascade"        , 21 },
 { "ChangeDrct"     , 2  },
+{ "ClassBrowser"   , 81 },
 { "Close"          , 24 },
 { "ClosePrj"       , 12 },
 { "ColorTheme"     , 74 },

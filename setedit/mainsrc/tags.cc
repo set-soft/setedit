@@ -10,7 +10,9 @@ files.
   I use the following command line to generate the tags:
 
 ctags -R --exclude="*.mak" --exclude=Makefile --exclude=".*.pl~" --fields=+i+l+m+z
-  
+
+TODO: make a SortedStringableListBox
+
 ***************************************************************************/
 
 #define Uses_getcwd
@@ -37,6 +39,7 @@ ctags -R --exclude="*.mak" --exclude=Makefile --exclude=".*.pl~" --fields=+i+l+m
 #define Uses_TSHzGroup
 #define Uses_TSStaticText
 //#define Uses_TSStringableListBox
+#define Uses_TSVeGroup
 #define Uses_TSSortedListBox
 
 #define Uses_TGrowDialog
@@ -223,15 +226,18 @@ const char * const TTagFiles::name="TTagFiles";
 s(TTagFiles);*/
 
 /*****************************************************************************
- TTagCollection class
+ TTagCollection and TSpTagCollection classes
+ The TSpTagCollection is a simple collection.
+ The TTagCollection is the collection plus all the stuff needed to handle the
+TAG files.
 *****************************************************************************/
 
-int TTagCollection::compare(void *key1, void *key2)
+int TSpTagCollection::compare(void *key1, void *key2)
 {
  return strcasecmp((char *)key1,(char *)key2);
 }
 
-const char *TTagCollection::Languages[]=
+const char *TSpTagCollection::Languages[]=
 {
  "Asm",  "ASP",    "Awk",   "BETA", "C",     "C++",
  "Cobol","Eiffel","Fortran","Java", "Lisp",  "Lua",
@@ -281,7 +287,7 @@ static stTagKind SLang[]={{'f',"function"},{'n',"namespace"}};
 static stTagKind Tcl[]={{'p',"procedure"}};
 static stTagKind YACC[]={{'l',"labels"}};
 
-stTagKinds TTagCollection::Kinds[]=
+stTagKinds TSpTagCollection::Kinds[]=
 {
  {3,Asm},{2,ASP},{1,Func},{4,BETA},{13,Cpp},{13,Cpp},
  {1,Cobol},{3,Eiffel},{14,Fortran},{5,Java},{1,Func},
@@ -290,27 +296,36 @@ stTagKinds TTagCollection::Kinds[]=
  {1,Tcl},{1,Func},{1,YACC}
 };
 
-TTagCollection::TTagCollection() :
-  TStringCollection(100,50)
+TSpTagCollection::TSpTagCollection(unsigned size) :
+  TStringCollection(size,size/2)
 {
- files=new TStringCollection(10,10);
- tagFiles=new TTagFiles();
+ files=new TStringCollection(size/10,size/10);
  duplicates=True;
+}
+
+TSpTagCollection::~TSpTagCollection()
+{
+ destroy(files);
+}
+
+TTagCollection::TTagCollection() :
+  TSpTagCollection(100)
+{
+ tagFiles=new TTagFiles();
 }
 
 TTagCollection::~TTagCollection()
 {
- destroy(files);
  destroy(tagFiles);
 }
 
-void *TTagCollection::keyOf(void *item)
+void *TSpTagCollection::keyOf(void *item)
 {
  stTag *p=(stTag *)item;
  return (void *)p->id;
 }
 
-void TTagCollection::freeItem(void *item)
+void TSpTagCollection::freeItem(void *item)
 {
  stTag *p=(stTag *)item;
  DeleteArray(p->id);
@@ -326,12 +341,12 @@ void TTagCollection::print1(void *item, void *)
  puts(b);
 }
 
-const char *TTagCollection::getLanguage(stTag *p)
+const char *TSpTagCollection::getLanguage(stTag *p)
 {
  return p->lang==ttclUnknown ? "unknown" : Languages[p->lang];
 }
 
-const char *TTagCollection::getKind(stTag *p)
+const char *TSpTagCollection::getKind(stTag *p)
 {
  if (p->lang!=ttclUnknown)
    {
@@ -345,14 +360,14 @@ const char *TTagCollection::getKind(stTag *p)
  return "unknown";
 }
 
-void TTagCollection::getText(char *buf, unsigned item, int maxLen)
+void TSpTagCollection::getText(char *buf, unsigned item, int maxLen)
 {
  getText(buf,at(item),maxLen);
 }
 
 #define Advance maxLen-=aux; buf+=aux; if (maxLen<2) return
 
-void TTagCollection::getText(char *buf, void *item, int maxLen)
+void TSpTagCollection::getText(char *buf, void *item, int maxLen)
 {
  stTag *p=(stTag *)item;
 
@@ -388,7 +403,7 @@ void TTagCollection::getText(char *buf, void *item, int maxLen)
 
 #undef Advance
 
-int TTagCollection::addValue(char *s, stTagFile *tf)
+int TSpTagCollection::addValue(char *s, stTagFile *tf)
 {
  stTag *p=new stTag;
  memset(p,0,sizeof(stTag));
@@ -649,6 +664,136 @@ TStringCollection *TTagCollection::getTagFilesList()
 }
 
 /*****************************************************************************
+ TTagClassCol
+*****************************************************************************/
+
+TTagClassCol::TTagClassCol(TSpTagCollection *from) :
+  TStringCollection(20,10)
+{
+ ccIndex c=from->getCount(),i;
+ for (i=0; i<c; i++)
+    {
+     stTag *p=from->atPos(i);
+     if (p->kind=='c') // Class for most languages except Fortran
+       {
+        addClass(p);
+       }
+     /*else if (p->kind=='m' &&                            // member | method
+              (p->lang==ttclCpp || p->lang==ttclJava) && // from C++ | Java
+              (p->flags & sttFgPMask)==sttFgClass)       // from a class*/
+     else if ((p->flags & sttFgPMask)==sttFgClass)
+       {
+        addMember(p);
+       }
+    }
+}
+
+void TTagClassCol::addClass(stTag *p)
+{
+ ccIndex pos;
+ stClassTagInfo *cl;
+ Boolean addParents=False;
+ if (searchId(p->id,pos))
+   {// Already there
+    cl=atPos(pos);
+    if (!cl->cl->source)
+      {// That's a fake entry, replace using the real data
+       deleteFake(cl->cl);
+       cl->cl=p;
+       addParents=True;
+      }
+   }
+ else
+   {// New class
+    cl=newClass();
+    cl->cl=p;
+    atInsert(pos,cl);
+    addParents=True;
+   }
+ if (addParents && p->partof)
+   {
+    char *s=strdup(p->partof);
+    char *tok=strtok(s,",");
+    while (tok)
+      {
+       cl->parents->insert(newStr(tok));
+       addChildTo(tok,p->id);
+       tok=strtok(NULL,",");
+      }
+    ::free(s);
+   }
+}
+
+void TTagClassCol::addChildTo(const char *parent, const char *child)
+{
+ stClassTagInfo *cl=getClassOrFake(parent);
+ cl->childs->insert((void *)child);
+}
+
+stTag *TTagClassCol::newFake(const char *id)
+{
+ stTag *p=new stTag;
+ p->source=NULL;
+ p->id=newStr(id);
+ return p;
+}
+
+void TTagClassCol::deleteFake(stTag *p)
+{
+ DeleteArray(p->id);
+ delete p;
+}
+
+stClassTagInfo *TTagClassCol::newClass()
+{
+ stClassTagInfo *ret=new stClassTagInfo;
+ ret->parents=new TStringCollection(2,2);
+ ret->childs =new TStringCollection(2,2);
+ ret->members=new TSpTagCollection(10);
+ return ret;
+}
+
+stClassTagInfo *TTagClassCol::getClassOrFake(const char *id)
+{
+ ccIndex pos;
+ stClassTagInfo *cl;
+ if (searchId(id,pos))
+   {// Already there
+    cl=atPos(pos);
+   }
+ else
+   {// Add a fake
+    cl=newClass();
+    cl->cl=newFake(id);
+    atInsert(pos,cl);
+   }
+ return cl;
+}
+
+void TTagClassCol::addMember(stTag *p)
+{
+ const char *to=p->partof;
+ if (!to)
+    return;
+ stClassTagInfo *cl=getClassOrFake(to);
+ cl->members->insert(p);
+}
+
+void TTagClassCol::freeItem(void *item)
+{
+ stClassTagInfo *p=(stClassTagInfo *)item;
+ destroy(p->parents);
+ delete p->childs;
+ delete p->members;
+}
+
+void *TTagClassCol::keyOf(void *item)
+{
+ stClassTagInfo *p=(stClassTagInfo *)item;
+ return (void *)p->cl->id;
+}
+
+/*****************************************************************************
  Save and restore
 *****************************************************************************/
 
@@ -694,6 +839,71 @@ int TagsLoad(fpstream& s)
 }
 
 /*****************************************************************************
+ TTagMembersCol
+ Used to browse class members from this class and the parents.
+*****************************************************************************/
+
+TTagMembersCol::TTagMembersCol() :
+  TSpTagCollection(10)
+{
+ levels=new TNSCollection(10,5);
+}
+
+TTagMembersCol::~TTagMembersCol()
+{
+ delete levels;
+}
+
+void TTagMembersCol::getText(char *dest, unsigned item, int maxLen)
+{
+ stTag *p=(stTag *)at(item);
+ int level=(int)levels->at(item);
+ if (level)
+    CLY_snprintf(dest,maxLen,"%s (%s) %d",p->id,p->partof,level);
+ else
+    CLY_snprintf(dest,maxLen,"%s",p->id);
+}
+
+void TTagMembersCol::insert(stTag *tg, int level)
+{
+ atInsert(count,tg);
+ levels->atInsert(levels->getCount(),(void *)level);
+}
+
+void TTagMembersCol::insertSorted(stTag *tg, int level)
+{
+ ccIndex  i;
+ search((void *)tg->id,i);
+ atInsert(i,tg);
+ levels->atInsert(i,(void *)level);
+}
+
+void TTagMembersCol::collectFromOne(TSpTagCollection *cl, int level, Boolean sort)
+{
+ ccIndex c=cl->getCount(),i;
+ if (sort)
+    for (i=0; i<c; i++)
+        insertSorted(cl->atPos(i),level);
+ else
+    for (i=0; i<c; i++)
+        insert(cl->atPos(i),level);
+}
+
+void TTagMembersCol::collect(stClassTagInfo *p, TTagClassCol *clist,
+                             int level, Boolean sort)
+{
+ collectFromOne(p->members,level,sort);
+ ccIndex cParents, iParent;
+ cParents=p->parents->getCount();
+ for (iParent=0; iParent<cParents; iParent++)
+    {
+     ccIndex pos;
+     if (clist->search((char *)p->parents->at(iParent),pos))
+        collect(clist->atPos(pos),clist,level+1,sort);
+    }
+}
+
+/*****************************************************************************
  User interface
 *****************************************************************************/
 
@@ -705,6 +915,11 @@ int InitTagsCollection()
  if (!tags) return 1;
  tags->addFile("tags",1);
  return 0;
+}
+
+void TagsFreeMemory()
+{
+ destroy0(tags);
 }
 
 /*****************************************************************************
@@ -866,16 +1081,18 @@ public:
 
 void TTagsListBox::getText(char *dest, ccIndex item, short maxLen)
 {
- TTagCollection *p=(TTagCollection *)items;
+ TSpTagCollection *p=(TSpTagCollection *)items;
  p->getText(dest,item,maxLen);
 }
 
 ListBoxSpecialize(TSTagsListBox);
 ListBoxImplement(TagsListBox)
 
-static TDialog *createDialog()
+static
+TDialog *createDialogTags(const char *title, const char *label,
+                          const char *okLabel, const char *yesLabel=NULL)
 {
- TLThings *d=new TLThings(TRect(1,1,1,1),__("Jump to function"));
+ TLThings *d=new TLThings(TRect(1,1,1,1),title);
  TSViewCol *col=new TSViewCol(d);
 
  TRect r=TApplication::deskTop->getExtent();
@@ -886,29 +1103,55 @@ static TDialog *createDialog()
  TSTagsListBox *ListaH=new TSTagsListBox(w,h,tsslbVertical|tsslbHorizontal,1,256);
 
  ListaH->view->growMode=gfMoveBottomCorner;
- TSLabel *lista=new TSLabel(__("List of functions"),ListaH);
+ TSLabel *lista=new TSLabel(label,ListaH);
 
  col->insert(xTSLeft,yTSUp,lista);
 
- TSButton *ok=new TSButton(__("O~K~"),cmOK,bfDefault);
+ TSButton *ok=new TSButton(okLabel,cmOK,bfDefault);
  TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
  ok->view->growMode=cancel->view->growMode=gfGrowAll;
- TSHzGroup *but123=MakeHzGroup(ok,cancel,0);
+ TSHzGroup *but123;
+
+ if (yesLabel)
+   {
+    TSButton *yes=new TSButton(yesLabel,cmYes);
+    yes->view->growMode=gfGrowAll;
+    but123=MakeHzGroup(ok,yes,cancel,0);
+   }
+ else
+    but123=MakeHzGroup(ok,cancel,0);
+
  col->insert(xTSCenter,yTSDown,but123);
- col->doItCenter(cmcJumpToFunction);
+ col->doItCenter(cmeSearchTag);
  delete col;
  return d;
+}
+
+static
+TDialog *createDialog()
+{
+ return createDialogTags(__("Jump to symbol"),__("List of symbols"),__("O~K~"));
+}
+
+static
+void JumpToTag(TListBoxRec &br)
+{
+ char b[PATH_MAX],desc[120];
+ TSpTagCollection *tgs=(TSpTagCollection *)br.items;
+ stTag *p=tgs->atPos(br.selection);
+ CLY_snprintf(b,PATH_MAX,"%s%s",p->tagFile->base,p->source);
+ tgs->getText(desc,p,120);
+ if (p->flags & sttFgLine)
+   GotoFileLine(p->line,b,desc);
+ else
+   GotoFileText((char *)p->regex,b,desc);
 }
 
 void SearchTag(char *word)
 {
  if (InitTagsCollection()) return;
  tags->refresh();
- struct TListBoxRec
- {
-  TCollection *items;
-  ccIndex selection;
- } br;
+ TListBoxRec br;
  br.items=tags;
  br.selection=0;
 
@@ -917,31 +1160,258 @@ void SearchTag(char *word)
     tags->search(word,br.selection);
     if (br.selection>=tags->getCount())
        br.selection=tags->getCount()-1;
+    DeleteArray(word);
    }
  int ret=execDialog(createDialog(),&br);
  if (ret==cmOK)
-   {
-    char b[PATH_MAX],desc[120];
-    stTag *p=tags->atPos(br.selection);
-    CLY_snprintf(b,PATH_MAX,"%s%s",p->tagFile->base,p->source);
-    tags->getText(desc,p,120);
-    if (p->flags & sttFgLine)
-       GotoFileLine(p->line,b,desc);
-    else
-       GotoFileText((char *)p->regex,b,desc);
-   }
+    JumpToTag(br);
 }
 
+/*****************************************************************************
+ Class Browser
+*****************************************************************************/
 
-#ifdef TEST
-// Test code
-int main(int argc, char *argv[])
+class TClListBox : public TSortedListBox
 {
- TTagCollection *p=new TTagCollection;
- p->addFile("tags");
- p->addFile("/usr/src/setedit/tags");
- p->tagFiles->print();
- p->print();
- return 0;
+public:
+ TClListBox(const TRect& bounds, ushort aNumCols, TScrollBar *aScrollBar)
+  : TSortedListBox(bounds,aNumCols,aScrollBar) {};
+ TClListBox(const TRect& bounds, ushort aNumCols,
+              TScrollBar *aHScrollBar, TScrollBar *aVScrollBar)
+  : TSortedListBox(bounds,aNumCols,aHScrollBar,aVScrollBar) {};
+ virtual void getText(char *dest, ccIndex item, short maxLen);
+};
+
+void TClListBox::getText(char *dest, ccIndex item, short maxLen)
+{
+ TTagClassCol *p=(TTagClassCol *)items;
+ //p->getText(dest,item,maxLen);
+ CLY_snprintf(dest,maxLen,"%s",p->atPos(item)->cl->id);
 }
-#endif
+
+ListBoxSpecialize(TSClListBox);
+ListBoxImplement(ClListBox)
+
+static TDialog *createDialogCl()
+{
+ TLThings *d=new TLThings(TRect(1,1,1,1),__("Class list"));
+ TSViewCol *col=new TSViewCol(d);
+
+ TRect r=TApplication::deskTop->getExtent();
+ int h=r.b.y-r.a.y-10;
+ int w=r.b.x-r.a.x-25;
+
+ //TSStringableListBox *ListaH=new TSStringableListBox(w,h,tsslbVertical|tsslbHorizontal,1,256);
+ TSClListBox *ListaH=new TSClListBox(w,h,tsslbVertical|tsslbHorizontal,1,256);
+
+ ListaH->view->growMode=gfMoveBottomCorner;
+ TSLabel *lista=new TSLabel(__("List of classes"),ListaH);
+
+ col->insert(xTSLeft,yTSUp,lista);
+
+ TSButton *ok=new TSButton(__("~V~iew"),cmOK,bfDefault);
+ TSButton *yes=new TSButton(__("~J~ump"),cmYes);
+ TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
+ ok->view->growMode=cancel->view->growMode=yes->view->growMode=gfGrowAll;
+ TSHzGroup *but123=MakeHzGroup(ok,yes,cancel,0);
+ col->insert(xTSCenter,yTSDown,but123);
+ col->doItCenter(cmeClassBrowser);
+ delete col;
+ return d;
+}
+
+const int cmThisClass=cmOK,
+          cmThisAParents=cmYes,
+          cmSorted=cmNo,
+          cmExit=cmCancel;
+const unsigned 
+          cmParent=0x2000,
+          cmChild =0x2001,
+          cmNone  =0;
+
+// This small trick saves me from creating an specialized TDialog
+static unsigned commandCB;
+static
+int buttonsCB_VCl(unsigned command)
+{
+ commandCB=command;
+ return btcbEndModal;
+}
+
+static
+TDialog *createDialogVCl(stClassTagInfo *cl)
+{
+ TSViewCol *col=new TSViewCol(cl->cl->id);
+ commandCB=cmNone;
+
+ TSVeGroup *parents=NULL, *childs=NULL;
+ if (cl->parents->getCount())
+   {
+    parents=MakeVeGroup(1 | tsveMakeSameW,
+              new TSLabel(__("P~a~rents"),
+                          new TSSortedListBox(20,6,tsslbVertical|tsslbHorizontal,1,80)),
+              new TSButton(__("Browse ~p~arent"),cmParent,bfNormal,buttonsCB_VCl),0);
+   }
+ if (cl->childs->getCount())
+   {
+    childs=MakeVeGroup(1 | tsveMakeSameW,
+              new TSLabel(__("Chil~d~s"),
+                          new TSSortedListBox(20,6,tsslbVertical|tsslbHorizontal,1,80)),
+              new TSButton(__("Browse ~c~hild"),cmChild,bfNormal,buttonsCB_VCl),0);
+   }
+ TSView *relations=NULL;
+ if (parents && childs)
+    relations=MakeHzGroup(parents,childs,0);
+ else
+    relations=parents ? parents : childs;
+
+ TSVeGroup *grp=MakeVeGroup(tsveMakeSameW,
+                            new TSStaticText(__("View")),
+                            new TSButton(__("~T~his class"),cmThisClass,bfDefault),
+                            new TSButton(__("This & ~P~arents"),cmThisAParents),
+                            new TSButton(__("~S~orted"),cmSorted),
+                            new TSButton(__("E~x~it"),cmExit),
+                            relations,
+                            0);
+ col->insert(xTSCenter,yTSUp,grp);
+
+ TDialog *d=col->doItCenter(cmeClassBrowser);
+ delete col;
+ return d;
+}
+
+static
+int BrowseClassMembers(stClassTagInfo *cl)
+{
+ TListBoxRec b={cl->members,0};
+ int ret=execDialog(createDialogTags(cl->cl->id,__("Members"),__("~J~ump")),&b);
+ if (ret==cmOK)
+   {
+    JumpToTag(b);
+    return cmCancel;
+   }
+ return cmOK;
+}
+
+static
+int BrowseThisAParents(stClassTagInfo *cl, TTagClassCol *clist, Boolean sorted,
+                       ccIndex &toView)
+{
+ TTagMembersCol *col=new TTagMembersCol();
+ col->collect(cl,clist,0,sorted);
+ TListBoxRec b={col,0};
+ int ret=execDialog(createDialogTags(cl->cl->id,__("Members"),__("~J~ump"),
+                    __("View ~C~lass")),&b);
+ if (ret==cmOK)
+   {
+    JumpToTag(b);
+    ret=cmCancel;
+   }
+ else if (ret==cmYes)
+   {
+    clist->searchId(col->atPos(b.selection)->partof,toView);
+   }
+ else
+    ret=cmOK;
+ delete col;
+ return ret;
+}
+
+static
+void BrowseClass(ccIndex index, TTagClassCol *clist)
+{
+ int ret;
+ do
+   {
+    stClassTagInfo *cl=clist->atPos(index);
+    struct
+    {
+     TListBoxRec b1;
+     TListBoxRec b2;
+    } box;
+    TListBoxRec *next=&box.b1;
+    TListBoxRec *parents=NULL, *childs=NULL;
+    if (cl->parents->getCount())
+      {
+       box.b1.items=cl->parents;
+       box.b1.selection=0;
+       parents=&box.b1;
+       next=&box.b2;
+      }
+    if (cl->childs->getCount())
+      {
+       next->items=cl->childs;
+       next->selection=0;
+       childs=next;
+      }   
+    ret=execDialog(createDialogVCl(cl),&box);
+    printf("commandCB: %d\n",commandCB);
+    printf("ret: %d\n",ret);
+    if (commandCB==cmParent)
+      {
+       clist->search(cl->parents->at(parents->selection),index);
+      }
+    else if (commandCB==cmChild)
+      {
+       clist->search(cl->childs->at(childs->selection),index);
+      }
+    else
+      {
+       switch (ret)
+         {
+          case cmThisClass:
+               ret=BrowseClassMembers(cl);
+               break;
+          case cmThisAParents:
+               ret=BrowseThisAParents(cl,clist,False,index);
+               break;
+          case cmSorted:
+               ret=BrowseThisAParents(cl,clist,True,index);
+               break;
+         }
+      }
+   }
+ while (ret!=cmCancel);
+}
+
+static
+void BrowseClasses(TListBoxRec &br, TTagClassCol *clist)
+{
+ int ret;
+ do
+   {
+    ret=execDialog(createDialogCl(),&br);
+    if (ret==cmYes)
+       JumpToTag(br);
+    if (ret==cmOK)
+       BrowseClass(br.selection,clist);
+   }
+ while (ret==cmOK);
+}
+
+void TagsClassBrowser(char *word)
+{
+ if (InitTagsCollection()) return;
+ tags->refresh();
+ TTagClassCol *classList=new TTagClassCol(tags);
+
+ TListBoxRec br;
+ br.items=classList;
+ br.selection=0;
+
+ Boolean perfectMatch=False;
+ if (word)
+   {
+    perfectMatch=classList->search(word,br.selection);
+    if (br.selection>=classList->getCount())
+       br.selection=classList->getCount()-1;
+    DeleteArray(word);
+   }
+ if (perfectMatch)
+    BrowseClass(br.selection,classList);
+ else
+    BrowseClasses(br,classList);
+
+ destroy(classList);
+}
+
