@@ -276,7 +276,7 @@ if ($iMode)
 else
   {
    print "Compressing the files: ";
-   system('tar zcvf resultInf/infview-'.$version.'.bin.i386.elf.static.linux.tar.gz '.$base);
+   system('tar cvf - '.$base.' | gzip -c > resultInf/infview-'.$version.'.bin.i386.elf.static.linux.tar.gz ');
    print "done.\n";
    
    CopyIfRpl('../../distrib/distrib3.txt','resultInf/readme.1st');

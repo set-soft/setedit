@@ -326,7 +326,7 @@ if ($iMode)
 else
   {
    print "Compressing the files: ";
-   system('tar zcvf result/setedit-'.$version.'.bin.i386.elf.static.linux.tar.gz '.$base);
+   system('tar cvf - '.$base.' | gzip -c > result/setedit-'.$version.'.bin.i386.elf.static.linux.tar.gz');
    print "done.\n";
    
    CopyIfRpl('../../distrib/distrib1.txt','result/readme.1st');
@@ -367,7 +367,7 @@ else
    # Generate the tar file
    $srcdist="setedit-$version.tar.gz";
    unlink($srcdist);
-   system("tar zcvf setedit/makes/linux/result/$srcdist $r");
+   system("tar cvf - $r | gzip -c > setedit/makes/linux/result/$srcdist");
    #replace('pp',$r);
    
    chdir('setedit/makes/linux');

@@ -1519,8 +1519,19 @@ sub LookForToolsDistrib
     # And the compressor? check for gzip?
     # tar
     print ' tar';
-    $test=RunRedirect('tar --version');
+    `tar --help > test.txt 2>&1`;
+    $test=cat('test.txt');
+    unlink 'test.txt';
     if (!($test=~/tar/))
+      {
+       print " no\n";
+       return;
+      }
+    print ' gzip';
+    `gzip --help > test.txt 2>&1`;
+    $test=cat('test.txt');
+    unlink 'test.txt';
+    if (!($test=~/gzip/))
       {
        print " no\n";
        return;

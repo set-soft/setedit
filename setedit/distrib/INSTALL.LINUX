@@ -17,7 +17,7 @@
 # SETEdit in '@@pref_alt@@' and not in '@@pref@@' run this script
 # like
 #
-# INSTALL.LINUX prefix=@@pref_alt@@
+# INSTALL prefix=@@pref_alt@@
 #
 # As already written in the docs, SETEdit will run and
 # look the best, if it is installed as a root setuid
