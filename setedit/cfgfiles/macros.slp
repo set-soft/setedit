@@ -205,11 +205,14 @@
 ;
 ;*******************************************************************
 
-(defmacro 'DuplicateLine'
- (eval
-  (SendCommands cmcLineStart cmcSelectOn cmcLineEnd
-   cmcSelectOff cmcCopy cmcLineEnd cmcNewLine
-   cmcLineStart cmcPaste)
+(defmacro 'DuplicateLineOrSelection'
+ (if (SelectionExists)
+  (InsertText (GetSelection))
+  (progn
+   (SendCommands cmcLineStart cmcSelectOn cmcLineEnd cmcSelectOff cmcCopy cmcLineEnd)
+   (InsertText "\n")
+   (SendCommands cmcPaste)
+  )
  )
 )
 
@@ -346,6 +349,15 @@
 ; 
 ;         1                          (InsertText str)
 ;   )
+;  )
+; )
+;
+; I assigned this to TAB and then I assigned cmcUnIndentBlk to Shift-Tab.
+;
+; (defmacro 'IndentLineOrBlock'
+;  (if (SelectionExists)
+;   (SendCommands cmcIndentBlk)
+;   (InsertText "    ")
 ;  )
 ; )
 
