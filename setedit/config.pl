@@ -1052,6 +1052,7 @@ sub GenerateMakefile
  $text.="\trm -rf makes/djgpp/distinf makes/djgpp/distrib makes/djgpp/result makes/djgpp/resulinf\n" if ($OS eq 'DOS');
  $text.="\trm -f makes/*.a makes/*.exe makes/*.gdt\n";
  $text.="\trm -f mp3/libamp/*.a mp3/libamp/obj/*.o\n";
+ $text.="\trm -f mp3/mpegsound/*.a mp3/mpegsound/obj/*.o\n";
  $text.="\tcd scrnsave; \$(MAKE) clean-o; cd ..\n" if ($plasmas);
  $text.="\t\$(MAKE) -C libbzip2 clean\n" if ($libbzip2);
  $text.="\t\$(MAKE) -C libz clean\n" if ($libz);
