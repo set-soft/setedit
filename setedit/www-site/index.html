@@ -5,7 +5,7 @@
    <meta name="keywords" content="SETEdit, setedit, rhide, editor, linux, DOS, console, tui, djgpp, library, download, SET, Salvador, Eduardo, Tropea, PPC, SPARC, Alpha, FreeBSD, Solaris">
    <meta name="resource-type" content="document">
    <meta name="distribution" content="global">
-   <meta name="Author" content="Salvador E. Tropea, salvador@inti.gov.ar">
+   <meta name="Author" content="Salvador E. Tropea, salvador inti.gov.ar">
 </head>
 <BODY BGCOLOR="#A0D0FF" TEXT="#000000" LINK="#FF0000" VLINK="#000000">
 
@@ -343,6 +343,15 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
 <a href="SETEdit_SS.gif"><img border=0 src="SETEdit_SS_small.jpg" alt="52908 bytes" width=160 height=120></a>
 </td>
 </tr>
+<tr BGCOLOR="#80A0FF">
+<td>OS: Linux, using X11 driver.<br>Here you can see the editor debugging itself. A watch, an inspector and
+the disassembler window are in use.</td>
+<td>
+<a href="setedit_debug1.jpg"><img border=0 src="setedit_debug1s.jpg" alt="411415 bytes" width=160 height=120></a>
+</td>
+<td></td>
+<td></td>
+</tr>
 </table>
 <p>
 
@@ -350,7 +359,9 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
 <table width=100% cellspacing=0>
 <tr BGCOLOR="#000080"><th><Font Color="#FFFFFF">DOWNLOAD</th></tr>
 <tr BGCOLOR="#80A0FF">
-<td><br>Last release is `<a href="iguazu.html">Iguazú</a> I' aka 0.5.2.<br> <br></td>
+<td><br>Last release is `<a href="iguazu.html">Iguazú</a> I' aka 0.5.2.<br>
+Current development snapshots are for `Glaciar Perito Moreno I' aka 0.5.4<br>
+<br></td>
 </tr>
 <tr BGCOLOR="#000080"><th><Font Color="#FFFFFF">IMPORTANT!</th></tr>
 <tr BGCOLOR="#80A0FF">
@@ -410,6 +421,8 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
      <ul>
       <li> Fix for "pure DOS" (not Windows emulating DOS) problems <a href="http://prdownloads.sourceforge.net/setedit/edi052f1.zip">Iguazú I DOS fix/test (v0.5.2)</a> please report if it works or not
       <li> Last release <a href="http://prdownloads.sourceforge.net/setedit/edi052b.zip">Iguazú I (v0.5.2)</a>
+      <li> Development snapshot (should be stable) <a href="http://prdownloads.sourceforge.net/setedit/edi054b.zip">Glaciar P. Moreno I (v0.5.4 rev 1091)</a>
+      <li> All the available development releases: <a href="http://sourceforge.net/project/showfiles.php?group_id=32835&package_id=27730">SF</a>
       <li> Previous release <a href="http://prdownloads.sourceforge.net/setedit/edi050b.zip">v0.5.0</a>
       <li> Last stable in previous series <a href="http://prdownloads.sourceforge.net/setedit/edi0454b.zip">v0.4.54</a><br>
      </ul>
@@ -572,6 +585,8 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
 <li> <b>Binaries</b>:
      Last release (compiled with BC++ 5.5)
      <a href="http://prdownloads.sourceforge.net/setedit/setedit-Win32-BCPP-0_5_2.zip">Iguazú I (v0.5.2)</a>.<br>
+     Development snapshot (should be stable, compiled with BC++ 5.5)
+     <a href="http://prdownloads.sourceforge.net/setedit/setedit-Win32-BCPP-0_5_4_r1091.zip">Glaciar P. Moreno I (v0.5.4 rev 1091)</a>.<br>
      Previous release (compiled with BC++ 5.5)
      <a href="http://prdownloads.sourceforge.net/setedit/setedit-Win32-BCPP-0_5_0.zip">v0.5.0</a>.
      To use it just install the DOS version and replace setedit.exe by this executable.<br>
@@ -632,7 +647,7 @@ Perl and a Java source file, and the MP3 menu. Contributed by Mike Conrad.</td>
         cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/setedit co setedit
   </ol><p>
  <li> CVS web: <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit">http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit</a><p>
- <li> Nightly snapshot: See the <a href="snap.html">snap.html</a> page.<br>
+ <li> Snapshot: See the <a href="snap.html">snap.html</a> page.<br>
       For Turbo Vision consult it: <a href="http://tvision.sf.net/snap.html">http://tvision.sf.net/snap.html</a> page.<br>
  </ul><p></td>
 </tr>
@@ -714,14 +729,15 @@ Of course you have to also get <a href="http://tvision.sf.net/">Turbo Vision</a>
 SETEdit snapshots (see the <a href="#download">download</a> section).<p>
 It worked for my system (Debian GNU/Linux Woody) so I hope it will at least help you to
 get closer to compile in other systems.<p>
-Note 1: I used gdb 5.3 release to create RHIDE binaries.<p>
+Note 1: I used gdb 5.3 release to create RHIDE binaries. I also used 6.1.<p>
 Note 2: Precompiled binaries for DOS are available in the
 <a href="http://sf.net/projects/setedit/">Source Forge</a> page of the editor.
 Look for the "Extra" section in the "Files" tab.<p>
+Note 3: The next release of the editor (Glaciar P, Moreno I) have debug features for Linux.
 <p>
 </td></tr></table><p>
 
-<i>Copyright &copy; 1999-2003 by Salvador E. Tropea, e-mail: <a href="mailto:set@users.sf.net">set@users.sf.net</a>.</i><br>
+<i>Copyright &copy; 1999-2004 by Salvador E. Tropea, e-mail: <a href="mailto:set@users.sf.net">set@users.sf.net</a>.</i><br>
 <p><hr></p>
 
 Some notes:<p>
@@ -742,6 +758,6 @@ An ilustrated tutorial showing how to use tags in SETEdit is available
 
 <p><hr><p>
 <P>Visited since May 24, 1999: <a href="http://member.linkexchange.com/cgi-bin/fc/fastcounter-login?1289519" target="_top"><img border="0" src="http://fastcounter.linkexchange.com/fastcounter?1289519+2579045"></a><font face="arial" size="1"><a href="http://fastcounter.linkexchange.com/fc-join" target="_top">(FastCounter by LinkExchange)</a></font><br></p>
-<Font Size=-1>Last update: Jul 22 00:15:26 (GMT) 2003</Font>
+<Font Size=-1>Last update: Aug 20 11:15:51 (GMT) 2004</Font>
 </body>
 </html>

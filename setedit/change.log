@@ -1,4 +1,8 @@
 $Log$.
+Revision 1.582  2004/08/19 18:07:39  set
+* Added: [InfView] Its own menu.
+* Modified: [InfView] Alt+B and Alt+I shortcuts to avoid menu collisions.
+
 Revision 1.581  2004/08/18 14:15:42  set
 * Fixed: [BC++] Lack of sys/time.h used in debug.cc.
 
