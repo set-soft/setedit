@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.119  2002/06/11 19:07:51  set
+* Fixed: codepage code to support changes in TV 2.0.
+
 Revision 1.118  2002/06/10 13:12:16  set
 * Updated: README to clarify a little bit the available Win32 options. I
 tested MinGW+MSys+SiePerl as suggested by Thiago.
