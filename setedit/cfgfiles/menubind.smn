@@ -692,7 +692,7 @@ EndStatusRange
 StatusRange: hcInspector, 0
 StatusEntry: "~E/+~ Expand", cmExpand, kbPlus
 StatusEntry: "~C/-~ Collapse", cmCollapse, kbMinus
-StatusEntry: "~ENTER~ Inspect", cmInspect, kbEnter
+StatusEntry: "~ENTER~ Inspect", cmDbgInspect, kbEnter
 StatusEntry: "~^R~ Recycle", cmRecycle, kbCtR
 StatusEntry: "~^M~ Modify", cmModifyIns, kbCtM
 StatusEntry: "~^F~ Format", cmFormatIns, kbCtF

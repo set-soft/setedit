@@ -1,4 +1,17 @@
-$Log$.
+$Log$
+Revision 1.593  2004/09/01 20:24:44  set
+* Fixed: [Debug] cmDWGotoAddress doesn't have to validate if the address
+is valid, that's just a reference.
+* Fixed: [Debug] cmDWFollowPointer and cmDWFollowPtnNew failed because gdb
+interpreted "*0xXXXX" as just "0xXXXX". To avoid it and also avoid the
+mechanism we use to "take the address of"
+* Fixed: [Debug] Wrong state displayed in the Debug Window after closing
+the debug session and making it visible.
+* Modified: [Debug] Moved Data Window commands cmDWBaseIncrement and
+cmDWBaseDecrement to the movement submenu.
+* Added: [Debug] Documentation for all the debug commands. Help contexts
+isn't linked, yet.
+
 Revision 1.592  2004/08/30 15:34:05  set
 * Fixed: [Tags] Abort when doing word completion and the starting word was
 "bigger" than the last tag in the list. Reported by Juan Pablo.

@@ -1544,8 +1544,8 @@ void TDbgEvalModify::handleEvent(TEvent &event)
             event.message.command=cmtilPaste;
             exp->handleEvent(event);
             break;
-       case cmInspect:
-            endModal(cmInspect);
+       case cmDbgInspect:
+            endModal(cmDbgInspect);
             clearEvent(event);
             break;
       }
@@ -1573,7 +1573,7 @@ TDbgEvalModify *createEvalModifyDialog(evalBox *box)
  d->exp=(TInputLinePiped *)sExp->view;
  d->res=(TInputLinePiped *)sRes->view;
  d->val=(TInputLine *)sVal->view;
- TSetEditorApp::setCmdState(cmInspect,dbg->GetState()==MIDebugger::stopped ?
+ TSetEditorApp::setCmdState(cmDbgInspect,dbg->GetState()==MIDebugger::stopped ?
                             True : False);
 
  // EN: CEHIPRNV
@@ -1590,7 +1590,7 @@ TDbgEvalModify *createEvalModifyDialog(evalBox *box)
              new TSButton(__("Cancel"),cmCancel),
              new TSButton(__("~C~opy"),cmCaCopy),
              new TSButton(__("~P~aste"),cmCaPaste),
-             new TSButton(__("~I~nspect"),cmInspect),
+             new TSButton(__("~I~nspect"),cmDbgInspect),
              0);
 
  col->insert(xTSLeft,yTSUp,o1);
@@ -1622,7 +1622,7 @@ void TSetEditorApp::DebugEvalModify(char *startVal)
    }
 
  TDbgEvalModify *d=createEvalModifyDialog(&box);
- if (execDialog(d,&box)==cmInspect)
+ if (execDialog(d,&box)==cmDbgInspect)
    {
     if (IsEmpty(box.exp))
        messageBox(__("Nothing to inspect, please provide an expression"),
@@ -3029,7 +3029,7 @@ void TInspector::updateCommands(Boolean all)
  // Update according it
  if (all)
    {
-    TSetEditorApp::setCmdState(cmInspect,cond2 && focused->ispointer ?
+    TSetEditorApp::setCmdState(cmDbgInspect,cond2 && focused->ispointer ?
                                True : False);
     TSetEditorApp::setCmdState(cmExpand,cond && !focused->opened ? True : False);
     TSetEditorApp::setCmdState(cmCollapse,cond && focused->opened ? True : False);
@@ -3130,7 +3130,7 @@ void TInspector::handleEvent(TEvent &event)
    {
     switch (event.message.command)
       {
-       case cmInspect:
+       case cmDbgInspect:
             inspect();
             break;
        case cmExpand:
@@ -3204,7 +3204,7 @@ TInspector::TInspector(TPVarTree *p) :
  focused=NULL;
  exp=tstate=NULL;
  fake=NULL;
- TSetEditorApp::setCmdState(cmInspect,False);
+ TSetEditorApp::setCmdState(cmDbgInspect,False);
  TSetEditorApp::setCmdState(cmExpand,False);
  TSetEditorApp::setCmdState(cmCollapse,False);
 

@@ -574,7 +574,7 @@ static edCList Simple[] =
  C(InfTop),
  C(Insert),
  C(InsertWScope),
- C(Inspect),
+ C(DbgInspect),
  C(Menu),
  C(ModifyIns),
  C(ModifyReg),

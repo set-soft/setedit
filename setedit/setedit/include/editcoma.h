@@ -29,7 +29,7 @@ const int
       cmBkEnable      =0x22A6,
       cmBkDisable     =0x22A7,
       cmBkGo          =0x22A8,
-      cmInspect       =0x22A9,
+      cmDbgInspect    =0x22A9,
       cmExpand        =0x22AA,
       cmCollapse      =0x22AB,
       cmVarChanged    =0x22AC, // Broadcast
