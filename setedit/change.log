@@ -1,4 +1,11 @@
 $Log$
+Revision 1.235  2002/11/12 14:09:15  set
+* Fixed: [configuration] The --without-aa option didn't work. Reported by
+Martijn Versteegh.
+* Fixed: [configuration] After disabling MP3 support it was impossible to
+enable it again without deleting the cache file. From a report by Martijn.
+* Added: The new parser to BC++ and MSVC makefiles.
+
 Revision 1.234  2002/11/12 13:12:39  set
 * Added: Linked the PHP Parser that Iván added to the list of available
 parsers. I'll think about the indentation, after all my "weird" indentation

@@ -37,7 +37,8 @@ int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode, tAddFunc addFunc);
 
 static void printFunc(char *name, int len, int lineStart, int lineEnd)
 {
-    printf("%s [%d,%d]\n", name, lineStart, lineEnd);
+    printf("%s [%d,%d] len=%d strlen=%d \n", name, lineStart, lineEnd, len,
+        strlen(name));
 }
 
 int main(int argc, char *argv[])
@@ -460,6 +461,7 @@ static void registerFunc(const char *funcName, const unsigned funcNameSize,
     }
     *p++=0;
 
-    funcAddPtr(bfNomFun, p-bfNomFun-1, funcStartLine, curLine);
+    funcAddPtr(bfNomFun, p-bfNomFun /*Length including ending 0!*/,
+        funcStartLine, curLine);
 }
 
