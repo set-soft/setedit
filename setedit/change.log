@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.537  2004/06/28 17:57:49  set
+* Fixed: Corrupted MP3 files could produce a crash. It closes SF Bug
+#932091 reported by silverdirk, he sent me a file to reproduce the problem.
+
 Revision 1.536  2004/06/28 17:56:48  set
 * Fixed: The menu files uses nested preprocessor directives but it wasn't
 supported.

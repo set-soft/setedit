@@ -256,7 +256,7 @@ name of the file (with path).
   
 ***************************************************************************/
 
-char *GetAbsForNameInPrj(const char */*name*/)
+char *GetAbsForNameInPrj(const char * /*name*/)
 {
  return NULL;
 }
