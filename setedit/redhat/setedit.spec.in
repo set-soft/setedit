@@ -1,6 +1,6 @@
 %define name setedit
 %define ver @version@
-%define rel 4
+%define rel 1
 
 Summary:   A user friendly editor for programmers.
 Name:      %{name}

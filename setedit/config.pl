@@ -38,6 +38,12 @@ unlink $ErrorLog;
 
 SeeCommandLine();
 
+if ($JustSpec)
+  {
+   UpdateSpec();
+   exit 0;
+  }
+
 print "Configuring SETEdit v$Version\n\n";
 # Determine the OS
 $OS=DetectOS();
@@ -276,8 +282,7 @@ $conf{'HAVE_MPEGSOUND'}=((@conf{'WITH_MP3'} eq 'yes') && (@conf{'mp3lib'} eq 'mp
                   ? 'yes' : 'no';
 CreateConfigH();
 GenerateMakefile();
-$ReplaceTags{'version'}=$Version;
-ReplaceText('redhat/setedit.spec.in','redhat/setedit-'.$Version.'.spec');
+UpdateSpec();
 $ReplaceTags{'TVInclude'}=$TVInclude;
 $ReplaceTags{'cpp_compiler'}=$GXX;
 ReplaceText('doc/gnumake.in','doc/Makefile');
@@ -311,6 +316,11 @@ $conf{'force-intlShipped'}='no';
 CreateCache();
 unlink $ErrorLog;
 
+sub UpdateSpec
+{
+ $ReplaceTags{'version'}=$Version;
+ ReplaceText('redhat/setedit.spec.in','redhat/setedit-'.$Version.'.spec');
+}
 
 sub SeeCommandLine
 {
@@ -499,6 +509,10 @@ sub SeeCommandLine
       {
        $conf{'source-bzip2'}='yes';
       }
+    elsif ($i eq '--just-spec')
+      {
+       $JustSpec=1;
+      }
     else
       {
        ShowHelp();
@@ -563,6 +577,7 @@ sub ShowHelp
  # Others
  print "\nOthers:\n";
  print "--source-bzip2  : use bzip2 for tarballs\n";
+ print "--just-spec     : update RPMs spec file and exit.\n";
 
  print "\n";
  print "--help          : displays this text.\n";

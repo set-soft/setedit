@@ -564,6 +564,7 @@ names/ntedcol.cc
 *README
 +redhat/config-rpm.sh
 +redhat/create-dirs.sh
++redhat/create-rpms.sh
 redhat/README
 redhat/setedit.spec.in
 scrnsave/Makefile
