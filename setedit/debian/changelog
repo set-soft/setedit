@@ -1,3 +1,9 @@
+setedit (0.5.4-0.1) unstable; urgency=low
+
+  * New version automatically modified by version update scripts
+
+ -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Thu, 23 Sep 2004 17:21:41 -0300
+
 setedit (0.5.3-0.2) unstable; urgency=low
 
   * Add an include file required by rhide.
