@@ -45,7 +45,7 @@ Font *Search(int height);
 static TFontColl *curPrimF=0;
 static TFontColl *curSecoF=0;
 
-class TFontEditor : public TFont
+/*class TFontEditor : public TFont
 {
 public:
  TFontEditor(TFontColl *primary, TFontColl *secondary) :
@@ -70,8 +70,9 @@ TFontEditor::~TFontEditor()
  destroy(FontPrimary);
  destroy(FontSecondary);
  curPrimF=curSecoF=0;
-}
+}*/
 
+#if 0
 static
 Boolean LookFor(void *item, void *arg)
 {
@@ -118,9 +119,10 @@ void EnlargeFontInOne(uchar *dest, uchar *ori, int num, int height)
      dest+=height;
     }
 }
+#endif
 
 
-#ifdef TVCompf_djgpp
+#if 0
 #include <dpmi.h>
 #include <sys/movedata.h>
 #include <go32.h>
@@ -216,7 +218,8 @@ void TFontEditor::SetFont(TFontColl *fCol, int height, int bank, int noForce, in
     TFont::SelectFont(height,8,bank,noForce,modeRecalculate);
    }
 }
-#else // DJGPP
+#endif
+#if 0 // DJGPP
 static
 void SetDualCharacter(int , int ) {}
 
@@ -270,6 +273,7 @@ void TFontEditor::SetFont(TFontColl *fCol, int height, int bank, int noForce,
 }
 #endif
 
+#if 0
 int TFontEditor::SelectFont(int height, int width, int , int noForce, int modeRecalculate)
 {
  lastFont=0;
@@ -302,7 +306,7 @@ void TFontEditor::RestoreDefaultFont(void)
     lastFont=0;
    }
 }
-
+#endif
 
 static char Signature[]="SET's editor font\x1A";
 
@@ -391,8 +395,8 @@ int LoadEditorFont(char *name, char *&storeFile, char *&storeName,
     delete storeFile;
     delete storeName;
     storeFile=storeName=0;
-    TFont *font=new TFont();
-    TDisplay::SetFontHandler(font);
+    /*TFont *font=new TFont();
+    TDisplay::SetFontHandler(font);*/
     return 0;
    }
 
@@ -474,10 +478,10 @@ int LoadEditorFonts(char *primary, char *secondary, int cp1, int cp2)
        SecondaryFontFile=SecondaryFontName=0;
       }
     // Create a new object for these fonts
-    TFontEditor *font=new TFontEditor(primF,secoF);
+    //TFontEditor *font=new TFontEditor(primF,secoF);
     // Replace the default, the changes will take effect in the next screen mode
     // setting
-    TDisplay::SetFontHandler(font);
+    //TDisplay::SetFontHandler(font);
    }
  return 0;
 }

@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.147  2002/07/08 15:43:31  set
+* Fixed: [MSVC] Small details to get it compiled. Most of them just
+involves proper use of compatlayer. From output sent by WintiX.
+
 Revision 1.146  2002/07/08 14:30:52  set
 * Fixed: One preprocessor combination that fooled the functions parser.
 Reported by David A. Capello <dacap@users.sourceforge.net>.
