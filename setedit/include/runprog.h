@@ -2,7 +2,7 @@
    see copyrigh file for details */
 // Include for runprog.cc
 const unsigned repDontShowDialog=1,repDontShowAsMessage=2,repRestoreScreen=4,
-               repDontFork=8;
+               repDontFork=8,repRedirIn=16;
 
 char   *RunExternalProgramGetFile(int &len);
 void    RunExternalProgram(char *Program=0, unsigned flags=0, char *compiler=0);
@@ -12,4 +12,6 @@ Boolean RunExternalProgramRunning();
 void    RunExternalProgramIncParse();
 Boolean RunExternalProgramNotRunning();
 void    RunExternalProgramStopChild();
+void    RunExternalProgramSetInRedir(const char *buffer, unsigned len);
+void    RunExternalProgramRemoveInRedir();
 
