@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.211  2002/09/13 12:28:07  set
+* Fixed: [DOS] Lack of Uses_TVCodePage in loadfunc.cc when compiling using
+djgpp.
+* Fixed: [DOS] When using the editor without djgpp the editor failed to
+find the internationalization files. Reported by Alex Lozano.
+
 Revision 1.210  2002/09/12 18:15:27  set
 * Modified: Removed code that used cmcUpdateCodePage, no longer needed.
 * Fixed: When loading a desktop that used fonts the code didn't indicate

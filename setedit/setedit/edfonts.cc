@@ -1,5 +1,6 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+#define Uses_string
 #define Uses_TVCodePage
 #define Uses_TScreen
 #define Uses_TApplication
