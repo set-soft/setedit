@@ -1,4 +1,18 @@
-$Log$
+$Log$.
+Revision 1.648  2004/12/07 14:35:46  set
+* Fixed: A bug in Ctrl+K-V (may be also in other places). Under some
+situations it could unsynchrnonize the drawing pointer making the text look
+strange. The problem was that deleteRange assumed that from pointer was
+buffer+selStart and hence used selStart as its offset (instead of
+from-buffer) when checking if the drawing pointer needed adjust.
+* Modified: Again ;-) the behavior of the selection search. Now the
+selection isn't copied into a temporal buffer. Instead editors claims the
+"current selection" and when the user performs a search we extract the
+text from the last editor that claimed to have it or from the current if
+none claimed it. When hidding a selection and the editor was the one with
+the current selection it informs that no longer have it. When unhidding a
+selection this editor claims to have the current selection.
+
 Revision 1.647  2004/12/06 17:58:53  set
 * Added: [config] Option to disable libmigdb support.
 * Added: [gcc 3.x] Use of a new macro in TV to cast pointers into 64 bits

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TNoStaticText) && !defined(__TNoStaticText_Defined__)
 #define __TNoStaticText_Defined__
@@ -9,6 +9,7 @@ public:
  TNoStaticText(const TRect& bounds, const char *aText);
  TNoStaticText(const TRect& bounds, const char *aText, stTVIntl *cache);
  void setText(const char *s);
+ int  getStartLen() { return startLen; };
 
 protected:
  int startLen;

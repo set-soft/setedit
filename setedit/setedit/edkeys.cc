@@ -1,8 +1,9 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
 
+#define Uses_AllocLocal
 #define Uses_TDialog
 #define Uses_TSortedListBox
 #define Uses_TRect
@@ -34,6 +35,7 @@
 #define Uses_TSStaticText
 #define Uses_TSInputLine
 #define Uses_TSVeGroup
+#define Uses_TSNoStaticText
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -274,7 +276,7 @@ int CancelApply(void)
 static int AddNewKey(void)
 {
  AddKeyDialog=CreateAddInsDelDialog(col2,3,__("Sequence of keys"),6,24,
-                                    aidInsert | aidComMac);
+                                    aidInsert | aidComMac | aidAssignedTo);
  AddKeyDialog->helpCtx=hcEditKeysSeq;
  KSequence=new TKeySeqCol(2,2);
  NewKeyBox.items=KSequence;
@@ -405,9 +407,38 @@ unsigned short TCEditor_SelectAKey(void)
 }
 
 static
+void UpdateAssignedTo()
+{
+ if (!AddKeyDialog->nst)
+    return;
+ // Just look if the key is assigned
+ int ret=KSequence->getCount() ? KeyTrans.addKey(KSequence,NULL,0,NULL,True) : -3;
+ switch (ret)
+   {
+    case -1:
+         AddKeyDialog->nst->setText(__("Part of a sequence"));
+         break;
+    case -2:
+         AddKeyDialog->nst->setText(__("Unassigned"));
+         break;
+    case -3:
+         AddKeyDialog->nst->setText(" ");
+         break;
+    default:
+         {
+          int len=AddKeyDialog->nst->getStartLen();
+          AllocLocalStr(buffer,len+1);
+          KeyTrans.getText(buffer,ret,len);
+          AddKeyDialog->nst->setText(buffer);
+         }
+   }
+}
+
+static
 int DeleteKeyInSeq(int wich)
 {
  KSequence->atRemove(wich);
+ UpdateAssignedTo();
  return 1;
 }
 
@@ -418,6 +449,7 @@ int AddNewKeyInSeq(void)
  if (k)
    {
     KSequence->insert(k);
+    UpdateAssignedTo();
     return 1;
    }
  return 0;
@@ -430,6 +462,7 @@ int InsNewKeyInSeq(int wich)
  if (k)
    {
     KSequence->atInsert(wich,(void *)(unsigned long)k);
+    UpdateAssignedTo();
     return 1;
    }
  return 0;

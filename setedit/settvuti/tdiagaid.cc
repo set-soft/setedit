@@ -1,7 +1,9 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
+//#define Uses_stdio // debug
 
+#define Uses_AllocLocal
 #define Uses_TDialogAID
 #define Uses_TKeys
 #define Uses_TKeys_Extended
@@ -22,6 +24,8 @@
 #define Uses_TSSortedListBox
 #define Uses_TSVeGroup
 #define Uses_TSLabelRadio
+#define Uses_TSNoStaticText
+#define Uses_TSStaticText
 
 #include <easydia1.h>
 #include <settvuti.h>
@@ -42,6 +46,7 @@ TDialogAID::TDialogAID(const TRect& bounds, const char *aTitle,
  OkAction=0;
  CancelAction=0;
  InfoAction=0;
+ nst=NULL;
 }
 
 static
@@ -188,17 +193,27 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
  TSStringableListBox *slb=new TSStringableListBox(w,h+1,tsslbVertical);
  TSView *upper=slb;
  slb->view->growMode=gfMoveBottomCorner;
+
  TDialogAID *d=new TDialogAID(TRect(x,y,1,1),name,
                               (TStringableListBox *)slb->view);
  TSViewCol *col=new TSViewCol(d);
+
+ if (flags & aidAssignedTo)
+   {
+    AllocLocalStr(buffer,w+1);
+    memset(buffer,' ',w);
+    buffer[w]=0;
+    TSNoStaticText *snst=new TSNoStaticText(buffer);
+    d->nst=(TNoStaticText *)snst->view;
+    upper=MakeVeGroup(0,new TSStaticText(__("Assigned to:")),snst,upper,0);
+   }
 
  if (flags & aidComMac)
    {
     TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),
                              __("s~L~isp code"),0);
     tl->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
-    TSVeGroup *up=new TSVeGroup(slb,tl,0);
-    upper=up;
+    upper=new TSVeGroup(upper,tl,0);;
    }
  upper->Flags=wSpan;
 

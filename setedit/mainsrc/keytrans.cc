@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -646,6 +646,8 @@ KeyTNode *TKeyTranslate::InsertKey(unsigned key)
 1) Check if the key can be added without problems.@*
 2) Add a new key to the tree, it can mean extend the tree.@*
 3) Update the counters of keys in each table.@p
+  The @var{simulate} arguments instructs to just verify if the key can be
+added.@p
 
   Return:
   A non-negative value if there are a key already defined for the
@@ -656,7 +658,8 @@ program ask for deletion.@p
 
 ***************************************************************************/
 
-int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef)
+int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type,
+                          int *keyDef, Boolean simulate)
 {
  assert(type==kbtExpanded);
  int c=sKeys->getCount();
@@ -685,11 +688,16 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef)
     }
  if (!ok)
    {
-    //printf("No se puede ya que tiene m s de 1 asignada\n");
+    //printf("No se puede ya que tiene mas de 1 asignada\n");
     rewind();
     if (keyDef)
        *keyDef=numKey;
     return -1;
+   }
+ if (simulate)
+   {
+    rewind();
+    return -2;
    }
  node=InsertKey((unsigned long)(sKeys->at(i)));
  // Now if the sequence is larger create a ramification in the tree to hold it

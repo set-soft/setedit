@@ -1,8 +1,9 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TDialogAID) && !defined(__TDialogAID__)
 #define __TDialogAID__
 
+class TNoStaticText;
 class TDialogAID : public TGrowDialog
 {
 public:
@@ -18,6 +19,7 @@ public:
  int (*BrowseAction)(void);
  TStringableListBox *List;
  unsigned flags;
+ TNoStaticText *nst;
 };
 
 const int
@@ -33,6 +35,8 @@ const int
 const int aidInsert=1, aidComMac=2, aidOKEnabled=4, aidInfo=8, aidBrowse=16;
 // For CreateChooseDialog
 const int aidStringable=0x1000,aidHzScroll=0x2000,aidNoCancel=0x4000;
+// Special field for key sequence
+const int aidAssignedTo=0x10000;
 
 #if 1
 // Ugh! nasty, no? Fix me ... some day

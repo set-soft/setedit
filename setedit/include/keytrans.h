@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <dyncat.h>
 
@@ -54,7 +54,8 @@ public:
  void compact(void);
  unsigned getLen(void);
  void deleteKey(unsigned which);
- int addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef=NULL);
+ int addKey(TKeySeqCol *sKeys, void *data, int Type, int *keyDef=NULL,
+            Boolean simulate=False);
  virtual void getText(char *dest, unsigned item, int maxLen);
  int Save(char *name);
  int Load(char *name);
