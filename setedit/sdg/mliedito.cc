@@ -608,6 +608,43 @@ DecFun(MLISelectionExists)
  MLIRetInt(TMLIEditor::SelectionExists() ? 1 : 0);
 }
 
+DecFun(MLIFindString)
+{
+ int i=0;
+ unsigned flags=0;
+ LocVarStr(find_option);
+ LocVarStr(find_str);
+
+ CheckNumParams(cant<1);
+ if (cant>1)
+   {
+    // get options
+    while (i<cant-1)
+      {
+       GetString(i,find_option);
+       if (strcmp("MatchCase",find_option->str)) flags|=1;
+       else if (strcmp("MatchWord",find_option->str)) flags|=2;
+       else if (strcmp("RegExp",find_option->str)) flags|=4;
+       else if (strcmp("InsideComments",find_option->str))
+         {
+          if (flags&16==0) flags|=8;
+         }
+       else if (strcmp("OutsideComments",find_option->str))
+         {
+          if (flags&8==0) flags|=16;
+         }
+       i++;
+       destroyFloatVar(find_option);
+      }
+   }
+ GetString(i,find_str);
+ MLIRetInt(TMLIEditor::FindString(find_str->str,flags));
+
+CleanUp:
+ destroyFloatVar(find_str);
+ destroyFloatVar(find_option);
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -629,7 +666,8 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "MessageBox",
  "EvalString",
  "ShowInMessageWindow",
- "SelectionExists"
+ "SelectionExists",
+ "Find"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -653,7 +691,8 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIMessageBox,
  MLIEvalString,
  MLIShowInMessageWindow,
- MLISelectionExists
+ MLISelectionExists,
+ MLIFindString
 };
 
 

@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.401  2003/06/10 15:27:03  set
+* Added: [sLisp] loop and exitloop sentences, also ==, !=, ++ and --
+operators. All of them have some basic behavior that could be extended but
+is enough for a <2.5 hours hack ;-) I added some documentation and a small
+example. I implemented to show to Bernd Becker how to implement loop
+sentence.
+
 Revision 1.400  2003/06/05 20:12:29  set
 * Added: Menu entries for cmcLastPosCur.
 * Added: Documentation for both commands (new one and the older).

@@ -1,8 +1,8 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=19;
+const int MLIEditorCommands=20;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -42,6 +42,7 @@ public:
  static char *AskString(const char *title, const char *message);
  static int  OpenFile(const char *fileName);
  static Boolean SelectionExists();
+ static Boolean FindString(char *str, unsigned flags);
 
  static TCEditor *Editor;
 

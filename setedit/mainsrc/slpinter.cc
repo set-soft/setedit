@@ -9,6 +9,7 @@
 #define Uses_TNoCaseStringCollection
 #define Uses_TCEditor
 #define Uses_TCEditor_Commands
+#define Uses_TCEditor_Internal
 // EasyDiag requests
 #define Uses_TSButton
 #define Uses_TSInputLinePiped
@@ -257,6 +258,21 @@ char *TMLIEditor::AskString(const char *title, const char *message)
 Boolean TMLIEditor::SelectionExists()
 {
  return Editor->hasVisibleSelection();
+}
+
+Boolean TMLIEditor::FindString(char* str, unsigned flags)
+{
+ int i;
+ unsigned start_pos,end_pos, tmp_flags=Editor->editorFlags;
+
+ Editor->editorFlags=flags;
+ start_pos=(unsigned)(Editor->ColToPointer()-Editor->buffer);
+ end_pos=Editor->bufLen;
+ Editor->CompileSearch(str);
+ unsigned ret=Editor->MakeASearch(&Editor->buffer[start_pos],end_pos-start_pos,i);
+ Editor->editorFlags=tmp_flags;
+
+ return ret!=sfSearchFailed ? True : False;
 }
 
 #define IntMessage1(a,b)     aux=TVIntl::getTextNew(a); \
