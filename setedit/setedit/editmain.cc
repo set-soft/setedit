@@ -1240,7 +1240,7 @@ int ShowFileLine(int line, char *file)
 {
  if (line<0)
     return 0;
- TCEditWindow *edw=editorApp->openEditor(file,True,0,oedNoSelect);
+ TCEditWindow *edw=editorApp->openEditor(file,True,0,oedNoSelect | oedDontOpenEmpty);
  if (edw)
    {
     TCEditor *ed=edw->editor;

@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.115  2002/06/10 13:08:36  set
+* Added: Support for try/catch not in the body of a C++ function for the
+list of functions. It passes a couple of tests Andris sent me.
+* Fixed: C++ operators parsing in the list of functions.
+* Modified: Now if we find two identical functions (most probably only one
+is really used at compile time) both are listed in the list of functions.
+To differentiate the functions the starting line is added.
+* Fixed: A search in the list functions stack wasted extra stack space.
+
 Revision 1.114  2002/06/10 13:07:28  set
 * Added: A script to apply the synmail patches to my CVS copy at home.
 
