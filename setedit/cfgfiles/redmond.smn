@@ -175,11 +175,10 @@ SubMenu: "~T~ool&Ops", kbAlT
    SubMenu: "~K~eyboard", kbAlK
      MenuItemC: "~K~ey assigment", cmeEditKeyBind
      MenuItemC: "~S~etup Alt keys", cmeSetUpAltKeys
-     MenuItemC: "Key ~p~ad behavior", cmeKeyPadBehavior
      MenuItemC: "~B~ack to defaults", cmeKbBackDefault
      MenuItemC: "Consult ~s~can codes", cmeSeeScanCodes
      $ifdef DOS
-     MenuItemC: "Keyboard t~y~pe", cmeKeyboardSetUp
+     MenuItemC: "Key ~p~ad behavior", cmeKeyPadBehavior
      $endif
    EndSubMenu
    MenuItemC: "~S~creen Options ...", cmeSetScreenOps

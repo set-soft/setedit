@@ -863,10 +863,6 @@ void TSetEditorApp::handleEvent( TEvent& event )
                  SaveKeyBind(GetKeyBindFName(1));
               break;
 
-         case cmeKeyboardSetUp:
-              KeyboardModeSetUp();
-              break;
-
          case cmeSeeScanCodes:
               SeeScanCodes();
               break;

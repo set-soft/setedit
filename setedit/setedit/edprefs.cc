@@ -1,6 +1,6 @@
 /* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#include <stdio.h>
+#define Uses_stdio
 #define Uses_string
 
 #define Uses_MsgBox

@@ -83,7 +83,7 @@ const int
   cmeManPageView    = cmeBase+63,
   cmeExportAsHTML   = cmeBase+64,
   cmeRemapCodePage  = cmeBase+65,
-  cmeKeyboardSetUp  = cmeBase+66,
+  cmeKeyboardSetUp  = cmeBase+66, // No longer used
   cmeReDraw         = cmeBase+67,
   cmeHTMLTag2Accent = cmeBase+68,
   cmeSavePrj        = cmeBase+69,

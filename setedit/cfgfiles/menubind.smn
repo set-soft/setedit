@@ -180,7 +180,6 @@ SubMenu: "~T~ool&Ops", kbAlT
      MenuItemC: "~B~ack to defaults", cmeKbBackDefault
      MenuItemC: "~C~onsult scan codes", cmeSeeScanCodes
      $ifdef DOS
-#     MenuItemC: "Keyboard t~y~pe", cmeKeyboardSetUp
      MenuItemC: "Key ~p~ad behavior", cmeKeyPadBehavior
      $endif
    EndSubMenu

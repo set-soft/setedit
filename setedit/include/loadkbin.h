@@ -15,4 +15,4 @@ int  KeyBackToDefault(Boolean ask=True);
 void SeeScanCodes(void);
 int  AltKeysSetUp(void);
 int  KeyPadSetUp(void);
-int  KeyboardModeSetUp(void);
+

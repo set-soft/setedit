@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.259  2002/12/12 19:04:31  set
+* Modified: The greek keyboard tweak no longer compiles. Removed the code
+that prevented compilation.
+
 Revision 1.258  2002/12/10 18:32:00  set
 * Added: The new cyrillic and greek "repeated" symbols to the fonts.
 

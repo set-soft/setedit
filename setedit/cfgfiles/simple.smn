@@ -91,9 +91,6 @@ SubMenu: "~T~ool&Ops", kbAlT
    SubMenu: "~K~eyboard", kbAlK
      MenuItemC: "~K~ey assigment", cmeEditKeyBind
      MenuItemC: "~B~ack to defaults", cmeKbBackDefault
-     $ifdef DOS
-     MenuItemC: "Keyboard t~y~pe", cmeKeyboardSetUp
-     $endif
    EndSubMenu
    MenuItemC: "~S~creen Options", cmeSetScreenOps
    MenuItemC: "Encod~i~ngs ...", cmeEncodings
