@@ -1,9 +1,8 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
-  Calculator Interface, (c) 1996-1998 by SET.
-
+  Calculator Interface.
   See the editor files for details.
 
   Notes:
@@ -13,8 +12,8 @@
 
 #include <ceditint.h>
 
-#include <stdio.h>
-
+#define Uses_stdio
+#define Uses_string
 #define Uses_TEvent
 #define Uses_TInputLine
 #define Uses_TButton
@@ -94,6 +93,32 @@ TCalcDialog::TCalcDialog(const TRect & bounds, char *Title, char *StartVal)
   options |= ofCentered;
 }
 
+// The calculators aren't "locale safe" so I just switch to
+// C locale while using them
+static
+void Eval(char *input_buffer, char **ret)
+{
+ char *old_locale, *saved_locale;
+
+ old_locale=setlocale(LC_ALL,NULL);
+ saved_locale=strdup(old_locale);
+
+ setlocale(LC_ALL,"C");
+ #ifdef FLEX_BISON
+ ret=yyParseString(input_buffer);
+ #else
+ int err=eval(input_buffer,ret);
+ if (err)
+   {
+    sprintf(input_buffer,_("Error in expression (%d)"),err);
+    messageBox(input_buffer,mfError | mfOKButton);
+   }
+ #endif
+
+ setlocale(LC_ALL,saved_locale);
+ free(saved_locale);
+}
+
 void TCalcDialog::handleEvent(TEvent & event)
 {
   char *ret;
@@ -107,16 +132,7 @@ void TCalcDialog::handleEvent(TEvent & event)
                  {
                    char input_buffer[256];
                    input->getData(input_buffer);
-                   #ifdef FLEX_BISON
-                   ret = yyParseString(input_buffer);
-                   #else
-                   int err=eval(input_buffer,&ret);
-                   if (err)
-                     {
-                      sprintf(input_buffer,_("Error in expression (%d)"),err);
-                      messageBox(input_buffer,mfError | mfOKButton);
-                     }
-                   #endif
+                   Eval(input_buffer,&ret);
                    result->setData(ret);
                    input->selectAll(True);
                    clearEvent(event);
