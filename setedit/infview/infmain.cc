@@ -3,6 +3,8 @@
 #include <ceditint.h>
 
 #define Uses_string
+#define Uses_stdio
+#define Uses_stdlib
 #define Uses_TApplication
 #define Uses_TEditWindow
 #define Uses_TDeskTop
@@ -39,9 +41,8 @@
 
 #include "infalone.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
+#include <locale.h>
 #include "inf.h"
 #define Uses_TManWindow
 #include <manview.h>
