@@ -50,7 +50,6 @@ if ($OS eq 'Win32')
 
 LookForBasicTools();
 $supportDir='makes/'.$supportDir;
-LookForPrefix();
 # Determine C flags
 $CFLAGS=FindCFLAGS();
 FindXCFLAGS();
@@ -61,6 +60,11 @@ FindXCXXFLAGS();
 $GCC=CheckGCC();
 # Which architecture are we using?
 DetectCPU();
+# Some platforms aren't easy to detect until we can compile.
+DetectOS2();
+# The prefix can be better determined if we know all the rest
+# about the environment
+LookForPrefix();
 # Only gnu make have the command line and commands we use.
 LookForGNUMake();
 # Same for ar, it could be `gar'
@@ -110,7 +114,7 @@ if ($OS eq 'DOS')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=$(DJDIR)/include $(DJDIR)/lang/cxx $(DJDIR)/lib/gcc-lib';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=';
-   $MakeDefsRHIDE[1].='intl ' unless ($OS ne 'DOS') && (@conf{'intl'} eq 'no');
+   $MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].='iconv ' if (@conf{'iconv'} eq 'yes');
    if ((@conf{'mp3'} eq 'yes') && (@conf{'HAVE_ALLEGRO'} eq 'yes'))
      {
@@ -124,7 +128,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=';
    # RHIDE doesn't know about anything different than DJGPP and Linux so -lstdc++ must
    # be added for things like FreeBSD or SunOS.
-   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSflavor eq 'Linux');
+   $MakeDefsRHIDE[1].=substr($stdcxx,2).' ' unless ($OSf eq 'Linux');
    $MakeDefsRHIDE[1].='ncurses m ';
    $MakeDefsRHIDE[1].='gpm ' if @conf{'HAVE_GPM'} eq 'yes';
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
@@ -134,6 +138,7 @@ else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++';
+   $MakeDefsRHIDE[1].=' intl' unless (@conf{'intl'} eq 'no');
    $MakeDefsRHIDE[1].=' bz2' if (@conf{'HAVE_BZIP2'} eq 'yes');
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
@@ -163,7 +168,7 @@ else
 $MakeDefsRHIDE[6]='RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[7]='RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)';
 $MakeDefsRHIDE[8]='RHIDE_AR='.$conf{'GNU_AR'};
-if ($OSflavor eq 'Mingw')
+if ($Compf eq 'MinGW')
   {
    $MakeDefsRHIDE[9]='SPECIAL_LDFLAGS=-mconsole';
   }
@@ -570,7 +575,7 @@ sub LookForTV
        @dirsL=("$parent/tvision/linuxso","$parent/tvision/linux",'/usr/lib');
       }
    }
- elsif (($OS eq 'Win32') && ($OSflavor eq 'Mingw'))
+ elsif ($OS eq 'Win32')
    {
     @dirsI=("$parent/tvision/include",@conf{'prefix'}.'/include/tvision');
     @dirsL=("$parent/tvision/win32",@conf{'prefix'}.'/lib');
@@ -764,7 +769,7 @@ int main(void)
 sub LookForZLib
 {
  my $vNeed=$_[0];
- my $test,$ver;
+ my ($test,$ver);
 
  print 'Looking for zlib: ';
  $test=@conf{'zlib'};
@@ -864,7 +869,7 @@ int main(void)
  printf("%s\n",_("OK"));
  return 0;
 }';
- $intllib=$OS eq 'DOS' ? '-lintl' : '';
+ $intllib=(($OS eq 'DOS') || ($OS eq 'Win32')) ? '-lintl' : '';
  $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib);
  if ($test ne "OK\n")
    {
@@ -910,8 +915,11 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  $text.="\n\n";
- $text.="#define SEOS_$OS\n#define SEOSf_$OSflavor\n";
- $text.="#define SECPU_$conf{'TV_CPU'}\n";
+ $text.="#define SEOS_$OS\n";
+ $text.="#define SEOSf_$OSf\n";
+ $text.="#define SECPU_$CPU\n";
+ $text.="#define SEComp_$Comp\n";
+ $text.="#define SECompf_$Compf\n";
 
  $old=cat('include/configed.h');
  replace('include/configed.h',$text) unless $text eq $old;
@@ -929,7 +937,7 @@ sub GenerateMakefile
  $text.="\nlibdir=\$(MPREFIX)/lib";
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
  $text.="\nCXXFLAGS=$conf{'CXXFLAGS'}";
- $text.="\nSET_USE_FHS=$conf{'fhs'}" unless ($OS eq 'DOS');
+ $text.="\nSET_USE_FHS=$conf{'fhs'}" if ($OS eq 'UNIX');
  $text.="\nexport";
 
  #### Targets ####
@@ -1256,7 +1264,7 @@ sub LookForToolsDistrib
 sub LookForBasicTools
 {
  my $test;
- if ($OS eq 'DOS')
+ if (($OS eq 'DOS') || ($OS eq 'Win32'))
    {
     $test=RunRedirect('rm --version');
     if (!($test=~/fileutils/))
