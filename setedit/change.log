@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.630  2004/10/13 14:44:08  set
+* Added: [WWW] New Win32 installer released by wec (v0.5.2).
+* Added: [WWW] SuSE 9.1 and Fedora Core 2 packages released by bbcat
+(v0.5.3).
+* Added: [WWW] XTerm snapshots for various systems.
+
 Revision 1.629  2004/10/12 20:43:44  set
 * Added: [Install] Support for Solaris' native install tool. It have
 nothing todo with POSIX install.
