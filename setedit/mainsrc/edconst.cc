@@ -226,6 +226,7 @@ static edCList SetApp[] =
 { "DbgOptsMsgs"    ,122  },
 { "DbgReturnNow"   ,117  },
 { "DbgRunContinue" ,112  },
+{ "DbgStackWindow" ,133  },
 { "DbgStepOver"    ,113  },
 { "DbgStop"        ,118  },
 { "DbgTraceInto"   ,114  },

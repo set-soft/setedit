@@ -51,7 +51,8 @@ const int
       dktMan       = 10,
       dktDbgMsg    = 11,
       dktDbgWt     = 12,
-      dktDbgIns    = 13;
+      dktDbgIns    = 13,
+      dktDbgDataWin= 14;
 
 class TDeskTop;
 void InsertInOrder(TDeskTop *dsk,TDskWin *win);

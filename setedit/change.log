@@ -1,4 +1,14 @@
-$Log$.
+$Log$
+Revision 1.564  2004/08/06 21:10:36  set
+* Added: A first part of the Molnar Laszlo's "Data Window v0.1" that he
+contributed to RHIDE. A lot of things must be solved because things are
+quite different when you can directly access the debuggy memory :-(
+* Fixed: A couple of leaks that happened when closing a project and loading
+another. Reported by Valgrind while debugging the "Data Window" stuff.
+* Note: The debugging stuff is quite functional, Inspectors are great for
+complex structures like trees. But the whole thing isn't stable, more
+adjusts are needed.
+
 Revision 1.563  2004/08/05 19:26:28  set
 * Fixed(?): [DOC] The complement part of the "@end menu" makeinfo 4.7
 problem. This time for the @itemize.

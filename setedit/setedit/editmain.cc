@@ -1419,6 +1419,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               DebugDataWindow(GetWordUnderCursor(250));
               break;
 
+         case cmeDbgStackWindow:
+              DebugStackWindow();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

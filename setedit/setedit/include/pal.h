@@ -203,7 +203,7 @@
         S(9D,White,Cyan,Normal Text(inactive)) \
         S(9E,White,Blue,Focused Text) \
         S(9F,Black,Magenta,Selected Text) \
-        S(A0,Black,Red,Reserved) \
+        S(A0,Yellow,Cyan,Changed text) \
         S(A1,Black,Cyan,Reserved)
 
 #define Normal 07

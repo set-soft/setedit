@@ -154,8 +154,9 @@ const int
   cmeDbgGoReadyToRun= cmeBase+130,
   cmeDbgEditBreakPts= cmeBase+131,
   cmeDbgDataWindow  = cmeBase+132,
+  cmeDbgStackWindow = cmeBase+133,
   // That isn't a command, is to know the last+1.
-  cmeDbgLastCommand = cmeBase+133,
+  cmeDbgLastCommand = cmeBase+134,
   //-------------------------------------------------------------------------
   // That's messy, I'm reserving some commands for the "debug" group
   //-------------------------------------------------------------------------
@@ -407,6 +408,7 @@ public:
     static void DebugMoveBreakPts();
     static void DebugInspector(char *startVal);
     static void DebugDataWindow(char *startVal);
+    static void DebugStackWindow();
 
 protected:
 
