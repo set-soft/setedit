@@ -26,13 +26,15 @@ DYNRTLDFLAGS = -WR
 
 CFLAGS   = -D_BCPP -w-aus -w-ccc -a8 $(DYNRTLDFLAGS) -WC -X -q $(CDEBUGFLAGS) \
 	-D__inline__=inline -DFOR_EDITOR
-CXXFLAGS = -P -RT- -w-hid -w-par $(CFLAGS)
+# Note: rch == Unreachable code. BC++ 5.5 is idiot to detect code that is
+#              disabled on purpose. i.e. if (0) ...
+CXXFLAGS = -P -RT- -w-hid -w-par -w-rch $(CFLAGS)
 LDFLAGS  = $(DYNRTLDFLAGS) -WC
 
 INC      = -I. -I.\inc -I..\..\tvision\winnt\include -I..\..\tvision\include \
 	-I..\include -I..\setedit\include -I..\settvuti\include -I..\easydiag \
 	-I..\infview\include -I..\librhuti -I..\sdg\include -I..\mp3 -I..\extra \
-	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2
+	-I..\calcu -I..\libz -I..\libpcre -I..\libbzip2 -I..\holidays
 
 {..\setedit}.cc{objs}.obj:
 	$(CXX) -c $(CXXFLAGS) $(INC) -nobjs $<

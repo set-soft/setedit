@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.374  2003/05/19 14:09:57  set
+* Fixed: The install.mkf needed settvuti path and also the addition of
+libwin.
+* Fixed: The distribution contained common.imk twice.
+
 Revision 1.373  2003/05/16 20:59:40  set
 * Added: Some text about RHIDE to the web page and a link to a patch that
 allows creating an RHIDE compiled with the current CVS code.

@@ -1704,15 +1704,15 @@ Boolean BrowseClass(ccIndex index, TTagClassCol *clist)
          {
           case cmThisClass:
                ret=BrowseClassMembers(cl);
-               jumped=ret==cmCancel;
+               jumped=ret==cmCancel ? True : False;
                break;
           case cmThisAParents:
                ret=BrowseThisAParents(cl,clist,False,index);
-               jumped=ret==cmCancel;
+               jumped=ret==cmCancel ? True : False;
                break;
           case cmSorted:
                ret=BrowseThisAParents(cl,clist,True,index);
-               jumped=ret==cmCancel;
+               jumped=ret==cmCancel ? True : False;
                break;
          }
       }

@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -10,10 +10,13 @@ SeeCommandLine();
 
 $col=14;
 $a=ExtractItemsImk('makes/editor.imk',$col);
-$a=~s/mixersb\.c//;
-$a=~s/mixoss\.c//;
-$a=~s/djmdr.s//;
-$a=~s/memmove\.s//;
+$a.=' '.ExtractItemsImk('makes/easydiag.imk',$col);
+$a.=' '.ExtractItemsImk('makes/settv.imk',$col);
+$a.=' '.ExtractItemsImk('makes/librhuti.imk',$col);
+$a=~s/mixersb\.o//;
+$a=~s/mixoss\.o//;
+$a=~s/djmdr\.o//;
+$a=~s/memmove\.o//;
 $b=$a;
 $a=~s/(\w+)\.(\w+)/\+$1\.obj/g;
 
