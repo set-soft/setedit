@@ -1288,7 +1288,7 @@ Keywords=sql_log_off,sql_log_update,straight_join,starting,status,string,table
 Keywords=tables,terminated,text,time,timestamp,tinyblob,tinytext,tinyint
 Keywords=trailing,to,use,using,unique,unlock,unsigned,update,usage,values
 Keywords=varchar,variables,varying,varbinary,with,write,where,year,year_month
-Keywords=zerofill,sequence
+Keywords=zerofill,sequence,begin,end,transaction,boolean
 End
 
 # ---------------------------- Objective C ---------------------------------

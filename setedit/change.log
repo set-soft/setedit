@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.420  2003/06/24 19:17:47  set
+* Added: A tutorial explaining how to use tags stuff step by step. It have
+graphics but I'm not sure about distributing them, size issue.
+* Fixed: Fails in the "Export as HTML" command when some text was selected.
+* Fixed: When using completion words and the word to complete made match
+with the last symbols the editor crashed.
+* Modified: added calls to gprexp and changed rules to create .imk files.
+
 Revision 1.419  2003/06/23 21:09:09  set
 * Updated: default .env files.
 * Added: link to the new nightly snapshots to the web page.
