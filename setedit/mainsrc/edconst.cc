@@ -212,6 +212,7 @@ static edCList SetApp[] =
 { "GrepDialog"     , 32 },
 { "HTMLAccents"    , 53 },
 { "HTMLTag2Accent" , 68 },
+{ "HolidaysConf"   , 86 },
 { "ImportPrj"      , 84 },
 { "IncludeList"    , 73 },
 { "InfView"        , 6  },

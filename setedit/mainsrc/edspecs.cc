@@ -36,7 +36,7 @@ void add_variable(const char *variable, const char *contents)
  var_count++;
  vars = (char **)realloc(vars,var_count*2*sizeof(char *));
  vars[var_count*2-2]=strdup(variable);
- vars[var_count*2-1]=strdup(contents);
+ vars[var_count*2-1]=contents ? strdup(contents) : NULL;
 }
 
 void InsertEnviromentVar(const char *variable, const char *contents)
@@ -44,10 +44,10 @@ void InsertEnviromentVar(const char *variable, const char *contents)
  int i;
  for (i=0;i<var_count;i++)
  {
-   if (strcmp(vars[i*2],variable) == 0)
+   if (strcmp(vars[i*2],variable)==0)
    {
      free(vars[2*i+1]);
-     vars[2*i+1]=strdup(contents);
+     vars[2*i+1]=contents ? strdup(contents) : NULL;
      return;
    }
  }
@@ -166,7 +166,7 @@ static
 void fPutVar(char *var,FILE *f)
 {
  char *c=(char *)GetVariable(var);
- if (c)
+ if (c && c[0])
    {
     ushort len=strlen(var);
     fwrite(&len,sizeof(ushort),1,f);
@@ -193,6 +193,7 @@ void SaveEnviromentFile(void)
        fPutVar("SET_README_SHOWN",f);
        fPutVar("SET_TIPS1",f);
        fPutVar("SET_VARIOUS1",f);
+       fPutVar("SET_FORCED_LANG",f);
        fclose(f);
       }
    }

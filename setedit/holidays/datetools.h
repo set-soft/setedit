@@ -15,4 +15,10 @@ struct dayMonth
 
 #ifdef __cplusplus
 };
+
+// This is exported to SETEdit, not available for the plug-ins
+extern struct dayMonth *GetHolidays(int year, int &cant);
+extern char *GetLastError();
+extern void  ConfigureHolidays();
 #endif
+

@@ -17,7 +17,7 @@ class TCalendarView : public TView
 public:
 
     TCalendarView(TRect & r);
-    ~TCalendarView() { TVIntl::freeSt(cNDays); };
+    ~TCalendarView();
     virtual void handleEvent(TEvent& event);
     virtual void draw();
     char *getMonthStr(char *buffer, int size, int addArrows);
@@ -34,6 +34,9 @@ private:
     unsigned days, month, year;
     unsigned curDay, curMonth, curYear;
     stTVIntl *cNDays;
+    // Holidays
+    struct dayMonth *listOfHolidays;
+    int              numOfHolidays;
 };
 
 class TCalendarWindow : public TWindow

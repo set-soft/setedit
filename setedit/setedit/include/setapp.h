@@ -102,7 +102,8 @@ const int
   cmeWordCompletion = cmeBase+82,
   cmeExportPrj      = cmeBase+83,
   cmeImportPrj      = cmeBase+84,
-  cmeTagsOps        = cmeBase+85;
+  cmeTagsOps        = cmeBase+85,
+  cmeHolidaysConf   = cmeBase+86;
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.

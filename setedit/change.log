@@ -1,4 +1,7 @@
 $Log$.
+Revision 1.338  2003/05/06 12:34:04  set
+* Added: a small doc explaining how to write a "holidays plug-in".
+
 Revision 1.337  2003/05/06 12:32:41  set
 * Fixed: A lot of typos and errors in docs. Revision by Bernd Becker
 <munin@munin.inka.de>.

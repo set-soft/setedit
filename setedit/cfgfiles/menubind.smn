@@ -201,6 +201,7 @@ SubMenu: "~T~ool&Ops", kbAlT
      MenuItemC: "~L~ist of tag files ...", cmeTagFiles
      MenuItemC: "~O~ptions ...", cmeTagsOps
    EndSubMenu
+   MenuItemC: "Calendar (holida~y~s) ...", cmeHolidaysConf
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc

@@ -84,6 +84,7 @@
 #include <loadshl.h>
 #include <loadnobkp.h>
 #include <pathlist.h>
+#include <datetools.h>
 #define Uses_TagsOnlyFuncs
 #include <tags.h>
 
@@ -1190,6 +1191,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
 
          case cmeTagsOps:
               SetTagFilesGenerationOptions();
+              break;
+
+         case cmeHolidaysConf:
+              ConfigureHolidays();
               break;
 
          // These commands are traslated to the original values

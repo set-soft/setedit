@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // Calculator
 const int
@@ -9,6 +9,8 @@ const int
       cmRegExOptions= 0x2218,
 // Local options dialog
       cmSHLOptions  = 0x2219,
+// Calendar broadcast
+      cmCalendarPlugIn=0x221A,
 // List of windows (ALT+0)
       cmGo          = 0x2290,
       cmDelete      = 0x2291,
