@@ -1,4 +1,15 @@
-$Log$
+$Log$.
+Revision 1.233  2002/11/11 21:47:40  terrible
+* Modified: added bool, true, false, typename and using to the C++ syntax
+highlight (both the .shl file and editmain.cc).
+* Added: PHP heuristic parser for function jumps and class recognition.
+Note: needs to be added to the building process and bufun.h, I don't have
+RHIDE so I can't do that myself, thanks :).
+Note 2: I am not as good as Salvador coding, but at least my indentation
+isn't so weird :-D, though if it is needed, I would indent it with Salvador's
+exotic style :-D, but if I am going to maintain it, I would prefer that it
+remains with my indentation style if possible.
+
 Revision 1.232  2002/11/11 20:15:58  set
 * Added: Now the matchpair and the complementary element jumps are affected
 by the syntax highlight. It was in the Feature Request for a long time and
