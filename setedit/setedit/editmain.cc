@@ -35,11 +35,8 @@
 #define Uses_string
 #define Uses_alloca
 #define Uses_stdlib
-#ifdef SEOSf_Solaris
- #define Include_cl_getopt
-#else
- #define Uses_getopt
-#endif
+#define Uses_access
+#define Uses_getopt
 #define Uses_ctype
 #define Uses_unistd
 #ifndef SECompf_djgpp

@@ -12,6 +12,7 @@
 #define Uses_mkstemp
 #define Uses_dirent
 #define Uses_stdio
+#define Uses_getcwd
 #define Uses_HaveLFNs
 #ifdef SECompf_djgpp
 #include <io.h>    // _chmod

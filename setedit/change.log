@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.148  2002/07/10 19:22:09  set
+* Modified: Temporally disabled font support because it isn't compatible
+with last TV changes.
+
 Revision 1.147  2002/07/08 15:43:31  set
 * Fixed: [MSVC] Small details to get it compiled. Most of them just
 involves proper use of compatlayer. From output sent by WintiX.

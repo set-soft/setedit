@@ -1,7 +1,7 @@
 /* Copyright (C) 1996-1998 Robert H”hne, see COPYING.RH for details */
 /* This file is part of RHIDE. */
 #include <rhutils.h>
-#include <stdio.h>
+#define Uses_stdio
 #define Uses_glob
 #define Uses_alloca
 #define Uses_string

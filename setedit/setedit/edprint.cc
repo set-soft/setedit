@@ -12,10 +12,10 @@ program for my university.
 *****************************************************************************/
 
 #include <ceditint.h>
-#include <stdio.h>
+#define Uses_stdio
 #define Uses_string
 #include <time.h>
-#include <stdlib.h>
+#define Uses_stdlib
 #define Uses_unistd
 
 #define Uses_MsgBox
