@@ -27,4 +27,5 @@ const unsigned dstOwEver=0,dstOwOnlyIfNoCL=0x40,dstOwNever=0x80,dstOwMask=0xC0;
 // Are closed files restored?
 const unsigned dstCfEver=0,dstCfOnlyIfNoCL=0x100,dstCfNever=0x200,dstCfMask=0x300;
 
-#endif EDSPECS_H_INCLUDED
+#endif // EDSPECS_H_INCLUDED
+
