@@ -391,19 +391,21 @@ TSetEditorApp::TSetEditorApp() :
     TApplication()
 {
  TCommandSet ts;
- ts.enableCmd( cmcSave );
- ts.enableCmd( cmcSaveAs );
- ts.enableCmd( cmcCut );
- ts.enableCmd( cmcCopy );
- ts.enableCmd( cmcPaste );
- ts.enableCmd( cmcClear );
- ts.enableCmd( cmcUndo );
- ts.enableCmd( cmcRedo );
- ts.enableCmd( cmcFind );
- ts.enableCmd( cmcReplace );
- ts.enableCmd( cmcSearchAgain );
- ts.enableCmd( cmeClosePrj );
- ts.enableCmd( cmeSavePrj );
+ ts.enableCmd(cmcSave);
+ ts.enableCmd(cmcSaveAs);
+ ts.enableCmd(cmcCut);
+ ts.enableCmd(cmcCopy);
+ ts.enableCmd(cmcPaste);
+ ts.enableCmd(cmcClear);
+ ts.enableCmd(cmcUndo);
+ ts.enableCmd(cmcRedo);
+ ts.enableCmd(cmcFind);
+ ts.enableCmd(cmcReplace);
+ ts.enableCmd(cmcSearchAgain);
+ ts.enableCmd(cmeClosePrj);
+ ts.enableCmd(cmeSavePrj);
+ if (TScreen::noUserScreen())
+    ts.enableCmd(cmeDosShell);
  disableCommands( ts );
 
  TCEditor::editorDialog=doEditDialogLocal;
@@ -2022,19 +2024,17 @@ void ParseCommandLine(int argc, char *argv[])
 }
 /******* End of Command line parsing *******/
 
-#if TV_MAJOR_VERSION>=2
-#define TV_System TScreen::System
-#endif
-
 void TSetEditorApp::dosShell()
 {
+ if (TScreen::noUserScreen())
+    return;
  SaveAllEditors(); // To avoid crashes and inconsistences
  FullSuspendScreen();
  if (RedirectStderr && StdErrNew!=-1)
    dup2(StdErrOri,STDERR_FILENO); // Restore stderr
  // Stop the playing engine
  MP3Suspend;
- TV_System(CLY_GetShellName());
+ TScreen::System(CLY_GetShellName());
  MP3Resume;
  if (RedirectStderr && StdErrNew!=-1)
     dup2(StdErrNew,STDERR_FILENO); // Redirected again

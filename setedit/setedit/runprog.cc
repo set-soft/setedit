@@ -19,6 +19,7 @@
 #define Uses_TApplication
 #define Uses_TDeskTop
 #define Uses_TStringCollection
+#define Uses_TScreen
 
 #define Uses_TSInputLine
 #define Uses_TSLabel
@@ -52,12 +53,6 @@
 #ifdef TVOS_UNIX
 #include <sys/wait.h>
 #include <signal.h>
-#endif
-
-#if TV_MAJOR_VERSION>=2
-#define TV_System TScreen::System
-#define Uses_TScreen
-#include <tv/screen.h>
 #endif
 
 // Values for Options
@@ -678,13 +673,14 @@ void RunExternalProgram(char *Program, unsigned flags, char *compiler)
     strcat(b,RedirInputFile);
    }
 
- int saveScreen=(Options & opUseOSScreen) || (flags & repRestoreScreen);
+ int saveScreen=!TScreen::noUserScreen() &&
+                ((Options & opUseOSScreen) || (flags & repRestoreScreen));
  if (saveScreen)
     FullSuspendScreen();
 
  MP3Suspend;
- TV_System(b,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
-           0 : &PidChild);
+ TScreen::System(b,saveScreen || (flags & repDontFork) || (Options & opNeverFork) ?
+                 0 : &PidChild);
  MP3Resume;
 
  if (saveScreen)

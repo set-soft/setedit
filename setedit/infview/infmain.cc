@@ -152,6 +152,8 @@ TEditorMiApp::TEditorMiApp() :
 
 void TEditorMiApp::dosShell()
 {
+ if (TScreen::noUserScreen())
+    return;
  suspend();
  TV_System(CLY_GetShellName());
  resume();
@@ -272,7 +274,7 @@ void TEditorMiApp::handleEvent( TEvent& event )
               SetScreenOps();
               break;
 
-         case cmDosShell:
+         case cmCallShell:
               dosShell();
               break;
 

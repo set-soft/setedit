@@ -33,9 +33,9 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
    *new TMenuItem( _("~O~pen info file"), cmInfMainOpen, kbF3, hcNoContext, "F3" ) +
    *new TMenuItem( _("Open ~m~anpage"), cmManPage, kbF4, hcNoContext, "F4" ) +
    #if defined(TVOS_DOS) || (defined(TVOS_Win32) && !defined(TVCompf_Cygwin))
-   *new TMenuItem( _("~D~OS shell"), cmDosShell, kbNoKey ) +
+   *new TMenuItem( _("~D~OS shell"), cmCallShell, kbNoKey ) +
    #else
-   *new TMenuItem( _("S~h~ell"), cmDosShell, kbNoKey ) +
+   *new TMenuItem( _("S~h~ell"), cmCallShell, kbNoKey ) +
    #endif
    *new TMenuItem( _("E~x~it"), cmQuit, kbAltX, hcNoContext, "Alt+X" );
 

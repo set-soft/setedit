@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.171  2002/08/12 16:23:21  set
+* Fixed: Read out of bounds in man page viewer (detected by efence).
+* Fixed: The ASCII window grown after a window resize.
+
 Revision 1.170  2002/08/12 16:22:27  set
 * Added: Copyright information about the fonts and convpcf1.cc
 * Modified: The fonts dialog to keep the sizes well sorted, the
