@@ -1,4 +1,15 @@
-$Log$
+$Log$.
+Revision 1.573  2004/08/11 21:06:29  set
+* Added: [Debug] Select thread option. But this is quite useless. GDB
+doesn't report any info, just the ID and doesn't remove finished threads
+from the list. Which is worst: selecting a finished thread doesn't return
+any error, the message is printed in the console. Yet another bug in gdb.
+* Added: [Debug] An option to delete all the breakpoints, watchpoints, etc.
+* Added: [Debug] When adding a watchpoint the word under cursor is used as
+starting point.
+* Fixed: cmcCutClipWin command not dis/enabled when selecting text.
+Reported by Arnold Wiegert.
+
 Revision 1.572  2004/08/11 16:30:07  set
 * Fixed: [DOC] More makeinfo 4.7 details. From Andrea's feedback.
 

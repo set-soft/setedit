@@ -24,7 +24,6 @@ may be we should "refresh" the ignores before running.
   * Add some mechanism to enable MI v2. That's much better.
 
   * Advices (only project, ...).
-  * Select thread.
   * Disassembler window.
   * Put a limit to the ammount of messages in the debug message window.
 Reset it when reseting the session.
@@ -364,7 +363,8 @@ char *SolveFileName(const char *s)
                  __("Add path to list: '%s'?"),buf)==cmYes)
                {
                 PathListAdd(paliSource,buf);
-                dbg->PathSources(buf);
+                if (dbg)
+                   dbg->PathSources(buf);
                }
             }
           return retName;
@@ -1475,6 +1475,67 @@ Boolean TSetEditorApp::DebugCloseSession(Boolean confirm)
  return True;
 }
 
+class TFramesList : public TStringable
+{
+public:
+ TFramesList(mi_frames *theFrames);
+ ~TFramesList();
+
+ virtual void getText(char *dest, unsigned item, int maxLen);
+ mi_frames *getItem(int index);
+
+protected:
+ mi_frames *frames;
+};
+
+TFramesList::~TFramesList()
+{
+ mi_free_frames(frames);
+}
+
+TFramesList::TFramesList(mi_frames *theFrames)
+{
+ frames=theFrames;
+ Count=0;
+ while (theFrames)
+   {
+    Count++;
+    theFrames=theFrames->next;
+   }
+}
+
+mi_frames *TFramesList::getItem(int num)
+{
+ mi_frames *p=frames;
+ while (num && p)
+   {
+    num--;
+    p=p->next;
+   }
+ return num ? NULL : p;
+}
+
+void TFramesList::getText(char *dest, unsigned item, int maxLen)
+{
+ mi_frames *r=getItem(item);
+ if (!r)
+   {
+    *dest=0;
+    return;
+   }
+ const char *unknown=TVIntl::getText(__("unknown"),icUnknown);
+ if (r->addr)
+    TVIntl::snprintf(dest,maxLen,__("%d: %s:%s:%d addr %p"),r->thread_id,
+                     r->func ? r->func : unknown,
+                     r->file ? r->file : unknown,
+                     r->line,r->addr);
+ else
+    TVIntl::snprintf(dest,maxLen,__("%d: %s:%s:%d"),r->thread_id,
+                     r->func ? r->func : unknown,
+                     r->file ? r->file : unknown,
+                     r->line);
+}
+
 void TSetEditorApp::DebugThreadSel()
 {
  if (!dbg || dbg->GetState()!=MIDebugger::stopped)
@@ -1488,13 +1549,21 @@ void TSetEditorApp::DebugThreadSel()
     messageBox(__("No threads to select"),mfError|mfOKButton);
     return;
    }
- // Create a collection with them
- TStringCollection *ids=new TStringCollection(cant,1);
+ // Get info about them
+ mi_frames *f=dbg->ThreadList();
+ TFramesList *fl=new TFramesList(f);
+ if (fl->GetCount()!=(unsigned)cant)
+   {
+    delete fl;
+    messageBox(__("Unconsistent info from gdb"),mfError|mfOKButton);
+    return;
+   }
+ // Transfer the ids
+ mi_frames *c=f;
  for (int i=0; i<cant; i++)
     {
-     char buf[32];
-     CLY_snprintf(buf,32,"%10d",list[i]);
-     ids->insert(newStr(buf));
+     c->thread_id=list[i];
+     c=c->next;
     }
  // Create a dialog to select them
  TSViewCol *col=new TSViewCol(__("Select Thread"));
@@ -1505,18 +1574,28 @@ void TSetEditorApp::DebugThreadSel()
     h=hmax;
     ops=tsslbVertical;
    }
- col->insert(xTSCenter,yTSUp,new TSLabel(__("ID"),new TSSortedListBox(16,h,ops)));
+ col->insert(xTSCenter,yTSUp,new TSLabel(__("ID"),
+             new TSStringableListBox(GetDeskTopCols()-6,h,ops)));
  EasyInsertOKCancel(col);
 
  TDialog *d=col->doItCenter(cmeDbgThreadSel);
  delete col;
- // Execute the dialog
- TListBoxRec box;
- box.items=ids;
+ TStringableListBoxRec box;
+ box.items=fl;
  box.selection=0;
+ // Get the current id from the stopped info
+ if (stoppedInfo && stoppedInfo->have_thread_id)
+    for (int i=0; i<cant; i++)
+        if (list[i]==stoppedInfo->thread_id)
+          {
+           box.selection=i;
+           break;
+          }
+ // Execute the dialog
  if (execDialog(d,&box)==cmOK)
    {
-    mi_frames *frame=dbg->ThreadSelect(atoi((char *)ids->at(box.selection)));
+    mi_frames *frame=fl->getItem(box.selection);
+    frame=dbg->ThreadSelect(frame->thread_id);
     if (frame)
       {
        DebugMsgJumpToFrame(frame,NULL,0);
@@ -1525,7 +1604,7 @@ void TSetEditorApp::DebugThreadSel()
     else
        ShowErrorInMsgBox();
    }
- CLY_destroy(ids);
+ delete fl;
  free(list);
 }
 

@@ -234,10 +234,16 @@ int FindFile(const char *name, char *&fullName, const char *reference)
  if (!fullName)
     return 0;
  strcpy(fullName,name);
+ const char *onlyName=strrchr(name,'/');
+ if (onlyName)
+    onlyName++;
+ else
+    onlyName=name;
  if (!edTestForFile(fullName))
    {
     ccIndex i;
     int found=0, j;
+    // Path+name
     for (j=0; !found && j<paliLists; j++)
         for (i=0; PathListGetItem(i,fullName,j); i++)
            {
@@ -251,10 +257,26 @@ int FindFile(const char *name, char *&fullName, const char *reference)
                break;
               }
            }
+    // Path+onlyName
+    for (j=0; !found && j<paliLists; j++)
+        for (i=0; PathListGetItem(i,fullName,j); i++)
+           {
+            char *s=fullName+strlen(fullName)-1;
+            if (!CLY_IsValidDirSep(*s))
+               strcat(s,DIRSEPARATOR_);
+            strcat(s,onlyName);
+            if (edTestForFile(fullName))
+              {
+               found=1;
+               break;
+              }
+           }
     if (!found)
       {
        // Try with the project
        char *prjName=GetAbsForNameInPrj(name);
+       if (!prjName)
+          prjName=GetAbsForNameInPrj(onlyName);
        if (prjName)
           strcpy(fullName,prjName);
        else
@@ -271,6 +293,13 @@ int FindFile(const char *name, char *&fullName, const char *reference)
                 //printf("Intentando: %s\n",fullName);
                 if (edTestForFile(fullName))
                    found=1;
+                else
+                  {// One more try, use only the name
+                   memcpy(fullName,reference,l);
+                   strcpy(fullName+l,onlyName);
+                   if (edTestForFile(fullName))
+                      found=1;
+                  }
                }
             }
           if (!found)
