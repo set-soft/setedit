@@ -20,7 +20,7 @@
 typedef struct
 {
  char *name;
- int   command;
+ unsigned command;
 } edCList;
 
 static edCList List[] =

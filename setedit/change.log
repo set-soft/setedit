@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.482  2003/12/09 19:24:32  set
+* Modified: The 'Compile' macro example. It was contributed by Thiago and
+now he added an example on how to choose the compiler according to the
+syntax.
+
 Revision 1.481  2003/12/09 18:28:08  set
 * Added: Errors parser for Perl. Contributed by Thiago.
 

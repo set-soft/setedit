@@ -84,7 +84,7 @@ const int
   efROasRO          = 0x00040000;
 
   // The following constants are used by sLisp
-const int
+const unsigned
   efBasicRegExSL     = 0x00000000,
   efExtendedRegExSL  = 0x40000000,
   efPerlRegExSL      = 0x80000000,

@@ -433,8 +433,8 @@ class TDialogX : public TDialog
 {
 public:
  TDialogX(const TRect& bounds, const char *aTitle) :
-   TDialog(bounds,aTitle),
-   TWindowInit(&TDialogX::initFrame) {};
+   TWindowInit(&TDialogX::initFrame),
+   TDialog(bounds,aTitle) {};
  virtual void close() { hide(); };
 };
 
