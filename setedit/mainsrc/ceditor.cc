@@ -872,7 +872,7 @@ int TCEditor::TestPropagation(uint32 OldAttr,uint32 NewAttr,
       if (proxLineNum>totalLines)
          break;
       OldAttr=lenLines.getAttr(proxLineNum);
-      proxLine+=LineMeassure(proxLine,proxLine+lenLines[proxLineNum],PrevAttr);
+      proxLine+=LineMeassure(proxLine,proxLine+lenLines[proxLineNum],PrevAttr,NULL);
       lenLines.setAttr(proxLineNum,PrevAttr);
       proxLineNum++;
      }
@@ -977,7 +977,7 @@ void TCEditor::doUpdate()
              attr=lenLines.getAttr(curPos.y-1);
           else
              attr=0;
-          LineMeassure(bufEdit,inEditPtr+restCharsInLine,attr);
+          LineMeassure(bufEdit,inEditPtr+restCharsInLine,attr,NULL);
           TestPropagation(attrInEdit,attr,curLinePtr+lenLines[curPos.y],curPos.y+1);
           attrInEdit=attr;
          }
@@ -993,7 +993,7 @@ void TCEditor::doUpdate()
                  attr=lenLines.getAttr(curPos.y-1);
               else
                  attr=0;
-              LineMeassure(bufEdit,inEditPtr+restCharsInLine,attr);
+              LineMeassure(bufEdit,inEditPtr+restCharsInLine,attr,NULL);
               if (TestPropagation(attrInEdit,attr,curLinePtr+lenLines[curPos.y],curPos.y+1))
                 {
                  attrInEdit=attr;
@@ -6957,7 +6957,7 @@ void TCEditor::UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP,
  // Recalculate for the inserted block
  for (;firstLine<=lastLine;firstLine++)
     {
-     firstTouchedP+=LineMeassure(firstTouchedP,end,attr);
+     firstTouchedP+=LineMeassure(firstTouchedP,end,attr,NULL);
      lenLines.setAttr(firstLine,attr);
     }
  // Test for propagation:
@@ -6965,7 +6965,7 @@ void TCEditor::UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP,
  if (firstLine<=totalLines)
    {
     // Yes, recalculate the following line
-    firstTouchedP+=LineMeassure(firstTouchedP,end,attr);
+    firstTouchedP+=LineMeassure(firstTouchedP,end,attr,NULL);
     // Test if there are a propagation
     TestPropagation(lenLines.getAttr(firstLine),attr,firstTouchedP,firstLine+1);
     // Set the recalculated value
@@ -7539,13 +7539,13 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
   else
      attr=0;
   // recalculate the attr of the actual (modified) line
-  s+=LineMeassure(s,s+lenLines[y],attr);
+  s+=LineMeassure(s,s+lenLines[y],attr,NULL);
   lenLines.setAttr(y,attr);
   // There are more lines?
   if ((uint32)curPos.y<totalLines)
     {
      // Yes, recalculate the following line
-     s+=LineMeassure(s,s+lenLines[++y],attr);
+     s+=LineMeassure(s,s+lenLines[++y],attr,NULL);
      // Test if there are a propagation
      TestPropagation(lenLines.getAttr(y),attr,s,y+1);
      // Set the recalculated value
@@ -9160,7 +9160,7 @@ uint32 TCEditor::SyntaxHighlightForOffset(unsigned offset)
  unsigned rest;
  int y=FindLineForOffSet(offset,rest);
  uint32 attr=lenLines.getAttr(y);
- LineMeassure(buffer+offset-rest,buffer+offset,attr);
+ LineMeassure(buffer+offset-rest,buffer+offset,attr,NULL);
  return attr;
 }
 
@@ -10301,7 +10301,7 @@ void TCEditor::setBufLen( uint32 length )
       }
     while (s<end)
       {
-       ThisLine=LineMeassure(s,end,Attr);
+       ThisLine=LineMeassure(s,end,Attr,NULL);
        if (ThisLine)
          {
           if (ThisLine>65535)
@@ -10971,7 +10971,7 @@ void TCEditor::RecalculateLineAttributes(void)
     CacheSyntaxHLData(GenericSHL);
     while (s<end)
       {
-       ThisLine=LineMeassure(s,end,Attr);
+       ThisLine=LineMeassure(s,end,Attr,NULL);
        if (ThisLine)
           lenLines.setAll(lines++,ThisLine,Attr);
        s+=ThisLine;

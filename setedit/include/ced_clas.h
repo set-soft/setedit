@@ -486,7 +486,7 @@ public:
     // a pointer to the function to format the line to be displayed.
     void (TCEditor::*formatLinePtr)(void *, unsigned, int, unsigned short, unsigned, uint32, unsigned, uint32 *);
     // a pointer to the function to format calculate the s. hl. attributes
-    unsigned (*LineMeassure)(char *, char *, uint32 &, uint32 *extra=0);
+    unsigned (*LineMeassure)(char *, char *, uint32 &, uint32 *extra);
     shlState SyntaxHL;        // Says the type of syntax highlight used
     int      GenericSHL;      // What sub-type if the type is generic
     int SHLValueSelected;     // That's the position in the array of the detected SHL

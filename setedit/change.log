@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.579  2004/08/17 15:06:50  set
+* Fixed: [config] wrong makeinfo 4.7 detection. Patch by Andrea.
+* Fixed: [Debug] missing dummies to compile without debug code.
+* Updated: [i18n] spanish translation.
+
 Revision 1.578  2004/08/16 21:24:50  set
 * Fixed+Modified: The "paste" operation for TInputLinePiped views. Now the
 text is pasted without destroying the previous value (unless it is selected).

@@ -1100,28 +1100,33 @@ void TSetEditorApp::FontsOptions()
  box.priUse=so->foPriLoad;
  box.secUse=so->foSecLoad;
  box.priList=box.secList=fonts;
- if (!so->foPriName || !fonts->search(so->foPriName,box.priFont))
-    box.priFont=0;
- if (!so->foSecName || !fonts->search(so->foSecName,box.secFont))
-    box.secFont=0;
+ // That's a gcc 3.4 requirement:
+ ccIndex aux;
+ if (!so->foPriName || !fonts->search(so->foPriName,aux))
+    aux=0;
+ box.priFont=aux;
+ if (!so->foSecName || !fonts->search(so->foSecName,aux))
+    aux=0;
+ box.secFont=aux;
 
  TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont),*sec;
  box.priSizes=pri->sizes;
  int filled=0;
  TVBitmapFontSize sizeSt;
  sizeSt.w=so->foPriW; sizeSt.h=so->foPriH;
- if (!so->foPriName || !pri->sizes->search(&sizeSt,box.priSize))
+ if (!so->foPriName || !pri->sizes->search(&sizeSt,aux))
    {
     unsigned w,h;
     if (TScreen::getFontGeometry(w,h))
       {
        sizeSt.w=w; sizeSt.h=h;
-       if (pri->sizes->search(&sizeSt,box.priSize))
+       if (pri->sizes->search(&sizeSt,aux))
           filled=1;
       }
     if (!filled)
-       box.priSize=0;
+       aux=0;
    }
+ box.priSize=aux;
 
  // Create the dialog
  TRect dkt=TProgram::deskTop->getExtent();

@@ -386,7 +386,7 @@ void ShutDownPlasmaRB1(void)
 
 
 static
-void vsync()
+void owr_vsync()
 {
  while (inportb(0x3DA) & 1);
  while (!(inportb(0x3DA) & 8));
@@ -424,7 +424,7 @@ void UpdatePlasmaRB1(void)
 {
  uchar screen_buffer[64000]; // I think isn't so dangerous here
  PLA1_Step320x200_7(screen_buffer);
- vsync();
+ owr_vsync();
  _movedatal(_my_ds(),(unsigned)screen_buffer,_dos_ds,0xA0000,16000);
 }
 
@@ -588,7 +588,7 @@ void UpdateInferno1(void)
 {
  int d1,d2,d3;
  DibujarInferno1(Inferno1VScreen);
- vsync();
+ owr_vsync();
  InlineAsm(
 " pushl %%es                      \n"
  

@@ -250,7 +250,7 @@ int TMLIEditor::GetSyntaxAtCursor()
     Editor->MakeEfectiveLineInEdition();
 
  uint32 attr=Editor->lenLines.getAttr(Editor->curPos.y);
- Editor->LineMeassure(Editor->curLinePtr,Editor->ColToPointer(),attr);
+ Editor->LineMeassure(Editor->curLinePtr,Editor->ColToPointer(),attr,NULL);
  return attr;
 }
 

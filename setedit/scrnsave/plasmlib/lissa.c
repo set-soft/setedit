@@ -10,6 +10,7 @@ tables and draw the trajectory.
 ***************************************************************************/
 
 #include <math.h>
+#include <string.h>
 #include <allegro.h>
 #include "lissa.h"
 #include "math1.h"
