@@ -1,14 +1,36 @@
-setedit (0.5.2-0.1) unstable; urgency=low
+setedit (0.5.2-1) unstable; urgency=low
 
-  * New version automatically modified by version update scripts
+  * New stable upstream version! Sorry for the lateness, I got a job and I am
+    busy now, though I don't regret!!!
+  * Based on CVS version 1.435 2003/07/23 19:37:56.
+  * Acknowledge upstream changes to Debian packaging:
+    - No more build dependency on Recode.
+    - No more backup of .mak files (not used anymore on the new build
+      system).
+    - New debian/README file with instructions regarding compilation of the
+      package, it is similar to the maintainer.notes file.
+    - Now if the tar fails when doing the backup or the restore, it doesn't
+      stop the compiling or cleaning process since usually it is not critical.
+  * Support for DEB_BUILD_OPTIONS as Policy mandates in section 11.1.
+  * Suggests exuberant-ctags | ctags, woohoo!, cool class browser and symbol
+    completion engine!
+  * Lintian suggested adding a reference to /usr/share/common-licenses/GPL in
+    the copyright file and striping the (s) in Upstream Author(s), and I
+    fully agree :-).
+  * Standards compliance with Policy version 3.5.8.0.
+  * Note: I will not make the migration to po-debconf (new DebConf template
+    translation system) yet, I will wait some more, maybe for the next
+    upstream release. I don't know if that would work on Woody and I would
+    like to release this version for Potato too, since I have not removed it
+    from one of my computers yet and didn't made other changes that prevent
+    building for Potato.
+  * Remove on clean: holidays/Makefile, redhat/setedit-*.*.spec and
+    internac/getcolors.exe.
+  * Backup and restore: internac/getcolors.exe.
+  * Better README.Debian, with a dedicated APT section, a Things to do for
+    the package section and mentioning SET's InfoViewer.
 
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Mon, 12 May 2003 11:13:27 -0300
-
-setedit (0.5.1-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Mon, 28 Apr 2003 11:36:00 -0300
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Sun, 10 Aug 2003 18:39:53 -0300
 
 setedit (0.5.0-1) unstable; urgency=low
 

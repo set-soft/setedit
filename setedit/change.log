@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.435  2003/07/23 19:37:56  set
+* Added: A small page about Iguazú to the site.
+
 Revision 1.434  2003/07/23 18:12:59  set
 * Fixed: If no tags files are present and you want to add one to the list
 now the editor doesn't suggest reading the docs.
