@@ -55,6 +55,11 @@ void EdJumpToMessage(ccIndex )
 {
 }
 
+// It should reload a file from disk
+int EdReloadIfOpened(char *name)
+{
+}
+
 extern int RunProgram(const char *cmd,
                       Boolean redir_stderr,Boolean redir_stdout,
                       Boolean SwitchToUser);
