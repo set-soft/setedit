@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.510  2004/05/24 14:38:27  set
+* Modified: [config] Use of "g++" in favor of "gcc -lstdc++". This is
+because newer gcc 3.x compilers can't compile C++ code without doing a
+mess when we use the gcc frontend. From a report by Baurjan Ismagulov - ibr
+
 Revision 1.509  2004/05/24 13:40:41  set
 * Added: Applied patch #959018 Add libset-dev Debian package. Submitted by
 Baurjan Ismagulov - ibr (S.F.). It needs some adjustments but can be used.

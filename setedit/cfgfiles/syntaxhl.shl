@@ -13,7 +13,7 @@
 # the built-in routines.
 
 Name=C/C++
-Files=c,cpp,cxx,cc,h,hpp,i,ii,cgz,hh
+Files=c,cpp,cxx,cc,h,hpp,i,ii,cgz,hh,C,CPP,H
 EmacsModes=C++
 UseInternal=1
 Case=1

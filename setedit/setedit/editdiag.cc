@@ -14,6 +14,7 @@
 #define Uses_TSItem
 #define Uses_TStaticText
 #define Uses_TCEditor_Internal
+#define Uses_TScreen
 
 // EasyDiag requests
 #define Uses_TSButton
@@ -38,6 +39,7 @@
 static const char *cSlogan=__("\x3 A friendly text editor.");
 static const char *cFormatVersion=__("\x3Version: %lX.%lX.%lX   Revision: %d");
 static const char *cFormatName=__("\x3That's SET's Editor \"%s\", (c) 1996-2003");
+static const char *cFormatPlatform=__("\x3Platform: %s  Driver: %s");
 static const char *cSET=__("\x3 by Salvador Eduardo Tropea");
 
 ushort execDialog( TDialog *d, void *data )
@@ -104,20 +106,36 @@ void ShowUserScreenDialog()
 }
 #endif
 
+// Platform ID
+#ifdef SEOSf_STR
+ #define PLAT_OS SEOS_STR "/" SEOSf_STR
+#else
+ #define PLAT_OS SEOS_STR
+#endif
+#ifdef SECompf_STR
+ #define PLAT_Comp SEComp_STR "/" SECompf_STR
+#else
+ #define PLAT_Comp SEComp_STR
+#endif
+#define PLAT_STR PLAT_OS "," SECPU_STR "," PLAT_Comp
+
 void FullAboutBox(void)
 {
  TSViewCol *col=new TSViewCol(__("About"));
 
- char v1[bufWidth],v2[bufWidth];
+ char v1[bufWidth],v2[bufWidth],v3[bufWidth];
  TVIntl::snprintf(v1,bufWidth,cFormatName,VERSION_NAME);
  TVIntl::snprintf(v2,bufWidth,cFormatVersion,
                   TCEDITOR_VERSION>>16,(TCEDITOR_VERSION>>8) & 0xFF,
                   TCEDITOR_VERSION & 0xFF,VERSION_REV);
+ TVIntl::snprintf(v3,bufWidth,cFormatPlatform,PLAT_STR,
+                  TScreen::getDriverShortName());
 
  TSVeGroup *ant=
   MakeVeGroup(tsveMakeSameW,
               new TSStaticText(v1),
               new TSStaticText(v2),
+              new TSStaticText(v3),
               new TSStaticText(cSET),
               new TSStaticText(cSlogan),0);
 
@@ -147,7 +165,7 @@ void FullAboutBox(void)
  i(__("All my friends that support my project (Laszlo, Marek, Ivan,"));
  i(__("Grzegorz, Andris, etc.)."));
  #undef i
- TSTextScroller *txt=new TSTextScroller(70,10,text,0,1,70);
+ TSTextScroller *txt=new TSTextScroller(70,8,text,0,1,70);
 
  TSVeGroup *thanks=
   MakeVeGroup(tsveMakeSameW,
