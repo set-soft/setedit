@@ -110,6 +110,39 @@
 
 ;*******************************************************************
 ;
+; MACRO:   Test RunProgam Filter
+;
+; DESCRIPTION: Example of how to use an external filter program, it
+; takes the current selection, sends it to an external program (using
+; the shell input redirection) and collects the output of the
+; program. Finally the selected text is replaced by the output of
+; the filter.
+;
+;*******************************************************************/
+
+(defmacro 'Test RunProgram Filter'
+ (eval
+  (setv "input" (GetSelection))
+  (if (length input)
+   ; Call the filter
+   (eval
+    (setv "output"
+     (RunProgramRedir
+      (AskString "The output of the filter will replace the selection" "External filter")
+      input
+     )
+    )
+    (SendCommands cmcCut)
+    (InsertText output 1)
+   )
+   ; Ask the user to select something firt
+   (MessageBox "Please select a text first")
+  )
+ )
+)
+
+;*******************************************************************
+;
 ; These macro were created by Rolf Campbell (Endlisnis)
 ; email: s257m@unb.ca Endlisnis@hotmail.com
 ; and uses an external program provided by him.
