@@ -1,4 +1,20 @@
 $Log$
+Revision 1.5  2001/10/01 02:51:07  terrible
+Fixed: if we are not using shipped libbzip2 then use the system include files
+and not the shipped ones.
+Fixed: if we are not using shipped libbzip2, then not compile it.
+New: support old libbzip2 (before 1.0 version).
+Workaround: patchenv.pl checks if a variable needs replacing or not, the
+problem is that it only checks in the first occurence of the variable (in
+the .mak file), so if the first occurence of the variable not needed a
+change, then it didn't change the other occurences even if they had to be
+changed; so I have disabled that check and it always replaces the variables
+no matter what, a Perl guru should elaborate a correct solution to avoid
+changing everytime all the variables.
+To do: Salvador has to check the various "FIXME:"'s and correct my mistakes
+(though "It Works For Me TM" in Debian Potato and in Sid but maybe that's
+because of black magic).
+
 Revision 1.4  2001/09/30 04:08:29  terrible
 Updated Debian packaging to 0.4.47-2.
 
