@@ -1,5 +1,8 @@
 $Log$
-Revision 1.452  2001/10/12 02:50:38  root
+Revision 1.13  2001/10/12 12:39:32  set
++
+
+Revision 1.452  2001/10/12 02:50:38  set
 * Fixed: When opening the readme.1st the editor tried to make it read-only
 but it didn't prevent the editor for issuing a warning if the file was
 really read-only. Now the class takes isReadOnly as parameter in the
@@ -58,7 +61,7 @@ Revision 1.11  2001/10/07 23:46:19  terrible
 
 Revision 1.442  2001/10/07 20:31:28  set
 * Added: a small script to create the .debs as a regular user
-(debian/builpackage).
+(debian/buildpackage).
 
 Revision 1.441  2001/10/07 19:30:37  set
 * Added: More mechanisms to make gettext work with the .po files. The main
