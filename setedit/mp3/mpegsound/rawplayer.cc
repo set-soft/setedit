@@ -1,13 +1,15 @@
 /* MPEG/WAVE Sound library
 
-   (C) 1997 by Jung woo-jae
+   (C) 1997 by Jung woo-jae [Linux code]
    Allegro routines:
    (C) 1998 by Ove Kaaven <ovek@arcticnet.no>
-   (C) 2000/2001 by Salvador E. Tropea <set@ieee.org> */
+   (C) 2000/2001 by Salvador E. Tropea <set@ieee.org>
+   Solaris routines:
+   (C) 2002 by Salvador E. Tropea <set@ieee.org>
+*/
 
 // Rawplayer.cc
 // Playing raw data with sound type.
-// It's only for Linux
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -77,6 +79,8 @@ bool Rawplayer::initialize(char *filename)
   if(fcntl(audiohandle,F_SETFL,flag)<0)
     return seterrorcode(SOUND_ERROR_DEVOPENFAIL);
 
+  // The following value isn't used by SETEdit's strategy and looks like Jung
+  // took it wrong because the value seems to be the granularity (64 in my system).
   IOCTL(audiohandle,SNDCTL_DSP_GETBLKSIZE,audiobuffersize);
   if(audiobuffersize<4 || audiobuffersize>65536)
     return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
@@ -91,6 +95,7 @@ void Rawplayer::abort(void)
   IOCTL(audiohandle,SNDCTL_DSP_RESET,a);
 }
 
+// Not used in SETEdit strategy
 int Rawplayer::getprocessed(void)
 {
   audio_buf_info info;
@@ -103,6 +108,8 @@ int Rawplayer::getprocessed(void)
   return r;
 }
 
+// Returns true is the device can accept size bytes more of data.
+// size is in bytes.
 bool Rawplayer::roomformore(unsigned size)
 {
   audio_buf_info info;
@@ -113,8 +120,11 @@ bool Rawplayer::roomformore(unsigned size)
 
 bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
 {
+  // 1 = stereo, 0 = mono
   rawstereo=stereo;
+  // 8 or 16 (bits)
   rawsamplesize=samplesize;
+  // Hz
   rawspeed=speed;
   forcetomono=forceto8=false;
 
@@ -146,7 +156,7 @@ bool Rawplayer::resetsoundtype(void)
       rawsamplesize=8;
       IOCTL(audiohandle,SNDCTL_DSP_SAMPLESIZE,rawsamplesize);
       if(rawsamplesize!=8)
-	return seterrorcode(SOUND_ERROR_DEVCTRLERROR);
+         return seterrorcode(SOUND_ERROR_DEVCTRLERROR);
 
       forceto8=true;
     }
@@ -157,6 +167,7 @@ bool Rawplayer::resetsoundtype(void)
   return true;
 }
 
+// Write size bytes to the device from buffer
 bool Rawplayer::putblock(void *buffer,int size)
 {
   int modifiedsize=size;
@@ -182,6 +193,7 @@ bool Rawplayer::putblock(void *buffer,int size)
     }
   }
 
+  // quota isn't used by SETEdit
   if(quota)
     while(getprocessed()>quota)usleep(3);
   write(audiohandle,buffer,modifiedsize);
@@ -189,6 +201,7 @@ bool Rawplayer::putblock(void *buffer,int size)
   return true;
 }
 
+// Not used by SETEdit strategy
 int Rawplayer::getblocksize(void)
 {
   return audiobuffersize;
@@ -199,13 +212,14 @@ int Rawplayer::getblocksize(void)
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+// Solaris header that defines /dev/audio interface
 #include <sys/audioio.h>
 
 #include "mpegsound.h"
 
 char *Rawplayer::defaultdevice="/dev/audio";
-static int sizeSamp,bufSize;
 
+// Not implemented!!
 /* Volume */
 int Rawplayer::setvolume(int volume)
 {
@@ -232,12 +246,17 @@ bool Rawplayer::initialize(char *filename)
  if ((audiohandle=open(filename,O_WRONLY | O_NONBLOCK,0))==-1)
     return seterrorcode(SOUND_ERROR_DEVOPENFAIL);
 
+ // I fill this value with the size of the DMA buffer, but isn't
+ // really needed.
  audio_info_t info;
  if (ioctl(audiohandle,AUDIO_GETINFO,&info)==-1)
     return seterrorcode(SOUND_ERROR_DEVCTRLERROR);
  audiobuffersize=info.play.buffer_size;
  if (audiobuffersize<4 || audiobuffersize>65536)
     return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
+
+ // I don't know how much a stream support, it works
+ bufSize=900*64;
 
  return true;
 }
@@ -253,7 +272,7 @@ int Rawplayer::getprocessed(void)
  audio_info_t info;
  ioctl(audiohandle,AUDIO_GETINFO,&info);
 
- return bufSize/sizeSamp-info.play.samples;
+ return bufSize-info.play.samples*sizeSamp;
 }
 
 bool Rawplayer::roomformore(unsigned size)
@@ -270,6 +289,7 @@ bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
  rawsamplesize=samplesize;
  rawspeed=speed;
  forcetomono=forceto8=false;
+ // Compute the size of a sample, needed to do some calculations
  sizeSamp=1;
  if (stereo) sizeSamp*=2;
  if (samplesize==16) sizeSamp*=2;
@@ -282,28 +302,36 @@ bool Rawplayer::resetsoundtype(void)
  audio_info_t info;
  
  ioctl(audiohandle,AUDIO_GETINFO,&info);
- info.play.encoding=AUDIO_ENCODING_LINEAR;
+ info.play.encoding=AUDIO_ENCODING_LINEAR; // We use PCM
  info.play.precision=rawsamplesize;
- info.play.channels=rawstereo ? 2 : 1;
+ info.play.channels=rawstereo+1;
  info.play.sample_rate=rawspeed;
  ioctl(audiohandle,AUDIO_SETINFO,&info);
+ // Check we succeed
  ioctl(audiohandle,AUDIO_GETINFO,&info);
  
- return info.play.sample_rate==rawspeed && info.play.precision==rawsamplesize ? true : false;
+ return (info.play.sample_rate==rawspeed &&
+         info.play.precision==rawsamplesize &&
+         info.play.channels==rawstereo+1 &&
+         info.play.encoding==AUDIO_ENCODING_LINEAR) ? true : false;
 }
 
 bool Rawplayer::putblock(void *buffer,int size)
 {
  if (quota)
     while (getprocessed()>quota) usleep(3);
- bufSize=write(audiohandle,buffer,size);
+ unsigned wrote=write(audiohandle,buffer,size);
+ if (wrote!=size)
+    fprintf("Error! trying to write %d and we wrote %d\n",size,wrote);
+ else
+    fprintf("Ok! %d bytes\n",size);
 
  return true;
 }
 
 int Rawplayer::getblocksize(void)
 {
-  return audiobuffersize;
+ return audiobuffersize;
 }
 #endif
 

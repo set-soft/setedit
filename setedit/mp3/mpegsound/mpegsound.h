@@ -343,6 +343,9 @@ private:
   int  rawstereo,rawsamplesize,rawspeed;
   bool forcetomono,forceto8;
   int  quota;
+  // SET: I added them for the Solaris code
+  unsigned sizeSamp;
+  unsigned bufSize;
 };
 
 

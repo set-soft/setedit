@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.83  2002/05/08 13:48:54  set
+* Added: A new color scheme contributed by Thiago. It is dark (console
+style) plus some VIM like SHL.
+
 Revision 1.82  2002/05/07 12:54:46  set
 * Fixed: palfte.h didn't end with \n and failed for gcc 3.x. Patch by
 Andris.
