@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.571  2004/08/11 15:08:37  set
+* Added: [Debug] Persistence to the Data Windows. Of course they need to be
+"recycled".
+* Added: [Debug] Shortcuts for "Run/Continue", "Inspectors" and "Calling
+Stack". The first could need to be exchanged with SDG shortcut, not sure.
+The other two are the same used in RHIDE.
+
 Revision 1.570  2004/08/10 19:56:45  set
 * Added: [Debug] A dialog asking for the file location when it couldn't be
 located in the current path for sources. It have a similar behavior to what

@@ -536,6 +536,7 @@ void HTMLPrep(char *s,FILE *f)
  fputs(s,f);
  #undef r
  #undef s
+ #undef c
 }
 
 void ReplaceEndTable(char *b, FILE *f)
@@ -1243,14 +1244,31 @@ void GenerateTX3(void)
        break;
     s=bl;
     #define t(x) if (strncmp(s,"@"#x,sizeof(#x))==0) fputs("@"#x"-\n",fo); else
-    t(format)
-    t(example)
-    t(smallexample)
-    t(display)
-    t(quotation)
-    t(menu)
+    #define c(x) if (strncmp(s,x,sizeof(x)-1)==0)
+    c("@format")
+       fputs("@exdent <pre>@*\n@format\n",fo);
+    else c("@end-format")
+       fputs("@end format\n@exdent </pre>@*\n@*\n",fo);
+    else c("@display")
+       fputs("@exdent <pre>@*\n@display\n",fo);
+    else c("@end-display")
+       fputs("@end display\n@exdent </pre>@*\n@*\n",fo);
+    else c("@example")
+       fputs("@exdent <pre>@*\n@example\n",fo);
+    else c("@end-example")
+       fputs("@end example\n@exdent </pre>@*\n@*\n",fo);
+    else c("@smallexample")
+       fputs("@exdent <pre>@*\n@smallexample\n",fo);
+    else c("@end-smallexample")
+       fputs("@end smallexample\n@exdent </pre>@*\n@*\n",fo);
+    else c("@quotation")
+       fputs("@exdent <blockquote>@*\n@quotation\n",fo);
+    else c("@end-quotation")
+       fputs("@end quotation\n@exdent </blockquote>@*\n@*\n",fo);
+    else t(menu)
     fputs(s,fo);
     #undef t
+    #undef c
    }
  while(!feof(fi));
  fclose(fo);

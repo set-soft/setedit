@@ -1,9 +1,9 @@
 @c  rhidemac.txi: -*- Texinfo -*-
 
 @c -------------------------------------------------------------------------
-@c
+@c .
 @c Macros for making RHIDE documentation in TeX and INFO format.
-@c
+@c .
 @iftex
 @immediate@write17{-------------------------------------------------------------------}
 @immediate@write17{---------IGNORE THE FOLLOWING ERROR ABOUT THE INVALID CHARACTER----}
@@ -12,15 +12,15 @@
 @end iftex
 @c Author: Robert H”hne (robert.hoehne@gmx.net)
 @c         November 1996.
-@c
+@c .
 @c Derived from 'faqmacros.txi', which is part of DJGPP FAQ written
 @c by Eli Eli Zaretskii (eliz@is.elta.co.il)
-@c
+@c .
 @c Many ideas taken from files `multifmt.texi' and html.texi'
 @c written by Brian J. Fox and distributed with GNU Texinfo archive:
-@c
+@c .
 @c Author: Brian J. Fox  (bfox@ua.com)	       Sun Apr  2 07:56:23 1995.
-@c
+@c .
 @c -------------------------------------------------------------------------
 
 
@@ -36,11 +36,11 @@
 @macro htmlauthor{line}
 @end macro
 
-@macro anchor{text, link}
+@macro anchor-{text, link}
 \text\, \link\
 @end macro
 
-@macro TeX
+@macro TeX-
 @TeX{}
 @end macro
 
@@ -113,3 +113,4 @@ see @ref{\node\,\desc\,\title\,\file\,documentation for \doc\}
 @macro extref{node, desc, file, title, url}
 see @ref{\node\,\desc\,,\file\,\title\},
 @end macro
+
