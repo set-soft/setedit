@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.383  2003/05/21 21:13:45  set
+* Fixed: Wrong dependencies for genimk and extrimk again! Hope this time
+they are ok. Reported by Kevin.
+
 Revision 1.382  2003/05/21 20:34:08  set
 * Fixed: A lot of pointer casts to compile for 64 bits processors. The code
 compiles for Itanium but isn't stable.
