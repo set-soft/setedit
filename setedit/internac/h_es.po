@@ -1,0 +1,16 @@
+# Este es el archivo de traducci¢n a espa¤ol.
+# Copyright (C) 2001 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: setedit 0.4.49\n"
+"PO-Revision-Date: 2001-09-25 22:45-0300\n"
+"Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
+"Language-Team: Spanish <set@ieee.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP850\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
