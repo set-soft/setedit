@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.229  2002/11/08 12:42:45  set
+* Added: Some keywords to HTML syntax highlight.
+
 Revision 1.228  2002/11/08 12:40:44  set
 * Added: A very limited XML syntax highlight, I'm trying to learn about it
 so it currently highlights what I know ;-)

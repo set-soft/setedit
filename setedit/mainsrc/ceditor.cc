@@ -5577,7 +5577,7 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
        if (*inEditPtr=='\t') // Is over a Tab?
           curPos.x=LineWidth(bufEdit,inEditPtr);
        *inEditPtr++=cVal;
-       //restCharsInLine--; Why?!
+       restCharsInLine--; // Why?!, if we advance a char we have one less in the line
        //return;
       }
     else
@@ -8561,7 +8561,7 @@ int TCEditor::AdjustBufEditFor(int lar)
   Computes inEditPtr value for the current curPos.x value.
 ***************************************************************************/
 
-int TCEditor::ComputeXLineInEdition()
+int TCEditor::ComputeXLineInEdition(Boolean alsoRestChars)
 {
  int i;
  // Calculate the position inside the buffer
@@ -8572,6 +8572,8 @@ int TCEditor::ComputeXLineInEdition()
     }
  if (i>curPos.x) // Only when the cursor is over a tab
     inEditPtr--;
+ if (alsoRestChars)
+    for (restCharsInLine=0; inEditPtr[restCharsInLine]; restCharsInLine++);
  return i;
 }
 
@@ -11430,7 +11432,7 @@ void TCEditor::undoOneAction()
                  InsertCharInLine(un.s2.s[i],False);
             }
             MoveCursorTo(un.X,un.Y);
-            ComputeXLineInEdition();
+            ComputeXLineInEdition(True);
             update(ufLine);
             break;
 
