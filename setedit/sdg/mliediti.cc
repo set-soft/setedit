@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #include <ctype.h>
@@ -9,6 +9,7 @@
 #define Uses_TMLIArraySimple
 #define Uses_TLispVar
 #include <mli.h>
+#include <edmsg.h>
 
 int   MLIEditorError;
 char *MLIEditorTypeError;
@@ -45,7 +46,7 @@ void DeInitLispEditor(void)
  Interpreter=0;
 }
 
-char *InterpretLispEditor(char *s)
+char *InterpretLispEditor(char *s, Boolean print)
 {
  if (!okInit)
    {
@@ -54,6 +55,7 @@ char *InterpretLispEditor(char *s)
     return NULL;
    }
 
+ Interpreter->Error=0;
  TLispVar *val=Interpreter->Interpret(s);
 
  if (!val)
@@ -65,7 +67,16 @@ char *InterpretLispEditor(char *s)
     return NULL;
    }
  else
+   {
+    if (print)
+      {
+       char *v=val->toStr();
+       EdShowMessage(_("Return value:"),True);
+       EdShowMessage(v);
+       delete[] v;
+      }
     destroyFloatVar(val);
+   }
 
  return Interpreter->EndCode+1;
 }

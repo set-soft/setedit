@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -112,6 +112,13 @@ int TLispString::print(FILE *f)
  return len;
 }
 
+char *TLispString::toStr()
+{
+ char *ret=new char[len+1];
+ strcpy(ret,str);
+ return ret;
+}
+
 TLispString::~TLispString()
 {
  if (flags & StrOwner)
@@ -149,15 +156,31 @@ int TLispInteger::print(FILE *s)
  return fprintf(s,"%d",val);
 }
 
+char *TLispInteger::toStr()
+{
+ char *ret=new char[sizeof(int)*3];
+ sprintf(ret,"%d",val);
+ return ret;
+}
+
 TLispCommand::TLispCommand(Command c)
 {
  command=c;
  type=MLITypeCommand;
 }
 
+const char ErrorPrCommand[]=" ERROR: Command printed ";
+
 int TLispCommand::print(FILE *s)
 {
- return fprintf(s," ERROR: Command printed ");
+ return fprintf(s,ErrorPrCommand);
+}
+
+char *TLispCommand::toStr()
+{
+ char *ret=new char[sizeof(ErrorPrCommand)];
+ strcpy(ret,ErrorPrCommand);
+ return ret;
 }
 
 TLispVariable::~TLispVariable()
@@ -177,6 +200,11 @@ TLispVariable::TLispVariable(char *v, TLispVar *o)
 int TLispVariable::print(FILE *s)
 {
  return val->print(s);
+}
+
+char *TLispVariable::toStr()
+{
+ return val->toStr();
 }
 
 int TLispVariableCol::compare(void *s1,void *s2)
@@ -210,6 +238,16 @@ int TLispCode::print(FILE *s)
  *end=v;
  return end-start;
 }
+
+char *TLispCode::toStr()
+{
+ int l=end-start;
+ char *ret=new char[l+1];
+ strncpy(ret,start,l);
+ ret[l]=0;
+ return ret;
+}
+
 /********************************** End Lisp Objects *********************************/
 
 void MLIBasePrint(TMLIBase *o,int start ,int cant)
@@ -734,7 +772,7 @@ DecFun(MLIBaseOrB)
  MLIRetInt(value);
 }
 
-DecFun(MLIBaseNot)
+DecFun(MLIBaseNotB)
 {
  LocVar(value);
 
@@ -742,6 +780,19 @@ DecFun(MLIBaseNot)
  GetVar(0,value);
 
  MLIRetInt(~o->MLIBooleanValOf(value));
+
+CleanUp:
+ destroyFloatVar(value);
+}
+
+DecFun(MLIBaseNot)
+{
+ LocVar(value);
+
+ CheckNumParams(cant!=1);
+ GetVar(0,value);
+
+ MLIRetInt(o->MLIBooleanValOf(value) ? 0 : 1);
 
 CleanUp:
  destroyFloatVar(value);
@@ -814,7 +865,8 @@ char *TMLIBase::sNames[MLIBaseSymbols]=
  "+",
  "&",
  "|",
- "-"
+ "-",
+ "~"
 };
 
 Command TMLIBase::sComms[MLIBaseSymbols]=
@@ -822,7 +874,8 @@ Command TMLIBase::sComms[MLIBaseSymbols]=
  MLIBaseAdd,
  MLIBaseAndB,
  MLIBaseOrB,
- MLIBaseSub
+ MLIBaseSub,
+ MLIBaseNotB
 };
 
 TLispConstString CRConstant("\r\n",2,0,2);
@@ -1073,7 +1126,7 @@ TLispVar *TMLIBase::Interpret(char *s)
                  }
               }
             else
-            if (ucisdigit(*Code))
+            if ((*Code=='-' && ucisdigit(Code[1])) || ucisdigit(*Code))
               {
                if (Commands==0)
                  {

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIEditorDefs) && !defined(__TMLIEditorDefs__)
 #define __TMLIEditorDefs__
@@ -6,7 +6,7 @@ class TNoCaseStringCollection;
 
 extern int   InitLispEditor(void);
 extern void  DeInitLispEditor(void);
-extern char *InterpretLispEditor(char *s);
+extern char *InterpretLispEditor(char *s, Boolean print=False);
 extern int   ChooseAndRunLispEditor(void);
 extern int   InterpretLispEditorFile(char *s);
 extern int   ReRunLastChooseLispEditor(void);
