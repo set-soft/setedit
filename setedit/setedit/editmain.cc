@@ -896,7 +896,8 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeSetScreenOps:
-              SetScreenOps();
+              //SetScreenOps();
+              ScreenOptions();
               break;
 
          case cmeEditPalette:

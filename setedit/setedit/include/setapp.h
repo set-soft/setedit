@@ -108,9 +108,53 @@ class TDeskTopClock;
 class TDskWinHelp;
 class TApplication;
 class TCEditWindow;
+class TVFontCollection;
 struct EditorResume;
+struct TScreenFont256;
+struct TVBitmapFontSize;
 
 const int extscrsParMxLen=80;
+
+struct stScreenOptions
+{
+ // Encoding options
+ // !=0 if the encoding is forced. App=Application, Scr=Screen, Snd=Second Font
+ // Inp=Input.
+ uchar enForceApp, enForceScr, enForceSnd, enForceInp;
+ // Which encoding is used, -1 means default one.
+ int   enApp, enScr, enSnd, enInp;
+
+ // Fonts options
+ // Which the user wants to loaded (Pri=Primary, Sec=Secondary)
+ uchar foPriLoad, foSecLoad;
+ // Names of the fonts
+ char *foPriName, *foSecName;
+ // Names of the font files
+ char *foPriFile, *foSecFile;
+ // Size of the primary (secondary must be of the same size)
+ unsigned foPriW,foPriH;
+ // The following are only valid at run-time
+ // Which one is really loaded
+ uchar foPriLoaded, foSecLoaded;
+ // Font callback installed
+ uchar foCallBackSet;
+ // Font collections
+ TVFontCollection *foPri, *foSec;
+
+ // Screen size options
+ // Behavior (set mode, use last resolution, etc.)
+ uint32 scOptions;
+ // Desired size
+ unsigned scWidth, scHeight;
+ // Desired char cell size
+ unsigned scCharWidth, scCharHeight;
+ // Video mode
+ unsigned scModeNumber;
+ // External program
+ char *scCommand;
+};
+
+const uint32 scfDontForce=0, scfSameLast=1, scfExternal=2, scfForced=3, scfMode=4;
 
 class TSetEditorApp : public TApplication
 {
@@ -139,6 +183,15 @@ public:
     void GetContextHelp(void);
     void pocketCalculator(void);
     void RemapCodePageEd(void);
+    // Screen options routines
+    static void EncodingOptions(void);
+    static void FontsOptions(void);
+    static void ScreenOptions(void);
+    static void SetEditorFontsEncoding(int priChanged, int enPri, int sndChanged, int enSec);
+    static TScreenFont256 *FontRequestCallBack(int which, unsigned w, unsigned h);
+    static void SetEditorFonts(uchar priUse, char *priName, char *priFile,
+                               TVBitmapFontSize *priSize,
+                               uchar secUse, char *secName, char *secFile);
 
     unsigned long deskTopVersion;
 
@@ -150,6 +203,7 @@ public:
     static int  screenSaverTime;
     static int  screenSaverTimeMouse;
     static char ExternalPrgMode[80];
+    static struct stScreenOptions so;
     void KillClock();
 
     void   ShowHelpTopic(char *file, char *node);
@@ -206,8 +260,9 @@ extern int  AboutStartBox(void);
 extern void FullAboutBox(void);
 extern void ShowUserScreenDialog();
 extern int  ChooseConvCPs(int &from, int &to, uint32 &ops);
-extern void EncodingOptions(void);
+/*extern void EncodingOptions(void);
 extern void FontsOptions(void);
+extern void ScreenOptions(void);*/
 class TDskWinMan;
 extern TDskWinMan *ManPageView(const char *name); // From dskman.cc
 #endif
