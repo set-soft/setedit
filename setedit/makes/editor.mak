@@ -83,7 +83,7 @@ OBJFILES=obj/accehtml.o obj/advice.o obj/ampdiag.o obj/intermp3.o\
 	obj/ndskwmes.o obj/ndskwmp3.o obj/ndskwprj.o obj/neditwin.o\
 	obj/nfileedi.o obj/nsindica.o obj/ntedcol.o obj/parser.o\
 	obj/pathlist.o obj/pathtool.o obj/pclipper.o obj/pmacros.o\
-	obj/pperl.o obj/pvarious.o obj/runprog.o obj/sceditor.o\
+	obj/pperl.o obj/pphp.o obj/pvarious.o obj/runprog.o obj/sceditor.o\
 	obj/scresave.o obj/sdginter.o obj/sdskasci.o obj/sdskcale.o\
 	obj/sdskclip.o obj/sdskclos.o obj/sdskedit.o obj/sdskhelp.o\
 	obj/sdskman.o obj/sdskmess.o obj/sdskmp3.o obj/sdskprj.o\
@@ -122,7 +122,7 @@ ALL_OBJFILES=obj/accehtml.o obj/advice.o obj/ampdiag.o obj/intermp3.o\
 	obj/ndskwedi.o obj/ndskwhel.o obj/ndskwman.o obj/ndskwmes.o\
 	obj/ndskwmp3.o obj/ndskwprj.o obj/neditwin.o obj/nfileedi.o\
 	obj/nsindica.o obj/ntedcol.o obj/parser.o obj/pathlist.o\
-	obj/pathtool.o obj/pclipper.o obj/pmacros.o obj/pperl.o\
+	obj/pathtool.o obj/pclipper.o obj/pmacros.o obj/pperl.o obj/pphp.o\
 	obj/pvarious.o obj/runprog.o obj/sceditor.o obj/scresave.o\
 	obj/sdginter.o obj/sdskasci.o obj/sdskcale.o obj/sdskclip.o\
 	obj/sdskclos.o obj/sdskedit.o obj/sdskhelp.o obj/sdskman.o\
@@ -142,7 +142,7 @@ SOURCE_NAME=$<
 OUTFILE=$@
 SPECIAL_CFLAGS=
 SPECIAL_LDFLAGS=
-PROG_ARGS=-d 3 --no-redirect --no-mouse-hook -S --stack-dbg=0
+PROG_ARGS=--no-redirect --no-mouse-hook -S --stack-dbg=0
 SRC_DIRS=../mainsrc ../names ../streams ../setedit ../setedit/names\
 	../setedit/streams ../infview ../sdg ../settvuti ../extra ../mp3\
 	../include ../infview/include ../calcu\
@@ -166,12 +166,12 @@ PROJECT_ITEMS=accehtml.cc advice.cc amp3.gpr ascii.cc boardmix.cc bufun.cc\
 	ndskwcal.cc ndskwcli.cc ndskwclo.cc ndskwedi.cc ndskwhel.cc\
 	ndskwman.cc ndskwmes.cc ndskwmp3.cc ndskwprj.cc neditwin.cc\
 	nfileedi.cc nsindica.cc ntedcol.cc parser.c pathlist.cc pathtool.cc\
-	pclipper.cc pmacros.cc pperl.cc pvarious.cc runprog.cc sceditor.cc\
-	scresave.cc sdginter.cc sdskasci.cc sdskcale.cc sdskclip.cc\
-	sdskclos.cc sdskedit.cc sdskhelp.cc sdskman.cc sdskmess.cc\
-	sdskmp3.cc sdskprj.cc search.cc sedcolle.cc settv.gpr slpinter.cc\
-	splinman.cc ssindica.cc ssyntax.cc tedcolle.cc tips.cc tpaltext.cc\
-	tsindica.cc txhgen.cc winlistd.cc
+	pclipper.cc pmacros.cc pperl.cc pphp.cc pvarious.cc runprog.cc\
+	sceditor.cc scresave.cc sdginter.cc sdskasci.cc sdskcale.cc\
+	sdskclip.cc sdskclos.cc sdskedit.cc sdskhelp.cc sdskman.cc\
+	sdskmess.cc sdskmp3.cc sdskprj.cc search.cc sedcolle.cc settv.gpr\
+	slpinter.cc splinman.cc ssindica.cc ssyntax.cc tedcolle.cc tips.cc\
+	tpaltext.cc tsindica.cc txhgen.cc winlistd.cc
 DEFAULT_MASK=*
 RHIDE_BIN_DIR=/usr/bin
 PASCAL_TYPE=GPC
@@ -498,7 +498,7 @@ DEPS_0= obj/accehtml.o obj/advice.o obj/ampdiag.o obj/intermp3.o\
 	obj/ndskwmes.o obj/ndskwmp3.o obj/ndskwprj.o obj/neditwin.o\
 	obj/nfileedi.o obj/nsindica.o obj/ntedcol.o obj/parser.o\
 	obj/pathlist.o obj/pathtool.o obj/pclipper.o obj/pmacros.o\
-	obj/pperl.o obj/pvarious.o obj/runprog.o obj/sceditor.o\
+	obj/pperl.o obj/pphp.o obj/pvarious.o obj/runprog.o obj/sceditor.o\
 	obj/scresave.o obj/sdginter.o obj/sdskasci.o obj/sdskcale.o\
 	obj/sdskclip.o obj/sdskclos.o obj/sdskedit.o obj/sdskhelp.o\
 	obj/sdskman.o obj/sdskmess.o obj/sdskmp3.o obj/sdskprj.o\
@@ -2977,7 +2977,10 @@ obj/pmacros.o:: $(DEPS_85)
 DEPS_86=pperl.cc ../include/bufun.h
 obj/pperl.o:: $(DEPS_86)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_87=pvarious.cc ../include/bufun.h ../../tvision/include/compatlayer.h\
+DEPS_87=pphp.cc
+obj/pphp.o:: $(DEPS_87)
+	$(RHIDE_COMPILE.cc.o)
+DEPS_88=pvarious.cc ../include/bufun.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/codepage.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -2988,9 +2991,9 @@ DEPS_87=pvarious.cc ../include/bufun.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/pvarious.o:: $(DEPS_87)
+obj/pvarious.o:: $(DEPS_88)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_88=runprog.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_89=runprog.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tsinplin.h ../easydiag/tslabel.h\
 	../easydiag/tslistbo.h ../easydiag/tssortlb.h\
 	../easydiag/tssortva.h ../easydiag/tsvegrp.h ../easydiag/tsview.h\
@@ -3043,9 +3046,9 @@ DEPS_88=runprog.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/runprog.o:: $(DEPS_88)
+obj/runprog.o:: $(DEPS_89)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_89=sceditor.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_90=sceditor.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditint.h ../include/ceditor.h ../include/configed.h\
 	../include/pmcoll.h ../include/sindicat.h ../include/tvsetuti.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
@@ -3079,9 +3082,9 @@ DEPS_89=sceditor.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sceditor.o:: $(DEPS_89)
+obj/sceditor.o:: $(DEPS_90)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_90=scresave.cc ../extra/dyncat.h ../include/ced_clas.h\
+DEPS_91=scresave.cc ../extra/dyncat.h ../include/ced_clas.h\
 	../include/ced_exte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pathtool.h ../include/pmcoll.h\
 	../include/runprog.h ../include/sindicat.h ../include/tvsetuti.h\
@@ -3122,9 +3125,9 @@ DEPS_90=scresave.cc ../extra/dyncat.h ../include/ced_clas.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/scresave.o:: $(DEPS_90)
+obj/scresave.o:: $(DEPS_91)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_91=sdginter.cc ../include/ceditint.h ../include/configed.h\
+DEPS_92=sdginter.cc ../include/ceditint.h ../include/configed.h\
 	../include/edmsg.h ../sdg/include/mli.h ../sdg/include/mlisdgi.h\
 	../sdg/include/txhgen.h ../setedit/include/setapp.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
@@ -3156,9 +3159,9 @@ DEPS_91=sdginter.cc ../include/ceditint.h ../include/configed.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h
-obj/sdginter.o:: $(DEPS_91)
+obj/sdginter.o:: $(DEPS_92)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_92=sdskasci.cc ../setedit/include/dskascii.h\
+DEPS_93=sdskasci.cc ../setedit/include/dskascii.h\
 	../setedit/include/dskwin.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -3172,9 +3175,9 @@ DEPS_92=sdskasci.cc ../setedit/include/dskascii.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/sdskasci.o:: $(DEPS_92)
+obj/sdskasci.o:: $(DEPS_93)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_93=sdskcale.cc ../setedit/include/dskcalen.h\
+DEPS_94=sdskcale.cc ../setedit/include/dskcalen.h\
 	../setedit/include/dskwin.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -3188,9 +3191,9 @@ DEPS_93=sdskcale.cc ../setedit/include/dskcalen.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/sdskcale.o:: $(DEPS_93)
+obj/sdskcale.o:: $(DEPS_94)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_94=sdskclip.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_95=sdskclip.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskclip.h\
 	../setedit/include/dskwin.h ../settvuti/include/sarray.h\
@@ -3224,9 +3227,9 @@ DEPS_94=sdskclip.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskclip.o:: $(DEPS_94)
+obj/sdskclip.o:: $(DEPS_95)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_95=sdskclos.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_96=sdskclos.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskclose.h\
 	../setedit/include/dskwin.h ../settvuti/include/sarray.h\
@@ -3260,9 +3263,9 @@ DEPS_95=sdskclos.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskclos.o:: $(DEPS_95)
+obj/sdskclos.o:: $(DEPS_96)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_96=sdskedit.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_97=sdskedit.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskedito.h\
 	../setedit/include/dskwin.h ../settvuti/include/sarray.h\
@@ -3296,9 +3299,9 @@ DEPS_96=sdskedit.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskedit.o:: $(DEPS_96)
+obj/sdskedit.o:: $(DEPS_97)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_97=sdskhelp.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_98=sdskhelp.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../infview/include/inf.h\
 	../infview/include/infbase.h ../infview/include/infbaser.h\
@@ -3339,9 +3342,9 @@ DEPS_97=sdskhelp.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskhelp.o:: $(DEPS_97)
+obj/sdskhelp.o:: $(DEPS_98)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_98=sdskman.cc ../setedit/include/dskman.h ../setedit/include/dskwin.h\
+DEPS_99=sdskman.cc ../setedit/include/dskman.h ../setedit/include/dskwin.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -3355,9 +3358,9 @@ DEPS_98=sdskman.cc ../setedit/include/dskman.h ../setedit/include/dskwin.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/sdskman.o:: $(DEPS_98)
+obj/sdskman.o:: $(DEPS_99)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_99=sdskmess.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_100=sdskmess.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskmessa.h\
 	../setedit/include/dskwin.h ../settvuti/include/sarray.h\
@@ -3391,9 +3394,9 @@ DEPS_99=sdskmess.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskmess.o:: $(DEPS_99)
+obj/sdskmess.o:: $(DEPS_100)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_100=sdskmp3.cc ../setedit/include/dskmp3.h ../setedit/include/dskwin.h\
+DEPS_101=sdskmp3.cc ../setedit/include/dskmp3.h ../setedit/include/dskwin.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -3407,9 +3410,9 @@ DEPS_100=sdskmp3.cc ../setedit/include/dskmp3.h ../setedit/include/dskwin.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/sdskmp3.o:: $(DEPS_100)
+obj/sdskmp3.o:: $(DEPS_101)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_101=sdskprj.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_102=sdskprj.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskprj.h\
 	../setedit/include/dskwin.h ../settvuti/include/sarray.h\
@@ -3443,9 +3446,9 @@ DEPS_101=sdskprj.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sdskprj.o:: $(DEPS_101)
+obj/sdskprj.o:: $(DEPS_102)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_102=search.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_103=search.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ced_inte.h ../include/ceditint.h ../include/ceditor.h\
 	../include/configed.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../settvuti/include/sarray.h\
@@ -3478,9 +3481,9 @@ DEPS_102=search.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/yes_mss.h
-obj/search.o:: $(DEPS_102)
+obj/search.o:: $(DEPS_103)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_103=sedcolle.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_104=sedcolle.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../setedit/include/dskwin.h\
 	../setedit/include/edcollec.h ../settvuti/include/sarray.h\
@@ -3517,16 +3520,16 @@ DEPS_103=sedcolle.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/sedcolle.o:: $(DEPS_103)
+obj/sedcolle.o:: $(DEPS_104)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_104=
+DEPS_105=
 .PHONY: settv.gpr.force
 all:: settv.gpr.force
 settv.gpr.force:
 	$(MAKE) -f settv.mak $(FLAGS_FOR_SUBPROJECTS)
 clean::
 	
-DEPS_105=slpinter.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_106=slpinter.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tsinplpi.h ../easydiag/tslabel.h\
 	../easydiag/tsview.h ../easydiag/tsviewco.h ../include/ced_clas.h\
 	../include/ced_coma.h ../include/ced_exte.h ../include/ceditint.h\
@@ -3577,9 +3580,9 @@ DEPS_105=slpinter.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/slpinter.o:: $(DEPS_105)
+obj/slpinter.o:: $(DEPS_106)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_106=splinman.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_107=splinman.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ced_inte.h ../include/ceditor.h ../include/pmcoll.h\
 	../include/sindicat.h ../include/splinman.h ../include/tvsetuti.h\
 	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
@@ -3610,9 +3613,9 @@ DEPS_106=splinman.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/yes_mss.h
-obj/splinman.o:: $(DEPS_106)
+obj/splinman.o:: $(DEPS_107)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_107=ssindica.cc ../include/ceditor.h ../include/sindicat.h\
+DEPS_108=ssindica.cc ../include/ceditor.h ../include/sindicat.h\
 	../include/tvsetuti.h ../settvuti/include/settvuti.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h\
@@ -3632,9 +3635,9 @@ DEPS_107=ssindica.cc ../include/ceditor.h ../include/sindicat.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
-obj/ssindica.o:: $(DEPS_107)
+obj/ssindica.o:: $(DEPS_108)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_108=ssyntax.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_109=ssyntax.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tsinplin.h ../easydiag/tslabel.h\
 	../easydiag/tslistbo.h ../easydiag/tssortva.h\
 	../easydiag/tstsorlb.h ../easydiag/tsvegrp.h ../easydiag/tsview.h\
@@ -3687,9 +3690,9 @@ DEPS_108=ssyntax.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/ssyntax.o:: $(DEPS_108)
+obj/ssyntax.o:: $(DEPS_109)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_109=tedcolle.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_110=tedcolle.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tslistbo.h ../easydiag/tssortlb.h\
 	../easydiag/tssortva.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
 	../include/ced_clas.h ../include/ced_coma.h ../include/ced_exte.h\
@@ -3738,9 +3741,9 @@ DEPS_109=tedcolle.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/tedcolle.o:: $(DEPS_109)
+obj/tedcolle.o:: $(DEPS_110)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_110=tips.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_111=tips.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tshzgrp.h ../easydiag/tslabel.h\
 	../easydiag/tsradbot.h ../easydiag/tstextsc.h ../easydiag/tsview.h\
 	../easydiag/tsviewco.h ../easydiag/ttextscr.h ../include/ceditint.h\
@@ -3785,9 +3788,9 @@ DEPS_110=tips.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/tips.o:: $(DEPS_110)
+obj/tips.o:: $(DEPS_111)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_111=tpaltext.cc ../setedit/include/tpaltext.h\
+DEPS_112=tpaltext.cc ../setedit/include/tpaltext.h\
 	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/fpbase.h\
@@ -3802,9 +3805,9 @@ DEPS_111=tpaltext.cc ../setedit/include/tpaltext.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
-obj/tpaltext.o:: $(DEPS_111)
+obj/tpaltext.o:: $(DEPS_112)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_112=tsindica.cc ../include/ced_clas.h ../include/ced_exte.h\
+DEPS_113=tsindica.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
 	../include/tvsetuti.h ../settvuti/include/sarray.h\
 	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
@@ -3836,9 +3839,9 @@ DEPS_112=tsindica.cc ../include/ced_clas.h ../include/ced_exte.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/yes_mss.h
-obj/tsindica.o:: $(DEPS_112)
+obj/tsindica.o:: $(DEPS_113)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_113=txhgen.cc ../include/bufun.h ../librhuti/rhutils.h\
+DEPS_114=txhgen.cc ../include/bufun.h ../librhuti/rhutils.h\
 	../sdg/include/mli.h ../sdg/include/mlisdgi.h\
 	../sdg/include/txhgen.h ../settvuti/include/setstack.h\
 	../settvuti/include/settvuti.h ../settvuti/include/tnocastc.h\
@@ -3864,9 +3867,9 @@ DEPS_113=txhgen.cc ../include/bufun.h ../librhuti/rhutils.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h
-obj/txhgen.o:: $(DEPS_113)
+obj/txhgen.o:: $(DEPS_114)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_114=winlistd.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+DEPS_115=winlistd.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../easydiag/tsbutton.h ../easydiag/tshzgrp.h ../easydiag/tslistbo.h\
 	../easydiag/tssortva.h ../easydiag/tsview.h ../easydiag/tsviewco.h\
 	../include/ced_clas.h ../include/ced_exte.h ../include/ceditor.h\
@@ -3915,6 +3918,6 @@ DEPS_114=winlistd.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
 	../../tvision/include/tv/yes_mss.h
-obj/winlistd.o:: $(DEPS_114)
+obj/winlistd.o:: $(DEPS_115)
 	$(RHIDE_COMPILE.cc.o)
 all:: editor.exe
