@@ -711,7 +711,7 @@ int ConfirmValues()
          strs->insert(_("  For djgpp programmers"));
          break;
    }
- strs->insert("");
+ strs->insert((void *)"");
  lines+=3;
 
  strs->insert(_(cDestinationDir));
@@ -719,7 +719,7 @@ int ConfirmValues()
  strcpy(dp,"  ");
  strcat(dp,Destination);
  strs->insert(dp);
- strs->insert("");
+ strs->insert((void *)"");
  lines+=2;
 
  strs->insert(_(cMiscOps));
@@ -1020,7 +1020,7 @@ int DoRegexSearch(char *search, int len)
 void ReleaseRegex()
 {
  delete []PCREMatchs;
- delete CompiledPCRE;
+ delete (char *)CompiledPCRE;
 }
 
 char *SearchPATH(char *text, long len)
