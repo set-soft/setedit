@@ -5,4 +5,4 @@
 @del configure.cache
 @set CFLAGS=-O2 -Wall -Werror -gstabs+3
 @set CXXFLAGS=-O2 -Wall -Werror -gstabs+3 -fno-exceptions -fno-rtti
-@configure.bat "--Xcppflags=-O3 -fomit-frame-pointer -ffast-math -fno-exceptions -fno-rtti" --shipped-intl
+@configure.bat "--Xcppflags=-O3 -fomit-frame-pointer -ffast-math -fno-exceptions -fno-rtti" --shipped-intl --no-prefix-h
