@@ -1,4 +1,8 @@
 $Log$
+Revision 1.39  2002/01/29 17:39:08  set
+* Fixed: asm51.pmc and html.frt wasn't marked as files that must be
+converted to native EOL by fromdos/unix scripts.
+
 Revision 1.38  2002/01/29 04:38:07  terrible
 * Updated: Debian packaging to the "Brothers of Argentina have problems, I
   hope they can get through it soon!" release version 0.4.54-1.
@@ -2838,7 +2842,7 @@ editor selects the shl also enables/disables some local options related to
 this shl. All of this is stored in an easy-to-edit text file, but also you
 can edit it with nice dialogs ;-). Is documented and pressing F1 explains
 how it works.
-.
+
 Revision 1.150  1999/07/11 14:16:08  set
 * New! now you can define your own reserved words (user words) using dialogs
 or just editing a text file.

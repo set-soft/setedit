@@ -308,7 +308,8 @@ else
    foreach $i (@files)
      {
       chop($i);
-      next if ($i =~ /libamp\//);
+      # Exclude libamp
+      #next if ($i =~ /libamp\//);
       $a=substr($i,0,1);
       if (($a eq '-') or ($a eq '+') or ($a eq '*'))
         {
