@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdlib
@@ -96,7 +96,7 @@ typedef struct
  uint32 ops;
 } GrepBox;
 // empty,empty,Pattern box,Basic reg.,search in project,ignore case
-GrepBox box={"","*.[ch]*",".",0,0,2,0,1};
+static GrepBox box={"","*.[ch]*",".",0,0,2,0,1};
 
 const int Col1=1,Col2=40,End1=39,End2=72;
 

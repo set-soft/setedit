@@ -1,4 +1,8 @@
 $Log$
+Revision 1.48  2002/02/04 15:23:29  set
+* Fixed: The use of tmpnam and mktemp is currently deprecated so I changed
+it to use mkstemp. Pointed out by Andris (last Linux tools reports it).
+
 Revision 1.47  2002/02/04 14:16:54  set
 * Fixed: compilation problems with gcc 3.0.x in mixoss.c. Patch by Andris.
 
@@ -1067,7 +1071,7 @@ that could be left by an old version package in the directory where the
 distribution is created.
 * Fixed: The arrangements in the order that main initializes things
 affected the SET_FILES error report (made invisible).
-.
+
 Revision 1.395  2001/09/15 21:56:37  set
 * Fixed: If none file was loaded with syntax highlight pressing Atl+F2
 generated a SIGSEGV. Reported by Grzegorz.
