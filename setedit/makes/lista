@@ -562,6 +562,10 @@ names/nsindica.cc
 names/ntedcol.cc
 *policy.txt
 *README
++redhat/config-rpm.sh
++redhat/create-dirs.sh
+redhat/README
+redhat/setedit.spec.in
 scrnsave/Makefile
 scrnsave/copying
 scrnsave/extrscsv.txt

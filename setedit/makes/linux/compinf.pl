@@ -150,9 +150,10 @@ $deLocale =$deLocale1.'/LC_MESSAGES';
 
 $baseFHS=$base;
 $baseFHS.='/share' if $useFHS;
-$doc_dir1=$baseFHS.'/doc';
-$doc_dir1=$base.'/share/doc' if ($os=~/FreeBSD/ && !$useFHS);
-$doc_dir=$doc_dir1.'/infview';
+$doc_dir0=$baseFHS;
+$doc_dir0.='/share' if ($os=~/FreeBSD/ && !$useFHS);
+$doc_dir1=$doc_dir0.'/doc';
+$doc_dir =$doc_dir1.'/infview';
 $man_dir1=$baseFHS.'/man';
 $man_dir=$man_dir1.'/man1';
 $inf_dir=$baseFHS.'/info';
@@ -163,6 +164,7 @@ $bin_dir,
 $cfg_dir1,
 $cfg_dir,
 $inf_dir,
+$doc_dir0,
 $doc_dir1,
 $doc_dir,
 $man_dir1,

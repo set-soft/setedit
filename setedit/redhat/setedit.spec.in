@@ -1,0 +1,55 @@
+%define name setedit
+%define ver @version@
+%define rel 4
+
+Summary:   A user friendly editor for programmers.
+Name:      %{name}
+Version:   %{ver}
+Release:   %{rel}
+Copyright: GPL
+Packager:  Michel Catudal <bbcat@users.sf.net>
+Vendor:    Salvador Eduardo Tropea <set@users.sf.net>
+Group:     Applications/Editors
+Source:    %{name}-%{ver}.tar.bz2
+URL:       http://setedit.sf.net/
+BuildRoot: %{_tmppath}/%{name}-%{version}-build
+Docdir:    /usr/doc
+Prereq:    /usr/bin/install-info
+
+%description 
+Setedit is a text editor specially designed for programmers. It has a nice
+interface with mouse support, menus and windows (text mode). The editor is a 
+very good choice for people with DOS background, especially people accustomed
+to Worstar and Borland editors. The editor has overlapped windows so you can
+see more than one file at the same time, configurable syntax highlighting,
+macros, rectangular selection, block indentation, as well as customizable 
+keyboard shortcuts and menus.
+
+%prep
+rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_DIR/%{name}-%{ver}
+%setup
+
+%build
+rm -f Makefile
+perl config.pl --libset
+make
+
+%install
+make install prefix=$RPM_BUILD_ROOT/usr all
+
+%post
+
+%preun
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+/usr/bin/*
+/usr/share/*
+/usr/lib/*
+/usr/doc/*
+/usr/man/*
+/usr/info/*

@@ -276,6 +276,8 @@ $conf{'HAVE_MPEGSOUND'}=((@conf{'WITH_MP3'} eq 'yes') && (@conf{'mp3lib'} eq 'mp
                   ? 'yes' : 'no';
 CreateConfigH();
 GenerateMakefile();
+$ReplaceTags{'version'}=$Version;
+ReplaceText('redhat/setedit.spec.in','redhat/setedit-'.$Version.'.spec');
 $ReplaceTags{'TVInclude'}=$TVInclude;
 $ReplaceTags{'cpp_compiler'}=$GXX;
 ReplaceText('doc/gnumake.in','doc/Makefile');
@@ -493,6 +495,10 @@ sub SeeCommandLine
       {
        $conf{'MAINTAINER_MODE'}='yes';
       }
+    elsif ($i eq '--source-bzip2')
+      {
+       $conf{'source-bzip2'}='yes';
+      }
     else
       {
        ShowHelp();
@@ -554,6 +560,9 @@ sub ShowHelp
  print "--debug         : selects C/C++ switches for debugging\n";
  print "--comp-exe      : compress all executables with UPX\n";
  print "--no-comp-exe   : don't compress any executables with UPX\n";
+ # Others
+ print "\nOthers:\n";
+ print "--source-bzip2  : use bzip2 for tarballs\n";
 
  print "\n";
  print "--help          : displays this text.\n";
@@ -1277,10 +1286,16 @@ sub GenerateMakefile
  my $text="# Generated automatically by the configure script";
  my ($libamp,$libset,$infview,$libbzip2,$libmpegsnd,$libz,$libpcre,$libintl);
  my ($installer,$distrib,$compExeEditor,$compExeInfview,$holidays);
+ my $aux;
 
  print "Generating Makefile\n";
 
- $text.="\n\nMPREFIX=$conf{'prefix'}";
+ # Give more priority to "prefix" than hardcoded value
+ $text.="\n\nifneq (\$(strip \$(prefix)),)\n";
+ $text.="  MPREFIX=\$(prefix)\n";
+ $text.="else\n";
+ $text.="  MPREFIX=$conf{'prefix'}\n";
+ $text.="endif";
  $text.="\nlibdir=\$(MPREFIX)/lib";
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
  $text.="\nCXXFLAGS=$conf{'CXXFLAGS'}";
@@ -1462,16 +1477,25 @@ sub GenerateMakefile
  if ($distrib)
    {
     #### Distribution ####
+    $aux='';
+    if (!$compExeEditor || ($conf{'source-bzip2'} eq 'yes'))
+      {
+       $aux='"EXTRA_INS_OPS=';
+       $aux.='--no-compress ' unless $compExeEditor;
+       $aux.='--use-bzip2 '   if $conf{'source-bzip2'} eq 'yes';
+       $aux.='"';
+      }
     # editor
     $text.="\n\ndistrib-editor: needed\n";
-    $text.="\t\$(MAKE) -C makes distrib";
-    $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeEditor);
+    $text.="\t\$(MAKE) -C makes distrib $aux";
+    # just sources
+    $text.="\n\ndistrib-source:\n";
+    $text.="\t\$(MAKE) -C makes distrib-source $aux";
     # infview
     if ($infview)
       {
        $text.="\n\ndistrib-infview: needed\n";
-       $text.="\t\$(MAKE) -C makes distrib-infview";
-       $text.=" EXTRA_INS_OPS=--no-compress" unless ($compExeInfview);
+       $text.="\t\$(MAKE) -C makes distrib-infview $aux";
       }
     # all targets
     $text.="\n\ndistrib: distrib-editor";

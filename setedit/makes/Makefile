@@ -120,6 +120,9 @@ distrib: editor scrnsave
 distrib-infview: infview
 	cd djgpp; perl compinf.pl $(EXTRA_INS_OPS) ; cd ..
 
+distrib-source:
+	cd djgpp; compress.bat --only-source $(EXTRA_INS_OPS) ; cd ..
+
 installer: distrib
 	$(MAKE) -f install.mkf
 	cd ../install; perl create.pl; cd ..
@@ -162,6 +165,9 @@ distrib: editor
    
 distrib-infview: infview
 	cd linux; perl ./compinf.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --fhs $(SET_USE_FHS); cd ..
+
+distrib-source:
+	cd linux; perl ./compress.pl --only-source $(EXTRA_INS_OPS) ; cd ..
 
 install: editor
 	cd linux; perl ./compress.pl $(EXTRA_INS_OPS) --prefix $(inst_prefix) --install --fhs $(SET_USE_FHS); cd ..

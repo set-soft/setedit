@@ -2,7 +2,7 @@
 # Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
-open(FIL,'../../version.txt') || return 0;
+open(FIL,'../../version.txt') || die;
 $version=<FIL>;
 chop($version);
 close(FIL);
@@ -40,6 +40,7 @@ $nextisprefix=0;
 $iMode=0;  # Installation mode
 $iCompressExe=1;
 $Strip=1;
+$OnlySources=0;
 foreach $i (@ARGV)
   {
    if ($nextisprefix)
@@ -62,6 +63,14 @@ foreach $i (@ARGV)
    elsif ($i eq '--no-strip')
      {
       $Strip=0;
+     }
+   elsif ($i eq '--only-source')
+     {
+      $OnlySources=1;
+     }
+   elsif ($i eq '--use-bzip2')
+     {
+      $UseBzip2=1;
      }
    else
      {
@@ -88,6 +97,12 @@ if (!$iMode)
    system('perl confignt.pl');
    chdir('makes/djgpp');
    print "done.\n\n";
+  }
+
+if ($OnlySources)
+  {
+   GenerateSourceDistro();
+   exit 0;
   }
 
 # Create the distribution tree if needed
@@ -313,46 +328,9 @@ else
    
    CopyIfRpl('../../distrib/distrib1.txt',"$result/readme.1st");
    CopyIfRpl('../../distrib/distrib2.txt',"$result/announce.txt");
-      
-   print "\n\nCreating source distribution\n";
-   $srcmft="manifest/edi$version1".'s.mft';
-   $srcver="manifest/edi$version1".'s.ver';
-      
-   chdir('../../../..');
-   
-   open(FIL,'contrib/setedit/makes/lista');
-   @files=<FIL>;
-   close(FIL);
-   $r='';
-   foreach $i (@files)
-     {
-      $a=substr($i,0,1);
-      if (($a eq '-') or ($a eq '+') or ($a eq '*'))
-        {
-         $i=substr($i,1);
-        }
-      $r.='contrib/setedit/'.$i;
-     }
-   open(FIL,'contrib/setedit/makes/listaxtr');
-   @files=<FIL>;
-   close(FIL);
-   foreach $i (@files)
-     {
-      chop($i);
-      $r.=join("\r",glob('contrib/setedit/'.$i))."\r";
-     }
-   $r.="$srcmft\n$srcver\n";
-   replace($srcmft,$r);
-   replace($srcver,"edi".$version1."s SET's editor v$version for DJGPP");
-   
-   
-   # Generate the zip files
-   $srcdist="edi$version1".'s.zip';
-   unlink($srcdist);
-   system("zip -9u $result/$srcdist \@$srcmft");
-   
-   chdir('contrib/setedit/makes/djgpp');
-   
+
+   GenerateSourceDistro();
+
    #############################
    # Change.log in HTML format #
    #############################
@@ -460,5 +438,47 @@ sub Pwd
  $pwd=`sh pwd` unless $pwd;
  chop($pwd);
  return $pwd;
+}
+
+sub GenerateSourceDistro
+{
+ print "\n\nCreating source distribution\n";
+ $srcmft="manifest/edi$version1".'s.mft';
+ $srcver="manifest/edi$version1".'s.ver';
+    
+ chdir('../../../..');
+ 
+ open(FIL,'contrib/setedit/makes/lista');
+ @files=<FIL>;
+ close(FIL);
+ $r='';
+ foreach $i (@files)
+   {
+    $a=substr($i,0,1);
+    if (($a eq '-') or ($a eq '+') or ($a eq '*'))
+      {
+       $i=substr($i,1);
+      }
+    $r.='contrib/setedit/'.$i;
+   }
+ open(FIL,'contrib/setedit/makes/listaxtr');
+ @files=<FIL>;
+ close(FIL);
+ foreach $i (@files)
+   {
+    chop($i);
+    $r.=join("\r",glob('contrib/setedit/'.$i))."\r";
+   }
+ $r.="$srcmft\n$srcver\n";
+ replace($srcmft,$r);
+ replace($srcver,"edi".$version1."s SET's editor v$version for DJGPP");
+ 
+ 
+ # Generate the zip files
+ $srcdist="edi$version1".'s.zip';
+ unlink($srcdist);
+ system("zip -9u $result/$srcdist \@$srcmft");
+ 
+ chdir('contrib/setedit/makes/djgpp');
 }
 

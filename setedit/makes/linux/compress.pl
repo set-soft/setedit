@@ -2,7 +2,7 @@
 # Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
-open(FIL,'../../version.txt') || return 0;
+open(FIL,'../../version.txt') || die;
 $version=<FIL>;
 chop($version);
 close(FIL);
@@ -50,6 +50,8 @@ $iMode=0;  # Installation mode
 $iCompressExe=1;
 $useFHS=0;
 $Strip=1;
+$OnlySources=0;
+$UseVersioInSourceDir=0;
 foreach $i (@ARGV)
   {
    if ($nextisprefix)
@@ -82,6 +84,18 @@ foreach $i (@ARGV)
      {
       $Strip=0;
      }
+   elsif ($i eq '--only-source')
+     {
+      $OnlySources=1;
+     }
+   elsif ($i eq '--use-bzip2')
+     {
+      $UseBzip2=1;
+     }
+   elsif ($i eq '--dir-version')
+     {
+      $UseVersioInSourceDir=1;
+     }
    else
      {
       print "Unknown command line option: $i\n";
@@ -97,6 +111,12 @@ if ($prefix eq '/usr/local')
 else
   {
    $prefix_alt='/usr/local';
+  }
+
+if ($OnlySources)
+  {
+   GenerateSourceDistro();
+   exit 0;
   }
 
 # Check for make
@@ -174,9 +194,10 @@ $libdir =$libdir1.'/setedit';
 
 $baseFHS=$base;
 $baseFHS.='/share' if $useFHS;
-$doc_dir1=$baseFHS.'/doc';
-$doc_dir1=$base.'/share/doc' if ($os=~/FreeBSD/ && !$useFHS);
-$doc_dir=$doc_dir1.'/setedit';
+$doc_dir0=$baseFHS;
+$doc_dir0.='/share' if ($os=~/FreeBSD/ && !$useFHS);
+$doc_dir1=$doc_dir0.'/doc';
+$doc_dir =$doc_dir1.'/setedit';
 $xmp_dir=$doc_dir.'/examples';
 $man_dir1=$baseFHS.'/man';
 $man_dir=$man_dir1.'/man1';
@@ -190,6 +211,7 @@ $cfg_dir,
 $cfg_dir2,
 $cfg_dir3,
 $inf_dir,
+$doc_dir0,
 $doc_dir1,
 $doc_dir,
 $xmp_dir,
@@ -348,46 +370,8 @@ else
    
    CopyIfRpl('../../distrib/distrib1.txt','result/readme.1st');
    CopyIfRpl('../../distrib/distrib2.txt','result/announce.txt');
-   
-   print "\n\nCreating source distribution\n";
-   
-   chdir('../../..');
-   
-   open(FIL,'setedit/makes/lista');
-   @files=<FIL>;
-   close(FIL);
-   $r='';
-   foreach $i (@files)
-     {
-      chop($i);
-      # Exclude libamp
-      #next if ($i =~ /libamp\//);
-      $a=substr($i,0,1);
-      if (($a eq '-') or ($a eq '+') or ($a eq '*'))
-        {
-         $i=substr($i,1);
-        }
-      $r.=' setedit/'.$i;
-     }
-   open(FIL,'setedit/makes/listaxtr');
-   @files=<FIL>;
-   close(FIL);
-   foreach $i (@files)
-     {
-      chop($i);
-      if (length($i))
-        {
-         $r.=' '.join(' ',glob('setedit/'.$i));
-        }
-     }
-   
-   # Generate the tar file
-   $srcdist="setedit-$version.tar.gz";
-   unlink($srcdist);
-   system("tar cvf - $r | gzip -c > setedit/makes/linux/result/$srcdist");
-   #replace('pp',$r);
-   
-   chdir('setedit/makes/linux');
+
+   GenerateSourceDistro();
   }
 
 0;
@@ -464,3 +448,61 @@ sub CopyIfRpl
    }
  0;
 }
+
+sub GenerateSourceDistro
+{
+ my $dir;
+
+ print "\n\nCreating source distribution\n";
+ 
+ chdir('../../..');
+
+ $dir='setedit';
+ if ($UseVersioInSourceDir)
+   {
+    $dir.='-'.$version;
+    `mv setedit setedit-$version`;
+   }
+ 
+ open(FIL,$dir.'/makes/lista');
+ @files=<FIL>;
+ close(FIL);
+ $r='';
+ foreach $i (@files)
+   {
+    chop($i);
+    # Exclude libamp
+    #next if ($i =~ /libamp\//);
+    $a=substr($i,0,1);
+    if (($a eq '-') or ($a eq '+') or ($a eq '*'))
+      {
+       $i=substr($i,1);
+      }
+    $r.=' '.$dir.'/'.$i;
+   }
+ open(FIL,$dir.'/makes/listaxtr');
+ @files=<FIL>;
+ close(FIL);
+ foreach $i (@files)
+   {
+    chop($i);
+    if (length($i))
+      {
+       $r.=' '.join(' ',glob($dir.'/'.$i));
+      }
+   }
+ 
+ # Generate the tar file
+ $srcdist="setedit-$version.tar";
+ unlink($srcdist);
+ system("tar cvf - $r | gzip -9c > $dir/makes/linux/result/$srcdist.gz")   unless $UseBzip2;
+ system("tar cvf - $r | bzip2 -9c > $dir/makes/linux/result/$srcdist.bz2") if     $UseBzip2;
+ #replace('pp',$r);
+ if ($UseVersioInSourceDir)
+   {
+    `mv setedit-$version setedit`;
+   }
+ 
+ chdir('setedit/makes/linux');
+}
+

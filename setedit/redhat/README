@@ -1,0 +1,58 @@
+  This directory contains scripts and helpers used to create RPM packages.
+  The name "redhat" is because Red Hat created the RPM format. That's the
+same reason why the directory to create the .deb files is called "debian"
+even when a lot of small distros based on Debian are available.
+
+  The setedit.spec.in file is a template to create the real spec file. The
+real file is created by the configuration script. If you need to do it
+manually just look for names enclosed by @, like @version@ and replace them
+by the proper values (currently only version needs it). The copy the file to
+setedit-@version@.spec (i.e. setedit-0.5.2.spec).
+
+  The spec file was contributed by Michel Catudal <bbcat@users.sf.net>.
+  I include this file to help people to create their own RPM files. This is
+really important because a lot of important Linux distros uses it (Red Hat,
+SuSE, Mandrake, etc.) and RPM packages generated for one of them doesn't have
+to be useful for the other.
+
+  Here is how to use the spec file:
+
+1) Choose a directory to create the files. If you are root you can use the
+default directories for your system. If not I recommend using a directory
+located in your home directory. I provide a small script that creates the
+directories for you: create-dirs.sh
+
+$ redhat/create-dirs.sh
+
+Note: In the rest of the examples I assume you used your home directory.
+
+2) Configure rpmbuild to use the created directories:
+
+$ redhat/config-rpm.sh
+
+Note: You can skip it if you are root or you alredy configured rpmbuild.
+
+3) Create a tarball containing the sources:
+
+$ cd makes/linux; perl compress.pl --use-bzip2 --only-source --dir-version; cd ../..
+$ mv makes/linux/result/setedit-*.tar.bz2 ~/rpm/SOURCES
+
+Note: ~/rpm/SOURCES should be replaced if you are not using your home
+directory.
+
+4) Make sure the TV library is already compiled and located in the same build
+directory. For this example you should have ~/rpm/BUILD/tvision as a simlink
+pointing to the TV source tree.
+  If you don't have it download Turbo Vision (http://tvision.sf.net/) and
+follow the instructions in the redhat/README file.
+
+5) Invoke rpmbuild to create the package:
+
+$ rpmbuild -bb redhat/setedit-*.spec
+
+Hopefuly you'll get the result in ~/rpm/RPMS/
+Now you just need to install the RPM as `root' user.
+
+Note: The specs doesn't allow building two RPM packages at the same time if
+they use the same root directory.
+
