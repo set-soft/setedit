@@ -3736,7 +3736,7 @@ void TBreakpoints::save(opstream &os)
        << (char)p->type << (char)p->disp;
     // v2
     os.writeString(p->func);
-    os.write64((uint64)p->addr);
+    os.write64(CLY_PointerToUI64(p->addr));
     os << (char)p->mode << (int32)p->thread;
     p=p->next;
    }
@@ -3793,7 +3793,7 @@ void TBreakpoints::load(ipstream &is)
         if (version>=2)
           {// v2
            b->func=ReadStringC(is);
-           b->addr=(void *)is.read64();
+           b->addr=CLY_UI64ToPointer(is.read64());
            b->mode=(enum mi_bkp_mode)ReadChar(is);
            b->thread=ReadInt32(is);
           }

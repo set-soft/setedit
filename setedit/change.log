@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.646  2004/12/06 15:23:28  set
+* Modified: The behavior of the "selection search" to search for the last
+selected text instead of the current local selection.
+* Modified: To use the "case" of the current language.
+* Added: Shift+F7/F8 as short cut for these new commands.
+
 Revision 1.645  2004/12/02 20:34:12  set
 * Fixed: Both new menu extries were for forward search ;-)
 * Added: The new menu entries to be i15d.

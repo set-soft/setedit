@@ -24,7 +24,7 @@ $TVCommandLine=0;
 #GetCache() unless (-M 'config.pl' < -M 'configure.cache');
 GetVersion('');
 
-$TVVersionNeeded='2.0.3';
+$TVVersionNeeded='2.0.4';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
@@ -563,6 +563,14 @@ sub SeeCommandLine
       {
        $conf{'HAVE_CALENDAR'}='no';
       }
+    elsif ($i eq '--without-migdb')
+      {
+       $conf{'HAVE_GDB_MI'}='no_cline';
+      }
+    elsif ($i eq '--with-migdb')
+      {
+       #$conf{'HAVE_GDB_MI'}='';
+      }
     elsif ($i=~'--include=(.*)')
       {
        $conf{'EXTRA_INCLUDE_DIRS'}.=" $1";
@@ -618,6 +626,8 @@ sub ShowHelp
  print "--without-calc  : no internal calculator.\n";
  print "--with-calend   : compiles the internal calendar [default].\n";
  print "--without-calend: no internal calendar.\n";
+ print "--with-migdb    : include debug support [default].\n";
+ print "--without-migdb : no debug support.\n";
  # Compilation
  print "\nCompilation options:\n";
  print "--enable-maintainer-mode:\n";
