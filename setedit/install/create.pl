@@ -39,7 +39,7 @@ if (!(-e $instdist) || (-M $bindist < -M $instdist) || (-M 'install.exe' < -M $i
              $list.=$dirDist.$i.' ';
             }
          }
-      system("dat -a -s1 -c0 -k $d $list $djdir/bin/cwsdpmi.exe $djdir/bin/cwsdpmi.doc $djdir/bin/emu387.dxe");
+      system("dat -a -s1 -c0 -k -t DATA $d $list $djdir/bin/cwsdpmi.exe $djdir/bin/cwsdpmi.doc $djdir/bin/emu387.dxe");
       # Cleanup temporal files
       foreach $i (@files)
          {

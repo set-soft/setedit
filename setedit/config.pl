@@ -27,7 +27,7 @@ $DJGPPVersionNeeded='2.0.2';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
 # 3.9.x are WIPs
-$AllegroNotNeeded='3.9.0';
+$AllegroNotNeeded='4.0.0';
 # I never tested with an older version, you can try reducing it.
 $GPMVersionNeeded='1.10';
 unlink $ErrorLog;
@@ -738,7 +738,7 @@ int main(void)
  allegro_init();
  // Defined by 3.9.x
  #ifdef ALLEGRO_WIP_VERSION
- print ("%d.%d.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION,ALLEGRO_WIP_VERSION);
+ printf("%d.%d.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION,ALLEGRO_WIP_VERSION);
  #else
  printf("%d.0.%d",ALLEGRO_VERSION,ALLEGRO_SUB_VERSION);
  #endif

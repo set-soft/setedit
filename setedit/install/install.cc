@@ -84,12 +84,12 @@ extra widgets (progress bar): 3176
 
 //   The following are cosmetic because I ensured that
 // no graphic code is linked modifying datafile.c
-BEGIN_GFX_DRIVER_LIST
+/*BEGIN_GFX_DRIVER_LIST
 END_GFX_DRIVER_LIST
 BEGIN_COLOR_DEPTH_LIST
 END_COLOR_DEPTH_LIST
 BEGIN_JOYSTICK_DRIVER_LIST
-END_JOYSTICK_DRIVER_LIST
+END_JOYSTICK_DRIVER_LIST*/
 
 //#define DEBUG
 

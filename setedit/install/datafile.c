@@ -32,6 +32,7 @@
 //#include "internal.h"
 #include <allegro.h>
 
+#if ALLEGRO_VERSION<4 && !defined(ALLEGRO_WIP_VERSION)
 /* data file ID's for compatibility with the old datafile format */
 #define V1_DAT_MAGIC             0x616C6C2EL
 
@@ -712,4 +713,342 @@ void initialize_datafile_types()
 {
    register_datafile_object(DAT_FILE,         load_file_object,             (void (*)(void *data))unload_datafile        );
 }
+#else
+
+
+/*****************************************************************************
+
+  This is the same for Allegro 3.9.x
+
+*****************************************************************************/
+
+
+#include "allegro/aintern.h"
+
+/* read_block:
+ *  Reads a block of size bytes from a file, allocating memory to store it.
+ */
+static void *read_block(PACKFILE *f, int size, int alloc_size)
+{
+   void *p;
+
+   p = malloc(MAX(size, alloc_size));
+   if (!p) {
+      *allegro_errno = ENOMEM;
+      return NULL;
+   }
+
+   pack_fread(p, size, f);
+
+   if (pack_ferror(f)) {
+      free(p);
+      return NULL;
+   }
+
+   return p;
+}
+
+/* load_data_object:
+ *  Loads a binary data object from a datafile.
+ */
+void *load_data_object(PACKFILE *f, long size)
+{
+   return read_block(f, size, 0);
+}
+
+/* load_object:
+ *  Helper to load an object from a datafile.
+ */
+static void *load_object(PACKFILE *f, int type, long size)
+{
+   int i;
+
+   /* look for a load function */
+   for (i=0; i<MAX_DATAFILE_TYPES; i++)
+      if (datafile_type[i].type == type)
+	 return datafile_type[i].load(f, size);
+
+   /* if not found, load binary data */
+   return load_data_object(f, size);
+}
+
+/* load_file_object:
+ *  Loads a datafile object.
+ */
+void *load_file_object(PACKFILE *f, long size)
+{
+   #define MAX_PROPERTIES  64
+
+   DATAFILE_PROPERTY prop[MAX_PROPERTIES];
+   DATAFILE *dat;
+   PACKFILE *ff;
+   int prop_count, count, type, c, d;
+   char *p;
+
+   count = pack_mgetl(f);
+
+   dat = malloc(sizeof(DATAFILE)*(count+1));
+   if (!dat) {
+      *allegro_errno = ENOMEM;
+      return NULL;
+   }
+
+   for (c=0; c<=count; c++) {
+      dat[c].type = DAT_END;
+      dat[c].dat = NULL;
+      dat[c].size = 0;
+      dat[c].prop = NULL;
+   }
+
+   for (c=0; c<MAX_PROPERTIES; c++)
+      prop[c].dat = NULL;
+
+   c = 0;
+   prop_count = 0;
+
+   while (c < count) {
+      type = pack_mgetl(f);
+
+      if (type == DAT_PROPERTY) {
+	 /* load an object property */
+	 type = pack_mgetl(f);
+	 d = pack_mgetl(f);
+	 if (prop_count < MAX_PROPERTIES) {
+	    prop[prop_count].type = type;
+	    prop[prop_count].dat = malloc(d+1);
+	    if (prop[prop_count].dat != NULL) {
+	       pack_fread(prop[prop_count].dat, d, f);
+	       prop[prop_count].dat[d] = 0;
+	       if (need_uconvert(prop[prop_count].dat, U_UTF8, U_CURRENT)) {
+		  p = malloc(uconvert_size(prop[prop_count].dat, U_UTF8, U_CURRENT));
+		  if (p)
+		     do_uconvert(prop[prop_count].dat, U_UTF8, p, U_CURRENT, -1);
+		  free(prop[prop_count].dat);
+		  prop[prop_count].dat = p;
+	       }
+	       prop_count++;
+	       d = 0;
+	    }
+	 }
+	 while (d-- > 0)
+	    pack_getc(f);
+      }
+      else {
+	 /* load actual data */
+	 ff = pack_fopen_chunk(f, FALSE);
+
+	 if (ff) {
+	    d = ff->todo;
+
+	    dat[c].dat = load_object(ff, type, d);
+
+	    if (dat[c].dat) {
+	       dat[c].type = type;
+	       dat[c].size = d;
+
+	       if (prop_count > 0) {
+		  dat[c].prop = malloc(sizeof(DATAFILE_PROPERTY)*(prop_count+1));
+		  if (dat[c].prop != NULL) {
+		     for (d=0; d<prop_count; d++) {
+			dat[c].prop[d].dat = prop[d].dat;
+			dat[c].prop[d].type = prop[d].type;
+			prop[d].dat = NULL;
+		     }
+		     dat[c].prop[d].dat = NULL;
+		     dat[c].prop[d].type = DAT_END;
+		  }
+		  else {
+		     for (d=0; d<prop_count; d++) {
+			free(prop[d].dat);
+			prop[d].dat = NULL;
+		     }
+		  }
+		  prop_count = 0;
+	       }
+	       else
+		  dat[c].prop = NULL;
+	    }
+
+	    f = pack_fclose_chunk(ff);
+
+	    c++;
+	 }
+      }
+
+      if (*allegro_errno) {
+	 unload_datafile(dat);
+
+	 for (c=0; c<MAX_PROPERTIES; c++)
+	    if (prop[c].dat)
+	       free(prop[c].dat);
+
+	 return NULL;
+      }
+   }
+
+   for (c=0; c<MAX_PROPERTIES; c++)
+      if (prop[c].dat)
+	 free(prop[c].dat);
+
+   return dat;
+}
+
+/* load_datafile:
+ *  Loads an entire data file into memory, and returns a pointer to it. 
+ *  On error, sets errno and returns NULL.
+ */
+DATAFILE *load_datafile(AL_CONST char *filename)
+{
+   return load_datafile_callback(filename, NULL);
+}
+
+/* load_datafile_callback:
+ *  Loads an entire data file into memory, and returns a pointer to it. 
+ *  On error, sets errno and returns NULL.
+ */
+DATAFILE *load_datafile_callback(AL_CONST char *filename, void (*callback)(DATAFILE *))
+{
+   PACKFILE *f;
+   DATAFILE *dat;
+   int type;
+
+   f = pack_fopen(filename, F_READ_PACKED);
+   if (!f)
+      return NULL;
+
+   if ((f->flags & PACKFILE_FLAG_CHUNK) && (!(f->flags & PACKFILE_FLAG_EXEDAT)))
+      type = (_packfile_type == DAT_FILE) ? DAT_MAGIC : 0;
+   else
+      type = pack_mgetl(f);
+
+   if (type == DAT_MAGIC) {
+      dat = load_file_object(f, 0);
+   }
+   else
+      dat = NULL;
+
+   pack_fclose(f);
+   return dat; 
+}
+
+/* load_datafile_object:
+ *  Loads a single object from a datafile.
+ */
+DATAFILE *load_datafile_object(AL_CONST char *filename, AL_CONST char *objectname)
+{
+   PACKFILE *f;
+   DATAFILE *dat;
+   void *object;
+   char buf[512];
+   int size;
+
+   ustrzcpy(buf, sizeof(buf), filename);
+
+   if (ustrcmp(buf, uconvert_ascii("#", NULL)) != 0)
+      ustrzcat(buf, sizeof(buf), uconvert_ascii("#", NULL));
+
+   ustrzcat(buf, sizeof(buf), objectname);
+
+   f = pack_fopen(buf, F_READ_PACKED);
+   if (!f)
+      return NULL;
+
+   size = f->todo;
+
+   dat = malloc(sizeof(DATAFILE));
+   if (!dat) {
+      pack_fclose(f);
+      return NULL;
+   }
+
+   object = load_object(f, _packfile_type, size);
+
+   pack_fclose(f);
+
+   if (!object) {
+      free(dat);
+      return NULL;
+   }
+
+   dat->dat = object;
+   dat->type = _packfile_type;
+   dat->size = size;
+   dat->prop = NULL;
+
+   return dat; 
+}
+
+/* _unload_datafile_object:
+ *  Helper to destroy a datafile object.
+ */
+void _unload_datafile_object(DATAFILE *dat)
+{
+   int i;
+
+   /* free the property list */
+   if (dat->prop) {
+      for (i=0; dat->prop[i].type != DAT_END; i++)
+	 if (dat->prop[i].dat)
+	    free(dat->prop[i].dat);
+
+      free(dat->prop);
+   }
+
+   /* look for a destructor function */
+   for (i=0; i<MAX_DATAFILE_TYPES; i++) {
+      if (datafile_type[i].type == dat->type) {
+	 if (dat->dat) {
+	    if (datafile_type[i].destroy)
+	       datafile_type[i].destroy(dat->dat);
+	    else
+	       free(dat->dat);
+	 }
+	 return;
+      }
+   }
+
+   /* if not found, just free the data */
+   if (dat->dat)
+      free(dat->dat);
+}
+
+/* unload_datafile:
+ *  Frees all the objects in a datafile.
+ */
+void unload_datafile(DATAFILE *dat)
+{
+   int i;
+
+   if (dat) {
+      for (i=0; dat[i].type != DAT_END; i++)
+	 _unload_datafile_object(dat+i);
+
+      free(dat);
+   }
+}
+
+/* unload_datafile_object:
+ *  Unloads a single datafile object, returned by load_datafile_object().
+ */
+void unload_datafile_object(DATAFILE *dat)
+{
+   if (dat) {
+      _unload_datafile_object(dat);
+      free(dat);
+   }
+}
+
+/* _initialize_datafile_types:
+ *  Register my loader functions with the code in dataregi.c.
+ */
+#ifdef CONSTRUCTOR_FUNCTION
+   CONSTRUCTOR_FUNCTION(void _initialize_datafile_types());
+#endif
+
+void _initialize_datafile_types()
+{
+   register_datafile_object(DAT_FILE,         load_file_object,             (void (*)(void *data))unload_datafile        );
+}
+
+#endif
 
