@@ -986,27 +986,6 @@ void CreateToUpLowTablesFor(CodePage *p)
      __dj_ctype_toupper[*s+1]=*(s+1);
     }
 }
-
-static
-void CreateIsWordCharFor(CodePage *p)
-{
- int i;
- // Clean the table
- for (i=0; i<256; i++)
-     _table_types_editor_[i]&=~ttedIsWordChar;
- // first the ASCII
- for (i=0; i<128; i++)
-     if (ucisalnum(i))
-        _table_types_editor_[i]|=ttedIsWordChar;
- _table_types_editor_['_']|=ttedIsWordChar;
- // Now, all the upper/lower are letters ;-)
- uchar *s=(uchar *)p->UpLow;
- for (; *s; s++)
-     _table_types_editor_[*s]|=ttedIsWordChar;
- // And the rest
- for (s=(uchar *)p->MoreLetters; *s; s++)
-     _table_types_editor_[*s]|=ttedIsWordChar;
-}
 #else
 int GetCurrentOSCodePage(void)
 {
@@ -1030,12 +1009,28 @@ void CreateToUpLowTablesFor(CodePage *)
  CreateDefaultToUpper();
  CreateDefaultToLower();
 }
+#endif
 
 static
-void CreateIsWordCharFor(CodePage *)
+void CreateIsWordCharFor(CodePage *p)
 {
+ int i;
+ // Clean the table
+ for (i=0; i<256; i++)
+     TableTypesEditor[i]&=~ttedIsWordChar;
+ // first the ASCII
+ for (i=0; i<128; i++)
+     if (ucisalnum(i))
+        TableTypesEditor[i]|=ttedIsWordChar;
+ TableTypesEditor['_']|=ttedIsWordChar;
+ // Now, all the upper/lower are letters ;-)
+ uchar *s=(uchar *)p->UpLow;
+ for (; *s; s++)
+     TableTypesEditor[*s]|=ttedIsWordChar;
+ // And the rest
+ for (s=(uchar *)p->MoreLetters; *s; s++)
+     TableTypesEditor[*s]|=ttedIsWordChar;
 }
-#endif
 
 static uchar Similar[]=
 {
