@@ -5738,16 +5738,18 @@ Written in setedit:
 @example
 On  9 Jan 01 at 14:25, Grzegorz Adam Hankiewicz wrote:
 > On Sun, 7 Jan 2001, Petr Vandrovec wrote:
-> > (2) you can specify only xres 'x' yres '-' bpp '@@' fv, you cannot specify for example
-> >     horizontal/vertical sync polarity, sync-on-green mode, or even shift picture
-> >     left-right (modify left/right/upper/lower/hslen/vslen fields of var_screeninfo)
+> > (2) you can specify only xres 'x' yres '-' bpp '@@' fv, you cannot
+> >     specify for example horizontal/vertical sync polarity, sync-on-green
+> >     mode, or even shift picture left-right (modify
+> >     left/right/upper/lower/hslen/vslen fields of var_screeninfo)
 > > 
-> > First problem is probably unresolvable without linking modedb to each fbdev separately,
-> > as if you removing __init, others will come to you with big staff.
+> > First problem is probably unresolvable without linking modedb to each
+> > fbdev separately, as if you removing __init, others will come to you
+> > with big staff.
 > > 
-> > Second problem is probably only 'invent how to write it' problem... You can look at
-> > matroxfb picture size/refresh related parameters - all of them should be parsed by
-> > modedb for benefit of all drivers...
+> > Second problem is probably only 'invent how to write it' problem... You
+> > can look at matroxfb picture size/refresh related parameters - all of
+> > them should be parsed by modedb for benefit of all drivers...
 > 
 > Aha.. do you mean I have to add new options and switches to modedb, taking
 > out the parsing code from the matroxfb module? For example, adding new
@@ -5999,7 +6001,7 @@ machine and want to simplify the process you can let the editor create and
 maintain a tags file for your project. You'll find options for it in the
 Tool&Ops | Options | Tag files menu option. @x{Tag files options}.
 
-@section What's the easiest way to use tags?
+@section What is the easiest way to use tags?
 @cindex tags, easy way
 
 Here is an explanation about how to quickly use tag files:
@@ -6721,10 +6723,9 @@ point to @code{SET_FILES}:
    export SET_LOCALEDIR=$SET_FILES
 @end example
 
-And now, in the @code{SET_FILES} directory create the @file{xx/LC_MESSAGES/}
-directory structure,
-where `xx' is a two letter code representing a language. I would
-then create @file{~/bin/setedit_shared_files/es/LC_MESSAGES}, and put
+And now, in the @code{SET_FILES} directory create the @file{xxxx/LC_MESSAGES/}
+directory structure, where `xxxx' is a two letter code representing a language.
+I would then create @file{~/bin/setedit_shared_files/es/LC_MESSAGES}, and put
 inside the file @file{setedit.mo} I found typing @code{locate setedit.mo} on
 my workstation.  After copying the file there, GNU's gettext will
 find the translation file always, from any directory, and you will

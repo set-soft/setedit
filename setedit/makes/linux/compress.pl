@@ -392,6 +392,34 @@ else
    CopyIfRpl('../../distrib/distrib2.txt','result/announce.txt');
 
    GenerateSourceDistro();
+
+   #############################
+   # Change.log in HTML format #
+   #############################
+   
+   $a=cat('../../change.log');
+   # Line separators
+   $a =~ s/\n(-)+\n/<hr>/mg;
+   # Lines between text are paragraphs
+   $a =~ s/\n\n/<p>\n/mg;
+   $a =~ s/\n\.\n/<p>\n/mg;
+   # Convert * to list items
+   $a =~ s/\n\*/<br>\n<li>/mg;
+   # If any survives
+   $a =~ s/\n-/<br>-/mg;
+   $a =~ s/-\n/-<br>/mg;
+   # Beautyful ;-)
+   $a =~ s/Revision/<b>Revision<\/b>/mg;
+   $a =~ s/\$\n/\$<br>/mg;
+   
+   open(FIL,">result/change.html") || die 'Can not create changelog';
+   print FIL ('<HTML><Title>change.log for setedit</Title><Body>');
+   print FIL ($a);
+   print FIL ('<p>Converted to HTML by a simple Perl script &copy; by SET</Body></HTML>');
+   close(FIL);
+   
+   ToHTML("result/readme.1st","result/readme.html",'readme.1st');
+   ToHTML("result/announce.txt","result/announce.html",'announce');
   }
 
 0;
@@ -408,6 +436,19 @@ sub cat
  $b;
 }
 
+sub ToHTML
+{
+ my $a;
+
+ $a=cat($_[0]);
+ $a=~s/</&lt;/g;
+ $a=~s/>/&gt;/g;
+ open(FIL,">$_[1]") || die "Can't create readme $_[1]";
+ print FIL ("<HTML><Title>$_[2] for setedit</Title><Body><Pre>");
+ print FIL ($a);
+ print FIL ('</Pre></Body></HTML>');
+ close(FIL);
+}
 
 sub replace
 {

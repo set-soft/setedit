@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.432  2003/07/22 14:52:22  set
+* Modified: The web page to reflect the new release. I'm finishing the
+"Release Candidate" stage.
+
 Revision 1.431  2003/07/16 13:33:37  set
 * Modified: The RPM scripts to support an environment variable to indicate
 where to create the RPMs. I needed it when using S.F. Compiler Farm and
