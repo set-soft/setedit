@@ -490,6 +490,8 @@ TDskWinPrj::TDskWinPrj(char *fName)
  type=dktPrj;
  CanBeSaved=0;
  ZOrder=-1;
+ wS=TScreen::getCols();
+ hS=TScreen::getRows();
 }
 
 TDskWinPrj::~TDskWinPrj()

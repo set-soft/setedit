@@ -85,7 +85,8 @@ int TDskWinClipboard::DeleteAction(ccIndex, Boolean)
 
 TDskWinClipboard::~TDskWinClipboard()
 {
- destroy(edw);
+ //destroy(edw);
+ edw->close();
  if (TSetEditorApp::clipWindow==edw)
     TSetEditorApp::clipWindow=0;
  edw=0;

@@ -78,7 +78,8 @@ int TDskWinEditor::DeleteAction(ccIndex , Boolean fromDiskToo)
 
 TDskWinEditor::~TDskWinEditor()
 {
- /*destroy(edw);
+ /* This isn't needed and generated double destroys.
+ destroy(edw);
  edw=0;*/
 }
 

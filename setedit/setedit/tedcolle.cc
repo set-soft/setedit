@@ -322,7 +322,8 @@ void *TEditorCollection::read( ipstream& is )
           if (!p->view)
              removeEditor(edw,False);
           // We can do it because we know edHelper is initialized
-          edw->close();
+          if (edw)
+             edw->close();
           // When we succeed to remove the editor it created a closed window
           // it makes cAnt==count, but we don't have to increment i
           if (cAnt==count && cEdAnt!=Editors)

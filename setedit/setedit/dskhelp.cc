@@ -165,7 +165,8 @@ TDskWinHelp::~TDskWinHelp()
    {
     SetInfManager(0);
     // The main InfView is never closed, just hided, now is time to kill it
-    destroy(window);
+    //destroy(window);
+    window->close();
    }
  file=0;
  window=0;
