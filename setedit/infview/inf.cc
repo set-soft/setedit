@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -186,6 +186,7 @@ extern void  RemapNStringCodePage(unsigned char *n, unsigned char *o, unsigned s
 #define Uses_TStringCollection
 #define Uses_TSortedListBox
 #define Uses_TFileDialog
+#define Uses_TCommandSet
 
 #define Uses_TCEditor_External
 #define Uses_TCEditor_Commands
@@ -247,6 +248,7 @@ TInfViewer::TInfViewer( const TRect& bounds, TScrollBar* aHScrollBar,
 {
  char NameCopy[MAX_NODE_NAME];
 
+ InitCommandSet();
  modeFlags=moinCutNodeWord | moinHideNodeLink;
  // pumm!!! bug killed, fucking strings in code by GCC, i need a buffer not
  // a simple string (my fault).
@@ -455,23 +457,64 @@ void TInfViewer::setCmdState(uint16 command, Boolean enable)
     disableCommand(command);
 }
 
+void TInfViewer::InitCommandSet()
+{
+ if (ts)
+    return;
+ ts=new TCommandSet();
+
+ ts->enableCmd(cmcFind);
+ ts->enableCmd(cmcCopyClipWin);
+ ts->enableCmd(cmcCopy);
+ ts->enableCmd(cmcSearchAgain);
+
+ ts->enableCmd(cmInfHelp);
+ ts->enableCmd(cmInfControl);
+ ts->enableCmd(cmInfBack);
+ ts->enableCmd(cmInfPasteIn);
+ ts->enableCmd(cmInfBookM);
+ ts->enableCmd(cmInfNodes);
+ ts->enableCmd(cmInfGoto);
+ ts->enableCmd(cmInfOpen);
+ ts->enableCmd(cmInfDir);
+ ts->enableCmd(cmInfTop);
+
+ ts->enableCmd(chcdNext);
+ ts->enableCmd(chcdPrev);
+ ts->enableCmd(chcdUp);
+ ts->enableCmd(chcdPrevH);
+ ts->enableCmd(chcdHide);
+ ts->enableCmd(chcdNodeList);
+ ts->enableCmd(chcdBookMarks);
+ ts->enableCmd(chcdConfigDia);
+ ts->enableCmd(chcdOpenInfo);
+ ts->enableCmd(chcdHistSel);
+}
+
+void TInfViewer::DisableAllCommands()
+{
+ if (ts)
+    disableCommands(*ts);
+}
+
 void TInfViewer::updateCommands(int full)
 {
+ if (!(state & sfActive))
+   { // We lost the focus, disable all
+    DisableAllCommands();
+    return;
+   }
+
+ // Enable in block then go for the particular ones
+ if (full && ts)
+    enableCommands(*ts);
+
  int deltaY=selRowEnd-selRowStart+1;
  int haveSel=deltaY>1 || (deltaY==1 && selColEnd>selColStart);
  setCmdState(cmcCopyClipWin,(InsertRoutineSecondary && haveSel) ? True : False);
  setCmdState(cmcCopy,(InsertRoutine && haveSel) ? True : False);
  setCmdState(cmInfPasteIn,InsertRoutine ? True : False);
  setCmdState(cmcSearchAgain,Boolean(SearchArmed));
-
- if (full)
-   {
-    setCmdState(cmInfBookM,True);
-    setCmdState(cmInfControl,True);
-    setCmdState(cmInfBack,True);
-    setCmdState(cmInfHelp,True);
-    setCmdState(cmcFind,True);
-   }
 }
 
 
@@ -1958,10 +2001,12 @@ void *TInfViewer::read( ipstream& is )
 
 TNoCaseStringCollection *TInfViewer::BookMark=NULL;
 int TInfViewer::version=0x022;
+TCommandSet *TInfViewer::ts=0;
 int TInfViewer::TranslateName=0;
 
 TStreamable *TInfViewer::build()
 {
+ InitCommandSet();
  return new TInfViewer( streamableInit );
 }
 
@@ -2027,6 +2072,7 @@ TPalette& TInfWindow::getPalette() const
 
 void TInfWindow::close()
 {
+ TInfViewer::DisableAllCommands();
  if (isTheOne)
     hide();
  else
