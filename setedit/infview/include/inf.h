@@ -29,7 +29,6 @@
 #define Uses_TCollection
 #define Uses_TListBox
 #define Uses_TDialog
-#include <tv.h>
 
 #define Uses_TNoCaseStringCollection
 #include <infbase.h>

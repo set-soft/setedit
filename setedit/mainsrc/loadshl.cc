@@ -785,7 +785,7 @@ int TakeScriptPrg(char *buffer, int lenBuf, char *ext)
     int i;
     if (*buffer=='/')
        buffer++;
-    for (i=0; buffer<end && *buffer!='/' && *buffer!=' ' && IsntEOL(*buffer); buffer++)
+    for (i=0; buffer<end && *buffer!='/' && *buffer!=' ' && CLY_IsntEOL(*buffer); buffer++)
         if (i<MaxExtension-1)
            ext[i++]=*buffer;
     ext[i]=0;
@@ -1054,7 +1054,7 @@ char *SHLConstructEmacsModeComment(TCEditor &e)
  DynStrCat(&cat,buf,l);
  if (!useEOL)
     DynStrCat(&cat,e.SHLArray[shl].CloseCom1,e.SHLArray[shl].lCloseCom1);
- DynStrCat(&cat,(char *)crlf);
+ DynStrCat(&cat,(char *)CLY_crlf);
 
  return cat.str;
 }
