@@ -106,6 +106,7 @@ class TDeskTopClock;
 class TDskWinHelp;
 class TApplication;
 class TCEditWindow;
+struct EditorResume;
 
 const int extscrsParMxLen=80;
 
@@ -155,6 +156,8 @@ public:
     static ushort helpCtxRequested;
     static int maxOpenEditorsSame;
     static int DeleteFilesOnExit;
+    static unsigned geFlags;
+    static int widthVertWindows;
     void tile();
     void cascade();
     void SetTitle(const char *str1=0, const char *str2=0);
@@ -177,6 +180,7 @@ protected:
 
 const int oedNoSelect=1,oedForceRO=2,oedZoom=4,oedForgetResume=8,
           oedDontOpenEmpty=16;
+const unsigned geVertWindows=1,geRightSide=2;
 
 extern TSetEditorApp *editorApp;
 extern TCEditWindow *clipWindow;

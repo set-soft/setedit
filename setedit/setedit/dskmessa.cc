@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -8,10 +8,13 @@ class TSOSListBox;
 #define Uses_TPoint
 #define Uses_TProgram
 #define Uses_TDeskTop
+#define Uses_TApplication
 #include <ceditor.h>
 #include <edmsg.h>
 #include <dskwin.h>
 #include <dskmessa.h>
+#define Uses_TSetEditorApp
+#include <setapp.h>
 
 extern TView *setFocusTo;
 extern Boolean focusChanged;
@@ -39,10 +42,28 @@ void *TDskWinMessage::read( ipstream& is )
  is >> aux;
  TRect r=TProgram::deskTop->getExtent();
  // Don't let it outside the screen
- if (aux.x>=r.b.x)
-    aux.x=0;
- if (aux.y>=r.b.y)
-    aux.y=r.b.y-7;
+ if (TSetEditorApp::geFlags & geVertWindows)
+   {
+    if (TSetEditorApp::geFlags & geRightSide)
+      {
+       if (aux.x>=r.b.x)
+          aux.x=r.b.x-TSetEditorApp::widthVertWindows;
+      }
+    else
+      {
+       if (aux.x>=r.b.x)
+          aux.x=0;
+      }
+    if (aux.y>=r.b.y)
+       aux.y=0;
+   }
+ else
+   {
+    if (aux.x>=r.b.x)
+       aux.x=0;
+    if (aux.y>=r.b.y)
+       aux.y=r.b.y-7;
+   }
  edw->moveTo(aux.x,aux.y);
  is >> aux;
  edw->growTo(aux.x,aux.y);

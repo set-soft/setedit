@@ -30,6 +30,7 @@
 #define Uses_SETAppConst
 #define Uses_SETAppHelper
 #define Uses_SETAppVarious
+#define Uses_TSetEditorApp
 #include <setapp.h>
 #include <splinman.h>
 #include <codepage.h>
@@ -424,7 +425,15 @@ TEdMsgDialog *EdMessageWindowInit(int Insert)
  if (MsgWindowRect.a.x==-1)
    {
     MsgWindowRect = TProgram::deskTop->getExtent();
-    MsgWindowRect.a.y = MsgWindowRect.b.y-7;
+    if (TSetEditorApp::geFlags & geVertWindows)
+      {
+       if (TSetEditorApp::geFlags & geRightSide)
+          MsgWindowRect.a.x=MsgWindowRect.b.x-TSetEditorApp::widthVertWindows;
+       else
+          MsgWindowRect.b.x=TSetEditorApp::widthVertWindows;
+      }
+    else
+       MsgWindowRect.a.y=MsgWindowRect.b.y-7;
    }
  MsgWindow=new TEdMsgDialog(MsgWindowRect,_("Message Window"));
  if (!MsgWindow)

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -381,7 +381,7 @@ TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
  TRect r = getExtent();
  r.grow(-1,-1);
  scrollbar = standardScrollBar(sbVertical | sbHandleKeyboard);
- list = new TEditorProjectListBox(r,3,scrollbar);
+ list = new TEditorProjectListBox(r,(TSetEditorApp::geFlags & geVertWindows) ? 1 : 3,scrollbar);
  growMode = gfGrowLoY | gfGrowHiX | gfGrowHiY;
  list->growMode = gfGrowHiX | gfGrowHiY;
  list->newList(ProjectList);
@@ -481,7 +481,15 @@ void TDskWinPrj::setFileName(char *file)
 TDskWinPrj::TDskWinPrj(char *fName)
 {
  TRect r=TProgram::deskTop->getExtent();
- r.a.y=r.b.y-7;
+ if (TSetEditorApp::geFlags & geVertWindows)
+   {
+    if (TSetEditorApp::geFlags & geRightSide)
+       r.a.x=r.b.x-TSetEditorApp::widthVertWindows;
+    else
+       r.b.x=TSetEditorApp::widthVertWindows;
+   }
+ else
+    r.a.y=r.b.y-7;
  view=window=new TEditorProjectWindow(r,_("Project Window"));
  setFileName(fName);
  type=dktPrj;

@@ -109,11 +109,13 @@ extern TEditorCollection *edHelper;
 // That's the manager for InfView, we don't worry about the viewer all is handled by it
 TDskWinHelp *TSetEditorApp::InfManager=NULL;
 // For the tricky context latch
-int    TSetEditorApp::helpRequest=0;
-ushort TSetEditorApp::helpCtxRequested=0;
-int    TSetEditorApp::maxOpenEditorsSame=1;
-int    TSetEditorApp::DeleteFilesOnExit=0;
-char   TSetEditorApp::ExtScrSaverOpts[extscrsParMxLen]="";
+int      TSetEditorApp::helpRequest=0;
+ushort   TSetEditorApp::helpCtxRequested=0;
+int      TSetEditorApp::maxOpenEditorsSame=1;
+int      TSetEditorApp::DeleteFilesOnExit=0;
+char     TSetEditorApp::ExtScrSaverOpts[extscrsParMxLen]="";
+unsigned TSetEditorApp::geFlags=0;
+int      TSetEditorApp::widthVertWindows=24;
 
 const char *KeyBindFName="keybind.dat";
 // Name specified by the user
@@ -204,7 +206,15 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
  TView *p;
 
  // Let some space
- r.b.y-=7;
+ if (geFlags & geVertWindows)
+   {
+    if (geFlags & geRightSide)
+       r.b.x-=widthVertWindows;
+    else
+       r.a.x=widthVertWindows;
+   }
+ else
+    r.b.y-=7;
  /* First check if the user wants more copies, in this case foget the one found */
  if (ain && numEditors<maxOpenEditorsSame)
    {

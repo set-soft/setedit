@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.96  2002/05/17 14:27:24  set
+* Fixed: The show match pair on the fly without waiting had another
+interaction with the syntax highlight computation (I already fixed one).
+
 Revision 1.95  2002/05/16 21:24:21  set
 * Fixed: TV link in copyrigh.
 

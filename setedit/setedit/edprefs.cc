@@ -944,8 +944,10 @@ unsigned SetGeneralEditorOptionsMoreDst(void)
 #pragma pack(1)
 typedef struct
 {
- uint32 end   CLY_Packed;
- uint32 beep  CLY_Packed;
+ uint32 end      CLY_Packed;
+ uint32 beep     CLY_Packed;
+ uint32 opts     CLY_Packed;
+ char   width[5] CLY_Packed;
 } BoxOthers;
 #pragma pack()
 
@@ -954,12 +956,17 @@ unsigned SetGeneralEditorOptionsOthers(void)
 {
  TSViewCol *col=new TSViewCol(__("Other options"));
 
- TSVeGroup *MsgWin=new TSVeGroup(
+ TSVeGroup *MsgWin=MakeVeGroup(0,
    TSLabelRadio(__("At the end of errors in message window"),
           __("Just stop"),
           __("Indicate with a message"),
           __("Wrap (circular list)"),0),
    new TSCheckBoxes(new TSItem(_("Make a beep"),0)),
+   new TSLabel(_("When creating message and similar windows"),
+               new TSCheckBoxes(
+                   new TSItem(_("Use the vertical direction"),
+                   new TSItem(_("Use the right side"),0)))),
+   new TSHzLabel(_("Reserved ~w~idth"),new TSInputLine(5)),
    0);
  MsgWin->makeSameW();
 
@@ -975,12 +982,23 @@ unsigned SetGeneralEditorOptionsOthers(void)
  BoxOthers box;
  box.end=TSOSListBoxMsg::opsEnd;
  box.beep=TSOSListBoxMsg::opsBeep;
+ box.opts=TSetEditorApp::geFlags;
+ char buf[32];
+ sprintf(buf,"%d",TSetEditorApp::widthVertWindows);
+ strncpy(box.width,buf,4);
 
  unsigned command=execDialog(d,&box);
  if (command!=cmCancel)
    {
     TSOSListBoxMsg::opsEnd=box.end;
     TSOSListBoxMsg::opsBeep=box.beep;
+    TSetEditorApp::geFlags=box.opts;
+    TSetEditorApp::widthVertWindows=atoi(box.width);
+    if (TSetEditorApp::widthVertWindows<6)
+       TSetEditorApp::widthVertWindows=6;
+    int mWidth=TDisplay::getCols()-12;
+    if (TSetEditorApp::widthVertWindows>mWidth)
+       TSetEditorApp::widthVertWindows=mWidth;
    }
  return command;
 }
