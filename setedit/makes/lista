@@ -382,6 +382,7 @@ makes/djgpp/compress.pl
 makes/line.par
 makes/linux.env
 makes/linux_set.env
+makes/linux/.cvsignore
 +makes/linux/compress.pl
 +makes/linux/compinf.pl
 makes/lista

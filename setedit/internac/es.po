@@ -1,18 +1,3 @@
-# Este es el archivo de traducci¢n a espa¤ol para el SETEdit.
-# Copyright (C) 2001 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: setedit 0.4.49\n"
-"PO-Revision-Date: 2001-09-25 22:45-0300\n"
-"Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
-"Language-Team: Spanish <set@ieee.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP850\n"
-"Content-Transfer-Encoding: 8bit\n"
-
 #: ../calcu/calcu.cc:73
 msgid "~E~xpression"
 msgstr "~E~xpresi¢n"
@@ -98,11 +83,13 @@ msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
-#: ../infview/inf.cc:2221 ../internac/tvision.cc:88 ../setedit/editmenu.cc:119
+#: ../infview/inf.cc:2221 ../infview/infmenu.cc:67 ../internac/tvision.cc:88
+#: ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "P~r~¢xima"
 
-#: ../infview/inf.cc:2224 ../internac/tvision.cc:89 ../setedit/editmenu.cc:120
+#: ../infview/inf.cc:2224 ../infview/infmenu.cc:68 ../internac/tvision.cc:89
+#: ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~A~nterior"
 
@@ -118,11 +105,11 @@ msgstr "Ant. en ~H~ist."
 msgid "Nodes ~L~ist"
 msgstr "~L~ista de temas"
 
-#: ../infview/inf.cc:2236
+#: ../infview/inf.cc:2236 ../infview/infmenu.cc:58
 msgid "~B~ookmarks"
 msgstr "~M~arcadores"
 
-#: ../infview/inf.cc:2239
+#: ../infview/inf.cc:2239 ../infview/infmenu.cc:56
 msgid "~C~onfiguration"
 msgstr "~C~onfiguraci¢n"
 
@@ -293,14 +280,6 @@ msgstr "Error al leer el archivo de escritorio"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:540 ../setedit/editmain.cc:1868
-msgid ""
-". Copyright (c) 1996-2001 by Salvador E. Tropea\n"
-"\n"
-msgstr ""
-". Copyright (c) 1996-2001 por Salvador E. Tropea\n"
-"\n"
-
 #: ../infview/infmain.cc:541
 msgid ""
 "infview [option]... [info_file [menu_item...]]\n"
@@ -309,7 +288,7 @@ msgstr ""
 "infview [opci¢n]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:542 ../setedit/editmain.cc:1870
+#: ../infview/infmain.cc:542 ../setedit/editmain.cc:1887
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
 
@@ -409,6 +388,184 @@ msgstr ""
 #, c-format
 msgid "Could not find '%s'."
 msgstr "No pude encontrar '%s'."
+
+#. Spanish: ABCEHMPRV
+#. English: CEFHMPSVW
+#: ../infview/infmenu.cc:31 ../internac/tvision.cc:64
+#: ../setedit/editmenu.cc:60
+msgid "~F~ile"
+msgstr "~A~rchivo"
+
+#: ../infview/infmenu.cc:32
+msgid "~N~ew InfView window"
+msgstr "~N~ueva ventana de InfView"
+
+#: ../infview/infmenu.cc:33
+msgid "~O~pen info file"
+msgstr "~A~brir un .info"
+
+#: ../infview/infmenu.cc:34
+msgid "Open ~m~anpage"
+msgstr "Abrir una p gina del ~m~anual"
+
+#: ../infview/infmenu.cc:36 ../internac/tvision.cc:70
+#: ../setedit/editmenu.cc:69
+msgid "~D~OS shell"
+msgstr "Ir a ~D~OS"
+
+#: ../infview/infmenu.cc:38
+msgid "S~h~ell"
+msgstr "S~h~ell"
+
+#: ../infview/infmenu.cc:40 ../internac/tvision.cc:71
+#: ../setedit/editmenu.cc:70
+msgid "E~x~it"
+msgstr "~S~alir"
+
+#: ../infview/infmenu.cc:42
+msgid "~G~oto"
+msgstr "I~r~ a"
+
+#: ../infview/infmenu.cc:43
+msgid "Goto: (~F~ile)Node"
+msgstr "~I~r a: (Archivo)Nodo"
+
+#: ../infview/infmenu.cc:44
+msgid "~N~ode list"
+msgstr "~L~ista de nodos"
+
+#: ../infview/infmenu.cc:45
+msgid "N~e~xt node"
+msgstr "~P~r¢ximo nodo"
+
+#: ../infview/infmenu.cc:46
+msgid "~P~revious node"
+msgstr "Nodo ~a~nterior"
+
+#: ../infview/infmenu.cc:47
+msgid "~U~pper node"
+msgstr "Nodo ~s~uperior"
+
+#: ../infview/infmenu.cc:48
+msgid "~T~op node"
+msgstr "~N~odo principal"
+
+#: ../infview/infmenu.cc:49
+msgid "~D~irectory"
+msgstr "~D~irectorio de ayudas"
+
+#: ../infview/infmenu.cc:51 ../infview/infmenu.cc:52 ../internac/tvision.cc:79
+#: ../setedit/editmenu.cc:93
+msgid "~S~earch"
+msgstr "~B~uscar"
+
+#: ../infview/infmenu.cc:53
+msgid "Search ~a~gain"
+msgstr "~R~epetir b£squeda"
+
+#: ../infview/infmenu.cc:55
+msgid "~I~nfview"
+msgstr "~I~nfView"
+
+#: ../infview/infmenu.cc:57
+msgid "~H~istory"
+msgstr "Hi~s~toria"
+
+#: ../infview/infmenu.cc:59
+msgid "~S~creen configuration"
+msgstr "Configuraci¢n de ~p~antalla"
+
+#: ../infview/infmenu.cc:60
+msgid "~A~bout"
+msgstr "~A~cerca de"
+
+#: ../infview/infmenu.cc:62 ../internac/tvision.cc:83
+#: ../setedit/editmenu.cc:114
+msgid "~W~indows"
+msgstr "~V~entana"
+
+#: ../infview/infmenu.cc:63 ../internac/tvision.cc:84
+#: ../setedit/editmenu.cc:115
+msgid "~S~ize/move"
+msgstr "Tama¤o/Po~s~ici¢n"
+
+#: ../infview/infmenu.cc:64 ../internac/tvision.cc:85
+#: ../setedit/editmenu.cc:116
+msgid "~Z~oom"
+msgstr "~Z~oom"
+
+#: ../infview/infmenu.cc:65 ../internac/tvision.cc:86
+#: ../setedit/editmenu.cc:117
+msgid "~T~ile"
+msgstr "~M~osaico"
+
+#: ../infview/infmenu.cc:66 ../internac/tvision.cc:87
+#: ../setedit/editmenu.cc:118
+msgid "C~a~scade"
+msgstr "~C~ascada"
+
+#: ../infview/infmenu.cc:69 ../internac/tvision.cc:90
+#: ../setedit/editmenu.cc:121 ../setedit/editmenu.cc:139
+msgid "~C~lose"
+msgstr "C~e~rrar"
+
+#: ../infview/infmenu.cc:80 ../setedit/editmenu.cc:170
+msgid "~Alt+F1~ Back"
+msgstr "~Alt+F1~ Atras"
+
+#: ../infview/infmenu.cc:81 ../setedit/editmenu.cc:171
+msgid "~Alt+F10~ Control"
+msgstr "~Alt+F10~ Control"
+
+#: ../infview/infmenu.cc:82 ../setedit/editmenu.cc:180
+#: ../setedit/editmenu.cc:199 ../setedit/editmenu.cc:202
+msgid "~F1~ Help"
+msgstr "~F1~ Ayuda"
+
+#: ../infview/infmenu.cc:83
+msgid "~Ctrl+O~ Index"
+msgstr "~Ctrl+O~ Indice"
+
+#: ../infview/infmenu.cc:84 ../infview/infmenu.cc:86 ../internac/tvision.cc:94
+#: ../setedit/editmenu.cc:161 ../setedit/editmenu.cc:185
+#: ../setedit/editmenu.cc:203
+msgid "~F5~ Zoom"
+msgstr "~F5~ Zoom"
+
+#: ../infview/infmenu.cc:87 ../internac/tvision.cc:95
+#: ../setedit/editmenu.cc:162
+msgid "~F6~ Next"
+msgstr "~F6~ Pr¢xima"
+
+#: ../infview/infmenu.cc:88 ../internac/tvision.cc:96
+#: ../setedit/editmenu.cc:163
+msgid "~F10~ Menu"
+msgstr "~F10~ Men£"
+
+#: ../infview/infmenu.cc:95 ../internac/tvision.cc:97
+#: ../setedit/editmenu.cc:210
+msgid "Not enough memory for this operation."
+msgstr "No hay suficiente memoria para esta operaci¢n."
+
+#: ../infview/manview.cc:491
+msgid "You must install man to use it!"
+msgstr "­Debe instalar el programa man para usar esto!"
+
+#: ../infview/manview.cc:520
+msgid "Man page to view"
+msgstr "Visor de p ginas del manual"
+
+#: ../infview/manview.cc:523
+msgid "~M~an page for ..."
+msgstr "~P~ gina del manual para ..."
+
+#: ../infview/manview.cc:524
+msgid "~S~ection"
+msgstr "~S~ecci¢n"
+
+#: ../infview/manview.cc:525
+msgid "~E~xtra options"
+msgstr "Opciones ~e~xtra"
 
 #: ../install/install.cc:122
 msgid "Type of installation"
@@ -719,7 +876,8 @@ msgstr "Una copia del autoexec.bat original fue guardada como autoexec.bak"
 
 #: ../install/install.cc:1363
 msgid "SET Edit installer v1.10, copyright (c) 1999 by Salvador E. Tropea"
-msgstr "Instalador de SET Edit v1.10, copyright (c) 1999 by Salvador E. Tropea"
+msgstr ""
+"Instalador de SET Edit v1.10, copyright (c) 1999 by Salvador E. Tropea"
 
 #: ../install/install.cc:1368
 msgid "Failed, disabling all or part of the Win9x specific stuff"
@@ -954,12 +1112,6 @@ msgstr "Pr~e~guntar"
 msgid "~R~eplace all"
 msgstr "~R~eemplazar todo"
 
-#. Spanish: ABCEHMPRV
-#. English: CEFHMPSVW
-#: ../internac/tvision.cc:64 ../setedit/editmenu.cc:60
-msgid "~F~ile"
-msgstr "~A~rchivo"
-
 #: ../internac/tvision.cc:65 ../setedit/winlistd.cc:123
 msgid "~O~pen"
 msgstr "~A~brir"
@@ -979,14 +1131,6 @@ msgstr "G~u~ardar como ..."
 #: ../internac/tvision.cc:69 ../setedit/editmenu.cc:68
 msgid "~C~hange dir..."
 msgstr "~C~ambiar directorio ..."
-
-#: ../internac/tvision.cc:70 ../setedit/editmenu.cc:69
-msgid "~D~OS shell"
-msgstr "Ir a ~D~OS"
-
-#: ../internac/tvision.cc:71 ../setedit/editmenu.cc:70
-msgid "E~x~it"
-msgstr "~S~alir"
 
 #: ../internac/tvision.cc:72 ../mainsrc/loaddefl.cc:648
 #: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
@@ -1010,10 +1154,6 @@ msgstr "~V~er portapapeles"
 msgid "~C~lear"
 msgstr "~B~orrar"
 
-#: ../internac/tvision.cc:79 ../setedit/editmenu.cc:93
-msgid "~S~earch"
-msgstr "~B~uscar"
-
 #: ../internac/tvision.cc:80 ../setedit/editmenu.cc:94
 msgid "~F~ind..."
 msgstr "~B~uscar ..."
@@ -1026,31 +1166,6 @@ msgstr "R~e~emplazar ..."
 msgid "~S~earch again"
 msgstr "~R~epetir b£squeda"
 
-#: ../internac/tvision.cc:83 ../setedit/editmenu.cc:114
-msgid "~W~indows"
-msgstr "~V~entana"
-
-#: ../internac/tvision.cc:84 ../setedit/editmenu.cc:115
-msgid "~S~ize/move"
-msgstr "Tama¤o/Po~s~ici¢n"
-
-#: ../internac/tvision.cc:85 ../setedit/editmenu.cc:116
-msgid "~Z~oom"
-msgstr "~Z~oom"
-
-#: ../internac/tvision.cc:86 ../setedit/editmenu.cc:117
-msgid "~T~ile"
-msgstr "~M~osaico"
-
-#: ../internac/tvision.cc:87 ../setedit/editmenu.cc:118
-msgid "C~a~scade"
-msgstr "~C~ascada"
-
-#: ../internac/tvision.cc:90 ../setedit/editmenu.cc:121
-#: ../setedit/editmenu.cc:139
-msgid "~C~lose"
-msgstr "C~e~rrar"
-
 #: ../internac/tvision.cc:91 ../setedit/editmenu.cc:158
 msgid "~F2~ Save"
 msgstr "~F2~ Grabar"
@@ -1062,23 +1177,6 @@ msgstr "~F3~ Abrir"
 #: ../internac/tvision.cc:93 ../setedit/editmenu.cc:160
 msgid "~Alt+F3~ Close"
 msgstr "~Alt+F3~ Cerrar"
-
-#: ../internac/tvision.cc:94 ../setedit/editmenu.cc:161
-#: ../setedit/editmenu.cc:185 ../setedit/editmenu.cc:203
-msgid "~F5~ Zoom"
-msgstr "~F5~ Zoom"
-
-#: ../internac/tvision.cc:95 ../setedit/editmenu.cc:162
-msgid "~F6~ Next"
-msgstr "~F6~ Pr¢xima"
-
-#: ../internac/tvision.cc:96 ../setedit/editmenu.cc:163
-msgid "~F10~ Menu"
-msgstr "~F10~ Men£"
-
-#: ../internac/tvision.cc:97 ../setedit/editmenu.cc:210
-msgid "Not enough memory for this operation."
-msgstr "No hay suficiente memoria para esta operaci¢n."
 
 #: ../internac/tvision.cc:98 ../mainsrc/doedidia.cc:57
 msgid "Not enough memory for this operation"
@@ -1207,7 +1305,6 @@ msgstr ""
 "%f caracteres/seg"
 
 #: ../mainsrc/ceditor.cc:3916
-#, c-format
 msgid ""
 "Time: %f seconds\n"
 "Speed: %f lines/second\n"
@@ -1721,7 +1818,8 @@ msgstr "Valor asociado"
 msgid "Value:"
 msgstr "Valor:"
 
-#: ../mainsrc/loaddefl.cc:498
+#: ../mainsrc/loaddefl.cc:498 ../setedit/loadnobkp.cc:213
+#: ../setedit/pathlist.cc:179
 msgid "Do you want to discard the changes?"
 msgstr "¨Desea descartar los cambios?"
 
@@ -1763,7 +1861,7 @@ msgstr ""
 "­Error! por favor ejecute el editor desde un directorio v lido\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:51 ../mp3/mp3play.cc:255 ../setedit/loadcle.cc:100
+#: ../mainsrc/pmacros.cc:51 ../mp3/mp3play.cc:256 ../setedit/loadcle.cc:100
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -2368,11 +2466,11 @@ msgstr "   Panel de control MP3"
 msgid "Wrong desktop file."
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../setedit/dstfile.cc:464
+#: ../setedit/dstfile.cc:465
 msgid "The desktop file is too old."
 msgstr "El archivo de escritorio es de una version muy vieja."
 
-#: ../setedit/dstfile.cc:469
+#: ../setedit/dstfile.cc:470
 msgid "You need a newer editor for this desktop file."
 msgstr ""
 "Ud. necesita una nueva versi¢n del editor para este archivo de escritorio."
@@ -2562,15 +2660,15 @@ msgstr ""
 "Ud. defini¢ SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:1640
+#: ../setedit/editmain.cc:1645
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:1868
+#: ../setedit/editmain.cc:1885
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:1869
+#: ../setedit/editmain.cc:1886
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -2578,7 +2676,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:1871
+#: ../setedit/editmain.cc:1888
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -2595,22 +2693,22 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:1876
+#: ../setedit/editmain.cc:1893
 msgid "-b, --bios-keyb:         use BIOS for the keyboard [safer, default].\n"
 msgstr ""
-"-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, p/"
-"defecto].\n"
+"-b, --bios-keyb:         usar el BIOS para el teclado [m s seguro, "
+"p/defecto].\n"
 
-#: ../setedit/editmain.cc:1877
+#: ../setedit/editmain.cc:1894
 msgid "-B, --no-bios-keyb:      don't use BIOS for the keyboard [faster].\n"
 msgstr ""
 "-B, --no-bios-keyb:      no usar el BIOS para el teclado [m s r pido].\n"
 
-#: ../setedit/editmain.cc:1879
+#: ../setedit/editmain.cc:1896
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:1880
+#: ../setedit/editmain.cc:1897
 msgid ""
 "-d, --stack-dbg=n:       indicates which methode will be used in the event "
 "of a\n"
@@ -2624,7 +2722,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecuci¢n.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:1885
+#: ../setedit/editmain.cc:1902
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Finally die.\n"
@@ -2636,7 +2734,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:1889
+#: ../setedit/editmain.cc:1906
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -2645,7 +2743,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada l¡nea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:1891
+#: ../setedit/editmain.cc:1908
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -2653,34 +2751,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:1893
+#: ../setedit/editmain.cc:1910
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:1895
+#: ../setedit/editmain.cc:1912
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:1897
+#: ../setedit/editmain.cc:1914
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:1898
+#: ../setedit/editmain.cc:1915
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:1899
+#: ../setedit/editmain.cc:1916
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupci¢n del mouse.\n"
 
-#: ../setedit/editmain.cc:1902
+#: ../setedit/editmain.cc:1919
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:1904
+#: ../setedit/editmain.cc:1921
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -2689,7 +2787,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:1906
+#: ../setedit/editmain.cc:1923
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -2697,7 +2795,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuraci¢n del programa.\n"
 
-#: ../setedit/editmain.cc:1909
+#: ../setedit/editmain.cc:1926
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -2705,19 +2803,19 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:1911
+#: ../setedit/editmain.cc:1928
 msgid ""
 "-t, --tile-vert:         arranges the windows using vertical tile style.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:1912
+#: ../setedit/editmain.cc:1929
 msgid ""
 "-T, --tile-horiz:        arranges the windows using horizontal tile style.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
 
-#: ../setedit/editmain.cc:2270
+#: ../setedit/editmain.cc:2286
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "¨Desea borrar todos los archivos de respaldo y escritorio?"
 
@@ -2850,14 +2948,6 @@ msgstr "Co~l~ores"
 msgid "~P~roject"
 msgstr "~P~royecto"
 
-#: ../setedit/editmenu.cc:170
-msgid "~Alt+F1~ Back"
-msgstr "~Alt+F1~ Atras"
-
-#: ../setedit/editmenu.cc:171
-msgid "~Alt+F10~ Control"
-msgstr "~Alt+F10~ Control"
-
 #: ../setedit/editmenu.cc:172
 msgid "~^H~ Help"
 msgstr "~^H~ Ayuda"
@@ -2881,11 +2971,6 @@ msgstr "~Del~ Cierra"
 #: ../setedit/editmenu.cc:179
 msgid "~Ins~ Open"
 msgstr "~Ins~ Abrir"
-
-#: ../setedit/editmenu.cc:180 ../setedit/editmenu.cc:199
-#: ../setedit/editmenu.cc:202
-msgid "~F1~ Help"
-msgstr "~F1~ Ayuda"
 
 #: ../setedit/editmenu.cc:181
 msgid "~Ctrl+Del~ Delete File"
@@ -4015,6 +4100,14 @@ msgstr ""
 msgid "End of grep search"
 msgstr "Fin de la b£squeda"
 
+#: ../setedit/loadnobkp.cc:50
+msgid "Don't create backups for"
+msgstr "No crear archivos de respaldo para"
+
+#: ../setedit/loadnobkp.cc:180
+msgid "Perl regular expression"
+msgstr "Expresi¢n regular Perl"
+
 #: ../setedit/menuload.cc:62
 msgid "No error"
 msgstr "Sin errores"
@@ -4116,6 +4209,14 @@ msgstr "N£mero o nombre de contexto err¢neo"
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Error cargando el men£: (%d) %s en la l¡nea %d de %s."
 
+#: ../setedit/pathlist.cc:84
+msgid "Path to look for files under cursor"
+msgstr "Directorios para buscar archivos bajo el cursor"
+
+#: ../setedit/pathlist.cc:138
+msgid "Directory"
+msgstr "Directorio"
+
 #: ../setedit/runprog.cc:70
 #, c-format
 msgid "Running %s"
@@ -4199,12 +4300,12 @@ msgid "Screen saver, press a key"
 msgstr "Salvapantallas, presione una tecla"
 
 #. ************************* Text Stars saver ****************************
-#: ../setedit/scresave.cc:641
+#: ../setedit/scresave.cc:640
 msgid "Press a key to continue"
 msgstr "Presione una tecla para continuar"
 
 #. ************************* Safe saver ****************************
-#: ../setedit/scresave.cc:743
+#: ../setedit/scresave.cc:742
 msgid ""
 "That's a 'safe' screen saver. The editor have a beautiful plasma screen "
 "saver but currently isn't the default because some (really buggy) Winshit 9x "
@@ -4273,93 +4374,33 @@ msgstr "Comando~s~"
 msgid "Assignmen~t~"
 msgstr "Asi~g~naci¢n"
 
-#~ msgid "~N~ew InfView window"
-#~ msgstr "~N~ueva ventana de InfView"
+# Este es el archivo de traducci¢n a espa¤ol para el SETEdit.
+# Copyright (C) 2001 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001.
+#
+#, fuzzy
+#~ msgid ""
+#~ msgstr ""
+#~ "Project-Id-Version: setedit 0.4.49\n"
+#~ "PO-Revision-Date: 2001-09-25 22:45-0300\n"
+#~ "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
+#~ "Language-Team: Spanish <set@ieee.org>\n"
+#~ "MIME-Version: 1.0\n"
+#~ "Content-Type: text/plain; charset=CP850\n"
+#~ "Content-Transfer-Encoding: 8bit\n"
 
-#~ msgid "~O~pen info file"
-#~ msgstr "~A~brir un .info"
-
-#~ msgid "Open ~m~anpage"
-#~ msgstr "Abrir una p gina del ~m~anual"
-
-#~ msgid "S~h~ell"
-#~ msgstr "S~h~ell"
-
-#~ msgid "~G~oto"
-#~ msgstr "I~r~ a"
-
-#~ msgid "Goto: (~F~ile)Node"
-#~ msgstr "~I~r a: (Archivo)Nodo"
-
-#~ msgid "~N~ode list"
-#~ msgstr "~L~ista de nodos"
-
-#~ msgid "N~e~xt node"
-#~ msgstr "~P~r¢ximo nodo"
-
-#~ msgid "~P~revious node"
-#~ msgstr "Nodo ~a~nterior"
-
-#~ msgid "~U~pper node"
-#~ msgstr "Nodo ~s~uperior"
-
-#~ msgid "~T~op node"
-#~ msgstr "~N~odo principal"
-
-#~ msgid "~D~irectory"
-#~ msgstr "~D~irectorio de ayudas"
-
-#~ msgid "Search ~a~gain"
-#~ msgstr "~R~epetir b£squeda"
-
-#~ msgid "~I~nfview"
-#~ msgstr "~I~nfView"
-
-#~ msgid "~H~istory"
-#~ msgstr "Hi~s~toria"
-
-#~ msgid "~S~creen configuration"
-#~ msgstr "Configuraci¢n de ~p~antalla"
-
-#~ msgid "~A~bout"
-#~ msgstr "~A~cerca de"
-
-#~ msgid "~Ctrl+O~ Index"
-#~ msgstr "~Ctrl+O~ Indice"
-
-#~ msgid "You must install man to use it!"
-#~ msgstr "­Debe instalar el programa man para usar esto!"
-
-#~ msgid "Man page to view"
-#~ msgstr "Visor de p ginas del manual"
-
-#~ msgid "~M~an page for ..."
-#~ msgstr "~P~ gina del manual para ..."
-
-#~ msgid "~S~ection"
-#~ msgstr "~S~ecci¢n"
-
-#~ msgid "~E~xtra options"
-#~ msgstr "Opciones ~e~xtra"
-
-#~ msgid "Don't create backups for"
-#~ msgstr "No crear archivos de respaldo para"
-
-#~ msgid "Perl regular expression"
-#~ msgstr "Expresi¢n regular Perl"
-
-#~ msgid "Path to look for files under cursor"
-#~ msgstr "Directorios para buscar archivos bajo el cursor"
-
-#~ msgid "Directory"
-#~ msgstr "Directorio"
+#~ msgid ""
+#~ ". Copyright (c) 1996-2001 by Salvador E. Tropea\n"
+#~ "\n"
+#~ msgstr ""
+#~ ". Copyright (c) 1996-2001 por Salvador E. Tropea\n"
+#~ "\n"
 
 #~ msgid "Attention can't open the help file."
 #~ msgstr "­Atenci¢n no puedo abrir el archivo de ayuda!"
 
 #~ msgid ""
-#~ "-s, --no-signal:         disables the hook of signals to save the "
-#~ "modified\n"
+#~ "-s, --no-signal:         disables the hook of signals to save the modified\n"
 #~ "                         buffers during a crash. Could be needed if the "
 #~ "editor\n"
 #~ "                         hangs in an extraordinary way.\n"
@@ -4394,5 +4435,5 @@ msgstr "Asi~g~naci¢n"
 
 #~ msgid "Attention !! this file is in DOS format,"
 #~ msgstr ""
-#~ "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga "
-#~ "una copia primero"
+#~ "­Atenci¢n! este archivo est  en formato DOS, ¨quiere convertirlo?, Haga una "
+#~ "copia primero"
