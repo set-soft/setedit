@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.70  2002/04/29 15:05:13  set
+* Added: Example on how to bind a key to a filter, contributed by Grzegorz.
+
 Revision 1.69  2002/04/29 15:02:11  set
 * Added: An option to select a "Color Theme", currently only the "Default"
 and "FTE like" themes are available. Suggested by Ivan (he contributed the
