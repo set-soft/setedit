@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.371  2003/05/16 15:30:32  set
+* Fixed: Wrong dependencies for the .imk files. They depends on the imk
+generator, but the source, not the exe. The exe will be always newer than
+the imk files for fresh check outs and it forced to have gpr2mak. Seen on
+Solaris where I don't have grp2mak.
+
 Revision 1.370  2003/05/16 12:53:29  set
 * Fixed: Missing C++ lib for extrimk.cc and genimk.cc. Reported by Kevin
 Alm <kevinalm@shenessex.heartland.net>.

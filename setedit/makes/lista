@@ -428,6 +428,7 @@ makes/genimk.cc
 -makes/infview.gpr
 makes/infview.mkf
 -makes/install.gpr
+makes/install.mkf
 -makes/librhuti.gpr
 -makes/libset.gpr
 makes/libset.mkf
@@ -448,8 +449,10 @@ makes/obj/delete.me
 *makes/rhide.env
 *makes/r.bat
 -makes/sdgcline.gpr
+makes/sdgcline.mkf
 -makes/settv.gpr
 -makes/testeasy.gpr
+makes/testeasy.mkf
 makes/tmp/delete.me
 *makes/try-y.bat
 *makes/yamd-on.bat
@@ -809,4 +812,3 @@ WinNT/Makefile.nmk
 WinNT/msvcmake.in
 WinNT/README
 WinNT/objs/delete.me
-
