@@ -43,6 +43,7 @@ debian/README.debian
 debian/changelog
 debian/control
 debian/copyright
+debian/files_to_backup
 debian/info.ex
 debian/infview.doc-base
 debian/infview.menu

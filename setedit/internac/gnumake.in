@@ -15,7 +15,7 @@ export editor_OS:=Linux
 endif
 
 srcdir=.
-LANGUAGES=es gr de
+LANGUAGES=es de
 PACKAGE=setedit
 prefix=$(DJDIR)
 locale_dir=$(prefix)/share/locale
