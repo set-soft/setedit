@@ -7,7 +7,6 @@ require "miscperl.pl";
 require "conflib.pl";
 
 $conf{'infview'}='yes';
-$conf{'HAVE_BZIP2'}='yes';
 $conf{'parser'}='parserbr.c';
 $conf{'mp3lib'}='mpegsnd';
 $conf{'mp3'}='yes';
@@ -20,6 +19,7 @@ GetVersion('');
 
 $TVVersionNeeded='1.1.0';
 $ZLibVersionNeeded='1.1.2';
+$BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
@@ -76,6 +76,8 @@ LookForIntlSupport();
 LookForPCRE();
 # Is ZLib available?
 LookForZLib($ZLibVersionNeeded);
+# Is BZip2 library available?
+LookForBZ2Lib($BZ2LibVersionNeeded);
 # Look for recode and version
 LookForRecode();
 # Look for xgettext
@@ -98,31 +100,31 @@ if ($OS eq 'DOS')
      {
       $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' alleg ';
      }
-   $MakeDefsRHIDE[1].='bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
   }
 elsif ($OS eq 'UNIX')
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=ncurses gpm m';
-   $MakeDefsRHIDE[1].=' bz2' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
 else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS=stdc++';
-   $MakeDefsRHIDE[1].=' bz2' if (@conf{'HAVE_BZIP2'} eq 'yes');
+   $MakeDefsRHIDE[1].=' bz2 ' if (@conf{'HAVE_BZIP2'} eq 'yes'); #FIXME: Ivan: I don't know if this still applies after my changes...
    $MakeDefsRHIDE[1].=' '.@conf{'mp3lib'} if (@conf{'mp3'} eq 'yes');
   }
 $MakeDefsRHIDE[2]="RHIDE_OS_LIBS_PATH=$TVLib";
 $MakeDefsRHIDE[2].=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
-$MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'HAVE_BZIP2'} eq 'yes');
+$MakeDefsRHIDE[2].=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $MakeDefsRHIDE[2].=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[3]="TVISION_INC=$TVInclude";
 $test='';
 $test.=' ../libz' if (@conf{'zlibShipped'} eq 'yes');
-$test.=' ../libbzip2' if (@conf{'HAVE_BZIP2'} eq 'yes');
+$test.=' ../libbzip2' if (@conf{'bz2libShipped'} eq 'yes');
 $test.=' ../libpcre' if (@conf{'PCREShipped'} eq 'yes');
 $test.=' ../gettext' if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[4]='SUPPORT_INC='.$test;
@@ -274,17 +276,19 @@ sub SeeCommandLine
       {
        $conf{'infview'}='yes';
       }
-    elsif ($i eq '--no-infview')
-      {
-       $conf{'infview'}='no';
-      }
     elsif ($i eq '--no-bzip2')
       {
        $conf{'HAVE_BZIP2'}='no';
+       $conf{'bz2libShipped'}='no';
+       $conf{'bz2lib'}='no';
       }
     elsif ($i eq '--bzip2')
       {
        $conf{'HAVE_BZIP2'}='yes';
+      }
+    elsif ($i eq '--no-infview')
+      {
+       $conf{'infview'}='no';
       }
     elsif ($i eq '--parser-adv')
       {
@@ -766,6 +770,85 @@ int main(void)
  $conf{'zlib'}='shipped'; #$test
 }
 
+sub LookForBZ2Lib
+{
+ my $vNeed=$_[0];
+ my $test,$ver;
+
+ print 'Looking for BZip2 library: ';
+ $test=@conf{'bz2lib'};
+ if ($test)
+   {
+    print "$test (cached) OK\n";
+    return;
+   }
+ $test='
+#include <stdio.h>
+#include <bzlib.h>
+int main(void)
+{
+ printf("%s",bzlibVersion());
+ return 0;
+}';
+ $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+ if (length($ver))
+   {
+    if (CompareVersion($ver,$vNeed))
+      {
+       print "$ver OK\n";
+       $conf{'bz2libShipped'}='no';
+       $conf{'bz2lib'}=$ver;
+       $conf{'bz2libPre1'}='yes';
+       $conf{'HAVE_BZIP2'}='yes';
+       $conf{'HAVE_BZIP2PRE1'}='yes';
+       return;
+      }
+   }
+ else
+   {
+    $test='
+#include <stdio.h>
+#include <bzlib.h>
+int main(void)
+{
+ printf("%s",BZ2_bzlibVersion());
+ return 0;
+}';
+    $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+    if (length($ver))
+      {
+       if (CompareVersion($ver,$vNeed))
+         {
+           print "$ver OK\n";
+           $conf{'bz2libShipped'}='no';
+           $conf{'bz2lib'}=$ver;
+	   $conf{'bz2libPre1'}='no';
+           $conf{'HAVE_BZIP2'}='yes';
+           return;
+         }
+       print "no $vNeed+, ";
+      }
+    else
+      {
+       print 'not installed, ';
+      }
+   }
+ #$test=RunGCCTest($GCC,'c',$test,"-lz -Isupport -L$supportDir");
+ #if (!CompareVersion($test,$vNeed))
+ #  {
+ #   print "no shipped\n";
+ #   print "\n\nError: Can't find an installed version, please install zlib 1.1.2 or better first.\n";
+ #   CreateCache();
+ #   die "Missing library\n";
+ #  }
+ print "using shipped one\n";
+ $conf{'bz2libShipped'}='yes';
+ $conf{'bz2lib'}='shipped'; #$test
+ $conf{'bz2libPre1'}='no';
+ $conf{'HAVE_BZIP2'}='yes';
+}
+
+
 sub LookForIntlSupport
 {
  my $vNeed=$_[0];
@@ -861,6 +944,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('HAVE_PCRE_LIB','Perl Compatible Regular Expressions support');
  $text.=ConfigIncDefYes('HAVE_PCRE206','PCRE version 2.0.6 or newer');
  $text.=ConfigIncDefYes('HAVE_BZIP2','bzip2 compression support');
+ $text.=ConfigIncDefYes('HAVE_BZIP2PRE1','old bzip2 version before 1.0') if(@conf{'HAVE_BZIP2'} eq 'yes');
  $text.=ConfigIncDefYes('HAVE_MIXER','Sound mixer support');
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  $text.="\n\n";
@@ -889,8 +973,8 @@ sub GenerateMakefile
  $libamp=@conf{'HAVE_AMP'} eq 'yes';
  $libmpegsnd=@conf{'HAVE_MPEGSOUND'} eq 'yes';
  $infview=@conf{'infview'} eq 'yes';
- $libbzip2=@conf{'HAVE_BZIP2'};
  $libz=@conf{'zlibShipped'} eq 'yes';
+ $libbzip2=@conf{'bz2libShipped'} eq 'yes';
  $libpcre=@conf{'PCREShipped'} eq 'yes';
  $libintl=@conf{'intlShipped'} eq 'yes';
  $plasmas=$OS eq 'DOS';
@@ -1031,4 +1115,3 @@ sub GenerateMakefile
 
  replace('Makefile',$text);
 }
-
