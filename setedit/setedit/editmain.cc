@@ -181,7 +181,7 @@ void FixUpName(char *fileName)
 TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
                                         EditorResume *res, int options)
 {
- Boolean openAsReadOnly=False;
+ Boolean openAsReadOnly=(options & oedForceRO) ? True : False;
  int numEditors=0;
  TCEditWindow *ain=NULL;
 
@@ -199,11 +199,14 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
  if (ain && numEditors<maxOpenEditorsSame)
    {
     /* If we have only RO editors open it as !RO */
-    openAsReadOnly=ain->editor->isReadOnly ? False : True;
+    if (!openAsReadOnly && !ain->editor->isReadOnly)
+       openAsReadOnly=True;
     ain=NULL;
    }
  if (ain)
    {
+    if (options & oedForgetResume)
+       ain->editor->handleCommand(cmcTextStart);
     if (options & oedNoSelect)
       {
        ain->options&= ~ofSelectable;
@@ -213,6 +216,8 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     else
        ain->select();
     p=(TView *)ain;
+    if (openAsReadOnly) // Could be forced
+       ain->editor->isReadOnly=True;
    }
  else
    {
@@ -222,15 +227,16 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     if (!p)
        return (TCEditWindow *)p;
 
+    ain=(TCEditWindow *)p;
     if (openAsReadOnly)
-       ((TCEditWindow *)p)->editor->isReadOnly=True;
+       ain->editor->isReadOnly=True;
 
     // Transfer the special lines
     int *spL=SpLinesGetFor(fileName);
     if (spL)
-       ((TCEditWindow *)p)->editor->SetSpecialLines(spL);
+       ain->editor->SetSpecialLines(spL);
     #ifdef TEST_SPLINES
-    ((TCEditWindow *)p)->editor->SetSpecialLines(spLines);
+    ain->editor->SetSpecialLines(spLines);
     #endif
 
     if (visible)
@@ -247,12 +253,13 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
        AddToEditorsHelper((TCEditWindow *)p,1);
        unsigned dstOps=GetDSTOptions();
        if (validResume && // If the user doesn't like memories forget it.
-           !(dstOps & dstNoCursorPos))
-          ((TCEditWindow *)p)->ApplyResume(r);
+           !(dstOps & dstNoCursorPos) &&
+           !(options & oedForgetResume))
+          ain->ApplyResume(r);
        deskTop->insert(p);
        // When the project is OFF zoom it
        if (!validResume && !IsPrjOpened())
-          ((TCEditWindow *)p)->zoom();
+          ain->zoom();
       }
     else
       {
@@ -260,7 +267,13 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
        deskTop->insert(p);
       }
    }
-
+ if (options & oedZoom)
+   {
+    TPoint minSize, maxSize;
+    ain->sizeLimits(minSize,maxSize);
+    if (ain->size!=maxSize)
+       ain->zoom();
+   }
  return (TCEditWindow *)p;
 }
 
@@ -1509,7 +1522,7 @@ void ShowAboutStartBox(void)
        //messageBox(Name,mfOKButton);
        return;
       }
-    editorApp->openEditor(Name,True);
+    editorApp->openEditor(Name,True,NULL,oedForceRO | oedForgetResume | oedZoom);
    }
 }
 
