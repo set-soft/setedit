@@ -152,7 +152,7 @@ elsif ($OS eq 'UNIX')
    $MakeDefsRHIDE[1].='dl ' if ($conf{'dl'} eq 'yes');
    $MakeDefsRHIDE[1].='bz2 ' if @conf{'HAVE_BZIP2'} eq 'yes';
    $MakeDefsRHIDE[1].=@conf{'mp3lib'}.' ' if (@conf{'mp3'} eq 'yes');
-   $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes');
+   $MakeDefsRHIDE[1].='intl ' if (($OSf eq 'FreeBSD') && ($conf{'intl'} eq 'yes'));
   }
 else # Win32
   {
