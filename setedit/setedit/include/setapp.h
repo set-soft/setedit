@@ -275,8 +275,8 @@ extern int FileOpenDialog(char *title, char *file);
 #define NBKPFile              "nobkp.txt"
 extern const char *cDeskTopFileName;
 extern const char *cDeskTopFileNameHidden;
-#ifndef __DJGPP__
-#define HIDDEN_DIFFERENT
+#if defined(TVOS_UNIX) || defined(TVCompf_Cygwin)
+ #define HIDDEN_DIFFERENT
 #endif
 #define ProjectFileExt  ".epr"
 #define DeskTopFileExt  ".dst"
