@@ -38,7 +38,7 @@
 #define DL_HEADER_NAME <link.h>
 
 
-#define CONFIG_PREFIX "/usr"
+#define CONFIG_PREFIX ""
 
 
 #define SEOS_UNIX
