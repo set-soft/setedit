@@ -322,9 +322,9 @@ bool Rawplayer::putblock(void *buffer,int size)
     while (getprocessed()>quota) usleep(3);
  unsigned wrote=write(audiohandle,buffer,size);
  if (wrote!=size)
-    fprintf("Error! trying to write %d and we wrote %d\n",size,wrote);
+    fprintf(stderr,"Error! trying to write %d and we wrote %d\n",size,wrote);
  else
-    fprintf("Ok! %d bytes\n",size);
+    fprintf(stderr,"Ok! %d bytes\n",size);
 
  return true;
 }
