@@ -206,6 +206,7 @@ static edCList SetApp[] =
 { "Encodings"      , 76 },
 { "ExportAsHTML"   , 64 },
 { "FileOpenOptions", 61 },
+{ "Fonts"          , 77 },
 { "GrepDialog"     , 32 },
 { "HTMLAccents"    , 53 },
 { "HTMLTag2Accent" , 68 },

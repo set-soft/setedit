@@ -1002,6 +1002,10 @@ void TSetEditorApp::handleEvent( TEvent& event )
               EncodingOptions();
               break;
 
+         case cmeFonts:
+              FontsOptions();
+              break;
+
          // These commands are traslated to the original values
          TCheck(Resize)
          TCheck(Zoom)

@@ -26,6 +26,7 @@
 #define Uses_fpstream
 #define Uses_TSOSListBox
 #define Uses_TVCodePage
+#define Uses_TVFontCollection
 
 // EasyDiag requests
 #define Uses_TSButton
@@ -1106,6 +1107,7 @@ int  ChooseConvCPs(int &From, int &To, uint32 &ops)
  return ret;
 }
 
+/************************** New code pages dialogs **************************/
 #pragma pack(1)
 typedef struct
 {
@@ -1219,3 +1221,129 @@ void EncodingOptions()
       }
    }
 }
+
+/***************************** New fonts dialogs ****************************/
+
+static uchar foPriLoad=0, foSecLoad=0;
+static char *foPriName=NULL, *foSecName=NULL;
+static unsigned foPriW=8,foPriH=16;
+
+#pragma pack(1)
+typedef struct
+{
+ uint32  priUse         CLY_Packed;
+ TCollection *priList   CLY_Packed;
+ ccIndex priFont        CLY_Packed;
+ TCollection *priSizes  CLY_Packed;
+ ccIndex priSize        CLY_Packed;
+ uint32  secUse         CLY_Packed;
+ TCollection *secList   CLY_Packed;
+ ccIndex secFont        CLY_Packed;
+} FontsBox;
+#pragma pack()
+
+ListBoxSpecialize(TSVBitmapFontDescLBox);
+ListBoxImplement(VBitmapFontDescLBox);
+
+void FontsOptions()
+{
+ if (!TScreen::canSetBFont())
+   {
+    messageBox(_("This terminal doesn't support fonts"),mfInformation | mfOKButton);
+    return;
+   }
+ unsigned wmin,wmax,hmin,hmax;
+ if (!TScreen::getFontGeometry(wmin,hmin))
+   {
+    messageBox(_("Can't determine fonts geometry"),mfError | mfOKButton);
+    return;
+   }
+ if (!TScreen::getFontGeometryRange(wmin,hmin,wmax,hmax))
+   {
+    wmax=wmin;
+    hmax=hmin;
+   }
+ TVBitmapFontDescCol *fonts=
+   TVFontCollection::CreateListOfFonts(GetVariable("SET_FILES"),wmin,wmax,
+                                       hmin,hmax);
+ if (!fonts)
+   {
+    messageBox(_("No fonts available for current video mode"),mfInformation | mfOKButton);
+    return;
+   }
+ // Ok, we have fonts and we can use them
+ // Fill the data box
+ FontsBox box;
+ box.priUse=foPriLoad;
+ box.secUse=foSecLoad;
+ box.priList=box.secList=fonts;
+ if (!foPriName || !fonts->search(foPriName,box.priFont))
+    box.priFont=0;
+ if (!foSecName || !fonts->search(foSecName,box.secFont))
+    box.secFont=0;
+
+ TVBitmapFontDesc *pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
+ box.priSizes=pri->sizes;
+ int filled=0;
+ char buffer[64];
+ TVFontCollection::Size2Str(buffer,foPriW,foPriH);
+ if (!foPriName || !pri->sizes->search(buffer,box.priSize))
+   {
+    unsigned w,h;
+    if (TScreen::getFontGeometry(w,h))
+      {
+       TVFontCollection::Size2Str(buffer,foPriW,foPriH);
+       if (pri->sizes->search(buffer,box.priSize))
+          filled=1;
+      }
+    if (!filled)
+       box.priSize=0;
+   }
+
+ // Create the dialog
+ TRect dkt=TProgram::deskTop->getExtent();
+ int height=dkt.b.y-dkt.a.y-10;
+
+ // Primary font label, check box and list
+ TSLabel *priLBl=TSLabelCheck(__("~P~rimary"),__("~L~oad font"),0);
+ TSVBitmapFontDescLBox *priLB=new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical);
+ TSVeGroup *priOps=new TSVeGroup(priLBl,priLB,0);
+ priOps->makeSameW();
+
+ // Size
+ TSSortedListBox *priSz=new TSSortedListBox(wForced,height,tsslbVertical);
+ TSLabel *priSzl=new TSLabel(_("S~i~ze"),priSz);
+
+ // Secondary font options, only if available
+ TSVeGroup *secOps=NULL;
+ if (TScreen::canSetSBFont())
+   {
+    secOps=new TSVeGroup(TSLabelCheck(__("~S~econdary"),__("Lo~a~d font"),0),
+                         new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical),0);
+    secOps->makeSameW();
+   }
+
+ TSViewCol *col=new TSViewCol(__("Fonts"));
+ col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,0));
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doIt();
+ delete col;
+ d->options|=ofCentered;
+ d->helpCtx=cmeFonts;
+
+ if (execDialog(d,&box)==cmOK)
+   {
+    foPriLoad=box.priUse;
+    foSecLoad=box.secUse;
+
+    pri=(TVBitmapFontDesc *)fonts->at(box.priFont);
+    DeleteArray(foPriName);
+    foPriName=newStr(pri->name);
+    TVFontCollection::Str2Size((const char *)pri->sizes->at(box.priSize),foPriW,foPriH);
+
+    pri=(TVBitmapFontDesc *)fonts->at(box.secFont);
+    DeleteArray(foSecName);
+    foSecName=newStr(pri->name);
+   }
+}
+

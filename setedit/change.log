@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.160  2002/07/22 19:39:12  set
+* Added: Font10x20 keyword to TV config files.
+* Added: Warning about error in let.txt about 0x2578-0x257B unicodes that
+comes from Linux fonts errors.
+* Added: A 10x20 SFT.
+
 Revision 1.159  2002/07/22 19:20:38  set
 * Modified: getopt calls to use the new CLY_* methode.
 

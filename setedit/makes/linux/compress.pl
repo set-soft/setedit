@@ -228,7 +228,7 @@ print "done.\n\n";
 
 print "Copying share files: ";
 @cfgs=('../../cfgfiles/*.pmc','../../cfgfiles/*.shl','../../cfgfiles/*.tip',
-       '../../sdg/txhgen-i.*','../../sdg/*.frt',
+       '../../fonts/*.sft','../../sdg/txhgen-i.*','../../sdg/*.frt',
        '../../cfgfiles/menubind.smn','../../cfgfiles/redmond.smn',
        '../../cfgfiles/*.slp','../../cfgfiles/*.cle');
 foreach $i (@cfgs)

@@ -184,6 +184,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    EndSubMenu
    MenuItemC: "~S~creen Options ...", cmeSetScreenOps
    MenuItemC: "Encod~i~ngs ...", cmeEncodings
+   MenuItemC: "Fon~t~s ...", cmeFonts
    MenuItemC: "~U~ser words ...", cmeEditUserWords
    MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions

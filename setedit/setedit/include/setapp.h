@@ -93,7 +93,8 @@ const int
   cmeIncludeList    = cmeBase+73,
   cmeColorTheme     = cmeBase+74,
   cmeSaveDesktop    = cmeBase+75,
-  cmeEncodings      = cmeBase+76;
+  cmeEncodings      = cmeBase+76,
+  cmeFonts          = cmeBase+77;
 #endif
 
 #if defined(Uses_TSetEditorApp) && !defined(__TSetEditorApp__)
@@ -206,6 +207,7 @@ extern void FullAboutBox(void);
 extern void ShowUserScreenDialog();
 extern int  ChooseConvCPs(int &from, int &to, uint32 &ops);
 extern void EncodingOptions(void);
+extern void FontsOptions(void);
 class TDskWinMan;
 extern TDskWinMan *ManPageView(const char *name); // From dskman.cc
 #endif
