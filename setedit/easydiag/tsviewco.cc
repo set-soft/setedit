@@ -46,7 +46,7 @@ TDialog *TSViewCol::doIt(TDeskTop *dkt)
  TSView *This;
  TRect r=d->getBounds();
  w=max(r.b.x-r.a.x,2*xTSMargin);
- w=max(w,strlen(d->title)+14);
+ w=max(w,strlen(d->getTitle(0))+14);
  h=max(r.b.y-r.a.y,2*yTSMargin);
  int i;
  SViewNode *node;

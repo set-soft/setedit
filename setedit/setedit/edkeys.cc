@@ -31,6 +31,7 @@
 #define Uses_TSLabelRadio
 #define Uses_TSLabel
 #define Uses_TSButton
+#define Uses_TSStaticText
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -148,8 +149,8 @@ static TNoCaseNoOwnerStringCollection *Commands=0;
 class TDialogK : public TDialog
 {
 public:
- TDialogK(const TRect& bounds, const char *aTitle) :
-   TDialog(bounds,aTitle),
+ TDialogK(const char *aTitle) :
+   TDialog(TRect(0,0,0,0),aTitle),
    TWindowInit(&TDialogK::initFrame) {}
  virtual void handleEvent(TEvent& event);
 };
@@ -347,18 +348,14 @@ void TDialogK::handleEvent(TEvent& event)
  TDialog::handleEvent(event);
 }
 
-static char *press_key=__("Press a key");
-
 unsigned short TCEditor_SelectAKey(void)
 {
- TDialogK *d=new TDialogK(TRect(0,0,30,5),__("Key selector"));
- d->options|=ofCentered;
+ TDialogK *d=new TDialogK(__("Key selector"));
+ TSViewCol *col=new TSViewCol(d);
 
- const char *message=press_key;
- int x=(30-strlen(message))/2;
- TStaticText *ts=new TStaticText(TRect(x,2,29,3),message);
- d->insert(ts);
-
+ col->insert(xTSCenter,yTSUpSep,new TSStaticText(__("Press a key")));
+ col->doItCenter(hcEditKeysSeq);
+ delete col;
  return execDialog(d,0);
 }
 

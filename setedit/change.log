@@ -1,4 +1,8 @@
 $Log$.
+Revision 1.346  2003/05/07 15:01:20  set
+* Updated: Spanish translation for the fixed messages. Also committing a
+fresh german file that needs fixes.
+
 Revision 1.345  2003/05/07 14:26:16  set
 * Fixed: Applied a batch of patches from Bernd to fix messages in the code.
 
