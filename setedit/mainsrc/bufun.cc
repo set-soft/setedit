@@ -710,7 +710,7 @@ int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
        EdShowMessage(_("Functions:"),True);
        int i,c=FunList->getCount();
        FileInfo fInfo;
-       fInfo.Column=0;
+       fInfo.Column=0; fInfo.offset=fInfo.len=-1;
        if (ret==cmYes)
          {
           br.selection=0;
