@@ -93,6 +93,7 @@ class TSIndicator;
 class TIndicator;
 class TEvent;
 class TSubMenu;
+class TSpCollection;
 struct stEditorId;
 
 const int MaxRecMacroLen=250;
@@ -413,7 +414,7 @@ public:
     int EnsureXDontTab(char *s,int x,int w,char **stop);
     void lockUndo(void) { undoLockCount++; };
     void unlockUndo(void);
-    void SetSpecialLines(int *a, int *ids);
+    void SetSpecialLines(TSpCollection *aSpCol);
     void PasteEmacsMode();
     void QuotedPrintDecode();
     void InsertKeyName();
@@ -558,10 +559,8 @@ public:
     int undoLockCount;
     int undoGroupCount;
 
-    // To keep track of the position of some line
-    int *SpecialLines;
-    // This list doesn't have to be terminated, only SpecialLines needs it
-    int *SpecialLinesIds;
+    // To keep track of the position of some lines
+    TSpCollection *SpecialLines;
 
     // The modification time of the disk copy of the file
     // 0 if the file isn't in disk

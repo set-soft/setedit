@@ -38,25 +38,55 @@ I'm not sure what problems and limitations can be derived from that.
 #include <ceditor.h>
 #include <splinman.h>
 
-// Here I'm using a trick that isn't so clean, I use collections to hold
-// integers instead of void * because both are 32 bits
-class TArrayCol : public TNSCollection
+#define TO_KEY(a) ((void *)(long)(a))
+
+void TSpCollection::insert(int line, int id)
 {
-public:
- TArrayCol(ccIndex aLimit, ccIndex aDelta) :
-   TNSCollection(aLimit,aDelta) { shouldDelete=False; } // No owner
- int *getItems() { return (int *)items; } // That's the good thing of protected things, you
-                                   // can unprotect them ;-) != private
- void insert(int val) { TNSCollection::insert((void *)(long)val); }
-};
+ stSpLine *p=new stSpLine;
+ p->oline=p->nline=line;
+ p->id=id;
+ TNSSortedCollection::insert(p);
+}
+
+TSpCollection &TSpCollection::operator=(const TSpCollection &pl)
+{
+ int i;
+ freeAll();
+ for (i=0; i<pl.count; i++)
+    {
+     stSpLine *d=new stSpLine, *o=(stSpLine *)pl.items[i];
+     d->oline=o->oline;
+     d->nline=o->nline;
+     d->id=o->id;
+     TNSSortedCollection::insert(d);
+    }
+ return *this;
+}
+
+void *TSpCollection::keyOf(void *item)
+{
+ stSpLine *p=(stSpLine *)item;
+ return TO_KEY(p->oline);
+}
+
+int TSpCollection::compare(void *s1, void *s2)
+{
+ return (long)s1-(long)s2;
+}
+
+void TSpCollection::freeItem(void *s)
+{// Nothing special, just be sure we don t mix delete and delete[]
+ delete (stSpLine *)s;
+}
 
 // Base cell
 typedef struct
 {
  char *file; // File owner of the lines
- TArrayCol *SpecialLines;   // Which lines
- TArrayCol *OriginalLines;  // Original line numbers
- TArrayCol *idSources;      // kind of line
+ TSpCollection *SpecialLines;   // Which lines
+ TSpCollection *NewSpLines;     // When we modify (add/delete) lines the operation
+ // is performed on a copy. It helps the editor to know what changed and avoid
+ // drawing the whole window.
 } NodeCol;
 
 
@@ -68,6 +98,7 @@ public:
    TStringCollection(aLimit,aDelta) { }
  virtual void *keyOf(void *item) { return ((NodeCol *)item)->file; };
  virtual void freeItem( void *item );
+ NodeCol *At(ccIndex pos) { return (NodeCol *)at(pos); };
 };
 
 void TSpLAsoc::freeItem( void *item )
@@ -75,12 +106,26 @@ void TSpLAsoc::freeItem( void *item )
  NodeCol *p=(NodeCol *)item;
  delete[] p->file;
  CLY_destroy(p->SpecialLines);
- CLY_destroy(p->OriginalLines);
- CLY_destroy(p->idSources);
+ CLY_destroy(p->NewSpLines);
  delete p;
 }
 
 static TSpLAsoc *SpLines=0;
+
+static
+void ApplyOneSpLines(void *item, void *)
+{
+ NodeCol *p=(NodeCol *)item;
+ // Note: ApplySpLines is smart and will search the file by its inode.
+ if (p->NewSpLines)
+   {
+    ApplySpLines(p->file,p->NewSpLines);
+    // Reflect it
+    CLY_destroy(p->SpecialLines);
+    p->SpecialLines=p->NewSpLines;
+    p->NewSpLines=NULL;
+   }
+}
 
 /**[txh]********************************************************************
 
@@ -113,10 +158,13 @@ void SpLinesAdd(char *fName, int line, int idSource, Boolean TransferNow)
 
  if (SpLines->search(fileName,pos))
    {
-    p=(NodeCol *)(SpLines->at(pos));
-    p->SpecialLines->atInsert(p->SpecialLines->getCount()-1,(void *)(long)line);
-    p->OriginalLines->insert(line);
-    p->idSources->insert(idSource);
+    p=SpLines->At(pos);
+    if (!p->NewSpLines)
+      {// We don't have a list to transfer, create it.
+       p->NewSpLines=new TSpCollection(0);
+       *p->NewSpLines=*p->SpecialLines;
+      }
+    p->NewSpLines->insert(line,idSource);
     #ifdef DEBUG
     fprintf(stderr,"Adding a spl for: %s (%d), id: %d transfer: %d\n",fileName,line,idSource,TransferNow ? 1 : 0);
     #endif
@@ -126,46 +174,16 @@ void SpLinesAdd(char *fName, int line, int idSource, Boolean TransferNow)
     // This file doesn't have special lines yet
     p=new NodeCol;
     p->file=newStr(fileName);
-    p->SpecialLines=new TArrayCol(8,8);
-    p->OriginalLines=new TArrayCol(8,8);
-    p->idSources=new TArrayCol(8,8);
-    p->SpecialLines->insert(line);
-    p->SpecialLines->insert(splEndOfList); // That's because the editor spects a terminated list
-    p->OriginalLines->insert(line);
-    p->idSources->insert(idSource);
+    p->SpecialLines=NULL;
+    p->NewSpLines=new TSpCollection(8);
+    p->NewSpLines->insert(line,idSource);
     SpLines->insert(p);
     #ifdef DEBUG
     fprintf(stderr,"Adding a spl for: NEW %s (%d), id: %d transfer: %d\n",fileName,line,idSource,TransferNow ? 1 : 0);
     #endif
    }
  if (TransferNow)
-    ApplySpLines(fileName,p->SpecialLines->getItems(),p->idSources->getItems());
-}
-
-// Very important!, the editor needs a terminated list or ... kbum!
-static
-int *AddaptList(NodeCol *p)
-{
- ccIndex c=p->SpecialLines->getCount()-1;
- int *list=p->SpecialLines->getItems();
- list[c]=splEndOfList;
- #ifdef DEBUG
- {
- fprintf(stderr,"Arranging a list for: %s:\n",p->file);
- int i;
- for (i=0; i<=c; i++)
-     fprintf(stderr,"line: %d\n",list[i]);
- }
- #endif
- return list;
-}
-
-static
-void ApplySpLines(void *item, void *)
-{
- NodeCol *p=(NodeCol *)item;
- // Note: ApplySpLines is smart and will search the file by its inode.
- ApplySpLines(p->file,AddaptList(p),p->idSources->getItems());
+    ApplyOneSpLines(p,NULL);
 }
 
 /**[txh]********************************************************************
@@ -174,7 +192,7 @@ void ApplySpLines(void *item, void *)
   This function updates the special lines of ALL the editors. That's made
 through calls to ApplySpLines, this function must be provided by the main
 part of the editor. Prototype:@p
-extern void ApplySpLines(char *fileName,int *spLines);
+extern void ApplySpLines(char *fileName,TSpCollection *spLines);
 
 ***************************************************************************/
 
@@ -182,7 +200,7 @@ void SpLinesUpdate(void)
 {
  if (!SpLines)
     return;
- SpLines->forEach(ApplySpLines,0);
+ SpLines->forEach(ApplyOneSpLines,NULL);
 }
 
 /**[txh]********************************************************************
@@ -193,14 +211,14 @@ routine looks if there are special lines for the new editor and in this case
 returns the list.
 
   Return:
-  The special lines array or 0.
+  The special lines array or NULL.
 
 ***************************************************************************/
 
-int *SpLinesGetFor(char *fName, int *&ids)
+TSpCollection *SpLinesGetFor(char *fName)
 {
  if (!SpLines || !fName) // New files doesn't have a name
-    return 0;
+    return NULL;
 
  char fileName[PATH_MAX];
  strcpy(fileName,fName);
@@ -208,12 +226,8 @@ int *SpLinesGetFor(char *fName, int *&ids)
 
  ccIndex pos;
  if (SpLines->search(fileName,pos))
-   {
-    NodeCol *p=(NodeCol *)(SpLines->at(pos));
-    ids=p->idSources->getItems();
-    return AddaptList(p);
-   }
- return 0;
+    return (SpLines->At(pos))->SpecialLines;
+ return NULL;
 }
 
 /**[txh]********************************************************************
@@ -245,25 +259,29 @@ void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
 
  for (i=0; i<count;)
     {
-     p=(NodeCol *)(SpLines->at(i));
+     p=SpLines->At(i);
      // If we are looking for a particular file and it isn't just continue
      if (file && strcmp(file,p->file))
        {
         i++;
         continue;
        }
+     if (!p->NewSpLines)
+       {// We don't have a list to transfer, create it.
+        p->NewSpLines=new TSpCollection(0);
+        *p->NewSpLines=*p->SpecialLines;
+       }
      ccIndex c2,j;
-     c2=p->idSources->getCount();
+     c2=p->NewSpLines->getCount();
      deleted=False;
      for (j=0; j<c2;)
         {
-         if ((long)(p->idSources->at(j))==(long)id &&
+         stSpLine *st=p->NewSpLines->At(j);
+         if (st->id==id &&
              // Not a particular line or the line we want
-             (!aLine || (long)(p->OriginalLines->at(j))==(long)oLine))
+             (!aLine || st->oline==oLine))
            {
-            p->idSources->atRemove(j);
-            p->SpecialLines->atRemove(j);
-            p->OriginalLines->atRemove(j);
+            p->NewSpLines->atRemove(j);
             c2--;
             deleted=True;
             // If it was the line we wanted stop searching
@@ -275,14 +293,14 @@ void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
         }
      if (c2==0) // All deleted
        {
-        ApplySpLines(p->file,0,0);
+        ApplySpLines(p->file,NULL);
         SpLines->atFree(i);
         count--;
        }
      else
        {
         if (deleted) // Reflex the change
-           ApplySpLines(p->file,AddaptList(p),p->idSources->getItems());
+           ApplyOneSpLines(p,NULL);
         i++;
        }
      // If it was the file we wanted we are done
@@ -292,7 +310,7 @@ void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
  if (count==0)
    {
     CLY_destroy(SpLines);
-    SpLines=0;
+    SpLines=NULL;
    }
 }
 
@@ -320,18 +338,13 @@ int SpLineGetNewValueOf(int line, char *fName, Boolean *found)
  line--;
  if (SpLines->search(fileName,Pos))
    {
-    NodeCol *p=(NodeCol *)(SpLines->at(Pos));
-    ccIndex c=p->OriginalLines->getCount();
-    ccIndex i;
-    for (i=0; i<c; i++)
-       {
-        if ((long)(p->OriginalLines->at(i))==(long)line)
-          {
-           if (found)
-              *found=True;
-           return (long)(p->SpecialLines->at(i))+1;
-          }
-       }
+    TSpCollection *p=(SpLines->At(Pos))->SpecialLines;
+    if (p->search(TO_KEY(line),Pos))
+      {
+       if (found)
+          *found=True;
+       return (p->At(Pos))->nline+1;
+      }
    }
  return line+1;
 }
@@ -360,16 +373,17 @@ int SpLineGetOldValueOf(int line, char *fName, Boolean *found)
  line--;
  if (SpLines->search(fileName,Pos))
    {
-    NodeCol *p=(NodeCol *)(SpLines->at(Pos));
-    ccIndex c=p->SpecialLines->getCount();
+    TSpCollection *p=(SpLines->At(Pos))->SpecialLines;
+    ccIndex c=p->getCount();
     ccIndex i;
     for (i=0; i<c; i++)
        {
-        if ((long)(p->SpecialLines->at(i))==(long)line)
+        stSpLine *st=p->At(Pos);
+        if (st->nline==line)
           {
            if (found)
               *found=True;
-           return (long)(p->OriginalLines->at(i))+1;
+           return st->oline+1;
           }
        }
    }
@@ -379,6 +393,6 @@ int SpLineGetOldValueOf(int line, char *fName, Boolean *found)
 void SpLinesCleanUp()
 {
  CLY_destroy(SpLines);
- SpLines=0;
+ SpLines=NULL;
 }
 

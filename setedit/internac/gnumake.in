@@ -19,12 +19,15 @@ PACKAGE=setedit
 prefix=$(DJDIR)
 locale_dir=$(prefix)/share/locale
 
+po_list_l=$(shell cat po_list)
+
 ifeq ($(editor_OS),DJGPP)
-po_list_l=@po_list
+# To avoid problems with command line length limit
+po_list_cl=@po_list
 update_p=update
 else
-po_list_l=`cat po_list`
 update_p=cp
+po_list_cl=$(po_list_l)
 endif
 
 po_subdirs=
@@ -55,20 +58,21 @@ getcolors.exe: getcolors.cc
 colors.cc: getcolors.exe ../setedit/include/pal.h
 	./getcolors.exe > colors.cc
 
-po_list: colors.cc
+po_list: colors.cc ../makes/lista
 	perl makelist.pl
 
 clean:
 	rm -f potfiles.po
 	rm -f $(addsuffix .mo,$(LANGUAGES))
 	rm -f $(addsuffix .po,$(LANGUAGES))
+	rm -f po_list
 
-potfiles.po: po_list
+potfiles.po: po_list $(po_list_l)
 #@echo "*** Ignore warnings about unterminated strings, is a bug in gettext."
 #@echo "*** Ulrich Drepper, the maintainer, refuses to fix it."
 	$(xgettext) --default-domain=dummy --add-comments --keyword=_ \
 	  --keyword=__ --directory=$(srcdir) --omit-header \
-	  --add-location $(po_list_l)
+	  --add-location $(po_list_cl)
 	touch dummy.po
 	$(update_p) dummy.po $@
 	rm dummy.po
@@ -78,7 +82,7 @@ T=$(subst /,\,$@)
 fix.exe: fix.c
 	$(CXX) -o fix.exe -s $(CXXFLAGS) fix.c
 
-$(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe
+$(addsuffix .po,$(LANGUAGES)): potfiles.po fix.exe $(addprefix h_,$(addsuffix .po,$(LANGUAGES)))
 #if not exist $(T) cp $^ $@
 	touch $@
 	./fix.exe $(addprefix h_,$@) $< __.pot

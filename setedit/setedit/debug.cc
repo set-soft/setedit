@@ -2147,7 +2147,7 @@ void TGVarCollection::getText(char *dest, unsigned item, int maxLen)
 {
  gVar *gv=At(item);
  if (gv->v)
-    CLY_snprintf(dest,maxLen,__("%s: [%s] %s"),gv->exp,gv->v->type,gv->value);
+    CLY_snprintf(dest,maxLen,"%s: [%s] %s",gv->exp,gv->v->type,gv->value);
  else
    {
     if (gv->value)
@@ -2173,7 +2173,7 @@ int TGVarCollection::Insert(char *s, Boolean wScope)
 
 void TGVarCollection::MsgNotWhileRunning()
 {
- messageBox(__("Wait until the process stopped to delete this watch"),
+ messageBox(__("Wait until the process is stopped to delete this watch"),
             mfError | mfOKButton);
 }
 
@@ -2666,6 +2666,7 @@ TDialog *createDebugOpsDialog()
  TSViewCol *col=new TSViewCol(__("Debug Options"));
 
  // EN: ADELMPRTU
+ // ES: ADEIMPRTU
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
              new TSLabel(__("~P~rogram to debug, with debug info"),
@@ -2725,6 +2726,7 @@ TDialog *createDebugOptsMsgsDialog()
  TSViewCol *col=new TSViewCol(__("Messages"));
 
  // EN: ACDFLT
+ // ES: CDELRT
  TSLabel *o1=TSLabelCheck(__("~D~isplay messages related to"),
                           __("GDB ~c~onsole (CLI)"),
                           __("T~a~rget (not really implemented in gdb)"),

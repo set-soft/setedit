@@ -362,10 +362,9 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     ain=(TCEditWindow *)p;
 
     // Transfer the special lines
-    int *spLIds;
-    int *spL=SpLinesGetFor(fileName,spLIds);
+    TSpCollection *spL=SpLinesGetFor(fileName);
     if (spL)
-       ain->editor->SetSpecialLines(spL,spLIds);
+       ain->editor->SetSpecialLines(spL);
     #ifdef TEST_SPLINES
     ain->editor->SetSpecialLines(spLines);
     #endif
@@ -1882,11 +1881,11 @@ changed.
 
 ***************************************************************************/
 
-void ApplySpLines(char *fileName, int *spLines, int *ids)
+void ApplySpLines(char *fileName, TSpCollection *spLines)
 {
  TCEditWindow *edw=IsAlreadyOnDesktop(fileName);
  if (edw)
-    edw->editor->SetSpecialLines(spLines,ids);
+    edw->editor->SetSpecialLines(spLines);
 }
 
 void SaveAllEditors(void)

@@ -657,7 +657,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
  TSViewCol *col=new TSViewCol(__("Other options"));
 
  // ENG: ACIJKLMNPRUVW
- // ESP: ADEIKPRSUV
+ // ESP: ADEIKMNPRSUVY
  TSVeGroup *MsgWin=MakeVeGroup(0,
    TSLabelRadio(__("At the end of error list in message window"),
                 __("~J~ust stop"),

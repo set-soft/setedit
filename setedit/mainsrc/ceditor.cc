@@ -264,7 +264,6 @@ TCEditor::TCEditor( const TRect& bounds,
     IsFoundOn(False),
     IsHLCOn(False),
     SpecialLines(NULL),
-    SpecialLinesIds(NULL),
     DiskTime(0)
 {
  InitTCEditor("pmacros.pmc",False);
@@ -364,8 +363,6 @@ TCEditor::~TCEditor()
  flushUndoInfo();
  delete selRectClip;
  delete[] colMarkers;
- delete[] SpecialLines;
- delete[] SpecialLinesIds;
 }
 
 /****************************************************************************
@@ -1402,15 +1399,19 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
           }
 
        {/* Paint breakpoint and CPU lines. */
-        int i,off,j;
+        int i,off,j, cnt;
         if (SpecialLines)
-           for (i=0; SpecialLines[i]!=splEndOfList; i++)
-               if (SpecialLines[i]==(int)yInFile)
+          {
+           cnt=SpecialLines->getCount();
+           for (i=0; i<cnt; i++)
+              {
+               stSpLine *p=SpecialLines->At(i);
+               if (p->nline==(int)yInFile)
                  {
                   int color=0;
-                  if (SpecialLinesIds[i]==idsplBreak)
+                  if (p->id==idsplBreak)
                      color=getColor(cBreak) & 0xF0;
-                  else if (SpecialLinesIds[i]==idsplRunLine)
+                  else if (p->id==idsplRunLine)
                      color=getColor(cCPU) & 0xF0;
                   if (color)
                     {
@@ -1425,6 +1426,8 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
                         }
                     }
                  }
+              }
+          }
        }
 
         writeLine(0,y, size.x, 1, &b[delta.x]);
@@ -7224,17 +7227,19 @@ Boolean TCEditor::insertBuffer( char *p,
        lenLines.set(x,lenLines[x]+chars-1);
 
  // If needed adjust the SpecialLines array
- if (SpecialLines!=NULL)
+ if (SpecialLines)
    {
     int fromLine=(int)firstTouchedLine+1;      // Included
     int toLine=x+1;                     // Not Included
     int dif=toLine-fromLine,i;
     if (IncludeFirstLine)
        fromLine--;
-    for (i=0; SpecialLines[i]!=splEndOfList; i++)
+    int cnt=SpecialLines->getCount();
+    for (i=0; i<cnt; i++)
        {
-        if (SpecialLines[i]>=fromLine)
-           SpecialLines[i]+=dif;
+        stSpLine *p=SpecialLines->At(i);
+        if (p->nline>=fromLine)
+           p->nline+=dif;
        }
    }
 
@@ -7447,7 +7452,7 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
    { // If we need to delete lines
     lenLines.deleteRange(y+1,nextLine-1);
     // If needed adjust the SpecialLines array
-    if (SpecialLines!=NULL)
+    if (SpecialLines)
       {
        int fromLine=y+1;      // Included
        int toLine=nextLine;   // Not Included
@@ -7456,14 +7461,16 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
           fromLine--;
        if (*(pos-1)=='\n')
           toLine--;
-       for (i=0; SpecialLines[i]!=splEndOfList; i++)
+       int cnt=SpecialLines->getCount();
+       for (i=0; i<cnt; i++)
           {
-           l=SpecialLines[i];
+           stSpLine *p=SpecialLines->At(i);
+           l=p->nline;
            if (l>=toLine)
-              SpecialLines[i]-=dif;
+              p->nline-=dif;
            else
               if (l>=fromLine)
-                 SpecialLines[i]=-1;
+                 p->nline=-1;
           }
       }
    }
@@ -11111,7 +11118,7 @@ void *TCEditor::read( ipstream& is )
  CrossCursorInCol=CrossCursorInRow=False;
  setBufLen(0);
 
- SpecialLinesIds=SpecialLines=NULL;
+ SpecialLines=NULL;
 
  is.readString(fileName,sizeof(fileName));
  if (isValid)
@@ -13556,37 +13563,40 @@ copy of the list. The lines that changed are updated if they are visible.
   
 ***************************************************************************/
 
-void TCEditor::SetSpecialLines(int *nLines, int *nIds)
+void TCEditor::SetSpecialLines(TSpCollection *nLines)
 {
  // Move the drawPtr to the first visible line
  AdjustDrawPtr();
 
  int y1=delta.y, y2=delta.y+size.y, y, i, j, type;
- int *oLines, *oIds, fLines[2], fIds, nLen=0;
+ TSpCollection *oLines;
 
  oLines=SpecialLines;
- oIds=SpecialLinesIds;
  SpecialLines=NULL;
- SpecialLinesIds=NULL;
- fLines[1]=splEndOfList;
 
  if (DEBUG_SPLINES_UPDATE)
     printf("\n\nTCEditor::SetSpecialLines\n");
  if (oLines)
    {// We already have them redraw the affected lines
-    for (i=0; oLines[i]!=splEndOfList; i++)
+    int cnt=oLines->getCount();
+    for (i=0; i<cnt; i++)
        {
-        y=oLines[i];
-        type=oIds[i];
+        stSpLine *st=oLines->At(i);
+        y=st->nline;
+        type=st->id;
         if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
           {// This line is visible
            // Check if it will change
            int found=0;
            if (nLines)
              {
-              for (j=0; !found && nLines[j]!=splEndOfList; j++)
-                  if (nLines[j]==y && nIds[j]==type)
+              int cnt=nLines->getCount();
+              for (j=0; !found && j<cnt; j++)
+                 {
+                  stSpLine *st=nLines->At(j);
+                  if (st->nline==y && st->id==type)
                      found=1;
+                 }
              }
            if (!found)
              {// This line is no longer special or changed its type
@@ -13602,31 +13612,33 @@ void TCEditor::SetSpecialLines(int *nLines, int *nIds)
        }
    }
 
+ SpecialLines=nLines;
  if (nLines)
    {// We got a new set, draw the affected lines
-    SpecialLines=fLines;
-    SpecialLinesIds=&fIds;
-    nLen=0;
-    for (i=0; nLines[i]!=splEndOfList; i++)
+    int cnt=nLines->getCount();
+    for (i=0; i<cnt; i++)
        {
-        y=nLines[i];
-        type=nIds[i];
+        stSpLine *st=nLines->At(i);
+        y=st->nline;
+        type=st->id;
         if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
           {// This line is visible
            // Check if it's changing
            int found=0;
            if (oLines)
              {
-              for (j=0; !found && oLines[j]!=splEndOfList; j++)
-                  if (oLines[j]==y && oIds[j]==type)
+              int cnt=oLines->getCount();
+              for (j=0; !found && j<cnt; j++)
+                 {
+                  stSpLine *st=oLines->At(i);
+                  if (st->nline==y && st->id==type)
                      found=1;
+                 }
              }
            if (!found)
              {// This line is no longer special or changed its type
               if (DEBUG_SPLINES_UPDATE)
                  printf("Painting %d as special\n",y);
-              fIds=type;
-              fLines[0]=y;
               unsigned p=drawPtr;
               int ya;
               for (ya=y1; ya<y; ya++)
@@ -13635,31 +13647,10 @@ void TCEditor::SetSpecialLines(int *nLines, int *nIds)
              }
           }
        }
-    nLen=i+1;
    }
 
- // We use a copy of the array so we can do the update check
- delete[] oLines;
- delete[] oIds;
- if (nLines)
-   {
-    SpecialLines=new int[nLen];
-    memcpy(SpecialLines,nLines,sizeof(int)*nLen);
-    nLen--;
-    if (DEBUG_SPLINES_UPDATE)
-       printf("Now we have %d splines\n",nLen);
-    SpecialLinesIds=new int[nLen];
-    memcpy(SpecialLinesIds,nIds,sizeof(int)*nLen);
-   }
- else
-   {
-    SpecialLines=NULL;
-    SpecialLinesIds=NULL;
-    if (DEBUG_SPLINES_UPDATE)
-       printf("Now we have 0 splines\n");
-   }
  if (DEBUG_SPLINES_UPDATE)
-    printf("\n");
+    printf("Now we have %d splines\n\n",SpecialLines ? SpecialLines->getCount() : 0);
 }
 
 /**[txh]********************************************************************

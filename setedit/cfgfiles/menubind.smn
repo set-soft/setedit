@@ -104,7 +104,7 @@ SubMenu: "~E~dit", kbAlE
 EndSubMenu
 
 # English: CFGJHLNOPRSTUW
-# Spanish: ABCDEILNOPRST
+# Spanish: ABCDEILNOPRSTUV
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
@@ -154,7 +154,7 @@ SubMenu: "Re~c~tangle", kbAlR
 EndSubMenu
 
 # English: ACDEGJLMNPRSTUWZ0123456789
-# Spanish: ABCDEILMNPRSUZ0123456789
+# Spanish: ABCDEILMNOPRSUVZ0123456789
 SubMenu: "~W~indows", kbAlW
  MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
  MenuItemC: "~Z~oom", cmeZoom, kbF5, "F5"
@@ -302,10 +302,12 @@ SubMenu: "~P~roject", kbAlP
 EndSubMenu
 
 $if DEBUG
-# BCDEGHKLNOPRSTW 12
+# EN: BCDEGHKLNOPRSTW 12
+# ES: BCDEILMNPRTUVX 12
 SubMenu: "~D~ebug", kbAlD
  SubMenu: "~O~ptions", kbUnknown
-# MPS
+# EN: MPS
+# ES: MPS
   MenuItemC: "~P~rogram and mode", cmeDebugOptions
   MenuItemC: "Path for ~s~ources", cmeSourceList
   MenuItemC: "~M~essages displayed", cmeDbgOptsMsgs

@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.548  2004/07/23 21:22:31  set
+* Fixed: [MSVC] The set_new_handler() function of MSVC 4.0 doesn't support
+NULL. It is possible to use _set_new_handler(), but as it is only tested
+for gcc I'm disabling this code for other compilers. From a report by
+Arnold. Note: with it Arnold compiled the editor for MSVC 4.0.
+
 Revision 1.547  2004/07/23 20:53:22  set
 * Added: Configuration options to disable the calculator and calendar.
 Suggested by Oswald.

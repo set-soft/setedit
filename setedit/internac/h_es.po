@@ -1,6 +1,6 @@
 # Este es el archivo de traducción a español.
-# Copyright (C) 2001-2003 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001-2003.
+# Copyright (C) 2001-2004 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001-2004.
 #
 #, fuzzy
 msgid ""
