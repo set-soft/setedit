@@ -175,4 +175,5 @@
   S(91,White,Black,Bold text) \
   S(92,Lightred,Black,Underlined text) \
 \
-  S(93,Black,Black,reserved) \
+  S(93,Black,Black,reserved)
+

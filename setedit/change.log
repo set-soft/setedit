@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.81  2002/05/06 15:13:46  set
+* Added: [FreeBSD] Support for libintl. Changes suggested by miniEleph
+<nyxo@dnuc.polyn.kiae.su>.
+
 Revision 1.80  2002/05/06 14:52:08  set.
 * Added: X11R6 include directory to the configuration script. It looks like
 this directory isn't automagically included in FreeBSD. Also added options
