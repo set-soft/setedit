@@ -42,7 +42,11 @@
 
 
 #define SEOS_UNIX
+#define SEOS_STR "UNIX"
 #define SEOSf_Linux
+#define SEOSf_STR "Linux"
 #define SECPU_x86
+#define SECPU_STR "x86"
 #define SEComp_GCC
+#define SEComp_STR "GCC"
 #define SECompf_

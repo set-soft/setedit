@@ -1286,10 +1286,15 @@ sub CreateConfigH
 
  $text.="\n\n";
  $text.="#define SEOS_$OS\n";
+ $text.="#define SEOS_STR \"$OS\"\n";
  $text.="#define SEOSf_$OSf\n";
+ $text.="#define SEOSf_STR \"$OSf\"\n" if $OSf;
  $text.="#define SECPU_$CPU\n";
+ $text.="#define SECPU_STR \"$CPU\"\n";
  $text.="#define SEComp_$Comp\n";
+ $text.="#define SEComp_STR \"$Comp\"\n";
  $text.="#define SECompf_$Compf\n";
+ $text.="#define SECompf_STR \"$Compf\"\n" if $Compf;
  $text.="\n#define MSS\n#include <mss.h>\n" if @conf{'mss'} eq 'yes';
 
  $old=cat('include/configed.h');

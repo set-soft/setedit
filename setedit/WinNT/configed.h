@@ -15,7 +15,11 @@
 #define CONFIG_PREFIX ""
 
 #define SEOS_Win32
+#define SEOS_STR "Win32"
 #define SEOSf_
 #define SEComp_BCPP
+#define SEComp_STR "BCPP"
 #define SECompf_
 #define SECPU_x86
+#define SECPU_STR "x86"
+
