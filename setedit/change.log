@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.303  2003/04/25 12:22:25  set
+* Added: Now you can jump to any symbol from the TAGS file! looks like I
+can't get it working using real regex and also looks like they aren't real
+regex, just full lines marked similar to regexs.
+
 Revision 1.302  2003/04/24 20:05:11  set
 * Added: A new color scheme contributed by Juan Diego (bach) Ianelli
 <jdibach@yahoo.com.ar>. Is called "Dark JDI".
