@@ -79,6 +79,7 @@ setting Settings[]=
 {"CrossCursorInCol", 16, tyFlag, loCrossCursorInCol},
 {"CrossCursorInRow", 16, tyFlag, loCrossCursorInRow},
 {"DontPurgeSpaces",  15, tyFlag, loDontPurgeSpaces},
+{"IndentSize",       10, tyInt,  loIndentSize},
 {"IntelIndent",      11, tyFlag, loIntelIndent},
 {"NoInsideTabs",     12, tyFlag, loNoInsideTabs},
 {"OptimalFill",      11, tyFlag, loOptimalFill},
