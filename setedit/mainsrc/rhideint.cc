@@ -1,6 +1,8 @@
 /* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <tv.h>
+#define Uses_EditorId
+#include <ced_exte.h>
 /**[txh]********************************************************************
 
   Comments:
@@ -56,7 +58,7 @@ void EdJumpToMessage(ccIndex )
 }
 
 // It should reload a file from disk
-int EdReloadIfOpened(char *name)
+int EdReloadIfOpened(char *name, stEditorId *id)
 {
 }
 
