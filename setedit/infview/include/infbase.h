@@ -27,24 +27,16 @@
 #endif
 
 #ifndef __STDIO_H
-#if defined(__DJGPP__) && defined(NULL)
+#if defined(TVCompf_djgpp) && defined(NULL)
 #undef NULL
 #endif
 
 #include <stdio.h>
 
-#if defined(__DJGPP__) && !defined(NULL)
+#if defined(TVCompf_djgpp) && !defined(NULL)
 #define NULL 0
 #endif
 #endif //__STDIO_H
-
-#ifndef PATHSEPARATOR // RH's TV defines this
- #if defined(__DJGPP__) || defined(_WIN32)
-  #define PATHSEPARATOR ';'
- #else
-  #define PATHSEPARATOR ':'
- #endif
-#endif
 
 #define Uses_TNoCaseSOSStringCollection
 #include <settvuti.h>

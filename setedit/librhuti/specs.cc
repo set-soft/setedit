@@ -155,7 +155,7 @@ const char * GetVariable(const char *variable,int use_env)
   return ival;
 }
 
-#ifdef __DJGPP__
+#ifdef TVCompf_djgpp
 extern char **environ;
 #endif
 
@@ -444,7 +444,7 @@ char *expand_spec(const char *spec,external_token_func ext_func,
 static A(1)
 char *string_function_shell(char *_arg)
 {
-  #ifndef __TURBOC__
+  #ifndef TVComp_BCPP
   char *arg = expand_tokens(_arg);
   char *retval = NULL;
   char *err_file = open_stderr();
@@ -812,7 +812,7 @@ char *string_function_subst(char *arg)
   return retval;
 }
 
-#ifdef __linux__
+#ifdef TVOSf_Linux
 #include <sys/stat.h>
 #endif
 
@@ -829,13 +829,13 @@ char *string_function_wildcard(char *arg)
     cnt = glob_results.gl_pathc;
     for (i=0; i<cnt; i++)
     {
-#ifdef __linux__
-  /* glob() on linux returns the filename, if it contains no
-     meta characters even when it does not exist */
-     struct stat st;
-     if (stat(glob_results.gl_pathv[i], &st))
-        continue;
-#endif
+      #ifdef TVOSf_Linux
+      /* glob() on linux returns the filename, if it contains no
+      meta characters even when it does not exist */
+      struct stat st;
+      if (stat(glob_results.gl_pathv[i], &st))
+         continue;
+      #endif
       if (!first)
         string_cat(retval, " ");
       string_cat(retval, glob_results.gl_pathv[i]);

@@ -20,12 +20,6 @@ static char *erroutname = NULL;
 static int h_out,h_outbak;
 static int h_err,h_errbak;
 
-#if defined(__DJGPP__) || defined(__MSDOS__) || defined(_WIN32)
-#define IsSlash(a) (a=='/' || a=='\\')
-#else
-#define IsSlash(a) (a=='/')
-#endif
-
 /* returns a malloced unique tempname in $TMPDIR */
 char *unique_name(char *before,char *retval)
 {
@@ -41,8 +35,8 @@ char *unique_name(char *before,char *retval)
   if (retval)
   {
     strcpy(retval,tmp);
-    if (!IsSlash(tmp[l-1]))
-       strcat(retval,"/");
+    if (!CLY_IsValidDirSep(tmp[l-1]))
+       strcat(retval,DIRSEPARATOR_);
     strcat(retval,before);
     strcat(retval,"XXXXXX");
     name = string_dup(retval);
@@ -50,8 +44,8 @@ char *unique_name(char *before,char *retval)
   else
   {
     string_dup(name,tmp);
-    if (!IsSlash(tmp[l-1]))
-       string_cat(name,"/");
+    if (!CLY_IsValidDirSep(tmp[l-1]))
+       string_cat(name,DIRSEPARATOR_);
     string_cat(name,before);
     string_cat(name,"XXXXXX");
   }
