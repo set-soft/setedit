@@ -85,6 +85,11 @@
 #include <loadnobkp.h>
 #include <pathlist.h>
 
+#if TV_MAJOR_VERSION<2
+ #define getWindowTitle GetWindowTitle
+ #define setWindowTitle SetWindowTitle
+#endif
+
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
 static void ExportAsHTML(void);
