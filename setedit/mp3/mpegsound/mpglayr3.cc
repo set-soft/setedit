@@ -48,7 +48,7 @@ inline int Mpegbitwindow::getbit(void)
 
 inline int Mpegbitwindow::getbits9(int bits)
 {
-  register unsigned short a;
+  unsigned a;
 
 #ifndef WORDS_BIGENDIAN
   {
@@ -60,13 +60,15 @@ inline int Mpegbitwindow::getbits9(int bits)
 #else
   {
     int offset=bitindex>>3;
-    a=*((unsigned short *)(buffer+offset));
+
+    a=(((unsigned char)buffer[offset+1])<<8) | ((unsigned char)buffer[offset]);
+    //a=*((unsigned short *)(buffer+offset));
   }
 #endif
 
   a<<=(bitindex&7);
   bitindex+=bits;
-  return (int)((unsigned int)(a>>(16-bits)));
+  return (int)(a>>(16-bits));
 }
 
 #define MUL3(a) (((a)<<1)+(a))

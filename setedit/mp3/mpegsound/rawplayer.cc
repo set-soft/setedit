@@ -256,8 +256,8 @@ bool Rawplayer::initialize(char *filename)
     return seterrorcode(SOUND_ERROR_DEVBADBUFFERSIZE);
 
  // I don't know how much a stream support, it works
- bufSize=900*64;
-
+ //bufSize=900*64;
+bufSize=0;
  return true;
 }
 
@@ -279,8 +279,10 @@ bool Rawplayer::roomformore(unsigned size)
 {
  audio_info_t info;
  ioctl(audiohandle,AUDIO_GETINFO,&info);
- 
- return bufSize-info.play.samples*sizeSamp>=size ? true : false;
+fprintf(stderr,"played: %d bufSize %d\n",info.play.samples*sizeSamp,bufSize);
+  
+ //return bufSize-info.play.samples*sizeSamp>=size ? true : false;
+return bufSize>info.play.samples*sizeSamp ? false : true;
 }
 
 bool Rawplayer::setsoundtype(int stereo,int samplesize,int speed)
@@ -320,11 +322,25 @@ bool Rawplayer::putblock(void *buffer,int size)
 {
  if (quota)
     while (getprocessed()>quota) usleep(3);
+
+ #if 0
+ unsigned i;
+ unsigned char *s,t;
+ s=(unsigned char *)buffer;
+ for (i=0; i<size; i+=2)
+    {
+     t=s[i];
+     s[i]=s[i+1];
+     s[i+1]=t;
+    }
+ #endif
+
  unsigned wrote=write(audiohandle,buffer,size);
  if (wrote!=size)
     fprintf(stderr,"Error! trying to write %d and we wrote %d\n",size,wrote);
  else
     fprintf(stderr,"Ok! %d bytes\n",size);
+ bufSize+=size;
 
  return true;
 }
