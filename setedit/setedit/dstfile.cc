@@ -296,6 +296,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  SavePalette(apBlackWhite,s);
 
  s << TCEditor::staticTabSize
+   << TCEditor::staticIndentSize
    << uchar(TCEditor::staticAutoIndent)
    << uchar(TCEditor::staticIntelIndent)
    << uchar(TCEditor::staticUseTabs)
@@ -528,6 +529,8 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
    }
 
  s >> TCEditor::staticTabSize;
+ if (deskTopVersion>0x450)
+    s >> TCEditor::staticIndentSize;
  uchar aux;
  L(staticAutoIndent);
  L(staticIntelIndent);
