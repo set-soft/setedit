@@ -1,126 +1,125 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-libsettv.a:: \
-	obj/diaghelp.o \
-	obj/dktclock.o \
-	obj/fileopen.o \
-	obj/fiopeaid.o \
-	obj/inputsca.o \
-	obj/ninputsc.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/ntnocast.o \
-	obj/ntnosost.o \
-	obj/setstack.o \
-	obj/sprogbar.o \
-	obj/sprogres.o \
-	obj/stnocast.o \
-	obj/stnonost.o \
-	obj/tdiagaid.o \
-	obj/tdiagrow.o \
-	obj/tinppipe.o \
-	obj/tnocastc.o \
-	obj/tnosostr.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogrdi.o \
-	obj/tprogres.o \
-	obj/tstrlbox.o \
-	obj/uisarray.o \
-	obj/ussarray.o \
-	obj/viewplus.o \
-	rhide.env \
-	common.imk 
+libsettv$(ExLIB):: \
+	obj/diaghelp$(ExOBJ) \
+	obj/dktclock$(ExOBJ) \
+	obj/fileopen$(ExOBJ) \
+	obj/fiopeaid$(ExOBJ) \
+	obj/inputsca$(ExOBJ) \
+	obj/ninputsc$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/ntnocast$(ExOBJ) \
+	obj/ntnosost$(ExOBJ) \
+	obj/setstack$(ExOBJ) \
+	obj/sprogbar$(ExOBJ) \
+	obj/sprogres$(ExOBJ) \
+	obj/stnocast$(ExOBJ) \
+	obj/stnonost$(ExOBJ) \
+	obj/tdiagaid$(ExOBJ) \
+	obj/tdiagrow$(ExOBJ) \
+	obj/tinppipe$(ExOBJ) \
+	obj/tnocastc$(ExOBJ) \
+	obj/tnosostr$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogrdi$(ExOBJ) \
+	obj/tprogres$(ExOBJ) \
+	obj/tstrlbox$(ExOBJ) \
+	obj/uisarray$(ExOBJ) \
+	obj/ussarray$(ExOBJ) \
+	obj/viewplus$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/diaghelp.o:: diaghelp.cc  
+obj/diaghelp$(ExOBJ):: diaghelp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dktclock.o:: dktclock.cc  
+obj/dktclock$(ExOBJ):: dktclock.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fileopen.o:: fileopen.cc  
+obj/fileopen$(ExOBJ):: fileopen.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fiopeaid.o:: fiopeaid.cc  
+obj/fiopeaid$(ExOBJ):: fiopeaid.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/inputsca.o:: inputsca.cc  
+obj/inputsca$(ExOBJ):: inputsca.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ninputsc.o:: ninputsc.cc  
+obj/ninputsc$(ExOBJ):: ninputsc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex.o:: nostatex.cc  
+obj/nostatex$(ExOBJ):: nostatex.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar.o:: nprogbar.cc  
+obj/nprogbar$(ExOBJ):: nprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres.o:: nprogres.cc  
+obj/nprogres$(ExOBJ):: nprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnocast.o:: ntnocast.cc  
+obj/ntnocast$(ExOBJ):: ntnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnosost.o:: ntnosost.cc  
+obj/ntnosost$(ExOBJ):: ntnosost.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/setstack.o:: setstack.cc  
+obj/setstack$(ExOBJ):: setstack.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogbar.o:: sprogbar.cc  
+obj/sprogbar$(ExOBJ):: sprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogres.o:: sprogres.cc  
+obj/sprogres$(ExOBJ):: sprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/stnocast.o:: stnocast.cc  
+obj/stnocast$(ExOBJ):: stnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/stnonost.o:: stnonost.cc  
+obj/stnonost$(ExOBJ):: stnonost.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagaid.o:: tdiagaid.cc  
+obj/tdiagaid$(ExOBJ):: tdiagaid.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagrow.o:: tdiagrow.cc  
+obj/tdiagrow$(ExOBJ):: tdiagrow.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tinppipe.o:: tinppipe.cc  
+obj/tinppipe$(ExOBJ):: tinppipe.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tnocastc.o:: tnocastc.cc  
+obj/tnocastc$(ExOBJ):: tnocastc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tnosostr.o:: tnosostr.cc  
+obj/tnosostr$(ExOBJ):: tnosostr.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar.o:: tprogbar.cc  
+obj/tprogbar$(ExOBJ):: tprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia.o:: tprogdia.cc  
+obj/tprogdia$(ExOBJ):: tprogdia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogrdi.o:: tprogrdi.cc  
+obj/tprogrdi$(ExOBJ):: tprogrdi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres.o:: tprogres.cc  
+obj/tprogres$(ExOBJ):: tprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstrlbox.o:: tstrlbox.cc  
+obj/tstrlbox$(ExOBJ):: tstrlbox.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/uisarray.o:: uisarray.cc  
+obj/uisarray$(ExOBJ):: uisarray.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ussarray.o:: ussarray.cc  
+obj/ussarray$(ExOBJ):: ussarray.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/viewplus.o:: viewplus.cc  
+obj/viewplus$(ExOBJ):: viewplus.cc  
 	$(RHIDE_COMPILE_CC)
 

@@ -1,39 +1,38 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-libeasyd.a:: \
-	obj/lablchek.o \
-	obj/lablradi.o \
-	obj/snostate.o \
-	obj/tcheck2.o \
-	obj/tmiclust.o \
-	obj/tsbutton.o \
-	obj/tschkarr.o \
-	obj/tschkbox.o \
-	obj/tshscrol.o \
-	obj/tshzgrp.o \
-	obj/tsinplin.o \
-	obj/tsinplpi.o \
-	obj/tslabel.o \
-	obj/tslider.o \
-	obj/tslistbo.o \
-	obj/tsradbot.o \
-	obj/tssortlb.o \
-	obj/tssosslb.o \
-	obj/tstatext.o \
-	obj/tstextsc.o \
-	obj/tstsorlb.o \
-	obj/tsvegrp.o \
-	obj/tsview.o \
-	obj/tsviewco.o \
-	obj/ttextscr.o \
-	rhide.env \
-	common.imk 
+libeasyd$(ExLIB):: \
+	obj/lablchek$(ExOBJ) \
+	obj/lablradi$(ExOBJ) \
+	obj/snostate$(ExOBJ) \
+	obj/tcheck2$(ExOBJ) \
+	obj/tmiclust$(ExOBJ) \
+	obj/tsbutton$(ExOBJ) \
+	obj/tschkarr$(ExOBJ) \
+	obj/tschkbox$(ExOBJ) \
+	obj/tshscrol$(ExOBJ) \
+	obj/tshzgrp$(ExOBJ) \
+	obj/tsinplin$(ExOBJ) \
+	obj/tsinplpi$(ExOBJ) \
+	obj/tslabel$(ExOBJ) \
+	obj/tslider$(ExOBJ) \
+	obj/tslistbo$(ExOBJ) \
+	obj/tsradbot$(ExOBJ) \
+	obj/tssortlb$(ExOBJ) \
+	obj/tssosslb$(ExOBJ) \
+	obj/tstatext$(ExOBJ) \
+	obj/tstextsc$(ExOBJ) \
+	obj/tstsorlb$(ExOBJ) \
+	obj/tsvegrp$(ExOBJ) \
+	obj/tsview$(ExOBJ) \
+	obj/tsviewco$(ExOBJ) \
+	obj/ttextscr$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/lablchek.o:: lablchek.cc \
+obj/lablchek$(ExOBJ):: lablchek.cc \
 	easydia1.h \
 	easydiag.h \
 	tschkbox.h \
@@ -76,11 +75,10 @@ obj/lablchek.o:: lablchek.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/lablradi.o:: lablradi.cc \
+obj/lablradi$(ExOBJ):: lablradi.cc \
 	easydia1.h \
 	easydiag.h \
 	tslabel.h \
@@ -123,11 +121,10 @@ obj/lablradi.o:: lablradi.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/snostate.o:: snostate.cc \
+obj/snostate$(ExOBJ):: snostate.cc \
 	easydia1.h \
 	easydiag.h \
 	snostate.h \
@@ -167,11 +164,10 @@ obj/snostate.o:: snostate.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tcheck2.o:: tcheck2.cc \
+obj/tcheck2$(ExOBJ):: tcheck2.cc \
 	easydia1.h \
 	easydiag.h \
 	tcheck2.h \
@@ -197,11 +193,10 @@ obj/tcheck2.o:: tcheck2.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tmiclust.o:: tmiclust.cc \
+obj/tmiclust$(ExOBJ):: tmiclust.cc \
 	easydia1.h \
 	easydiag.h \
 	tmiclust.h \
@@ -241,11 +236,10 @@ obj/tmiclust.o:: tmiclust.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsbutton.o:: tsbutton.cc \
+obj/tsbutton$(ExOBJ):: tsbutton.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -284,11 +278,10 @@ obj/tsbutton.o:: tsbutton.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkarr.o:: tschkarr.cc \
+obj/tschkarr$(ExOBJ):: tschkarr.cc \
 	easydia1.h \
 	easydiag.h \
 	tcheck2.h \
@@ -321,11 +314,10 @@ obj/tschkarr.o:: tschkarr.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkbox.o:: tschkbox.cc \
+obj/tschkbox$(ExOBJ):: tschkbox.cc \
 	easydia1.h \
 	easydiag.h \
 	tschkbox.h \
@@ -365,11 +357,10 @@ obj/tschkbox.o:: tschkbox.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tshscrol.o:: tshscrol.cc \
+obj/tshscrol$(ExOBJ):: tshscrol.cc \
 	easydia1.h \
 	easydiag.h \
 	tshscrol.h \
@@ -407,11 +398,10 @@ obj/tshscrol.o:: tshscrol.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tshzgrp.o:: tshzgrp.cc \
+obj/tshzgrp$(ExOBJ):: tshzgrp.cc \
 	easydia1.h \
 	easydiag.h \
 	tshzgrp.h \
@@ -448,11 +438,10 @@ obj/tshzgrp.o:: tshzgrp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplin.o:: tsinplin.cc \
+obj/tsinplin$(ExOBJ):: tsinplin.cc \
 	easydia1.h \
 	easydiag.h \
 	tsinplin.h \
@@ -491,11 +480,10 @@ obj/tsinplin.o:: tsinplin.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplpi.o:: tsinplpi.cc \
+obj/tsinplpi$(ExOBJ):: tsinplpi.cc \
 	easydia1.h \
 	easydiag.h \
 	tsinplpi.h \
@@ -536,11 +524,10 @@ obj/tsinplpi.o:: tsinplpi.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tslabel.o:: tslabel.cc \
+obj/tslabel$(ExOBJ):: tslabel.cc \
 	easydia1.h \
 	easydiag.h \
 	tslabel.h \
@@ -579,11 +566,10 @@ obj/tslabel.o:: tslabel.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tslider.o:: tslider.cc \
+obj/tslider$(ExOBJ):: tslider.cc \
 	easydia1.h \
 	easydiag.h \
 	tslider.h \
@@ -616,11 +602,10 @@ obj/tslider.o:: tslider.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tslistbo.o:: tslistbo.cc \
+obj/tslistbo$(ExOBJ):: tslistbo.cc \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -661,11 +646,10 @@ obj/tslistbo.o:: tslistbo.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsradbot.o:: tsradbot.cc \
+obj/tsradbot$(ExOBJ):: tsradbot.cc \
 	easydia1.h \
 	easydiag.h \
 	tsradbot.h \
@@ -705,11 +689,10 @@ obj/tsradbot.o:: tsradbot.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tssortlb.o:: tssortlb.cc \
+obj/tssortlb$(ExOBJ):: tssortlb.cc \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -752,11 +735,10 @@ obj/tssortlb.o:: tssortlb.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tssosslb.o:: tssosslb.cc \
+obj/tssosslb$(ExOBJ):: tssosslb.cc \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -802,11 +784,10 @@ obj/tssosslb.o:: tssosslb.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tstatext.o:: tstatext.cc \
+obj/tstatext$(ExOBJ):: tstatext.cc \
 	easydia1.h \
 	easydiag.h \
 	tstatext.h \
@@ -844,11 +825,10 @@ obj/tstatext.o:: tstatext.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tstextsc.o:: tstextsc.cc \
+obj/tstextsc$(ExOBJ):: tstextsc.cc \
 	easydia1.h \
 	easydiag.h \
 	tstextsc.h \
@@ -890,11 +870,10 @@ obj/tstextsc.o:: tstextsc.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tstsorlb.o:: tstsorlb.cc \
+obj/tstsorlb$(ExOBJ):: tstsorlb.cc \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -939,11 +918,10 @@ obj/tstsorlb.o:: tstsorlb.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsvegrp.o:: tsvegrp.cc \
+obj/tsvegrp$(ExOBJ):: tsvegrp.cc \
 	easydia1.h \
 	easydiag.h \
 	tsvegrp.h \
@@ -980,11 +958,10 @@ obj/tsvegrp.o:: tsvegrp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsview.o:: tsview.cc \
+obj/tsview$(ExOBJ):: tsview.cc \
 	easydia1.h \
 	easydiag.h \
 	tsview.h \
@@ -1014,11 +991,10 @@ obj/tsview.o:: tsview.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsviewco.o:: tsviewco.cc \
+obj/tsviewco$(ExOBJ):: tsviewco.cc \
 	easydia1.h \
 	easydiag.h \
 	tsview.h \
@@ -1057,11 +1033,10 @@ obj/tsviewco.o:: tsviewco.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ttextscr.o:: ttextscr.cc \
+obj/ttextscr$(ExOBJ):: ttextscr.cc \
 	easydia1.h \
 	easydiag.h \
 	ttextscr.h \
@@ -1093,7 +1068,6 @@ obj/ttextscr.o:: ttextscr.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

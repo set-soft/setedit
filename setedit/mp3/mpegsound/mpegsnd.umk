@@ -1,90 +1,89 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-../../makes/libmpegsnd.a:: \
-	obj/bitwindow.o \
-	obj/fileinput.o \
-	obj/fileplayer.o \
-	obj/filter.o \
-	obj/filter_2.o \
-	obj/httpinput.o \
-	obj/huffmantable.o \
-	obj/mpegtable.o \
-	obj/mpegtoraw.o \
-	obj/mpegwtoraw.o \
-	obj/mpglayr1.o \
-	obj/mpglayr2.o \
-	obj/mpglayr3.o \
-	obj/osdisk.o \
-	obj/rawplayer.o \
-	obj/rawtofile.o \
-	obj/rawtowav.o \
-	obj/soundinputstream.o \
-	obj/soundplayer.o \
-	obj/wavetoraw.o \
-	rhide.env \
-	common.imk 
+../../makes/libmpegsnd$(ExLIB):: \
+	obj/bitwindow$(ExOBJ) \
+	obj/fileinput$(ExOBJ) \
+	obj/fileplayer$(ExOBJ) \
+	obj/filter$(ExOBJ) \
+	obj/filter_2$(ExOBJ) \
+	obj/httpinput$(ExOBJ) \
+	obj/huffmantable$(ExOBJ) \
+	obj/mpegtable$(ExOBJ) \
+	obj/mpegtoraw$(ExOBJ) \
+	obj/mpegwtoraw$(ExOBJ) \
+	obj/mpglayr1$(ExOBJ) \
+	obj/mpglayr2$(ExOBJ) \
+	obj/mpglayr3$(ExOBJ) \
+	obj/osdisk$(ExOBJ) \
+	obj/rawplayer$(ExOBJ) \
+	obj/rawtofile$(ExOBJ) \
+	obj/rawtowav$(ExOBJ) \
+	obj/soundinputstream$(ExOBJ) \
+	obj/soundplayer$(ExOBJ) \
+	obj/wavetoraw$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/bitwindow.o:: bitwindow.cc  
+obj/bitwindow$(ExOBJ):: bitwindow.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fileinput.o:: fileinput.cc  
+obj/fileinput$(ExOBJ):: fileinput.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/fileplayer.o:: fileplayer.cc  
+obj/fileplayer$(ExOBJ):: fileplayer.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/filter.o:: filter.cc  
+obj/filter$(ExOBJ):: filter.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/filter_2.o:: filter_2.cc  
+obj/filter_2$(ExOBJ):: filter_2.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/httpinput.o:: httpinput.cc  
+obj/httpinput$(ExOBJ):: httpinput.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/huffmantable.o:: huffmantable.cc  
+obj/huffmantable$(ExOBJ):: huffmantable.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpegtable.o:: mpegtable.cc  
+obj/mpegtable$(ExOBJ):: mpegtable.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpegtoraw.o:: mpegtoraw.cc  
+obj/mpegtoraw$(ExOBJ):: mpegtoraw.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpegwtoraw.o:: mpegwtoraw.cc  
+obj/mpegwtoraw$(ExOBJ):: mpegwtoraw.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpglayr1.o:: mpglayr1.cc  
+obj/mpglayr1$(ExOBJ):: mpglayr1.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpglayr2.o:: mpglayr2.cc  
+obj/mpglayr2$(ExOBJ):: mpglayr2.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mpglayr3.o:: mpglayr3.cc  
+obj/mpglayr3$(ExOBJ):: mpglayr3.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/osdisk.o:: osdisk.cc  
+obj/osdisk$(ExOBJ):: osdisk.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/rawplayer.o:: rawplayer.cc  
+obj/rawplayer$(ExOBJ):: rawplayer.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/rawtofile.o:: rawtofile.cc  
+obj/rawtofile$(ExOBJ):: rawtofile.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/rawtowav.o:: rawtowav.cc  
+obj/rawtowav$(ExOBJ):: rawtowav.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/soundinputstream.o:: soundinputstream.cc  
+obj/soundinputstream$(ExOBJ):: soundinputstream.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/soundplayer.o:: soundplayer.cc  
+obj/soundplayer$(ExOBJ):: soundplayer.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/wavetoraw.o:: wavetoraw.cc  
+obj/wavetoraw$(ExOBJ):: wavetoraw.cc  
 	$(RHIDE_COMPILE_CC)
 

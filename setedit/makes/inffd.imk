@@ -1,9 +1,9 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-obj/inf.o:: inf.cc \
+obj/inf$(ExOBJ):: inf.cc \
 	dyncat.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -89,11 +89,10 @@ obj/inf.o:: inf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/infbase.o:: infbase.cc \
+obj/infbase$(ExOBJ):: infbase.cc \
 	dyncat.h \
 	ceditint.h \
 	configed.h \
@@ -145,11 +144,10 @@ obj/infbase.o:: infbase.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/manview.o:: manview.cc \
+obj/manview$(ExOBJ):: manview.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -214,11 +212,10 @@ obj/manview.o:: manview.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nhiscoll.o:: nhiscoll.cc \
+obj/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -234,11 +231,10 @@ obj/nhiscoll.o:: nhiscoll.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfview.o:: ninfview.cc \
+obj/ninfview$(ExOBJ):: ninfview.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -254,11 +250,10 @@ obj/ninfview.o:: ninfview.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninfwind.o:: ninfwind.cc \
+obj/ninfwind$(ExOBJ):: ninfwind.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -274,11 +269,10 @@ obj/ninfwind.o:: ninfwind.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nmanwind.o:: nmanwind.cc \
+obj/nmanwind$(ExOBJ):: nmanwind.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -294,11 +288,10 @@ obj/nmanwind.o:: nmanwind.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sinf.o:: sinf.cc \
+obj/sinf$(ExOBJ):: sinf.cc \
 	tvsetuti.h \
 	inf.h \
 	infbase.h \
@@ -347,11 +340,10 @@ obj/sinf.o:: sinf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sman.o:: sman.cc \
+obj/sman$(ExOBJ):: sman.cc \
 	tvsetuti.h \
 	manview.h \
 	compatlayer.h \
@@ -383,7 +375,6 @@ obj/sman.o:: sman.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

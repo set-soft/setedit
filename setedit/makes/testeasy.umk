@@ -1,25 +1,24 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-test.exe:: \
-	libeasyd.a \
-	libsettv.a \
-	obj/test.o \
-	rhide.env \
-	common.imk 
+test$(ExEXE):: \
+	libeasyd$(ExLIB) \
+	libsettv$(ExLIB) \
+	obj/test$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-include easydiag.imk
+INCLUDE00=easydiag$(ExIMK)
 
-obj/test.o:: test.cc  
+obj/test$(ExOBJ):: test.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	obj/test.o 
+	obj/test$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a \
-	libsettv.a 
+	libeasyd$(ExLIB) \
+	libsettv$(ExLIB) 
 

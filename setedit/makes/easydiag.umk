@@ -1,110 +1,109 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-libeasyd.a:: \
-	obj/lablchek.o \
-	obj/lablradi.o \
-	obj/snostate.o \
-	obj/tcheck2.o \
-	obj/tmiclust.o \
-	obj/tsbutton.o \
-	obj/tschkarr.o \
-	obj/tschkbox.o \
-	obj/tshscrol.o \
-	obj/tshzgrp.o \
-	obj/tsinplin.o \
-	obj/tsinplpi.o \
-	obj/tslabel.o \
-	obj/tslider.o \
-	obj/tslistbo.o \
-	obj/tsradbot.o \
-	obj/tssortlb.o \
-	obj/tssosslb.o \
-	obj/tstatext.o \
-	obj/tstextsc.o \
-	obj/tstsorlb.o \
-	obj/tsvegrp.o \
-	obj/tsview.o \
-	obj/tsviewco.o \
-	obj/ttextscr.o \
-	rhide.env \
-	common.imk 
+libeasyd$(ExLIB):: \
+	obj/lablchek$(ExOBJ) \
+	obj/lablradi$(ExOBJ) \
+	obj/snostate$(ExOBJ) \
+	obj/tcheck2$(ExOBJ) \
+	obj/tmiclust$(ExOBJ) \
+	obj/tsbutton$(ExOBJ) \
+	obj/tschkarr$(ExOBJ) \
+	obj/tschkbox$(ExOBJ) \
+	obj/tshscrol$(ExOBJ) \
+	obj/tshzgrp$(ExOBJ) \
+	obj/tsinplin$(ExOBJ) \
+	obj/tsinplpi$(ExOBJ) \
+	obj/tslabel$(ExOBJ) \
+	obj/tslider$(ExOBJ) \
+	obj/tslistbo$(ExOBJ) \
+	obj/tsradbot$(ExOBJ) \
+	obj/tssortlb$(ExOBJ) \
+	obj/tssosslb$(ExOBJ) \
+	obj/tstatext$(ExOBJ) \
+	obj/tstextsc$(ExOBJ) \
+	obj/tstsorlb$(ExOBJ) \
+	obj/tsvegrp$(ExOBJ) \
+	obj/tsview$(ExOBJ) \
+	obj/tsviewco$(ExOBJ) \
+	obj/ttextscr$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/lablchek.o:: lablchek.cc  
+obj/lablchek$(ExOBJ):: lablchek.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/lablradi.o:: lablradi.cc  
+obj/lablradi$(ExOBJ):: lablradi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/snostate.o:: snostate.cc  
+obj/snostate$(ExOBJ):: snostate.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tcheck2.o:: tcheck2.cc  
+obj/tcheck2$(ExOBJ):: tcheck2.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tmiclust.o:: tmiclust.cc  
+obj/tmiclust$(ExOBJ):: tmiclust.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsbutton.o:: tsbutton.cc  
+obj/tsbutton$(ExOBJ):: tsbutton.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkarr.o:: tschkarr.cc  
+obj/tschkarr$(ExOBJ):: tschkarr.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tschkbox.o:: tschkbox.cc  
+obj/tschkbox$(ExOBJ):: tschkbox.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tshscrol.o:: tshscrol.cc  
+obj/tshscrol$(ExOBJ):: tshscrol.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tshzgrp.o:: tshzgrp.cc  
+obj/tshzgrp$(ExOBJ):: tshzgrp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplin.o:: tsinplin.cc  
+obj/tsinplin$(ExOBJ):: tsinplin.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsinplpi.o:: tsinplpi.cc  
+obj/tsinplpi$(ExOBJ):: tsinplpi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslabel.o:: tslabel.cc  
+obj/tslabel$(ExOBJ):: tslabel.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslider.o:: tslider.cc  
+obj/tslider$(ExOBJ):: tslider.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tslistbo.o:: tslistbo.cc  
+obj/tslistbo$(ExOBJ):: tslistbo.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsradbot.o:: tsradbot.cc  
+obj/tsradbot$(ExOBJ):: tsradbot.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tssortlb.o:: tssortlb.cc  
+obj/tssortlb$(ExOBJ):: tssortlb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tssosslb.o:: tssosslb.cc  
+obj/tssosslb$(ExOBJ):: tssosslb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstatext.o:: tstatext.cc  
+obj/tstatext$(ExOBJ):: tstatext.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstextsc.o:: tstextsc.cc  
+obj/tstextsc$(ExOBJ):: tstextsc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tstsorlb.o:: tstsorlb.cc  
+obj/tstsorlb$(ExOBJ):: tstsorlb.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsvegrp.o:: tsvegrp.cc  
+obj/tsvegrp$(ExOBJ):: tsvegrp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsview.o:: tsview.cc  
+obj/tsview$(ExOBJ):: tsview.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsviewco.o:: tsviewco.cc  
+obj/tsviewco$(ExOBJ):: tsviewco.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ttextscr.o:: ttextscr.cc  
+obj/ttextscr$(ExOBJ):: ttextscr.cc  
 	$(RHIDE_COMPILE_CC)
 

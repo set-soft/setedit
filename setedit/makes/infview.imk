@@ -1,48 +1,45 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-infview.exe:: \
-	objinf/dyncat.o \
-	libeasyd.a \
-	objinf/fstrcmp.o \
-	objinf/gzfiles.o \
-	objinf/inf.o \
-	objinf/infbase.o \
-	objinf/infdummy.o \
-	objinf/infmain.o \
-	objinf/infmenu.o \
-	librhuti.a \
-	objinf/manview.o \
-	objinf/nhiscoll.o \
-	objinf/ninfview.o \
-	objinf/ninfwind.o \
-	objinf/nmanwind.o \
-	libsettv.a \
-	objinf/sinf.o \
-	objinf/sman.o \
-	objinf/strncpyz.o \
-	rhide.env \
-	common.imk 
+infview$(ExEXE):: \
+	objinf/dyncat$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	objinf/fstrcmp$(ExOBJ) \
+	objinf/gzfiles$(ExOBJ) \
+	objinf/inf$(ExOBJ) \
+	objinf/infbase$(ExOBJ) \
+	objinf/infdummy$(ExOBJ) \
+	objinf/infmain$(ExOBJ) \
+	objinf/infmenu$(ExOBJ) \
+	librhuti$(ExLIB) \
+	objinf/manview$(ExOBJ) \
+	objinf/nhiscoll$(ExOBJ) \
+	objinf/ninfview$(ExOBJ) \
+	objinf/ninfwind$(ExOBJ) \
+	objinf/nmanwind$(ExOBJ) \
+	libsettv$(ExLIB) \
+	objinf/sinf$(ExOBJ) \
+	objinf/sman$(ExOBJ) \
+	objinf/strncpyz$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objinf/dyncat.o:: dyncat.cc \
+objinf/dyncat$(ExOBJ):: dyncat.cc \
 	$(EXTRA_INC_DIR)/dyncat.cc \
 	dyncat.h \
 	configed.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include easydiag.imk
+INCLUDE00=easydiag$(ExIMK)
 
-objinf/fstrcmp.o:: fstrcmp.c \
-	rhide.env \
-	common.imk 
+objinf/fstrcmp$(ExOBJ):: fstrcmp.c \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-objinf/gzfiles.o:: gzfiles.cc \
+objinf/gzfiles$(ExOBJ):: gzfiles.cc \
 	ceditint.h \
 	configed.h \
 	gzfiles.h \
@@ -62,11 +59,10 @@ objinf/gzfiles.o:: gzfiles.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/inf.o:: inf.cc \
+objinf/inf$(ExOBJ):: inf.cc \
 	dyncat.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -152,11 +148,10 @@ objinf/inf.o:: inf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infbase.o:: infbase.cc \
+objinf/infbase$(ExOBJ):: infbase.cc \
 	dyncat.h \
 	ceditint.h \
 	configed.h \
@@ -208,16 +203,14 @@ objinf/infbase.o:: infbase.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infdummy.o:: infdummy.cc \
-	rhide.env \
-	common.imk 
+objinf/infdummy$(ExOBJ):: infdummy.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmain.o:: infmain.cc \
+objinf/infmain$(ExOBJ):: infmain.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -308,11 +301,10 @@ objinf/infmain.o:: infmain.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/infmenu.o:: infmenu.cc \
+objinf/infmenu$(ExOBJ):: infmenu.cc \
 	ced_coma.h \
 	ceditor.h \
 	tvsetuti.h \
@@ -381,13 +373,12 @@ objinf/infmenu.o:: infmenu.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include librhuti.imk
+INCLUDE01=librhuti$(ExIMK)
 
-objinf/manview.o:: manview.cc \
+objinf/manview$(ExOBJ):: manview.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -453,11 +444,10 @@ objinf/manview.o:: manview.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/nhiscoll.o:: nhiscoll.cc \
+objinf/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -473,11 +463,10 @@ objinf/nhiscoll.o:: nhiscoll.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfview.o:: ninfview.cc \
+objinf/ninfview$(ExOBJ):: ninfview.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -493,11 +482,10 @@ objinf/ninfview.o:: ninfview.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/ninfwind.o:: ninfwind.cc \
+objinf/ninfwind$(ExOBJ):: ninfwind.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -513,11 +501,10 @@ objinf/ninfwind.o:: ninfwind.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/nmanwind.o:: nmanwind.cc \
+objinf/nmanwind$(ExOBJ):: nmanwind.cc \
 	settvuti.h \
 	compatlayer.h \
 	tv.h \
@@ -533,13 +520,12 @@ objinf/nmanwind.o:: nmanwind.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include settv.imk
+INCLUDE02=settv$(ExIMK)
 
-objinf/sinf.o:: sinf.cc \
+objinf/sinf$(ExOBJ):: sinf.cc \
 	tvsetuti.h \
 	inf.h \
 	infbase.h \
@@ -588,11 +574,10 @@ objinf/sinf.o:: sinf.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/sman.o:: sman.cc \
+objinf/sman$(ExOBJ):: sman.cc \
 	tvsetuti.h \
 	manview.h \
 	compatlayer.h \
@@ -624,35 +609,33 @@ objinf/sman.o:: sman.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objinf/strncpyz.o:: strncpyz.cc \
-	rhide.env \
-	common.imk 
+objinf/strncpyz$(ExOBJ):: strncpyz.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	objinf/dyncat.o \
-	objinf/fstrcmp.o \
-	objinf/gzfiles.o \
-	objinf/inf.o \
-	objinf/infbase.o \
-	objinf/infdummy.o \
-	objinf/infmain.o \
-	objinf/infmenu.o \
-	objinf/manview.o \
-	objinf/nhiscoll.o \
-	objinf/ninfview.o \
-	objinf/ninfwind.o \
-	objinf/nmanwind.o \
-	objinf/sinf.o \
-	objinf/sman.o \
-	objinf/strncpyz.o 
+	objinf/dyncat$(ExOBJ) \
+	objinf/fstrcmp$(ExOBJ) \
+	objinf/gzfiles$(ExOBJ) \
+	objinf/inf$(ExOBJ) \
+	objinf/infbase$(ExOBJ) \
+	objinf/infdummy$(ExOBJ) \
+	objinf/infmain$(ExOBJ) \
+	objinf/infmenu$(ExOBJ) \
+	objinf/manview$(ExOBJ) \
+	objinf/nhiscoll$(ExOBJ) \
+	objinf/ninfview$(ExOBJ) \
+	objinf/ninfwind$(ExOBJ) \
+	objinf/nmanwind$(ExOBJ) \
+	objinf/sinf$(ExOBJ) \
+	objinf/sman$(ExOBJ) \
+	objinf/strncpyz$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a \
-	librhuti.a \
-	libsettv.a 
+	libeasyd$(ExLIB) \
+	librhuti$(ExLIB) \
+	libsettv$(ExLIB) 
 

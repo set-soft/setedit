@@ -1,35 +1,34 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-sdg.exe:: \
-	objsdg/bufun2.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	librhuti.a \
-	objsdg/mli.o \
-	objsdg/mliasimp.o \
-	objsdg/mlicsdg.o \
-	objsdg/mlisdg.o \
-	objsdg/ntnocast.o \
-	objsdg/setstack.o \
-	objsdg/stnocast.o \
-	objsdg/tnocastc.o \
-	objsdg/txhgen.o \
-	objsdg/txhmain.o \
-	rhide.env \
-	common.imk 
+sdg$(ExEXE):: \
+	objsdg/bufun2$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	librhuti$(ExLIB) \
+	objsdg/mli$(ExOBJ) \
+	objsdg/mliasimp$(ExOBJ) \
+	objsdg/mlicsdg$(ExOBJ) \
+	objsdg/mlisdg$(ExOBJ) \
+	objsdg/ntnocast$(ExOBJ) \
+	objsdg/setstack$(ExOBJ) \
+	objsdg/stnocast$(ExOBJ) \
+	objsdg/tnocastc$(ExOBJ) \
+	objsdg/txhgen$(ExOBJ) \
+	objsdg/txhmain$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objsdg/bufun2.o:: bufun2.cc \
+objsdg/bufun2$(ExOBJ):: bufun2.cc \
 	ucdefs.h \
 	setstack.h \
 	settvuti.h \
@@ -69,13 +68,12 @@ objsdg/bufun2.o:: bufun2.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include extra.imk
+INCLUDE00=extra$(ExIMK)
 
-objsdg/mli.o:: mli.cc \
+objsdg/mli$(ExOBJ):: mli.cc \
 	dyncat.h \
 	pathtool.h \
 	mli.h \
@@ -105,20 +103,18 @@ objsdg/mli.o:: mli.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mliasimp.o:: mliasimp.cc \
+objsdg/mliasimp$(ExOBJ):: mliasimp.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
 	mlivar.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlicsdg.o:: mlicsdg.cc \
+objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	ucdefs.h \
 	mli.h \
 	mliabase.h \
@@ -147,11 +143,10 @@ objsdg/mlicsdg.o:: mlicsdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlisdg.o:: mlisdg.cc \
+objsdg/mlisdg$(ExOBJ):: mlisdg.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -180,19 +175,17 @@ objsdg/mlisdg.o:: mlisdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/ntnocast.o:: ntnocast.cc \
+objsdg/ntnocast$(ExOBJ):: ntnocast.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/setstack.o:: setstack.cc \
+objsdg/setstack$(ExOBJ):: setstack.cc \
 	setstack.h \
 	settvuti.h \
 	compatlayer.h \
@@ -209,11 +202,10 @@ objsdg/setstack.o:: setstack.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/stnocast.o:: stnocast.cc \
+objsdg/stnocast$(ExOBJ):: stnocast.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tnocastc.h \
@@ -244,11 +236,10 @@ objsdg/stnocast.o:: stnocast.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/tnocastc.o:: tnocastc.cc \
+objsdg/tnocastc$(ExOBJ):: tnocastc.cc \
 	tvsetuti.h \
 	setstack.h \
 	settvuti.h \
@@ -290,11 +281,10 @@ objsdg/tnocastc.o:: tnocastc.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhgen.o:: txhgen.cc \
+objsdg/txhgen$(ExOBJ):: txhgen.cc \
 	bufun.h \
 	rhutils.h \
 	mli.h \
@@ -332,11 +322,10 @@ objsdg/txhgen.o:: txhgen.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhmain.o:: txhmain.cc \
+objsdg/txhmain$(ExOBJ):: txhmain.cc \
 	ceditint.h \
 	configed.h \
 	mli.h \
@@ -356,32 +345,31 @@ objsdg/txhmain.o:: txhmain.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	objsdg/bufun2.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	objsdg/mli.o \
-	objsdg/mliasimp.o \
-	objsdg/mlicsdg.o \
-	objsdg/mlisdg.o \
-	objsdg/ntnocast.o \
-	objsdg/setstack.o \
-	objsdg/stnocast.o \
-	objsdg/tnocastc.o \
-	objsdg/txhgen.o \
-	objsdg/txhmain.o 
+	objsdg/bufun2$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	objsdg/mli$(ExOBJ) \
+	objsdg/mliasimp$(ExOBJ) \
+	objsdg/mlicsdg$(ExOBJ) \
+	objsdg/mlisdg$(ExOBJ) \
+	objsdg/ntnocast$(ExOBJ) \
+	objsdg/setstack$(ExOBJ) \
+	objsdg/stnocast$(ExOBJ) \
+	objsdg/tnocastc$(ExOBJ) \
+	objsdg/txhgen$(ExOBJ) \
+	objsdg/txhmain$(ExOBJ) 
 
 LIBRARIES=\
-	librhuti.a 
+	librhuti$(ExLIB) 
 

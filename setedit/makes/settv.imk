@@ -1,43 +1,42 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-libsettv.a:: \
-	obj/diaghelp.o \
-	obj/dktclock.o \
-	obj/fileopen.o \
-	obj/fiopeaid.o \
-	obj/inputsca.o \
-	obj/ninputsc.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/ntnocast.o \
-	obj/ntnosost.o \
-	obj/setstack.o \
-	obj/sprogbar.o \
-	obj/sprogres.o \
-	obj/stnocast.o \
-	obj/stnonost.o \
-	obj/tdiagaid.o \
-	obj/tdiagrow.o \
-	obj/tinppipe.o \
-	obj/tnocastc.o \
-	obj/tnosostr.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogrdi.o \
-	obj/tprogres.o \
-	obj/tstrlbox.o \
-	obj/uisarray.o \
-	obj/ussarray.o \
-	obj/viewplus.o \
-	rhide.env \
-	common.imk 
+libsettv$(ExLIB):: \
+	obj/diaghelp$(ExOBJ) \
+	obj/dktclock$(ExOBJ) \
+	obj/fileopen$(ExOBJ) \
+	obj/fiopeaid$(ExOBJ) \
+	obj/inputsca$(ExOBJ) \
+	obj/ninputsc$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/ntnocast$(ExOBJ) \
+	obj/ntnosost$(ExOBJ) \
+	obj/setstack$(ExOBJ) \
+	obj/sprogbar$(ExOBJ) \
+	obj/sprogres$(ExOBJ) \
+	obj/stnocast$(ExOBJ) \
+	obj/stnonost$(ExOBJ) \
+	obj/tdiagaid$(ExOBJ) \
+	obj/tdiagrow$(ExOBJ) \
+	obj/tinppipe$(ExOBJ) \
+	obj/tnocastc$(ExOBJ) \
+	obj/tnosostr$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogrdi$(ExOBJ) \
+	obj/tprogres$(ExOBJ) \
+	obj/tstrlbox$(ExOBJ) \
+	obj/uisarray$(ExOBJ) \
+	obj/ussarray$(ExOBJ) \
+	obj/viewplus$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/diaghelp.o:: diaghelp.cc \
+obj/diaghelp$(ExOBJ):: diaghelp.cc \
 	edspecs.h \
 	compatlayer.h \
 	tv.h \
@@ -71,11 +70,10 @@ obj/diaghelp.o:: diaghelp.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dktclock.o:: dktclock.cc \
+obj/dktclock$(ExOBJ):: dktclock.cc \
 	ceditint.h \
 	configed.h \
 	$(MP3_PREV_DIR)/settvuti/dktclock.cc \
@@ -102,11 +100,10 @@ obj/dktclock.o:: dktclock.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fileopen.o:: fileopen.cc \
+obj/fileopen$(ExOBJ):: fileopen.cc \
 	fileopen.h \
 	cl/unistd.h \
 	compatlayer.h \
@@ -155,11 +152,10 @@ obj/fileopen.o:: fileopen.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fiopeaid.o:: fiopeaid.cc \
+obj/fiopeaid$(ExOBJ):: fiopeaid.cc \
 	edhists.h \
 	fileopen.h \
 	fiopeaid.h \
@@ -194,11 +190,10 @@ obj/fiopeaid.o:: fiopeaid.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/inputsca.o:: inputsca.cc \
+obj/inputsca$(ExOBJ):: inputsca.cc \
 	inputsca.h \
 	settvuti.h \
 	compatlayer.h \
@@ -225,19 +220,17 @@ obj/inputsca.o:: inputsca.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ninputsc.o:: ninputsc.cc \
+obj/ninputsc$(ExOBJ):: ninputsc.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex.o:: nostatex.cc \
+obj/nostatex$(ExOBJ):: nostatex.cc \
 	nostatex.h \
 	settvuti.h \
 	compatlayer.h \
@@ -263,43 +256,38 @@ obj/nostatex.o:: nostatex.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar.o:: nprogbar.cc \
+obj/nprogbar$(ExOBJ):: nprogbar.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres.o:: nprogres.cc \
+obj/nprogres$(ExOBJ):: nprogres.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnocast.o:: ntnocast.cc \
+obj/ntnocast$(ExOBJ):: ntnocast.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntnosost.o:: ntnosost.cc \
+obj/ntnosost$(ExOBJ):: ntnosost.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/setstack.o:: setstack.cc \
+obj/setstack$(ExOBJ):: setstack.cc \
 	setstack.h \
 	settvuti.h \
 	compatlayer.h \
@@ -316,11 +304,10 @@ obj/setstack.o:: setstack.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogbar.o:: sprogbar.cc \
+obj/sprogbar$(ExOBJ):: sprogbar.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tprogbar.h \
@@ -347,11 +334,10 @@ obj/sprogbar.o:: sprogbar.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sprogres.o:: sprogres.cc \
+obj/sprogres$(ExOBJ):: sprogres.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tprogrdi.h \
@@ -379,11 +365,10 @@ obj/sprogres.o:: sprogres.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stnocast.o:: stnocast.cc \
+obj/stnocast$(ExOBJ):: stnocast.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tnocastc.h \
@@ -414,11 +399,10 @@ obj/stnocast.o:: stnocast.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stnonost.o:: stnonost.cc \
+obj/stnonost$(ExOBJ):: stnonost.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tnosostr.h \
@@ -449,11 +433,10 @@ obj/stnonost.o:: stnonost.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagaid.o:: tdiagaid.cc \
+obj/tdiagaid$(ExOBJ):: tdiagaid.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -518,11 +501,10 @@ obj/tdiagaid.o:: tdiagaid.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tdiagrow.o:: tdiagrow.cc \
+obj/tdiagrow$(ExOBJ):: tdiagrow.cc \
 	settvuti.h \
 	tdiagrow.h \
 	compatlayer.h \
@@ -551,11 +533,10 @@ obj/tdiagrow.o:: tdiagrow.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tinppipe.o:: tinppipe.cc \
+obj/tinppipe$(ExOBJ):: tinppipe.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -607,11 +588,10 @@ obj/tinppipe.o:: tinppipe.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tnocastc.o:: tnocastc.cc \
+obj/tnocastc$(ExOBJ):: tnocastc.cc \
 	tvsetuti.h \
 	setstack.h \
 	settvuti.h \
@@ -653,11 +633,10 @@ obj/tnocastc.o:: tnocastc.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tnosostr.o:: tnosostr.cc \
+obj/tnosostr$(ExOBJ):: tnosostr.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tnosostr.h \
@@ -688,11 +667,10 @@ obj/tnosostr.o:: tnosostr.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar.o:: tprogbar.cc \
+obj/tprogbar$(ExOBJ):: tprogbar.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tprogbar.h \
@@ -724,11 +702,10 @@ obj/tprogbar.o:: tprogbar.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia.o:: tprogdia.cc \
+obj/tprogdia$(ExOBJ):: tprogdia.cc \
 	easydia1.h \
 	easydiag.h \
 	tvsetuti.h \
@@ -766,11 +743,10 @@ obj/tprogdia.o:: tprogdia.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogrdi.o:: tprogrdi.cc \
+obj/tprogrdi$(ExOBJ):: tprogrdi.cc \
 	tvsetuti.h \
 	nostatex.h \
 	settvuti.h \
@@ -807,11 +783,10 @@ obj/tprogrdi.o:: tprogrdi.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres.o:: tprogres.cc \
+obj/tprogres$(ExOBJ):: tprogres.cc \
 	tvsetuti.h \
 	settvuti.h \
 	tprogrdi.h \
@@ -844,11 +819,10 @@ obj/tprogres.o:: tprogres.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tstrlbox.o:: tstrlbox.cc \
+obj/tstrlbox$(ExOBJ):: tstrlbox.cc \
 	settvuti.h \
 	tstringa.h \
 	tstrlbox.h \
@@ -876,11 +850,10 @@ obj/tstrlbox.o:: tstrlbox.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/uisarray.o:: uisarray.cc \
+obj/uisarray$(ExOBJ):: uisarray.cc \
 	$(SETTVUTI_INC_DIR)/sarray.cc \
 	sarray.h \
 	settvuti.h \
@@ -898,11 +871,10 @@ obj/uisarray.o:: uisarray.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ussarray.o:: ussarray.cc \
+obj/ussarray$(ExOBJ):: ussarray.cc \
 	$(SETTVUTI_INC_DIR)/sarray.cc \
 	sarray.h \
 	settvuti.h \
@@ -920,11 +892,10 @@ obj/ussarray.o:: ussarray.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/viewplus.o:: viewplus.cc \
+obj/viewplus$(ExOBJ):: viewplus.cc \
 	viewplus.h \
 	compatlayer.h \
 	tv.h \
@@ -952,7 +923,6 @@ obj/viewplus.o:: viewplus.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

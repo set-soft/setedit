@@ -1,77 +1,76 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-libset.a:: \
-	objlib/bufun.o \
-	objlib/calcu.o \
-	objlib/ceditor.o \
-	objlib/completi.o \
-	objlib/deedidia.o \
-	objlib/doedidia.o \
-	libeasyd.a \
-	objlib/edconst.o \
-	objlib/editorfo.o \
-	objlib/editwind.o \
-	objlib/edkeys.o \
-	objlib/edprint.o \
-	objlib/edspecs.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	objlib/gzfiles.o \
-	objlib/inf.o \
-	objlib/infbase.o \
-	objlib/keytrans.o \
-	objlib/linelen.o \
-	objlib/loaddefl.o \
-	objlib/loadfunc.o \
-	objlib/loadshl.o \
-	objlib/loadusew.o \
-	objlib/macrocom.o \
-	objlib/mli.o \
-	objlib/mliasimp.o \
-	objlib/mlicsdg.o \
-	objlib/mliediti.o \
-	objlib/mliedito.o \
-	objlib/mlisdg.o \
-	objlib/nceditor.o \
-	objlib/neditwin.o \
-	objlib/nfileedi.o \
-	objlib/nhiscoll.o \
-	objlib/ninfview.o \
-	objlib/ninfwind.o \
-	objlib/nsindica.o \
-	objlib/parser.o \
-	objlib/pathtool.o \
-	objlib/pclipper.o \
-	objlib/pmacros.o \
-	objlib/pperl.o \
-	objlib/pphp.o \
-	objlib/pvarious.o \
-	objlib/rhideint.o \
-	objlib/sceditor.o \
-	objlib/sdginter.o \
-	objlib/search.o \
-	libsettv.a \
-	objlib/sinf.o \
-	objlib/slpinter.o \
-	objlib/splinman.o \
-	objlib/ssindica.o \
-	objlib/tsindica.o \
-	objlib/txhgen.o \
-	rhide.env \
-	common.imk 
+libset$(ExLIB):: \
+	objlib/bufun$(ExOBJ) \
+	objlib/calcu$(ExOBJ) \
+	objlib/ceditor$(ExOBJ) \
+	objlib/completi$(ExOBJ) \
+	objlib/deedidia$(ExOBJ) \
+	objlib/doedidia$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	objlib/edconst$(ExOBJ) \
+	objlib/editorfo$(ExOBJ) \
+	objlib/editwind$(ExOBJ) \
+	objlib/edkeys$(ExOBJ) \
+	objlib/edprint$(ExOBJ) \
+	objlib/edspecs$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	objlib/gzfiles$(ExOBJ) \
+	objlib/inf$(ExOBJ) \
+	objlib/infbase$(ExOBJ) \
+	objlib/keytrans$(ExOBJ) \
+	objlib/linelen$(ExOBJ) \
+	objlib/loaddefl$(ExOBJ) \
+	objlib/loadfunc$(ExOBJ) \
+	objlib/loadshl$(ExOBJ) \
+	objlib/loadusew$(ExOBJ) \
+	objlib/macrocom$(ExOBJ) \
+	objlib/mli$(ExOBJ) \
+	objlib/mliasimp$(ExOBJ) \
+	objlib/mlicsdg$(ExOBJ) \
+	objlib/mliediti$(ExOBJ) \
+	objlib/mliedito$(ExOBJ) \
+	objlib/mlisdg$(ExOBJ) \
+	objlib/nceditor$(ExOBJ) \
+	objlib/neditwin$(ExOBJ) \
+	objlib/nfileedi$(ExOBJ) \
+	objlib/nhiscoll$(ExOBJ) \
+	objlib/ninfview$(ExOBJ) \
+	objlib/ninfwind$(ExOBJ) \
+	objlib/nsindica$(ExOBJ) \
+	objlib/parser$(ExOBJ) \
+	objlib/pathtool$(ExOBJ) \
+	objlib/pclipper$(ExOBJ) \
+	objlib/pmacros$(ExOBJ) \
+	objlib/pperl$(ExOBJ) \
+	objlib/pphp$(ExOBJ) \
+	objlib/pvarious$(ExOBJ) \
+	objlib/rhideint$(ExOBJ) \
+	objlib/sceditor$(ExOBJ) \
+	objlib/sdginter$(ExOBJ) \
+	objlib/search$(ExOBJ) \
+	libsettv$(ExLIB) \
+	objlib/sinf$(ExOBJ) \
+	objlib/slpinter$(ExOBJ) \
+	objlib/splinman$(ExOBJ) \
+	objlib/ssindica$(ExOBJ) \
+	objlib/tsindica$(ExOBJ) \
+	objlib/txhgen$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-objlib/bufun.o:: bufun.cc \
+objlib/bufun$(ExOBJ):: bufun.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -145,11 +144,10 @@ objlib/bufun.o:: bufun.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/calcu.o:: calcu.cc \
+objlib/calcu$(ExOBJ):: calcu.cc \
 	$(CALCU_INC_DIR)/calcu.h \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -216,11 +214,10 @@ objlib/calcu.o:: calcu.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ceditor.o:: ceditor.cc \
+objlib/ceditor$(ExOBJ):: ceditor.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/bufun.h \
 	$(INCLUDE_DIR)/ced_clas.h \
@@ -311,11 +308,10 @@ objlib/ceditor.o:: ceditor.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/completi.o:: completi.cc \
+objlib/completi$(ExOBJ):: completi.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ced_inte.h \
@@ -373,11 +369,10 @@ objlib/completi.o:: completi.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/deedidia.o:: deedidia.cc \
+objlib/deedidia$(ExOBJ):: deedidia.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -476,11 +471,10 @@ objlib/deedidia.o:: deedidia.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/doedidia.o:: doedidia.cc \
+objlib/doedidia$(ExOBJ):: doedidia.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -533,13 +527,12 @@ objlib/doedidia.o:: doedidia.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include easydiag.imk
+INCLUDE00=easydiag$(ExIMK)
 
-objlib/edconst.o:: edconst.cc \
+objlib/edconst$(ExOBJ):: edconst.cc \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_inte.h \
 	$(INCLUDE_DIR)/ceditor.h \
@@ -594,11 +587,10 @@ objlib/edconst.o:: edconst.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editorfo.o:: editorfo.cc \
+objlib/editorfo$(ExOBJ):: editorfo.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ced_inte.h \
@@ -649,11 +641,10 @@ objlib/editorfo.o:: editorfo.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/editwind.o:: editwind.cc \
+objlib/editwind$(ExOBJ):: editwind.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -708,11 +699,10 @@ objlib/editwind.o:: editwind.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edkeys.o:: edkeys.cc \
+objlib/edkeys$(ExOBJ):: edkeys.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -799,11 +789,10 @@ objlib/edkeys.o:: edkeys.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edprint.o:: edprint.cc \
+objlib/edprint$(ExOBJ):: edprint.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -864,11 +853,10 @@ objlib/edprint.o:: edprint.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/edspecs.o:: edspecs.cc \
+objlib/edspecs$(ExOBJ):: edspecs.cc \
 	$(INCLUDE_DIR)/ced_inte.h \
 	$(INCLUDE_DIR)/edspecs.h \
 	$(INCLUDE_DIR)/pathtool.h \
@@ -886,13 +874,12 @@ objlib/edspecs.o:: edspecs.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include extra.imk
+INCLUDE01=extra$(ExIMK)
 
-objlib/gzfiles.o:: gzfiles.cc \
+objlib/gzfiles$(ExOBJ):: gzfiles.cc \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/configed.h \
 	$(INCLUDE_DIR)/gzfiles.h \
@@ -912,11 +899,10 @@ objlib/gzfiles.o:: gzfiles.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/inf.o:: inf.cc \
+objlib/inf$(ExOBJ):: inf.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -1001,11 +987,10 @@ objlib/inf.o:: inf.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/infbase.o:: infbase.cc \
+objlib/infbase$(ExOBJ):: infbase.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/configed.h \
@@ -1057,11 +1042,10 @@ objlib/infbase.o:: infbase.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/keytrans.o:: keytrans.cc \
+objlib/keytrans$(ExOBJ):: keytrans.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -1105,11 +1089,10 @@ objlib/keytrans.o:: keytrans.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/linelen.o:: linelen.cc \
+objlib/linelen$(ExOBJ):: linelen.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
@@ -1127,11 +1110,10 @@ objlib/linelen.o:: linelen.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loaddefl.o:: loaddefl.cc \
+objlib/loaddefl$(ExOBJ):: loaddefl.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -1210,11 +1192,10 @@ objlib/loaddefl.o:: loaddefl.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadfunc.o:: loadfunc.cc \
+objlib/loadfunc$(ExOBJ):: loadfunc.cc \
 	$(INCLUDE_DIR)/pathtool.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1232,11 +1213,10 @@ objlib/loadfunc.o:: loadfunc.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadshl.o:: loadshl.cc \
+objlib/loadshl$(ExOBJ):: loadshl.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
@@ -1289,11 +1269,10 @@ objlib/loadshl.o:: loadshl.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/loadusew.o:: loadusew.cc \
+objlib/loadusew$(ExOBJ):: loadusew.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -1371,11 +1350,10 @@ objlib/loadusew.o:: loadusew.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/macrocom.o:: macrocom.cc \
+objlib/macrocom$(ExOBJ):: macrocom.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ceditor.h \
@@ -1429,11 +1407,10 @@ objlib/macrocom.o:: macrocom.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mli.o:: mli.cc \
+objlib/mli$(ExOBJ):: mli.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/pathtool.h \
 	$(SDG_INC_DIR)/mli.h \
@@ -1463,20 +1440,18 @@ objlib/mli.o:: mli.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliasimp.o:: mliasimp.cc \
+objlib/mliasimp$(ExOBJ):: mliasimp.cc \
 	$(SDG_INC_DIR)/mli.h \
 	$(SDG_INC_DIR)/mliabase.h \
 	$(SDG_INC_DIR)/mliasimp.h \
 	$(SDG_INC_DIR)/mlivar.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlicsdg.o:: mlicsdg.cc \
+objlib/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	$(INCLUDE_DIR)/ucdefs.h \
 	$(SDG_INC_DIR)/mli.h \
 	$(SDG_INC_DIR)/mliabase.h \
@@ -1505,11 +1480,10 @@ objlib/mlicsdg.o:: mlicsdg.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliediti.o:: mliediti.cc \
+objlib/mliediti$(ExOBJ):: mliediti.cc \
 	$(INCLUDE_DIR)/edmsg.h \
 	$(INCLUDE_DIR)/tvsetuti.h \
 	$(SDG_INC_DIR)/mli.h \
@@ -1547,11 +1521,10 @@ objlib/mliediti.o:: mliediti.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mliedito.o:: mliedito.cc \
+objlib/mliedito$(ExOBJ):: mliedito.cc \
 	$(EXTRA_INC_DIR)/dyncat.h \
 	$(INCLUDE_DIR)/ced_coma.h \
 	$(INCLUDE_DIR)/ceditor.h \
@@ -1596,11 +1569,10 @@ objlib/mliedito.o:: mliedito.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/mlisdg.o:: mlisdg.cc \
+objlib/mlisdg$(ExOBJ):: mlisdg.cc \
 	$(SDG_INC_DIR)/mli.h \
 	$(SDG_INC_DIR)/mliabase.h \
 	$(SDG_INC_DIR)/mliasimp.h \
@@ -1629,35 +1601,31 @@ objlib/mlisdg.o:: mlisdg.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nceditor.o:: nceditor.cc \
+objlib/nceditor$(ExOBJ):: nceditor.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/neditwin.o:: neditwin.cc \
+objlib/neditwin$(ExOBJ):: neditwin.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nfileedi.o:: nfileedi.cc \
+objlib/nfileedi$(ExOBJ):: nfileedi.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nhiscoll.o:: nhiscoll.cc \
+objlib/nhiscoll$(ExOBJ):: nhiscoll.cc \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1673,11 +1641,10 @@ objlib/nhiscoll.o:: nhiscoll.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfview.o:: ninfview.cc \
+objlib/ninfview$(ExOBJ):: ninfview.cc \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1693,11 +1660,10 @@ objlib/ninfview.o:: ninfview.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ninfwind.o:: ninfwind.cc \
+objlib/ninfwind$(ExOBJ):: ninfwind.cc \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1713,26 +1679,23 @@ objlib/ninfwind.o:: ninfwind.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/nsindica.o:: nsindica.cc \
+objlib/nsindica$(ExOBJ):: nsindica.cc \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
 	$(TVISION_INC)/tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/parser.o:: parser.c \
+objlib/parser$(ExOBJ):: parser.c \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-objlib/pathtool.o:: pathtool.cc \
+objlib/pathtool$(ExOBJ):: pathtool.cc \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/configed.h \
 	$(INCLUDE_DIR)/pathtool.h \
@@ -1770,11 +1733,10 @@ objlib/pathtool.o:: pathtool.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pclipper.o:: pclipper.cc \
+objlib/pclipper$(ExOBJ):: pclipper.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1792,11 +1754,10 @@ objlib/pclipper.o:: pclipper.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pmacros.o:: pmacros.cc \
+objlib/pmacros$(ExOBJ):: pmacros.cc \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(INCLUDE_DIR)/pmcoll.h \
 	$(SETTVUTI_INC_DIR)/settvuti.h \
@@ -1828,23 +1789,20 @@ objlib/pmacros.o:: pmacros.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pperl.o:: pperl.cc \
+objlib/pperl$(ExOBJ):: pperl.cc \
 	$(INCLUDE_DIR)/bufun.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pphp.o:: pphp.cc \
+objlib/pphp$(ExOBJ):: pphp.cc \
 	$(INCLUDE_DIR)/bufun.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/pvarious.o:: pvarious.cc \
+objlib/pvarious$(ExOBJ):: pvarious.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(TVISION_INC)/compatlayer.h \
 	$(TVISION_INC)/tv.h \
@@ -1862,11 +1820,10 @@ objlib/pvarious.o:: pvarious.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/rhideint.o:: rhideint.cc \
+objlib/rhideint$(ExOBJ):: rhideint.cc \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/edmsg.h \
 	$(LIBRHUTI_INC_DIR)/rhutils.h \
@@ -1885,11 +1842,10 @@ objlib/rhideint.o:: rhideint.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/sceditor.o:: sceditor.cc \
+objlib/sceditor$(ExOBJ):: sceditor.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ceditint.h \
@@ -1940,11 +1896,10 @@ objlib/sceditor.o:: sceditor.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/sdginter.o:: sdginter.cc \
+objlib/sdginter$(ExOBJ):: sdginter.cc \
 	$(INCLUDE_DIR)/ceditint.h \
 	$(INCLUDE_DIR)/configed.h \
 	$(TVISION_INC)/compatlayer.h \
@@ -1964,11 +1919,10 @@ objlib/sdginter.o:: sdginter.cc \
 	$(TVISION_INC)/tv/tvconfig.h \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/search.o:: search.cc \
+objlib/search$(ExOBJ):: search.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ced_inte.h \
@@ -2020,13 +1974,12 @@ objlib/search.o:: search.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include settv.imk
+INCLUDE02=settv$(ExIMK)
 
-objlib/sinf.o:: sinf.cc \
+objlib/sinf$(ExOBJ):: sinf.cc \
 	$(INCLUDE_DIR)/tvsetuti.h \
 	$(INFVIEW_INC_DIR)/inf.h \
 	$(INFVIEW_INC_DIR)/infbase.h \
@@ -2075,11 +2028,10 @@ objlib/sinf.o:: sinf.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/slpinter.o:: slpinter.cc \
+objlib/slpinter$(ExOBJ):: slpinter.cc \
 	$(EASYDIAG_INC_DIR)/easydia1.h \
 	$(EASYDIAG_INC_DIR)/easydiag.h \
 	$(EASYDIAG_INC_DIR)/tsbutton.h \
@@ -2162,11 +2114,10 @@ objlib/slpinter.o:: slpinter.cc \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/window.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/splinman.o:: splinman.cc \
+objlib/splinman$(ExOBJ):: splinman.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ced_inte.h \
@@ -2214,11 +2165,10 @@ objlib/splinman.o:: splinman.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/ssindica.o:: ssindica.cc \
+objlib/ssindica$(ExOBJ):: ssindica.cc \
 	$(INCLUDE_DIR)/ceditor.h \
 	$(INCLUDE_DIR)/sindicat.h \
 	$(INCLUDE_DIR)/tvsetuti.h \
@@ -2246,11 +2196,10 @@ objlib/ssindica.o:: ssindica.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/tsindica.o:: tsindica.cc \
+objlib/tsindica$(ExOBJ):: tsindica.cc \
 	$(INCLUDE_DIR)/ced_clas.h \
 	$(INCLUDE_DIR)/ced_exte.h \
 	$(INCLUDE_DIR)/ceditor.h \
@@ -2298,11 +2247,10 @@ objlib/tsindica.o:: tsindica.cc \
 	$(TVISION_INC)/tv/view.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-objlib/txhgen.o:: txhgen.cc \
+objlib/txhgen$(ExOBJ):: txhgen.cc \
 	$(INCLUDE_DIR)/bufun.h \
 	$(LIBRHUTI_INC_DIR)/rhutils.h \
 	$(SDG_INC_DIR)/mli.h \
@@ -2340,7 +2288,6 @@ objlib/txhgen.o:: txhgen.cc \
 	$(TVISION_INC)/tv/tvutil.h \
 	$(TVISION_INC)/tv/views.h \
 	$(TVISION_INC)/tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

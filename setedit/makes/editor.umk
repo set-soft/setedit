@@ -1,631 +1,630 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-editor.exe:: \
-	obj/accehtml.o \
-	obj/advice.o \
-	obj/ampdiag.o \
-	obj/intermp3.o \
-	obj/mp3list.o \
-	obj/mp3play.o \
-	obj/ascii.o \
-	obj/boardmix.o \
-	obj/bufun.o \
-	obj/calcu.o \
-	obj/calendar.o \
-	obj/ceditor.o \
-	obj/codepage.o \
-	obj/completi.o \
-	obj/deedidia.o \
-	obj/doedidia.o \
-	obj/dskascii.o \
-	obj/dskcalen.o \
-	obj/dskclip.o \
-	obj/dskclose.o \
-	obj/dskedito.o \
-	obj/dskhelp.o \
-	obj/dskman.o \
-	obj/dskmessa.o \
-	obj/dskmp3.o \
-	obj/dskwin.o \
-	obj/dstfile.o \
-	obj/dumpfile.o \
-	libeasyd.a \
-	obj/edcolor.o \
-	obj/edconst.o \
-	obj/edfonts.o \
-	obj/editdiag.o \
-	obj/editmain.o \
-	obj/editmenu.o \
-	obj/editorfo.o \
-	obj/editpale.o \
-	obj/editwind.o \
-	obj/edkeys.o \
-	obj/edmsg.o \
-	obj/edprefs.o \
-	obj/edprint.o \
-	obj/edprj.o \
-	obj/edspecs.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	obj/fstrcmp.o \
-	obj/getctxhl.o \
-	obj/gzfiles.o \
-	obj/holidays.o \
-	obj/inf.o \
-	obj/infbase.o \
-	obj/manview.o \
-	obj/nhiscoll.o \
-	obj/ninfview.o \
-	obj/ninfwind.o \
-	obj/nmanwind.o \
-	obj/sinf.o \
-	obj/sman.o \
-	obj/intgrep.o \
-	obj/keytrans.o \
-	librhuti.a \
-	obj/linelen.o \
-	obj/loadcle.o \
-	obj/loaddefl.o \
-	obj/loadfunc.o \
-	obj/loadnobkp.o \
-	obj/loadshl.o \
-	obj/loadusew.o \
-	obj/macrocom.o \
-	obj/menuload.o \
-	obj/mli.o \
-	obj/mliasimp.o \
-	obj/mlicsdg.o \
-	obj/mliediti.o \
-	obj/mliedito.o \
-	obj/mlisdg.o \
-	obj/msignal.o \
-	obj/nceditor.o \
-	obj/ndskwasc.o \
-	obj/ndskwcal.o \
-	obj/ndskwcli.o \
-	obj/ndskwclo.o \
-	obj/ndskwedi.o \
-	obj/ndskwhel.o \
-	obj/ndskwman.o \
-	obj/ndskwmes.o \
-	obj/ndskwmp3.o \
-	obj/ndskwprj.o \
-	obj/neditwin.o \
-	obj/nfileedi.o \
-	obj/nsindica.o \
-	obj/ntedcol.o \
-	obj/parser.o \
-	obj/pathlist.o \
-	obj/pathtool.o \
-	obj/pclipper.o \
-	obj/pmacros.o \
-	obj/pperl.o \
-	obj/pphp.o \
-	obj/pvarious.o \
-	obj/runprog.o \
-	obj/sceditor.o \
-	obj/scresave.o \
-	obj/sdginter.o \
-	obj/sdskasci.o \
-	obj/sdskcale.o \
-	obj/sdskclip.o \
-	obj/sdskclos.o \
-	obj/sdskedit.o \
-	obj/sdskhelp.o \
-	obj/sdskman.o \
-	obj/sdskmess.o \
-	obj/sdskmp3.o \
-	obj/sdskprj.o \
-	obj/search.o \
-	obj/sedcolle.o \
-	libsettv.a \
-	obj/slpinter.o \
-	obj/splinman.o \
-	obj/ssindica.o \
-	obj/ssyntax.o \
-	obj/tags.o \
-	obj/tedcolle.o \
-	obj/tips.o \
-	obj/tpaltext.o \
-	obj/tsindica.o \
-	obj/txhgen.o \
-	obj/winlistd.o \
-	rhide.env \
-	common.imk 
+editor$(ExEXE):: \
+	obj/accehtml$(ExOBJ) \
+	obj/advice$(ExOBJ) \
+	obj/ampdiag$(ExOBJ) \
+	obj/intermp3$(ExOBJ) \
+	obj/mp3list$(ExOBJ) \
+	obj/mp3play$(ExOBJ) \
+	obj/ascii$(ExOBJ) \
+	obj/boardmix$(ExOBJ) \
+	obj/bufun$(ExOBJ) \
+	obj/calcu$(ExOBJ) \
+	obj/calendar$(ExOBJ) \
+	obj/ceditor$(ExOBJ) \
+	obj/codepage$(ExOBJ) \
+	obj/completi$(ExOBJ) \
+	obj/deedidia$(ExOBJ) \
+	obj/doedidia$(ExOBJ) \
+	obj/dskascii$(ExOBJ) \
+	obj/dskcalen$(ExOBJ) \
+	obj/dskclip$(ExOBJ) \
+	obj/dskclose$(ExOBJ) \
+	obj/dskedito$(ExOBJ) \
+	obj/dskhelp$(ExOBJ) \
+	obj/dskman$(ExOBJ) \
+	obj/dskmessa$(ExOBJ) \
+	obj/dskmp3$(ExOBJ) \
+	obj/dskwin$(ExOBJ) \
+	obj/dstfile$(ExOBJ) \
+	obj/dumpfile$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	obj/edcolor$(ExOBJ) \
+	obj/edconst$(ExOBJ) \
+	obj/edfonts$(ExOBJ) \
+	obj/editdiag$(ExOBJ) \
+	obj/editmain$(ExOBJ) \
+	obj/editmenu$(ExOBJ) \
+	obj/editorfo$(ExOBJ) \
+	obj/editpale$(ExOBJ) \
+	obj/editwind$(ExOBJ) \
+	obj/edkeys$(ExOBJ) \
+	obj/edmsg$(ExOBJ) \
+	obj/edprefs$(ExOBJ) \
+	obj/edprint$(ExOBJ) \
+	obj/edprj$(ExOBJ) \
+	obj/edspecs$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	obj/fstrcmp$(ExOBJ) \
+	obj/getctxhl$(ExOBJ) \
+	obj/gzfiles$(ExOBJ) \
+	obj/holidays$(ExOBJ) \
+	obj/inf$(ExOBJ) \
+	obj/infbase$(ExOBJ) \
+	obj/manview$(ExOBJ) \
+	obj/nhiscoll$(ExOBJ) \
+	obj/ninfview$(ExOBJ) \
+	obj/ninfwind$(ExOBJ) \
+	obj/nmanwind$(ExOBJ) \
+	obj/sinf$(ExOBJ) \
+	obj/sman$(ExOBJ) \
+	obj/intgrep$(ExOBJ) \
+	obj/keytrans$(ExOBJ) \
+	librhuti$(ExLIB) \
+	obj/linelen$(ExOBJ) \
+	obj/loadcle$(ExOBJ) \
+	obj/loaddefl$(ExOBJ) \
+	obj/loadfunc$(ExOBJ) \
+	obj/loadnobkp$(ExOBJ) \
+	obj/loadshl$(ExOBJ) \
+	obj/loadusew$(ExOBJ) \
+	obj/macrocom$(ExOBJ) \
+	obj/menuload$(ExOBJ) \
+	obj/mli$(ExOBJ) \
+	obj/mliasimp$(ExOBJ) \
+	obj/mlicsdg$(ExOBJ) \
+	obj/mliediti$(ExOBJ) \
+	obj/mliedito$(ExOBJ) \
+	obj/mlisdg$(ExOBJ) \
+	obj/msignal$(ExOBJ) \
+	obj/nceditor$(ExOBJ) \
+	obj/ndskwasc$(ExOBJ) \
+	obj/ndskwcal$(ExOBJ) \
+	obj/ndskwcli$(ExOBJ) \
+	obj/ndskwclo$(ExOBJ) \
+	obj/ndskwedi$(ExOBJ) \
+	obj/ndskwhel$(ExOBJ) \
+	obj/ndskwman$(ExOBJ) \
+	obj/ndskwmes$(ExOBJ) \
+	obj/ndskwmp3$(ExOBJ) \
+	obj/ndskwprj$(ExOBJ) \
+	obj/neditwin$(ExOBJ) \
+	obj/nfileedi$(ExOBJ) \
+	obj/nsindica$(ExOBJ) \
+	obj/ntedcol$(ExOBJ) \
+	obj/parser$(ExOBJ) \
+	obj/pathlist$(ExOBJ) \
+	obj/pathtool$(ExOBJ) \
+	obj/pclipper$(ExOBJ) \
+	obj/pmacros$(ExOBJ) \
+	obj/pperl$(ExOBJ) \
+	obj/pphp$(ExOBJ) \
+	obj/pvarious$(ExOBJ) \
+	obj/runprog$(ExOBJ) \
+	obj/sceditor$(ExOBJ) \
+	obj/scresave$(ExOBJ) \
+	obj/sdginter$(ExOBJ) \
+	obj/sdskasci$(ExOBJ) \
+	obj/sdskcale$(ExOBJ) \
+	obj/sdskclip$(ExOBJ) \
+	obj/sdskclos$(ExOBJ) \
+	obj/sdskedit$(ExOBJ) \
+	obj/sdskhelp$(ExOBJ) \
+	obj/sdskman$(ExOBJ) \
+	obj/sdskmess$(ExOBJ) \
+	obj/sdskmp3$(ExOBJ) \
+	obj/sdskprj$(ExOBJ) \
+	obj/search$(ExOBJ) \
+	obj/sedcolle$(ExOBJ) \
+	libsettv$(ExLIB) \
+	obj/slpinter$(ExOBJ) \
+	obj/splinman$(ExOBJ) \
+	obj/ssindica$(ExOBJ) \
+	obj/ssyntax$(ExOBJ) \
+	obj/tags$(ExOBJ) \
+	obj/tedcolle$(ExOBJ) \
+	obj/tips$(ExOBJ) \
+	obj/tpaltext$(ExOBJ) \
+	obj/tsindica$(ExOBJ) \
+	obj/txhgen$(ExOBJ) \
+	obj/winlistd$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-obj/accehtml.o:: accehtml.cc  
+obj/accehtml$(ExOBJ):: accehtml.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/advice.o:: advice.cc  
+obj/advice$(ExOBJ):: advice.cc  
 	$(RHIDE_COMPILE_CC)
 
-include amp3.imk
+INCLUDE00=amp3$(ExIMK)
 
-obj/ascii.o:: ascii.cc  
+obj/ascii$(ExOBJ):: ascii.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/boardmix.o:: boardmix.cc  
+obj/boardmix$(ExOBJ):: boardmix.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/bufun.o:: bufun.cc  
+obj/bufun$(ExOBJ):: bufun.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/calcu.o:: calcu.cc  
+obj/calcu$(ExOBJ):: calcu.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/calendar.o:: calendar.cc  
+obj/calendar$(ExOBJ):: calendar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ceditor.o:: ceditor.cc  
+obj/ceditor$(ExOBJ):: ceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/codepage.o:: codepage.cc  
+obj/codepage$(ExOBJ):: codepage.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/completi.o:: completi.cc  
+obj/completi$(ExOBJ):: completi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/deedidia.o:: deedidia.cc  
+obj/deedidia$(ExOBJ):: deedidia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/doedidia.o:: doedidia.cc  
+obj/doedidia$(ExOBJ):: doedidia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskascii.o:: dskascii.cc  
+obj/dskascii$(ExOBJ):: dskascii.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskcalen.o:: dskcalen.cc  
+obj/dskcalen$(ExOBJ):: dskcalen.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclip.o:: dskclip.cc  
+obj/dskclip$(ExOBJ):: dskclip.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclose.o:: dskclose.cc  
+obj/dskclose$(ExOBJ):: dskclose.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskedito.o:: dskedito.cc  
+obj/dskedito$(ExOBJ):: dskedito.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskhelp.o:: dskhelp.cc  
+obj/dskhelp$(ExOBJ):: dskhelp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskman.o:: dskman.cc  
+obj/dskman$(ExOBJ):: dskman.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmessa.o:: dskmessa.cc  
+obj/dskmessa$(ExOBJ):: dskmessa.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmp3.o:: dskmp3.cc  
+obj/dskmp3$(ExOBJ):: dskmp3.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dskwin.o:: dskwin.cc  
+obj/dskwin$(ExOBJ):: dskwin.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dstfile.o:: dstfile.cc  
+obj/dstfile$(ExOBJ):: dstfile.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/dumpfile.o:: dumpfile.cc  
+obj/dumpfile$(ExOBJ):: dumpfile.cc  
 	$(RHIDE_COMPILE_CC)
 
-include easydiag.imk
+INCLUDE01=easydiag$(ExIMK)
 
-obj/edcolor.o:: edcolor.cc  
+obj/edcolor$(ExOBJ):: edcolor.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edconst.o:: edconst.cc  
+obj/edconst$(ExOBJ):: edconst.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edfonts.o:: edfonts.cc  
+obj/edfonts$(ExOBJ):: edfonts.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editdiag.o:: editdiag.cc  
+obj/editdiag$(ExOBJ):: editdiag.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editmain.o:: editmain.cc  
+obj/editmain$(ExOBJ):: editmain.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editmenu.o:: editmenu.cc  
+obj/editmenu$(ExOBJ):: editmenu.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editorfo.o:: editorfo.cc  
+obj/editorfo$(ExOBJ):: editorfo.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editpale.o:: editpale.cc  
+obj/editpale$(ExOBJ):: editpale.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/editwind.o:: editwind.cc  
+obj/editwind$(ExOBJ):: editwind.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edkeys.o:: edkeys.cc  
+obj/edkeys$(ExOBJ):: edkeys.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edmsg.o:: edmsg.cc  
+obj/edmsg$(ExOBJ):: edmsg.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edprefs.o:: edprefs.cc  
+obj/edprefs$(ExOBJ):: edprefs.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edprint.o:: edprint.cc  
+obj/edprint$(ExOBJ):: edprint.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edprj.o:: edprj.cc  
+obj/edprj$(ExOBJ):: edprj.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/edspecs.o:: edspecs.cc  
+obj/edspecs$(ExOBJ):: edspecs.cc  
 	$(RHIDE_COMPILE_CC)
 
-include extra.imk
+INCLUDE02=extra$(ExIMK)
 
-obj/fstrcmp.o:: fstrcmp.c  
+obj/fstrcmp$(ExOBJ):: fstrcmp.c  
 	$(RHIDE_COMPILE_C)
 
-obj/getctxhl.o:: getctxhl.cc  
+obj/getctxhl$(ExOBJ):: getctxhl.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/gzfiles.o:: gzfiles.cc  
+obj/gzfiles$(ExOBJ):: gzfiles.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/holidays.o:: holidays.cc  
+obj/holidays$(ExOBJ):: holidays.cc  
 	$(RHIDE_COMPILE_CC)
 
-include inffd.imk
+INCLUDE03=inffd$(ExIMK)
 
-obj/intgrep.o:: intgrep.cc  
+obj/intgrep$(ExOBJ):: intgrep.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/keytrans.o:: keytrans.cc  
+obj/keytrans$(ExOBJ):: keytrans.cc  
 	$(RHIDE_COMPILE_CC)
 
-include librhuti.imk
+INCLUDE04=librhuti$(ExIMK)
 
-obj/linelen.o:: linelen.cc  
+obj/linelen$(ExOBJ):: linelen.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loadcle.o:: loadcle.cc  
+obj/loadcle$(ExOBJ):: loadcle.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loaddefl.o:: loaddefl.cc  
+obj/loaddefl$(ExOBJ):: loaddefl.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loadfunc.o:: loadfunc.cc  
+obj/loadfunc$(ExOBJ):: loadfunc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loadnobkp.o:: loadnobkp.cc  
+obj/loadnobkp$(ExOBJ):: loadnobkp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loadshl.o:: loadshl.cc  
+obj/loadshl$(ExOBJ):: loadshl.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/loadusew.o:: loadusew.cc  
+obj/loadusew$(ExOBJ):: loadusew.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/macrocom.o:: macrocom.cc  
+obj/macrocom$(ExOBJ):: macrocom.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/menuload.o:: menuload.cc  
+obj/menuload$(ExOBJ):: menuload.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mli.o:: mli.cc  
+obj/mli$(ExOBJ):: mli.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mliasimp.o:: mliasimp.cc  
+obj/mliasimp$(ExOBJ):: mliasimp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mlicsdg.o:: mlicsdg.cc  
+obj/mlicsdg$(ExOBJ):: mlicsdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mliediti.o:: mliediti.cc  
+obj/mliediti$(ExOBJ):: mliediti.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mliedito.o:: mliedito.cc  
+obj/mliedito$(ExOBJ):: mliedito.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/mlisdg.o:: mlisdg.cc  
+obj/mlisdg$(ExOBJ):: mlisdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/msignal.o:: msignal.cc  
+obj/msignal$(ExOBJ):: msignal.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nceditor.o:: nceditor.cc  
+obj/nceditor$(ExOBJ):: nceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwasc.o:: ndskwasc.cc  
+obj/ndskwasc$(ExOBJ):: ndskwasc.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcal.o:: ndskwcal.cc  
+obj/ndskwcal$(ExOBJ):: ndskwcal.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcli.o:: ndskwcli.cc  
+obj/ndskwcli$(ExOBJ):: ndskwcli.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwclo.o:: ndskwclo.cc  
+obj/ndskwclo$(ExOBJ):: ndskwclo.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwedi.o:: ndskwedi.cc  
+obj/ndskwedi$(ExOBJ):: ndskwedi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwhel.o:: ndskwhel.cc  
+obj/ndskwhel$(ExOBJ):: ndskwhel.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwman.o:: ndskwman.cc  
+obj/ndskwman$(ExOBJ):: ndskwman.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmes.o:: ndskwmes.cc  
+obj/ndskwmes$(ExOBJ):: ndskwmes.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmp3.o:: ndskwmp3.cc  
+obj/ndskwmp3$(ExOBJ):: ndskwmp3.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwprj.o:: ndskwprj.cc  
+obj/ndskwprj$(ExOBJ):: ndskwprj.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/neditwin.o:: neditwin.cc  
+obj/neditwin$(ExOBJ):: neditwin.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nfileedi.o:: nfileedi.cc  
+obj/nfileedi$(ExOBJ):: nfileedi.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nsindica.o:: nsindica.cc  
+obj/nsindica$(ExOBJ):: nsindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ntedcol.o:: ntedcol.cc  
+obj/ntedcol$(ExOBJ):: ntedcol.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/parser.o:: parser.c  
+obj/parser$(ExOBJ):: parser.c  
 	$(RHIDE_COMPILE_C)
 
-obj/pathlist.o:: pathlist.cc  
+obj/pathlist$(ExOBJ):: pathlist.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pathtool.o:: pathtool.cc  
+obj/pathtool$(ExOBJ):: pathtool.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pclipper.o:: pclipper.cc  
+obj/pclipper$(ExOBJ):: pclipper.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pmacros.o:: pmacros.cc  
+obj/pmacros$(ExOBJ):: pmacros.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pperl.o:: pperl.cc  
+obj/pperl$(ExOBJ):: pperl.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pphp.o:: pphp.cc  
+obj/pphp$(ExOBJ):: pphp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/pvarious.o:: pvarious.cc  
+obj/pvarious$(ExOBJ):: pvarious.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/runprog.o:: runprog.cc  
+obj/runprog$(ExOBJ):: runprog.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sceditor.o:: sceditor.cc  
+obj/sceditor$(ExOBJ):: sceditor.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/scresave.o:: scresave.cc  
+obj/scresave$(ExOBJ):: scresave.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdginter.o:: sdginter.cc  
+obj/sdginter$(ExOBJ):: sdginter.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskasci.o:: sdskasci.cc  
+obj/sdskasci$(ExOBJ):: sdskasci.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskcale.o:: sdskcale.cc  
+obj/sdskcale$(ExOBJ):: sdskcale.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclip.o:: sdskclip.cc  
+obj/sdskclip$(ExOBJ):: sdskclip.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclos.o:: sdskclos.cc  
+obj/sdskclos$(ExOBJ):: sdskclos.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskedit.o:: sdskedit.cc  
+obj/sdskedit$(ExOBJ):: sdskedit.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskhelp.o:: sdskhelp.cc  
+obj/sdskhelp$(ExOBJ):: sdskhelp.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskman.o:: sdskman.cc  
+obj/sdskman$(ExOBJ):: sdskman.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmess.o:: sdskmess.cc  
+obj/sdskmess$(ExOBJ):: sdskmess.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmp3.o:: sdskmp3.cc  
+obj/sdskmp3$(ExOBJ):: sdskmp3.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskprj.o:: sdskprj.cc  
+obj/sdskprj$(ExOBJ):: sdskprj.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/search.o:: search.cc  
+obj/search$(ExOBJ):: search.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/sedcolle.o:: sedcolle.cc  
+obj/sedcolle$(ExOBJ):: sedcolle.cc  
 	$(RHIDE_COMPILE_CC)
 
-include settv.imk
+INCLUDE05=settv$(ExIMK)
 
-obj/slpinter.o:: slpinter.cc  
+obj/slpinter$(ExOBJ):: slpinter.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/splinman.o:: splinman.cc  
+obj/splinman$(ExOBJ):: splinman.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ssindica.o:: ssindica.cc  
+obj/ssindica$(ExOBJ):: ssindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/ssyntax.o:: ssyntax.cc  
+obj/ssyntax$(ExOBJ):: ssyntax.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tags.o:: tags.cc  
+obj/tags$(ExOBJ):: tags.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tedcolle.o:: tedcolle.cc  
+obj/tedcolle$(ExOBJ):: tedcolle.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tips.o:: tips.cc  
+obj/tips$(ExOBJ):: tips.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tpaltext.o:: tpaltext.cc  
+obj/tpaltext$(ExOBJ):: tpaltext.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tsindica.o:: tsindica.cc  
+obj/tsindica$(ExOBJ):: tsindica.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/txhgen.o:: txhgen.cc  
+obj/txhgen$(ExOBJ):: txhgen.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/winlistd.o:: winlistd.cc  
+obj/winlistd$(ExOBJ):: winlistd.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	obj/accehtml.o \
-	obj/advice.o \
-	obj/ampdiag.o \
-	obj/intermp3.o \
-	obj/mp3list.o \
-	obj/mp3play.o \
-	obj/ascii.o \
-	obj/boardmix.o \
-	obj/bufun.o \
-	obj/calcu.o \
-	obj/calendar.o \
-	obj/ceditor.o \
-	obj/codepage.o \
-	obj/completi.o \
-	obj/deedidia.o \
-	obj/doedidia.o \
-	obj/dskascii.o \
-	obj/dskcalen.o \
-	obj/dskclip.o \
-	obj/dskclose.o \
-	obj/dskedito.o \
-	obj/dskhelp.o \
-	obj/dskman.o \
-	obj/dskmessa.o \
-	obj/dskmp3.o \
-	obj/dskwin.o \
-	obj/dstfile.o \
-	obj/dumpfile.o \
-	obj/edcolor.o \
-	obj/edconst.o \
-	obj/edfonts.o \
-	obj/editdiag.o \
-	obj/editmain.o \
-	obj/editmenu.o \
-	obj/editorfo.o \
-	obj/editpale.o \
-	obj/editwind.o \
-	obj/edkeys.o \
-	obj/edmsg.o \
-	obj/edprefs.o \
-	obj/edprint.o \
-	obj/edprj.o \
-	obj/edspecs.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	obj/fstrcmp.o \
-	obj/getctxhl.o \
-	obj/gzfiles.o \
-	obj/holidays.o \
-	obj/inf.o \
-	obj/infbase.o \
-	obj/manview.o \
-	obj/nhiscoll.o \
-	obj/ninfview.o \
-	obj/ninfwind.o \
-	obj/nmanwind.o \
-	obj/sinf.o \
-	obj/sman.o \
-	obj/intgrep.o \
-	obj/keytrans.o \
-	obj/linelen.o \
-	obj/loadcle.o \
-	obj/loaddefl.o \
-	obj/loadfunc.o \
-	obj/loadnobkp.o \
-	obj/loadshl.o \
-	obj/loadusew.o \
-	obj/macrocom.o \
-	obj/menuload.o \
-	obj/mli.o \
-	obj/mliasimp.o \
-	obj/mlicsdg.o \
-	obj/mliediti.o \
-	obj/mliedito.o \
-	obj/mlisdg.o \
-	obj/msignal.o \
-	obj/nceditor.o \
-	obj/ndskwasc.o \
-	obj/ndskwcal.o \
-	obj/ndskwcli.o \
-	obj/ndskwclo.o \
-	obj/ndskwedi.o \
-	obj/ndskwhel.o \
-	obj/ndskwman.o \
-	obj/ndskwmes.o \
-	obj/ndskwmp3.o \
-	obj/ndskwprj.o \
-	obj/neditwin.o \
-	obj/nfileedi.o \
-	obj/nsindica.o \
-	obj/ntedcol.o \
-	obj/parser.o \
-	obj/pathlist.o \
-	obj/pathtool.o \
-	obj/pclipper.o \
-	obj/pmacros.o \
-	obj/pperl.o \
-	obj/pphp.o \
-	obj/pvarious.o \
-	obj/runprog.o \
-	obj/sceditor.o \
-	obj/scresave.o \
-	obj/sdginter.o \
-	obj/sdskasci.o \
-	obj/sdskcale.o \
-	obj/sdskclip.o \
-	obj/sdskclos.o \
-	obj/sdskedit.o \
-	obj/sdskhelp.o \
-	obj/sdskman.o \
-	obj/sdskmess.o \
-	obj/sdskmp3.o \
-	obj/sdskprj.o \
-	obj/search.o \
-	obj/sedcolle.o \
-	obj/slpinter.o \
-	obj/splinman.o \
-	obj/ssindica.o \
-	obj/ssyntax.o \
-	obj/tags.o \
-	obj/tedcolle.o \
-	obj/tips.o \
-	obj/tpaltext.o \
-	obj/tsindica.o \
-	obj/txhgen.o \
-	obj/winlistd.o 
+	obj/accehtml$(ExOBJ) \
+	obj/advice$(ExOBJ) \
+	obj/ampdiag$(ExOBJ) \
+	obj/intermp3$(ExOBJ) \
+	obj/mp3list$(ExOBJ) \
+	obj/mp3play$(ExOBJ) \
+	obj/ascii$(ExOBJ) \
+	obj/boardmix$(ExOBJ) \
+	obj/bufun$(ExOBJ) \
+	obj/calcu$(ExOBJ) \
+	obj/calendar$(ExOBJ) \
+	obj/ceditor$(ExOBJ) \
+	obj/codepage$(ExOBJ) \
+	obj/completi$(ExOBJ) \
+	obj/deedidia$(ExOBJ) \
+	obj/doedidia$(ExOBJ) \
+	obj/dskascii$(ExOBJ) \
+	obj/dskcalen$(ExOBJ) \
+	obj/dskclip$(ExOBJ) \
+	obj/dskclose$(ExOBJ) \
+	obj/dskedito$(ExOBJ) \
+	obj/dskhelp$(ExOBJ) \
+	obj/dskman$(ExOBJ) \
+	obj/dskmessa$(ExOBJ) \
+	obj/dskmp3$(ExOBJ) \
+	obj/dskwin$(ExOBJ) \
+	obj/dstfile$(ExOBJ) \
+	obj/dumpfile$(ExOBJ) \
+	obj/edcolor$(ExOBJ) \
+	obj/edconst$(ExOBJ) \
+	obj/edfonts$(ExOBJ) \
+	obj/editdiag$(ExOBJ) \
+	obj/editmain$(ExOBJ) \
+	obj/editmenu$(ExOBJ) \
+	obj/editorfo$(ExOBJ) \
+	obj/editpale$(ExOBJ) \
+	obj/editwind$(ExOBJ) \
+	obj/edkeys$(ExOBJ) \
+	obj/edmsg$(ExOBJ) \
+	obj/edprefs$(ExOBJ) \
+	obj/edprint$(ExOBJ) \
+	obj/edprj$(ExOBJ) \
+	obj/edspecs$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	obj/fstrcmp$(ExOBJ) \
+	obj/getctxhl$(ExOBJ) \
+	obj/gzfiles$(ExOBJ) \
+	obj/holidays$(ExOBJ) \
+	obj/inf$(ExOBJ) \
+	obj/infbase$(ExOBJ) \
+	obj/manview$(ExOBJ) \
+	obj/nhiscoll$(ExOBJ) \
+	obj/ninfview$(ExOBJ) \
+	obj/ninfwind$(ExOBJ) \
+	obj/nmanwind$(ExOBJ) \
+	obj/sinf$(ExOBJ) \
+	obj/sman$(ExOBJ) \
+	obj/intgrep$(ExOBJ) \
+	obj/keytrans$(ExOBJ) \
+	obj/linelen$(ExOBJ) \
+	obj/loadcle$(ExOBJ) \
+	obj/loaddefl$(ExOBJ) \
+	obj/loadfunc$(ExOBJ) \
+	obj/loadnobkp$(ExOBJ) \
+	obj/loadshl$(ExOBJ) \
+	obj/loadusew$(ExOBJ) \
+	obj/macrocom$(ExOBJ) \
+	obj/menuload$(ExOBJ) \
+	obj/mli$(ExOBJ) \
+	obj/mliasimp$(ExOBJ) \
+	obj/mlicsdg$(ExOBJ) \
+	obj/mliediti$(ExOBJ) \
+	obj/mliedito$(ExOBJ) \
+	obj/mlisdg$(ExOBJ) \
+	obj/msignal$(ExOBJ) \
+	obj/nceditor$(ExOBJ) \
+	obj/ndskwasc$(ExOBJ) \
+	obj/ndskwcal$(ExOBJ) \
+	obj/ndskwcli$(ExOBJ) \
+	obj/ndskwclo$(ExOBJ) \
+	obj/ndskwedi$(ExOBJ) \
+	obj/ndskwhel$(ExOBJ) \
+	obj/ndskwman$(ExOBJ) \
+	obj/ndskwmes$(ExOBJ) \
+	obj/ndskwmp3$(ExOBJ) \
+	obj/ndskwprj$(ExOBJ) \
+	obj/neditwin$(ExOBJ) \
+	obj/nfileedi$(ExOBJ) \
+	obj/nsindica$(ExOBJ) \
+	obj/ntedcol$(ExOBJ) \
+	obj/parser$(ExOBJ) \
+	obj/pathlist$(ExOBJ) \
+	obj/pathtool$(ExOBJ) \
+	obj/pclipper$(ExOBJ) \
+	obj/pmacros$(ExOBJ) \
+	obj/pperl$(ExOBJ) \
+	obj/pphp$(ExOBJ) \
+	obj/pvarious$(ExOBJ) \
+	obj/runprog$(ExOBJ) \
+	obj/sceditor$(ExOBJ) \
+	obj/scresave$(ExOBJ) \
+	obj/sdginter$(ExOBJ) \
+	obj/sdskasci$(ExOBJ) \
+	obj/sdskcale$(ExOBJ) \
+	obj/sdskclip$(ExOBJ) \
+	obj/sdskclos$(ExOBJ) \
+	obj/sdskedit$(ExOBJ) \
+	obj/sdskhelp$(ExOBJ) \
+	obj/sdskman$(ExOBJ) \
+	obj/sdskmess$(ExOBJ) \
+	obj/sdskmp3$(ExOBJ) \
+	obj/sdskprj$(ExOBJ) \
+	obj/search$(ExOBJ) \
+	obj/sedcolle$(ExOBJ) \
+	obj/slpinter$(ExOBJ) \
+	obj/splinman$(ExOBJ) \
+	obj/ssindica$(ExOBJ) \
+	obj/ssyntax$(ExOBJ) \
+	obj/tags$(ExOBJ) \
+	obj/tedcolle$(ExOBJ) \
+	obj/tips$(ExOBJ) \
+	obj/tpaltext$(ExOBJ) \
+	obj/tsindica$(ExOBJ) \
+	obj/txhgen$(ExOBJ) \
+	obj/winlistd$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a \
-	librhuti.a \
-	libsettv.a 
+	libeasyd$(ExLIB) \
+	librhuti$(ExLIB) \
+	libsettv$(ExLIB) 
 

@@ -1,91 +1,90 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-sdg.exe:: \
-	objsdg/bufun2.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	librhuti.a \
-	objsdg/mli.o \
-	objsdg/mliasimp.o \
-	objsdg/mlicsdg.o \
-	objsdg/mlisdg.o \
-	objsdg/ntnocast.o \
-	objsdg/setstack.o \
-	objsdg/stnocast.o \
-	objsdg/tnocastc.o \
-	objsdg/txhgen.o \
-	objsdg/txhmain.o \
-	rhide.env \
-	common.imk 
+sdg$(ExEXE):: \
+	objsdg/bufun2$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	librhuti$(ExLIB) \
+	objsdg/mli$(ExOBJ) \
+	objsdg/mliasimp$(ExOBJ) \
+	objsdg/mlicsdg$(ExOBJ) \
+	objsdg/mlisdg$(ExOBJ) \
+	objsdg/ntnocast$(ExOBJ) \
+	objsdg/setstack$(ExOBJ) \
+	objsdg/stnocast$(ExOBJ) \
+	objsdg/tnocastc$(ExOBJ) \
+	objsdg/txhgen$(ExOBJ) \
+	objsdg/txhmain$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-objsdg/bufun2.o:: bufun2.cc  
+objsdg/bufun2$(ExOBJ):: bufun2.cc  
 	$(RHIDE_COMPILE_CC)
 
-include extra.imk
+INCLUDE00=extra$(ExIMK)
 
-objsdg/mli.o:: mli.cc  
+objsdg/mli$(ExOBJ):: mli.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mliasimp.o:: mliasimp.cc  
+objsdg/mliasimp$(ExOBJ):: mliasimp.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlicsdg.o:: mlicsdg.cc  
+objsdg/mlicsdg$(ExOBJ):: mlicsdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/mlisdg.o:: mlisdg.cc  
+objsdg/mlisdg$(ExOBJ):: mlisdg.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/ntnocast.o:: ntnocast.cc  
+objsdg/ntnocast$(ExOBJ):: ntnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/setstack.o:: setstack.cc  
+objsdg/setstack$(ExOBJ):: setstack.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/stnocast.o:: stnocast.cc  
+objsdg/stnocast$(ExOBJ):: stnocast.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/tnocastc.o:: tnocastc.cc  
+objsdg/tnocastc$(ExOBJ):: tnocastc.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhgen.o:: txhgen.cc  
+objsdg/txhgen$(ExOBJ):: txhgen.cc  
 	$(RHIDE_COMPILE_CC)
 
-objsdg/txhmain.o:: txhmain.cc  
+objsdg/txhmain$(ExOBJ):: txhmain.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	objsdg/bufun2.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	objsdg/mli.o \
-	objsdg/mliasimp.o \
-	objsdg/mlicsdg.o \
-	objsdg/mlisdg.o \
-	objsdg/ntnocast.o \
-	objsdg/setstack.o \
-	objsdg/stnocast.o \
-	objsdg/tnocastc.o \
-	objsdg/txhgen.o \
-	objsdg/txhmain.o 
+	objsdg/bufun2$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	objsdg/mli$(ExOBJ) \
+	objsdg/mliasimp$(ExOBJ) \
+	objsdg/mlicsdg$(ExOBJ) \
+	objsdg/mlisdg$(ExOBJ) \
+	objsdg/ntnocast$(ExOBJ) \
+	objsdg/setstack$(ExOBJ) \
+	objsdg/stnocast$(ExOBJ) \
+	objsdg/tnocastc$(ExOBJ) \
+	objsdg/txhgen$(ExOBJ) \
+	objsdg/txhmain$(ExOBJ) 
 
 LIBRARIES=\
-	librhuti.a 
+	librhuti$(ExLIB) 
 

@@ -1,58 +1,57 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-../install/install.exe:: \
-	obj/datafile.o \
-	libeasyd.a \
-	obj/install.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogres.o \
-	rhide.env \
-	common.imk 
+../install/install$(ExEXE):: \
+	obj/datafile$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	obj/install$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogres$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-obj/datafile.o:: datafile.c  
+obj/datafile$(ExOBJ):: datafile.c  
 	$(RHIDE_COMPILE_C)
 
-include easydiag.imk
+INCLUDE00=easydiag$(ExIMK)
 
-obj/install.o:: install.cc  
+obj/install$(ExOBJ):: install.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex.o:: nostatex.cc  
+obj/nostatex$(ExOBJ):: nostatex.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar.o:: nprogbar.cc  
+obj/nprogbar$(ExOBJ):: nprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres.o:: nprogres.cc  
+obj/nprogres$(ExOBJ):: nprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar.o:: tprogbar.cc  
+obj/tprogbar$(ExOBJ):: tprogbar.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia.o:: tprogdia.cc  
+obj/tprogdia$(ExOBJ):: tprogdia.cc  
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres.o:: tprogres.cc  
+obj/tprogres$(ExOBJ):: tprogres.cc  
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	obj/datafile.o \
-	obj/install.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogres.o 
+	obj/datafile$(ExOBJ) \
+	obj/install$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogres$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a 
+	libeasyd$(ExLIB) 
 

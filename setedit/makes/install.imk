@@ -1,30 +1,28 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-../install/install.exe:: \
-	obj/datafile.o \
-	libeasyd.a \
-	obj/install.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogres.o \
-	rhide.env \
-	common.imk 
+../install/install$(ExEXE):: \
+	obj/datafile$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	obj/install$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogres$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-obj/datafile.o:: datafile.c \
-	rhide.env \
-	common.imk 
+obj/datafile$(ExOBJ):: datafile.c \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-include easydiag.imk
+INCLUDE00=easydiag$(ExIMK)
 
-obj/install.o:: install.cc \
+obj/install$(ExOBJ):: install.cc \
 	compatlayer.h \
 	tv.h \
 	tv/app.h \
@@ -94,50 +92,43 @@ obj/install.o:: install.cc \
 	nostatex.h \
 	settvuti.h \
 	tprogdia.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nostatex.o:: nostatex.cc \
-	rhide.env \
-	common.imk 
+obj/nostatex$(ExOBJ):: nostatex.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogbar.o:: nprogbar.cc \
-	rhide.env \
-	common.imk 
+obj/nprogbar$(ExOBJ):: nprogbar.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nprogres.o:: nprogres.cc \
-	rhide.env \
-	common.imk 
+obj/nprogres$(ExOBJ):: nprogres.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogbar.o:: tprogbar.cc \
-	rhide.env \
-	common.imk 
+obj/tprogbar$(ExOBJ):: tprogbar.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogdia.o:: tprogdia.cc \
-	rhide.env \
-	common.imk 
+obj/tprogdia$(ExOBJ):: tprogdia.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tprogres.o:: tprogres.cc \
-	rhide.env \
-	common.imk 
+obj/tprogres$(ExOBJ):: tprogres.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	obj/datafile.o \
-	obj/install.o \
-	obj/nostatex.o \
-	obj/nprogbar.o \
-	obj/nprogres.o \
-	obj/tprogbar.o \
-	obj/tprogdia.o \
-	obj/tprogres.o 
+	obj/datafile$(ExOBJ) \
+	obj/install$(ExOBJ) \
+	obj/nostatex$(ExOBJ) \
+	obj/nprogbar$(ExOBJ) \
+	obj/nprogres$(ExOBJ) \
+	obj/tprogbar$(ExOBJ) \
+	obj/tprogdia$(ExOBJ) \
+	obj/tprogres$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a 
+	libeasyd$(ExLIB) 
 

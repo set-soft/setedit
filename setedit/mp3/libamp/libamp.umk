@@ -1,70 +1,69 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-../../makes/djgpp/libamp.a:: \
-	obj/audioalg.o \
-	obj/audiolib.o \
-	obj/dump.o \
-	obj/formats.o \
-	obj/getbits.o \
-	obj/getdata.o \
-	obj/guicontr.o \
-	obj/huffman.o \
-	obj/layer2.o \
-	obj/layer3.o \
-	obj/misc2.o \
-	obj/position.o \
-	obj/rtbuf.o \
-	obj/transfor.o \
-	obj/util.o \
-	rhide.env \
-	common.imk 
+../../makes/djgpp/libamp$(ExLIB):: \
+	obj/audioalg$(ExOBJ) \
+	obj/audiolib$(ExOBJ) \
+	obj/dump$(ExOBJ) \
+	obj/formats$(ExOBJ) \
+	obj/getbits$(ExOBJ) \
+	obj/getdata$(ExOBJ) \
+	obj/guicontr$(ExOBJ) \
+	obj/huffman$(ExOBJ) \
+	obj/layer2$(ExOBJ) \
+	obj/layer3$(ExOBJ) \
+	obj/misc2$(ExOBJ) \
+	obj/position$(ExOBJ) \
+	obj/rtbuf$(ExOBJ) \
+	obj/transfor$(ExOBJ) \
+	obj/util$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/audioalg.o:: audioalg.c  
+obj/audioalg$(ExOBJ):: audioalg.c  
 	$(RHIDE_COMPILE_C)
 
-obj/audiolib.o:: audiolib.c  
+obj/audiolib$(ExOBJ):: audiolib.c  
 	$(RHIDE_COMPILE_C)
 
-obj/dump.o:: dump.c  
+obj/dump$(ExOBJ):: dump.c  
 	$(RHIDE_COMPILE_C)
 
-obj/formats.o:: formats.c  
+obj/formats$(ExOBJ):: formats.c  
 	$(RHIDE_COMPILE_C)
 
-obj/getbits.o:: getbits.c  
+obj/getbits$(ExOBJ):: getbits.c  
 	$(RHIDE_COMPILE_C)
 
-obj/getdata.o:: getdata.c  
+obj/getdata$(ExOBJ):: getdata.c  
 	$(RHIDE_COMPILE_C)
 
-obj/guicontr.o:: guicontr.c  
+obj/guicontr$(ExOBJ):: guicontr.c  
 	$(RHIDE_COMPILE_C)
 
-obj/huffman.o:: huffman.c  
+obj/huffman$(ExOBJ):: huffman.c  
 	$(RHIDE_COMPILE_C)
 
-obj/layer2.o:: layer2.c  
+obj/layer2$(ExOBJ):: layer2.c  
 	$(RHIDE_COMPILE_C)
 
-obj/layer3.o:: layer3.c  
+obj/layer3$(ExOBJ):: layer3.c  
 	$(RHIDE_COMPILE_C)
 
-obj/misc2.o:: misc2.c  
+obj/misc2$(ExOBJ):: misc2.c  
 	$(RHIDE_COMPILE_C)
 
-obj/position.o:: position.c  
+obj/position$(ExOBJ):: position.c  
 	$(RHIDE_COMPILE_C)
 
-obj/rtbuf.o:: rtbuf.c  
+obj/rtbuf$(ExOBJ):: rtbuf.c  
 	$(RHIDE_COMPILE_C)
 
-obj/transfor.o:: transfor.c  
+obj/transfor$(ExOBJ):: transfor.c  
 	$(RHIDE_COMPILE_C)
 
-obj/util.o:: util.c  
+obj/util$(ExOBJ):: util.c  
 	$(RHIDE_COMPILE_C)
 

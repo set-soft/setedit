@@ -1,29 +1,28 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-../../makes/djgpp/libamp.a:: \
-	obj/audioalg.o \
-	obj/audiolib.o \
-	obj/dump.o \
-	obj/formats.o \
-	obj/getbits.o \
-	obj/getdata.o \
-	obj/guicontr.o \
-	obj/huffman.o \
-	obj/layer2.o \
-	obj/layer3.o \
-	obj/misc2.o \
-	obj/position.o \
-	obj/rtbuf.o \
-	obj/transfor.o \
-	obj/util.o \
-	rhide.env \
-	common.imk 
+../../makes/djgpp/libamp$(ExLIB):: \
+	obj/audioalg$(ExOBJ) \
+	obj/audiolib$(ExOBJ) \
+	obj/dump$(ExOBJ) \
+	obj/formats$(ExOBJ) \
+	obj/getbits$(ExOBJ) \
+	obj/getdata$(ExOBJ) \
+	obj/guicontr$(ExOBJ) \
+	obj/huffman$(ExOBJ) \
+	obj/layer2$(ExOBJ) \
+	obj/layer3$(ExOBJ) \
+	obj/misc2$(ExOBJ) \
+	obj/position$(ExOBJ) \
+	obj/rtbuf$(ExOBJ) \
+	obj/transfor$(ExOBJ) \
+	obj/util$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/audioalg.o:: audioalg.c \
+obj/audioalg$(ExOBJ):: audioalg.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/libamp.h \
 	amp.h \
@@ -31,11 +30,10 @@ obj/audioalg.o:: audioalg.c \
 	config.h \
 	proto.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/audiolib.o:: audiolib.c \
+obj/audiolib$(ExOBJ):: audiolib.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/formats.h \
 	$(MP3_PREV_DIR)/getbits.h \
@@ -51,26 +49,23 @@ obj/audiolib.o:: audiolib.c \
 	proto.h \
 	rtbuf.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/dump.o:: dump.c \
+obj/dump$(ExOBJ):: dump.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	dump.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/formats.o:: formats.c \
+obj/formats$(ExOBJ):: formats.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/formats.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/getbits.o:: getbits.c \
+obj/getbits$(ExOBJ):: getbits.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/formats.h \
 	$(MP3_PREV_DIR)/getbits.h \
@@ -78,11 +73,10 @@ obj/getbits.o:: getbits.c \
 	config.h \
 	proto.h \
 	rtbuf.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/getdata.o:: getdata.c \
+obj/getdata$(ExOBJ):: getdata.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
@@ -90,11 +84,10 @@ obj/getdata.o:: getdata.c \
 	getdata.h \
 	huffman.h \
 	proto.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/guicontr.o:: guicontr.c \
+obj/guicontr$(ExOBJ):: guicontr.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/formats.h \
 	$(MP3_PREV_DIR)/getbits.h \
@@ -108,19 +101,17 @@ obj/guicontr.o:: guicontr.c \
 	proto.h \
 	rtbuf.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/huffman.o:: huffman.c \
+obj/huffman$(ExOBJ):: huffman.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	huffman.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/layer2.o:: layer2.c \
+obj/layer2$(ExOBJ):: layer2.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
@@ -128,11 +119,10 @@ obj/layer2.o:: layer2.c \
 	layer2.h \
 	proto.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/layer3.o:: layer3.c \
+obj/layer3$(ExOBJ):: layer3.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
@@ -145,11 +135,10 @@ obj/layer3.o:: layer3.c \
 	proto.h \
 	rtbuf.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/misc2.o:: misc2.c \
+obj/misc2$(ExOBJ):: misc2.c \
 	$(MP3_PREV_DIR)/audio.h \
 	amp.h \
 	config.h \
@@ -157,22 +146,20 @@ obj/misc2.o:: misc2.c \
 	huffman.h \
 	misc2.h \
 	proto.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/position.o:: position.c \
+obj/position$(ExOBJ):: position.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
 	config.h \
 	position.h \
 	proto.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/rtbuf.o:: rtbuf.c \
+obj/rtbuf$(ExOBJ):: rtbuf.c \
 	$(MP3_PREV_DIR)/audio.h \
 	$(MP3_PREV_DIR)/getbits.h \
 	amp.h \
@@ -181,25 +168,22 @@ obj/rtbuf.o:: rtbuf.c \
 	proto.h \
 	rtbuf.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/transfor.o:: transfor.c \
+obj/transfor$(ExOBJ):: transfor.c \
 	$(MP3_PREV_DIR)/audio.h \
 	getdata.h \
 	misc2.h \
 	transform.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/util.o:: util.c \
+obj/util$(ExOBJ):: util.c \
 	$(MP3_PREV_DIR)/audio.h \
 	amp.h \
 	config.h \
 	proto.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 

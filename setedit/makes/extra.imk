@@ -1,66 +1,57 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-obj/djmdr.o:: djmdr.s \
-	rhide.env \
-	common.imk 
+obj/djmdr$(ExOBJ):: djmdr.s \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/dyncat.o:: dyncat.cc \
+obj/dyncat$(ExOBJ):: dyncat.cc \
 	$(EXTRA_INC_DIR)/dyncat.cc \
 	dyncat.h \
 	configed.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/memmove.o:: memmove.s \
-	rhide.env \
-	common.imk 
+obj/memmove$(ExOBJ):: memmove.s \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ASM_FORCE)
 
-obj/mixer.o:: mixer.c \
+obj/mixer$(ExOBJ):: mixer.c \
 	$(EXTRA_INC_DIR)/mixer.c \
 	mixer.h \
 	configed.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/mixersb.o:: mixersb.c \
+obj/mixersb$(ExOBJ):: mixersb.c \
 	$(EXTRA_INC_DIR)/mixersb.c \
 	configed.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/mixoss.o:: mixoss.c \
+obj/mixoss$(ExOBJ):: mixoss.c \
 	mixer.h \
 	$(EXTRA_INC_DIR)/mixoss.c \
 	configed.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/stackdbg.o:: stackdbg.c \
+obj/stackdbg$(ExOBJ):: stackdbg.c \
 	$(EXTRA_INC_DIR)/stackdbg.c \
 	stackdbg.h \
 	configed.h \
 	compatlayer.h \
 	tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/strncpyz.o:: strncpyz.cc \
-	rhide.env \
-	common.imk 
+obj/strncpyz$(ExOBJ):: strncpyz.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/strndup.o:: strndup.cc \
-	rhide.env \
-	common.imk 
+obj/strndup$(ExOBJ):: strndup.cc \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

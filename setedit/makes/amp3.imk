@@ -1,9 +1,9 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-obj/ampdiag.o:: ampdiag.cc \
+obj/ampdiag$(ExOBJ):: ampdiag.cc \
 	easydia1.h \
 	easydiag.h \
 	snostate.h \
@@ -64,11 +64,10 @@ obj/ampdiag.o:: ampdiag.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/intermp3.o:: intermp3.cc \
+obj/intermp3$(ExOBJ):: intermp3.cc \
 	ceditint.h \
 	configed.h \
 	$(MP3_INC_DIR)/intermp3.cc \
@@ -106,11 +105,10 @@ obj/intermp3.o:: intermp3.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mp3list.o:: mp3list.cc \
+obj/mp3list$(ExOBJ):: mp3list.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -182,11 +180,10 @@ obj/mp3list.o:: mp3list.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mp3play.o:: mp3play.cc \
+obj/mp3play$(ExOBJ):: mp3play.cc \
 	ceditint.h \
 	configed.h \
 	$(MP3_INC_DIR)/mp3play.cc \
@@ -206,7 +203,6 @@ obj/mp3play.o:: mp3play.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

@@ -1,94 +1,82 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-librhuti.a:: \
-	obj/abstorel.o \
-	obj/back2sl.o \
-	obj/basename.o \
-	obj/fexpand.o \
-	obj/io.o \
-	obj/specs.o \
-	obj/splitfn.o \
-	obj/stricat.o \
-	obj/stridown.o \
-	obj/stridup.o \
-	obj/strifree.o \
-	rhide.env \
-	common.imk 
+librhuti$(ExLIB):: \
+	obj/abstorel$(ExOBJ) \
+	obj/back2sl$(ExOBJ) \
+	obj/basename$(ExOBJ) \
+	obj/fexpand$(ExOBJ) \
+	obj/io$(ExOBJ) \
+	obj/specs$(ExOBJ) \
+	obj/splitfn$(ExOBJ) \
+	obj/stricat$(ExOBJ) \
+	obj/stridown$(ExOBJ) \
+	obj/stridup$(ExOBJ) \
+	obj/strifree$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_ARCHIVE)
 
-obj/abstorel.o:: abstorel.cc \
+obj/abstorel$(ExOBJ):: abstorel.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/back2sl.o:: back2sl.cc \
+obj/back2sl$(ExOBJ):: back2sl.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/basename.o:: basename.cc \
+obj/basename$(ExOBJ):: basename.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/fexpand.o:: fexpand.cc \
+obj/fexpand$(ExOBJ):: fexpand.cc \
 	rhutils.h \
 	compatlayer.h \
 	tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/io.o:: io.cc \
+obj/io$(ExOBJ):: io.cc \
 	rhutils.h \
 	cl/unistd.h \
 	compatlayer.h \
 	tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/specs.o:: specs.cc \
+obj/specs$(ExOBJ):: specs.cc \
 	rhutils.h \
 	compatlayer.h \
 	tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/splitfn.o:: splitfn.cc \
+obj/splitfn$(ExOBJ):: splitfn.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stricat.o:: stricat.cc \
+obj/stricat$(ExOBJ):: stricat.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stridown.o:: stridown.cc \
+obj/stridown$(ExOBJ):: stridown.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/stridup.o:: stridup.cc \
+obj/stridup$(ExOBJ):: stridup.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/strifree.o:: strifree.cc \
+obj/strifree$(ExOBJ):: strifree.cc \
 	rhutils.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

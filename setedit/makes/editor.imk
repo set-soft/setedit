@@ -1,150 +1,149 @@
 #!/usr/bin/make
 # Automatically generated from RHIDE projects, don't edit
-# 2003-05-23 15:40
+# 2003-05-26 11:10
 #
 
-editor.exe:: \
-	obj/accehtml.o \
-	obj/advice.o \
-	obj/ampdiag.o \
-	obj/intermp3.o \
-	obj/mp3list.o \
-	obj/mp3play.o \
-	obj/ascii.o \
-	obj/boardmix.o \
-	obj/bufun.o \
-	obj/calcu.o \
-	obj/calendar.o \
-	obj/ceditor.o \
-	obj/codepage.o \
-	obj/completi.o \
-	obj/deedidia.o \
-	obj/doedidia.o \
-	obj/dskascii.o \
-	obj/dskcalen.o \
-	obj/dskclip.o \
-	obj/dskclose.o \
-	obj/dskedito.o \
-	obj/dskhelp.o \
-	obj/dskman.o \
-	obj/dskmessa.o \
-	obj/dskmp3.o \
-	obj/dskwin.o \
-	obj/dstfile.o \
-	obj/dumpfile.o \
-	libeasyd.a \
-	obj/edcolor.o \
-	obj/edconst.o \
-	obj/edfonts.o \
-	obj/editdiag.o \
-	obj/editmain.o \
-	obj/editmenu.o \
-	obj/editorfo.o \
-	obj/editpale.o \
-	obj/editwind.o \
-	obj/edkeys.o \
-	obj/edmsg.o \
-	obj/edprefs.o \
-	obj/edprint.o \
-	obj/edprj.o \
-	obj/edspecs.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	obj/fstrcmp.o \
-	obj/getctxhl.o \
-	obj/gzfiles.o \
-	obj/holidays.o \
-	obj/inf.o \
-	obj/infbase.o \
-	obj/manview.o \
-	obj/nhiscoll.o \
-	obj/ninfview.o \
-	obj/ninfwind.o \
-	obj/nmanwind.o \
-	obj/sinf.o \
-	obj/sman.o \
-	obj/intgrep.o \
-	obj/keytrans.o \
-	librhuti.a \
-	obj/linelen.o \
-	obj/loadcle.o \
-	obj/loaddefl.o \
-	obj/loadfunc.o \
-	obj/loadnobkp.o \
-	obj/loadshl.o \
-	obj/loadusew.o \
-	obj/macrocom.o \
-	obj/menuload.o \
-	obj/mli.o \
-	obj/mliasimp.o \
-	obj/mlicsdg.o \
-	obj/mliediti.o \
-	obj/mliedito.o \
-	obj/mlisdg.o \
-	obj/msignal.o \
-	obj/nceditor.o \
-	obj/ndskwasc.o \
-	obj/ndskwcal.o \
-	obj/ndskwcli.o \
-	obj/ndskwclo.o \
-	obj/ndskwedi.o \
-	obj/ndskwhel.o \
-	obj/ndskwman.o \
-	obj/ndskwmes.o \
-	obj/ndskwmp3.o \
-	obj/ndskwprj.o \
-	obj/neditwin.o \
-	obj/nfileedi.o \
-	obj/nsindica.o \
-	obj/ntedcol.o \
-	obj/parser.o \
-	obj/pathlist.o \
-	obj/pathtool.o \
-	obj/pclipper.o \
-	obj/pmacros.o \
-	obj/pperl.o \
-	obj/pphp.o \
-	obj/pvarious.o \
-	obj/runprog.o \
-	obj/sceditor.o \
-	obj/scresave.o \
-	obj/sdginter.o \
-	obj/sdskasci.o \
-	obj/sdskcale.o \
-	obj/sdskclip.o \
-	obj/sdskclos.o \
-	obj/sdskedit.o \
-	obj/sdskhelp.o \
-	obj/sdskman.o \
-	obj/sdskmess.o \
-	obj/sdskmp3.o \
-	obj/sdskprj.o \
-	obj/search.o \
-	obj/sedcolle.o \
-	libsettv.a \
-	obj/slpinter.o \
-	obj/splinman.o \
-	obj/ssindica.o \
-	obj/ssyntax.o \
-	obj/tags.o \
-	obj/tedcolle.o \
-	obj/tips.o \
-	obj/tpaltext.o \
-	obj/tsindica.o \
-	obj/txhgen.o \
-	obj/winlistd.o \
-	rhide.env \
-	common.imk 
+editor$(ExEXE):: \
+	obj/accehtml$(ExOBJ) \
+	obj/advice$(ExOBJ) \
+	obj/ampdiag$(ExOBJ) \
+	obj/intermp3$(ExOBJ) \
+	obj/mp3list$(ExOBJ) \
+	obj/mp3play$(ExOBJ) \
+	obj/ascii$(ExOBJ) \
+	obj/boardmix$(ExOBJ) \
+	obj/bufun$(ExOBJ) \
+	obj/calcu$(ExOBJ) \
+	obj/calendar$(ExOBJ) \
+	obj/ceditor$(ExOBJ) \
+	obj/codepage$(ExOBJ) \
+	obj/completi$(ExOBJ) \
+	obj/deedidia$(ExOBJ) \
+	obj/doedidia$(ExOBJ) \
+	obj/dskascii$(ExOBJ) \
+	obj/dskcalen$(ExOBJ) \
+	obj/dskclip$(ExOBJ) \
+	obj/dskclose$(ExOBJ) \
+	obj/dskedito$(ExOBJ) \
+	obj/dskhelp$(ExOBJ) \
+	obj/dskman$(ExOBJ) \
+	obj/dskmessa$(ExOBJ) \
+	obj/dskmp3$(ExOBJ) \
+	obj/dskwin$(ExOBJ) \
+	obj/dstfile$(ExOBJ) \
+	obj/dumpfile$(ExOBJ) \
+	libeasyd$(ExLIB) \
+	obj/edcolor$(ExOBJ) \
+	obj/edconst$(ExOBJ) \
+	obj/edfonts$(ExOBJ) \
+	obj/editdiag$(ExOBJ) \
+	obj/editmain$(ExOBJ) \
+	obj/editmenu$(ExOBJ) \
+	obj/editorfo$(ExOBJ) \
+	obj/editpale$(ExOBJ) \
+	obj/editwind$(ExOBJ) \
+	obj/edkeys$(ExOBJ) \
+	obj/edmsg$(ExOBJ) \
+	obj/edprefs$(ExOBJ) \
+	obj/edprint$(ExOBJ) \
+	obj/edprj$(ExOBJ) \
+	obj/edspecs$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	obj/fstrcmp$(ExOBJ) \
+	obj/getctxhl$(ExOBJ) \
+	obj/gzfiles$(ExOBJ) \
+	obj/holidays$(ExOBJ) \
+	obj/inf$(ExOBJ) \
+	obj/infbase$(ExOBJ) \
+	obj/manview$(ExOBJ) \
+	obj/nhiscoll$(ExOBJ) \
+	obj/ninfview$(ExOBJ) \
+	obj/ninfwind$(ExOBJ) \
+	obj/nmanwind$(ExOBJ) \
+	obj/sinf$(ExOBJ) \
+	obj/sman$(ExOBJ) \
+	obj/intgrep$(ExOBJ) \
+	obj/keytrans$(ExOBJ) \
+	librhuti$(ExLIB) \
+	obj/linelen$(ExOBJ) \
+	obj/loadcle$(ExOBJ) \
+	obj/loaddefl$(ExOBJ) \
+	obj/loadfunc$(ExOBJ) \
+	obj/loadnobkp$(ExOBJ) \
+	obj/loadshl$(ExOBJ) \
+	obj/loadusew$(ExOBJ) \
+	obj/macrocom$(ExOBJ) \
+	obj/menuload$(ExOBJ) \
+	obj/mli$(ExOBJ) \
+	obj/mliasimp$(ExOBJ) \
+	obj/mlicsdg$(ExOBJ) \
+	obj/mliediti$(ExOBJ) \
+	obj/mliedito$(ExOBJ) \
+	obj/mlisdg$(ExOBJ) \
+	obj/msignal$(ExOBJ) \
+	obj/nceditor$(ExOBJ) \
+	obj/ndskwasc$(ExOBJ) \
+	obj/ndskwcal$(ExOBJ) \
+	obj/ndskwcli$(ExOBJ) \
+	obj/ndskwclo$(ExOBJ) \
+	obj/ndskwedi$(ExOBJ) \
+	obj/ndskwhel$(ExOBJ) \
+	obj/ndskwman$(ExOBJ) \
+	obj/ndskwmes$(ExOBJ) \
+	obj/ndskwmp3$(ExOBJ) \
+	obj/ndskwprj$(ExOBJ) \
+	obj/neditwin$(ExOBJ) \
+	obj/nfileedi$(ExOBJ) \
+	obj/nsindica$(ExOBJ) \
+	obj/ntedcol$(ExOBJ) \
+	obj/parser$(ExOBJ) \
+	obj/pathlist$(ExOBJ) \
+	obj/pathtool$(ExOBJ) \
+	obj/pclipper$(ExOBJ) \
+	obj/pmacros$(ExOBJ) \
+	obj/pperl$(ExOBJ) \
+	obj/pphp$(ExOBJ) \
+	obj/pvarious$(ExOBJ) \
+	obj/runprog$(ExOBJ) \
+	obj/sceditor$(ExOBJ) \
+	obj/scresave$(ExOBJ) \
+	obj/sdginter$(ExOBJ) \
+	obj/sdskasci$(ExOBJ) \
+	obj/sdskcale$(ExOBJ) \
+	obj/sdskclip$(ExOBJ) \
+	obj/sdskclos$(ExOBJ) \
+	obj/sdskedit$(ExOBJ) \
+	obj/sdskhelp$(ExOBJ) \
+	obj/sdskman$(ExOBJ) \
+	obj/sdskmess$(ExOBJ) \
+	obj/sdskmp3$(ExOBJ) \
+	obj/sdskprj$(ExOBJ) \
+	obj/search$(ExOBJ) \
+	obj/sedcolle$(ExOBJ) \
+	libsettv$(ExLIB) \
+	obj/slpinter$(ExOBJ) \
+	obj/splinman$(ExOBJ) \
+	obj/ssindica$(ExOBJ) \
+	obj/ssyntax$(ExOBJ) \
+	obj/tags$(ExOBJ) \
+	obj/tedcolle$(ExOBJ) \
+	obj/tips$(ExOBJ) \
+	obj/tpaltext$(ExOBJ) \
+	obj/tsindica$(ExOBJ) \
+	obj/txhgen$(ExOBJ) \
+	obj/winlistd$(ExOBJ) \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_LINK)
 
-obj/accehtml.o:: accehtml.cc \
+obj/accehtml$(ExOBJ):: accehtml.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -201,11 +200,10 @@ obj/accehtml.o:: accehtml.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/advice.o:: advice.cc \
+obj/advice$(ExOBJ):: advice.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -252,13 +250,12 @@ obj/advice.o:: advice.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include amp3.imk
+INCLUDE00=amp3$(ExIMK)
 
-obj/ascii.o:: ascii.cc \
+obj/ascii$(ExOBJ):: ascii.cc \
 	ascii.h \
 	dskwin.h \
 	setapp.h \
@@ -291,11 +288,10 @@ obj/ascii.o:: ascii.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/boardmix.o:: boardmix.cc \
+obj/boardmix$(ExOBJ):: boardmix.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -350,11 +346,10 @@ obj/boardmix.o:: boardmix.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/bufun.o:: bufun.cc \
+obj/bufun$(ExOBJ):: bufun.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -429,11 +424,10 @@ obj/bufun.o:: bufun.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/calcu.o:: calcu.cc \
+obj/calcu$(ExOBJ):: calcu.cc \
 	$(CALCU_INC_DIR)/calcu.cc \
 	calcu.h \
 	ced_clas.h \
@@ -501,11 +495,10 @@ obj/calcu.o:: calcu.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/calendar.o:: calendar.cc \
+obj/calendar$(ExOBJ):: calendar.cc \
 	datetools.h \
 	$(MP3_PREV_DIR)/setedit/calendar.cc \
 	calendar.h \
@@ -537,11 +530,10 @@ obj/calendar.o:: calendar.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ceditor.o:: ceditor.cc \
+obj/ceditor$(ExOBJ):: ceditor.cc \
 	dyncat.h \
 	bufun.h \
 	ced_clas.h \
@@ -633,11 +625,10 @@ obj/ceditor.o:: ceditor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/codepage.o:: codepage.cc \
+obj/codepage$(ExOBJ):: codepage.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -704,11 +695,10 @@ obj/codepage.o:: codepage.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/completi.o:: completi.cc \
+obj/completi$(ExOBJ):: completi.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -766,11 +756,10 @@ obj/completi.o:: completi.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/deedidia.o:: deedidia.cc \
+obj/deedidia$(ExOBJ):: deedidia.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -870,11 +859,10 @@ obj/deedidia.o:: deedidia.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/doedidia.o:: doedidia.cc \
+obj/doedidia$(ExOBJ):: doedidia.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -928,11 +916,10 @@ obj/doedidia.o:: doedidia.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskascii.o:: dskascii.cc \
+obj/dskascii$(ExOBJ):: dskascii.cc \
 	ceditint.h \
 	ceditor.h \
 	configed.h \
@@ -970,11 +957,10 @@ obj/dskascii.o:: dskascii.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskcalen.o:: dskcalen.cc \
+obj/dskcalen$(ExOBJ):: dskcalen.cc \
 	ceditint.h \
 	ceditor.h \
 	configed.h \
@@ -1012,11 +998,10 @@ obj/dskcalen.o:: dskcalen.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclip.o:: dskclip.cc \
+obj/dskclip$(ExOBJ):: dskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1077,11 +1062,10 @@ obj/dskclip.o:: dskclip.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskclose.o:: dskclose.cc \
+obj/dskclose$(ExOBJ):: dskclose.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1146,11 +1130,10 @@ obj/dskclose.o:: dskclose.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskedito.o:: dskedito.cc \
+obj/dskedito$(ExOBJ):: dskedito.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1215,11 +1198,10 @@ obj/dskedito.o:: dskedito.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskhelp.o:: dskhelp.cc \
+obj/dskhelp$(ExOBJ):: dskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -1290,11 +1272,10 @@ obj/dskhelp.o:: dskhelp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskman.o:: dskman.cc \
+obj/dskman$(ExOBJ):: dskman.cc \
 	ceditint.h \
 	configed.h \
 	manview.h \
@@ -1338,11 +1319,10 @@ obj/dskman.o:: dskman.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmessa.o:: dskmessa.cc \
+obj/dskmessa$(ExOBJ):: dskmessa.cc \
 	ceditint.h \
 	ceditor.h \
 	configed.h \
@@ -1386,11 +1366,10 @@ obj/dskmessa.o:: dskmessa.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskmp3.o:: dskmp3.cc \
+obj/dskmp3$(ExOBJ):: dskmp3.cc \
 	mixer.h \
 	ceditint.h \
 	ceditor.h \
@@ -1428,11 +1407,10 @@ obj/dskmp3.o:: dskmp3.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dskwin.o:: dskwin.cc \
+obj/dskwin$(ExOBJ):: dskwin.cc \
 	ceditor.h \
 	dskwin.h \
 	setapp.h \
@@ -1464,11 +1442,10 @@ obj/dskwin.o:: dskwin.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dstfile.o:: dstfile.cc \
+obj/dstfile$(ExOBJ):: dstfile.cc \
 	mixer.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -1567,11 +1544,10 @@ obj/dstfile.o:: dstfile.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/dumpfile.o:: dumpfile.cc \
+obj/dumpfile$(ExOBJ):: dumpfile.cc \
 	edmsg.h \
 	cl/unistd.h \
 	compatlayer.h \
@@ -1588,13 +1564,12 @@ obj/dumpfile.o:: dumpfile.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include easydiag.imk
+INCLUDE01=easydiag$(ExIMK)
 
-obj/edcolor.o:: edcolor.cc \
+obj/edcolor$(ExOBJ):: edcolor.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -1670,11 +1645,10 @@ obj/edcolor.o:: edcolor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edconst.o:: edconst.cc \
+obj/edconst$(ExOBJ):: edconst.cc \
 	ced_coma.h \
 	ced_inte.h \
 	ceditor.h \
@@ -1729,11 +1703,10 @@ obj/edconst.o:: edconst.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edfonts.o:: edfonts.cc \
+obj/edfonts$(ExOBJ):: edfonts.cc \
 	setapp.h \
 	compatlayer.h \
 	tv.h \
@@ -1778,11 +1751,10 @@ obj/edfonts.o:: edfonts.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editdiag.o:: editdiag.cc \
+obj/editdiag$(ExOBJ):: editdiag.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -1849,11 +1821,10 @@ obj/editdiag.o:: editdiag.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editmain.o:: editmain.cc \
+obj/editmain$(ExOBJ):: editmain.cc \
 	mixer.h \
 	stackdbg.h \
 	datetools.h \
@@ -1975,11 +1946,10 @@ obj/editmain.o:: editmain.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editmenu.o:: editmenu.cc \
+obj/editmenu$(ExOBJ):: editmenu.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2063,11 +2033,10 @@ obj/editmenu.o:: editmenu.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editorfo.o:: editorfo.cc \
+obj/editorfo$(ExOBJ):: editorfo.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -2119,11 +2088,10 @@ obj/editorfo.o:: editorfo.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editpale.o:: editpale.cc \
+obj/editpale$(ExOBJ):: editpale.cc \
 	configed.h \
 	$(MP3_PREV_DIR)/setedit/editpale.cc \
 	setapp.h \
@@ -2168,11 +2136,10 @@ obj/editpale.o:: editpale.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/editwind.o:: editwind.cc \
+obj/editwind$(ExOBJ):: editwind.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2228,11 +2195,10 @@ obj/editwind.o:: editwind.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edkeys.o:: edkeys.cc \
+obj/edkeys$(ExOBJ):: edkeys.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -2320,11 +2286,10 @@ obj/edkeys.o:: edkeys.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edmsg.o:: edmsg.cc \
+obj/edmsg$(ExOBJ):: edmsg.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2399,11 +2364,10 @@ obj/edmsg.o:: edmsg.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprefs.o:: edprefs.cc \
+obj/edprefs$(ExOBJ):: edprefs.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -2502,11 +2466,10 @@ obj/edprefs.o:: edprefs.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprint.o:: edprint.cc \
+obj/edprint$(ExOBJ):: edprint.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -2567,11 +2530,10 @@ obj/edprint.o:: edprint.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edprj.o:: edprj.cc \
+obj/edprj$(ExOBJ):: edprj.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2660,11 +2622,10 @@ obj/edprj.o:: edprj.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/edspecs.o:: edspecs.cc \
+obj/edspecs$(ExOBJ):: edspecs.cc \
 	ced_inte.h \
 	edspecs.h \
 	pathtool.h \
@@ -2682,18 +2643,16 @@ obj/edspecs.o:: edspecs.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include extra.imk
+INCLUDE02=extra$(ExIMK)
 
-obj/fstrcmp.o:: fstrcmp.c \
-	rhide.env \
-	common.imk 
+obj/fstrcmp$(ExOBJ):: fstrcmp.c \
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/getctxhl.o:: getctxhl.cc \
+obj/getctxhl$(ExOBJ):: getctxhl.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2763,11 +2722,10 @@ obj/getctxhl.o:: getctxhl.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/gzfiles.o:: gzfiles.cc \
+obj/gzfiles$(ExOBJ):: gzfiles.cc \
 	ceditint.h \
 	configed.h \
 	gzfiles.h \
@@ -2787,11 +2745,10 @@ obj/gzfiles.o:: gzfiles.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/holidays.o:: holidays.cc \
+obj/holidays$(ExOBJ):: holidays.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -2847,13 +2804,12 @@ obj/holidays.o:: holidays.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include inffd.imk
+INCLUDE03=inffd$(ExIMK)
 
-obj/intgrep.o:: intgrep.cc \
+obj/intgrep$(ExOBJ):: intgrep.cc \
 	dyncat.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -2936,11 +2892,10 @@ obj/intgrep.o:: intgrep.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/keytrans.o:: keytrans.cc \
+obj/keytrans$(ExOBJ):: keytrans.cc \
 	dyncat.h \
 	ced_coma.h \
 	ced_exte.h \
@@ -2984,13 +2939,12 @@ obj/keytrans.o:: keytrans.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include librhuti.imk
+INCLUDE04=librhuti$(ExIMK)
 
-obj/linelen.o:: linelen.cc \
+obj/linelen$(ExOBJ):: linelen.cc \
 	ced_clas.h \
 	ceditor.h \
 	settvuti.h \
@@ -3008,11 +2962,10 @@ obj/linelen.o:: linelen.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadcle.o:: loadcle.cc \
+obj/loadcle$(ExOBJ):: loadcle.cc \
 	dyncat.h \
 	ceditint.h \
 	configed.h \
@@ -3044,11 +2997,10 @@ obj/loadcle.o:: loadcle.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loaddefl.o:: loaddefl.cc \
+obj/loaddefl$(ExOBJ):: loaddefl.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -3127,11 +3079,10 @@ obj/loaddefl.o:: loaddefl.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadfunc.o:: loadfunc.cc \
+obj/loadfunc$(ExOBJ):: loadfunc.cc \
 	pathtool.h \
 	compatlayer.h \
 	tv.h \
@@ -3149,11 +3100,10 @@ obj/loadfunc.o:: loadfunc.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadnobkp.o:: loadnobkp.cc \
+obj/loadnobkp$(ExOBJ):: loadnobkp.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -3220,11 +3170,10 @@ obj/loadnobkp.o:: loadnobkp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadshl.o:: loadshl.cc \
+obj/loadshl$(ExOBJ):: loadshl.cc \
 	dyncat.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -3278,11 +3227,10 @@ obj/loadshl.o:: loadshl.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/loadusew.o:: loadusew.cc \
+obj/loadusew$(ExOBJ):: loadusew.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -3360,11 +3308,10 @@ obj/loadusew.o:: loadusew.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/macrocom.o:: macrocom.cc \
+obj/macrocom$(ExOBJ):: macrocom.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -3418,11 +3365,10 @@ obj/macrocom.o:: macrocom.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/menuload.o:: menuload.cc \
+obj/menuload$(ExOBJ):: menuload.cc \
 	dyncat.h \
 	ced_clas.h \
 	ced_coma.h \
@@ -3488,11 +3434,10 @@ obj/menuload.o:: menuload.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mli.o:: mli.cc \
+obj/mli$(ExOBJ):: mli.cc \
 	dyncat.h \
 	pathtool.h \
 	mli.h \
@@ -3522,20 +3467,18 @@ obj/mli.o:: mli.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliasimp.o:: mliasimp.cc \
+obj/mliasimp$(ExOBJ):: mliasimp.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
 	mlivar.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mlicsdg.o:: mlicsdg.cc \
+obj/mlicsdg$(ExOBJ):: mlicsdg.cc \
 	ucdefs.h \
 	mli.h \
 	mliabase.h \
@@ -3564,11 +3507,10 @@ obj/mlicsdg.o:: mlicsdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliediti.o:: mliediti.cc \
+obj/mliediti$(ExOBJ):: mliediti.cc \
 	edmsg.h \
 	tvsetuti.h \
 	mli.h \
@@ -3606,11 +3548,10 @@ obj/mliediti.o:: mliediti.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mliedito.o:: mliedito.cc \
+obj/mliedito$(ExOBJ):: mliedito.cc \
 	dyncat.h \
 	ced_coma.h \
 	ceditor.h \
@@ -3655,11 +3596,10 @@ obj/mliedito.o:: mliedito.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/mlisdg.o:: mlisdg.cc \
+obj/mlisdg$(ExOBJ):: mlisdg.cc \
 	mli.h \
 	mliabase.h \
 	mliasimp.h \
@@ -3688,11 +3628,10 @@ obj/mlisdg.o:: mlisdg.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/msignal.o:: msignal.cc \
+obj/msignal$(ExOBJ):: msignal.cc \
 	stackdbg.h \
 	ced_inte.h \
 	ceditint.h \
@@ -3717,136 +3656,119 @@ obj/msignal.o:: msignal.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nceditor.o:: nceditor.cc \
+obj/nceditor$(ExOBJ):: nceditor.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwasc.o:: ndskwasc.cc \
+obj/ndskwasc$(ExOBJ):: ndskwasc.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcal.o:: ndskwcal.cc \
+obj/ndskwcal$(ExOBJ):: ndskwcal.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwcli.o:: ndskwcli.cc \
+obj/ndskwcli$(ExOBJ):: ndskwcli.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwclo.o:: ndskwclo.cc \
+obj/ndskwclo$(ExOBJ):: ndskwclo.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwedi.o:: ndskwedi.cc \
+obj/ndskwedi$(ExOBJ):: ndskwedi.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwhel.o:: ndskwhel.cc \
+obj/ndskwhel$(ExOBJ):: ndskwhel.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwman.o:: ndskwman.cc \
+obj/ndskwman$(ExOBJ):: ndskwman.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmes.o:: ndskwmes.cc \
+obj/ndskwmes$(ExOBJ):: ndskwmes.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwmp3.o:: ndskwmp3.cc \
+obj/ndskwmp3$(ExOBJ):: ndskwmp3.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ndskwprj.o:: ndskwprj.cc \
+obj/ndskwprj$(ExOBJ):: ndskwprj.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/neditwin.o:: neditwin.cc \
+obj/neditwin$(ExOBJ):: neditwin.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nfileedi.o:: nfileedi.cc \
+obj/nfileedi$(ExOBJ):: nfileedi.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/nsindica.o:: nsindica.cc \
+obj/nsindica$(ExOBJ):: nsindica.cc \
 	compatlayer.h \
 	tv/configtv.h \
 	tv/tvutil.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ntedcol.o:: ntedcol.cc \
+obj/ntedcol$(ExOBJ):: ntedcol.cc \
 	tvsetuti.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/parser.o:: parser.c \
+obj/parser$(ExOBJ):: parser.c \
 	compatlayer.h \
 	tv/configtv.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_C)
 
-obj/pathlist.o:: pathlist.cc \
+obj/pathlist$(ExOBJ):: pathlist.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -3908,11 +3830,10 @@ obj/pathlist.o:: pathlist.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pathtool.o:: pathtool.cc \
+obj/pathtool$(ExOBJ):: pathtool.cc \
 	ceditint.h \
 	configed.h \
 	pathtool.h \
@@ -3950,11 +3871,10 @@ obj/pathtool.o:: pathtool.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pclipper.o:: pclipper.cc \
+obj/pclipper$(ExOBJ):: pclipper.cc \
 	bufun.h \
 	compatlayer.h \
 	tv.h \
@@ -3972,11 +3892,10 @@ obj/pclipper.o:: pclipper.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pmacros.o:: pmacros.cc \
+obj/pmacros$(ExOBJ):: pmacros.cc \
 	ceditor.h \
 	pmcoll.h \
 	settvuti.h \
@@ -4008,23 +3927,20 @@ obj/pmacros.o:: pmacros.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pperl.o:: pperl.cc \
+obj/pperl$(ExOBJ):: pperl.cc \
 	bufun.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pphp.o:: pphp.cc \
+obj/pphp$(ExOBJ):: pphp.cc \
 	bufun.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/pvarious.o:: pvarious.cc \
+obj/pvarious$(ExOBJ):: pvarious.cc \
 	bufun.h \
 	compatlayer.h \
 	tv.h \
@@ -4042,11 +3958,10 @@ obj/pvarious.o:: pvarious.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/runprog.o:: runprog.cc \
+obj/runprog$(ExOBJ):: runprog.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -4127,11 +4042,10 @@ obj/runprog.o:: runprog.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sceditor.o:: sceditor.cc \
+obj/sceditor$(ExOBJ):: sceditor.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditint.h \
@@ -4183,11 +4097,10 @@ obj/sceditor.o:: sceditor.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/scresave.o:: scresave.cc \
+obj/scresave$(ExOBJ):: scresave.cc \
 	dyncat.h \
 	ced_clas.h \
 	ced_exte.h \
@@ -4253,11 +4166,10 @@ obj/scresave.o:: scresave.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdginter.o:: sdginter.cc \
+obj/sdginter$(ExOBJ):: sdginter.cc \
 	ceditint.h \
 	configed.h \
 	edmsg.h \
@@ -4303,11 +4215,10 @@ obj/sdginter.o:: sdginter.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/window.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskasci.o:: sdskasci.cc \
+obj/sdskasci$(ExOBJ):: sdskasci.cc \
 	dskascii.h \
 	dskwin.h \
 	compatlayer.h \
@@ -4326,11 +4237,10 @@ obj/sdskasci.o:: sdskasci.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskcale.o:: sdskcale.cc \
+obj/sdskcale$(ExOBJ):: sdskcale.cc \
 	dskcalen.h \
 	dskwin.h \
 	compatlayer.h \
@@ -4349,11 +4259,10 @@ obj/sdskcale.o:: sdskcale.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclip.o:: sdskclip.cc \
+obj/sdskclip$(ExOBJ):: sdskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4404,11 +4313,10 @@ obj/sdskclip.o:: sdskclip.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskclos.o:: sdskclos.cc \
+obj/sdskclos$(ExOBJ):: sdskclos.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4459,11 +4367,10 @@ obj/sdskclos.o:: sdskclos.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskedit.o:: sdskedit.cc \
+obj/sdskedit$(ExOBJ):: sdskedit.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4514,11 +4421,10 @@ obj/sdskedit.o:: sdskedit.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskhelp.o:: sdskhelp.cc \
+obj/sdskhelp$(ExOBJ):: sdskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4578,11 +4484,10 @@ obj/sdskhelp.o:: sdskhelp.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskman.o:: sdskman.cc \
+obj/sdskman$(ExOBJ):: sdskman.cc \
 	dskman.h \
 	dskwin.h \
 	compatlayer.h \
@@ -4601,11 +4506,10 @@ obj/sdskman.o:: sdskman.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmess.o:: sdskmess.cc \
+obj/sdskmess$(ExOBJ):: sdskmess.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4656,11 +4560,10 @@ obj/sdskmess.o:: sdskmess.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskmp3.o:: sdskmp3.cc \
+obj/sdskmp3$(ExOBJ):: sdskmp3.cc \
 	dskmp3.h \
 	dskwin.h \
 	compatlayer.h \
@@ -4679,11 +4582,10 @@ obj/sdskmp3.o:: sdskmp3.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sdskprj.o:: sdskprj.cc \
+obj/sdskprj$(ExOBJ):: sdskprj.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4734,11 +4636,10 @@ obj/sdskprj.o:: sdskprj.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/search.o:: search.cc \
+obj/search$(ExOBJ):: search.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -4791,11 +4692,10 @@ obj/search.o:: search.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/sedcolle.o:: sedcolle.cc \
+obj/sedcolle$(ExOBJ):: sedcolle.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -4849,13 +4749,12 @@ obj/sedcolle.o:: sedcolle.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-include settv.imk
+INCLUDE05=settv$(ExIMK)
 
-obj/slpinter.o:: slpinter.cc \
+obj/slpinter$(ExOBJ):: slpinter.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -4939,11 +4838,10 @@ obj/slpinter.o:: slpinter.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/splinman.o:: splinman.cc \
+obj/splinman$(ExOBJ):: splinman.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
@@ -4991,11 +4889,10 @@ obj/splinman.o:: splinman.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ssindica.o:: ssindica.cc \
+obj/ssindica$(ExOBJ):: ssindica.cc \
 	ceditor.h \
 	sindicat.h \
 	tvsetuti.h \
@@ -5023,11 +4920,10 @@ obj/ssindica.o:: ssindica.cc \
 	tv/tvutil.h \
 	tv/view.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/ssyntax.o:: ssyntax.cc \
+obj/ssyntax$(ExOBJ):: ssyntax.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -5109,11 +5005,10 @@ obj/ssyntax.o:: ssyntax.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tags.o:: tags.cc \
+obj/tags$(ExOBJ):: tags.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -5199,11 +5094,10 @@ obj/tags.o:: tags.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tedcolle.o:: tedcolle.cc \
+obj/tedcolle$(ExOBJ):: tedcolle.cc \
 	easydia1.h \
 	easydiag.h \
 	tslistbo.h \
@@ -5280,11 +5174,10 @@ obj/tedcolle.o:: tedcolle.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tips.o:: tips.cc \
+obj/tips$(ExOBJ):: tips.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -5349,11 +5242,10 @@ obj/tips.o:: tips.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tpaltext.o:: tpaltext.cc \
+obj/tpaltext$(ExOBJ):: tpaltext.cc \
 	tpaltext.h \
 	compatlayer.h \
 	tv.h \
@@ -5373,11 +5265,10 @@ obj/tpaltext.o:: tpaltext.cc \
 	tv/tvconfig.h \
 	tv/tvutil.h \
 	tv/views.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/tsindica.o:: tsindica.cc \
+obj/tsindica$(ExOBJ):: tsindica.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ceditor.h \
@@ -5425,11 +5316,10 @@ obj/tsindica.o:: tsindica.cc \
 	tv/view.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/txhgen.o:: txhgen.cc \
+obj/txhgen$(ExOBJ):: txhgen.cc \
 	bufun.h \
 	rhutils.h \
 	mli.h \
@@ -5467,11 +5357,10 @@ obj/txhgen.o:: txhgen.cc \
 	tv/tvutil.h \
 	tv/views.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
-obj/winlistd.o:: winlistd.cc \
+obj/winlistd$(ExOBJ):: winlistd.cc \
 	easydia1.h \
 	easydiag.h \
 	tsbutton.h \
@@ -5545,147 +5434,146 @@ obj/winlistd.o:: winlistd.cc \
 	tv/views.h \
 	tv/window.h \
 	tv/yes_mss.h \
-	rhide.env \
-	common.imk 
+	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 OBJFILES=\
-	obj/accehtml.o \
-	obj/advice.o \
-	obj/ampdiag.o \
-	obj/intermp3.o \
-	obj/mp3list.o \
-	obj/mp3play.o \
-	obj/ascii.o \
-	obj/boardmix.o \
-	obj/bufun.o \
-	obj/calcu.o \
-	obj/calendar.o \
-	obj/ceditor.o \
-	obj/codepage.o \
-	obj/completi.o \
-	obj/deedidia.o \
-	obj/doedidia.o \
-	obj/dskascii.o \
-	obj/dskcalen.o \
-	obj/dskclip.o \
-	obj/dskclose.o \
-	obj/dskedito.o \
-	obj/dskhelp.o \
-	obj/dskman.o \
-	obj/dskmessa.o \
-	obj/dskmp3.o \
-	obj/dskwin.o \
-	obj/dstfile.o \
-	obj/dumpfile.o \
-	obj/edcolor.o \
-	obj/edconst.o \
-	obj/edfonts.o \
-	obj/editdiag.o \
-	obj/editmain.o \
-	obj/editmenu.o \
-	obj/editorfo.o \
-	obj/editpale.o \
-	obj/editwind.o \
-	obj/edkeys.o \
-	obj/edmsg.o \
-	obj/edprefs.o \
-	obj/edprint.o \
-	obj/edprj.o \
-	obj/edspecs.o \
-	obj/djmdr.o \
-	obj/dyncat.o \
-	obj/memmove.o \
-	obj/mixer.o \
-	obj/mixersb.o \
-	obj/mixoss.o \
-	obj/stackdbg.o \
-	obj/strncpyz.o \
-	obj/strndup.o \
-	obj/fstrcmp.o \
-	obj/getctxhl.o \
-	obj/gzfiles.o \
-	obj/holidays.o \
-	obj/inf.o \
-	obj/infbase.o \
-	obj/manview.o \
-	obj/nhiscoll.o \
-	obj/ninfview.o \
-	obj/ninfwind.o \
-	obj/nmanwind.o \
-	obj/sinf.o \
-	obj/sman.o \
-	obj/intgrep.o \
-	obj/keytrans.o \
-	obj/linelen.o \
-	obj/loadcle.o \
-	obj/loaddefl.o \
-	obj/loadfunc.o \
-	obj/loadnobkp.o \
-	obj/loadshl.o \
-	obj/loadusew.o \
-	obj/macrocom.o \
-	obj/menuload.o \
-	obj/mli.o \
-	obj/mliasimp.o \
-	obj/mlicsdg.o \
-	obj/mliediti.o \
-	obj/mliedito.o \
-	obj/mlisdg.o \
-	obj/msignal.o \
-	obj/nceditor.o \
-	obj/ndskwasc.o \
-	obj/ndskwcal.o \
-	obj/ndskwcli.o \
-	obj/ndskwclo.o \
-	obj/ndskwedi.o \
-	obj/ndskwhel.o \
-	obj/ndskwman.o \
-	obj/ndskwmes.o \
-	obj/ndskwmp3.o \
-	obj/ndskwprj.o \
-	obj/neditwin.o \
-	obj/nfileedi.o \
-	obj/nsindica.o \
-	obj/ntedcol.o \
-	obj/parser.o \
-	obj/pathlist.o \
-	obj/pathtool.o \
-	obj/pclipper.o \
-	obj/pmacros.o \
-	obj/pperl.o \
-	obj/pphp.o \
-	obj/pvarious.o \
-	obj/runprog.o \
-	obj/sceditor.o \
-	obj/scresave.o \
-	obj/sdginter.o \
-	obj/sdskasci.o \
-	obj/sdskcale.o \
-	obj/sdskclip.o \
-	obj/sdskclos.o \
-	obj/sdskedit.o \
-	obj/sdskhelp.o \
-	obj/sdskman.o \
-	obj/sdskmess.o \
-	obj/sdskmp3.o \
-	obj/sdskprj.o \
-	obj/search.o \
-	obj/sedcolle.o \
-	obj/slpinter.o \
-	obj/splinman.o \
-	obj/ssindica.o \
-	obj/ssyntax.o \
-	obj/tags.o \
-	obj/tedcolle.o \
-	obj/tips.o \
-	obj/tpaltext.o \
-	obj/tsindica.o \
-	obj/txhgen.o \
-	obj/winlistd.o 
+	obj/accehtml$(ExOBJ) \
+	obj/advice$(ExOBJ) \
+	obj/ampdiag$(ExOBJ) \
+	obj/intermp3$(ExOBJ) \
+	obj/mp3list$(ExOBJ) \
+	obj/mp3play$(ExOBJ) \
+	obj/ascii$(ExOBJ) \
+	obj/boardmix$(ExOBJ) \
+	obj/bufun$(ExOBJ) \
+	obj/calcu$(ExOBJ) \
+	obj/calendar$(ExOBJ) \
+	obj/ceditor$(ExOBJ) \
+	obj/codepage$(ExOBJ) \
+	obj/completi$(ExOBJ) \
+	obj/deedidia$(ExOBJ) \
+	obj/doedidia$(ExOBJ) \
+	obj/dskascii$(ExOBJ) \
+	obj/dskcalen$(ExOBJ) \
+	obj/dskclip$(ExOBJ) \
+	obj/dskclose$(ExOBJ) \
+	obj/dskedito$(ExOBJ) \
+	obj/dskhelp$(ExOBJ) \
+	obj/dskman$(ExOBJ) \
+	obj/dskmessa$(ExOBJ) \
+	obj/dskmp3$(ExOBJ) \
+	obj/dskwin$(ExOBJ) \
+	obj/dstfile$(ExOBJ) \
+	obj/dumpfile$(ExOBJ) \
+	obj/edcolor$(ExOBJ) \
+	obj/edconst$(ExOBJ) \
+	obj/edfonts$(ExOBJ) \
+	obj/editdiag$(ExOBJ) \
+	obj/editmain$(ExOBJ) \
+	obj/editmenu$(ExOBJ) \
+	obj/editorfo$(ExOBJ) \
+	obj/editpale$(ExOBJ) \
+	obj/editwind$(ExOBJ) \
+	obj/edkeys$(ExOBJ) \
+	obj/edmsg$(ExOBJ) \
+	obj/edprefs$(ExOBJ) \
+	obj/edprint$(ExOBJ) \
+	obj/edprj$(ExOBJ) \
+	obj/edspecs$(ExOBJ) \
+	obj/djmdr$(ExOBJ) \
+	obj/dyncat$(ExOBJ) \
+	obj/memmove$(ExOBJ) \
+	obj/mixer$(ExOBJ) \
+	obj/mixersb$(ExOBJ) \
+	obj/mixoss$(ExOBJ) \
+	obj/stackdbg$(ExOBJ) \
+	obj/strncpyz$(ExOBJ) \
+	obj/strndup$(ExOBJ) \
+	obj/fstrcmp$(ExOBJ) \
+	obj/getctxhl$(ExOBJ) \
+	obj/gzfiles$(ExOBJ) \
+	obj/holidays$(ExOBJ) \
+	obj/inf$(ExOBJ) \
+	obj/infbase$(ExOBJ) \
+	obj/manview$(ExOBJ) \
+	obj/nhiscoll$(ExOBJ) \
+	obj/ninfview$(ExOBJ) \
+	obj/ninfwind$(ExOBJ) \
+	obj/nmanwind$(ExOBJ) \
+	obj/sinf$(ExOBJ) \
+	obj/sman$(ExOBJ) \
+	obj/intgrep$(ExOBJ) \
+	obj/keytrans$(ExOBJ) \
+	obj/linelen$(ExOBJ) \
+	obj/loadcle$(ExOBJ) \
+	obj/loaddefl$(ExOBJ) \
+	obj/loadfunc$(ExOBJ) \
+	obj/loadnobkp$(ExOBJ) \
+	obj/loadshl$(ExOBJ) \
+	obj/loadusew$(ExOBJ) \
+	obj/macrocom$(ExOBJ) \
+	obj/menuload$(ExOBJ) \
+	obj/mli$(ExOBJ) \
+	obj/mliasimp$(ExOBJ) \
+	obj/mlicsdg$(ExOBJ) \
+	obj/mliediti$(ExOBJ) \
+	obj/mliedito$(ExOBJ) \
+	obj/mlisdg$(ExOBJ) \
+	obj/msignal$(ExOBJ) \
+	obj/nceditor$(ExOBJ) \
+	obj/ndskwasc$(ExOBJ) \
+	obj/ndskwcal$(ExOBJ) \
+	obj/ndskwcli$(ExOBJ) \
+	obj/ndskwclo$(ExOBJ) \
+	obj/ndskwedi$(ExOBJ) \
+	obj/ndskwhel$(ExOBJ) \
+	obj/ndskwman$(ExOBJ) \
+	obj/ndskwmes$(ExOBJ) \
+	obj/ndskwmp3$(ExOBJ) \
+	obj/ndskwprj$(ExOBJ) \
+	obj/neditwin$(ExOBJ) \
+	obj/nfileedi$(ExOBJ) \
+	obj/nsindica$(ExOBJ) \
+	obj/ntedcol$(ExOBJ) \
+	obj/parser$(ExOBJ) \
+	obj/pathlist$(ExOBJ) \
+	obj/pathtool$(ExOBJ) \
+	obj/pclipper$(ExOBJ) \
+	obj/pmacros$(ExOBJ) \
+	obj/pperl$(ExOBJ) \
+	obj/pphp$(ExOBJ) \
+	obj/pvarious$(ExOBJ) \
+	obj/runprog$(ExOBJ) \
+	obj/sceditor$(ExOBJ) \
+	obj/scresave$(ExOBJ) \
+	obj/sdginter$(ExOBJ) \
+	obj/sdskasci$(ExOBJ) \
+	obj/sdskcale$(ExOBJ) \
+	obj/sdskclip$(ExOBJ) \
+	obj/sdskclos$(ExOBJ) \
+	obj/sdskedit$(ExOBJ) \
+	obj/sdskhelp$(ExOBJ) \
+	obj/sdskman$(ExOBJ) \
+	obj/sdskmess$(ExOBJ) \
+	obj/sdskmp3$(ExOBJ) \
+	obj/sdskprj$(ExOBJ) \
+	obj/search$(ExOBJ) \
+	obj/sedcolle$(ExOBJ) \
+	obj/slpinter$(ExOBJ) \
+	obj/splinman$(ExOBJ) \
+	obj/ssindica$(ExOBJ) \
+	obj/ssyntax$(ExOBJ) \
+	obj/tags$(ExOBJ) \
+	obj/tedcolle$(ExOBJ) \
+	obj/tips$(ExOBJ) \
+	obj/tpaltext$(ExOBJ) \
+	obj/tsindica$(ExOBJ) \
+	obj/txhgen$(ExOBJ) \
+	obj/winlistd$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd.a \
-	librhuti.a \
-	libsettv.a 
+	libeasyd$(ExLIB) \
+	librhuti$(ExLIB) \
+	libsettv$(ExLIB) 
 
