@@ -723,7 +723,7 @@ typedef struct
 static
 unsigned SetGeneralEditorOptionsMain(void)
 {
- // ABCDEHIKLMOPSTUVWY
+ // ABCDEHIKLMOPRSTUVWY
  TSViewCol *col=new TSViewCol(__("General editor options"));
 
  TSLabel *tcb=TSLabelCheck(__("~S~ave/Desktop options"),
@@ -751,6 +751,8 @@ unsigned SetGeneralEditorOptionsMain(void)
               #define NO_CURSOR_POS 256
               __("Don't ~w~arn about read-only files"),
               #define NO_RO_WARNING 512
+              __("Open ~r~ead-only files as R.O. buffers"),
+              #define RO_AS_RO 1024
               0);
 
  TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),0),
@@ -785,6 +787,8 @@ unsigned SetGeneralEditorOptionsMain(void)
     box.ops|=HIDDEN_BKPS;
  if (TCEditor::editorFlags & efDoNotWarnRO)
     box.ops|=NO_RO_WARNING;
+ if (TCEditor::editorFlags & efROasRO)
+    box.ops|=RO_AS_RO;
 
  // To avoid filling the disk with .dst files
  unsigned DesktopFilesOptions=GetDSTOptions();
@@ -824,6 +828,7 @@ unsigned SetGeneralEditorOptionsMain(void)
     O(UNIX_STYLE_BKPS, efUNIXBkpStyle);
     O(HIDDEN_BKPS,     efHiddenBkps);
     O(NO_RO_WARNING,   efDoNotWarnRO);
+    O(RO_AS_RO,        efROasRO);
     #undef O
 
     // Filter options of this dialog

@@ -11987,9 +11987,9 @@ Boolean TCEditor::loadFile(Boolean setSHL)
        DiskTime=s.st_mtime;
        FillEditorId(&EditorId,0,&s);
        // Check if we can write
-       if (!(editorFlags & efDoNotWarnRO) && CLY_FileAttrIsRO(&ModeOfFile))
+       if (CLY_FileAttrIsRO(&ModeOfFile))
          {
-          if (editorDialog(edIsReadOnly)==cmYes)
+          if (!(editorFlags & efDoNotWarnRO) && editorDialog(edIsReadOnly)==cmYes)
             {
              // Close it, DOS 6 fails if we change the mode while opened
              fclose(f);
@@ -11997,6 +11997,9 @@ Boolean TCEditor::loadFile(Boolean setSHL)
              if (!CLY_SetFileAttributes(&ModeOfFile,fileName))
                {
                 editorDialog(edStillReadOnly);
+                // Check if the user wants to mark them as R.O.
+                if (editorFlags & efROasRO)
+                   isReadOnly=True;
                 // Undo the change to reflect reality
                 CLY_FileAttrReadOnly(&ModeOfFile);
                }
@@ -12007,6 +12010,10 @@ Boolean TCEditor::loadFile(Boolean setSHL)
                 return False;
                }
             }
+          else
+            // Check if the user wants to mark them as R.O.
+            if (editorFlags & efROasRO)
+               isReadOnly=True;
          }
 
        f=ExpandToTempIfNeeded(f,wasCompressed,fileName,IsaCompressedFile);
