@@ -145,12 +145,19 @@ RHIDE_COMPILE_FORTRAN=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 RHIDE_COMPILE_FORTRAN_FORCE=$(RHIDE_G77) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_F_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x f77 $(LOCAL_OPT)  -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(RHIDE_OS_CFLAGS)  $(CPPFLAGS) $(CFLAGS) $(LOCAL_OPT) -c\
+	$(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_COMPILE_C_FORCE=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
 	-x c $(RHIDE_OS_CFLAGS)  $(CPPFLAGS) $(CFLAGS) $(LOCAL_OPT) -c\
 	$(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(RHIDE_OS_CXXFLAGS)\
+	$(CPPFLAGS) $(CXXFLAGS) $(LOCAL_OPT)   -c $(SOURCE_NAME) -o\
+	$(OUTFILE)
 RHIDE_COMPILE_CC_FORCE=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
 	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
 	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS)  $(RHIDE_OS_CXXFLAGS)\
@@ -173,7 +180,9 @@ RHIDE_FPC_FLAGS=$(C_FPC_LANG_FLAGS) $(LOCAL_OPT) $(addprefix\
 RHIDE_COMPILE_FPC=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -E- $(SOURCE_NAME)
 RHIDE_COMPILE_FPC_FORCE=$(RHIDE_FPC) $(RHIDE_FPC_FLAGS) -B -E-\
 	$(SOURCE_NAME)
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS) -o\
+	$(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(RHIDE_LIBS)
 RHIDE_COMPILE_LINK_GPC=$(RHIDE_LD_PASCAL) $(RHIDE_LIBDIRS) $(C_EXTRA_FLAGS)\
 	-o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LDFLAGS) $(LDFLAGS)\
 	$(RHIDE_LIBS)
@@ -289,28 +298,44 @@ RHIDE_LD=gcc
 RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
-SUPPORT_INC=
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+SUPPORT_INC= 
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
+	$(RHIDE_LIBS)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS)\
+	$(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
 RHIDE_GCC=gcc
 RHIDE_GXX=gcc
 RHIDE_LD=gcc
 RHIDE_AR=ar
 RHIDE_OS_CFLAGS=-O2 -gstabs+3 -pipe
 RHIDE_OS_CXXFLAGS=-O2 -gstabs+3 -pipe
-RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++ /usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
-RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre 
+RHIDE_STDINC=/usr/include /usr/local/include /usr/include/g++\
+	/usr/local/include/g++ /usr/lib/gcc-lib /usr/local/lib/gcc-lib 
+RHIDE_OS_LIBS=rhtv ncurses m gpm X11 Xmu dl bz2 mpegsnd aa z pcre
 RHIDE_OS_LIBS_PATH=../../tvision/linuxso  /usr/X11R6/lib
 TVISION_INC=../../tvision/include
-SUPPORT_INC=
-RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS) $(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES) $(RHIDE_LIBS)
-RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS) $(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
-RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS) $(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS) $(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
+SUPPORT_INC= 
+RHIDE_COMPILE_LINK=$(RHIDE_LD) $(RHIDE_LIBDIRS) $(LDFLAGS) $(RHIDE_LDFLAGS)\
+	$(C_EXTRA_FLAGS) -o $(OUTFILE)  $(OBJFILES) $(LIBRARIES)\
+	$(RHIDE_LIBS)
+RHIDE_COMPILE_C=$(RHIDE_GCC) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS) $(C_EXTRA_FLAGS)\
+	$(LOCAL_OPT) $(RHIDE_OS_CFLAGS) -c $(SOURCE_NAME) -o $(OUTFILE)
+RHIDE_COMPILE_CC=$(RHIDE_GXX) $(RHIDE_INCLUDES) $(C_DEBUG_FLAGS)\
+	$(C_OPT_FLAGS)  $(C_WARN_FLAGS) $(C_C_LANG_FLAGS)\
+	$(C_CXX_LANG_FLAGS) $(C_EXTRA_FLAGS) $(RHIDE_OS_CXXFLAGS)\
+	$(LOCAL_OPT) -c $(SOURCE_NAME) -o $(OUTFILE)
 %.o: %.c
 	$(RHIDE_COMPILE.c.o)
 %.o: %.i
@@ -401,7 +426,7 @@ NO_LINK=
 LINK_FILES=$(filter-out $(NO_LINK),$(DEPS_0))
 libsettv.a:: $(DEPS_0)
 	$(RHIDE_COMPILE_ARCHIVE)
-DEPS_1=diaghelp.cc ../../tvision/include/compatlayer.h\
+DEPS_1=diaghelp.cc ../include/edspecs.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/button.h\
 	../../tvision/include/tv/configtv.h\
@@ -424,11 +449,13 @@ DEPS_1=diaghelp.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/edspecs.h
+	../../tvision/include/tv/window.h
 obj/diaghelp.o:: $(DEPS_1)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_2=dktclock.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_2=dktclock.cc ../include/ceditint.h ../include/configed.h\
+	../settvuti/include/dktclock.h ../settvuti/include/settvuti.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/object.h\
@@ -442,14 +469,13 @@ DEPS_2=dktclock.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/ceditint.h ../include/configed.h\
-	../settvuti/include/dktclock.h ../settvuti/include/settvuti.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/dktclock.o:: $(DEPS_2)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_3=fileopen.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/button.h\
+DEPS_3=fileopen.cc ../settvuti/include/fileopen.h\
+	../../tvision/include/cl/unistd.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/button.h\
 	../../tvision/include/tv/chdirdlg.h\
 	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
@@ -483,10 +509,12 @@ DEPS_3=fileopen.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../settvuti/include/fileopen.h
+	../../tvision/include/tv/yes_mss.h
 obj/fileopen.o:: $(DEPS_3)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_4=fiopeaid.cc ../../tvision/include/compatlayer.h\
+DEPS_4=fiopeaid.cc ../settvuti/include/edhists.h\
+	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
+	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -509,12 +537,11 @@ DEPS_4=fiopeaid.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../settvuti/include/edhists.h\
-	../settvuti/include/fileopen.h ../settvuti/include/fiopeaid.h\
-	../settvuti/include/settvuti.h
+	../../tvision/include/tv/window.h
 obj/fiopeaid.o:: $(DEPS_4)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_5=inputsca.cc ../../tvision/include/compatlayer.h\
+DEPS_5=inputsca.cc ../settvuti/include/inputsca.h\
+	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -530,8 +557,7 @@ DEPS_5=inputsca.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../settvuti/include/inputsca.h ../settvuti/include/settvuti.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/inputsca.o:: $(DEPS_5)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_6=ninputsc.cc ../../tvision/include/compatlayer.h\
@@ -539,7 +565,8 @@ DEPS_6=ninputsc.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvutil.h
 obj/ninputsc.o:: $(DEPS_6)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_7=nostatex.cc ../../tvision/include/compatlayer.h\
+DEPS_7=nostatex.cc ../settvuti/include/nostatex.h\
+	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
@@ -556,8 +583,7 @@ DEPS_7=nostatex.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../settvuti/include/nostatex.h ../settvuti/include/settvuti.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/nostatex.o:: $(DEPS_7)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_8=nprogbar.cc ../../tvision/include/compatlayer.h\
@@ -580,7 +606,8 @@ DEPS_11=ntnosost.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvutil.h
 obj/ntnosost.o:: $(DEPS_11)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_12=setstack.cc ../../tvision/include/compatlayer.h\
+DEPS_12=setstack.cc ../settvuti/include/setstack.h\
+	../settvuti/include/settvuti.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
@@ -589,11 +616,11 @@ DEPS_12=setstack.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
-	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
-	../settvuti/include/setstack.h ../settvuti/include/settvuti.h
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 obj/setstack.o:: $(DEPS_12)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_13=sprogbar.cc ../../tvision/include/compatlayer.h\
+DEPS_13=sprogbar.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tprogbar.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -609,13 +636,13 @@ DEPS_13=sprogbar.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogbar.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/sprogbar.o:: $(DEPS_13)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_14=sprogres.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_14=sprogres.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tprogrdi.h ../settvuti/include/tprogres.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/object.h\
@@ -630,12 +657,11 @@ DEPS_14=sprogres.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogrdi.h ../settvuti/include/tprogres.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/sprogres.o:: $(DEPS_14)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_15=stnocast.cc ../../tvision/include/compatlayer.h\
+DEPS_15=stnocast.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnocastc.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -656,12 +682,11 @@ DEPS_15=stnocast.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnocastc.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h
 obj/stnocast.o:: $(DEPS_15)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_16=stnonost.cc ../../tvision/include/compatlayer.h\
+DEPS_16=stnonost.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnosostr.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -682,9 +707,7 @@ DEPS_16=stnonost.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnosostr.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h
 obj/stnonost.o:: $(DEPS_16)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_17=tdiagaid.cc ../setedit/include/setapp.h\
@@ -724,7 +747,8 @@ DEPS_17=tdiagaid.cc ../setedit/include/setapp.h\
 	../../tvision/include/tv/window.h
 obj/tdiagaid.o:: $(DEPS_17)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_18=tdiagrow.cc ../../tvision/include/compatlayer.h\
+DEPS_18=tdiagrow.cc ../settvuti/include/settvuti.h\
+	../settvuti/include/tdiagrow.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -742,12 +766,17 @@ DEPS_18=tdiagrow.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tdiagrow.h
+	../../tvision/include/tv/window.h
 obj/tdiagrow.o:: $(DEPS_18)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_19=tinppipe.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
+DEPS_19=tinppipe.cc ../include/ced_clas.h ../include/ced_exte.h\
+	../include/ceditor.h ../include/pmcoll.h ../include/sindicat.h\
+	../include/tvsetuti.h ../settvuti/include/sarray.h\
+	../settvuti/include/setstack.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tinppipe.h ../settvuti/include/tnocastc.h\
+	../settvuti/include/tstringa.h ../settvuti/include/viewplus.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/dialogs.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
@@ -774,13 +803,7 @@ DEPS_19=tinppipe.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
 	../../tvision/include/tv/window.h\
-	../../tvision/include/tv/yes_mss.h ../include/ced_clas.h\
-	../include/ced_exte.h ../include/ceditor.h ../include/pmcoll.h\
-	../include/sindicat.h ../include/tvsetuti.h\
-	../settvuti/include/sarray.h ../settvuti/include/setstack.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tinppipe.h\
-	../settvuti/include/tnocastc.h ../settvuti/include/tstringa.h\
-	../settvuti/include/viewplus.h
+	../../tvision/include/tv/yes_mss.h
 obj/tinppipe.o:: $(DEPS_19)
 	$(RHIDE_COMPILE.cc.o)
 DEPS_20=tnocastc.cc ../include/tvsetuti.h ../settvuti/include/setstack.h\
@@ -815,7 +838,8 @@ DEPS_20=tnocastc.cc ../include/tvsetuti.h ../settvuti/include/setstack.h\
 	../../tvision/include/tv/yes_mss.h
 obj/tnocastc.o:: $(DEPS_20)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_21=tnosostr.cc ../../tvision/include/compatlayer.h\
+DEPS_21=tnosostr.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tnosostr.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/collectn.h\
 	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
@@ -836,12 +860,11 @@ DEPS_21=tnosostr.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tnosostr.h
+	../../tvision/include/tv/views.h ../../tvision/include/tv/yes_mss.h
 obj/tnosostr.o:: $(DEPS_21)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_22=tprogbar.cc ../../tvision/include/compatlayer.h\
+DEPS_22=tprogbar.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tprogbar.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h\
 	../../tvision/include/tv/fpbase.h\
@@ -862,14 +885,14 @@ DEPS_22=tprogbar.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogbar.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/tprogbar.o:: $(DEPS_22)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_23=tprogdia.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
-	../../tvision/include/tv/configtv.h\
+DEPS_23=tprogdia.cc ../easydiag/easydia1.h ../easydiag/easydiag.h\
+	../include/tvsetuti.h ../settvuti/include/nostatex.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tprogbar.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/app.h ../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
 	../../tvision/include/tv/dialog.h\
 	../../tvision/include/tv/dialogs.h\
@@ -890,13 +913,12 @@ DEPS_23=tprogdia.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../easydiag/easydia1.h\
-	../easydiag/easydiag.h ../include/tvsetuti.h\
-	../settvuti/include/nostatex.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogbar.h
+	../../tvision/include/tv/window.h
 obj/tprogdia.o:: $(DEPS_23)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_24=tprogrdi.cc ../../tvision/include/compatlayer.h\
+DEPS_24=tprogrdi.cc ../include/tvsetuti.h ../settvuti/include/nostatex.h\
+	../settvuti/include/settvuti.h ../settvuti/include/tprogrdi.h\
+	../settvuti/include/tprogres.h ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv.h ../../tvision/include/tv/app.h\
 	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/desktop.h\
@@ -919,13 +941,13 @@ DEPS_24=tprogrdi.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
 	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../../tvision/include/tv/window.h ../include/tvsetuti.h\
-	../settvuti/include/nostatex.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogrdi.h ../settvuti/include/tprogres.h
+	../../tvision/include/tv/window.h
 obj/tprogrdi.o:: $(DEPS_24)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_25=tprogres.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_25=tprogres.cc ../include/tvsetuti.h ../settvuti/include/settvuti.h\
+	../settvuti/include/tprogrdi.h ../settvuti/include/tprogres.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h\
 	../../tvision/include/tv/fpbase.h\
 	../../tvision/include/tv/fpstream.h\
@@ -945,13 +967,13 @@ DEPS_25=tprogres.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../include/tvsetuti.h ../settvuti/include/settvuti.h\
-	../settvuti/include/tprogrdi.h ../settvuti/include/tprogres.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/tprogres.o:: $(DEPS_25)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_26=tstrlbox.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_26=tstrlbox.cc ../settvuti/include/settvuti.h\
+	../settvuti/include/tstringa.h ../settvuti/include/tstrlbox.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/intl.h\
 	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/lstviewr.h\
@@ -966,41 +988,40 @@ DEPS_26=tstrlbox.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../settvuti/include/settvuti.h ../settvuti/include/tstringa.h\
-	../settvuti/include/tstrlbox.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/tstrlbox.o:: $(DEPS_26)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_27=uisarray.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
-	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
+DEPS_27=uisarray.cc ../settvuti/include/sarray.cc\
+	../settvuti/include/sarray.h ../settvuti/include/settvuti.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/pstream.h\
 	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
-	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
-	../settvuti/include/sarray.cc ../settvuti/include/sarray.h\
-	../settvuti/include/settvuti.h
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 obj/uisarray.o:: $(DEPS_27)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_28=ussarray.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
-	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
+DEPS_28=ussarray.cc ../settvuti/include/sarray.cc\
+	../settvuti/include/sarray.h ../settvuti/include/settvuti.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h ../../tvision/include/tv/intl.h\
+	../../tvision/include/tv/ipstream.h\
 	../../tvision/include/tv/opstream.h\
 	../../tvision/include/tv/pstream.h\
 	../../tvision/include/tv/stddlg.h ../../tvision/include/tv/system.h\
 	../../tvision/include/tv/tobjstrm.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
-	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h\
-	../settvuti/include/sarray.cc ../settvuti/include/sarray.h\
-	../settvuti/include/settvuti.h
+	../../tvision/include/tv/tvutil.h ../../tvision/include/tv/views.h
 obj/ussarray.o:: $(DEPS_28)
 	$(RHIDE_COMPILE.cc.o)
-DEPS_29=viewplus.cc ../../tvision/include/compatlayer.h\
-	../../tvision/include/tv.h ../../tvision/include/tv/configtv.h\
+DEPS_29=viewplus.cc ../settvuti/include/viewplus.h\
+	../../tvision/include/compatlayer.h ../../tvision/include/tv.h\
+	../../tvision/include/tv/configtv.h\
 	../../tvision/include/tv/drawbuf.h ../../tvision/include/tv/event.h\
 	../../tvision/include/tv/eventqu.h ../../tvision/include/tv/group.h\
 	../../tvision/include/tv/intl.h ../../tvision/include/tv/ipstream.h\
@@ -1016,8 +1037,7 @@ DEPS_29=viewplus.cc ../../tvision/include/compatlayer.h\
 	../../tvision/include/tv/ttypes.h\
 	../../tvision/include/tv/tvconfig.h\
 	../../tvision/include/tv/tvobjs.h ../../tvision/include/tv/tvutil.h\
-	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h\
-	../settvuti/include/viewplus.h
+	../../tvision/include/tv/view.h ../../tvision/include/tv/views.h
 obj/viewplus.o:: $(DEPS_29)
 	$(RHIDE_COMPILE.cc.o)
 all:: libsettv.a
