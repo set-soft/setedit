@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.621  2004/10/03 22:29:00  terrible
+* [Debian] Updated packaging to version 0.5.4-1.
+
 Revision 1.620  2004/10/02 20:51:23  set
 * Fixed: [Config][Darwin] Wrong TV dynamic lib search. My previous tries
 worked because I had .so files in this system ;-)

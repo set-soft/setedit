@@ -689,7 +689,7 @@ sub GiveAdvice
    }
  if ((@conf{'HAVE_AA'} eq 'no') && ($OS eq 'UNIX'))
    {
-    print "* AA lib is not installed (or isn't functional) so you won't get a nice console\n"
+    print "* AA lib is not installed (or isn't functional) so you won't get a nice console\n";
     print "  screen saver\n";
    }
  if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
