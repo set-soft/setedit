@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.1
-@set update-date 6 May 2003
+@set update-date 7 May 2003
 @set update-month May 2003
 @set name-author Salvador Eduardo Tropea
 
@@ -2666,6 +2666,36 @@ from this file aren't removed. If this is annoying just remove the
 @refMenu1{cmeTagsOps}
 
 @c --------------------------------------------------------------------------
+@subsubsection Calendar options
+
+The editor can mark holidays in the calendar using a different color. As
+holidays depends on the country this feature needs to know:
+@p{}
+
+@enumerate
+@item What's your country
+@item About the holidays celebrated in your country.
+@end enumerate
+
+The first is achieved using the contents of the @var{LANG} environment
+variable and a file called @file{holidays.conf}. This dialog can be used to
+force the country when the @var{LANG} isn't enough or you don't want to set
+this variable.
+@p{}
+
+The second is achieved using plug-ins. Currently the editor supports it only
+for systems that implements the @code{dlopen} family of functions. If you
+can't find a plug-in for your country and you know how to write small C
+programs consider wrtiting a plug-in for your country. The information about
+how to do it is contained in the sources distribution. Look for a directory
+called @file{holidays}, it contains a @file{README} file. If you need
+assistance contact the author. Please consider contributing the plug-in so
+other people from your country can share the benefits.
+@p{}
+
+@refMenu1{cmeHolidaysConf}
+
+@c --------------------------------------------------------------------------
 @subsection Calculator (command/menu)
 
 This command shows the calculator: @x{Calculator}.
@@ -3036,7 +3066,7 @@ Close the project file.
 @refMenu1{cmeClosePrj}
 
 @c --------------------------------------------------------------------------
-@subsection Close (Project)
+@subsection Save (Project)
 
 Saves the current project. It's a good idea to save the project after adding or
 removing a lot of files.

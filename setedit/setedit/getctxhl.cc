@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 #define Uses_TApplication
@@ -119,6 +119,7 @@ static helpNode helpList[]=
  HHe(IncludeList,"Search files under cursor in"),
  HHe(TagFiles,"List of tag files"),
  HHe(TagsOps,"Tag files options"),
+ HHe(HolidaysConf,"Calendar options"),
  HHe(RunCommand,"Run program"),
  HHe(ConfRunCommand,"Run program (which one)"),
  Hc(Save),

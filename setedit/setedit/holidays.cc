@@ -32,6 +32,7 @@ calendar.
 #include <easydiag.h>
 
 #define Uses_SETAppDialogs
+#define Uses_SETAppConst
 #include <setapp.h>
 
 #include <editcoma.h>
@@ -262,7 +263,7 @@ void ConfigureHolidays()
                          new TSRadioButtons(first),0));
  EasyInsertOKCancel(col);
 
- TDialog *d=col->doItCenter(0);
+ TDialog *d=col->doItCenter(cmeHolidaysConf);
  delete col;
  struct
  {
@@ -304,5 +305,6 @@ char *GetLastError()
 
 void ConfigureHolidays()
 {
+ messageBox(__("Holidays plug-ins not supported. Sorry."),mfError|mfOKButton);
 }
 #endif

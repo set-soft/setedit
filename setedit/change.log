@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.348  2003/05/07 19:53:46  set
+* Fixed: Now the editor forces Tab==\t.
+* Modified: The word completion key to be Ctrl+Tab as suggested by Grzegorz
+I'll give a try to this combination.
+
 Revision 1.347  2003/05/07 19:44:21  set
 * Fixed: EasyDiag meassured the width of the dialog's title using the
 untranslated string.
