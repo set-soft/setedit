@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 void SaveSFT(Font &fnt,FILE *f)
 {
@@ -152,8 +152,70 @@ void GenH(void)
  fclose(f);
 }
 
+#if 0
+unsigned Added[]=
+{'B','E','K','M','H','O','P','C','T','X','a','e','o','p','c','x',
+ 137,280,'s','i',139,'j',281,'J','S',0};
+ // 611 => U+0408 (74==J)
+ // 612 => U+0405 (83==S)
+
+void CPatch(Font *f)
+{
+ unsigned lines=f->lines;
+ unsigned char *nfont=new unsigned char [lines*(NUM_FONTS+1)];
+ memcpy(nfont,f->font,lines*588);
+ int i=0;
+ while (Added[i])
+   {
+    memcpy(nfont+lines*(588+i),nfont+lines*Added[i],lines);
+    i++;
+   }
+ f->font=nfont;
+ printf("Copied upto: %d\n",588+i-1);
+}
+
+void CyrillicPatch()
+{
+ CPatch(&ARRAY1);
+ CPatch(&ARRAY2);
+}
+#else
+ #define CyrillicPatch()
+#endif
+
+#if 1
+unsigned Added[]=
+{0xE1,0x185,0xE6,'o','A','B','E','Z','H','I','K','M','N','O','P','T','Y','X',
+ 0x119,0x1C2,0};
+
+void CPatch(Font *f)
+{
+ unsigned lines=f->lines;
+ unsigned char *nfont=new unsigned char [lines*(NUM_FONTS+1)];
+ memcpy(nfont,f->font,lines*613);
+ int i=0;
+ while (Added[i])
+   {
+    memcpy(nfont+lines*(613+i),nfont+lines*Added[i],lines);
+    i++;
+   }
+ f->font=nfont;
+ printf("Copied upto: %d\n",613+i-1);
+}
+
+void GreekPatch()
+{
+ CPatch(&ARRAY1);
+ CPatch(&ARRAY2);
+}
+#else
+ #define GreekPatch()
+#endif
+
 int main(void)
 {
+ CyrillicPatch();
+ GreekPatch();
  printf("
 Choose an action:
 
@@ -163,7 +225,7 @@ Choose an action:
 4 - Generate .0xx file with all the fonts in the .EXE file (for tools)
 
 ");
- int c=getche()-'0';
+ int c=getchar()-'0';
 
  switch (c)
    {

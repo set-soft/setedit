@@ -360,25 +360,15 @@
 <d<>                  167   <U010F> LATIN SMALL LETTER D WITH CARON (that's the other way to draw tcaron, like a v, not ')
 <A=>                  168   <U0410> CYRILLIC CAPITAL LETTER A         (°) [Examples in ISO-5]
 <B=>                  169   <U0411> CYRILLIC CAPITAL LETTER BE        (±)
-# Replaced by common B <V=> <U0412> CYRILLIC CAPITAL LETTER VE        (B)
 <G=>                  16A   <U0413> CYRILLIC CAPITAL LETTER GHE       (³)
 <D=>                  16B   <U0414> CYRILLIC CAPITAL LETTER DE        (´)
-# Replaced by common E <E=> <U0415> CYRILLIC CAPITAL LETTER IE        (E)
 <Z%>                  16C   <U0416> CYRILLIC CAPITAL LETTER ZHE       (¶)
 <I=>                  16D   <U0418> CYRILLIC CAPITAL LETTER I         (¸)
 <J=>                  16E   <U0419> CYRILLIC CAPITAL LETTER SHORT I   (¹)
-# Replaced by common K <K=> <U041A> CYRILLIC CAPITAL LETTER KA        (º)
 <L=>                  16F   <U041B> CYRILLIC CAPITAL LETTER EL        (»)
-# Replaced by common M <M=> <U041C> CYRILLIC CAPITAL LETTER EM        (¼)
-# Replaced by common H <N=> <U041D> CYRILLIC CAPITAL LETTER EN        (½)
-# Replaced by common O <O=> <U041E> CYRILLIC CAPITAL LETTER O         (¾)
 <P=>                  170   <U041F> CYRILLIC CAPITAL LETTER PE        (¿)
-# Replaced by common P <R=> <U0420> CYRILLIC CAPITAL LETTER ER        (À)
-# Replaced by common C <S=> <U0421> CYRILLIC CAPITAL LETTER ES        (Á)
-# Replaced by common T <T=> <U0422> CYRILLIC CAPITAL LETTER TE        (Â)
 <U=>                  171   <U0423> CYRILLIC CAPITAL LETTER U         (Ã)
 <F=>                  172   <U0424> CYRILLIC CAPITAL LETTER EF        (Ä)
-# Replaced by common X <H=> <U0425> CYRILLIC CAPITAL LETTER HA        (Å)
 <C=>                  173   <U0426> CYRILLIC CAPITAL LETTER TSE       (Æ)
 <C%>                  174   <U0427> CYRILLIC CAPITAL LETTER CHE       (Ç)
 <S%>                  175   <U0428> CYRILLIC CAPITAL LETTER SHA       (È)
@@ -389,12 +379,10 @@
 <JE>                  17A   <U042D> CYRILLIC CAPITAL LETTER E         (Í)
 <JU>                  17B   <U042E> CYRILLIC CAPITAL LETTER YU        (Î)
 <JA>                  17C   <U042F> CYRILLIC CAPITAL LETTER YA        (Ï)
-# Replaced by common a <a=> <U0430> CYRILLIC SMALL LETTER A           (Ð)
 <b=>                  17D   <U0431> CYRILLIC SMALL LETTER BE          (Ñ)
 <v=>                  17E   <U0432> CYRILLIC SMALL LETTER VE          (Ò)
 <g=>                  17F   <U0433> CYRILLIC SMALL LETTER GHE         (Ó)
 <d=>                  180   <U0434> CYRILLIC SMALL LETTER DE          (Ô)
-# Replaced by common e <e=> <U0435> CYRILLIC SMALL LETTER IE          (e)
 <z%>                  181   <U0436> CYRILLIC SMALL LETTER ZHE         (Ö)
 <z=>                  182   <U0437> CYRILLIC SMALL LETTER ZE          (×)
 <i=>                  183   <U0438> CYRILLIC SMALL LETTER I           (Ø)
@@ -403,14 +391,10 @@
 <l=>                  186   <U043B> CYRILLIC SMALL LETTER EL          (Û)
 <m=>                  187   <U043C> CYRILLIC SMALL LETTER EM          (Ü)
 <n=>                  188   <U043D> CYRILLIC SMALL LETTER EN          (Ý)
-# Replaced by common o <o=> <U043E> CYRILLIC SMALL LETTER O           (Þ)
 <p=>                  189   <U043F> CYRILLIC SMALL LETTER PE          (ß)
-# Replaced by common p <r=> <U0440> CYRILLIC SMALL LETTER ER          (à)
-# Replaced by common c <s=> <U0441> CYRILLIC SMALL LETTER ES          (á)
 <t=>                  18A   <U0442> CYRILLIC SMALL LETTER TE          (â)
 <u=>                  18B   <U0443> CYRILLIC SMALL LETTER U           (ã)
 <f=>                  18C   <U0444> CYRILLIC SMALL LETTER EF          (ä)
-# Replaced by common x <h=> <U0445> CYRILLIC SMALL LETTER HA          (å)
 <c=>                  18D   <U0446> CYRILLIC SMALL LETTER TSE         (æ)
 <c%>                  18E   <U0447> CYRILLIC SMALL LETTER CHE         (ç)
 <s%>                  18F   <U0448> CYRILLIC SMALL LETTER SHA         (è)
@@ -421,15 +405,8 @@
 <je>                  194   <U044D> CYRILLIC SMALL LETTER E           (í)
 <ju>                  195   <U044E> CYRILLIC SMALL LETTER YU          (î)
 <ja>                  196   <U044F> CYRILLIC SMALL LETTER YA          (ï)
-# Replaced by euml; <io>    <U0451> CYRILLIC SMALL LETTER IO          (ñ)-5
-# Replaced by Euml; <IO>    <U0401> CYRILLIC CAPITAL LETTER IO        (¡)-5
 <IE>                  197   <U0404> CYRILLIC CAPITAL LETTER UKRAINIAN IE (¤)-5
 <ie>                  198   <U0454> CYRILLIC SMALL LETTER UKRAINIAN IE (ô)-5
-# Replaced by common s <ds> <U0455> CYRILLIC SMALL LETTER DZE          (õ)-5
-# Replaced by common i <ii> <U0456> CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I (ö)
-# Replaced by iuml; <yi>    <U0457> CYRILLIC SMALL LETTER YI (Ukrainian) (÷)-5
-# Replaced by common j <j%> <U0458> CYRILLIC SMALL LETTER JE (ø)-5
-# Replaced by Iuml; <II>    <U0406> CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I (§)
 <Z=>                  199   <U0417> CYRILLIC CAPITAL LETTER ZE        ()
 <v%>                  19A   <U045E> Free
 <N0>                  19B   <U2116> NUMERO SIGN (ð) Esto es n£mero!
@@ -641,4 +618,51 @@
                       249   <U0100> LATIN CAPITAL LETTER A WITH MACRON CP 1257, 775 (Baltic Rim) y latin 4
                       24A   <U0120> LATIN CAPITAL LETTER G WITH DOT ABOVE latin 3 y 14
                       24B   <U20AC> EURO SIGN
+# Cyrillic letters with shapes already defined (can share the same shape) 588 to 612
+<V=>                  24C   <U0412> CYRILLIC CAPITAL LETTER VE == B
+<E=>                  24D   <U0415> CYRILLIC CAPITAL LETTER IE == E
+<K=>                  24E   <U041A> CYRILLIC CAPITAL LETTER KA == K
+<M=>                  24F   <U041C> CYRILLIC CAPITAL LETTER EM == M
+<N=>                  250   <U041D> CYRILLIC CAPITAL LETTER EN == H
+<O=>                  251   <U041E> CYRILLIC CAPITAL LETTER O  == O
+<R=>                  252   <U0420> CYRILLIC CAPITAL LETTER ER == P
+<S=>                  253   <U0421> CYRILLIC CAPITAL LETTER ES == C
+<T=>                  254   <U0422> CYRILLIC CAPITAL LETTER TE == T
+<H=>                  255   <U0425> CYRILLIC CAPITAL LETTER HA == X
+<a=>                  256   <U0430> CYRILLIC SMALL LETTER A  == a
+<e=>                  257   <U0435> CYRILLIC SMALL LETTER IE == e
+<o=>                  258   <U043E> CYRILLIC SMALL LETTER O  == o
+<r=>                  259   <U0440> CYRILLIC SMALL LETTER ER == p
+<s=>                  25A   <U0441> CYRILLIC SMALL LETTER ES == c
+<h=>                  25B   <U0445> CYRILLIC SMALL LETTER HA == x
+<io>                  25C   <U0451> CYRILLIC SMALL LETTER IO == euml
+<IO>                  25D   <U0401> CYRILLIC CAPITAL LETTER IO == Euml
+<ds>                  25E   <U0455> CYRILLIC SMALL LETTER DZE == s
+<ii>                  25F   <U0456> CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I == i
+<yi>                  260   <U0457> CYRILLIC SMALL LETTER YI (Ukrainian) == iuml
+<j%>                  261   <U0458> CYRILLIC SMALL LETTER JE == j
+<II>                  262   <U0406> CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I == Iuml
+                      263   <U0408> CYRILLIC CAPITAL LETTER JE == J
+                      264   <U0405> CYRILLIC CAPITAL LETTER DZE == S
+# Greek letters with shapes already defined: 613 to 632
+                      265   <U03B2>   GREEK SMALL LETTER BETA => like 0xE1 153 U00DF
+                      266   <U03BA>   GREEK SMALL LETTER KAPPA => like 0x185 U043A (cyr. ka)
+                      267   <U03BC>   GREEK SMALL LETTER MU => like 0xE6 163 U00B5 (micro symbol)
+                      268   <U03BF>   GREEK SMALL LETTER OMICRON => o
+                      269   <U0391>   GREEK CAPITAL LETTER Alpha => A
+                      26A   <U0392>   GREEK CAPITAL LETTER BETA  => B
+                      26B   <U0395>   GREEK CAPITAL LETTER EPSILON => E
+                      26C   <U0396>   GREEK CAPITAL LETTER ZETA => Z
+                      26D   <U0397>   GREEK CAPITAL LETTER ETA => H
+                      26E   <U0399>   GREEK CAPITAL LETTER IOTA => I
+                      26F   <U039A>   GREEK CAPITAL LETTER KAPPA => K
+                      270   <U039C>   GREEK CAPITAL LETTER MU => M
+                      271   <U039D>   GREEK CAPITAL LETTER NU => N
+                      272   <U039F>   GREEK CAPITAL LETTER OMICRON => O
+                      273   <U03A1>   GREEK CAPITAL LETTER RHO => P
+                      274   <U03A4>   GREEK CAPITAL LETTER TAU => T
+                      275   <U03A5>   GREEK CAPITAL LETTER UPSILON => Y
+                      276   <U03A7>   GREEK CAPITAL LETTER CHI => X
+                      277   <U03AA>   GREEK CAPITAL LETTER IOTA WITH DIALYTIKA ô => 0x119 LATIN CAPITAL LETTER I WITH DIAERESIS
+                      278   <U03AB>   GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA õ => 0x1C2 LATIN CAPITAL LETTER Y WITH DIAERESIS
 

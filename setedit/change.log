@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.257  2002/12/10 18:27:55  set
+* Added: Last TV config keyword.
+
 Revision 1.256  2002/12/10 14:13:55  set
 * Added: Missing header for fonts conversion utility.
 
