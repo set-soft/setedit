@@ -45,6 +45,10 @@ to avoid the modfication of the original lib.
 #include <go32.h>
 #endif
 
+#if TV_MAJOR_VERSION>=2
+ #define dual_display TScreen::dual_display
+#endif
+
 // From View.cc
 extern TPoint shadowSize;
 
@@ -169,8 +173,8 @@ int TViewPlus::setAttrOfCoor(int x, int y, char attr)
 
        long _buffer;
        #if 1 // def RHIDE // RHIDE supports dual display
-       _buffer = (dual_display ? 0xb0000 : ScreenPrimary) + (offset<<1) + 1 + 
-                 TScreen::GetPage()*0x1000;
+       _buffer = (dual_display ? 0xb0000 : ScreenPrimary) + (offset<<1) + 1;
+                 //TScreen::GetPage()*0x1000;
        #else
        _buffer = ScreenPrimary + (offset<<1) + 1 + TScreen::GetPage()*0x1000;
        #endif

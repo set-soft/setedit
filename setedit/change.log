@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.106  2002/06/03 13:52:00  set
+* Fixed: The shipped gettext is only usable for djgpp. Looks like MinGW
+target tried to use it with logical fails. Reported by Thiago.
+
 Revision 1.105  2002/06/03 13:50:54  set
 * Added: [Win32] According to Thiago newer versions of MinGW have their own
 uname command that reports MINGW32_<windows flavor>. Added to the
