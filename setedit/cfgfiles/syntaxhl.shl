@@ -1117,7 +1117,7 @@ End
 # Modified by:    Jan Cnops <Jan.Cnops@hogent.be>
 #
 Name=TeX
-Files=tex,ltx,sty
+Files=tex,ltx,sty,latex
 EOLComment1=%
 AllowedInsideNames=},*
 CanStartAName=\,{
