@@ -209,6 +209,8 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *actPath=StackPath->GetStrOf(StackPath->GetTopHandle());
 
  char *ret;
+ fI.len=strlen(endOfLine+1);
+ fI.offset=endOfLine-buf+1;
  if (offset || buf[0]=='/' || buf[0]=='\\')
    { // Absolute path
     ret=strdup(buf);
@@ -221,6 +223,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     DynStrCatInit(&msgLine,actPath);
     DynStrCat(&msgLine,buf);
     ret=msgLine.str;
+    fI.offset+=strlen(actPath);
    
     DynStrCatStruct File;
     DynStrCatInit(&File,actPath);
@@ -284,6 +287,7 @@ char *ParseFunCLE(char *buf, FileInfo &fI, char *&fileName)
  CLEGetMatch(CLEValues[IndexCLE].Line,fName,PATH_MAX);
  fI.Line=atoi(fName);
  fI.Column=1;
+ CLEGetMatch(CLEValues[IndexCLE].Description,fI.offset,fI.len);
 
  //CLEGetMatch(CLEValues[IndexCLE].Description,fName,PATH_MAX);
  return strdup(buf);

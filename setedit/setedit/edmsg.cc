@@ -135,7 +135,8 @@ void TSOSListBoxMsg::selectItem(ccIndex item)
     if (fI->Line>=0)
       {
        char *fileName=Stack->GetStrOf(Stack->GetPreviousOf(aux));
-       selectOK=GotoFileLine(SpLineGetNewValueOf(fI->Line,fileName),fileName,msg);
+       selectOK=GotoFileLine(SpLineGetNewValueOf(fI->Line,fileName),fileName,msg,
+                             fI->offset,fI->len);
       }
    }
 }
@@ -296,9 +297,9 @@ int TSOSListBoxMsg::getLineOf(int pos)
  return fI->Line;
 }
 
-void TSOSListBoxMsg::selectNext(void)
+void TSOSListBoxMsg::selectNext(int offset)
 {
- int nFocus=focused+1;
+ int nFocus=focused+offset;
 
  while (nFocus<range)
    {
@@ -312,11 +313,13 @@ void TSOSListBoxMsg::selectNext(void)
       }
     nFocus++;
    }
+ // Try to go to the last
+ selectPrev(0);
 }
 
-void TSOSListBoxMsg::selectPrev(void)
+void TSOSListBoxMsg::selectPrev(int offset)
 {
- int nFocus=focused-1;
+ int nFocus=focused-offset;
 
  while (nFocus>=0)
    {
@@ -330,6 +333,8 @@ void TSOSListBoxMsg::selectPrev(void)
       }
     nFocus--;
    }
+ // Try to go to the first
+ selectNext(0);
 }
 
 static void InsertInHelper(void)

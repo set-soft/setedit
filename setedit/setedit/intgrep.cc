@@ -136,6 +136,8 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     return 0;
 
  char *ret;
+ fI.len=strlen(endOfLine+1);
+ fI.offset=endOfLine-buf+1;
  if (offset)
    {
     ret=strdup(buf);
@@ -148,6 +150,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     DynStrCatInit(&msgLine,ActualPath);
     DynStrCat(&msgLine,buf);
     ret=msgLine.str;
+    fI.offset+=strlen(ActualPath);
    
     DynStrCatStruct File;
     DynStrCatInit(&File,ActualPath);
