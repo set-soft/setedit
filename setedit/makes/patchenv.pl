@@ -74,12 +74,12 @@ sub PatchFile
           else
             {# Robert screwed-up the projects in 1.5
              # and the gprexp tool makes things even worst.
-             if ($r =~ /(\S+)\/tv\.h/)
+             if ($r =~ /(\S+)\/compatlayer\.h/)
                {
                 $toRep=$1;
                }
              else
-               {
+               {# Not all have TV dependencies
                 #die "Can't find original TVISION_INC, nor tv.h path! ($i)";
                 $toRep=$value;
                }
@@ -87,8 +87,7 @@ sub PatchFile
           if ($toRep ne $value)
             {
              # Ok, now replace any dependency
-             $dep=$1;
-             $r =~ s/$dep\/([\w\.\/]+)/$value\/$1/mg;
+             $r =~ s/$toRep\/([\w\.\/]+)/$value\/$1/mg;
              # And the value
              $r =~ s/$repl/$name=$value/mg;
              print 'd';
