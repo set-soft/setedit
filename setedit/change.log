@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.545  2004/07/22 00:59:15  set
+* Added: When using the tag search if we find a perfect match now we jump
+directly to the tag. Suggested by Thiago.
+* Added: Two new commands: cmeGPushCursorPos and cmeGPopCursorPos. They are
+"global push/pop cursor pos". So they also remmember the file. They help to
+implement a "tag stack". From what Thiago suggested.
+* Added: Before jumping to a tag the editor does a cmeGPushCursorPos.
+
 Revision 1.544  2004/07/21 19:59:04  set
 * Fixed: When deleting a breakpoint the editor could hang if the breakpoint
 couldn't be found.
