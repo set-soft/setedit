@@ -1,3 +1,12 @@
+setedit (0.5.0-0.2) unstable; urgency=low
+
+  * Added build dependency on aalib1-dev, so the AALib-Plasma screensaver
+    gets built.
+  * Added a translation to Spanish of the DebConf template file (new file
+    debian/setedit.templates.es, added to makes/lista).
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Fri,  6 Sep 2002 13:14:05 -0300
+
 setedit (0.5.0-0.1) unstable; urgency=low
 
   * New upstream alpha version from CVS dated 5 Sep 2002.

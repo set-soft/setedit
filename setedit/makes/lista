@@ -58,6 +58,7 @@ debian/maintainer.notes
 +debian/rules
 +debian/setedit.config
 debian/setedit.templates
+debian/setedit.templates.es
 debian/setedit.doc-base
 debian/setedit.menu
 debian/setedit.postinst

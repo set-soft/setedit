@@ -1,10 +1,21 @@
-$Log$.
+$Log$
+Revision 1.197  2002/09/06 16:12:11  set
+* Fixed: A bug in the undo of text typed while using overwrite mode. It
+could unsynchronize the cursor position. Is amazing it was there after so
+much time. And the next is even worst:
+* Fixed: When typing in overwrite mode the line length was wrongly
+computed. It wasn't too bad because it is computed again when the line is
+flushed but originated some nasty syntax highlight errors.
+*** The fixes seems ok, but the overwrite mode should be temporally
+    considered unstable ***
+Both found while testing David's report.
+.
 Revision 1.196  2002/09/06 15:27:18  set
 * Fixed: When restoring the settings of a closed window (or project item)
 the "overwrite" status wasn't reflected in the cursor shape. Reported by
 David A. Capello <dacap@users.sourceforge.net>
 
-Revision 1.195  2002/09/06 00:10:29  terrible
+Revision 1.195  2002/09/06 00:10:28  terrible
 * Updated: Debian packaging to version 0.5.0-0.1.
 
 Revision 1.194  2002/09/04 20:32:32  set
