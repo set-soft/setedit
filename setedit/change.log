@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.225  2002/11/05 13:13:33  set
+* Fixed: Now when choosing to "never remember windows" the options "resume"
+isn't applied. Note it was possible to choose such a behavior by choosing
+not to remmember the cursor position. From a suggestion by Grzegorz.
+
 Revision 1.224  2002/10/29 14:58:25  set
 * Fixed: When specifying a new project from command line the preLoad
 mechanism failed giving a SIGSEGV. Reported by Grzegorz.

@@ -131,6 +131,7 @@ while ($a=<>)
         {
          close FIL;
         }
+      $dirNewFile='.' if !$dirNewFile;
       print "New file: $dirNewFile/$1\n";
       open(FIL,">$dirNewFile/$1") || die;
       $inNewFile=1;
