@@ -413,7 +413,6 @@ Makefile
 makes/.cvsignore
 makes/allegro.cfg
 -makes/amp3.gpr
-makes/common.imk
 *makes/djgppenv.env
 makes/djgpp/compinf.pl
 *makes/djgpp/compress.bat

@@ -8,7 +8,7 @@
 #
 # Source directories
 #
-vpath_src=../install ../easydiag
+vpath_src=../install ../easydiag ../settvuti ../settvuti/names ../settvuti/streams
 #
 # Include directories
 #
@@ -37,6 +37,8 @@ INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 # Any configurable detail should come from here.
 #
 include rhide.env
+# This is specific for this project
+RHIDE_OS_LIBS:=$(RHIDE_OS_LIBS) win
 
 #
 # Common rules used by RHIDE.
