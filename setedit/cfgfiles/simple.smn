@@ -1,4 +1,4 @@
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 #  Simple menu to avoid confusing people with too much options.
@@ -69,6 +69,9 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~P~revious", cmePrev, kbShCtTab, "Ctrl+Shift+Tab"
  MenuItemC: "~C~lose", cmeClose, kbCtF4, "Ctrl+F4"
  MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
+ MenuSeparator
+ MenuItemC: "Sc~r~oll Up", cmcScrollUp, kbCtZ, "Ctrl+Z"
+ MenuItemC: "Scroll ~D~own", cmcScrollDown, kbCtW, "Ctrl+W"
 EndSubMenu
 
 SubMenu: "~T~ool&Ops", kbAlT

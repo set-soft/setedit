@@ -143,6 +143,9 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~C~lose", cmeClose, kbCtF4, "Ctrl+F4"
  MenuItemC: "~L~ist", cmeListWin, kbAl0, "Alt+0"
  MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
+ MenuSeparator
+ MenuItemC: "Sc~r~oll Up", cmcScrollUp
+ MenuItemC: "Scroll ~D~own", cmcScrollDown, kbCtW, "Ctrl+W"
 EndSubMenu
 
 SubMenu: "~T~ool&Ops", kbAlT
