@@ -2062,6 +2062,6 @@ Keywords=TV,DOS,Linux,QNX,X11,XTerm,Win32,WinNT
 # Variables
 Keywords=Priority,UseVCS,UseMDA,PatchKeys,ShowCursorEver,Font10x20
 Keywords=ScreenWidth,ScreenHeight,FontWidth,FontHeight,UseSecondaryFont
-Keywords=ScreenPalette,HideCursorWhenNoFocus
+Keywords=ScreenPalette,HideCursorWhenNoFocus,ExtProgVideoMode,VideoMode
 End
 

@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.181  2002/08/26 13:40:48  set
+* Modified: Moved edHelper and clipWindow to the main class.
+* Modified: Moved some global functions related to the load desktop to the
+class as statics. Also modified some code to adapt for it.
+* Modified: More code for the driver settings stuff, added a function to
+transfer the loaded values to the "config file" TV tree, the so member is
+now a pointer to the settings for the current driver in the settings
+collection, etc.
+
 Revision 1.180  2002/08/23 15:22:46  set
 * Added: HideCursorWhenNoFocus tvrc keyword.
 

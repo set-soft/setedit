@@ -208,6 +208,7 @@ public:
     static void    loadEditorDesktop(int LoadPrj, char *name=0,
                                      int haveFilesCL=0, int preLoad=0);
     static void    transferSetting2TV(stScreenOptions *p);
+    static void    displayDetectCallBack();
     void ShowUserScreen(TEvent &event);
     void createClipBoard(void);
     virtual void idle();

@@ -282,44 +282,145 @@ void TSetEditorApp::loadEditorDesktop(int LoadPrj, char *suggestedName,
  LoadInstallationDefaults();
 }
 
-void TSetEditorApp::preLoadDesktop(char *name, int haveFilesCL)
-{
- if (!soCol)
-    soCol=new TScOptsCol();
- so=NULL;
- loadEditorDesktop(1,name,haveFilesCL,1);
- // TODO: si no hay defaults hacer que el primer driver lo sea
-}
+/**[txh]********************************************************************
 
-void TSetEditorApp::finishPreLoadDesktop()
+  Description:
+  This call back is used by TV to indicate which driver was detected. The
+driver isn't initialized yet, so we can set default options for the driver
+here.
+  
+***************************************************************************/
+
+void TSetEditorApp::displayDetectCallBack()
 {
  const char *drv=TScreen::getDriverShortName();
  ccIndex pos;
+ int adjustVideoMode=0;
+
+ // Make "so" member point to a valid set of options
  if (soCol->search((void *)drv,pos))
     // Ok, we had the options for this driver
     so=(stScreenOptions *)soCol->at(pos);
  else
-   {// We didn't know about it
+   {// We don't know about it ...
     if (soCol->search((void *)defaultDrvName,pos))
-      {// We used the defaults, associate them with this driver
+      {// but we have defaults, associate them with this driver
        so=(stScreenOptions *)soCol->at(pos);
        DeleteArray(so->driverName);
        so->driverName=newStr(drv);
+       adjustVideoMode=1;
       }
     else
-      {// Nothing, create a default
-       so=new stScreenOptions;
-       memset(so,0,sizeof(stScreenOptions));
-       so->driverName=newStr(drv);
-       so->enApp=so->enScr=so->enSnd=so->enInp=-1;
-       so->foPriW=8; so->foPriH=16;
-       so->scCharWidth=8; so->scCharHeight=16;
-       so->scModeNumber=3;
-       so->scWidth=80; so->scHeight=25;
-       soCol->Insert(so);
+      {// do we have at least one set of options?
+       if (soCol->getCount()==0)
+         {// Nope, so just create a default group of settings.
+          so=new stScreenOptions;
+          memset(so,0,sizeof(stScreenOptions));
+          so->driverName=newStr(drv);
+          so->enApp=so->enScr=so->enSnd=so->enInp=-1;
+          so->foPriW=8; so->foPriH=16;
+          so->scCharWidth=8; so->scCharHeight=16;
+          so->scModeNumber=3;
+          so->scWidth=80; so->scHeight=25;
+          soCol->Insert(so);
+         }
+       else
+         {// yes, use the first available
+          stScreenOptions *reference=(stScreenOptions *)soCol->at(0);
+          so=new stScreenOptions;
+          memcpy(so,reference,sizeof(stScreenOptions));
+          adjustVideoMode=strcmp(so->driverName,"DOS")==0 && strcmp(drv,"DOS")!=0;
+          so->driverName=newStr(drv);
+          #define CP(a) if (reference->a) so->a=newStr(reference->a);
+          CP(foPriName);
+          CP(foSecName);
+          CP(scCommand);
+          #undef CP
+          transferSetting2TV(so);
+          soCol->Insert(so);
+         }
       }
    }
 
+ // Now fill the needed fields
+ int setCallBack=0;
+ TVBitmapFontDescCol *fonts=NULL;
+ // Get the list of available fonts
+ if ((so->foPriLoad && so->foPriName) || (so->foSecLoad && so->foSecName))
+    fonts=TVFontCollection::CreateListOfFonts(GetVariable("SET_FILES"));
+ if (so->foPriLoad && so->foPriName)
+   {// We want a primary font
+    // Search the file name
+    if (fonts->search(so->foPriName,pos))
+      {// Ok!
+       so->foPriFile=newStr(((TVBitmapFontDesc *)fonts->at(pos))->file);
+       // Create a collection of fonts using the encoding we used last run
+       so->foPri=new TVFontCollection(so->foPriFile,so->enScr);
+       if (so->foPri->GetError())
+         {// We failed to load the file :-(
+          delete so->foPri;
+          so->foPri=NULL;
+         }
+       else
+          // Got the fonts, hook the font requester
+          setCallBack=1;
+      }
+   }
+ // Same for secondary font
+ if (so->foSecLoad && so->foSecName)
+   {
+    if (fonts->search(so->foSecName,pos))
+      {
+       so->foSecFile=newStr(((TVBitmapFontDesc *)fonts->at(pos))->file);
+       so->foSec=new TVFontCollection(so->foSecFile,so->enScr);
+       if (so->foSec->GetError())
+         {
+          delete so->foSec;
+          so->foSec=NULL;
+         }
+       else
+          setCallBack=1;
+      }
+   }
+ if (setCallBack && !so->foCallBackSet)
+   {
+    TScreen::setFontRequestCallBack(FontRequestCallBack);
+    so->foCallBackSet=1;
+   }
+ destroy(fonts);
+
+ if (adjustVideoMode && so->scOptions==scfMode)
+   {// These settings come from DOS. Is much better to indicate resolutions.
+    unsigned w, h;
+    int fW, fH;
+    if (TDisplay::searchDOSModeInfo(so->scModeNumber,w,h,fW,fH))
+      {
+       so->scOptions=scfForced;
+       so->scWidth=w; so->scHeight=h;
+       so->scCharWidth=fW; so->scCharHeight=fH;
+       TVMainConfigFile::Add(drv,"ScreenWidth",w);
+       TVMainConfigFile::Add(drv,"ScreenHeight",h);
+       TVMainConfigFile::Add(drv,"FontWidth",fW);
+       TVMainConfigFile::Add(drv,"FontHeight",fH);
+      }
+   }
+ //TVMainConfigFile::Print(stderr);
+}
+
+void TSetEditorApp::preLoadDesktop(char *name, int haveFilesCL)
+{
+ if (!soCol)
+   {
+    soCol=new TScOptsCol();
+    TDisplay::setDetectCallBack(displayDetectCallBack);
+   }
+ so=NULL;
+ loadEditorDesktop(1,name,haveFilesCL,1);
+}
+
+void TSetEditorApp::finishPreLoadDesktop()
+{
+ // TODO: code moved to the call back. Should I keep it?
 }
 
 /**[txh]********************************************************************
@@ -1010,10 +1111,7 @@ void TSetEditorApp::transferSetting2TV(stScreenOptions *p)
     TVMainConfigFile::Add(drv,"FontHeight",p->foPriH);
    }
 
- // TODO: Rellenar!
- //TVFontCollection *foPri, *foSec;
-
- if (p->scOptions==scfSameLast || p->scOptions==scfForced)
+ if (p->scOptions!=scfDontForce && p->scWidth)
    {
     TVMainConfigFile::Add(drv,"ScreenWidth",p->scWidth);
     TVMainConfigFile::Add(drv,"ScreenHeight",p->scHeight);
@@ -1023,9 +1121,15 @@ void TSetEditorApp::transferSetting2TV(stScreenOptions *p)
        TVMainConfigFile::Add(drv,"FontHeight",p->scCharHeight);
       }
    }
- // TODO: Resolver:
- //scfExternal=2,
- //scfMode=4;
+ if (p->scOptions==scfExternal)
+   {
+    TVMainConfigFile::Add(drv,"ExtProgVideoMode",p->scCommand);
+   }
+ else if (p->scOptions==scfMode)
+   {
+    TVMainConfigFile::Add(drv,"VideoMode",p->scModeNumber);
+   }
+
  const TScreenColor *pal=TDisplay::getDefaultPalette();
  unsigned i;
  for (i=0; i<16; i++)
@@ -1044,12 +1148,9 @@ void TSetEditorApp::transferSetting2TV(stScreenOptions *p)
        }
 }
 
-// TODO: Ojo!!! si todas fallan hay que crear algo por defecto o tolerarlo!!!
 Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
 {
  char buffer[80];
-// unsigned auxUN;
-// int auxINT;
 
  s.readString(buffer,80);
  if (strcmp(buffer,Signature)!=0)
@@ -1068,6 +1169,7 @@ Boolean TSetEditorApp::preLoadDesktop(fpstream &s)
    {// The preLoad was introduced in the 0.4.x to 0.5.x change.
     // We have to extract the information from the old structure.
     stScreenOptions *scrOps=new stScreenOptions;
+    memset(scrOps,0,sizeof(stScreenOptions));
     if (deskTopVersion>=0x404)
        loadOldFontInfo(s,scrOps);
     #ifdef TVCompf_djgpp
@@ -1163,11 +1265,6 @@ void *TScOptsCol::readItem(ipstream &is)
  unsigned i;
  for (i=0; i<16; i++)
      is >> p->palette[i].R >> p->palette[i].G >> p->palette[i].B;
- // TODO: ¿Determinar esto? creo que mejor dejarlo demorado
- // char *foPriFile, *foSecFile;
- // TVFontCollection *foPri, *foSec;
- // uchar foPriLoaded, foSecLoaded;
- // uchar foCallBackSet;
  return p;
 }
 
