@@ -1,4 +1,7 @@
 $Log$
+Revision 1.24  2001/11/07 13:08:02  set
++
+
 Revision 1.490  2001/11/07 00:22:36  root
 * Fixed: InfView crashed when loading desktops of older versions. Reported
 by Thiago.
@@ -31,6 +34,9 @@ distribution (only installation). Also fixed the indentation.
 
 Revision 1.484  2001/10/31 01:37:57  set
 * Synchronized home CVS with S.F.
+
+Revision 1.23  2001/11/02 21:17:28  terrible
+* Updated: Debian packaging to 0.4.51-3.
 
 Revision 1.22  2001/10/29 18:40:35  terrible
 * Modified: added a '--comp-exe' switch to the configure script to force all

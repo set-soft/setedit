@@ -1,3 +1,12 @@
+setedit (0.4.51-4) unstable; urgency=low
+
+  * No changes, just a newer upstream source from CVS and I will upload
+    this version to the repository together with a little newer stable
+    RHTVision, so people can test this release of the editor which is
+    near to be the official stable one.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun, 11 Nov 2001 18:00:02 -0300
+
 setedit (0.4.51-3) unstable; urgency=low
 
   * The package was registering /usr/share/doc/setedit/editor.txt.gz as
