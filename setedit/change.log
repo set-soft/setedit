@@ -1,4 +1,7 @@
 $Log$
+Revision 1.21  2001/10/29 14:40:18  set
+* Added: --no-intl configuration option. Patch sent by jimmy@ncp.infonet.bg.
+
 Revision 1.20  2001/10/29 14:15:25  set
 * Synchronized S.F. CVS with changes made at home.
 
@@ -1245,7 +1248,7 @@ programs to reduce the redraw. Linux's frame buffer is poorly implemented and
 have a really bad performance producing amazingly huge delays. Reported by
 Grzegorz.
 .
-Revision 1.331  2000/06/06 00:49:03  root (set)
+Revision 1.331  2000/06/06 00:49:03  set
 * Added: A check and warning for/by makeinfo during configuration.
 
 Revision 1.330  2000/06/06 00:41:40  root (set)
