@@ -8425,6 +8425,7 @@ int TCEditor::ComputeXLineInEdition()
     }
  if (i>curPos.x) // Only when the cursor is over a tab
     inEditPtr--;
+ return i;
 }
 
 /****************************************************************************
