@@ -109,6 +109,7 @@ OBJFILES=\
 	obj/pmacros$(ExOBJ) \
 	obj/pperl$(ExOBJ) \
 	obj/pphp$(ExOBJ) \
+	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
@@ -252,6 +253,7 @@ editor$(ExEXE):: \
 	obj/pmacros$(ExOBJ) \
 	obj/pperl$(ExOBJ) \
 	obj/pphp$(ExOBJ) \
+	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
@@ -544,6 +546,9 @@ obj/pperl$(ExOBJ):: ../mainsrc/pperl.cc
 	$(RHIDE_COMPILE_CC)
 
 obj/pphp$(ExOBJ):: ../mainsrc/pphp.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/ppython$(ExOBJ):: ../mainsrc/ppython.cc  
 	$(RHIDE_COMPILE_CC)
 
 obj/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc  

@@ -1,5 +1,13 @@
 $Log$
 
+-------- CVS TAG r0_5_4DOS
+
+Revision 1.640  2004/11/29 16:20:31  set
+* Fixed: [DJGPP][Maintainer dependencies] The path to system headers to be
+excluded from dependencies must include the gcc 3.x dir.
+* Fixed: [DJGPP][gcc 3.x] Inline assembler lines using more than one line.
+* Modified: [DJGPP][libamp] Moved some headers.
+
 -------- CVS TAG r0_5_4
 
 Revision 1.639  2004/11/23 00:42:57  terrible

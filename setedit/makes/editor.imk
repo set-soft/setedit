@@ -109,6 +109,7 @@ OBJFILES=\
 	obj/pmacros$(ExOBJ) \
 	obj/pperl$(ExOBJ) \
 	obj/pphp$(ExOBJ) \
+	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
@@ -252,6 +253,7 @@ editor$(ExEXE):: \
 	obj/pmacros$(ExOBJ) \
 	obj/pperl$(ExOBJ) \
 	obj/pphp$(ExOBJ) \
+	obj/ppython$(ExOBJ) \
 	obj/pvarious$(ExOBJ) \
 	obj/runprog$(ExOBJ) \
 	obj/sceditor$(ExOBJ) \
@@ -4206,6 +4208,25 @@ obj/pperl$(ExOBJ):: ../mainsrc/pperl.cc \
 
 obj/pphp$(ExOBJ):: ../mainsrc/pphp.cc \
 	bufun.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
+obj/ppython$(ExOBJ):: ../mainsrc/ppython.cc \
+	bufun.h \
+	compatlayer.h \
+	tv.h \
+	tv/configtv.h \
+	tv/intl.h \
+	tv/ipstream.h \
+	tv/opstream.h \
+	tv/pstream.h \
+	tv/stddlg.h \
+	tv/system.h \
+	tv/tobjstrm.h \
+	tv/ttypes.h \
+	tv/tvconfig.h \
+	tv/tvutil.h \
+	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

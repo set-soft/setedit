@@ -54,6 +54,7 @@ libset$(ExLIB):: \
 	objlib/pmacros$(ExOBJ) \
 	objlib/pperl$(ExOBJ) \
 	objlib/pphp$(ExOBJ) \
+	objlib/ppython$(ExOBJ) \
 	objlib/pvarious$(ExOBJ) \
 	objlib/rhideint$(ExOBJ) \
 	objlib/sceditor$(ExOBJ) \
@@ -194,6 +195,9 @@ objlib/pperl$(ExOBJ):: ../mainsrc/pperl.cc
 	$(RHIDE_COMPILE_CC)
 
 objlib/pphp$(ExOBJ):: ../mainsrc/pphp.cc  
+	$(RHIDE_COMPILE_CC)
+
+objlib/ppython$(ExOBJ):: ../mainsrc/ppython.cc  
 	$(RHIDE_COMPILE_CC)
 
 objlib/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc  

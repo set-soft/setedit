@@ -422,6 +422,7 @@ mainsrc/pphp.cc
 mainsrc/pmacros.cc
 mainsrc/pperl.cc
 mainsrc/pvarious.cc
+mainsrc/ppython.cc
 mainsrc/rhideint.cc
 mainsrc/sdginter.cc
 mainsrc/search.cc

@@ -50,5 +50,6 @@ extern int SearchSHLDefs(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchTxiSecs(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchAsmLabels(char *b, unsigned l, int mode, tAddFunc AddFunc);
 extern int SearchPHPFuncs(char *srcBuffer, unsigned len, int mode, tAddFunc addFunc);
+extern int SearchPythonSymbols(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 
 #endif // BUFUN_H_INCLUDED
