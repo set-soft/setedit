@@ -1,4 +1,37 @@
 $Log$
+Revision 1.490  2001/11/07 00:22:36  root
+* Fixed: InfView crashed when loading desktops of older versions. Reported
+by Thiago.
+
+Revision 1.489  2001/11/07 00:10:49  set
+* Fixed: The indent uncomenting was taking an extra line. Reported by
+Thiago.
+* Fixed: The undo of the indent commenting let the rectangle selection
+visible.
+
+Revision 1.488  2001/11/06 01:17:37  set
+* Modified: Reverted to non-BIOS keyboard by default. The BIOS stuff discards
+very used combinations. I put it in the FAQ and also modified the readme.
+
+Revision 1.487  2001/11/06 01:04:10  set
+* Added: Mazovia code page. That's a polish code page based on PC437. It
+discards some accents that aren't used by polish and puts the needed chars
+there. Piotr <piotr@asco.biz.pl> asked for it and helped me to add it.
+
+Revision 1.486  2001/10/31 03:03:07  set
+* Fixed: When the editor was configured to forget about opened windows when
+specifying new files in the command line the editor put the old files in
+the list of closed files allowing to recover them easilly and remmembering
+things like window position and size. But the editor failed to remmember
+the cursor position. Reported by Ivan.
+
+Revision 1.485  2001/10/31 01:57:14  set
+* Fixed: The new compression scheme by "terrible" didn't apply to
+distribution (only installation). Also fixed the indentation.
+
+Revision 1.484  2001/10/31 01:37:57  set
+* Synchronized home CVS with S.F.
+
 Revision 1.22  2001/10/29 18:40:35  terrible
 * Modified: added a '--comp-exe' switch to the configure script to force all
 executables produced to be compressed with UPX, and now the default behaviour
