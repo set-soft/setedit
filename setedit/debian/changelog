@@ -1,3 +1,13 @@
+setedit (0.4.51-3) unstable; urgency=low
+
+  * The package was registering /usr/share/doc/setedit/editor.txt.gz as
+    text documentation to doc-base, but it seems to have changed to
+    setedit.txt.gz sometime and I forgot to modify it on the doc-base
+    control file. I have noticed it when browsing with dpkg-www,
+    lintian and doc-base didn't tell anything about it!
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Fri,  2 Nov 2001 17:30:49 -0300
+
 setedit (0.4.51-2) unstable; urgency=low
 
   * Updated upstream sources from CVS, it has small bugfixes and tweaks
