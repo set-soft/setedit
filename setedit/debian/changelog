@@ -1,3 +1,13 @@
+setedit (0.4.52-2) unstable; urgency=low
+
+  * Well, in the period of last testing of the stable release, some
+    small issues where discovered and fixed. Note that the release was
+    not announced, it was only announced on the setedit-users mailing
+    list and as a prerelease. Lets hope that this becomes the real
+    release.
+
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Tue,  4 Dec 2001 02:10:43 -0300
+
 setedit (0.4.52-1) unstable; urgency=low
 
   * The "Arriba Uruguay nomá!!!" release, Uruguay goes to the Fifa
