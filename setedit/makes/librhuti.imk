@@ -19,74 +19,74 @@ librhuti.a:: \
 	$(RHIDE_COMPILE_ARCHIVE)
 
 obj/abstorel.o:: abstorel.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/back2sl.o:: back2sl.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/basename.o:: basename.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/fexpand.o:: fexpand.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h \
+	rhutils.h \
+	compatlayer.h \
+	tv/configtv.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/io.o:: io.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(TVISION_INC)/cl/unistd.h \
-	$(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h \
+	rhutils.h \
+	cl/unistd.h \
+	compatlayer.h \
+	tv/configtv.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/specs.o:: specs.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
-	$(TVISION_INC)/compatlayer.h \
-	$(TVISION_INC)/tv/configtv.h \
+	rhutils.h \
+	compatlayer.h \
+	tv/configtv.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/splitfn.o:: splitfn.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/stricat.o:: stricat.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/stridown.o:: stridown.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/stridup.o:: stridup.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
 
 obj/strifree.o:: strifree.cc \
-	$(LIBRHUTI_INC_DIR)/rhutils.h \
+	rhutils.h \
 	rhide.env \
 	common.imk 
 	$(RHIDE_COMPILE_CC)
