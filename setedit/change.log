@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.453  2003/10/16 19:41:54  set
+* Fixed: A code page problem. A little bit complex to describe: If you
+started the editor for the first time in a Linux console and forced the
+encoding to "Latin 1u" (improperly configured system IMHO). Then you
+acessed remotly to this system using XTerm you got a messed code page and
+no way to fix it. This is because the editor tried to use Linux console
+settings but as XTerm can't change its code page you have no way to disable
+the "forced" check box for the screen code page. Now the editor avoids it.
+
 Revision 1.452  2003/10/16 19:40:54  set
 * Fixed: The "Jump" button in the main window of the class browser produced
 SIGSEGVs. I went too far reusing code ;-). Reported by Ivan.

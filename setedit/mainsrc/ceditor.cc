@@ -1599,17 +1599,12 @@ char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
  return word;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void SelWordUnderCursor(void)
-
-   Type: TCEditor member.
-
-   Objetive: Select the word under cursor.
-
-   by SET.
-
-****************************************************************************/
+  Description:
+  Select the word under cursor.
+  
+***************************************************************************/
 
 void TCEditor::SelWordUnderCursor(void)
 {
@@ -1624,10 +1619,39 @@ void TCEditor::SelWordUnderCursor(void)
    }
  else
    {
-    // If isn't in a word walk forward
-    for (;p<end && !isWordChar(*p); ++p);
-    if (!isWordChar(*p))
-       return;
+    if (0) // This is the original code. It ever takes the next word.
+      {
+       // if isn't in a word walk forward
+       for (;p<end && !isWordChar(*p); ++p);
+       if (!isWordChar(*p))
+          return;
+      }
+    else
+      { // This code tries to be a little bit smarter and takes the closest word.
+       unsigned distF, distB;
+       char *forward=p, *back=p;
+       // Search forward
+       for (;forward<end && !isWordChar(*forward); ++forward);
+       if (isWordChar(*forward))
+          distF=forward-p;
+       else
+          distF=bufLen+1;
+       // Search backward
+       for (;back>buffer && !isWordChar(*back); --back);
+       if (isWordChar(*back))
+          distB=p-back;
+       else
+          distB=bufLen+1;
+       for (;back>buffer && isWordChar(*back); --back);
+       if (back!=buffer) back++;
+       // Take one
+       if (distF==distB && distF==bufLen+1)
+          return;
+       if (distF<=distB)
+          p=forward;
+       else
+          p=back;
+      }
    }
  selStartOffSet=selStart=(uint32)(p-buffer);
  // Now forward to the end
