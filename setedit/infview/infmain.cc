@@ -1,3 +1,7 @@
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+   see copyrigh file for details */
+#include <ceditint.h>
+
 #define Uses_TApplication
 #define Uses_TEditWindow
 #define Uses_TDeskTop
@@ -18,7 +22,17 @@
 #define Uses_sys_stat
 #define Uses_getopt
 #define Uses_TCEditor_Commands
+#define Uses_TNSSortedCollection
+
+#define Uses_TSSortedListBox
+#define Uses_TSLabel
+#define Uses_TSButton
+
+// First include creates the dependencies
+#include <easydia1.h>
 #include <ceditor.h>
+// Second request the headers
+#include <easydiag.h>
 
 #include "infalone.h"
 
@@ -28,81 +42,68 @@
 #include <strstream.h>
 #include <iomanip.h>
 #include "inf.h"
-//#include <ssyntax.h>
+#define Uses_TManWindow
+#include <manview.h>
+#include <codepage.h>
 
 #define INFVIEW_VERSION_STR "0.2.7"
-
-#define _cpColor \
-    "\x71\x70\x78\x74\x20\x28\x24\x17\x1F\x1A\x31\x31\x1E\x71\x00" \
-    "\x37\x3F\x3A\x13\x13\x3E\x21\x00\x70\x7F\x7A\x13\x13\x70\x7F\x00" \
-    "\x70\x7F\x7A\x13\x13\x70\x70\x7F\x7E\x20\x2B\x2F\x78\x2E\x70\x30" \
-    "\x3F\x3E\x1F\x2F\x1A\x20\x72\x31\x31\x30\x2F\x3E\x31\x13\x00\x00" \
-    /*"\x1E\x71"*/ \
- cInfColor \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D" "\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    /* cCrossCur, cStatusLi, cMPHighL, cRectSel */ \
-    "\x70\x7C\x5F\x67\xF0\xF0\xF0\xF0\xF0\xF0" 
-
-#define _cpBlackWhite \
-    "\x70\x70\x78\x7F\x07\x07\x0F\x07\x0F\x07\x70\x70\x07\x70\x00" \
-    "\x07\x0F\x07\x70\x70\x07\x70\x00\x70\x7F\x7F\x70\x07\x70\x07\x00" \
-    "\x70\x7F\x7F\x70\x07\x70\x70\x7F\x7F\x07\x0F\x0F\x78\x0F\x78\x07" \
-    "\x0F\x0F\x0F\x70\x0F\x07\x70\x70\x70\x07\x70\x0F\x07\x07\x00\x00" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C"\
-    /* cCrossCur, cStatusLi, cMPHighL, cRectSel */ \
-    "\x70\x7C\x5F\x67\xF0\xF0\xF0\xF0\xF0\xF0" \
-    cInfBlackWhite
-
-#define _cpMonochrome \
-    "\x70\x07\x07\x0F\x70\x70\x70\x07\x0F\x07\x70\x70\x07\x70\x00" \
-    "\x07\x0F\x07\x70\x70\x07\x70\x00\x70\x70\x70\x07\x07\x70\x07\x00" \
-    "\x70\x70\x70\x07\x07\x70\x70\x70\x0F\x07\x07\x0F\x70\x0F\x70\x07" \
-    "\x0F\x0F\x07\x70\x07\x07\x70\x07\x07\x07\x70\x0F\x07\x07\x00\x00" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C" \
-    "\x1E\x71" \
-    "\x17\x12\x1E\x1F\x1B\x15\x16\x3F\x2B\x1D\x1A\x2C\x13\x00\x00\x1C"\
-    /* cCrossCur, cStatusLi, cMPHighL, cRectSel */ \
-    "\x70\x7C\x5F\x67\xF0\xF0\xF0\xF0\xF0\xF0" \
-    cInfMonochrome
+const char *EditorFile="setedit";
 
 TStatusLine *createStatusForInfView(TRect r);
 TEditWindow *clipMiWindow;
 
+static int views=0,infViews=0;
 
-static int views=0;
+class TInfViewList: public TNSSortedCollection
+{
+public:
+ TInfViewList() :
+   TNSSortedCollection(3,3) {}
+
+private:
+ virtual int compare(void *key1, void *key2);
+};
+
+int TInfViewList::compare(void *key1, void *key2)
+{
+ return (ulong)key1-(ulong)key2;
+}
+
+TInfViewList *List=0;
 
 static
-void SetCommands(Boolean enable)
+void SetCommands()
 {
  TCommandSet ts;
- ts.enableCmd(cmInfGoto);
+
+ ts.enableCmd(cmcFind);
+ ts.enableCmd(cmcCopyClipWin);
+ ts.enableCmd(cmcCopy);
+ ts.enableCmd(cmcSearchAgain);
+
+ ts.enableCmd(cmInfHelp);
+ ts.enableCmd(cmInfControl);
+ ts.enableCmd(cmInfBack);
+ ts.enableCmd(cmInfPasteIn);
+ ts.enableCmd(cmInfBookM);
  ts.enableCmd(cmInfNodes);
+ ts.enableCmd(cmInfGoto);
+ ts.enableCmd(cmInfOpen);
+ ts.enableCmd(cmInfDir);
+ ts.enableCmd(cmInfTop);
+
  ts.enableCmd(chcdNext);
  ts.enableCmd(chcdPrev);
  ts.enableCmd(chcdUp);
- ts.enableCmd(cmInfTop);
- ts.enableCmd(cmInfDir);
- ts.enableCmd(cmcFind);
- ts.enableCmd(cmcSearchAgain);
+ ts.enableCmd(chcdPrevH);
+ ts.enableCmd(chcdHide);
+ ts.enableCmd(chcdNodeList);
+ ts.enableCmd(chcdBookMarks);
  ts.enableCmd(chcdConfigDia);
- ts.enableCmd(cmInfControl);
- ts.enableCmd(cmInfBookM);
- if (enable)
-    TView::enableCommands(ts);
- else
-    TView::disableCommands(ts);
+ ts.enableCmd(chcdOpenInfo);
+ ts.enableCmd(chcdHistSel);
+
+ TView::disableCommands(ts);
 }
 
 static
@@ -112,20 +113,22 @@ void SetPluralCommands(Boolean enable)
    {
     TView::enableCommand(cmTile);
     TView::enableCommand(cmCascade);
+    TView::enableCommand(cmNext);
+    TView::enableCommand(cmPrev);
    }
  else
    {
     TView::disableCommand(cmTile);
     TView::disableCommand(cmCascade);
+    TView::disableCommand(cmNext);
+    TView::disableCommand(cmPrev);
    }
 }
 
 static
 void IncrementViews()
 {
- if (!views)
-    SetCommands(True);
- else
+ if (views)
     SetPluralCommands(True);
  views++;
 }
@@ -134,10 +137,28 @@ static
 void DecrementViews()
 {
  views--;
- if (!views)
-    SetCommands(False);
  if (views==1)
     SetPluralCommands(False);
+}
+
+static
+void IncrementInfViews(TView *p)
+{
+ infViews++;
+ IncrementViews();
+ List->insert(p);
+}
+
+static
+void DecrementGenericView(TView *p)
+{
+ ccIndex pos;
+ if (List->search(p,pos))
+   {
+    infViews--;
+    List->remove(p);
+   }
+ DecrementViews();
 }
 
 TEditorMiApp::TEditorMiApp() :
@@ -146,9 +167,10 @@ TEditorMiApp::TEditorMiApp() :
                TEditorMiApp::initDeskTop
              ),
     TApplication()
-{// Disable all the coomands that needs at least one view opened
- SetCommands(False);
+{// Disable all the commands that needs at least one view opened
+ SetCommands();
  SetPluralCommands(False);
+ curCodePage=GetCurrentOSCodePage();
 }
 
 void TEditorMiApp::dosShell()
@@ -156,28 +178,48 @@ void TEditorMiApp::dosShell()
  suspend();
  system("cls");
  cout << "Type EXIT to return...";
- system( getenv( "COMSPEC"));
+ system(getenv( "COMSPEC"));
  resume();
  redraw();
 }
 
 void TEditorMiApp::tile()
 {
- deskTop->tile( deskTop->getExtent() );
+ deskTop->tile(deskTop->getExtent());
 }
 
 void TEditorMiApp::cascade()
 {
- deskTop->cascade( deskTop->getExtent() );
+ deskTop->cascade(deskTop->getExtent());
 }
+
+
+void TEditorMiApp::ManPageView()
+{
+ ManPageOptions *op;
+ TDialog *d=ManPageViewSelect(0,&op);
+ if (execDialog(d,op)==cmOK)
+   {
+    TView *view=CreateManWindow(op->program,op->section,op->options);
+    if (validView(view))
+      {
+       view->options|=ofTileable;
+       deskTop->insert(view);
+       IncrementViews();
+      }
+   }
+}
+
 
 void TEditorMiApp::handleEvent( TEvent& event )
 {
+ TInfWindow *w;
+
  TApplication::handleEvent( event );
  if (event.what==evBroadcast)
    {
     if (event.message.command==cmClosingWindow)
-       DecrementViews();
+       DecrementGenericView((TView *)event.message.infoPtr);
     else
        return;
    }
@@ -188,8 +230,30 @@ void TEditorMiApp::handleEvent( TEvent& event )
     {
      switch( event.message.command )
         {
-         case cmInfOpen: // If none infview window is opened we receive the event.
-                         // In this case we just open a window and pass the event.
+         case cmInfMainOpen:
+              if (!infViews)
+                {
+                 TInfFile *i=new TInfFile("dir");
+                 w=new TInfWindow(i,"");
+                 if (validView(w))
+                   {
+                    w->options|=ofTileable;
+                    deskTop->insert(w);
+                    IncrementInfViews(w);
+                   }
+                 else
+                   return;
+                }
+              else
+                {
+                 w=(TInfWindow *)List->at(0);
+                 if (deskTop->current!=w)
+                    w->select();
+                }
+              event.message.command=cmInfOpen;
+              w->handleEvent(event);
+              break;
+
          case cmInfView:
              {
               TInfFile *i=new TInfFile("dir");
@@ -198,9 +262,7 @@ void TEditorMiApp::handleEvent( TEvent& event )
                 {
                  w->options|=ofTileable;
                  deskTop->insert(w);
-                 IncrementViews();
-                 if (event.message.command==cmInfOpen)
-                    w->handleEvent(event);
+                 IncrementInfViews(w);
                 }
              }
              break;
@@ -212,11 +274,15 @@ void TEditorMiApp::handleEvent( TEvent& event )
               if (validView(w))
                 {
                  w->options|=ofTileable;
-                 IncrementViews();
+                 IncrementInfViews(w);
                  deskTop->insert(w);
                 }
               w->zoom();
              }
+              break;
+
+         case cmManPage:
+              ManPageView();
               break;
 
          case cmTile:
@@ -227,6 +293,10 @@ void TEditorMiApp::handleEvent( TEvent& event )
              cascade();
              break;
 
+         case cmScreenConf:
+              SetScreenOps();
+              break;
+
          default:
              return;
         }
@@ -235,23 +305,82 @@ void TEditorMiApp::handleEvent( TEvent& event )
 }
 
 
-//
-// getPalette() function ( returns application's palette )
-//
+// Palette from setedit, the only way to maintain it in sync
+#include <pal.h>
+
+char SEcpColor[]     ={ SE_cpColor 0 };
+char SEcpBlackWhite[]={ SE_cpBlackWhite 0 };
+char SEcpMonochrome[]={ SE_cpMonochrome 0 };
 
 TPalette& TEditorMiApp::getPalette() const
 {
- static TPalette newcolor ( _cpColor cInfColor, sizeof( cpColor cInfColor )-1 );
- static TPalette newblackwhite( _cpBlackWhite cInfBlackWhite, sizeof( cpBlackWhite cInfBlackWhite)-1 );
- static TPalette newmonochrome( _cpMonochrome cInfMonochrome, sizeof( cpMonochrome cInfMonochrome)-1 );
+ static TPalette color ( SEcpColor, sizeof( SEcpColor )-1 );
+ static TPalette blackwhite( SEcpBlackWhite, sizeof( SEcpBlackWhite )-1 );
+ static TPalette monochrome( SEcpMonochrome, sizeof( SEcpMonochrome )-1 );
  static TPalette *palettes[] =
      {
-     &newcolor,
-     &newblackwhite,
-     &newmonochrome
+     &color,
+     &blackwhite,
+     &monochrome
      };
  return *(palettes[appPalette]);
 }
+
+/************************* Code page options ***********************************/
+
+TDialog *CreateScreenOpsDialog()
+{
+ TSViewCol *col=new TSViewCol(__("Screen Options"));
+
+ TSLabel *lbe1=new TSLabel(_("Primary ~e~ncoding"),
+                           new TSSortedListBox(24,10,tsslbVertical));
+ col->insert(2,2,lbe1);
+ EasyInsertOKCancel(col);
+
+ TDialog *d=col->doIt();
+ delete col;
+
+ d->options|=ofCentered;
+ return d;
+}
+
+#pragma pack(1)
+typedef struct
+{
+ TCollection *font_enco  CLY_Packed;
+ ccIndex font_encs       CLY_Packed;
+} ScreenBox;
+#pragma pack()
+
+void TEditorMiApp::SetCodePage(int cp)
+{
+ curCodePage=cp;
+ RemapCharactersFor(curCodePage);
+ deskTop->setState(sfVisible,True);
+ deskTop->Redraw();
+ //redraw();
+}
+
+void TEditorMiApp::SetScreenOps(void)
+{
+ if (!TScreen::codePageVariable())
+   {
+    messageBox(_("This terminal have a fixed code page"),mfError | mfOKButton);
+    return;
+   }
+ ccIndex oldE1;
+
+ ScreenBox box;
+ box.font_enco=GetCodePagesList();
+ oldE1=box.font_encs=CodePageIDToIndex(curCodePage);
+
+ TDialog *d=CreateScreenOpsDialog();
+
+ if (execDialog(d,&box)==cmOK && oldE1!=box.font_encs)
+    SetCodePage(IndexToCodePageID(box.font_encs));
+}
+
+
 
 /************************* READ/WRITE desktop files ***********************************/
 
@@ -282,18 +411,22 @@ void writeView(TView *p, void *strm)
 {
  fpstream *s=(fpstream *)strm;
  if (p!=TProgram::deskTop->last)
-    *s << p;
+   {
+    ccIndex pos;
+    uchar IsInfView=List->search(p,pos) ? 1 : 0;
+    *s << IsInfView << p;
+   }
 }
 
 void TEditorMiApp::storeDesktop(fpstream& s)
 {
- s << 1; // Version
- s << TInfViewer::BookMark;
- deskTop->forEach(::writeView, &s);
+ s << 2; // Version
+ s << curCodePage << TInfViewer::BookMark;
+ deskTop->forEach(::writeView,&s);
  s << 0;
 }
 
-void TEditorMiApp::retrieveDesktop(const char *name)
+void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
 {
  if (name)
    {
@@ -312,7 +445,7 @@ void TEditorMiApp::retrieveDesktop(const char *name)
           messageBox(_("Wrong desktop file"), mfOKButton | mfError);
        else
          {
-          loadDesktop(*f);
+          loadDesktop(*f,loadWindows);
           if (!f)
              messageBox(_("Error reading desktop file"), mfOKButton | mfError);
          }
@@ -329,7 +462,7 @@ void closeView(TView *p, void *p1)
  message(p, evCommand, cmClose, p1);
 }
 
-void TEditorMiApp::loadDesktop(fpstream &s)
+void TEditorMiApp::loadDesktop(fpstream &s, int loadWindows)
 {
  TView  *p;
  int version;
@@ -337,18 +470,41 @@ void TEditorMiApp::loadDesktop(fpstream &s)
  if (deskTop->valid(cmClose))
    {
     deskTop->forEach(::closeView,0);  // Clear the desktop
-    s >> version;
+    s >> version >> curCodePage;
     s >> TInfViewer::BookMark;
-    do
+    SetCodePage(curCodePage);
+    if (!loadWindows)
+       return;
+    if (version<2)
       {
-       s >> p;
-       if (validView(p))
+       do
          {
-          deskTop->insertBefore(p,deskTop->last);
-          IncrementViews();
+          s >> p;
+          if (validView(p))
+            {
+             deskTop->insertBefore(p,deskTop->last);
+             IncrementInfViews(p);
+            }
          }
+       while (p);
       }
-    while (p);
+    else
+      {
+       uchar IsInfView;
+       do
+         {
+          s >> IsInfView >> p;
+          if (validView(p))
+            {
+             deskTop->insertBefore(p,deskTop->last);
+             if (IsInfView)
+                IncrementInfViews(p);
+             else
+                IncrementViews();
+            }
+         }
+       while (p);
+      }
    }
 }
 /******************** End of READ/WRITE desktop files *******************************/
@@ -429,18 +585,18 @@ void ParseCommandLine(int argc, char *argv[])
             fprintf(stderr,_("-r, --read-dkt FILENAME  if no file is opened use this desktop file.\n"));
             fprintf(stderr,_("-s, --save-dkt FILENAME  save the desktop to this file at exit.\n"));
             fprintf(stderr,_("-h, --help               displays this text ;-).\n\n"));
-            fprintf(stderr,"The first argument, if present, is the name of the Info file to read.\n"
-                           "Any remaining arguments are treated as the names of menu items in the initial\n"
-                           #ifdef TVOSf_Linux
-                           "node visited.  For example, `infview libc \"function index\" printf' moves to the\n"
-                           "node `Function Index' and then to `printf' in the info file `libc'.\n\n"
-                           #else
-                           "node visited.  For example, `infview libc alpha printf' moves to the node\n"
-                           "`Alphabetical list' and then to `printf' in the info file `libc'.\n\n"
-                           #endif
-                           "Also note that info files are searched in the INFOPATH directories. To load a\n"
-                           "file stored in the current directory add ./ at the beginning of the name.\n"
-                           "Email bug reports to salvador@inti.gov.ar or djgpp@delorie.com.\n");
+            fprintf(stderr,_("The first argument, if present, is the name of the Info file to read.\n"
+                             "Any remaining arguments are treated as the names of menu items in the initial\n"));
+            #ifdef TVOSf_Linux
+            fprintf(stderr,_("node visited.  For example, `infview libc \"function index\" printf' moves to the\n"
+                             "node `Function Index' and then to `printf' in the info file `libc'.\n\n"));
+            #else
+            fprintf(stderr,_("node visited.  For example, `infview libc alpha printf' moves to the node\n"
+                             "`Alphabetical list' and then to `printf' in the info file `libc'.\n\n"));
+            #endif
+            fprintf(stderr,_("Also note that info files are searched in the INFOPATH directories. To load a\n"
+                             "file stored in the current directory add ./ at the beginning of the name.\n"
+                             "Email bug reports to salvador@inti.gov.ar or djgpp@delorie.com.\n"));
             fflush(stderr);
             exit(1);
             break;
@@ -579,7 +735,7 @@ void OpenInfView(TEditorMiApp *editorApp, char *name)
    {
     editorApp->deskTop->insert(startInfo);
     startInfo->options|=ofTileable;
-    IncrementViews();
+    IncrementInfViews(startInfo);
    }
 }
 
@@ -587,12 +743,61 @@ void InsertEnviromentVar(const char *,const char *)
 {
 }
 
+static
+void InitInternacSup()
+{
+ //------ International support
+ #ifndef NO_INTL_SUP
+ char *locale_dir,localedir[PATH_MAX];
+ setlocale(LC_ALL,"");
+ // Use the LOCALEDIR var for the directory
+ locale_dir=getenv("LOCALEDIR");
+
+ if (!locale_dir)
+   {
+    #ifdef NoHomeOrientedOS
+    // if LOCALEDIR doesn't exists use %DJDIR%/share/locale
+    locale_dir=getenv("DJDIR");
+    if (locale_dir)
+      {
+       strcpy(localedir,locale_dir);
+       strcat(localedir,"/share/locale");
+      }
+    else
+      {
+       // if DJDIR doesn't exists use SET_FILES
+       locale_dir=(char *)GetVariable("SET_FILES");
+       if (locale_dir)
+          strcpy(localedir,locale_dir);
+       else
+         {
+          // if SET_FILES doesn't exists (imposible) use .
+          // That's only to avoid a GPF in the strcpy and add a little facility
+          localedir[0]='.';
+          localedir[1]=0;
+         }
+      }
+    #else
+    strcpy(localedir,"/usr/share/locale");
+    #endif
+   }
+ else
+    strcpy(localedir,locale_dir);
+
+ BINDTEXTDOMAIN(EditorFile,localedir);
+ TEXTDOMAIN(EditorFile);
+ #endif
+ //------ end of int. support
+}
+
 int main(int argc, char *argv[])
 {
  TEditorMiApp *editorApp;
+ List=new TInfViewList();
 
  // Initialize the INFOPATH stuff
  InfViewGetInfoDir();
+ InitInternacSup();
  ParseCommandLine(argc,argv);
 
  editorApp=new TEditorMiApp();
@@ -637,8 +842,7 @@ int main(int argc, char *argv[])
    }
 
  CreateDesktopNames(argv[0]);
- if (!startInfo) // If no command line stuff try to get a desktop file
-    editorApp->retrieveDesktop(desktopIn);
+ editorApp->retrieveDesktop(desktopIn,startInfo==0);
  editorApp->run();
  editorApp->saveDesktop(desktopOut);
  destroy(editorApp);
