@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.174  2002/08/12 16:32:26  set
+* Modified: [MinGW] Configure script to avoid generating rules for doc and
+internac. The MinGW tools I tested fail to make this targets. I think the
+reasons are: buggy makeinfo and command line length limitations in gettext
+tools.
+* Modified: Included internac/po_list in the distribution, it can be
+generated using Perl but MinGW and Cygwin generates GPFs when running the
+perl script.
+
 Revision 1.173  2002/08/12 16:31:18  set
 * Modified: The default menu to say "Shell" instead of "DOS shell".
 * Added: "Window|User screen" disabled if it doesn't exist.

@@ -1116,6 +1116,9 @@ typedef struct
  uint32  appForce      CLY_Packed;
  TCollection *appList  CLY_Packed;
  ccIndex appCP         CLY_Packed;
+ uint32  inpForce      CLY_Packed;
+ TCollection *inpList  CLY_Packed;
+ ccIndex inpCP         CLY_Packed;
  uint32  scrForce      CLY_Packed;
  TCollection *scrList  CLY_Packed;
  ccIndex scrCP         CLY_Packed;
@@ -1125,8 +1128,8 @@ typedef struct
 } EncodingBox;
 #pragma pack()
 
-static uchar enForceApp=0, enForceScr=0, enForceSnd=0;
-static int  enApp=-1, enScr=-1, enSnd=-1;
+static uchar enForceApp=0, enForceScr=0, enForceSnd=0, enForceInp;
+static int  enApp=-1, enScr=-1, enSnd=-1, enInp=-1;
 // Todo: esto debería poder obtenerlo de TVCodePage, algo tipo default code page.
 //static int  enStartApp=437, enStartScr=437;
 
@@ -1136,14 +1139,25 @@ void EncodingOptions()
  // Compute the height of the list boxes to use most of the desktop
  TRect dkt=TProgram::deskTop->getExtent();
  int height=dkt.b.y-dkt.a.y-10;
+ if (TScreen::codePageVariable())
+    height=(height-2)/2;
 
- TSVeGroup *appEncode=NULL,*scrEncode=NULL,*sndEncode=NULL;
+ TSVeGroup *appEncode=NULL,*scrEncode=NULL,*sndEncode=NULL,*inpEncode=NULL;
 
  appEncode=new TSVeGroup(
    TSLabelCheck(__("~A~pplication"),__("Force encoding"),0),
    new TSSortedListBox(wForced,height,tsslbVertical),
    0);
  appEncode->makeSameW();
+
+ inpEncode=new TSVeGroup(
+   TSLabelCheck(__("~I~nput"),__("Force encoding"),0),
+   new TSSortedListBox(wForced,height,tsslbVertical),
+   0);
+ inpEncode->makeSameW();
+
+ TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,0);
+ TSView *lowerCPs=NULL;
 
  if (TScreen::codePageVariable())
    {// Only if the code page is variable
@@ -1160,11 +1174,16 @@ void EncodingOptions()
          new TSSortedListBox(wForced,height,tsslbVertical),
          0);
        sndEncode->makeSameW();
+       lowerCPs=MakeHzGroup(scrEncode,sndEncode,0);
       }
+    else
+       lowerCPs=scrEncode;
    }
 
  TSViewCol *col=new TSViewCol(__("Encodings"));
- col->insert(xTSLeft,yTSUp,MakeHzGroup(appEncode,scrEncode,sndEncode,0));
+ col->insert(xTSLeft,yTSUp,upperCPs);
+ if (lowerCPs)
+    col->insert(xTSCenter,yTSUnder,lowerCPs,0,upperCPs);
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(_("O~K~"),cmOK,bfDefault),
                          new TSButton(_("Cancel"),cmCancel),
@@ -1176,47 +1195,59 @@ void EncodingOptions()
  EncodingBox box;
 
  // Current TV settings
- int idDefScr, idDefApp;
- TVCodePage::GetDefaultCodePages(idDefScr,idDefApp);
+ int idDefScr, idDefApp, idDefInp;
+ TVCodePage::GetDefaultCodePages(idDefScr,idDefApp,idDefInp);
 
  // Currently selected values
- int appCP, scrCP, sndCP;
+ int appCP, scrCP, sndCP, inpCP;
  appCP=TVCodePage::IDToIndex(enApp!=-1 ? enApp : idDefApp);
+ inpCP=TVCodePage::IDToIndex(enInp!=-1 ? enInp : idDefInp);
  scrCP=TVCodePage::IDToIndex(enScr!=-1 ? enScr : idDefScr);
- sndCP=TVCodePage::IDToIndex(enSnd!=-1 ? enSnd : scrCP);
+ sndCP=enSnd!=-1 ? TVCodePage::IDToIndex(enSnd) : scrCP;
 
  // Data box
  box.appForce=enForceApp;
+ box.inpForce=enForceInp;
  box.scrForce=enForceScr;
  box.sndForce=enForceSnd;
  box.appCP=appCP;
+ box.inpCP=inpCP;
  box.scrCP=scrCP;
  box.sndCP=sndCP;
- box.appList=box.scrList=box.sndList=TVCodePage::GetList();
+ box.appList=box.inpList=box.scrList=box.sndList=TVCodePage::GetList();
 
  unsigned ret=execDialog(d,&box);
  if (ret==cmYes)
    {// Set defaults
-    enForceApp=enForceScr=enForceSnd=0;
+    int priChanged=enForceScr || (enForceScr && idDefScr!=scrCP);
+    int sndChanged=enForceSnd || (enForceSnd && idDefScr!=sndCP);
+    enForceApp=enForceInp=enForceScr=enForceSnd=0;
     enApp=idDefApp;
+    enInp=idDefInp;
     enScr=enSnd=idDefScr;
-    // Asegurarse de que se setee
+    TVCodePage::SetCodePage(enApp,enScr,enInp);
+    SetEditorFontsEncoding(priChanged,idDefScr,sndChanged,idDefScr);
+    // This is a full redraw, not just a refresh from the buffers
+    TProgram::application->Redraw();
    }
  else if (ret==cmOK)
    {
     int appChanged=box.appForce!=enForceApp || (enForceApp && box.appCP!=appCP);
+    int inpChanged=box.inpForce!=enForceInp || (enForceInp && box.inpCP!=inpCP);
     int priChanged=box.scrForce!=enForceScr || (enForceScr && box.scrCP!=scrCP);
     int sndChanged=box.sndForce!=enForceSnd || (enForceSnd && box.sndCP!=sndCP);
-    if (appChanged || priChanged || sndChanged)
+    if (appChanged || inpChanged || priChanged || sndChanged)
       {// At least one changed
        enForceApp=box.appForce;
+       enForceInp=box.inpForce;
        enForceScr=box.scrForce;
        enForceSnd=box.sndForce;
        // Transfer only the settings that will be used
        if (enForceApp) enApp=TVCodePage::IndexToID(box.appCP);
+       if (enForceInp) enInp=TVCodePage::IndexToID(box.inpCP);
        if (enForceScr) enScr=TVCodePage::IndexToID(box.scrCP);
        if (enForceSnd) enSnd=TVCodePage::IndexToID(box.sndCP);
-       TVCodePage::SetCodePage(enApp,enScr);
+       TVCodePage::SetCodePage(enApp,enScr,enInp);
        SetEditorFontsEncoding(priChanged,enForceScr ? enScr : idDefScr,
                               sndChanged,enForceSnd ? enSnd : idDefScr);
        // This is a full redraw, not just a refresh from the buffers
@@ -1407,8 +1438,8 @@ void SetEditorFonts(uchar priUse, char *priName, char *priFile,
  foSecLoad=secUse;
 
  // Make it efective
- int idDefScr, idDefApp;
- TVCodePage::GetDefaultCodePages(idDefScr,idDefApp);
+ int idDefScr, idDefApp, idDefInp;
+ TVCodePage::GetDefaultCodePages(idDefScr,idDefApp,idDefInp);
  if (!TScreen::canSetBFont()) return;
 
  TScreenFont256 primary,secondary,*prF=NULL,*seF=NULL;
