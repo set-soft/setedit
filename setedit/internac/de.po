@@ -5,8 +5,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.5.4\n"
-"PO-Revision-Date: 2004-11-29 13:30-0300\n"
+"Project-Id-Version: setedit 0.5.5\n"
+"PO-Revision-Date: 2004-12-01 15:08-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,9 +31,9 @@ msgstr "~A~uswerten"
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
 #: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:754
-#: ../mainsrc/deedidia.cc:132 ../mainsrc/deedidia.cc:176
-#: ../mainsrc/deedidia.cc:269 ../mainsrc/deedidia.cc:321
-#: ../mainsrc/deedidia.cc:340 ../mainsrc/sdginter.cc:193
+#: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
+#: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
+#: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
 #: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1475 ../mainsrc/tags.cc:1703
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
@@ -71,8 +71,8 @@ msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
 #: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:753
-#: ../mainsrc/deedidia.cc:131 ../mainsrc/deedidia.cc:174
-#: ../mainsrc/deedidia.cc:268 ../mainsrc/deedidia.cc:320
+#: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
+#: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
 #: ../mainsrc/tags.cc:1497 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
@@ -158,18 +158,18 @@ msgid "Inf Find"
 msgstr "Inf Suche"
 
 #. All together
-#: ../infview/inf.cc:2348 ../mainsrc/deedidia.cc:118
-#: ../mainsrc/deedidia.cc:153
+#: ../infview/inf.cc:2348 ../mainsrc/deedidia.cc:119
+#: ../mainsrc/deedidia.cc:157
 msgid "~T~ext to find"
 msgstr "~S~uchtext"
 
-#: ../infview/inf.cc:2353 ../mainsrc/deedidia.cc:121
-#: ../mainsrc/deedidia.cc:160 ../mainsrc/ssyntax.cc:479
+#: ../infview/inf.cc:2353 ../mainsrc/deedidia.cc:122
+#: ../mainsrc/deedidia.cc:164 ../mainsrc/ssyntax.cc:479
 msgid "~C~ase sensitive"
 msgstr "Groß/~K~lein beachten"
 
-#: ../infview/inf.cc:2354 ../mainsrc/deedidia.cc:122
-#: ../mainsrc/deedidia.cc:160
+#: ../infview/inf.cc:2354 ../mainsrc/deedidia.cc:123
+#: ../mainsrc/deedidia.cc:164
 msgid "~W~hole words only"
 msgstr "Nur ~g~anze Wörter"
 
@@ -773,12 +773,12 @@ msgstr "< ~V~orherige"
 msgid "> ~N~ext"
 msgstr "> ~N~ächste"
 
-#: ../install/install.cc:481 ../mainsrc/deedidia.cc:337
+#: ../install/install.cc:481 ../mainsrc/deedidia.cc:340
 #: ../setedit/advice.cc:125 ../setedit/advice.cc:132
 msgid "~Y~es"
 msgstr "~J~a"
 
-#: ../install/install.cc:482 ../mainsrc/deedidia.cc:338
+#: ../install/install.cc:482 ../mainsrc/deedidia.cc:341
 #: ../setedit/advice.cc:126 ../setedit/advice.cc:131
 msgid "~N~o"
 msgstr "~N~ein"
@@ -1385,8 +1385,8 @@ msgstr ""
 msgid "Even tab"
 msgstr "Tabs s~e~hen"
 
-#: ../internac/colors.cc:144 ../mainsrc/deedidia.cc:263
-#: ../mainsrc/deedidia.cc:315
+#: ../internac/colors.cc:144 ../mainsrc/deedidia.cc:266
+#: ../mainsrc/deedidia.cc:318
 #, fuzzy
 msgid "Column markers"
 msgstr "Spalten~c~ursor"
@@ -1486,16 +1486,16 @@ msgstr ""
 msgid "%d bytes selected, in %d"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4272
+#: ../mainsrc/ceditor.cc:4270
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4291
+#: ../mainsrc/ceditor.cc:4289
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4313
+#: ../mainsrc/ceditor.cc:4311
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1506,7 +1506,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4347
+#: ../mainsrc/ceditor.cc:4345
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1519,16 +1519,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:5942
+#: ../mainsrc/ceditor.cc:5940
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:5957
+#: ../mainsrc/ceditor.cc:5955
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10289
+#: ../mainsrc/ceditor.cc:10305
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1537,29 +1537,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10304
+#: ../mainsrc/ceditor.cc:10320
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11046
+#: ../mainsrc/ceditor.cc:11062
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11995
+#: ../mainsrc/ceditor.cc:12011
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12206
+#: ../mainsrc/ceditor.cc:12222
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13399
+#: ../mainsrc/ceditor.cc:13415
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13409
+#: ../mainsrc/ceditor.cc:13425
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1611,372 +1611,387 @@ msgstr "Versuche ~n~ormale Suche"
 msgid "~A~lways use RegEx"
 msgstr "Immer RegEx ~v~erwenden"
 
-#: ../mainsrc/deedidia.cc:114
+#: ../mainsrc/deedidia.cc:115
 msgid "Find"
 msgstr "Suchen"
 
-#: ../mainsrc/deedidia.cc:121 ../mainsrc/deedidia.cc:160
-#: ../mainsrc/deedidia.cc:287 ../setedit/tips.cc:210
+#: ../mainsrc/deedidia.cc:122 ../mainsrc/deedidia.cc:164
+#: ../mainsrc/deedidia.cc:290 ../setedit/tips.cc:210
 msgid "Options"
 msgstr "Einstellungen"
 
-#: ../mainsrc/deedidia.cc:122 ../mainsrc/deedidia.cc:161
+#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:165
 msgid "Regular e~x~pressions"
 msgstr "Reguläre Ausd~r~ücke"
 
-#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:161
+#: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:165
 msgid "Only ~i~nside comments"
 msgstr "Nur innerhalb von Kommentaren"
 
-#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:162
+#: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:166
 msgid "Only o~u~tside comments"
 msgstr "Nur außerhalb von Kommentaren"
 
-#: ../mainsrc/deedidia.cc:124
+#: ../mainsrc/deedidia.cc:125
 #, fuzzy
 msgid "S~h~ow function name"
 msgstr "~G~ehe zu Funktion"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:166
+#. All together + same width
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:172
 msgid "Scope"
 msgstr "Bereich"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:166
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:172
 msgid "~G~lobal"
 msgstr "~G~lobal"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:167
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:172
 msgid "~S~elected text"
 msgstr "Ausge~w~ählter Text"
 
-#: ../mainsrc/deedidia.cc:126
+#: ../mainsrc/deedidia.cc:127
 msgid "Origin"
 msgstr "Ursprung"
 
-#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:170
+#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:173
 msgid "~F~rom cursor"
 msgstr "~A~b Cursor"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:171
+#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:173
 msgid "~E~ntire scope"
 msgstr "~G~anzer Bereich"
 
-#: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:177
+#: ../mainsrc/deedidia.cc:129 ../mainsrc/deedidia.cc:174
+#, fuzzy
+msgid "Direction"
+msgstr "Kann Verzeichnis nicht erstellen:"
+
+#: ../mainsrc/deedidia.cc:129 ../mainsrc/deedidia.cc:174
+msgid "Forwar~d~"
+msgstr ""
+
+#: ../mainsrc/deedidia.cc:130 ../mainsrc/deedidia.cc:174
+#, fuzzy
+msgid "~B~ackward"
+msgstr "~H~intergrund"
+
+#: ../mainsrc/deedidia.cc:136 ../mainsrc/deedidia.cc:181
 msgid "RegEx ~O~ps"
 msgstr "~O~ps ExpReg"
 
-#: ../mainsrc/deedidia.cc:150
+#: ../mainsrc/deedidia.cc:154
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: ../mainsrc/deedidia.cc:156
+#: ../mainsrc/deedidia.cc:160
 msgid "~N~ew text"
 msgstr "~N~euer Text"
 
-#: ../mainsrc/deedidia.cc:162
+#: ../mainsrc/deedidia.cc:166
 #, fuzzy
 msgid "S~h~ow function ~n~ame"
 msgstr "~G~ehe zu Funktion"
 
-#: ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:167
 msgid "~P~rompt on replace"
 msgstr "Vorm Ersetzen ~n~achfragen"
 
-#: ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:167
 msgid "~R~eplace all"
 msgstr "Alle e~r~setzen"
 
-#: ../mainsrc/deedidia.cc:170
+#: ../mainsrc/deedidia.cc:173
 msgid "Or~i~gin"
 msgstr "Ursprun~g~"
 
-#: ../mainsrc/deedidia.cc:175
+#: ../mainsrc/deedidia.cc:179
 msgid "Replace ~A~ll"
 msgstr "Alle ersetzen"
 
-#: ../mainsrc/deedidia.cc:196
+#: ../mainsrc/deedidia.cc:199
 msgid "Goto Line"
 msgstr "Gehe zu Zeile"
 
-#: ../mainsrc/deedidia.cc:199
+#: ../mainsrc/deedidia.cc:202
 msgid "Desired line"
 msgstr "Gewünschte Zeile"
 
-#: ../mainsrc/deedidia.cc:215
+#: ../mainsrc/deedidia.cc:218
 #, fuzzy
 msgid "Syntax Highlighting"
 msgstr "Syntax~h~ervorhebung"
 
-#: ../mainsrc/deedidia.cc:220
+#: ../mainsrc/deedidia.cc:223
 msgid "Off ~1~"
 msgstr "Aus ~1~"
 
-#: ../mainsrc/deedidia.cc:221
+#: ../mainsrc/deedidia.cc:224
 msgid "C++ st~y~le"
 msgstr "C++ St~i~l"
 
-#: ../mainsrc/deedidia.cc:222
+#: ../mainsrc/deedidia.cc:225
 msgid "Pa~s~cal style"
 msgstr "Pascal ~S~til"
 
-#: ../mainsrc/deedidia.cc:223
+#: ../mainsrc/deedidia.cc:226
 msgid "C~l~ipper style"
 msgstr "C~l~ipper Stil"
 
-#: ../mainsrc/deedidia.cc:224
+#: ../mainsrc/deedidia.cc:227
 msgid "User ~d~efined"
 msgstr "Benutzer~d~efiniert"
 
 #. English: ABCDEFGHIKLMNOPRSTUWYZ 1234
 #. BEGJQVXZ
-#: ../mainsrc/deedidia.cc:245
+#: ../mainsrc/deedidia.cc:248
 msgid "Local Options"
 msgstr "Lokale Einstellungen"
 
-#: ../mainsrc/deedidia.cc:248
+#: ../mainsrc/deedidia.cc:251
 msgid "Options ~3~"
 msgstr "Einstellungen ~3~"
 
-#: ../mainsrc/deedidia.cc:248
+#: ../mainsrc/deedidia.cc:251
 msgid "~O~verwrite"
 msgstr "Ü~b~erschreiben"
 
-#: ../mainsrc/deedidia.cc:248 ../mainsrc/deedidia.cc:288
+#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:291
 msgid "~A~utoindent"
 msgstr "~A~utoeinschub"
 
-#: ../mainsrc/deedidia.cc:249
+#: ../mainsrc/deedidia.cc:252
 msgid "~U~se real tabs (ASCII 9)"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:249 ../mainsrc/deedidia.cc:290
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:293
 msgid "~P~ersistent blocks"
 msgstr "~B~eständige Blöcke"
 
-#: ../mainsrc/deedidia.cc:249 ../mainsrc/deedidia.cc:291
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:294
 msgid "~I~ntelligent C indent"
 msgstr "~I~ntelligenter C-Einschub"
 
-#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:292
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:295
 msgid "~C~olumn cursor"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:293
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:296
 msgid "~R~ow cursor"
 msgstr "~Z~eilencursor"
 
-#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:294
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:297
 #, fuzzy
 msgid "~M~atched pair highlighting"
 msgstr "~K~lammernpaar hervorheben"
 
-#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:295
+#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:298
 #, fuzzy
 msgid "Match pair on the fl~y~"
 msgstr "Klammernpaar beim Überfliegen"
 
-#: ../mainsrc/deedidia.cc:251
+#: ../mainsrc/deedidia.cc:254
 msgid "Don't wait to search for the pair ~1~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:298
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:301
 msgid "Tra~n~sparent Blocks"
 msgstr "Tran~s~parente Blöcke"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:299
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:302
 msgid "Optimal ~F~ill"
 msgstr "Optimale ~F~üllung"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:300
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:303
 msgid "~W~rap words"
 msgstr "~W~ortumbruch"
 
-#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:302
+#: ../mainsrc/deedidia.cc:256 ../mainsrc/deedidia.cc:305
 msgid "S~e~e tabs"
 msgstr "Tabs s~e~hen"
 
-#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:303
+#: ../mainsrc/deedidia.cc:256 ../mainsrc/deedidia.cc:306
 msgid "Don't move inside ta~b~s"
 msgstr "Nicht innerhalb Ta~b~s bewegen"
 
-#: ../mainsrc/deedidia.cc:254
+#: ../mainsrc/deedidia.cc:257
 msgid "Tab ~s~mart indents"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:254
+#: ../mainsrc/deedidia.cc:257
 #, fuzzy
 msgid "Use in~d~ent size"
 msgstr "Benutzer~d~efiniert"
 
-#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:306
+#: ../mainsrc/deedidia.cc:258 ../mainsrc/deedidia.cc:309
 msgid "Keep trailin~g~ whitespace"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:255
+#: ../mainsrc/deedidia.cc:258
 msgid "Backspace unindents ~2~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:256
+#: ../mainsrc/deedidia.cc:259
 #, fuzzy
 msgid "Column markers ~4~"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:259 ../mainsrc/deedidia.cc:311
+#: ../mainsrc/deedidia.cc:262 ../mainsrc/deedidia.cc:314
 msgid "~T~ab size"
 msgstr "~T~abulatorgröße"
 
-#: ../mainsrc/deedidia.cc:260 ../mainsrc/deedidia.cc:312
+#: ../mainsrc/deedidia.cc:263 ../mainsrc/deedidia.cc:315
 #, fuzzy
 msgid "Indent si~z~e"
 msgstr "Schiebe ein Leerzeichen ein"
 
-#: ../mainsrc/deedidia.cc:261 ../mainsrc/deedidia.cc:313
+#: ../mainsrc/deedidia.cc:264 ../mainsrc/deedidia.cc:316
 msgid "Wrap co~l~umn"
 msgstr "Spa~l~tenumbruch"
 
-#: ../mainsrc/deedidia.cc:270
+#: ../mainsrc/deedidia.cc:273
 #, fuzzy
 msgid "Syntax ~H~L Options"
 msgstr "SDP ~O~ptionen"
 
-#: ../mainsrc/deedidia.cc:285
+#: ../mainsrc/deedidia.cc:288
 msgid "Global Options"
 msgstr "Globale Einstellungen"
 
-#: ../mainsrc/deedidia.cc:289
+#: ../mainsrc/deedidia.cc:292
 msgid "~U~se tabs"
 msgstr "Ben~u~tze Tabs"
 
-#: ../mainsrc/deedidia.cc:296
+#: ../mainsrc/deedidia.cc:299
 msgid "Don't wait to searc~h~ for the pair"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:297
+#: ../mainsrc/deedidia.cc:300
 msgid "~D~on't move the cursor on Paste"
 msgstr "~C~ursor beim Einfügen nicht bewegen"
 
-#: ../mainsrc/deedidia.cc:301
+#: ../mainsrc/deedidia.cc:304
 msgid "~S~croll Lock centers"
 msgstr "~S~croll Lock zentriert"
 
-#: ../mainsrc/deedidia.cc:304
+#: ../mainsrc/deedidia.cc:307
 msgid "Tab smart indents ~5~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:305
+#: ../mainsrc/deedidia.cc:308
 msgid "Use indent size ~6~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:307
+#: ../mainsrc/deedidia.cc:310
 msgid "Backspace unindents ~8~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:308
+#: ../mainsrc/deedidia.cc:311
 #, fuzzy
 msgid "Column markers ~9~"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:319
+#: ../mainsrc/deedidia.cc:322
 msgid "T~o~ all"
 msgstr "Für ~a~lle"
 
-#: ../mainsrc/deedidia.cc:334
+#: ../mainsrc/deedidia.cc:337
 msgid "Search hit"
 msgstr "Suchtreffer"
 
-#: ../mainsrc/deedidia.cc:336
+#: ../mainsrc/deedidia.cc:339
 msgid "Replace this occurence?"
 msgstr "Diese Vorkommen ersetzen?"
 
-#: ../mainsrc/deedidia.cc:339
+#: ../mainsrc/deedidia.cc:342
 msgid "~A~ll"
 msgstr "~A~lles"
 
 #. BCDFLMO
-#: ../mainsrc/deedidia.cc:361
+#: ../mainsrc/deedidia.cc:364
 msgid "Export Options"
 msgstr "Export Optionen"
 
-#: ../mainsrc/deedidia.cc:364 ../setedit/editmenu.cc:354
+#: ../mainsrc/deedidia.cc:367 ../setedit/editmenu.cc:354
 #: ../setedit/intgrep.cc:416 ../setedit/runprog.cc:125
 msgid "~O~ptions"
 msgstr "~O~ptionen"
 
-#: ../mainsrc/deedidia.cc:365
+#: ../mainsrc/deedidia.cc:368
 msgid "~F~ile name as title"
 msgstr "~D~ateiname als Überschrift"
 
-#: ../mainsrc/deedidia.cc:366
+#: ../mainsrc/deedidia.cc:369
 msgid "Same ~b~ackground color as the editor"
 msgstr "Gleiche Hintergrund wie im ~E~ditor"
 
-#: ../mainsrc/deedidia.cc:367
+#: ../mainsrc/deedidia.cc:370
 #, fuzzy
 msgid "~M~onospaced font"
 msgstr "~M~onospaced Schrift"
 
-#: ../mainsrc/deedidia.cc:368
+#: ../mainsrc/deedidia.cc:371
 msgid "Bo~l~d attribute"
 msgstr "~F~ettdruck"
 
-#: ../mainsrc/deedidia.cc:369
+#: ../mainsrc/deedidia.cc:372
 msgid "~U~se CSS and HTML 4.01"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:370
+#: ../mainsrc/deedidia.cc:373
 msgid "Colors"
 msgstr "Farben"
 
-#: ../mainsrc/deedidia.cc:370
+#: ../mainsrc/deedidia.cc:373
 msgid "Use ~c~olors"
 msgstr "Benutze ~F~arben"
 
-#: ../mainsrc/deedidia.cc:371
+#: ../mainsrc/deedidia.cc:374
 msgid "~D~on't use colors"
 msgstr "Keine Farben verwen~d~en"
 
 #. BFLMO
-#: ../mainsrc/deedidia.cc:386
+#: ../mainsrc/deedidia.cc:389
 msgid "Pseudo Macros"
 msgstr "Pseudo Macros"
 
-#: ../mainsrc/deedidia.cc:398
+#: ../mainsrc/deedidia.cc:401
 msgid "Arbitrary indent"
 msgstr "Eigener Einschub"
 
-#: ../mainsrc/deedidia.cc:400
+#: ../mainsrc/deedidia.cc:403
 msgid "Indentation text"
 msgstr "Einschubtext"
 
-#: ../mainsrc/deedidia.cc:427
+#: ../mainsrc/deedidia.cc:430
 #, fuzzy, c-format
 msgid "Data saved to file: %s"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/deedidia.cc:432
+#: ../mainsrc/deedidia.cc:435
 msgid "Solve collision"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:436
+#: ../mainsrc/deedidia.cc:439
 msgid ""
 "Problem:\n"
 "The copy in memory is also modified\n"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:437
+#: ../mainsrc/deedidia.cc:440
 msgid "~L~oad file from disk (discard changes)"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:438
+#: ../mainsrc/deedidia.cc:441
 #, fuzzy
 msgid "~A~bort operation"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/deedidia.cc:439
+#: ../mainsrc/deedidia.cc:442
 msgid "Load and ~s~how differences"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:440
+#: ../mainsrc/deedidia.cc:443
 msgid "~D~on't load and show differences"
 msgstr ""
 
@@ -2088,6 +2103,10 @@ msgstr "Keine pseudo macros verfügbar"
 #, fuzzy
 msgid "The file is compressed. Do you want to save with compression?"
 msgstr "Sie haben autoexec.bat geändert. Änderungen speichern?"
+
+#: ../mainsrc/doedidia.cc:278
+msgid "Searching inside a selection but nothing is selected"
+msgstr ""
 
 #: ../mainsrc/editwind.cc:33
 msgid "Clipboard"
@@ -2315,12 +2334,12 @@ msgstr "~F~ormatverzeichnisse"
 msgid "K~e~ep intermediate"
 msgstr "~T~emporärdatei behalten"
 
-#: ../mainsrc/search.cc:266 ../mainsrc/search.cc:375
+#: ../mainsrc/search.cc:295 ../mainsrc/search.cc:404
 #, c-format
 msgid "Regular expression error: %s"
 msgstr "Fehler im regulären Ausdruck: %s"
 
-#: ../mainsrc/search.cc:461
+#: ../mainsrc/search.cc:490
 msgid "PCRE Exec error"
 msgstr "PCRE Exec Fehler"
 
@@ -7023,28 +7042,28 @@ msgstr "Gesamte Zeilen pro Seite:"
 msgid "Error ~p~arser"
 msgstr "Fehler"
 
-#: ../setedit/runprog.cc:215
+#: ../setedit/runprog.cc:222
 msgid "ntering dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:238
+#: ../setedit/runprog.cc:245
 msgid "eaving dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:457
+#: ../setedit/runprog.cc:464
 msgid "A child process is running. Please wait or stop it."
 msgstr ""
 
-#: ../setedit/runprog.cc:488
+#: ../setedit/runprog.cc:495
 #, fuzzy
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:597
+#: ../setedit/runprog.cc:604
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:676
+#: ../setedit/runprog.cc:683
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 
@@ -7203,9 +7222,6 @@ msgstr "sLisp Makros"
 
 #~ msgid "~F~oreground"
 #~ msgstr "~V~ordergrund"
-
-#~ msgid "~B~ackground"
-#~ msgstr "~H~intergrund"
 
 #~ msgid "Error"
 #~ msgstr "Fehler"
