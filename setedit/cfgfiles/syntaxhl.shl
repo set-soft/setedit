@@ -777,6 +777,7 @@ End
 Name=Makefile
 Files=mak
 NameMatch=(GNU)?[mM]akefile
+ShellScript=make
 Case=1
 EOLComment1=#
 NoCheckNumbers=1
