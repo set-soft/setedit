@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.535  2004/06/28 17:56:07  set
+* Fixed: [BC++] 5.5 can't really remove unreachable code. That's another
+evidence of the poor quality of Borland compilers in terms of optimization.
+
 Revision 1.534  2004/06/28 17:55:02  set
 * Fixed: Missing CleanUpHolidays() for targets that doesn't support dlopen.
 Additionaly I modified the code to use if (xxxx) instead of plain

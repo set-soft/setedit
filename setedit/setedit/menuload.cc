@@ -58,7 +58,9 @@ const int errMLExpectedStr=1,
           errMLFromLessTo=20,
           errMLUnclosedStatusRange=21,
           errMLEmptyStatusLine=22,
-          errMLNoHelpContext=23;
+          errMLNoHelpContext=23,
+          errMLTooDeep=24,
+          errMLUnmatchedEndIf=25;
 
 static const char *ErrorNames[] =
 {
@@ -85,12 +87,15 @@ static const char *ErrorNames[] =
  __("Invalid range"),
  __("StatusRange not closed"),
  __("Empty status line"),
- __("Wrong help context name or number")
+ __("Wrong help context name or number"),
+ __("Too much conditionals nested"),
+ __("Unmatched $endif")
 };
 
 static int Error=0;
 static int Line;
 static char *FileName=0;
+const int maxDepth=32;
 
 typedef struct
 {
@@ -99,6 +104,8 @@ typedef struct
  char *sIf,*sElse,*sEnd;
  char *sDefined,*sIfDef,*sIfNDef;
  char *sAnd,*sOr,sNot;
+ int  depth;
+ char stack[maxDepth];
 } stPreproInfo;
 
 static stPreproInfo PreproInfo={'$',0,"if","else","endif","defined","ifdef","ifndef",
@@ -884,6 +891,37 @@ int PreproLine_Interpret(stPreproInfo *p, DynStrCatStruct *str,
  return ret;
 }
 
+static inline
+int PreproPush(stPreproInfo *p, int PreproValue, int newState)
+{
+ if (p->depth>=maxDepth)
+   {
+    Error=errMLTooDeep;
+    return PreproValue;
+   }
+ p->stack[p->depth++]=PreproValue;
+ return PreproValue ? newState : 0;
+}
+
+static inline
+int PreproPop(stPreproInfo *p)
+{
+ if (p->depth==0)
+   {
+    Error=errMLUnmatchedEndIf;
+    return 0;
+   }
+ return p->stack[--p->depth];
+}
+
+static inline
+int PreproToggle(stPreproInfo *p, int PreproValue)
+{
+ int prev=1;
+ if (p->depth)
+    prev=p->stack[p->depth-1];
+ return prev ? (PreproValue ? 0 : 1) : 0;
+}
 
 static
 int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str, int PreproValue,
@@ -908,16 +946,16 @@ int ReadPreprocessor(char *s, stPreproInfo *p, DynStrCatStruct *str, int PreproV
        switch (ret)
          {
           case 0:
-               PreproValue=0;
+               PreproValue=PreproPush(p,PreproValue,0);
                break;
           case 1:
-               PreproValue=1;
+               PreproValue=PreproPush(p,PreproValue,1);
                break;
           case prlieElse:
-               PreproValue=PreproValue ? 0 : 1;
+               PreproValue=PreproToggle(p,PreproValue);
                break;
           case prlieEnd:
-               PreproValue=1;
+               PreproValue=PreproPop(p);
                break;
           case prlieSyntax:
                Error=errMLSyntax;
@@ -984,6 +1022,7 @@ int LoadTVMenuAndStatus(char *fileName)
  defs->insert(newStr("MIXER"));
  #endif
 
+ PreproInfo.depth=0;
  GetLine();
  while (!feof(f) && !Error)
    {
