@@ -9,6 +9,7 @@
 # This is the debhelper compatibility version to use.
 export DH_COMPAT=1
 
+# Compile the beast!:
 build: build-stamp
 build-stamp: debianbackup.tar
 	dh_testdir
@@ -17,6 +18,7 @@ build-stamp: debianbackup.tar
 	touch build-stamp
 
 
+# Clean everything as if nothing happened :) :
 clean: clean-debian debianbackup.tar
 # Heh, for cleaning we need to run the configure script in order to create the makefile that cleans! :-)))
 	./configure
@@ -24,12 +26,15 @@ clean: clean-debian debianbackup.tar
 # Restore upstream provided regenerated files:
 	test -e debianbackup.tar && tar -xf debianbackup.tar
 	rm -f debianbackup.tar
+# FIXME: ask upstream about adding the next files to his clean target:
 	rm -f internac/de_iso.po internac/fix.exe internac/es_iso.po \
 		internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
 		internac/de_iso.mo internac/es.mo internac/es_iso.mo
 # Don't delete this files (they are on the tarball but not on CVS):
 #		doc/Makefile internac/Makefile
 
+# Use the following target when you just want for example to rebuild the
+# package without recompiling the sources:
 clean-debian:
 	dh_testdir
 	dh_testroot
@@ -37,12 +42,14 @@ clean-debian:
 	dh_clean
 
 
+# Let's backup modified files to restore them later!:
 debianbackup.tar:
 	dh_testdir
 # Backup upstream provided regenerated files:
 	tar -cf debianbackup.tar --files-from=debian/files_to_backup
 
 	
+# Copy needed files to the temporary directories for the packages:
 install: build
 	dh_testdir
 	dh_testroot
@@ -60,7 +67,7 @@ install: build
 	cp debian/tmp/usr/share/info/infview.info.gz debian/infview/usr/share/info/infview.info.gz
 
 
-# Build architecture-dependent files here.
+# Build the packages for a specific architecture:
 binary-arch: build install
 	dh_testdir
 	dh_testroot
@@ -90,10 +97,13 @@ binary-arch: build install
 
 # Build architecture-independent files here.
 binary-indep: build install
-# We have nothing to do by default.
+#This package doesn't have architecture-independent files for the moment...
 
 source diff:
 	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
 
+# Build all the packages:
 binary: binary-indep binary-arch
+
 .PHONY: build clean binary-indep binary-arch binary clean-debian
+

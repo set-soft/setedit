@@ -1,4 +1,15 @@
 $Log$
+Revision 1.166  2002/07/25 17:25:49  set
+* Fixed: InfView changed to use unique_name, but as it was working it
+didn't copy the real file name to the referenced buffer and it made InfView
+fail to remove temporal files used to uncompress .info files. Now
+unique_name does the copy. It didn't affect UNIX systems.
+* Modified: All the calls to unique_name using 0 as second parameter (is
+the default value).
+* Added: A fonts request call back, so now if you change the video mode and
+the new mode uses a font with a different size the call back can provide
+it. Currently it only helps for DOS.
+
 Revision 1.165  2002/07/24 20:03:22  set
 * Added: The "Fonts" dialog now works, the options aren't stored to disk
 yet but you can play with it. I tested a 2 fonts configuration under X11
@@ -14,7 +25,7 @@ Revision 1.163  2002/07/22 20:39:13  set
 * Modifed: [MSVC] the screensaver sources to investigate the sources of
 problems when linking with MSVC.
 
-Revision 1.162  2002/07/22 19:41:13  set
+Revision 1.162  2002/07/22 19:41:14  set
 * Added: Connected the primary font collection with the available sizes.
 
 Revision 1.161  2002/07/22 19:40:35  set

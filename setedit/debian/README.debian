@@ -62,5 +62,5 @@ distribution?
 A.: Because the RHTVision package they depend on can't be at the moment
 on the Debian distribution. See RHTVision's package documentation to know why.
 
-Ivan Baldo <lubaldo@adinet.com.uy>, Tue, 16 Mar 1999 17:18:48 -0300
+Ivan Baldo <ibaldo@adinet.com.uy>, Tue, 16 Mar 1999 17:18:48 -0300
 

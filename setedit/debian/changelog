@@ -1,3 +1,13 @@
+setedit (0.4.57-0.4) unstable; urgency=low
+
+  * New upstream alpha version from CVS dated 25 jul 2002 (that's my
+    birthday!!!).
+  * Changed my email from lubaldo to ibaldo, so updated that everywhere.
+  * Added more comments to the debian/rules file, it seems that Salvador was
+    confused one time :).
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Mon, 29 Jul 2002 19:30:54 -0300
+
 setedit (0.4.57-0.3) unstable; urgency=low
 
   * DebConf support for generating the /usr/share/setedit/install.log
@@ -363,5 +373,5 @@ setedit (0.4.24-1) unstable; urgency=low
 
 Local variables:
 mode: debian-changelog
-add-log-mailing-address: "lubaldo@adinet.com.uy"
+add-log-mailing-address: "ibaldo@adinet.com.uy"
 End:
