@@ -118,6 +118,13 @@ Available Keys:
 @paragraph{}
 
 @table2{Key,Action}
+@titem_{Arrows,Moves the cursor. Holding shift selects the text.}
+@titem_{Page Up,Previous page of the topic. Holding shift selects the text.}
+@titem_{Page Down,Next page of the topic. Holding shift selects the text.}
+@titem_{Home,Move cursor to the first column. Holding shift selects the text.}
+@titem_{End,Move cursor to the last character in the line. Holding shift selects the text.}
+@titem_{Ctrl+Right arrow,Next word. Holding shift selects the text.}
+@titem_{Ctrl+Left arrow,Previous word. Holding shift selects the text.}
 @titem_{Tab,Move to the next link (from the cursor position).}
 @titem_{Shift+Tab,Move to the previous link (from the cursor position).}
 @titem_{Alt+F1,Go to the last viewed topic.}

@@ -1077,6 +1077,66 @@ void TInfViewer::gotoInteractive()
     switchToTopic(gotoStr);
 }
 
+void TInfViewer::NextWord(int selectMode, int x, int y)
+{
+ char b[256],*s;
+ int ox=x, oy=y;
+ topic->getLine(y+1,b);
+ s=b+x;
+ if (!*s)
+   {
+    if (y>=limit.y) return;
+    y++; x=0;
+    topic->getLine(y+1,b);
+    s=b;
+    vScrollBar->setValue(y);
+   }
+ if (ucisalpha(*s))
+    for (; *s && ucisalpha(*s); s++, x++);
+ for (; *s && !ucisalpha(*s); s++, x++);
+ hScrollBar->setValue(x);
+ if (selectMode && (ox!=x || oy!=y))
+   {
+    UpdateSelection(x,y+1);
+    drawView();
+   }
+}
+
+void TInfViewer::PrevWord(int selectMode, int x, int y)
+{
+ char b[256],*s;
+ if (x==0)
+   {
+    if (y==0) return;
+    y--;
+    x=topic->getLine(y+1,b);
+    scrollTo(x,y);
+    if (selectMode)
+      {
+       UpdateSelection(x,y+1);
+       drawView();
+      }
+    return;
+   }
+ topic->getLine(y+1,b);
+ s=b+x;
+ s--; x--;
+ if (!ucisalpha(*s))
+    for (; s!=b && !ucisalpha(*s); s--, x--);
+ for (; s!=b && ucisalpha(*s); s--, x--);
+ if (s!=b)
+   {
+    s++;
+    x++;
+   }
+ hScrollBar->setValue(x);
+ if (selectMode)
+   {
+    UpdateSelection(x,y+1);
+    drawView();
+   }
+}
+
 void TInfViewer::handleEvent( TEvent& event )
 {
  uchar selectMode = 0;
@@ -1097,8 +1157,8 @@ void TInfViewer::handleEvent( TEvent& event )
        C(Home)
        C(PgUp)
        C(PgDn)
-       //C(CtLeft)
-       //C(CtRight)
+       C(CtLeft)
+       C(CtRight)
        #undef C
       }
    }
@@ -1257,15 +1317,15 @@ void TInfViewer::handleEvent( TEvent& event )
             if ((S & kbFlagsShift) != 0)
                selectMode = smExtend;
             else
-  	      {
-     	       selectMode = 0;
-     	       selecting = False;
-  	      }
+              {
+               selectMode = 0;
+               selecting = False;
+              }
            }
          else
            {
             if ((S & kbFlagsShift) != 0)
-  	       selectMode = smStartSel;
+            selectMode = smStartSel;
            }
 
          key=event.keyDown.keyCode;
@@ -1273,7 +1333,8 @@ void TInfViewer::handleEvent( TEvent& event )
          Y=delta.y+cursor.y;
          if (selectMode==smStartSel && (key==kbDown || key==kbUp ||
              key==kbLeft || key==kbRight || key==kbEnd ||
-             key==kbHome || key==kbPgUp || key==kbPgDn))
+             key==kbHome || key==kbPgUp || key==kbPgDn ||
+             key==kbCtLeft || key==kbCtRight) )
            {
             selRowStartPoint=Y+1;
             selColStartPoint=X;
@@ -1407,13 +1468,16 @@ void TInfViewer::handleEvent( TEvent& event )
                   break;
 
 
-             /*case kbShCtLeft:
+             case kbShCtLeft:
              case kbCtLeft:
+                  PrevWord(selectMode,X,Y);
                   break;
 
              case kbShCtRight:
              case kbCtRight:
-                  break;*/
+                  NextWord(selectMode,X,Y);
+                  QuickLen=0;
+                  break;
 
              default:
                  int Key=uctoupper(event.keyDown.charScan.charCode);

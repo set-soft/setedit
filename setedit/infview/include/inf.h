@@ -185,6 +185,8 @@ public:
     void ChooseNode();
     void ConfigDialog();
     void OpenInfo();
+    void NextWord(int selectMode, int x, int y);
+    void PrevWord(int selectMode, int x, int y);
 
     void gotoInteractive();
     void switchToTopic( char *, TPoint );

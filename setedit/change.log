@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.74  2002/04/30 18:00:55  set
+* Added: An option to save a desktop file in the current directory. Useful
+for users that use a central desktop and don't want to create a project.
+
 Revision 1.73  2002/04/30 17:56:12  set
 * Modified: Now ~/setedit/.tcedit.dst have more priority than ~/tcedit.dst.
 
