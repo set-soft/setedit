@@ -30,6 +30,7 @@
 #include <ceditor.h>
 #include <calcu.h>
 #include <setapp.h>
+#include <locale.h>
 
 #ifdef FLEX_BISON
 extern "C" char *yyParseString(char *s);
