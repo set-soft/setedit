@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.215  2002/09/18 12:33:44  set
+* Added: DontMoveHiddenCursor to the tvrc syntax hl.
+
 Revision 1.214  2002/09/18 12:32:43  set
 * Added: The new TV config variables for DOS and XTerm drivers.
 

@@ -6041,17 +6041,20 @@ void TCEditor::MakeEfectiveLineInEdition(void)
        }
     SpacesEated=lastChar-actual;
     // In case we are killing tabs and they are visible
-    if (SpacesEated && SeeTabs)
-       update(ufView); // Not just the line, we are leaving it!
+    if (SpacesEated)
+      {
+       if (SeeTabs)
+          update(ufView); // Not just the line, we are leaving it!
+       if (selLineEnd>0)
+          // Use the position we had before eating!
+          AdjustLineSel(lastChar,-SpacesEated);
+      }
    }
  #ifdef CLY_UseCrLf
  bufEdit[actual++]='\r';
  #endif
  bufEdit[actual++]='\n';
  bufEdit[actual]=0;
- if (SpacesEated && selLineEnd>0)
-    // Use the position we had before eating!
-    AdjustLineSel(SpacesEated,-SpacesEated);
 
  int old=lenLines[lineInEdition];
  int dif=actual-old;
@@ -12511,8 +12514,13 @@ static void FExpand(char *name)
 
 Boolean TCEditor::saveAs(Boolean Unix)
 {
+ Boolean revertToReadOnly=False;
  if (isReadOnly)
-    return False;
+   {
+    CLY_FileAttrReadWrite(&ModeOfFile);
+    isReadOnly=False;
+    revertToReadOnly=True;
+   }
  Boolean res=False;
  int revertName=fileName[0]==EOS;
  char *oldName=0;
@@ -12537,11 +12545,17 @@ Boolean TCEditor::saveAs(Boolean Unix)
        message(owner,evBroadcast,cmcUpdateTitle,0);
        SHLSelect(*this,buffer,bufLen);
        update(ufView);
+       revertToReadOnly=False;
       }
     else
       strcpy(fileName,oldName);
     if (isClipboard())
        *fileName=EOS;
+   }
+ if (revertToReadOnly)
+   {
+    CLY_FileAttrReadOnly(&ModeOfFile);
+    isReadOnly=True;
    }
  free(oldName);
  return res;
