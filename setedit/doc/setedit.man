@@ -30,6 +30,14 @@ with minus and before the file name you want affect. If the line number is
 omitted the editor jumps to the end of the text. Example: +6 p.txt it loads
 the file called p.txt and jumps to the line number 6. That's very similar to
 the VI behavior.
+.IP "-b, --bios-keyb"
+.B "[Only for DOS]"
+Use the BIOS routines for keyboard handling. They are slow but reliable.
+That's enabled by default.
+.IP "-B, --no-bios-keyb"
+.B "[Only for DOS]"
+Don't use the BIOS routines for keyboard handling. They are faster but in
+some particular machines fails you can just experiment.
 .IP "-c, --cascade"
 After opening all the files the windows are arranged using cascade style.
 Only editor windows are affected.
