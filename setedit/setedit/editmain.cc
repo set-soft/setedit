@@ -1831,7 +1831,7 @@ void ParseCommandLine(int argc, char *argv[])
  if (ExtraCMDLine)
     StackDbgStrategy=atoi(ExtraCMDLine);
 
- while ((optc=getopt_long(Argc,Argv,"bBcdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
+ while ((optc=getopt_long(Argc,Argv,"b:BcdfhkK:lLmMp:rStT:",longopts,0))!=EOF)
    {
     switch (optc)
       {
