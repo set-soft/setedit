@@ -107,7 +107,7 @@ Distribution:
  23          161          0.56 **
  24           88          0.31 *
 */
-//#define TAG_STATS 1
+#define TAG_STATS 0
 #ifdef TAG_STATS
 static unsigned maxLenIdTags, totalCantTags, lenAllIdTags;
 static unsigned *idTagsLenTable;
