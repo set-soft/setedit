@@ -723,7 +723,7 @@ typedef struct
 static
 unsigned SetGeneralEditorOptionsMain(void)
 {
- // ABCDEHIKLMOPSTUVY
+ // ABCDEHIKLMOPSTUVWY
  TSViewCol *col=new TSViewCol(__("General editor options"));
 
  TSLabel *tcb=TSLabelCheck(__("~S~ave/Desktop options"),
@@ -741,7 +741,7 @@ unsigned SetGeneralEditorOptionsMain(void)
               #define SAVE_HIDDEN_DST 32
               __("Tile windows ~v~ertically first"),
               #define TILE_VERT 64
- #if defined(TVOS_DOS) || defined(TVOS_Win32)
+ #if defined(TVOS_DOS) || (defined(TVOS_Win32) && defined(TVCompf_Cygwin))
               __("Save UNIX files ~a~s UNIX"),
  #else
               __("Save DOS files ~a~s DOS"),
@@ -749,6 +749,8 @@ unsigned SetGeneralEditorOptionsMain(void)
               #define SAVE_ASIS 128
               __("Don't remmember cursor ~p~osition"),
               #define NO_CURSOR_POS 256
+              __("Don't ~w~arn about read-only files"),
+              #define NO_RO_WARNING 512
               0);
 
  TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),0),
@@ -781,6 +783,8 @@ unsigned SetGeneralEditorOptionsMain(void)
     box.ops|=UNIX_STYLE_BKPS;
  if (TCEditor::editorFlags & efHiddenBkps)
     box.ops|=HIDDEN_BKPS;
+ if (TCEditor::editorFlags & efDoNotWarnRO)
+    box.ops|=NO_RO_WARNING;
 
  // To avoid filling the disk with .dst files
  unsigned DesktopFilesOptions=GetDSTOptions();
@@ -819,6 +823,7 @@ unsigned SetGeneralEditorOptionsMain(void)
     O(MAKE_BKPS,       efBackupFiles);
     O(UNIX_STYLE_BKPS, efUNIXBkpStyle);
     O(HIDDEN_BKPS,     efHiddenBkps);
+    O(NO_RO_WARNING,   efDoNotWarnRO);
     #undef O
 
     // Filter options of this dialog
