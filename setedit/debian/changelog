@@ -1,8 +1,20 @@
-setedit (0.4.50-0.1) unstable; urgency=low
+setedit (0.4.50-1) unstable; urgency=low
 
-  * New version automatically modified by version update scripts
+  * The "Let's see if I can release while I am sleeping" release.
+    That's because I am tired, I need some sleep and my eyelashes are
+    closing some times, against my will. THIS RELEASE COMES WITHOUT
+    WARRANTY.
+  * Nice new upstream release, long live Salvador!
+  * Upstream added a "buildpackage" script, I don't see the point of
+    it but if it is of some use to Salvador or others, I will keep it.
+  * Modified the new debian/buildpackage script to check before trying
+    to do anything that it is being run from the right directory.
+  * Added clean-debian to PHONY list.
+  * Simplified the backup system by using a TAR archive instead of
+    copying and moving files around. Good idea from Salvador. At the
+    same time now timestamps are preserved so CVS checkins are faster.
 
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Tue,  9 Oct 2001 19:12:31 -0300
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Thu, 11 Oct 2001 23:07:58 -0300
 
 setedit (0.4.49-1) unstable; urgency=low
 
@@ -12,18 +24,6 @@ setedit (0.4.49-1) unstable; urgency=low
     backup system.
 
  -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun,  7 Oct 2001 19:54:51 -0300
-
-setedit (0.4.49-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sun, 23 Sep 2001 11:52:36 -0300
-
-setedit (0.4.48-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sat, 22 Sep 2001 10:28:11 -0300
 
 setedit (0.4.47-2) unstable; urgency=low
 
@@ -48,12 +48,6 @@ setedit (0.4.47-1) unstable; urgency=low
     Extracting with dpkg-deb that directories appear.
 
  -- Ivan Baldo <lubaldo@adinet.com.uy>  Sat, 29 Sep 2001 12:16:59 -0300
-
-setedit (0.4.47-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Sun, 16 Sep 2001 16:28:22 -0300
 
 setedit (0.4.45-1) unstable; urgency=low
 
