@@ -146,7 +146,7 @@ EndSubMenu
 # ABCDEFGHIKLMNOPRSXW
 SubMenu: "~T~ool&Ops", kbAlT
  SubMenu: "~O~ptions", kbUnknown
-# BCDEFGKLNOPRSU
+# BCDEFGHKLNOPRSU
    MenuItemC: "~C~olors ...", cmeSetColors
    $if DOS or Linux
    MenuItemC: "Color ~P~alette ...", cmeEditPalette
@@ -172,6 +172,7 @@ SubMenu: "~T~ool&Ops", kbAlT
    MenuItemC: "De~f~ault global edition ...", cmeEditDeflOpts
    MenuItemC: "File ~o~pen dialog ...", cmeFileOpenOptions
    MenuItemC: "Do~n~'t create backups for ...", cmeEditNoBkp
+   MenuItemC: "Searc~h~ files under cursor in ...", cmeIncludeList
  EndSubMenu
  MenuItemC: "~C~alculator", cmeCalculator, kbAlF4, "Alt+F4"
  MenuItemC: "Poc~k~et calculator", cmePocketCalc
