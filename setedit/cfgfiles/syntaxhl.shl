@@ -1290,6 +1290,7 @@ Keywords=tables,terminated,text,time,timestamp,tinyblob,tinytext,tinyint
 Keywords=trailing,to,use,using,unique,unlock,unsigned,update,usage,values
 Keywords=varchar,variables,varying,varbinary,with,write,where,year,year_month
 Keywords=zerofill,sequence,begin,end,transaction,boolean
+Keywords=trigger,synonym,commit,varchar2,before,tablespace,then,number
 End
 
 # ---------------------------- Objective C ---------------------------------

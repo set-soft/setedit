@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.429  2003/07/10 20:22:17  set
+* Added: TVision configuration keyword. Note this keyword is currently
+available only in the experimental branch of TV.
+
 Revision 1.428  2003/07/07 21:12:32  set
 * Added: hh extension as C++ code. SAVANT/TyVis generates code with that
 extension.
