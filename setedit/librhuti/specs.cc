@@ -448,7 +448,7 @@ char *string_function_shell(char *_arg)
   char *arg = expand_tokens(_arg);
   char *retval = NULL;
   char *err_file = open_stderr();
-  FILE *pipe = popen(arg,"rt");
+  FILE *pipe = popen(arg,"r");
   if (pipe)
   {
     char buf[1024];
@@ -458,7 +458,7 @@ char *string_function_shell(char *_arg)
       char *tmp = buf;
       while (count--)
       {
-        if (*tmp == '\n')
+        if (*tmp == '\n' || *tmp == '\r')
           *tmp = ' ';
         tmp++;
       }
