@@ -1003,7 +1003,7 @@ sub CreateConfigH
 {
  my $text="/* Generated automatically by the configure script */",$old;
 
- print "Generating configuration header\n";
+ print "Generating configuration header: ";
 
  $conf{'FORCE_INTL_SUPPORT'}=$conf{'intlShipped'};
  $text.=ConfigIncDefYes('HAVE_ALLEGRO','Allegro library is available');
@@ -1067,6 +1067,8 @@ sub GenerateMakefile
  $plasmas=$OS eq 'DOS';
  $installer=@conf{'ToolsInstaller'} eq 'yes';
  $distrib=@conf{'ToolsDistrib'} eq 'yes';
+ $internac=@conf{'xgettext'} ne 'no';
+ $docbasic=@conf{'makeinfo'} ne 'no';
  $text.="\n\n.PHONY: needed";
  $text.=" infview" if ($infview);
  $text.=" plasmas" if ($plasmas);
@@ -1077,6 +1079,8 @@ sub GenerateMakefile
  $text.=" libamp" if ($libamp);
  $text.=" libintl" if ($libintl);
  $text.=" installer" if ($installer);
+ $text.=" internac" if ($internac);
+ $text.=" doc-basic" if ($docbasic);
  # all targets
  $text.="\n\nall: editor";
  $text.=" libset" if ($libset);
@@ -1120,6 +1124,17 @@ sub GenerateMakefile
     $text.="\n\nlibintl:\n";
     $text.="\t\$(MAKE) -C gettext";
    }
+ # i8n
+ if ($internac)
+   {
+    $text.="\n\ninternac:\n";
+    $text.="\t\$(MAKE) -C internac";
+   }
+ if ($docbasic)
+   {
+    $text.="\n\ndoc-basic:\n";
+    $text.="\t\$(MAKE) -C doc txt info";
+   }
  # needed (by editor)
  $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
  $text.=" libamp"   if ($libamp);
@@ -1128,6 +1143,8 @@ sub GenerateMakefile
  $text.=" libz" if ($libz);
  $text.=" libpcre" if ($libpcre);
  $text.=" libintl" if ($libintl);
+ $text.=" internac" if ($internac);
+ $text.=" doc-basic" if ($docbasic);
  # editor
  $text.="\n\neditor: needed";
  $text.="\n\t\$(MAKE) -C makes";
@@ -1159,7 +1176,6 @@ sub GenerateMakefile
  #### Installations ####
  # editor
  $text.="\n\ninstall-editor: editor\n";
- $text.="\t\$(MAKE) -C internac\n" unless @conf{'xgettext'} eq 'no';
  $text.="\t\$(MAKE) -C makes install";
  # libset
  if ($libset)
