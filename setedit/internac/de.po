@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2004-12-07 11:26-0300\n"
+"PO-Revision-Date: 2005-01-03 16:27-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -224,13 +224,13 @@ msgstr "Verstecke ~L~inknamen"
 msgid "InfView Bookmarks"
 msgstr "InfView Lesezeichen"
 
-#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:163
+#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:168
 msgid "~A~dd"
 msgstr "~H~inzufügen"
 
 #: ../infview/inf.cc:2487 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4306
 #: ../setedit/debug.cc:4913 ../setedit/winlistd.cc:140
-#: ../settvuti/tdiagaid.cc:165
+#: ../settvuti/tdiagaid.cc:170
 msgid "~D~elete"
 msgstr "~L~ösche"
 
@@ -309,12 +309,12 @@ msgstr ""
 msgid "Set ~D~efaults"
 msgstr "~O~riginal"
 
-#: ../infview/infmain.cc:459 ../setedit/dstfile.cc:605
+#: ../infview/infmain.cc:459 ../setedit/dstfile.cc:606
 #, c-format
 msgid "Could not create %s."
 msgstr "Konnte Projekt `%s' nicht erstellen."
 
-#: ../infview/infmain.cc:506 ../setedit/dstfile.cc:530
+#: ../infview/infmain.cc:506 ../setedit/dstfile.cc:531
 msgid "Could not open desktop file"
 msgstr "Konnte Desktopdatei nicht finden."
 
@@ -322,7 +322,7 @@ msgstr "Konnte Desktopdatei nicht finden."
 msgid "Wrong desktop file"
 msgstr "Falsche Desktopdatei."
 
-#: ../infview/infmain.cc:517 ../setedit/dstfile.cc:541
+#: ../infview/infmain.cc:517 ../setedit/dstfile.cc:542
 msgid "Error reading desktop file"
 msgstr "Fehler beim Lesen der Desktopdatei"
 
@@ -940,8 +940,8 @@ msgstr ""
 "Umsch+Löschen: Auswahl kopieren und dann löschen\n"
 "Strg+U: Rückgängig (nur eine Aktion)"
 
-#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:549
-#: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:166
+#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:582
+#: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:171
 msgid "~O~k"
 msgstr "~O~k"
 
@@ -1477,7 +1477,7 @@ msgstr "Gehe zu Funktion"
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:169
+#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:174
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
@@ -2174,29 +2174,29 @@ msgstr "Unbenannt"
 msgid "You must install gzip to browse compressed files!"
 msgstr "Sie müssen gzip installieren, um komprimierte Dateien einzusehen!"
 
-#: ../mainsrc/keytrans.cc:796
+#: ../mainsrc/keytrans.cc:804
 msgid "Wrong file"
 msgstr "Falsche Datei."
 
-#: ../mainsrc/keytrans.cc:800
+#: ../mainsrc/keytrans.cc:808
 msgid "Wrong version"
 msgstr "Falsche Version"
 
-#: ../mainsrc/keytrans.cc:817
+#: ../mainsrc/keytrans.cc:825
 msgid "Error while reading"
 msgstr "Fehler während des Lesens"
 
-#: ../mainsrc/keytrans.cc:1135
+#: ../mainsrc/keytrans.cc:1143
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr ""
 
-#: ../mainsrc/keytrans.cc:1144
+#: ../mainsrc/keytrans.cc:1152
 #, fuzzy, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
-#: ../mainsrc/keytrans.cc:1181
+#: ../mainsrc/keytrans.cc:1189
 msgid "You'll lose all the changes"
 msgstr "Sie werden alle Änderungen verlieren"
 
@@ -2802,7 +2802,7 @@ msgstr "Abspielliste"
 msgid "List of files"
 msgstr "Dateiliste"
 
-#: ../mp3/mp3list.cc:334 ../settvuti/tdiagaid.cc:164
+#: ../mp3/mp3list.cc:334 ../settvuti/tdiagaid.cc:169
 msgid "~I~nsert"
 msgstr "~E~infügen"
 
@@ -4133,15 +4133,15 @@ msgstr "   Man Seite: "
 msgid "   MP3 Control panel"
 msgstr "   MP3 Kontrollpult"
 
-#: ../setedit/dstfile.cc:875
-msgid "Wrong desktop file."
-msgstr "Falsche Desktopdatei."
+#: ../setedit/dstfile.cc:876
+msgid "Wrong desktop file. May be owned by other user."
+msgstr ""
 
-#: ../setedit/dstfile.cc:881
+#: ../setedit/dstfile.cc:882
 msgid "The desktop file is too old."
 msgstr "Die Desktopdatei ist zu alt."
 
-#: ../setedit/dstfile.cc:886
+#: ../setedit/dstfile.cc:887
 msgid "You need a newer editor for this desktop file."
 msgstr "Sie benötigen einen neueren Editor für diese Desktopdatei."
 
@@ -4585,7 +4585,7 @@ msgstr "~E~rsetzen..."
 msgid "~S~earch again"
 msgstr "~W~iederhole Suche"
 
-#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:197
+#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:213
 msgid "~M~acro"
 msgstr "~M~akro"
 
@@ -5859,103 +5859,111 @@ msgstr "~O~riginal"
 msgid "The hardware doesn't support this."
 msgstr ""
 
-#: ../setedit/edkeys.cc:191
+#: ../setedit/edkeys.cc:193
 msgid "Key assignment"
 msgstr "Tasten zuweisen"
 
-#: ../setedit/edkeys.cc:247
+#: ../setedit/edkeys.cc:249
 msgid "Accepting that you'll change the SET's editor behavior"
 msgstr "Wollen Sie die Änderungen in SET's Verhalten beibehalten?"
 
-#: ../setedit/edkeys.cc:263
+#: ../setedit/edkeys.cc:265
 msgid "Do you really want to discard the changes?"
 msgstr "Wollen Sie die Änderungen wirklich verwerfen?"
 
-#: ../setedit/edkeys.cc:276
+#: ../setedit/edkeys.cc:278
 msgid "Sequence of keys"
 msgstr "Tastenfolge"
 
-#: ../setedit/edkeys.cc:299
+#: ../setedit/edkeys.cc:301
 #, fuzzy
 msgid "sLisp code"
 msgstr "sLisp Makros"
 
-#: ../setedit/edkeys.cc:303
+#: ../setedit/edkeys.cc:305
 msgid ""
 "Enter the sLisp code, it must start with (\n"
 "and end with )"
 msgstr ""
 
-#: ../setedit/edkeys.cc:366
+#: ../setedit/edkeys.cc:368
 #, fuzzy
 msgid "This key is already in use, do you want to replace it?"
 msgstr "Diese Taste ist bereits benutzt. Wollen Sie sie ersetzen?"
 
-#: ../setedit/edkeys.cc:378
+#: ../setedit/edkeys.cc:380
 msgid ""
 "This sequence is used for more than one key, delete these assignments first"
 msgstr ""
 "Diese Reihenfolge wird bereits für mehr als eine Taste benutzt. Löschen Sie "
 "diese Zuweisungen vorher"
 
-#: ../setedit/edkeys.cc:398
+#: ../setedit/edkeys.cc:400
 msgid "Key selector"
 msgstr "Bitte eine Tasten drücken"
 
-#: ../setedit/edkeys.cc:401
+#: ../setedit/edkeys.cc:403
 msgid "Press a key"
 msgstr "Eine Taste drücken"
 
-#: ../setedit/edkeys.cc:448
+#: ../setedit/edkeys.cc:419
+msgid "Part of a sequence"
+msgstr ""
+
+#: ../setedit/edkeys.cc:422
+msgid "Unassigned"
+msgstr ""
+
+#: ../setedit/edkeys.cc:481
 msgid "Macros"
 msgstr "Makros"
 
-#: ../setedit/edkeys.cc:464
+#: ../setedit/edkeys.cc:497
 msgid "Commands"
 msgstr "Befehle"
 
-#: ../setedit/edkeys.cc:493
+#: ../setedit/edkeys.cc:526
 msgid "A command"
 msgstr "Ein Befehl"
 
-#: ../setedit/edkeys.cc:543
+#: ../setedit/edkeys.cc:576
 msgid "Scan Viewer"
 msgstr "Scan Betrachter"
 
-#: ../setedit/edkeys.cc:556
+#: ../setedit/edkeys.cc:589
 msgid "Alt keys settings"
 msgstr "Alt Tasteneinstellungen"
 
-#: ../setedit/edkeys.cc:558
+#: ../setedit/edkeys.cc:591
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~asten von Menüs, etc. benutzt"
 
-#: ../setedit/edkeys.cc:559
+#: ../setedit/edkeys.cc:592
 msgid "~L~eft Alt"
 msgstr "~L~inke Alt"
 
-#: ../setedit/edkeys.cc:559
+#: ../setedit/edkeys.cc:592
 msgid "~R~ight Alt"
 msgstr "~R~echte Alt"
 
-#: ../setedit/edkeys.cc:560
+#: ../setedit/edkeys.cc:593
 msgid "~B~oth Alt"
 msgstr "~B~eide Alt"
 
-#: ../setedit/edkeys.cc:582
+#: ../setedit/edkeys.cc:615
 msgid "Key Pad behavior"
 msgstr "KeyPad Verhalten"
 
-#: ../setedit/edkeys.cc:584
+#: ../setedit/edkeys.cc:617
 msgid "Behavior"
 msgstr "Verhalten"
 
-#: ../setedit/edkeys.cc:584
+#: ../setedit/edkeys.cc:617
 #, fuzzy
 msgid "Use the ~B~IOS default"
 msgstr "Behalte ~B~IOS Standard"
 
-#: ../setedit/edkeys.cc:585
+#: ../setedit/edkeys.cc:618
 #, fuzzy
 msgid "Always interprete shift+arrow as ~m~ovement"
 msgstr "U~m~schalt+Pfeil immer als Bewegung"
@@ -6623,7 +6631,7 @@ msgstr "Ausgabe ist ein Ger~ä~t/Datei"
 msgid "Output i~s~ a program"
 msgstr "Ausgabe ist ein Programm"
 
-#: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:167
+#: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:172
 msgid "~C~ancel"
 msgstr "~A~bbruch"
 
@@ -7218,23 +7226,36 @@ msgstr "~O~ptionen"
 msgid "~N~ame"
 msgstr "~N~ame"
 
-#: ../settvuti/tdiagaid.cc:168
+#: ../settvuti/tdiagaid.cc:173
 #, fuzzy
 msgid "~I~nfo."
 msgstr "~I~nfo"
 
-#: ../settvuti/tdiagaid.cc:197
+#: ../settvuti/tdiagaid.cc:208
+#, fuzzy
+msgid "Assigned to:"
+msgstr "Zuweisun~g~"
+
+#: ../settvuti/tdiagaid.cc:213
 msgid "Assignmen~t~"
 msgstr "Zuweisun~g~"
 
-#: ../settvuti/tdiagaid.cc:197
+#: ../settvuti/tdiagaid.cc:213
 msgid "Command~s~"
 msgstr "Befehl~e~"
 
-#: ../settvuti/tdiagaid.cc:198
+#: ../settvuti/tdiagaid.cc:214
 #, fuzzy
 msgid "s~L~isp code"
 msgstr "sLisp Makros"
+
+#, fuzzy
+#~ msgid "Wrong desktop file (%s)."
+#~ msgstr "Falsche Desktopdatei."
+
+#, fuzzy
+#~ msgid "Could not open desktop file (%s)"
+#~ msgstr "Konnte Desktopdatei nicht finden."
 
 #, fuzzy
 #~ msgid "Don't pur~g~e spaces"

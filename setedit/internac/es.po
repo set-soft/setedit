@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2004-12-07 11:26-0300\n"
+"PO-Revision-Date: 2005-01-03 16:27-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,13 +223,13 @@ msgstr "Ocultar los nombres de los ~l~inks"
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
-#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:163
+#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:168
 msgid "~A~dd"
 msgstr "~A~gregar"
 
 #: ../infview/inf.cc:2487 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4306
 #: ../setedit/debug.cc:4913 ../setedit/winlistd.cc:140
-#: ../settvuti/tdiagaid.cc:165
+#: ../settvuti/tdiagaid.cc:170
 msgid "~D~elete"
 msgstr "~B~orrar"
 
@@ -301,12 +301,12 @@ msgstr "Codificaciones"
 msgid "Set ~D~efaults"
 msgstr "~O~riginal"
 
-#: ../infview/infmain.cc:459 ../setedit/dstfile.cc:605
+#: ../infview/infmain.cc:459 ../setedit/dstfile.cc:606
 #, c-format
 msgid "Could not create %s."
 msgstr "No puedo crear %s."
 
-#: ../infview/infmain.cc:506 ../setedit/dstfile.cc:530
+#: ../infview/infmain.cc:506 ../setedit/dstfile.cc:531
 msgid "Could not open desktop file"
 msgstr "No puedo abrir el archivo del escritorio"
 
@@ -314,7 +314,7 @@ msgstr "No puedo abrir el archivo del escritorio"
 msgid "Wrong desktop file"
 msgstr "Archivo de escritorio incorrecto."
 
-#: ../infview/infmain.cc:517 ../setedit/dstfile.cc:541
+#: ../infview/infmain.cc:517 ../setedit/dstfile.cc:542
 msgid "Error reading desktop file"
 msgstr "Error al leer el archivo de escritorio"
 
@@ -933,8 +933,8 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acción)"
 
-#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:549
-#: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:166
+#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:582
+#: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:171
 msgid "~O~k"
 msgstr "~O~k"
 
@@ -1413,7 +1413,7 @@ msgstr "Saltar a una función"
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:169
+#: ../mainsrc/bufun.cc:755 ../settvuti/tdiagaid.cc:174
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
@@ -2083,29 +2083,29 @@ msgstr "Sin Título"
 msgid "You must install gzip to browse compressed files!"
 msgstr "¡Debe instalar gzip para leer archivos comprimidos!"
 
-#: ../mainsrc/keytrans.cc:796
+#: ../mainsrc/keytrans.cc:804
 msgid "Wrong file"
 msgstr "Archivo incorrecto"
 
-#: ../mainsrc/keytrans.cc:800
+#: ../mainsrc/keytrans.cc:808
 msgid "Wrong version"
 msgstr "Versión incorrecta"
 
-#: ../mainsrc/keytrans.cc:817
+#: ../mainsrc/keytrans.cc:825
 msgid "Error while reading"
 msgstr "Error al leer"
 
-#: ../mainsrc/keytrans.cc:1135
+#: ../mainsrc/keytrans.cc:1143
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr "%s, archivo \"%s\"\n"
 
-#: ../mainsrc/keytrans.cc:1144
+#: ../mainsrc/keytrans.cc:1152
 #, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Error al cargar la configuración de teclado: %s"
 
-#: ../mainsrc/keytrans.cc:1181
+#: ../mainsrc/keytrans.cc:1189
 msgid "You'll lose all the changes"
 msgstr "Perderá todos los cambios"
 
@@ -2683,7 +2683,7 @@ msgstr "Lista de MP3s"
 msgid "List of files"
 msgstr "Lista de archivos"
 
-#: ../mp3/mp3list.cc:334 ../settvuti/tdiagaid.cc:164
+#: ../mp3/mp3list.cc:334 ../settvuti/tdiagaid.cc:169
 msgid "~I~nsert"
 msgstr "~I~nsertar"
 
@@ -3931,15 +3931,15 @@ msgstr "   Página del manual: %s"
 msgid "   MP3 Control panel"
 msgstr "   Panel de control MP3"
 
-#: ../setedit/dstfile.cc:875
-msgid "Wrong desktop file."
-msgstr "Archivo de escritorio incorrecto."
+#: ../setedit/dstfile.cc:876
+msgid "Wrong desktop file. May be owned by other user."
+msgstr ""
 
-#: ../setedit/dstfile.cc:881
+#: ../setedit/dstfile.cc:882
 msgid "The desktop file is too old."
 msgstr "El archivo de escritorio es de una version muy vieja."
 
-#: ../setedit/dstfile.cc:886
+#: ../setedit/dstfile.cc:887
 msgid "You need a newer editor for this desktop file."
 msgstr ""
 "Ud. necesita una nueva versión del editor para este archivo de escritorio."
@@ -4381,7 +4381,7 @@ msgstr "R~e~emplazar ..."
 msgid "~S~earch again"
 msgstr "~R~epetir búsqueda"
 
-#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:197
+#: ../setedit/editmenu.cc:98 ../settvuti/tdiagaid.cc:213
 msgid "~M~acro"
 msgstr "~M~acro"
 
@@ -5515,27 +5515,27 @@ msgstr "~O~riginal"
 msgid "The hardware doesn't support this."
 msgstr "Este sistema no soporta esto."
 
-#: ../setedit/edkeys.cc:191
+#: ../setedit/edkeys.cc:193
 msgid "Key assignment"
 msgstr "Asignación de teclas"
 
-#: ../setedit/edkeys.cc:247
+#: ../setedit/edkeys.cc:249
 msgid "Accepting that you'll change the SET's editor behavior"
 msgstr "Aceptando ud. modificará el comportamiento del editor"
 
-#: ../setedit/edkeys.cc:263
+#: ../setedit/edkeys.cc:265
 msgid "Do you really want to discard the changes?"
 msgstr "¿Verdaderamente desea descartar los cambios?"
 
-#: ../setedit/edkeys.cc:276
+#: ../setedit/edkeys.cc:278
 msgid "Sequence of keys"
 msgstr "Secuencia de teclas"
 
-#: ../setedit/edkeys.cc:299
+#: ../setedit/edkeys.cc:301
 msgid "sLisp code"
 msgstr "Código sLisp"
 
-#: ../setedit/edkeys.cc:303
+#: ../setedit/edkeys.cc:305
 msgid ""
 "Enter the sLisp code, it must start with (\n"
 "and end with )"
@@ -5543,74 +5543,82 @@ msgstr ""
 "Ingrese el código sLisp, debe comenzar con (\n"
 "y terminar con )"
 
-#: ../setedit/edkeys.cc:366
+#: ../setedit/edkeys.cc:368
 msgid "This key is already in use, do you want to replace it?"
 msgstr "Esta tecla ya está en uso, ¿desea reemplazarla?"
 
-#: ../setedit/edkeys.cc:378
+#: ../setedit/edkeys.cc:380
 msgid ""
 "This sequence is used for more than one key, delete these assignments first"
 msgstr ""
 "Esta secuencia es usada por más de una tecla, primero elimine esas "
 "asignaciones"
 
-#: ../setedit/edkeys.cc:398
+#: ../setedit/edkeys.cc:400
 msgid "Key selector"
 msgstr "Selector de teclas"
 
-#: ../setedit/edkeys.cc:401
+#: ../setedit/edkeys.cc:403
 msgid "Press a key"
 msgstr "Presione una tecla"
 
-#: ../setedit/edkeys.cc:448
+#: ../setedit/edkeys.cc:419
+msgid "Part of a sequence"
+msgstr ""
+
+#: ../setedit/edkeys.cc:422
+msgid "Unassigned"
+msgstr ""
+
+#: ../setedit/edkeys.cc:481
 msgid "Macros"
 msgstr "Macros"
 
-#: ../setedit/edkeys.cc:464
+#: ../setedit/edkeys.cc:497
 msgid "Commands"
 msgstr "Comandos"
 
-#: ../setedit/edkeys.cc:493
+#: ../setedit/edkeys.cc:526
 msgid "A command"
 msgstr "Un comando"
 
-#: ../setedit/edkeys.cc:543
+#: ../setedit/edkeys.cc:576
 msgid "Scan Viewer"
 msgstr "Visor de códigos scan"
 
-#: ../setedit/edkeys.cc:556
+#: ../setedit/edkeys.cc:589
 msgid "Alt keys settings"
 msgstr "Seteo de las teclas Alt"
 
-#: ../setedit/edkeys.cc:558
+#: ../setedit/edkeys.cc:591
 msgid "~K~eys used by the menues, etc."
 msgstr "~T~eclas usadas por menúes, etc."
 
-#: ../setedit/edkeys.cc:559
+#: ../setedit/edkeys.cc:592
 msgid "~L~eft Alt"
 msgstr "Alt ~I~zquierdo"
 
-#: ../setedit/edkeys.cc:559
+#: ../setedit/edkeys.cc:592
 msgid "~R~ight Alt"
 msgstr "Alt ~D~erecho"
 
-#: ../setedit/edkeys.cc:560
+#: ../setedit/edkeys.cc:593
 msgid "~B~oth Alt"
 msgstr "Am~b~os Alt"
 
-#: ../setedit/edkeys.cc:582
+#: ../setedit/edkeys.cc:615
 msgid "Key Pad behavior"
 msgstr "Comportamiento del teclado numérico"
 
-#: ../setedit/edkeys.cc:584
+#: ../setedit/edkeys.cc:617
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: ../setedit/edkeys.cc:584
+#: ../setedit/edkeys.cc:617
 msgid "Use the ~B~IOS default"
 msgstr "Mantener el valor del ~B~IOS"
 
-#: ../setedit/edkeys.cc:585
+#: ../setedit/edkeys.cc:618
 msgid "Always interprete shift+arrow as ~m~ovement"
 msgstr "Siempre interpretar shift+flecha como ~m~ovimiento"
 
@@ -6241,7 +6249,7 @@ msgstr "Salida es disposi~t~ivo/archivo"
 msgid "Output i~s~ a program"
 msgstr "Salida es un programa ~1~"
 
-#: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:167
+#: ../setedit/edprint.cc:707 ../settvuti/tdiagaid.cc:172
 msgid "~C~ancel"
 msgstr "~C~ancela"
 
@@ -6804,21 +6812,34 @@ msgstr "O~p~ciones"
 msgid "~N~ame"
 msgstr "~N~ombre"
 
-#: ../settvuti/tdiagaid.cc:168
+#: ../settvuti/tdiagaid.cc:173
 msgid "~I~nfo."
 msgstr "~I~nfo."
 
-#: ../settvuti/tdiagaid.cc:197
+#: ../settvuti/tdiagaid.cc:208
+#, fuzzy
+msgid "Assigned to:"
+msgstr "Asi~g~nación"
+
+#: ../settvuti/tdiagaid.cc:213
 msgid "Assignmen~t~"
 msgstr "Asi~g~nación"
 
-#: ../settvuti/tdiagaid.cc:197
+#: ../settvuti/tdiagaid.cc:213
 msgid "Command~s~"
 msgstr "Comando~s~"
 
-#: ../settvuti/tdiagaid.cc:198
+#: ../settvuti/tdiagaid.cc:214
 msgid "s~L~isp code"
 msgstr "Código s~L~isp"
+
+#, fuzzy
+#~ msgid "Wrong desktop file (%s)."
+#~ msgstr "Archivo de escritorio incorrecto."
+
+#, fuzzy
+#~ msgid "Could not open desktop file (%s)"
+#~ msgstr "No puedo abrir el archivo del escritorio"
 
 #~ msgid "Watc~h~ an exp. (w/scope)"
 #~ msgstr "Ver una e~x~p. (c/ámbito)"
