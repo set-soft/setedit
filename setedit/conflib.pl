@@ -12,7 +12,7 @@ $ExtraModifyMakefiles={};
 $OS='';
 # Linux, FreeBSD, Solaris, QNXRtP
 $OSf='';
-# x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Unknown
+# x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium, Unknown
 $CPU='';
 # GCC, BCPP, MSVC
 $Comp='';
@@ -1241,6 +1241,8 @@ int main(void)
  printf("HPPA\n");
  #elif defined(__mips__)
  printf("MIPS\n");
+ #elif defined(__ia64__)
+ printf("Itanium\n");
  #else
  printf("Unknown\n");
  #endif

@@ -29,14 +29,15 @@ const int Height=15,chLeft=0,chRight=1;
 static inline
 void *CreateID(int index, int channel)
 {
- return (void *)(index | (channel<<16));
+ return (void *)(long)(index | (channel<<16));
 }
 
 static inline
 int DecomposeID(void *value, int &index)
 {
- index=((int)value) & 0x7FFF;
- return ((int)value)>>16;
+ int val=(long)value;
+ index=(val) & 0x7FFF;
+ return (val)>>16;
 }
 
 static

@@ -1145,7 +1145,7 @@ TTagMembersCol::~TTagMembersCol()
 void TTagMembersCol::getText(char *dest, unsigned item, int maxLen)
 {
  stTag *p=(stTag *)at(item);
- int level=(int)levels->at(item);
+ int level=(long)levels->at(item);
  if (level)
     CLY_snprintf(dest,maxLen,"%s (%s) %d",p->id,p->partof,level);
  else
@@ -1155,7 +1155,7 @@ void TTagMembersCol::getText(char *dest, unsigned item, int maxLen)
 void TTagMembersCol::insert(stTag *tg, int level)
 {
  atInsert(count,tg);
- levels->atInsert(levels->getCount(),(void *)level);
+ levels->atInsert(levels->getCount(),(void *)(long)level);
 }
 
 void TTagMembersCol::insertSorted(stTag *tg, int level)
@@ -1163,7 +1163,7 @@ void TTagMembersCol::insertSorted(stTag *tg, int level)
  ccIndex  i;
  search((void *)tg->id,i);
  atInsert(i,tg);
- levels->atInsert(i,(void *)level);
+ levels->atInsert(i,(void *)(long)level);
 }
 
 void TTagMembersCol::collectFromOne(TSpTagCollection *cl, int level, Boolean sort)

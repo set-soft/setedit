@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -37,7 +37,7 @@ public:
    TNSCollection(aLimit,aDelta) { shouldDelete=False; } // No owner
  int *getItems() { return (int *)items; } // That's the good thing of protected things, you
                                    // can unprotect them ;-) != private
- void insert(int val) { TNSCollection::insert((void *)val); }
+ void insert(int val) { TNSCollection::insert((void *)(long)val); }
 };
 
 // Base cell
@@ -97,7 +97,7 @@ void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow)
  if (SpLines->search(fileName,pos))
    {
     p=(NodeCol *)(SpLines->at(pos));
-    p->SpecialLines->atInsert(p->SpecialLines->getCount()-1,(void *)line);
+    p->SpecialLines->atInsert(p->SpecialLines->getCount()-1,(void *)(long)line);
     p->OriginalLines->insert(line);
     p->idSources->insert(idSource);
     #ifdef DEBUG
@@ -217,7 +217,7 @@ void SpLinesDeleteForId(int id)
      deleted=False;
      for (j=0; j<c2;)
         {
-         if ((int)(p->idSources->at(j))==id)
+         if ((long)(p->idSources->at(j))==(long)id)
            {
             p->idSources->atRemove(j);
             p->SpecialLines->atRemove(j);
@@ -269,8 +269,8 @@ int SpLineGetNewValueOf(int line, char *fileName)
     ccIndex i;
     for (i=0; i<c; i++)
        {
-        if ((int)(p->OriginalLines->at(i))==line)
-           return (int)(p->SpecialLines->at(i))+1;
+        if ((long)(p->OriginalLines->at(i))==(long)line)
+           return (long)(p->SpecialLines->at(i))+1;
        }
    }
  return line+1;

@@ -384,7 +384,7 @@ int InsNewKeyInSeq(int wich)
  unsigned short k=TCEditor_SelectAKey();
  if (k)
    {
-    KSequence->atInsert(wich,(void *)(unsigned)k);
+    KSequence->atInsert(wich,(void *)(unsigned long)k);
     return 1;
    }
  return 0;
@@ -482,7 +482,7 @@ int AddNewComInSeq(void)
 static
 int InsNewComInSeq(int wich)
 {
- int c=SelectACom();
+ long c=SelectACom();
  if (c>=0)
    {
     CSequence->atInsert(wich,(void *)c);

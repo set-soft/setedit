@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.381  2003/05/20 19:02:32  set
+* Modified: Some details of the powered grep to make it more friendly:
+1) During a blocking call to grep the "busy indicator" is enabled.
+2) During a recursive search you can stop the recursivity pressing ^C.
+3) Gives a change to update the screen after each run, very important for
+the X11 driver.
+
 Revision 1.380  2003/05/20 17:29:24  set
 * Added: Emacs modes for CSS files. From Grzegorz.
 

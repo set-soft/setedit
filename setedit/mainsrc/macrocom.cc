@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -33,13 +33,13 @@ class TCommToMacroCol : public TStringCollection
 public:
  TCommToMacroCol() : TStringCollection(5,4) {};
  virtual int compare(void *key1, void *key2);
- virtual void *keyOf(void *item) { return (void *)(((stCommToMacro *)item)->command); };
+ virtual void *keyOf(void *item) { return (void *)(long)(((stCommToMacro *)item)->command); };
  virtual void freeItem( void *item );
 };
 
 int TCommToMacroCol::compare(void *key1, void *key2)
 {
- return (unsigned)key1-(unsigned)key2;
+ return (unsigned long)key1-(unsigned long)key2;
 }
 
 void TCommToMacroCol::freeItem(void *item)
@@ -58,7 +58,7 @@ char *TranslateCommandToMacro(unsigned command)
     return 0;
 
  ccIndex pos;
- if (!List->search((void *)command,pos))
+ if (!List->search((void *)(unsigned long)command,pos))
     return 0;
 
  return ((stCommToMacro *)(List->at(pos)))->macro;

@@ -584,7 +584,7 @@ void TKeyTranslate::DeleteTree(KeyTTable *t)
 void TKeySeqCol::getText(char *dest, unsigned item, int maxLen)
 {
  char b[tktMaxKeyName];
- TCEditor_MakeKeyName(b,(unsigned short)((unsigned)at(item)));
+ TCEditor_MakeKeyName(b,(unsigned short)((unsigned long)at(item)));
  strncpy(dest,b,maxLen);
  dest[maxLen]=EOS;
 }
@@ -594,7 +594,7 @@ void TComSeqCol::getText(char *dest, unsigned item, int maxLen)
  char b[40];
  *b=0;
 
- char *s=TranslateEdCommand((unsigned)(at(item)));
+ char *s=TranslateEdCommand((unsigned long)(at(item)));
  if (s)
    {
     strcpy(b,"cmc");
@@ -669,7 +669,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
  curTable=base;
  for (i=0; i<c; i++)
     {
-     node=move((unsigned)(sKeys->at(i)));
+     node=move((unsigned long)(sKeys->at(i)));
      if (!node)
        {
         ok=1;
@@ -691,7 +691,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
     curTable=base;
     return -1;
    }
- node=InsertKey((unsigned)(sKeys->at(i)));
+ node=InsertKey((unsigned long)(sKeys->at(i)));
  // Now if the sequence is larger create a ramification in the tree to hold it
  while (i<(c-1))
    {
@@ -701,7 +701,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
     nT->cant=1;
     nT->total=0; // Later
     node=nT->nodes;
-    node->key=(unsigned short)(unsigned)(sKeys->at(++i));
+    node->key=(unsigned short)(unsigned long)(sKeys->at(++i));
    }
  // Now node points to an end of the tree
  // The valid Types are kbtIsMacro kbtIsSeq
@@ -717,14 +717,14 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
     if (c==1)
       {
        node->flags=kbtIsComm;
-       node->d.command=(unsigned short)((unsigned)p->at(0));
+       node->d.command=(unsigned short)((unsigned long)p->at(0));
       }
     else
       { // The never ending story ...
        KeyTSeq *s=(KeyTSeq *)new char[sizeof(KeyTSeq)+sizeof(unsigned short)*c];
        s->cant=c;
        for (i=0; i<c; i++)
-           s->commands[i]=(unsigned short)((unsigned)p->at(i));
+           s->commands[i]=(unsigned short)((unsigned long)p->at(i));
        node->flags=kbtIsSeq;
        node->d.data=s;
       }
@@ -740,7 +740,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type)
      #ifdef NDEBUG
      move((unsigned)(sKeys->at(i)),1);
      #else
-     node=move((unsigned)(sKeys->at(i)),1);
+     node=move((unsigned long)(sKeys->at(i)),1);
      assert(node!=0);
      #endif
     }

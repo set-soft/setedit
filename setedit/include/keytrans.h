@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <dyncat.h>
 
@@ -124,8 +124,8 @@ public:
 
  virtual void getText(char *dest, unsigned item, int maxLen);
  virtual unsigned GetCount(void) { return getCount(); };
- void insert(unsigned short key) { TNSCollection::insert((void *)(unsigned)key); };
- void insert(int key) { TNSCollection::insert((void *)key); };
+ void insert(unsigned short key) { TNSCollection::insert((void *)(unsigned long)key); };
+ void insert(int key) { TNSCollection::insert((void *)(long)key); };
 };
 #endif
 
@@ -140,8 +140,8 @@ public:
 
  virtual void getText(char *dest, unsigned item, int maxLen);
  virtual unsigned GetCount(void) { return getCount(); };
- void insert(unsigned short key) { TNSCollection::insert((void *)(unsigned)key); };
- void insert(int key) { TNSCollection::insert((void *)key); };
+ void insert(unsigned short key) { TNSCollection::insert((void *)(unsigned long)key); };
+ void insert(int key) { TNSCollection::insert((void *)(long)key); };
 };
 #endif
 

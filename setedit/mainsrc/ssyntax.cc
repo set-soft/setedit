@@ -561,14 +561,14 @@ unsigned TNodeCollection::GetCount(void)
 void *TNodeCollection::keyOf(void *item)
 {
  if (mode)
-    return (void *)(((NodeInfo *)item)->points);
+    return (void *)(long)(((NodeInfo *)item)->points);
  return ((NodeInfo *)item)->node;
 }
 
 int TNodeCollection::compare(void *n1,void *n2)
 {
  if (mode)
-    return (int)n1==(int)n2 ? 0 : ((int)n1>(int)n2 ? -1 : 1);
+    return (long)n1==(long)n2 ? 0 : ((long)n1>(long)n2 ? -1 : 1);
  return strcmp((char *)n1,(char *)n2);
 }
 

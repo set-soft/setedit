@@ -9,7 +9,8 @@
 /*                TAsciiChart                               */
 /*----------------------------------------------------------*/
 
-/* Modified by Robert Hoehne to be used with RHIDE */
+/* Modified by Robert Hoehne to be used with RHIDE
+   Modified by Salvador E, Tropea to be used with SETEdit */
 
 #define Uses_TRect
 #define Uses_TEvent
@@ -69,7 +70,7 @@ void TTable::draw()
 void TTable::charFocused()
 {
     message(owner, evBroadcast, cmAsciiTableCmdBase + cmCharFocused,
-      (void *) (cursor.x + 32 * cursor.y));
+      (void *)(long)(cursor.x + 32 * cursor.y));
 }
 
 
