@@ -1,4 +1,9 @@
 $Log$.
+Revision 1.144  2002/07/05 12:49:54  set
+* Fixed: [MSVC] libpcre should be linked statically, added -DSTATIC. From
+warning sent by WintiX.
+* Fixed: [MSVC] minor details in makefiles. Suggested by WintiX.
+
 Revision 1.143  2002/07/04 19:30:45  set
 * Fixed: [MSVC] warnings from nmake in libz/Makefile.nmk. Patch from
 WintiX, he successfuly used it to create libz.lib.

@@ -25,8 +25,8 @@ all::  pcre.lib
 dftables.o: dftables.c internal.h
 	$(CC) -c $(CFLAGS) $*.c -Fo$*.o
 
-dftables.exe: dftables.o maketables.c
-	$(LD) $(LDFLAGS) dftables.o
+dftables.exe: dftables.c internal.h maketables.c
+	$(CC) $(CFLAGS) $*.c
 
 chartables.c: dftables.exe
 	dftables > chartables.c
