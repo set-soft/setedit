@@ -226,8 +226,14 @@ void *TEditorCollection::read( ipstream& is )
 
  count=Closed+nonEditors+Editors;
  setLimit(0);
- for ( ccIndex idx = 0; idx < count; idx++ )
-     items[idx] = readItem( is );
+ // The following is because the editors could pop-up dialogs
+ // during the load process. It will trigger the idle() member
+ // and it will do a search in the list of windows. If we have
+ // count set to the final value the search will involve unloaded
+ // items!
+ ccIndex countAux=count;
+ for (count=0; count<countAux; count++ )
+     items[count]=readItem(is);
 
  // Now insert the views in the correct order
  int c=count;
