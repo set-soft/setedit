@@ -42,9 +42,9 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
  TSubMenu& sub2 = *new TSubMenu( _("~G~oto"), kbAltG ) +
    *new TMenuItem( _("Goto: (~F~ile)Node"), cmInfGoto, kbCtrlG, hcNoContext, "Ctrl+G" ) +
    *new TMenuItem( _("~N~ode list"), cmInfNodes, kbCtrlO, hcNoContext, "Ctrl+O" ) +
-   *new TMenuItem( _("N~e~xt node"), chcdNext, kbCtrlN, hcNoContext, "Ctrl+N" ) +
-   *new TMenuItem( _("~P~revious node"), chcdPrev, kbCtrlP, hcNoContext, "Ctrl+P" ) +
-   *new TMenuItem( _("~U~pper node"), chcdUp, kbCtrlU, hcNoContext, "Ctrl+U" ) +
+   *new TMenuItem( _("N~e~xt node"), cmhNext, kbCtrlN, hcNoContext, "Ctrl+N" ) +
+   *new TMenuItem( _("~P~revious node"), cmhPrev, kbCtrlP, hcNoContext, "Ctrl+P" ) +
+   *new TMenuItem( _("~U~pper node"), cmhUp, kbCtrlU, hcNoContext, "Ctrl+U" ) +
    *new TMenuItem( _("~T~op node"), cmInfTop, kbCtrlT, hcNoContext, "Ctrl+T" ) +
    *new TMenuItem( _("~D~irectory"), cmInfDir, kbCtrlD, hcNoContext, "Ctrl+D" );
               
@@ -53,7 +53,7 @@ TMenuBar *TEditorMiApp::initMenuBar( TRect r )
    *new TMenuItem( _("Search ~a~gain"), cmcSearchAgain, kbCtrlL, hcNoContext, "Ctrl+L");
    
  TSubMenu& sub4 = *new TSubMenu( _("~I~nfview"), kbAltI ) +
-   *new TMenuItem( _("~C~onfiguration"), chcdConfigDia, kbNoKey ) +
+   *new TMenuItem( _("~C~onfiguration"), cmhConfigDia, kbNoKey ) +
    *new TMenuItem( _("~H~istory"), cmInfControl, kbAltF10, hcNoContext, "Alt+F10") +
    *new TMenuItem( _("~B~ookmarks"), cmInfBookM, kbCtrlB, hcNoContext, "Ctrl+B") +
    *new TMenuItem( _("~S~creen configuration"), cmScreenConf, kbNoKey ) +

@@ -479,16 +479,16 @@ void TInfViewer::InitCommandSet()
  ts->enableCmd(cmInfDir);
  ts->enableCmd(cmInfTop);
 
- ts->enableCmd(chcdNext);
- ts->enableCmd(chcdPrev);
- ts->enableCmd(chcdUp);
- ts->enableCmd(chcdPrevH);
- ts->enableCmd(chcdHide);
- ts->enableCmd(chcdNodeList);
- ts->enableCmd(chcdBookMarks);
- ts->enableCmd(chcdConfigDia);
- ts->enableCmd(chcdOpenInfo);
- ts->enableCmd(chcdHistSel);
+ ts->enableCmd(cmhNext);
+ ts->enableCmd(cmhPrev);
+ ts->enableCmd(cmhUp);
+ ts->enableCmd(cmhPrevH);
+ ts->enableCmd(cmhHide);
+ ts->enableCmd(cmhNodeList);
+ ts->enableCmd(cmhBookMarks);
+ ts->enableCmd(cmhConfigDia);
+ ts->enableCmd(cmhOpenInfo);
+ ts->enableCmd(cmhHistSel);
 }
 
 void TInfViewer::DisableAllCommands()
@@ -1220,19 +1220,19 @@ void TInfViewer::handleEvent( TEvent& event )
                    OpenInfo();
                    break;
 
-              case chcdNext:
+              case cmhNext:
                    switchToTopic(topic->Next);
                    break;
 
-              case chcdPrev:
+              case cmhPrev:
                    switchToTopic(topic->Prev);
                    break;
 
-              case chcdUp:
+              case cmhUp:
                    switchToTopic(topic->Up);
                    break;
 
-              case chcdConfigDia:
+              case cmhConfigDia:
                    ConfigDialog();
                    break;
 
@@ -1248,39 +1248,39 @@ void TInfViewer::handleEvent( TEvent& event )
                    {
                     int Comando =
                            execDialog( new THelpControlDialog(History), NULL );
-                    if (Comando>=chcdHistSel)
+                    if (Comando>=cmhHistSel)
                       {
-                       switchToTopic((stHisto *)History->at(Comando-chcdHistSel));
+                       switchToTopic((stHisto *)History->at(Comando-cmhHistSel));
                       }
                     else
                        switch (Comando)
                          {
-                          case chcdNext:
+                          case cmhNext:
                                switchToTopic(topic->Next);
                                break;
-                          case chcdPrev:
+                          case cmhPrev:
                                switchToTopic(topic->Prev);
                                break;
-                          case chcdUp:
+                          case cmhUp:
                                switchToTopic(topic->Up);
                                break;
-                          case chcdPrevH:
+                          case cmhPrevH:
                                {
                                 TPoint Pos;
                                 char *contexto=TakeFromHistory(Pos);
                                 switchToTopic(contexto,Pos);
                                }
                                break;
-                          case chcdNodeList:
+                          case cmhNodeList:
                                ChooseNode();
                                break;
-                          case chcdBookMarks:
+                          case cmhBookMarks:
                                BookMarksDialog();
                                break;
-                          case chcdConfigDia:
+                          case cmhConfigDia:
                                ConfigDialog();
                                break;
-                          case chcdOpenInfo:
+                          case cmhOpenInfo:
                                OpenInfo();
                                break;
                          }
@@ -2239,15 +2239,15 @@ void THelpControlDialog::handleEvent(TEvent& event)
    switch( event.message.command )
            {
             // a button
-            case chcdNext:
-            case chcdPrev:
-            case chcdUp:
-            case chcdPrevH:
-            case chcdHide:
-            case chcdNodeList:
-            case chcdBookMarks:
-            case chcdConfigDia:
-            case chcdOpenInfo:
+            case cmhNext:
+            case cmhPrev:
+            case cmhUp:
+            case cmhPrevH:
+            case cmhHide:
+            case cmhNodeList:
+            case cmhBookMarks:
+            case cmhConfigDia:
+            case cmhOpenInfo:
                 {
                 endModal(event.message.command);
                 clearEvent(event);
@@ -2257,7 +2257,7 @@ void THelpControlDialog::handleEvent(TEvent& event)
             // from the list
             case cmStrChoose:
                 {
-                 endModal(chcdHistSel+*((ushort *)event.message.infoPtr));
+                 endModal(cmhHistSel+*((ushort *)event.message.infoPtr));
                  clearEvent(event);
                 }
                 break;
@@ -2273,31 +2273,31 @@ THelpControlDialog::THelpControlDialog(THisCollection *oCol) :
     TWindowInit( &THelpControlDialog::initFrame )
 {
  TRect r(1,2,18,4);
- insert( new TButton(r,_("~N~ext"),chcdNext,bfDefault) );
+ insert( new TButton(r,_("~N~ext"),cmhNext,bfDefault) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~P~revious"),chcdPrev,bfNormal) );
+ insert( new TButton(r,_("~P~revious"),cmhPrev,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~U~p"),chcdUp,bfNormal) );
+ insert( new TButton(r,_("~U~p"),cmhUp,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("Prev. ~H~ist."),chcdPrevH,bfNormal) );
+ insert( new TButton(r,_("Prev. ~H~ist."),cmhPrevH,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("Nodes ~L~ist"),chcdNodeList,bfNormal) );
+ insert( new TButton(r,_("Nodes ~L~ist"),cmhNodeList,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~B~ookmarks"),chcdBookMarks,bfNormal) );
+ insert( new TButton(r,_("~B~ookmarks"),cmhBookMarks,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~C~onfiguration"),chcdConfigDia,bfNormal) );
+ insert( new TButton(r,_("~C~onfiguration"),cmhConfigDia,bfNormal) );
  r.a.y+=2;
  r.b.y+=2;
- insert( new TButton(r,_("~O~pen Info"),chcdOpenInfo,bfNormal) );
+ insert( new TButton(r,_("~O~pen Info"),cmhOpenInfo,bfNormal) );
  r.a.x+=19;
  r.b.x+=19;
- insert( new TButton(r,_("H~i~de"),chcdHide,bfNormal) );
+ insert( new TButton(r,_("H~i~de"),cmhHide,bfNormal) );
 
  TScrollBar *sb = new TScrollBar( TRect(52,3,53,15) );
  insert(sb);

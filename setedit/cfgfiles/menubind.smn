@@ -333,6 +333,8 @@ StatusEntry: "~^H~ Help", cmInfHelp, kbCtH
 StatusEntry: "~ESC~ Close", cmClose, kbEsc
 StatusEntry: "~Alt+I~ Include", cmInfPasteIn, kbAlI
 StatusEntry: "~Alt+B~ Bookmark", cmInfBookM, kbAlB
+# Example of cmh* command: (for testing purposes)
+#StatusEntry: "~^D~ Up", cmhUp, kbCtD
 StatusHiddenEntry: cmZoom, kbF5
 EndStatusRange
 

@@ -117,16 +117,16 @@ const int cmStrChoose=0x2110;
 // THelpControlDialog
 
 const int
-      chcdNext=0x2111,
-      chcdPrev=0x2112,
-      chcdUp=0x2113,
-      chcdPrevH=0x2114,
-      chcdHide=0x2115,
-      chcdNodeList=0x2116,
-      chcdBookMarks=0x2117,
-      chcdConfigDia=0x2118,
-      chcdOpenInfo=0x2119,
-      chcdHistSel=0x2130;
+      cmhNext=0x2111,
+      cmhPrev=0x2112,
+      cmhUp=0x2113,
+      cmhPrevH=0x2114,
+      cmhHide=0x2115,
+      cmhNodeList=0x2116,
+      cmhBookMarks=0x2117,
+      cmhConfigDia=0x2118,
+      cmhOpenInfo=0x2119,
+      cmhHistSel=0x2130;
 
 class THelpControlDialog : public TDialog
 {

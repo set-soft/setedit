@@ -372,9 +372,9 @@ TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void)
 
 *****************************************************************************/
 
-#define C(a) { #a, cm##a }
 static edCList Simple[] =
 {
+#define C(a) { #a, cm##a }
  C(Close),
  C(DelFile),
  C(Delete),
@@ -382,15 +382,34 @@ static edCList Simple[] =
  C(InfBack),
  C(InfBookM),
  C(InfControl),
+ C(InfDir),
+ C(InfGoto),
  C(InfHelp),
+ C(InfNodes),
+ C(InfOpen),
  C(InfPasteIn),
+ C(InfTop),
  C(Insert),
  C(Menu),
  C(Zoom),
- C(tilCopy),
- C(tilPaste)
-};
 #undef C
+#define C(a) { "h" #a, cmh##a }
+ C(BookMarks),
+ C(ConfigDia),
+ C(Hide),
+ C(HistSel),
+ C(Next),
+ C(NodeList),
+ C(OpenInfo),
+ C(Prev),
+ C(PrevH),
+ C(Up),
+#undef  C
+#define C(a) { "til" #a, cmtil##a }
+ C(Copy),
+ C(Paste)
+#undef C
+};
 
 static
 int compare(const void *s1, const void *s2)

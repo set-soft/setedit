@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.241  2002/11/29 12:50:22  set
+* Modified: Now TV provides CLY_Beep for all platforms.
+
 Revision 1.240  2002/11/27 17:35:12  set
 * Fixed: When using Linux (without VCS access) and XTerm drivers and
 calling a child process in background the child shared the output file
