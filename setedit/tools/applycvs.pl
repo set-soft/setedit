@@ -29,6 +29,8 @@ $toPatch;
 $toSkip=0;
 $errors=0;
 $applied=0;
+$dirNewFile='';
+$inNewFile=0;
 $files='change.log ';
 while ($a=<>)
   {
@@ -113,24 +115,52 @@ while ($a=<>)
          $toSkip--;
         }
      }
+   elsif ($a=~/^Index\: (.*)/)
+     {
+      if ($inNewFile)
+        {
+         close FIL;
+         $inNewFile=0;
+        }
+      $estado=2 unless $1 eq 'change.log';
+      print "$1\n";
+     }
+   elsif ($a=~/\-\-\- NEW FILE: (.*) \-\-\-/)
+     {
+      if ($inNewFile)
+        {
+         close FIL;
+        }
+      print "New file: $dirNewFile/$1\n";
+      open(FIL,">$dirNewFile/$1") || die;
+      $inNewFile=1;
+      $newFiles.="$dirNewFile/$1 ";
+     }
+   elsif ($inNewFile)
+     {
+      print FIL $a;
+     }
+   elsif ($a=~/Update of \/cvsroot(\/[^\/]*)(\/[^\/]*\/)(.*$)/)
+     {
+      $dirNewFile=$3;
+     }
    elsif (!$LogMessage && $a=~/^Log Message\:/)
      {
       $estado=1;
       open(FIL,">/tmp/mensaje") || die;
      }
-   elsif ($a=~/^Index\: (.*)/)
-     {
-      $estado=2 unless $1 eq 'change.log';
-      print "$1\n";
-     }
   }
 if (!$errors && $applied)
   {
    print "Successful process, doing a check-in\n";
+   if ($newFiles)
+     {
+      system("cvs add $newFiles");
+     }
    $a=cat('change.log');
    $a=~s/\$Log\: (.*),v \$/\$Log\: $1,v \$\./;
    replace('change.log',$a);
-   system("cvs ci -F /tmp/mensaje $files");
+   system("cvs ci -F /tmp/mensaje $files $newFiles");
    unlink('/tmp/mensaje','/tmp/parche');
   }
 elsif ($applied)

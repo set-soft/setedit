@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.123  2002/06/19 14:59:24  set
+* Added: Euro symbol to the fonts. I put the same drawing for all, this
+should be fixed, but that's better than nothing.
+
 Revision 1.122  2002/06/18 16:30:35  set
 * Added: Support for QNX to the configuration mechanism. Patches by Mike
 Gorchak <mike@malva.ua>.
