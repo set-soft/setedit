@@ -1,4 +1,10 @@
 $Log$.
+Revision 1.339  2003/05/06 20:26:04  set
+* Added: A dialog to force a plug-in for the calendar. Useful if the user
+doesn't define the LANG environment variable or if that isn't enough to
+determine the country.
+* Modified: Moved most of holidays plug-in code to a separated file.
+
 Revision 1.338  2003/05/06 12:34:04  set
 * Added: a small doc explaining how to write a "holidays plug-in".
 

@@ -315,18 +315,18 @@ int TSpTagCollection::compare(void *key1, void *key2)
 const char *TSpTagCollection::Languages[]=
 {
  "Asm",  "ASP",    "Awk",   "BETA", "C",     "C++",
- "Cobol","Eiffel","Fortran","Java", "Lisp",  "Lua",
- "Make", "Pascal","Perl",   "PHP",  "Python","REXX",
- "Ruby", "Scheme","Sh",     "SLang","Tcl",   "Vim",
- "YACC",  NULL
+ "Cobol","Eiffel","Fortran","HTML", "Java", "Lisp",
+ "Lua",  "Make", "Pascal","Perl",   "PHP",  "Python",
+ "REXX", "Ruby", "Scheme","Sh",     "SLang","Tcl",
+ "Vim",  "YACC",  NULL
 };
 
 const int
  ttclAsm=0,  ttclASP=1,    ttclAwk=2,    ttclBETA=3,  ttclC=4,      ttclCpp=5,
- ttclCobol=6,ttclEiffel=7, ttclFortran=8,ttclJava=9,  ttclLisp=10,  ttclLua=11,
- ttclMake=12,ttclPascal=13,ttclPerl=14,  ttclPHP=15,  ttclPython=16,ttclREXX=17,
- ttclRuby=18,ttclScheme=19,ttclSh=20,    ttclSLang=21,ttclTcl=22,   ttclVim=23,
- ttclYACC=24,
+ ttclCobol=6,ttclEiffel=7, ttclFortran=8,ttclHTML=9,  ttclJava=10,  ttclLisp=11,
+ ttclLua=12, ttclMake=13,  ttclPascal=14,ttclPerl=15, ttclPHP=16,   ttclPython=17,
+ ttclREXX=18,ttclRuby=19,  ttclScheme=20,ttclSh=21,   ttclSLang=22, ttclTcl=23,
+ ttclVim=24, ttclYACC=25,
  ttclUnknown=255;
 
 static stTagKind Asm[]={{'d',"define"},{'l',"label"},{'m',"macro"}};
@@ -349,6 +349,7 @@ static stTagKind Fortran[]={{'b',"block data"},{'c',"common block"},{'e',"entry 
                             {'m',"module"},{'n',"namelist"},{'p',"program"},
                             {'s',"subroutine"},{'t',"derived type"},
                             {'v',"module variable"}};
+static stTagKind HTML[]={{'a',"anchor"}};
 static stTagKind Java[]={{'c',"class"},{'f',"field"},{'i',"interface"},{'m',"method"},
                          {'p',"package"}};
 static stTagKind Make[]={{'m',"macro"}};
@@ -365,10 +366,11 @@ static stTagKind YACC[]={{'l',"labels"}};
 stTagKinds TSpTagCollection::Kinds[]=
 {
  {3,Asm},{2,ASP},{1,Func},{4,BETA},{13,Cpp},{13,Cpp},
- {1,Cobol},{3,Eiffel},{14,Fortran},{5,Java},{1,Func},
- {1,Func},{1,Make},{2,Pascal},{2,Perl},{2,PHPPython},
- {1,REXX},{3,Ruby},{2,Scheme},{1,Func},{2,SLang},
- {1,Tcl},{1,Func},{1,YACC}
+ {1,Cobol},{3,Eiffel},{14,Fortran},{1,HTML},{5,Java},
+ {1,Func},{1,Func},{1,Make},{2,Pascal},{2,Perl},
+ {2,PHPPython},{2,PHPPython},{1,REXX},{3,Ruby},
+ {2,Scheme},{1,Func},{2,SLang},{1,Tcl},{1,Func},
+ {1,YACC}
 };
 
 TSpTagCollection::TSpTagCollection(unsigned size) :
