@@ -45,12 +45,7 @@
 # script and make file ;-).
 #
 
-#
-# If perl is available ask the configuration options.
-# I guess the script can be made as a shell script and
-# even more friendly ... volunteers accepted ;-)
-#
-if [[ -a `which perl` ]]; then perl ask_config.pl; fi
+./ask_config.sh
 
 ./REMOVE_UNNEEDED
 
