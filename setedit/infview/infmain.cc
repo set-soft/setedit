@@ -424,12 +424,13 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
     else
       {
        char *s=f->readString();
-       if (strcmp(s,Signature)!=0)
+       if (s && strcmp(s,Signature)!=0)
           messageBox(_("Wrong desktop file"), mfOKButton | mfError);
        else
          {
-          loadDesktop(*f,loadWindows);
-          if (!f)
+          if (s)
+             loadDesktop(*f,loadWindows);
+          if (!s || !f)
              messageBox(_("Error reading desktop file"), mfOKButton | mfError);
          }
        delete[] s;
@@ -698,8 +699,6 @@ void CreateDesktopNames(char *file)
     // Shared dir
     if (!desktopIn)
        desktopIn=TryFileName(Share,cDktNameOld);
-    if (!desktopIn)
-       desktopIn=(char *)cDktNameOld;
    }
 
  // Solve the write point
