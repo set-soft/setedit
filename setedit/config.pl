@@ -1415,7 +1415,8 @@ sub GenerateMakefile
  $distrib=@conf{'ToolsDistrib'} eq 'yes';
  $internac=@conf{'xgettext'} ne 'no';
  $docbasic=(@conf{'makeinfo'} ne 'no') && (@conf{'makeinfo'} ne 'broken');
- $holidays=@conf{'dl'} eq 'yes';
+ # TODO: I need to replace -soname by -h conditionaly like in TV.
+ $holidays=(@conf{'dl'} eq 'yes') && ($OSf ne 'Solaris');
  $libmigdb=@conf{'migdbShipped'} eq 'yes';
 
  if (@conf{'compressExe'} eq 'undef')

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.624  2004/10/08 21:15:55  set
+* Fixed: [Config][Solaris] native ar is usable.
+
 Revision 1.623  2004/10/08 14:51:32  set
 * Fixed: [Config] AAlib detection. Reported by Ivan.
 * Added: [Config][Tru64] Detection of Tru64 (OSF1), but the tools I found
