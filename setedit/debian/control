@@ -34,6 +34,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: man
 Suggests: doc-base
+Conflicts: suidmanager (<< 0.50)
 Description: SET's InfoViewer - An info documentation browser
  SET's InfoViewer is a friendly text-console-mode GNU Info documentation
  browser. This is the SET's Editor info browser but standalone.

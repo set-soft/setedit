@@ -24,7 +24,7 @@ clean: clean-debian backup-stamp
 # Restore upstream provided regenerated files (if backup exists):
 	for file in $$(cat debian/files_to_backup) ; do test -e "$$file.bkpdeb" && mv "$$file.bkpdeb" "$$file" ; done ; exit 0
 	rm -f backup-stamp
-	rm -f doc/Makefile internac/Makefile mp3/libamp/rhide.env internac/de_iso.po \
+	rm -f doc/Makefile internac/Makefile internac/de_iso.po \
 		internac/es_iso.po internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
 		internac/de_iso.mo internac/es.mo internac/es_iso.mo
 
