@@ -303,6 +303,8 @@ void TSetEditorApp::storeDesktop(fpstream& s)
    << uchar(TCEditor::staticTabIndents)
    << uchar(TCEditor::staticBackSpUnindents)
    << uchar(TCEditor::staticShowMatchPairNow)
+   << uchar(TCEditor::staticUseIndentSize)
+   << uchar(TCEditor::staticDontPurgeSpaces)
    << TCEditor::staticWrapCol
    << TCEditor::editorFlags;
 
@@ -536,6 +538,11 @@ void TSetEditorApp::loadDesktop(fpstream &s, Boolean isLocal)
    { // Old desktop files with "Use Tabs" enabled globally have to disable it
     if (TCEditor::staticUseTabs)
        TCEditor::staticBackSpUnindents=False;
+   }
+ if (deskTopVersion>=0x448)
+   {
+    L(staticUseIndentSize);
+    L(staticDontPurgeSpaces);
    }
  if (deskTopVersion>0x401)
     s >> TCEditor::staticWrapCol;
