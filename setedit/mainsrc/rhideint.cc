@@ -179,3 +179,27 @@ void RemapNStringCodePage(unsigned char *, unsigned char *, unsigned short *,
 void SpLinesUpdate()
 {
 }
+
+
+/**[txh]********************************************************************
+
+  Description:
+  Dummy for the EdShowMessage(char*,bool,bool)  (edmsg.cc)
+
+***************************************************************************/
+
+void EdShowMessage (char *, bool, bool)
+{
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Dummy for the GiveAdvice(int)  (advice.cc)
+
+***************************************************************************/
+
+int GiveAdvice (int)
+{
+  return 0;
+}

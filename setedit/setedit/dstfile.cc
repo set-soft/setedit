@@ -98,7 +98,7 @@ void LoadInstallationDefaults()
  if (!f)
     return;
  char b[dioMaxLine],*s;
- int i,val;
+ int i;
  do
    {
     if (fgets(b,dioMaxLine,f) && *b!='#')
