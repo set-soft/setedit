@@ -139,7 +139,7 @@ void TSetEditorApp::screenSaver()
 {
  TEvent event;
 
- if (!UseScreenSaver)
+ if (!UseScreenSaver || !MaxRow() || !MaxCol())
     return;
 
  int type;
