@@ -106,8 +106,8 @@ public:
 };
 
 TDiaPal::TDiaPal(void) :
-         TDialog(TRect(0,0,52,19),__("Palette editor")),
-         TWindowInit(&TDiaPal::initFrame)
+         TWindowInit(&TDiaPal::initFrame),
+         TDialog(TRect(0,0,52,19),__("Palette editor"))
 {
  options|=ofCentered;
  helpCtx=cmeEditPalette;

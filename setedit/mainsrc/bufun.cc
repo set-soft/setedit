@@ -690,8 +690,8 @@ class TLFuns : public TGrowDialog
 {
 public:
  TLFuns( TRect r, const char *name, int extraOptions=0 ) :
-      TGrowDialog(r,name,extraOptions),
-      TWindowInit( &TLFuns::initFrame ) {};
+      TWindowInit( &TLFuns::initFrame ),
+      TGrowDialog(r,name,extraOptions) {};
  void handleEvent(TEvent& event);
 };
 

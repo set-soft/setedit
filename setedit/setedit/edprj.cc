@@ -450,8 +450,8 @@ void TEditorProjectListBox::handleEvent(TEvent &event)
 
 TEditorProjectWindow::TEditorProjectWindow(const TRect & rect,
                                            const char *tit) :
-        TDialog(rect,tit),
-	TWindowInit(TEditorProjectWindow::initFrame)
+	TWindowInit(TEditorProjectWindow::initFrame),
+        TDialog(rect,tit)
 {
  if (!ProjectList)
     ProjectList=new TPrjItemColl(5,5);

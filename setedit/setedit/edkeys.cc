@@ -150,8 +150,8 @@ class TDialogK : public TDialog
 {
 public:
  TDialogK(const char *aTitle) :
-   TDialog(TRect(0,0,0,0),aTitle),
-   TWindowInit(&TDialogK::initFrame) {}
+   TWindowInit(&TDialogK::initFrame),
+   TDialog(TRect(0,0,0,0),aTitle) {}
  virtual void handleEvent(TEvent& event);
 };
 

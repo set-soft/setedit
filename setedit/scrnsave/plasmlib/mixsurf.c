@@ -58,92 +58,92 @@ void MS_4addC(void)
 void MS_4add(void)
 {
  static int i;
- asm("
-	pushl %%ebp
-
-   // s1,s2,s3,s4
-	movl _MS_4,%%ebp
-	movl _MS_4+4,%%edi
-	movl _MS_4+8,%%esi
-	movl _MS_4+12,%%ebx
-
-   // dest
-	movl _MS_4+16,%%ecx
-   // sH, fuck just 1 register more demm Intel
-	movl _MS_4+24,%%eax
-	movl %%eax,%k0
-
-LoopI:
-   // j=0
-	xorl %%edx,%%edx
-	.align 2,0x90
-
-LoopJ:
-	movl (%%ebp,%%edx,4),%%eax
-	addl (%%edi,%%edx,4),%%eax
-	addl (%%esi,%%edx,4),%%eax
-	addl (%%ebx,%%edx,4),%%eax
-	movl %%eax,(%%ecx)
-        // I moved it here hoping the P5 will pair the 4 instructions
-        incl %%edx   
-	addl $4,%%ecx
-	cmpl %%edx,_MS_4+20
-	ja LoopJ
-
-	movl _MS_4+32,%%eax
-	addl %%eax,%%ebp
-	addl %%eax,%%edi
-	addl %%eax,%%esi
-	addl %%eax,%%ebx
-	decl %k0
-	jne  LoopI
-
-	popl %%ebp
+ asm("					\n\
+	pushl %%ebp                     \n\
+                                        \n\
+   // s1,s2,s3,s4                       \n\
+	movl _MS_4,%%ebp                \n\
+	movl _MS_4+4,%%edi              \n\
+	movl _MS_4+8,%%esi              \n\
+	movl _MS_4+12,%%ebx             \n\
+                                        \n\
+   // dest                              \n\
+	movl _MS_4+16,%%ecx             \n\
+   // sH, fuck just 1 register more demm Intel   \n\
+	movl _MS_4+24,%%eax             \n\
+	movl %%eax,%k0                  \n\
+                                        \n\
+LoopI:                                  \n\
+   // j=0                               \n\
+	xorl %%edx,%%edx                \n\
+	.align 2,0x90                   \n\
+                                        \n\
+LoopJ:                                  \n\
+	movl (%%ebp,%%edx,4),%%eax      \n\
+	addl (%%edi,%%edx,4),%%eax      \n\
+	addl (%%esi,%%edx,4),%%eax      \n\
+	addl (%%ebx,%%edx,4),%%eax      \n\
+	movl %%eax,(%%ecx)              \n\
+        // I moved it here hoping the P5 will pair the 4 instructions \n\
+        incl %%edx   			\n\
+	addl $4,%%ecx                   \n\
+	cmpl %%edx,_MS_4+20             \n\
+	ja LoopJ                        \n\
+                                        \n\
+	movl _MS_4+32,%%eax             \n\
+	addl %%eax,%%ebp                \n\
+	addl %%eax,%%edi                \n\
+	addl %%eax,%%esi                \n\
+	addl %%eax,%%ebx                \n\
+	decl %k0                        \n\
+	jne  LoopI                      \n\
+                                        \n\
+	popl %%ebp                      \n\
    ": "=m" (i) : : "%eax","%ebx","%ecx","%edx","%esi","%edi");
 }
 
 /*void MS_4addCyrix(void)
 {
  static int i;
- asm("
-	pushl %%ebp
-
-   // s1,s2,s3,s4
-	movl _MS_4,%%ebp
-	movl _MS_4+4,%%ecx
-	movl _MS_4+8,%%esi
-	movl _MS_4+12,%%ebx
-
-   // dest
-	movl _MS_4+16,%%edi
-   // sH, fuck just 1 register more demm Intel
-	movl _MS_4+24,%%eax
-	movl %%eax,%k0
-
-0:
-   // j=0
-	xorl %%edx,%%edx
-	.align 2,0x90
-
-1:
-	movl (%%ebp,%%edx,4),%%eax
-	addl (%%ecx,%%edx,4),%%eax
-	addl (%%esi,%%edx,4),%%eax
-	addl (%%ebx,%%edx,4),%%eax
-   stosl
-	incl %%edx
-	cmpl %%edx,_MS_4+20
-	ja   1b
-
-	movl _MS_4+32,%%eax
-	addl %%eax,%%ebp
-	addl %%eax,%%ecx
-	addl %%eax,%%esi
-	addl %%eax,%%ebx
-	decl %k0
-	jne  0b
-
-	popl %%ebp
+ asm("                                  \n\
+	pushl %%ebp                     \n\
+                                        \n\
+   // s1,s2,s3,s4                       \n\
+	movl _MS_4,%%ebp                \n\
+	movl _MS_4+4,%%ecx              \n\
+	movl _MS_4+8,%%esi              \n\
+	movl _MS_4+12,%%ebx             \n\
+                                        \n\
+   // dest                              \n\
+	movl _MS_4+16,%%edi             \n\
+   // sH, fuck just 1 register more demm Intel \n\
+	movl _MS_4+24,%%eax             \n\
+	movl %%eax,%k0                  \n\
+                                        \n\
+0:                                      \n\
+   // j=0                               \n\
+	xorl %%edx,%%edx                \n\
+	.align 2,0x90                   \n\
+                                        \n\
+1:                                      \n\
+	movl (%%ebp,%%edx,4),%%eax      \n\
+	addl (%%ecx,%%edx,4),%%eax      \n\
+	addl (%%esi,%%edx,4),%%eax      \n\
+	addl (%%ebx,%%edx,4),%%eax      \n\
+   stosl                                \n\
+	incl %%edx                      \n\
+	cmpl %%edx,_MS_4+20             \n\
+	ja   1b                         \n\
+                                        \n\
+	movl _MS_4+32,%%eax             \n\
+	addl %%eax,%%ebp                \n\
+	addl %%eax,%%ecx                \n\
+	addl %%eax,%%esi                \n\
+	addl %%eax,%%ebx                \n\
+	decl %k0                        \n\
+	jne  0b                         \n\
+                                        \n\
+	popl %%ebp                      \n\
    ": "=m" (i) : : "%eax","%ebx","%ecx","%edx","%esi","%edi");
 }*/
 
@@ -194,42 +194,42 @@ void MS_3addC(void)
 
 void MS_3add(void)
 {
- asm("
-	pushl %%ebp
-
-   // s1,s2,s3
-	movl _MS_4,%%ebp
-	movl _MS_4+4,%%edi
-	movl _MS_4+8,%%esi
-
-   // dest
-	movl _MS_4+16,%%ecx
-   // sH
-	movl _MS_4+24,%%ebx
-
-LoopI2:
-   // j=0
-	xorl %%edx,%%edx
-
-LoopJ2:
-	movl (%%ebp,%%edx,4),%%eax
-	addl (%%edi,%%edx,4),%%eax
-	addl (%%esi,%%edx,4),%%eax
-	movl %%eax,(%%ecx)
-        // I moved it here hoping the P5 will pair the 4 instructions
-        incl %%edx   
-	addl $4,%%ecx
-	cmpl %%edx,_MS_4+20
-	ja LoopJ2
-
-	movl _MS_4+32,%%eax
-	addl %%eax,%%ebp
-	addl %%eax,%%edi
-	addl %%eax,%%esi
-	decl %%ebx
-	jne  LoopI2
-
-	popl %%ebp
+ asm("                                   \n\
+	pushl %%ebp                      \n\
+                                         \n\
+   // s1,s2,s3                           \n\
+	movl _MS_4,%%ebp                 \n\
+	movl _MS_4+4,%%edi               \n\
+	movl _MS_4+8,%%esi               \n\
+                                         \n\
+   // dest                               \n\
+	movl _MS_4+16,%%ecx              \n\
+   // sH                                 \n\
+	movl _MS_4+24,%%ebx              \n\
+                                         \n\
+LoopI2:                                  \n\
+   // j=0                                \n\
+	xorl %%edx,%%edx                 \n\
+                                         \n\
+LoopJ2:                                  \n\
+	movl (%%ebp,%%edx,4),%%eax       \n\
+	addl (%%edi,%%edx,4),%%eax       \n\
+	addl (%%esi,%%edx,4),%%eax       \n\
+	movl %%eax,(%%ecx)               \n\
+        // I moved it here hoping the P5 will pair the 4 instruction\n\
+        incl %%edx                       \n\
+	addl $4,%%ecx                    \n\
+	cmpl %%edx,_MS_4+20              \n\
+	ja LoopJ2                        \n\
+                                         \n\
+	movl _MS_4+32,%%eax              \n\
+	addl %%eax,%%ebp                 \n\
+	addl %%eax,%%edi                 \n\
+	addl %%eax,%%esi                 \n\
+	decl %%ebx                       \n\
+	jne  LoopI2                      \n\
+                                         \n\
+	popl %%ebp                       \n\
    ": : : "%eax","%ebx","%ecx","%edx","%esi","%edi");
 }
 
@@ -253,40 +253,40 @@ void MS_2addC(void)
 
 void MS_2add(void)
 {
- asm("
-	pushl %%ebp
-
-   // s1,s2,s3
-	movl _MS_4,%%esi
-	movl _MS_4+4,%%edi
-
-   // dest
-	movl _MS_4+16,%%ecx
-   // sH
-	movl _MS_4+24,%%edx
-
-LoopI3:
-   // j=0
-	xorl %%eax,%%eax
-   movl _MS_4+20,%%ebp
-	.align 2,0x90
-
-LoopJ3:
-	movl (%%esi,%%eax,4),%%ebx
-	addl (%%edi,%%eax,4),%%ebx
-	movl %%ebx,(%%ecx)
-	incl %%eax
-	addl $4,%%ecx
-   decl %%ebp
-	jne  LoopJ3
-
-	movl _MS_4+32,%%eax
-	addl %%eax,%%esi
-	addl %%eax,%%edi
-	decl %%edx
-	jne  LoopI3
-
-	popl %%ebp
+ asm("                                          \n\
+	pushl %%ebp                             \n\
+                                                \n\
+   // s1,s2,s3                                  \n\
+	movl _MS_4,%%esi                        \n\
+	movl _MS_4+4,%%edi                      \n\
+                                                \n\
+   // dest                                      \n\
+	movl _MS_4+16,%%ecx                     \n\
+   // sH                                        \n\
+	movl _MS_4+24,%%edx                     \n\
+                                                \n\
+LoopI3:                                         \n\
+   // j=0                                       \n\
+	xorl %%eax,%%eax                        \n\
+   movl _MS_4+20,%%ebp                          \n\
+	.align 2,0x90                           \n\
+                                                \n\
+LoopJ3:                                         \n\
+	movl (%%esi,%%eax,4),%%ebx              \n\
+	addl (%%edi,%%eax,4),%%ebx              \n\
+	movl %%ebx,(%%ecx)                      \n\
+	incl %%eax                              \n\
+	addl $4,%%ecx                           \n\
+   decl %%ebp                                   \n\
+	jne  LoopJ3                             \n\
+                                                \n\
+	movl _MS_4+32,%%eax                     \n\
+	addl %%eax,%%esi                        \n\
+	addl %%eax,%%edi                        \n\
+	decl %%edx                              \n\
+	jne  LoopI3                             \n\
+                                                \n\
+	popl %%ebp                              \n\
    ": : : "%eax","%ebx","%ecx","%edx","%edi","%esi");
 }
 

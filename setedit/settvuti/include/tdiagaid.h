@@ -51,8 +51,8 @@ class TGrowDialogZ : public TGrowDialog
 {
 public:
  TGrowDialogZ( TRect r, const char *name, int extraOptions=0 ) :
-      TGrowDialog(r,name,extraOptions),
-      TWindowInit( &TGrowDialogZ::initFrame ) {};
+      TWindowInit( &TGrowDialogZ::initFrame ),
+      TGrowDialog(r,name,extraOptions) {};
  void handleEvent(TEvent& event);
 };
 

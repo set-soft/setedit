@@ -32,8 +32,8 @@
 
 TDialogAID::TDialogAID(const TRect& bounds, const char *aTitle,
                        TStringableListBox *slb ) :
-  TGrowDialog(bounds,aTitle),
-  TWindowInit(&TDialogAID::initFrame)
+  TWindowInit(&TDialogAID::initFrame),
+  TGrowDialog(bounds,aTitle)
 {
  List=slb;
  AddAction=0;

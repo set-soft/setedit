@@ -57,8 +57,8 @@ class TListDiag : public TDialog
 {
 public:
  TListDiag(const TRect& bounds, const char *aTitle) :
-   TDialog(bounds,aTitle),
-   TWindowInit(&TListDiag::initFrame) {};
+   TWindowInit(&TListDiag::initFrame),
+   TDialog(bounds,aTitle) {};
  virtual void handleEvent(TEvent &event);
  void SaveList(char *s);
  void LoadList(char *s);

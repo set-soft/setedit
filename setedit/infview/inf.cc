@@ -2093,8 +2093,8 @@ TRect &getDefaultSizeWindow()
 
 TInfWindow::TInfWindow(TInfFile *hFile, char *context, char *match,
                        void (*ir)(char *b, long l), Boolean IsTheOne) :
-       TWindow( getDefaultSizeWindow(), "InfView", wnNoNumber ),
-       TWindowInit( &TInfWindow::initFrame)
+       TWindowInit( &TInfWindow::initFrame),
+       TWindow( getDefaultSizeWindow(), "InfView", wnNoNumber )
 {
  TRect r=getDefaultSizeWindow();
  options = (options | ofCentered);
@@ -2169,8 +2169,8 @@ TStreamable *TInfWindow::build()
 }
 
 TInfWindow::TInfWindow( StreamableInit ) :
-    TWindow( streamableInit ),
-    TWindowInit( NULL )
+    TWindowInit( NULL ),
+    TWindow( streamableInit )
 {
 }
 
@@ -2267,8 +2267,8 @@ void THelpControlDialog::handleEvent(TEvent& event)
 
 
 THelpControlDialog::THelpControlDialog(THisCollection *oCol) :
-    TDialog( TRect( 1, 1, 56, 20 ), __("Help Control") ),
-    TWindowInit( &THelpControlDialog::initFrame )
+    TWindowInit( &THelpControlDialog::initFrame ),
+    TDialog( TRect( 1, 1, 56, 20 ), __("Help Control") )
 {
  TRect r(1,2,18,4);
  insert( new TButton(r,__("~N~ext"),cmhNext,bfDefault) );
@@ -2445,8 +2445,8 @@ void TBookMarkDialog::handleEvent(TEvent& event)
 }
 
 TBookMarkDialog::TBookMarkDialog(TNoCaseStringCollection *oCol) :
-    TDialog( TRect( 0, 0, 60, 15 ), __("InfView Bookmarks") ),
-    TWindowInit( &TBookMarkDialog::initFrame )
+    TWindowInit( &TBookMarkDialog::initFrame ),
+    TDialog( TRect( 0, 0, 60, 15 ), __("InfView Bookmarks") )
 {
  int Cant=oCol->getCount();
 

@@ -42,8 +42,8 @@ public:
 };
 
 TListWindowsDiag::TListWindowsDiag() :
- TDialog(TRect(1,1,1,1),__("Windows List")),
- TWindowInit(TListWindowsDiag::initFrame)
+ TWindowInit(TListWindowsDiag::initFrame),
+ TDialog(TRect(1,1,1,1),__("Windows List"))
 {
 }
 

@@ -53,8 +53,9 @@ public:
 const int MaxLinePipe=255;
 
 TCalcDialog::TCalcDialog(const TRect & bounds, const char *Title, char *StartVal)
-  : TDialog(bounds,Title),
-  TWindowInit(TCalcDialog::initFrame)
+  : TWindowInit(TCalcDialog::initFrame),
+    TDialog(bounds,Title)
+  
 {
   TRect r;
   helpCtx = hcCalculator;

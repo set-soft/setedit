@@ -55,8 +55,8 @@ TCEditWindow::TCEditWindow( const TRect& bounds,
                             const char *fileName,
                             int aNumber,
                             Boolean openRO ) :
-    TWindow( bounds, 0, aNumber ),
-    TWindowInit( &TCEditWindow::initFrame )
+    TWindowInit( &TCEditWindow::initFrame ),
+    TWindow( bounds, 0, aNumber )
 {
     options |= ofTileable;
 
@@ -142,8 +142,8 @@ void *TCEditWindow::read( ipstream& is )
 }
 
 TCEditWindow::TCEditWindow( StreamableInit ) :
-    TWindow( streamableInit ),
-    TWindowInit( NULL )
+    TWindowInit( NULL ),
+    TWindow( streamableInit )
 {
 }
 

@@ -14,8 +14,8 @@ class TGrowDialog : public TDialog
  public:
 
  TGrowDialog( TRect r, const char *name, int extraOptions=0 ) :
-      TDialog(r,name),
-      TWindowInit( &TGrowDialog::initFrame )
+      TWindowInit( &TGrowDialog::initFrame ),
+      TDialog(r,name)
  {
   growMode = gfGrowAll;
   flags   |= wfGrow | wfZoom;

@@ -10,7 +10,7 @@
 
 void allegro_exit()
 {
- asm ("movl $0x3,%eax
+ asm ("movl $0x3,%eax  \n\
        int  $0x10");
 }
 

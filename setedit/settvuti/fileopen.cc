@@ -70,8 +70,8 @@ TFileDialogHome::TFileDialogHome(const char *aWildCard, const char *aTitle,
                                  const char *inputName, ushort aOptions,
                                  uchar histId, const char *aHomeDir,
                                  unsigned aFlags, char *aSelDir) :
-   TFileDialog(aWildCard,aTitle,inputName,aOptions,histId),
-   TWindowInit(&TFileDialogHome::initFrame)
+   TWindowInit(&TFileDialogHome::initFrame),
+   TFileDialog(aWildCard,aTitle,inputName,aOptions,histId)
 {
  // ugly:
  TRect r(35,3,46,5);

@@ -144,8 +144,8 @@ class TDialogTips : public TDialog
 {
 public:
  TDialogTips(const TRect& bounds, const char *aTitle) :
-   TDialog(bounds,aTitle),
-   TWindowInit(&TDialogTips::initFrame) {}
+   TWindowInit(&TDialogTips::initFrame),
+   TDialog(bounds,aTitle) {}
  virtual void handleEvent(TEvent& event);
 };
 

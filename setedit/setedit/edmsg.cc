@@ -57,8 +57,8 @@ void ResetHz()
 }
 
 TEdMsgDialog::TEdMsgDialog(const TRect &aR,const char *t) :
-    TDialog(aR,t),
-    TWindowInit(TEdMsgDialog::initFrame)
+    TWindowInit(TEdMsgDialog::initFrame),
+    TDialog(aR,t)
 {
  TScrollBar *scrollbar;
  TRect r;

@@ -54,8 +54,8 @@ class TMixDiag : public TDialog
 {
 public:
  TMixDiag(const char *aTitle) :
-   TDialog(TRect(1,1,1,1),aTitle),
-   TWindowInit(&TMixDiag::initFrame) {};
+   TWindowInit(&TMixDiag::initFrame),
+   TDialog(TRect(1,1,1,1),aTitle) {};
  virtual void handleEvent(TEvent &event);
 };
 

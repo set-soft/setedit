@@ -508,12 +508,12 @@ raw palette.
 void RPF_SetPalRange(unsigned char *_pal_ptr, int color, int cant)
 {
  int dummy1,dummy2,dummy3,dummy4;
-__asm__ __volatile__("
-     outb %%al,%%dx
-     incl %%edx
-     cli
-     rep
-     outsb
+__asm__ __volatile__("		\n\
+     outb %%al,%%dx		\n\
+     incl %%edx			\n\
+     cli			\n\
+     rep			\n\
+     outsb			\n\
      sti"
 : "=a" (dummy1), "=d" (dummy2), "=S" (dummy3), "=c" (dummy4)
 : "c" (cant*3), "S" (_pal_ptr), "a" (color), "d" (0x3C8)
@@ -523,18 +523,18 @@ __asm__ __volatile__("
 void RPF_GetAllegroPalette(char *pal)
 {
  int dummy1,dummy2;
- __asm__ __volatile__ ("
-         outb %%al,%%dx
-         incl %%edx
-         cli
- 1:
-         insb
-         insb
-         insb
-         incl %%edi
-         decl %%ecx
-         jnz  1b
-         sti
+ __asm__ __volatile__ ("	\n\
+         outb %%al,%%dx         \n\
+         incl %%edx             \n\
+         cli                    \n\
+ 1:                             \n\
+         insb                   \n\
+         insb                   \n\
+         insb                   \n\
+         incl %%edi             \n\
+         decl %%ecx             \n\
+         jnz  1b                \n\
+         sti                    \n\
          "
  : "=a" (dummy1), "=d" (dummy2)
  : "d" (0x3C8), "a" (0), "c" (256), "D" (pal)

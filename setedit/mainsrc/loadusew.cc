@@ -346,8 +346,8 @@ public:
 };
 
 TDiaUW::TDiaUW(void) :
-        TDialog(TRect(3,2,1,1),__("User words")),
-        TWindowInit(&TDiaUW::initFrame)
+        TWindowInit(&TDiaUW::initFrame),
+        TDialog(TRect(3,2,1,1),__("User words"))
 {
 }
 

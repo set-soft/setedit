@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.397  2003/06/04 20:45:13  set
+* Added: A new command called cmcJumpLastCursorPos. It works similar to
+cmcLastPosCur but uses a different mechanism. I assigned this command to
+^Q-P that according to Alain <alainm@pobox.com> is the WordStar command for
+it. Looking for feedback.
+
 Revision 1.396  2003/06/04 17:36:39  set
 * Added: Support for makeinfo 4.4 and newer. For some reason the new
 versions doesn't support _ inside names (only -). Really uncompatible from

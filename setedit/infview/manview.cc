@@ -596,8 +596,8 @@ TRect &getDefaultSizeWindow()
 
 TManWindow::TManWindow(const char *fileName, const char *name,
                        char *aCommandLine, void (*ir)(char *b, long l)) :
-       TWindow(getDefaultSizeWindow(),name,wnNoNumber),
-       TWindowInit(&TManWindow::initFrame)
+       TWindowInit(&TManWindow::initFrame),
+       TWindow(getDefaultSizeWindow(),name,wnNoNumber)
 {
  TRect r=getDefaultSizeWindow();
  options|=ofCentered;
@@ -614,8 +614,8 @@ TManWindow::TManWindow(const char *fileName, const char *name,
 }
 
 TManWindow::TManWindow(StreamableInit) :
-    TWindow(streamableInit),
-    TWindowInit(NULL)
+    TWindowInit(NULL),
+    TWindow(streamableInit)
 {
  page=0;
 }

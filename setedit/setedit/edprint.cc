@@ -639,8 +639,8 @@ class TDiaPrint : public TDialog
 {
 public:
  TDiaPrint( TRect r, const char *name, RectDiag *dat ) :
-      TDialog(r,name),
       TWindowInit( &TDiaPrint::initFrame ),
+      TDialog(r,name),
       rd(dat) {};
  virtual void handleEvent(TEvent& event);
  RectDiag *rd;

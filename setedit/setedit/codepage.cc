@@ -59,7 +59,7 @@ void TSetEditorApp::cpCallBack(ushort *map)
         TableTypesEditor[i]|=ttedIsWordChar;
      else
         TableTypesEditor[i]&=~ttedIsWordChar;
- TableTypesEditor['_']|=ttedIsWordChar;
+ TableTypesEditor[(int) '_']|=ttedIsWordChar;
 }
 
 

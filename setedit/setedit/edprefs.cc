@@ -91,8 +91,8 @@ public:
 };
 
 TDiaFO::TDiaFO() :
-         TDialog(TRect(1,1,1,1),__("Open File options")),
-         TWindowInit(&TDiaFO::initFrame)
+         TWindowInit(&TDiaFO::initFrame),
+         TDialog(TRect(1,1,1,1),__("Open File options"))
 {
  parentSortEnabled=1;
 }
@@ -218,8 +218,8 @@ public:
 };
 
 TDiaScrSaver::TDiaScrSaver(void) :
-           TDialog(TRect(1,1,1,1),__("Screen saver")),
-           TWindowInit(&TDiaScrSaver::initFrame)
+           TWindowInit(&TDiaScrSaver::initFrame),
+           TDialog(TRect(1,1,1,1),__("Screen saver"))
 {
  commandsOn=1;
 }
@@ -1020,8 +1020,8 @@ public:
 };
 
 TDiaFont::TDiaFont(const char *aTitle) :
-         TDialog(TRect(1,1,1,1),aTitle),
-         TWindowInit(&TDiaFont::initFrame)
+         TWindowInit(&TDiaFont::initFrame),
+         TDialog(TRect(1,1,1,1),aTitle)
 {
  options|=ofCentered;
  helpCtx=cmeFonts;

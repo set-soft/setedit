@@ -53,8 +53,8 @@ class TAmpDiag : public TDialog
 {
 public:
  TAmpDiag(const TRect& bounds, const char *aTitle) :
-   TDialog(bounds,aTitle),
-   TWindowInit(&TAmpDiag::initFrame) {lockSBTime=0;};
+   TWindowInit(&TAmpDiag::initFrame),
+   TDialog(bounds,aTitle) {lockSBTime=0;};
  virtual void handleEvent(TEvent &event);
  virtual void close();
  virtual Boolean valid(ushort command);

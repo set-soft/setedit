@@ -178,7 +178,7 @@ void TFileEntryCollection::getText(char *dest, unsigned item, int maxLen)
  char *s=p->file;
  maxLen--;
 
- dest[d++]=fileInfo[p->isOK];
+ dest[d++]=fileInfo[(int) p->isOK];
  dest[d++]=' ';
  if (s)
    {
@@ -819,8 +819,8 @@ class TSelNodeDiag : public TDialog
 {
 public:
  TSelNodeDiag(TRect r, const char *name) :
-      TDialog(r,name),
-      TWindowInit( &TSelNodeDiag::initFrame ) {};
+      TWindowInit( &TSelNodeDiag::initFrame ),
+      TDialog(r,name) {};
  void handleEvent(TEvent& event);
 };
 

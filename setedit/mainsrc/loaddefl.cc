@@ -658,8 +658,8 @@ public:
 };
 
 TDiaDO::TDiaDO(void) :
-        TDialog(TRect(1,1,1,1),__("Default global options")),
-        TWindowInit(&TDiaDO::initFrame)
+        TWindowInit(&TDiaDO::initFrame),
+        TDialog(TRect(1,1,1,1),__("Default global options"))
 {
 }
 
