@@ -1,8 +1,82 @@
 $Log$
-Revision 1.24  2001/11/07 13:08:02  set
-+
+Revision 1.504  2001/11/25 20:09:35  root
+* Fixed: Some logic in the about box for the first run. Was changed
+recently.
+* Added: Information in the README about the fact that now I'm switching to
+RHIDE 1.4.9.
 
-Revision 1.490  2001/11/07 00:22:36  root
+Revision 1.503  2001/11/25 19:55:54  set
+* Changed version to 0.4.52, a new stable release is coming soon ;-)
+
+Revision 1.502  2001/11/25 19:49:18  set
+* Added: More complete dependency solve in mli.h and settvuti.h to help
+compile RHIDE. Patches by Andris.
+
+Revision 1.501  2001/11/25 19:02:20  set
+* Fixed: EdReloadIfOpened(char const *, stEditorId *) in rhideint.cc and
+added a couple of support functions (plus comments) to help incorporate the
+new features in RHIDE. Andris tried to do it and reported these problems.
+
+Revision 1.500  2001/11/24 15:17:35  set
+* Fixed: Stack overflow in the closed windows sort under some particular
+cases. Reported by Grzegorz.
+
+Revision 1.499  2001/11/24 15:14:07  set
+* Modified: When a command assigned to a key is out-of range the returned
+name is Unknown instead of a NULL pointer. Somehow Thiago got a corrupted
+keybind.dat and the previous behavior made the program crash.
+
+Revision 1.498  2001/11/24 15:02:22  set
+* Modified: Some inline members in filter.cc and filter2.cc (Mpegsound) to
+avoid compilation problems reported by Thiago. I don't see the need to
+inline these big routines. May be I'll revert it but right now is better to
+avoid problems.
+
+Revision 1.497  2001/11/24 14:53:49  set
+* Fixed: Lack of string.h in some files, Reported by Thiago from RedHat 7.1.
+
+Revision 1.25  2001/11/11 21:31:47  terrible
+* Hello, it's me! I am trying to sabotage Salvador's editor while him is on
+vacations!!!
+* Updated: Debian packaging to 0.4.51-4, no changes really.
+* Fixed: Salvador mistakenly deleted change.log entry 0.23, it isn't that
+important, but anyway I enjoy contaminating this change.log.
+
+Revision 1.496  2001/11/08 00:57:48  set
+* Added: An explanation on how to extend sLisp in the DOS and Linux FAQ
+files. It is an e-mail I sent to Thiago answering some questions he had
+when tried to code cond.
+
+Revision 1.495  2001/11/08 00:37:27  set
+* Added: A temporal replacement for getline to be used in UNIX systems that
+doesn't have it. It must go to compatlayer but TV is frozen right now.
+
+Revision 1.494  2001/11/08 00:25:57  set
+* Fixed: Spanish translation of "Macro|Run selected code" have repeated
+shortcut.
+
+Revision 1.493  2001/11/08 00:22:30  set
+* Added: cond to the documentation and syntaxhl.shl.
+* Added: The last new and fixed things to readme.
+
+Revision 1.492  2001/11/08 00:14:50  set
+* Fixed: Write block didn't check if the fopen succeed or not. I got a
+SIGSEGV in my Linux box when trying to overwrite a root's file ;-)
+
+Revision 1.491  2001/11/08 00:07:08  set
+* Added: sLisp command cond works like some kind of switch/case. Is similar
+to Clipper's do case. Contributed by Thiago.
+* Fixed: [sLisp] When returning a variable that belongs to the stack (not a
+fresh copy) I used the MLIRetObj, but it didn't mark the variable as
+"floating" and hence was released from the stack. The result was that when
+used it was already released containing garbage or the original value or
+invalid pointers (random). I was exposed only if the variable wasn't the
+return value of a expression. It made cond to fail.
+
+Revision 1.24  2001/11/07 13:08:02  set
+Synchronized S.F. with my home CVS.
+
+Revision 1.490  2001/11/07 00:22:36  set
 * Fixed: InfView crashed when loading desktops of older versions. Reported
 by Thiago.
 
@@ -20,6 +94,9 @@ Revision 1.487  2001/11/06 01:04:10  set
 * Added: Mazovia code page. That's a polish code page based on PC437. It
 discards some accents that aren't used by polish and puts the needed chars
 there. Piotr <piotr@asco.biz.pl> asked for it and helped me to add it.
+
+Revision 1.23  2001/11/02 21:17:28  terrible
+* Updated: Debian packaging to 0.4.51-3.
 
 Revision 1.486  2001/10/31 03:03:07  set
 * Fixed: When the editor was configured to forget about opened windows when
@@ -1416,7 +1493,7 @@ calls to static members specifying an object!).
 in the index. Reported by Gregorio.
 * Modified: Version to 0.4.45.
 .
-Revision 1.318  2000/05/12 23:16:40  set
+Revision 1.318  2000/05/12 23:16:40  root (set)
 * Fixed: The configure script was looking for the dinamic TV when static was
 specified.
 * Fixed: infbase.cc request of filelength.
@@ -3522,7 +3599,7 @@ avoid linking the whole library were incorporated by Shawn (all OK).
 Revision 1.5  1999/01/29 01:41:44  root (set)
 * Created the compress.pl Perl script to create the Linux distribution files.
 .
-Revision 1.4  1999/01/26 00:16:52  root (set)
+Revision 1.4  1999/01/26 00:16:52  set
 * Various small adjusts to compile under Linux.
 .
 Revision 1.3  1999/01/25 23:08:07  set
