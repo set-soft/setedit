@@ -7,7 +7,7 @@ calcu/parserbr.c
 calcu/parserml.c
 *calcu/parser.txt
 calcu/small.c
-cfgfiles/asm51.pmc
+*cfgfiles/asm51.pmc
 *cfgfiles/clippmac.pmc
 *cfgfiles/cpmacros.pmc
 *cfgfiles/editor.tip
@@ -562,7 +562,7 @@ scrnsave/plasmlib/objfake/delete.me
 sdg/bufun2.cc
 sdg/edspecs2.cc
 sdg/gettext.c
-sdg/html.frt
+*sdg/html.frt
 sdg/include/mliabase.h
 sdg/include/mliasimp.h
 sdg/include/mlibase.h
