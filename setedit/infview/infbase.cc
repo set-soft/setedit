@@ -44,7 +44,7 @@
 #ifdef TVCompf_djgpp
 #include <crt0.h>
 #endif
-#ifndef TVOSf_Linux
+#ifndef TVOS_UNIX
 # include <io.h>
 #endif
 
