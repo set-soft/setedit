@@ -1242,8 +1242,66 @@ typedef struct
 } FontsBox;
 #pragma pack()
 
+// An easydiag wrapper for TVBitmapFontDescLBox
 ListBoxSpecialize(TSVBitmapFontDescLBox);
 ListBoxImplement(VBitmapFontDescLBox);
+
+// A TDialog class to connect the primary font with the available sizes
+class TDiaFont : public TDialog
+{
+public:
+ TDiaFont();
+ virtual void handleEvent(TEvent& event);
+
+ TVBitmapFontDescLBox *pri;
+ TSortedListBox *sizes;
+ TVBitmapFontDescCol *fonts;
+ int selected;
+};
+
+TDiaFont::TDiaFont() :
+         TDialog(TRect(1,1,1,1),_("Fonts")),
+         TWindowInit(&TDiaFont::initFrame)
+{
+ options|=ofCentered;
+ helpCtx=cmeFonts;
+}
+
+void TDiaFont::handleEvent(TEvent& event)
+{
+ TDialog::handleEvent(event);
+ if (event.what==evBroadcast)
+   {
+    if (event.message.command==cmListItemFocused &&
+        event.message.infoPtr==pri &&
+        pri->focused!=selected)
+      {
+       selected=pri->focused;
+       TVBitmapFontDesc *p=(TVBitmapFontDesc *)fonts->at(selected);
+
+       // Check if the sizes box is already initialized.
+       if (!sizes->list())
+          return;
+       TListBoxRec box;
+       if (!p->sizes->search((void *)sizes->list()->at(sizes->focused),box.selection))
+         {
+          unsigned w,h;
+          if (TScreen::getFontGeometry(w,h))
+            {
+             char buffer[64];
+             TVFontCollection::Size2Str(buffer,w,h);
+             if (!p->sizes->search((void *)buffer,box.selection))
+                box.selection=0;
+            }
+          else
+             box.selection=0;
+         }
+       box.items=p->sizes;
+       sizes->setData(&box,False);
+      }
+   }
+}
+
 
 void FontsOptions()
 {
@@ -1323,13 +1381,18 @@ void FontsOptions()
     secOps->makeSameW();
    }
 
- TSViewCol *col=new TSViewCol(__("Fonts"));
+ TDiaFont *d=new TDiaFont();
+ // Setup the members used to do the connection
+ d->pri=(TVBitmapFontDescLBox *)priLB->view;
+ d->sizes=(TSortedListBox *)priSz->view;
+ d->selected=box.priSize;
+ d->fonts=fonts;
+ // Now create the EasyDiag collection
+ TSViewCol *col=new TSViewCol(d);
  col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,0));
  EasyInsertOKCancel(col);
- TDialog *d=col->doIt();
+ col->doIt();
  delete col;
- d->options|=ofCentered;
- d->helpCtx=cmeFonts;
 
  if (execDialog(d,&box)==cmOK)
    {

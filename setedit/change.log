@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.161  2002/07/22 19:40:35  set
+* Added: A fonts dialog. Currently does nothing, just shows some options.
+* Added: SFT files to UNIX distro.
+* Removed: Some code from edfonts that I moved to TV.
+
 Revision 1.160  2002/07/22 19:39:12  set
 * Added: Font10x20 keyword to TV config files.
 * Added: Warning about error in let.txt about 0x2578-0x257B unicodes that
