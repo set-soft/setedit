@@ -179,16 +179,38 @@ void ExtractSources(FILE *f, stMak &mk)
 static
 void AddDependency(const char *name, node *p)
 {
+ node *nNode=new node;
+ nNode->next=NULL;
  if (p->deps)
    {
-    p->ldep->next=new node;
-    p->ldep=p->ldep->next;
+    node *r=p->deps, *a=NULL;
+    // Force the list to be sorted, it reduces the output of diff
+    while (r && strcmp(r->name,name)<0)
+      {
+       a=r;
+       r=r->next;
+      }
+    if (!r)
+      {// @ the end
+       p->ldep->next=nNode;
+       p->ldep=nNode;
+      }
+    else if (!a) // @ the beggining
+      {
+       nNode->next=p->deps;
+       p->deps=nNode;
+      }
+    else // in the middle
+      {
+       a->next=nNode;
+       nNode->next=r;
+      }
    }
  else
-    p->deps=p->ldep=new node;
- p->ldep->name=strdup(name);
- p->ldep->next=p->ldep->deps=p->ldep->ldep=NULL;
- p->ldep->subprj=NULL;
+    p->deps=p->ldep=nNode;
+ nNode->name=strdup(name);
+ nNode->deps=nNode->ldep=NULL;
+ nNode->subprj=NULL;
 }
 
 static
@@ -731,7 +753,9 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
  time(&now);
  struct tm *brkT=localtime(&now);
  strftime(timeBuf,32,"%Y-%m-%d %H:%M",brkT);
- fprintf(stdout,"#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n# %s\n#\n\n",timeBuf);
+ //fprintf(stdout,"#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n# %s\n#\n\n",timeBuf);
+ // Don't know why I needed the time, so I'm disabling it.
+ fprintf(stdout,"#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n#\n\n");
  GenerateAll(stdout,mk);
  if (mk.mainTarget && *mk.mainTarget)
    {

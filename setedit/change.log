@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.524  2004/06/17 16:50:32  set
+* Added: Missing desktop examples. Reported as bug #974095 @ SF by Ognyan
+Kulev (ogi).
+
 Revision 1.523  2004/06/14 16:40:42  set
 - From valgrind
 * Added: Holidays clean-up.

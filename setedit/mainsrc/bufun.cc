@@ -476,6 +476,24 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
       int SearchOpen=0,SkipCatch=0;
       int Eureka=0,isProto=0;
 
+      // Another special case for C++ const member atributes
+      // For: proto const ...
+      if (r==1 && strcmp(bfBuffer,"const")==0)
+         r=TakeWord(1);
+      // List of exceptions that can be thrown
+      // For: proto throw(...) ...
+      if (r==1 && strcmp(bfBuffer,"throw")==0)
+        {
+         r=TakeWord(1);
+         if (r==2 && Alone=='(') // throw(
+           {
+            r=SearchBalance(')','(');
+            if (!r) break;
+            // throw(...)
+            r=TakeWord(1);
+           }
+        }
+
       if (mode==modeBFPrototypes && r==2 && Alone==';')
         {// Looking for a prototype
          Eureka=isProto=1;
@@ -493,15 +511,10 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
                  SearchOpen=Eureka=1;
            }
          else
-           { // Another special case for C++ const member atributes
-            if (strcmp(bfBuffer,"const")==0)
-               SearchOpen=Eureka=1;
+           {
             // A bizarre case: try/catch not inside the body
-            else if (strcmp(bfBuffer,"try")==0)
+            if (strcmp(bfBuffer,"try")==0)
                SkipCatch=SearchOpen=Eureka=1;
-            // List of exceptions that can be thrown
-            else if (strcmp(bfBuffer,"throw")==0)
-               SearchOpen=Eureka=1;
            }
         }
       if (Eureka)
