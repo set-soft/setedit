@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdlib.h>
 #define Uses_TCEditor_Commands
@@ -38,6 +38,7 @@ static edCList List[] =
 { "CompactBuffer", 88 },
 { "Copy", 73 },
 { "CopyBlock", 94 },
+{ "CopyClipFile", 150 },
 { "CopyClipWin", 110 },
 { "Cut", 72 },
 { "CutClipWin", 137 },
@@ -98,6 +99,7 @@ static edCList List[] =
 { "PageDown", 59 },
 { "PageUp", 58 },
 { "Paste", 74 },
+{ "PasteClipFile", 151 },
 { "PasteClipWin", 111 },
 { "PasteEmacsMode", 129 },
 { "PlayMacro", 91 },

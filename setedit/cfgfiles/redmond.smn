@@ -1,4 +1,4 @@
-# Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # That's an example of a menu file that changes the following commands:
@@ -64,6 +64,10 @@ SubMenu: "~E~dit", kbAlE
 # MenuItemC: "Cu~t~", cmcCutClipWin, kbCtX, "Ctrl+X"
 # MenuItemC: "~C~opy", cmcCopyClipWin, kbCtC, "Ctrl+C"
 # MenuItemC: "~P~aste", cmcPasteClipWin, kbCtV, "Ctrl+V"
+#
+# And the commands for Linux can be:
+#
+# cmcCopyClipFile and cmcPasteClipFile
 #
  MenuItemC: "~S~how clipboard", cmeShowClip
  MenuItemC: "C~l~ear", cmcClear, kbCtDelete, "Ctrl+Del"

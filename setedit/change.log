@@ -1,4 +1,8 @@
 $Log$
+Revision 1.51  2002/02/04 19:29:13  set
+* Added: Explanation about tabs settings in DOS and Linux FAQs, also to the
+documentation. Triggered by a question of Ivan and chris <sscanf@gmx.net>.
+
 Revision 1.50  2002/02/04 19:08:33  set
 * Added: Now when the user sets the "Use Tabs" option the editor checks if
 other options commonly used with tabs are also coherent. If not an advice
@@ -3811,7 +3815,7 @@ Gili <sl@psycode.com>.
 Revision 1.19  1999/02/11 00:38:50  set
 * Version 0.4.23 reported by the editor. I already released snapshots of the
 editor with the number inside so is time to reflect it in about and in .dsts.
-.
+
 Revision 1.18  1999/02/11 00:32:08  set
 * Fixed: Sometimes when opening a closed window the cursor position even when
 restored OK was showed in the wrong position giving a surprise when typing.

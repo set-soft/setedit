@@ -158,9 +158,11 @@ public:
 
     Boolean clipCopy();
     Boolean clipWinCopy();
+    Boolean clipFileCopy();
     void clipCut();
     void clipPaste();
     void clipWinPaste();
+    void clipFilePaste();
     void deleteRange( unsigned , unsigned, Boolean );
     void doUpdate();
     void doSearchReplace();

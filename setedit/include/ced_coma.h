@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Commands ) && !defined( __TCEditor_Commands__ )
 #define __TCEditor_Commands__
@@ -158,8 +158,10 @@ const int
   cmbInsertKeyName     = 147,
   cmbRunSel_sLisp      = 148,
   cmbRunEnter_sLisp    = 149,
+  cmbCopyClipFile      = 150,
+  cmbPasteClipFile     = 151,
   
-  cmbLastCommand       = 150;
+  cmbLastCommand       = 152;
 
 
 const int
@@ -313,7 +315,9 @@ const int
   cmcAltCase           = cmbAltCase+cmbBaseNumber,
   cmcInsertKeyName     = cmbInsertKeyName+cmbBaseNumber,
   cmcRunSel_sLisp      = cmbRunSel_sLisp+cmbBaseNumber,
-  cmcRunEnter_sLisp    = cmbRunEnter_sLisp+cmbBaseNumber;
+  cmcRunEnter_sLisp    = cmbRunEnter_sLisp+cmbBaseNumber,
+  cmcCopyClipFile      = cmbCopyClipFile+cmbBaseNumber,
+  cmcPasteClipFile     = cmbPasteClipFile+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

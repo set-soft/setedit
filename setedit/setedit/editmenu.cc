@@ -301,4 +301,6 @@ _("~I~tem")
 _("~F~oreground")
 _("~B~ackground")
 _("~T~ry")
+_("Cop~y~ to file Clipboard")
+_("Paste ~f~rom file Clipboard")
 #endif

@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 #
@@ -77,6 +77,9 @@ SubMenu: "~E~dit", kbAlE
  $if DOS or WIN32
  MenuItemC: "Copy to ~W~indows Clip.", cmcCopyClipWin
  MenuItemC: "Paste ~f~rom Wind. Clip.", cmcPasteClipWin
+ $else
+ MenuItemC: "Cop~y~ to file Clipboard", cmcCopyClipFile
+ MenuItemC: "Paste ~f~rom file Clipboard", cmcPasteClipFile
  $endif
  SubMenu: "~M~acro", kbAlM
   MenuItemC: "~R~ecord", cmcRecordMacro, kbShF10, "Shift+F10"

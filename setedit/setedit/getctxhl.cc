@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 #define Uses_TApplication
@@ -135,8 +135,10 @@ static helpNode helpList[]=
  HHc(JumpToFunction,"Jump to function"),
  HHc(JumpToPrototype,"Jump to prototype"),
  HHc(GotoEditorLine,"Go to line"),
- HHc(CopyClipWin,"Copy to Windows Clipoard"),
+ HHc(CopyClipWin,"Copy to Windows Clipboard"),
  HHc(PasteClipWin,"Paste from Windows Clipboard"),
+ HHc(CopyClipFile,"Copy to file Clipboard"),
+ HHc(PasteClipFile,"Paste from file Clipboard"),
  HHc(RecordMacro,"Record (Macro)"),
  HHc(StopMacro,"Stop (Macro)"),
  HHc(PlayMacro,"Play (Macro)"),

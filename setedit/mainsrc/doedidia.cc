@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -70,7 +70,8 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edWriteError:
         {
         os << _("Error writing file ") << va_arg(arg,_charPtr)
-           << "." << CLY_std(ends);
+           << ". "  << StrError(errno) << " (" << errno << ")"
+           << CLY_std(ends);
         va_end(arg);
         return messageBox(GetStrStream(buf),mfError | mfOKButton);
         }

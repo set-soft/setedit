@@ -522,6 +522,79 @@ void TCEditor::clipWinPaste()
    }
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Copies the selected text into a special file used as clipboard. Specially
+useful when the OS lacks a robust clipboard mechanism.
+  
+***************************************************************************/
+
+Boolean TCEditor::clipFileCopy()
+{
+ Boolean res=False;
+ if (hasVisibleSelection())
+   {
+    flushLine();
+    char *name=ExpandHomeSave("clipboard");
+    if (name)
+      {
+       FILE *f=fopen(name,"wb");
+       if (f)
+         {
+          if (fwrite(buffer+selStart,selEnd-selStart,1,f)!=1)
+             editorDialog(edWriteError,name);
+          else
+             res=True;
+          fclose(f);
+         }
+       else
+         editorDialog(edCreateError,name);
+      }
+    selecting=False;
+   }
+ return res;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Pastes text from a special file used as clipboard. Specially useful when
+the OS lacks a robust clipboard mechanism.
+  
+***************************************************************************/
+
+void TCEditor::clipFilePaste()
+{
+ if (isReadOnly)
+    return;
+ flushLine();
+ if (curPos.x<(MaxLineLen-1))
+   {
+    char *name=ExpandHomeSave("clipboard");
+    if (edTestForFile(name))
+      {
+       FILE *f=fopen(name,"rb");
+       if (f)
+         {
+          long fsize=filelength(fileno(f));
+          char *p=new char[fsize];
+          if (fread(p,fsize,1,f)==1)
+            {
+             if (!PersistentBlocks && hasSelection())
+                deleteSelect();
+             insertBuffer(p,0,fsize,canUndo,PersistentBlocks,False);
+             delete[] p;
+            }
+          else
+             editorDialog(edReadError,name);
+         }
+       else
+          editorDialog(edReadError,name);
+      }
+   }
+}
+
 /****************************************************************************
 
    Function: Boolean clipReplace()
@@ -3335,6 +3408,14 @@ int TCEditor::handleCommand(ushort command)
                 clipWinCopy();
                 if (!isReadOnly)
                    deleteSelect();
+                break;
+                
+           case cmcCopyClipFile:
+                clipFileCopy();
+                break;
+ 
+           case cmcPasteClipFile:
+                clipFilePaste();
                 break;
 
            case cmcPasteEmacsMode:
@@ -10031,7 +10112,11 @@ void TCEditor::updateCommands(int full)
       { // Restrict some stuff for the clipboard
        cmdsAux.disableCmd(cmcCut);
        cmdsAux.disableCmd(cmcCopy);
+       cmdsAux.disableCmd(cmcCopyClipFile);
+       cmdsAux.disableCmd(cmcCopyClipWin);
        cmdsAux.disableCmd(cmcPaste);
+       cmdsAux.disableCmd(cmcPasteClipFile);
+       cmdsAux.disableCmd(cmcPasteClipWin);
        cmdsAux.disableCmd(cmcClear);
        cmdsAux.disableCmd(cmcUndo);
        cmdsAux.disableCmd(cmcRedo);
@@ -10062,9 +10147,11 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcUndo,Boolean(UndoActual!=UndoBase));
     setCmdState(cmcRedo,Boolean(UndoActual<UndoTop));
    
-    Boolean hs=hasSelection();
+    Boolean hs=hasVisibleSelection();
     setCmdState(cmcCut,hs);
     setCmdState(cmcCopy,hs);
+    setCmdState(cmcCopyClipFile,hs);
+    setCmdState(cmcCopyClipWin,hs);
     setCmdState(cmcClear,hs);
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
    }

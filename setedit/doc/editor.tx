@@ -5,7 +5,7 @@
 @comment %**start of header
 
 @setfilename setedit.info
-@set version 0.4.54
+@set version 0.4.55
 @set update-date 4 Feb 2002
 @set update-month Feb 2002
 @set name-author Salvador Eduardo Tropea
@@ -46,7 +46,7 @@
 @end macro
 @set title-printed SET's Editor
 @set minidesc-printed A friendly text editor
-@set year-copyr 1996, 1997, 1998, 1999, 2000, 2001
+@set year-copyr 1996, 1997, 1998, 1999, 2000, 2001, 2002
 @set info-file  setedit
 
 @macro ikey{KEY,DESC}
@@ -984,7 +984,7 @@ tabs, even in places where you don't want a tab.
 @refMenu1{cmcCompactBuffer}
 
 @c --------------------------------------------------------------------------
-@subsection Copy to Windows Clipoard
+@subsection Copy to Windows Clipboard
 
 Copies the selected text to the Windows clipboard. Of course you must be
 running under Windows ;-)). Don't trust too much in this feature, Windows
@@ -1008,6 +1008,28 @@ module (used to make it).
 @paragraph{}
 
 @refMenu1{cmcPasteClipWin}
+
+@c --------------------------------------------------------------------------
+@subsection Copy to file Clipboard
+
+Copies the selected text to a special file used as clipboard. This option is
+usually available on UNIX as a replacement for the Windows clipboard. The
+file is created in a user specific directory, for this reason the information
+is available for one user.
+@paragraph{}
+
+@refMenu1{cmcCopyClipFile}
+
+@c --------------------------------------------------------------------------
+@subsection Paste from file Clipboard
+
+Pastes text from a special file used as clipboard. This option is
+usually available on UNIX as a replacement for the Windows clipboard. The
+file is created in a user specific directory, for this reason the information
+is available for one user.
+@paragraph{}
+
+@refMenu1{cmcPasteClipFile}
 
 @c --------------------------------------------------------------------------
 @subsection Push cursor position
