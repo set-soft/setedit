@@ -269,6 +269,7 @@ internac/es.po
 internac/h_es.po
 internac/emptymsg.cc
 internac/fix.pl
+internac/fix.c
 internac/gnumake.in
 internac/Makefile
 internac/makelist.pl
