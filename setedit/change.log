@@ -1,4 +1,10 @@
 $Log$
+Revision 1.411  2003/06/17 14:36:37  set
+* Added: cmcCommentIndent/cmcCommentUnIndent now indents the current line
+if nothing is selected. Suggested by Thiago.
+* Added: [sLisp] a command to find which syntax highlight is in use. From an
+idea suggested by Thiago.
+
 Revision 1.410  2003/06/17 13:09:25  set
 * Added: install instructions for djgpp, Cygwin, MinGW and MSVC.
 
