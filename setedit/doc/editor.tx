@@ -4690,46 +4690,76 @@ called filters. Some applications of this are complex recoding using GNU
 recode, text formating, code indentation using GNU indent, @i{etc.}
 @p{}
 
-  Here is an example contributed by Grzegorz Adam Hankiewicz. This macro can
-be used to reformat e-mails without breaking the quoted text. It uses a
-Python script that uses the fmt program to format text.
+  The following sections were contributed by Grzegorz Adam Hankiewicz and
+explains how to use this feature.
 @p{}
 
-  This is the e-mail from Grzegorz:
+@c --------------------------------------------------------------
+@subsection How to use Setedit for something it was not meant to
+
+SET has always said that setedit is not a word processing program. He's
+right, it's best at doing things like programming. But once you get used
+to it the road to building another emacs is clear: you start wanting
+to use it even to cook your breakfast. This document, however, centers
+on how to control text format easily under setedit, which is not that
+ambitious :)
+@p{}
+
+As you will notice, in some version SET added the @code{word wrap}
+option. IMHO it should be removed, if you try to use it, it will behave
+quite differently from what you expect (ie: if you are writting tabbed
+lines, the editor will ignore them and put your cursor right away in
+the first column ignoring any possible autoidentation options and tab
+uses you might have set for the document. Also, it's setedit's choice of
+characters which will be used to split the line. Bleah... it really sucks.
+@p{}
+
+But setedit is customizable. You can write macros in a lisp like
+language. The language still doesn't allow you to control tightly things
+like text formatting, but there's one cool option: you can pipe a block
+selection to another external program and the editor will substitute
+it with the output of this external program. Certainly not the most
+optimized way of doing things, but flexible enough to write a custom
+extension which treats your text.
+@p{}
+
+And here we come... the purpose will be to create a macro, which feeds
+a text block to an external program which we will write. Simple as that,
+all the power you wanted under your fingers.
+@p{}
+
+@c --------------------------------------------------------------
+@subsubsection Step 1. Building your macro.
+
+Macros are written in sLisp, and stored somewhere in a @file{macros.slp}
+file. This file can be a global read only file or it can be located at
+@file{~/.setedit/macros.slp}.  It's pure text, and somewhere (ie: at the
+end of the file) you will insert the following chunk of code:
 @p{}
 
 @example
-> SET
-> I added a second (optional) parameter to RunProgramRedir. It should
-> be a string containing the text to send to the external program.
-> I tested it with "recode ISO8859-1..html" and worked really nice. I
-> added an example to macros.slp.  I also created a MessageBox command,
-> in the example is used to indicate to the user that some text must be
-> selected first (the text that we'll send to the external filter).
+;*******************************************************************
+;
+; MACRO:   Block reformat
+;
+; DESCRIPTION: This script gets the current selection and feeds it to
+; an external program. If no selection is present a mesage box will
+; be printed.
+;
+;*******************************************************************/
 
-Grzegorz Adam Hankiewicz <gradha@@terra.es>:
-
-Wow, that's cool!
-
-Enough for reformatting things. BTW, here's the first script I've
-used with the RunProgramRedir to reformat email messages so they keep
-identation levels and don't get out of the screen. The nice thing is
-that it's very small since it sits on top of the fmt command. In fact,
-this email is reformatted with it...
-@end example
-
-  The sLisp code to call it can be defined like it:
-@p{}
-
-@example
-(defmacro 'Format e-mail'
+(defmacro 'Block reformat'
  (eval
   (setv "input" (GetSelection))
   (if (length input)
    ; Call the filter
    (eval
     (setv "output"
-     (RunProgramRedir "email-fmt.py" input)
+     (RunProgramRedir
+      ; filter line here
+      "~/project/email-fmt.py/email-fmt.py "
+      input
+     )
     )
     (SendCommands cmcCut)
     (InsertText output 1)
@@ -4741,7 +4771,29 @@ this email is reformatted with it...
 )
 @end example
 
-  And here is the Python script from Grzegorz:
+Ok, don't worry about the syntax of the macro or how it's written,
+if you are curious you can take a look at setedit's documentation to
+find out what all that mess means. The important line is the one which
+follows the comment @code{; filter line here}. That line is actually the path
+to the external program we will be using, which can be stored anywhere
+on your computer, it only needs to have execution permission. I am the
+only user of my machine, so I don't need to put things under /local/bin
+to feel comfortable :) Please change that to point at your filter script.
+@p{}
+
+@c --------------------------------------------------------------
+@subsubsection Step 2. The filter program.
+
+The filter program has to be simple: recieves text lines as input and
+prints to stdout the result. You can say: @i{Hey, that calls some weird
+Python script which I don't have... why don't I call GNU's fmt command
+instead?}.  Good point. Do it. If you are meaning to write simple texts
+that's ok. In fact, after the command you can specify parameters to fmt
+like the width of the lines, and there you go, you have a text formatting
+macro in Setedit. But if you are meaning to answer emails (ie: setedit
+is your environmet editor and mail programs like mutt call it to write
+messages) or do something more sophisticate, you better use something
+like this (big chunk of code follows):
 @p{}
 
 @example
@@ -4752,7 +4804,7 @@ import sys, string, popen2
 class LINE:
    pass
 
-identation = " \t><:"
+identation = " \t><:;"
 
 
 
@@ -4796,7 +4848,7 @@ def reformat_lines(lines):
    assert lines
    length = max (75 - lines[0].ident, 20)
 
-   stdout, stdin = popen2.popen2 ("fmt -w %d" % length)
+   stdout, stdin = popen2.popen2 ("fmt -w %d -u" % length)
    for f in lines:
       stdin.write ("%s\n" % string.strip (f.line[lines[0].ident:]))
    stdin.close()
@@ -4810,16 +4862,163 @@ def reformat_lines(lines):
 
 
 if __name__ == "__main__":
-   lines = map(initial_scan, map(string.rstrip, map(string.expandtabs,
-           sys.stdin.readlines())))
+   lines = map(initial_scan, map(string.rstrip, map(string.expandtabs, sys.stdin.readlines())))
    
    f = 0
    while f < len(lines):
       look = same_identation_lines(lines[f:])
       reformat_lines(lines[f:f+look])
       f = f + look
+
+# end of python code
 @end example
-  
+
+Woah, that's more than the previous script. True, but this 73 line
+python script is a cool wrapper: fmt doesn't know exactly how you want
+to format your text. If you are replying somebody's email, some text
+will have quotes. Wouldn't be nice if fmt could detect them? Yes, but
+it doesn't. Remember that the unix style is doing one simple thing,
+but doing it extremely well.
+@p{}
+
+So we solve this with this python script. It isn't really long (try
+removing blank lines and comments), and it's pretty clear (to any
+experienced functional programmer) what it does. It scans the sent block
+of text for existant quote characters like those hold by the identation
+variable, which are used frequently by most email programs. These
+lines will be kept together, and the script will call fmt with them,
+but removing the quote characters and reducing the line width. To the
+result, the script will add the apropiate quote identation level.
+@p{}
+
+This means that you can select say 20 lines of text which contain three
+different quote identation levels.  If these use the defined identation
+characters the script will split them, format them separately and join
+them before returning them to setedit. The result is obvious: a cool
+formatting feature which is cumbersome to build into setedit, and which
+can be customized any way you want. You can write your script in python,
+ruby, perl, C, etc, etc... you put the limit, not the program.
+@p{}
+
+@c --------------------------------------------------------------
+@subsubsection Step 3. Binding your script to a keystroke.
+
+Nice, we have the macro, we have the script, but how do we run it? In
+a horrible world you would have to reproduce these steps to format a
+text block:
+@p{}
+
+@itemize @bullet
+@item Select text block
+@item Open macro menu
+@item Select @code{Select...}
+@item Choose the macro
+@end itemize
+
+If you did it once, you can repeat the macro with @kbd{Shift+F3}, but this is
+not nice, it prevents you from running other macros and you aren't saved
+from the punishment of doing that all once each time you run setedit, and
+since we want this for email replies, the editor will be run independently
+for each answer. Ugh!
+@p{}
+
+Luckily you can bind a macro to a key (@x{Assigning a sLisp macro}). The
+option is located under the menu option called
+Tool&Ops, submenu Options, submenu Keyboard, submenu Key assignment. Once
+you reach that, you can see all the key bindings for the editor. Notice
+that none seem to use Alt for keystrokes, which is nice because you can
+presume they are free for customizing. So you just have to type a nice
+combo. I use @kbd{Alt+F} for "Formatting". Once you have the combo you assign
+the macro "Block reformat" to it.
+@p{}
+
+Say ok to all menus and try it yourself: write a few lines with only
+a word in each of them. Select those lines and press "Alt+F". If
+you did it all right you will see all those words formatted in a
+single paragraph. Now try that with email identation. Think of all the
+possibilities of using this trick along with the "rectangle selection"
+feature of the editor.
+@p{}
+
+@c --------------------------------------------------------------
+@subsubsection Examples.
+
+I prepared some examples so you could see the good things of all this
+work. All the examples are the result of selecting all lines and using
+the macro. You can easily reproduce them yourself.
+@p{}
+
+Written in setedit:
+@p{}
+
+@example
+ So I am just     a lazy boy typing this
+ which I know will be
+    formatted correctly with that cool
+     python script                     written by a
+       guy with funny name.
+@end example
+
+After the @kbd{Alt+F} combo:
+@p{}
+
+@example
+So I am just a lazy boy typing this which I know will be formatted
+correctly with that cool python script written by a guy with funny name.
+@end example
+
+Written in setedit:
+@p{}
+
+@example
+On  9 Jan 01 at 14:25, Grzegorz Adam Hankiewicz wrote:
+> On Sun, 7 Jan 2001, Petr Vandrovec wrote:
+> > (2) you can specify only xres 'x' yres '-' bpp '@@' fv, you cannot specify for example
+> >     horizontal/vertical sync polarity, sync-on-green mode, or even shift picture
+> >     left-right (modify left/right/upper/lower/hslen/vslen fields of var_screeninfo)
+> > 
+> > First problem is probably unresolvable without linking modedb to each fbdev separately,
+> > as if you removing __init, others will come to you with big staff.
+> > 
+> > Second problem is probably only 'invent how to write it' problem... You can look at
+> > matroxfb picture size/refresh related parameters - all of them should be parsed by
+> > modedb for benefit of all drivers...
+> 
+> Aha.. do you mean I have to add new options and switches to modedb, taking
+> out the parsing code from the matroxfb module? For example, adding new
+> modedb functions which have more parameters, to remain backwards
+> compatible with the existant code?
+
+In my opinion it should still take one char* and...
+@end example
+
+After the Alt+F combo:
+@p{}
+
+@example
+On 9 Jan 01 at 14:25, Grzegorz Adam Hankiewicz wrote:
+> On Sun, 7 Jan 2001, Petr Vandrovec wrote:
+> > (2) you can specify only xres 'x' yres '-' bpp '@@' fv, you
+> > cannot specify for example horizontal/vertical sync polarity,
+> > sync-on-green mode, or even shift picture left-right (modify
+> > left/right/upper/lower/hslen/vslen fields of var_screeninfo)
+> > 
+> > First problem is probably unresolvable without linking modedb to each
+> > fbdev separately, as if you removing __init, others will come to you
+> > with big staff.
+> > 
+> > Second problem is probably only 'invent how to write it' problem... You
+> > can look at matroxfb picture size/refresh related parameters - all
+> > of them should be parsed by modedb for benefit of all drivers...
+> 
+> Aha.. do you mean I have to add new options and switches to modedb,
+> taking out the parsing code from the matroxfb module? For example,
+> adding new modedb functions which have more parameters, to remain
+> backwards compatible with the existant code?
+
+In my opinion it should still take one char* and...
+@end example
+
 @c ************************************************************************************
 @c ************************************************************************************
 @chapter Calculator
