@@ -1,5 +1,8 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
+struct stEditorId;
+class TCEditWindow;
+
 class TEditorCollection : public TCollection
 {
 public:
@@ -16,9 +19,11 @@ public:
  ccIndex searchByView(void *view);
  ccIndex searchEditorName(char *name, int *cant);
  ccIndex searchEditorbyINode(char *name, int *cant);
- void forEachEditor(void (*func)(TCEditor *));
+ ccIndex searchEditorbyINode(stEditorId *id, char *name, int *cant);
+ void forEachEditor(void (*func)(TCEditWindow *));
  void saveEditors(void);
  void redrawEditors(void);
+ void reIdEditors(void);
  void sortClosed(void);
  int Editors;
  int Closed;

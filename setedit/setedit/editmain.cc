@@ -132,7 +132,8 @@ TStringCollection *PascalRWords;
 TStringCollection *ClipperRWords;
 #endif
 extern TCEditWindow *clipWindow;
-int StdErrOri=STDERR_FILENO,StdErrNew=-1;
+static int StdErrOri=STDERR_FILENO,StdErrNew=-1;
+static char *TemporalStdErr=0;
 
 extern void InsertProjectWindow(void);
 void StopStdErrRedirection();
@@ -184,7 +185,10 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
  TCEditWindow *ain=NULL;
 
  if (visible && fileName)
+   {
+    edHelper->reIdEditors();
     ain=IsAlreadyOnDesktop(fileName,&numEditors);
+   }
  TRect r = deskTop->getExtent();
  TView *p;
 
@@ -1122,14 +1126,10 @@ TCEditor *GetCurrentIfEditor()
  return 0;
 }
 
-TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant)
+TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant, stEditorId *id)
 {
  // First search by inode, the only way
- #ifdef SEOS_Win32
- ccIndex pos=edHelper->searchEditorName(fileName,cant);
- #else
- ccIndex pos=edHelper->searchEditorbyINode(fileName,cant);
- #endif
+ ccIndex pos=edHelper->searchEditorbyINode(id,fileName,cant);
  if (pos<0)
     return NULL;
  TDskWinEditor *st=(TDskWinEditor *)edHelper->at(pos);
@@ -1280,31 +1280,56 @@ void SaveAllEditors(void)
     edHelper->saveEditors();
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  If a file with the provided name exists it is reloaded from disk.
+  
+  Return: 1 if we reloaded.
+  
+***************************************************************************/
+
+int EdReloadIfOpened(const char *name, stEditorId *id)
+{
+ TCEditWindow *edw=IsAlreadyOnDesktop((char *)name,0,id);
+ if (edw && !edw->editor->isReadOnly)
+   {
+    if (edw->editor->reLoadFile()==False)
+       closeView(edw,0);
+    return 1;
+   }
+ return 0;
+}
+
+int AskReloadEditor(TCEditWindow *edw)
+{
+ char *fileName=edw->editor->fileName;
+ if (LimitedFileNameDialog(mfYesButton | mfNoButton | mfConfirmation,
+     __("The disk copy of %s is newer, reload it?"),fileName)==cmYes)
+   {
+    char *name=strdup(fileName);
+    closeView(edw,0);
+    editorApp->openEditor(name,True);
+    free(name);
+    return 1;
+   }
+ return 0;
+}
+
 static
 int EdReLoad(void *p)
 {
  TDskWin *dsk=(TDskWin *)p;
  if (dsk->type==dktEditor)
    {
-    TCEditor *e=((TDskWinEditor *)p)->edw->editor;
+    TCEditWindow *edw=((TDskWinEditor *)p)->edw;
+    TCEditor *e=edw->editor;
     struct stat s;
     /* Read Only editors are like snap-shots, don't reload */
     /* Don't be fooled by new files, they aren't in disk! */
     if (!e->isReadOnly && e->DiskTime!=0 && stat(e->fileName,&s)==0)
-      {
        if (s.st_mtime>e->DiskTime)
-         {
-          if (messageBox(mfYesButton | mfNoButton | mfConfirmation,
-              _("The disk copy of %s is newer, reload it?"),e->fileName)==cmYes)
-            {
-             char *name=strdup(e->fileName);
-             closeView(((TDskWinEditor *)p)->edw,0);
-             editorApp->openEditor(name,True);
-             delete name;
-             return 1;
-            }
-         }
-      }
+          return AskReloadEditor(edw);
    }
  return 0;
 }
@@ -1565,6 +1590,7 @@ void ShowInstallError(char *var, const char *suggest, int end)
 {
  TScreen::suspend();
  StopStdErrRedirection();
+ if (TemporalStdErr) unlink(TemporalStdErr);
  fprintf(stderr,_("\nWrong installation! You must define the %s environment variable.\n"),var);
  fprintf(stderr,_("Read the readme.1st file included in the .zip distribution file.\n\n"));
  #ifdef NoHomeOrientedOS
@@ -1587,6 +1613,7 @@ void ShowErrorSET_FILES()
 {
  TScreen::suspend();
  StopStdErrRedirection();
+ if (TemporalStdErr) unlink(TemporalStdErr);
  fputs(_("\nYou defined SET_FILES wrongly, it doesn't point to a directory.\n\n"),stderr);
  fflush(stderr);
  exit(1);
@@ -1959,7 +1986,6 @@ int main(int argc, char *argv[])
  CheckIfCurDirValid();
 
  // Redirect stderr to a unique file to catch any kind of errors.
- char *TemporalStdErr=0;
  if (RedirectStderr)
     TemporalStdErr=RedirectStdErrToATemp(StdErrOri,StdErrNew);
 

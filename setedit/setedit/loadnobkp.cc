@@ -17,6 +17,7 @@
 #define Uses_TDialogAID
 // TCEditor
 #define Uses_TCEditor_External // execDialog
+#define Uses_EditorId
 #include <easydia1.h>
 #include <ceditor.h>
 #include <easydiag.h>
@@ -29,6 +30,8 @@ typedef void pcre;
 #endif
 #include <loadshl.h>
 #include <loadnobkp.h>
+#define Uses_SETAppVarious // EdReloadIfOpened
+#include <setapp.h>
 
 class TNBKPColl;
 typedef struct
@@ -236,7 +239,11 @@ void NBKPEdit(void)
    {
     if (ret==cmOK)
       {
+       stEditorId idFile;
+       int reLoad=FillEditorId(&idFile,NBKPSaveFile);
        NBKPList->Save(NBKPSaveFile);
+       if (reLoad)
+          EdReloadIfOpened(NBKPSaveFile,&idFile);
        if (warnSaveDifDir && strcmp(NBKPSaveFile,NBKPFile)!=0)
          {
           ShowSavePoint(NBKPSaveFile);

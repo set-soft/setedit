@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]**********************************************************************
 
@@ -45,6 +45,7 @@ Closed editors.
 #include <dskclose.h>
 #include <edcollec.h>
 #define Uses_TSetEditorApp
+#define Uses_SETAppVarious
 #include <setapp.h>
 #include <assert.h>
 #include <edspecs.h>
@@ -693,25 +694,31 @@ TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant)
 
 ccIndex TEditorCollection::searchEditorbyINode(char *name, int *cant)
 {
-#ifdef SEOS_Win32
- // this function must not be called on WIN32 systems.  Inode number reported by
- // stat is always 0.
- #undef NDEBUG
- assert(0);
- return -1;
-#else
+ stEditorId id;
+ if (!FillEditorId(&id,name))
+    return searchEditorName(name,cant);
+ return searchEditorbyINode(&id,name,cant);
+}
+
+ccIndex TEditorCollection::searchEditorbyINode(stEditorId *id, char *name, int *cant)
+{// If no id use the name
+ if (!id)
+    return searchEditorbyINode(name,cant);
+ // We must be sure the provided id isn't fake
+ // Example: the case of BC++ 5.5 Win32
+ if (IsEmptyEditorId(id))
+    // If the id is invalid we search by name
+    return searchEditorName(name,cant);
+
  int i=Editors;
  ccIndex ind=0;
  TDskWin *st;
- struct stat s;
  TCEditor *ed;
  /* Index of the best match */
  ccIndex indFound=-1;
  Boolean isIndReadOnly=True;
  int Cant=0;
 
- if (stat(name,&s)!=0)
-    return searchEditorName(name,cant);
  while (i)
    {
     st=(TDskWin *)at(ind);
@@ -719,7 +726,7 @@ ccIndex TEditorCollection::searchEditorbyINode(char *name, int *cant)
       {
        i--;
        ed=((TDskWinEditor *)st)->edw->editor;
-       if (ed->DeviceOfFile==s.st_dev && ed->INodeOfFile==s.st_ino)
+       if (CompareEditorId(id,&(ed->EditorId)))
          {
           Cant++;
           if (indFound==-1 || (isIndReadOnly && !ed->isReadOnly))
@@ -735,10 +742,9 @@ ccIndex TEditorCollection::searchEditorbyINode(char *name, int *cant)
  if (cant)
     *cant=Cant;
  return indFound;
-#endif
 }
 
-void TEditorCollection::forEachEditor(void (*func)(TCEditor *))
+void TEditorCollection::forEachEditor(void (*func)(TCEditWindow *))
 {
  int i=Editors;
  ccIndex ind=0;
@@ -749,7 +755,7 @@ void TEditorCollection::forEachEditor(void (*func)(TCEditor *))
     st=(TDskWin *)at(ind);
     if (st->type==dktEditor)
       {
-       TCEditor *p=((TDskWinEditor *)st)->edw->editor;
+       TCEditWindow *p=((TDskWinEditor *)st)->edw;
        i--;
        func(p);
       }
@@ -760,10 +766,10 @@ void TEditorCollection::forEachEditor(void (*func)(TCEditor *))
 }
 
 static
-void SaveIt(TCEditor *p)
+void SaveIt(TCEditWindow *p)
 {
- if (p->modified)
-    p->save();
+ if (p->editor->modified)
+    p->editor->save();
 }
 
 void TEditorCollection::saveEditors(void)
@@ -772,14 +778,49 @@ void TEditorCollection::saveEditors(void)
 }
 
 static
-void RedrawIt(TCEditor *p)
+void RedrawIt(TCEditWindow *p)
 {
- p->update(ufView);
+ p->editor->update(ufView);
 }
 
 void TEditorCollection::redrawEditors(void)
 {
  forEachEditor(RedrawIt);
+}
+
+static
+void RereadInode(TCEditWindow *p)
+{
+ stEditorId *id=&(p->editor->EditorId);
+ TCEditor *ed=p->editor;
+ // Check only files we have on disk
+ if (!IsEmptyEditorId(id))
+   {
+    stEditorId newId;
+    // Ever try to update the id
+    if (FillEditorId(&newId,ed->fileName) && !CompareEditorId(&newId,id))
+      {
+       *id=newId;
+       if (!ed->isReadOnly)
+          AskReloadEditor(p);
+      }
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  The editor uses device+inode to identify a file because names aren't
+reliable. But it could change if somebody replaced the file. Here I reread
+this information for all editors so a search by inode have more chances to
+succeed. Note that I trust that the modification time will also change so
+we can still detecting file changes.
+  
+***************************************************************************/
+
+void TEditorCollection::reIdEditors(void)
+{
+ forEachEditor(RereadInode);
 }
 
 /**[txh]**********************************************************************

@@ -211,25 +211,24 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *ret;
  fI.len=strlen(endOfLine+1);
  fI.offset=endOfLine-buf+1;
+ ret=strdup(buf);
+ char bFile[PATH_MAX];
  if (offset || buf[0]=='/' || buf[0]=='\\')
    { // Absolute path
-    ret=strdup(buf);
     *endOfName=0;
-    fileName=strdup(buf);
+    strcpy(bFile,buf);
    }
  else
    { // Relative path
-    DynStrCatStruct msgLine;
-    DynStrCatInit(&msgLine,actPath);
-    DynStrCat(&msgLine,buf);
-    ret=msgLine.str;
-    fI.offset+=strlen(actPath);
-   
-    DynStrCatStruct File;
-    DynStrCatInit(&File,actPath);
-    DynStrCat(&File,buf,endOfName-buf);
-    fileName=File.str;
+    // Put the actual directory
+    strcpy(bFile,actPath);
+    // Now the name
+    *endOfName=0;
+    strcat(bFile,buf);
    }
+ // Fix it to avoid things like /dir/../dir/file
+ CLY_fexpand(bFile);
+ fileName=strdup(bFile);
 
  *endOfLine=0;
  fI.Line=atoi(endOfName+1);
@@ -272,16 +271,19 @@ char *ParseFunCLE(char *buf, FileInfo &fI, char *&fileName)
  CLEGetMatch(CLEValues[IndexCLE].File,fName,PATH_MAX);
  if (fName[1]==':' || fName[0]=='/' || fName[0]=='\\')
    { // Absolute path
+    CLY_fexpand(fName);
     fileName=strdup(fName);
    }
  else
    { // Relative path
-    DynStrCatStruct File;
-    DynStrCatInit(&File,actPath);
-    if (File.len && actPath[File.len-1]!='/' && actPath[File.len-1]!='\\')
-       DynStrCat(&File,"/");
-    DynStrCat(&File,fName);
-    fileName=File.str;
+    char bFile[PATH_MAX];
+    strcpy(bFile,actPath);
+    int l=strlen(bFile);
+    if (l && actPath[l-1]!='/' && actPath[l-1]!='\\')
+       strcat(bFile,"/");
+    strcat(bFile,fName);
+    CLY_fexpand(bFile);
+    fileName=strdup(bFile);
    }
 
  CLEGetMatch(CLEValues[IndexCLE].Line,fName,PATH_MAX);
