@@ -112,6 +112,7 @@ Distribution:
 static unsigned maxLenIdTags, totalCantTags, lenAllIdTags;
 static unsigned *idTagsLenTable;
 #endif
+static void JumpToTag(TListBoxRec &br, Boolean isClassCol=False);
 
 // Small helpers
 static
@@ -1482,11 +1483,24 @@ TDialog *createDialog()
 }
 
 static
-void JumpToTag(TListBoxRec &br)
+void JumpToTag(TListBoxRec &br, Boolean isClassCol)
 {
  char b[PATH_MAX],desc[120];
- TSpTagCollection *tgs=(TSpTagCollection *)br.items;
- stTag *p=tgs->atPos(br.selection);
+ stTag *p;
+ TSpTagCollection *tgs;
+
+ if (isClassCol)
+   {// TTagClassCol aren't TSpTagCollection childs
+    TTagClassCol *clcol=(TTagClassCol *)br.items;
+    stClassTagInfo *info=clcol->atPos(br.selection);
+    p=info->cl;
+    tgs=info->members;
+   }
+ else
+   {// The rest are TSpTagCollection or childs
+    tgs=(TSpTagCollection *)br.items;
+    p=tgs->atPos(br.selection);
+   }
  if (CLY_IsValidDirSep(p->source[0]))
     CLY_snprintf(b,PATH_MAX,"%s",p->source);
  else
@@ -1813,7 +1827,7 @@ void BrowseClasses(TListBoxRec &br, TTagClassCol *clist)
    {
     ret=execDialog(createDialogCl(),&br);
     if (ret==cmYes)
-       JumpToTag(br);
+       JumpToTag(br,True);
     if (ret==cmOK && BrowseClass(br.selection,clist))
        break;
    }

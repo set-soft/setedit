@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.451  2003/10/16 19:39:10  set
+* Added: Some clarification in the docs about the meaning of the maximum
+number of R.O. copies.
+* Added: Now when the message window (and other sources) request to open
+a file that is part of the project it is opened using the relative path
+and not an absolute path. It annoyed me for a long time and Oswald insisted
+on it ;-)
+
 Revision 1.450  2003/10/16 19:38:02  set
 * Added: Project windows are "closed" (hided) when pressing ESC. Suggested
 by Oswald Budden.
