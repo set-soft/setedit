@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.395  2003/06/02 15:12:20  set
+* Modified: Configuration script to adapt to the new TV directory
+structure. Now the resulting lib is in ../tvision/makes.
+
 Revision 1.394  2003/05/30 19:51:37  set
 * Fixed: Config: Moved TV detection to be before detecting CFLAGS so we can
 be sure be can get TV settings.

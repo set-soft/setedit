@@ -81,7 +81,7 @@ functions are located, class, etc.
 
 @section About the Author
 
-@my_flag{}
+@my-flag{}
 
 SDG was made by Salvador Eduardo Tropea (SET).
 
@@ -98,7 +98,7 @@ Argentina
 @end display
 @paragraph{}
 
-@my_flag{}
+@my-flag{}
 
 @chapter How to use it quickly
 @cindex How to use
@@ -170,7 +170,7 @@ The following table shows how these fields work.
    @titemR{@code{Description},How the function works,Manual (type 1)}
    @titemR{@code{Return},Value returned; type and meaning,Manual (type 1)}
    @titemR{@code{Example},How to use it,Manual (type 1)}
-@endtable_{}
+@endtable-{}
 
 As you can see most of the fields are filled automatically. The @code{/t} macro is
 normally used for the first function in your file; it sets the @code{Include} and
@@ -590,7 +590,7 @@ Additionally there are some special variables created internally:
   @titemR{@code{90},Name of the file}
   @titemR{@code{91},Line number of the end of the comment}
   @titemR{@code{92},Name of the var 0 in the format: ~0 ~~Distinguish@ocb{}(~Distinguish)~@ccb{} (node name)}
-@endtable_{}
+@endtable-{}
 @paragraph{}
 
 To define a variable you'll use the following syntax:

@@ -32,8 +32,8 @@ $AllegroVersionNeeded='3.0.1';
 $AllegroNotNeeded='5.0.0';
 # I never tested with an older version, you can try reducing it.
 $GPMVersionNeeded='1.10';
-# It doesn't work:
-$BrokenMakeinfo='4.5';
+# Workarounded 4.4+ missfeatures, so now I put here a fantasy value
+$BrokenMakeinfo='99.99';
 unlink $ErrorLog;
 
 SeeCommandLine();

@@ -210,7 +210,7 @@ you may want to configure the keyboard.
 
 @section About the Author
 
-@my_flag{}
+@my-flag{}
 
 The editor was created by @value{name-author} with some code contributed by
 @RH{}
@@ -228,7 +228,7 @@ Argentina
 @end display
 @paragraph{}
 
-@my_flag{}
+@my-flag{}
 
 @chapter Available commands and keys assignments
 
@@ -293,7 +293,7 @@ but I wanted to make that clear to avoid problems ;-).
 @titem4{Bottom of window,cmcLastLineInScreen,^Q-X,^End}
 @titem4{Top of file,cmcTextStart,^Q-R,^PgUp}
 @titem4{Bottom of file,cmcTextEnd,^Q-C,^PgDn}
-@endtable_{}
+@endtable-{}
 
 @section Insert and Delete
 @cindex Insert and Delete
@@ -308,7 +308,7 @@ but I wanted to make that clear to avoid problems ;-).
 @titem3{Delete word at left,cmcDelPrevWord,^Backspace}
 @titem4{Insert line,cmcNewLine,Enter,^N}
 @titem4{Insert mode on/off,cmcInsMode,Ins,^V}
-@endtable_{}
+@endtable-{}
 
   When you are in insert mode all the typed characters are inserted in the
 text, but when the insert mode is off the typed characters replace the old
@@ -346,7 +346,7 @@ of text. The associated commands are:
 @titem3{Invert case,cmcInvertCase,none}
 @titem3{Alternate case,cmcAltCase,none}
 @titem3{Report the length of the block,cmcSelLength,^Q-L}
-@endtable_{}
+@endtable-{}
 
 @subsection Block modes
 @cindex Persistent Blocks
@@ -408,7 +408,7 @@ spaces and, if you are using spaces to indent, don't mix them with real tabs.
 @titem4{Unindent block one character - not an x position,cmcUnIndentBlkOne,^K-U,Shift+^U}
 @titem3{Indent block,cmcIndentBlk,^K-Tab}
 @titem3{Unindent block,cmcUnIndentBlk,^K-Shift+Tab}
-@endtable_{}
+@endtable-{}
 
 @code{cmcUnIndentBlkOne} unindents deleting one char at the start of the line so,
 if the line is indented with tabs, the line will retract one tab.
@@ -434,7 +434,7 @@ the line where the cursor is positioned.
 @table3{Action,Command,Key}
 @titem3{Smart Indent block,cmcSmartIndent,^Tab}
 @titem3{Smart Unindent block,cmcSmartUnIndent,Shift+^Tab}
-@endtable_{}
+@endtable-{}
 
 @code{cmcSmartIndent} and @code{cmcSmartUnIndent} indents take as reference the @{ @} pair
 where the cursor is, for example:
@@ -490,7 +490,7 @@ report that like a bug. That is the way it works!
 @titem3{Paste from special Clipboard,cmcSelRectPaste,^K-Shift+P}
 @titem3{Convert to uppercase,cmcSelRectToUpper,}
 @titem3{Convert to lowercase,cmcSelRectToLower,}
-@endtable_{}
+@endtable-{}
 
 @section Miscellaneous keyboard commands
 
@@ -515,7 +515,7 @@ report that like a bug. That is the way it works!
 @titem3{Start recording a macro,cmcRecordMacro,Shift+F10}
 @titem3{Stop recording a macro,cmcStopMacro,Alt+F10}
 @titem3{Play a macro,cmcPlayMacro,^F10}
-@endtable_{}
+@endtable-{}
 
 @chapter Keyboard configuration
 
@@ -600,7 +600,7 @@ enable it. Three options are offered:
 for commands}
 @titemR{Right Alt,The reverse as for Left Alt - right Alt activates menues\, left Alt commands}
 @titemR{Both Alt,Both keys can be used for menues}
-@endtable_{}
+@endtable-{}
 
 @section Restoring the default keyboard assignments
 
@@ -2408,7 +2408,7 @@ known video modes:
 @titem3{0x010A,132 x 43,9 x 11}
 @titem3{0x010B,132 x 50,9 x 10}
 @titem3{0x010C,132 x 60,9 x  8}
-@endtable_{}
+@endtable-{}
 
 @refMenu1{cmeSetScreenOps}
 
@@ -3543,7 +3543,7 @@ line and will use it as reference.
 word as reference. The editor recognises the following keywords:
 @paragraph{}
 
-@table2_auto{Keyword,Action}
+@table2-auto{Keyword,Action}
 @clear table-set-center
 @titemR{@samp{do},+2 but not if @dots{} ;}
 @titemR{@samp{if},+2 but not if @dots{} ;}
@@ -3555,7 +3555,7 @@ word as reference. The editor recognises the following keywords:
 @titemR{@samp{break},unindent}
 @titemR{@samp{return},unindent}
 @titemR{@samp{default},+5}
-@endtable_{}
+@endtable-{}
 
   The numbers represent how many spaces are added with reference to the first letter
 of the word.  'not if @dots{} ;' means that, if the line ends with
@@ -4442,7 +4442,7 @@ change to be similar to Perl.
 @titemR{l,simple line feed (ASCII 10 for DOS and UNIX)}
 @titemR{r,simple carriage return (ASCII 13 for DOS and UNIX)}
 @titemR{t,tab (ASCII 9 for DOS and UNIX)}
-@endtable_{}
+@endtable-{}
 
   In strings that will be inserted in the text you should use the @code{\\n}
 escape sequence to maintain compatibility across different OSs. You can also
@@ -4604,7 +4604,7 @@ places to see what you get:
 @titemR{edfStartString,This line startes inside a string}
 @titemR{edfStartString2,This line startes inside a string type 2}
 @titemR{edfStartString3,This line startes inside a string type 3}
-@endtable_{}
+@endtable-{}
 
   Something very important is that the editor will only analyze the line up
 to the cursor's position. So if the cursor is inside a string the editor
@@ -4767,7 +4767,7 @@ file under edition.
 @titemR{edfWEDisk (3),Disk drive,\@samp\{c:\}}
 @titemR{edfWEExtension (4),File extension,\@samp\{.txt\}}
 @titemR{edfWENameNoExt (5),Name without extension,\@samp\{test\}}
-@endtable_{}
+@endtable-{}
 
 
 @c --------------------------------------------------------------
@@ -5868,7 +5868,7 @@ first Monday of the year, zero padded to two characters (@code{39})}
 @titemR{@code{%Y},The year, zero padded to four digits (@code{1993})}
 @titemR{@code{%Z},The timezone abbreviation (@code{EDT})}
 @titemR{@code{%%},A percent symbol (@code{%})}
-@endtable_{}
+@endtable-{}
 
 @section Regular Expressions
 
@@ -6383,7 +6383,7 @@ a back slash. Here are some examples:
 @titemR{ops 1,two options "ops" and "1"}
 @titemR{"ops 1",one option "ops 1"}
 @titemR{ops\"1,one option containing a double quote inside}
-@endtable_{}
+@endtable-{}
 
 This mechanism can be used to set default options and avoid typing them all
 the time. Another use is when you need to pass options to the editor and you

@@ -35,7 +35,7 @@
 @itemize @bullet
 @end macro
 
-@macro table2_auto{title1,title2}
+@macro table2-auto{title1,title2}
 @table2{\title1\,\title2\}
 @end macro
 
@@ -67,7 +67,7 @@
 @end macro
 @end ifset
 
-@macro endtable_{}
+@macro endtable-{}
 @end itemize
 @paragraph{}
 @end macro
@@ -159,35 +159,35 @@
 @end macro
 
 @c --- The following are because HTML replaces it
-@macro end_format
+@macro end-format
 @end format
 @end macro
-@macro end_table
+@macro end-table
 @end table
 @end macro
-@macro end_itemize
+@macro end-itemize
 @end itemize
 @end macro
-@macro end_enumerate
+@macro end-enumerate
 @end enumerate
 @end macro
-@macro end_example
+@macro end-example
 @end example
 @end macro
-@macro end_smallexample
+@macro end-smallexample
 @end smallexample
 @end macro
-@macro end_display
+@macro end-display
 @end display
 @end macro
-@macro end_quotation
+@macro end-quotation
 @end quotation
 @end macro
-@macro end_menu
+@macro end-menu
 @end menu
 @end macro
 
-@macro node_{name,prox,prev,up}
+@macro node-{name,prox,prev,up}
 @node \name\, \prox\, \prev\, \up\
 @end macro
 
@@ -277,7 +277,7 @@ including all the indices.
 
 @c --- That generates a very good effect in InfView, Info? who cares about
 @c --- it? ;-)
-@macro my_flag
+@macro my-flag
 @ifinfo
 @*
 0Bлллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл@*

@@ -147,7 +147,7 @@ Available Keys:
 @titemR{a-z A-Z,Select the next link that starts with this letter. The editor uses
 an incremental search so you can type various letters until you reach the
 desired item}
-@endtable_{}
+@endtable-{}
 
 @section Jumping to any file or node
 
@@ -190,7 +190,7 @@ following buttons:
 @titemR{Configuration,Goes to the \@x\{Configuration dialog\,Configuration\}. dialog}
 @titemR{Open Info,Opens a dialog to browse the disk and choose any file to load}
 @titemR{Hide,Hides the control dialog}
-@endtable_{}
+@endtable-{}
 
 Additionally the dialog contains a list with the last 40 nodes visited, you
 can choose any of them with the mouse of the cursors.
@@ -258,7 +258,7 @@ the changes.
 
 @chapter About the Author
 
-@my_flag{}
+@my-flag{}
 
 InfView was made by Salvador Eduardo Tropea (SET), with the help of Robert
 H@value{ouml}hne.
@@ -277,7 +277,7 @@ Argentina
 @end display
 @paragraph{}
 
-@my_flag{}
+@my-flag{}
 
 @chapter Greetings
 @itemize @bullet

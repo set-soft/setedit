@@ -459,7 +459,7 @@ void GenMenu(int i,FILE *f)
        if (Nodes[i].Level<lev)
           break;
     }
- fputs("@end_menu\n\n",f);
+ fputs("@end-menu\n\n",f);
 }
 
 void InsertNumber(char *s,char *n,FILE *f)
@@ -477,7 +477,7 @@ void HTMLPrep(char *s,FILE *f)
  char *p,*s1;
 
 #define c(x) (strncmp(s,"@"x,sizeof(x))==0)
-#define r(x) if (strncmp(s,"@end "#x,sizeof(#x)+4)==0) fputs("@end_"#x"\n",f); else
+#define r(x) if (strncmp(s,"@end "#x,sizeof(#x)+4)==0) fputs("@end-"#x"\n",f); else
  if (c("menu"))
    {
     HTMLInMenu=1;
@@ -509,10 +509,10 @@ void HTMLPrep(char *s,FILE *f)
        fprintf(f,"@mitem{%s}\n",s1);
    }
  else
- if (c("end_menu") || c("end menu"))
+ if (c("end-menu") || c("end menu"))
    {
     HTMLInMenu=0;
-    fputs("@end_menu\n",f);
+    fputs("@end-menu\n",f);
    }
  else
  r(format)
@@ -559,7 +559,7 @@ void GenerateTXI_NUM(void)
           GenMenu(i,fo2);
          }
        fprintf(fo2,"@node %s, %s, %s, %s\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
-       fprintf(fo,"@node_{%s, %s, %s, %s}\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
+       fprintf(fo,"@node-{%s, %s, %s, %s}\n",name,ProxNodeOf(i),aprev[nlev],up[nlev]);
        prev=name;
        aprev[nlev]=prev;
        up[nlev+1]=name;
@@ -1140,7 +1140,7 @@ void GenerateTX1(void)
     if (feof(fi))
        break;
     // Here we need real nodes again, sorry
-    if (strncmp(bl,"@node_{",7)==0)
+    if (strncmp(bl,"@node-{",7)==0)
       {
        fprintf(fo,"@node %s\n",Nodes[i++].name);
        continue;
@@ -1323,7 +1323,7 @@ int main(int argc, char *argv[])
  // Generate a .TXI, that's simply add the @node with the right prev, up,
  // down plus the insertion of menus.
  // Generate a .NUM, that's a .TXI but with numbers in the titles and ready
- // for conversion to HTML (it replaces things like @end format by @end_format)
+ // for conversion to HTML (it replaces things like @end format by @end-format)
  // These formats are ever generated
  GenerateTXI_NUM();
  if ((outFormats & F_INFO) || (outFormats & F_TXT) || (outFormats & F_HTML))

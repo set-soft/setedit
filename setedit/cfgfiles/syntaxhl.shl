@@ -730,6 +730,7 @@ EOLComment2=@comment
 NoCheckNumbers=1
 PartialKeywords=1
 CanStartAName=@\
+AllowedInsideNames=-
 Symbols1=!"'*-.:=?@^`{}~,\
 SpecialSymbol=@
 SpecialSymbolCont=@,"'.:={}`^?!-~*
