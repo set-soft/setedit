@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.388  2003/05/23 16:10:32  set
+* Added: Detection and use of rhtv-config even if it isn't installed.
+* Added: Error message if rhtv-config can't be found.
+* Removed: X11 headers stuff from configuration header. The editor doesn't
+really use it, is all abstracted by TV.
+* Added: Rules so make detects the configuration scripts are newer and
+forces the user to reconfigure.
+
 Revision 1.387  2003/05/23 13:23:52  set
 * Fixed: [DOS] Details about the new configuration.
 

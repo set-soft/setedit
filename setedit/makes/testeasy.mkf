@@ -48,5 +48,9 @@ include common.imk
 #
 # All the RHIDE data should come from here.
 #
-include testeasy.imk
+ifdef MAINTAINER_MODE
+ include testeasy.imk
+else
+ include testeasy.umk
+endif
 

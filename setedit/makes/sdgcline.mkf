@@ -48,5 +48,9 @@ include common.imk
 #
 # All the RHIDE data should come from here.
 #
-include sdgcline.imk
+ifdef MAINTAINER_MODE
+ include sdgcline.imk
+else
+ include sdgcline.umk
+endif
 

@@ -48,5 +48,9 @@ include common.imk
 #
 # All the RHIDE data should come from here.
 #
-include install.imk
+ifdef MAINTAINER_MODE
+ include install.imk
+else
+ include install.umk
+endif
 

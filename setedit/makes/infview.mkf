@@ -20,6 +20,7 @@ INFVIEW_INC_DIR=../infview/include
 EXTRA_INC_DIR=../extra
 EASYDIAG_INC_DIR=../easydiag
 LIBRHUTI_INC_DIR=../librhuti
+MP3_PREV_DIR=..
 INCLUDE_DIRS=$(INCLUDE_DIR) $(SETEDIT_INC_DIR) $(SETTVUTI_INC_DIR) \
 	$(SDG_INC_DIR) $(INFVIEW_INC_DIR) $(TVISION_INC) $(EXTRA_INC_DIR) \
 	$(EASYDIAG_INC_DIR) $(LIBRHUTI_INC_DIR) $(SUPPORT_INC) \
@@ -45,5 +46,9 @@ include common.imk
 #
 # All the RHIDE data should come from here.
 #
-include infview.imk
+ifdef MAINTAINER_MODE
+ include infview.imk
+else
+ include infview.umk
+endif
 

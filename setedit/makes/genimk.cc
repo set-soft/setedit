@@ -5,6 +5,8 @@
   Description:
   This program generates the .imk files from the .gpr files. To achieve it
 first creates the .mak files and then calls the extrimk.exe program.
+  It also generates a simplified version called .umk without extra
+dependencies, just the needed to get the executables.
   
 ***************************************************************************/
 
@@ -13,6 +15,9 @@ first creates the .mak files and then calls the extrimk.exe program.
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <ctype.h>
+
+const int maxLine=256;
 
 static
 void ChangeExt(char *s, const char *newE)
@@ -79,8 +84,10 @@ int main(int argc, char *argv[])
         char *gpr=argv[i];
         char *mak=strdup(gpr);
         char *imk=strdup(gpr);
+        char *umk=strdup(gpr);
         ChangeExt(mak,".mak");
         ChangeExt(imk,".imk");
+        ChangeExt(umk,".umk");
 
         struct stat stImk;
         printf("%s => %s\n",mak,imk);
@@ -94,8 +101,57 @@ int main(int argc, char *argv[])
            return 22;
           }
 
+        printf("%s => %s\n",imk,umk);
+        FILE *ori=fopen(imk,"rt");
+        if (!ori)
+          {
+           fprintf(stderr,"%s: Can't open .imk file for %s\n",argv[0],mak);
+           return 23;
+          }
+        FILE *des=fopen(umk,"wt");
+        if (!des)
+          {
+           fprintf(stderr,"%s: Can't create .umk file for %s\n",argv[0],mak);
+           return 24;
+          }
+        char b[maxLine], *sep;
+        int skip=0;
+        while (fgets(b,maxLine,ori))
+          {
+           if (isalpha(b[0]) && (sep=strchr(b,':'))!=0)
+             {
+              char *ext=sep-1;
+              for (;*ext!='.' && ext>b; ext--);
+              if (*ext!='.')
+                {
+                 fprintf(stderr,"%s: Parser error (ext): %s\n",argv[0],b);
+                 return 25;
+                }
+              if (ext[1]=='o')
+                {// That's an object, only the first is relevant.
+                 for (;*sep && *sep!='\\'; sep++);
+                 if (*sep) *sep=' ';
+                 skip=1;
+                 fputs(b,des);
+                 continue;
+                }
+             }
+           if (skip)
+             {
+              char *slash=b;
+              for (;*slash && *slash!='\\'; slash++);
+              if (!*slash)
+                 skip=0;
+             }
+           else
+              fputs(b,des);
+          }
+        fclose(des);
+        fclose(ori);
+
         free(mak);
         free(imk);
+        free(umk);
        }
     }
 

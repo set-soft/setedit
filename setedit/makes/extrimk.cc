@@ -14,6 +14,7 @@ project.
 #include <sys/stat.h>
 #include <limits.h>
 #include <unistd.h>
+#include <time.h>
 
 #define ONE_DEP_BY_LINE 1
 
@@ -649,7 +650,13 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
  // Generation
  if (level)
     return;
- fputs("#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n#\n\n",stdout);
+
+ char timeBuf[32];
+ time_t now;
+ time(&now);
+ struct tm *brkT=localtime(&now);
+ strftime(timeBuf,32,"%Y-%m-%d %H:%M",brkT);
+ fprintf(stdout,"#!/usr/bin/make\n# Automatically generated from RHIDE projects, don't edit\n# %s\n#\n\n",timeBuf);
  GenerateAll(stdout,mk);
  if (mk.mainTarget && *mk.mainTarget)
    {

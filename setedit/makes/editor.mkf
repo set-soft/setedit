@@ -51,5 +51,9 @@ include common.imk
 #
 # All the RHIDE data should come from here.
 #
-include editor.imk
+ifdef MAINTAINER_MODE
+ include editor.imk
+else
+ include editor.umk
+endif
 

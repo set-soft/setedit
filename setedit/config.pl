@@ -485,6 +485,10 @@ sub SeeCommandLine
        $conf{'HAVE_AA'}='no';
        $conf{'HAVE_AA_from_user'}='yes';
       }
+    elsif ($i eq '--enable-maintainer-mode')
+      {
+       $conf{'MAINTAINER_MODE'}='yes';
+      }
     else
       {
        ShowHelp();
@@ -537,6 +541,9 @@ sub ShowHelp
  print "--x-lib=path    : X11 library path [/usr/X11R6/include].\n";
  print "--with-aa       : support for AA-lib [used for UNIX].\n";
  print "--without-aa    : without AA-lib support.\n";
+ print "--enable-maintainer-mode:\n";
+ print "                : enables header dependencies and other stuff needed\n";
+ print "                : develope, not just use.\n";
 }
 
 sub GiveAdvice
@@ -1250,6 +1257,7 @@ sub GenerateMakefile
  $text.="\nCFLAGS=$conf{'CFLAGS'}";
  $text.="\nCXXFLAGS=$conf{'CXXFLAGS'}";
  $text.="\nSET_USE_FHS=$conf{'fhs'}" if ($OS eq 'UNIX');
+ $text.="\nMAINTAINER_MODE=1" if @conf{'MAINTAINER_MODE'} eq 'yes';
  $text.="\nexport";
 
  #### Targets ####

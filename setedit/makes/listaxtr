@@ -1,3 +1,6 @@
 makes/*.imk
+makes/*.umk
 mp3/libamp/libamp.imk
+mp3/libamp/libamp.umk
 mp3/mpegsound/mpegsnd.imk
+mp3/mpegsound/mpegsnd.umk
