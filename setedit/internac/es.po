@@ -4359,6 +4359,9 @@ msgstr "Comando~s~"
 msgid "Assignmen~t~"
 msgstr "Asi~g~naci¢n"
 
+msgid "Waiting ..."
+msgstr "Esperando ..."
+
 #~ msgid "Attention can't open the help file."
 #~ msgstr "­Atenci¢n no puedo abrir el archivo de ayuda!"
 
