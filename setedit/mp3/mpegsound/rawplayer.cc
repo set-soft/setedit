@@ -209,7 +209,7 @@ static int sizeSamp,bufSize;
 /* Volume */
 int Rawplayer::setvolume(int volume)
 {
- return (r&0xFF);
+ return volume;
 }
 
 /*******************/
@@ -281,13 +281,13 @@ bool Rawplayer::resetsoundtype(void)
 {
  audio_info_t info;
  
- ioctl(h,AUDIO_GETINFO,&info);
+ ioctl(audiohandle,AUDIO_GETINFO,&info);
  info.play.encoding=AUDIO_ENCODING_LINEAR;
  info.play.precision=rawsamplesize;
  info.play.channels=rawstereo ? 2 : 1;
  info.play.sample_rate=rawspeed;
- ioctl(h,AUDIO_SETINFO,&info);
- ioctl(h,AUDIO_GETINFO,&info);
+ ioctl(audiohandle,AUDIO_SETINFO,&info);
+ ioctl(audiohandle,AUDIO_GETINFO,&info);
  
  return info.play.sample_rate==rawspeed && info.play.precision==rawsamplesize ? true : false;
 }
