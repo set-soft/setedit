@@ -1,34 +1,302 @@
 $Log$
-Revision 1.6  2001/10/01 13:33:14  set
-* Removed: tcedit.dst file from CVS, it was there by accident.
+Revision 1.424  2001/09/30 20:46:51  root
+* Modified: The new tools.
+
+Revision 1.423  2001/09/30 20:03:05  set
+* Added: A experimental tool to synchronize my CVS with Source Forge's cvs.
+
+Revision 1.422  2001/09/29 15:53:22  set
+* Many fixes to cleanly compile with gcc 3.0.1:
+* Modified: gcc 3 enforces /n at the end of files.
+* Fixed: Preprocessor expansion "]##." is deprecated.
+* Fixed: "#endif text" is deprecated.
+* Fixed: "condition ? object_type1 : object_type2" deprecated (casts
+enforced).
+* Fixed: Multi-line strings deprecated. That's a real pity because they are
+very convenient for inline assembler.
+* Fixed: Use of ios::bin (now CLY_IOSBin) in mp3list.cc.
+* Fixed: Missing memcpy prototype in mp3play.cc.
+* Modified: Now gcc doesn't provide set_new_handler() anymore.
+* Fixed: I put pathlist.h wrongly in the files list.
 .
-Revision 1.5  2001/10/01 02:51:07  terrible
-Fixed: if we are not using shipped libbzip2 then use the system include files
-and not the shipped ones.
-Fixed: if we are not using shipped libbzip2, then not compile it.
-New: support old libbzip2 (before 1.0 version).
-Workaround: patchenv.pl checks if a variable needs replacing or not, the
-problem is that it only checks in the first occurence of the variable (in
-the .mak file), so if the first occurence of the variable not needed a
-change, then it didn't change the other occurences even if they had to be
-changed; so I have disabled that check and it always replaces the variables
-no matter what, a Perl guru should elaborate a correct solution to avoid
-changing everytime all the variables.
-To do: Salvador has to check the various "FIXME:"'s and correct my mistakes
-(though "It Works For Me TM" in Debian Potato and in Sid but maybe that's
-because of black magic).
+Revision 1.421  2001/09/26 02:37:31  set
+* Adapted: The es.po, de.po, utod.pl and Makefile for internationalizations
+to work with gettext 0.10.39 tools (that seems to suppose files are in
+UTF-8 by default!!). I hope the old tools I use in Linux won't mess the
+whole thing.
 
-Revision 1.4  2001/09/30 04:08:29  terrible
-Updated Debian packaging to 0.4.47-2.
+Revision 1.420  2001/09/26 02:05:23  set
+* Modified: [DOS] Now in TV the keyboard is by default handled by BIOS.
+Added command line switchs to revert it, documented and translated.
+F*ck|ng gettext package, it is a real piece of shit, I'm sick of te really
+stupid ideas incorporated to it.
 
-Revision 1.3  2001/09/30 00:51:10  terrible
-Debian packaging updated to 0.4.47-1.
+Revision 1.419  2001/09/25 23:50:44  set
+* Added: Now the first time the editor forces to load the readme.1st it is
+opened: 1) R.O. 2) Zoomed 3) With the cursor at the beginning.
 
-Revision 1.2  2001/09/29 14:58:35  terrible
-Updated Debian files to version 0.4.45-1.
+Revision 1.418  2001/09/23 23:37:09  set
+* Fixed: When running a program in background and it finished jumping to a
+source line the result was quite confusing if we were in a modal dialog. In
+this case the dialog remains with the keyboard focus but the select window
+is another, most probably oculting the dialog. Now the run program
+mechanism waits until we exit the dialog.
 
-Revision 1.1.1.1  2001/09/11 13:58:18  set
-Imported sources.
+Revision 1.417  2001/09/23 23:16:26  set
+* Fixed: When match on the fly was enabled and also no wait the editor
+failed to propagate some syntax highlight situations.
+
+Revision 1.416  2001/09/23 21:25:06  set
+* Updated: Calculator parsers that are and aren't compiled to compile with
+the changes in compatlayer.
+
+Revision 1.415  2001/09/23 21:22:03  set
+* Fixed: The routine that restores a line under edition failed to update
+the correct start of the selection when it purged spaces at the left of the
+cursor position.
+* Fixed: The undo of BackSpace inserted spaces at the wrong column when
+they were completly purged during the action.
+
+Revision 1.414  2001/09/23 20:11:34  set
+* Modified: Moved all the macros to define if we need \r\n or \n from
+setedit to the compatlayer library.
+
+Revision 1.413  2001/09/23 15:46:52  set
+* Added: An option to indicate in which directories to search files we
+indicate with Ctrl+Enter. Usually include dirs. Stored in the desktop file,
+documented. Translated to spanish.
+* Modified: version to 0.4.49.
+* Modified: The algorithm that takes the name of a file under the cursor to
+be smarter.
+
+Revision 1.412  2001/09/23 00:33:27  set
+* Fixed: After jumping to a function name extending the selection usually
+generated strange results. It was like extending an old selection. Now the
+selected line is made with a temporal selection like in the search
+mechanism.
+* Fixed: When jumping to a function already in the screen it wasn't
+highlighted.
+
+Revision 1.411  2001/09/22 23:53:20  set
+* Fixed: The C/C++ function parser failed with sequences like it: "\\\\".
+Reported by Grzegorz.
+* Fixed: Alt+F7/F8 without hits gave a SIGSEGV (produced by the addition of
+re-select the last if we passed it).
+
+Revision 1.410  2001/09/22 22:40:49  set
+* Added: A new command cmcInsertKeyName to insert the name of the key in
+the text you are editing. Suggested by "Thiago F.G. Albuquerque"
+<tfga@zaz.com.br>. Documented.
+
+Revision 1.409  2001/09/22 21:08:36  set
+* Modified: The TeX syntax highlight with some stuff contributed by Jan
+Cnops <jan.cnops@hogent.be>.
+
+Revision 1.408  2001/09/22 20:52:31  set
+* Updated: [InfView] readme to reflect last aditions.
+* Modified: [InfView] removed some unneeded code.
+* Fixed: [InfView] the "shell" menu option.
+* Added: [InfView] Internationalization files to the distro.
+
+Revision 1.407  2001/09/22 20:12:36  set
+* Fixed: [InfView] Now *all* the commands are enabled/disabled when an
+InfView gets/lose the focus.
+* Added: [InfView] The man pages viewer.
+* Added: [InfView] Screen configuration. No more broken frames for systems
+with ISO fonts! Ivan Baldo <lubaldo@adinet.com.uy> and Grzegorz Adam
+Hankiewicz <gradha@iname.com> were asking for it.
+* Added: [InfView] Internationalization for messages.
+* Updated: Spanish translations.
+* Modified: [InfView] Moved the new window option to the file menu.
+* Added: Code page support to the ManPageView scroll bars.
+* Fixed: All ManPageView windows didn't remmember the position (just
+centered every time).
+* Modified: edprefs.cc to use CLY_Packed.
+
+Revision 1.406  2001/09/22 14:58:51  set
+* Updated: [InfView] versions and dates in manpage and info file.
+* Updated: [InfView] readme file, removed no longer pertinent stuff and
+added the most relevant changes since last release.
+
+Revision 1.405  2001/09/22 14:46:03  set
+* Fixed: The editor didn't store staticUseIndentSize and
+staticDontPurgeSpaces in the desktop file. Reported by Martijn Versteegh.
+* Modified: version to 0.4.48.
+
+Revision 1.404  2001/09/22 14:41:44  set
+* Added: [InfView] Instructions about how to load info files stored in the
+current directory. Suggested by Thiago.
+* Fixed: [InfView] Now most commands are grayed when no window is available
+reflecting the truth.
+* Modidied: [InfView] version to 0.2.7. It have various changes since 0.2.6
+and nobody noticed it.
+
+Revision 1.403  2001/09/22 02:20:47  set
+* Added: An option to disable the R.O. file warning. In this case the
+editor will warn when you try to save so you have an oportunity to revert
+it. Suggested by Marc-Antoine Massicotte <marc.massicotte@videotron.ca>.
+
+Revision 1.402  2001/09/21 02:25:19  set
+* Added: [DOS] More fixes to avoid collisions between conio.h and shipped
+gettext.
+* Fixed: New standards seems to enforce a \n at the end of all sources. At
+least gcc 3.0 says that. I added it to all the tests in the configuration
+scripts.
+* Fixed: [DOS] GCC 3.0 doesn't compile C++ code using the C compiler. The
+configure script can detect it, but as it only happened with very old gcc
+versions the scripts were looking for gxx and currently the C++ compiler is
+inoked using gpp.
+
+Revision 1.401  2001/09/21 01:24:38  set
+* Modified: As now compatlayer defines uint* I needed to fix some
+collisions.
+
+Revision 1.400  2001/09/20 01:45:21  set
+* Modified: Now the configuration detects more details and defines
+preprocessor variables acording to it. The definitions are also less
+confusing. Now they are OS, OSf (subtype of OS), Comp (Compiler), Compf
+(subtype of compiler) and CPU. With it I removed almost all magic __*__ tests
+that are usually tricky and not so clear.
+* Added: Better prefix detection for MinGW.
+* Fixed: The version.txt file messed things if ended with \n, now is ok.
+* Added: Code to viewplus that I hope will reduce the problems when porting
+to big endian systems. Related to the column/row cursor.
+* Fixed: The Perl parser didn't include numbers in function names.
+
+Revision 1.399  2001/09/16 22:38:45  set
+* Added: A test to put the distrib target in the Makefile only if the needed
+tools are installed (zip for DOS and tar for UNIX).
+* Added: [DOS] Same for the installer target. The list of needed tools is
+huge. This is a new target and creates the DOS installer.
+* Added: [DOS] Instructions if the user doesn't have fileutils installed.
+* Added: Configuration of ar for the gettext library.
+* Added: A new target (needed) for the Makefile. It compiles any thing needed
+for the editor that isn't created by RHIDE projects.
+* Fixed: [DOS] The shipped gettext assumed the user already patched your
+djgpp installation as explained in the gettext 0.10.39 distribution. That's
+impossible if the user never installed it. Now I tweaked the headers and code
+to avoid collisions with conio gettext.
+* Fixed: [DOS] Some warnings from gcc 2.95.3 not detected by 2.95.2 for the
+installer.cc file. Related to implicit conversions.
+* Fixed: [DOS] Some warnings from binutils 2.11.2 not reported by 2.8.1 in
+mixsurf.c. Related to EOL C++ comments in inline assembler (must be in a
+separated line).
+.
+Revision 1.398  2001/09/16 20:10:00  set
+* Fixed: Now the clean target of the Makefile also cleans mpegsound
+objects. Reported by Ivan.
+* Applied some fixes for the Debian stuff sent by Ivan.
+* Fixed: Now the scripts of distribution updates debian/changelog with my
+name and stating it was a script. Sugested by Ivan.
+
+Revision 1.397  2001/09/16 17:29:21  set
+* Added: Architecture detection to the configure. It defines SECPU_$(Arch).
+* Added: GNU make detection to the configure. It supports gmake as name.
+* Added: GNU ar detection to the configure. It supports gar as name.
+* Fixed: In systems different than Linux and DOS RHIDE makefiles doesn't
+include -lstdc++ (RHIDE_TYPED_LIBS_$(RHIDE_OS).cc is not defined). So now
+the configuration puts them as RHIDE_OS_LIBS. Seen on FreeBSD and Solaris.
+* Added: Support for ncurses installed as -lcurses (I saw it in Solaris).
+* Added: Now CFLAGS and CXXFLAGS can be passed to the configuration in the
+command line (must use the perl script directly, no the shell script!). It
+made the configset script usable with any UNIX shell (/bin/sh isn't bash in
+a lot of UNIX systems).
+* Added: SunOS to the list of systems supported by the configuration. It
+doesn't mean the library is working there.
+* Modified: References to __i386__ by SECPU_x86.
+* Fixed: Now gpm is detected and not assumed.
+* Fixed: The perl pmacros file made reference to an unexistant marker (@4).
+* Fixed: When specifying an out of range marker in pmacros a stack
+corruption ocurred.
+
+Revision 1.396  2001/09/15 22:52:13  set
+* Modified: [DOS] The compress script now deletes old manifest/version files
+that could be left by an old version package in the directory where the
+distribution is created.
+* Fixed: The arrangements in the order that main initializes things
+affected the SET_FILES error report (made invisible).
+.
+Revision 1.395  2001/09/15 21:56:37  set
+* Fixed: If none file was loaded with syntax highlight pressing Atl+F2
+generated a SIGSEGV. Reported by Grzegorz.
+* Added: Really simple parsers for .txi and .shl files. (For the Alt+F2).
+* Fixed: Some small details to get libset.a compiled.
+* Fixed: Is the editor remmembered a file that is read-only at start-up a
+dialog pop-ups asking if we want to revert it, but it happends while the
+editor is still loading files and the problem is that the idle() makes some
+searchs in the list of opened windows. As it isn't completly loaded the
+result was a SIGSEGV.
+
+Revision 1.394  2001/09/15 19:28:45  set
+* Modified: [Linux] Now by default the editor isn't distributed as a
+compressed executable. According to Ivan it could make the kernel waste
+memory.
+
+Revision 1.393  2001/09/15 19:21:09  set
+* Fixed: [Linux] all editor functions that collected word characters (like
+ctrl+right/left arrows) wrongly stopped in accents. The problem was that it
+didn't reflect the selected code page, just CP 437.
+
+Revision 1.392  2001/09/15 18:45:43  set
+* Added: EdReloadIfOpened to rhideint.cc to avoid unresolved references in
+RHIDE. But I'm not sure if that's enough.
+
+Revision 1.391  2001/09/15 18:39:30  set
+* Fixed: When modifying files like ~/.setedit/deflopts.txt with the menues
+and the file was opened by the editor the opened buffer got out of sync.
+Now the editor checks if it was changed and then reloads the file. The same
+applies to nobkp.txt and userword.txt files.
+* Fixed: It was possible to fool the editor and open the same file twice
+if it was modified by an external program and saved with another i-node
+value. As a result:
+* Modified: Now the editor checks if any of the opened files changed inode
+before opening a new one. That's needed to avoid opening it twice.
+* Fixed: When collecting errors/messages the editor didn't check for names
+like it: /dir/../dir/file and similar situations. In this case the editor
+failed to find the information about this file in the project window. Now
+the editor shows only the name of the file as the external program repoted,
+internally adds the right path and ensures the name doesn't have such an
+artifacts.
+* Modified: The way I hold the inode/dev is more abstract so other values
+can be used. Currently Win32 target lacks inode information and it could
+help. Also added a mechanism to reload a buffer without closing the window
+and a more generic dialog that limits the lenght of file names.
+
+Revision 1.390  2001/09/14 02:09:15  set
+* Modified: [Linux] Now also the er* files are created in ~/.setedit
+[DOS] If the user defines a home directory they are stored there. Sugested
+by Martijn Versteegh.
+
+Revision 1.389  2001/09/14 01:50:34  set
+* Modified: All the references to the web page to point to Source Forge,
+also some e-mail references and the mailing list address.
+* Modified: The text of the readme files to better reflect the current
+situation.
+
+Revision 1.388  2001/09/12 03:01:34  set
+* Modified: Now when you jump to an error the editor puts in the status
+line only the description of the error and not the entire line generated by
+the compiler. That's very useful when you are in deep subdir and the file
+name is quite large using most of the space. After all the file name is the
+name of the window and the line is at the bottom of the window.
+
+Revision 1.387  2001/09/12 01:04:26  set
+* Added: A dialog to show where a file was stored. This dialog limits the
+file name to around 90 characters showing only the last characters and
+indicating with a ~ at the begining if the path was truncated.
+* Modified: Cleaned the pathtool interface a little bit now only two
+functions should be used to load/save configuration files: ExpandHome and
+ExpandHomeSave.
+* Modified: All modules to use the above mentioned functions.
+* Added: Now the editor tries to save configuration files modified by a
+user to ~/.setedit/file. I did it to avoid polluting the home directory and
+to put the default tcedit.dst in a place that nobody should run the editor.
+The editor will load all files from ~/.file but will save them in the
+directory. In this case (or when you load the original file from
+/usr/share/setedit and now the editor is saving it in the home) the editor
+informs the user with a dialog indicating where the file was stored.
+* Fixed: The editor failed to set the ShowMatchPairFly from the default
+flags file.
 
 Revision 1.386  2001/09/09 22:16:36  set
 * Fixed: [BC++/Win32] Some unused parameter warnings.
@@ -37,7 +305,7 @@ Revision 1.386  2001/09/09 22:16:36  set
 * Fixed: BC++ doesn't like default argument values in the function itself.
 * Fixed: Missing string.h in pperl.cc (gcc 2.95.2 doesn't report it for
 internal functions).
-
+.
 Revision 1.385  2001/09/09 20:31:58  set
 * Added: A tool to find the empty and fuzzy entries in a .po file. Is
 called emptymsg. If you call it passing the names of the .po files to it
