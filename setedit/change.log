@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.110  2002/06/04 19:42:57  set
+* Modified: Now the configuration determines the directories where extra
+libraries could be located and adds it to the list of directories.
+
 Revision 1.109  2002/06/04 15:36:48  set
 * Modified: To use the moved TView::specialChars (TV 2.0).
 .

@@ -20,6 +20,7 @@ doesn't work, why?
 4.2 I can see both mouse pointers (graphical and text) when the editor is
 running windowed under W9x, why?
 4.3 The mouse works, but I can't see the mouse pointer!
+4.4 I'm using Windows 2000 or XP and I have problems with the mouse.
 
 5. Sound problems
 5.1 The sound is too noisy (crispy), why?
@@ -210,6 +211,20 @@ the program is windowed or not.
 4.3 Q: The mouse works, but I can't see the mouse pointer!
 
 A: Try with the --no-mouse-hook command line options.
+
+-----------------------------------------------------------------------------
+4.4 Q: I'm using Windows 2000 or XP and I have problems with the mouse.
+
+A: I personally don't have access to a W2k nor XP box and I don't really plan
+to do it any time soon. The following explanation was posted to RHIDE's
+mailing list and verified by two users:
+
+"Clicking on the logo on the top left of the DOS box.
+Going to properties.
+Unchecking Quick Edit mode and Insert mode.
+
+The mouse will work correctly the next time you open RHIDE and the problem
+will not reoccur."
 
 =============================================================================
 5. Sound problems
