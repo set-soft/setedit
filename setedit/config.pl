@@ -701,14 +701,14 @@ sub LookForTV
    }
  elsif ($OS eq 'UNIX')
    {
-    @dirsI=("$parent/tvision/include",'/usr/include/rhtvision');
+    @dirsI=("$parent/tvision/include",'/usr/include/rhtvision','/usr/local/include/rhtvision');
     if (@conf{'static'} eq 'yes')
       {
-       @dirsL=("$parent/tvision/linux",'/usr/lib');
+       @dirsL=("$parent/tvision/linux",'/usr/lib','/usr/local/lib');
       }
     else
       {
-       @dirsL=("$parent/tvision/linuxso","$parent/tvision/linux",'/usr/lib');
+       @dirsL=("$parent/tvision/linuxso","$parent/tvision/linux",'/usr/lib','/usr/local/lib');
       }
    }
  elsif ($OS eq 'Win32')
@@ -974,7 +974,7 @@ sub LookForBZ2Lib
 #include <bzlib.h>
 int main(void)
 {
- printf("%s",bzlibVersion());
+ printf("%s",BZ2_bzlibVersion());
  return 0;
 }';
  $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
@@ -1002,6 +1002,18 @@ int main(void)
  return 0;
 }';
     $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+    if (!length($ver))
+      {# Versions prior 1.x didn't use BZ2_ prefix
+       $test='
+#include <stdio.h>
+#include <bzlib.h>
+int main(void)
+{
+ printf("%s",bzlibVersion());
+ return 0;
+}';
+       $ver=RunGCCTest($GCC,'c',$test,'-lbz2');
+      }
     if (length($ver))
       {
        if (CompareVersion($ver,$vNeed))
