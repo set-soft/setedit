@@ -1883,6 +1883,8 @@ void TCEditor::handleKey(TEvent &event)
     Character=event.keyDown.charScan.charCode;
     // Filter strange characters
     //if (Character=='\t' || (Character>=32 && Character<255))
+    if (event.keyDown.keyCode==kbTab)
+       Character='\t';
     if (!isReadOnly && Character && Character!='\n' && Character!='\r')
       {
        lock();

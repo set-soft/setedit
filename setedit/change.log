@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.347  2003/05/07 19:44:21  set
+* Fixed: EasyDiag meassured the width of the dialog's title using the
+untranslated string.
+* Modified: The dialog to wait for a key during in the keyboard
+configuration to use EasyDiag.
+
 Revision 1.346  2003/05/07 15:01:20  set
 * Updated: Spanish translation for the fixed messages. Also committing a
 fresh german file that needs fixes.
