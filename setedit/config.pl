@@ -20,7 +20,7 @@ $TVCommandLine=0;
 GetCache();
 GetVersion('');
 
-$TVVersionNeeded='1.1.2';
+$TVVersionNeeded='1.1.3';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
