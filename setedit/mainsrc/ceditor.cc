@@ -12743,7 +12743,7 @@ Boolean TCEditor::saveFile(Boolean Unix, Boolean noChangeTime)
           CLY_SetFileAttributes(&ModeOfFile,fileName);
        if (stat(fileName,&s)==0)
          {
-          sprintf(aux,_("Saved: %s (%ld bytes %d lines)."),fileName,s.st_size,totalLines+1);
+          sprintf(aux,_("Saved: %s (%ld bytes %d lines)."),fileName,(long)s.st_size,totalLines+1);
           FillEditorId(&EditorId,0,&s);
           // Update it we don't know if all went OK
           GetFileMode(&ModeOfFile,&s,fileName);
