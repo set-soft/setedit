@@ -2452,10 +2452,12 @@ int TCEditor::handleCommand(ushort command)
  
            // ^QM
            case cmcChooseMacro:
+                flushLine();
                 SLPInterfaceRun(this);
                 break;
  
            case cmcRepeatMacro:
+                flushLine();
                 SLPInterfaceReRun(this);
                 break;
  
