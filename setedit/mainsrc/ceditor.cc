@@ -5577,8 +5577,8 @@ void TCEditor::SetCharCase(int option)
  char *s=ColToPointer(dif);
  if (dif) // Only if over a char
     return;
- char upper=uctoupper(*s);
- char lower=uctolower(*s),result;
+ uchar upper=uctoupper(*s);
+ uchar lower=uctolower(*s),result;
  switch (option)
    {
     case 0:
@@ -5590,10 +5590,10 @@ void TCEditor::SetCharCase(int option)
     default:
          result=(*s==upper) ? lower : upper;
    }
- if (result!=-1 && result && result==*s) // If no change needed just return
+ if (result!=0xFF && result && result==*s) // If no change needed just return
     return;
  deleteRange(s,s+1);
- insertBuffer(&result,0,1,True,False,False);
+ insertBuffer((char *)&result,0,1,True,False,False);
 }
 
 /****************************************************************************
