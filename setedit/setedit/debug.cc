@@ -132,6 +132,7 @@ directories to look for sources.
 #include <dskwin.h>
 #include <pathlist.h>
 #include <diaghelp.h>
+#include <pathtool.h> // FindFile
 
 const uint32 msgConsole=1, msgTarget=2, msgLog=4, msgTo=8, msgFrom=16;
 static uint32 msgOps=msgConsole | msgTarget | msgLog;
@@ -185,6 +186,103 @@ static int   cpuLLine;
 // Path for the binary
 static char *binReference=NULL;
 static int   binReferenceLen=0;
+
+/*****************************************************************************
+  Sources files cache:
+  This cache holds the list of files we know where are located.
+*****************************************************************************/
+
+struct stFileCache
+{
+ char *gdb;
+ char *real;
+};
+
+class TSourcesCache : public TNSSortedCollection
+{
+public:
+ TSourcesCache() : TNSSortedCollection(10,10) {};
+
+ void insert(const char *gdb, char *real, char *&newReal);
+ stFileCache *At(ccIndex pos) { return (stFileCache *)at(pos); };
+
+ virtual void *keyOf(void *item);
+ virtual int compare(void *s1, void *s2);
+ virtual void freeItem(void *s);
+};
+
+void *TSourcesCache::keyOf(void *item)
+{
+ return ((stFileCache *)item)->gdb;
+}
+
+int TSourcesCache::compare(void *s1, void *s2)
+{
+ return strcmp((char *)s1,(char *)s2);
+}
+
+void TSourcesCache::freeItem(void *s)
+{
+ stFileCache *p=(stFileCache *)s;
+ delete[] p->gdb;
+ delete[] p->real;
+ delete p;
+}
+
+void TSourcesCache::insert(const char *gdb, char *real, char *&newReal)
+{
+ stFileCache *p=new stFileCache;
+ p->gdb=newStr(gdb);
+ newReal=p->real=newStr(real);
+ TNSSortedCollection::insert(p);
+}
+
+TSourcesCache *sourcesCache=NULL;
+
+static inline
+void InitSourcesCache()
+{
+ if (!sourcesCache)
+    sourcesCache=new TSourcesCache();
+}
+
+static inline
+void DeInitSourcesCache()
+{
+ destroy0(sourcesCache);
+}
+
+static
+char *SolveFileName(const char *s)
+{
+ if (CheckIfPathAbsolute(s))
+    return edTestForFile(s) ? newStr(s) : NULL;
+ // Look if we already know about it
+ InitSourcesCache();
+ ccIndex pos;
+ if (sourcesCache->search((char *)s,pos))
+   {
+    stFileCache *p=sourcesCache->At(pos);
+    dbgPr("Found source in cache: %s\n",p->real);
+    return p->real;
+   }
+ // Nope, so we must do a search
+ char *fullName, *retName;
+ if (FindFile(s,fullName,binReference))
+   {
+    dbgPr("Adding %s to cache\n",fullName);
+    sourcesCache->insert(s,fullName,retName);
+    delete[] fullName;
+    return retName;
+   }
+ // TODO: Bring a dialog like in RHIDE?
+ dbgPr("Can't find %s file\n",s);
+ return NULL;
+}
+
+/*****************************************************************************
+  End of Sources files cache
+*****************************************************************************/
 
 /*****************************************************************************
   Editor debug commands
@@ -278,6 +376,7 @@ void TSetEditorApp::DebugCommonCleanUp()
  delete[] binReference;
  binReference=NULL;
  binReferenceLen=0;
+ DeInitSourcesCache();
 }
 
 /**[txh]********************************************************************
@@ -780,7 +879,13 @@ void TSetEditorApp::DebugGoToCursor()
     return;
  if (!DebugCheckStopped())
     return;
- if (dbg->GoTo(e->fileName,e->curPos.y+1))
+
+ // We use the full name
+ char s[PATH_MAX];
+ strcpy(s,e->fileName);
+ CLY_fexpand(s);
+
+ if (dbg->GoTo(s,e->curPos.y+1))
     DebugMsgSetState();
  else
     DebugMsgSetError();
@@ -1344,15 +1449,14 @@ void TBreakpoints::add(mi_bkpt *b)
 
 void TBreakpoints::updateAbs(mi_bkpt *b)
 {
- //if (!b || !b->file)
- //   return;
- char n[2*PATH_MAX];
- if (binReference)
-    memcpy(n,binReference,binReferenceLen);
- strcpy(n+binReferenceLen,b->file);
- CLY_fexpand(n);
+ if (!b->file)
+   {
+    printf("Bogus breakpoint\n");
+    return;
+   }
  free(b->file_abs);
- b->file_abs=strdup(n);
+ char *file=SolveFileName(b->file);
+ b->file_abs=strdup(file ? file : b->file);
 }
 
 void TBreakpoints::refreshBinRef()
@@ -1433,21 +1537,6 @@ int TBreakpoints::unset(const char *source, int line)
  return 1;
 }
 
-static
-void AddSpLineBinRef(const char *file, int line)
-{
- char n[2*PATH_MAX];
-
- if (binReference)
-    memcpy(n,binReference,binReferenceLen);
- strcpy(n+binReferenceLen,file);
- CLY_fexpand(n);
- 
- if (DEBUG_BREAKPOINTS_UPDATE)
-    dbgPr("Adding SpLine for %s:%d\n",n,line);
- SpLinesAdd(n,line,idsplBreak,False);
-}
-
 void TBreakpoints::apply()
 {
  if (!dbg)
@@ -1481,7 +1570,7 @@ void TBreakpoints::apply()
          {
           add(nb);
           killIt=1;
-          AddSpLineBinRef(nb->file,nb->line);
+          SpLinesAdd(nb->file_abs,nb->line,idsplBreak,False);
           applied++;
          }
       }
@@ -1573,7 +1662,7 @@ void TBreakpoints::load(ipstream &is)
         if (b->file)
           {
            add(b);
-           AddSpLineBinRef(b->file,b->line);
+           SpLinesAdd(b->file_abs,b->line,idsplBreak,False);
           }
        }
     }
@@ -2201,14 +2290,8 @@ int DebugMsgJumpToFrame(mi_frames *f, char *msg, int l)
    {// Try to jump to the source line.
     if (f->file)
       {
-       char file[PATH_MAX];
-       if (binReference)
-          strcpy(file,binReference);
-       else
-          file[0]=0;
-       strcat(file,f->file);
-       dbgPr("Source relative to binary: %s\n",file);
-       if (GotoFileLine(f->line,file,msg,-1,l,False))
+       char *file=SolveFileName(f->file);
+       if (file && GotoFileLine(f->line,file,msg,-1,l,False))
           jumped=1;
       }
    }

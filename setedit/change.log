@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.552  2004/07/26 16:06:40  set
+* Modified: [MSVC] The WinNT/configed.h header to report "MSC" as compiler
+for MS compiler. Suggested by Arnold.
+* Updated: Copyright year in main about box. Suggested by Arnold.
+
 Revision 1.551  2004/07/26 15:35:37  set
 * Modified: Once again makeinfo breaks something. This time makeinfo 4.6
 doesn't like:

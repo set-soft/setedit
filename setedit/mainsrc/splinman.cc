@@ -110,7 +110,7 @@ void TSpLAsoc::freeItem( void *item )
  delete p;
 }
 
-static TSpLAsoc *SpLines=0;
+static TSpLAsoc *SpLines=NULL;
 
 static
 void ApplyOneSpLines(void *item, void *)
