@@ -215,13 +215,14 @@ print "done.\n\n";
 print "Copying other files: ";
 @fext=(
 'INSTALL.LINUX',
-'REMOVE_UNNEEDED',
 'VCSA.SH'
 );
 foreach $i (@fext)
   {
    print $i.' ' if (CopyIfRpl('../../distrib/'.$i,$base.'/'.$i));
   }
+# Use a special remover for InfView to avoid deleting editor files.
+print 'REMOVE_UNNEEDED ' if (CopyIfRpl('../../distrib/infREMOVE_UNNEEDED',$base.'/REMOVE_UNNEEDED'));
 $i=cat('../../distrib/infINSTALL.MAK');
 $i =~ s/prefix=(.*)/prefix=$prefix/;
 open(FIL,'>'.$base.'/INSTALL.MAK');
