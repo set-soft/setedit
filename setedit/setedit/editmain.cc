@@ -1626,6 +1626,11 @@ extern void RestoreScreen();
    Memory full protection, I hope it will be usefull with djgpp v2.02
 *************************************************************************************/
 
+#if defined(SEComp_GCC) && __GNUC__>=3
+// Not present in gcc 3.0.1
+#define InitSafetyPool()
+#define DeInitSafetyPool()
+#else
 #include <new>
 
 static char *safetypool;
@@ -1639,6 +1644,18 @@ static void mynewhandler(void)
  set_new_handler(NULL);
  messageBox(_("Memory is nearly full. Please exit, and restart."), mfOKButton | mfError);
 }
+
+static void InitSafetyPool()
+{
+ safetypool=new char [64000];
+ set_new_handler(mynewhandler);
+}
+
+static void DeInitSafetyPool()
+{
+ delete[] safetypool;
+}
+#endif
 /*************************************************************************************/
 
 static TNoSortedStringCollection *FilesToLoad=0;
@@ -2064,10 +2081,9 @@ int main(int argc, char *argv[])
  if (DisableBoardMixer)
     BoardMixerDisable();
 
- safetypool=new char [64000];
- set_new_handler(mynewhandler);
-
  TSetEditorApp::WhichScrSaver=GetDefaultScreenSaver();
+
+ InitSafetyPool();
 
  #ifdef USE_TSTRCOL
  ReservedWords = new TStrCol(20,5);
@@ -2319,7 +2335,7 @@ int main(int argc, char *argv[])
  destroy(PascalRWords);
  destroy(ClipperRWords);
  DeInitEnvirVariables();
- delete[] safetypool;
+ DeInitSafetyPool();
  delete[] KeyBindFNameUser;
  DestroyCMDLine();
  DestroyFunctionList();
