@@ -2199,7 +2199,7 @@ End
 # Very basic VHDL syntax
 #
 Name=VHDL
-Files=vhdl,vhd
+Files=vhdl,vhd,vbe,vst
 EOLComment1=--
 String1="
 Symbols1=!&*+-./:<=>?^|~
