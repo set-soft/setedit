@@ -75,6 +75,44 @@ static int InitTagsCollection();
 static TTagCollection *tags=NULL;
 static uint32   autoGenMode=0;
 
+/* Uncomment it to get stats about the length of the id tags printed to stdout.
+   I got this for SETEdit + TVision (may 5th 2003)
+Max length for an Id: 48
+Number of collected Ids: 28777
+Accumulated length: 308819
+Average length:  10.73
+Distribution:
+  1          457          1.59 *******
+  2          367          1.28 *****
+  3          580          2.02 *********
+  4         1482          5.15 **********************
+  5         1400          4.86 *********************
+  6         1574          5.47 ************************
+  7         1954          6.79 *****************************
+  8         1978          6.87 ******************************
+  9         1880          6.53 ****************************
+ 10         2610          9.07 ***************************************
+ 11         3214         11.17 ************************************************
+ 12         1937          6.73 *****************************
+ 13         2067          7.18 *******************************
+ 14         1567          5.45 ***********************
+ 15         1180          4.10 ******************
+ 16         1234          4.29 ******************
+ 17          824          2.86 ************
+ 18          600          2.08 *********
+ 19          401          1.39 ******
+ 20          293          1.02 ****
+ 21          351          1.22 *****
+ 22          235          0.82 ****
+ 23          161          0.56 **
+ 24           88          0.31 *
+*/
+//#define TAG_STATS 1
+#ifdef TAG_STATS
+static unsigned maxLenIdTags, totalCantTags, lenAllIdTags;
+static unsigned *idTagsLenTable;
+#endif
+
 // Small helpers
 static
 char *toTab(char *e)
@@ -299,15 +337,15 @@ static stTagKind BETA[]={{'f',"fragment definition"},{'p',"all pattern"},
 static stTagKind Cpp[]={{'c',"class"},{'d',"macro definition"},{'e',"enumerator"},
                         {'f',"function definition"},{'g',"enumeration name"},
                         {'m',"member (c, s, or u)"},{'n',"namespaces"},
-                        {'p',"function prototype and declaration"},
+                        {'p',"function prot. and dec."},
                         {'s',"structure name"},{'t',"typedef"},
                         {'u',"union name"},{'v',"variable definition"},
-                        {'x',"extern and forward variable declaration"}};
+                        {'x',"extern & forward var. dec."}};
 static stTagKind Cobol[]={{'p',"paragraph"}};
 static stTagKind Eiffel[]={{'c',"class"},{'f',"feature"},{'l',"local entity"}};
 static stTagKind Fortran[]={{'b',"block data"},{'c',"common block"},{'e',"entry point"},
                             {'f',"function"},{'i',"interface"},{'k',"type component"},
-                            {'l',"label"},{'L',"local and common block variable"},
+                            {'l',"label"},{'L',"local and common block var"},
                             {'m',"module"},{'n',"namelist"},{'p',"program"},
                             {'s',"subroutine"},{'t',"derived type"},
                             {'v',"module variable"}};
@@ -412,11 +450,9 @@ void TSpTagCollection::getText(char *buf, unsigned item, int maxLen)
 void TSpTagCollection::getText(char *buf, void *item, int maxLen)
 {
  stTag *p=(stTag *)item;
+ AllocLocalStr(preBuf,maxLen);
 
- int aux=CLY_snprintf(buf,maxLen,"%s",p->id);
- Advance;
-
- aux=p->flags & sttFgPMask;
+ int aux=p->flags & sttFgPMask;
  if (aux!=0 && aux!=sttFgInherits)
    {
     char idP;
@@ -437,10 +473,13 @@ void TSpTagCollection::getText(char *buf, void *item, int maxLen)
        default:
             idP='?';
       }
-    aux=CLY_snprintf(buf,maxLen," (%s:%c)",p->partof,idP);
-    Advance;
+    CLY_snprintf(preBuf,maxLen,"%s (%s:%c)",p->id,p->partof,idP);
    }
- CLY_snprintf(buf,maxLen," [%s] %s %s",getKind(p),getLanguage(p),p->source);
+ else
+   {
+    CLY_snprintf(preBuf,maxLen,"%s",p->id);
+   }
+ CLY_snprintf(buf,maxLen,"%-36s [%-26s] %-6s %s",preBuf,getKind(p),getLanguage(p),p->source);
 }
 
 #undef Advance
@@ -457,6 +496,23 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
     return 1;
    }
  p->id=newStrN(s,e-s);
+
+ if (TAG_STATS)
+   {
+    unsigned l=e-s;
+    if (l>maxLenIdTags)
+      {
+       idTagsLenTable=(unsigned *)realloc(idTagsLenTable,sizeof(unsigned)*(l+1));
+       for (maxLenIdTags++; maxLenIdTags<l; maxLenIdTags++)
+           idTagsLenTable[maxLenIdTags]=0;
+       idTagsLenTable[maxLenIdTags]=1;
+      }
+    else
+       idTagsLenTable[l]++;
+    totalCantTags++;
+    lenAllIdTags+=l;
+   }
+
  s=e+1;
  e=toTab(s);
  if (!*e)
@@ -764,6 +820,12 @@ int TTagCollection::refresh()
            break;
           }
        }
+ if (TAG_STATS)
+   {
+    maxLenIdTags=totalCantTags=lenAllIdTags=0;
+    idTagsLenTable=(unsigned *)malloc(sizeof(unsigned));
+    idTagsLenTable[0]=0;
+   }
  abortInit=0;
  for (i=0; i<c; i++)
     {
@@ -813,6 +875,33 @@ int TTagCollection::refresh()
              messageBox(__("Install Exuberant Ctags, download it from http://ctags.sourceforge.net"), mfError | mfOKButton);
          }
       }
+   }
+ if (TAG_STATS)
+   {
+    printf("Max length for an Id: %d\n",maxLenIdTags);
+    printf("Number of collected Ids: %d\n",totalCantTags);
+    printf("Accumulated length: %d\n",lenAllIdTags);
+    printf("Average length: %6.2f\n",lenAllIdTags/(double)totalCantTags);
+    unsigned i;
+    double maxPercent=0.0;
+    for (i=0; i<=maxLenIdTags; i++)
+       {
+        double percent=idTagsLenTable[i]/(double)totalCantTags*100.0;
+        if (percent>maxPercent)
+           maxPercent=percent;
+       }
+    double scale=48.0/maxPercent;
+    printf("Distribution:\n");
+    for (i=0; i<=maxLenIdTags; i++)
+       {
+        double percent=idTagsLenTable[i]/(double)totalCantTags*100.0;
+        printf("%3d\t%8d\t%6.2f",i,idTagsLenTable[i],percent);
+        unsigned dots=unsigned(scale*percent+0.5);
+        putc(' ',stdout);
+        while (dots--)
+           putc('*',stdout);
+        putc('\n',stdout);
+       }
    }
  return abortInit;
 }
