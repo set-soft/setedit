@@ -14,8 +14,15 @@ ifeq ($(strip $(editor_OS)),)
 export editor_OS:=Linux
 endif
 
+# Enable the .imk and .umk maintainance only in "maintainer mode"
+ifdef MAINTAINER_MODE
+MAKES_TARGET=makes
+else
+MAKES_TARGET=
+endif
+
 # That's the default target
-editor: makes
+editor: $(MAKES_TARGET)
 	$(MAKE) -f editor.mkf
 
 ###########################################################################
@@ -95,10 +102,10 @@ clean-o:
 clean-docs:
 	cd ../doc; make clean-docs; cd ../makes
 
-infview: makes
+infview: $(MAKES_TARGET)
 	$(MAKE) -f infview.mkf
 
-libset: makes
+libset: $(MAKES_TARGET)
 	$(MAKE) -f libset.mkf
 
 ifeq ($(editor_OS),DJGPP)

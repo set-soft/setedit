@@ -13,4 +13,5 @@ echo Press the 'ENTER' key to continue.
 read
 rm -f configure.cache
 rm -f Makefile
-perl config.pl --no-fhs --Xcppflags=-O3\ -fomit-frame-pointer\ -ffast-math --cflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --cxxflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --libset --enable-maintainer-mode $1 $2
+perl config.pl --no-prefix-h --no-fhs --Xcppflags=-O3\ -fomit-frame-pointer\ -ffast-math --cflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --cxxflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --libset --enable-maintainer-mode $1 $2
+
