@@ -5,7 +5,7 @@
 #include <limits.h>
 #include <conio.h>
 
-#define NUM_FONTS 586
+#define NUM_FONTS 587
 typedef struct
 {
  int first, last, lines;

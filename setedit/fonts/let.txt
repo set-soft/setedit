@@ -640,4 +640,5 @@
                       248   <U0101> LATIN SMALL LETTER A WITH MACRON
                       249   <U0100> LATIN CAPITAL LETTER A WITH MACRON CP 1257, 775 (Baltic Rim) y latin 4
                       24A   <U0120> LATIN CAPITAL LETTER G WITH DOT ABOVE latin 3 y 14
+                      24B   <U20AC> EURO SIGN
 

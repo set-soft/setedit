@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.122  2002/06/18 16:30:35  set
+* Added: Support for QNX to the configuration mechanism. Patches by Mike
+Gorchak <mike@malva.ua>.
+
 Revision 1.121  2002/06/18 15:08:19  set
 * Fixed: The config.pl failed to detect intl support becasue TV include
 was absent. Introduced in last changes. Reported by Ivan.
