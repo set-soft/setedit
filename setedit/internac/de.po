@@ -222,24 +222,24 @@ msgstr ""
 "Achhtung !! Diese Datei ist im DOS Format. Wollen Sie sie umwandeln? "
 "(Erstellen Sie zuerst eine Kopie!)"
 
-#: ../infview/infbase.cc:277
+#: ../infview/infbase.cc:279
 msgid "Error: can't find the Node info"
 msgstr "Fehler: Kann Knoten info nicht finden"
 
-#: ../infview/infbase.cc:1044
+#: ../infview/infbase.cc:1046
 msgid "Reading index table for: "
 msgstr "Lese Indextabelle fÅr: "
 
-#: ../infview/infbase.cc:1132
+#: ../infview/infbase.cc:1134
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1300
+#: ../infview/infbase.cc:1302
 #, c-format
 msgid "Attention can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht îffnen!"
 
-#: ../infview/infbase.cc:1844
+#: ../infview/infbase.cc:1846
 msgid ""
 "\n"
 " Sorry I can't find this link (press ALT-F1).\n"
@@ -302,41 +302,41 @@ msgstr ""
 "-d, --directorio DIR     fÅgt der Verzeichnisliste ein weiteres hinzu\n"
 "                         (DIR zu INFOPATH)\n"
 
-#: ../infview/infmain.cc:545
+#: ../infview/infmain.cc:547
 msgid "-f, --file FILENAME      load FILENAME info file.\n"
 msgstr "-f, --file DATEI_NAME    lade DATEI_NAME info Datei.\n"
 
-#: ../infview/infmain.cc:547
+#: ../infview/infmain.cc:549
 msgid "-l, --force-no-lfn       avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../infview/infmain.cc:548
+#: ../infview/infmain.cc:550
 msgid "-L, --force-lfn          forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn          lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../infview/infmain.cc:550
+#: ../infview/infmain.cc:552
 msgid ""
 "-k, --use-rh-52-keys     enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../infview/infmain.cc:552
+#: ../infview/infmain.cc:554
 msgid "-n, --node NODE          jumps to this node.\n"
 msgstr "-n, --node KNOTEN        zu Knoten KNOTEN springen.\n"
 
-#: ../infview/infmain.cc:553
+#: ../infview/infmain.cc:555
 msgid "-r, --read-dkt FILENAME  if no file is opened use this desktop file.\n"
 msgstr ""
 "-r, --read-dkt DATEI     Desktopdatei DATEI benutzen, wenn keine Datei\n"
 "                         geîffnet wird.\n"
 
-#: ../infview/infmain.cc:554
+#: ../infview/infmain.cc:556
 msgid "-s, --save-dkt FILENAME  save the desktop to this file at exit.\n"
 msgstr "-s, --save-dkt DATEI     Desktop in DATEI beim Verlassen speichern\n"
 
-#: ../infview/infmain.cc:555
+#: ../infview/infmain.cc:557
 msgid ""
 "-h, --help               displays this text ;-).\n"
 "\n"
@@ -344,14 +344,14 @@ msgstr ""
 "-h, --help               Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../infview/infmain.cc:556
+#: ../infview/infmain.cc:558
 msgid ""
 "The first argument, if present, is the name of the Info file to read.\n"
 "Any remaining arguments are treated as the names of menu items in the "
 "initial\n"
 msgstr ""
 
-#: ../infview/infmain.cc:559
+#: ../infview/infmain.cc:561
 msgid ""
 "node visited.  For example, `infview libc \"function index\" printf' moves "
 "to the\n"
@@ -359,14 +359,14 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../infview/infmain.cc:562
+#: ../infview/infmain.cc:564
 msgid ""
 "node visited.  For example, `infview libc alpha printf' moves to the node\n"
 "`Alphabetical list' and then to `printf' in the info file `libc'.\n"
 "\n"
 msgstr ""
 
-#: ../infview/infmain.cc:565
+#: ../infview/infmain.cc:567
 msgid ""
 "Also note that info files are searched in the INFOPATH directories. To load "
 "a\n"
@@ -963,19 +963,19 @@ msgid "Colors"
 msgstr "Farben"
 
 #. Colors Window
-#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:294
+#: ../internac/tvision.cc:18 ../setedit/editmenu.cc:298
 msgid "~G~roup"
 msgstr "~G~ruppe"
 
-#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:295
+#: ../internac/tvision.cc:19 ../setedit/editmenu.cc:299
 msgid "~I~tem"
 msgstr "~E~intrag"
 
-#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:296
+#: ../internac/tvision.cc:20 ../setedit/editmenu.cc:300
 msgid "~F~oreground"
 msgstr "~V~ordergrund"
 
-#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:297
+#: ../internac/tvision.cc:21 ../setedit/editmenu.cc:301
 msgid "~B~ackground"
 msgstr "~H~intergrund"
 
@@ -988,7 +988,7 @@ msgstr "NÑchstes"
 msgid "Color"
 msgstr "Farbe"
 
-#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:298
+#: ../internac/tvision.cc:24 ../setedit/editmenu.cc:302
 msgid "~T~ry"
 msgstr "~V~ersuch"
 
@@ -1008,7 +1008,7 @@ msgstr "~D~ateien"
 msgid "Done"
 msgstr ""
 
-#: ../internac/tvision.cc:30 ../setedit/editmenu.cc:125
+#: ../internac/tvision.cc:30 ../setedit/editmenu.cc:126
 #: ../setedit/edprefs.cc:659
 msgid "~H~elp"
 msgstr "~H~ilfe"
@@ -1269,57 +1269,57 @@ msgstr "Nicht beim nÑchsten Mal anzeigen"
 msgid "You must select the editor window first"
 msgstr "Sie mÅssen zuerst das Editorfenster anwÑhlen"
 
-#: ../mainsrc/bufun.cc:601
+#: ../mainsrc/bufun.cc:642
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:610
+#: ../mainsrc/bufun.cc:651
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:616
+#: ../mainsrc/bufun.cc:657
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hlie·en"
 
-#: ../mainsrc/bufun.cc:644
+#: ../mainsrc/bufun.cc:685
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:646
+#: ../mainsrc/bufun.cc:687
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:648
+#: ../mainsrc/bufun.cc:689
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:649
+#: ../mainsrc/bufun.cc:690
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:684
+#: ../mainsrc/bufun.cc:725
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:713
+#: ../mainsrc/bufun.cc:754
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:3840
+#: ../mainsrc/ceditor.cc:3848
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafÅr"
 
-#: ../mainsrc/ceditor.cc:3859
+#: ../mainsrc/ceditor.cc:3867
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:3882
+#: ../mainsrc/ceditor.cc:3890
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1342,16 +1342,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:5302
+#: ../mainsrc/ceditor.cc:5310
 msgid "No match found"
 msgstr "Keine öbereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:5314
+#: ../mainsrc/ceditor.cc:5322
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "öbereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:9445
+#: ../mainsrc/ceditor.cc:9453
 msgid ""
 "This file contains ASCII 0 values, all the characters after it in this line "
 "becomes invisible. Be careful."
@@ -1359,28 +1359,28 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:9460
+#: ../mainsrc/ceditor.cc:9468
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:10186
+#: ../mainsrc/ceditor.cc:10194
 msgid "Unhandled syntax highlight"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11112
+#: ../mainsrc/ceditor.cc:11120
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:11317
+#: ../mainsrc/ceditor.cc:11325
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:12432
+#: ../mainsrc/ceditor.cc:12447
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:12440
+#: ../mainsrc/ceditor.cc:12455
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1682,7 +1682,7 @@ msgid "Export Options"
 msgstr "Export Optionen"
 
 #: ../mainsrc/deedidia.cc:362 ../setedit/intgrep.cc:390
-#: ../setedit/runprog.cc:109
+#: ../setedit/runprog.cc:110
 msgid "~O~ptions"
 msgstr "~O~ptionen"
 
@@ -1883,7 +1883,7 @@ msgstr "Wortliste"
 msgid "User words"
 msgstr "Benutzerwîrter"
 
-#: ../mainsrc/pathtool.cc:729
+#: ../mainsrc/pathtool.cc:735
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -1946,12 +1946,12 @@ msgstr "(%d) %s in Zeile %d"
 msgid "In section %s"
 msgstr "In Sektion %s"
 
-#: ../mainsrc/sdginter.cc:109 ../mainsrc/slpinter.cc:257
+#: ../mainsrc/sdginter.cc:109 ../mainsrc/slpinter.cc:258
 #, c-format
 msgid "Error of type: %s"
 msgstr "Typfehler: %s"
 
-#: ../mainsrc/sdginter.cc:112 ../mainsrc/slpinter.cc:260
+#: ../mainsrc/sdginter.cc:112 ../mainsrc/slpinter.cc:261
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Code: ...%s..."
@@ -1994,94 +1994,99 @@ msgstr "Fehler im regulÑren Ausdruck: %s"
 msgid "PCRE Exec error"
 msgstr "PCRE Exec Fehler"
 
-#: ../mainsrc/slpinter.cc:256
+#: ../mainsrc/slpinter.cc:257
 msgid "Error in sLisp interpreter:"
 msgstr "Fehler im sLisp öbersetzer:"
 
-#: ../mainsrc/slpinter.cc:262
+#: ../mainsrc/slpinter.cc:263
 msgid "End of SLP"
 msgstr "Ende von SLP"
 
-#: ../mainsrc/slpinter.cc:313
+#: ../mainsrc/slpinter.cc:324
+#, fuzzy
+msgid "Enter sLisp code to interpret"
+msgstr "Fehler im sLisp öbersetzer:"
+
+#: ../mainsrc/slpinter.cc:353
 msgid "No macros defined"
 msgstr "Keine macros definiert"
 
-#: ../mainsrc/slpinter.cc:356
+#: ../mainsrc/slpinter.cc:396
 msgid "sLisp macros"
 msgstr "sLisp Makros"
 
-#: ../mainsrc/slpinter.cc:366
+#: ../mainsrc/slpinter.cc:406
 msgid "~M~acros"
 msgstr "~M~akros"
 
-#: ../mainsrc/ssyntax.cc:199
+#: ../mainsrc/ssyntax.cc:200
 #, c-format
 msgid " [%d nodes]"
 msgstr " [%d Knoten]"
 
-#: ../mainsrc/ssyntax.cc:366
+#: ../mainsrc/ssyntax.cc:367
 msgid "New node for search"
 msgstr "Neuer Knoten fÅr Suche"
 
-#: ../mainsrc/ssyntax.cc:369
+#: ../mainsrc/ssyntax.cc:370
 msgid "Name of the info file"
 msgstr "Name der info Datei"
 
-#: ../mainsrc/ssyntax.cc:371
+#: ../mainsrc/ssyntax.cc:372
 msgid "Name of the node (leave blank for all)"
 msgstr "Name des Knotens (leer lassen fÅr alle)"
 
-#: ../mainsrc/ssyntax.cc:430
+#: ../mainsrc/ssyntax.cc:431
 msgid "Nodes for syntax help"
 msgstr "Knoten fÅr Syntaxhilfe"
 
-#: ../mainsrc/ssyntax.cc:468
+#: ../mainsrc/ssyntax.cc:469
 msgid "Options for syntax help"
 msgstr "Einstellungen fÅr Syntaxhilfe"
 
 #. I think that's easiest way! The following 5 lines are equivalent to 20 lines
 #. of cryptic stuff if you don't use EasyDiag! (I can write it in 1 too ;-)
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "Search ~m~ethod"
 msgstr "Such~m~ethode"
 
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "E~x~act"
 msgstr "E~x~akt"
 
-#: ../mainsrc/ssyntax.cc:472
+#: ../mainsrc/ssyntax.cc:473
 msgid "~S~ubstring"
 msgstr "~T~eiltext"
 
-#: ../mainsrc/ssyntax.cc:473
+#: ../mainsrc/ssyntax.cc:474
 msgid "~F~uzzy"
 msgstr "~F~uzzy"
 
-#: ../mainsrc/ssyntax.cc:474
+#: ../mainsrc/ssyntax.cc:475
 msgid "Search O~p~tions"
 msgstr "Such~o~ptionen"
 
-#: ../mainsrc/ssyntax.cc:475
+#: ../mainsrc/ssyntax.cc:476
 msgid "So~r~t by score"
 msgstr "Nach Punkten so~r~tieren"
 
-#: ../mainsrc/ssyntax.cc:479
+#: ../mainsrc/ssyntax.cc:480
 msgid "Fu~z~zy value [1..1000]"
 msgstr "Fu~z~zy Wert [1..1000]"
 
-#: ../mainsrc/ssyntax.cc:481
+#: ../mainsrc/ssyntax.cc:482
 msgid "Other options"
 msgstr "Andere Optionen"
 
-#: ../mainsrc/ssyntax.cc:481
+#: ../mainsrc/ssyntax.cc:482
 msgid "Search word in the ~t~opic"
 msgstr "Wort im Thema suchen"
 
-#: ../mainsrc/ssyntax.cc:870
+#: ../mainsrc/ssyntax.cc:871
 msgid "Choose a node"
 msgstr "WÑhlen Sie einen Knoten"
 
-#: ../mainsrc/ssyntax.cc:922
+#: ../mainsrc/ssyntax.cc:923
 msgid "No INFO files for syntax help defined"
 msgstr "Keine INFO Dateien fÅr Syntaxsuche angegeben"
 
@@ -2474,11 +2479,11 @@ msgstr "   Zwischenablage (%d bytes)"
 msgid "   Closed: "
 msgstr "   Geschlossen: "
 
-#: ../setedit/dskhelp.cc:126
+#: ../setedit/dskhelp.cc:127
 msgid "   Main InfView "
 msgstr "   Haupt-InfView "
 
-#: ../setedit/dskhelp.cc:128
+#: ../setedit/dskhelp.cc:129
 msgid "   InfView "
 msgstr "   InfView "
 
@@ -2601,49 +2606,49 @@ msgstr ""
 msgid "Grzegorz, etc.)."
 msgstr ""
 
-#: ../setedit/editmain.cc:294
+#: ../setedit/editmain.cc:302
 #, fuzzy
 msgid "No project loaded"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/editmain.cc:352
+#: ../setedit/editmain.cc:360
 msgid "This file is already opened, first close it."
 msgstr "Die Datei ist bereits geîffnet. Schlie·en Sie sie zuerst."
 
-#: ../setedit/editmain.cc:427
+#: ../setedit/editmain.cc:435
 msgid "File Open"
 msgstr "Datei îffnen"
 
-#: ../setedit/editmain.cc:442
+#: ../setedit/editmain.cc:450
 msgid "You must select an editor window for this operation"
 msgstr "Sie mÅssen ein Editorfenster fÅr diese Operation angeben"
 
-#: ../setedit/editmain.cc:547
+#: ../setedit/editmain.cc:555
 msgid "Export file as"
 msgstr "Exportiere Datei als"
 
-#: ../setedit/editmain.cc:600
+#: ../setedit/editmain.cc:608
 msgid "This window can't be printed select an editor"
 msgstr "Diese Fenster kann nicht gedruckt werden, wÑhlen Sie einen Editor"
 
-#: ../setedit/editmain.cc:759
+#: ../setedit/editmain.cc:767
 msgid "Couldn't find any matching help"
 msgstr "Konnte keine passende Hilfe finden"
 
-#: ../setedit/editmain.cc:923
+#: ../setedit/editmain.cc:931
 msgid "We still running a background task, exit anyways?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1238
+#: ../setedit/editmain.cc:1246
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:1313
+#: ../setedit/editmain.cc:1321
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:1522
+#: ../setedit/editmain.cc:1530
 msgid ""
 "I can't find the readme.1st file, please look for it the .ZIP and read the "
 "file."
@@ -2651,7 +2656,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:1597
+#: ../setedit/editmain.cc:1625
 #, c-format
 msgid ""
 "\n"
@@ -2660,7 +2665,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie mÅssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:1598
+#: ../setedit/editmain.cc:1626
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -2669,7 +2674,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:1602
+#: ../setedit/editmain.cc:1630
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -2678,7 +2683,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1604
+#: ../setedit/editmain.cc:1632
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -2687,11 +2692,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:1609
+#: ../setedit/editmain.cc:1637
 msgid "press ENTER to continue\n"
 msgstr "DrÅcken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:1618
+#: ../setedit/editmain.cc:1646
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -2756,7 +2761,7 @@ msgid ""
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:1906
+#: ../setedit/editmain.cc:1951
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3680,7 +3685,7 @@ msgstr "Zeit"
 msgid "mouse sec."
 msgstr "Maus Sek."
 
-#. ABCDEHIKLMOPSTUVWY
+#. ABCDEHIKLMOPRSTUVWY
 #: ../setedit/edprefs.cc:727
 msgid "General editor options"
 msgstr "Allgemeine Editoreinstellungen"
@@ -3735,127 +3740,131 @@ msgstr "Cursorpos~i~tion laden"
 msgid "Don't ~w~arn about read-only files"
 msgstr "Nicht beim nÑchsten Mal anzeigen"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:754
+msgid "Open ~r~ead-only files as R.O. buffers"
+msgstr ""
+
+#: ../setedit/edprefs.cc:758
 msgid "~C~lock"
 msgstr "~U~hr"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:758
 msgid "OFF"
 msgstr "AUS"
 
-#: ../setedit/edprefs.cc:756
+#: ../setedit/edprefs.cc:758
 msgid "ON"
 msgstr "EIN"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "St~y~le"
 msgstr "St~i~l"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "AM/PM"
 msgstr "AM/PM"
 
-#: ../setedit/edprefs.cc:757
+#: ../setedit/edprefs.cc:759
 msgid "24 hs"
 msgstr "24 Std"
 
-#: ../setedit/edprefs.cc:759
+#: ../setedit/edprefs.cc:761
 msgid "~M~ax. editor copies"
 msgstr "~M~ax. Editorkopien"
 
-#: ../setedit/edprefs.cc:760
+#: ../setedit/edprefs.cc:762
 #, fuzzy
 msgid "Max. c~l~osed to remember"
 msgstr "Anzahl geschlossener Fenster"
 
-#: ../setedit/edprefs.cc:769
+#: ../setedit/edprefs.cc:771
 msgid "+ Desk~t~op"
 msgstr ""
 
 #. CEKLMNORVY
-#: ../setedit/edprefs.cc:897
+#: ../setedit/edprefs.cc:902
 #, fuzzy
 msgid "More desktop options"
 msgstr "~S~peichere Desktopeinstellungen"
 
-#: ../setedit/edprefs.cc:899
+#: ../setedit/edprefs.cc:904
 #, fuzzy
 msgid "Remmember editor windows"
 msgstr "Allgemeine Editoreinstellungen"
 
-#: ../setedit/edprefs.cc:900
+#: ../setedit/edprefs.cc:905
 #, fuzzy
 msgid "~E~ver"
 msgstr "~A~uswerten"
 
-#: ../setedit/edprefs.cc:900
+#: ../setedit/edprefs.cc:905
 msgid "~O~nly if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:900 ../setedit/runprog.cc:115
+#: ../setedit/edprefs.cc:905 ../setedit/runprog.cc:116
 #, fuzzy
 msgid "~N~ever"
 msgstr "ö~b~erschreiben"
 
-#: ../setedit/edprefs.cc:901
+#: ../setedit/edprefs.cc:906
 msgid "Remmember other windows"
 msgstr ""
 
-#: ../setedit/edprefs.cc:902 ../setedit/runprog.cc:115
+#: ../setedit/edprefs.cc:907 ../setedit/runprog.cc:116
 #, fuzzy
 msgid "E~v~er"
 msgstr "~A~uswerten"
 
-#: ../setedit/edprefs.cc:902
+#: ../setedit/edprefs.cc:907
 msgid "On~l~y if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:902
+#: ../setedit/edprefs.cc:907
 #, fuzzy
 msgid "Neve~r~"
 msgstr "ö~b~erschreiben"
 
-#: ../setedit/edprefs.cc:903
+#: ../setedit/edprefs.cc:908
 msgid "Remmember ~c~losed windows"
 msgstr ""
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 #, fuzzy
 msgid "Ever"
 msgstr "~A~uswerten"
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 msgid "Onl~y~ if no file specified"
 msgstr ""
 
-#: ../setedit/edprefs.cc:904
+#: ../setedit/edprefs.cc:909
 #, fuzzy
 msgid "Never"
 msgstr "ö~b~erschreiben"
 
-#: ../setedit/edprefs.cc:910
+#: ../setedit/edprefs.cc:915
 #, fuzzy
 msgid "~M~ain options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../setedit/edprefs.cc:996
+#: ../setedit/edprefs.cc:1001
 msgid "~F~rom code page"
 msgstr "Von ~C~odepage"
 
-#: ../setedit/edprefs.cc:998
+#: ../setedit/edprefs.cc:1003
 msgid "~T~o code page"
 msgstr "~Z~ur Codepage"
 
-#: ../setedit/edprefs.cc:1002
+#: ../setedit/edprefs.cc:1007
 msgid "~D~on't remap codes under 32"
 msgstr "Co~d~es unter 32 nicht ~u~mwandeln"
 
-#: ../setedit/edprefs.cc:1003
+#: ../setedit/edprefs.cc:1008
 #, fuzzy
 msgid "~O~nly selected text"
 msgstr "Ausge~w~Ñhlter Text"
 
-#: ../setedit/edprefs.cc:1006
+#: ../setedit/edprefs.cc:1011
 msgid "Code page remap"
 msgstr "Code page Ñndern"
 
@@ -4148,6 +4157,16 @@ msgstr "Rekursive und Verzeichnisse ignoriert, benutze interne Namen"
 #: ../setedit/intgrep.cc:525
 msgid "End of grep search"
 msgstr "Ende der grep Suche"
+
+#: ../setedit/loadnobkp.cc:50
+#, fuzzy
+msgid "Don't create backups for"
+msgstr "~K~eine Desktopdateien erstellen"
+
+#: ../setedit/loadnobkp.cc:180
+#, fuzzy
+msgid "Perl regular expression"
+msgstr "RegulÑre Ausd~r~Åcke"
 
 #: ../setedit/loadnobkp.cc:50
 #, fuzzy
