@@ -5,55 +5,58 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.5.3\n"
-"PO-Revision-Date: 2004-05-31 10:36-0300\n"
+"Project-Id-Version: setedit 0.5.4\n"
+"PO-Revision-Date: 2004-07-20 12:42-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 # End of header
-#: ../calcu/calcu.cc:80
+#. EN: E
+#: ../calcu/calcu.cc:81 ../setedit/debug.cc:2284
 msgid "~E~xpression"
 msgstr "~A~usdruck"
 
-#: ../calcu/calcu.cc:86
+#: ../calcu/calcu.cc:87 ../setedit/debug.cc:993
 msgid "~R~esult"
 msgstr "~R~esultat"
 
-#: ../calcu/calcu.cc:90
+#: ../calcu/calcu.cc:91 ../setedit/debug.cc:998
 msgid "E~v~al"
 msgstr "~A~uswerten"
 
-#: ../calcu/calcu.cc:93 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
+#: ../calcu/calcu.cc:94 ../easydiag/tsbutton.cc:90 ../easydiag/tsbutton.cc:99
 #: ../infview/inf.cc:2338 ../infview/inf.cc:2361 ../infview/inf.cc:2386
 #: ../infview/inf.cc:2410 ../infview/inf.cc:2465 ../infview/infmain.cc:385
-#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:740
-#: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
-#: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
-#: ../mainsrc/deedidia.cc:342 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:669 ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1658
-#: ../setedit/edprefs.cc:472 ../setedit/edprefs.cc:617
-#: ../setedit/edprefs.cc:681 ../setedit/edprefs.cc:907
-#: ../setedit/intgrep.cc:419 ../setedit/winlistd.cc:143
-#: ../settvuti/diaghelp.cc:41
+#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:753
+#: ../mainsrc/deedidia.cc:132 ../mainsrc/deedidia.cc:176
+#: ../mainsrc/deedidia.cc:269 ../mainsrc/deedidia.cc:321
+#: ../mainsrc/deedidia.cc:340 ../mainsrc/sdginter.cc:193
+#: ../mainsrc/slpinter.cc:681 ../mainsrc/tags.cc:1460 ../mainsrc/tags.cc:1658
+#: ../setedit/debug.cc:1000 ../setedit/edprefs.cc:472
+#: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:681
+#: ../setedit/edprefs.cc:907 ../setedit/intgrep.cc:419
+#: ../setedit/winlistd.cc:143 ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: ../calcu/calcu.cc:96 ../setedit/editmenu.cc:80 ../setedit/editmenu.cc:110
+#: ../calcu/calcu.cc:97 ../setedit/debug.cc:1001 ../setedit/editmenu.cc:80
+#: ../setedit/editmenu.cc:110
 msgid "~C~opy"
 msgstr "~K~opieren"
 
-#: ../calcu/calcu.cc:99 ../setedit/editmenu.cc:81 ../setedit/editmenu.cc:111
+#: ../calcu/calcu.cc:100 ../setedit/debug.cc:1002 ../setedit/editmenu.cc:81
+#: ../setedit/editmenu.cc:111
 msgid "~P~aste"
 msgstr "~E~infügen"
 
-#: ../calcu/calcu.cc:120
+#: ../calcu/calcu.cc:121
 #, c-format
 msgid "Error in expression (%d)"
 msgstr "Fehler in Ausdruck (%d)"
 
-#: ../calcu/calcu.cc:162
+#: ../calcu/calcu.cc:163
 msgid "Calculator"
 msgstr "Rechner"
 
@@ -62,11 +65,11 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:89 ../easydiag/tsbutton.cc:97
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:739
-#: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:176
-#: ../mainsrc/deedidia.cc:270 ../mainsrc/deedidia.cc:322
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:752
+#: ../mainsrc/deedidia.cc:131 ../mainsrc/deedidia.cc:174
+#: ../mainsrc/deedidia.cc:268 ../mainsrc/deedidia.cc:320
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:668
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:680
 #: ../mainsrc/tags.cc:1482 ../setedit/advice.cc:126 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:680
@@ -79,7 +82,7 @@ msgstr "O~K"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Datei: %s - Knoten: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:458
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:462
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr ""
@@ -150,18 +153,18 @@ msgid "Inf Find"
 msgstr "Inf Suche"
 
 #. All together
-#: ../infview/inf.cc:2322 ../mainsrc/deedidia.cc:120
-#: ../mainsrc/deedidia.cc:155
+#: ../infview/inf.cc:2322 ../mainsrc/deedidia.cc:118
+#: ../mainsrc/deedidia.cc:153
 msgid "~T~ext to find"
 msgstr "~S~uchtext"
 
-#: ../infview/inf.cc:2327 ../mainsrc/deedidia.cc:123
-#: ../mainsrc/deedidia.cc:162 ../mainsrc/ssyntax.cc:479
+#: ../infview/inf.cc:2327 ../mainsrc/deedidia.cc:121
+#: ../mainsrc/deedidia.cc:160 ../mainsrc/ssyntax.cc:479
 msgid "~C~ase sensitive"
 msgstr "Groß/~K~lein beachten"
 
-#: ../infview/inf.cc:2328 ../mainsrc/deedidia.cc:124
-#: ../mainsrc/deedidia.cc:162
+#: ../infview/inf.cc:2328 ../mainsrc/deedidia.cc:122
+#: ../mainsrc/deedidia.cc:160
 msgid "~W~hole words only"
 msgstr "Nur ~g~anze Wörter"
 
@@ -321,7 +324,7 @@ msgstr "Fehler beim Lesen der Desktopdatei"
 msgid "InfView v"
 msgstr "InfView v"
 
-#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2486
+#: ../infview/infmain.cc:662 ../setedit/editmain.cc:2603
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
@@ -335,7 +338,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2488
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2605
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -587,8 +590,8 @@ msgstr "~F10~ Menü"
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:451
-#: ../mainsrc/ceditor.cc:521
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:455
+#: ../mainsrc/ceditor.cc:525
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
@@ -763,12 +766,12 @@ msgstr "< ~V~orherige"
 msgid "> ~N~ext"
 msgstr "> ~N~ächste"
 
-#: ../install/install.cc:481 ../mainsrc/deedidia.cc:339
+#: ../install/install.cc:481 ../mainsrc/deedidia.cc:337
 #: ../setedit/advice.cc:115 ../setedit/advice.cc:122
 msgid "~Y~es"
 msgstr "~J~a"
 
-#: ../install/install.cc:482 ../mainsrc/deedidia.cc:340
+#: ../install/install.cc:482 ../mainsrc/deedidia.cc:338
 #: ../setedit/advice.cc:116 ../setedit/advice.cc:121
 msgid "~N~o"
 msgstr "~N~ein"
@@ -1375,8 +1378,8 @@ msgstr ""
 msgid "Even tab"
 msgstr "Tabs s~e~hen"
 
-#: ../internac/colors.cc:144 ../mainsrc/deedidia.cc:265
-#: ../mainsrc/deedidia.cc:317
+#: ../internac/colors.cc:144 ../mainsrc/deedidia.cc:263
+#: ../mainsrc/deedidia.cc:315
 #, fuzzy
 msgid "Column markers"
 msgstr "Spalten~c~ursor"
@@ -1419,68 +1422,68 @@ msgstr "Einschubtext"
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/bufun.cc:725
+#: ../mainsrc/bufun.cc:738
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:735
+#: ../mainsrc/bufun.cc:748
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:741
+#: ../mainsrc/bufun.cc:754
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
 
-#: ../mainsrc/bufun.cc:770
+#: ../mainsrc/bufun.cc:783
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:772
+#: ../mainsrc/bufun.cc:785
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:774
+#: ../mainsrc/bufun.cc:787
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:775
+#: ../mainsrc/bufun.cc:788
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:810
+#: ../mainsrc/bufun.cc:823
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:838
+#: ../mainsrc/bufun.cc:851
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:543
+#: ../mainsrc/ceditor.cc:547
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4033
+#: ../mainsrc/ceditor.cc:4052
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4234
+#: ../mainsrc/ceditor.cc:4258
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4253
+#: ../mainsrc/ceditor.cc:4277
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4275
+#: ../mainsrc/ceditor.cc:4299
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1491,7 +1494,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4309
+#: ../mainsrc/ceditor.cc:4333
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1504,16 +1507,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:5886
+#: ../mainsrc/ceditor.cc:5910
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:5901
+#: ../mainsrc/ceditor.cc:5925
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10216
+#: ../mainsrc/ceditor.cc:10240
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1522,29 +1525,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10231
+#: ../mainsrc/ceditor.cc:10255
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:10967
+#: ../mainsrc/ceditor.cc:10991
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:11913
+#: ../mainsrc/ceditor.cc:11937
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12124
+#: ../mainsrc/ceditor.cc:12148
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13316
+#: ../mainsrc/ceditor.cc:13340
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13326
+#: ../mainsrc/ceditor.cc:13350
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1566,402 +1569,402 @@ msgstr "~E~infach POSIX"
 msgid "~E~xtended POSIX"
 msgstr "~E~rweitertes POSIX"
 
-#: ../mainsrc/deedidia.cc:82
+#: ../mainsrc/deedidia.cc:81
 msgid "~P~erl Compatible"
 msgstr "~P~erl kompatibel"
 
-#: ../mainsrc/deedidia.cc:86
+#: ../mainsrc/deedidia.cc:84
 msgid "Replace text"
 msgstr "Text ersetzen"
 
-#: ../mainsrc/deedidia.cc:86
+#: ../mainsrc/deedidia.cc:84
 msgid "~N~ormal text"
 msgstr "~n~ormaler Text"
 
-#: ../mainsrc/deedidia.cc:87
+#: ../mainsrc/deedidia.cc:85
 #, fuzzy
 msgid "~D~ollar tags"
 msgstr "~D~ollar-Markierungen"
 
-#: ../mainsrc/deedidia.cc:88
+#: ../mainsrc/deedidia.cc:86
 msgid "Optimize"
 msgstr "Optimieren"
 
-#: ../mainsrc/deedidia.cc:88
+#: ../mainsrc/deedidia.cc:86
 msgid "~T~ry to use normal search"
 msgstr "Versuche ~n~ormale Suche"
 
-#: ../mainsrc/deedidia.cc:89
+#: ../mainsrc/deedidia.cc:87
 #, fuzzy
 msgid "~A~lways use RegEx"
 msgstr "Immer RegEx ~v~erwenden"
 
-#: ../mainsrc/deedidia.cc:116
+#: ../mainsrc/deedidia.cc:114
 msgid "Find"
 msgstr "Suchen"
 
-#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:162
-#: ../mainsrc/deedidia.cc:289 ../setedit/tips.cc:210
+#: ../mainsrc/deedidia.cc:121 ../mainsrc/deedidia.cc:160
+#: ../mainsrc/deedidia.cc:287 ../setedit/tips.cc:210
 msgid "Options"
 msgstr "Einstellungen"
 
-#: ../mainsrc/deedidia.cc:124 ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:122 ../mainsrc/deedidia.cc:161
 msgid "Regular e~x~pressions"
 msgstr "Reguläre Ausd~r~ücke"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:163
+#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:161
 msgid "Only ~i~nside comments"
 msgstr "Nur innerhalb von Kommentaren"
 
-#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:164
+#: ../mainsrc/deedidia.cc:123 ../mainsrc/deedidia.cc:162
 msgid "Only o~u~tside comments"
 msgstr "Nur außerhalb von Kommentaren"
 
-#: ../mainsrc/deedidia.cc:126
+#: ../mainsrc/deedidia.cc:124
 #, fuzzy
 msgid "S~h~ow function name"
 msgstr "~G~ehe zu Funktion"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:168
+#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:166
 msgid "Scope"
 msgstr "Bereich"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:168
+#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:166
 msgid "~G~lobal"
 msgstr "~G~lobal"
 
-#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:169
+#: ../mainsrc/deedidia.cc:125 ../mainsrc/deedidia.cc:167
 msgid "~S~elected text"
 msgstr "Ausge~w~ählter Text"
 
-#: ../mainsrc/deedidia.cc:128
+#: ../mainsrc/deedidia.cc:126
 msgid "Origin"
 msgstr "Ursprung"
 
-#: ../mainsrc/deedidia.cc:128 ../mainsrc/deedidia.cc:172
+#: ../mainsrc/deedidia.cc:126 ../mainsrc/deedidia.cc:170
 msgid "~F~rom cursor"
 msgstr "~A~b Cursor"
 
-#: ../mainsrc/deedidia.cc:129 ../mainsrc/deedidia.cc:173
+#: ../mainsrc/deedidia.cc:127 ../mainsrc/deedidia.cc:171
 msgid "~E~ntire scope"
 msgstr "~G~anzer Bereich"
 
-#: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:179
+#: ../mainsrc/deedidia.cc:133 ../mainsrc/deedidia.cc:177
 msgid "RegEx ~O~ps"
 msgstr "~O~ps ExpReg"
 
-#: ../mainsrc/deedidia.cc:152
+#: ../mainsrc/deedidia.cc:150
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: ../mainsrc/deedidia.cc:158
+#: ../mainsrc/deedidia.cc:156
 msgid "~N~ew text"
 msgstr "~N~euer Text"
 
-#: ../mainsrc/deedidia.cc:164
+#: ../mainsrc/deedidia.cc:162
 #, fuzzy
 msgid "S~h~ow function ~n~ame"
 msgstr "~G~ehe zu Funktion"
 
-#: ../mainsrc/deedidia.cc:165
+#: ../mainsrc/deedidia.cc:163
 msgid "~P~rompt on replace"
 msgstr "Vorm Ersetzen ~n~achfragen"
 
-#: ../mainsrc/deedidia.cc:165
+#: ../mainsrc/deedidia.cc:163
 msgid "~R~eplace all"
 msgstr "Alle e~r~setzen"
 
-#: ../mainsrc/deedidia.cc:172
+#: ../mainsrc/deedidia.cc:170
 msgid "Or~i~gin"
 msgstr "Ursprun~g~"
 
-#: ../mainsrc/deedidia.cc:177
+#: ../mainsrc/deedidia.cc:175
 msgid "Replace ~A~ll"
 msgstr "Alle ersetzen"
 
-#: ../mainsrc/deedidia.cc:198
+#: ../mainsrc/deedidia.cc:196
 msgid "Goto Line"
 msgstr "Gehe zu Zeile"
 
-#: ../mainsrc/deedidia.cc:201
+#: ../mainsrc/deedidia.cc:199
 msgid "Desired line"
 msgstr "Gewünschte Zeile"
 
-#: ../mainsrc/deedidia.cc:217
+#: ../mainsrc/deedidia.cc:215
 #, fuzzy
 msgid "Syntax Highlighting"
 msgstr "Syntax~h~ervorhebung"
 
-#: ../mainsrc/deedidia.cc:222
+#: ../mainsrc/deedidia.cc:220
 msgid "Off ~1~"
 msgstr "Aus ~1~"
 
-#: ../mainsrc/deedidia.cc:223
+#: ../mainsrc/deedidia.cc:221
 msgid "C++ st~y~le"
 msgstr "C++ St~i~l"
 
-#: ../mainsrc/deedidia.cc:224
+#: ../mainsrc/deedidia.cc:222
 msgid "Pa~s~cal style"
 msgstr "Pascal ~S~til"
 
-#: ../mainsrc/deedidia.cc:225
+#: ../mainsrc/deedidia.cc:223
 msgid "C~l~ipper style"
 msgstr "C~l~ipper Stil"
 
-#: ../mainsrc/deedidia.cc:226
+#: ../mainsrc/deedidia.cc:224
 msgid "User ~d~efined"
 msgstr "Benutzer~d~efiniert"
 
 #. English: ABCDEFGHIKLMNOPRSTUWYZ 1234
 #. BEGJQVXZ
-#: ../mainsrc/deedidia.cc:247
+#: ../mainsrc/deedidia.cc:245
 msgid "Local Options"
 msgstr "Lokale Einstellungen"
 
-#: ../mainsrc/deedidia.cc:250
+#: ../mainsrc/deedidia.cc:248
 msgid "Options ~3~"
 msgstr "Einstellungen ~3~"
 
-#: ../mainsrc/deedidia.cc:250
+#: ../mainsrc/deedidia.cc:248
 msgid "~O~verwrite"
 msgstr "Ü~b~erschreiben"
 
-#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:290
+#: ../mainsrc/deedidia.cc:248 ../mainsrc/deedidia.cc:288
 msgid "~A~utoindent"
 msgstr "~A~utoeinschub"
 
-#: ../mainsrc/deedidia.cc:251
+#: ../mainsrc/deedidia.cc:249
 msgid "~U~se real tabs (ASCII 9)"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:292
+#: ../mainsrc/deedidia.cc:249 ../mainsrc/deedidia.cc:290
 msgid "~P~ersistent blocks"
 msgstr "~B~eständige Blöcke"
 
-#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:293
+#: ../mainsrc/deedidia.cc:249 ../mainsrc/deedidia.cc:291
 msgid "~I~ntelligent C indent"
 msgstr "~I~ntelligenter C-Einschub"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:294
+#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:292
 msgid "~C~olumn cursor"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:295
+#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:293
 msgid "~R~ow cursor"
 msgstr "~Z~eilencursor"
 
-#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:296
+#: ../mainsrc/deedidia.cc:250 ../mainsrc/deedidia.cc:294
 #, fuzzy
 msgid "~M~atched pair highlighting"
 msgstr "~K~lammernpaar hervorheben"
 
-#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:297
+#: ../mainsrc/deedidia.cc:251 ../mainsrc/deedidia.cc:295
 #, fuzzy
 msgid "Match pair on the fl~y~"
 msgstr "Klammernpaar beim Überfliegen"
 
-#: ../mainsrc/deedidia.cc:253
+#: ../mainsrc/deedidia.cc:251
 msgid "Don't wait to search for the pair ~1~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:300
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:298
 msgid "Tra~n~sparent Blocks"
 msgstr "Tran~s~parente Blöcke"
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:301
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:299
 msgid "Optimal ~F~ill"
 msgstr "Optimale ~F~üllung"
 
-#: ../mainsrc/deedidia.cc:254 ../mainsrc/deedidia.cc:302
+#: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:300
 msgid "~W~rap words"
 msgstr "~W~ortumbruch"
 
-#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:304
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:302
 msgid "S~e~e tabs"
 msgstr "Tabs s~e~hen"
 
-#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:305
+#: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:303
 msgid "Don't move inside ta~b~s"
 msgstr "Nicht innerhalb Ta~b~s bewegen"
 
-#: ../mainsrc/deedidia.cc:256
+#: ../mainsrc/deedidia.cc:254
 msgid "Tab ~s~mart indents"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:256
+#: ../mainsrc/deedidia.cc:254
 #, fuzzy
 msgid "Use in~d~ent size"
 msgstr "Benutzer~d~efiniert"
 
-#: ../mainsrc/deedidia.cc:257 ../mainsrc/deedidia.cc:308
+#: ../mainsrc/deedidia.cc:255 ../mainsrc/deedidia.cc:306
 msgid "Keep trailin~g~ whitespace"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:257
+#: ../mainsrc/deedidia.cc:255
 msgid "Backspace unindents ~2~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:258
+#: ../mainsrc/deedidia.cc:256
 #, fuzzy
 msgid "Column markers ~4~"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:261 ../mainsrc/deedidia.cc:313
+#: ../mainsrc/deedidia.cc:259 ../mainsrc/deedidia.cc:311
 msgid "~T~ab size"
 msgstr "~T~abulatorgröße"
 
-#: ../mainsrc/deedidia.cc:262 ../mainsrc/deedidia.cc:314
+#: ../mainsrc/deedidia.cc:260 ../mainsrc/deedidia.cc:312
 #, fuzzy
 msgid "Indent si~z~e"
 msgstr "Schiebe ein Leerzeichen ein"
 
-#: ../mainsrc/deedidia.cc:263 ../mainsrc/deedidia.cc:315
+#: ../mainsrc/deedidia.cc:261 ../mainsrc/deedidia.cc:313
 msgid "Wrap co~l~umn"
 msgstr "Spa~l~tenumbruch"
 
-#: ../mainsrc/deedidia.cc:272
+#: ../mainsrc/deedidia.cc:270
 #, fuzzy
 msgid "Syntax ~H~L Options"
 msgstr "SDP ~O~ptionen"
 
-#: ../mainsrc/deedidia.cc:287
+#: ../mainsrc/deedidia.cc:285
 msgid "Global Options"
 msgstr "Globale Einstellungen"
 
-#: ../mainsrc/deedidia.cc:291
+#: ../mainsrc/deedidia.cc:289
 msgid "~U~se tabs"
 msgstr "Ben~u~tze Tabs"
 
-#: ../mainsrc/deedidia.cc:298
+#: ../mainsrc/deedidia.cc:296
 msgid "Don't wait to searc~h~ for the pair"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:299
+#: ../mainsrc/deedidia.cc:297
 msgid "~D~on't move the cursor on Paste"
 msgstr "~C~ursor beim Einfügen nicht bewegen"
 
-#: ../mainsrc/deedidia.cc:303
+#: ../mainsrc/deedidia.cc:301
 msgid "~S~croll Lock centers"
 msgstr "~S~croll Lock zentriert"
 
-#: ../mainsrc/deedidia.cc:306
+#: ../mainsrc/deedidia.cc:304
 msgid "Tab smart indents ~5~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:307
+#: ../mainsrc/deedidia.cc:305
 msgid "Use indent size ~6~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:309
+#: ../mainsrc/deedidia.cc:307
 msgid "Backspace unindents ~8~"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:310
+#: ../mainsrc/deedidia.cc:308
 #, fuzzy
 msgid "Column markers ~9~"
 msgstr "Spalten~c~ursor"
 
-#: ../mainsrc/deedidia.cc:321
+#: ../mainsrc/deedidia.cc:319
 msgid "T~o~ all"
 msgstr "Für ~a~lle"
 
-#: ../mainsrc/deedidia.cc:336
+#: ../mainsrc/deedidia.cc:334
 msgid "Search hit"
 msgstr "Suchtreffer"
 
-#: ../mainsrc/deedidia.cc:338
+#: ../mainsrc/deedidia.cc:336
 msgid "Replace this occurence?"
 msgstr "Diese Vorkommen ersetzen?"
 
-#: ../mainsrc/deedidia.cc:341
+#: ../mainsrc/deedidia.cc:339
 msgid "~A~ll"
 msgstr "~A~lles"
 
 #. BCDFLMO
-#: ../mainsrc/deedidia.cc:363
+#: ../mainsrc/deedidia.cc:361
 msgid "Export Options"
 msgstr "Export Optionen"
 
-#: ../mainsrc/deedidia.cc:366 ../setedit/intgrep.cc:416
+#: ../mainsrc/deedidia.cc:364 ../setedit/intgrep.cc:416
 #: ../setedit/runprog.cc:123
 msgid "~O~ptions"
 msgstr "~O~ptionen"
 
-#: ../mainsrc/deedidia.cc:367
+#: ../mainsrc/deedidia.cc:365
 msgid "~F~ile name as title"
 msgstr "~D~ateiname als Überschrift"
 
-#: ../mainsrc/deedidia.cc:368
+#: ../mainsrc/deedidia.cc:366
 msgid "Same ~b~ackground color as the editor"
 msgstr "Gleiche Hintergrund wie im ~E~ditor"
 
-#: ../mainsrc/deedidia.cc:369
+#: ../mainsrc/deedidia.cc:367
 #, fuzzy
 msgid "~M~onospaced font"
 msgstr "~M~onospaced Schrift"
 
-#: ../mainsrc/deedidia.cc:370
+#: ../mainsrc/deedidia.cc:368
 msgid "Bo~l~d attribute"
 msgstr "~F~ettdruck"
 
-#: ../mainsrc/deedidia.cc:371
+#: ../mainsrc/deedidia.cc:369
 msgid "~U~se CSS and HTML 4.01"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:372
+#: ../mainsrc/deedidia.cc:370
 msgid "Colors"
 msgstr "Farben"
 
-#: ../mainsrc/deedidia.cc:372
+#: ../mainsrc/deedidia.cc:370
 msgid "Use ~c~olors"
 msgstr "Benutze ~F~arben"
 
-#: ../mainsrc/deedidia.cc:373
+#: ../mainsrc/deedidia.cc:371
 msgid "~D~on't use colors"
 msgstr "Keine Farben verwen~d~en"
 
 #. BFLMO
-#: ../mainsrc/deedidia.cc:388
+#: ../mainsrc/deedidia.cc:386
 msgid "Pseudo Macros"
 msgstr "Pseudo Macros"
 
-#: ../mainsrc/deedidia.cc:400
+#: ../mainsrc/deedidia.cc:398
 msgid "Arbitrary indent"
 msgstr "Eigener Einschub"
 
-#: ../mainsrc/deedidia.cc:402
+#: ../mainsrc/deedidia.cc:400
 msgid "Indentation text"
 msgstr "Einschubtext"
 
-#: ../mainsrc/deedidia.cc:429
+#: ../mainsrc/deedidia.cc:427
 #, fuzzy, c-format
 msgid "Data saved to file: %s"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/deedidia.cc:434
+#: ../mainsrc/deedidia.cc:432
 msgid "Solve collision"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:438
+#: ../mainsrc/deedidia.cc:436
 msgid ""
 "Problem:\n"
 "The copy in memory is also modified\n"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:439
+#: ../mainsrc/deedidia.cc:437
 msgid "~L~oad file from disk (discard changes)"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:440
+#: ../mainsrc/deedidia.cc:438
 #, fuzzy
 msgid "~A~bort operation"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/deedidia.cc:441
+#: ../mainsrc/deedidia.cc:439
 msgid "Load and ~s~how differences"
 msgstr ""
 
-#: ../mainsrc/deedidia.cc:442
+#: ../mainsrc/deedidia.cc:440
 msgid "~D~on't load and show differences"
 msgstr ""
 
@@ -2154,7 +2157,7 @@ msgid "Associated string"
 msgstr "Verbundener Wert"
 
 #: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1317
-#: ../setedit/loadnobkp.cc:213 ../setedit/pathlist.cc:280
+#: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:357
 msgid "Do you want to discard the changes?"
 msgstr "Wollen Sie die Änderungen verwerfen?"
 
@@ -2201,7 +2204,7 @@ msgstr "Wortliste"
 msgid "User words"
 msgstr "Benutzerwörter"
 
-#: ../mainsrc/pathtool.cc:787
+#: ../mainsrc/pathtool.cc:788
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -2211,7 +2214,7 @@ msgstr ""
 "Fehler! Bitte starten Sie den Editor aus einem gültigen Verzeichnis heraus\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:53 ../setedit/loadcle.cc:100
+#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:1789 ../setedit/loadcle.cc:97
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -2265,12 +2268,12 @@ msgstr "(%d) %s in Zeile %d"
 msgid "In section %s"
 msgstr "In Sektion %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:507
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:519
 #, fuzzy, c-format
 msgid "Type of error: %s"
 msgstr "Tastaturtyp"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:509
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:521
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Code: ...%s..."
@@ -2304,37 +2307,37 @@ msgstr "~F~ormatverzeichnisse"
 msgid "K~e~ep intermediate"
 msgstr "~T~emporärdatei behalten"
 
-#: ../mainsrc/search.cc:276 ../mainsrc/search.cc:386
+#: ../mainsrc/search.cc:266 ../mainsrc/search.cc:375
 #, c-format
 msgid "Regular expression error: %s"
 msgstr "Fehler im regulären Ausdruck: %s"
 
-#: ../mainsrc/search.cc:468
+#: ../mainsrc/search.cc:461
 msgid "PCRE Exec error"
 msgstr "PCRE Exec Fehler"
 
-#: ../mainsrc/slpinter.cc:506
+#: ../mainsrc/slpinter.cc:518
 msgid "Error in sLisp interpreter:"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:510
+#: ../mainsrc/slpinter.cc:522
 msgid "End of SLP"
 msgstr "Ende von SLP"
 
-#: ../mainsrc/slpinter.cc:584
+#: ../mainsrc/slpinter.cc:596
 #, fuzzy
 msgid "Enter sLisp code to interprete"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:613
+#: ../mainsrc/slpinter.cc:625
 msgid "No macros defined"
 msgstr "Keine macros definiert"
 
-#: ../mainsrc/slpinter.cc:656
+#: ../mainsrc/slpinter.cc:668
 msgid "sLisp macros"
 msgstr "sLisp Makros"
 
-#: ../mainsrc/slpinter.cc:666
+#: ../mainsrc/slpinter.cc:678
 msgid "~M~acros"
 msgstr "~M~akros"
 
@@ -2733,83 +2736,93 @@ msgstr "~L~aden"
 msgid "Return value:"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1563
+#: ../sdg/mli.cc:1613 ../setedit/debug.cc:815 ../setedit/debug.cc:816
+#: ../setedit/debug.cc:1898 ../setedit/debug.cc:1899
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../sdg/mli.cc:1568
+#: ../sdg/mli.cc:1618
 msgid "parser"
 msgstr "parser"
 
-#: ../sdg/mli.cc:1569
+#: ../sdg/mli.cc:1619
 msgid "syntax"
 msgstr "Syntax"
 
-#: ../sdg/mli.cc:1574
+#: ../sdg/mli.cc:1624
 #, fuzzy
 msgid "string not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../sdg/mli.cc:1575
+#: ../sdg/mli.cc:1625
 #, fuzzy
 msgid "no ) at end of code"
 msgstr "kein ) Befehlsende"
 
-#: ../sdg/mli.cc:1576
+#: ../sdg/mli.cc:1626
 msgid "no starting ("
 msgstr "keine beginnende ("
 
-#: ../sdg/mli.cc:1577
+#: ../sdg/mli.cc:1627
 msgid "wrong number"
 msgstr "Falsche Nummer"
 
-#: ../sdg/mli.cc:1578
+#: ../sdg/mli.cc:1628
 msgid "unknown value"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1579
+#: ../sdg/mli.cc:1629
 msgid "stack overflow"
 msgstr ""
 
-#: ../sdg/mli.cc:1584
+#: ../sdg/mli.cc:1634
 msgid "command where a parameter was expected"
 msgstr "Befehl, wo Parameter erwartet war"
 
-#: ../sdg/mli.cc:1585
+#: ../sdg/mli.cc:1635
 msgid "command expected"
 msgstr "Befehl erwartet"
 
-#: ../sdg/mli.cc:1586
+#: ../sdg/mli.cc:1636
 msgid "parameter after command"
 msgstr "Parameter nach Befehl"
 
-#: ../sdg/mli.cc:1587
+#: ../sdg/mli.cc:1637
 msgid "wrong number of parameters"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../sdg/mli.cc:1588
+#: ../sdg/mli.cc:1638
 msgid "wrong parameter type"
 msgstr "Falscher Parametertyp"
 
-#: ../sdg/mli.cc:1589
+#: ../sdg/mli.cc:1639
 msgid "undefined variable"
 msgstr "Undefinierte Variable"
 
-#: ../sdg/mli.cc:1590
+#: ../sdg/mli.cc:1640
 msgid "undefined symbol"
 msgstr "Undefiniertes Symbol"
 
-#: ../sdg/mli.cc:1591
+#: ../sdg/mli.cc:1641
 msgid "operation not defined"
 msgstr "Operation nicht definiert"
 
-#: ../sdg/mli.cc:1592
+#: ../sdg/mli.cc:1642
 msgid "invalid character for a name"
 msgstr ""
 
-#: ../sdg/mli.cc:1593
+#: ../sdg/mli.cc:1643
 msgid "invalid key sequence"
 msgstr ""
+
+#: ../sdg/mli.cc:1644
+msgid "PCRE not available"
+msgstr ""
+
+#: ../sdg/mli.cc:1645
+#, fuzzy
+msgid "PCRE compile error"
+msgstr "PCRE Exec Fehler"
 
 #: ../setedit/advice.cc:46
 #, fuzzy
@@ -3007,13 +3020,292 @@ msgstr "November"
 msgid "December"
 msgstr "Dezember"
 
-#: ../setedit/calendar.cc:192
+#: ../setedit/calendar.cc:193
 msgid "Su Mo Tu We Th Fr Sa"
 msgstr "So Mo Di Mi Do Fr Sa"
 
-#: ../setedit/calendar.cc:295
+#: ../setedit/calendar.cc:296
 msgid "Calendar"
 msgstr "Kalender"
+
+#: ../setedit/debug.cc:283 ../setedit/debug.cc:323
+msgid "The program is running and GDB/MI doesn't support async commands"
+msgstr ""
+
+#. We don't even know what to debug ;-)
+#: ../setedit/debug.cc:394
+msgid "You must set the debug options first. Do you want to do it now?"
+msgstr ""
+
+#. Don't even try if the program doesn't exist
+#: ../setedit/debug.cc:407
+#, fuzzy, c-format
+msgid "The '%s' file doesn't exist"
+msgstr "Diese Datei ist nicht auf Festplatte!"
+
+#: ../setedit/debug.cc:429
+msgid "Not yet implemented, sorry"
+msgstr ""
+
+#. Don't even try if nothing to try ;-)
+#: ../setedit/debug.cc:435
+msgid ""
+"Please fill both 'Remote target options'. Try extended-remote for the type "
+"and IP:PORT for location."
+msgstr ""
+
+#: ../setedit/debug.cc:445
+#, c-format
+msgid "At the '%s' machine run: 'gdbserver :%s program args...'"
+msgstr ""
+
+#: ../setedit/debug.cc:451
+msgid "Run gdbserver at the remote machine"
+msgstr ""
+
+#: ../setedit/debug.cc:887
+msgid "Evaluate and Modify"
+msgstr ""
+
+#. All together
+#: ../setedit/debug.cc:992
+msgid "~E~xpression (escape \" characters: \\\")"
+msgstr ""
+
+#: ../setedit/debug.cc:994
+#, fuzzy
+msgid "~N~ew value"
+msgstr "Ü~b~erschreiben"
+
+#: ../setedit/debug.cc:999
+#, fuzzy
+msgid "C~h~ange"
+msgstr "Re~c~hteck"
+
+#: ../setedit/debug.cc:1086
+msgid ""
+"Please confirm you really want to finish the debug session. Breakpoints and "
+"other things will be lost."
+msgstr ""
+
+#: ../setedit/debug.cc:1088
+msgid "A debug session is active. Do you want to stop it?"
+msgstr ""
+
+#: ../setedit/debug.cc:1109
+msgid "It will kill the program you are debugging. Go ahead?"
+msgstr ""
+
+#: ../setedit/debug.cc:1277
+#, c-format
+msgid "%d breakpoints failed to apply, they are disabled now."
+msgstr ""
+
+#: ../setedit/debug.cc:1515
+msgid "Not started"
+msgstr ""
+
+#. TODO: i18n
+#: ../setedit/debug.cc:1517
+#, fuzzy, c-format
+msgid "   Debugger Window [%s]"
+msgstr "   Nachrichtenfenster (%d Zeilen)"
+
+#: ../setedit/debug.cc:1633
+#, fuzzy
+msgid "Send command to gdb"
+msgstr "auzuführender Befehl"
+
+#. EN: C
+#: ../setedit/debug.cc:1636
+#, fuzzy
+msgid "~C~ommand, be careful!"
+msgstr "auzuführender Befehl"
+
+#: ../setedit/debug.cc:1673
+#, fuzzy
+msgid "Debugger Window"
+msgstr "Nachrichtenfenster"
+
+#: ../setedit/debug.cc:1756
+msgid "Disconnected"
+msgstr ""
+
+#: ../setedit/debug.cc:1759
+msgid "Connected"
+msgstr ""
+
+#: ../setedit/debug.cc:1762
+#, fuzzy
+msgid "Ready to Run"
+msgstr "auzuführender Befehl"
+
+#: ../setedit/debug.cc:1765
+#, fuzzy
+msgid "Running"
+msgstr "Führe aus: %s"
+
+#: ../setedit/debug.cc:1768
+#, fuzzy
+msgid "Stopped"
+msgstr "Bereich"
+
+#: ../setedit/debug.cc:1826
+#, fuzzy, c-format
+msgid "Error: %s (%d)"
+msgstr "Fehler in Ausdruck (%d)"
+
+#: ../setedit/debug.cc:1857
+#, fuzzy
+msgid "default"
+msgstr "~O~riginal"
+
+#: ../setedit/debug.cc:1858
+#, c-format
+msgid "Mode: %s (%s) [%s]"
+msgstr ""
+
+#: ../setedit/debug.cc:1864
+#, c-format
+msgid "Mode: Remote (%s) [%s]"
+msgstr ""
+
+#: ../setedit/debug.cc:1890
+#, c-format
+msgid "Reason stopped: %s"
+msgstr ""
+
+#: ../setedit/debug.cc:1893
+msgid "Returned immediatly"
+msgstr ""
+
+#: ../setedit/debug.cc:2023
+#, c-format
+msgid "%s: [%s] %s"
+msgstr ""
+
+#. TODO: i18n
+#: ../setedit/debug.cc:2030
+#, c-format
+msgid "%s: Not yet in debugger"
+msgstr ""
+
+#: ../setedit/debug.cc:2049
+msgid "Wait until the process stopped to delete this watch"
+msgstr ""
+
+#: ../setedit/debug.cc:2071
+#, fuzzy
+msgid "Error deleting variable"
+msgstr "Fehler beim Erstellen von "
+
+#: ../setedit/debug.cc:2203
+#, fuzzy, c-format
+msgid "   Watches Window (%d watches)"
+msgstr "   Nachrichtenfenster (%d Zeilen)"
+
+#: ../setedit/debug.cc:2306
+msgid "Add to watch list"
+msgstr ""
+
+#: ../setedit/debug.cc:2340
+msgid "Change the expression to watch"
+msgstr ""
+
+#: ../setedit/debug.cc:2390
+#, fuzzy
+msgid "Watches"
+msgstr "Ersetzen"
+
+#: ../setedit/debug.cc:2539
+#, fuzzy
+msgid "Debug Options"
+msgstr "Einstellungen"
+
+#. All together
+#: ../setedit/debug.cc:2544
+msgid "~P~rogram to debug, with debug info"
+msgstr ""
+
+#: ../setedit/debug.cc:2546
+#, fuzzy
+msgid "~M~ode"
+msgstr "~B~ewegen"
+
+#: ../setedit/debug.cc:2547
+msgid "Local with ~e~xecutable"
+msgstr ""
+
+#: ../setedit/debug.cc:2548
+msgid "Local with r~u~nning process"
+msgstr ""
+
+#: ../setedit/debug.cc:2549
+msgid "Remote (g~d~bserver/stub)"
+msgstr ""
+
+#: ../setedit/debug.cc:2550
+#, fuzzy
+msgid "Local target options"
+msgstr "Lokale Einstellungen"
+
+#: ../setedit/debug.cc:2551
+msgid "Program ~a~rguments, not for remote mode"
+msgstr ""
+
+#: ../setedit/debug.cc:2553
+msgid "Forced ~t~erminal, leave blank for auto"
+msgstr ""
+
+#: ../setedit/debug.cc:2555
+#, fuzzy
+msgid "Remote target options"
+msgstr "Andere Optionen"
+
+#: ../setedit/debug.cc:2556
+#, fuzzy
+msgid "Remote p~r~otocol type"
+msgstr "Gehe zu ~P~rototyp"
+
+#: ../setedit/debug.cc:2558
+#, fuzzy
+msgid "Remote ~l~ocation"
+msgstr "Andere Optionen"
+
+#. TODO: i18n
+#: ../setedit/debug.cc:2577
+msgid "Your program compiled with -g"
+msgstr ""
+
+#: ../setedit/debug.cc:2598
+#, fuzzy
+msgid "Messages"
+msgstr "Nachrichtenfenster"
+
+#. EN: ACDFLT
+#: ../setedit/debug.cc:2601
+msgid "~D~isplay messages related to"
+msgstr ""
+
+#: ../setedit/debug.cc:2602
+msgid "GDB ~c~onsole (CLI)"
+msgstr ""
+
+#: ../setedit/debug.cc:2603
+msgid "T~a~rget (not really implemented in gdb)"
+msgstr ""
+
+#: ../setedit/debug.cc:2604
+msgid "~L~og (gdb internal messages)"
+msgstr ""
+
+#: ../setedit/debug.cc:2605
+msgid "GDB/MI commands sent ~t~o gdb"
+msgstr ""
+
+#: ../setedit/debug.cc:2606
+msgid "GDB/MI responses ~f~rom gdb"
+msgstr ""
 
 #: ../setedit/dskascii.cc:39
 msgid "   ASCII chart"
@@ -3181,61 +3473,61 @@ msgstr "Danksagungen an:"
 msgid "Made in Argentina"
 msgstr "Hergstellt in Argentinien (übersetzt in Deutschland)"
 
-#: ../setedit/editmain.cc:126
+#: ../setedit/editmain.cc:128
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 
-#: ../setedit/editmain.cc:420
+#: ../setedit/editmain.cc:423
 #, fuzzy
 msgid "No project loaded"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/editmain.cc:478
+#: ../setedit/editmain.cc:482
 #, fuzzy
 msgid "This file is already open, close it first."
 msgstr "Die Datei ist bereits geöffnet. Schließen Sie sie zuerst."
 
-#: ../setedit/editmain.cc:564
+#: ../setedit/editmain.cc:569
 #, fuzzy
 msgid "Open File"
 msgstr "Ö~f~fne Info"
 
-#: ../setedit/editmain.cc:579
+#: ../setedit/editmain.cc:584
 msgid "You must select an editor window for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../setedit/editmain.cc:714
+#: ../setedit/editmain.cc:719
 msgid "Export file as"
 msgstr "Exportiere Datei als"
 
-#: ../setedit/editmain.cc:804
+#: ../setedit/editmain.cc:809
 #, fuzzy
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Diese Fenster kann nicht gedruckt werden, wählen Sie einen Editor"
 
-#: ../setedit/editmain.cc:964
+#: ../setedit/editmain.cc:969
 msgid "Couldn't find any matching help"
 msgstr "Konnte keine passende Hilfe finden"
 
-#: ../setedit/editmain.cc:1145
+#: ../setedit/editmain.cc:1152
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1606
+#: ../setedit/editmain.cc:1719
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:1757
+#: ../setedit/editmain.cc:1873
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:1833
+#: ../setedit/editmain.cc:1949
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2057
+#: ../setedit/editmain.cc:2174
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -3244,7 +3536,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2192
+#: ../setedit/editmain.cc:2309
 #, c-format
 msgid ""
 "\n"
@@ -3253,7 +3545,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2193
+#: ../setedit/editmain.cc:2310
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -3262,7 +3554,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2197
+#: ../setedit/editmain.cc:2314
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -3271,7 +3563,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2199
+#: ../setedit/editmain.cc:2316
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -3280,11 +3572,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2204
+#: ../setedit/editmain.cc:2321
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2213
+#: ../setedit/editmain.cc:2330
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -3294,15 +3586,15 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2242
+#: ../setedit/editmain.cc:2359
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2486
+#: ../setedit/editmain.cc:2603
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2487
+#: ../setedit/editmain.cc:2604
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -3310,7 +3602,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2489
+#: ../setedit/editmain.cc:2606
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -3320,11 +3612,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2493
+#: ../setedit/editmain.cc:2610
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2494
+#: ../setedit/editmain.cc:2611
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -3333,14 +3625,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2499
+#: ../setedit/editmain.cc:2616
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2503
+#: ../setedit/editmain.cc:2620
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -3349,7 +3641,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2505
+#: ../setedit/editmain.cc:2622
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -3357,36 +3649,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2507
+#: ../setedit/editmain.cc:2624
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2509
+#: ../setedit/editmain.cc:2626
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2511
+#: ../setedit/editmain.cc:2628
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2512
+#: ../setedit/editmain.cc:2629
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2513
+#: ../setedit/editmain.cc:2630
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2516
+#: ../setedit/editmain.cc:2633
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2518
+#: ../setedit/editmain.cc:2635
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -3395,7 +3687,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2520
+#: ../setedit/editmain.cc:2637
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -3403,19 +3695,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2523
+#: ../setedit/editmain.cc:2640
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2525
+#: ../setedit/editmain.cc:2642
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2526
+#: ../setedit/editmain.cc:2643
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -5038,98 +5330,98 @@ msgstr "Ausgabe ist ein Programm"
 msgid "~C~ancel"
 msgstr "~A~bbruch"
 
-#: ../setedit/edprj.cc:418
+#: ../setedit/edprj.cc:419
 #, fuzzy
 msgid "File already in project"
 msgstr "Keine Dateien im Projekt"
 
-#: ../setedit/edprj.cc:518
+#: ../setedit/edprj.cc:519
 msgid "Add File"
 msgstr "Datei hinzufügen"
 
-#: ../setedit/edprj.cc:625 ../setedit/edprj.cc:666
+#: ../setedit/edprj.cc:626 ../setedit/edprj.cc:667
 msgid "Project Window"
 msgstr "Projektfenster"
 
-#: ../setedit/edprj.cc:633
+#: ../setedit/edprj.cc:634
 msgid " 1 Project Window"
 msgstr " 1 Projektfenster"
 
-#: ../setedit/edprj.cc:707
+#: ../setedit/edprj.cc:708
 msgid "Could not open project file"
 msgstr "Konnte Projektdatei nicht öffnen"
 
-#: ../setedit/edprj.cc:714
+#: ../setedit/edprj.cc:715
 msgid "Wrong project file."
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:745
+#: ../setedit/edprj.cc:748
 msgid "Error reading project file"
 msgstr "Fehler beim Lesen der Projektdatei"
 
-#: ../setedit/edprj.cc:747 ../setedit/edprj.cc:933
+#: ../setedit/edprj.cc:750 ../setedit/edprj.cc:918
 #, fuzzy
 msgid "Project: "
 msgstr "~P~rojekt"
 
-#: ../setedit/edprj.cc:782
+#: ../setedit/edprj.cc:786
 msgid "Could not save the project."
 msgstr "Konnte das Projekt nicht speichern."
 
-#: ../setedit/edprj.cc:878
+#: ../setedit/edprj.cc:863
 msgid "Open Project"
 msgstr "Projekt öffnen"
 
-#: ../setedit/edprj.cc:1022
+#: ../setedit/edprj.cc:1011
 #, fuzzy, c-format
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1245
+#: ../setedit/edprj.cc:1234
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1282
+#: ../setedit/edprj.cc:1271
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1290
+#: ../setedit/edprj.cc:1279
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1326
+#: ../setedit/edprj.cc:1315
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""
 
-#: ../setedit/holidays.cc:145
+#: ../setedit/holidays.cc:169
 #, fuzzy
 msgid "Can't find plug-ins directory"
 msgstr "Zielverzeichnis"
 
-#: ../setedit/holidays.cc:241
+#: ../setedit/holidays.cc:285
+msgid "Holidays plug-ins not supported. Sorry."
+msgstr ""
+
+#: ../setedit/holidays.cc:292
 msgid "Failed to load holidays.conf"
 msgstr ""
 
-#: ../setedit/holidays.cc:245
+#: ../setedit/holidays.cc:296
 msgid "Holidays country"
 msgstr ""
 
-#: ../setedit/holidays.cc:262
+#: ../setedit/holidays.cc:313
 msgid "Country"
 msgstr ""
 
-#: ../setedit/holidays.cc:262
+#: ../setedit/holidays.cc:313
 #, fuzzy
 msgid "Force country"
 msgstr "Sekundär encoding"
-
-#: ../setedit/holidays.cc:308
-msgid "Holidays plug-ins not supported. Sorry."
-msgstr ""
 
 #: ../setedit/intgrep.cc:114
 msgid "The clipboard is empty"
@@ -5274,131 +5566,143 @@ msgstr ""
 msgid "End of grep search"
 msgstr "Ende der grep Suche"
 
-#: ../setedit/loadnobkp.cc:50
+#: ../setedit/loadnobkp.cc:45
 #, fuzzy
 msgid "Don't create backups for"
 msgstr "~K~eine Desktopdateien erstellen"
 
-#: ../setedit/loadnobkp.cc:180
+#: ../setedit/loadnobkp.cc:176
 #, fuzzy
 msgid "Perl regular expression"
 msgstr "Reguläre Ausd~r~ücke"
 
-#: ../setedit/menuload.cc:65
+#: ../setedit/menuload.cc:67
 msgid "No error"
 msgstr "Kein Fehler"
 
-#: ../setedit/menuload.cc:66
+#: ../setedit/menuload.cc:68
 msgid "String expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:67
+#: ../setedit/menuload.cc:69
 #, fuzzy
 msgid "String not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:68
+#: ../setedit/menuload.cc:70
 msgid "No key for SubMenu"
 msgstr "Keine Taste für `SubMenu'"
 
-#: ../setedit/menuload.cc:69
+#: ../setedit/menuload.cc:71
 msgid "Wrong key name"
 msgstr "Falsche Schlüsselname."
 
-#: ../setedit/menuload.cc:70
+#: ../setedit/menuload.cc:72
 msgid "Extra characters in line"
 msgstr "Extra Zeichen in Zeile"
 
-#: ../setedit/menuload.cc:71
+#: ../setedit/menuload.cc:73
 msgid "No number for a context"
 msgstr "Keine Nummer für einen Kontext"
 
-#: ../setedit/menuload.cc:72
+#: ../setedit/menuload.cc:74
 msgid "Syntax error"
 msgstr "Syntaxfehler"
 
-#: ../setedit/menuload.cc:73
+#: ../setedit/menuload.cc:75
 msgid "Empty submenu"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:74
+#: ../setedit/menuload.cc:76
 #, fuzzy
 msgid "SubMenu not closed "
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:75
+#: ../setedit/menuload.cc:77
 #, fuzzy
 msgid "Missing command value"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:76
+#: ../setedit/menuload.cc:78
 msgid "Wrong command name"
 msgstr "Falscher Befehlname"
 
-#: ../setedit/menuload.cc:77
+#: ../setedit/menuload.cc:79
 msgid "No menu definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:78
+#: ../setedit/menuload.cc:80
 msgid "Wrong context name"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:79
+#: ../setedit/menuload.cc:81
 msgid "Unfinished macro name"
 msgstr "Nicht beendeter Makroname"
 
-#: ../setedit/menuload.cc:80
+#: ../setedit/menuload.cc:82
 msgid "Unable to register macro"
 msgstr "Kann Makro nicht registrieren"
 
-#: ../setedit/menuload.cc:81
+#: ../setedit/menuload.cc:83
 #, fuzzy
 msgid "No status line definition"
 msgstr "Keine Menüdefinition"
 
-#: ../setedit/menuload.cc:82
+#: ../setedit/menuload.cc:84
 msgid "No `from' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:83
+#: ../setedit/menuload.cc:85
 msgid "No `quantity' value in range"
 msgstr ""
 
-#: ../setedit/menuload.cc:84
+#: ../setedit/menuload.cc:86
 #, fuzzy
 msgid "Number expected"
 msgstr "Zeichenkette erwartet"
 
-#: ../setedit/menuload.cc:85
+#: ../setedit/menuload.cc:87
 #, fuzzy
 msgid "Invalid range"
 msgstr "Ungültiges Laufwerk"
 
-#: ../setedit/menuload.cc:86
+#: ../setedit/menuload.cc:88
 #, fuzzy
 msgid "StatusRange not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../setedit/menuload.cc:87
+#: ../setedit/menuload.cc:89
 #, fuzzy
 msgid "Empty status line"
 msgstr "Leeres Untermenü"
 
-#: ../setedit/menuload.cc:88
+#: ../setedit/menuload.cc:90
 #, fuzzy
 msgid "Wrong help context name or number"
 msgstr "Falscher Kontextname"
 
-#: ../setedit/menuload.cc:1103
+#: ../setedit/menuload.cc:91
+msgid "Too much conditionals nested"
+msgstr ""
+
+#: ../setedit/menuload.cc:92
+msgid "Unmatched $endif"
+msgstr ""
+
+#: ../setedit/menuload.cc:1145
 #, c-format
 msgid "Error loading menu: (%d) %s in line %d of %s."
 msgstr "Fehler beim Laden von Menü: (%d) %s in Zeile %d von %s."
 
-#: ../setedit/pathlist.cc:89
-msgid "Path to look for files under cursor"
+#: ../setedit/pathlist.cc:95
+msgid "Path to look for includes"
 msgstr ""
 
-#: ../setedit/pathlist.cc:239
+#: ../setedit/pathlist.cc:96
+msgid "Path to look for sources"
+msgstr ""
+
+#: ../setedit/pathlist.cc:316
 #, fuzzy
 msgid "Directory"
 msgstr "Kann Verzeichnis nicht erstellen:"
@@ -5792,10 +6096,6 @@ msgstr "sLisp Makros"
 #, fuzzy
 #~ msgid "Error writing file %s."
 #~ msgstr "Fehler beim Schreiben der Datei "
-
-#, fuzzy
-#~ msgid "Error creating file %s."
-#~ msgstr "Fehler beim Erstellen von "
 
 #, fuzzy
 #~ msgid "failed to open the input terminal"

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Class )
 
@@ -364,7 +364,7 @@ public:
     void UpdateSelecting(void);
     void MoveToMouse( TPoint m, uchar selMode );
     void MoveCursorTo(unsigned x, unsigned y, Boolean undo=False);
-    void GoAndSelectLine(int line);
+    void GoAndSelectLine(int line, Boolean selectLine=True);
     int  IsFirstCharInLine(void);
     void GotoOffSet(unsigned o);
     void JumpEndOfText();
@@ -413,7 +413,7 @@ public:
     int EnsureXDontTab(char *s,int x,int w,char **stop);
     void lockUndo(void) { undoLockCount++; };
     void unlockUndo(void);
-    void SetSpecialLines(int *a) { SpecialLines=a; };
+    void SetSpecialLines(int *a, int *ids);
     void PasteEmacsMode();
     void QuotedPrintDecode();
     void InsertKeyName();
@@ -560,6 +560,8 @@ public:
 
     // To keep track of the position of some line
     int *SpecialLines;
+    // This list doesn't have to be terminated, only SpecialLines needs it
+    int *SpecialLinesIds;
 
     // The modification time of the disk copy of the file
     // 0 if the file isn't in disk

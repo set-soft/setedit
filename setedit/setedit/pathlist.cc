@@ -2,11 +2,13 @@
    see copyrigh file for details */
 /**[txh]********************************************************************
 
-  Description:
+  Module: Path Lists
+  Comments:
   Handles the list of directories to search for when the user press ^+Enter
 over a file name. It is usually the path for include files.@*
   It is handled as some kind of string collection (TPathList), it needs
-more memory and disk space but is much more easy to setup.
+more memory and disk space but is much more easy to setup. [Note: Here I'm
+comparing it with the simple string used in RHIDE]
   
 ***************************************************************************/
 
@@ -37,8 +39,10 @@ more memory and disk space but is much more easy to setup.
 
 #define Uses_SETAppDialogs
 #define Uses_SETAppConst
+#define Uses_SETAppProject
 #include <setapp.h>
 #include <rhutils.h>
+#include <pathlist.h>
 
 class TPathList : public TCollection, public TStringable
 {
@@ -55,7 +59,7 @@ public:
 const char * const TPathList::name="TPathList";
 TStreamableClass RPathList(TPathList::name,TPathList::build,__DELTA(TPathList));
 
-SetDefStreamOperators(TPathList)
+SetDefStreamOperators(TPathList);
 
 void *TPathList::readItem(ipstream& is)
 {
@@ -83,34 +87,79 @@ TPathList & TPathList::operator = (const TPathList & pl)
  return *this;
 }
 
-static TPathList *IncludeList=0;
-const char Version=1;
+static TPathList *lists[paliLists], *lEdited;
+const char Version=2;
 const int MaxLineLen=PATH_MAX;
-static const char *Title=__("Path to look for files under cursor");
+static const char *Titles[paliLists]=
+{
+ __("Path to look for includes"),
+ __("Path to look for sources")
+};
+static const char *tEdited;
 static int listChanged;
+static unsigned hCtxEdited;
 
 void PathListSave(fpstream& s)
 {
  s << Version;
- if (IncludeList && IncludeList->getCount())
-    s << (uchar)1 << IncludeList;
- else
-    s << (uchar)0;
+ s << (uchar)paliLists;
+ for (int i=0; i<paliLists; i++)
+     if (lists[i] && lists[i]->getCount())
+        s << (uchar)1 << lists[i];
+     else
+        s << (uchar)0;
 }
 
 void PathListUnLoad()
 {
- destroy0(IncludeList);
+ for (int i=0; i<paliLists; i++)
+     destroy0(lists[i]);
 }
 
 void PathListLoad(fpstream& s)
 {
- uchar aux;
- s >> aux; // Version
+ uchar aux, version, cant;
+ s >> version;
  PathListUnLoad();
- s >> aux;
- if (aux)
-    s >> IncludeList;
+ if (version>=2)
+    s >> cant;
+ else
+    cant=1;
+ for (int i=0; i<cant; i++)
+    {
+     s >> aux;
+     if (aux)
+        s >> lists[i];
+    }
+}
+
+static
+void PathListAddFromPrj(void *p, void *data)
+{
+ TPathList *l=(TPathList *)data;
+ char f[PATH_MAX];
+ ProjectGetNameFromItem(p,f,PATH_MAX);
+ // Find the "path" part
+ char *end=strrchr(f,'/');
+ if (end)
+   {
+    char aux=*end;
+    *end=0;
+    // Not sorted, so we must do a brut force search
+    int i, c=l->getCount(), found=0;
+    for (i=0; i<c; i++)
+        if (strcmp(f,(char *)l->at(i))==0)
+          {
+           found=1;
+           break;
+          }
+    if (!found)
+      {
+       //printf("Adding %s from project\n",f);
+       l->insert(newStr(f));
+      }
+    *end=aux;
+   }
 }
 
 /**[txh]********************************************************************
@@ -123,87 +172,104 @@ output of cpp or a guess.
   
 ***************************************************************************/
 
-int PathListPopulate()
+int PathListPopulate(int which)
 {
- static int called=0;
-
- called=1;
- IncludeList=new TPathList();
-
- // 1) Try invoking the GNU preprocessor
- char *err=open_stderr_out();
- TScreen::System("cpp -x c++ -v /dev/null");
- close_stderr_out();
- // Check what we got
- FILE *f=fopen(err,"r");
- if (f)
+ if (which==paliInclude)
    {
-    char resp[PATH_MAX];
-    int state=0;
-    while (!feof(f) && state!=2)
+    TPathList *IncludeList=new TPathList();
+    lists[paliInclude]=IncludeList;
+   
+    // 1) Try invoking the GNU preprocessor
+    char *err=open_stderr_out();
+    TScreen::System("cpp -x c++ -v /dev/null");
+    close_stderr_out();
+    // Check what we got
+    FILE *f=fopen(err,"r");
+    if (f)
       {
-       fgets(resp,PATH_MAX,f);
-       switch (state)
+       char resp[PATH_MAX];
+       int state=0;
+       while (!feof(f) && state!=2)
          {
-          case 0:
-               if (strncmp(resp,"#include <",10)==0)
-                  state=1;
-               break;
-          case 1:
-               if (resp[0]!=' ')
-                  state=2;
-               else
-                 {// Insert the path
-                  int l=1;
-                  char *s=resp;
-                  for (; s[l] && CLY_IsntEOL(s[l]); l++);
-                  s[l]=0;
-                  char *path=new char[l];
-                  memcpy(path,s+1,l);
-                  IncludeList->insert(path);
-                  //printf("Agregando <%s>\n",path);
-                 }
-               break;
+          fgets(resp,PATH_MAX,f);
+          switch (state)
+            {
+             case 0:
+                  if (strncmp(resp,"#include <",10)==0)
+                     state=1;
+                  break;
+             case 1:
+                  if (resp[0]!=' ')
+                     state=2;
+                  else
+                    {// Insert the path
+                     int l=1;
+                     char *s=resp;
+                     for (; s[l] && CLY_IsntEOL(s[l]); l++);
+                     s[l]=0;
+                     char *path=new char[l];
+                     memcpy(path,s+1,l);
+                     IncludeList->insert(path);
+                     //printf("Agregando <%s>\n",path);
+                    }
+                  break;
+            }
          }
+       fclose(f);
       }
-    fclose(f);
+    unlink(err);
+   
+    if (IncludeList->getCount())
+       return 1;
+   
+    char buffer[PATH_MAX];
+    #ifdef SECompf_djgpp
+    char *djdir=getenv("DJDIR");
+    if (!djdir)
+       djdir="c:/djgpp";
+    strcpy(buffer,djdir);
+    strcat(buffer,"/include");
+    #else
+    strcpy(buffer,"/usr/include");
+    #endif
+    IncludeList->insert(newStr(buffer));
    }
- unlink(err);
+ else if (which==paliSource)
+   {
+    TPathList *SourceList=new TPathList();
+    lists[paliSource]=SourceList;
 
- if (IncludeList->getCount())
-    return 1;
-
- char buffer[PATH_MAX];
- #ifdef SECompf_djgpp
- char *djdir=getenv("DJDIR");
- if (!djdir)
-    djdir="c:/djgpp";
- strcpy(buffer,djdir);
- strcat(buffer,"/include");
- #else
- strcpy(buffer,"/usr/include");
- #endif
- IncludeList->insert(newStr(buffer));
+    if (IsPrjOpened())
+       ProjectApplyToItems(PathListAddFromPrj,SourceList);
+   }
 
  return 0;
 }
 
-int PathListGetItem(ccIndex pos, char *buffer)
+int PathListGetItem(ccIndex pos, char *buffer, int which)
 {
- if (!IncludeList)
-    PathListPopulate();
- if (!IncludeList || pos>=IncludeList->getCount())
+ TPathList *p=lists[which];
+ if (!p)
+    PathListPopulate(which);
+ if (!p || pos>=p->getCount())
     return 0;
- const char *str=(const char *)IncludeList->at(pos);
+ const char *str=(const char *)p->at(pos);
  const char *var=strstr(str,"$(");
+ int avail=PATH_MAX-1;
  if (!var)
-    strcpy(buffer,str);
+   {
+    int l=min(strlen(str),avail);
+    memcpy(buffer,str,l);
+    buffer[l]=0;
+   }
  else
    {// This is some rudimentary $(VARIABLE) expansion
     int offset=0;
     do
       {
        int l=var-str;
+       if (offset+l>avail)
+          break;
        memcpy(buffer+offset,str,l);
        offset+=l;
        str+=l+2;
@@ -218,13 +284,19 @@ int PathListGetItem(ccIndex pos, char *buffer)
           if (vVar)
             {
              int lVar=strlen(vVar);
+             if (offset+lVar>avail)
+                break;
              memcpy(buffer+offset,vVar,lVar);
              offset+=lVar;
             }
           str=var+1;
           var=strstr(str,"$(");
           if (!var)
+            {
+             if (offset+strlen(str)>(unsigned)avail)
+                break;
              strcpy(buffer+offset,str);
+            }
          }
        else
           buffer[offset]=0;
@@ -239,7 +311,7 @@ static
 char *EditItem(const char *s)
 {
  char b[MaxLineLen];
- TSViewCol *col=new TSViewCol(Title);
+ TSViewCol *col=new TSViewCol(tEdited);
 
  TSHzLabel *lineLabel=new TSHzLabel(__("Directory"),
                                     new TSInputLine(MaxLineLen,60));
@@ -247,7 +319,7 @@ char *EditItem(const char *s)
  col->insert(xTSCenter,yTSUpSep,lineLabel);
  EasyInsertOKCancel(col,3);
 
- TDialog *d=col->doItCenter(cmeIncludeList);
+ TDialog *d=col->doItCenter(hCtxEdited);
  delete col;
 
  strcpy(b,s);
@@ -263,7 +335,7 @@ int AddItem(void)
  char *s=EditItem("");
  if (s)
    {
-    IncludeList->insert(s);
+    lEdited->insert(s);
     listChanged++;
     return 1;
    }
@@ -273,7 +345,7 @@ int AddItem(void)
 static
 int DeleteItem(int which)
 {
- IncludeList->atRemove(which);
+ lEdited->atRemove(which);
  listChanged++;
  return 1;
 }
@@ -287,31 +359,34 @@ int CancelConfirm(void)
  return 1;
 }
 
-void PathListEdit(void)
+void PathListEdit(int which, unsigned hCtx)
 {
- if (!IncludeList)
+ lEdited=lists[which];
+ if (!lEdited)
    {
-    PathListPopulate();
-    if (!IncludeList)
+    PathListPopulate(which);
+    lEdited=lists[which];
+    if (!lEdited)
        return;
    }
- TDialogAID *d=CreateAddInsDelDialog(-1,-1,Title,12,50,aidOKEnabled);
- d->helpCtx=cmeIncludeList;
+ tEdited=Titles[which];
+ TDialogAID *d=CreateAddInsDelDialog(-1,-1,tEdited,12,50,aidOKEnabled);
+ d->helpCtx=hCtxEdited=hCtx;
  d->DelAction=DeleteItem;
  d->AddAction=AddItem;
  d->CancelAction=CancelConfirm;
 
  TStringableListBoxRec box;
- box.items=IncludeList;
+ box.items=lEdited;
  box.selection=0;
  listChanged=0;
 
  TPathList *backup=new TPathList();
- *backup=*IncludeList;
+ *backup=*lEdited;
 
  unsigned ret=execDialog(d,&box);
  if (listChanged && ret!=cmOK)
-    *IncludeList=*backup;
+    *lEdited=*backup;
 
  CLY_destroy(backup);
 }

@@ -10,6 +10,20 @@ come from various sources and your live can vary. I say virtually because
 actually the standalone editor can generate it only from the message box,
 but in RHIDE the breakpoints are other source.
 
+IMPORTANT!!!!
+Internally the splines are list of lines associated with a file name. This
+file name can be a file we are editing or not. The splines itself can't be
+saved to disk. So they are "internal representations". For this reason they
+associate a *full qualified* file name with line numbers. To ensure it all
+the functions first expand the name and then does the work (searches for
+example). It means that internally we use absolute file names, but you can
+specify relative names when adding or deleting splines.
+A very important detail is that the editor is even smarter and uses inode
+values to diferentiate files. So when we apply the special lines the editor
+will apply them even to a file name that isn't the same but represents the
+same file in disk.
+I'm not sure what problems and limitations can be derived from that.
+
 ***************************************************************************/
 //#define DEBUG
 #ifdef DEBUG
@@ -23,10 +37,6 @@ but in RHIDE the breakpoints are other source.
 #define Uses_TCEditor_Internal
 #include <ceditor.h>
 #include <splinman.h>
-
-// The following function must be provided by the main part of the editor.
-// Your objetive is transfer the array spLines to the editor associated to fileName
-extern void ApplySpLines(char *fileName,int *spLines);
 
 // Here I'm using a trick that isn't so clean, I use collections to hold
 // integers instead of void * because both are 32 bits
@@ -83,7 +93,7 @@ inmediatly to the owner, if not you MUST call @x{SpLinesUpdate}.
 
 ***************************************************************************/
 
-void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow)
+void SpLinesAdd(char *fName, int line, int idSource, Boolean TransferNow)
 {
  ccIndex pos;
 
@@ -95,6 +105,12 @@ void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow)
    }
  NodeCol *p;
  line--; // Because the editor uses 0 internally
+
+ // TODO: should we implement some inode mechanism?
+ char fileName[PATH_MAX];
+ strcpy(fileName,fName);
+ CLY_fexpand(fileName);
+
  if (SpLines->search(fileName,pos))
    {
     p=(NodeCol *)(SpLines->at(pos));
@@ -123,7 +139,7 @@ void SpLinesAdd(char *fileName, int line, int idSource, Boolean TransferNow)
     #endif
    }
  if (TransferNow)
-    ApplySpLines(fileName,p->SpecialLines->getItems());
+    ApplySpLines(fileName,p->SpecialLines->getItems(),p->idSources->getItems());
 }
 
 // Very important!, the editor needs a terminated list or ... kbum!
@@ -148,7 +164,8 @@ static
 void ApplySpLines(void *item, void *)
 {
  NodeCol *p=(NodeCol *)item;
- ApplySpLines(p->file,AddaptList(p));
+ // Note: ApplySpLines is smart and will search the file by its inode.
+ ApplySpLines(p->file,AddaptList(p),p->idSources->getItems());
 }
 
 /**[txh]********************************************************************
@@ -180,14 +197,20 @@ returns the list.
 
 ***************************************************************************/
 
-int *SpLinesGetFor(char *fileName)
+int *SpLinesGetFor(char *fName, int *&ids)
 {
- if (!SpLines || !fileName) // New files doesn't have a name
+ if (!SpLines || !fName) // New files doesn't have a name
     return 0;
+
+ char fileName[PATH_MAX];
+ strcpy(fileName,fName);
+ CLY_fexpand(fileName);
+
  ccIndex pos;
  if (SpLines->search(fileName,pos))
    {
     NodeCol *p=(NodeCol *)(SpLines->at(pos));
+    ids=p->idSources->getItems();
     return AddaptList(p);
    }
  return 0;
@@ -202,7 +225,7 @@ special lines no longer exists.
 
 ***************************************************************************/
 
-void SpLinesDeleteForId(int id)
+void SpLinesDeleteForId(int id, const char *file, Boolean aLine, int oLine)
 {
  if (!SpLines)
     return;
@@ -210,37 +233,58 @@ void SpLinesDeleteForId(int id)
  ccIndex i;
  Boolean deleted;
  NodeCol *p;
+ oLine--;
+
+ char fileName[PATH_MAX];
+ if (file)
+   {
+    strcpy(fileName,file);
+    CLY_fexpand(fileName);
+    file=fileName;
+   }
+
  for (i=0; i<count;)
     {
      p=(NodeCol *)(SpLines->at(i));
+     // If we are looking for a particular file and it isn't just continue
+     if (file && strcmp(file,p->file))
+        continue;
      ccIndex c2,j;
      c2=p->idSources->getCount();
      deleted=False;
      for (j=0; j<c2;)
         {
-         if ((long)(p->idSources->at(j))==(long)id)
+         if ((long)(p->idSources->at(j))==(long)id &&
+             // Not a particular line or the line we want
+             (!aLine || (long)(p->OriginalLines->at(j))==(long)oLine))
            {
             p->idSources->atRemove(j);
             p->SpecialLines->atRemove(j);
             p->OriginalLines->atRemove(j);
             c2--;
             deleted=True;
+            // If it was the line we wanted stop searching
+            if (aLine)
+               break;
            }
          else
            j++;
         }
      if (c2==0) // All deleted
        {
-        ApplySpLines(p->file,0);
+        ApplySpLines(p->file,0,0);
         SpLines->atFree(i);
         count--;
        }
      else
        {
         if (deleted) // Reflex the change
-           ApplySpLines(p->file,AddaptList(p));
+           ApplySpLines(p->file,AddaptList(p),p->idSources->getItems());
         i++;
        }
+     // If it was the file we wanted we are done
+     if (file)
+        break;
     }
  if (count==0)
    {
@@ -253,13 +297,21 @@ void SpLinesDeleteForId(int id)
 
   Description:
   This function searchs the specified line and returns the actual value.
+To know if the line was actually found use the @var{found} argument. That's
+optional.
 
 ***************************************************************************/
 
-int SpLineGetNewValueOf(int line, char *fileName)
+int SpLineGetNewValueOf(int line, char *fName, Boolean *found)
 {
+ if (found)
+    *found=False;
  if (!SpLines)
     return line;
+
+ char fileName[PATH_MAX];
+ strcpy(fileName,fName);
+ CLY_fexpand(fileName);
 
  ccIndex Pos;
  line--;
@@ -271,7 +323,51 @@ int SpLineGetNewValueOf(int line, char *fileName)
     for (i=0; i<c; i++)
        {
         if ((long)(p->OriginalLines->at(i))==(long)line)
+          {
+           if (found)
+              *found=True;
            return (long)(p->SpecialLines->at(i))+1;
+          }
+       }
+   }
+ return line+1;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  This function searchs the specified actual line and returns the original
+value. To know if the line was actually found use the @var{found} argument.
+That's optional.
+
+***************************************************************************/
+
+int SpLineGetOldValueOf(int line, char *fName, Boolean *found)
+{
+ if (found)
+    *found=False;
+ if (!SpLines)
+    return line;
+
+ char fileName[PATH_MAX];
+ strcpy(fileName,fName);
+ CLY_fexpand(fileName);
+
+ ccIndex Pos;
+ line--;
+ if (SpLines->search(fileName,Pos))
+   {
+    NodeCol *p=(NodeCol *)(SpLines->at(Pos));
+    ccIndex c=p->SpecialLines->getCount();
+    ccIndex i;
+    for (i=0; i<c; i++)
+       {
+        if ((long)(p->SpecialLines->at(i))==(long)line)
+          {
+           if (found)
+              *found=True;
+           return (long)(p->OriginalLines->at(i))+1;
+          }
        }
    }
  return line+1;

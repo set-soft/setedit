@@ -27,4 +27,3 @@ Description: Do you want to create backups of modified files?
  when you already exited the editor and hence undo option isn't available.
 Choices: Yes, No
 Default: Yes
-

@@ -1021,6 +1021,9 @@ int LoadTVMenuAndStatus(char *fileName)
  #if HAVE_MIXER
  defs->insert(newStr("MIXER"));
  #endif
+ #if HAVE_GDB_MI
+ defs->insert(newStr("DEBUG"));
+ #endif
 
  PreproInfo.depth=0;
  GetLine();

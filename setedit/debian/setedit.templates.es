@@ -49,4 +49,3 @@ Description-es: ¿Desea que se creen respaldos de los archivos modificados?
  respaldo puede ser creado en caso de que se quiera revertir los cambios.
  Ésto es especialmente útil cuando Ud. salió del editor y entonces no tiene
  posibilidad de activar la opción de deshacer los cambios.
-

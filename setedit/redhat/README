@@ -94,3 +94,4 @@ Note 2: If you want to use a directory different than ~/rpm you can use:
 $ mkdir /tmp/example
 $ export SET_RPM_DIR=/tmp/example
 
+

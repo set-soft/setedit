@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.540  2004/07/19 20:02:00  set
+* Fixed: [Debian] Applied patch S.F. #993014 submitted by Baurjan Ismagulov
+(ibr): "Add an include file required by rhide".
+
 Revision 1.539  2004/07/19 19:53:20  set
 * Fixed: [config] --cxx-flags flag was reported as --cpp-flags in the help.
 Now both are valid. Reported by Ullal Devappa Kini (wmbfqj/vsnl/net).

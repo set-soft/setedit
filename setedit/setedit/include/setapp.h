@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_SETAppAll
 #define Uses_SETAppConst
@@ -126,7 +126,39 @@ const int
   cmeSelWindow18    = cmeBase+106,
   cmeSelWindow19    = cmeBase+107,
   cmeSelWinPrj      = cmeBase+108,
-  cmeSelWinMessage  = cmeBase+109;
+  cmeSelWinMessage  = cmeBase+109,
+  // Debugger interface
+  // Not a command but a mark
+  cmeDbgFirstCommand= cmeBase+110,
+  //------------------------------
+  cmeBreakpoint     = cmeBase+110,
+  cmeDebugOptions   = cmeBase+111,
+  cmeDbgRunContinue = cmeBase+112,
+  cmeDbgStepOver    = cmeBase+113,
+  cmeDbgTraceInto   = cmeBase+114,
+  cmeDbgGoToCursor  = cmeBase+115,
+  cmeDbgFinishFun   = cmeBase+116,
+  cmeDbgReturnNow   = cmeBase+117,
+  cmeDbgStop        = cmeBase+118,
+  cmeDbgKill        = cmeBase+119,
+  cmeDbgCallStack   = cmeBase+120,
+  cmeDbgEvalModify  = cmeBase+121,
+  cmeDbgOptsMsgs    = cmeBase+122,
+  cmeDbgWatchExpNorm= cmeBase+123,
+  cmeDbgWatchExpScp = cmeBase+124,
+  cmeSelDebugWin    = cmeBase+125,
+  cmeSelWatchesWin  = cmeBase+126,
+  cmeDbgEndSession  = cmeBase+127,
+  cmeDbgCloseSession= cmeBase+128,
+  cmeDbgGoConnected = cmeBase+129,
+  cmeDbgGoReadyToRun= cmeBase+130,
+  // That isn't a command, is to know the last+1.
+  cmeDbgLastCommand = cmeBase+131,
+  //-------------------------------------------------------------------------
+  // That's messy, I'm reserving some commands for the "debug" group
+  //-------------------------------------------------------------------------
+  cmeSourceList     = cmeBase+160;
+
 #endif
 
 // TScOptsCol used to hold the screen options for each video driver.
@@ -253,7 +285,7 @@ public:
     virtual void idle();
     virtual void getEvent(TEvent& event);
     void screenSaver();
-    void setCmdState(uint16 command,Boolean enable);
+    static void setCmdState(uint16 command,Boolean enable);
     void GetContextHelp(void);
     void pocketCalculator(void);
     void RemapCodePageEd(void);
@@ -301,6 +333,36 @@ public:
     void tile();
     void cascade();
     void SetTitle(const char *str1=0, const char *str2=0);
+
+    // Debugger interface
+    static void DebugToggleBreakpoint();
+    static int  DebugOptionsEdit();
+    static int  DebugInitVars();
+    static void DebugDeInitVars();
+    static int  DebugCheckStopped(Boolean showConnect=False);
+    static int  DebugCheckAcceptCmd(Boolean showConnect=False);
+    static int  DebugConnect();
+    static int  DebugSelectTarget(Boolean showConnect=False);
+    static void DebugUpdateCommands();
+    static void DebugRunOrContinue();
+    static void DebugPoll();
+    static void DebugStepOver();
+    static void DebugTraceInto();
+    static void DebugGoToCursor();
+    static void DebugFinishFun();
+    static void DebugReturnNow();
+    static void DebugStop();
+    static void DebugKill();
+    static void DebugCallStack();
+    static void DebugEvalModify(char *startVal);
+    static char *DebugEvalExpression(char *exp);
+    static char *DebugModifyExpression(char *exp, char *newVal);
+    static void DebugOptsMsgs();
+    static void DebugWatchExp(Boolean wScope);
+    static int  DebugConfirmEndSession(Boolean directRequest=False);
+    static void DebugCloseSession();
+    static void DebugCommandsForDisc();
+    static void DebugCommonCleanUp();
 
 protected:
 
@@ -368,7 +430,8 @@ extern void CopyHelp2Clip(char *b, long l);
 extern void ShowHelpTopic(char *file, char *node);
 extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line,char *name);
-extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0);
+extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0,
+                        Boolean selectLine=True);
 extern int GotoFileText(char *search, char *file, char *msg=0, int off=-1, int len=0);
 extern void SetScreenOps(void);
 extern void EditPalette(void);
@@ -443,6 +506,8 @@ extern void ProjectInsertAutoTagFiles();
 extern Boolean ProjectGetSize(TRect &r);
 extern char *GetRelIfFileInPrj(char *name);
 extern char *GetAbsForNameInPrj(const char *name);
+extern void ProjectApplyToItems(ccAppFunc action, void *arg);
+extern void ProjectGetNameFromItem(void *p, char *dest, int size);
 
 // The forceTarget is a bitmap for each target suported by the project.
 // Currently the only target is the TAGs file.
@@ -470,6 +535,7 @@ extern int edTestForFile(const char *name);
 #ifdef Uses_SETAppHelper
 class TDskWin;
 int SearchInHelper(int ,void *);
+TDskWin *SearchInHelperWin(int type, void *p);
 void AddNonEditorToHelper(TDskWin *p);
 void SaveAllEditors(void);
 #endif

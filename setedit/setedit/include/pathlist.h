@@ -2,9 +2,10 @@
    see copyrigh file for details */
 class fpstream;
 
-void PathListEdit(void);
+void PathListEdit(int which, unsigned hCtx);
 void PathListSave(fpstream& s);
 void PathListLoad(fpstream& s);
-int  PathListGetItem(ccIndex pos, char *buffer);
-int  PathListPopulate();
+int  PathListGetItem(ccIndex pos, char *buffer, int which);
 void PathListUnLoad();
+
+const int paliInclude=0, paliSource=1, paliLists=2;

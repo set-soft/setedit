@@ -1,2 +1,4 @@
+libintl.h
+config.h
 Makefile
 

@@ -171,4 +171,5 @@ infutil.o: zutil.h zlib.h zconf.h infblock.h inftrees.h infcodes.h infutil.h
 minigzip.o:  zlib.h zconf.h 
 trees.o: deflate.h zutil.h zlib.h zconf.h trees.h
 uncompr.o: zlib.h zconf.h
-zutil.o: zutil.h zlib.h zconf.h  
+zutil.o: zutil.h zlib.h zconf.h
+

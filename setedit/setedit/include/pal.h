@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /* That's the palette of the editor constructed with the Robert's macros */
 
@@ -115,8 +115,8 @@
         S(4C,Lightgreen,Blue,Preprocessor) \
         S(4D,Black,Red,Illegal char) \
         S(4E,Green,Blue,User defined words) \
-        S(4F,Black,Cyan,Reserved) /* CPU line */\
-        S(50,White,Red,Reserved) /* Breakpoint */\
+        S(4F,Black,Cyan,CPU line) \
+        S(50,White,Red,Breakpoint) \
         S(51,Lightred,Blue,Symbol2) \
         \
         SS(52,Yellow,Blue,Normal text,Cyan Editor) \
@@ -134,8 +134,8 @@
         S(5E,Lightgreen,Blue,Preprocessor) \
         S(5F,Black,Red,Illegal char) \
         S(60,Green,Blue,User defined words) \
-        S(61,Black,Cyan,Reserved) /* CPU line */\
-        S(62,White,Red,Reserved) /* Breakpoint */\
+        S(61,Black,Cyan,CPU line) \
+        S(62,White,Red,Breakpoint) \
         S(63,Lightred,Blue,Symbol2) \
         \
         SS(64,Yellow,Blue,Normal text,Gray Editor) \
@@ -153,8 +153,8 @@
         S(70,Lightgreen,Blue,Preprocessor) \
         S(71,Black,Red,Illegal char) \
         S(72,Green,Blue,User defined words) \
-        S(73,Black,Cyan,Reserved) /* CPU line */\
-        S(74,White,Red,Reserved) /* Breakpoint */\
+        S(73,Black,Cyan,CPU line) \
+        S(74,White,Red,Breakpoint) \
         S(75,Lightred,Blue,Symbol2) \
         \
         SS(76,Lightgray,Black,Cross cursor,Specials for editors) \

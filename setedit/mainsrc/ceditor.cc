@@ -84,6 +84,7 @@
 #include <bufun.h>
 #include <loadshl.h>
 #include <advice.h>
+#include <splinman.h>
 
 #include <setconst.h>
 
@@ -241,28 +242,29 @@ TCEditor::TCEditor( const TRect& bounds,
                   TSIndicator *aIndicator,
                   const char *aFileName,
                   Boolean openRO ) :
-    TViewPlus( bounds ),
-    hScrollBar( aHScrollBar ),
-    vScrollBar( aVScrollBar ),
-    indicator( aIndicator ),
-    bufSize( 4050 ),
-    canUndo( True ),
-    selecting( False ),
-    overwrite( False ),
-    NoNativeEOL( False ),
-    IsaCompressedFile( gzNoCompressed ),
-    lockCount( 0 ),
-    updateFlags( 0 ),
-    keyState( 0 ),
-    bufEdit( 0 ),         // Not buffer allocated
-    bufEditLen( 0 ),       // zero length
+    TViewPlus(bounds),
+    hScrollBar(aHScrollBar),
+    vScrollBar(aVScrollBar),
+    indicator(aIndicator),
+    bufSize(4050),
+    canUndo(True),
+    selecting(False),
+    overwrite(False),
+    NoNativeEOL(False),
+    IsaCompressedFile(gzNoCompressed),
+    lockCount(0),
+    updateFlags(0),
+    keyState(0),
+    bufEdit(0),         // Not buffer allocated
+    bufEditLen(0),       // zero length
     GenericSHL(0),
-    CrossCurInCacheC( False ),
-    CrossCurInCacheR( False ),
-    IsStatusLineOn( False ),
-    IsFoundOn( False ),
-    IsHLCOn( False ),
-    SpecialLines( NULL ),
+    CrossCurInCacheC(False),
+    CrossCurInCacheR(False),
+    IsStatusLineOn(False),
+    IsFoundOn(False),
+    IsHLCOn(False),
+    SpecialLines(NULL),
+    SpecialLinesIds(NULL),
     DiskTime(0)
 {
  InitTCEditor("pmacros.pmc",False);
@@ -362,6 +364,8 @@ TCEditor::~TCEditor()
  flushUndoInfo();
  delete selRectClip;
  delete[] colMarkers;
+ delete[] SpecialLines;
+ delete[] SpecialLinesIds;
 }
 
 /****************************************************************************
@@ -1397,16 +1401,31 @@ void TCEditor::drawLines( int y, int count, uint32 linePtr )
                   bc[Off]=ColRect;
           }
 
-#ifdef TEST_SPLINES
-       {
+       {/* Paint breakpoint and CPU lines. */
         int i,off,j;
         if (SpecialLines)
            for (i=0; SpecialLines[i]!=splEndOfList; i++)
                if (SpecialLines[i]==(int)yInFile)
-                  for (off=delta.x, j=size.x; j; off++,j--)
-                      bc[off*2+1]=0xF0;
+                 {
+                  int color=0;
+                  if (SpecialLinesIds[i]==idsplBreak)
+                     color=getColor(cBreak) & 0xF0;
+                  else if (SpecialLinesIds[i]==idsplRunLine)
+                     color=getColor(cCPU) & 0xF0;
+                  if (color)
+                    {
+                     int colAvoid=color>>4, colFg;
+
+                     for (off=delta.x, j=size.x; j; off++,j--)
+                        {
+                         colFg=bc[off*2+1] & 0xF;
+                         if (colFg==colAvoid)
+                            colFg=(colFg+1) & 0xF;
+                         bc[off*2+1]=colFg | color;
+                        }
+                    }
+                 }
        }
-#endif
 
         writeLine(0,y, size.x, 1, &b[delta.x]);
         // Adjust the pointer linePtr
@@ -4198,20 +4217,25 @@ cmcGotoEditorLine.
 
 *****************************************************************************/
 
-void TCEditor::GoAndSelectLine(int line)
+void TCEditor::GoAndSelectLine(int line, Boolean selectLine)
 {
  if (line<0)
     line=0;
  if (line>limit.y)
     line=limit.y;
  MoveCursorTo(0,--line,True);
- /* Use selStartF and selEndF here so any real selection
-    will not removed. */
- selStartF=(uint32)(curLinePtr-buffer);
- /* Use the total length of the line to higlight it
-    from the total left to total right */
- selEndF=selStartF+lenLines[line];
- update(ufUpdate|ufFound|ufLine);
+ if (selectLine)
+   {
+    /* Use selStartF and selEndF here so any real selection
+       will not removed. */
+    selStartF=(uint32)(curLinePtr-buffer);
+    /* Use the total length of the line to higlight it
+       from the total left to total right */
+    selEndF=selStartF+lenLines[line];
+    update(ufUpdate|ufFound|ufLine);
+   }
+ else
+    update(ufUpdate);
 }
 
 /****************************************************************************
@@ -11077,7 +11101,7 @@ void *TCEditor::read( ipstream& is )
  CrossCursorInCol=CrossCursorInRow=False;
  setBufLen(0);
 
- SpecialLines=NULL;
+ SpecialLinesIds=SpecialLines=NULL;
 
  is.readString(fileName,sizeof(fileName));
  if (isValid)
@@ -13510,6 +13534,122 @@ uint32 *TCEditor::Str2ColMarkers(char *str)
  qsort(markers,count,sizeof(uint32),compareUint32);
 
  return markers;
+}
+
+#define DEBUG_SPLINES_UPDATE 0
+
+/**[txh]********************************************************************
+
+  Description:
+  Changes the list of special lines for a new one. The object will keep a
+copy of the list. The lines that changed are updated if they are visible.
+  
+***************************************************************************/
+
+void TCEditor::SetSpecialLines(int *nLines, int *nIds)
+{
+ // Move the drawPtr to the first visible line
+ AdjustDrawPtr();
+
+ int y1=delta.y, y2=delta.y+size.y, y, i, j, type;
+ int *oLines, *oIds, fLines[2], fIds, nLen=0;
+
+ oLines=SpecialLines;
+ oIds=SpecialLinesIds;
+ SpecialLines=NULL;
+ SpecialLinesIds=NULL;
+ fLines[1]=splEndOfList;
+
+ if (DEBUG_SPLINES_UPDATE)
+    printf("\n\nTCEditor::SetSpecialLines\n");
+ if (oLines)
+   {// We already have them redraw the affected lines
+    for (i=0; oLines[i]!=splEndOfList; i++)
+       {
+        y=oLines[i];
+        type=oIds[i];
+        if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
+          {// This line is visible
+           // Check if it will change
+           int found=0;
+           if (nLines)
+             {
+              for (j=0; !found && nLines[j]!=splEndOfList; j++)
+                  if (nLines[j]==y && nIds[j]==type)
+                     found=1;
+             }
+           if (!found)
+             {// This line is no longer special or changed its type
+              if (DEBUG_SPLINES_UPDATE)
+                 printf("Painting %d as normal\n",y);
+              unsigned p=drawPtr;
+              int ya;
+              for (ya=y1; ya<y; ya++)
+                  p+=lenLines.safeLen(ya);
+              drawLines(y,1,p);
+             }
+          }
+       }
+   }
+
+ if (nLines)
+   {// We got a new set, draw the affected lines
+    SpecialLines=fLines;
+    SpecialLinesIds=&fIds;
+    nLen=0;
+    for (i=0; nLines[i]!=splEndOfList; i++)
+       {
+        y=nLines[i];
+        type=nIds[i];
+        if (y>=y1 && y<y2 && (type==idsplBreak || type==idsplRunLine))
+          {// This line is visible
+           // Check if it's changing
+           int found=0;
+           if (oLines)
+             {
+              for (j=0; !found && oLines[j]!=splEndOfList; j++)
+                  if (oLines[j]==y && oIds[j]==type)
+                     found=1;
+             }
+           if (!found)
+             {// This line is no longer special or changed its type
+              if (DEBUG_SPLINES_UPDATE)
+                 printf("Painting %d as special\n",y);
+              fIds=type;
+              fLines[0]=y;
+              unsigned p=drawPtr;
+              int ya;
+              for (ya=y1; ya<y; ya++)
+                  p+=lenLines.safeLen(ya);
+              drawLines(y,1,p);
+             }
+          }
+       }
+    nLen=i+1;
+   }
+
+ // We use a copy of the array so we can do the update check
+ delete[] oLines;
+ delete[] oIds;
+ if (nLines)
+   {
+    SpecialLines=new int[nLen];
+    memcpy(SpecialLines,nLines,sizeof(int)*nLen);
+    nLen--;
+    if (DEBUG_SPLINES_UPDATE)
+       printf("Now we have %d splines\n",nLen);
+    SpecialLinesIds=new int[nLen];
+    memcpy(SpecialLinesIds,nIds,sizeof(int)*nLen);
+   }
+ else
+   {
+    SpecialLines=NULL;
+    SpecialLinesIds=NULL;
+    if (DEBUG_SPLINES_UPDATE)
+       printf("Now we have 0 splines\n");
+   }
+ if (DEBUG_SPLINES_UPDATE)
+    printf("\n");
 }
 
 /**[txh]********************************************************************

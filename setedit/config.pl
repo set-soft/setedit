@@ -140,6 +140,8 @@ LookForMakeinfo();
 LookForDL() if ($OS eq 'UNIX');
 # An option to display screen savers ;-)
 LookForAA() if ($OS eq 'UNIX');
+# GDB/MI interface
+LookForMI() if ($OS eq 'UNIX');
 #  Check if we can offer the distrib targets.
 LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
@@ -206,6 +208,7 @@ else # Win32
   }
 $MakeDefsRHIDE[1].='-lz ';
 $MakeDefsRHIDE[1].='-lpcre '    if @conf{'HAVE_PCRE_LIB'} eq 'yes';
+$MakeDefsRHIDE[1].='-lmigdb '   if @conf{'HAVE_GDB_MI'} eq 'yes';
 $MakeDefsRHIDE[1].='-lmss '     if @conf{'mss'} eq 'yes';
 $MakeDefsRHIDE[1].='-lefence '  if @conf{'efence'} eq 'yes';
 $MakeDefsRHIDE[1].='-ltvfintl ' if @conf{'tvfintl'} eq 'yes';
@@ -1282,6 +1285,7 @@ sub CreateConfigH
  $text.=ConfigIncDefYes('FORCE_INTL_SUPPORT','Gettext included with editor');
  #$text.=ConfigIncDefYes('HAVE_X11','X11 library and headers');
  $text.=ConfigIncDefYes('HAVE_AA','AA lib');
+ $text.=ConfigIncDefYes('HAVE_GDB_MI','GDB/MI interface');
  $text.=ConfigIncDefYes('HAVE_DL_LIB','Support for runtime dynamic libs');
  $text.="\n#define DL_HEADER_NAME <".$conf{'dl_header'}.".h>\n";
 
@@ -1839,5 +1843,32 @@ sub LookForAA
  $conf{'HAVE_AA'}=($test=~/OK$/) ? 'yes' : 'no';
 
  print "$conf{'HAVE_AA'}\n";
+}
+
+sub LookForMI()
+{
+ my ($test);
+
+ print 'Looking for GDB/MI library: ';
+ $test=$conf{'HAVE_GDB_MI'};
+ if ($test eq 'yes')
+   {
+    print "$test ";
+    print " OK\n";
+    return;
+   }
+ $test='
+ #include <stdio.h>
+ #include <mi_gdb.h>
+ int main(void)
+ {
+  mi_set_gdb_exe("none");
+  printf("OK\n");
+  return 0;
+ }';
+ $test=RunGCCTest($GCC,'c',$test,'-lmigdb');
+ $conf{'HAVE_GDB_MI'}=($test=~/OK$/) ? 'yes' : 'no';
+
+ print "$conf{'HAVE_GDB_MI'}\n";
 }
 

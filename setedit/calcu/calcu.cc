@@ -164,6 +164,5 @@ void executeCalc(char *startVal)
  TProgram::deskTop->execView(d);
  // Dialogs should be destroyed or your members won't de deleted.
  CLY_destroy(d);
- if (startVal)
-    delete startVal;
+ delete[] startVal;
 }

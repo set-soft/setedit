@@ -132,3 +132,4 @@ TabsForIndent=$TabsForIndent
 CreateBackUps=$CreateBackUps
 " > $cfgFile
 
+

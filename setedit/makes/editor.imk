@@ -17,6 +17,7 @@ editor$(ExEXE):: \
 	obj/ceditor$(ExOBJ) \
 	obj/codepage$(ExOBJ) \
 	obj/completi$(ExOBJ) \
+	obj/debug$(ExOBJ) \
 	obj/deedidia$(ExOBJ) \
 	obj/doedidia$(ExOBJ) \
 	obj/dskascii$(ExOBJ) \
@@ -145,6 +146,7 @@ editor$(ExEXE):: \
 obj/accehtml$(ExOBJ):: ../mainsrc/accehtml.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -365,6 +367,7 @@ obj/bufun$(ExOBJ):: ../mainsrc/bufun.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -442,6 +445,7 @@ obj/calcu$(ExOBJ):: ../calcu/calcu.cc \
 	calcu.h \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -550,6 +554,7 @@ obj/ceditor$(ExOBJ):: ../mainsrc/ceditor.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	codepage.h \
@@ -570,6 +575,7 @@ obj/ceditor$(ExOBJ):: ../mainsrc/ceditor.cc \
 	settvuti.h \
 	sindicat.h \
 	slpinter.h \
+	splinman.h \
 	tnocastc.h \
 	tprogdia.h \
 	tstringa.h \
@@ -642,6 +648,7 @@ obj/codepage$(ExOBJ):: ../setedit/codepage.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -710,6 +717,7 @@ obj/completi$(ExOBJ):: ../mainsrc/completi.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	completi.h \
@@ -767,11 +775,107 @@ obj/completi$(ExOBJ):: ../mainsrc/completi.cc \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
+obj/debug$(ExOBJ):: ../setedit/debug.cc \
+	ced_clas.h \
+	ced_exte.h \
+	ced_pcre.h \
+	ceditor.h \
+	compatlayer.h \
+	debug.h \
+	dskwin.h \
+	dyncat.h \
+	easydia1.h \
+	easydiag.h \
+	edhists.h \
+	editcoma.h \
+	edmsg.h \
+	nostatex.h \
+	pathlist.h \
+	pmcoll.h \
+	sarray.h \
+	setapp.h \
+	setstack.h \
+	settvuti.h \
+	sindicat.h \
+	splinman.h \
+	tinppipe.h \
+	tnocastc.h \
+	tsbutton.h \
+	tshzgrp.h \
+	tsinplin.h \
+	tsinplpi.h \
+	tslabel.h \
+	tstatext.h \
+	tstringa.h \
+	tstrlbox.h \
+	tsvegrp.h \
+	tsview.h \
+	tsviewco.h \
+	tv.h \
+	tv/app.h \
+	tv/applictn.h \
+	tv/button.h \
+	tv/cmdset.h \
+	tv/codepage.h \
+	tv/collectn.h \
+	tv/configtv.h \
+	tv/desktop.h \
+	tv/dialog.h \
+	tv/dialogs.h \
+	tv/drawbuf.h \
+	tv/event.h \
+	tv/group.h \
+	tv/history.h \
+	tv/indicato.h \
+	tv/inputln.h \
+	tv/intl.h \
+	tv/ipstream.h \
+	tv/label.h \
+	tv/listbox.h \
+	tv/lstviewr.h \
+	tv/msgbox.h \
+	tv/no_mss.h \
+	tv/nscoll.h \
+	tv/nssorcol.h \
+	tv/object.h \
+	tv/objects.h \
+	tv/opstream.h \
+	tv/parttree.h \
+	tv/point.h \
+	tv/program.h \
+	tv/pstream.h \
+	tv/rect.h \
+	tv/resource.h \
+	tv/screen.h \
+	tv/scrlbar.h \
+	tv/scroller.h \
+	tv/sortcoll.h \
+	tv/stddlg.h \
+	tv/streambl.h \
+	tv/strmblcl.h \
+	tv/strncoll.h \
+	tv/sttctext.h \
+	tv/system.h \
+	tv/tobjstrm.h \
+	tv/ttypes.h \
+	tv/tvconfig.h \
+	tv/tvobjs.h \
+	tv/tvutil.h \
+	tv/view.h \
+	tv/views.h \
+	tv/window.h \
+	tv/yes_mss.h \
+	tvsetuti.h \
+	viewplus.h \
+	$(MAKEFILE_DEPS) 
+	$(RHIDE_COMPILE_CC)
+
 obj/deedidia$(ExOBJ):: ../mainsrc/deedidia.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -873,6 +977,7 @@ obj/doedidia$(ExOBJ):: ../mainsrc/doedidia.cc \
 	bufun.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1008,6 +1113,7 @@ obj/dskcalen$(ExOBJ):: ../setedit/dskcalen.cc \
 obj/dskclip$(ExOBJ):: ../setedit/dskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1071,6 +1177,7 @@ obj/dskclip$(ExOBJ):: ../setedit/dskclip.cc \
 obj/dskclose$(ExOBJ):: ../setedit/dskclose.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1138,6 +1245,7 @@ obj/dskclose$(ExOBJ):: ../setedit/dskclose.cc \
 obj/dskedito$(ExOBJ):: ../setedit/dskedito.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1205,6 +1313,7 @@ obj/dskedito$(ExOBJ):: ../setedit/dskedito.cc \
 obj/dskhelp$(ExOBJ):: ../setedit/dskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -1446,6 +1555,7 @@ obj/dstfile$(ExOBJ):: ../setedit/dstfile.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	codepage.h \
@@ -1567,6 +1677,7 @@ INCLUDE01=easydiag$(ExIMK)
 obj/edcolor$(ExOBJ):: ../setedit/edcolor.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	diaghelp.h \
@@ -1649,6 +1760,7 @@ obj/edconst$(ExOBJ):: ../mainsrc/edconst.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskwin.h \
@@ -1833,11 +1945,13 @@ obj/editmain$(ExOBJ):: ../setedit/editmain.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
 	configed.h \
 	datetools.h \
+	debug.h \
 	diaghelp.h \
 	dktclock.h \
 	dskclose.h \
@@ -1954,6 +2068,7 @@ obj/editmenu$(ExOBJ):: ../setedit/editmenu.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -2040,6 +2155,7 @@ obj/editorfo$(ExOBJ):: ../mainsrc/editorfo.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -2141,6 +2257,7 @@ obj/editwind$(ExOBJ):: ../mainsrc/editwind.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -2293,6 +2410,7 @@ obj/edmsg$(ExOBJ):: ../setedit/edmsg.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	codepage.h \
@@ -2371,6 +2489,7 @@ obj/edprefs$(ExOBJ):: ../setedit/edprefs.cc \
 	advice.h \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	codepage.h \
 	compatlayer.h \
@@ -2537,11 +2656,13 @@ obj/edprj$(ExOBJ):: ../setedit/edprj.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	codepage.h \
 	compatlayer.h \
 	configed.h \
+	debug.h \
 	dskprj.h \
 	dskwin.h \
 	edcollec.h \
@@ -2654,6 +2775,7 @@ obj/getctxhl$(ExOBJ):: ../setedit/getctxhl.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskhelp.h \
@@ -2808,6 +2930,7 @@ INCLUDE03=inffd$(ExIMK)
 obj/intgrep$(ExOBJ):: ../setedit/intgrep.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -2961,6 +3084,7 @@ obj/linelen$(ExOBJ):: ../mainsrc/linelen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/loadcle$(ExOBJ):: ../setedit/loadcle.cc \
+	ced_pcre.h \
 	ceditint.h \
 	compatlayer.h \
 	configed.h \
@@ -2998,6 +3122,7 @@ obj/loaddefl$(ExOBJ):: ../mainsrc/loaddefl.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	easydia1.h \
@@ -3099,6 +3224,7 @@ obj/loadfunc$(ExOBJ):: ../mainsrc/loadfunc.cc \
 
 obj/loadnobkp$(ExOBJ):: ../setedit/loadnobkp.cc \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -3170,6 +3296,7 @@ obj/loadshl$(ExOBJ):: ../mainsrc/loadshl.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -3226,6 +3353,7 @@ obj/loadusew$(ExOBJ):: ../mainsrc/loadusew.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	easydia1.h \
@@ -3306,6 +3434,7 @@ obj/loadusew$(ExOBJ):: ../mainsrc/loadusew.cc \
 obj/macrocom$(ExOBJ):: ../mainsrc/macrocom.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -3364,6 +3493,7 @@ obj/menuload$(ExOBJ):: ../setedit/menuload.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -3771,6 +3901,7 @@ obj/pathlist$(ExOBJ):: ../setedit/pathlist.cc \
 	configed.h \
 	easydia1.h \
 	easydiag.h \
+	pathlist.h \
 	rhutils.h \
 	setapp.h \
 	settvuti.h \
@@ -3959,6 +4090,7 @@ obj/pvarious$(ExOBJ):: ../mainsrc/pvarious.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/runprog$(ExOBJ):: ../setedit/runprog.cc \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4045,6 +4177,7 @@ obj/runprog$(ExOBJ):: ../setedit/runprog.cc \
 obj/sceditor$(ExOBJ):: ../streams/sceditor.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4099,6 +4232,7 @@ obj/sceditor$(ExOBJ):: ../streams/sceditor.cc \
 obj/scresave$(ExOBJ):: ../setedit/scresave.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4259,6 +4393,7 @@ obj/sdskcale$(ExOBJ):: ../setedit/streams/sdskcale.cc \
 obj/sdskclip$(ExOBJ):: ../setedit/streams/sdskclip.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskclip.h \
@@ -4313,6 +4448,7 @@ obj/sdskclip$(ExOBJ):: ../setedit/streams/sdskclip.cc \
 obj/sdskclos$(ExOBJ):: ../setedit/streams/sdskclos.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskclose.h \
@@ -4367,6 +4503,7 @@ obj/sdskclos$(ExOBJ):: ../setedit/streams/sdskclos.cc \
 obj/sdskedit$(ExOBJ):: ../setedit/streams/sdskedit.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskedito.h \
@@ -4421,6 +4558,7 @@ obj/sdskedit$(ExOBJ):: ../setedit/streams/sdskedit.cc \
 obj/sdskhelp$(ExOBJ):: ../setedit/streams/sdskhelp.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskhelp.h \
@@ -4506,6 +4644,7 @@ obj/sdskman$(ExOBJ):: ../setedit/streams/sdskman.cc \
 obj/sdskmess$(ExOBJ):: ../setedit/streams/sdskmess.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskmessa.h \
@@ -4582,6 +4721,7 @@ obj/sdskmp3$(ExOBJ):: ../setedit/streams/sdskmp3.cc \
 obj/sdskprj$(ExOBJ):: ../setedit/streams/sdskprj.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskprj.h \
@@ -4637,6 +4777,7 @@ obj/search$(ExOBJ):: ../mainsrc/search.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4691,6 +4832,7 @@ obj/search$(ExOBJ):: ../mainsrc/search.cc \
 obj/sedcolle$(ExOBJ):: ../setedit/streams/sedcolle.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskwin.h \
@@ -4752,6 +4894,7 @@ obj/slpinter$(ExOBJ):: ../mainsrc/slpinter.cc \
 	ced_coma.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -4811,6 +4954,7 @@ obj/slpinter$(ExOBJ):: ../mainsrc/slpinter.cc \
 	tv/objects.h \
 	tv/opstream.h \
 	tv/point.h \
+	tv/program.h \
 	tv/pstream.h \
 	tv/rect.h \
 	tv/resource.h \
@@ -4840,6 +4984,7 @@ obj/splinman$(ExOBJ):: ../mainsrc/splinman.cc \
 	ced_clas.h \
 	ced_exte.h \
 	ced_inte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -5006,6 +5151,7 @@ obj/tags$(ExOBJ):: ../mainsrc/tags.cc \
 	advice.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	completi.h \
@@ -5094,6 +5240,7 @@ obj/tedcolle$(ExOBJ):: ../setedit/tedcolle.cc \
 	ced_clas.h \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \
@@ -5262,6 +5409,7 @@ obj/tpaltext$(ExOBJ):: ../setedit/tpaltext.cc \
 obj/tsindica$(ExOBJ):: ../mainsrc/tsindica.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -5354,6 +5502,7 @@ obj/winlistd$(ExOBJ):: ../setedit/winlistd.cc \
 	advice.h \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	dskwin.h \
@@ -5442,6 +5591,7 @@ OBJFILES=\
 	obj/ceditor$(ExOBJ) \
 	obj/codepage$(ExOBJ) \
 	obj/completi$(ExOBJ) \
+	obj/debug$(ExOBJ) \
 	obj/deedidia$(ExOBJ) \
 	obj/doedidia$(ExOBJ) \
 	obj/dskascii$(ExOBJ) \

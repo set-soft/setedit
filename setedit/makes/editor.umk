@@ -17,6 +17,7 @@ editor$(ExEXE):: \
 	obj/ceditor$(ExOBJ) \
 	obj/codepage$(ExOBJ) \
 	obj/completi$(ExOBJ) \
+	obj/debug$(ExOBJ) \
 	obj/deedidia$(ExOBJ) \
 	obj/doedidia$(ExOBJ) \
 	obj/dskascii$(ExOBJ) \
@@ -172,6 +173,9 @@ obj/codepage$(ExOBJ):: ../setedit/codepage.cc
 	$(RHIDE_COMPILE_CC)
 
 obj/completi$(ExOBJ):: ../mainsrc/completi.cc  
+	$(RHIDE_COMPILE_CC)
+
+obj/debug$(ExOBJ):: ../setedit/debug.cc  
 	$(RHIDE_COMPILE_CC)
 
 obj/deedidia$(ExOBJ):: ../mainsrc/deedidia.cc  
@@ -502,6 +506,7 @@ OBJFILES=\
 	obj/ceditor$(ExOBJ) \
 	obj/codepage$(ExOBJ) \
 	obj/completi$(ExOBJ) \
+	obj/debug$(ExOBJ) \
 	obj/deedidia$(ExOBJ) \
 	obj/doedidia$(ExOBJ) \
 	obj/dskascii$(ExOBJ) \

@@ -46,6 +46,7 @@
 #include <edspecs.h>
 #define Uses_TagsOnlyFuncs
 #include <tags.h>
+#include <debug.h>
 
 extern char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 static TDskWinPrj *prjWin=NULL;
@@ -94,7 +95,7 @@ typedef struct
  uint32 forceTarget;  // Read the header for more info
 } PrjItem;
 
-const int TEditorProjectWindow::Version=7;
+const int TEditorProjectWindow::Version=8;
 
 const int crtInteractive=1, crtUseFullName=2;
 const int prjShortName=0, prjName=1;
@@ -736,6 +737,8 @@ void LoadProject(char *name)
 
        if (LoadingPrjVersion>1)
           SDGInterfaceReadData(f);
+       if (LoadingPrjVersion>=8)
+          DebugReadData(*f);
        if (prjWin)
           prjWin->setFileName(name);
        if (GetAutoGenMode()==stfAutoCentral)
@@ -777,6 +780,7 @@ static void SaveOnlyProject(void)
     *f << TEditorProjectWindow::Version << wS << hS << prjWin
        << (char)ProjectList->getSortMode();
     SDGInterfaceSaveData(f);
+    DebugSaveData(*f);
     if (!f)
       {
        messageBox(__("Could not save the project."), mfOKButton | mfError);
@@ -847,25 +851,6 @@ static int HaveExtention(char *name)
  if (slash)
     return point && point>slash;
  return point!=NULL;
-}
-
-void InsertInOrder(TDeskTop *dsk,TDskWin *win)
-{
- int z=win->ZOrder;
- TView *v=0;
-
- if (z>=0)
-   {
-    if (z==0)
-       dsk->insertBefore(win->view,0);
-    else
-      {
-       v=dsk->at(z);
-       dsk->insertBefore(win->view,v);
-      }
-   }
- else
-   dsk->insert(win->view);
 }
 
 void OpenProject(char *name, int preLoad)
@@ -978,6 +963,10 @@ void CloseProject(int openDesktop)
     // Save the actual state
     SaveProject();
    }
+ // Abort any debug session
+ // Note: The interactive cmeOpenPrj and cmeClosePrj asks for confirmation,
+ // shouldn't be a surprise ;-)
+ TSetEditorApp::DebugDeInitVars();
  // Close all the DeskTop windows
  CLY_destroy(TSetEditorApp::edHelper);
  TSetEditorApp::edHelper=0;
@@ -1375,4 +1364,23 @@ char *GetAbsForNameInPrj(const char *name)
  return NULL;
 }
 
+void ProjectApplyToItems(ccAppFunc action, void *arg)
+{
+ if (PrjExists() && ProjectList)
+    ProjectList->forEach(action,arg);
+}
+
+void ProjectGetNameFromItem(void *p, char *dest, int size)
+{
+ PrjItem *st=(PrjItem *)p;
+
+ if (ProjectList->referenceCurDelta)
+   {// The project was loaded from another directory, not curdir
+    char *ori=ProjectList->applyPrjPath(st->name);
+    strncpyZ(dest,ori,size);
+    string_free(ori);
+   }
+ else
+    strncpyZ(dest,st->name,size);
+}
 

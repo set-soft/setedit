@@ -541,6 +541,7 @@ obj/tdiagrow$(ExOBJ):: ../settvuti/tdiagrow.cc \
 obj/tinppipe$(ExOBJ):: ../settvuti/tinppipe.cc \
 	ced_clas.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditor.h \
 	compatlayer.h \
 	pmcoll.h \
@@ -568,6 +569,7 @@ obj/tinppipe$(ExOBJ):: ../settvuti/tinppipe.cc \
 	tv/object.h \
 	tv/objects.h \
 	tv/opstream.h \
+	tv/osclipboard.h \
 	tv/point.h \
 	tv/pstream.h \
 	tv/rect.h \

@@ -5,6 +5,7 @@
 obj/inf$(ExOBJ):: ../infview/inf.cc \
 	ced_coma.h \
 	ced_exte.h \
+	ced_pcre.h \
 	ceditint.h \
 	ceditor.h \
 	compatlayer.h \

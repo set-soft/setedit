@@ -90,6 +90,7 @@
 #include <tags.h>
 #include <rhutils.h>
 #include <advice.h>
+#include <debug.h>
 
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
@@ -360,9 +361,10 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
     ain=(TCEditWindow *)p;
 
     // Transfer the special lines
-    int *spL=SpLinesGetFor(fileName);
+    int *spLIds;
+    int *spL=SpLinesGetFor(fileName,spLIds);
     if (spL)
-       ain->editor->SetSpecialLines(spL);
+       ain->editor->SetSpecialLines(spL,spLIds);
     #ifdef TEST_SPLINES
     ain->editor->SetSpecialLines(spLines);
     #endif
@@ -518,7 +520,8 @@ TSetEditorApp::TSetEditorApp() :
     ts.enableCmd(cmeDosShell);
     ts.enableCmd(cmeUserScreen);
    }
- disableCommands( ts );
+ disableCommands(ts);
+ DebugCommandsForDisc();
 
  TCEditor::editorDialog=doEditDialogLocal;
  doNotReleaseCPU=1;
@@ -853,7 +856,7 @@ void TSetEditorApp::getEvent(TEvent& event)
          break;
    }
 }
-void TagsBrowseAll();
+
 void TSetEditorApp::handleEvent( TEvent& event )
 {
  TApplication::handleEvent( event );
@@ -1024,11 +1027,13 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeOpenPrj:
-              OpenProject();
+              if (DebugConfirmEndSession())
+                 OpenProject();
               break;
 
          case cmeClosePrj:
-              CloseProject(1);
+              if (DebugConfirmEndSession())
+                 CloseProject(1);
               break;
 
          case cmeSavePrj:
@@ -1152,6 +1157,11 @@ void TSetEditorApp::handleEvent( TEvent& event )
                    }
                  RunExternalProgramStopChild();
                 }
+              if (!DebugConfirmEndSession())
+                {
+                 DeleteFilesOnExit=0;
+                 break;
+                }
               if (DeleteFilesOnExit)
                 {
                  int ret=messageBoxDSA(cmeQuitDeleteMessage,
@@ -1201,7 +1211,11 @@ void TSetEditorApp::handleEvent( TEvent& event )
               break;
 
          case cmeIncludeList:
-              PathListEdit();
+              PathListEdit(paliInclude,cmeIncludeList);
+              break;
+
+         case cmeSourceList:
+              PathListEdit(paliSource,cmeSourceList);
               break;
 
          case cmeEncodings:
@@ -1256,6 +1270,14 @@ void TSetEditorApp::handleEvent( TEvent& event )
               SelectWindowNumber(-dktMessage);
               break;
 
+         case cmeSelDebugWin:
+              SelectWindowNumber(-dktDbgMsg);
+              break;
+
+         case cmeSelWatchesWin:
+              SelectWindowNumber(-dktDbgWt);
+              break;
+
          case cmeSelWindow1:
          case cmeSelWindow2:
          case cmeSelWindow3:
@@ -1276,6 +1298,84 @@ void TSetEditorApp::handleEvent( TEvent& event )
          case cmeSelWindow18:
          case cmeSelWindow19:
               SelectWindowNumber(event.message.command-cmeSelWindow1+1);
+              break;
+
+         //********** DEBUG commands
+         case cmeBreakpoint:
+              DebugToggleBreakpoint();
+              break;
+
+         case cmeDebugOptions:
+              DebugOptionsEdit();
+              break;
+
+         case cmeDbgRunContinue:
+              DebugRunOrContinue();
+              break;
+
+         case cmeDbgStepOver:
+              DebugStepOver();
+              break;
+
+         case cmeDbgTraceInto:
+              DebugTraceInto();
+              break;
+
+         case cmeDbgGoToCursor:
+              DebugGoToCursor();
+              break;
+
+         case cmeDbgFinishFun:
+              DebugFinishFun();
+              break;
+
+         case cmeDbgReturnNow:
+              DebugReturnNow();
+              break;
+
+         case cmeDbgStop:
+              DebugStop();
+              break;
+
+         case cmeDbgKill:
+              DebugKill();
+              break;
+
+         case cmeDbgCallStack:
+              DebugCallStack();
+              break;
+
+         case cmeDbgEvalModify:
+              DebugEvalModify(GetWordUnderCursor(250));
+              break;
+
+         case cmeDbgOptsMsgs:
+              DebugOptsMsgs();
+              break;
+
+         case cmeDbgWatchExpNorm:
+              DebugWatchExp(False);
+              break;
+
+         case cmeDbgWatchExpScp:
+              DebugWatchExp(True);
+              break;
+
+         case cmeDbgEndSession:
+              if (DebugConfirmEndSession(True)) // Indicate that's user explicit request
+                 DebugDeInitVars();
+              break;
+
+         case cmeDbgCloseSession:
+              DebugCloseSession(); // It asks for confirmation.
+              break;
+
+         case cmeDbgGoConnected:
+              DebugCheckAcceptCmd(True);
+              break;
+
+         case cmeDbgGoReadyToRun:
+              DebugCheckStopped(True);
               break;
 
          // These commands are traslated to the original values
@@ -1482,6 +1582,14 @@ int SearchInHelper(int type, void *p)
  return TSetEditorApp::edHelper->search(p,type)>=0;
 }
 
+TDskWin *SearchInHelperWin(int type, void *p)
+{
+ ccIndex pos=TSetEditorApp::edHelper->search(p,type);
+ if (pos<0)
+    return NULL;
+ return (TDskWin *)TSetEditorApp::edHelper->at(pos);
+}
+
 /*Boolean View2WindowNumber(void *view, int &number)
 {
  ccIndex pos=TSetEditorApp::edHelper->searchByView(view);
@@ -1597,11 +1705,14 @@ int ShowFileLine(int line, char *file)
 
   Description:
   Goes to the file and line specified. If the file isn't opened the routine
-opens it.
+opens it.@p
+  The @var{normalLine} hack is currently used when debugging. In this case
+the line isn't "selected", instead we set the "CPU Line" for this line.
 
 ***************************************************************************/
 
-int GotoFileLine(int line, char *file, char *msg, int off, int len)
+int GotoFileLine(int line, char *file, char *msg, int off, int len,
+                 Boolean normalLine)
 {
  if (!line)
    {
@@ -1613,9 +1724,12 @@ int GotoFileLine(int line, char *file, char *msg, int off, int len)
    {
     TCEditor *ed=edw->editor;
     ed->lock();
-    ed->GoAndSelectLine(line);
+    ed->GoAndSelectLine(line,normalLine);
+    if (!normalLine)
+       DebugSetCPULine(line,file);
     ed->trackCursor(True);
-    ed->update(ufView); // Be sure we cleared the last hit
+    if (normalLine)
+       ed->update(ufView); // Be sure we cleared the last hit
     if (msg)
       {// Show only a portion if they asked for it
        if (off>=0)
@@ -1673,11 +1787,11 @@ changed.
 
 ***************************************************************************/
 
-void ApplySpLines(char *fileName,int *spLines)
+void ApplySpLines(char *fileName, int *spLines, int *ids)
 {
  TCEditWindow *edw=IsAlreadyOnDesktop(fileName);
  if (edw)
-    edw->editor->SetSpecialLines(spLines);
+    edw->editor->SetSpecialLines(spLines,ids);
 }
 
 void SaveAllEditors(void)
@@ -1951,6 +2065,8 @@ const int clockResolution=(int)CLK_TCK;
 void TSetEditorApp::idle()
 {
  ProcessMP3Idle;
+ // Look for async responses from gdb.
+ DebugPoll();
  TApplication::idle();
  clock_t DifLastTime=lastIdleClock-LastTimeUpdate;
  // Update 2 times per second
@@ -2029,7 +2145,6 @@ void OpenFileFromEditor(char *fullName)
 {
  editorApp->openEditor(fullName,True);
 }
-
 
 #define README_1ST "readme.1st"
 
@@ -2911,6 +3026,7 @@ int main(int argc, char *argv[])
 
  // That saves the desktop too, even if there isn't a project
  SaveProject();
+ TSetEditorApp::DebugDeInitVars();
  CLY_destroy(TSetEditorApp::edHelper);
 
  if (TSetEditorApp::DeleteFilesOnExit)

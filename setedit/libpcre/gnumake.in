@@ -157,3 +157,4 @@ pcretest_d:     libpcre.dll.a pcretest.o
 		$(PURIFY) $(CC) $(CFLAGS) -L. -o pcretest pcretest.o -lpcre.dll
 
 # End
+

@@ -232,20 +232,21 @@ int FindFile(const char *name, char *&fullName, const char *reference)
  strcpy(fullName,name);
  if (!edTestForFile(fullName))
    {
-    ccIndex i=0;
-    int found=0;
-    while (PathListGetItem(i++,fullName))
-      {
-       char *s=fullName+strlen(fullName)-1;
-       if (!CLY_IsValidDirSep(*s))
-          strcat(s,DIRSEPARATOR_);
-       strcat(s,name);
-       if (edTestForFile(fullName))
-         {
-          found=1;
-          break;
-         }
-      }
+    ccIndex i;
+    int found=0, j;
+    for (j=0; !found && j<paliLists; j++)
+        for (i=0; PathListGetItem(i,fullName,j); i++)
+           {
+            char *s=fullName+strlen(fullName)-1;
+            if (!CLY_IsValidDirSep(*s))
+               strcat(s,DIRSEPARATOR_);
+            strcat(s,name);
+            if (edTestForFile(fullName))
+              {
+               found=1;
+               break;
+              }
+           }
     if (!found)
       {
        // Try with the project

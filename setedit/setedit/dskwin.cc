@@ -219,4 +219,23 @@ the window limiting it to maxLen.
 
 *****************************************************************************/
 
+void InsertInOrder(TDeskTop *dsk,TDskWin *win)
+{
+ int z=win->ZOrder;
+ TView *v=0;
+
+ if (z>=0)
+   {
+    if (z==0)
+       dsk->insertBefore(win->view,0);
+    else
+      {
+       v=dsk->at(z);
+       dsk->insertBefore(win->view,v);
+      }
+   }
+ else
+   dsk->insert(win->view);
+}
+
 

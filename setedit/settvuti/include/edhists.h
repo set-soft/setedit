@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifndef EDHISTS_H_INCLUDED
 #define EDHISTS_H_INCLUDED
@@ -7,7 +7,7 @@
 
 const int
 hID_Start             = 120,
-hID_Cant              = 21;
+hID_Cant              = 23;
 
 const int
 hID_TextSearchEditor  = hID_Start,
@@ -31,5 +31,7 @@ hID_SelectTagFile     = hID_Start+17,
 hID_ExportProjectItems= hID_Start+18,
 hID_sLispKeyCode      = hID_Start+19,
 hID_ArbitraryIndent   = hID_Start+20,
-hID_RunProgram        = hID_Start+21;
+hID_RunProgram        = hID_Start+21,
+hID_DbgEvalModifyExp  = hID_Start+22,
+hID_DbgEvalModifyNewV = hID_Start+23;
 #endif

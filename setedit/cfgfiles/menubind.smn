@@ -151,7 +151,7 @@ SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "To l~o~wer",  cmcSelRectToLower, kbUnknown
 EndSubMenu
 
-# English: ACDEJLMNPRSTUZ0123456789
+# English: ACDEGJLMNPRSTUWZ0123456789
 # Spanish: ABCDEILMNPRSUZ0123456789
 SubMenu: "~W~indows", kbAlW
  MenuItemC: "~S~ize/move",cmeResize, kbCtF5, "Ctrl+F5"
@@ -165,6 +165,8 @@ SubMenu: "~W~indows", kbAlW
  MenuItemC: "~U~ser Screen", cmeUserScreen, kbAlF5, "Alt+F5"
  MenuItemC: "Pro~j~ect Window", cmeSelWinPrj, kbAl1, "Alt+1"
  MenuItemC: "~M~essage Window", cmeSelWinMessage
+ MenuItemC: "Debu~g~ger Window", cmeSelDebugWin
+ MenuItemC: "~W~atches Window", cmeSelWatchesWin
  SubMenu: "~E~dition Windows", kbAlE
    MenuItemC: "Window  ~2~", cmeSelWindow2, kbAl2, "Alt+2"
    MenuItemC: "Window  ~3~", cmeSelWindow3, kbAl3, "Alt+3"
@@ -290,6 +292,38 @@ SubMenu: "~P~roject", kbAlP
  MenuItemC: "E~x~port project", cmeExportPrj
  MenuItemC: "~I~mport project items", cmeImportPrj
 EndSubMenu
+
+$if DEBUG
+# BCDEGHKLNOPRSTW 12
+SubMenu: "~D~ebug", kbAlD
+ SubMenu: "~O~ptions", kbUnknown
+# MPS
+  MenuItemC: "~P~rogram and mode", cmeDebugOptions
+  MenuItemC: "Path for ~s~ources", cmeSourceList
+  MenuItemC: "~M~essages displayed", cmeDbgOptsMsgs
+ EndSubMenu
+ MenuItemC: "Go to 'Connected' ~1~", cmeDbgGoConnected
+ MenuItemC: "Go to 'Ready to run' ~2~", cmeDbgGoReadyToRun
+ MenuItemC: "~B~reakpoint", cmeBreakpoint, kbCtF8, "Ctrl+F8"
+ MenuSeparator
+ MenuItemC: "~R~un/Continue", cmeDbgRunContinue
+ MenuItemC: "~S~tep over", cmeDbgStepOver, kbF8, "F8"
+ MenuItemC: "~T~race into", cmeDbgTraceInto, kbF7, "F7"
+ MenuItemC: "~G~o to cursor", cmeDbgGoToCursor, kbF4, "F4"
+ MenuItemC: "~U~ntil return", cmeDbgFinishFun
+ MenuItemC: "Return ~n~ow", cmeDbgReturnNow
+ MenuItemC: "Sto~p~", cmeDbgStop
+ MenuItemC: "Restart (~K~ill)", cmeDbgKill
+ MenuSeparator
+ MenuItemC: "~E~valuate/Modify", cmeDbgEvalModify, kbCtF4, "Ctrl+F4"
+ MenuItemC: "~W~atch an expression", cmeDbgWatchExpNorm, kbCtF7, "Ctrl+F7"
+ MenuItemC: "Watc~h~ an exp. (w/scope)", cmeDbgWatchExpScp
+ MenuItemC: "~C~alling stack", cmeDbgCallStack
+ MenuSeparator
+ MenuItemC: "C~l~ose debug session", cmeDbgCloseSession
+ MenuItemC: "~D~estroy debug session (DANGER!)", cmeDbgEndSession
+EndSubMenu
+$endif
 
 # ABIMST
 SubMenu: "~H~elp", kbAlH
@@ -436,6 +470,28 @@ StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ctrl+Ins~ Copy", cmtilCopy, kbCtInsert
 StatusEntry: "~Shift+Ins~ Paste", cmtilPaste, kbShInsert
 StatusEntry: "~Ctrl+C~ Stop", cmeStopChild, kbCtC
+EndStatusRange
+
+#
+# Debug Watches
+#
+StatusRange: hcWatchesWin, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ins~ Add", cmInsert, kbInsert
+StatusEntry: "~+~ Add w/scope", cmInsertWScope, kbPlus
+StatusEntry: "~Del~ Delete", cmDelete, kbDelete
+StatusEntry: "~Enter~ Edit", cmEditWatch, kbEnter
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "~Alt+X", cmeQuit, kbAlX
+EndStatusRange
+
+#
+# Debug Window
+#
+StatusRange: hcDebugMsgWin, 0
+StatusEntry: "~F1~ Help", cmeInfView, kbF1
+StatusEntry: "~Ins~ Send command", cmGDBCommand, kbInsert
+StatusEntry: "~F5~ Zoom", cmZoom, kbF5
 EndStatusRange
 
 #

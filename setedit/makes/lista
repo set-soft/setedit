@@ -681,6 +681,7 @@ setedit/ascii.cc
 setedit/boardmix.cc
 setedit/calendar.cc
 setedit/codepage.cc
+setedit/debug.cc
 setedit/dskascii.cc
 setedit/dskcalen.cc
 setedit/dskclip.cc
@@ -709,6 +710,7 @@ setedit/include/ascii.h
 setedit/include/calendar.h
 setedit/include/advice.h
 setedit/include/codepage.h
+setedit/include/debug.h
 setedit/include/dskascii.h
 setedit/include/dskcalen.h
 setedit/include/dskclip.h
