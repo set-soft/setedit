@@ -2,6 +2,7 @@
    see copyrigh file for details */
 #include <ceditint.h>
 
+#define Uses_string
 #define Uses_TApplication
 #define Uses_TEditWindow
 #define Uses_TDeskTop
