@@ -22,6 +22,9 @@ running windowed under W9x, why?
 5. Sound problems
 5.1 The sound is too noisy (crispy), why?
 
+6. Keyboard problems
+6.1 The editor doesn't catch all the keyboard combinations, why?
+
 =============================================================================
 1. Video questions.
 
@@ -203,6 +206,23 @@ program is running.
 <Bastardizer@t-online.de> reported similar problems with Creative Ensoniq
 AudioPCI (Soundblaster) card. This topic was also discussed in the Allegro
 mailing list.
+=============================================================================
+6. Keyboard problems
+
+6.1 The editor doesn't catch all the keyboard combinations, why?
+
+A: Some cases are obvious, like it: Windows 95 catches some keys and never
+pass them to the application it can be solved fine tunning the direct access
+or .pif file used.
+  Others are more obscure. Ctrl+ ` 1 4 5 7 8 9 0 = ; ' , . and / and the
+Macro key are never detected by BIOS. To detect this keys you can use a small
+resident (TSR) program included in the kextend.zip file of this distribution.
+  And other cases are because we are using BIOS to detect if a key was
+pressed and extract it. In v0.4.41 we used special routines to extract keys
+dierctly from the BIOS queue, but some new motherboards seems to have a
+strange BIOS that handles the queue in a different way breaking this methode.
+For this reason we switched to BIOS by default. You can use the -B option to
+use the old mechanism and see if all work ok.
 =============================================================================
 End of file
 
