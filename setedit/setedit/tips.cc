@@ -226,7 +226,7 @@ static void ShowDialogTip(char *fileName, int &LastTip)
          {
           if (ret>=cmBaseLinks && ret<cmNextTip)
             {
-             ShowHelpTopic("editor",(char *)TipLinks->at(ret-cmBaseLinks));
+             ShowHelpTopic("setedit",(char *)TipLinks->at(ret-cmBaseLinks));
             }
          }
        showNext=(ret==cmNextTip);

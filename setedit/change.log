@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.313  2003/04/28 16:44:12  set
+* Fixed: The tags code to support: original tags format (FORMAT=1), wrong
+tags files (Emacs tag files for example), backwards regex, etc. without
+crashing. Basically: made more robust when dealing with unexpected tag
+files.
+
 Revision 1.312  2003/04/28 14:02:05  set
 * Added: Some documentation about the new TAGS features.
 * Added: Connected the context sensitive help values with the new

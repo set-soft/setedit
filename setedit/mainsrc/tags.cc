@@ -30,6 +30,7 @@ TODO: make a SortedStringableListBox
 #define Uses_TApplication
 #define Uses_MsgBox
 #define Uses_fpstream
+#define Uses_TScreen
 
 #define Uses_TCEditor_External // For mode constants
 #define Uses_TCEditor_Commands // For the cmcJumpToFunction context
@@ -60,6 +61,7 @@ TODO: make a SortedStringableListBox
 #include <rhutils.h>
 #include <pathtool.h>
 #include <completi.h>
+#include <advice.h>
 
 static int InitTagsCollection();
 
@@ -611,6 +613,20 @@ int TTagCollection::loadTagsFromFile(stTagFile *p)
     // Close the file and insert the info
     fclose(f);
     p->entries=entries;
+
+    // Check if that's a FORMAT 2 Exuberant Ctags file.
+    int format=0;
+    ccIndex pos;
+    if (p->info->search((void *)"FILE FORMAT",pos))
+      {
+       stTagInfo *info=p->info->atPos(pos);
+       format=atoi(info->value);
+      }
+    if (!abortInit && format!=2 && GiveAdvice(gadvTagsOld)==cmYes)
+      {
+       abortInit=1;
+       ShowHelpTopic("setedit","TAGS files");
+      }
    }
  else
     p->entries=-1;
@@ -644,9 +660,40 @@ int TTagCollection::addFile(const char *file, int defer)
  return ret;
 }
 
-void TTagCollection::refresh()
+static
+int CheckForCTAGS(void)
+{
+ static int isCTAGSInstalled=0;
+
+ if (!isCTAGSInstalled)
+   {
+    // We must rediret the error to avoid getting it in the stderr file
+    char *err=open_stderr_out();
+    TScreen::System("ctags --version");
+    close_stderr_out();
+    // Check what we got
+    FILE *f=fopen(err,"r");
+    int ok=0;
+    if (f)
+      {
+       char resp[80];
+       fgets(resp,80,f);
+       fclose(f);
+       ok=strstr(resp,"Exuberant Ctags")!=0;
+      }
+    unlink(err);
+
+    if (ok)
+       isCTAGSInstalled=1;
+   }
+
+ return isCTAGSInstalled;
+}
+
+int TTagCollection::refresh()
 {
  ccIndex c=tagFiles->getCount(),i;
+ abortInit=0;
  for (i=0; i<c; i++)
     {
      stTagFile *p=tagFiles->atPos(i);
@@ -668,6 +715,33 @@ void TTagCollection::refresh()
         loadTagsFromFile(p);
        }
     }
+ if (!abortInit && c==1) // Only one entry and ...
+   {
+    stTagFile *p=tagFiles->atPos(0);
+    // and failed to load and is the default
+    if (p->entries==-1 && strcmp(p->file,"tags")==0)
+      {// Ask to RTFM
+       if (GiveAdvice(gadvNoTags)==cmYes)
+         {
+          abortInit=1;
+          ShowHelpTopic("setedit","TAGS files");
+         }
+       else
+         {// Nope?
+          if (CheckForCTAGS() && // Ask to generate a new one
+              messageBox(__("I can try to generate a tag file, go ahead?"),
+                         mfInformation | mfYesButton | mfNoButton)==cmYes)
+            { // Try doing it
+             TScreen::System("ctags -R --fields=+i+l+m+z");
+             loadTagsFromFile(p);
+            }
+          else
+             // Not installed explain how to get it.
+             messageBox(__("Install Exuberant Ctags, download it from http://ctags.sourceforge.net"), mfError | mfOKButton);
+         }
+      }
+   }
+ return abortInit;
 }
 
 void TTagCollection::deleteTagsFor(stTagFile *p)
@@ -1026,7 +1100,7 @@ int AddNewItem(void)
 void EditTagFiles()
 {
  if (InitTagsCollection()) return;
- tags->refresh();
+ if (tags->refresh()) return;
  // Make a copy of the list to allow reverting the actions
  TStringCollection *oldList=tags->getTagFilesList();
 
@@ -1182,7 +1256,7 @@ void JumpToTag(TListBoxRec &br)
 void SearchTag(char *word)
 {
  if (InitTagsCollection()) return;
- tags->refresh();
+ if (tags->refresh()) return;
  if (!tags->getCount()) return;
 
  TListBoxRec br;
@@ -1429,7 +1503,7 @@ void BrowseClasses(TListBoxRec &br, TTagClassCol *clist)
 void TagsClassBrowser(char *word)
 {
  if (InitTagsCollection()) return;
- tags->refresh();
+ if (tags->refresh()) return;
  TTagClassCol *classList=new TTagClassCol(tags);
 
  if (!classList->getCount())
@@ -1465,7 +1539,7 @@ void TagsClassBrowser(char *word)
 char *TagsWordCompletion(int x, int y, char *word)
 {
  if (!word || InitTagsCollection()) return NULL;
- tags->refresh();
+ if (tags->refresh()) return NULL;
  if (!tags->getCount()) return NULL;
 
  // Search a tag that matches

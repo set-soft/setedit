@@ -48,7 +48,11 @@ advice Advices[]=
  { __("Holding SHIFT the incremental search is done for the directory names, otherwise applies to files. Don't forget it."),
    AdviceVar1, 0x00000020, ops40cols },
  { __("When using real tabs the following options are usually desired: Autoindent ON, Intelligent C indent OFF, Optimal Fill ON, Don't move inside tabs ON, Tab smart indents OFF, Use indent size OFF and Backspace unindents OFF.\nI see not all are selected this way."),
-   AdviceVar1, 0x00000040, ops60cols }
+   AdviceVar1, 0x00000040, ops60cols },
+ { __("Tags file in incorrect format,\ndo you want to read more about it?"),
+   AdviceVar1, 0x00000080, opsSimple | opsButYesNo },
+ { __("This option needs a tag file,\ndo you want to read more about it?"),
+   AdviceVar1, 0x00000100, opsSimple | opsButYesNo }
 };
 
 const int cantAdvices=sizeof(Advices)/sizeof(advice);

@@ -330,6 +330,7 @@ struct stEditorId;
 extern TView *setFocusTo;
 extern Boolean focusChanged;
 extern void CopyHelp2Clip(char *b, long l);
+extern void ShowHelpTopic(char *file, char *node);
 extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line,char *name);
 extern int GotoFileLine(int line,char *name,char *msg=0,int off=-1,int len=0);

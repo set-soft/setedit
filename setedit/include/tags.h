@@ -93,6 +93,7 @@ public:
  virtual void *keyOf(void *item);
  void print() { forEach(print1,NULL); };
  static void print1(void *item, void *arg);
+ stTagInfo *atPos(ccIndex pos) { return (stTagInfo *)at(pos); };
  // TStringable things:
  virtual void getText(char *dest, unsigned item, int maxLen);
  virtual unsigned GetCount(void) { return getCount(); };
@@ -166,7 +167,7 @@ public:
  ~TTagCollection();
  int addFile(const char *file, int defer=0);
 
- void refresh();
+ int refresh();
  void print() { forEach(print1,NULL); };
  static void print1(void *item, void *arg);
  TStringCollection *getTagFilesList();
@@ -178,6 +179,7 @@ public:
 
 protected:
  int loadTagsFromFile(stTagFile *p);
+ int abortInit;
 };
 
 class TTagClassCol : public TStringCollection
