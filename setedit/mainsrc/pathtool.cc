@@ -35,6 +35,8 @@ static char PathOrig[PATH_MAX];
 static char FileNameToLoad[PATH_MAX];
 static char *PathOrigPos;
 
+int IsADirectory(const char *name);
+
 int edTestForFile(const char *name)
 {
  struct stat st;
@@ -56,6 +58,7 @@ char *GetHome(void)
  return s;
 }
 
+static
 char *ExpandFileNameToUserHomeNoDot(const char *s)
 {
  strcpy(FileNameToLoad,GetHome());
@@ -64,26 +67,68 @@ char *ExpandFileNameToUserHomeNoDot(const char *s)
  return FileNameToLoad;
 }
 
-#ifndef NoHomeOrientedOS
-char *ExpandFileNameToUserHome(const char *s)
+#ifdef NoHomeOrientedOS
+char *ExpandHomeSave(const char *s)
+{
+ return ExpandHome(s);
+}
+#else
+static
+char *ExpandHomeWDir(const char *s)
+{
+ static int HiddenDirFailed=0;
+ char *h=GetHome();
+ if (!HiddenDirFailed)
+   {// Check ~/.setedit/
+    strcpy(FileNameToLoad,h);
+    strcat(FileNameToLoad,"/.setedit");
+    if (!IsADirectory(FileNameToLoad))
+      {// No? try to create it. 0750 mode
+       if (mkdir(FileNameToLoad,S_IRWXU | S_IRGRP | S_IXGRP)==-1)
+         {// Oops! something went wrong
+          HiddenDirFailed=1;
+         }
+      }
+    if (!HiddenDirFailed)
+      {// Ok see if we can write
+       if (access(FileNameToLoad,W_OK)==0)
+         {
+          strcat(FileNameToLoad,"/");
+          strcat(FileNameToLoad,s);
+          return FileNameToLoad;
+         }
+       // No write access?!
+       HiddenDirFailed=1;
+      }
+   }
+ return 0;
+}
+
+static
+char *ExpandHomeCommon(const char *s)
 {
  strcpy(FileNameToLoad,GetHome());
  strcat(FileNameToLoad,"/.");
  strcat(FileNameToLoad,s);
  return FileNameToLoad;
 }
-#else
-// The DOS/Win32 version is used only by edspecs.cc
-char *ExpandFileNameToUserHome(const char *s)
+
+/**[txh]********************************************************************
+
+  Description:
+  This funtion returns a suitable place to write configuration files. Note
+it doesn't have to be the same point as where we read it. In UNIX we will
+read default values from /usr/share/setedit and store them in
+~/.setedit/.file.
+  
+  Return: A pointer to a static buffer containing the path+file name.
+  
+***************************************************************************/
+
+char *ExpandHomeSave(const char *s)
 {
- char *p=getenv("SET_FILES");
- if (p)
-    strcpy(FileNameToLoad,p);
- else
-    FileNameToLoad[0]=0;
- strcat(FileNameToLoad,"/");
- strcat(FileNameToLoad,s);
- return FileNameToLoad;
+ char *r=ExpandHomeWDir(s);
+ return r ? r : ExpandHomeCommon(s);
 }
 #endif
 
@@ -94,9 +139,11 @@ char *ExpandFileNameToUserHome(const char *s)
   This routine searchs the desired file in various directories and returns
 the full qualified path for the location or the default location if the
 file doesn't exist.@*
-  Linux behavior: (a) The user's home (b) The SET_FILES directory.@*
+  Linux behavior: (a) The user's home (first in ~/.setedit/?, then ~/.? and
+finally ~/?) (b) The SET_FILES directory.@*
   DOS behavior: (a) The user's home (b) The SET_FILES directory
-(c) The directory where the editor was loaded.@*
+(c) The directory where the editor was loaded. Note that (c) shoul not
+happend.@*
 
   Return:
   The full path for the file found or the place where the file should be.
@@ -107,11 +154,15 @@ char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s)
 {
  const char *v;
 
- #ifdef SEOS_UNIX
+ #ifndef NoHomeOrientedOS
+ char *r;
  // That's only for UNIX, try a dot-file (hidden)
- ExpandFileNameToUserHome(s);
- if (edTestForFile(FileNameToLoad))
-    return FileNameToLoad;
+ r=ExpandHomeWDir(s);
+ if (r && edTestForFile(r))
+    return r;
+ r=ExpandHomeCommon(s);
+ if (edTestForFile(r))
+    return r;
  #endif
 
  // Try it in DOS too, so the user can define HOME or HOMEDIR

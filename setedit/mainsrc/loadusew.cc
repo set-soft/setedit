@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -30,8 +30,9 @@
 static const char *UserWordsFileName="userword.txt";
 static const int   maxUserWordLen=80;
 static const int   stateLookingName=0,stateCollecting=1,stateExitLoop=2;
-static char *destFile=0;
-static unsigned localCtxHelp;
+static char       *destFile=0;
+static unsigned    localCtxHelp;
+static char        warnSaveDifDir=1;
 
 static void ReplaceCRby0(char *s)
 {
@@ -128,6 +129,7 @@ void UpdateFile(char *name, TStringCollection *col)
 {
  char *origFile=ExpandHome(UserWordsFileName);
  FILE *dest,*ori;
+ int differentFile=0;
 
  if (edTestForFile(origFile))
    {// We must use the values in this file
@@ -142,6 +144,7 @@ void UpdateFile(char *name, TStringCollection *col)
     else
       {// Is OK we are creating another
        ori=fopen(origFile,"rt");
+       differentFile=1;
       }
     if (!ori)
        return;
@@ -178,6 +181,11 @@ void UpdateFile(char *name, TStringCollection *col)
          }
       }
     fclose(ori);
+    if (differentFile && warnSaveDifDir)
+      {
+       ShowSavePoint(destFile);
+       warnSaveDifDir=0;
+      }
    }
  else
    {// Just create a new one

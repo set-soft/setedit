@@ -135,8 +135,8 @@ void fGetStr(char *s, FILE *f)
 
 static
 void ReadEnviromentFile(void)
-{
- char *s=ExpandFileNameToUserHome("setenvir.dat");
+{// ExpandHome so it also tries all locations (~/.setenvir.dat)
+ char *s=ExpandHome("setenvir.dat");
 
  if (s)
    {
@@ -179,7 +179,7 @@ void fPutVar(char *var,FILE *f)
 
 void SaveEnviromentFile(void)
 {
- char *s=ExpandFileNameToUserHome("setenvir.dat");
+ char *s=ExpandHomeSave("setenvir.dat");
  if (s)
    {
     FILE *f=fopen(s,"wb");
