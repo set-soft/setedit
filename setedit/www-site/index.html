@@ -370,7 +370,10 @@ And a version compiled with MinGW is available
 </tr>
 <tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">CVS</th></tr>
 <tr BGCOLOR="#80A0FF">
-<td colspan=4>CVS web: <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit">http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit</a></td>
+ <td colspan=4>
+ CVS web: <a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit">http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/setedit</a><br>
+ Nightly snapshot: See the <a href="snap.html">snap.html</a> page.<br>
+ </td>
 </tr>
 <tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Debian GNU/Linux</th></tr>
 <tr BGCOLOR="#80A0FF">
@@ -443,18 +446,14 @@ You can find more information about RHIDE here:
 <a href="http://www.rhide.com/">http://www.rhide.com/</a>.<p>
 Lamentably precompiled binaries uses really old versions of my tools and aren't available
 for all targets.<p>
-If you want to compile RHIDE with the last TV and SETEdit code you'll have to apply some
-patches. Here is a patch I used to compile RHIDE CVS 20030516 with the corresponding CVS
-versions of TV and SETEdit: <a href="rhide.diff.bz2">rhide.diff.bz2</a>.</p>
+If you want to compile RHIDE with the last TV and SETEdit code you'll have to get the code
+of RHIDE from a special CVS branch of RHIDE called "for_tvision_2". As Source Forge's CVS
+is currently working too slow (hardware problems) I'm generating nightly tarballs for
+this branch: <a href="http://rhide.sf.net/snapshots/snap.html">http://rhide.sf.net/snapshots/snap.html</a>.
+Of course you have to also get <a href="http://tvision.sf.net/">Turbo Vision</a> and
+SETEdit snapshots (see the <a href="#download">download</a> section).</p>
 It worked for my system (Debian GNU/Linux Woody) so I hope it will at least help you to
 get closer to compile in other systems.<p>
-<b>Notes:</b><br>
-<ol>
-<li> The file is compressed with bzip2.
-<li> It contains the output of <i>cvs diff -u</i>.
-<li> The patch for `configure' is not really needed if you patch `configure.in' and run
-autoconf.
-</ol>
 </td></tr></table><p>
 
 <i>Copyright &copy; 1999-2003 by Salvador E. Tropea, e-mail: <a href="mailto:set@users.sf.net">set@users.sf.net</a>.</i><br>
@@ -469,5 +468,5 @@ it in <a href="http://www.delorie.com" target="_top">http://www.delorie.com</a>.
 
 <p><hr><p>
 <P>Visited since May 24, 1999: <a href="http://member.linkexchange.com/cgi-bin/fc/fastcounter-login?1289519" target="_top"><img border="0" src="http://fastcounter.linkexchange.com/fastcounter?1289519+2579045"></a><font face="arial" size="1"><a href="http://fastcounter.linkexchange.com/fc-join" target="_top">(FastCounter by LinkExchange)</a></font><br></p>
-<Font Size=-1>Last update: Apr 01 14:44:40 (GMT) 2003</Font>
+<Font Size=-1>Last update: Jun 23 20:39:20 (GMT) 2003</Font>
 </body>
