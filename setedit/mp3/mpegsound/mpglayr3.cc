@@ -58,8 +58,10 @@ inline int Mpegbitwindow::getbits9(int bits)
     a=(((unsigned char)buffer[offset])<<8) | ((unsigned char)buffer[offset+1]);
   }
 #else
-  //  a=((unsigned short *)(buffer+((bixindex>>3)&(WINDOWSIZE-1))));
-  a=((unsigned short *)(buffer+((bixindex>>3))));
+  {
+    int offset=bitindex>>3;
+    a=*((unsigned short *)(buffer+offset));
+  }
 #endif
 
   a<<=(bitindex&7);
