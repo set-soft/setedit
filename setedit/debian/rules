@@ -27,6 +27,8 @@ clean: clean-debian debianbackup.tar
 	rm -f internac/de_iso.po internac/fix.exe internac/es_iso.po \
 		internac/gr.po internac/po_list internac/potfiles.po internac/de.mo \
 		internac/de_iso.mo internac/es.mo internac/es_iso.mo
+# Don't delete this files (they are on the tarball but not on CVS):
+#		doc/Makefile internac/Makefile
 
 clean-debian:
 	dh_testdir

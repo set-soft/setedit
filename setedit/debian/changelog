@@ -1,14 +1,14 @@
-setedit (0.4.56-0.1) unstable; urgency=low
+setedit (0.4.57-0.1) unstable; urgency=low
 
-  * New version automatically modified by version update scripts
+  * New unstable upstream release, now with native X11 support!
+  * Changed menu items to have 2 entries, one for virtual consoles and
+    another for X11 (maybe I will report a wishlist bug on the menu
+    package because of this).
+  * No more changes needed!!?? This is boring!!! ;-)))
+  * We don't build-depend on xlibs-dev yet, because I am not so sure if
+    that's needed (I will talk with upstream about this).
 
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Mon, 29 Apr 2002 16:39:52 -0300
-
-setedit (0.4.55-0.1) unstable; urgency=low
-
-  * New version automatically modified by version update scripts
-
- -- Salvador E. Tropea (SET) <salvador@inti.gov.ar>  Fri,  1 Feb 2002 16:08:53 -0300
+ -- Ivan Baldo <lubaldo@adinet.com.uy>  Sun, 19 May 2002 15:18:06 -0300
 
 setedit (0.4.54-1) unstable; urgency=low
 

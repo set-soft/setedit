@@ -1,2 +1,5 @@
-?package(infview):needs="text" section="Help"\
+?package(infview):needs="vc" section="Help"\
   title="SET's InfoViewer" command="/usr/bin/infview"
+?package(infview):needs="x11" section="Help"\
+  title="SET's InfoViewer" command="/usr/bin/infview"
+
