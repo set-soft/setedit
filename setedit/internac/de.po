@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-03-22 14:57-0300\n"
+"PO-Revision-Date: 2005-04-14 16:57-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "~A~uswerten"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:755
+#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:741
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1477 ../mainsrc/tags.cc:1705
+#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1467 ../mainsrc/tags.cc:1695
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
@@ -70,12 +70,12 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:754
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
-#: ../mainsrc/tags.cc:1499 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1489 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -87,7 +87,7 @@ msgstr "O~K"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Datei: %s - Knoten: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:450
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:452
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr ""
@@ -463,7 +463,7 @@ msgstr "~D~OS Shell"
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1764 ../setedit/debug.cc:4303
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1754 ../setedit/debug.cc:4303
 #: ../setedit/debug.cc:4910 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~B~eenden"
@@ -602,8 +602,8 @@ msgstr "~F10~ Menü"
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:443
-#: ../mainsrc/ceditor.cc:517
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:445
+#: ../mainsrc/ceditor.cc:519
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
@@ -1474,73 +1474,73 @@ msgstr "Text ersetzen"
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/bufun.cc:740
+#: ../mainsrc/bufun.cc:726
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:750
+#: ../mainsrc/bufun.cc:736
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:756 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:742 ../settvuti/tdiagaid.cc:174
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
 
-#: ../mainsrc/bufun.cc:785
+#: ../mainsrc/bufun.cc:771
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:787
+#: ../mainsrc/bufun.cc:773
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:789
+#: ../mainsrc/bufun.cc:775
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:790
+#: ../mainsrc/bufun.cc:776
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:825
+#: ../mainsrc/bufun.cc:811
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:853
+#: ../mainsrc/bufun.cc:839
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:539
+#: ../mainsrc/ceditor.cc:541
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4229
+#: ../mainsrc/ceditor.cc:4231
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4276 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4278 ../mainsrc/doedidia.cc:143
 #, fuzzy, c-format
 msgid "%d bytes selected, in %d"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4437
+#: ../mainsrc/ceditor.cc:4439
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4456
+#: ../mainsrc/ceditor.cc:4458
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4478
+#: ../mainsrc/ceditor.cc:4480
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1551,7 +1551,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4512
+#: ../mainsrc/ceditor.cc:4514
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1564,16 +1564,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6121
+#: ../mainsrc/ceditor.cc:6125
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6136
+#: ../mainsrc/ceditor.cc:6140
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10493
+#: ../mainsrc/ceditor.cc:10540
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1582,29 +1582,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10508
+#: ../mainsrc/ceditor.cc:10555
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11252
+#: ../mainsrc/ceditor.cc:11299
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12201
+#: ../mainsrc/ceditor.cc:12248
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12412
+#: ../mainsrc/ceditor.cc:12459
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13605
+#: ../mainsrc/ceditor.cc:13652
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13615
+#: ../mainsrc/ceditor.cc:13662
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2242,7 +2242,7 @@ msgstr "Wert:"
 msgid "Associated string"
 msgstr "Verbundener Wert"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1334
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1324
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "Wollen Sie die Änderungen verwerfen?"
@@ -2295,36 +2295,36 @@ msgstr ""
 "Fehler! Bitte starten Sie den Editor aus einem gültigen Verzeichnis heraus\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:53 ../setedit/debug.cc:8612 ../setedit/loadcle.cc:97
+#: ../mainsrc/pmacros.cc:86 ../setedit/debug.cc:8612 ../setedit/loadcle.cc:97
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../mainsrc/pmacros.cc:106
+#: ../mainsrc/pmacros.cc:153
 #, fuzzy
 msgid "Macro definition doesn't start with Trigger"
 msgstr "Makro Definition fängt nicht mit Trigger an"
 
-#: ../mainsrc/pmacros.cc:114
+#: ../mainsrc/pmacros.cc:161
 msgid "Missing Trigger sequence or too short"
 msgstr "Trigger Sequenz fehlt oder ist zu kurz"
 
-#: ../mainsrc/pmacros.cc:132
+#: ../mainsrc/pmacros.cc:180
 msgid "Macro definition without mode keyword"
 msgstr "Makro Definition ohne mode Schlüsselwort"
 
-#: ../mainsrc/pmacros.cc:143 ../mainsrc/pmacros.cc:153
+#: ../mainsrc/pmacros.cc:191 ../mainsrc/pmacros.cc:201
 msgid "Wrong mode definition in pseudo macro."
 msgstr "Falsche Modusdefinition im Pseudo Makro."
 
-#: ../mainsrc/pmacros.cc:205
+#: ../mainsrc/pmacros.cc:253
 msgid "Missing start in pseudo macro"
 msgstr "Anfang des pseudo macro fehlt"
 
-#: ../mainsrc/pmacros.cc:210
+#: ../mainsrc/pmacros.cc:258
 msgid "Missing end in pseudo macro"
 msgstr "Ende im pseudo macro fehlt"
 
-#: ../mainsrc/pmacros.cc:219
+#: ../mainsrc/pmacros.cc:267
 msgid "Empty pseudo macro"
 msgstr "Leeres Pseudo Macro"
 
@@ -2493,169 +2493,169 @@ msgstr "Wählen Sie einen Knoten"
 msgid "No INFO files for syntax help defined"
 msgstr "Keine INFO Dateien für Syntaxsuche angegeben"
 
-#: ../mainsrc/tags.cc:770
+#: ../mainsrc/tags.cc:760
 #, fuzzy
 msgid "Wrong format for tags file!"
 msgstr "Falsche Projektdatei."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:958
+#: ../mainsrc/tags.cc:948
 msgid "I can try to generate a tag file, go ahead?"
 msgstr ""
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:967
+#: ../mainsrc/tags.cc:957
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1315
+#: ../mainsrc/tags.cc:1305
 msgid "This file is automatically maintained"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1344
+#: ../mainsrc/tags.cc:1334
 #, fuzzy
 msgid "Select tags file"
 msgstr "Datei aussuchen"
 
-#: ../mainsrc/tags.cc:1360
+#: ../mainsrc/tags.cc:1350
 msgid "Use relative path for the file?"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1381
+#: ../mainsrc/tags.cc:1371
 #, fuzzy
 msgid "Variables"
 msgstr "Verfügbar"
 
-#: ../mainsrc/tags.cc:1397
+#: ../mainsrc/tags.cc:1387
 #, fuzzy
 msgid "Tag files"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/tags.cc:1499
+#: ../mainsrc/tags.cc:1489
 #, fuzzy
 msgid "Jump to symbol"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/tags.cc:1499
+#: ../mainsrc/tags.cc:1489
 #, fuzzy
 msgid "List of symbols"
 msgstr "Wortliste"
 
-#: ../mainsrc/tags.cc:1500
+#: ../mainsrc/tags.cc:1490
 #, fuzzy
 msgid "~S~earch members"
 msgstr "~S~uche"
 
-#: ../mainsrc/tags.cc:1532
+#: ../mainsrc/tags.cc:1522
 #, fuzzy
 msgid "Unknown line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1778 ../mainsrc/tags.cc:1794
+#: ../mainsrc/tags.cc:1567 ../mainsrc/tags.cc:1768 ../mainsrc/tags.cc:1784
 #, fuzzy
 msgid "Members"
 msgstr "Dezember"
 
-#: ../mainsrc/tags.cc:1577 ../mainsrc/tags.cc:1704 ../mainsrc/tags.cc:1778
-#: ../mainsrc/tags.cc:1794
+#: ../mainsrc/tags.cc:1567 ../mainsrc/tags.cc:1694 ../mainsrc/tags.cc:1768
+#: ../mainsrc/tags.cc:1784
 #, fuzzy
 msgid "~J~ump"
 msgstr "~G~ruppe"
 
-#: ../mainsrc/tags.cc:1586
+#: ../mainsrc/tags.cc:1576
 #, fuzzy
 msgid "Sorry, couldn't find any member"
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:1591
+#: ../mainsrc/tags.cc:1581
 #, fuzzy
 msgid "I don't know any members for this type"
 msgstr "Nicht genug Speicher für diese Operation"
 
-#: ../mainsrc/tags.cc:1688
+#: ../mainsrc/tags.cc:1678
 #, fuzzy
 msgid "Class list"
 msgstr "Spiel~l~iste"
 
-#: ../mainsrc/tags.cc:1699
+#: ../mainsrc/tags.cc:1689
 #, fuzzy
 msgid "List of classes"
 msgstr "Dateiliste"
 
-#: ../mainsrc/tags.cc:1703
+#: ../mainsrc/tags.cc:1693
 #, fuzzy
 msgid "~V~iew"
 msgstr "~N~eu"
 
-#: ../mainsrc/tags.cc:1742
+#: ../mainsrc/tags.cc:1732
 #, fuzzy
 msgid "P~a~rents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1744
+#: ../mainsrc/tags.cc:1734
 msgid "Browse ~p~arent"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1749
+#: ../mainsrc/tags.cc:1739
 msgid "Chil~d~ren"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1751
+#: ../mainsrc/tags.cc:1741
 msgid "Browse ~c~hild"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1760
+#: ../mainsrc/tags.cc:1750
 #, fuzzy
 msgid "View"
 msgstr "InfView"
 
-#: ../mainsrc/tags.cc:1761
+#: ../mainsrc/tags.cc:1751
 msgid "~T~his class"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1762
+#: ../mainsrc/tags.cc:1752
 #, fuzzy
 msgid "This & Pa~r~ents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1763
+#: ../mainsrc/tags.cc:1753
 #, fuzzy
 msgid "~S~orted"
 msgstr "~S~ortierungsart"
 
-#: ../mainsrc/tags.cc:1795
+#: ../mainsrc/tags.cc:1785
 msgid "View ~C~lass"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1895
+#: ../mainsrc/tags.cc:1885
 #, fuzzy
 msgid "Sorry, but I can't find any class."
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:2025
+#: ../mainsrc/tags.cc:2015
 msgid "This option is only available when using projects"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2030
+#: ../mainsrc/tags.cc:2020
 #, fuzzy
 msgid "Tags options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/tags.cc:2032
+#: ../mainsrc/tags.cc:2022
 msgid "Automatic generation"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2032
+#: ../mainsrc/tags.cc:2022
 #, fuzzy
 msgid "~D~isabled"
 msgstr "~A~usschalten"
 
-#: ../mainsrc/tags.cc:2033
+#: ../mainsrc/tags.cc:2023
 #, fuzzy
 msgid "~U~sing central file"
 msgstr "Falsche Desktopdatei."
 
-#: ../mainsrc/tags.cc:2047
+#: ../mainsrc/tags.cc:2037
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 
