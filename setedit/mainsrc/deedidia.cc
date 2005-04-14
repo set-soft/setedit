@@ -388,7 +388,7 @@ TDialog *createPMChoose()
 {// BFLMO
  TSViewCol *col=new TSViewCol(__("Pseudo Macros"));
 
- col->insert(xTSCenter,yTSUp,new TSStringableListBox(40,GetDeskTopRows()-9,tsslbVertical));
+ col->insert(xTSCenter,yTSUp,new TSSortedListBox(40,GetDeskTopRows()-9,tsslbVertical));
  EasyInsertOKCancel(col);
 
  TDialog *d=col->doItCenter(cmcChoosePMacrosList);
@@ -446,4 +446,78 @@ TDialog *createSolveModifCollision(Boolean haveDiff)
  delete col;
  return d;
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Creates a dialog containing the variables from a pmacro. The
+@var{varsVals} is newly allocated buffer containing @var{nVars} elements of
+MaxVarValLen bytes. The labels for the input boxes are collected from
+@var{vars} and its maximum length must be indicated in @var{mLenVar}. The
+name of the dialog should be provided in @var{name}.
+
+  Return: False if the user aborted the macro.
+
+***************************************************************************/
+
+Boolean AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
+                     unsigned mLenVar, const char *name)
+{// Default values
+ nVars=0;
+ varsVals=NULL;
+ if (!vars) // No vars, go on
+    return True;
+ // How many?
+ nVars=vars->getCount();
+ if (!nVars) // No vars, go on
+    return True;
+ // Buffer for the values
+ varsVals=new char[MaxVarValLen*nVars];
+ memset(varsVals,0,MaxVarValLen*nVars);
+ // Buffer for the labels
+ char auxName[mLenVar+1];
+ // Dialog
+ TSViewCol *col=new TSViewCol(name ? name : "");
+ TSView *tsv=NULL;
+ int w=GetDeskTopCols()-8-mLenVar;
+ if (w<10) w=10;
+ for (unsigned i=0; i<nVars; i++)
+    {
+     TSInputLine *lineInp=new TSInputLine(MaxVarValLen,w);
+     // Pad with spaces
+     char *o=(char *)vars->at(i);
+     unsigned offset=0;
+     for (; offset<mLenVar; offset++)
+        {
+         if (*o)
+           {
+            auxName[offset]=*o;
+            o++;
+           }
+         else
+            auxName[offset]=' ';
+        }
+     auxName[offset]=0;
+     stTVIntl *intlCache=TVIntl::dontTranslateSt();
+     TSHzLabel *lineLabel=new TSHzLabel(auxName,lineInp,intlCache);
+     lineLabel->ySep=0;
+     if (!tsv)
+        col->insert(xTSLeft,yTSUp,lineLabel);
+     else
+        col->insert(xTSLeft,yTSUnder,lineLabel,NULL,tsv);
+     tsv=lineLabel;
+    }
+ EasyInsertOKCancel(col);
+ TDialog *d=col->doItCenter(0);
+ delete col;
+
+ if (execDialog(d,varsVals)==cmCancel)
+   {
+    delete[] varsVals;
+    return False;
+   }
+
+ return True;
+}
+
 

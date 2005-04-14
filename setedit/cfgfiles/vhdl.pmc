@@ -1,0 +1,686 @@
+; Copyright (C) 2005 by Salvador E. Tropea (SET),
+; see copyrigh file for details
+;
+; The following macros are designed for the Autoindent+Unindent mode.
+; \n is new line.
+; \b is backspace.
+; @0 is the position where the cursor is positioned after the insertion
+; @1 is memorized in ^Q7 (or Alt7)
+; @2 is memorized in ^Q8 (or Alt8)
+; @3 is memorized in ^Q9 (or Alt9)
+; Don't put only @ at the end of the string :-).
+;
+;   The Mode keyword indicates the mode of the editor when the macro is
+; triggered, each mode can be 0 or 1:
+; Overwrite, Autoindent, Use Tabs, Persistent blocks, Inteligent C indent,
+; Column cursor, Row cursor, Show match pair, idem on the fly, idem inmediatly,
+; Transparent selection, Optimal fill, Wrap lines, Visible tabs, Don't move
+; inside tabs, Tab key indents, Use indent size, Don't purge spaces and
+; Backspace key unindents.
+; For example: Mode: 0,1,0,1,0
+; Indicates: No overwrite, autoindent, don't use real tabs, the blocks are
+; persistent and don't be smart when indenting.
+;   The Mode keyword can't be omitted.
+
+Trigger: "ar"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Architecture
+ "architecture @{Architecture} of @{Entity} is\n"
+ "begin\n"
+ "   @0;\n"
+ "\bend architecture @v0; -- Entity: @v1"
+
+Trigger: "bl"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Block
+ "@{Label}:\n"
+ "block\n"
+ "begin\n"
+ "   @0;\n"
+ "\bend block @v0;"
+
+Trigger: "co"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Component declaration
+ "component @{Name} is\n"
+ "begin\n"
+ "   generic(@0\n"
+    "       );\n"
+    "\bport(@1\n"
+    "     );\n"
+ "\b\bend component @v0;"
+
+Trigger: "ci"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Component instantiation
+ "@{Label}: @{Component}\n"
+ "   generic map(@0 => @1,\n"
+    "            )\n"
+    "\bport map(@2 => @3,\n"
+    "         );\n"
+
+Trigger: "wh"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Conditional signal assignment
+ "@0 <= @1 when @2 else @3;"
+
+Trigger: "#d"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Constant
+ "constant @{Name} : @0:=@1;"
+
+Trigger: "en"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Entity
+ "entity @{Entity} is\n"
+ "   generic(@0\n"
+    "       );\n"
+    "\bport(@1\n"
+    "     );\n"
+ "\b\bend entity @v0;"
+
+Trigger: "ma"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Entity/Architecture
+ "entity @{Entity} is\n"
+ "   generic(@0\n"
+    "       );\n"
+    "\bport(@1\n"
+    "     );\n"
+ "\b\bend entity @v0;\n"
+ "\n"
+ "architecture @{Architecture} of @v0 is\n"
+ "begin\n"
+ "   ;\n"
+ "\bend architecture @v1; -- Entity: @v0"
+
+Trigger: "ex"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Exit
+ "exit @{Label} when @0;"
+
+Trigger: "fg"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: For generate
+ "@{Label}:\n"
+ "for @0 in @1 to @2 generate\n"
+ "    @3;\n"
+ "\bend generate @v0;"
+
+Trigger: "f("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: For loop
+ "for @0 in @1 to @2 loop\n"
+ "    @3;\n"
+ "\bend loop;"
+
+Trigger: "fu"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Function declaration
+ "function @{Name}(@0) return @1 is\n"
+ "begin\n"
+ "   @2;\n"
+ "\bend function @v0;"
+
+Trigger: "li"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: IEEE standard libraries
+ "library IEEE;\n"
+ "use IEEE.std_logic_1164.all;\n"
+ "use IEEE.numeric_std.all;\n\n"
+
+Trigger: "ig"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: If generate
+ "@{Label}:\n"
+ "if @0 generate\n"
+ "   @1;\n"
+ "\bend generate @v0;"
+
+Trigger: "I("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: If, no else
+ "if @0 then\n"
+ "   @1;\n"
+ "\bend if;"
+
+Trigger: "i("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: If plus else
+ "if @0 then\n"
+ "   @1;\n"
+ "\belse\n"
+ "   @2;\n"
+ "\bend if;"
+
+Trigger: "if"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: If/elsif/else/endif
+ "if @0 then\n"
+ "   @1;\n"
+ "\belsif @2 then\n"
+ "   @3;\n"
+ "\belse\n"
+ "   @4;\n"
+ "\bend if;"
+
+Trigger: "s("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Case
+ "case @0 is\n"
+ "     when @1 =>\n"
+      "     @2;\n"
+      "\bwhen others =>\n"
+      "     @3;\n"
+ "\b\bend case;"
+
+Trigger: "c:"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Case element (when)
+ "when @0 =>\n"
+ "     @2;"
+
+Trigger: "#i"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Library/Use
+ "library @{Library};\n"
+ "use @v0.@{Package}.all;"
+
+Trigger: "ne"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Next
+ "next @{Label} when @0;"
+
+Trigger: "ot"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: (others => '')
+ "(others => '@0');"
+
+Trigger: "pr"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Printf
+ "printf(\"@0\");"
+
+Trigger: "po"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Procedure declaration
+ "procedure @{Name}(@0) is\n"
+ "begin\n"
+ "   @1;\n"
+ "\bend procedure @v0;"
+
+Trigger: "ps"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Process
+ "@{Label}:\n"
+ "process (@0)\n"
+ "begin\n"
+ "   @1;\n"
+ "\bend process @v0;"
+
+Trigger: "pc"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Process for clock
+ "@{Label}:\n"
+ "process (@{Clock})\n"
+ "begin\n"
+ "   if rising_edge(@v1) then\n"
+    "   @0;\n"
+    "\bend if;\n"
+ "\bend process @v0;"
+
+Trigger: "p1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Process w/clock+async rst
+ "@{Label}:\n"
+ "process (@{Clock},@{Reset})\n"
+ "begin\n"
+ "   if @v2='1' then\n"
+    "   @0;\n"
+    "\belsif rising_edge(@v1) then\n"
+    "   @1;\n"
+    "\bend if;\n"
+ "\bend process @v0;"
+
+Trigger: "p2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Process w/clock+sync rst
+ "@{Label}:\n"
+ "process (@{Clock},@{Reset})\n"
+ "begin\n"
+ "   if rising_edge(@v1) then\n"
+    "   if @v2='1' then\n"
+       "   @0;\n"
+       "\belse\n"
+       "   @1;\n"
+       "\bend if;\n"
+    "\bend if;\n"
+ "\bend process @v0;"
+
+Trigger: "re"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Return
+ "return @0;"
+
+Trigger: "se"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Select signal (With)
+ "with @{Expression} select\n"
+ "     @{Signal} <= @{Value to assign} when @{Value for expression},\n"
+      "\t@0 when @1,\n"
+              "@{Default value} when others;"
+
+Trigger: "si"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Signal declaration
+ "signal @{Name} : @0;"
+
+Trigger: "sl"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Std_logic
+ "std_logic"
+
+Trigger: "sv"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Std_logic_vector
+ "std_logic_vector(@0 downto @1)"
+
+Trigger: "st"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Subtype
+ "subtype @0 is @1 range @2 to @3;"
+
+Trigger: "ty"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Type
+ "type @0 is @1;"
+
+Trigger: "un"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Unsigned
+ "unsigned(@0 downto @1);"
+
+Trigger: "#I"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Use
+ "use @0.@1.all;"
+
+Trigger: "va"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Variable declaration
+ "variable @{Name} : @0;"
+
+Trigger: "w("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: While loop
+ "while @0 loop\n"
+ "   @1;\n"
+ "\bend loop;"
+
+Trigger: "f1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Flip Flop
+ "@{Label}: -- D Flip Flop\n"
+ "process (@{Clock})\n"
+ "begin\n"
+ "   if rising_edge(@v1) then\n"
+    "   @{Output} <= @{Input};\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "f2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Flip Flop w/async reset
+ "@{Label}: -- D Flip Flop w/async reset\n"
+ "process (@{Clock},@{Reset})\n"
+ "begin\n"
+ "   if @v2='1' then\n"
+    "   @{Output} <= '0';\n"
+    "\belsif rising_edge(@v1) then\n"
+    "   @v3 <= @{Input};\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "f3"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Flip Flop w/sync reset
+ "@{Label}: -- D Flip Flop w/sync reset\n"
+ "process (@{Clock},@{Reset})\n"
+ "begin\n"
+ "   if rising_edge(@v1) then\n"
+    "   if @v2='1' then\n"
+       "   @{Output} <= '0';\n"
+       "\belse\n"
+       "   @v3 <= @{Input};\n"
+       "\bend if;\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "f4"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Flip Flop w/clock enable
+ "@{Label}: -- D Flip Flop w/clock enable\n"
+ "process (@{Clock})\n"
+ "begin\n"
+ "   if rising_edge(@v1) then\n"
+    "   if @{Enable}='1' then\n"
+       "   @{Output} <= @{Input};\n"
+       "\bend if;\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "l1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Latch
+ "@{Label}: -- D Latch\n"
+ "process (@{Gate},@{Input})\n"
+ "begin\n"
+ "   if @v1='1' then\n"
+    "   @{Output} <= @v2;\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "l2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: D Latch w/reset
+ "@{Label}: -- D Latch w/reset\n"
+ "process (@{Gate},@{Reset},@{Input})\n"
+ "begin\n"
+ "   if @v2='1' then\n"
+    "   @{Output} <= '0';\n"
+    "\belsif @v1='1' then\n"
+    "   @v4 <= @v3;\n"
+    "\bend if;\n"
+ "\bend process @v0;\n"
+
+Trigger: "h1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Hexa to 7-seg converter
+ "-- Hexadecimal to 7-segment decoder\n"
+ "-- @{Input}:  in  std_logic_vector(3 downto 0);\n"
+ "-- @{Output}:  out std_logic_vector(6 downto 0);\n"
+ "--\n"
+ "-- Bits used for each segment\n"
+ "--      0\n"
+ "--     ---\n"
+ "--  5 |   | 1\n"
+ "--     ---   <- 6\n"
+ "--  4 |   | 2\n"
+ "--     ---\n"
+ "--      3\n"
+ "-- Note: segments are active low.\n\n"
+ "with @v0 select\n"
+ "     @v1 <= \"1111001\" when \"0001\", -- 1\n"
+      "       \"0100100\" when \"0010\", -- 2\n"
+             "\"0110000\" when \"0011\", -- 3\n"
+             "\"0011001\" when \"0100\", -- 4\n"
+             "\"0010010\" when \"0101\", -- 5\n"
+             "\"0000010\" when \"0110\", -- 6\n"
+             "\"1111000\" when \"0111\", -- 7\n"
+             "\"0000000\" when \"1000\", -- 8\n"
+             "\"0010000\" when \"1001\", -- 9\n"
+             "\"0001000\" when \"1010\", -- A\n"
+             "\"0000011\" when \"1011\", -- b\n"
+             "\"1000110\" when \"1100\", -- C\n"
+             "\"0100001\" when \"1101\", -- d\n"
+             "\"0000110\" when \"1110\", -- E\n"
+             "\"0001110\" when \"1111\", -- F\n"
+             "\"1000000\" when others; -- 0\n\n\b\b"
+
+Trigger: "m1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Multiplexer (logic version)
+ "-- Multiplexer (logic version)\n"
+ "-- @{Selection}: in  std_logic_vector(@0 downto 0);\n"
+ "-- @{Inputs}: in  std_logic_vector(@1 downto 0);\n"
+ "-- @{Output}: out std_logic;\n\n"
+ "@{Label}:\n"
+ "process (@v0,@v1)\n"
+ "   variable isel : integer;\n"
+ "\bbegin\n"
+ "   isel:=to_integer(unsigned(@v0));\n"
+    "for i in ins'range loop\n"
+    "    if i=isel then\n"
+        "   @v2 <= @v1(isel);\n"
+        "\bend if;\n"
+    "\bend loop;\n"
+ "\bend process @v3;\n"
+
+Trigger: "m2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Multiplexer (three state version)
+ "-- Multiplexer (three state version)\n"
+ "-- @{Selection}: in  std_logic_vector(@0 downto 0);\n"
+ "-- @{Inputs}: in  std_logic_vector(@1 downto 0);\n"
+ "-- @{Output}: out std_logic;\n\n"
+ "@{Label}:\n"
+ "for i in @v1'range generate\n"
+ "    @v2 <= @v1(i) when to_integer(unsigned(@v0))=i else 'Z';\n"
+ "\bend generate @v0;"
+
+Trigger: "s1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Serial to Serial Shift Register
+ "-- Serial-in and serial-out shift register\n"
+ "-- @{Clock}: in  std_logic;\n"
+ "-- @{Input}: in  std_logic;\n"
+ "-- @{Output}: out std_logic;\n"
+ "-- signal @{Register}: std_logic_vector(@{Bits-1} downto 0);\n\n"
+ "@{Label}:\n"
+ "process (@v0)\n"
+ "begin\n"
+ "   if rising_edge(@v0) then\n"
+    "   @v3 <= @v3(@v3'left-1 downto 0) & @v1;\n"
+    "\bend if;\n"
+    "@v2 <= @v3(@v3'left);\n"
+ "\bend process @v5;"
+
+Trigger: "s2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Serial to Parallel Shift Register
+ "-- Serial-in and parallel-out shift register\n"
+ "-- @{Clock}: in  std_logic;\n"
+ "-- @{Input}: in  std_logic;\n"
+ "-- @{Output}: out std_logic_vector(@{Bits-1} downto 0);\n"
+ "-- signal @{Register}: std_logic_vector(@v3 downto 0);\n\n"
+ "@{Label}:\n"
+ "process (@v0)\n"
+ "begin\n"
+ "   if rising_edge(@v0) then\n"
+    "   @v4 <= @v4(@v4'left-1 downto 0) & @v1;\n"
+    "\bend if;\n"
+    "@v2 <= @v4;\n"
+ "\bend process @v5;"
+
+Trigger: "s3"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Loadable Shift Register
+ "-- Loadable serial-in and serial-out shift register\n"
+ "-- @{Clock}: in  std_logic;\n"
+ "-- @{Input}: in  std_logic;\n"
+ "-- @{Load}: in  std_logic;\n"
+ "-- @{Load Data}: in  std_logic_vector(@{Bits-1} downto 0);\n"
+ "-- @{Output}: out std_logic;\n"
+ "-- signal @{Register}: std_logic_vector(@v4 downto 0);\n\n"
+ "@{Label}:\n"
+ "process (@v0)\n"
+ "begin\n"
+ "   if rising_edge(@v0) then\n"
+    "   if @v2='1' then\n"
+       "   @v6 <= @v3;\n"
+       "\belse\n"
+       "   @v6 <= @v6(@v6'left-1 downto 0) & @v1;\n"
+       "\bend if;\n"
+    "\bend if;\n"
+    "@v5 <= @v6(@v6'left);\n"
+ "\bend process @v7;"
+
+Trigger: "c1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Counter w/load/dir/ena/reset
+ "-- Synchronous counter with count enable, async reset and sync load\n"
+; 0
+ "-- @{Clock}: in  std_logic;\n"
+; 1
+ "-- @{Reset}: in  std_logic;\n"
+; 2
+ "-- @{Enable}: in  std_logic;\n"
+; 3
+ "-- @{Load}: in  std_logic;\n"
+; 4
+ "-- @{Direction}: in  std_logic;\n"
+; 5-6
+ "-- @{Data in}: in  std_logic_vector(@{Bits-1} downto 0);\n"
+; 7
+ "-- @{Output}: out std_logic_vector(@v6 downto 0);\n\n"
+; 8
+ "@{Label}:\n"
+ "process (@v0,@v1)\n"
+ "   variable count : unsigned(@v6 downto 0);\n"
+ "\bbegin\n"
+ "   if @v1='1' then -- w/async reset\n"
+    "   count <= (others => '0');\n"
+    "\belsif rising_edge(@v0) then -- synchronous\n"
+    "   if @v2='1' then -- w/enable\n"
+       "   if @v3='1' then -- w/sync load\n"
+          "   count <= @v5;\n"
+          "\belse\n"
+          "   if @v4='1' then -- w/direction\n"
+             "   count:=count+1;\n"
+             "\belse\n"
+             "   count:=count-1;\n"
+             "\bend if;\n"
+          "\bend if;\n"
+       "\bend if;\n"
+    "\bend if;\n"
+    "@v7 <= count;\n"
+ "\bend process @v8;"
+
+Trigger: "r1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: RAM Single Port Distributed
+ "library IEEE;\n"
+ "use IEEE.std_logic_1164.all;\n"
+ "use IEEE.numeric_std.all;\n\n"
+ "entity @{Entity} is\n"
+ "   port(clk : in  std_logic;\n"
+    "     we  : in  std_logic;\n"
+         "addr: in  std_logic_vector(@{Bits addr-1} downto 0);\n"
+         "di  : in  std_logic_vector(@{Bits data-1} downto 0);\n"
+         "do  : out std_logic_vector(@v2 downto 0));\n"
+ "\b\bend entity @v0;\n\n"
+ "architecture Xilinx of @v0 is\n"
+ "    type   ram_type is array(@{Size-1} downto 0) of std_logic_vector (@v2 downto 0);\n"
+     "signal ram : ram_type;\n"
+ "\bbegin\n"
+ "   the_ram:\n"
+    "process (clk)\n"
+    "begin\n"
+    "   if rising_edge(clk) then\n"
+       "   if we='1' then\n"
+          "   ram(to_integer(unsigned(addr))) <= di;\n"
+          "\bend if;\n"
+       "\bend if;\n"
+    "\bend process the_ram;\n\n"
+    "do <= ram(to_integer(unsigned(addr)));\n"
+ "\bend architecture Xilinx; -- Entity: @v0\n"
+
+Trigger: "r2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: RAM Dual Port Distributed
+ "library IEEE;\n"
+ "use IEEE.std_logic_1164.all;\n"
+ "use IEEE.numeric_std.all;\n\n"
+ "entity @{Entity} is\n"
+ "   port(clk : in  std_logic;\n"
+    "     we  : in  std_logic;\n"
+         "add1: in  std_logic_vector(@{Bits addr-1} downto 0);\n"
+         "add2: in  std_logic_vector(@v1 downto 0);\n"
+         "di  : in  std_logic_vector(@{Bits data-1} downto 0);\n"
+         "do1 : out std_logic_vector(@v2 downto 0);\n"
+         "do2 : out std_logic_vector(@v2 downto 0));\n"
+ "\b\bend entity @v0;\n\n"
+ "architecture Xilinx of @v0 is\n"
+ "    type   ram_type is array(@{Size-1} downto 0) of std_logic_vector (@v2 downto 0);\n"
+     "signal ram : ram_type;\n"
+ "\bbegin\n"
+ "   the_ram:\n"
+    "process (clk)\n"
+    "begin\n"
+    "   if rising_edge(clk) then\n"
+       "   if we='1' then\n"
+          "   ram(to_integer(unsigned(add1))) <= di;\n"
+          "\bend if;\n"
+       "\bend if;\n"
+    "\bend process the_ram;\n\n"
+    "do1 <= ram(to_integer(unsigned(add1)));\n"
+    "do2 <= ram(to_integer(unsigned(add2)));\n"
+ "\bend architecture Xilinx; -- Entity: @v0\n"
+
+Trigger: "b1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: BRAM Single Port
+ "library IEEE;\n"
+ "use IEEE.std_logic_1164.all;\n"
+ "use IEEE.numeric_std.all;\n\n"
+ "entity @{Entity} is\n"
+ "   port(clk : in  std_logic;\n"
+    "     we  : in  std_logic;\n"
+         "addr: in  std_logic_vector(@{Bits addr-1} downto 0);\n"
+         "di  : in  std_logic_vector(@{Bits data-1} downto 0);\n"
+         "do  : out std_logic_vector(@v2 downto 0));\n"
+ "\b\bend entity @v0;\n\n"
+ "architecture Xilinx of @v0 is\n"
+ "    type   ram_type is array(@{Size-1} downto 0) of std_logic_vector (@v2 downto 0);\n"
+     "signal ram   : ram_type;\n"
+     "signal read_a: std_logic_vector(@v1 downto 0);\n"
+ "\bbegin\n"
+ "   the_ram:\n"
+    "process (clk)\n"
+    "begin\n"
+    "   if rising_edge(clk) then\n"
+       "   if we='1' then\n"
+          "   ram(to_integer(unsigned(addr))) <= di;\n"
+          "\bend if;\n"
+          "read_a <= addr;\n"
+       "\bend if;\n"
+    "\bend process the_ram;\n\n"
+    "do <= ram(to_integer(unsigned(read_a)));\n"
+ "\bend architecture Xilinx; -- Entity: @v0\n"
+
+Trigger: "b2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: BRAM Dual Port
+ "library IEEE;\n"
+ "use IEEE.std_logic_1164.all;\n"
+ "use IEEE.numeric_std.all;\n\n"
+ "entity @{Entity} is\n"
+ "   port(clk : in  std_logic;\n"
+    "     we  : in  std_logic;\n"
+         "add1: in  std_logic_vector(@{Bits addr-1} downto 0);\n"
+         "add2: in  std_logic_vector(@v1 downto 0);\n"
+         "di  : in  std_logic_vector(@{Bits data-1} downto 0);\n"
+         "do1 : out std_logic_vector(@v2 downto 0);\n"
+         "do2 : out std_logic_vector(@v2 downto 0));\n"
+ "\b\bend entity @v0;\n\n"
+ "architecture Xilinx of @v0 is\n"
+ "    type   ram_type is array(@{Size-1} downto 0) of std_logic_vector (@v2 downto 0);\n"
+     "signal ram    : ram_type;\n"
+     "signal read_a1: std_logic_vector(@v1 downto 0);\n"
+     "signal read_a2: std_logic_vector(@v1 downto 0);\n"
+ "\bbegin\n"
+ "   the_ram:\n"
+    "process (clk)\n"
+    "begin\n"
+    "   if rising_edge(clk) then\n"
+       "   if we='1' then\n"
+          "   ram(to_integer(unsigned(add1))) <= di;\n"
+          "\bend if;\n"
+          "read_a1 <= add1;\n"
+          "read_a2 <= add2;\n"
+       "\bend if;\n"
+    "\bend process the_ram;\n\n"
+    "do1 <= ram(to_integer(unsigned(read_a1)));\n"
+    "do2 <= ram(to_integer(unsigned(read_a2)));\n"
+ "\bend architecture Xilinx; -- Entity: @v0\n"
+

@@ -39,10 +39,9 @@ void TSLabel::setGrowMode(unsigned val)
  linked->setGrowMode(val);
 }
 
-TSHzLabel::TSHzLabel(const char *aText, TSView *link, int separation) :
-   TSView()
+void TSHzLabel::init(const char *aText, TSView *link, stTVIntl *cache,
+                     int separation)
 {
- stTVIntl *cache=NULL;
  int lenStr=cstrlen(TVIntl::getText(aText,cache));
 
  xSecond=lenStr+separation;

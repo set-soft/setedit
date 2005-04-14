@@ -134,7 +134,7 @@ End
 # <error|warning>:<program>:<error_code> - <filename> line <lineno>: <description>
 #
 Name=Xilinx
-Pattern=(WARNING|ERROR):([^:]+):(\d+) - (.+) line (\d+): (.+)
+Pattern=(WARNING|ERROR):([^:]+):(\d+) - (.+) [lL]ine (\d+)[:\.] (.+)
 Severity=1
 File=4
 Line=5

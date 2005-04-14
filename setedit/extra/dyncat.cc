@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <configed.h>
 #include <string.h>
@@ -52,6 +52,8 @@ void DynStrCat(DynStrCatStruct *Struct, const char *str, int len)
 
 char *newStrL(const char *start, int len)
 {
+ if (len<0)
+    len=0;
  char *ret=new char[len+1];
  memcpy(ret,start,len);
  ret[len]=0;

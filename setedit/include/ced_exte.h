@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TCEditor_External) && !defined(TCEditor_External_Included)
 #define TCEditor_External_Included
@@ -219,7 +219,7 @@ struct strSHL
 #define FG2_EscapeAnywhere  0x02
 
 /********************************* UNDO types and constants *****************/
-#define MAX_UNDO 32
+#define MAX_UNDO 256
 #define UNDO_CHARS_SIZE 100
 
 enum UndoState { undoNoUndo, undoInMov, undoPutChar, undoDelChar, undoInsert,
@@ -382,6 +382,9 @@ TDialog *createArbitraryIndent(int len);
 TDialog *createSolveModifCollision(Boolean haveDiff);
 unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *file);
 void     ShowSavePoint(const char *file);
+Boolean  AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
+                      unsigned mLenVar, const char *name);
+
 
 #endif
 

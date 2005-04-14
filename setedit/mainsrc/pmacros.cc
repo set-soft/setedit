@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -7,6 +7,7 @@
 #define Uses_TPMCollection
 #define Uses_MsgBox
 #include <ceditor.h>
+#include <dyncat.h>
 
 static
 char *FGets(char *s, int n, FILE *f)
@@ -30,11 +31,45 @@ char *FGets(char *s, int n, FILE *f)
 
 ****************************************************************************/
 
+
+ccIndex TPMCollection::insert(void *item)
+{
+ // Fill the vars field
+ PMacroStr *pm=(PMacroStr *)item;
+ char *s=pm->str;
+ for (; *s; s++)
+    {
+     if (*s=='@' && s[1]=='{')
+       {
+        s+=2;
+        char *start=s;
+        for (; *s && *s!='}'; s++);
+        if (*s=='}')
+          {
+           if (!pm->vars)
+             {
+              pm->vars=new TNSCollection(2,2);
+              pm->mLenVar=0;
+             }
+           unsigned lenVar=s-start;
+           if (lenVar>pm->mLenVar)
+              pm->mLenVar=lenVar;
+           char *aVar=newStrL(start,lenVar);
+           pm->vars->insert(aVar);
+           //printf("%s: %s %d\n",pm->name,aVar,lenVar);
+          }
+       }
+    }
+ // Insert it
+ return TStringCollection::insert(item);
+}
+
 void TPMCollection::freeItem(void *p)
 {
  PMacroStr *s=(PMacroStr *)p;
  delete[] s->str;
  delete[] s->name;
+ destroy(s->vars);
  delete s;
 }
 
@@ -42,8 +77,6 @@ void *TPMCollection::keyOf(void *p)
 {
  return ((PMacroStr *)p)->trigger;
 }
-
-extern char *strncpyZ(char *dest, const char *orig, int size);
 
 void TPMCollection::getText(char *dest, unsigned item, int maxLen)
 {
@@ -55,7 +88,21 @@ void TPMCollection::getText(char *dest, unsigned item, int maxLen)
  DeleteArray(aux);
 }
 
-static int MeassureTriLine(char *b,unsigned &s,unsigned &e)
+PMacroStr *TPMCollection::searchByNamePointer(void *name)
+{
+ ccIndex i,c=getCount();
+
+ for (i=0; i<c; i++)
+    {
+     PMacroStr *p=(PMacroStr *)at(i);
+     if (p->name==name)
+        return p;
+    }
+ return NULL;
+}
+
+static
+int MeassureTriLine(char *b,unsigned &s,unsigned &e)
 {
  int l;
  char *p=b;
@@ -124,6 +171,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
    nDef->trigger[0]=s[0];
    nDef->trigger[1]=s[1];
    nDef->trigger[2]=0;
+   nDef->vars=NULL;
 
    // Process the mode keyword
    FGets(buf,250,f);

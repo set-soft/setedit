@@ -17,13 +17,19 @@ public:
 class TSHzLabel : public TSView
 {
 public:
- TSHzLabel(const char *aText, TSView *link, int separation=1);
+ TSHzLabel(const char *aText, TSView *link, int separation=1)
+   { init(aText,link,NULL,separation); }
+ TSHzLabel(const char *aText, TSView *link, stTVIntl *cache, int separation=1)
+   { init(aText,link,cache,separation); }
  virtual ~TSHzLabel() { delete linked; };
  virtual void insert(TDialog *);
  virtual void setWidth(int aW);
  virtual void setGrowMode(unsigned val);
  TSView *linked;
  int xSecond;
+
+protected:
+ void init(const char *aText, TSView *link, stTVIntl *cache, int separation);
 };
 
 #endif

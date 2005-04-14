@@ -1,21 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2003 by Salvador E. Tropea (SET)
-
-  Designed for the TCEditor class to be used by Robert Hîhne in your RHIDE.
-
-  If you want to use this code contact me first.
-
-  E-Mail: salvador@inti.gov.ar
-
-  Telephone: (+5411) 4759-0013
-
-  Postal Address:
-  Salvador E. Tropea
-  CurapaligÅe 2124
-  (1678) Caseros - 3 de Febrero
-  Prov: Buenos Aires
-  Argentina
+  Busca Funciones (BuFun), Copyright (c) 1996-2005 by Salvador E. Tropea (SET)
 
   These routines are compatible with Borland's TVision 1.03 and the port of
 those routines to DJGPP.
@@ -681,6 +666,7 @@ static stFuncsSHL FuncsAvail[]=
  {"PHP",SearchPHPFuncs},
  {"Python",SearchPythonSymbols},
  {"VHDL",SearchVHDLStuff},
+ {"PMacros file",SearchPMDefs},
  {0,SearchCFuncs}
 };
 

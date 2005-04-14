@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 21 February 2005
-@set update-month February 2005
+@set update-date 13 April 2005
+@set update-month April 2005
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -1489,10 +1489,14 @@ Currently only a few languages are supported, they are:
 @itemize @bullet
 @item C/C++
 @item Clipper 5.x
+@item Perl
 @item Syntax Highlight Files
 @item Texinfo sources (chapters, sections, @il{etc.})
 @item Assembler files (labels)
 @item PHP
+@item Python
+@item VHDL
+@item PMacros file
 @end itemize
 
 In C sources fails are common if your code has an unbalanced number of

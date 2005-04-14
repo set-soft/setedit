@@ -67,7 +67,9 @@
 #define Uses_TStringableListBox
 #define Uses_TVOSClipboard
 #define Uses_TVCodePage
+#define Uses_TListBox
 
+#define Uses_TNoCaseStringCollection
 #define Uses_TCEditor
 #define Uses_LineLengthArray
 #define Uses_TFindCDialogRec
@@ -6085,9 +6087,11 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
        update(ufView);
       }
    }
+ MarkAsModified();
  // This must be *after* the wrap because:
  // 1) Can flush the line and it complicates the wrap.
  // 2) The pair could be moved.
+ // Also after the MarkAsModified because of ufHLChar
  if (ShowMatchPair && cVal && strchr("{}()[]",cVal))
    {
     int pos=-2;
@@ -6141,7 +6145,6 @@ void TCEditor::InsertCharInLine(char cVal, Boolean allowUndo)
          }
       }
    }
- MarkAsModified();
 }
 
 /****************************************************************************
@@ -6777,6 +6780,15 @@ void *TCEditor::SearchPMTrigger(char *trg)
  return ret;
 }
 
+static
+void AddPM(void *item, void *data)
+{
+ PMacroStr *pm=(PMacroStr *)item;
+ TNoCaseStringCollection *colName=(TNoCaseStringCollection *)data;
+
+ colName->insert(pm->name);
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -6816,28 +6828,28 @@ void TCEditor::ChoosePMacroFromList(void)
     return;
    }
 
- TStringableListBoxRec box;
- box.items=col;
+ // Create a temporal collection sorted by name
+ TNoCaseStringCollection *colName=new TNoCaseStringCollection(col->getCount(),1);
+ col->forEach(AddPM,colName);
+
+ TListBoxRec box;
+ box.items=colName;
  box.selection=0;
  if (editorDialog(edChoosePMacro,&box)==cmOK)
    {
     flushLine();
-    ExpandPMacro(col->at(box.selection),0);
+    ExpandPMacro(col->searchByNamePointer(colName->at(box.selection)),0);
    }
+ delete colName; // Keep the elemenyts.
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void ExpandMacro(void)
-             
-   Type: TCEditor member.
-
-   Objetive: Expand a pseudo-macro. The routines looks 2 bytes before the
-   cursor position.
-
-   by SET.
-
-****************************************************************************/
+  Description:
+  Expands a pseudo-macro. The routines looks 2 bytes before the cursor
+position. Uses @x{ExpandPMacro}.
+  
+***************************************************************************/
 
 void TCEditor::ExpandMacro(void)
 {
@@ -6870,89 +6882,128 @@ know that's safe and know what to expand.
 
 void TCEditor::ExpandPMacro(void *pm, char *s)
 {
+ if (!pm)
+    return;
  unsigned AuxMarkers[MaxAuxMarker];
  unsigned i;
- PMacroStr *d=(PMacroStr *)pm;
+ unsigned Pos,Val;
+ int XCur=-1,YCur=0;
 
- if (d)
+ PMacroStr *d=(PMacroStr *)pm;
+ if (!d->str) return;
+
+ // Ask for vars if this macro have them
+ unsigned nVars;
+ char *varsVals;
+ if (!AskForPMVars(varsVals,d->vars,nVars,d->mLenVar,d->name))
+    return;
+
+ // Change to the correct mode
+ uint32 oldFlags=CompactFlags();
+ ExpandFlags(d->flags);
+
+ memset(AuxMarkers,0,MaxAuxMarker*sizeof(unsigned));
+ NotExpandingMacro=False;
+ if (!s)
+    s=ColToPointer();
+ else
    {
-    unsigned Pos,Val;
-    int XCur=-1,YCur=0;
- 
-    if (!d->str) return;
-    // Change to the correct mode
-    uint32 oldFlags=CompactFlags();
-    ExpandFlags(d->flags);
- 
-    memset(AuxMarkers,0,MaxAuxMarker*sizeof(unsigned));
-    NotExpandingMacro=False;
-    if (!s)
-       s=ColToPointer();
-    else
+    BackSpace();
+    BackSpace();
+   }
+ unsigned varPos=0;
+ for (s=d->str; *s; s++)
+   {
+    switch (*s)
       {
-       BackSpace();
-       BackSpace();
-      }
-    for (s=d->str; *s; s++)
-      {
-       switch (*s)
-         {
-          case '\n':
-               newLine();
-               break;
-          case '\b':
-               BackSpace();
-               break;
-          case '\t':
-               SmartTab();
-               break;
-          case '@':
-               if (s[1] == '@') // the user want to insert a '@'
-                 {
-                  if (!IslineInEdition)
-                     EditLine();
-                  InsertCharInLine(*s++);
-                  break;
-                 }
-               if (IslineInEdition)
-                 {
-                  Pos=(unsigned)((curLinePtr-buffer)+(inEditPtr-bufEdit));
-                 }
-               else
-                  Pos=(unsigned)(ColToPointer()-buffer);
-               Val=*++s-0x30;
-               if (Val)
-                 {
-                  Val--;
-                  if (Val<MaxAuxMarker)
-                     AuxMarkers[Val]=Pos;
-                 }
-               else
-                 {
-                  XCur=curPos.x;
-                  YCur=curPos.y;
-                 }
-               break;
-          default:
+       case '\n':
+            newLine();
+            break;
+       case '\b':
+            BackSpace();
+            break;
+       case '\t':
+            SmartTab();
+            break;
+       case '@':
+            if (s[1]=='@') // the user want to insert a '@'
+              {
                if (!IslineInEdition)
                   EditLine();
-               InsertCharInLine(*s);
-         }
+               InsertCharInLine(*s++);
+               break;
+              }
+            if (s[1]=='{') // An input var, by name
+              {
+               s+=2;
+               for (; *s && *s!='}'; s++);
+               if (!*s)
+                 {// Error!
+                  s--;
+                  break;
+                 }
+               char *str=varsVals+MaxVarValLen*varPos;
+               int len=strlen(str);
+               if (len)
+                 {
+                  flushLine();
+                  insertBuffer(str,0,len,True,False,True);
+                  //printf("<%s> %d\n",str,len);
+                 }
+               varPos++;
+               break;
+              }
+            if (s[1]=='v') // An input var, by position
+              {
+               s+=2;
+               Val=*s-0x30;
+               if (Val>=0 && Val<nVars)
+                 {
+                  char *str=varsVals+MaxVarValLen*Val;
+                  flushLine();
+                  insertBuffer(str,0,strlen(str),True,False,True);
+                 }
+               break;
+              }
+            if (IslineInEdition)
+              {
+               Pos=(unsigned)((curLinePtr-buffer)+(inEditPtr-bufEdit));
+              }
+            else
+               Pos=(unsigned)(ColToPointer()-buffer);
+            Val=*++s-0x30;
+            if (Val)
+              {
+               Val--;
+               if (Val<MaxAuxMarker)
+                  AuxMarkers[Val]=Pos;
+              }
+            else
+              {
+               XCur=curPos.x;
+               YCur=curPos.y;
+              }
+            break;
+       default:
+            if (!IslineInEdition)
+               EditLine();
+            InsertCharInLine(*s);
       }
-    NotExpandingMacro=True;
-    if (IslineInEdition)
-       MakeEfectiveLineInEdition();
-    if (XCur!=-1)
-       MoveCursorTo(XCur,YCur,True);
-    for (i=0; i<MaxAuxMarker; i++)
-        if (AuxMarkers[i])
-           Markers[i+7]=AuxMarkers[i];
- 
-    // return to the original mode
-    ExpandFlags(oldFlags);
- 
-    update(ufView);
    }
+ NotExpandingMacro=True;
+ if (IslineInEdition)
+    MakeEfectiveLineInEdition();
+ if (XCur!=-1)
+    MoveCursorTo(XCur,YCur,True);
+ for (i=0; i<MaxAuxMarker; i++)
+     if (AuxMarkers[i])
+        Markers[i+7]=AuxMarkers[i];
+
+ // return to the original mode
+ ExpandFlags(oldFlags);
+ delete[] varsVals;
+
+ update(ufView);
 }
 
 #define Block ((const char *)(block))
@@ -7190,13 +7241,9 @@ void TCEditor::UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP,
 
 ****************************************************************************/
 
-Boolean TCEditor::insertBuffer( char *p,
-                               uint32 offset,
-                               uint32 length,
-                               Boolean allowUndo,
-                               Boolean selectText,
-                               Boolean moveToEnd
-                             )
+Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
+                               Boolean allowUndo, Boolean selectText,
+                               Boolean moveToEnd)
 {
  if (isReadOnly)
     return False;
@@ -7586,7 +7633,7 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
  char *fromOrig=from;
  // If the block will let the end of the current line exposed see if
  // there are spaces at the end and eat it.
- if (!DontPurgeSpaces && (*to=='\r' || *to=='\n' || !*to))
+ if (!DontPurgeSpaces && (*to=='\r' || *to=='\n' || !*to) && allowUndo)
    {
     while (from!=buffer)
       {

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.660  2005/03/22 19:04:03  set
+* Fixed(?): Undo operations involving spaces at the end of a line.
+
 Revision 1.659  2005/03/07 14:50:49  set
 * Added: InfView now tries to guess the INFOPATH using the SET_FILES
 environment variable. The editor also tries to guess SET_FILES so we have

@@ -1,10 +1,11 @@
 /**[txh]********************************************************************
 
-  Copyright (c) 2001 by Salvador Eduardo Tropea.
+  Copyright (c) 2001-2005 by Salvador Eduardo Tropea.
   This program is covered by the GPL license.
 
   Description:
-  Parses a .shl, .txi or assembler file looking for function definitions.
+  Parses a .shl, .txi, .pmc or assembler file looking for function
+definitions.
   It can be compiled as an standalone program by defining STANDALONE.
 
 ***************************************************************************/
@@ -13,7 +14,8 @@
 #define Uses_ctype
 #define Uses_string
 #define Uses_TVCodePage
-#include <tv.h>
+#define Uses_snprintf
+#include <settvuti.h>
 
 #include <bufun.h>
 
@@ -34,6 +36,15 @@ static
 char *MoveAfterEqual(char *s)
 {
  for (; *s && *s!='='; s++);
+ if (*s) s++;
+ for (; *s && isspace((uchar)*s); s++);
+ return s;
+}
+
+static
+char *MoveAfterColon(char *s)
+{
+ for (; *s && *s!=':'; s++);
  if (*s) s++;
  for (; *s && isspace((uchar)*s); s++);
  return s;
@@ -72,6 +83,7 @@ int SearchSHLDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
    }
  return funcs;
 }
+
 struct Entry
 {
  const char *name;
@@ -169,6 +181,37 @@ int SearchAsmLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
    }
  return funcs;
 }
+
+int SearchPMDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned lineFound=0,funcs=0,lenNom=0;
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    ReplaceCRby0(bfBuffer);
+    if (strncasecmp(bfBuffer,"Trigger:",8)==0 && isspace((uchar)bfBuffer[8]))
+      {
+       char *pos=MoveAfterColon(bfBuffer);
+       strncpyZ(bfTempNomFun,pos,MaxLenWith0);
+       lineFound=Line;
+      }
+    else if (strncasecmp(bfBuffer,"Name:",5)==0 && isspace((uchar)bfBuffer[5]))
+      {
+       char *pos=MoveAfterColon(bfBuffer);
+       lenNom=CLY_snprintf(bfNomFun,MaxLenWith0,"%s %s",pos,bfTempNomFun);
+      }
+    else if (lineFound && lenNom && !bfBuffer[0]) // Empty line
+      {
+       AddFunc(bfNomFun,lenNom+1,lineFound,Line);
+       lineFound=lenNom=0;
+       funcs++;
+      }
+   }
+ return funcs;
+}
+
+
 
 #ifdef STANDALONE
 char bfBuffer[MaxLenWith0];

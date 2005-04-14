@@ -164,6 +164,7 @@ extern TStringCollection *ClipperRWords;
 // ****************** Functions
 class TPMCollection;
 extern Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll);
+const unsigned MaxVarValLen=80;
 extern Boolean CreateSHShortCutTables(void);
 extern void DestroySHShortCutTables(void);
 extern Boolean LoadFileUnderCursor(char *lineStart,char *cursor,unsigned l,

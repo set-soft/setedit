@@ -68,6 +68,7 @@ TODO:
 #include <pathtool.h>
 #include <completi.h>
 #include <advice.h>
+#include <dyncat.h>
 
 static int InitTagsCollection();
 
@@ -159,17 +160,6 @@ char *toQuestion(char *e)
  return e;
 }
 
-static
-char *newStrN(const char *s, int len)
-{
- if (len<0)
-    len=0;
- char *r=new char[len+1];
- memcpy(r,s,len);
- r[len]=0;
- return r;
-}
-
 /*****************************************************************************
  TTagInfo class
 *****************************************************************************/
@@ -209,17 +199,17 @@ int TTagInfo::addValue(char *s)
  char *e=toTabSp(s);
  if (*e)
    {
-    p->var=newStrN(s,e-s);
+    p->var=newStrL(s,e-s);
     s=e+1;
     e=toTab(s);
     if (*e)
       {
-       p->value=newStrN(s,e-s);
+       p->value=newStrL(s,e-s);
        s=e+1;
        if (*s=='/') s++;
        e=toTabSl(s);
        if (*e && e-s>1)
-          p->comment=newStrN(s,e-s);
+          p->comment=newStrL(s,e-s);
       }
    }
  insert(p);
@@ -552,7 +542,7 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
     delete p;
     return 1;
    }
- p->id=newStrN(s,e-s);
+ p->id=newStrL(s,e-s);
 
  if (TAG_STATS)
    {
@@ -609,7 +599,7 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
     // Exuberant Ctags doesn't use a real regex here.
     // It just puts /^*$/ where * is the content of the line.
     // So I just take this text and do a "whole word" search.
-    p->regex=newStrN(s+1,e-s-2);
+    p->regex=newStrL(s+1,e-s-2);
     e++;
     //printf("Regex: %s\n",p->regex);
    }
@@ -618,7 +608,7 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
      // But may be isn't wrong because that's also fake.
     s++;
     e=toQuestion(s);
-    p->regex=newStrN(s+1,e-s-2);
+    p->regex=newStrL(s+1,e-s-2);
     e++;
     //printf("Backwards Regex: %s\n",p->regex);
    }
