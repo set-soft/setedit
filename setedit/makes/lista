@@ -27,6 +27,7 @@ cfgfiles/eterm/xterm-eterm-tv
 -cfgfiles/simple.dst
 *cfgfiles/simple.tip
 *cfgfiles/syntaxhl.shl
+*cfgfiles/vhdl.pmc
 *cfgfiles/wmlmac.pmc
 change.log
 change0.log
