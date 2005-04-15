@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 13 April 2005
+@set update-date 15 April 2005
 @set update-month April 2005
 @set name-author Salvador Eduardo Tropea
 
@@ -3973,8 +3973,8 @@ columns are equidistant and the positions are controled by the Tab Size value.
 @paragraph{}
 
   If this setting is off the editor won't put any ASCII 9 in your text.
-The behavior is configured by the @il{Tab indents} option. Read the section
-about it for more information. @x{Tab indents}.
+The behavior is configured by the @il{Tab smart indents} option. Read the section
+about it for more information. @x{Tab smart indents}.
 @paragraph{}
 
   You can also indent using spaces when this option is disabled. For more
@@ -4428,7 +4428,7 @@ to position the cursor in these spaces, only in the first space.
 
   This mode was introduced in v0.4.23 and is globally enabled by default.
 
-@section Tab indents
+@section Tab smart indents
 @cindex No real tabs
 @cindex Tab as spaces
 
@@ -4468,7 +4468,7 @@ than the tab size. This can be done disabling this option and enabling
 @cindex Indent amount
 @cindex TABs as spaces
 
-  When the @il{Real Tabs} and @il{Tab indents} options are disabled you can
+  When the @il{Real Tabs} and @il{Tab smart indents} options are disabled you can
 indent with the tab key but using spaces. Sometimes people want to use tabs
 of eight spaces because this is the most common value for consoles and
 printers but, at the same time, they want to indent by a different amount of
@@ -4925,6 +4925,8 @@ all. You wrote the hello world program at a very good speed.
 
 @section How can I customize that?
 
+@subsection General customization
+
   It's very easy. Each syntax highlighting has its own pseudo macros file. Which
 file belongs to which syntax highlighting is indicated in the @file{syntaxhl.shl}
 file. @x{Syntax Highlighting File}. In the case of C/C++ the file is called
@@ -4944,7 +4946,8 @@ I'll include one example here.
 
 @format
 Trigger: "i("
-Mode: 0,1,0,1,0
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: if plus else
  "if (@@0)\n"
  "  @{@@1\n"
    "@}\n"
@@ -4961,11 +4964,26 @@ the text. The modes are:
 @paragraph{}
 
 @itemize @bullet
-  @item Overwrite               @x{Overwrite}.
-  @item Autoindent              @x{Autoindent}.
-  @item Use Tabs                @x{Real Tabs}.
-  @item Persistent blocks       @x{Block modes}.
-  @item Intelligent C indent    @x{Intelligent C indent}.
+  @item Overwrite                 @x{Overwrite}.
+  @item Autoindent                @x{Autoindent}.
+  @item Use Tabs                  @x{Real Tabs}.
+  @item Persistent blocks         @x{Block modes}.
+  @item Intelligent C indent      @x{Intelligent C indent}.
+  @item Vertical cursor           @x{Column cursor}
+  @item Horizontal cursor
+  @item Match pair highlight      @x{Match pair highlight}.
+  @item Match pair on the fly
+  @item Don't wait to search for the pair
+  @item Transparent Blocks        @x{Transparent Blocks}
+  @item Optimal Fill              @x{Optimal Fill}
+  @item Wrap words                @x{Wrap Words}
+  @item See tabs                  @x{See Tabs}
+  @item Don't move inside tabs    @x{Do not move inside tabs}
+  @item Tab smart indents         @x{Tab smart indents}
+  @item Use indent size           @x{Use indent size}
+  @item Keep trailing whitespace  @x{Keep trailing whitespace}
+  @item Backspace unindents       @x{Backspace unindents}
+  @item Column markers            @x{Column Markers}
 @end itemize
 
   Each mode can be 0 or 1. The editor will return to the original mode after
@@ -4986,12 +5004,61 @@ beginning of the file. The places marked with @@1, @@2 and @@3 are saved in
 the markers 7, 8 and 9.
 @paragraph{}
 
-  Currently I defined pseudo macros only for C/C++ and Perl. I did it in a way
-that you can use the same pseudo macro for both languages. For example:
-@code{#i} is expanded to @code{#include <.h>} for C/C++ files and to
-@code{request "";} for Perl files. If you write similar pseudo macros for other
-languages please send me the file and I'll add it to the next release.
+  Currently we defined pseudo macros only for x51 assembler, Clipper, C/C++,
+HTML, Perl, VHDL and WML. We did it in a way that you can use the same pseudo
+macro for all languages. For example: @code{#i} is expanded to
+@code{#include <.h>} for C/C++ files and to @code{request "";} for Perl files.
+If you write similar pseudo macros for other languages please send me the file
+and I'll add it to the next release.
 @paragraph{}
+
+@subsection Asking for user defined values
+
+  Pseudo macros can ask the user to enter values. This can be done using the
+@@@{Name@} syntax. We will call it a variable. A macro can have as many
+variables as you want. But in practice you should avoid using more than 17
+variables because the dialog created to ask for them could become useless.
+@p{}
+
+  When a macro containing one or more variables is expanded the editor pops
+up a dialog containing the variables. After the user enters them the macro is
+expanded and the variables are replaced by the user defined values.
+@p{}
+
+  If you need to expand a variable more than once you can reference the
+variable using @code{@@vN} where N is the number of the variable. Variables
+are numbered starting from zero. Here is an example showing a macro for the
+VHDL entity construction:
+@p{}
+
+@example
+Trigger: "en"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Entity
+ "entity @@@{Entity@} is\n"
+ "   generic(@@0\n"
+    "       );\n"
+    "\bport(@@1\n"
+    "     );\n"
+ "\b\bend entity @@v0;"
+@end example
+
+  In this example if you enter @code{Counter} for the @code{Entity} variable
+you'll get:
+@p{}
+
+@example
+entity Counter is
+   generic(
+          );
+   port(
+       );
+end entity Counter;
+@end example
+
+  If you want to provide a default value use the following syntax:
+@@@{Name;Value@}.
+@p{}
 
 @chapter sLisp macros
 @cindex macros from menu

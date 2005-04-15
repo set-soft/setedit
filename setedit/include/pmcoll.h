@@ -9,6 +9,7 @@ typedef struct
  char  *str;
  char  *name;
  TNSCollection *vars;
+ TNSCollection *defaults;
  unsigned mLenVar;
 } PMacroStr;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #include <ctype.h>
@@ -126,13 +126,14 @@ void TNoFrame::setCursor(int x, int y)
 
 
 char *CompletionChooseFromList(TStringCollection *list, int cant, int len,
-                               int xC, int yC, unsigned ops, int lPartial)
+                               int xC, int yC, unsigned ops, int lPartial,
+                               Boolean aNewStr)
 {
  // Don't pop-up if the answer is obvious
  if (cant<1)
     return 0;
  if (cant==1)
-    return newStr((char *)list->at(0));
+    return aNewStr ? newStr((char *)list->at(0)) : (char *)list->at(0);
 
  // Heavy stuff: position the list in a good place
  TRect dktR=TProgram::deskTop->getExtent();
@@ -178,14 +179,19 @@ char *CompletionChooseFromList(TStringCollection *list, int cant, int len,
    {
     b->getData(&r);
     char *s=(char *)list->at(r.selection);
-    int l=strlen(s)+1;
-    ret=new char[l+1];
-    strcpy(ret,s);
-    if ((ops & cmplDontAddEndChar)==0 && b->endChar)
+    if (aNewStr)
       {
-       ret[l-1]=b->endChar;
-       ret[l]=0;
+       int l=strlen(s)+1;
+       ret=new char[l+1];
+       strcpy(ret,s);
+       if ((ops & cmplDontAddEndChar)==0 && b->endChar)
+         {
+          ret[l-1]=b->endChar;
+          ret[l]=0;
+         }
       }
+    else
+       ret=s;
    }
  else
    ret=0;

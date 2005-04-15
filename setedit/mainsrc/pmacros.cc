@@ -6,6 +6,8 @@
 #define Uses_ftell
 #define Uses_TPMCollection
 #define Uses_MsgBox
+#define Uses_snprintf
+#define Uses_AllocLocal
 #include <ceditor.h>
 #include <dyncat.h>
 
@@ -49,14 +51,23 @@ ccIndex TPMCollection::insert(void *item)
            if (!pm->vars)
              {
               pm->vars=new TNSCollection(2,2);
+              pm->defaults=new TNSCollection(2,2);
               pm->mLenVar=0;
              }
-           unsigned lenVar=s-start;
-           if (lenVar>pm->mLenVar)
-              pm->mLenVar=lenVar;
-           char *aVar=newStrL(start,lenVar);
-           pm->vars->insert(aVar);
-           //printf("%s: %s %d\n",pm->name,aVar,lenVar);
+           // Extract the variable
+           char *aux=newStrL(start,s-start);
+           char *val=strtok(aux,";");
+           unsigned lenVal=strlen(val);
+           pm->vars->insert(newStrL(val,lenVal));
+           if (lenVal>pm->mLenVar)
+              pm->mLenVar=lenVal;
+           //printf("Var: %s %d\n",val,lenVal);
+           // Default value?
+           val=strtok(NULL,";");
+           pm->defaults->insert(newStr(val));
+           //printf("Default: %s\n",val);
+           // Free the temporal
+           delete[] aux;
           }
        }
     }
@@ -70,6 +81,7 @@ void TPMCollection::freeItem(void *p)
  delete[] s->str;
  delete[] s->name;
  destroy(s->vars);
+ destroy(s->defaults);
  delete s;
 }
 
@@ -172,6 +184,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
    nDef->trigger[1]=s[1];
    nDef->trigger[2]=0;
    nDef->vars=NULL;
+   nDef->defaults=NULL;
 
    // Process the mode keyword
    FGets(buf,250,f);
@@ -314,6 +327,14 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
          }
      }
    *s=0;
+   if (!nDef->name)
+     {// Use a default name is none is provided
+      size_t len=CLY_snprintf(NULL,(size_t)0,"%s [%c%c]",__("No name"),nDef->trigger[0],
+                              nDef->trigger[1]);
+      char *name=new char[len+1];
+      CLY_snprintf(name,len+1,"%s [%c%c]",__("No name"),nDef->trigger[0],nDef->trigger[1]);
+      nDef->name=name;
+     }
    coll.insert(nDef);
    Trs++;
    total+=l+1;

@@ -383,7 +383,8 @@ public:
     void CommentUnIndent();
     void BackSpace(Boolean allowUndo=True);
     void ExpandMacro(void);
-    void ExpandPMacro(void *pm, char *s=0);
+    void ExpandPMacro(void *pm, char *s=NULL, char *trg=NULL);
+    strSHL *LoadPMForCurSHL();
     void MacroGenerateCode(void);
     int TestPropagation(uint32 OldAttr,uint32 NewAttr,char *proxLine, uint32 proxLineNum);
     int SearchCloseSymbol(char open, char close);

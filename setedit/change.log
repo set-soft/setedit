@@ -1,4 +1,21 @@
-$Log$.
+$Log$
+Revision 1.661  2005/04/14 20:18:39  set
+* Added: Pseudo-macros for VHDL.
+* Fixed: Xilinx errors parser.
+* Updated: Help to reflect all languages that supports "list of functions"
+* Added: A new constructor to TSHzLabel, it allows to pass an intl cache.
+* Modified: TAGS code to reuse newStrL.
+* Added: Heuristic parser to search definitions in .pmc files.
+* Modified: Undo array to hold 256 changes instead of 32.
+* Added: Now pmacros can ask values to the user and insert them in the
+expanded code. Very useful for VHDL.
+* Modified: The dialog to choose the pmacros now is sorted by name and
+supports incremental search.
+* Fixed: Match pair on the fly was broken by the changes in "modified"
+member.
+* Fixed: A bug in undo operations that involved the undo of "insertBuffer"
+that removed extra spaces.
+
 Revision 1.660  2005/03/22 19:04:03  set
 * Fixed(?): Undo operations involving spaces at the end of a line.
 

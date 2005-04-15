@@ -88,6 +88,7 @@
 #include <loadshl.h>
 #include <advice.h>
 #include <splinman.h>
+#include <completi.h>
 
 #include <setconst.h>
 
@@ -6740,6 +6741,61 @@ void TCEditor::MakeEfectiveLineInEdition(void)
 /**[txh]********************************************************************
 
   Description:
+  Ensures that pmacros for the current syntax are loaded.
+  
+  Return: NULL if no SHL, the current strSHL otherwise.
+  
+***************************************************************************/
+
+struct strSHL *TCEditor::LoadPMForCurSHL()
+{
+ struct strSHL *s=NULL;
+
+ // Check if a SHL is used
+ if (SHLValueSelected>=0 && SHLArray)
+   {
+    s=&SHLArray[SHLValueSelected];
+    // Check if the pmacros is loaded
+    if (!s->PM)
+      { // Now if not loaded check if a name was provided
+       if (s->PMacros)
+         {
+          s->PM=new TPMCollection(32,8);
+          LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),*(s->PM));
+         }
+      }
+   }
+ return s;
+}
+
+typedef struct
+{
+ char match;
+ TStringCollection *col;
+ size_t len;
+} stAddMatchPM;
+
+static
+void AddMatchPM(void *item, void *data)
+{
+ PMacroStr *pm=(PMacroStr *)item;
+ stAddMatchPM *st=(stAddMatchPM *)data;
+
+ if (!st->match || pm->trigger[0]==st->match)
+   {             
+    if (pm->name)
+      {
+       size_t len=strlen(pm->name);
+       st->col->insert(pm->name);
+       if (len>st->len)
+          st->len=len;
+      }      
+   }   
+}
+
+/**[txh]********************************************************************
+
+  Description:
   It searchs a trigger in the PMColl pmacros collection. If isn't there it
 tries to search in the TPMacrosCollection of the actual syntax highlight.
 Additionally if the file isn't loaded it loads the file.
@@ -6751,32 +6807,77 @@ Additionally if the file isn't loaded it loads the file.
 
 void *TCEditor::SearchPMTrigger(char *trg)
 {
- void *ret=0;
- struct strSHL *s;
+ void *ret=NULL;
+ struct strSHL *s=NULL;
  ccIndex pos;
 
- // Search in the global list
- if (PMColl->search(trg,pos))
-    ret=PMColl->at(pos);
- else
-   { // If not try in the language specific list
-    // Check if a SHL is used
-    if (SHLValueSelected>=0 && SHLArray)
-      {
-       s=&SHLArray[SHLValueSelected];
-       // Check if the pmacros is loaded
-       if (!s->PM)
-         { // Now if not loaded check if a name was provided
-          if (s->PMacros)
-            {
-             s->PM=new TPMCollection(32,8);
-             LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),*(s->PM));
-            }
-         }
-       if (s->PM && s->PM->search(trg,pos))
+ if (trg[0] && trg[1])
+   {
+    // Search in the global list
+    if (PMColl->search(trg,pos))
+       ret=PMColl->at(pos);
+    else
+      {// If not try in the language specific list
+       s=LoadPMForCurSHL();
+       if (s && s->PM && s->PM->search(trg,pos))
           ret=s->PM->at(pos);
       }
+    if (ret)
+       return ret;
    }
+ if (!s)
+    s=LoadPMForCurSHL();
+
+ if (trg[0])
+   {// Try to find all the pmacros with the first char
+    stAddMatchPM stM;
+    stM.match=trg[0];
+    stM.col=new TNoCaseStringCollection(10,4);
+    stM.len=0;
+    PMColl->forEach(AddMatchPM,&stM);
+    if (s && s->PM)
+       s->PM->forEach(AddMatchPM,&stM);
+    // Found any?
+    int count=stM.col->getCount();
+    if (count)
+      {
+       char *res=CompletionChooseFromList(stM.col,count,stM.len,cursor.x+owner->origin.x,
+                                          cursor.y+owner->origin.y+1,0,0,False);
+       if (res)
+         {
+          ret=PMColl->searchByNamePointer(res);
+          if (!ret && s && s->PM)
+             ret=s->PM->searchByNamePointer(res);
+         }
+      }
+    delete stM.col;
+    if (ret)
+       return ret;
+   }
+
+ // Show all
+ stAddMatchPM stM;
+ stM.match=0;
+ stM.col=new TNoCaseStringCollection(10,4);
+ stM.len=0;
+ PMColl->forEach(AddMatchPM,&stM);
+ if (s && s->PM)
+    s->PM->forEach(AddMatchPM,&stM);
+ // Found any?
+ int count=stM.col->getCount();
+ if (count)
+   {
+    char *res=CompletionChooseFromList(stM.col,count,stM.len,cursor.x+owner->origin.x,
+                                       cursor.y+owner->origin.y+1,0,0,False);
+    if (res)
+      {
+       ret=PMColl->searchByNamePointer(res);
+       if (!ret && s && s->PM)
+          ret=s->PM->searchByNamePointer(res);
+      }
+   }
+ delete stM.col;
+
  return ret;
 }
 
@@ -6858,16 +6959,22 @@ void TCEditor::ExpandMacro(void)
  if (isReadOnly)
     return;
  flushLine();
- char *s=ColToPointer();
+ int dif;
+ char *s=ColToPointer(dif);
+ if (dif!=0 || s-buffer<2 || ucisspace(s[-1]))
+    Trg[0]=Trg[1]=0; // Show all
+ else if (ucisspace(s[-2]))
+    {
+     Trg[0]=s[-1];
+     Trg[1]=0; // Show triggers that match the first letter
+    }
+ else
+    {// Exact match | first letter
+     Trg[0]=s[-2]; Trg[1]=s[-1]; Trg[2]=0;
+    }
 
- if (s-buffer>=2)
-   {
-    s-=2;
-
-    // Search if there are a trigger for it
-    Trg[0]=s[0]; Trg[1]=s[1]; Trg[2]=0;
-    ExpandPMacro(SearchPMTrigger(Trg),s);
-   }
+ // Search if there are a trigger for it
+ ExpandPMacro(SearchPMTrigger(Trg),s,Trg);
 }
 
 const unsigned MaxAuxMarker=3;
@@ -6880,7 +6987,7 @@ know that's safe and know what to expand.
 
 ***************************************************************************/
 
-void TCEditor::ExpandPMacro(void *pm, char *s)
+void TCEditor::ExpandPMacro(void *pm, char *s, char *trg)
 {
  if (!pm)
     return;
@@ -6895,7 +7002,7 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
  // Ask for vars if this macro have them
  unsigned nVars;
  char *varsVals;
- if (!AskForPMVars(varsVals,d->vars,nVars,d->mLenVar,d->name))
+ if (!AskForPMVars(varsVals,d->vars,nVars,d->mLenVar,d->name,d->defaults))
     return;
 
  // Change to the correct mode
@@ -6908,8 +7015,10 @@ void TCEditor::ExpandPMacro(void *pm, char *s)
     s=ColToPointer();
  else
    {
-    BackSpace();
-    BackSpace();
+    if (trg[0])
+       BackSpace();
+    if (trg[1])
+       BackSpace();
    }
  unsigned varPos=0;
  for (s=d->str; *s; s++)

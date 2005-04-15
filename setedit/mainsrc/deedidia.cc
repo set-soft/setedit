@@ -461,7 +461,7 @@ name of the dialog should be provided in @var{name}.
 ***************************************************************************/
 
 Boolean AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
-                     unsigned mLenVar, const char *name)
+                     unsigned mLenVar, const char *name, TNSCollection *defs)
 {// Default values
  nVars=0;
  varsVals=NULL;
@@ -506,6 +506,10 @@ Boolean AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
      else
         col->insert(xTSLeft,yTSUnder,lineLabel,NULL,tsv);
      tsv=lineLabel;
+     // Have a default?
+     o=(char *)defs->at(i);
+     if (o)
+        strncpyZ(varsVals+MaxVarValLen*i,o,MaxVarValLen);
     }
  EasyInsertOKCancel(col);
  TDialog *d=col->doItCenter(0);

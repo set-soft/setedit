@@ -1,13 +1,20 @@
-; Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+; Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
 ; see copyrigh file for details
 ;
 ; The following macros are designed for the Autoindent+Unindent mode.
 ; \n is new line.
 ; \b is backspace.
+; \t is tab (not ASCII 9 but the smart tab)
 ; @0 is the position where the cursor is positioned after the insertion
 ; @1 is memorized in ^Q7 (or Alt7)
 ; @2 is memorized in ^Q8 (or Alt8)
 ; @3 is memorized in ^Q9 (or Alt9)
+; @@ is a simple @
+; @{Name} asks the user a value for "Name". Name becomes a variable.
+; @{Name;Def} asks the user a value for "Name". Name becomes a variable. The
+;             default value is "Def".
+; @vN inserts the content of the "variable" number N. Variables are numbered
+;     starting with 0.
 ; Don't put only @ at the end of the string :-).
 ;
 ;   The Mode keyword indicates the mode of the editor when the macro is

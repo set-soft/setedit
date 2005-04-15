@@ -383,7 +383,7 @@ TDialog *createSolveModifCollision(Boolean haveDiff);
 unsigned LimitedFileNameDialog(unsigned flags, const char *format, const char *file);
 void     ShowSavePoint(const char *file);
 Boolean  AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
-                      unsigned mLenVar, const char *name);
+                      unsigned mLenVar, const char *name, TNSCollection *defs);
 
 
 #endif
