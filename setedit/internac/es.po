@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-14 16:57-0300\n"
+"PO-Revision-Date: 2005-04-15 15:50-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:475 ../install/install.cc:483 ../mainsrc/bufun.cc:741
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:741
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
@@ -87,7 +87,7 @@ msgstr "O~k~"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Archivo: %s - Nodo: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:452
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:453
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr "Error al copiar al portapapeles: %s"
@@ -596,8 +596,8 @@ msgstr "~F10~ Menú"
 msgid "Not enough memory for this operation."
 msgstr "No hay suficiente memoria para esta operación."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:445
-#: ../mainsrc/ceditor.cc:519
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:446
+#: ../mainsrc/ceditor.cc:520
 msgid "Sorry but no OS specific clipboard is available"
 msgstr "Lo lamento pero no hay ningún portapapeles del sistema disponible"
 
@@ -720,47 +720,47 @@ msgstr "No"
 msgid "Yes, create backup files"
 msgstr "Si, crear archivos de respaldo"
 
-#: ../install/install.cc:331
+#: ../install/install.cc:332
 #, c-format
 msgid "Can't create the directory: %s"
 msgstr "No puedo crear el directorio: %s"
 
-#: ../install/install.cc:338
+#: ../install/install.cc:339
 #, c-format
 msgid "File name in path: %s"
 msgstr "Nombre de archivo en la ruta: %s"
 
-#: ../install/install.cc:389
+#: ../install/install.cc:390
 msgid ""
 "~Ctrl-F4~ Finish editing, or click on the button found in the top left corner"
 msgstr ""
 "~Ctrl-F4~ Terminar, o haga click en el botón del ángulo superior izquierdo"
 
-#: ../install/install.cc:392
+#: ../install/install.cc:393
 msgid "~ESC~ Aborts installation"
 msgstr "~ESC~ Aborta la instalación"
 
-#: ../install/install.cc:432
+#: ../install/install.cc:433
 msgid "Are you sure you want to abort the installation?"
 msgstr "¿Esta seguro que desea abortar la instalación?"
 
-#: ../install/install.cc:436
+#: ../install/install.cc:437
 msgid "Select the type"
 msgstr "Seleccione el tipo"
 
-#: ../install/install.cc:437 ../internac/colors.cc:4
+#: ../install/install.cc:438 ../internac/colors.cc:4
 msgid "Normal"
 msgstr "Normal"
 
-#: ../install/install.cc:438
+#: ../install/install.cc:439
 msgid "For programmers"
 msgstr "Para programadores"
 
-#: ../install/install.cc:439
+#: ../install/install.cc:440
 msgid "For djgpp programmers"
 msgstr "Para programadores con djgpp"
 
-#: ../install/install.cc:464
+#: ../install/install.cc:465
 msgid ""
 "Looks like djgpp isn't installed. DJGPP environment variable isn't defined "
 "or is wrong. Exit to fix it first?"
@@ -768,37 +768,37 @@ msgstr ""
 "Parece que djgpp no está instalado. La variable de entorno DJGPP no está "
 "definida o está mal definida. ¿Desea arreglar esto antes de instalar?"
 
-#: ../install/install.cc:473
+#: ../install/install.cc:474
 msgid "< ~P~rev"
 msgstr "< ~A~nterior"
 
-#: ../install/install.cc:474
+#: ../install/install.cc:475
 msgid "> ~N~ext"
 msgstr "> P~r~óxima"
 
-#: ../install/install.cc:481 ../mainsrc/deedidia.cc:340
+#: ../install/install.cc:482 ../mainsrc/deedidia.cc:340
 #: ../setedit/advice.cc:125 ../setedit/advice.cc:132
 msgid "~Y~es"
 msgstr "~S~i"
 
-#: ../install/install.cc:482 ../mainsrc/deedidia.cc:341
+#: ../install/install.cc:483 ../mainsrc/deedidia.cc:341
 #: ../setedit/advice.cc:126 ../setedit/advice.cc:131
 msgid "~N~o"
 msgstr "~N~o"
 
-#: ../install/install.cc:517
+#: ../install/install.cc:518
 msgid "Where do you want to install the editor?"
 msgstr "¿Donde desea instalar el editor?"
 
-#: ../install/install.cc:546
+#: ../install/install.cc:547
 msgid "Invalid drive"
 msgstr "Disco inválido"
 
-#: ../install/install.cc:552
+#: ../install/install.cc:553
 msgid "Can't create files there"
 msgstr "No puedo crear archivos en ese lugar"
 
-#: ../install/install.cc:558
+#: ../install/install.cc:559
 msgid ""
 "You already installed the editor (or tried to), but in a different place. Do "
 "you want to continue?"
@@ -806,11 +806,11 @@ msgstr ""
 "Ud. ya ha instalado el editor (o al menos intentó), pero en un lugar "
 "diferente. ¿Desea continuar?"
 
-#: ../install/install.cc:648
+#: ../install/install.cc:649
 msgid "Searching Windows information"
 msgstr "Buscando información de Windows"
 
-#: ../install/install.cc:650
+#: ../install/install.cc:651
 msgid ""
 "Windows 9x or similar detected, wait while\n"
 "finding information about your system"
@@ -818,71 +818,71 @@ msgstr ""
 "Windows 9x o similar fue detectado, por favor\n"
 "espere mientras busco información sobre su sistema"
 
-#: ../install/install.cc:651 ../install/install.cc:668
+#: ../install/install.cc:652 ../install/install.cc:669
 msgid "Looking in registry       "
 msgstr "Buscando en el registro            "
 
-#: ../install/install.cc:663
+#: ../install/install.cc:664
 msgid "Searching programs dir"
 msgstr "Buscando el directorio de programas"
 
-#: ../install/install.cc:671
+#: ../install/install.cc:672
 msgid "Searching desktop and menu"
 msgstr "Buscando el escritorio y el menú   "
 
-#: ../install/install.cc:853
+#: ../install/install.cc:854
 msgid "  Normal"
 msgstr "  Normal"
 
-#: ../install/install.cc:856
+#: ../install/install.cc:857
 msgid "  For programmers"
 msgstr "  Para programadores"
 
 #. instDJGPP
-#: ../install/install.cc:859
+#: ../install/install.cc:860
 msgid "  For djgpp programmers"
 msgstr "  Para programadores con djgpp"
 
-#: ../install/install.cc:900
+#: ../install/install.cc:901
 msgid "Are these options correct?"
 msgstr "¿Son correctas estas opciones?"
 
 #. Put some message to left space for the file names
-#: ../install/install.cc:1003
+#: ../install/install.cc:1004
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../install/install.cc:1003
+#: ../install/install.cc:1004
 msgid "Installing files for the editor"
 msgstr "Instalando archivos del editor"
 
-#: ../install/install.cc:1013
+#: ../install/install.cc:1014
 #, c-format
 msgid "Unable to uncompress %s, most probably this file is damaged"
 msgstr ""
 "No puedo descomprimir %s, lo más probable es que el archivo este dañado"
 
-#: ../install/install.cc:1043
+#: ../install/install.cc:1044
 msgid "Replacing default menu"
 msgstr "Reemplazando el menú original"
 
-#: ../install/install.cc:1056
+#: ../install/install.cc:1057
 msgid "Unable to uncompress files, most probably this file is damaged"
 msgstr "No puedo descomprimir archivos, probablemente esten dañados"
 
-#: ../install/install.cc:1104
+#: ../install/install.cc:1105
 msgid "Adding icon to desktop"
 msgstr "Agregando un ícono al escritorio"
 
-#: ../install/install.cc:1119
+#: ../install/install.cc:1120
 msgid "Adding icon to menu"
 msgstr "Agregando un ícono al menú"
 
-#: ../install/install.cc:1135
+#: ../install/install.cc:1136
 msgid "Simplifying configuration"
 msgstr "Simplificando la configuración"
 
-#: ../install/install.cc:1195
+#: ../install/install.cc:1196
 msgid ""
 "You defined SET_FILES environment variable in a way that isn't compatible "
 "with the installer, be careful"
@@ -890,15 +890,15 @@ msgstr ""
 "Ud. definió la variable de entorno SET_FILES de una manera que es "
 "incompatible con el instalador, ¡tenga cuidado!"
 
-#: ../install/install.cc:1275
+#: ../install/install.cc:1276
 msgid "You modified the autoexec.bat. Do you want to save the changes?"
 msgstr "El autoexec.bat fue modificado. ¿Desea guardar los cambios?"
 
-#: ../install/install.cc:1311
+#: ../install/install.cc:1312
 msgid "Instructions for editing"
 msgstr "Instrucciones para editar"
 
-#: ../install/install.cc:1312
+#: ../install/install.cc:1313
 msgid ""
 "Now I'll give you the opportunity to edit the autoexec.bat. To finish click "
 "in the small rectangle found in the top-left corner or press Ctrl+F4."
@@ -907,7 +907,7 @@ msgstr ""
 "pequeño rectángulo hubicado en el el ángulo superior izquierdo o presione "
 "Ctrl+F4"
 
-#: ../install/install.cc:1317
+#: ../install/install.cc:1318
 msgid ""
 "I added the needed command, it is marked with a comment. Please don't remove "
 "the comment it's used to know where the text was added by the installer."
@@ -916,11 +916,11 @@ msgstr ""
 "favor no quite este comentario ya que es necesario para saber donde está "
 "hubicado."
 
-#: ../install/install.cc:1322
+#: ../install/install.cc:1323
 msgid "The text I suggest to add is currently in the clipboard."
 msgstr "El texto que le sugiero agregar se encuentra en el porta papeles."
 
-#: ../install/install.cc:1325
+#: ../install/install.cc:1326
 msgid ""
 "You can move lines using:\n"
 "Shift + arrows keys: Select text\n"
@@ -938,40 +938,40 @@ msgstr ""
 "Shift+Suprimir: Copia al porta papeles y borra el bloque\n"
 "Ctrl+U: Deshacer (solo una acción)"
 
-#: ../install/install.cc:1328 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:581
+#: ../install/install.cc:1329 ../mp3/mp3list.cc:338 ../setedit/edkeys.cc:581
 #: ../setedit/edprint.cc:706 ../settvuti/tdiagaid.cc:171
 msgid "~O~k"
 msgstr "~O~k"
 
-#: ../install/install.cc:1391
+#: ../install/install.cc:1392
 msgid "Edit autoexec.bat yourself later"
 msgstr "Hacerlo ud. editando el autoexec.bat luego"
 
-#: ../install/install.cc:1392
+#: ../install/install.cc:1393
 msgid "Do it yourself but now"
 msgstr "Hacerlo ud. ahora"
 
-#: ../install/install.cc:1393
+#: ../install/install.cc:1394
 msgid "Let me do it and show you the result"
 msgstr "Dejar que yo lo haga y le muestre el resultado"
 
-#: ../install/install.cc:1394
+#: ../install/install.cc:1395
 msgid "Let me do it and don't show you the result"
 msgstr "Dejar que yo lo haga sin mostrarselo"
 
-#: ../install/install.cc:1395
+#: ../install/install.cc:1396
 msgid "Select how to do it"
 msgstr "Seleccione como hacerlo"
 
-#: ../install/install.cc:1401
+#: ../install/install.cc:1402
 msgid "Error creating autoexec.bat"
 msgstr "Error al crear el autoexec.bat"
 
-#: ../install/install.cc:1418
+#: ../install/install.cc:1419
 msgid "Configuring the system"
 msgstr "Configurando el sistema"
 
-#: ../install/install.cc:1420
+#: ../install/install.cc:1421
 msgid ""
 "The editor was succesfully installed, now you must add the directory\n"
 "where the editor was installed to your PATH, like this:"
@@ -979,42 +979,42 @@ msgstr ""
 "El editor fue exitosamente instalado, ahora debe agregar el directorio\n"
 "donde el editor fue instalado a su PATH de esta manera:"
 
-#: ../install/install.cc:1450
+#: ../install/install.cc:1451
 msgid "Sorry, I can't find autoexec.bat"
 msgstr "Lo lamento, no puedo hallar el autoexec.bat"
 
-#: ../install/install.cc:1465
+#: ../install/install.cc:1466
 msgid "Can't backup autoexec.bat. You'll have to do it by yourself"
 msgstr ""
 "No puedo crear una copia de resplado del autoexec.bat, deberá hacer los "
 "cambios manualmente"
 
-#: ../install/install.cc:1509
+#: ../install/install.cc:1510
 msgid "Can't create temporal copy of autoexec.bat"
 msgstr "No puedo crear una copia temporal del autoexec.bat"
 
-#: ../install/install.cc:1522
+#: ../install/install.cc:1523
 msgid "A copy of the original autoexec.bat was stored in autoexec.bak"
 msgstr "Una copia del autoexec.bat original fue guardada como autoexec.bak"
 
-#: ../install/install.cc:1570
+#: ../install/install.cc:1571
 msgid "SET Edit installer v1.10, copyright (c) 1999-2003 by Salvador E. Tropea"
 msgstr ""
 "Instalador de SET Edit v1.10, copyright (c) 1999-2003 by Salvador E. Tropea"
 
-#: ../install/install.cc:1575
+#: ../install/install.cc:1576
 msgid "Failed, disabling all or part of the Win9x specific stuff"
 msgstr "Error, deshabilitando todo o parte del soporte específico para Win9x"
 
-#: ../install/install.cc:1623
+#: ../install/install.cc:1624
 msgid "Don't forget to update your autoexec.bat later!"
 msgstr "¡No olvide actualizar su autoexec.bat más tarde!"
 
-#: ../install/install.cc:1625
+#: ../install/install.cc:1626
 msgid ", after rebooting your system you'll be able to use the editor"
 msgstr ", luego de reinicializar su sistem ud. podrá usarlo"
 
-#: ../install/install.cc:1626
+#: ../install/install.cc:1627
 #, c-format
 msgid "Editor installed successfully%s. Run it using e.bat"
 msgstr "Editor instalado con éxito%s. Invóquelo usando e.bat"
@@ -1446,32 +1446,32 @@ msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 msgid "Functions:"
 msgstr "Funciones:"
 
-#: ../mainsrc/ceditor.cc:541
+#: ../mainsrc/ceditor.cc:542
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4231
+#: ../mainsrc/ceditor.cc:4232
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4278 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4279 ../mainsrc/doedidia.cc:143
 #, c-format
 msgid "%d bytes selected, in %d"
 msgstr "%d caracteres seleccionados en %d"
 
-#: ../mainsrc/ceditor.cc:4439
+#: ../mainsrc/ceditor.cc:4440
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4458
+#: ../mainsrc/ceditor.cc:4459
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4480
+#: ../mainsrc/ceditor.cc:4481
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1482,7 +1482,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4514
+#: ../mainsrc/ceditor.cc:4515
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1495,16 +1495,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:6125
+#: ../mainsrc/ceditor.cc:6126
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:6140
+#: ../mainsrc/ceditor.cc:6141
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10540
+#: ../mainsrc/ceditor.cc:10650
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1512,29 +1512,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10555
+#: ../mainsrc/ceditor.cc:10665
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11299
+#: ../mainsrc/ceditor.cc:11409
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12248
+#: ../mainsrc/ceditor.cc:12358
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12459
+#: ../mainsrc/ceditor.cc:12569
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13652
+#: ../mainsrc/ceditor.cc:13762
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13662
+#: ../mainsrc/ceditor.cc:13772
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2203,37 +2203,43 @@ msgstr ""
 "¡Error! por favor ejecute el editor desde un directorio válido\n"
 "\n"
 
-#: ../mainsrc/pmacros.cc:86 ../setedit/debug.cc:8612 ../setedit/loadcle.cc:97
+#: ../mainsrc/pmacros.cc:98 ../setedit/debug.cc:8612 ../setedit/loadcle.cc:97
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: ../mainsrc/pmacros.cc:153
+#: ../mainsrc/pmacros.cc:165
 msgid "Macro definition doesn't start with Trigger"
 msgstr "Definición de macro que no comienza con Trigger"
 
-#: ../mainsrc/pmacros.cc:161
+#: ../mainsrc/pmacros.cc:173
 msgid "Missing Trigger sequence or too short"
 msgstr "Secuencia de Trigger muy corta o no colocada"
 
-#: ../mainsrc/pmacros.cc:180
+#: ../mainsrc/pmacros.cc:193
 msgid "Macro definition without mode keyword"
 msgstr "Definición de macro que no contiene la palabra 'mode'"
 
-#: ../mainsrc/pmacros.cc:191 ../mainsrc/pmacros.cc:201
+#: ../mainsrc/pmacros.cc:204 ../mainsrc/pmacros.cc:214
 msgid "Wrong mode definition in pseudo macro."
 msgstr "Definición de 'mode' errónea en un pseudo macro."
 
-#: ../mainsrc/pmacros.cc:253
+#: ../mainsrc/pmacros.cc:266
 msgid "Missing start in pseudo macro"
 msgstr "No puedo hallar el comienzo del pseudo macro"
 
-#: ../mainsrc/pmacros.cc:258
+#: ../mainsrc/pmacros.cc:271
 msgid "Missing end in pseudo macro"
 msgstr "No puedo hallar el fin del pseudo macro"
 
-#: ../mainsrc/pmacros.cc:267
+#: ../mainsrc/pmacros.cc:280
 msgid "Empty pseudo macro"
 msgstr "Pseudo macro vacío"
+
+#. Use a default name is none is provided
+#: ../mainsrc/pmacros.cc:332 ../mainsrc/pmacros.cc:335
+#, fuzzy
+msgid "No name"
+msgstr "Ninguna"
 
 #. Init the Message Window
 #: ../mainsrc/sdginter.cc:101
