@@ -343,7 +343,7 @@ int SpLineGetNewValueOf(int line, char *fName, Boolean *found)
  if (SpLines->search(fileName,Pos))
    {
     TSpCollection *p=(SpLines->At(Pos))->SpecialLines;
-    if (p->search(TO_KEY(line),Pos))
+    if (p && p->search(TO_KEY(line),Pos))
       {
        if (found)
           *found=True;

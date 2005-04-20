@@ -1,4 +1,15 @@
-$Log$
+$Log$.
+Revision 1.662  2005/04/15 19:16:08  set
+* Fixed: When using the option to see all pmacros and a pmacro without a
+name was included the editor crashed.
+* Added: Now the pmacro expansion is more cleaver. If you ask to expand
+outside the text or a wrong sequence the editor offers the list of
+available macros. If only one character is available at the left side of
+the cursor all the macros that start with it are offered (all if none makes
+a match).
+* Added: Default values for pmacros vars.
+* Added: Documentation for the new pmacros stuff.
+
 Revision 1.661  2005/04/14 20:18:39  set
 * Added: Pseudo-macros for VHDL.
 * Fixed: Xilinx errors parser.

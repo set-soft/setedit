@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -10,15 +10,21 @@
 #define Uses_TCEditor_External
 #define Uses_TCEditor
 #define Uses_TVCodePage
+#define Uses_TNSCollection
+#define Uses_TDialog // edmsg.h
 #include <ceditor.h>
+#define Uses_TNLIndentCol
+#define Uses_TSHLErros
 #include <loadshl.h>
 #include <edspecs.h>
+#include <edmsg.h>
 
 #include <ced_pcre.h>
 #include <dyncat.h>
 
 static char *nameSHLFile;
 static PCREData shlPCRE={0,0};
+static TSHLErrors *Errors=NULL;
 
 ccIndex *ConvTable=0;
 
@@ -182,6 +188,84 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
  return 0;
 }
 
+static
+void addStrToColl(const char *str, void *data)
+{
+ TNSCollection *args=(TNSCollection *)data;
+ args->insert((void *)str);
+}
+
+int ParseNLICond(TNSCollection *col, int from, NLIndent *p, int c)
+{
+ char *s=(char *)col->at(from);
+ if (*s==0)
+    p->cond[c]=nliAlways;
+ else
+ if (strcmp(s,"ParBalancePos")==0)
+    p->cond[c]=nliParBalancePos;
+ else
+ if (strcmp(s,"ParBalanceNeg")==0)
+    p->cond[c]=nliParBalanceNeg;
+ else
+ if (strcmp(s,"FirstWord")==0)
+    p->cond[c]=nliFirstWord;
+ else
+ if (strcmp(s,"NoLastChar")==0)
+    p->cond[c]=nliNoLastChar;
+ else
+    return 0;
+
+ s=(char *)col->at(from+1);
+ int l;
+ switch (p->cond[c])
+   {
+    case nliFirstWord:
+         if (!*s)
+            return 0;
+         l=strlen(s);
+         p->cArgStr[c]=newStrL(s,l);
+         p->cArgInt[c]=l;
+         break;
+    case nliNoLastChar:
+         l=strlen(s);
+         if (l!=1)
+            return 0;
+         p->cArgStr[c]=NULL;
+         p->cArgInt[c]=*s;
+         break;
+    default:
+         p->cArgStr[c]=NULL;
+   }
+
+ return 1;
+}
+
+int ParseNLIAction(TNSCollection *col, int from, NLIndent *p, int haveArg)
+{
+ char *s=(char *)col->at(from);
+ if (*s==0 || strcmp(s,"AutoIndent")==0)
+   {
+    p->action=nliAutoIndent;
+    if (!haveArg)
+       p->acArgInt=0;
+    else
+       p->acArgInt=atoi((char *)col->at(from+1));
+   }
+ else
+ if (strcmp(s,"Unindent")==0)
+    p->action=nliUnindent;
+ else
+ if (strcmp(s,"MoveAfterPar")==0)
+    p->action=nliMoveAfterPar;
+ else
+   {
+    //printf("?: <%s>\n",s);
+    return 0;
+   }
+
+ return 1;
+}
+
 int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int &Cant)
 {
  FILE *f;
@@ -229,6 +313,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
  PCREInitCompiler(shlPCRE);
  // Load and parse all
  rewind(f);
+ int nLine=0;
  for (def=0; def<defs && !feof(f); def++)
     {
      hl[def].Keywords=0;
@@ -241,6 +326,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
         do
           {
            len=CLY_getline(&b,&lenLine,f);
+           nLine++;
           }
         while (len!=-1 && *b=='#' || ucisspace(*b));
 
@@ -547,6 +633,43 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
            pos=MoveAfterEqual(b);
            if (*pos=='1')
               hl[def].Flags2|=FG2_EOLCInFirstUse2;
+          }
+        else
+        if (strncasecmp(b,"NLIndent",8)==0)
+          {// New Line Indentation rule
+           if (!hl[def].nlIndent)
+              hl[def].nlIndent=new TNLIndentCol();
+           NLIndent *p=new NLIndent();
+           int added=0;
+           pos=MoveAfterEqual(b);
+           ReplaceCRby0(pos);
+           TNSCollection *args=new TNSCollection(6,2);
+           int cargs=SplitStr(pos,0,",",addStrToColl,args);
+           if (cargs==5 || cargs==6)
+             {
+              if (ParseNLICond(args,0,p,0))
+                {
+                 if (ParseNLICond(args,2,p,1))
+                   {
+                    if (ParseNLIAction(args,4,p,cargs-5))
+                      {
+                       hl[def].nlIndent->insert(p);
+                       added=1;
+                      }
+                    else
+                       SHLAddLoadError(__("Wrong action in NLIndent"),nLine);
+                   }
+                 else
+                    SHLAddLoadError(__("Wrong second condition in NLIndent"),nLine);
+                }
+              else
+                SHLAddLoadError(__("Wrong first condition in NLIndent"),nLine);
+             }
+           else
+              SHLAddLoadError(__("Wrong number of arguments for NLIndent"),nLine);
+           delete args;
+           if (!added)
+              delete p;
           }
        }
      while (!feof(f) && strncasecmp(b,"End",3)!=0);
@@ -1272,4 +1395,48 @@ void PCREGetMatch(int match, int &offset, int &len, PCREData &p)
  len=end-offset;
 }
 /********************** End Regular expressions file matching stuff *****************/
+
+void TNLIndentCol::freeItem(void *item)
+{
+ NLIndent *st=(NLIndent *)item;
+ delete st;
+}
+
+void TSHLErrors::freeItem(void *item)
+{
+ SHLError *st=(SHLError *)item;
+ delete st;
+}
+
+static
+void AddErrorToMsgBox(void *item, void *)
+{
+ SHLError *p=(SHLError *)item;
+ char *aux=TVIntl::getTextNew(p->str);
+ FileInfo fI;
+ fI.Line=p->line;
+ fI.Column=1;
+ fI.offset=0;
+ fI.len=strlen(aux);
+ EdShowMessageFile(aux,fI,nameSHLFile);
+ DeleteArray(aux);
+}
+
+void ShowSHLLoadErrors()
+{
+ if (Errors)
+   {
+    EdShowMessageI(__("Errors while loading syntax highlight file"),(unsigned)0);
+    Errors->forEach(AddErrorToMsgBox,NULL);
+    destroy0(Errors);
+   }
+}
+
+void SHLAddLoadError(const char *error, int line)
+{
+ if (!Errors)
+    Errors=new TSHLErrors();
+ Errors->insert(new SHLError(error,line));
+ //printf("%s %d\n",error,line);
+}
 

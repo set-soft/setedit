@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 15 April 2005
+@set update-date 20 April 2005
 @set update-month April 2005
 @set name-author Salvador Eduardo Tropea
 
@@ -2817,7 +2817,7 @@ global options of the editor. @x{Set Global}.
 
 The global options are good, but sometimes you want to make some small
 differences depending on the kind of file you are editing. For example: I
-want the @il{Intelligent C indent} mode enabled for C, but not for most of the
+want the @il{Intelligent indent} mode enabled for C, but not for most of the
 files, I also want to wrap lines for Texinfo files and files without syntax
 highlighting. That's impossible to achieve just using the global options,
 that's when this option comes into play.
@@ -2834,7 +2834,7 @@ to apply is empty but you can add some using this menu option.
 The list of options indicates which settings will be enabled, or disabled,
 in addition to the global options. That's something very important to keep
 in mind, the list does not replace the global options, it modifies them. So
-the list will say things like "also enable the intelligent C indent",
+the list will say things like "also enable the intelligent indent",
 "disable the wrap lines", @il{etc.}
 @paragraph{}
 
@@ -4005,7 +4005,7 @@ spaces and generate a file with tabs. @x{Miscellaneous}.
 
   Most tabs users also like to enable the @il{Optimal Fill} option. @x{Optimal Fill}.@*
 I also suggest using the following options to complement the indentation when
-using tabs: @il{Autoindent} @b{ON}, @il{Intelligent C indent} @b{OFF}, @il{Optimal
+using tabs: @il{Autoindent} @b{ON}, @il{Intelligent indent} @b{OFF}, @il{Optimal
 Fill} @b{ON}, @il{Do not move inside tabs} @b{ON}, @il{Tab smart indents}
 @b{OFF}, @il{Use indent size} @b{OFF} and @il{Backspace unindents} @b{OFF}.
 @paragraph{}
@@ -4017,8 +4017,8 @@ Fill} @b{ON}, @il{Do not move inside tabs} @b{ON}, @il{Tab smart indents}
   The "Block modes" chapter for a detailed explanation. @x{Block modes}.
 @paragraph{}
 
-@section Intelligent C indent
-@cindex Intelligent C indent
+@section Intelligent indent
+@cindex Intelligent indent
 
   This mode was designed to be used jointly with the Pseudo Macros
 (@xp{Pseudo Macros}) and the Real Tabs mode off to achieve an
@@ -4087,13 +4087,12 @@ do the following things:
 @paragraph{}
 
 @itemize @bullet
+  @item Configure it using the @file{syntaxhl.shl} file. Note that the
+configuration is very limited. @x{Syntax Highlighting File}.
   @item Use another way of indentation offered by the editor. For example,
 turn on the Real Tabs mode and indent with tabs.
   @item Customize the @file{cpmacros.pmc} file (@xp{Pseudo Macros}), actually this
 file is coherent with this mode.
-  @item The editor isn't configurable like Emacs or Brief using a language,
-but is written in C++. If you know C++ contact me and I'll help you to write
-the routines that you need to get an indentation in your own style :-).
 @end itemize
 
 @subsection Can you explain more about the behavior of this mode?
@@ -4612,10 +4611,10 @@ name of this program and searches it in the @code{ShellScript} definition.
 syntax highlighting to almost any kind of files, a good example is the fact that the files
 used to configure the editor have their own syntax highlighting.
 @x{Configuration files location}.
-@paragraph{}
+@p{}
 
   The file declares the settings for each kind of files. Each declaration ends with an
-@code{End} marker. The @code{#} acts as a start of command if it appears in the first
+@code{End} marker. The @code{#} acts as a start of comment if it appears in the first
 column.
 @paragraph{}
 
@@ -4642,6 +4641,11 @@ time you install a new release of the editor. The editor provides another
 file for it and also a nice user interface to add and delete words defined by
 the user. @x{User Words}.
 @paragraph{}
+
+  This file also configures the pseudo macros used for each language and the
+behavior of the "Intelligent Indent" mode. @x{Pseudo Macros}.
+@x{Intelligent indent}. @x{PMacros}. @x{NLIndent}.
+@p{}
 
   The next sections covers the supported settings.
 @paragraph{}
@@ -4781,6 +4785,91 @@ file. If the expression matches the editor will use this syntax highlighting mod
 @paragraph{}
   The regular expression must be in Perl format. You can read about it in
 any book about Perl.
+
+@section NLIndent
+@cindex intelligent indent configuration
+
+  Defines a rule for the intelligent mode. The rule will apply only to files
+with this highlighting. Rules are evaluated when the user inserts a new line.
+@p{}
+
+  Rules are evaluated in reverse order, last rule first. Each rule contains
+two conditions followed by one action. When both conditions are true the
+action is applied and no more rules are evaluated.
+@p{}
+
+  All arguments are separated by commas. Each condition is composed by two
+arguments. The first is the name of the condition and the second is its
+parameter. Currently available conditions and actions are:
+@p
+
+@subsection AutoIndent (action)
+
+  That's the default action and is equivalent to the "Autoindent" mode.
+@x{Autoindent}. The main difference is that here the editor tries to skip
+comments found at the beggining of the previous line.
+@p{}
+
+  If you provide a numeric argument this value will be used as an offset.
+@p{}
+
+@subsection FirstWord (condition)
+
+  This condition needs one parameter indicating the word or symbol we want to
+check. It's true when the first word or symbol in the previous line matches
+with the parameter.
+@p{}
+
+  Note that the editor skips blank characters and comments to determine the
+first character in the previous line. Also note the editor tries to be smart
+when the previous line have closing parentheses and tries to find the line
+where the parentheses started.
+@p{}
+
+@subsection MoveAfterPar (action)
+
+  This action is usually associated with @code{ParBalancePos}. It moves the
+cursor to the column of the first operand after the first parenthesis in the
+previous line.
+@p{}
+
+@smallexample
+  if ( a && (c>0)
+       _
+@end smallexample
+
+@subsection NoLastChar (condition)
+
+  This condition needs one parameter indicating the character we want to
+avoid. It's true when the last symbol in the previous line doesn't match
+the parameter.
+@p{}
+
+@subsection ParBalanceNeg (condition)
+
+  This condition is true when the previous lines contains less parentheses
+opened than closed.
+@p{}
+
+@smallexample
+  a && (c>0))
+@end smallexample
+
+@subsection ParBalancePos (condition)
+
+  This condition is true when the previous lines contains more parentheses
+opened than closed.
+@p{}
+
+@smallexample
+if (a && (c>0)
+@end smallexample
+
+@subsection Unindent (action)
+
+  This action reduces the indentation level. The efect is similar to what you
+get using @key{Backspace} when the "Backspace unindents" mode is enabled.
+@x{Backspace unindents}.
 
 @section NoCheckNumbers
 
@@ -4968,7 +5057,7 @@ the text. The modes are:
   @item Autoindent                @x{Autoindent}.
   @item Use Tabs                  @x{Real Tabs}.
   @item Persistent blocks         @x{Block modes}.
-  @item Intelligent C indent      @x{Intelligent C indent}.
+  @item Intelligent indent        @x{Intelligent indent}.
   @item Vertical cursor           @x{Column cursor}
   @item Horizontal cursor
   @item Match pair highlight      @x{Match pair highlight}.

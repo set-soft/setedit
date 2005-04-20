@@ -3204,6 +3204,7 @@ int main(int argc, char *argv[])
 
  ShowAboutStartBox();
  ShowTips(ExpandHome(TipsFName));
+ ShowSHLLoadErrors();
 
  editorApp->run();
 

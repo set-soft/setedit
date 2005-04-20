@@ -168,6 +168,8 @@ typedef struct
 
 #include <ced_pcre.h>
 
+class TNLIndentCol;
+
 struct strSHL
 {
  char *Name;
@@ -205,6 +207,8 @@ struct strSHL
  // RegEx to match a file/full path for this SHL
  pcre *NameMatch;
  pcre *PathMatch;
+ // NewLine Indent rules
+ TNLIndentCol *nlIndent;
 };
 
 #define FG1_CaseSensitive   0x01

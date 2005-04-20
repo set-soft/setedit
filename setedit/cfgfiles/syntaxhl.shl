@@ -28,6 +28,22 @@ String2='
 Escape=\
 Preprocessor=#
 PMacros=cpmacros.pmc
+# Reverse order
+#NLIndent=,,,,AutoIndent,0
+NLIndent=FirstWord,if,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,do,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,for,NoLastChar,;,AutoIndent,3
+NLIndent=FirstWord,else,,,AutoIndent,2
+NLIndent=FirstWord,case,,,AutoIndent,5
+NLIndent=FirstWord,while,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,break,,,Unindent
+NLIndent=FirstWord,return,,,Unindent
+NLIndent=FirstWord,switch,,,AutoIndent,2
+NLIndent=FirstWord,default,,,AutoIndent,5
+NLIndent=FirstWord,{,,,AutoIndent,1
+NLIndent=FirstWord,},,,Unindent
+NLIndent=ParBalancePos,,,,MoveAfterPar
+NLIndent=ParBalanceNeg,,,,AutoIndent,0
 Preload
 Keywords=asm,auto,bool,break,case,catch,char,class,const,continue,default
 Keywords=delete,do,double,else,enum,except,extern,false,far,finally,float,for
@@ -347,8 +363,9 @@ Keywords=Escape,Preprocessor,Case,UseInternal,Keywords,AllowedInsideNames
 Keywords=CanStartAName,PMacros,End,NoCheckNumbers,EOLCInFirstCol,Preprocessor2
 Keywords=String3,PartialKeywords,ShortString,SpecialSymbol,SpecialSymbolCont
 Keywords=RelaxNumberCheck,EmacsModes,ShellScript,EOLCInFirstCol2,FullNameMatch
-Keywords=EOLCInFirstUse1,EOLCInFirstUse2,EOLCInFirstCol1,NameMatch
-Keywords=EscapeAnywhere,Preload
+Keywords=EOLCInFirstUse1,EOLCInFirstUse2,EOLCInFirstCol1,NameMatch,NoLastChar
+Keywords=EscapeAnywhere,Preload,NLIndent,ParBalancePos,MoveAfterPar
+Keywords=ParBalanceNeg,AutoIndent,FirstWord,Unindent
 End
 
 # ---------------- sLisp Files ----------------
@@ -2208,6 +2225,19 @@ String1="
 Symbols1=!&*+-./:<=>?^|~
 Symbols2=(){}[],;
 PMacros=vhdl.pmc
+NLIndent=FirstWord,if,,,AutoIndent,3
+NLIndent=FirstWord,for,,,AutoIndent,4
+NLIndent=FirstWord,else,,,AutoIndent,3
+NLIndent=FirstWord,case,,,AutoIndent,5
+NLIndent=FirstWord,when,,,AutoIndent,5
+NLIndent=FirstWord,with,,,AutoIndent,5
+NLIndent=FirstWord,while,,,AutoIndent,3
+NLIndent=FirstWord,elsif,,,AutoIndent,3
+NLIndent=FirstWord,begin,,,AutoIndent,3
+NLIndent=FirstWord,return,,,Unindent
+NLIndent=FirstWord,entity,,,AutoIndent,3
+NLIndent=ParBalancePos,,,,MoveAfterPar
+NLIndent=ParBalanceNeg,,,,AutoIndent,0
 Keywords=abs,access,after,alias,all,and,architecture,array,assert,attribute
 Keywords=begin,block,body,buffer,bus,case,component,configuration,constant
 Keywords=disconnect,downto,else,elsif,end,entity,exit,file,for,function

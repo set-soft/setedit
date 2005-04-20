@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -249,7 +249,7 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
  SHL_Box=shlBox;
 
  TSLabel *Options=TSLabelCheck(2,__("Options ~3~"),__("~O~verwrite"),__("~A~utoindent"),
-         __("~U~se real tabs (ASCII 9)"),__("~P~ersistent blocks"),__("~I~ntelligent C indent"),
+         __("~U~se real tabs (ASCII 9)"),__("~P~ersistent blocks"),__("~I~ntelligent indent"),
          __("~C~olumn cursor"),__("~R~ow cursor"),__("~M~atched pair highlighting"),
          __("Match pair on the fl~y~"),__("Don't wait to search for the pair ~1~"),
          __("Tra~n~sparent Blocks"),__("Optimal ~F~ill"),__("~W~rap words"),
@@ -291,7 +291,7 @@ TDialog *createSetGlobalOptions()
           __("~A~utoindent"),
           __("~U~se tabs"),
           __("~P~ersistent blocks"),
-          __("~I~ntelligent C indent"),
+          __("~I~ntelligent indent"),
           __("~C~olumn cursor"),
           __("~R~ow cursor"),
           __("~M~atched pair highlighting"),

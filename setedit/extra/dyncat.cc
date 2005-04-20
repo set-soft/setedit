@@ -50,6 +50,18 @@ void DynStrCat(DynStrCatStruct *Struct, const char *str, int len)
  Struct->str[Struct->len]=0;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Creates a new copy of @var{start}. Only @var{len} chars are copied. The
+copy is created using the new[] operator and the string is NULL terminated.
+If @var{len} is less than 0 then 0 is used. If len is 0 one byte is
+allocated. The @var{start} argument can't be NULL.
+  
+  Return: a new[]ly allocated string.
+  
+***************************************************************************/
+
 char *newStrL(const char *start, int len)
 {
  if (len<0)
@@ -59,4 +71,51 @@ char *newStrL(const char *start, int len)
  ret[len]=0;
  return ret;
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Splits @var{str} using @var{delimiters}. If @var{copy} is !=0 then the
+string is first copied to a temporal. For each element found the @var{adder}
+function is called passing the new element and the @var{data} value.@p
+  Note that at least one element will be found if @var{str} isn't NULL.
+  
+  Return: The number of elements found.
+  
+***************************************************************************/
+
+int SplitStr(char *str, int copy, const char *delimiters,
+             void (*adder)(const char *, void *), void *data)
+{
+ if (!str)
+    return 0;
+ char *nstr=str;
+ if (copy)
+    nstr=newStrL(str,strlen(str));
+
+ char *s=nstr, *sant=s;
+ int found=1;
+ while (*s)
+   {
+    for (const char *test=delimiters; *test; test++)
+       {
+        if (*s==*test)
+          {
+           found++;
+           *s=0;
+           adder(sant,data);
+           sant=s+1;
+           break;
+          }
+       }
+    s++;
+   }
+ adder(sant,data);
+
+ if (copy)
+    delete[] nstr;
+ return found;
+}
+
+
 

@@ -180,6 +180,15 @@ public:
     Boolean isClipboard() { return Boolean(clipboard == this); };
     void lock() { lockCount++; };
     void newLine();
+    //int AnalizeLineForIndent(char *s, int x, Boolean &mu, int l, int avail);
+    int AnalizeLineForIndent(char *s, int x, Boolean &mu, int l, char *lineStart,
+                             char *prevLine, int prevLineNum);
+    int SkipComment1(char *&sp, int &avail, int &col);
+    int SkipComment2(char *&sp, int &avail, int &col);
+    void FindFirstChar(char *s, int x, int l, char *&fch, int &fcol, int &laf);
+    static int Comment1Here(char *s, int l);
+    static int Comment2Here(char *s, int l);
+    static int EOLCommentHere(char *s, int l);
     unsigned nextWordC( unsigned );
     int goEndWord();
     char *WordUnderCursor(uint32 maxLength=256, unsigned options=0);
@@ -388,10 +397,12 @@ public:
     void MacroGenerateCode(void);
     int TestPropagation(uint32 OldAttr,uint32 NewAttr,char *proxLine, uint32 proxLineNum);
     int SearchCloseSymbol(char open, char close);
+    int SearchCloseSymbol(char open, char close, char *s, char *lastl, int y, int dif);
     int SearchCloseSymbolXY(char open, char close, int &X, int &Y, char *pos=0);
     int SearchOpenSymbol(char open, char close);
+    int SearchOpenSymbol(char open, char close, char *s, char *&start, int &y);
     int SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *pos=0);
-    Boolean SearchMatchOnTheFly();
+    Boolean SearchMatchOnTheFly();    
     Boolean clipReplace(void);
     int GoFirstCharInLine(void);
     void SelWordUnderCursor(void);

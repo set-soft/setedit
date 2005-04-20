@@ -85,6 +85,7 @@
 #include <edhists.h>
 #include <slpinter.h>
 #include <bufun.h>
+#define Uses_TNLIndentCol
 #include <loadshl.h>
 #include <advice.h>
 #include <splinman.h>
@@ -3960,13 +3961,13 @@ the line where the cursor is located is selected and then indented.
 
 void TCEditor::CommentIndent()
 {
- int l=TCEditor::strC.lEOLCom1; // For clarity, I hope gcc is smart enough
+ int l=strC.lEOLCom1; // For clarity, I hope gcc is smart enough
  if (isReadOnly || !l)
     return;
  if (!hasVisibleSelection())
     MarkLine(True);
  AllocLocalStr(b,l+2);
- strncpy(b,TCEditor::strC.EOLCom1,l);
+ strncpy(b,strC.EOLCom1,l);
  b[l]=' ';
  b[l+1]=0;
  IndentBlock(b,True);
@@ -3983,7 +3984,7 @@ the line where the cursor is located is selected and then indented.
 
 void TCEditor::CommentUnIndent()
 {
- int l=TCEditor::strC.lEOLCom1; // For clarity, I hope gcc is smart enough
+ int l=strC.lEOLCom1; // For clarity, I hope gcc is smart enough
  if (isReadOnly || !l)
     return;
 
@@ -3997,7 +3998,7 @@ void TCEditor::CommentUnIndent()
 
  // Verify that at least the first line is already indented
  AllocLocalStr(b,l+2);
- strncpy(b,TCEditor::strC.EOLCom1,l);
+ strncpy(b,strC.EOLCom1,l);
  b[l]=' ';
  b[l+1]=0;
  if (strncmp(curLinePtr,b,l+1)!=0)
@@ -6422,10 +6423,16 @@ void TCEditor::SetCharCase(int option)
 
 int TCEditor::SearchOpenSymbol(char open, char close)
 {
- unsigned Count=1;
  char *s=ColToPointer();
  char *start=curLinePtr;
  int  y=curPos.y;
+ return SearchOpenSymbol(open,close,s,start,y);
+}
+
+int TCEditor::SearchOpenSymbol(char open, char close, char *s, char *&start,
+                               int &y)
+{
+ unsigned Count=1;
  uint32 extraStart=SyntaxHighlightExtraFor(start,s,y);
 
  while (s!=buffer)
@@ -6606,12 +6613,18 @@ int TCEditor::SearchCloseSymbolXY(char open, char close, int &X, int &Y, char *p
 
 int TCEditor::SearchCloseSymbol(char open, char close)
 {
- unsigned Count=1;
  int dif;
  char *s=ColToPointer(dif);
- char *end=buffer+bufLen;
  char *lastl=curLinePtr;
  int   y=curPos.y;
+ return SearchCloseSymbol(open,close,s,lastl,y,dif);
+}
+
+int TCEditor::SearchCloseSymbol(char open, char close, char *s, char *lastl,
+                                int y, int dif)
+{
+ unsigned Count=1;
+ char *end=buffer+bufLen;
  // Compute the SHL for this char
  uint32 extraStart=SyntaxHighlightExtraFor(lastl,s,y);
 
@@ -8113,374 +8126,347 @@ uint32 TCEditor::lineMove( uint32 p, int count )
 }
 
 
-
-/****************************************************************************
-
-   Function: static int AnalizeLineForIndent(char *s,int x,Boolean &mu,int l,
-                                             int tabSize, int avail)
-
-   Type: Normal function.
-
-   Objetive: That's the Intelligent C indent function.
-
-   by SET.
-
-****************************************************************************/
-
-static int AnalizeLineForIndent(char *s,int x,Boolean &mu,int l, int tabSize,
-                                int avail)
+int TCEditor::Comment1Here(char *s, int l)
 {
- int Xlocal=x;
- char *ori=s;
+ return isComment1(*s) && CheckForSequenceNotFirst(strC.OpenCom1,strC.lOpenCom1,l,s);
+}
 
- if (*s=='/')
+int TCEditor::Comment2Here(char *s, int l)
+{
+ return isComment2(*s) && CheckForSequenceNotFirst(strC.OpenCom2,strC.lOpenCom2,l,s);
+}
+
+int TCEditor::EOLCommentHere(char *s, int l)
+{
+ return isEOLComment(*s) &&
+        (CheckForSequenceNotFirst(strC.EOLCom1,strC.lEOLCom1,l,s) ||
+         CheckForSequenceNotFirst(strC.EOLCom2,strC.lEOLCom2,l,s));
+}
+
+int TCEditor::SkipComment1(char *&sp, int &avail, int &col)
+{
+ char *s=sp;
+ int l=avail;
+ int c=col;
+ int ret=0;
+
+ if (Comment1Here(s,l))
    {
-    l--; s++; Xlocal++;
-    // If C++ comment ret x.
-    if (!l || *s=='/')
-       return x;
-    // If C comment eat it
-    if (*s=='*')
+    s+=strC.lOpenCom1;
+    l-=strC.lOpenCom1;
+    c+=strC.lOpenCom1;
+    while (l && *s!='\n')
       {
-       l--; s++; Xlocal++;
-       while (l)
+       if (isCloseComm1(*s) && CheckForSequenceNotFirst(strC.CloseCom1,
+           strC.lCloseCom1,l,s))
          {
-          if (*s=='*')
-            {
-             l--; s++; Xlocal++;
-             if (*s=='/')
-                break;
-            }
-          if (l)
-            {
-             AdvanceWithTab(*s,Xlocal);
-             l--; s++;
-            }
-         }
-       // If the comment continues in the next line ret x.
-       if (!l)
-          return x;
-       // eat all the spaces
-       do
-        {
-         AdvanceWithTab(*s,Xlocal);
-         l--; s++;
-        }
-       while (l && ucisspace(*s));
-       if (!l)
-          return x;
-      }
-    else
-      return x; // If is only / ret x.
-   }
-
- char *startWord=s;
- int lenWord=0;
- int xStartWord=Xlocal;
-
- // Get the first word in the line
- while (l && isWordChar(*s))
-   {
-    lenWord++;
-    l--; s++; Xlocal++;
-   }
-
- // Special cases
- if (!lenWord)
-   {
-    if (*s=='{')
-       return Xlocal+1;
-    if (*s=='}' && Xlocal)
-      {
-       mu=True;
-       return x;
-      }
-   }
-
- // eat spaces
- while (l && ucisspace(*s))
-   {
-    AdvanceWithTab(*s,Xlocal);
-    l--; s++;
-   }
-
- // Analize: 1) The balance of (
- //          2) The last usefull char
- //          3) The column of the first ( , in fact the first non-blank after
- int numPar=0;
- char lastUseful=0;
- int xFirstPar=-1;
- while (l)
-   {
-    switch (*s)
-      {
-       case '(':
-            numPar++;
-            lastUseful=*s;
-            if (xFirstPar<0)
-              {
-               while (l>1 && ucisspace(*(s+1)))
-                 {
-                  AdvanceWithTab(*s,Xlocal);
-                  l--; s++;
-                 }
-               xFirstPar=Xlocal+1;
-              }
-            break;
-
-       case ')':
-            numPar--;
-            lastUseful=*s;
-            break;
-
-       case '\"':
-            do
-             {
-              AdvanceWithTab(*s,Xlocal);
-              l--; s++;
-              if (*s=='\\')
-                {
-                 l--; s++; Xlocal++;
-                }
-              else
-                if (*s=='\"')
-                  {
-                   lastUseful=*s;
-                   break;
-                  }
-             }
-            while (l);
-            break;
-
-       case '\'':
-            do
-             {
-              AdvanceWithTab(*s,Xlocal);
-              l--; s++;
-              if (*s=='\\')
-                {
-                 l--; s++; Xlocal++;
-                }
-              else
-                if (*s=='\'')
-                  {
-                   lastUseful=*s;
-                   break;
-                  }
-             }
-            while (l);
-            break;
-
-       case '/':
-            if (l>1 && s[1]=='/')
-              { // EOL comment
-               l=0;
-               break;
-              }
-            if (l>1 && s[1]=='*')
-              { // C comment
-               l--; s++; Xlocal++; // Skip the *
-               do
-                 {
-                  l--; s++;
-                  AdvanceWithTab(*s,Xlocal);
-                  if (l && *s=='*')
-                    {
-                     l--; s++; Xlocal++; // Skip the *
-                     if (*s=='/')
-                        break;
-                    }
-                 }
-               while (l);
-              }
-            break;
-
-       default:
-            if (!ucisspace(*s))
-               lastUseful=*s;
-      }
-    if (l)
-      {
-       AdvanceWithTab(*s,Xlocal);
-       l--; s++;
-      }
-   }
-
- // Here we have a lot of information about the line
-
- // More ( than ), then goto this col
- if (numPar>0)
-    return xFirstPar;
-
- //   More ) than (, then try to find the command that started all, is
- // heuristic there is no way to make that perfect.
- if (numPar<0)
-   {
-    // Search the ( than balance the line
-    --ori;
-    while (avail)
-      {
-       if (*ori=='(')
-         {
-          numPar++;
-          if (!numPar)
-             break;
-         }
-       else
-         if (*ori==')')
-            numPar--;
-       avail--;
-       ori--;
-      }
-    if (numPar) // unbalanced
-      {
-       mu=True;
-       return x;
-      }
-
-    // Now continue until we reach the start of the line
-    char *LastUsed=ori;
-    --ori;
-    --avail;
-    while (avail)
-      {
-       if (*ori=='\n')
+          s+=strC.lCloseCom1;
+          l-=strC.lCloseCom1;
+          c+=strC.lCloseCom1;
           break;
-       if (isWordChar(*ori))
-          LastUsed=ori;
-       if (*ori=='(')
-          numPar++;
-       else
-         if (*ori==')')
-            numPar--;
-       ori--;
-       avail--;
-      }
-
-    // The whole line balances it?
-    if (numPar)
-      { // Nope
-       return x;
-      }
-
-    // Now try to find the first word
-    startWord=LastUsed;
-    s=LastUsed;
-    lenWord=0;
-    xStartWord=0;
-
-    while (isWordChar(*s))
-      {
-       lenWord++;
+         }
+       AdvanceWithTab(*s,c);
+       l--;
        s++;
       }
-
-    // Is a word?
-    if (!lenWord)
-      { // Nope
-       return x;
-      }
-
-    // Now we have the word so what's the X position?
-    ori++;
-    while (ori<LastUsed)
-      {
-       AdvanceWithTab(*ori,xStartWord);
-       ori++;
-      }
-    x=xStartWord;
+    sp=s;
+    avail=l;
+    col=c;
+    ret=1;
    }
+ return ret;
+}
 
- // To help in the next
- int notHaveColon = (lastUseful!=';');
+int TCEditor::SkipComment2(char *&sp, int &avail, int &col)
+{
+ char *s=sp;
+ int l=avail;
+ int c=col;
+ int ret=0;
 
- // Now about the first word
- // A pseudo hand-made hash
- switch (lenWord)
+ if (Comment2Here(s,l))
    {
-    case 2: if (notHaveColon && ((*startWord=='d' && startWord[1]=='o') ||
-                (*startWord=='i' && startWord[1]=='f')))
-               return xStartWord+2;
-            break;
-
-    case 3: if (notHaveColon && *startWord=='f' && startWord[1]=='o' &&
-                startWord[2]=='r')
-               return xStartWord+3;
-            break;
-
-    case 4: if (*startWord=='e')
-              {
-               if (strncmp(startWord+1,"lse",3)==0)
-                  return xStartWord+2;
-               break;
-              }
-            if (*startWord=='c')
-              {
-               if (strncmp(startWord+1,"ase",3)==0)
-                  return xStartWord+5;
-               break;
-              }
-            break;
-
-    case 5: if (notHaveColon && *startWord=='w')
-              {
-               if (strncmp(startWord+1,"hile",4)==0)
-                  return xStartWord+2;
-               break;
-              }
-            if (*startWord=='b')
-              {
-               if (strncmp(startWord+1,"reak",4)==0)
-                 {
-                  mu=True;
-                  return x;
-                 }
-               break;
-              }
-            break;
-
-    case 6: if (*startWord=='r')
-              {
-               if (strncmp(startWord+1,"eturn",5)==0)
-                 {
-                  mu=True;
-                  return x;
-                 }
-               break;
-              }
-            if (*startWord=='s')
-              {
-               if (strncmp(startWord+1,"witch",5)==0)
-                  return xStartWord+2;
-               break;
-              }
-            break;
-
-    case 7: if (*startWord=='d')
-              {
-               if (strncmp(startWord+1,"efault",6)==0)
-                  return xStartWord+5;
-               break;
-              }
-            break;
+    s+=strC.lOpenCom2;
+    l-=strC.lOpenCom2;
+    c+=strC.lOpenCom2;
+    while (l && *s!='\n')
+      {
+       if (isCloseComm2(*s) && CheckForSequenceNotFirst(strC.CloseCom2,
+           strC.lCloseCom2,l,s))
+         {
+          s+=strC.lCloseCom2;
+          l-=strC.lCloseCom2;
+          c+=strC.lCloseCom2;
+          break;
+         }
+       AdvanceWithTab(*s,c);
+       l--;
+       s++;
+      }
+    sp=s;
+    avail=l;
+    col=c;
+    ret=1;
    }
+ return ret;
+}
 
- return x;
+void TCEditor::FindFirstChar(char *s, int x, int l, char *&fch, int &fcol, int &laf)
+{
+ // Look for the first non-blank char
+ char *firstChar=s;
+ int   firstCol=x;
+ int   lAfterFirst=l;
+ // Skip spaces
+ while (ucisspace(*firstChar))
+   {
+    AdvanceWithTab(*firstChar,firstCol);
+    lAfterFirst--;
+    firstChar++;
+   }
+ // Is that a comment?
+ if (lAfterFirst && (
+     Comment1Here(firstChar,lAfterFirst) ||
+     Comment2Here(firstChar,lAfterFirst)))
+   {// We found something, remmember it and then skip comments
+    char *firstCharAux=firstChar;
+    int   firstColAux=firstCol;
+    int   lAfterFirstAux=lAfterFirst;
+    // skip comments
+    while (lAfterFirst)
+      {// Skip spaces
+       while (ucisspace(*firstChar))
+         {
+          AdvanceWithTab(*firstChar,firstCol);
+          lAfterFirst--;
+          firstChar++;
+         }
+       // Skip comments type 1
+       if (SkipComment1(firstChar,lAfterFirst,firstCol))
+          continue;
+       // Skip comments type 2
+       if (SkipComment2(firstChar,lAfterFirst,firstCol))
+          continue;
+       // Ok, something is here
+       break;
+      }
+    // We couldn't find anything after the comments
+    if (!lAfterFirst)
+      {
+       firstChar=firstCharAux;
+       firstCol=firstColAux;
+       lAfterFirst=lAfterFirstAux;
+      }
+   }
+ fch=firstChar;
+ fcol=firstCol;
+ laf=lAfterFirst;
 }
 
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void newLine()
+  Description:
+  That's the Intelligent C indent function.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
+int TCEditor::AnalizeLineForIndent(char *s, int x, Boolean &mu, int l,
+                                   char *lineStart, char *prevLine,
+                                   int prevLineNum)
+{// Check if we can use it
+ if (SyntaxHL==shlNoSyntax)
+    return x;
+ CacheSyntaxHLData(GenericSHL);
+ if (!strC.nlIndent || strC.nlIndent->getCount()==0)
+    return x;
 
-   Objetive: Put a 13+10 in the buffer.
-             Autoindenta.
+ // 1) Extract the first word or symbol
+ // Look for the first non-blank/no-comment char
+ char *firstChar;
+ int   firstCol;
+ int   lAfterFirst;
+ FindFirstChar(s,x,l,firstChar,firstCol,lAfterFirst);
+ // Here we point to the first useful char
+ int lenWord=0;
+ char *afterWord=firstChar;
+ int lAfterWord=lAfterFirst;
+ int afterWordCol=firstCol;
+ while (lAfterFirst && isWordChar(*afterWord))
+   {
+    lenWord++;
+    lAfterWord--;
+    afterWord++;
+    afterWordCol++;
+   }
 
-   by SET.
+ // 2) Analize the ( and ) balance for the rest of the line
+ // 3) What's the last used char
+ int parBalance=0;
+ char *sPar=afterWord, lastChar=0, *lastClosePar=NULL;
+ int lPar=lAfterWord;
+ int parCol=afterWordCol;
+ int colFirstPar=-2;
+ int yPrev=prevLineNum;
+ while (lPar)
+   {
+    if (Comment1Here(sPar,lPar))
+      {
+       SkipComment1(sPar,lPar,parCol);
+       continue;
+      }
+    if (Comment2Here(sPar,lPar))
+      {
+       SkipComment2(sPar,lPar,parCol);
+       continue;
+      }
+    if (EOLCommentHere(sPar,lPar))
+       break;
+    if (*sPar=='(' || *sPar==')')
+      {
+       if (!(SyntaxHighlightExtraFor(prevLine,sPar,yPrev) & FilterProp))
+         {
+          if (*sPar=='(')
+            {
+             parBalance++;
+             if (colFirstPar==-2)
+                colFirstPar++;
+            }
+          else
+            {
+             parBalance--;
+             lastClosePar=sPar;
+            }
+         }
+      }
+    else
+       if (!ucisspace(*sPar))
+         {
+          lastChar=*sPar;
+          if (colFirstPar==-1)
+             colFirstPar=parCol;
+         }
+    AdvanceWithTab(*sPar,parCol);
+    sPar++;
+    lPar--;
+   }
+ if (colFirstPar==-1)
+    colFirstPar=parCol;
 
-****************************************************************************/
+ // 4) If we have extra ) analize the starting point
+ if (parBalance<0)
+   {
+    char *lineOpenStart=prevLine;
+    int   lineOpen=prevLineNum;
+    int offset=SearchOpenSymbol('(',')',lastClosePar,lineOpenStart,lineOpen);
+    if (offset>=0)
+      {// We found the line where it gets balanced
+       // Look for the first usable char there
+       char *firstChar2;
+       int   firstCol2;
+       int   lAfterFirst2;
+       FindFirstChar(lineOpenStart,0,offset-(lineOpenStart-buffer),firstChar2,
+                     firstCol2,lAfterFirst2);
+       // Check if the line is balanced upto the point we found
+       char *s=firstChar2;
+       int  preBalance=0;
+       int  lAvail=lAfterFirst2;
+       while (lAvail)
+         {
+          if (*s=='(' || *s==')')
+            {
+             if (!(SyntaxHighlightExtraFor(lineOpenStart,s,lineOpen) & FilterProp))
+               {
+                if (*s=='(')
+                   preBalance++;
+                else
+                   preBalance--;
+               }
+            }
+          s++;
+          lAvail--;
+         }
+       if (preBalance==0)
+         {// Ok, we assume this is the starting line
+          // Take the first word from here
+          lenWord=0;
+          afterWord=firstChar=firstChar2;
+          lAfterWord=lAfterFirst=lAfterFirst2;
+          afterWordCol=firstCol=firstCol2;
+          while (lAfterFirst && isWordChar(*afterWord))
+            {
+             lenWord++;
+             lAfterWord--;
+             afterWord++;
+             afterWordCol++;
+            }
+          // Indicate we found the balance
+          parBalance=0;
+         }
+      }
+   }
+
+ // Try with all the rules in reverse order
+ TNLIndentCol *col=strC.nlIndent;
+ int c=col->getCount();
+ for (int i=c-1; i>=0; i--)
+    {// Test the conditions
+     NLIndent *s=col->At(i);
+     int cond[2]={0,0};
+     for (int j=0; j<2; j++)
+        {
+         switch (s->cond[j])
+           {
+            case nliAlways:
+                 cond[j]=1;
+                 break;
+            case nliParBalancePos:
+                 cond[j]=parBalance>0;
+                 break;
+            case nliParBalanceNeg:
+                 cond[j]=parBalance<0;
+                 break;
+            case nliFirstWord:
+                 if (lenWord==0)
+                    // symbol
+                    cond[j]=s->cArgStr[j][0]==firstChar[0];
+                 else
+                    // word
+                    cond[j]=s->cArgInt[j]==(unsigned)lenWord &&
+                            strncmp(s->cArgStr[j],firstChar,lenWord)==0;
+                 break;
+            case nliNoLastChar:
+                 cond[j]=lastChar!=(char)s->cArgInt[j];
+                 break;
+           }
+        }
+     if (cond[0] && cond[1])
+       {// Execute the action
+        switch (s->action)
+          {
+           case nliAutoIndent:
+                return firstCol+s->acArgInt;
+           case nliUnindent:
+                mu=True;
+                return firstCol;
+           case nliMoveAfterPar:
+                return colFirstPar;
+          }
+       }
+    }
+
+ return firstCol;
+}
+
+
+/**[txh]********************************************************************
+
+  Description:
+  Inserts an end of line at the current position. That's \n for UNIX buffers
+and \r\n for DOS buffers. It autoindents and also computes the "Intelligent
+Indent" mode.
+  
+***************************************************************************/
 
 void TCEditor::newLine()
 {
@@ -8531,7 +8517,7 @@ void TCEditor::newLine()
     char *firstUsedPos,*firstUsedHere;
 
     larThis=lenLines[curPos.y];
-    //   The following code searchs the first line located before than the
+    // Searchs the first line located before than the
     // actual line that contains at least 1 character
     prevLine=curLinePtr;
     i=1;
@@ -8543,9 +8529,9 @@ void TCEditor::newLine()
      }
     while (i<=curPos.y && larAnt<=CLY_LenEOL);
     firstUsedPos=prevLine;
+    int prevLineNum=curPos.y-i+1;
 
-    //   This code search the position of the first used char and your
-    // Column.
+    // Search the position of the first used char and its column.
     while (*firstUsedPos==' ' || *firstUsedPos=='\t')
       {
        AdvanceWithTab(*firstUsedPos,firstUsedCol);
@@ -8557,7 +8543,7 @@ void TCEditor::newLine()
     firstColHere=0;
     firstUsedHere=curLinePtr;
 
-    // (The same but in the current line)
+    // The same but in the current line
     while (*firstUsedHere==' ' || *firstUsedHere=='\t')
       {
        AdvanceWithTab(*firstUsedHere,firstColHere);
@@ -8570,7 +8556,7 @@ void TCEditor::newLine()
     Boolean makeUnIndent=False;
 
     TargetCol=AnalizeLineForIndent(firstUsedPos,firstUsedCol,makeUnIndent,
-                                   larAnt-CLY_LenEOL,tabSize,(int)(firstUsedPos-buffer));
+                                   larAnt-CLY_LenEOL,curLinePtr,prevLine,prevLineNum);
 
     // Avoid a backspace at the start of the line
     if (!TargetCol && makeUnIndent)
@@ -9294,6 +9280,15 @@ void TCEditor::EditLine()
    { // Nop, insert spaces
     added=CalcNeededCharsToFill(i,curPos.x,tabSize,OptimalFill);
     FillGapInBuffer(i,curPos.x,bufEdit+lar,tabSize,OptimalFill);
+    if (0 && allowUndo)
+      {
+       stUndoInsert st={bufEdit+lar,NULL,added};
+       int aux=curPos.x;
+       curPos.x=i;
+       addToUndo(undoPreInsert,NULL);
+       curPos.x=aux;
+       addToUndo(undoInsert,(void *)&st);
+      }
     inEditPtr=bufEdit+lar+added;
     lar+=added;
     *inEditPtr=0;
