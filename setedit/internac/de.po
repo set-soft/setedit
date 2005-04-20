@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-15 15:50-0300\n"
+"PO-Revision-Date: 2005-04-20 15:39-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "O~K"
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Datei: %s - Knoten: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:453
+#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:454
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr ""
@@ -602,8 +602,8 @@ msgstr "~F10~ Menü"
 msgid "Not enough memory for this operation."
 msgstr "Nicht genug Speicher für diese Operation."
 
-#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:446
-#: ../mainsrc/ceditor.cc:520
+#: ../infview/manview.cc:304 ../mainsrc/ceditor.cc:447
+#: ../mainsrc/ceditor.cc:521
 msgid "Sorry but no OS specific clipboard is available"
 msgstr ""
 
@@ -1515,32 +1515,32 @@ msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 msgid "Functions:"
 msgstr "Aktion"
 
-#: ../mainsrc/ceditor.cc:542
+#: ../mainsrc/ceditor.cc:543
 #, c-format
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4232
+#: ../mainsrc/ceditor.cc:4233
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4279 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4280 ../mainsrc/doedidia.cc:143
 #, fuzzy, c-format
 msgid "%d bytes selected, in %d"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4440
+#: ../mainsrc/ceditor.cc:4441
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4459
+#: ../mainsrc/ceditor.cc:4460
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4481
+#: ../mainsrc/ceditor.cc:4482
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1551,7 +1551,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4515
+#: ../mainsrc/ceditor.cc:4516
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1564,16 +1564,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6126
+#: ../mainsrc/ceditor.cc:6127
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6141
+#: ../mainsrc/ceditor.cc:6142
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10650
+#: ../mainsrc/ceditor.cc:10635
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1582,29 +1582,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10665
+#: ../mainsrc/ceditor.cc:10650
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11409
+#: ../mainsrc/ceditor.cc:11394
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12358
+#: ../mainsrc/ceditor.cc:12347
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12569
+#: ../mainsrc/ceditor.cc:12558
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13762
+#: ../mainsrc/ceditor.cc:13751
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13772
+#: ../mainsrc/ceditor.cc:13761
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1814,7 +1814,8 @@ msgid "~P~ersistent blocks"
 msgstr "~B~eständige Blöcke"
 
 #: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:294
-msgid "~I~ntelligent C indent"
+#, fuzzy
+msgid "~I~ntelligent indent"
 msgstr "~I~ntelligenter C-Einschub"
 
 #: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:295
