@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.663  2005/04/20 19:21:39  set
+* Added: A simple configuration for the "Intelligent C Indent" mode, now
+renamed "Intelligent Indent". The new behavior isn't 100% equal to the
+previous.
+* Added: Indentation configuration for C/C++ and VHDL.
+* Added: Documentation for the new features.
+
 Revision 1.662  2005/04/15 19:16:08  set
 * Fixed: When using the option to see all pmacros and a pmacro without a
 name was included the editor crashed.

@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Syntax highlight file for SET's editor
@@ -266,6 +266,14 @@ Preprocessor=#
 AllowedInsideNames=.
 CanStartAName=.
 PMacros=clippmac.pmc
+NLIndent=FirstWord,for,,,AutoIndent,4
+NLIndent=FirstWord,do,,,AutoIndent,3
+NLIndent=FirstWord,if,,,AutoIndent,3
+NLIndent=FirstWord,else,,,AutoIndent,3
+NLIndent=FirstWord,case,,,AutoIndent,5
+NLIndent=FirstWord,otherwise,,,AutoIndent,5
+NLIndent=ParBalancePos,,,,MoveAfterPar
+NLIndent=ParBalanceNeg,,,,AutoIndent,0
 Keywords=announce,begin,break,call,case,declare,do,else,elseif,endcase,enddo
 Keywords=endif,exit,external,field,for,function,if,iif,in,init,local,loop
 Keywords=memvar,next,otherwise,parameters,private,procedure,public,recover
@@ -525,6 +533,7 @@ Name=Perl
 Files=pl,pm
 EmacsModes=Perl
 ShellScript=perl
+Case=1
 EOLComment1=#
 HexMarker=0x
 Symbols1=!&*+-:<=>?^|$~@\
@@ -538,6 +547,18 @@ String3=`
 SpecialSymbol=$
 SpecialSymbolCont=#
 PMacros=perlmac.pmc
+NLIndent=FirstWord,if,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,do,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,for,NoLastChar,;,AutoIndent,3
+NLIndent=FirstWord,foreach,NoLastChar,;,AutoIndent,3
+NLIndent=FirstWord,else,,,AutoIndent,2
+NLIndent=FirstWord,elsif,,,AutoIndent,2
+NLIndent=FirstWord,while,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,return,,,Unindent
+NLIndent=FirstWord,{,,,AutoIndent,1
+NLIndent=FirstWord,},,,Unindent
+NLIndent=ParBalancePos,,,,MoveAfterPar
+NLIndent=ParBalanceNeg,,,,AutoIndent,0
 Preload
 Keywords=BEGIN,END,CORE,__END__,__FILE__,__LINE__,AUTOLOAD,DESTROY
 Keywords=abs,accept,alarm,and,atan2,bind,binmode,bless,caller,chdir,chmod

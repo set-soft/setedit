@@ -8431,9 +8431,13 @@ int TCEditor::AnalizeLineForIndent(char *s, int x, Boolean &mu, int l,
                     // symbol
                     cond[j]=s->cArgStr[j][0]==firstChar[0];
                  else
+                   {
                     // word
-                    cond[j]=s->cArgInt[j]==(unsigned)lenWord &&
-                            strncmp(s->cArgStr[j],firstChar,lenWord)==0;
+                    int match=strC.Flags1 & FG1_CaseSensitive ?
+                              strncmp(s->cArgStr[j],firstChar,lenWord)==0 :
+                              strncasecmp(s->cArgStr[j],firstChar,lenWord)==0;
+                    cond[j]=s->cArgInt[j]==(unsigned)lenWord && match;
+                   }
                  break;
             case nliNoLastChar:
                  cond[j]=lastChar!=(char)s->cArgInt[j];
@@ -9280,7 +9284,7 @@ void TCEditor::EditLine()
    { // Nop, insert spaces
     added=CalcNeededCharsToFill(i,curPos.x,tabSize,OptimalFill);
     FillGapInBuffer(i,curPos.x,bufEdit+lar,tabSize,OptimalFill);
-    if (0 && allowUndo)
+    if (0/* && allowUndo*/)
       {
        stUndoInsert st={bufEdit+lar,NULL,added};
        int aux=curPos.x;

@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2004 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2005 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -147,6 +147,7 @@ LookForToolsDistrib();
 #  The installer needs tons of things, put it in makefile only if the user
 # have some chance to succeed.
 LookForToolsInstaller() if ($OS eq 'DOS');
+LookForMaintainerTools() if $conf{'MAINTAINER_MODE'} eq 'yes';
 
 print "\n";
 #
@@ -714,7 +715,7 @@ sub GiveAdvice
  if ((@conf{'HAVE_AA'} eq 'no') && ($OS eq 'UNIX'))
    {
     print "* AA lib is not installed (or isn't functional) so you won't get a nice console\n";
-    print "  screen saver\n";
+    print "  screen saver (package example: aalib1-dev)\n";
    }
  if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
    {
@@ -1986,5 +1987,17 @@ sub LookForMI()
    }
  print "\n";
  $conf{'HAVE_GDB_MI'}='no';
+}
+
+sub LookForMaintainerTools
+{
+ my $file;
+
+ $file=LookForFileInPath('gpr2mak*');
+ if (!length($file))
+   {
+    die "\nRHIDE tools aren't installed. They are needed only for maintainer mode.\n".
+        "Install RHIDE or disable the maintaner mode.\n\n";
+   }
 }
 
