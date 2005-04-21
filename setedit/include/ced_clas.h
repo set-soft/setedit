@@ -356,7 +356,7 @@ public:
 
     void InsertCharInLine(char cVal, Boolean allowUndo=True);
     void SmartTab();
-    void MakeEfectiveLineInEdition();
+    void MakeEfectiveLineInEdition(Boolean allowUndo=True);
     char *ColToPointer();
     char *ColToPointer(int &Dif);
     char *ColToPointerPost();
@@ -365,7 +365,7 @@ public:
     int  nextWord();
     int  prevWord(Boolean moveCursor=True);
     void MoveCursor(char *ori,char *dest);
-    void EditLine();
+    void EditLine(Boolean allowUndo=True);
     int  ComputeXLineInEdition(Boolean alsoRestChars=False);
     void deleteRange(char *from,char *to,Boolean allowUndo=True);
     void deleteRangeLineInEdition(char *from,char *to,int x);
@@ -466,8 +466,6 @@ public:
     char  *inEditPtr;         // Pointer to the cursor inside the line edition
                               // buffer
     Boolean IslineInEdition;  // There is a line under edition?
-    static int DontPurge;     // Special flag to avoid the extra spaces purge feature
-                              // that's an experimental patch (ugly).
     static int DontLoadFile;  // If !=0 the read member doesn't really load the text
                               // in memory, but reads all the rest of stuff.
     TPoint curPos;            // Position of cursor inside the file

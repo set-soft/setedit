@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.664  2005/04/21 14:31:12  set
+* Fixed: The indent rules now checks if the language is case sensitive when
+comparing the "FirstWord".
+* Added: [configuration] A check for RHIDE tools when the user enables the
+maintainer mode.
+* Added: [configuration] AA-lib package example.
+* Added: Clipper and Perl indentation rules.
+* Fixed: [SHL] Perl *is* case sensitive.
+
 Revision 1.663  2005/04/20 19:21:39  set
 * Added: A simple configuration for the "Intelligent C Indent" mode, now
 renamed "Intelligent Indent". The new behavior isn't 100% equal to the

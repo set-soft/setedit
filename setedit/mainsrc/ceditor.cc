@@ -6661,25 +6661,20 @@ int TCEditor::SearchCloseSymbol(char open, char close, char *s, char *lastl,
 }
 
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void MakeEfectiveLineInEdition(void)
+  Description:
+  Put the line in edition inside the buffer.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
-
-   Objetive: Put the line in edition inside the buffer.
-
-   by SET.
-
-****************************************************************************/
-
-void TCEditor::MakeEfectiveLineInEdition(void)
+void TCEditor::MakeEfectiveLineInEdition(Boolean allowUndo)
 {
  int actual,lastChar;
  int SpacesEated;
  char *s;
 
- if (DontPurge || DontPurgeSpaces) // Undo or user option
+ if (DontPurgeSpaces || !allowUndo) // Undo or user option
    {
     for (s=bufEdit,lastChar=0; *s; s++)
         lastChar++;
@@ -6688,13 +6683,26 @@ void TCEditor::MakeEfectiveLineInEdition(void)
    }
  else
    {
+    int lastCol=0, auxCol=0;
     for (s=bufEdit,actual=lastChar=0; *s; s++)
        {
         lastChar++;
+        AdvanceWithTab(*s,auxCol);
         if (*s!='\t' && *s!=' ')
+          {
            actual=lastChar;
+           lastCol=auxCol;
+          }
        }
     SpacesEated=lastChar-actual;
+    #ifndef DISABLE_AUTOSP_PATCH
+    if (SpacesEated)
+      {
+       addToUndo(undoPreDelete,bufEdit+actual);
+       addToUndo(undoDeleteBuf,bufEdit+lastChar);
+       UndoArray[UndoActual].s2.OffSet=(curLinePtr-buffer)+actual;
+      }
+    #endif
     // In case we are killing tabs and they are visible
     if (SpacesEated)
       {
@@ -9227,19 +9235,14 @@ int TCEditor::ComputeXLineInEdition(Boolean alsoRestChars)
  return i;
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: void EditLine()
+  Description: 
+  Starts the edition of the line under the cursor.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
-
-   Objetive: Start the edition of the line under the cursor.
-
-   by SET.
-
-****************************************************************************/
-
-void TCEditor::EditLine()
+void TCEditor::EditLine(Boolean allowUndo)
 {
  int i;
 
@@ -9284,7 +9287,8 @@ void TCEditor::EditLine()
    { // Nop, insert spaces
     added=CalcNeededCharsToFill(i,curPos.x,tabSize,OptimalFill);
     FillGapInBuffer(i,curPos.x,bufEdit+lar,tabSize,OptimalFill);
-    if (0/* && allowUndo*/)
+    #ifndef DISABLE_AUTOSP_PATCH
+    if (allowUndo)
       {
        stUndoInsert st={bufEdit+lar,NULL,added};
        int aux=curPos.x;
@@ -9293,6 +9297,7 @@ void TCEditor::EditLine()
        curPos.x=aux;
        addToUndo(undoInsert,(void *)&st);
       }
+    #endif
     inEditPtr=bufEdit+lar+added;
     lar+=added;
     *inEditPtr=0;
@@ -12179,7 +12184,6 @@ void TCEditor::undo()
    }
 }
 
-//#define DISABLE_INSERT_PATCH
 
 void TCEditor::undoOneAction()
 {
@@ -12189,15 +12193,7 @@ void TCEditor::undoOneAction()
     char *s;
 
     if (IslineInEdition)
-      {
-       #ifndef DISABLE_INSERT_PATCH
-       /* Never purge spaces if they are part of the undo */
-       //if (un.Type==undoInsert)
-          DontPurge=1;
-       #endif
-       MakeEfectiveLineInEdition();
-       DontPurge=0;
-      }
+       MakeEfectiveLineInEdition(False);
 
     // Is a change, first save the end parameters
     if (UndoSt!=undoNoUndo)
@@ -12221,7 +12217,7 @@ void TCEditor::undoOneAction()
                }
              else
                 deleteRange(s-un.Length,s,False);
-             EditLine();
+             EditLine(False);
             }
             //MoveCursorTo(un.X,un.Y);
             break;
@@ -12230,7 +12226,7 @@ void TCEditor::undoOneAction()
             MoveCursorTo(un.X,un.Y);
             if (overwrite!=(((un.Flags & undoOverWrite)!=0) ? True : False))
                toggleInsMode(False);
-            EditLine();
+            EditLine(False);
             {
              int i;
              for (i=0; i<un.Length; i++)
@@ -12271,15 +12267,6 @@ void TCEditor::undoOneAction()
             deleteRange(s,s+un.Length,False);
             if (un.s2.l)
                insertBuffer(un.s2.BufL->s,0,un.s2.BufL->len,False,False,True);
-            #ifndef DISABLE_INSERT_PATCH
-            else
-               // Reconstruct the potentially damaged spaces
-               if (dif<0)
-                 {
-                  MoveCursorTo(un.X,un.Y);
-                  EditLine();
-                 }
-            #endif
            }
             break;
 
@@ -12291,7 +12278,7 @@ void TCEditor::undoOneAction()
             insertBuffer(un.s,0,un.Length,False,False,False);
             MoveCursorTo(un.X,un.Y);
             if (un.Flags & undoLineInEd)
-               EditLine();
+               EditLine(False);
             break;
 
        case undoIndBlock:
@@ -12428,7 +12415,7 @@ void TCEditor::redo(void)
     char *s;
 
     if (IslineInEdition)
-       MakeEfectiveLineInEdition();
+       MakeEfectiveLineInEdition(False);
 
     IncWithWrap(UndoActual,MAX_UNDO);
     UndoSt=undoNoUndo;
@@ -12450,7 +12437,7 @@ void TCEditor::redo(void)
             MoveCursorTo(un.X,un.Y);
             if (overwrite!=(((un.Flags & undoOverWrite)!=0) ? True : False))
                toggleInsMode(False);
-            EditLine();
+            EditLine(False);
             {
              int i;
              for (i=0; i<un.Length; i++)
@@ -14230,7 +14217,6 @@ int      TCEditor::SHLCant=0;
 Boolean  TCEditor::Recording=False;
 int      TCEditor::MacroCount=0;
 int      TCEditor::staticWrapCol=78;
-int      TCEditor::DontPurge=0;
 int      TCEditor::DontLoadFile=0;
 TCEditor *TCEditor::haveCurSelection=NULL;
 TCEditor *TCEditor::showMatchPairFlyCache=NULL;
