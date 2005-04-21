@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.665  2005/04/21 18:23:56  set
+* Fixed(?): The way undo/redo works with the spaces added/removed when
+editing/committing a line. The change is small but with a huge impact. It
+means undo/redo could have new bugs.
+
 Revision 1.664  2005/04/21 14:31:12  set
 * Fixed: The indent rules now checks if the language is case sensitive when
 comparing the "FirstWord".

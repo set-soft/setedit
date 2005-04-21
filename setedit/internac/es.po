@@ -1,12 +1,12 @@
 # Este es el archivo de traducción a español.
-# Copyright (C) 2001-2004 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001-2004.
+# Copyright (C) 2001-2005 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001-2005.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-20 18:07-0300\n"
+"PO-Revision-Date: 2005-04-21 15:51-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1504,7 +1504,7 @@ msgstr "No encontré el complemento"
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10646
+#: ../mainsrc/ceditor.cc:10653
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1512,29 +1512,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10661
+#: ../mainsrc/ceditor.cc:10668
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11405
+#: ../mainsrc/ceditor.cc:11412
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12336
+#: ../mainsrc/ceditor.cc:12343
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12547
+#: ../mainsrc/ceditor.cc:12554
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13740
+#: ../mainsrc/ceditor.cc:13747
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13750
+#: ../mainsrc/ceditor.cc:13757
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -1736,9 +1736,8 @@ msgid "~P~ersistent blocks"
 msgstr "Bloques ~p~ersistentes"
 
 #: ../mainsrc/deedidia.cc:252 ../mainsrc/deedidia.cc:294
-#, fuzzy
 msgid "~I~ntelligent indent"
-msgstr "~I~ndentado de C inteligente"
+msgstr "~I~ndentado inteligente"
 
 #: ../mainsrc/deedidia.cc:253 ../mainsrc/deedidia.cc:295
 msgid "~C~olumn cursor"
@@ -2178,6 +2177,26 @@ msgstr "No hay un nombre bajo el cursor"
 msgid "Can't find \"%s\" file"
 msgstr "No puedo encontrar el archivo \"%s\""
 
+#: ../mainsrc/loadshl.cc:660
+msgid "Wrong action in NLIndent"
+msgstr "Acción incorrecta en una regla NLIndent"
+
+#: ../mainsrc/loadshl.cc:663
+msgid "Wrong second condition in NLIndent"
+msgstr "Segunda condición incorrecta en una regla NLIndent"
+
+#: ../mainsrc/loadshl.cc:666
+msgid "Wrong first condition in NLIndent"
+msgstr "Primera condición incorrecta en una regla NLIndent"
+
+#: ../mainsrc/loadshl.cc:669
+msgid "Wrong number of arguments for NLIndent"
+msgstr "Cantidad incorrecta de parámetros en una regla NLIndent"
+
+#: ../mainsrc/loadshl.cc:1429
+msgid "Errors while loading syntax highlight file"
+msgstr "Errores al cargar resaltado de sintaxis"
+
 #: ../mainsrc/loadusew.cc:222
 msgid "New user word"
 msgstr "Nueva palabra de usuario"
@@ -2238,9 +2257,8 @@ msgstr "Pseudo macro vacío"
 
 #. Use a default name is none is provided
 #: ../mainsrc/pmacros.cc:332 ../mainsrc/pmacros.cc:335
-#, fuzzy
 msgid "No name"
-msgstr "Ninguna"
+msgstr "Sin nombre"
 
 #. Init the Message Window
 #: ../mainsrc/sdginter.cc:101
@@ -3940,7 +3958,7 @@ msgstr "   Panel de control MP3"
 
 #: ../setedit/dstfile.cc:876
 msgid "Wrong desktop file. May be owned by other user."
-msgstr ""
+msgstr "Archivo de escritorio incorrecto o perteneciente a otro usuario"
 
 #: ../setedit/dstfile.cc:882
 msgid "The desktop file is too old."
@@ -5240,7 +5258,7 @@ msgstr "~C~on ámbito ..."
 
 #: ../setedit/editmenu.cc:390
 msgid "~U~sing the Inspector..."
-msgstr "~U~sando un Inspecor ..."
+msgstr "~U~sando un Inspector ..."
 
 #: ../setedit/editmenu.cc:391
 msgid "~D~ata window..."
@@ -5571,11 +5589,11 @@ msgstr "Presione una tecla"
 
 #: ../setedit/edkeys.cc:419
 msgid "Part of a sequence"
-msgstr ""
+msgstr "Parte de una secuencia"
 
 #: ../setedit/edkeys.cc:422
 msgid "Unassigned"
-msgstr ""
+msgstr "Sin asignar"
 
 #: ../setedit/edkeys.cc:480
 msgid "Macros"
@@ -6824,9 +6842,8 @@ msgid "~I~nfo."
 msgstr "~I~nfo."
 
 #: ../settvuti/tdiagaid.cc:208
-#, fuzzy
 msgid "Assigned to:"
-msgstr "Asi~g~nación"
+msgstr "Asignado a:"
 
 #: ../settvuti/tdiagaid.cc:216
 msgid "Assignmen~t~"

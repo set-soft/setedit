@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-20 18:07-0300\n"
+"PO-Revision-Date: 2005-04-21 15:51-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1573,7 +1573,7 @@ msgstr "Keine Übereinstimmung gefunden"
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10646
+#: ../mainsrc/ceditor.cc:10653
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1582,29 +1582,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10661
+#: ../mainsrc/ceditor.cc:10668
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11405
+#: ../mainsrc/ceditor.cc:11412
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12336
+#: ../mainsrc/ceditor.cc:12343
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12547
+#: ../mainsrc/ceditor.cc:12554
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13740
+#: ../mainsrc/ceditor.cc:13747
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13750
+#: ../mainsrc/ceditor.cc:13757
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2269,6 +2269,28 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Can't find \"%s\" file"
 msgstr "Zielverzeichnis"
+
+#: ../mainsrc/loadshl.cc:660
+msgid "Wrong action in NLIndent"
+msgstr ""
+
+#: ../mainsrc/loadshl.cc:663
+msgid "Wrong second condition in NLIndent"
+msgstr ""
+
+#: ../mainsrc/loadshl.cc:666
+msgid "Wrong first condition in NLIndent"
+msgstr ""
+
+#: ../mainsrc/loadshl.cc:669
+#, fuzzy
+msgid "Wrong number of arguments for NLIndent"
+msgstr "Falsche Anzahl der Parameter"
+
+#: ../mainsrc/loadshl.cc:1429
+#, fuzzy
+msgid "Errors while loading syntax highlight file"
+msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
 #: ../mainsrc/loadusew.cc:222
 msgid "New user word"
