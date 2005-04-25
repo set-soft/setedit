@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-21 15:51-0300\n"
+"PO-Revision-Date: 2005-04-25 11:25-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "~A~uswerten"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:672 ../mainsrc/tags.cc:1467 ../mainsrc/tags.cc:1695
+#: ../mainsrc/slpinter.cc:698 ../mainsrc/tags.cc:1467 ../mainsrc/tags.cc:1695
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
@@ -74,7 +74,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
-#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:671
+#: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:697
 #: ../mainsrc/tags.cc:1489 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
@@ -344,7 +344,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2788
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2809
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
@@ -2378,12 +2378,12 @@ msgstr "(%d) %s in Zeile %d"
 msgid "In section %s"
 msgstr "In Sektion %s"
 
-#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:510
+#: ../mainsrc/sdginter.cc:121 ../mainsrc/slpinter.cc:536
 #, fuzzy, c-format
 msgid "Type of error: %s"
 msgstr "Tastaturtyp"
 
-#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:512
+#: ../mainsrc/sdginter.cc:123 ../mainsrc/slpinter.cc:538
 #, c-format
 msgid "Code: ...%s..."
 msgstr "Code: ...%s..."
@@ -2426,28 +2426,28 @@ msgstr "Fehler im regulären Ausdruck: %s"
 msgid "PCRE Exec error"
 msgstr "PCRE Exec Fehler"
 
-#: ../mainsrc/slpinter.cc:509
+#: ../mainsrc/slpinter.cc:535
 msgid "Error in sLisp interpreter:"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:513
+#: ../mainsrc/slpinter.cc:539
 msgid "End of SLP"
 msgstr "Ende von SLP"
 
-#: ../mainsrc/slpinter.cc:587
+#: ../mainsrc/slpinter.cc:613
 #, fuzzy
 msgid "Enter sLisp code to interpret"
 msgstr "Fehler im sLisp Übersetzer:"
 
-#: ../mainsrc/slpinter.cc:616
+#: ../mainsrc/slpinter.cc:642
 msgid "No macros defined"
 msgstr "Keine macros definiert"
 
-#: ../mainsrc/slpinter.cc:659
+#: ../mainsrc/slpinter.cc:685
 msgid "sLisp macros"
 msgstr "sLisp Makros"
 
-#: ../mainsrc/slpinter.cc:669
+#: ../mainsrc/slpinter.cc:695
 msgid "~M~acros"
 msgstr "~M~akros"
 
@@ -4327,21 +4327,21 @@ msgstr "Konnte keine passende Hilfe finden"
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1876
+#: ../setedit/editmain.cc:1884
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:2044
+#: ../setedit/editmain.cc:2052
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:2120
+#: ../setedit/editmain.cc:2128
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2351
+#: ../setedit/editmain.cc:2372
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -4350,7 +4350,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2486
+#: ../setedit/editmain.cc:2507
 #, c-format
 msgid ""
 "\n"
@@ -4359,7 +4359,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2487
+#: ../setedit/editmain.cc:2508
 #, fuzzy
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4368,7 +4368,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2491
+#: ../setedit/editmain.cc:2512
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4377,7 +4377,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2493
+#: ../setedit/editmain.cc:2514
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4386,11 +4386,11 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2498
+#: ../setedit/editmain.cc:2519
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2507
+#: ../setedit/editmain.cc:2528
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4400,26 +4400,26 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2536
+#: ../setedit/editmain.cc:2557
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2781
+#: ../setedit/editmain.cc:2802
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2783
+#: ../setedit/editmain.cc:2804
 msgid ". Copyright (c) "
 msgstr ""
 
-#: ../setedit/editmain.cc:2785
+#: ../setedit/editmain.cc:2806
 #, fuzzy
 msgid ""
 " by Salvador E. Tropea\n"
 "\n"
 msgstr "von Salvador Eduardo Tropea"
 
-#: ../setedit/editmain.cc:2787
+#: ../setedit/editmain.cc:2808
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4427,7 +4427,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2789
+#: ../setedit/editmain.cc:2810
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4437,11 +4437,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2793
+#: ../setedit/editmain.cc:2814
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2794
+#: ../setedit/editmain.cc:2815
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4450,14 +4450,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2799
+#: ../setedit/editmain.cc:2820
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2803
+#: ../setedit/editmain.cc:2824
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4466,7 +4466,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2805
+#: ../setedit/editmain.cc:2826
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4474,36 +4474,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2807
+#: ../setedit/editmain.cc:2828
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2809
+#: ../setedit/editmain.cc:2830
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2811
+#: ../setedit/editmain.cc:2832
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2812
+#: ../setedit/editmain.cc:2833
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2813
+#: ../setedit/editmain.cc:2834
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2816
+#: ../setedit/editmain.cc:2837
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2818
+#: ../setedit/editmain.cc:2839
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4512,7 +4512,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2820
+#: ../setedit/editmain.cc:2841
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4520,19 +4520,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2823
+#: ../setedit/editmain.cc:2844
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2825
+#: ../setedit/editmain.cc:2846
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2826
+#: ../setedit/editmain.cc:2847
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -5860,6 +5860,15 @@ msgstr "Suchtext nicht gefunden."
 msgid "Search selection ~b~ackward"
 msgstr ""
 
+#: ../setedit/editmenu.cc:457
+#, fuzzy
+msgid "Replace in ~a~ll opened..."
+msgstr "Alle ersetzen"
+
+#: ../setedit/editmenu.cc:458
+msgid "Replace in all project ~i~tems..."
+msgstr ""
+
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"
 msgstr "Paletteneditor"
@@ -6711,22 +6720,22 @@ msgstr "Projekt öffnen"
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1277
+#: ../setedit/edprj.cc:1299
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1314
+#: ../setedit/edprj.cc:1336
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1322
+#: ../setedit/edprj.cc:1344
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1358
+#: ../setedit/edprj.cc:1380
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""

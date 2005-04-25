@@ -91,22 +91,22 @@ EDITOR_OBJS =  $(OBJDIR)/accehtml.o $(OBJDIR)/advice.o $(OBJDIR)/ampdiag.o $(OBJ
 	$(OBJDIR)/nceditor.o $(OBJDIR)/ndskwasc.o $(OBJDIR)/ndskwcal.o $(OBJDIR)/ndskwcli.o $(OBJDIR)/ndskwclo.o $(OBJDIR)/ndskwedi.o\
 	$(OBJDIR)/ndskwhel.o $(OBJDIR)/ndskwman.o $(OBJDIR)/ndskwmes.o $(OBJDIR)/ndskwmp3.o $(OBJDIR)/ndskwprj.o $(OBJDIR)/neditwin.o\
 	$(OBJDIR)/nfileedi.o $(OBJDIR)/nsindica.o $(OBJDIR)/ntedcol.o $(OBJDIR)/parser.o $(OBJDIR)/pathlist.o $(OBJDIR)/pathtool.o\
-	$(OBJDIR)/pclipper.o $(OBJDIR)/pmacros.o $(OBJDIR)/pperl.o $(OBJDIR)/pphp.o $(OBJDIR)/ppython.o $(OBJDIR)/pvarious.o $(OBJDIR)/runprog.o\
-	$(OBJDIR)/sceditor.o $(OBJDIR)/scresave.o $(OBJDIR)/sdginter.o $(OBJDIR)/sdskasci.o $(OBJDIR)/sdskcale.o $(OBJDIR)/sdskclip.o\
-	$(OBJDIR)/sdskclos.o $(OBJDIR)/sdskedit.o $(OBJDIR)/sdskhelp.o $(OBJDIR)/sdskman.o $(OBJDIR)/sdskmess.o $(OBJDIR)/sdskmp3.o\
-	$(OBJDIR)/sdskprj.o $(OBJDIR)/search.o $(OBJDIR)/sedcolle.o $(OBJDIR)/slpinter.o $(OBJDIR)/splinman.o $(OBJDIR)/ssindica.o\
-	$(OBJDIR)/ssyntax.o $(OBJDIR)/tags.o $(OBJDIR)/tedcolle.o $(OBJDIR)/tips.o $(OBJDIR)/tpaltext.o $(OBJDIR)/tsindica.o $(OBJDIR)/txhgen.o\
-	$(OBJDIR)/winlistd.o  $(OBJDIR)/lablchek.o $(OBJDIR)/lablradi.o $(OBJDIR)/snostate.o $(OBJDIR)/tcheck2.o $(OBJDIR)/tmiclust.o\
-	$(OBJDIR)/tsbutton.o $(OBJDIR)/tschkarr.o $(OBJDIR)/tschkbox.o $(OBJDIR)/tshscrol.o $(OBJDIR)/tshzgrp.o $(OBJDIR)/tsinplin.o\
-	$(OBJDIR)/tsinplpi.o $(OBJDIR)/tslabel.o $(OBJDIR)/tslider.o $(OBJDIR)/tslistbo.o $(OBJDIR)/tsradbot.o $(OBJDIR)/tssortlb.o\
-	$(OBJDIR)/tssosslb.o $(OBJDIR)/tstatext.o $(OBJDIR)/tstextsc.o $(OBJDIR)/tstsorlb.o $(OBJDIR)/tsvegrp.o $(OBJDIR)/tsview.o\
-	$(OBJDIR)/tsviewco.o $(OBJDIR)/ttextscr.o  $(OBJDIR)/diaghelp.o $(OBJDIR)/dktclock.o $(OBJDIR)/fileopen.o $(OBJDIR)/fiopeaid.o\
-	$(OBJDIR)/inputsca.o $(OBJDIR)/ninputsc.o $(OBJDIR)/nostatex.o $(OBJDIR)/nprogbar.o $(OBJDIR)/nprogres.o $(OBJDIR)/ntnocast.o\
-	$(OBJDIR)/ntnosost.o $(OBJDIR)/setstack.o $(OBJDIR)/sprogbar.o $(OBJDIR)/sprogres.o $(OBJDIR)/stnocast.o $(OBJDIR)/stnonost.o\
-	$(OBJDIR)/tdiagaid.o $(OBJDIR)/tdiagrow.o $(OBJDIR)/tinppipe.o $(OBJDIR)/tnocastc.o $(OBJDIR)/tnosostr.o $(OBJDIR)/tprogbar.o\
-	$(OBJDIR)/tprogdia.o $(OBJDIR)/tprogrdi.o $(OBJDIR)/tprogres.o $(OBJDIR)/tstrlbox.o $(OBJDIR)/uisarray.o $(OBJDIR)/ussarray.o\
-	$(OBJDIR)/viewplus.o  $(OBJDIR)/abstorel.o $(OBJDIR)/back2sl.o $(OBJDIR)/basename.o $(OBJDIR)/fexpand.o $(OBJDIR)/io.o $(OBJDIR)/specs.o\
-	$(OBJDIR)/splitfn.o $(OBJDIR)/stricat.o $(OBJDIR)/stridown.o $(OBJDIR)/stridup.o $(OBJDIR)/strifree.o
+	$(OBJDIR)/pclipper.o $(OBJDIR)/pmacros.o $(OBJDIR)/pperl.o $(OBJDIR)/pphp.o $(OBJDIR)/ppython.o $(OBJDIR)/pvarious.o $(OBJDIR)/pvhdl.o\
+	$(OBJDIR)/runprog.o $(OBJDIR)/sceditor.o $(OBJDIR)/scresave.o $(OBJDIR)/sdginter.o $(OBJDIR)/sdskasci.o $(OBJDIR)/sdskcale.o\
+	$(OBJDIR)/sdskclip.o $(OBJDIR)/sdskclos.o $(OBJDIR)/sdskedit.o $(OBJDIR)/sdskhelp.o $(OBJDIR)/sdskman.o $(OBJDIR)/sdskmess.o\
+	$(OBJDIR)/sdskmp3.o $(OBJDIR)/sdskprj.o $(OBJDIR)/search.o $(OBJDIR)/sedcolle.o $(OBJDIR)/slpinter.o $(OBJDIR)/splinman.o\
+	$(OBJDIR)/ssindica.o $(OBJDIR)/ssyntax.o $(OBJDIR)/tags.o $(OBJDIR)/tedcolle.o $(OBJDIR)/tips.o $(OBJDIR)/tpaltext.o $(OBJDIR)/tsindica.o\
+	$(OBJDIR)/txhgen.o $(OBJDIR)/winlistd.o  $(OBJDIR)/lablchek.o $(OBJDIR)/lablradi.o $(OBJDIR)/snostate.o $(OBJDIR)/tcheck2.o\
+	$(OBJDIR)/tmiclust.o $(OBJDIR)/tsbutton.o $(OBJDIR)/tschkarr.o $(OBJDIR)/tschkbox.o $(OBJDIR)/tshscrol.o $(OBJDIR)/tshzgrp.o\
+	$(OBJDIR)/tsinplin.o $(OBJDIR)/tsinplpi.o $(OBJDIR)/tslabel.o $(OBJDIR)/tslider.o $(OBJDIR)/tslistbo.o $(OBJDIR)/tsradbot.o\
+	$(OBJDIR)/tssortlb.o $(OBJDIR)/tssosslb.o $(OBJDIR)/tstatext.o $(OBJDIR)/tstextsc.o $(OBJDIR)/tstsorlb.o $(OBJDIR)/tsvegrp.o\
+	$(OBJDIR)/tsview.o $(OBJDIR)/tsviewco.o $(OBJDIR)/ttextscr.o  $(OBJDIR)/diaghelp.o $(OBJDIR)/dktclock.o $(OBJDIR)/fileopen.o\
+	$(OBJDIR)/fiopeaid.o $(OBJDIR)/inputsca.o $(OBJDIR)/ninputsc.o $(OBJDIR)/nostatex.o $(OBJDIR)/nprogbar.o $(OBJDIR)/nprogres.o\
+	$(OBJDIR)/ntnocast.o $(OBJDIR)/ntnosost.o $(OBJDIR)/setstack.o $(OBJDIR)/sprogbar.o $(OBJDIR)/sprogres.o $(OBJDIR)/stnocast.o\
+	$(OBJDIR)/stnonost.o $(OBJDIR)/tdiagaid.o $(OBJDIR)/tdiagrow.o $(OBJDIR)/tinppipe.o $(OBJDIR)/tnocastc.o $(OBJDIR)/tnosostr.o\
+	$(OBJDIR)/tprogbar.o $(OBJDIR)/tprogdia.o $(OBJDIR)/tprogrdi.o $(OBJDIR)/tprogres.o $(OBJDIR)/tstrlbox.o $(OBJDIR)/uisarray.o\
+	$(OBJDIR)/ussarray.o $(OBJDIR)/viewplus.o  $(OBJDIR)/abstorel.o $(OBJDIR)/back2sl.o $(OBJDIR)/basename.o $(OBJDIR)/fexpand.o $(OBJDIR)/io.o\
+	$(OBJDIR)/specs.o $(OBJDIR)/splitfn.o $(OBJDIR)/stricat.o $(OBJDIR)/stridown.o $(OBJDIR)/stridup.o $(OBJDIR)/strifree.o
 
 EXTRA_LIBS = ..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib
 
