@@ -1259,6 +1259,28 @@ int SetForceTargetBits(uint32 bits)
 }
 
 
+char *GetProjectItem(int number)
+{
+ if (!(PrjExists() && ProjectList) || number>=ProjectList->getCount())
+    return string_dup(NULL);
+
+ char *item=((PrjItem *)ProjectList->at(number))->name;
+ if (!CheckIfPathAbsolute(item) && ProjectList->referenceCurDelta)
+   {// The project was loaded from another directory, not curdir
+    return ProjectList->applyPrjPath(item);
+   }
+
+ return string_dup(item);
+}
+
+int GetMaxProjectItem()
+{
+ if (!(PrjExists() && ProjectList))
+    return 0;
+ return ProjectList->getCount();
+}
+
+
 /**[txh]********************************************************************
 
   Description:

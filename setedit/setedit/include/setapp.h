@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_SETAppAll
 #define Uses_SETAppConst
@@ -562,6 +562,7 @@ extern int IsAnEditor(void *p);
 extern TCEditor *GetCurrentIfEditor();
 extern void UpdateEditorCommands();
 extern int SelectWindowNumber(int number);
+extern int CloseWindowNumber(int num);
 extern void HTMLAcc_Entry(Boolean compact);
 TCEditWindow *IsAlreadyOnDesktop(char *fileName, int *cant=0, stEditorId *id=0);
 extern void ASCIIWindow();
@@ -586,6 +587,7 @@ void FullSuspendScreen();
 void FullResumeScreen();
 // Open a file and insert it in the desktop
 extern void OpenFileFromEditor(char *fullName);
+extern int OpenFileFromEditorRet(char *fullName, int &number);
 // Defined in dstfile.cc to indicate we loaded the desktop file from the current
 // directory and not from the default one.
 extern char DstLoadedHere;
@@ -603,6 +605,8 @@ extern int IsPrjZoomed();
 extern void SaveDesktopHere(void);
 extern void ExportProjectItems();
 extern void ImportProjectItems();
+extern char *GetProjectItem(int number);
+extern int GetMaxProjectItem();
 const unsigned wnopEspaceSep=0, wnopLineSep=1;
 extern int WriteNamesOfProjectTo(FILE *f, unsigned mode=wnopEspaceSep);
 extern int WriteNamesOfProjectToTime(FILE *f, time_t timeT, uint32 targetMask=0);

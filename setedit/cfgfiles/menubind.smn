@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 #
@@ -103,8 +103,8 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "Insert ~n~ew line (don't move)", cmcInsertNewLine, kbCtN, "Ctrl+N"
 EndSubMenu
 
-# English: BCEFGJHLNOPRSTUW
-# Spanish: ABCDEHILNOPRSTUV
+# English: ABCEFGJHILNOPRSTUW
+# Spanish: ABCDEHILMNOPRSTUVY
 SubMenu: "~S~earch", kbAlS
  MenuItemC: "~F~ind...", cmcFind, kbUnknown, "Ctrl+Q-F"
  MenuItemC: "~R~eplace...", cmcReplace, kbUnknown, "Ctrl+Q-A"
@@ -112,6 +112,8 @@ SubMenu: "~S~earch", kbAlS
  MenuSeparator
  MenuItemC: "S~e~arch selection forward", cmcSearchSelForward, kbShF8, "Shift+F8"
  MenuItemC: "Search selection ~b~ackward", cmcSearchSelBackward, kbShF7, "Shift+F7"
+ MenuItemC: "Replace in ~a~ll opened...", cm(S&R all opened)
+ MenuItemC: "Replace in all project ~i~tems...", cm(S&R all project)
  MenuSeparator
  MenuItemC: "~N~ame current function", cmcWhichFunctionIs
  MenuItemC: "~J~ump to function", cmcJumpToFunction, kbAlF2, "Alt+F2"

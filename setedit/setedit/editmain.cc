@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -1747,6 +1747,14 @@ int SelectWindowNumber(int number)
  return p!=0;
 }
 
+int CloseWindowNumber(int number)
+{
+ TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
+ if (p)
+    p->DeleteAction(0,False);
+ return p!=0;
+}
+
 /**[txh]********************************************************************
 
   Description:
@@ -2322,6 +2330,19 @@ void OpenFileFromEditor(char *fullName)
 {
  editorApp->openEditor(fullName,True);
 }
+
+int OpenFileFromEditorRet(char *fullName, int &number)
+{
+ TCEditWindow *ain=NULL;
+ editorApp->edHelper->reIdEditors();
+ ain=IsAlreadyOnDesktop(fullName);
+ TCEditWindow *opened=editorApp->openEditor(fullName,True);
+ if (opened)
+    number=opened->number;
+
+ return ain ? opfAlreadyThere : (opened ? opfOpened : opfFail);
+}
+
 
 #define README_1ST "readme.1st"
 

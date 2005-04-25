@@ -138,6 +138,7 @@ const unsigned
 
 const int maxArbitraryStrLen=250;
 
+const int opfFail=0, opfOpened=1, opfAlreadyThere=2;
 
 enum shlState { shlNoSyntax=0,shlCSyntax=1,shlPascalSyntax=2,
                 shlClipperSyntax=3,shlGenericSyntax=4 };

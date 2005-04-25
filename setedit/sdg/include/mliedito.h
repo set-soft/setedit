@@ -1,8 +1,8 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=33;
+const int MLIEditorCommands=36;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -79,6 +79,7 @@ public:
  static void SetCursorXY(int x, int y);
  static const char *GetSyntaxLang();
  static int  SelectWindowNumber(int num);
+ static int  CloseWindowNumber(int num);
  static int  GetCurWindowNumber();
  static int  GetMaxWindowNumber();
  // Key binding operations

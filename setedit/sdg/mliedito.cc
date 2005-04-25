@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -38,6 +38,8 @@ editor. @x{TMLIBase (class)}.@p
 #define Uses_TComSeqCol
 #include <keytrans.h>
 #define Uses_SETAppConst
+#define Uses_SETAppProject
+#define Uses_SETAppVarious
 #include <setapp.h>
 #include <edspecs.h>
 
@@ -547,15 +549,24 @@ CleanUp:
 DecFun(MLIOpenFile)
 {
  LocVarStr(file);
+ LocVarInt(sel);
+ int selectIt=0, number;
 
- CheckNumParams(cant!=1);
+ CheckNumParams(cant!=1 && cant!=2);
 
  GetString(0,file);
- OpenFileFromEditor(file->str);
- MLIRetInt(1);
+ if (cant==2)
+   {
+    GetInteger(1,sel);
+    selectIt=sel->val;
+   }
+ MLIRetInt(OpenFileFromEditorRet(file->str,number));
+ if (selectIt)
+    TMLIEditor::SelectWindowNumber(number);
 
 CleanUp:
  destroyFloatVar(file);
+ destroyFloatVar(sel);
 }
 
 DecFun(MLIMessageBox)
@@ -781,6 +792,18 @@ CleanUp:
  destroyFloatVar(n);
 }
 
+DecFun(MLICloseWindowNumber)
+{
+ LocVarInt(n);
+
+ CheckNumParams(cant<1);
+ GetInteger(0,n);
+ MLIRetInt(TMLIEditor::CloseWindowNumber(n->val));
+
+CleanUp:
+ destroyFloatVar(n);
+}
+
 DecFun(MLIGetCurWindowNumber)
 {
  CheckNumParams(cant!=0);
@@ -978,6 +1001,27 @@ CleanUp:
  destroyFloatVar(which);
 }
 
+DecFun(MLIGetProjectItem)
+{
+ LocVarInt(n);
+ char *ori;
+
+ CheckNumParams(cant<1);
+ GetInteger(0,n);
+ ori=GetProjectItem(n->val);
+ MLIRetString(ori);
+ string_free(ori);
+
+CleanUp:
+ destroyFloatVar(n);
+}
+
+DecFun(MLIGetMaxProjectItem)
+{
+ CheckNumParams(cant!=0);
+ MLIRetInt(GetMaxProjectItem());
+}
+
 char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
@@ -1013,7 +1057,10 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "GetMaxWindowNumber",
  "KeyBindings",
  "BindKey",
- "GetSystemInfo"
+ "GetSystemInfo",
+ "GetProjectItem",
+ "GetMaxProjectItem",
+ "CloseWindowNumber"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -1051,7 +1098,10 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetMaxWindowNumber,
  MLIKeyBindings,
  MLIBindKey,
- MLIGetSystemInfo
+ MLIGetSystemInfo,
+ MLIGetProjectItem,
+ MLIGetMaxProjectItem,
+ MLICloseWindowNumber
 };
 
 

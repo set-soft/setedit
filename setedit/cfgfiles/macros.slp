@@ -1,4 +1,4 @@
-; Copyright 1996-2004 by Salvador E. Tropea [SET],
+; Copyright 1996-2005 by Salvador E. Tropea [SET],
 ; see copyrigh file for details
 ;
 ;;;
@@ -180,6 +180,67 @@
  )
 )
 
+;*******************************************************************
+;
+; Macro to search and replace in all opened windows.
+;
+;*******************************************************************
+
+(defmacro 'S&R all opened'
+ (eval
+  ; Memorize the current window
+  (setv "curWin" (GetCurWindowNumber))
+  ; Search & Replace in window 2
+  (SelectWindowNumber 2)
+  (SendCommands cmcPushCursorPos cmcTextStart cmcReplace cmcPopCursorPos)
+  ; Repeat the search in the others
+  (setv "n" 3)
+  (loop
+   (if (not (SelectWindowNumber n)) (exitloop))
+   (SendCommands cmcPushCursorPos cmcTextStart cmcSearchAgain cmcPopCursorPos)
+   (setv "n" (+ n 1))
+  )
+  ; Restore the original window
+  (SelectWindowNumber curWin)
+  1
+ )
+)
+
+;*******************************************************************
+;
+; Macro to search and replace in all project items.
+;
+;*******************************************************************
+
+(defmacro 'S&R all project'
+ (eval
+  ; Memorize the current window
+  (setv "curWin" (GetCurWindowNumber))
+  (setv "maxPrj" (GetMaxProjectItem))
+  (setv "firstWin" 1)
+  (setv "n" 0)
+  (loop
+   (if (== n maxPrj) (exitloop))
+   (setv "opened" (OpenFile (GetProjectItem n) 1))
+   (if (or (== opened 1) (== opened 2))
+    (if (== firstWin 1)
+     (eval
+      (setv "firstWin" 0)
+      (SendCommands cmcPushCursorPos cmcTextStart cmcReplace cmcPopCursorPos)
+     )
+     (SendCommands cmcPushCursorPos cmcTextStart cmcSearchAgain cmcPopCursorPos)
+    )
+   )
+   (if (== opened 1)
+    (CloseWindowNumber (GetCurWindowNumber))
+   )
+   (setv "n" (+ n 1))
+  )
+  ; Restore the original window
+  (SelectWindowNumber curWin)
+  1
+ )
+)
 
 ;*******************************************************************
 ;
@@ -475,4 +536,6 @@
                                     (SendCommands cmcCommentIndent)
     )
  )
-) 
+)
+
+

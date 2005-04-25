@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -454,5 +454,7 @@ _("How to use the ~h~elp")
 _("Con~t~rol dialog...")
 _("S~e~arch selection forward")
 _("Search selection ~b~ackward")
+_("Replace in ~a~ll opened...")
+_("Replace in all project ~i~tems...")
 #endif
 

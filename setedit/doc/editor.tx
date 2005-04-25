@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 20 April 2005
+@set update-date 25 April 2005
 @set update-month April 2005
 @set name-author Salvador Eduardo Tropea
 
@@ -5313,6 +5313,16 @@ this operation.
 @p{}
 
 @c --------------------------------------------------------------
+@subsection CloseWindowNumber
+
+  (CloseWindowNumber @var{number})
+@p{}
+
+  Closes the indicated window. The number is interpreted as in
+SelectWindowNumber. @x{SelectWindowNumber}.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection ComplChoose
 
   (ComplChoose @var{options} @var{delimiter} [@var{flags}])
@@ -5526,6 +5536,29 @@ number. The lowest number is two.
 @p{}
 
 @c --------------------------------------------------------------
+@subsection GetMaxProjectItem
+
+  (GetMaxProjectItem)
+@p{}
+
+  Returns the number of items in the current project. If no project is opened
+it returns zero. You can retreive the project items using
+@code{GetProjectItem}. @x{GetProjectItem}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetProjectItem
+
+  (GetProjectItem @var{number})
+@p{}
+
+  Returns the name of the nth item in the current project. If no project is
+opened or the number is invalid the function returns an empty string.
+You can know how many items have the current project using
+@code{GetMaxProjectItem}. @x{GetMaxProjectItem}.
+@p{}
+
+@c --------------------------------------------------------------
 @subsection GetSystemInfo
 
   (GetSystemInfo @var{which})
@@ -5693,11 +5726,12 @@ altered.
 @subsection OpenFile
 
   (OpenFile @var{string})
-@paragraph{}
+@p{}
 
   Opens the file @var{string} in a window and makes it the current one. If the
-file doesn't exist it does nothing. Always returns 1.
-@paragraph{}
+file doesn't exist it does nothing. If the file fails to be loaded returns 0.
+If the file was already opened returns 2 and if the file was opened 1.
+@p{}
 
 
 @c --------------------------------------------------------------

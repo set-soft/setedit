@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -53,7 +53,7 @@ TCEditor *TMLIEditor::Editor;
 
 char *TMLIEditor::GetWordUnderCursor(int lenMax, int &len, unsigned options)
 {
- char *s=Editor->WordUnderCursor(lenMax,options);
+ char *s=Editor ? Editor->WordUnderCursor(lenMax,options) : NULL;
  if (s)
    {
     len=strlen(s);
@@ -68,12 +68,12 @@ char *TMLIEditor::GetWordUnderCursor(int lenMax, int &len, unsigned options)
 
 char *TMLIEditor::GetEditorName(void)
 {
- return Editor->fileName;
+ return Editor ? Editor->fileName : NULL;
 }
 
 char *TMLIEditor::GetSelection(int &len)
 {
- if (Editor->hasSelection() && !Editor->selHided)
+ if (Editor && Editor->hasSelection() && !Editor->selHided)
    {
     len=Editor->selEnd-Editor->selStart;
     char *s=new char[len+1];
@@ -89,6 +89,8 @@ char *TMLIEditor::GetSelection(int &len)
 
 int TMLIEditor::SendCommand(int command)
 {
+ if (!Editor)
+    return 0;
  if (command>=cmbBaseNumber && command<=cmbBaseNumber+cmbLastCommand)
    {// Editor commands
     if (Editor)
@@ -223,6 +225,8 @@ int TMLIEditor::InsertText(char *str, int len, int select, int move)
 
 void TMLIEditor::ShowInStatusLine(char *s, int l)
 {
+ if (!Editor)
+    return;
  // Limit to 1Kb screen width
  if (l>1024)
     l=1024;
@@ -238,6 +242,8 @@ void TMLIEditor::ShowInStatusLine(char *s, int l)
 
 char *TMLIEditor::CompletionChoose(char *options, char *delimiter, unsigned flags)
 {
+ if (!Editor)
+    return NULL;
  return ::CompletionChoose(options,delimiter,Editor->cursor.x+Editor->owner->origin.x,
                            Editor->cursor.y+Editor->owner->origin.y+1,flags);
 }
@@ -277,11 +283,13 @@ char *TMLIEditor::AskString(const char *title, const char *message)
 
 Boolean TMLIEditor::SelectionExists()
 {
- return Editor->hasVisibleSelection();
+ return Editor ? Editor->hasVisibleSelection() : False;
 }
 
 unsigned TMLIEditor::GetFindFlags()
 {
+ if (!Editor)
+    return 0;
  unsigned ret=Editor->editorFlags & efFindMaskSL;
  // Compact the global options inside the flags
  if (TCEditor::ReplaceStyle==efTagsText)
@@ -298,6 +306,8 @@ unsigned TMLIEditor::GetFindFlags()
 Boolean TMLIEditor::FindOrReplaceString(char *str, char *repl, unsigned flags,
                                         char *&string, unsigned &len, Boolean again)
 {
+ if (!Editor)
+    return False;
  // Save the current state
  unsigned tmpFlags=Editor->editorFlags;
  unsigned tmpStartOfSearch=Editor->StartOfSearch;
@@ -403,21 +413,24 @@ Boolean TMLIEditor::FindAgain(char *&string, unsigned &len)
 
 int  TMLIEditor::GetCursorX()
 {
- return Editor->curPos.x;
+ return Editor ? Editor->curPos.x : 0;
 }
 
 int  TMLIEditor::GetCursorY()
 {
- return Editor->curPos.y;
+ return Editor ? Editor->curPos.y : 0;
 }
 
 void TMLIEditor::SetCursorXY(int x, int y)
 {
- Editor->MoveCursorTo(x,y,True);
+ if (Editor)
+    Editor->MoveCursorTo(x,y,True);
 }
 
 const char *TMLIEditor::GetSyntaxLang()
 {
+ if (!Editor)
+    return "";
  Editor->CacheSyntaxHLData(Editor->GenericSHL);
  return Editor->SyntaxHL!=shlNoSyntax ? Editor->strC.Name : "";
 }
@@ -430,16 +443,29 @@ int TMLIEditor::SelectWindowNumber(int num)
     TCEditor *p=GetCurrentIfEditor();
     if (p)
       {
-       Editor->update(ufView);
+       if (Editor)
+         {
+          Editor->update(ufView);
+          Editor->unlock();
+         }
        Editor=p;
       }
    }
  return ret;
 }
 
+int TMLIEditor::CloseWindowNumber(int num)
+{
+ int current=GetCurWindowNumber();
+ int ret=::CloseWindowNumber(num);
+ if (num==current)
+    Editor=NULL;
+ return ret;
+}
+
 int TMLIEditor::GetCurWindowNumber()
 {
- return ((TWindow *)Editor->owner)->number;
+ return Editor ? ((TWindow *)Editor->owner)->number : 0;
 }
 
 int TMLIEditor::GetMaxWindowNumber()

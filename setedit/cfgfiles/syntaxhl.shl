@@ -389,6 +389,8 @@ Case=1
 HexMarker=0x
 Symbols1=()
 Symbols2=+-&|~=!
+NLIndent=ParBalancePos,,,,MoveAfterPar
+NLIndent=ParBalanceNeg,,,,AutoIndent,0
 Keywords=InsertText,SendCommands,SendCommSel,defmacro,eval,CR,RunProgram,not
 Keywords=WhichEditor,GetSelection,left,right,substr,sstr,gstr,setv,strxlt,if
 Keywords=WordUnderCursor,RunProgramRedir,ShowInStatusLine,ComplChoose,getenv
@@ -397,7 +399,8 @@ Keywords=strcasecmp,length,strstr,OpenFile,print,MessageBox,progn,EvalString
 Keywords=cond,ShowInMessageWindow,SelectionExists,FindString,loop,GetCursorX
 Keywords=GetCursorY,SetCursorXY,repeat,GetSyntaxLang,FindAgain,ReplaceString
 Keywords=exitloop,ReplaceAgain,BindKey,SelectWindowNumber,GetCurWindowNumber
-Keywords=GetMaxWindowNumber,KeyBindings,tostr,prex,GetSystemInfo
+Keywords=GetMaxWindowNumber,KeyBindings,prex,GetSystemInfo,GetMaxProjectItem
+Keywords=GetProjectItem,tostr,CloseWindowNumber
 # Flags
 Keywords=edfComInside,edfEndCom,edfEndCom2,edfExtCom,edfExtCom2,edfExtOneLineCom
 Keywords=edfExtPrepro,edfExtString,edfExtString2,edfExtString3,edfInsideCom
