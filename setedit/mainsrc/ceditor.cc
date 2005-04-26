@@ -8346,6 +8346,7 @@ int TCEditor::AnalizeLineForIndent(char *s, int x, Boolean &mu, int l,
              lastClosePar=sPar;
             }
          }
+       lastChar=*sPar;
       }
     else
        if (!ucisspace(*sPar))

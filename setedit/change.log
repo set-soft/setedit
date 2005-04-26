@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.667  2005/04/25 14:59:20  set
+* Added: [sLisp] GetMaxProjectItem, GetProjectItem and CloseWindowNumber
+functions. They help to implement a search in all project items. SHL & DOC.
+* Added: [sLisp] Two new macros to search in all opened windows and in all
+project items.
+* Fixed: [sLisp] When selecting another window the current remained locked.
+
 Revision 1.666  2005/04/21 18:52:55  set
 * Updated: Spanish translation. Also fixed a typo reported by Andrés.
 

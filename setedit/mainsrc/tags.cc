@@ -308,34 +308,38 @@ int TSpTagCollection::compare(void *key1, void *key2)
 
 const char *TSpTagCollection::Languages[]=
 {
- "Asm",  "ASP",    "Awk",   "BETA", "C",     "C++",
- "Cobol","Eiffel","Fortran","HTML", "Java", "Lisp",
- "Lua",  "Make", "Pascal","Perl",   "PHP",  "Python",
- "REXX", "Ruby", "Scheme","Sh",     "SLang","Tcl",
- "Vim",  "YACC",  NULL
+ "Asm",  "ASP",    "Awk",    "BETA",    "C",      "C++",
+ "Cobol","Eiffel","Fortran", "HTML",    "Java",   "Lisp",
+ "Lua",  "Make",  "Pascal",  "Perl",    "PHP",    "Python",
+ "REXX", "Ruby",  "Scheme",  "Sh",      "SLang",  "Tcl",
+ "Vim",  "YACC",  "VHDL",    "C#",      "Erlang", "JavaScript",
+ "SML",  "SQL",   "Vera",    "Verilog", NULL
 };
 
 const int
- ttclAsm=0,  ttclASP=1,    ttclAwk=2,    ttclBETA=3,  ttclC=4,      ttclCpp=5,
- ttclCobol=6,ttclEiffel=7, ttclFortran=8,ttclHTML=9,  ttclJava=10,  ttclLisp=11,
- ttclLua=12, ttclMake=13,  ttclPascal=14,ttclPerl=15, ttclPHP=16,   ttclPython=17,
- ttclREXX=18,ttclRuby=19,  ttclScheme=20,ttclSh=21,   ttclSLang=22, ttclTcl=23,
- ttclVim=24, ttclYACC=25,
+ ttclAsm=0,  ttclASP=1,    ttclAwk=2,    ttclBETA=3,    ttclC=4,      ttclCpp=5,
+ ttclCobol=6,ttclEiffel=7, ttclFortran=8,ttclHTML=9,    ttclJava=10,  ttclLisp=11,
+ ttclLua=12, ttclMake=13,  ttclPascal=14,ttclPerl=15,   ttclPHP=16,   ttclPython=17,
+ ttclREXX=18,ttclRuby=19,  ttclScheme=20,ttclSh=21,     ttclSLang=22, ttclTcl=23,
+ ttclVim=24, ttclYACC=25,  ttclVHDL=26,  ttclCH=27,     ttclErlang=28,ttclJavaScript=29,
+ ttclSML=30, ttclSQL=31,   ttclVera=32,  ttclVerilog=33,
  ttclUnknown=255;
 
-static stTagKind Asm[]={{'d',"define"},{'l',"label"},{'m',"macro"}};
-static stTagKind ASP[]={{'f',"function"},{'s',"subroutine"}};
+static stTagKind Asm[]={{'d',"define"},{'l',"label"},{'m',"macro"},{'t',"type"}};
+static stTagKind ASP[]={{'f',"function"},{'s',"subroutine"},{'v',"variable"}};
 static stTagKind Func[]={{'f',"function"}};
 static stTagKind BETA[]={{'f',"fragment definition"},{'p',"all pattern"},
                          {'s',"slot"},{'v',"pattern"}};
 static stTagKind Cpp[]={{'c',"class"},{'d',"macro definition"},{'e',"enumerator"},
                         {'f',"function definition"},{'g',"enumeration name"},
+                        {'l',"local var."},
                         {'m',"member (c, s, or u)"},{'n',"namespaces"},
                         {'p',"function prot. and dec."},
                         {'s',"structure name"},{'t',"typedef"},
                         {'u',"union name"},{'v',"variable definition"},
                         {'x',"extern & forward var. dec."}};
-static stTagKind Cobol[]={{'p',"paragraph"}};
+static stTagKind Cobol[]={{'d',"data item"},{'f',"file description"},{'g',"group item"},
+                          {'p',"paragraph"},{'P',"program id"},{'s',"section"}};
 static stTagKind Eiffel[]={{'c',"class"},{'f',"feature"},{'l',"local entity"}};
 static stTagKind Fortran[]={{'b',"block data"},{'c',"common block"},{'e',"entry point"},
                             {'f',"function"},{'i',"interface"},{'k',"type component"},
@@ -343,28 +347,54 @@ static stTagKind Fortran[]={{'b',"block data"},{'c',"common block"},{'e',"entry 
                             {'m',"module"},{'n',"namelist"},{'p',"program"},
                             {'s',"subroutine"},{'t',"derived type"},
                             {'v',"module variable"}};
-static stTagKind HTML[]={{'a',"anchor"}};
+static stTagKind HTML[]={{'a',"anchor"},{'f',"JavaScript function"}};
 static stTagKind Java[]={{'c',"class"},{'f',"field"},{'i',"interface"},{'m',"method"},
                          {'p',"package"}};
 static stTagKind Make[]={{'m',"macro"}};
 static stTagKind Pascal[]={{'f',"function"},{'p',"procedure"}};
-static stTagKind Perl[]={{'p',"package"},{'s',"subroutine"}};
-static stTagKind PHPPython[]={{'c',"class"},{'f',"function"}};
+static stTagKind Perl[]={{'c',"constant"},{'l',"label"},{'p',"package"},{'s',"subroutine"}};
+static stTagKind PHP[]={{'c',"class"},{'d',"define"},{'f',"function"},{'v',"variable"}};
+static stTagKind Python[]={{'c',"class"},{'f',"function"},{'m',"member"}};
 static stTagKind REXX[]={{'s',"subroutine"}}; // REXX
-static stTagKind Ruby[]={{'c',"class"},{'f',"function"},{'m',"mixin"}};
+static stTagKind Ruby[]={{'c',"class"},{'f',"method"},{'F',"singleton method"},{'m',"mixin"}};
 static stTagKind Scheme[]={{'f',"function"},{'s',"set"}};
 static stTagKind SLang[]={{'f',"function"},{'n',"namespace"}};
-static stTagKind Tcl[]={{'p',"procedure"}};
+static stTagKind Tcl[]={{'c',"class"},{'m',"method"},{'p',"procedure"}};
+static stTagKind Vim[]={{'a',"augroup"},{'f',"function"},{'v',"variable"}};
 static stTagKind YACC[]={{'l',"labels"}};
+static stTagKind VHDL[]={{'a',"architecture"},{'b',"package body"},{'c',"component"},
+                         {'e',"entity"},{'f',"function"},{'F',"function prototype"},
+                         {'k',"package"},{'p',"procedure"},{'P',"procedure prototype"}};
+static stTagKind CH[]={{'c',"class"},{'d',"macro definition"},{'e',"enumerator"},
+                       {'E',"event"},{'f',"field"},{'g',"enumeration"},
+                       {'i',"interface"},{'l',"local variable"},{'m',"method"},
+                       {'n',"namespace"},{'p',"property"},{'s',"structure"},
+                       {'t',"typedef"}};
+static stTagKind Erlang[]={{'d',"macro"},{'f',"function"},{'m',"module"},{'r',"record"}};
+static stTagKind SML[]={{'e',"exception"},{'f',"function"},{'c',"functor"},
+                        {'s',"signature"},{'r',"structure"},{'t',"type"},{'v',"value"}};
+static stTagKind SQL[]={{'c',"cursor"},{'d',"prototype"},{'f',"function"},
+                        {'F',"field"},{'l',"local variable"},{'L',"block label"},
+                        {'P',"package"},{'p',"procedure"},{'r',"record"},
+                        {'s',"subtype"},{'t',"table"},{'T',"trigger"},
+                        {'v',"variable"}};
+static stTagKind Vera[]={{'c',"class"},{'d',"macro"},{'e',"enumerator"},{'f',"function"},
+                         {'g',"enumeration"},{'l',"local variable"},{'m',"member"},
+                         {'p',"program"},{'P',"function prototype"},{'t',"task"},
+                         {'T',"typedef"},{'v',"variable"},{'x',"external variable"}};
+static stTagKind Verilog[]={{'c',"constant"},{'e',"event"},{'f',"function"},
+                            {'m',"module"},{'n',"net data type"},{'p',"port"},
+                            {'r',"register data type"},{'t',"task"}};
 
 stTagKinds TSpTagCollection::Kinds[]=
 {
- {3,Asm},{2,ASP},{1,Func},{4,BETA},{13,Cpp},{13,Cpp},
- {1,Cobol},{3,Eiffel},{14,Fortran},{1,HTML},{5,Java},
- {1,Func},{1,Func},{1,Make},{2,Pascal},{2,Perl},
- {2,PHPPython},{2,PHPPython},{1,REXX},{3,Ruby},
- {2,Scheme},{1,Func},{2,SLang},{1,Tcl},{1,Func},
- {1,YACC}
+ {4,Asm},{3,ASP},{1,Func},{4,BETA},{14,Cpp},{14,Cpp},
+ {6,Cobol},{3,Eiffel},{14,Fortran},{2,HTML},{5,Java},
+ {1,Func},{1,Func},{1,Make},{2,Pascal},{4,Perl},
+ {4,PHP},{3,Python},{1,REXX},{4,Ruby},
+ {2,Scheme},{1,Func},{2,SLang},{3,Tcl},{3,Vim},
+ {1,YACC},{9,VHDL},{13,CH},{4,Erlang},{1,Func},
+ {7,SML},{13,SQL},{13,Vera},{8,Verilog}
 };
 
 TSpTagCollection::TSpTagCollection(unsigned size) :
@@ -507,6 +537,7 @@ void TSpTagCollection::getText(char *buf, void *item, int maxLen)
             idP='c';
             break;
        case sttFgEnum:
+       case sttFgEntity:
             idP='e';
             break;
        case sttFgUnion:
@@ -679,6 +710,11 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
       {
        p->partof=newStr(e+9);
        p->flags|=sttFgInherits;
+      }
+    else if (strncmp(e,"entity:",7)==0)
+      {
+       p->partof=newStr(e+7);
+       p->flags|=sttFgEntity;
       }
     else if (strncmp(e,"file:",5)==0)
       {

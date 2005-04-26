@@ -36,6 +36,7 @@ fulled, but is fast and small.
 
 static unsigned Index,Line,lenWord,Len;
 static unsigned char *Buffer;
+static int canBeStr=0;
 
 static
 void GetEndOfStr(unsigned char end)
@@ -109,7 +110,14 @@ int GetNextValue()
     switch (Buffer[Index])
       {
        case '"': // String, search the end
-            GetEndOfStr('"');
+            if (!canBeStr)
+               GetEndOfStr('"');
+            else
+              {
+               GetWordChars();
+               Index++;
+               return 1;
+              }
             break;
        case '\'': // String, search the end
             GetEndOfStr('\'');
@@ -173,7 +181,9 @@ void GetFunction(const char *type, tAddFunc AddFunc)
 {
  unsigned lenFound,lineFound;
 
+ canBeStr=1;
  GetWord();
+ canBeStr=0;
  lineFound=Line;
  strcpy(bfNomFun,bfBuffer);
  int proto=0;

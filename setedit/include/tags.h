@@ -23,6 +23,7 @@ const uchar
       sttFgUnion   =0x0C,
       sttFgInherits=0x10,
       sttFgStruct  =0x14,
+      sttFgEntity  =0x18,
       sttFgPMask   =0x1C,
 
       sttFgVirtual    =0x20,
