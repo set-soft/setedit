@@ -41,7 +41,7 @@ ccIndex TPMCollection::insert(void *item)
  char *s=pm->str;
  for (; *s; s++)
     {
-     if (*s=='@' && s[1]=='{')
+     if (*s=='@' && s[1]=='{' && s[2]!='(')
        {
         s+=2;
         char *start=s;

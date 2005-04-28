@@ -7066,22 +7066,41 @@ void TCEditor::ExpandPMacro(void *pm, char *s, char *trg)
             if (s[1]=='{') // An input var, by name
               {
                s+=2;
-               for (; *s && *s!='}'; s++);
-               if (!*s)
-                 {// Error!
-                  s--;
+               if (*s=='(') // sLisp code
+                 {
+                  char *start=s;
+                  for (s++; *s && *s!='}'; s++);
+                  if (!*s)
+                    {// Error!
+                     s--;
+                     break;
+                    }
+                  //printf("%s - %d\n",start,s-start);
+                  flushLine();
+                  char *Code=newStrL(start,s-start);
+                  SLPInterfaceRunString(this,Code,False);
+                  delete[] Code;
                   break;
                  }
-               char *str=varsVals+MaxVarValLen*varPos;
-               int len=strlen(str);
-               if (len)
+               else
                  {
-                  flushLine();
-                  insertBuffer(str,0,len,True,False,True);
-                  //printf("<%s> %d\n",str,len);
+                  for (; *s && *s!='}'; s++);
+                  if (!*s)
+                    {// Error!
+                     s--;
+                     break;
+                    }
+                  char *str=varsVals+MaxVarValLen*varPos;
+                  int len=strlen(str);
+                  if (len)
+                    {
+                     flushLine();
+                     insertBuffer(str,0,len,True,False,True);
+                     //printf("<%s> %d\n",str,len);
+                    }
+                  varPos++;
+                  break;
                  }
-               varPos++;
-               break;
               }
             if (s[1]=='v') // An input var, by position
               {
@@ -7382,8 +7401,6 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
 
  struct stUndoInsert undoSt;
  undoSt.Eated=0;
- if (allowUndo)  // Just remember the actual selected area
-    addToUndo(undoPreInsert,NULL);
 
  // To allow copying from the same buffer (only works if the insertion point
  // is greater than p+offtset+length).
@@ -7423,12 +7440,34 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
  // is outside the real line? AND the inserted text won't destroy the new
  // spaces (| we won't purge spaces).
  if (x<curPos.x && (CLY_IsntEOL(*p) || DontPurgeSpaces))
+   {
     extraSpaces=CalcNeededCharsToFill(x,curPos.x,tabSize,OptimalFill);
+    if (allowUndo)
+      {// We will insert some extra spaces so we must record this action in
+       // the undo history.
+       // Move the cursor to the place where we will insert spaces
+       addToUndo(undoInMov);
+       int curX=curPos.x;
+       curPos.x=x;
+       // Record the spaces we are adding
+       addToUndo(undoPreInsert,NULL);
+       struct stUndoInsert undoStSps;
+       undoStSps.Eated=0;
+       undoStSps.l=extraSpaces;
+       undoStSps.s=new char[extraSpaces];
+       FillGapInBuffer(x,curPos.x,undoStSps.s,tabSize,OptimalFill);
+       addToUndo(undoInsert,(void *)&undoStSps);
+       delete[] undoStSps.s;
+       curPos.x=curX;
+      }
+   }
  else
     extraSpaces=0;
  // s points to the "insertion point"
  s=curLinePtr+pF;
  TotalToAdd=extraSpaces+length;
+ if (allowUndo)  // Just remember the actual selected area
+    addToUndo(undoPreInsert,NULL);
 
  // insertion point as offset
  unsigned point=(unsigned)(s-buffer);
@@ -8522,7 +8561,7 @@ void TCEditor::newLine()
 
  insertText(CLY_crlf,CLY_LenEOL,False);
 
- if (intelIndent && curPos.y>0)
+ if (intelIndent && curPos.y>1)
    {
     // analize the last line
     unsigned firstUsedCol=0,firstColHere;

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.669  2005/04/28 15:55:59  set
+* Fixed: Clipper 5.x functions parser to include numbers in names.
+* Fixed: Clipper 5.x pmacros without names.
+
 Revision 1.668  2005/04/26 19:51:16  set
 * Added: [TAGS] Support for the new languages and kinds added to ectags
 5.5.4. Including the new languages: C#, Erlang, JavaScript, SML, SQL, Vera

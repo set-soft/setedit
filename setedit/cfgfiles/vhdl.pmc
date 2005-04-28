@@ -15,6 +15,7 @@
 ;             default value is "Def".
 ; @vN inserts the content of the "variable" number N. Variables are numbered
 ;     starting with 0.
+; @{(sLisp)} executes the sLisp code.
 ; Don't put only @ at the end of the string :-).
 ;
 ;   The Mode keyword indicates the mode of the editor when the macro is
@@ -61,10 +62,10 @@ Trigger: "ci"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Component instantiation
  "@{Label}: @{Component}\n"
- "   generic map(@0 => @1,\n"
-    "            )\n"
-    "\bport map(@2 => @3,\n"
-    "         );\n"
+ "   generic map(\n"
+    "   @0 => @1,)\n"
+    "\bport map(\n"
+    "   @2 => @3,);\n"
 
 Trigger: "wh"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
@@ -272,10 +273,10 @@ Name: Return
 Trigger: "se"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Select signal (With)
- "with @{Expression} select\n"
- "     @{Signal} <= @{Value to assign} when @{Value for expression},\n"
-      "\t@0 when @1,\n"
-              "@{Default value} when others;"
+ "with @{Expression} select @{Signal} <=\n"
+ "     @{Value to assign} when @{Value for expression},\n"
+      "@0when @1,\n"
+      "@{Default value} when others;"
 
 Trigger: "si"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
@@ -690,4 +691,76 @@ Name: BRAM Dual Port
     "do1 <= ram(to_integer(unsigned(read_a1)));\n"
     "do2 <= ram(to_integer(unsigned(read_a2)));\n"
  "\bend architecture Xilinx; -- Entity: @v0\n"
+
+Trigger: "/i"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+Name: File header (long)
+ "------------------------------------------------------------------------------\n"
+ "----                                                                      ----\n"
+ "----  @{Title}\t----\n"
+ "----                                                                      ----\n"
+ "----  @{Downloaded from;Internal file, can't be downloaded.}\t----\n"
+ "----                                                                      ----\n"
+ "----  Description:                                                        ----\n"
+ "----  @0                                                                    ----\n"
+ "----                                                                      ----\n"
+ "----  To Do:                                                              ----\n"
+ "----  -                                                                   ----\n"
+ "----                                                                      ----\n"
+ "----  Author:                                                             ----\n"
+ "----    - @{Author name}, @{e-mail}\t----\n"
+ "----                                                                      ----\n"
+ "------------------------------------------------------------------------------\n"
+ "----                                                                      ----\n"
+ "---- Copyright (c) @{"
+; sLisp code to get the year using the date command. Side effect: saves the file to disk
+ "(eval"
+  "(setv 'year' (RunProgramRedir 'date +%Y'))"
+  "(InsertText (left year (- (length year) 1)))"
+ ")"
+ "} @v2 <@v3>\t----\n"
+ "----                                                                      ----\n"
+ "---- @{License;For internal use, all rights reserved.}\t----\n"
+ "----                                                                      ----\n"
+ "------------------------------------------------------------------------------\n"
+ "----\n"
+ "---- Design unit:      @{Design unit;Entity(architecture) (Entity and architecture)}\n"
+ "---- File name:        @{"
+; sLisp code to get the filename and extension
+ "(InsertText"
+  "(+"
+   "(WhichEditor edfWENameNoExt)"
+   "(WhichEditor edfWEExtension)"
+  ")"
+ ")}\n"
+ "---- Note:             None\n"
+ "---- Limitations:      None known\n"
+ "---- Errors:           None known\n"
+ "---- Library:          @{Library;None}\n"
+ "---- Dependencies:     IEEE.std_logic_1164\n"
+ "----                   IEEE.numeric_std\n"
+ "---- Target FPGA:      @{FPGA;Spartan II (XC2S100-5-PQ208)}\n"
+ "---- Language:         VHDL\n"
+ "---- Wishbone:         @{Wishbone;MASTER (rev B.3)}\n"
+ "---- Synthesis tools:  @{Synthesis tools;Xilinx Release 6.2.03i - xst G.31a}\n"
+ "---- Simulation tools: @{Simulation tools;GHDL [Sokcho edition] (0.1x)}\n"
+ "---- Text editor:      SETEdit 0.5.x\n"
+ "----\n"
+; sLisp code to make the comment look like a "box" (16 lines)
+ "@{(eval"
+    "(repeat 17 (SendCommands cmcLineUp))"
+    "(SendCommands cmcLineEnd)"
+    "(repeat 16"
+     "(SendCommands cmcCharLeft cmcCharLeft cmcCharLeft cmcCharLeft cmcLineDown)"
+     "(InsertText '----')"
+    ")"
+    "(SendCommands cmcLineStart cmcLineDown)"
+   ")}"
+ "------------------------------------------------------------------------------\n"
+ "--\n"
+ "-- CVS Revision History\n"
+ "--\n"
+ "-- $Log$\n"
+ "--\n"
+
 

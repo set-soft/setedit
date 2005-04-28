@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 25 April 2005
+@set update-date 27 April 2005
 @set update-month April 2005
 @set name-author Salvador Eduardo Tropea
 
@@ -5102,6 +5102,7 @@ and I'll add it to the next release.
 @paragraph{}
 
 @subsection Asking for user defined values
+@cindex pmacros, user interaction
 
   Pseudo macros can ask the user to enter values. This can be done using the
 @@@{Name@} syntax. We will call it a variable. A macro can have as many
@@ -5148,6 +5149,33 @@ end entity Counter;
   If you want to provide a default value use the following syntax:
 @@@{Name;Value@}.
 @p{}
+
+@subsection Executing sLisp code from a pmacro
+@cindex pmacros, executing sLisp
+
+  You can execute sLisp code from a pseudo macro using the following syntax:
+@code{@@@{(code)@}}. The code will be executed every time you expand the
+macro. For more information about sLisp @x{sLisp macros}.
+@p{}
+
+  You can insert text using @code{InsertText} sLisp command. You can even
+insert the output of an external program using the @code{RunProgramRedir}
+command. @x{InsertText}. @x{RunProgramRedir}.
+@p{}
+
+  To make the macro more readable you can split the code in multiple lines.
+Here is an example:
+@p{}
+
+@example
+ "---- Copyright (c) @@@{"
+; sLisp code to get the year using the date command. Side effect: saves the file to disk
+ "(eval"
+  "(setv 'year' (RunProgramRedir 'date +%Y'))"
+  "(InsertText (left year (- (length year) 1)))"
+ ")"
+ "@} @@v2 <@@v3>\n"
+@end example
 
 @chapter sLisp macros
 @cindex macros from menu

@@ -269,7 +269,7 @@ struct UndoCell
  uint32 selStart,selEnd;
  uint32 selStartf,selEndf;
  char Flags;
- char Count;
+ int  Count;
 };
 
 struct stUndoInsert
