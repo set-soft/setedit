@@ -140,10 +140,12 @@ Name: SDG comment short
 
 Trigger: "fu"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Function
   "Function @0()\n"
   "Return@1"
 
 Trigger: "po"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Procedure
   "Procedure @0()\n"
   "Return"

@@ -1,4 +1,12 @@
-$Log$
+$Log$.
+Revision 1.668  2005/04/26 19:51:16  set
+* Added: [TAGS] Support for the new languages and kinds added to ectags
+5.5.4. Including the new languages: C#, Erlang, JavaScript, SML, SQL, Vera
+and Verilog.
+* Added: [TAGS] Support for VHDL tags, not yet contributed to the project.
+* Fixed: In the "Intelligent indent" if the line ended with ( or ) the
+lastchar wasn't it.
+
 Revision 1.667  2005/04/25 14:59:20  set
 * Added: [sLisp] GetMaxProjectItem, GetProjectItem and CloseWindowNumber
 functions. They help to implement a search in all project items. SHL & DOC.

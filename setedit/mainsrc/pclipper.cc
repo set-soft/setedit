@@ -152,7 +152,7 @@ int GetWord()
             break;
 
        default:
-            if (TVCodePage::isAlpha(c) || c=='_')
+            if (isalnum(c) || c=='_')
               {
                if (IndiceW<MaxLen)
                   bfBuffer[IndiceW++]=c;
