@@ -308,4 +308,5 @@ extern char CheckSeqCase;
 
 unsigned TCEditor_scan(const void *block, unsigned size, const char *str);
 unsigned TCEditor_iScan(const void *block, unsigned size, const char *str);
+extern int isVHDLNumber(const char *s, uint32 &dispo);
 #endif

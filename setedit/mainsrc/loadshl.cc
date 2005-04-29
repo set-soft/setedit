@@ -671,6 +671,13 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
            if (!added)
               delete p;
           }
+        else
+        if (strncasecmp(b,"VHDLNumbers",11)==0)
+          {
+           pos=MoveAfterEqual(b);
+           if (*pos=='1')
+              hl[def].Flags2|=FG2_VHDLNumbers;
+          }
        }
      while (!feof(f) && strncasecmp(b,"End",3)!=0);
     }

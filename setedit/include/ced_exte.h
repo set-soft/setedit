@@ -222,6 +222,7 @@ struct strSHL
 #define FG1_EOLCInFirstUse1 0x80
 #define FG2_EOLCInFirstUse2 0x01
 #define FG2_EscapeAnywhere  0x02
+#define FG2_VHDLNumbers     0x04
 
 /********************************* UNDO types and constants *****************/
 #define MAX_UNDO 256

@@ -1699,28 +1699,19 @@ TryFloat1:
  return 2;
 }
 
-/*****************************************************************************
+/**[txh]********************************************************************
 
-  Function: int is_pascal_integer_float(const char *name,uint32 l,uint32 rest)
+  Description:
+  Checks if we have an integer or floating point number in the @var{name}
+string. Only @var{dispo} bytes are tested. The value of @var{dispo} is
+modified to indicate how many characters we parsed.
+  
+  Return: 0 an invalid number, 1 an integer and 2 a float.
+  
+***************************************************************************/
 
-  Parameters:
-  name: string to analyze.
-  l: length.
-  rest: available chars in the line.
-
-  Return:
-  0 an invalid number.
-  1 an integer.
-  2 a float.
-
-  Notes:
-  0.. is an integer + symbols.
-
-  by SET.
-
-*****************************************************************************/
-
-static int is_pascal_integer_float(const char *name, uint32 &dispo)
+static
+int is_pascal_integer_float(const char *name, uint32 &dispo)
 {
  while (dispo--)
   {
@@ -1786,6 +1777,265 @@ TryFloat1:
  return 2;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Checks if the @var{val} represents a digit for @var{base}.
+  
+  Return: The equivalent digit or -1 if outside the base.
+  
+***************************************************************************/
+
+int vhdl_val_digit(char val, int base)
+{
+ int digit;
+ if (val>='0' && val<='9')
+    digit=val-'0';
+ else
+ if (val>='A' && val<='Z')
+    digit=val-'A'+10;
+ else
+ if (val>='a' && val<='z')
+    digit=val-'a'+10;
+ else
+    return -1;
+ return digit<base ? digit : -1;
+}
+
+// Some helpful macros to make the code easier to read:
+// Handle the _d sequence
+#define CheckUnderscore(doAcum) \
+ if (*s=='_')                              \
+   {/* Can't end here */                   \
+    if (!dispo)                            \
+       return 0;                           \
+    s++;                                   \
+    /* Must be followed by a valid digit */\
+    digVal=vhdl_val_digit(*s,base);        \
+    if (digVal<0)                          \
+       return 0;                           \
+    if (doAcum)                            \
+      {                                    \
+       acum*=10;                           \
+       acum+=digVal;                       \
+      }                                    \
+    dispo--;                               \
+    s++;                                   \
+    continue;                              \
+   }
+
+// Verify that's a valid digit
+#define CheckDigit(retVal,ckAlpha) \
+   digVal=vhdl_val_digit(*s,base);             \
+   if (digVal<0)                               \
+     {                                         \
+      dispo++;                                 \
+      if (ckAlpha && TVCodePage::isAlpha(*s))  \
+         return 0;                             \
+      return retVal;                           \
+     }
+
+/**[txh]********************************************************************
+
+  Description:
+  Checks if we have an integer or floating point number in the @var{s}
+string. That's VHDL specific. Only @var{dispo} bytes are tested. The value
+of @var{dispo} is modified to indicate how many characters we parsed.@p
+  It must be called only if @var{s} starts with B,O,X or 0-9.@p
+  The code supports abstract literals (decimal and based) and also takes bit
+string literals as numbers.
+  
+  Return: 0 an invalid number, 1 an integer, 2 a float, 3 not a number.
+  
+***************************************************************************/
+
+int isVHDLNumber(const char *s, uint32 &dispo)
+{
+ int base, digVal, result;
+ unsigned acum;
+ char sep;
+
+ switch (*s)
+   {
+    case 'B':
+         base=2;
+         break;
+    case 'O':
+         base=8;
+         break;
+    case 'X':
+         base=16;
+         break;
+    default:
+         base=0;
+   }
+ // Bit string literals (13.7)
+ if (base)
+   {// B,O,X
+    if (dispo==1)
+       return 3; // Standalone char
+    s++;
+    if (*s=='"' || *s=='%')
+       sep=*s;
+    else
+       return 3; // Not followed by a valid separator
+    dispo-=2;
+    s++;
+    // B"10_" or B%10_%, etc.
+    while (dispo--)
+      {
+       if (*s==sep)
+          return 1;
+       CheckUnderscore(0);
+       CheckDigit(0,0); // Check if it maps to a valid digit
+       s++;
+      }
+    // Incomplete, that's an error
+    return 0;
+   }
+ // Abstract literals (13.4)
+ // We assume the first character is a digit (caller responsability)
+ base=10;
+ acum=vhdl_val_digit(*s,base);
+ s++;
+ dispo--;
+ result=1;
+ while (dispo--)
+   {
+    CheckUnderscore(1);
+    if (*s=='.')        // dd.
+       goto ParseAfterFP;
+    if (*s=='#')
+       goto ParseBased; // dd#
+    if (*s=='E' || *s=='e')
+       goto ParseAfterExp; // ddE
+    CheckDigit(1,1);
+    acum*=10;
+    acum+=digVal;
+    s++;
+   }
+ return 1;
+
+ParseAfterFP:
+ // Decimal literal (13.4.1)
+ // Here we have dddd.
+ result=2;
+ s++;
+ if (!ucisdigit(*s))
+    return 0; // Incomplete
+ // Here we have dddd.d
+ s++;
+ dispo--;
+ while (dispo--)
+   {
+    CheckUnderscore(0);
+    if (*s=='E' || *s=='e') // dd.ddE
+       goto ParseAfterExp;
+    CheckDigit(2,1);
+    s++;
+   }
+ return 2;
+
+ParseAfterExp:
+ // Here we have dd.ddE
+ s++;
+ if (*s=='+' || (result==2 && *s=='-'))
+   {// Skip the sign
+    dispo--;
+    s++;
+   }
+ if (!ucisdigit(*s))
+    return 0; // Incomplete
+ while (dispo--)
+   {
+    CheckUnderscore(0);
+    CheckDigit(result,1);
+    s++;
+   }
+ return result;
+
+ParseBased:
+ // Based literals (13.4.2)
+ // Here we have dd#
+ base=acum;
+ result=1;
+ if (base<2 || base>16)
+    return 0; // base must be in [2;16] range
+ s++;
+ // Must be followed by a digit
+ if (!dispo)
+    return 0;
+ dispo--;
+ CheckDigit(0,0);
+ s++;
+ while (dispo--)
+   {
+    CheckUnderscore(0);
+    if (*s=='.')        // dd#dd.
+       goto ParseAfterFPBL;
+    if (*s=='#')
+       goto ParseExpBL; // dd#dd#
+    CheckDigit(0,0);
+    s++;
+   }
+ // Only dd#dd is incomplete
+ return 0;
+
+ParseAfterFPBL:
+ // Here we have dd#dd.
+ result=2;
+ // A digit must be here
+ s++;
+ if (!dispo)
+    return 0;
+ dispo--;
+ CheckDigit(0,0);
+ s++;
+ // Here we have dd#dd.d
+ while (dispo--)
+   {
+    CheckUnderscore(0);
+    if (*s=='#')
+       goto ParseExpBL; // dd#dd.dd#
+    CheckDigit(0,0);
+    s++;
+   }
+ // Only dd#dd.dd is incomplete
+ return 0;
+
+ParseExpBL:
+ // Here we have dd#dd.dd#
+ // The exponent is decimal
+ base=10;
+ s++;
+ if (dispo && (*s=='e' || *s=='E'))
+   {
+    dispo--;
+    s++;
+    // Here we have dd#dd.dd#E
+    if (!dispo)
+       return 0; // incomplete
+    if (*s=='+' || (result==2 && *s=='-'))
+      {
+       dispo--;
+       s++;
+      }
+    // At least one digit
+    if (!dispo)
+       return 0;
+    dispo--;
+    CheckDigit(0,0);
+    s++;
+   }
+ while (dispo--)
+   {
+    CheckUnderscore(0);
+    CheckDigit(result,1);
+    s++;
+   }
+
+ return result;
+}
 
 /*****************************************************************************
 
@@ -3178,18 +3428,15 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
   char Escape;
   int TestNumbers,isInFirstCol=1,PartialKeywords,RelaxNumbers;
   int isInFirstUsed=1,checkEOLC1=1,checkEOLC2=1;
-  int EscapeAnywhere;
+  int EscapeAnywhere, VHDLNumbers;
 
   // Set the Case Sensitive comparation status to check sequence
   CheckSeqCase    =(TCEditor::strC.Flags1 & FG1_CaseSensitive)!=0;
   TestNumbers     =(TCEditor::strC.Flags1 & FG1_NoNumbers)==0;
-  /*NoCheckFirstCol1=(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol1)==0;
-  NoCheckFirstCol2=(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol2)==0;
-  NoCheckFirstUse1=(TCEditor::strC.Flags1 & FG1_EOLCInFirstUse1)==0;
-  NoCheckFirstUse2=(TCEditor::strC.Flags1 & FG2_EOLCInFirstUse2)==0;*/
   PartialKeywords =(TCEditor::strC.Flags1 & FG1_PartialKeyword)!=0;
   RelaxNumbers    =(TCEditor::strC.Flags1 & FG1_RelaxNumbers)!=0;
   EscapeAnywhere  =(TCEditor::strC.Flags2 & FG2_EscapeAnywhere)!=0;
+  VHDLNumbers     =(TCEditor::strC.Flags2 & FG2_VHDLNumbers)!=0;
   EDITOR = editor;
   // Colored tabs stuff
   tabFF=0;
@@ -3501,12 +3748,12 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
             word_end=lineLength-dispo-1;
            }
       else
-         if (TestNumbers && ucisdigit(c1))
+         if (TestNumbers && !VHDLNumbers && ucisdigit(c1))
            {
             // Integer, float or Invalid
             // Calculate the available space in the line
             uint32 dispo=lineLength-word_end+LenOfName-1;
-            // Check if the namber is an integer or a float or an invalid
+            // Check if the number is an integer or a float or an invalid
             // sequence
             switch (is_pascal_integer_float(name,dispo))
               {
@@ -3521,7 +3768,7 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
             word_end=lineLength-dispo-1;
            }
       else
-         if (TestNumbers && c1=='.' && c2_valid && ucisdigit(c2))
+         if (TestNumbers && !VHDLNumbers && c1=='.' && c2_valid && ucisdigit(c2))
            {
             uint32 dispo=lineLength-word_end+LenOfName-1;
             // Check if the namber is a float or an invalid sequence
@@ -3566,6 +3813,32 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
       else
          if (c1==TCEditor::strC.Escape)
             color=IlegalColor;
+      else
+         if (TestNumbers && VHDLNumbers)
+           {// VHDL special case, at the end because they are a mess ...
+            if (ucisdigit(c1) || c1=='B' || c1=='O' || c1=='X')
+              {
+               // Integer, float or Invalid
+               // Calculate the available space in the line
+               uint32 dispo=lineLength-word_end+LenOfName-1;
+               // Check if the namber is an integer or a float or an invalid
+               // sequence
+               int res=isVHDLNumber(name,dispo);
+               switch (res)
+                 {
+                  case 0: color = RelaxNumbers ? NormalColor : IlegalColor;
+                          break;
+                  case 1: color = IntColor;
+                          break;
+                  case 2: color = FloatColor;
+                          break;
+                 }
+               // Adjust the length according to the routine use
+               if (res!=3)
+                  word_end=lineLength-dispo-1;
+              }
+           }
+
 
       while (offset<=word_end && bufptr<(unsigned)Width)
         {

@@ -1609,9 +1609,7 @@ char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
        wordStart++;
    
     wordEnd=s;
-    while (++wordEnd<end && isWordCharColon(*wordEnd));
-    if (wordEnd!=end || !isWordCharColon(*wordEnd))
-       wordEnd--;
+    while (wordEnd<end && isWordCharColon(*wordEnd)) wordEnd++;
    }
  else
    {
@@ -1620,21 +1618,19 @@ char *TCEditor::WordUnderCursor(uint32 maxLength, unsigned options)
     if (wordStart!=buffer || !isWordChar(*wordStart))
        wordStart++;
    
-    wordEnd = s;
-    while (++wordEnd<end && isWordChar(*wordEnd));
-    if (wordEnd!=end || !isWordChar(*wordEnd))
-       wordEnd--;
+    wordEnd=s;
+    while (wordEnd<end && isWordChar(*wordEnd)) wordEnd++;
    }
 
  // Adjust the pipe
  PipeOrigin=(unsigned)(wordStart-buffer);
 
- l=(unsigned)(wordEnd-wordStart+2);
+ l=(unsigned)(wordEnd-wordStart+1);
  if (l>maxLength)
     return NULL;
  word=new char[l];
 
- for (i=wordStart,aux=word; i<=wordEnd; i++)
+ for (i=wordStart,aux=word; i<wordEnd; i++)
      *aux++ = *i;
  *aux=0;
 
@@ -8265,7 +8261,7 @@ void TCEditor::FindFirstChar(char *s, int x, int l, char *&fch, int &fcol, int &
  int   firstCol=x;
  int   lAfterFirst=l;
  // Skip spaces
- while (ucisspace(*firstChar))
+ while (*firstChar==' ' || *firstChar=='\t')
    {
     AdvanceWithTab(*firstChar,firstCol);
     lAfterFirst--;
@@ -8282,7 +8278,7 @@ void TCEditor::FindFirstChar(char *s, int x, int l, char *&fch, int &fcol, int &
     // skip comments
     while (lAfterFirst)
       {// Skip spaces
-       while (ucisspace(*firstChar))
+       while (*firstChar==' ' || *firstChar=='\t')
          {
           AdvanceWithTab(*firstChar,firstCol);
           lAfterFirst--;
@@ -10256,17 +10252,18 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  // firstCol is realted to the FG1_EOLCInFirstCol, trick to avoid anding
  int firstCol1_1=1,firstCol2_1=1,firstCol1_2,firstCol2_2;
  int firstUse1_1=1,firstUse2_1=1,firstUse1_2,firstUse2_2;
- int escapeAnywhere;
+ int escapeAnywhere, VHDLNumbers;
  uint32 attr=Attr;
  char *start=s;
 
  // Set the Case Sensitive comparation status for check sequence
- CheckSeqCase=(TCEditor::strC.Flags1 & FG1_CaseSensitive)!=0;
- firstCol1_2 =(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol1)==0;
- firstCol2_2 =(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol2)==0;
- firstUse1_2 =(TCEditor::strC.Flags1 & FG1_EOLCInFirstUse1)==0;
- firstUse2_2 =(TCEditor::strC.Flags2 & FG2_EOLCInFirstUse2)==0;
+ CheckSeqCase  =(TCEditor::strC.Flags1 & FG1_CaseSensitive)!=0;
+ firstCol1_2   =(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol1)==0;
+ firstCol2_2   =(TCEditor::strC.Flags1 & FG1_EOLCInFirstCol2)==0;
+ firstUse1_2   =(TCEditor::strC.Flags1 & FG1_EOLCInFirstUse1)==0;
+ firstUse2_2   =(TCEditor::strC.Flags2 & FG2_EOLCInFirstUse2)==0;
  escapeAnywhere=(TCEditor::strC.Flags2 & FG2_EscapeAnywhere)!=0;
+ VHDLNumbers   =(TCEditor::strC.Flags2 & FG2_VHDLNumbers)!=0;
  // Is the continuation of a comment?
  if (attr & ExtCom) // Type 1
    {
@@ -10472,6 +10469,18 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
           attr|=Prepro;
           s++;
           continue;
+         }
+       // VHDL numbers can contain ", that's the case for Bit string literals
+       if (VHDLNumbers && (*s=='B' || *s=='O' || *s=='X'))
+         {
+          uint32 dispo=end-s;
+          uint32 pDispo=dispo;
+          int res=isVHDLNumber(s,dispo);
+          if (res!=3)
+            {
+             s+=pDispo-dispo;
+             continue;
+            }
          }
       }
     if (in_prepro && *s==TCEditor::strC.Escape && (s==end2 || CLY_IsEOL(*(s+1))))

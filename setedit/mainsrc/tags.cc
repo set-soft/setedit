@@ -558,6 +558,20 @@ void TSpTagCollection::getText(char *buf, void *item, int maxLen)
 
 #undef Advance
 
+// Exuberant Ctags escapes '\' and '/' using '\'
+static
+void removeEscapeSeq(char *s)
+{
+ char *d=s;
+ for (; *s; s++)
+    {
+     if (*s=='\\')
+        s++;
+     *(d++)=*s;
+    }
+ *d=0;
+}
+
 int TSpTagCollection::addValue(char *s, stTagFile *tf)
 {
  stTag *p=new stTag;
@@ -630,7 +644,9 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
     // Exuberant Ctags doesn't use a real regex here.
     // It just puts /^*$/ where * is the content of the line.
     // So I just take this text and do a "whole word" search.
-    p->regex=newStrL(s+1,e-s-2);
+    char *newRegex=newStrL(s+1,e-s-2);
+    removeEscapeSeq(newRegex);
+    p->regex=newRegex;
     e++;
     //printf("Regex: %s\n",p->regex);
    }

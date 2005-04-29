@@ -373,7 +373,7 @@ Keywords=String3,PartialKeywords,ShortString,SpecialSymbol,SpecialSymbolCont
 Keywords=RelaxNumberCheck,EmacsModes,ShellScript,EOLCInFirstCol2,FullNameMatch
 Keywords=EOLCInFirstUse1,EOLCInFirstUse2,EOLCInFirstCol1,NameMatch,NoLastChar
 Keywords=EscapeAnywhere,Preload,NLIndent,ParBalancePos,MoveAfterPar
-Keywords=ParBalanceNeg,AutoIndent,FirstWord,Unindent
+Keywords=ParBalanceNeg,AutoIndent,FirstWord,Unindent,VHDLNumbers
 End
 
 # ---------------- sLisp Files ----------------
@@ -2249,6 +2249,7 @@ String1="
 Symbols1=!&*+-./:<=>?^|~
 Symbols2=(){}[],;
 PMacros=vhdl.pmc
+VHDLNumbers=1
 NLIndent=FirstWord,if,,,AutoIndent,3
 NLIndent=FirstWord,for,,,AutoIndent,4
 NLIndent=FirstWord,else,,,AutoIndent,3

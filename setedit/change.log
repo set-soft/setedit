@@ -1,4 +1,19 @@
-$Log$
+$Log$.
+Revision 1.670  2005/04/28 20:31:49  set
+* Added: [VHDL] Indent rules for port and generic.
+* Added: [sLisp] pmacros can execute sLisp code.
+* Modified: [VHDL] "Component instantiation" pmacro to follow port and
+generic indent.
+* Modified: [VHDL] "Select signal (With)" pmacro indentation, made simpler.
+* Added: [VHDL] A pmacro to generate a big file header, it conforms
+OpenCores guidelines and borrows some ideas from ESA guidelines.
+* Fixed: [Undo] Now we have upto 256 undo operations but the group counter
+was just a char.
+* Fixed: [Undo] When inserting text "out-of-the-buffer" the spaces added to
+fill the hole weren't recorded in the undo history.
+* Fixed: "Intellingent Indent" mode only applies for line 2 and above, not
+1 because by the time of this check we already added a line.
+
 Revision 1.669  2005/04/28 15:55:59  set
 * Fixed: Clipper 5.x functions parser to include numbers in names.
 * Fixed: Clipper 5.x pmacros without names.
