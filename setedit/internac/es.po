@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-28 16:58-0300\n"
+"PO-Revision-Date: 2005-04-29 13:00-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:698 ../mainsrc/tags.cc:1503 ../mainsrc/tags.cc:1731
+#: ../mainsrc/slpinter.cc:698 ../mainsrc/tags.cc:1519 ../mainsrc/tags.cc:1747
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
 #: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:697
-#: ../mainsrc/tags.cc:1525 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -470,7 +470,7 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1790 ../setedit/debug.cc:4303
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1806 ../setedit/debug.cc:4303
 #: ../setedit/debug.cc:4910 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~S~alir"
@@ -1453,25 +1453,25 @@ msgstr "Error al pegar desde el portapapeles: %s"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4233
+#: ../mainsrc/ceditor.cc:4229
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
-#: ../mainsrc/ceditor.cc:4280 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4276 ../mainsrc/doedidia.cc:143
 #, c-format
 msgid "%d bytes selected, in %d"
 msgstr "%d caracteres seleccionados en %d"
 
-#: ../mainsrc/ceditor.cc:4441
+#: ../mainsrc/ceditor.cc:4437
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4460
+#: ../mainsrc/ceditor.cc:4456
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4482
+#: ../mainsrc/ceditor.cc:4478
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1482,7 +1482,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4516
+#: ../mainsrc/ceditor.cc:4512
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1495,16 +1495,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:6127
+#: ../mainsrc/ceditor.cc:6123
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:6142
+#: ../mainsrc/ceditor.cc:6138
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10693
+#: ../mainsrc/ceditor.cc:10702
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1512,29 +1512,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10708
+#: ../mainsrc/ceditor.cc:10717
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11452
+#: ../mainsrc/ceditor.cc:11461
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12383
+#: ../mainsrc/ceditor.cc:12392
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12594
+#: ../mainsrc/ceditor.cc:12603
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13787
+#: ../mainsrc/ceditor.cc:13796
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13797
+#: ../mainsrc/ceditor.cc:13806
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2150,7 +2150,7 @@ msgstr "Valor:"
 msgid "Associated string"
 msgstr "String asociado"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1360
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1376
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "¿Desea descartar los cambios?"
@@ -2193,7 +2193,7 @@ msgstr "Primera condición incorrecta en una regla NLIndent"
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Cantidad incorrecta de parámetros en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:1429
+#: ../mainsrc/loadshl.cc:1436
 msgid "Errors while loading syntax highlight file"
 msgstr "Errores al cargar resaltado de sintaxis"
 
@@ -2422,147 +2422,147 @@ msgstr "Elegir un nodo"
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
-#: ../mainsrc/tags.cc:796
+#: ../mainsrc/tags.cc:812
 msgid "Wrong format for tags file!"
 msgstr "Formato incorrecto para el archivo de TAGs."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:984
+#: ../mainsrc/tags.cc:1000
 msgid "I can try to generate a tag file, go ahead?"
 msgstr "Puedo intentar generar un archivo de TAGS ¿lo hago?"
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:993
+#: ../mainsrc/tags.cc:1009
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 "Instale Exuberant Ctags, puede obtenerlo en http://ctags.sourceforge.net"
 
-#: ../mainsrc/tags.cc:1341
+#: ../mainsrc/tags.cc:1357
 msgid "This file is automatically maintained"
 msgstr "Este archivo es mantenido automaticamente"
 
-#: ../mainsrc/tags.cc:1370
+#: ../mainsrc/tags.cc:1386
 msgid "Select tags file"
 msgstr "Seleccione el archivo de TAGs"
 
-#: ../mainsrc/tags.cc:1386
+#: ../mainsrc/tags.cc:1402
 msgid "Use relative path for the file?"
 msgstr "¿Desea usar un camino (path) relativo?"
 
-#: ../mainsrc/tags.cc:1407
+#: ../mainsrc/tags.cc:1423
 msgid "Variables"
 msgstr "Variables"
 
-#: ../mainsrc/tags.cc:1423
+#: ../mainsrc/tags.cc:1439
 msgid "Tag files"
 msgstr "Archivos de TAGs"
 
-#: ../mainsrc/tags.cc:1525
+#: ../mainsrc/tags.cc:1541
 msgid "Jump to symbol"
 msgstr "Saltar a un símbolo"
 
-#: ../mainsrc/tags.cc:1525
+#: ../mainsrc/tags.cc:1541
 msgid "List of symbols"
 msgstr "Lista de símbolos"
 
-#: ../mainsrc/tags.cc:1526
+#: ../mainsrc/tags.cc:1542
 msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
-#: ../mainsrc/tags.cc:1558
+#: ../mainsrc/tags.cc:1574
 msgid "Unknown line"
 msgstr "Línea desconocida"
 
-#: ../mainsrc/tags.cc:1603 ../mainsrc/tags.cc:1804 ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1619 ../mainsrc/tags.cc:1820 ../mainsrc/tags.cc:1836
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1603 ../mainsrc/tags.cc:1730 ../mainsrc/tags.cc:1804
-#: ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1619 ../mainsrc/tags.cc:1746 ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1836
 msgid "~J~ump"
 msgstr "~S~altar"
 
-#: ../mainsrc/tags.cc:1612
+#: ../mainsrc/tags.cc:1628
 msgid "Sorry, couldn't find any member"
 msgstr "Lo lamento, no puedo hallar ningún miembro"
 
-#: ../mainsrc/tags.cc:1617
+#: ../mainsrc/tags.cc:1633
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1714
+#: ../mainsrc/tags.cc:1730
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1725
+#: ../mainsrc/tags.cc:1741
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1729
+#: ../mainsrc/tags.cc:1745
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1768
+#: ../mainsrc/tags.cc:1784
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1770
+#: ../mainsrc/tags.cc:1786
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1775
+#: ../mainsrc/tags.cc:1791
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1777
+#: ../mainsrc/tags.cc:1793
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1786
+#: ../mainsrc/tags.cc:1802
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1787
+#: ../mainsrc/tags.cc:1803
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1788
+#: ../mainsrc/tags.cc:1804
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1789
+#: ../mainsrc/tags.cc:1805
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1821
+#: ../mainsrc/tags.cc:1837
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1921
+#: ../mainsrc/tags.cc:1937
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:2051
+#: ../mainsrc/tags.cc:2067
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:2056
+#: ../mainsrc/tags.cc:2072
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:2058
+#: ../mainsrc/tags.cc:2074
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:2058
+#: ../mainsrc/tags.cc:2074
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:2059
+#: ../mainsrc/tags.cc:2075
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:2073
+#: ../mainsrc/tags.cc:2089
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"
