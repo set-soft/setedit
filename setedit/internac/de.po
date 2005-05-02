@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-29 13:00-0300\n"
+"PO-Revision-Date: 2005-05-02 12:53-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Deslizadores"
 #: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
-#: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
+#: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:697
 #: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
@@ -469,7 +469,7 @@ msgid "E~x~it"
 msgstr "~B~eenden"
 
 #: ../infview/infmenu.cc:42 ../mainsrc/loaddefl.cc:712
-#: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
+#: ../mainsrc/loadusew.cc:392 ../setedit/editmenu.cc:73
 msgid "~E~dit"
 msgstr "~B~earbeiten"
 
@@ -1573,7 +1573,7 @@ msgstr "Keine Übereinstimmung gefunden"
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10702
+#: ../mainsrc/ceditor.cc:10715
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1582,29 +1582,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10717
+#: ../mainsrc/ceditor.cc:10730
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11461
+#: ../mainsrc/ceditor.cc:11474
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12392
+#: ../mainsrc/ceditor.cc:12405
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12603
+#: ../mainsrc/ceditor.cc:12616
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13796
+#: ../mainsrc/ceditor.cc:13811
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13806
+#: ../mainsrc/ceditor.cc:13821
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2270,41 +2270,41 @@ msgstr ""
 msgid "Can't find \"%s\" file"
 msgstr "Zielverzeichnis"
 
-#: ../mainsrc/loadshl.cc:660
+#: ../mainsrc/loadshl.cc:657
 msgid "Wrong action in NLIndent"
 msgstr ""
 
-#: ../mainsrc/loadshl.cc:663
+#: ../mainsrc/loadshl.cc:660
 msgid "Wrong second condition in NLIndent"
 msgstr ""
 
-#: ../mainsrc/loadshl.cc:666
+#: ../mainsrc/loadshl.cc:663
 msgid "Wrong first condition in NLIndent"
 msgstr ""
 
-#: ../mainsrc/loadshl.cc:669
+#: ../mainsrc/loadshl.cc:666
 #, fuzzy
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../mainsrc/loadshl.cc:1436
+#: ../mainsrc/loadshl.cc:1454
 #, fuzzy
 msgid "Errors while loading syntax highlight file"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
-#: ../mainsrc/loadusew.cc:222
+#: ../mainsrc/loadusew.cc:226
 msgid "New user word"
 msgstr "Neues Benutzerwort"
 
-#: ../mainsrc/loadusew.cc:224
+#: ../mainsrc/loadusew.cc:228
 msgid "Word:"
 msgstr "Wort:"
 
-#: ../mainsrc/loadusew.cc:299
+#: ../mainsrc/loadusew.cc:303
 msgid "List of words"
 msgstr "Wortliste"
 
-#: ../mainsrc/loadusew.cc:350
+#: ../mainsrc/loadusew.cc:354
 msgid "User words"
 msgstr "Benutzerwörter"
 

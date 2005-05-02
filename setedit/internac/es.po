@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-04-29 13:00-0300\n"
+"PO-Revision-Date: 2005-05-02 12:53-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Deslizadores"
 #: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
-#: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:389
+#: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:697
 #: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
@@ -476,7 +476,7 @@ msgid "E~x~it"
 msgstr "~S~alir"
 
 #: ../infview/infmenu.cc:42 ../mainsrc/loaddefl.cc:712
-#: ../mainsrc/loadusew.cc:388 ../setedit/editmenu.cc:73
+#: ../mainsrc/loadusew.cc:392 ../setedit/editmenu.cc:73
 msgid "~E~dit"
 msgstr "~E~ditar"
 
@@ -1504,7 +1504,7 @@ msgstr "No encontré el complemento"
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10702
+#: ../mainsrc/ceditor.cc:10715
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1512,29 +1512,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10717
+#: ../mainsrc/ceditor.cc:10730
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11461
+#: ../mainsrc/ceditor.cc:11474
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12392
+#: ../mainsrc/ceditor.cc:12405
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12603
+#: ../mainsrc/ceditor.cc:12616
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13796
+#: ../mainsrc/ceditor.cc:13811
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13806
+#: ../mainsrc/ceditor.cc:13821
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2177,39 +2177,39 @@ msgstr "No hay un nombre bajo el cursor"
 msgid "Can't find \"%s\" file"
 msgstr "No puedo encontrar el archivo \"%s\""
 
-#: ../mainsrc/loadshl.cc:660
+#: ../mainsrc/loadshl.cc:657
 msgid "Wrong action in NLIndent"
 msgstr "Acción incorrecta en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:663
+#: ../mainsrc/loadshl.cc:660
 msgid "Wrong second condition in NLIndent"
 msgstr "Segunda condición incorrecta en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:666
+#: ../mainsrc/loadshl.cc:663
 msgid "Wrong first condition in NLIndent"
 msgstr "Primera condición incorrecta en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:669
+#: ../mainsrc/loadshl.cc:666
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Cantidad incorrecta de parámetros en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:1436
+#: ../mainsrc/loadshl.cc:1454
 msgid "Errors while loading syntax highlight file"
 msgstr "Errores al cargar resaltado de sintaxis"
 
-#: ../mainsrc/loadusew.cc:222
+#: ../mainsrc/loadusew.cc:226
 msgid "New user word"
 msgstr "Nueva palabra de usuario"
 
-#: ../mainsrc/loadusew.cc:224
+#: ../mainsrc/loadusew.cc:228
 msgid "Word:"
 msgstr "Palabra:"
 
-#: ../mainsrc/loadusew.cc:299
+#: ../mainsrc/loadusew.cc:303
 msgid "List of words"
 msgstr "Lista de palabras"
 
-#: ../mainsrc/loadusew.cc:350
+#: ../mainsrc/loadusew.cc:354
 msgid "User words"
 msgstr "Palabras de usuario"
 
