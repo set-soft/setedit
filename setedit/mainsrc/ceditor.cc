@@ -10252,7 +10252,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  // firstCol is realted to the FG1_EOLCInFirstCol, trick to avoid anding
  int firstCol1_1=1,firstCol2_1=1,firstCol1_2,firstCol2_2;
  int firstUse1_1=1,firstUse2_1=1,firstUse1_2,firstUse2_2;
- int escapeAnywhere, VHDLNumbers;
+ int escapeAnywhere, VHDLNumbers, VHDLStr1, VHDLStr2, VHDLShortStr;
  uint32 attr=Attr;
  char *start=s;
 
@@ -10264,6 +10264,9 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
  firstUse2_2   =(TCEditor::strC.Flags2 & FG2_EOLCInFirstUse2)==0;
  escapeAnywhere=(TCEditor::strC.Flags2 & FG2_EscapeAnywhere)!=0;
  VHDLNumbers   =(TCEditor::strC.Flags2 & FG2_VHDLNumbers)!=0;
+ VHDLStr1      =(TCEditor::strC.Flags2 & FG2_VHDLStr1)!=0;
+ VHDLStr2      =(TCEditor::strC.Flags2 & FG2_VHDLStr2)!=0;
+ VHDLShortStr  =(TCEditor::strC.Flags2 & FG2_VHDLShortStr)!=0;
  // Is the continuation of a comment?
  if (attr & ExtCom) // Type 1
    {
@@ -10363,13 +10366,18 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
              else
                if (isString(*s))
                  {
-                  in_string=0;
-                  s++;
-                  break;
+                  if (VHDLStr1 && s<end2 && isString(s[1]))
+                     s++; // VHDL: """" => C/C++: "\""
+                  else
+                    {
+                     in_string=0;
+                     s++;
+                     break;
+                    }
                  }
              s++;
             }
-          if (in_string)
+          if (in_string && !VHDLStr1)
             {
              attr|=ExtString;
              if (in_prepro)
@@ -10396,13 +10404,18 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
              else
                if (isString2(*s))
                  {
-                  in_string2=0;
-                  s++;
-                  break;
+                  if (VHDLStr2 && s<end2 && isString2(s[1]))
+                     s++; // VHDL: """" => C/C++: "\""
+                  else
+                    {
+                     in_string2=0;
+                     s++;
+                     break;
+                    }
                  }
              s++;
             }
-          if (in_string2)
+          if (in_string2 && !VHDLStr2)
             {
              attr|=ExtString2;
              if (in_prepro)
@@ -10444,7 +10457,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
           continue;
          }
    
-       if (isCharacter(*s))
+       if (isCharacter(*s) && !VHDLShortStr)
          {
           s++;
           firstchar=0;
@@ -10475,7 +10488,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
          {
           uint32 dispo=end-s;
           uint32 pDispo=dispo;
-          int res=isVHDLNumber(s,dispo);
+          int res=isVHDLBitStringLiteral(s,dispo);
           if (res!=3)
             {
              s+=pDispo-dispo;
@@ -13068,12 +13081,14 @@ void TCEditor::CacheSyntaxHLData(int id)
  if ((id!=strCid || SyntaxHL!=strCtype) && SHLArray && SHLValueSelected>=0)
    {
     strSHL *s=&SHLArray[SHLValueSelected];
-    // If the user words aren't loaded do it now
-    if (!(s->Flags1 & FG1_UserWordsTried))
-       LoadUserWords(s,id);
     // If the keywords aren't loaded now is time
     if (!s->Keywords)
        LoadSyntaxHighLightKeywords(*s);
+    // If the user words aren't loaded do it now. Do it after loading the
+    // .shl because the former can define some userwords and the real user
+    // words have more priority.
+    if (!(s->Flags1 & FG1_UserWordsTried))
+       LoadUserWords(s,id);
     memcpy(&strC,s,sizeof(strSHL));
     // Check if we use the internal version
     /*if (SyntaxHL==shlGenericSyntax)

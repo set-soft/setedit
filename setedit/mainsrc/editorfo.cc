@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /******************************************************************************
 
@@ -1841,58 +1841,18 @@ int vhdl_val_digit(char val, int base)
   Checks if we have an integer or floating point number in the @var{s}
 string. That's VHDL specific. Only @var{dispo} bytes are tested. The value
 of @var{dispo} is modified to indicate how many characters we parsed.@p
-  It must be called only if @var{s} starts with B,O,X or 0-9.@p
-  The code supports abstract literals (decimal and based) and also takes bit
-string literals as numbers.
+  It must be called only if @var{s} starts with 0-9.@p
+  The code supports abstract literals (decimal and based).
   
   Return: 0 an invalid number, 1 an integer, 2 a float, 3 not a number.
   
 ***************************************************************************/
 
-int isVHDLNumber(const char *s, uint32 &dispo)
+int isVHDLAbstractLiteral(const char *s, uint32 &dispo)
 {
  int base, digVal, result;
  unsigned acum;
- char sep;
 
- switch (*s)
-   {
-    case 'B':
-         base=2;
-         break;
-    case 'O':
-         base=8;
-         break;
-    case 'X':
-         base=16;
-         break;
-    default:
-         base=0;
-   }
- // Bit string literals (13.7)
- if (base)
-   {// B,O,X
-    if (dispo==1)
-       return 3; // Standalone char
-    s++;
-    if (*s=='"' || *s=='%')
-       sep=*s;
-    else
-       return 3; // Not followed by a valid separator
-    dispo-=2;
-    s++;
-    // B"10_" or B%10_%, etc.
-    while (dispo--)
-      {
-       if (*s==sep)
-          return 1;
-       CheckUnderscore(0);
-       CheckDigit(0,0); // Check if it maps to a valid digit
-       s++;
-      }
-    // Incomplete, that's an error
-    return 0;
-   }
  // Abstract literals (13.4)
  // We assume the first character is a digit (caller responsability)
  base=10;
@@ -2035,6 +1995,62 @@ ParseExpBL:
    }
 
  return result;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Checks if we have a "bit string literal" (BSL) in the @var{s} string.
+That's VHDL specific. Only @var{dispo} bytes are tested. The value
+of @var{dispo} is modified to indicate how many characters we parsed.@p
+  It must be called only if @var{s} starts with B,O or X.@p
+  
+  Return: 0 invalid BSL, 1 valid BSL, 3 not a BSL.
+  
+***************************************************************************/
+
+int isVHDLBitStringLiteral(const char *s, uint32 &dispo)
+{
+ int base, digVal;
+ unsigned acum;
+ char sep;
+
+ if (dispo==1)
+    return 3; // Standalone char
+ switch (*s)
+   {
+    case 'B':
+         base=2;
+         break;
+    case 'O':
+         base=8;
+         break;
+    case 'X':
+         base=16;
+         break;
+    default:
+         return 3;
+   }
+ // Bit string literals (13.7)
+ // B,O,X
+ s++;
+ if (*s=='"' || *s=='%')
+    sep=*s;
+ else
+    return 3; // Not followed by a valid separator
+ dispo-=2;
+ s++;
+ // B"10_" or B%10_%, etc.
+ while (dispo--)
+   {
+    if (*s==sep)
+       return 1;
+    CheckUnderscore(0);
+    CheckDigit(0,0); // Check if it maps to a valid digit
+    s++;
+   }
+ // Incomplete, that's an error
+ return 0;
 }
 
 /*****************************************************************************
@@ -3428,7 +3444,7 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
   char Escape;
   int TestNumbers,isInFirstCol=1,PartialKeywords,RelaxNumbers;
   int isInFirstUsed=1,checkEOLC1=1,checkEOLC2=1;
-  int EscapeAnywhere, VHDLNumbers;
+  int EscapeAnywhere, VHDLNumbers, VHDLStr1, VHDLStr2, VHDLShortStr;
 
   // Set the Case Sensitive comparation status to check sequence
   CheckSeqCase    =(TCEditor::strC.Flags1 & FG1_CaseSensitive)!=0;
@@ -3437,6 +3453,9 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
   RelaxNumbers    =(TCEditor::strC.Flags1 & FG1_RelaxNumbers)!=0;
   EscapeAnywhere  =(TCEditor::strC.Flags2 & FG2_EscapeAnywhere)!=0;
   VHDLNumbers     =(TCEditor::strC.Flags2 & FG2_VHDLNumbers)!=0;
+  VHDLStr1        =(TCEditor::strC.Flags2 & FG2_VHDLStr1)!=0;
+  VHDLStr2        =(TCEditor::strC.Flags2 & FG2_VHDLStr2)!=0;
+  VHDLShortStr    =(TCEditor::strC.Flags2 & FG2_VHDLShortStr)!=0;
   EDITOR = editor;
   // Colored tabs stuff
   tabFF=0;
@@ -3575,55 +3594,89 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
          if (in_string || isString(c1))
            {
             uint32 ll=lineLength-1;
-            char *s=name + (LenOfName - 1); // if in_string LenOfName > 1
+            char *s=name+(LenOfName-1); // if in_string LenOfName>1
             Escape=TCEditor::strC.Escape;
-            if (!(in_string && isString(c1))) // the line may be start with \"
-                                            // which means the end of the string
-                while (word_end<ll)
-                  {
-                   s++;
-                   word_end++;
-                   if (*s==Escape)
-                     {
-                      if (word_end<ll)
-                        {
-                         s++;
-                         word_end++;
-                        }
-                     }
-                   else
-                      if (isString(*s))
-                         break;
-                  }
-            color = StringColor;
-            in_string = 0;
+            if (!(in_string && isString(c1))) // the line may start with \"
+                                              // which means the end of the string
+              {
+               in_string=1;
+               while (word_end<ll)
+                 {
+                  s++;
+                  word_end++;
+                  if (*s==Escape)
+                    {
+                     if (word_end<ll)
+                       {
+                        s++;
+                        word_end++;
+                       }
+                    }
+                  else
+                     if (isString(*s))
+                       {
+                        if (VHDLStr1 && word_end<ll && isString(s[1]))
+                          {// String literals 13.6
+                           s++;
+                           word_end++;
+                          }
+                        else
+                          {
+                           in_string=0;
+                           break;
+                          }
+                       }
+                 }
+              }
+            if (in_string && VHDLStr1)
+               color=IlegalColor;
+            else
+               color=StringColor;
+            in_string=0;
            }
       else // Repeated for string2
          if (in_string2 || isString2(c1))
            {
             uint32 ll=lineLength-1;
-            char *s=name + (LenOfName - 1); // if in_string LenOfName > 1
+            char *s=name+(LenOfName-1); // if in_string LenOfName>1
             Escape=TCEditor::strC.Escape;
-            if (!(in_string2 && isString2(c1))) // the line may be start with \"
-                                            // which means the end of the string
-                while (word_end<ll)
-                  {
-                   s++;
-                   word_end++;
-                   if (*s==Escape)
-                     {
-                      if (word_end<ll)
-                        {
-                         s++;
-                         word_end++;
-                        }
-                     }
-                   else
-                      if (isString2(*s))
-                         break;
-                  }
-            color = CharColor;
-            in_string2 = 0;
+            if (!(in_string2 && isString2(c1))) // the line may start with \"
+                                                // which means the end of the string
+              {
+               in_string=1;
+               while (word_end<ll)
+                 {
+                  s++;
+                  word_end++;
+                  if (*s==Escape)
+                    {
+                     if (word_end<ll)
+                       {
+                        s++;
+                        word_end++;
+                       }
+                    }
+                  else
+                     if (isString2(*s))
+                       {
+                        if (VHDLStr2 && word_end<ll && isString2(s[1]))
+                          {
+                           s++;
+                           word_end++;
+                          }
+                        else
+                          {
+                           in_string=0;
+                           break;
+                          }
+                       }
+                 }
+              }
+            if (in_string && VHDLStr2)
+               color=IlegalColor;
+            else
+               color=StringColor;
+            in_string=0;
            }
       else // Repeated for string3
          if (in_string3 || isString3(c1))
@@ -3657,24 +3710,35 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
            {
             uint32 ll=lineLength-1;
             char *s=name;
-            Escape=TCEditor::strC.Escape;
-            while (word_end<ll)
-              {
-               s++;
-               word_end++;
-               if (*s==Escape)
+            if (VHDLShortStr)
+              {// Character literals 13.5
+               if (ll>=2 && isCharacter(s[2]))
                  {
-                  if (word_end<ll)
-                    {
-                     s++;
-                     word_end++;
-                    }
+                  s+=2;
+                  word_end+=2;
                  }
-               else
-                  if (isCharacter(*s))
-                     break;
               }
-            color = CharColor;
+            else
+              {
+               Escape=TCEditor::strC.Escape;
+               while (word_end<ll)
+                 {
+                  s++;
+                  word_end++;
+                  if (*s==Escape)
+                    {
+                     if (word_end<ll)
+                       {
+                        s++;
+                        word_end++;
+                       }
+                    }
+                  else
+                     if (isCharacter(*s))
+                        break;
+                 }
+              }
+            color=CharColor;
            }
       else
          if (c1==TCEditor::strC.Preprocessor || c1==TCEditor::strC.Preprocessor2)
@@ -3748,24 +3812,30 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
             word_end=lineLength-dispo-1;
            }
       else
-         if (TestNumbers && !VHDLNumbers && ucisdigit(c1))
+         if (TestNumbers && ucisdigit(c1))
            {
             // Integer, float or Invalid
             // Calculate the available space in the line
             uint32 dispo=lineLength-word_end+LenOfName-1;
             // Check if the number is an integer or a float or an invalid
             // sequence
-            switch (is_pascal_integer_float(name,dispo))
+            int res=VHDLNumbers ? isVHDLAbstractLiteral(name,dispo) :
+                                  is_pascal_integer_float(name,dispo);
+            switch (res)
               {
-               case 0: color = RelaxNumbers ? NormalColor : IlegalColor;
-                       break;
-               case 1: color = IntColor;
-                       break;
-               case 2: color = FloatColor;
-                       break;
+               case 0:
+                    color=RelaxNumbers ? NormalColor : IlegalColor;
+                    break;
+               case 1:
+                    color=IntColor;
+                    break;
+               case 2:
+                    color=FloatColor;
+                    break;
               }
             // Adjust the length according to the routine use
-            word_end=lineLength-dispo-1;
+            if (res!=3)
+               word_end=lineLength-dispo-1;
            }
       else
          if (TestNumbers && !VHDLNumbers && c1=='.' && c2_valid && ucisdigit(c2))
@@ -3814,29 +3884,22 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
          if (c1==TCEditor::strC.Escape)
             color=IlegalColor;
       else
-         if (TestNumbers && VHDLNumbers)
-           {// VHDL special case, at the end because they are a mess ...
-            if (ucisdigit(c1) || c1=='B' || c1=='O' || c1=='X')
+         if (TestNumbers && VHDLNumbers && (c1=='B' || c1=='O' || c1=='X'))
+           {// VHDL Bit String Literals, at the end because they are a mess ...
+            // Note that we highlight them as integers.
+            uint32 dispo=lineLength-word_end+LenOfName-1;
+            int res=isVHDLBitStringLiteral(name,dispo);
+            switch (res)
               {
-               // Integer, float or Invalid
-               // Calculate the available space in the line
-               uint32 dispo=lineLength-word_end+LenOfName-1;
-               // Check if the namber is an integer or a float or an invalid
-               // sequence
-               int res=isVHDLNumber(name,dispo);
-               switch (res)
-                 {
-                  case 0: color = RelaxNumbers ? NormalColor : IlegalColor;
-                          break;
-                  case 1: color = IntColor;
-                          break;
-                  case 2: color = FloatColor;
-                          break;
-                 }
-               // Adjust the length according to the routine use
-               if (res!=3)
-                  word_end=lineLength-dispo-1;
+               case 0:
+                    color=RelaxNumbers ? NormalColor : IlegalColor;
+                    break;
+               case 1:
+                    color=IntColor;
+                    break;
               }
+            if (res!=3)
+               word_end=lineLength-dispo-1;
            }
 
 

@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 27 April 2005
-@set update-month April 2005
+@set update-date 2 May 2005
+@set update-month May 2005
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -4976,10 +4976,41 @@ pseudo macros (@xp{PMacros}) settings are used.
   The value assigned can be: 1 for GNU C highlighting, 2 for standard Pascal and 3 for
 Clipper.
 
+@section UserKeywords
+@cindex syntax highlight, default user words
+
+  Used to define default user keywords. These keywords are discarded if the user
+specifies its own keywords. @x{User Words}.
+@p{}
+
+  The syntax is the same used for @x{Keywords}.
+
+@section VHDLNumbers
+
+  This option is used to enable the parser for VHDL abstract literals and
+VHDL bit string literals. Abstract literals are just numbers and bit string
+literals are bit vectors. The editor highlights bit string literals as integers.
+@x{VHDLStr1}.
+@p{}
+
+@section VHDLStr1
+
+  This option is used to enable the parser for VHDL string literals for the
+@code{String1} delimiter. VHDL strings are a little bit different than C/C++
+ones. @x{VHDLStr2}. @x{VHDLNumbers}.
+@p{}
+
+@section VHDLStr2
+
+  This option is used to enable the parser for VHDL string literals for the
+@code{String2} delimiter. VHDL strings are a little bit different than C/C++
+ones. @x{VHDLStr1}. @x{VHDLNumbers}.
+@p{}
+
 @chapter Pseudo Macros
 @cindex Pseudo Macros
 @cindex cpmacros.pmc
-
+                                                  
   This feature is very useful to save some keystrokes. With this feature you
 can create a lot of shortcuts to make your life easier.
 @paragraph{}

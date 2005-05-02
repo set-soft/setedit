@@ -1,4 +1,14 @@
-$Log$.
+$Log$
+Revision 1.671  2005/04/29 19:07:26  set
+* Added: [SHL/VHDL] A scpecial option to parse VHDL numbers, they are quite
+different to C/C++ numbers.
+* Fixed: [TAGS] The parser didn't properly interpret escape sequences in
+the regex.
+* Fixed(?): WordUndercursor taked at least one character, even for empty
+buffers.
+* Fixed: "Intelligent Indent" could crash when taking the first line of the
+buffer as reference if it was empty.
+
 Revision 1.670  2005/04/28 20:31:49  set
 * Added: [VHDL] Indent rules for port and generic.
 * Added: [sLisp] pmacros can execute sLisp code.

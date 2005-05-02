@@ -82,6 +82,13 @@ void GetWordChars()
 }
 
 static
+void GetUptoStr()
+{
+ while (Index<Len && Buffer[Index]!='"')
+    AddToWord(Buffer[Index]);
+}
+
+static
 void EatSpaces()
 {
  for (; Index<Len && isspace(Buffer[Index]); Index++)
@@ -114,7 +121,8 @@ int GetNextValue()
                GetEndOfStr('"');
             else
               {
-               GetWordChars();
+               Index++;
+               GetUptoStr();
                Index++;
                return 1;
               }

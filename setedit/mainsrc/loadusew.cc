@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -74,6 +74,10 @@ void LoadUserWords(strSHL *s, int id)
             if (line[0]=='.' && strcasecmp(name,line+1)==0)
               {
                state=stateCollecting;
+               // Delete any value from the SHL file.
+               destroy0(s->UserWords);
+               delete[] s->SearchUserWords.firstLetters;
+               // New collection
                s->UserWords=col=new TStringCollection(12,6);
               }
             break;

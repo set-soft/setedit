@@ -115,6 +115,37 @@ void CreateSearchTables(strSHL &hl)
 {
  if (hl.Keywords)
     SETSECreateTables(hl.Search,hl.Flags1 & FG1_CaseSensitive,hl.Keywords);
+ if (hl.UserWords)
+    SETSECreateTables(hl.SearchUserWords,hl.Flags1 & FG1_CaseSensitive,hl.UserWords);
+}
+
+static
+void GetKeywords(char *b, TStringCollection *&Keywords, int isCase)
+{
+ if (!Keywords)
+    Keywords=new TStringCollection(48,12);
+ char *pos=MoveAfterEqual(b), *s;
+ int end=0;
+ while (!end)
+   {
+    for (s=pos; *s && *s!='\n' && *s!='\r' && *s!=','; s++);
+    if (*s!=',')
+       end=1;
+    if (s!=pos)
+      {
+       *s=0;
+       char *t=newStr(pos);
+       if (!isCase)
+          strlwr(t); // Make sure they are lower case if the language is not
+                     // case sensitive, the seachs assumes it
+       ccIndex curPos;
+       if (Keywords->search(t,curPos))
+          delete[] t;
+       else
+          Keywords->insert(t);
+      }
+    pos=s+1;
+   }
 }
 
 int LoadSyntaxHighLightKeywords(strSHL &hl)
@@ -124,9 +155,7 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
  ssize_t len;
  size_t  lenLine=0;
  char *b=0;
- char *pos,*s;
-
- hl.Keywords=new TStringCollection(48,12);
+ char *pos;
 
  if ((f=fopen(nameSHLFile,"rb"))==NULL)
     return 1;
@@ -152,31 +181,14 @@ int LoadSyntaxHighLightKeywords(strSHL &hl)
        if (strncasecmp(b,"Keywords",8)==0)
          {// Only if that's the one to load
           if (loadIt)
-            {
-             pos=MoveAfterEqual(b);
-             int end=0;
-             while (!end)
-               {
-                for (s=pos; *s && *s!='\n' && *s!='\r' && *s!=','; s++);
-                if (*s!=',')
-                   end=1;
-                if (s!=pos)
-                  {
-                   *s=0;
-                   char *t=newStr(pos);
-                   if (!isCase)
-                      strlwr(t); // Make sure they are lower case if the language is not
-                                 // case sensitive, the seachs assumes it
-                   ccIndex curPos;
-                   if (hl.Keywords->search(t,curPos))
-                      delete[] t;
-                   else
-                      hl.Keywords->insert(t);
-                  }
-                pos=s+1;
-               }
-            } // loadIt
-         } // "Keywords"
+             GetKeywords(b,hl.Keywords,isCase);
+         }
+       else
+       if (strncasecmp(b,"UserKeywords",12)==0)
+         {// Only if that's the one to load
+          if (loadIt)
+             GetKeywords(b,hl.UserWords,isCase);
+         }
       }
     while (!feof(f) && strncasecmp(b,"End",3)!=0);
    }
@@ -272,8 +284,8 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
  ssize_t len;
  size_t  lenLine=0;
  char *b=0;
- int  defs,def,end,i,isCase,preLoad;
- char *pos,*s;
+ int  defs,def,i,isCase,preLoad;
+ char *pos;
 
  nameSHLFile=newStr(name);
  Cant=0;
@@ -538,28 +550,13 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
         if (strncasecmp(b,"Keywords",8)==0)
           {// If not preload just ignore them
            if (preLoad)
-             {
-              if (!hl[def].Keywords)
-                 hl[def].Keywords=new TStringCollection(48,12);
-              pos=MoveAfterEqual(b);
-              end=0;
-              while (!end)
-                {
-                 for (s=pos; *s && *s!='\n' && *s!='\r' && *s!=','; s++);
-                 if (*s!=',')
-                    end=1;
-                 if (s!=pos)
-                   {
-                    *s=0;
-                    char *t=newStr(pos);
-                    if (!isCase)
-                       strlwr(t); // Make sure they are lower case if the language is not
-                                  // case sensitive, the seachs assumes it
-                    hl[def].Keywords->insert(t);
-                   }
-                 pos=s+1;
-                }
-             }
+              GetKeywords(b,hl[def].Keywords,isCase);
+          }
+        else
+        if (strncasecmp(b,"UserKeywords",12)==0)
+          {// If not preload just ignore them
+           if (preLoad)
+              GetKeywords(b,hl[def].UserWords,isCase);
           }
         else
         if (strncasecmp(b,"AllowedInsideNames",18)==0)
@@ -677,6 +674,27 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
            pos=MoveAfterEqual(b);
            if (*pos=='1')
               hl[def].Flags2|=FG2_VHDLNumbers;
+          }
+        else
+        if (strncasecmp(b,"VHDLStr1",8)==0)
+          {
+           pos=MoveAfterEqual(b);
+           if (*pos=='1')
+              hl[def].Flags2|=FG2_VHDLStr1;
+          }
+        else
+        if (strncasecmp(b,"VHDLStr2",8)==0)
+          {
+           pos=MoveAfterEqual(b);
+           if (*pos=='1')
+              hl[def].Flags2|=FG2_VHDLStr2;
+          }
+        else
+        if (strncasecmp(b,"VHDLShortStr",12)==0)
+          {
+           pos=MoveAfterEqual(b);
+           if (*pos=='1')
+              hl[def].Flags2|=FG2_VHDLShortStr;
           }
        }
      while (!feof(f) && strncasecmp(b,"End",3)!=0);
