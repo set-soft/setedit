@@ -2020,12 +2020,15 @@ int isVHDLBitStringLiteral(const char *s, uint32 &dispo)
  switch (*s)
    {
     case 'B':
+    case 'b':
          base=2;
          break;
     case 'O':
+    case 'o':
          base=8;
          break;
     case 'X':
+    case 'x':
          base=16;
          break;
     default:
@@ -3675,7 +3678,7 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
             if (in_string && VHDLStr2)
                color=IlegalColor;
             else
-               color=StringColor;
+               color=CharColor;
             in_string=0;
            }
       else // Repeated for string3
@@ -3884,7 +3887,8 @@ void SyntaxFormatLineGeneric(TCEditor * editor,
          if (c1==TCEditor::strC.Escape)
             color=IlegalColor;
       else
-         if (TestNumbers && VHDLNumbers && (c1=='B' || c1=='O' || c1=='X'))
+         if (TestNumbers && VHDLNumbers && (c1=='B' || c1=='O' || c1=='X' ||
+             c1=='b' || c1=='o' || c1=='x'))
            {// VHDL Bit String Literals, at the end because they are a mess ...
             // Note that we highlight them as integers.
             uint32 dispo=lineLength-word_end+LenOfName-1;

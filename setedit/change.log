@@ -1,4 +1,13 @@
-$Log$
+$Log$.
+Revision 1.672  2005/05/02 16:35:31  set
+* Modified: [SHL] Separated the functions to parse VHDL abstract and bit
+string literals.
+* Added: [VHDL/SHL] Added options to parse string and character literals.
+* Added: [SHL] Now the .shl files can contain default user words.
+* Added: [VHDL/SHL] Some default user words.
+* Fixed: [VHDL] The heuristic parser when parsing oveloaded operators.
+* Added: A test file to verify the VHDL SHL.
+
 Revision 1.671  2005/04/29 19:07:26  set
 * Added: [SHL/VHDL] A scpecial option to parse VHDL numbers, they are quite
 different to C/C++ numbers.

@@ -325,6 +325,20 @@ Name: While loop
  "   @1;\n"
  "\bend loop;"
 
+Trigger: "pa"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Package
+ "package @{Package} is\n"
+ "   @0;\n"
+ "\bend package @v0;"
+
+Trigger: "pb"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Package body
+ "package body @{Package} is\n"
+ "   @0;\n"
+ "\bend package @v0;"
+
 Trigger: "f1"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: D Flip Flop
@@ -760,7 +774,10 @@ Name: File header (long)
  "--\n"
  "-- CVS Revision History\n"
  "--\n"
- "-- $Log$\n"
+; We need to fool CVS ;-)
+ "-- $"
+ "Log$\n"
+ "--\n"
  "--\n"
 
 

@@ -10484,7 +10484,7 @@ unsigned LineMeassureGeneric(char *s, char *end, uint32 &Attr, uint32 *extra)
           continue;
          }
        // VHDL numbers can contain ", that's the case for Bit string literals
-       if (VHDLNumbers && (*s=='B' || *s=='O' || *s=='X'))
+       if (VHDLNumbers && (*s=='B' || *s=='O' || *s=='X' || *s=='b' || *s=='o' || *s=='x'))
          {
           uint32 dispo=end-s;
           uint32 pDispo=dispo;

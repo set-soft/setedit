@@ -13,7 +13,7 @@
 # the built-in routines.
 
 Name=C/C++
-Files=c,cpp,cxx,cc,h,hpp,i,ii,cgz,hh,C,CPP,H
+Files=c,cpp,cxx,cc,h,hpp,i,ii,cgz,hh,C,CPP,H,c++,cp
 EmacsModes=C++
 UseInternal=1
 Case=1
@@ -552,6 +552,7 @@ SpecialSymbol=$
 SpecialSymbolCont=#
 PMacros=perlmac.pmc
 NLIndent=FirstWord,if,NoLastChar,;,AutoIndent,2
+NLIndent=FirstWord,unless,NoLastChar,;,AutoIndent,2
 NLIndent=FirstWord,do,NoLastChar,;,AutoIndent,2
 NLIndent=FirstWord,for,NoLastChar,;,AutoIndent,3
 NLIndent=FirstWord,foreach,NoLastChar,;,AutoIndent,3
@@ -2265,8 +2266,11 @@ NLIndent=FirstWord,with,,,AutoIndent,5
 NLIndent=FirstWord,while,,,AutoIndent,3
 NLIndent=FirstWord,elsif,,,AutoIndent,3
 NLIndent=FirstWord,begin,,,AutoIndent,3
+NLIndent=FirstWord,record,,,AutoIndent,3
 NLIndent=FirstWord,return,,,Unindent
 NLIndent=FirstWord,entity,,,AutoIndent,3
+NLIndent=FirstWord,component,,,AutoIndent,3
+NLIndent=FirstWord,assert,NoLastChar,;,AutoIndent,3
 NLIndent=ParBalancePos,,,,MoveAfterPar
 NLIndent=ParBalanceNeg,,,,AutoIndent,0
 NLIndent=FirstWord,port,,,AutoIndent,3
@@ -2282,10 +2286,17 @@ Keywords=process,pure,range,record,register,reject,rem,report,return,rol
 Keywords=ror,select,severity,shared,signal,sla,sll,sra,srl,subtype,then,to
 Keywords=transport,type,unaffected,units,until,use,variable,wait,when,while
 Keywords=with,xnor,xor
-# Some words the user may want to highlight
+# Some words the user may want to highlight, They belong to the std and ieee
+# libraries. I think only std.standard is mandatory.
+# Libraries
+UserKeywords=std,ieee
+# Packages
+UserKeywords=textio,standard,std_logic_1164,numeric_std,numeric_bit
 # Data types
-# Standard
-UserKeywords=bit,natural,integer,bit_vector,string,boolean,file
+# standard
+UserKeywords=boolean,bit,character,severity_level,natural,integer,real,time
+UserKeywords=delay_length,natural,positive,string,bit_vector,file_open_kind
+UserKeywords=file_open_status,file
 # textio
 UserKeywords=line,text,side,width
 # std_logic_1164
@@ -2293,9 +2304,18 @@ UserKeywords=std_logic,std_logic_vector,std_ulogic,std_ulogic_vector,x01,x01z
 UserKeywords=ux01,ux01z
 # numeric_std
 UserKeywords=unsigned,signed
-# Packages
-UserKeywords=textio,std_logic_1164,numeric_std
+# Enumerations
+# standard
+UserKeywords=read_mode,write_mode,append_mode,open_ok,status_error,name_error
+UserKeywords=mode_error,note,warning,error,failure,fs,ps,ns,us,ms,sec,min,hr
+UserKeywords=false,true,nul,soh,stx,etx,eot,enq,ack,bel,bs,ht,lf,vt,ff,cr,so
+UserKeywords=si,dle,dc1,dc2,dc3,dc4,nak,syn,etb,can,em,sub,esc,fsp,gsp,rsp,usp
+UserKeywords=del,c128,c129,c130,c131,c132,c133,c134,c135,c136,c137,c138,c139
+UserKeywords=c140,c141,c142,c143,c144,c145,c146,c147,c148,c149,c150,c151,c152
+UserKeywords=c153,c154,c155,c156,c157,c158,c159
 # Functions
+# standard
+UserKeywords=now
 # textio
 UserKeywords=input,output,read,readline,write,writeline
 # std_logic_1164
@@ -2310,6 +2330,8 @@ UserKeywords=base,left,right,high,low,ascending,image,value,pos,val,succ
 UserKeywords=pred,leftof,rightof,range,reverse_range,length,delayed,stable
 UserKeywords=quiet,transaction,event,active,last_event,last_active,last_value
 UserKeywords=driving,driving_value,simple_name,instance_name
+# standard
+UserKeywords=foreign
 End
 
 #-----------------------------------Ruby---------------------------------#
