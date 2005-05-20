@@ -1,4 +1,15 @@
-$Log$.
+$Log$
+Revision 1.673  2005/05/12 19:51:08  set
+* Added: c++ and cp as valid C++ extensions. GCC docs talks about them.
+* Added: indentation for Perl's unless sentence (if !)
+* Added: indentation for VHDL's record, component and assert.
+* Added: more VHDL user words from the std, textio and IEEE libraries.
+* Added: pmacros for VHDL's package and package body.
+* Fixed: VHDL's pmacro for long file header to avoid CVS expansion in the
+.pmc file of the Log keyword.
+* Fixed: last patches changed the color of second string, now reverted.
+* Fixed: VHDL bit string literals can start with lower case.
+
 Revision 1.672  2005/05/02 16:35:31  set
 * Modified: [SHL] Separated the functions to parse VHDL abstract and bit
 string literals.

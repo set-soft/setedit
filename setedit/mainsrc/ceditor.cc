@@ -8557,7 +8557,7 @@ void TCEditor::newLine()
 
  insertText(CLY_crlf,CLY_LenEOL,False);
 
- if (intelIndent && curPos.y>1)
+ if (intelIndent && curPos.y>0)
    {
     // analize the last line
     unsigned firstUsedCol=0,firstColHere;
