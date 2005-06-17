@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.674  2005/05/20 20:11:45  set
+* Fixed: Reverted the rev. 1.670 S.F. patch about starting to compute
+indentation only from the second line.
+
 Revision 1.673  2005/05/12 19:51:08  set
 * Added: c++ and cp as valid C++ extensions. GCC docs talks about them.
 * Added: indentation for Perl's unless sentence (if !)

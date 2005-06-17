@@ -13,5 +13,12 @@ echo Press the 'ENTER' key to continue.
 read
 rm -f configure.cache
 rm -f Makefile
+# gcc 2.95.4 compiles much faster (3.2x average)
+#export CC="gcc-2.95"
+#export CXX="g++-2.95"
+# gcc 3.3.5 generates faster code (+20% aprox. for K7)
+#export CC="gcc-3.3"
+#export CXX="g++-3.3"
+# Using -march=athlon-xp -mfpmath=sse you get a sligthly faster (2%) and smaller binary
 perl config.pl --no-prefix-h --no-fhs --Xcppflags=-O3\ -fomit-frame-pointer\ -ffast-math --cflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --cxxflags=-O2\ -Wall\ -Werror\ -gstabs+3\ -pipe --libset --enable-maintainer-mode $1 $2
 
