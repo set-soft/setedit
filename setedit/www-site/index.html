@@ -36,6 +36,7 @@ interested in reading all:
 <li> <a href="readme.html" target="_top">Readme first</a>
 <li> <a href="change.html" target="_top">Change log</a>
 <li> <a href="infview.html">The info viewer as an standalone program: InfView</a>
+<li> <a href="#gcc3">Comparison between gcc 3 and 2</a>
 <li> <a href="#rhide">A full IDE: RHIDE</a>
 <li> About the names of the releases
  <ul>
@@ -780,6 +781,44 @@ To subscribe please visit:
 http://lists.sourceforge.net/mailman/listinfo/setedit-users</a>.<br>
  <br>
 </td></tr></table><p>
+
+
+<a name="gcc3"></a>
+<table width=100% cellspacing=0>
+<tr BGCOLOR="#000080"><th colspan=4><Font Color="#FFFFFF">Comparison between gcc 3 and 2</th></tr>
+<tr BGCOLOR="#80A0FF"><td>
+<br>
+If you can choose between gcc 2 and 3 to compile the editor you should consider the
+following comparison.<br>
+GCC 3.x seems to be better when optimizing for modern CPUs (like AMD Athlon). But the cost
+is a huge increase in compilation time.<br>
+Debian GNU/Linux v3.1 (Sarge) usually installs gcc 2.95.4 and gcc 3.3.5. That's because
+Linux kernels 2.4.x should be compiled using gcc 2 and kernels from the 2.6.x series with
+gcc 3. I have such a system and I compiled <a href="http://tvision.sourceforge.net/">Turbo Vision</a>
+and the editor using both. I found the following:<p>
+
+<ul>
+ <li> gcc 3.3.5 is much slower compiling C++ code. Mostly because it uses a much more
+      complex standard C++ library. It is much more ISO C++ 1998 compliant. But I think the
+      real reason is that gcc is quite bad handling templates and that's the real reason
+      (ISO C++ 1998 heavily uses templates). I found gcc 3.3.5 can be four times slower than
+      gcc 2.95.4.
+ <li> The generated code (using -O2) runs notably faster on an Athlon XP CPU. It looks like
+      the optimizations in 3.3.5 are much better tuned for modern CPUs. The editor performed
+      about 20% faster when compiled using 3.3.5.
+ <li> The size of the code is bigger for the dynamic library (unstripped) and smaller for
+      the editor itself. The result is quite similar to the size obtained using 2.95.4.
+</ul>
+
+To reduce the compilation time I tried using the SSC option provided by TV. It notably
+reduced the compilation time. The result wasn't as good as using 2.95.4.<br>
+My conclusion is that gcc 3.3.5 can be used for modern CPUs but you must avoid using the
+provided C++ library. Note that not all TV applications can be compiled using SSC.<br>
+Here are the results, note that the values were computed in a way that "more" always
+means "better". <a href="ComparativaGCC.html">Results</a>.<br>
+ <br>
+</td></tr></table><p>
+
 
 <a name="rhide"></a>
 <table width=100% cellspacing=0>
