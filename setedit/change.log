@@ -1,4 +1,8 @@
 $Log$.
+Revision 1.675  2005/06/17 19:41:28  set
+* Added: [Config] Options to use the C++ compiler indicated by the CXX
+environment variable.
+
 Revision 1.674  2005/05/20 20:11:45  set
 * Fixed: Reverted the rev. 1.670 S.F. patch about starting to compute
 indentation only from the second line.

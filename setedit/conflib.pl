@@ -773,6 +773,7 @@ sub DetectOS
  # other systems should have a special configuration header
  # created by hand.
  $Comp='GCC';
+ $ExeExt='';
  if ($os=~/MS\-DOS/)
    {
     $OS='DOS';
@@ -781,6 +782,7 @@ sub DetectOS
     $stdcxx='-lstdcxx';
     $defaultCXX='gpp:gxx';
     $supportDir='djgpp';
+    $ExeExt='.exe';
    }
  elsif ($os=~/[Ll]inux/)
    {
@@ -808,6 +810,7 @@ sub DetectOS
     $stdcxx='-lstdc++';
     $defaultCXX='g++';
     $supportDir='win32';
+    $ExeExt='.exe';
    }
  elsif ($os=~/MINGW/)
    {
@@ -817,6 +820,7 @@ sub DetectOS
     $stdcxx='-lstdc++';
     $defaultCXX='g++';
     $supportDir='win32';
+    $ExeExt='.exe';
    }
  elsif ($os=~/SunOS/)
    {
@@ -829,12 +833,44 @@ sub DetectOS
    }
  elsif ($os=~/QNX/)
    {
+    $release=`uname -r`;
+    if ($release =~ /^6/)
+      {
+       $OS='UNIX';
+       $OSf='QNXRtP';
+       $Compf='';
+       $stdcxx='-lstdc++';
+       $defaultCXX='qcc -Y_gpp';
+       $supportDir='linux';
+      }
+    else
+      {
+       $OS='UNIX';
+       $OSf='QNX4';
+       $Compf='';
+       $stdcxx='-lstdc++';
+       $defaultCXX='g++';
+       $supportDir='linux';
+      }
+   }
+ elsif ($os=~/HP-UX/)
+   {
     $OS='UNIX';
-    $OSf='QNXRtP';
+    $OSf='HP-UX';
     $Compf='';
     $stdcxx='-lstdc++';
-    $defaultCXX='qcc -Y_gpp';
+    $defaultCXX='g++';
     $supportDir='linux';
+   }
+ elsif ($os=~/Darwin/)
+   {
+    $OS='UNIX';
+    $OSf='Darwin';
+    $Compf='';
+    $stdcxx='-lstdc++';
+    $defaultCXX='c++';
+    $supportDir='linux';
+    $conf{'GCC'}='cc';
    }
  elsif ($os=~/NetBSD/)
    {
@@ -854,15 +890,16 @@ sub DetectOS
     $defaultCXX='g++';
     $supportDir='linux';
    }
- elsif ($os=~/Darwin/)
-   {
-    $OS='UNIX';
-    $OSf='Darwin';
-    $Compf='';
-    $stdcxx='-lstdc++';
-    $defaultCXX='g++';
-    $supportDir='linux';
-   }
+#  Old code, now using code from TV
+#  elsif ($os=~/Darwin/)
+#    {
+#     $OS='UNIX';
+#     $OSf='Darwin';
+#     $Compf='';
+#     $stdcxx='-lstdc++';
+#     $defaultCXX='g++';
+#     $supportDir='linux';
+#    }
  elsif ($os=~/OSF1/)
    {
     $OS='UNIX';
