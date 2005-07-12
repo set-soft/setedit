@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-05-02 12:53-0300\n"
+"PO-Revision-Date: 2005-07-12 17:26-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,16 +327,19 @@ msgid "Error reading desktop file"
 msgstr "Fehler beim Lesen der Desktopdatei"
 
 #: ../infview/infmain.cc:662
+#, c-format
 msgid "InfView v"
 msgstr "InfView v"
 
 #: ../infview/infmain.cc:662
+#, c-format
 msgid ""
 ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
 "\n"
 msgstr ""
 
 #: ../infview/infmain.cc:663
+#, c-format
 msgid ""
 "infview [option]... [info_file [menu_item...]]\n"
 "\n"
@@ -345,10 +348,12 @@ msgstr ""
 "\n"
 
 #: ../infview/infmain.cc:664 ../setedit/editmain.cc:2809
+#, c-format
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
 
 #: ../infview/infmain.cc:665
+#, c-format
 msgid ""
 "-d, --directory DIR      adds a directory to the list of directories to "
 "search\n"
@@ -358,40 +363,48 @@ msgstr ""
 "                         (DIR zu INFOPATH)\n"
 
 #: ../infview/infmain.cc:667
+#, c-format
 msgid "-f, --file FILENAME      load FILENAME info file.\n"
 msgstr "-f, --file DATEI_NAME    lade DATEI_NAME info Datei.\n"
 
 #: ../infview/infmain.cc:669
+#, c-format
 msgid "-l, --force-no-lfn       avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
 #: ../infview/infmain.cc:670
+#, c-format
 msgid "-L, --force-lfn          forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn          lange Dateinamen unter Win9x erzwingen.\n"
 
 #: ../infview/infmain.cc:672
+#, c-format
 msgid ""
 "-k, --use-rh-52-keys     enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
 #: ../infview/infmain.cc:674
+#, c-format
 msgid "-n, --node NODE          jumps to this node.\n"
 msgstr "-n, --node KNOTEN        zu Knoten KNOTEN springen.\n"
 
 #: ../infview/infmain.cc:675
+#, c-format
 msgid "-r, --read-dkt FILENAME  if no file is opened use this desktop file.\n"
 msgstr ""
 "-r, --read-dkt DATEI     Desktopdatei DATEI benutzen, wenn keine Datei\n"
 "                         geöffnet wird.\n"
 
 #: ../infview/infmain.cc:676
+#, c-format
 msgid "-s, --save-dkt FILENAME  save the desktop to this file at exit.\n"
 msgstr "-s, --save-dkt DATEI     Desktop in DATEI beim Verlassen speichern\n"
 
 #: ../infview/infmain.cc:677
+#, c-format
 msgid ""
 "-h, --help               displays this text ;-).\n"
 "\n"
@@ -400,6 +413,7 @@ msgstr ""
 "\n"
 
 #: ../infview/infmain.cc:678
+#, c-format
 msgid ""
 "The first argument, if present, is the name of the Info file to read.\n"
 "Any remaining arguments are treated as the names of menu items in the "
@@ -407,6 +421,7 @@ msgid ""
 msgstr ""
 
 #: ../infview/infmain.cc:681
+#, c-format
 msgid ""
 "node visited.  For example, `infview libc \"function index\" printf' moves "
 "to the\n"
@@ -415,6 +430,7 @@ msgid ""
 msgstr ""
 
 #: ../infview/infmain.cc:684
+#, c-format
 msgid ""
 "node visited.  For example, `infview libc alpha printf' moves to the node\n"
 "`Alphabetical list' and then to `printf' in the info file `libc'.\n"
@@ -422,6 +438,7 @@ msgid ""
 msgstr ""
 
 #: ../infview/infmain.cc:687
+#, c-format
 msgid ""
 "Also note that info files are searched in the INFOPATH directories. To load "
 "a\n"
@@ -1526,21 +1543,36 @@ msgstr ""
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4276 ../mainsrc/doedidia.cc:143
+#: ../mainsrc/ceditor.cc:4281
 #, fuzzy, c-format
-msgid "%d bytes selected, in %d"
+msgid "%d bytes selected"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4437
+#: ../mainsrc/ceditor.cc:4283
+#, fuzzy
+msgid "One byte selected"
+msgstr "gewähltes a~b~spielen"
+
+#: ../mainsrc/ceditor.cc:4285
+#, fuzzy, c-format
+msgid " in %d lines"
+msgstr " [%d Knoten]"
+
+#: ../mainsrc/ceditor.cc:4287
+#, fuzzy
+msgid " in one line"
+msgstr "Unbekannt"
+
+#: ../mainsrc/ceditor.cc:4448
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4456
+#: ../mainsrc/ceditor.cc:4467
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4478
+#: ../mainsrc/ceditor.cc:4489
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1551,7 +1583,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4512
+#: ../mainsrc/ceditor.cc:4523
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1564,16 +1596,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6123
+#: ../mainsrc/ceditor.cc:6134
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6138
+#: ../mainsrc/ceditor.cc:6149
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10715
+#: ../mainsrc/ceditor.cc:10726
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1582,29 +1614,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10730
+#: ../mainsrc/ceditor.cc:10741
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11474
+#: ../mainsrc/ceditor.cc:11485
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12405
+#: ../mainsrc/ceditor.cc:12416
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12616
+#: ../mainsrc/ceditor.cc:12627
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13811
+#: ../mainsrc/ceditor.cc:13822
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13821
+#: ../mainsrc/ceditor.cc:13832
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2090,6 +2122,11 @@ msgstr "Lese aus Datei"
 msgid "Search string not found."
 msgstr "Suchtext nicht gefunden."
 
+#: ../mainsrc/doedidia.cc:143
+#, fuzzy, c-format
+msgid "%d bytes selected, in %d"
+msgstr " Bytes ausgewählt in "
+
 #: ../mainsrc/doedidia.cc:206
 msgid "Line too long, cut it?"
 msgstr "Zeile zu lang. Abschneiden?"
@@ -2309,6 +2346,7 @@ msgid "User words"
 msgstr "Benutzerwörter"
 
 #: ../mainsrc/pathtool.cc:821
+#, c-format
 msgid ""
 "\n"
 "Error! please run the editor from a valid directory\n"
@@ -3276,6 +3314,8 @@ msgid "Evaluate and Modify"
 msgstr ""
 
 #. All together
+#. EN: AERTW
+#. ES: AELST
 #: ../setedit/debug.cc:1594 ../setedit/debug.cc:4642
 msgid "~E~xpression (escape \" characters: \\\")"
 msgstr ""
@@ -4360,7 +4400,7 @@ msgstr ""
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
 #: ../setedit/editmain.cc:2508
-#, fuzzy
+#, fuzzy, c-format
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
 "\n"
@@ -4387,6 +4427,7 @@ msgstr ""
 "\n"
 
 #: ../setedit/editmain.cc:2519
+#, c-format
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
