@@ -135,13 +135,14 @@ unsigned doEditDialog(int dialog, va_list arg)
         return execDialog(createYesNoAllCancel(&TProgram::deskTop->size,pt),NULL);
         }
  
+    /* Currently unused
     case edLineLenght:
         {
          uint32 bytes=va_arg(arg,uint32);
          uint32 lines=va_arg(arg,uint32);
          return messageBox(mfInformation | mfOKButton,
-                           __("%d bytes selected, in %d"),bytes,lines);
-        }
+                           __("%d byte(s) selected in %d line(s)"),bytes,lines);
+        }*/
  
     case edGotoLine:
         {

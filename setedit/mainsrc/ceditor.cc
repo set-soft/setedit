@@ -4264,16 +4264,27 @@ void TCEditor::ShowLength()
  flushLine();
  if (hasSelection() && !selHided)
    {
-    unsigned pos=selStart,lines=1;
+    unsigned pos=selStart,lines=0;
     while (pos<selEnd)
       {
        if (buffer[pos++]=='\n')
           lines++;
       }
+    // This could be optionally selected.
     //editorDialog(edLineLenght,selEnd-selStart,lines);
-    int l=size.x+1;
+    if (buffer[pos-1]!='\n')
+       lines++;
+    int l=size.x+1, offset;
+    unsigned selBytes=selEnd-selStart;
     AllocLocalStr(b,l);
-    TVIntl::snprintf(b,l,__("%d bytes selected, in %d"),selEnd-selStart,lines);
+    if (selBytes>1)
+       offset=TVIntl::snprintf(b,l,__("%d bytes selected"),selBytes);
+    else
+       offset=TVIntl::snprintf(b,l,__("One byte selected"));
+    if (lines>1)
+       TVIntl::snprintf(b+offset,l-offset,__(" in %d lines"),lines);
+    else
+       TVIntl::snprintf(b+offset,l-offset,__(" in one line"));
     setStatusLine(b);
    }
 }
