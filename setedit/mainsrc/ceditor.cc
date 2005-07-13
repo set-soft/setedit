@@ -11052,6 +11052,8 @@ void TCEditor::setState(uint16 aState, Boolean enable)
          updateCommands(1);
          message(TProgram::application,evBroadcast,cmcEditorGotFocus,owner);
          forceNextTimeCheck=True;
+         if (CheckScrollLockCenters)
+            trackCursor(True);
          break;
 
     case sfExposed:

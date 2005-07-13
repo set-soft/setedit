@@ -2243,6 +2243,8 @@ const int clockResolution=(int)CLK_TCK;
 
 void TSetEditorApp::idle()
 {
+ static unsigned scrollLockStatus=0;
+
  ProcessMP3Idle;
  // Look for async responses from gdb.
  DebugPoll();
@@ -2250,13 +2252,30 @@ void TSetEditorApp::idle()
     multiMenuBar->update();
  TApplication::idle();
  clock_t DifLastTime=lastIdleClock-LastTimeUpdate;
- // Update 2 times per second
+
+ /***** Scroll lock centers update *****/
+ // Period 100 ms
+ // It avoids surprises by centering the buffer as soon as posible.
+ if (DifLastTime>clockResolution/10)
+   {
+    unsigned newScrollLockStatus=TGKey::getShiftState() & kbScrollLockToggle;
+    if (!scrollLockStatus && newScrollLockStatus &&
+        (TCEditor::editorFlags & efScrollLock))
+      {
+       TCEditor *ed=GetCurrentIfEditor();
+       if (ed)
+          ed->trackCursor(True);
+      }
+    scrollLockStatus=newScrollLockStatus;
+   }
+
  if (DifLastTime<clockResolution/2)
    {
     RunExternalProgramIncParse();
     CLY_YieldProcessor(-1);
     return;
    }
+ // Update 2 times per second
  LastTimeUpdate=lastIdleClock;
  /***** Update cme Commands here *****/
  // Now update commands

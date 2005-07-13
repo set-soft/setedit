@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.677  2005/07/12 20:41:11  set
+* Fixed: The command to meassure the selection to be more acqurate and
+descriptive. Based on a patch by Oswald. Fixes SF Bug #1236782.
+
 Revision 1.676  2005/07/11 13:57:52  set
 * Fixed: [config] Problems to detect GNU install under djgpp (missing
 ExeExt initialization). Reported by Thiago.
