@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-07-12 17:26-0300\n"
+"PO-Revision-Date: 2005-07-14 16:44-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -347,7 +347,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2809
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2848
 #, c-format
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
@@ -1618,25 +1618,25 @@ msgstr ""
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11485
+#: ../mainsrc/ceditor.cc:11487
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12416
+#: ../mainsrc/ceditor.cc:12418
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12627
+#: ../mainsrc/ceditor.cc:12629
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13822
+#: ../mainsrc/ceditor.cc:13824
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13832
+#: ../mainsrc/ceditor.cc:13834
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2122,31 +2122,26 @@ msgstr "Lese aus Datei"
 msgid "Search string not found."
 msgstr "Suchtext nicht gefunden."
 
-#: ../mainsrc/doedidia.cc:143
-#, fuzzy, c-format
-msgid "%d bytes selected, in %d"
-msgstr " Bytes ausgewählt in "
-
-#: ../mainsrc/doedidia.cc:206
+#: ../mainsrc/doedidia.cc:207
 msgid "Line too long, cut it?"
 msgstr "Zeile zu lang. Abschneiden?"
 
-#: ../mainsrc/doedidia.cc:210
+#: ../mainsrc/doedidia.cc:211
 #, fuzzy
 msgid "Line extremely long. Can't handle it reliably, sorry"
 msgstr "Zeile ist extem lang. Kann Sie leider nicht zuverlässig handhaben."
 
-#: ../mainsrc/doedidia.cc:214
+#: ../mainsrc/doedidia.cc:215
 #, fuzzy
 msgid "This file isn't on the disk!"
 msgstr "Diese Datei ist nicht auf Festplatte!"
 
-#: ../mainsrc/doedidia.cc:221
+#: ../mainsrc/doedidia.cc:222
 #, fuzzy, c-format
 msgid "The file %s is read-only, try to revert it?"
 msgstr "Diese Datei ist Nur-Lesen. Ändern?"
 
-#: ../mainsrc/doedidia.cc:224
+#: ../mainsrc/doedidia.cc:225
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -2154,54 +2149,54 @@ msgstr ""
 "Konnte Nur-Lesen-Status nicht umkehren. Sie werden diese Datei nicht "
 "überschreiben können"
 
-#: ../mainsrc/doedidia.cc:228
+#: ../mainsrc/doedidia.cc:229
 #, fuzzy
 msgid "This action can't be undone. Are you sure?"
 msgstr "Diese Operation hat kein `Rückgängig'. Sind Sie sich sicher?"
 
-#: ../mainsrc/doedidia.cc:235
+#: ../mainsrc/doedidia.cc:236
 #, fuzzy, c-format
 msgid "%s already exists. Overwrite?"
 msgstr " existiert bereits. Überschreiben?"
 
-#: ../mainsrc/doedidia.cc:241
+#: ../mainsrc/doedidia.cc:242
 #, fuzzy, c-format
 msgid "%s isn't a file, probably a device, go ahead?"
 msgstr " ist keine Datei -möglicherweise ein Gerät- fortsetzen?"
 
-#: ../mainsrc/doedidia.cc:244
+#: ../mainsrc/doedidia.cc:245
 #, fuzzy
 msgid "Can't create a backup. Continue saving?"
 msgstr "Konnte keine Sicherheitskopie erstellen. Trotzdem speichern?"
 
-#: ../mainsrc/doedidia.cc:247
+#: ../mainsrc/doedidia.cc:248
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "Sie können kein Rechteck einfügen, das über das Dateiende hinaus geht"
 
-#: ../mainsrc/doedidia.cc:258
+#: ../mainsrc/doedidia.cc:259
 msgid "No pseudo macros available"
 msgstr "Keine pseudo macros verfügbar"
 
-#: ../mainsrc/doedidia.cc:275
+#: ../mainsrc/doedidia.cc:276
 #, fuzzy
 msgid "The file is compressed. Do you want to save with compression?"
 msgstr "Sie haben autoexec.bat geändert. Änderungen speichern?"
 
-#: ../mainsrc/doedidia.cc:278
+#: ../mainsrc/doedidia.cc:279
 msgid "Searching inside a selection but nothing is selected"
 msgstr ""
 
-#: ../mainsrc/doedidia.cc:282
+#: ../mainsrc/doedidia.cc:283
 #, fuzzy
 msgid "You must select some text for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../mainsrc/doedidia.cc:289
+#: ../mainsrc/doedidia.cc:290
 #, fuzzy, c-format
 msgid "You must select less than %d characters"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/doedidia.cc:294
+#: ../mainsrc/doedidia.cc:295
 msgid "The selection can't contain more than one line"
 msgstr ""
 
@@ -4367,21 +4362,21 @@ msgstr "Konnte keine passende Hilfe finden"
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1884
+#: ../setedit/editmain.cc:1893
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:2052
+#: ../setedit/editmain.cc:2061
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:2128
+#: ../setedit/editmain.cc:2137
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2372
+#: ../setedit/editmain.cc:2411
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -4390,7 +4385,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2507
+#: ../setedit/editmain.cc:2546
 #, c-format
 msgid ""
 "\n"
@@ -4399,7 +4394,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2508
+#: ../setedit/editmain.cc:2547
 #, fuzzy, c-format
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4408,7 +4403,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2512
+#: ../setedit/editmain.cc:2551
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4417,7 +4412,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2514
+#: ../setedit/editmain.cc:2553
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4426,12 +4421,12 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2519
+#: ../setedit/editmain.cc:2558
 #, c-format
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2528
+#: ../setedit/editmain.cc:2567
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4441,26 +4436,26 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2557
+#: ../setedit/editmain.cc:2596
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2802
+#: ../setedit/editmain.cc:2841
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2804
+#: ../setedit/editmain.cc:2843
 msgid ". Copyright (c) "
 msgstr ""
 
-#: ../setedit/editmain.cc:2806
+#: ../setedit/editmain.cc:2845
 #, fuzzy
 msgid ""
 " by Salvador E. Tropea\n"
 "\n"
 msgstr "von Salvador Eduardo Tropea"
 
-#: ../setedit/editmain.cc:2808
+#: ../setedit/editmain.cc:2847
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4468,7 +4463,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2810
+#: ../setedit/editmain.cc:2849
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4478,11 +4473,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2814
+#: ../setedit/editmain.cc:2853
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2815
+#: ../setedit/editmain.cc:2854
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4491,14 +4486,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2820
+#: ../setedit/editmain.cc:2859
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2824
+#: ../setedit/editmain.cc:2863
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4507,7 +4502,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2826
+#: ../setedit/editmain.cc:2865
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4515,36 +4510,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2828
+#: ../setedit/editmain.cc:2867
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2830
+#: ../setedit/editmain.cc:2869
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2832
+#: ../setedit/editmain.cc:2871
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2833
+#: ../setedit/editmain.cc:2872
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2834
+#: ../setedit/editmain.cc:2873
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2837
+#: ../setedit/editmain.cc:2876
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2839
+#: ../setedit/editmain.cc:2878
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4553,7 +4548,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2841
+#: ../setedit/editmain.cc:2880
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4561,19 +4556,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2844
+#: ../setedit/editmain.cc:2883
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2846
+#: ../setedit/editmain.cc:2885
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2847
+#: ../setedit/editmain.cc:2886
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -6761,22 +6756,22 @@ msgstr "Projekt öffnen"
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1299
+#: ../setedit/edprj.cc:1317
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1336
+#: ../setedit/edprj.cc:1354
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1344
+#: ../setedit/edprj.cc:1362
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1380
+#: ../setedit/edprj.cc:1398
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""
@@ -7327,6 +7322,10 @@ msgstr "Befehl~e~"
 #, fuzzy
 msgid "s~L~isp code"
 msgstr "sLisp Makros"
+
+#, fuzzy
+#~ msgid "%d bytes selected, in %d"
+#~ msgstr " Bytes ausgewählt in "
 
 #, fuzzy
 #~ msgid "Wrong desktop file (%s)."
