@@ -1747,6 +1747,15 @@ int SelectWindowNumber(int number)
  return p!=0;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Closes the requested window.
+  
+  Return: !=0 if the window was there.
+  
+***************************************************************************/
+
 int CloseWindowNumber(int number)
 {
  TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
@@ -2349,6 +2358,17 @@ void OpenFileFromEditor(char *fullName)
 {
  editorApp->openEditor(fullName,True);
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Open the @<var>{fullName} file.
+  
+  Return: opfAlreadyThere if the file was already opened, opfOpened if we
+opened it to fulfill this request and opfFail if the file doesn't exists.
+The @<var>{number} variable is filled with the window number.
+  
+***************************************************************************/
 
 int OpenFileFromEditorRet(char *fullName, int &number)
 {

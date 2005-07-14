@@ -170,6 +170,7 @@ typedef struct
 #include <ced_pcre.h>
 
 class TNLIndentCol;
+class TStringCollection;
 
 struct strSHL
 {
@@ -373,6 +374,10 @@ class TDialog;
 ushort execDialog(TDialog *d,void *data);
 
 // Default dialog functions from doedidia.cc
+class TCollection;
+class TPoint;
+class TNSCollection;
+
 typedef struct
 {
  uint32 t2;

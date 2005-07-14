@@ -1,10 +1,11 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_unistd
 #define Uses_stdlib
 #include <tv.h>
 #define Uses_EditorId
+#define Uses_TCEditor_External
 #include <ced_exte.h>
 #include <edmsg.h>
 #include "rhutils.h"
@@ -272,5 +273,64 @@ version.
 int FindFile(const char *name, char *&fullName, const char *)
 {
  return FindFile(name,fullName);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Open the @<var>{fullName} file.
+  
+  Return: opfAlreadyThere if the file was already opened, opfOpened if we
+opened it to fulfill this request and opfFail if the file doesn't exists.
+The @<var>{number} variable is filled with the window number.
+  
+***************************************************************************/
+
+int OpenFileFromEditorRet(char *, int &)
+{
+ return opfFail;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Finds the file name of the project item indicated by @<var>{number}.
+  
+  Return: A newly allocated string (using malloc) containing the name. An
+empty string on fail (also allocated).
+  
+***************************************************************************/
+
+char *GetProjectItem(int )
+{
+ return string_dup(NULL);
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Used to know how many items contains the project.
+  
+  Return: The number of items, 0 on fail.
+  
+***************************************************************************/
+
+int GetMaxProjectItem()
+{
+ return 0;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Closes the requested window.
+  
+  Return: !=0 if the window was there.
+  
+***************************************************************************/
+
+int CloseWindowNumber(int )
+{
+ return 0;
 }
 

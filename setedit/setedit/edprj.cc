@@ -1258,6 +1258,15 @@ int SetForceTargetBits(uint32 bits)
  return st.c;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Finds the file name of the project item indicated by @<var>{number}.
+  
+  Return: A newly allocated string (using malloc) containing the name. An
+empty string on fail (also allocated).
+  
+***************************************************************************/
 
 char *GetProjectItem(int number)
 {
@@ -1272,6 +1281,15 @@ char *GetProjectItem(int number)
 
  return string_dup(item);
 }
+
+/**[txh]********************************************************************
+
+  Description:
+  Used to know how many items contains the project.
+  
+  Return: The number of items, 0 on fail.
+  
+***************************************************************************/
 
 int GetMaxProjectItem()
 {
