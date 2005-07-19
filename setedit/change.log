@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.680  2005/07/19 18:38:39  set
+* Fixed: Some linkers needs the libraries in a particular order. In this
+case easydiag must be the last one. Now the extrimk tool handles it. Note:
+RHIDE alphabetically sorts the subprojects. Pointed out by Oswald.
+
 Revision 1.679  2005/07/19 16:17:14  set
 * Fixed: [djgpp] code in infbase.cc got outdated and used . instead of ->
 for a pointer. Patch by Thiago.
