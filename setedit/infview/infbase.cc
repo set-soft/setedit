@@ -41,6 +41,7 @@
 #include <fcntl.h> // open
 #include <gzfiles.h>
 #include <dyncat.h>
+#include <pathtool.h> // IsADirectory
 
 #ifdef TVCompf_djgpp
 #include <crt0.h>
@@ -1497,9 +1498,9 @@ void GuessInfoPath(DynStrCatStruct *InfoPath)
       {
        DynStrCatInit(InfoPath,setfiles,s-setfiles-1);
        DynStrCat(InfoPath,"/info",5);
-       if (IsADirectory(InfoPath.str))
+       if (IsADirectory(InfoPath->str))
           return;
-       free(InfoPath.str);
+       free(InfoPath->str);
       }
    }
  DynStrCatInit(InfoPath,".",1);
