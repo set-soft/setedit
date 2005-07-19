@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-07-14 16:44-0300\n"
+"PO-Revision-Date: 2005-07-19 14:27-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,7 @@ msgstr "I~r~ a"
 msgid "~M~arks"
 msgstr "~M~arcas"
 
-#: ../infview/infbase.cc:264
+#: ../infview/infbase.cc:265
 msgid ""
 "Attention !! This file is in DOS format, Do you want to convert it?, But "
 "maybe make a backup first !!"
@@ -249,24 +249,24 @@ msgstr ""
 "¡Atención! este archivo está en formato DOS, ¿quiere convertirlo? Haga una "
 "copia primero"
 
-#: ../infview/infbase.cc:281
+#: ../infview/infbase.cc:282
 msgid "Error: can't find the Node info"
 msgstr "Error: no puedo hallar el Nodo"
 
-#: ../infview/infbase.cc:1122
+#: ../infview/infbase.cc:1123
 msgid "Reading index table for: "
 msgstr "Leyendo el índice de: "
 
-#: ../infview/infbase.cc:1126
+#: ../infview/infbase.cc:1127
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1295
+#: ../infview/infbase.cc:1296
 #, c-format
 msgid "Attention: can't open the help file '%s'."
 msgstr "Atención: no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1875
+#: ../infview/infbase.cc:1876
 msgid ""
 "\n"
 " Sorry, I can't find this link (press ALT-F1).\n"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-07-14 16:44-0300\n"
+"PO-Revision-Date: 2005-07-19 14:27-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -242,7 +242,7 @@ msgstr "~G~ehe zu"
 msgid "~M~arks"
 msgstr "~M~arkierungen"
 
-#: ../infview/infbase.cc:264
+#: ../infview/infbase.cc:265
 #, fuzzy
 msgid ""
 "Attention !! This file is in DOS format, Do you want to convert it?, But "
@@ -251,24 +251,24 @@ msgstr ""
 "Achhtung !! Diese Datei ist im DOS Format. Wollen Sie sie umwandeln? "
 "(Erstellen Sie zuerst eine Kopie!)"
 
-#: ../infview/infbase.cc:281
+#: ../infview/infbase.cc:282
 msgid "Error: can't find the Node info"
 msgstr "Fehler: Kann Knoten info nicht finden"
 
-#: ../infview/infbase.cc:1122
+#: ../infview/infbase.cc:1123
 msgid "Reading index table for: "
 msgstr "Lese Indextabelle für: "
 
-#: ../infview/infbase.cc:1126
+#: ../infview/infbase.cc:1127
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1295
+#: ../infview/infbase.cc:1296
 #, fuzzy, c-format
 msgid "Attention: can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht öffnen!"
 
-#: ../infview/infbase.cc:1875
+#: ../infview/infbase.cc:1876
 #, fuzzy
 msgid ""
 "\n"
