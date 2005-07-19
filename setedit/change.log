@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.679  2005/07/19 16:17:14  set
+* Fixed: [djgpp] code in infbase.cc got outdated and used . instead of ->
+for a pointer. Patch by Thiago.
+
 Revision 1.678  2005/07/13 16:39:00  set
 * Added: [Cosmetic] When "Scroll Lock Centers" is selected now the editor
 polls the scroll lock key and if the scroll lock is set the current buffer

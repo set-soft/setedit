@@ -53,7 +53,7 @@ genimk.exe: genimk.cc extrimk.exe
 
 # Main project, the editor
 editor.imk: editor.gpr amp3.gpr easydiag.gpr extra.gpr inffd.gpr librhuti.gpr \
-	settv.gpr genimk.cc extrimk.cc
+	settv.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # InfView project

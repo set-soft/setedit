@@ -21,9 +21,9 @@ OBJFILES=\
 	objinf/strncpyz$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd$(ExLIB) \
 	librhuti$(ExLIB) \
-	libsettv$(ExLIB) 
+	libsettv$(ExLIB) \
+	libeasyd$(ExLIB) 
 
 infview$(ExEXE):: \
 	objinf/dyncat$(ExOBJ) \

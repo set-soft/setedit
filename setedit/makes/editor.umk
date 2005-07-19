@@ -141,9 +141,9 @@ OBJFILES=\
 	obj/winlistd$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd$(ExLIB) \
 	librhuti$(ExLIB) \
-	libsettv$(ExLIB) 
+	libsettv$(ExLIB) \
+	libeasyd$(ExLIB) 
 
 editor$(ExEXE):: \
 	obj/accehtml$(ExOBJ) \

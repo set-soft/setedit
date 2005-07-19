@@ -1,6 +1,6 @@
 /**[txh]********************************************************************
 
-  Copyright (c) 2003-2004 by Salvador Eduardo Tropea.
+  Copyright (c) 2003-2005 by Salvador Eduardo Tropea.
   Covered by the GPL license.
   Description:
   This program generates a .imk file containing the dependencies for a
@@ -51,6 +51,12 @@ struct stIncDir
  int   ldir;
 };
 
+struct stLibItem
+{
+ int priority;
+ const char *name;
+};
+
 stIncDir incDirs[]=
 {
 {"TVISION_INC",      0, 0},
@@ -91,6 +97,12 @@ char *srcDirs[]=
  "../infview/streams",
  "../librhuti",
  NULL
+};
+
+stLibItem sortLibs[]=
+{
+ {100,"libeasy"},
+ {  0,NULL}
 };
 
 static
@@ -380,6 +392,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
            strcpy(buf,incDirs[i].dir);
            strcat(buf,"/");
            strcat(buf,toStat);
+           //printf("%s\n",buf);
            if (stat(buf,&st)==0)
               foundOnVPath=1;
           }
@@ -388,6 +401,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
            strcpy(buf,srcDirs[i]);
            strcat(buf,"/");
            strcat(buf,toStat);
+           //printf("%s\n",buf);
            if (stat(buf,&st)==0)
               foundOnVPath=1;
           }
@@ -404,12 +418,14 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
        if (strchr(s,'/'))
          {
           for (i=0; incDirs[i].var; i++)
+             {
               if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
                 {
                  s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
                  sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
                  break;
                 }
+             }
           if (s==c->name)
             {
              // This is some bug in RHIDE 1.5 CVS: some paths are emitted as absolute,
@@ -663,25 +679,200 @@ void GenerateObjs(FILE *f, stMak &mk)
  fputs("\n\n",f);
 }
 
+
+/*****************************************************************************
+  The following mess is to just "resort" the libraries according to its
+dependency.
+  I took TNSSortedCollection from TV to implement the sorted list. It could
+be used by other lists in this module.
+*****************************************************************************/
+
+typedef int ccIndex;
+
+class TNSSortedCollection
+{
+public:
+ TNSSortedCollection(ccIndex aLimit, ccIndex aDelta);
+ virtual ~TNSSortedCollection();
+
+ void atInsert(ccIndex index, void *item);
+ ccIndex insert(void *item);
+ bool search(void *key, ccIndex &index);
+ void freeAll();
+ void setLimit(ccIndex aLimit);
+ ccIndex getCount() { return count; }
+ virtual int compare(void *key1, void *key2)=0;
+ virtual void freeItem(void *item);
+ void *at(ccIndex index)
+ {
+  if (index<0 || index>=count)
+     abort();
+  return items[index];
+ }
+protected:
+ void **items;
+ ccIndex count;
+ ccIndex limit;
+ ccIndex delta;
+
+};
+
+TNSSortedCollection::TNSSortedCollection(ccIndex aLimit, ccIndex aDelta) :
+  items(0),
+  count(0),
+  limit(0),
+  delta(aDelta)
+{
+ setLimit(aLimit);
+}
+
+TNSSortedCollection::~TNSSortedCollection()
+{
+ freeAll();
+ delete[] items;
+}
+
+void TNSSortedCollection::freeAll()
+{
+ for (ccIndex i=0; i<count; i++)
+     freeItem(at(i));
+ count=0;
+}
+
+void TNSSortedCollection::freeItem(void *item)
+{
+ delete[] (char *)item;
+}
+
+void TNSSortedCollection::setLimit(ccIndex aLimit)
+{
+ if (aLimit<count)
+    aLimit=count;
+ if (aLimit!=limit)
+   {
+    void **aItems;
+    if (!aLimit)
+       aItems=NULL;
+    else
+      {
+       aItems=new void *[aLimit];
+       if (count && items)
+          memcpy(aItems,items,count*sizeof(void *));
+      }
+    if (items)
+       delete[] items;
+    items=aItems;
+    limit=aLimit;
+   }
+}
+
+ccIndex TNSSortedCollection::insert(void *item)
+{
+ ccIndex  i;
+ if (search(item,i)==0)
+     atInsert(i,item);
+ return i;
+}
+
+void TNSSortedCollection::atInsert(ccIndex index, void *item)
+{
+ if (index<0)
+    abort();
+ if (count==limit)
+    setLimit(count+delta);
+
+ memmove(&items[index+1],&items[index],(count-index)*sizeof(void *));
+ count++;
+
+ items[index]=item;
+}
+
+bool TNSSortedCollection::search(void *key, ccIndex &index)
+{
+ ccIndex l=0;
+ ccIndex h=count-1;
+ bool res=false;
+ while (l<=h)
+   {
+    ccIndex i=(l+h)>>1;
+    ccIndex c=compare(items[i],key);
+    if (c<0)
+       l=i+1;
+    else
+      {
+       h=i-1;
+       if (c==0)
+         {
+          res=true;
+          l=i;
+         }
+      }
+   }
+ index=l;
+ return res;
+}
+
+
+class TLibCol : public TNSSortedCollection
+{
+public:
+ TLibCol() : TNSSortedCollection(8,4) {}
+
+ virtual int compare(void *key1, void *key2);
+ ccIndex insert(const char *name);
+ virtual void freeItem(void *item);
+ stLibItem *At(ccIndex pos) { return (stLibItem *)at(pos); }
+};
+
+void TLibCol::freeItem(void *item)
+{
+ delete (stLibItem *)item;
+}
+
+ccIndex TLibCol::insert(const char *name)
+{
+ stLibItem *p=new stLibItem;
+ p->priority=50;
+ for (int i=0; sortLibs[i].name; i++)
+     if (strstr(name,sortLibs[i].name))
+        p->priority=sortLibs[i].priority;
+ p->name=name;
+ //fprintf(stderr,"%d) Inserting %s (%d)\n",count,name,p->priority);
+ TNSSortedCollection::insert((void *)p);
+}
+
+int TLibCol::compare(void *key1, void *key2)
+{
+ stLibItem *p1=(stLibItem *)key1;
+ stLibItem *p2=(stLibItem *)key2;
+
+ if (p1->priority==p2->priority)
+    return strcmp(p1->name,p2->name);
+
+ return p1->priority-p2->priority;
+}
+
 static
-int ListTargetAItems(FILE *d, int l, stMak &mk)
+int ListTargetAItems(FILE *d, int l, stMak &mk, TLibCol &col)
 {
  node *p=mk.base;
  if (mk.mainTarget && *mk.mainTarget)
    {
-    l=PrintDep(d,l,mk.mainTarget);
+    //l=PrintDep(d,l,mk.mainTarget);
+    col.insert(mk.mainTarget);
    }
  else
    {
     while (p)
       {
        if (p->subprj)
-          ListTargetAItems(d,l,*p->subprj);
+          ListTargetAItems(d,l,*p->subprj,col);
        else
          {
           char *ext=strrchr(p->name,'.');
           if (strcmp(ext,".a")==0)
-             l=PrintDep(d,l,p->name);
+             //l=PrintDep(d,l,p->name);
+             col.insert(p->name);
          }
        p=p->next;
       }
@@ -693,21 +884,33 @@ static
 void GenerateLibs(FILE *f, stMak &mk)
 {
  int l=fprintf(f,"LIBRARIES=");
+ TLibCol col;
+
  node *p=mk.base;
  while (p)
    {
     if (p->subprj)
-       l=ListTargetAItems(f,l,*p->subprj);
+       l=ListTargetAItems(f,l,*p->subprj,col);
     else
       {
        char *ext=strrchr(p->name,'.');
        if (strcmp(ext,".a")==0)
-          l=PrintDep(f,l,p->name);
+          //l=PrintDep(f,l,p->name);
+          col.insert(p->name);
       }
     p=p->next;
    }
+
+ ccIndex c=col.getCount();
+ for (int i=0; i<c; i++)
+     l=PrintDep(f,l,col.At(i)->name);
+
  fputs("\n\n",f);
 }
+
+/*****************************************************************************
+  End of LIBRARIES=
+*****************************************************************************/
 
 static
 void ExtractBaseDir(const char *mak, stMak &mk)

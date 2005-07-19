@@ -6,8 +6,8 @@ OBJFILES=\
 	obj/test$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd$(ExLIB) \
-	libsettv$(ExLIB) 
+	libsettv$(ExLIB) \
+	libeasyd$(ExLIB) 
 
 test$(ExEXE):: \
 	libeasyd$(ExLIB) \

@@ -58,6 +58,7 @@ obj/diaghelp$(ExOBJ):: ../settvuti/diaghelp.cc \
 	tv/program.h \
 	tv/pstream.h \
 	tv/rect.h \
+	tv/ssc_streams.h \
 	tv/stddlg.h \
 	tv/streambl.h \
 	tv/system.h \
@@ -88,6 +89,7 @@ obj/dktclock$(ExOBJ):: ../settvuti/dktclock.cc \
 	tv/opstream.h \
 	tv/point.h \
 	tv/pstream.h \
+	tv/ssc_streams.h \
 	tv/stddlg.h \
 	tv/streambl.h \
 	tv/system.h \
@@ -137,6 +139,7 @@ obj/fileopen$(ExOBJ):: ../settvuti/fileopen.cc \
 	tv/searchrc.h \
 	tv/sortcoll.h \
 	tv/sortlibo.h \
+	tv/ssc_streams.h \
 	tv/stddlg.h \
 	tv/streambl.h \
 	tv/system.h \
@@ -153,780 +156,106 @@ obj/fileopen$(ExOBJ):: ../settvuti/fileopen.cc \
 	$(RHIDE_COMPILE_CC)
 
 obj/fiopeaid$(ExOBJ):: ../settvuti/fiopeaid.cc \
-	compatlayer.h \
-	edhists.h \
-	fileopen.h \
-	fiopeaid.h \
-	settvuti.h \
-	tv.h \
-	tv/app.h \
-	tv/applictn.h \
-	tv/configtv.h \
-	tv/desktop.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/filedlg.h \
-	tv/fpbase.h \
-	tv/fpstream.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/iopstrm.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/inputsca$(ExOBJ):: ../settvuti/inputsca.cc \
-	compatlayer.h \
-	inputsca.h \
-	settvuti.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/palette.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ninputsc$(ExOBJ):: ../settvuti/names/ninputsc.cc \
-	compatlayer.h \
-	tv/configtv.h \
-	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/nostatex$(ExOBJ):: ../settvuti/nostatex.cc \
-	compatlayer.h \
-	nostatex.h \
-	settvuti.h \
-	tv.h \
-	tv/configtv.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/sttctext.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/nprogbar$(ExOBJ):: ../settvuti/names/nprogbar.cc \
-	compatlayer.h \
-	tv/configtv.h \
-	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/nprogres$(ExOBJ):: ../settvuti/names/nprogres.cc \
-	compatlayer.h \
-	tv/configtv.h \
-	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ntnocast$(ExOBJ):: ../settvuti/names/ntnocast.cc \
-	compatlayer.h \
-	tv/configtv.h \
-	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ntnosost$(ExOBJ):: ../settvuti/names/ntnosost.cc \
-	compatlayer.h \
-	tv/configtv.h \
-	tv/tvutil.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/setstack$(ExOBJ):: ../settvuti/setstack.cc \
-	compatlayer.h \
-	setstack.h \
-	settvuti.h \
-	tv.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/stddlg.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvutil.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sprogbar$(ExOBJ):: ../settvuti/streams/sprogbar.cc \
-	compatlayer.h \
-	settvuti.h \
-	tprogbar.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/sprogres$(ExOBJ):: ../settvuti/streams/sprogres.cc \
-	compatlayer.h \
-	settvuti.h \
-	tprogrdi.h \
-	tprogres.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/stnocast$(ExOBJ):: ../settvuti/streams/stnocast.cc \
-	compatlayer.h \
-	settvuti.h \
-	tnocastc.h \
-	tv.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/resource.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/views.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/stnonost$(ExOBJ):: ../settvuti/streams/stnonost.cc \
-	compatlayer.h \
-	settvuti.h \
-	tnosostr.h \
-	tv.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/resource.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/views.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tdiagaid$(ExOBJ):: ../settvuti/tdiagaid.cc \
-	$(SETEDIT_INC_DIR)/setapp.h \
-	compatlayer.h \
-	diaghelp.h \
-	easydia1.h \
-	easydiag.h \
-	settvuti.h \
-	tdiagaid.h \
-	tdiagrow.h \
-	tsbutton.h \
-	tshzgrp.h \
-	tslabel.h \
-	tslistbo.h \
-	tssortlb.h \
-	tssortva.h \
-	tstringa.h \
-	tstrlbox.h \
-	tstsorlb.h \
-	tsvegrp.h \
-	tsview.h \
-	tsviewco.h \
-	tv.h \
-	tv/app.h \
-	tv/button.h \
-	tv/cluster.h \
-	tv/configtv.h \
-	tv/desktop.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/label.h \
-	tv/listbox.h \
-	tv/lstviewr.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/radiobtn.h \
-	tv/rect.h \
-	tv/scrlbar.h \
-	tv/sitem.h \
-	tv/sortlibo.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/sttctext.h \
-	tv/system.h \
-	tv/tkeyext.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
-	tv/yes_mss.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tdiagrow$(ExOBJ):: ../settvuti/tdiagrow.cc \
-	compatlayer.h \
-	settvuti.h \
-	tdiagrow.h \
-	tv.h \
-	tv/configtv.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tinppipe$(ExOBJ):: ../settvuti/tinppipe.cc \
-	ced_clas.h \
-	ced_exte.h \
-	ced_pcre.h \
-	ceditor.h \
-	compatlayer.h \
-	pmcoll.h \
-	sarray.h \
-	setstack.h \
-	settvuti.h \
-	sindicat.h \
-	tinppipe.h \
-	tnocastc.h \
-	tstringa.h \
-	tv.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/group.h \
-	tv/indicato.h \
-	tv/inputln.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/osclipboard.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/resource.h \
-	tv/scrlbar.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
-	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tnocastc$(ExOBJ):: ../settvuti/tnocastc.cc \
-	compatlayer.h \
-	setstack.h \
-	settvuti.h \
-	tnocastc.h \
-	tv.h \
-	tv/codepage.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/listbox.h \
-	tv/lstviewr.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/parttree.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/resource.h \
-	tv/sortcoll.h \
-	tv/sortlibo.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tnosostr$(ExOBJ):: ../settvuti/tnosostr.cc \
-	compatlayer.h \
-	settvuti.h \
-	tnosostr.h \
-	tv.h \
-	tv/collectn.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/no_mss.h \
-	tv/nscoll.h \
-	tv/nssorcol.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/resource.h \
-	tv/sortcoll.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/strncoll.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/views.h \
-	tv/yes_mss.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogbar$(ExOBJ):: ../settvuti/tprogbar.cc \
-	compatlayer.h \
-	settvuti.h \
-	tprogbar.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/fpbase.h \
-	tv/fpstream.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/iopstrm.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/palette.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogdia$(ExOBJ):: ../settvuti/tprogdia.cc \
-	compatlayer.h \
-	easydia1.h \
-	easydiag.h \
-	nostatex.h \
-	settvuti.h \
-	tprogbar.h \
-	tv.h \
-	tv/app.h \
-	tv/configtv.h \
-	tv/desktop.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/sttctext.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogrdi$(ExOBJ):: ../settvuti/tprogrdi.cc \
-	compatlayer.h \
-	nostatex.h \
-	settvuti.h \
-	tprogrdi.h \
-	tprogres.h \
-	tv.h \
-	tv/app.h \
-	tv/configtv.h \
-	tv/desktop.h \
-	tv/dialog.h \
-	tv/dialogs.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/program.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/sttctext.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tv/window.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tprogres$(ExOBJ):: ../settvuti/tprogres.cc \
-	compatlayer.h \
-	settvuti.h \
-	tprogrdi.h \
-	tprogres.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/fpbase.h \
-	tv/fpstream.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/iopstrm.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/palette.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/strmblcl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	tvsetuti.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/tstrlbox$(ExOBJ):: ../settvuti/tstrlbox.cc \
-	compatlayer.h \
-	settvuti.h \
-	tstringa.h \
-	tstrlbox.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/lstviewr.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/system.h \
-	tv/tkeys.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/uisarray$(ExOBJ):: ../settvuti/uisarray.cc \
-	compatlayer.h \
-	include/sarray.cc \
-	sarray.h \
-	settvuti.h \
-	tv.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/stddlg.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvutil.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/ussarray$(ExOBJ):: ../settvuti/ussarray.cc \
-	compatlayer.h \
-	include/sarray.cc \
-	sarray.h \
-	settvuti.h \
-	tv.h \
-	tv/configtv.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/opstream.h \
-	tv/pstream.h \
-	tv/stddlg.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvutil.h \
-	tv/views.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 
 obj/viewplus$(ExOBJ):: ../settvuti/viewplus.cc \
-	compatlayer.h \
-	tv.h \
-	tv/configtv.h \
-	tv/drawbuf.h \
-	tv/event.h \
-	tv/eventqu.h \
-	tv/group.h \
-	tv/intl.h \
-	tv/ipstream.h \
-	tv/object.h \
-	tv/objects.h \
-	tv/opstream.h \
-	tv/point.h \
-	tv/pstream.h \
-	tv/rect.h \
-	tv/screen.h \
-	tv/stddlg.h \
-	tv/streambl.h \
-	tv/system.h \
-	tv/tobjstrm.h \
-	tv/ttypes.h \
-	tv/tvconfig.h \
-	tv/tvobjs.h \
-	tv/tvutil.h \
-	tv/view.h \
-	tv/views.h \
-	viewplus.h \
 	$(MAKEFILE_DEPS) 
 	$(RHIDE_COMPILE_CC)
 

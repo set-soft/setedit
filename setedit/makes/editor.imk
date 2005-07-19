@@ -141,9 +141,9 @@ OBJFILES=\
 	obj/winlistd$(ExOBJ) 
 
 LIBRARIES=\
-	libeasyd$(ExLIB) \
 	librhuti$(ExLIB) \
-	libsettv$(ExLIB) 
+	libsettv$(ExLIB) \
+	libeasyd$(ExLIB) 
 
 editor$(ExEXE):: \
 	obj/accehtml$(ExOBJ) \
@@ -330,6 +330,7 @@ obj/accehtml$(ExOBJ):: ../mainsrc/accehtml.cc \
 	tv/resource.h \
 	tv/scrlbar.h \
 	tv/sortcoll.h \
+	tv/ssc_streams.h \
 	tv/stddlg.h \
 	tv/streambl.h \
 	tv/strncoll.h \
