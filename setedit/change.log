@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.681  2005/07/19 19:25:26  set
+* Updated: [Debian] The TV dependency to be 2.0.4.
+
 Revision 1.680  2005/07/19 18:38:39  set
 * Fixed: Some linkers needs the libraries in a particular order. In this
 case easydiag must be the last one. Now the extrimk tool handles it. Note:
