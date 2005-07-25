@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.682  2005/07/21 20:37:23  set
+* Added: [WWW] CVS snapshot for Sarge (SPARC).
+
 Revision 1.681  2005/07/19 19:25:26  set
 * Updated: [Debian] The TV dependency to be 2.0.4.
 

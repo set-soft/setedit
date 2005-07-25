@@ -475,7 +475,7 @@ Boolean AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
  varsVals=new char[MaxVarValLen*nVars];
  memset(varsVals,0,MaxVarValLen*nVars);
  // Buffer for the labels
- char auxName[mLenVar+1];
+ AllocLocalStr(auxName,mLenVar+1);
  // Dialog
  TSViewCol *col=new TSViewCol(name ? name : "");
  TSView *tsv=NULL;
