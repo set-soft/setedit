@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -41,7 +41,6 @@
 #include <fcntl.h> // open
 #include <gzfiles.h>
 #include <dyncat.h>
-#include <pathtool.h> // IsADirectory
 
 #ifdef TVCompf_djgpp
 #include <crt0.h>
@@ -1475,6 +1474,12 @@ void LoadInfoEnviroment(void)
     __crt0_load_environment_file("info");
     info_env_loaded = 1;
    }
+}
+
+static
+int IsADirectory(const char *name)
+{
+ return !access(name,D_OK);
 }
 
 static

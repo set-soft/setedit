@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.683  2005/07/25 14:14:50  set
+* Fixed: [Not GCC] Code that needed gcc extensions (variable length local
+vector) Reported by Arnold.
+
 Revision 1.682  2005/07/21 20:37:23  set
 * Added: [WWW] CVS snapshot for Sarge (SPARC).
 
