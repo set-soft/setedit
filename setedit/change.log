@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.684  2005/07/27 20:40:27  set
+* Fixed(?): [DJGPP] Compilation problems for infview. Reported by Thiago.
+
 Revision 1.683  2005/07/25 14:14:50  set
 * Fixed: [Not GCC] Code that needed gcc extensions (variable length local
 vector) Reported by Arnold.

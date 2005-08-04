@@ -6404,8 +6404,11 @@ void TCEditor::SetCharCase(int option)
     default:
          result=(*s==upper) ? lower : upper;
    }
- if (result!=0xFF && result && result==*s) // If no change needed just return
+ if (result!=0xFF && result && result==*s) // If no change needed just advance & return
+   {
+    handleCommand(cmcCharRight);
     return;
+   }
  deleteRange(s,s+1);
  insertBuffer((char *)&result,0,1,True,False,False);
 }
