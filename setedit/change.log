@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.687  2005/08/05 16:58:29  set
+* Modified: [MSVC] Wrapper to avoid an overflow in the command line length.
+Based on Arnold's feadback, but untested, will need adjusts.
+
 Revision 1.686  2005/08/05 14:47:19  set
 * Added: C++ reserved word "mutable". Suggested by Ivan.
 
