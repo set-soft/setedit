@@ -3125,7 +3125,7 @@ int main(int argc, char *argv[])
  I("public");     I("this");        I("template");
  I("throw");      I("typename");    I("catch");
  I("virtual");    I("friend");      I("operator");
- I("try");
+ I("try");        I("mutable");
  // namespace stuff
  I("namespace");  I("using");
  ReservedWords->setOwnerShip(False);

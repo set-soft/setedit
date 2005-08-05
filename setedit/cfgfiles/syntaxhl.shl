@@ -50,7 +50,7 @@ Keywords=delete,do,double,else,enum,except,extern,false,far,finally,float,for
 Keywords=friend,goto,huge,if,inline,int,long,near,new,operator,private
 Keywords=protected,public,register,return,short,signed,sizeof,static,struct
 Keywords=switch,template,this,throw,true,try,typedef,typename,union,unsigned
-Keywords=using,virtual,void,volatile,while
+Keywords=using,virtual,void,volatile,while,mutable
 End
 
 # ---------------- Pascal ----------------
