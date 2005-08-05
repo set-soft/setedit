@@ -58,3 +58,4 @@ ALL_PREREQ=$**
 blink.exe: blink.c
 	$(RHIDE_GCC) -e$(OUTFILE) $(ALL_PREREQ)
 
+HELPER_TARGET=blink.exe

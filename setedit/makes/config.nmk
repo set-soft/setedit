@@ -24,7 +24,7 @@ CXXFLAGS = /TP $(CFLAGS)
 
 RHIDE_GCC=cl
 RHIDE_GXX=cl
-RHIDE_LD=link
+RHIDE_LD=mlink
 
 # Sets the variables for the sub-makes
 EXTRALIB_MAKE_ARGS=_SUBMAKE=1 CC="$(RHIDE_GCC)" LD="$(RHIDE_LD)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" -f Makefile.nmk

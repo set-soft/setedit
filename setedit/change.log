@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.686  2005/08/05 14:47:19  set
+* Added: C++ reserved word "mutable". Suggested by Ivan.
+
 Revision 1.685  2005/08/04 20:09:05  set
 * Modified: Now cmcToggleCharCase moves the cursor to the right if the
 character didn't change. Patch by Thiago.

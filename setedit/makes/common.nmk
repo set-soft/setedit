@@ -55,4 +55,8 @@ SOURCE_NAME=$**
 OUTFILE=$@
 ALL_PREREQ=$**
 
+mlink.exe:: mlink.c
+	$(RHIDE_GCC) /out:$(OUTFILE) kernel32.lib $(ALL_PREREQ)
+
+HELPER_TARGET=mlink.exe
 

@@ -48,7 +48,7 @@ RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
 #
 ##########################################################################################
 
-all: editor.exe
+all: $(HELPER_TARGET) editor.exe
 
 !ifndef MKF_EXT
 MKF_EXT=.bmk
