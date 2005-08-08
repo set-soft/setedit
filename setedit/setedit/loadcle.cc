@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -246,6 +246,10 @@ void LoadOneCLE(const char *name)
       ExpComp(LeaveDir)
     else
       SubExVal(EnterDirDir)
+    else
+      ExpComp(SevError)
+    else
+      ExpComp(SevWarn)
    }
  while (!feof(f) && strncasecmp(b,"End",3)!=0);
  CLEValues[i].Loaded=1;
@@ -346,14 +350,14 @@ int CLEDoSearch(char *search, int len, pcre *CompiledPCRE)
  return LastHits<0 ? 0 : LastHits;
 }
 
-void CLEGetMatch(int match, char *buf, int maxLen)
+int CLEGetMatch(int match, char *buf, int maxLen)
 {
  if (!SUP_PCRE)
-    return;
+    return 0;
  if (match<0 || match>LastHits)
    {
     *buf=0;
-    return;
+    return 0;
    }
  int start=PCREMatchs[match*2];
  int end=PCREMatchs[match*2+1];
@@ -362,6 +366,8 @@ void CLEGetMatch(int match, char *buf, int maxLen)
     len=maxLen-1;
  memcpy(buf,BufSearch+start,len);
  buf[len]=0;
+
+ return len;
 }
 
 void CLEGetMatch(int match, int &offset, int &len)

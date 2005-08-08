@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -30,6 +30,10 @@ struct strCLE
  char UseInternal;
  // Pattern to indicate the makefile went back one dir level
  pcre *LeaveDir;
+ // Pattern for the "Severity" when it means "error"
+ pcre *SevError;
+ // Pattern for the "Severity" when it means "warning"
+ pcre *SevWarn;
 };
 
 extern strCLE *CLEValues;
@@ -43,6 +47,6 @@ extern TStringCollection *CLEGetList();
 extern int CLEGetIndexOf(const char *name);
 extern int CLEGetIndexOfLoad(const char *name);
 extern int CLEDoSearch(char *search, int len, pcre *CompiledPCRE);
-extern void CLEGetMatch(int match, char *buf, int maxLen);
+extern int  CLEGetMatch(int match, char *buf, int maxLen);
 extern void CLEGetMatch(int match, int &offset, int &len);
 extern pcre *CLECompileRegEx(char *text, int &subX);

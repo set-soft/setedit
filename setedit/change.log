@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.690  2005/08/08 16:30:57  set
+* Added: When loading the "file under cursor" if we fail we try changing
+all \ to /.
+
 Revision 1.689  2005/08/08 16:15:17  set
 * Added: Colors to the Message Window. It now detects errors and warnings
 and paints them in different colors. That's only implemented for GNU

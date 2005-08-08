@@ -353,6 +353,7 @@ static
 char *ParseFunCLE(char *buf, FileInfo &fI, char *&fileName)
 {
  fI.Line=-1;
+ fI.type=fitNone;
  fileName=0;
  if (!CLEValues[IndexCLE].Pattern)
     return strdup(buf);
@@ -403,7 +404,23 @@ char *ParseFunCLE(char *buf, FileInfo &fI, char *&fileName)
  fI.Column=1;
  CLEGetMatch(CLEValues[IndexCLE].Description,fI.offset,fI.len);
 
- //CLEGetMatch(CLEValues[IndexCLE].Description,fName,PATH_MAX);
+ // Try to figure out the severity
+ if (CLEValues[IndexCLE].Severity!=0xFF)
+   {
+    char severity[32];
+    int len=CLEGetMatch(CLEValues[IndexCLE].Severity,severity,32);
+    if (CLEValues[IndexCLE].SevError &&
+        CLEDoSearch(severity,len,CLEValues[IndexCLE].SevError))
+       fI.type=fitError;
+    else if (CLEValues[IndexCLE].SevWarn &&
+             CLEDoSearch(severity,len,CLEValues[IndexCLE].SevWarn))
+       fI.type=fitWarning;
+    else
+       fI.type=fitInfo;
+   }
+ else
+    fI.type=fitError;
+
  return strdup(buf);
 }
 

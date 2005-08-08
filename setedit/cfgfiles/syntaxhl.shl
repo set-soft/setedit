@@ -1301,7 +1301,7 @@ EOLCInFirstCol1=1
 Symbols1=,=
 NoCheckNumbers=1
 Keywords=Name,Pattern,File,Line,Description,Severity,EnterDirPat,EnterDirDir
-Keywords=LeaveDir,UseInternal,End
+Keywords=LeaveDir,UseInternal,End,SevError,SevWarn
 End
 
 # --------------------------------- SQL -----------------------------------

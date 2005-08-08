@@ -1,4 +1,4 @@
-# Copyright (C) 1999-2004 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2005 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Command line errors description file for SET's editor
@@ -10,6 +10,8 @@
 # GNU programs
 # Note: The `Internal' version is faster and also supports
 # internationalization.
+#       The internal version also supports long lines cut
+# by gcc 3.x.
 #
 Name=GNU
 Pattern=((\w:[^:]+)|([^:]+)):(\d+): (.+)
@@ -31,6 +33,8 @@ File=1
 Line=2
 Severity=3
 Description=4
+SevError=Error
+SevWarn=Warning
 End
 
 #
@@ -55,10 +59,12 @@ End
 Name=Borland C
 Pattern=(Error|Warning) (.+) (.+) (.+): (.+)
 Severity=1
-# 2 is the number od the error/warning
+# 2 is the number of the error/warning
 File=3
 Line=4
 Description=5
+SevError=Error
+SevWarn=Warning
 End
 
 #
@@ -101,6 +107,8 @@ Severity=1
 File=2
 Line=3
 Description=4
+SevError=Error|Fatal
+SevWarn=Warning
 End
 
 #
@@ -139,5 +147,7 @@ Severity=1
 File=4
 Line=5
 Description=6
+SevError=ERROR
+SevWarn=WARNING
 End
 
