@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.688  2005/08/05 17:11:26  set
+* Fixed(?): [MSVC] mlink.exe compilation. The /OUT: option must be passed
+to the linker with /link. From a report by Arnold. Untested.
+
 Revision 1.687  2005/08/05 16:58:29  set
 * Modified: [MSVC] Wrapper to avoid an overflow in the command line length.
 Based on Arnold's feadback, but untested, will need adjusts.

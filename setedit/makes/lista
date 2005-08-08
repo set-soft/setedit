@@ -475,6 +475,7 @@ makes/linux/.cvsignore
 makes/lista
 makes/listaxtr
 makes/Makefile
+makes/mlink.c
 makes/objinf/delete.me
 makes/objlib/delete.me
 makes/objsdg/delete.me

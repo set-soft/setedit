@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -6,6 +6,7 @@
 #define Uses_access
 #define Uses_unistd
 
+#define Uses_AllocLocal
 #define Uses_TDialog
 #define Uses_TScrollBar
 #define Uses_TProgram
@@ -27,6 +28,7 @@
 #define Uses_TScreen
 #define Uses_TDeskTop
 #define Uses_TVOSClipboard
+#define Uses_TPalette
 #include <ceditor.h>
 #define Uses_TSOSListBoxMsg
 #include <edmsg.h>
@@ -40,6 +42,7 @@
 #include <splinman.h>
 #include <codepage.h>
 #include <editcoma.h>
+#include <dyncat.h>
 
 static TEdMsgDialog   *MsgWindow=NULL;
 static TSOSListBoxMsg *MsgList  =NULL;
@@ -113,6 +116,16 @@ TEdMsgDialog::~TEdMsgDialog()
    }
 }
 
+// 1-5 Same as a cyan window, 6-8 same as a list viewer, 9-11 new colors
+#define cpEdMsgDialogPal "\xA4\xA5\xA6\xA7\xA8\xA9\xAA\xAB\xAC\xAD\xAE"
+
+TPalette &TEdMsgDialog::getPalette() const
+{
+ static TPalette pal(cpEdMsgDialogPal,sizeof(cpEdMsgDialogPal)-1);
+ return pal;
+}
+
+
 static int avoidFocusAction=0;
 
 void TSOSListBoxMsg::focusItem(ccIndex item)
@@ -142,15 +155,53 @@ void TSOSListBoxMsg::selectItem(ccIndex item)
  selectOK=0;
  if (!avoidFocusAction)
    {
-    stkHandler aux=(stkHandler)(list()->at(focused));
+    ccIndex c=focused;
+
+    stkHandler aux=(stkHandler)(list()->at(c));
     char *msg=Stack->GetStrOf(aux);
     aux=Stack->GetPreviousOf(aux);
     FileInfo *fI=(FileInfo *)(Stack->GetPointerOf(aux));
+
+    // Check if that's a continuation of a multiline error
+    if (focused && fI->Line<0 && (fI->type & fitCont))
+      {
+       do
+         {
+          c--;
+          aux=(stkHandler)(list()->at(c));
+          msg=Stack->GetStrOf(aux);
+          aux=Stack->GetPreviousOf(aux);
+          fI=(FileInfo *)(Stack->GetPointerOf(aux));
+         }
+       while (c && fI->Line<0 && (fI->type & fitCont));
+      }
+
     if (fI->Line>=0)
       {
        char *fileName=Stack->GetStrOf(Stack->GetPreviousOf(aux));
+       int allocated=0, len=fI->len, offset=fI->offset;
+       // Check if the message continues in the next item
+       if (c+1<list()->getCount())
+         {
+          aux=(stkHandler)(list()->at(c+1));
+          char *msg2=Stack->GetStrOf(aux);
+          aux=Stack->GetPreviousOf(aux);
+          FileInfo *fI=(FileInfo *)(Stack->GetPointerOf(aux));
+          if (fI->type & fitCont)
+            {
+             DynStrCatStruct st;
+             DynStrCatInit(&st,msg+offset,len);
+             DynStrCat(&st,msg2+fI->offset,fI->len);
+             msg=st.str;
+             len=st.len;
+             offset=0;
+             allocated=1;
+            }
+         }
        selectOK=GotoFileLine(SpLineGetNewValueOf(fI->Line,fileName),fI->Column,
-                             fileName,msg,fI->offset,fI->len);
+                             fileName,msg,offset,len);
+       if (allocated)
+          free(msg);
       }
    }
 }
@@ -323,6 +374,14 @@ int TSOSListBoxMsg::getLineOf(int pos)
  return fI->Line;
 }
 
+unsigned TSOSListBoxMsg::getTypeOf(int pos)
+{
+ stkHandler aux=(stkHandler)(list()->at(pos));
+ aux=Stack->GetPreviousOf(aux);
+ FileInfo *fI=(FileInfo *)(Stack->GetPointerOf(aux));
+ return fI->type;
+}
+
 static inline
 void MakeBeep()
 {
@@ -391,6 +450,111 @@ void TSOSListBoxMsg::selectPrev(int offset)
     }
  // Try to go to the first
  selectNext(0);
+}
+
+// 1-3 same as a list viewer, 4-6 new colors
+#define cpSOSListBoxMsgPal "\x6\x6\x7\x8\x9\xA\xB"
+
+TPalette &TSOSListBoxMsg::getPalette() const
+{
+ static TPalette pal(cpSOSListBoxMsgPal,sizeof(cpSOSListBoxMsgPal)-1);
+ return pal;
+}
+
+void TSOSListBoxMsg::draw()
+{
+ int i, isSelAct, indent, scOff;
+ ccIndex item;
+ unsigned normalColor, selectedColor, focusedColor=0, color,
+          infoColor, warnColor, errColor;
+ TDrawBuffer b;
+
+ isSelAct=(state & (sfSelected | sfActive))==(sfSelected | sfActive);
+ if (isSelAct)
+   {// Selected & Active
+    normalColor=getColor(1);
+    focusedColor=getColor(3);
+    selectedColor=getColor(4);
+   }
+ else
+   {// !Selected | !Active
+    normalColor=getColor(2);
+    selectedColor=getColor(4);
+   }
+ infoColor=getColor(5);
+ warnColor=getColor(6);
+ errColor =getColor(7);
+
+ // Horizontal scroll bar offset
+ if (hScrollBar)
+    indent=hScrollBar->value;
+ else
+    indent=0;
+
+ // Render line by line
+ for (i=0; i<size.y; i++)
+    {
+     int width=size.x+1;
+     item=i+topItem;
+
+     // Solve the color according to the type
+     unsigned type=item<range ? getTypeOf(item) : fitNone;
+     switch (type & (~fitCont))
+       {
+        case fitInfo:
+             color=infoColor;
+             break;
+        case fitWarning:
+             color=warnColor;
+             break;
+        case fitError:
+             color=errColor;
+             break;
+        case fitNone:
+        default:
+             color=normalColor;
+       }
+
+     int isSel=item<range && isSelected(item);
+     if (isSelAct && focused==item && range>0)
+       {
+        color=(focusedColor & 0xF0) | (color & 0xF); // Keep the color for the type.
+        setCursor(1,i);
+        scOff=0;
+       }
+     else if (isSel)
+       {
+        scOff=2;
+       }
+     else
+        scOff=4;
+
+     // Clear the whole line
+     b.moveChar(0,' ',color,width);
+     if (item<range)
+       {
+        AllocLocalStr(text,width+indent+1);
+        AllocLocalStr(buf,width+1);
+        getText(text,item,width+indent);
+        int tl=strlen(text);
+        if (tl<=indent)
+           buf[0]=EOS;
+        else
+          {
+           memcpy(buf,text+indent,width);
+           buf[tl-indent]=EOS;
+          }
+        b.moveStr(1,buf,color);
+        if (showMarkers || isSel)
+          {
+           b.putChar(0,specialChars[scOff]);
+           b.putChar(width-2,specialChars[scOff+1]);
+          }
+       }
+     else if (i==0)
+        b.moveStr(1,_("<empty>"),getColor(1));
+     writeLine(0,i,size.x,1,b);
+    }
 }
 
 static void InsertInHelper(void)

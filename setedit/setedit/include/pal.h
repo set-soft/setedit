@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /* That's the palette of the editor constructed with the Robert's macros */
 
@@ -204,7 +204,21 @@
         S(9E,White,Blue,Focused Text) \
         S(9F,Black,Magenta,Selected Text) \
         S(A0,Yellow,Cyan,Changed text) \
-        S(A1,Black,Cyan,Reserved)
+        S(A1,Black,Cyan,Reserved) \
+        S(A2,Black,Cyan,Reserved) \
+        S(A3,Black,Cyan,Reserved) \
+        \
+        SS(A4,Lightgray,Cyan,Frame disabled,Message Window) \
+        S(A5,White,Cyan,Frame) \
+        S(A6,Lightgreen,Cyan,Frame icons) \
+        S(A7,Cyan,Blue,Scroll bar page) \
+        S(A8,Cyan,Blue,Scroll bar icons) \
+        S(A9,Black,Cyan,Normal) \
+        S(AA,White,Green,Focused) \
+        S(AB,Yellow,Cyan,Selected) \
+        S(AC,Lightblue,Cyan,Information) \
+        S(AD,Yellow,Cyan,Warnings) \
+        S(AE,Red,Cyan,Errors)
 
 #define Normal 07
 #define Light 0F
@@ -397,7 +411,21 @@
         M(9E,Light,Focused Text) \
         M(9F,Light,Selected Text) \
         M(A0,Empty,reserved) \
-        M(A1,Empty,reserved)
+        M(A1,Empty,reserved) \
+        M(A2,Empty,reserved) \
+        M(A3,Empty,reserved) \
+        \
+        M(A4,Normal,passive frame) /* Message Window */\
+        M(A5,Light,active frame) \
+        M(A6,Normal,frame icons) \
+        M(A7,Normal,scrollbar) \
+        M(A8,Normal,scrollbar icons) \
+        M(A9,Inverse,normal) \
+        M(AA,Normal,focused) \
+        M(AB,Underline,selected) \
+        M(AC,Inverse,information) \
+        M(AD,Inverse,warnings) \
+        M(AE,Inverse,errors)
 
 #define SE_cpBlackWhite SE_cpColor
 

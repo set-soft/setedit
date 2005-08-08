@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2001 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /* A dark palette created by Juan Diego Iannelli. */
    
@@ -179,7 +179,7 @@
   S(94,Black,Black,Reserved) \
   S(95,Black,Black,Reserved) \
   S(96,Black,Black,Reserved) \
-  \
+\
   SS(97,Black,Lightgray,Frame disabled,DataWindow) \
   S(98,White,Lightgray,Frame) \
   S(99,Lightgreen,Lightgray,Frame icons) \
@@ -190,5 +190,19 @@
   S(9E,White,Blue,Focused Text) \
   S(9F,Black,Magenta,Selected Text) \
   S(A0,Black,Red,Reserved) \
-  S(A1,Black,Cyan,Reserved)
+  S(A1,Black,Cyan,Reserved) \
+  S(A2,Black,Cyan,Reserved) \
+  S(A3,Black,Cyan,Reserved) \
+\
+  SS(A4,Lightgray,Cyan,Frame disabled,Message Window) \
+  S(A5,White,Cyan,Frame) \
+  S(A6,Lightgreen,Cyan,Frame icons) \
+  S(A7,Cyan,Blue,Scroll bar page) \
+  S(A8,Cyan,Blue,Scroll bar icons) \
+  S(A9,Black,Cyan,Normal) \
+  S(AA,White,Green,Focused) \
+  S(AB,Yellow,Cyan,Selected) \
+  S(AC,Lightblue,Cyan,Information) \
+  S(AD,Yellow,Cyan,Warnings) \
+  S(AE,Red,Cyan,Errors)
 

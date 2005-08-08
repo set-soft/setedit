@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -188,6 +188,52 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *endOfName,*endOfLine=0,*startOfColumn=0;
  int offset=0;
  int IsLineNumber=0;
+ static unsigned lastFIT=fitNone;
+ static const char *errorMsg=NULL, *warningMsg=NULL,
+                   *enteringDir=NULL, *leavingDir=NULL;
+ // Error message from a GNU tool (i.e. gcc)
+ static const char errorMsgEN[]=__("error");
+ // Warning message from a GNU tool (i.e. gcc)
+ static const char warningMsgEN[]=__("warning");
+ // GNU Make message: Entering directory (partial)
+ static const char *enteringDirEN=__("ntering dir");
+ // GNU Make message: Leaving directory (partial)
+ static const char *leavingDirEN=__("eaving dir");
+ static size_t errorLen, warningLen,
+               errorLenEN=sizeof(errorMsgEN)-1,
+               warningLenEN=sizeof(warningMsgEN)-1;
+ static int initialized=0;
+
+ if (!initialized)
+   {// Cache the i18n messages.
+    initialized=1;
+    errorMsg=_(errorMsgEN);
+    errorLen=strlen(errorMsg);
+    if (errorLen==errorLenEN && strcmp(errorMsg,errorMsgEN)==0)
+       errorMsg=NULL;
+    warningMsg=_(warningMsgEN);
+    warningLen=strlen(warningMsg);
+    if (warningLen==warningLenEN && strcmp(warningMsg,warningMsgEN)==0)
+       warningMsg=NULL;
+    enteringDir=_(enteringDirEN);
+    if (strcmp(enteringDir,enteringDirEN)==0)
+       enteringDir=NULL;
+    leavingDir=_(leavingDirEN);
+    if (strcmp(leavingDir,leavingDirEN)==0)
+       leavingDir=NULL;
+   }
+
+ // gcc 3.x cuts long lines and indents the continuations
+ if (buf[0]==' ' && buf[1]==' ' && buf[2]==' ' && buf[3]!=' ')
+   {
+    fI.type=lastFIT | fitCont;
+    fI.Line=-1;
+    // We let 1 extra space.
+    fI.len=strlen(buf+2);
+    fI.offset=2;
+    fileName=NULL;
+    return strdup(buf);
+   }
 
  // Look for file name and line number
  // It fails if: The file is absolute and starts with a number
@@ -218,8 +264,10 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
    }
  if (!endOfName || !endOfLine || !IsLineNumber)
    {
-    char *s=strstr(buf,"ntering dir");
-    if (!s) s=strstr(buf,_("ntering dir"));
+    lastFIT=fI.type=fitNone;
+    char *s=strstr(buf,enteringDirEN);
+    if (!s && enteringDir)
+       s=strstr(buf,enteringDir);
     if (s)
       {
        // The people that makes make if funny:
@@ -237,17 +285,22 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
              strcat(ActualPath,"/");
              StackPath->addStr(ActualPath);
             }
+          lastFIT=fI.type=fitInfo;
          }
       }
     else
       {
-       s=strstr(buf,"eaving dir");
-       if (!s) s=strstr(buf,_("eaving dir"));
+       s=strstr(buf,leavingDirEN);
+       if (!s && leavingDir)
+          s=strstr(buf,leavingDir);
        if (s)
+         {
           StackPath->DestroyTop();
+          lastFIT=fI.type=fitInfo;
+         }
       }
     fI.Line=-1;
-    fileName=0;
+    fileName=NULL;
     return strdup(buf);
    }
 
@@ -276,6 +329,20 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  fileName=strdup(bFile);
 
  *endOfLine=0;
+ // Determine the kind of message
+ fI.type=fitNone;
+ if (strncmp(endOfLine+2,errorMsgEN,errorLenEN)==0)
+    fI.type=fitError;
+ else if (strncmp(endOfLine+2,warningMsgEN,warningLenEN)==0)
+    fI.type=fitWarning;
+ else if (errorMsg && strncmp(endOfLine+2,errorMsg,errorLen)==0)
+    fI.type=fitError;
+ else if (warningMsg && strncmp(endOfLine+2,warningMsg,warningLen)==0)
+    fI.type=fitWarning;
+ else
+    fI.type=fitInfo;
+ lastFIT=fI.type;
+
  fI.Line=atoi(endOfName+1);
  fI.Column=startOfColumn ? atoi(startOfColumn) : 1;
 
