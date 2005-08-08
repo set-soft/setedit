@@ -112,7 +112,21 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
  messageBox(name,mfOKButton);
  #endif
 
- if (FindFile(name,fullName,reference))
+ int result=FindFile(name,fullName,reference);
+ if (!result)
+   {// We failed, try changing slashes
+    char *s=name;
+    int changed=0;
+    for (; *s; s++)
+        if (*s=='\\')
+          {
+           *s='/';
+           changed++;
+          }
+    if (changed)
+       result=FindFile(name,fullName,reference);
+   }
+ if (result)
    {
     OpenFileFromEditor(fullName);
     free(fullName);

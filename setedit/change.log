@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.689  2005/08/08 16:15:17  set
+* Added: Colors to the Message Window. It now detects errors and warnings
+and paints them in different colors. That's only implemented for GNU
+parser.
+* Added: Support for gcc 3.x "long error messages". GCC cuts them and the
+continuations are displayed indented. I think Oswald said about it and now
+that I'm using gcc 3.3.5.
+
 Revision 1.688  2005/08/05 17:11:26  set
 * Fixed(?): [MSVC] mlink.exe compilation. The /OUT: option must be passed
 to the linker with /link. From a report by Arnold. Untested.
