@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-07-19 14:27-0300\n"
+"PO-Revision-Date: 2005-08-08 13:00-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,7 @@ msgstr "I~r~ a"
 msgid "~M~arks"
 msgstr "~M~arcas"
 
-#: ../infview/infbase.cc:265
+#: ../infview/infbase.cc:264
 msgid ""
 "Attention !! This file is in DOS format, Do you want to convert it?, But "
 "maybe make a backup first !!"
@@ -249,24 +249,24 @@ msgstr ""
 "¡Atención! este archivo está en formato DOS, ¿quiere convertirlo? Haga una "
 "copia primero"
 
-#: ../infview/infbase.cc:282
+#: ../infview/infbase.cc:281
 msgid "Error: can't find the Node info"
 msgstr "Error: no puedo hallar el Nodo"
 
-#: ../infview/infbase.cc:1123
+#: ../infview/infbase.cc:1122
 msgid "Reading index table for: "
 msgstr "Leyendo el índice de: "
 
-#: ../infview/infbase.cc:1127
+#: ../infview/infbase.cc:1126
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1296
+#: ../infview/infbase.cc:1295
 #, c-format
 msgid "Attention: can't open the help file '%s'."
 msgstr "Atención: no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1876
+#: ../infview/infbase.cc:1881
 msgid ""
 "\n"
 " Sorry, I can't find this link (press ALT-F1).\n"
@@ -1536,7 +1536,7 @@ msgstr "No encontré el complemento"
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10726
+#: ../mainsrc/ceditor.cc:10729
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1544,29 +1544,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10741
+#: ../mainsrc/ceditor.cc:10744
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11487
+#: ../mainsrc/ceditor.cc:11490
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12418
+#: ../mainsrc/ceditor.cc:12421
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12629
+#: ../mainsrc/ceditor.cc:12632
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13824
+#: ../mainsrc/ceditor.cc:13827
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13834
+#: ../mainsrc/ceditor.cc:13837
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -5692,15 +5692,19 @@ msgstr "Mantener el valor del ~B~IOS"
 msgid "Always interpret shift+arrow as ~m~ovement"
 msgstr "Siempre interpretar shift+flecha como ~m~ovimiento"
 
-#: ../setedit/edmsg.cc:353
+#: ../setedit/edmsg.cc:412
 msgid "Last message in the list"
 msgstr "Último mensaje en la lista"
 
-#: ../setedit/edmsg.cc:385
+#: ../setedit/edmsg.cc:444
 msgid "First message in the list"
 msgstr "Primer mensaje en la lista"
 
-#: ../setedit/edmsg.cc:442
+#: ../setedit/edmsg.cc:555
+msgid "<empty>"
+msgstr "<vacío>"
+
+#: ../setedit/edmsg.cc:606
 msgid "Message Window"
 msgstr "Ventana de Mensajes"
 
@@ -6774,27 +6778,39 @@ msgstr "~L~íneas por pasada"
 msgid "Error ~p~arser"
 msgstr "Intérprete de ~e~rrores para"
 
-#: ../setedit/runprog.cc:222
+#. Error message from a GNU tool (i.e. gcc)
+#: ../setedit/runprog.cc:195
+msgid "error"
+msgstr "error"
+
+#. Warning message from a GNU tool (i.e. gcc)
+#: ../setedit/runprog.cc:197
+msgid "warning"
+msgstr "aviso"
+
+#. GNU Make message: Entering directory (partial)
+#: ../setedit/runprog.cc:199
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
-#: ../setedit/runprog.cc:245
+#. GNU Make message: Leaving directory (partial)
+#: ../setedit/runprog.cc:201
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:464
+#: ../setedit/runprog.cc:531
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:495
+#: ../setedit/runprog.cc:562
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:604
+#: ../setedit/runprog.cc:671
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:683
+#: ../setedit/runprog.cc:750
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 
@@ -6969,9 +6985,6 @@ msgstr "Código s~L~isp"
 #~ msgid "~T~ry"
 #~ msgstr "P~r~obar"
 
-#~ msgid "Error"
-#~ msgstr "Error"
-
 #~ msgid "Pocket Calculator"
 #~ msgstr "Calculadora de Bolsillo"
 
@@ -7098,9 +7111,6 @@ msgstr "Código s~L~isp"
 #~ msgid "Dec"
 #~ msgstr "Dic"
 
-#~ msgid "<empty>"
-#~ msgstr "<vacío>"
-
 #~ msgid "Highlight"
 #~ msgstr "Resaltado"
 
@@ -7176,9 +7186,6 @@ msgstr "Código s~L~isp"
 
 #~ msgid "Save to file"
 #~ msgstr "Grabar"
-
-#~ msgid "Warning"
-#~ msgstr "Atención"
 
 #~ msgid "Confirm"
 #~ msgstr "Confirmar"

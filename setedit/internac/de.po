@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-07-19 14:27-0300\n"
+"PO-Revision-Date: 2005-08-08 13:00-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -242,7 +242,7 @@ msgstr "~G~ehe zu"
 msgid "~M~arks"
 msgstr "~M~arkierungen"
 
-#: ../infview/infbase.cc:265
+#: ../infview/infbase.cc:264
 #, fuzzy
 msgid ""
 "Attention !! This file is in DOS format, Do you want to convert it?, But "
@@ -251,24 +251,24 @@ msgstr ""
 "Achhtung !! Diese Datei ist im DOS Format. Wollen Sie sie umwandeln? "
 "(Erstellen Sie zuerst eine Kopie!)"
 
-#: ../infview/infbase.cc:282
+#: ../infview/infbase.cc:281
 msgid "Error: can't find the Node info"
 msgstr "Fehler: Kann Knoten info nicht finden"
 
-#: ../infview/infbase.cc:1123
+#: ../infview/infbase.cc:1122
 msgid "Reading index table for: "
 msgstr "Lese Indextabelle für: "
 
-#: ../infview/infbase.cc:1127
+#: ../infview/infbase.cc:1126
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1296
+#: ../infview/infbase.cc:1295
 #, fuzzy, c-format
 msgid "Attention: can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht öffnen!"
 
-#: ../infview/infbase.cc:1876
+#: ../infview/infbase.cc:1881
 #, fuzzy
 msgid ""
 "\n"
@@ -1605,7 +1605,7 @@ msgstr "Keine Übereinstimmung gefunden"
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10726
+#: ../mainsrc/ceditor.cc:10729
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1614,29 +1614,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10741
+#: ../mainsrc/ceditor.cc:10744
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11487
+#: ../mainsrc/ceditor.cc:11490
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12418
+#: ../mainsrc/ceditor.cc:12421
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12629
+#: ../mainsrc/ceditor.cc:12632
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13824
+#: ../mainsrc/ceditor.cc:13827
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13834
+#: ../mainsrc/ceditor.cc:13837
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -6042,17 +6042,21 @@ msgstr "Behalte ~B~IOS Standard"
 msgid "Always interpret shift+arrow as ~m~ovement"
 msgstr "U~m~schalt+Pfeil immer als Bewegung"
 
-#: ../setedit/edmsg.cc:353
+#: ../setedit/edmsg.cc:412
 #, fuzzy
 msgid "Last message in the list"
 msgstr "Erster in der ~L~iste"
 
-#: ../setedit/edmsg.cc:385
+#: ../setedit/edmsg.cc:444
 #, fuzzy
 msgid "First message in the list"
 msgstr "Erster in der ~L~iste"
 
-#: ../setedit/edmsg.cc:442
+#: ../setedit/edmsg.cc:555
+msgid "<empty>"
+msgstr ""
+
+#: ../setedit/edmsg.cc:606
 msgid "Message Window"
 msgstr "Nachrichtenfenster"
 
@@ -7187,28 +7191,42 @@ msgstr "Gesamte Zeilen pro Seite:"
 msgid "Error ~p~arser"
 msgstr "Fehler"
 
-#: ../setedit/runprog.cc:222
+#. Error message from a GNU tool (i.e. gcc)
+#: ../setedit/runprog.cc:195
+#, fuzzy
+msgid "error"
+msgstr "Fehler"
+
+#. Warning message from a GNU tool (i.e. gcc)
+#: ../setedit/runprog.cc:197
+#, fuzzy
+msgid "warning"
+msgstr "Warnung"
+
+#. GNU Make message: Entering directory (partial)
+#: ../setedit/runprog.cc:199
 msgid "ntering dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:245
+#. GNU Make message: Leaving directory (partial)
+#: ../setedit/runprog.cc:201
 msgid "eaving dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:464
+#: ../setedit/runprog.cc:531
 msgid "A child process is running. Please wait or stop it."
 msgstr ""
 
-#: ../setedit/runprog.cc:495
+#: ../setedit/runprog.cc:562
 #, fuzzy
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:604
+#: ../setedit/runprog.cc:671
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:683
+#: ../setedit/runprog.cc:750
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 
@@ -7385,9 +7403,6 @@ msgstr "sLisp Makros"
 #~ msgid "~F~oreground"
 #~ msgstr "~V~ordergrund"
 
-#~ msgid "Error"
-#~ msgstr "Fehler"
-
 #, fuzzy
 #~ msgid "Pocket Calculator"
 #~ msgstr "~T~aschenrechner"
@@ -7523,9 +7538,6 @@ msgstr "sLisp Makros"
 #, fuzzy
 #~ msgid "Save to file"
 #~ msgstr "Speicher Datei als"
-
-#~ msgid "Warning"
-#~ msgstr "Warnung"
 
 #~ msgid "Confirm"
 #~ msgstr "Bestätigung"
