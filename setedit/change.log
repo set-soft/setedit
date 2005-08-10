@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.691  2005/08/08 18:12:13  set
+* Added: Message box colors for parsers configured using errors.cle.
+
 Revision 1.690  2005/08/08 16:30:57  set
 * Added: When loading the "file under cursor" if we fail we try changing
 all \ to /.

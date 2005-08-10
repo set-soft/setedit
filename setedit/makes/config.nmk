@@ -1,6 +1,6 @@
 #!/usr/bin/make
 #
-# Copyright (c) 2003-2004 by Salvador E. Tropea
+# Copyright (c) 2003-2005 by Salvador E. Tropea
 # Covered by the GPL license.
 #
 # This file contains the definitions that configures the compilation.
@@ -8,7 +8,7 @@
 #
 
 TVISION_INC=-I..\..\tvision\winnt\include -I..\..\tvision\include
-TVLIBDIR=..\..\tvision\winnt
+TVLIBDIR=..\..\tvision\makes
 
 !ifdef DEBUG
 # Options to debug

@@ -48,8 +48,6 @@ RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
 #
 ##########################################################################################
 
-all: $(HELPER_TARGET) editor.exe
-
 !ifndef MKF_EXT
 MKF_EXT=.bmk
 !endif
@@ -59,6 +57,8 @@ MKF_EXT=.bmk
 # It also includes rhide.env.
 #
 !include common$(MKF_EXT)
+
+all: $(HELPER_TARGET) editor.exe
 
 #
 # All the RHIDE data should come from here.

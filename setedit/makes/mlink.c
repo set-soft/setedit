@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
    }
  for (i=1; i<argc; i++)
     {
-     if (argv[i][0]=='/' || strstr(argv[i],".lib"))
+     if (argv[i][0]=='/' || strstr(argv[i],".lib") || strstr(argv[i],".obj"))
        {
         fprintf(f,"%s ",argv[i]);
         continue;
