@@ -1,3 +1,18 @@
+setedit (0.5.5-1) unstable; urgency=low
+
+  * The "I got ADSL 256kbits for 30 hours per month!" release; you may laugh
+    at that but I live in the 3rd world, previously I was using a 56Kbits
+    telephone modem.
+  * Salvador didn't told in this changelog but we are build-depending on
+    RHTVision 2.0.4 now, but I changed it to that version or 2.1.0 since it
+    seems that it works with both of them.
+  * Don't build-depend on xlibs-dev|xlib6g-dev and libncurses-dev, since
+    rhtvision-dev depends on them and they are really rhtvision's dependencies
+    and not of setedit proper.
+  * Standards compliance with Policy version 3.6.2.0.
+
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Sat, 20 Aug 2005 18:53:21 -0300
+
 setedit (0.5.5-0.1) unstable; urgency=low
 
   * New version automatically modified by version update scripts
