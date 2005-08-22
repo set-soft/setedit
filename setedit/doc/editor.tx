@@ -5089,21 +5089,21 @@ the text. The modes are:
   @item Use Tabs                  @x{Real Tabs}.
   @item Persistent blocks         @x{Block modes}.
   @item Intelligent indent        @x{Intelligent indent}.
-  @item Vertical cursor           @x{Column cursor}
+  @item Vertical cursor           @x{Column cursor}.
   @item Horizontal cursor
   @item Match pair highlight      @x{Match pair highlight}.
   @item Match pair on the fly
   @item Don't wait to search for the pair
-  @item Transparent Blocks        @x{Transparent Blocks}
-  @item Optimal Fill              @x{Optimal Fill}
-  @item Wrap words                @x{Wrap Words}
-  @item See tabs                  @x{See Tabs}
-  @item Don't move inside tabs    @x{Do not move inside tabs}
-  @item Tab smart indents         @x{Tab smart indents}
-  @item Use indent size           @x{Use indent size}
-  @item Keep trailing whitespace  @x{Keep trailing whitespace}
-  @item Backspace unindents       @x{Backspace unindents}
-  @item Column markers            @x{Column Markers}
+  @item Transparent Blocks        @x{Transparent Blocks}.
+  @item Optimal Fill              @x{Optimal Fill}.
+  @item Wrap words                @x{Wrap Words}.
+  @item See tabs                  @x{See Tabs}.
+  @item Don't move inside tabs    @x{Do not move inside tabs}.
+  @item Tab smart indents         @x{Tab smart indents}.
+  @item Use indent size           @x{Use indent size}.
+  @item Keep trailing whitespace  @x{Keep trailing whitespace}.
+  @item Backspace unindents       @x{Backspace unindents}.
+  @item Column markers            @x{Column Markers}.
 @end itemize
 
   Each mode can be 0 or 1. The editor will return to the original mode after
