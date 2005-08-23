@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.693  2005/08/22 16:00:49  set
+* Fixed: [Documentation] Missing "." at the end of some cross-references.
+Pointed out by Ivan.
+
 Revision 1.692  2005/08/10 13:28:43  set
 * Added: [SHL:XML] entity keyword.
 * Fixed: [MSVC] The call to mlink must indicate the obj dir to avoid a
