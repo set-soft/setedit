@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-08-08 13:00-0300\n"
+"PO-Revision-Date: 2005-08-08 15:04-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2204,7 +2204,7 @@ msgid "No file name under cursor"
 msgstr "No hay un nombre bajo el cursor"
 
 #. Generate a message indicating we couldn't load it
-#: ../mainsrc/loadfunc.cc:123
+#: ../mainsrc/loadfunc.cc:137
 #, c-format
 msgid "Can't find \"%s\" file"
 msgstr "No puedo encontrar el archivo \"%s\""
@@ -6798,19 +6798,19 @@ msgstr "ambiando a dir"
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:531
+#: ../setedit/runprog.cc:548
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:562
+#: ../setedit/runprog.cc:579
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:671
+#: ../setedit/runprog.cc:688
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:750
+#: ../setedit/runprog.cc:767
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-08-08 13:00-0300\n"
+"PO-Revision-Date: 2005-08-08 15:04-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2297,7 +2297,7 @@ msgid "No file name under cursor"
 msgstr ""
 
 #. Generate a message indicating we couldn't load it
-#: ../mainsrc/loadfunc.cc:123
+#: ../mainsrc/loadfunc.cc:137
 #, fuzzy, c-format
 msgid "Can't find \"%s\" file"
 msgstr "Zielverzeichnis"
@@ -7213,20 +7213,20 @@ msgstr ""
 msgid "eaving dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:531
+#: ../setedit/runprog.cc:548
 msgid "A child process is running. Please wait or stop it."
 msgstr ""
 
-#: ../setedit/runprog.cc:562
+#: ../setedit/runprog.cc:579
 #, fuzzy
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:671
+#: ../setedit/runprog.cc:688
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:750
+#: ../setedit/runprog.cc:767
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 
