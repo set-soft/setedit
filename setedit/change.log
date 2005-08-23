@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.694  2005/08/23 13:23:54  set
+* Added: [BC++/MSVC] DEBUG variable propagation. From Arnold.
+
 Revision 1.693  2005/08/22 16:00:49  set
 * Fixed: [Documentation] Missing "." at the end of some cross-references.
 Pointed out by Ivan.

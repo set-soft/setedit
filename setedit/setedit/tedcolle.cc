@@ -877,6 +877,14 @@ void RereadInode(TCEditWindow *p)
     // Ever try to update the id
     if (FillEditorId(&newId,ed->fileName) && !CompareEditorId(&newId,id))
       {
+       // Code to debug it
+       #if 0
+       // Note: On Debian GNU/Linux v3.1 (Sarge) I saw problems with samba volumes.
+       //       The reported inode seems to change without reason.
+       printf("File %s inode changed: dev:0x%lX/ino:0x%lX to dev:0x%lX/ino:0x%lX\n",
+              ed->fileName,(ulong)id->dev,(ulong)id->inode,(ulong)newId.dev,
+              (ulong)newId.inode);
+       #endif
        *id=newId;
        if (!ed->isReadOnly)
           AskReloadEditor(p);

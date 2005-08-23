@@ -331,13 +331,16 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  *endOfLine=0;
  // Determine the kind of message
  fI.type=fitNone;
- if (strncmp(endOfLine+2,errorMsgEN,errorLenEN)==0)
+ char *errTest=endOfLine+1;
+ if (ucisspace(*errTest))
+    errTest++;
+ if (strncmp(errTest,errorMsgEN,errorLenEN)==0)
     fI.type=fitError;
- else if (strncmp(endOfLine+2,warningMsgEN,warningLenEN)==0)
+ else if (strncmp(errTest,warningMsgEN,warningLenEN)==0)
     fI.type=fitWarning;
- else if (errorMsg && strncmp(endOfLine+2,errorMsg,errorLen)==0)
+ else if (errorMsg && strncmp(errTest,errorMsg,errorLen)==0)
     fI.type=fitError;
- else if (warningMsg && strncmp(endOfLine+2,warningMsg,warningLen)==0)
+ else if (warningMsg && strncmp(errTest,warningMsg,warningLen)==0)
     fI.type=fitWarning;
  else
     fI.type=fitInfo;

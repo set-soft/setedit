@@ -14242,6 +14242,17 @@ Boolean TCEditor::checkDiskCopyChanged(Boolean force)
        // care about it. So, in order to avoid a storm of questions and dialogs
        // we set the time of the buffer in memory to the time of the file on disk.
        DiskTime=st.st_mtime;
+       // Code to debug it
+       #if 0
+       struct tm *tmv=localtime(&now);
+       char buffer[32];
+       printf("%s changed:\n",fileName);
+       strftime(buffer,32,"now: %X %F",tmv);
+       puts(buffer);
+       tmv=localtime(&st.st_mtime);
+       strftime(buffer,32,"file: %X %F\n",tmv);
+       puts(buffer);
+       #endif
        return True;
       }
    }
