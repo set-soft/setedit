@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.695  2005/08/23 16:31:13  set
+* Added: Debug code to find the source of some problems I'm experimenting
+when editing files on samba resources.
+* Modified: The parser of "error/warning" messages to support some GNU
+style errors reported by other tools (not gcc itself).
+
 Revision 1.694  2005/08/23 13:23:54  set
 * Added: [BC++/MSVC] DEBUG variable propagation. From Arnold.
 
