@@ -1,9 +1,10 @@
 #!/usr/bin/make
 #
-# Copyright (c) 2003 by Salvador E. Tropea
+# Copyright (c) 2003-2005 by Salvador E. Tropea
 # Covered by the GPL license.
 #
-# This is the Borland C++ makefile for infview.
+# This is the Borland C++ makefile for the editor.
+# Also used by the MSVC makefile.
 #
 ##########################################################################################
 #
@@ -34,6 +35,7 @@ INCLUDE_DIRS=-I../winnt -I$(INCLUDE_DIR) -I$(SETEDIT_INC_DIR) -I$(SETTVUTI_INC_D
 C_EXTRA_FLAGS=-DFOR_EDITOR
 RHIDE_LIBS=..\libz\zlib.lib ..\libpcre\pcre.lib ..\libbzip2\bzip2.lib \
 	$(TVLIBDIR)\librhtv.lib
+OBJ_DIR=objinf
 
 ##########################################################################################
 #

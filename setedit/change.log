@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.696  2005/08/24 12:47:17  set
+* Added: [WWW] Links to a snapshot release of r1209 (tarball and Sarge).
+* Fixed: [WWW] A typo.
+* Modified: [Debian] Now we support more than 47 languages and not just 24
+as stated in the Debian description ;-)
+
 Revision 1.695  2005/08/23 16:31:13  set
 * Added: Debug code to find the source of some problems I'm experimenting
 when editing files on samba resources.
