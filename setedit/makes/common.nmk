@@ -24,8 +24,10 @@ SRCDIRS_2=$(SRCDIRS);.
 # If we don't do it make will use both rules.
 .c.obj:
 
+HELPER_TARGET=mlink.exe
 # These files changes the compilation process so they are important
 # dependencies.
+#MAKEFILE_DEPS=$(HELPER_TARGET)
 MAKEFILE_DEPS=
 # Extensions used by Microsoft tools
 ExOBJ=.obj
@@ -58,5 +60,4 @@ ALL_PREREQ=$**
 mlink.exe:: mlink.c
 	$(RHIDE_GCC) kernel32.lib $(ALL_PREREQ) /link /OUT:$(OUTFILE)
 
-HELPER_TARGET=mlink.exe
 

@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.697  2005/09/07 12:18:23  set
+* Fixed(?): [MSVC] The rule to create setedit/infview unconditionally took
+the .obj files from "obj", but for infview it must be "objinf". From the
+MSVC tools output sent by Arnold.
+
 Revision 1.696  2005/08/24 12:47:17  set
 * Added: [WWW] Links to a snapshot release of r1209 (tarball and Sarge).
 * Fixed: [WWW] A typo.
