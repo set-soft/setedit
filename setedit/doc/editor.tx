@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 2 May 2005
-@set update-month May 2005
+@set update-date 12 Sep 2005
+@set update-month Sep 2005
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -5307,737 +5307,6 @@ To learn more about the message window @x{Message Window}.
 @paragraph{}
 
 @c ************************************************************************************
-@section Editor specific commands
-
-  This section describes commands related to files being edited.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection AskString
-
-  (AskString @var{title} @var{message})
-@paragraph{}
-
-  Pops up a dialog asking for user input. The text is returned as an sLisp
-string variable. If the user canceled the input, the string has zero length.
-
-@c --------------------------------------------------------------
-@subsection BindKey
-
-  (BindKey @var{key_seq} @var{macro})@*
-  (BindKey @var{key_seq} @var{command} ...)
-@p{}
-
-  This command creates a key binding data type. It doesn't change anything
-alone and must be used with the @code{KeyBindings} command.
-@p{}
-
-  You can assign a defined sLisp macro or a piece of sLisp code using the
-first syntax. When assigning a sLisp code it must begin with @code{(} and end
-with @code{)}.
-@p{}
-
-  You can also assign a one command or a sequence of commands using the
-second syntax. The commands are specified using the same constants used for
-@code{SendCommands}. @x{SendCommands}.
-@p{}
-
-  The @var{key_seq} argument must be a string containing the key sequence
-used to trigger this definition.
-@p{}
-
-  The following example defines two keyboard sequences. The first is
-triggered when @key{Ctrl} and @key{K} are pressed together, then released and
-then @key{Z} is pressed (all in lower case mode). This sequence moves the
-cursor one line up and then one character to the left. The second sequence
-(@kbd{^K-X}) triggers a small sLisp sentence that prints a message in the
-message window.
-@p{}
-
-@example
-(KeyBindings
- (BindKey "CtK,Z" cmcLineUp cmcCharLeft)
- (BindKey "CtK,X" "(ShowInMessageWindow 'Hi! ;-)')")
-)
-@end example
-
-  When writing a key sequence you can use the @il{Insert key name} menu option
-if you don't know the name of a key combination. @x{Insert key name}.
-@p{}
-
-  An important detail is that this command can replace already defined keys
-and can even replace a group of assignments by the new definition. You can
-assign a command to @code{CtK} removing all the @kbd{^K} assigments during
-this operation.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection CloseWindowNumber
-
-  (CloseWindowNumber @var{number})
-@p{}
-
-  Closes the indicated window. The number is interpreted as in
-SelectWindowNumber. @x{SelectWindowNumber}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection ComplChoose
-
-  (ComplChoose @var{options} @var{delimiter} [@var{flags}])
-@paragraph{}
-
-  Brings up a floating drop-down list with the options. The
-@var{options} parameter is a delimited string, the delimiter is
-specified by the @var{delimiter} parameter.
-@paragraph{}
-
-  The function returns the option selected by the user or an empty string if
-the user aborted.
-@paragraph{}
-
-  The list is sorted alphabetically, the user can choose the item using the
-cursors or doing an incremental search. Only characters allowed for reserved
-words are accepted, any symbol will choose the currently selected item, other
-characters will abort.
-@paragraph{}
-
-  The @var{flags} parameter fine tunes the behavior of the routine. Currently
-only one thing can be changed. By default the string returned contains the
-character that produced the selection appended at the end of the string.
-Passing 1 for @var{flags} the character isn't concatenated.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection defmacro
-
-  (defmacro @var{name} @var{expression})
-@paragraph{}
-
-  Defines a new editor macro called @var{name}. When this macro is called the
-@var{expression} is evaluated. @x{How to write a sLisp macro}.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection EvalString
-
-  (EvalString @var{string})
-@p{}
-
-  Executes the sLisp code contained in the @var{string} variable.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection FindAgain
-
-  (FindAgain)
-@p{}
-
-  Repeats the last search. It should be used when you didn't gave control to
-the user since the last search because the user could perform a different
-search changing the compiled search. Returns the text found or an empty string
-if no match could be found. @x{FindString}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection FindString
-
-  (FindString @var{string} [@var{options_flags}])
-@p{}
-
-  Performs a search for the provided @var{string}. Returns the text found or
-an empty string if no match could be found. This operation moves the cursor
-position as in an interactive search. The match becomes temporally
-highlighted in the text.
-@p{}
-
-  Even when the @var{options_flags} argument is optional it is strongly
-recommended to provide it. If nothing is provided the user options will be
-used instead. The options are provided as flags combined with the @code{|}
-operand. Some of the flags doesn't have any sense when combined with others,
-you should avoid doing it. The available flags are:
-@p{}
-
-Search style:
-@p{}
-
-@itemize @bullet
-  @item edfCaseSensitive: perform a case sensitive search.
-  @item edfWholeWordsOnly: don't match partial words.
-  @item edfRegularEx: the string is a regular expression. Note this flag must
-be indicated in adition to the type of regular expressions used.
-@end itemize
-
-Scope:
-@p{}
-
-@itemize @bullet
-  @item edfSearchInComm: search only inside comments.
-  @item edfSearchOutComm: search only outside comments.
-  @item edfOnlySelection: search only inside the selected text.
-  @item edfFromCursor: start searching from the cursor position. That's the
-default action.
-  @item edfFromBeggining: start searching from the beggining of the selected
-scope.
-@end itemize
-
-Regular expressions options:
-@p{}
-
-@itemize @bullet
-  @item edfBasicRegEx: use basic POSIX regular expressions. Used in
-combination with edfRegularEx.
-  @item edfExtendedRegEx: use extended POSIX regular expressions. Used in
-combination with edfRegularEx.
-  @item edfPerlRegEx: use Perl regular expressions. Used in combination with
-edfRegularEx.
-  @item edfOptimizeRegEx: if the string to search doesn't contain special
-characters and regular expressions are enabled perform a normal search. This
-makes the search much more faster. This is the default action so you don't
-really need to specify this flag.
-  @item edfNoOptimizeRegEx: it is the opposite of edfOptimizeRegEx flag. It
-disables the optimization. Use it when you are sure the string is a regular
-expression even when it doesn't look like a regular expression. This option
-was created just in case the optimization fails to detect a real regular
-expression.
-@end itemize
-
-Others:
-@p{}
-
-@itemize @bullet
-  @item edfShowFuncName: display the name of the function where the match was
-found in the status line.
-@end itemize
-
-  A very important detail about regular expressions: In sLisp the @code{\}
-character is the escape character. It means that you have to use @code{\\} to
-get @code{\}.
-@p{}
-
-  The following example searchs for the @code{Hello} word followed by a digit
-using Perl regular expressions. Then prints the result of the search in the
-message window and after it repeats the search.
-@p{}
-
-@example
-(eval
- (= "str" (FindString "Hello\\d" (| edfRegularEx edfPerlRegEx)))
- (if str
-    (ShowInMessageWindow (+ "Found: " str))
-    (ShowInMessageWindow "Not found.")
- )
- (= "str" (FindAgain))
- (if str
-    (ShowInMessageWindow (+ "Found: " str))
-    (ShowInMessageWindow "Not found.")
- )
-)
-@end example
-
-  To learn more about the search options consult the find command (@xp{Find})
-and the regular expression options (@xp{Regular Expressions Options}). You
-could be also interested in learning more about POSIX regular expressions
-(@xp{Regular Expressions}), for Perl regular expressions consult some Perl
-reference. This command is complemented by @code{FindAgain} (@xp{FindAgain}),
-@code{ReplaceString} (@xp{ReplaceString}) and @code{ReplaceAgain}
-(@xp{ReplaceAgain}) commands.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection ForceUpdate
-
-  (ForceUpdate)
-@paragraph{}
-
-  It forces an update at this point of the macro. That's useful if you want
-to stop to ask the user something or the macro will take some time to complete
-and don't want to give the impression the editor hangs.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection GetCursorX
-
-  (GetCursorX)
-@p{}
-
-  Returns the X cursor coordinate. Note the coordinates are computed from
-zero.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetCursorY
-
-  (GetCursorY)
-@p{}
-
-  Returns the Y cursor coordinate. Note the coordinates are computed from
-zero.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetCurWindowNumber
-
-  (GetCurWindowNumber)
-@p{}
-
-  Returns the window number for the currently selected edition window.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetMaxWindowNumber
-
-  (GetMaxWindowNumber)
-@p{}
-
-  Returns the window number for the edition window with the biggest window
-number. The lowest number is two.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetMaxProjectItem
-
-  (GetMaxProjectItem)
-@p{}
-
-  Returns the number of items in the current project. If no project is opened
-it returns zero. You can retreive the project items using
-@code{GetProjectItem}. @x{GetProjectItem}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetProjectItem
-
-  (GetProjectItem @var{number})
-@p{}
-
-  Returns the name of the nth item in the current project. If no project is
-opened or the number is invalid the function returns an empty string.
-You can know how many items have the current project using
-@code{GetMaxProjectItem}. @x{GetMaxProjectItem}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection GetSystemInfo
-
-  (GetSystemInfo @var{which})
-@p{}
-
-  Returns information about the system and similar stuff. The @var{which}
-argument selects which kind of information is returned. Available values are:
-@p{}
-
-@itemize @bullet
-  @item edfInfTVDriver: The short name of the Turbo Vision driver in use.
-Some of the possible drivers are: DOS, Linux, QNX, QNX4, UNIX, Win32, WinGr,
-WinNT, X11 and XTerm.
-  @item edfInfOS: The name of the operating system. Some of the possible
-names are: DOS, UNIX and Win32.
-  @item edfInfOSFlavor: Some of the possible flavors are: Linux, FreeBSD,
-Solaris and QNXRtP.
-  @item edfInfCPU: The CPU family used to compile the editor. Some of the
-possible names are: x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium
-and Unknown.
-  @item edfInfCompiler: The compiler used to compile the editor. Some of the
-possible compilers are: GCC, BCPP and MSVC.
-  @item edfInfCompilerFlavor: Some of the possible flavors are: djgpp,
-MinGW and Cygwin.
-@end itemize
-
-
-@c --------------------------------------------------------------
-@subsection getenv
-
-  (getenv @var{name})
-@paragraph{}
-
-  This command returns the content of the environment variable called
-@var{name}. Internal variables of the editor are also accessable. If the
-variable doesn't exist an empty string is returned.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection GetSelection
-
-  (GetSelection)
-@paragraph{}
-
-  This command returns the selected text in the editor as a sLisp string.
-@x{How to write a sLisp macro}.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection GetSyntaxAtCursor
-
-  (GetSyntaxAtCursor)
-@paragraph{}
-
-  This command returns the syntax highlighting flags for the cursor position.
-That's very specific and can be used to find out if the cursor is inside a
-comment, string or preprocessor code.
-@paragraph{}
-
-  To understand how it works use the following macro and trigger it in many
-places to see what you get:
-@paragraph{}
-
-@example
-(defmacro 'Test edfWE'
-  (eval
-   (ShowInStatusLine (+ "" (GetSyntaxAtCursor)))
-  )
-)
-@end example
-
-  The following table explains the flags returned:
-@paragraph{}
-
-@table2{Flag,Meaning}
-@titemR{edfComInside,Inside an end-of-line comment}
-@titemR{edfEndCom,This line ends a multiline comment}
-@titemR{edfEndCom2,This line ends a multiline comment type 2}
-@titemR{edfExtCom,This line extends a multiline comment}
-@titemR{edfExtCom2,This line extends a multiline comment type 2}
-@titemR{edfExtOneLineCom,The end-of-line comment is extended to the next line}
-@titemR{edfExtPrepro,The preprocessor line follows in the next}
-@titemR{edfExtString,Inside a string}
-@titemR{edfExtString2,Inside a string type 2}
-@titemR{edfExtString3,Inside a string type 3}
-@titemR{edfInsideCom,Inside a multiline comment}
-@titemR{edfInsideCom2,Inside a multiline comment type 2}
-@titemR{edfPrepro,Inside preprocessor code}
-@titemR{edfStartCom,This line starts a multiline comment}
-@titemR{edfStartCom2,This line starts a multiline comment type 2}
-@titemR{edfStartInCom,This line is commented out by the previous}
-@titemR{edfStartInCom2,This line is commented out by the previous (type 2)}
-@titemR{edfStartString,This line startes inside a string}
-@titemR{edfStartString2,This line startes inside a string type 2}
-@titemR{edfStartString3,This line startes inside a string type 3}
-@endtable-{}
-
-  Something very important is that the editor will only analyze the line up
-to the cursor's position. So if the cursor is inside a string the editor
-will think this line extends a string.
-
-@c --------------------------------------------------------------
-@subsection GetSyntaxLang
-
-  (GetSyntaxLang)
-@p{}
-
-  Returns the language used for syntax highlight in the current editor. If
-none syntax highlight is in use it returns an empty string.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection InsertText
-
-  (InsertText @var{string} [@var{selected} [@var{move}]])
-@paragraph{}
-
-  Inserts the @var{string} at the cursor's position. By default the cursor is moved
-behind the insertion and the inserted text isn't selected. If @var{selected} is 1
-the text is selected. If the @var{move} parameter is 0 the cursor isn't moved and if
-the parameter is 1 the action depends on the current editor's setup.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection KeyBindings
-
-  (KeyBindings @var{key_binding} ...)
-@p{}
-
-  Adds the @var{key_binding} to the keyboard definitions. As the operation to
-insert a key in the keyboard definitions is slow this command is used to
-group all the operations in just one operation. Currently the only command
-that returns a key binding is @code{BindKey}. @x{BindKey}.
-@p{}
-
-  It returns zero if the operation failed and one if the operation succeed.
-If any of the specified key bindings fails the keyboard configuration isn't
-altered.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection MessageBox
-
-  (MessageBox @var{message} [@var{options}])
-@p{}
-
-  Pops up a small dialog showing the @var{message} to the user. The
-@var{options} can take the following values (use 'or' to combine them):
-@p{}
-
-@itemize @bullet
-@item edfMBCancelButton: has a @code{Cancel} button.
-@item edfMBNoButton: has a @code{No} button.
-@item edfMBOKButton: has an @code{Ok} button.
-@item edfMBOKCancel: has an @code{Ok} and a @code{Cancel} button.
-@item edfMBYesButton: has a @code{Yes} button.
-@item edfMBYesNoCancel: has a @code{Yes}, a @code{No} and a @code{Cancel} button.
-@item edfMBConfirmation: use @b{Confirmation} as caption.
-@item edfMBError: use @b{Error} as caption.
-@item edfMBInformation: use @b{Information} as caption.
-@item edfMBWarning: use @b{Warning} as caption.
-@end itemize
-
-@c --------------------------------------------------------------
-@subsection OpenFile
-
-  (OpenFile @var{string})
-@p{}
-
-  Opens the file @var{string} in a window and makes it the current one. If the
-file doesn't exist it does nothing. If the file fails to be loaded returns 0.
-If the file was already opened returns 2 and if the file was opened 1.
-@p{}
-
-
-@c --------------------------------------------------------------
-@subsection ReplaceAgain
-
-  (ReplaceAgain)
-@p{}
-
-  Repeats the last search and replace operation. It should be used when you
-didn't gave control to the user since the last search because the user could
-perform a different search changing the compiled search. Returns a boolean
-value indicating the status of the last search. @x{ReplaceString}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection ReplaceString
-
-  (ReplaceString @var{string} @var{replacement} [@var{options_flags}])
-@p{}
-
-  Performs a search and replace operation. Returns a boolean value indicating
-the status of the last search. Consult the @code{Find} command
-(@xp{FindString}) and the replace options of the editor
-(@xp{Replace}) for more information.
-@p{}
-
-  In addition to the @code{Find} options you have the following options:
-@p{}
-
-@itemize @bullet
-  @item edfPromptOnReplace: ask confirmation to the user.
-  @item edfReplaceAll: repeat the search and replace operation until no match
-can be found in the current scope.
-  @item edfNormalText: used to indicate that the @var{replacement} string is
-a simple text and not a replacement template. This is the default behavior.
-  @item edfTagsText: used to indicate that the @var{replacement} string
-contains @code{$n} tags. For more information consult the section for the
-regular expressions dialog of the editor (@xp{Regular Expressions Options}).
-@end itemize
-
-  The following example searchs for the @code{Hello} word followed by a digit
-using Perl regular expressions and replaces the text by the digit followed by
-an space and the @code{Bye} word. Then prints the result of the operation in the
-message window.
-@p{}
-
-@example
-(eval
- (if (ReplaceString "Hello(\\d)" "$1 Bye"
-      (| edfRegularEx edfPerlRegEx edfTagsText))
-  (ShowInMessageWindow "Replaced.")
-  (ShowInMessageWindow "Not replaced.")
- )
-)
-@end example
-
-@c --------------------------------------------------------------
-@subsection RunProgram
-
-  (RunProgram @var{program_name} [[@var{flags}] @var{parser}])
-@p{}
-
-  Calls the desired program. You can pass more than one using the @code{;}
-separator or any separator supported by your shell. Under DOS @code{;} is ok
-even when command.com doesn't support it. The stderr and stdout are
-redirected and captured by the message window of the editor.
-@p{}
-
-  Use the operator @code{+} to concatenate strings and pass arguments.
-@p{}
-
-  Using @code{edfRunUserScreen} for the @var{flags} argument the editor will
-use the user screen when running the external program. Using
-@code{edfRunNoRedirect} the editor won't redirect the standard output. For
-interactive applications that uses standard input and output you should both
-flags combined using the or operator. @x{Operator | (bitwise or)}.
-@p{}
-
-  Another option you can use is @code{edfRunStopDebug}. This option will stop
-any active debug session. That's a very delicated option and can be used when
-the macro is calling a compiler to rebuild an executable. In some OSs you
-must stop the debugger in order to be able to overwrite the executable.
-Additionaly gdb have some bugs that needs it as workaround.
-@p{}
-
-  The @var{parser} parameter tells the editor which error parser will be used
-to parse the output of the external program. By default the GNU one is used.
-@p{}
-
-  To learn more about the message window @x{Message Window}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection RunProgramRedir
-
-  (RunProgramRedir @var{program_name} [@var{input_text}])
-@paragraph{}
-
-  This function is similar to RunProgram, but the result isn't dumped to
-the message window, instead the output of the program is returned as a
-string.
-@paragraph{}
-
-  Additionally you can specify a text to send to the standard input of the
-program you are calling. You can easily call external filters with it. I provide
-an example of how to replace a selected text with the output of an external
-filter in the @file{macros.slp} file. @x{Configuration files location}.
-@p{}
-
-  Be careful, that's a very powerful command, but very dangerous too.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection SelectionExists
-
-  (SelectionExists)
-@p{}
-
-  Returns 1 if some text is selected and the selection is visible.
-@p{}
-   
-@c --------------------------------------------------------------
-@subsection SelectWindowNumber
-
-  (SelectWindowNumber @var{number})
-@p{}
-
-  Selects the indicated window. Positive numbers are reserved for edition
-windows, except window number one that's the project window. Negative numbers
-are used for special windows. The function returns a boolean value indicating
-if the desired window was selected.
-@p{}
-
-  When you select an edition window it becomes the target of all sLisp
-operations.
-@p{}
-
-  The available constants for special windows are:
-@p{}
-
-@itemize @bullet
- @item edfWinASCII
- @item edfWinCalendar
- @item edfWinClipboard
- @item edfWinHelp
- @item edfWinMP3
- @item edfWinMan
- @item edfWinMessage
- @item edfWinPrj
-@end itemize
-
-@c --------------------------------------------------------------
-@subsection SendCommands
-
-  (SendCommands @var{command} ...)
-@paragraph{}
-
-  Sends all the listed commands to the editor. The editor commands are sLisp constants
-that start with @code{cmc}. These commands are the same explained in the keyboard
-section as @code{cmcXXXXX}.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection SetCursorXY
-
-  (SetCursorXY @var{x} [@var{y}])
-@p{}
-
-  Sets the cursor coordinates. Note the coordinates starts from zero. If the
-@var{y} argument is omitted only the X coordinate is changed. This function
-returns the current Y coordinate, it doesn't have to be the same value you
-indicated in the @var{y} argument because the editor limits this value to the
-last line in the current buffer.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection ShowInMessageWindow
-
-  (ShowInMessageWindow @var{string} [@var{clear}])
-@p{}
-
-  Prints the desired string in the message window. That's a very good way to
-show a result to the user.
-@p{}
-
-  If the message window isn't selected or visible it gets the focus and
-becomes visible. The optional parameter allows you to clean the contents of
-the window. @x{Message Window}.
-@p{}
-
-@c --------------------------------------------------------------
-@subsection ShowInStatusLine
-
-  (ShowInStatusLine @var{string})
-@paragraph{}
-
-  Prints the passed string in the status line of the current editor. Tabs
-are converted to one space and the message stops at the first carriage
-return or line feed. That's a very good way to show a result to the user.
-@paragraph{}
-
-@c --------------------------------------------------------------
-@subsection WhichEditor
-
-  (WhichEditor [@var{option}])
-@paragraph{}
-
-  This command takes one optional parameter and returns the file name of the current
-file under edition.
-@paragraph{}
-
-  The optional parameter can be:
-@paragraph{}
-
-@table3{Parameter,Meaning,Example}
-@titemR{edfWEFull (0),Full name and path,\@samp\{c:/temp/test.txt\}}
-@titemR{edfWEFullNoExt (1),Same as 0 but without extension,\@samp\{c:/temp/test\}}
-@titemR{edfWEPath (2),Path for the file,\@samp\{c:/temp/\}}
-@titemR{edfWEDisk (3),Disk drive,\@samp\{c:\}}
-@titemR{edfWEExtension (4),File extension,\@samp\{.txt\}}
-@titemR{edfWENameNoExt (5),Name without extension,\@samp\{test\}}
-@endtable-{}
-
-
-@c --------------------------------------------------------------
-@subsection WordUnderCursor
-
-  (WordUnderCursor [@var{max_length} [@var{options}]])
-@paragraph{}
-
-  This command takes one optional parameter and returns the word that's
-located under the cursor. That's very useful for things like searching
-help about the function the user is typing or things like that.
-@paragraph{}
-
-  The maximum length is optional and if you don't specify it 256 is used.
-Values under 4 or over 32768 are adjusted to fit this range for security
-issues.
-@paragraph{}
-
-  The @var{options} parameter is 0 by default. Passing 1 the editor will
-return the word located to the left of the cursor, if the cursor is located
-at the first character after this word.
-@paragraph{}
-
-
-@c ************************************************************************************
 @section General sLisp commands
 
   This section describes general sLisp commands that can be used from the editor and
@@ -6611,6 +5880,770 @@ variables must be integer.
   (tostr 2)@*
   Returns "2".
 @paragraph{}
+
+@c ************************************************************************************
+@section Editor specific commands
+
+  This section describes commands related to files being edited.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection AskString
+
+  (AskString @var{title} @var{message})
+@paragraph{}
+
+  Pops up a dialog asking for user input. The text is returned as an sLisp
+string variable. If the user canceled the input, the string has zero length.
+
+@c --------------------------------------------------------------
+@subsection BindKey
+
+  (BindKey @var{key_seq} @var{macro})@*
+  (BindKey @var{key_seq} @var{command} ...)
+@p{}
+
+  This command creates a key binding data type. It doesn't change anything
+alone and must be used with the @code{KeyBindings} command.
+@p{}
+
+  You can assign a defined sLisp macro or a piece of sLisp code using the
+first syntax. When assigning a sLisp code it must begin with @code{(} and end
+with @code{)}.
+@p{}
+
+  You can also assign a one command or a sequence of commands using the
+second syntax. The commands are specified using the same constants used for
+@code{SendCommands}. @x{SendCommands}.
+@p{}
+
+  The @var{key_seq} argument must be a string containing the key sequence
+used to trigger this definition.
+@p{}
+
+  The following example defines two keyboard sequences. The first is
+triggered when @key{Ctrl} and @key{K} are pressed together, then released and
+then @key{Z} is pressed (all in lower case mode). This sequence moves the
+cursor one line up and then one character to the left. The second sequence
+(@kbd{^K-X}) triggers a small sLisp sentence that prints a message in the
+message window.
+@p{}
+
+@example
+(KeyBindings
+ (BindKey "CtK,Z" cmcLineUp cmcCharLeft)
+ (BindKey "CtK,X" "(ShowInMessageWindow 'Hi! ;-)')")
+)
+@end example
+
+  When writing a key sequence you can use the @il{Insert key name} menu option
+if you don't know the name of a key combination. @x{Insert key name}.
+@p{}
+
+  An important detail is that this command can replace already defined keys
+and can even replace a group of assignments by the new definition. You can
+assign a command to @code{CtK} removing all the @kbd{^K} assigments during
+this operation.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection CloseWindowNumber
+
+  (CloseWindowNumber @var{number})
+@p{}
+
+  Closes the indicated window. The number is interpreted as in
+SelectWindowNumber. @x{SelectWindowNumber}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ComplChoose
+
+  (ComplChoose @var{options} @var{delimiter} [@var{flags}])
+@paragraph{}
+
+  Brings up a floating drop-down list with the options. The
+@var{options} parameter is a delimited string, the delimiter is
+specified by the @var{delimiter} parameter.
+@paragraph{}
+
+  The function returns the option selected by the user or an empty string if
+the user aborted.
+@paragraph{}
+
+  The list is sorted alphabetically, the user can choose the item using the
+cursors or doing an incremental search. Only characters allowed for reserved
+words are accepted, any symbol will choose the currently selected item, other
+characters will abort.
+@paragraph{}
+
+  The @var{flags} parameter fine tunes the behavior of the routine. Currently
+only one thing can be changed. By default the string returned contains the
+character that produced the selection appended at the end of the string.
+Passing 1 for @var{flags} the character isn't concatenated.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection defmacro
+
+  (defmacro @var{name} @var{expression})
+@paragraph{}
+
+  Defines a new editor macro called @var{name}. When this macro is called the
+@var{expression} is evaluated. @x{How to write a sLisp macro}.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection EvalString
+
+  (EvalString @var{string})
+@p{}
+
+  Executes the sLisp code contained in the @var{string} variable.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection FindAgain
+
+  (FindAgain)
+@p{}
+
+  Repeats the last search. It should be used when you didn't gave control to
+the user since the last search because the user could perform a different
+search changing the compiled search. Returns the text found or an empty string
+if no match could be found. @x{FindString}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection FindString
+
+  (FindString @var{string} [@var{options_flags}])
+@p{}
+
+  Performs a search for the provided @var{string}. Returns the text found or
+an empty string if no match could be found. This operation moves the cursor
+position as in an interactive search. The match becomes temporally
+highlighted in the text.
+@p{}
+
+  Even when the @var{options_flags} argument is optional it is strongly
+recommended to provide it. If nothing is provided the user options will be
+used instead. The options are provided as flags combined with the @code{|}
+operand. Some of the flags doesn't have any sense when combined with others,
+you should avoid doing it. The available flags are:
+@p{}
+
+Search style:
+@p{}
+
+@itemize @bullet
+  @item edfCaseSensitive: perform a case sensitive search.
+  @item edfWholeWordsOnly: don't match partial words.
+  @item edfRegularEx: the string is a regular expression. Note this flag must
+be indicated in adition to the type of regular expressions used.
+@end itemize
+
+Scope:
+@p{}
+
+@itemize @bullet
+  @item edfSearchInComm: search only inside comments.
+  @item edfSearchOutComm: search only outside comments.
+  @item edfOnlySelection: search only inside the selected text.
+  @item edfFromCursor: start searching from the cursor position. That's the
+default action.
+  @item edfFromBeggining: start searching from the beggining of the selected
+scope.
+@end itemize
+
+Regular expressions options:
+@p{}
+
+@itemize @bullet
+  @item edfBasicRegEx: use basic POSIX regular expressions. Used in
+combination with edfRegularEx.
+  @item edfExtendedRegEx: use extended POSIX regular expressions. Used in
+combination with edfRegularEx.
+  @item edfPerlRegEx: use Perl regular expressions. Used in combination with
+edfRegularEx.
+  @item edfOptimizeRegEx: if the string to search doesn't contain special
+characters and regular expressions are enabled perform a normal search. This
+makes the search much more faster. This is the default action so you don't
+really need to specify this flag.
+  @item edfNoOptimizeRegEx: it is the opposite of edfOptimizeRegEx flag. It
+disables the optimization. Use it when you are sure the string is a regular
+expression even when it doesn't look like a regular expression. This option
+was created just in case the optimization fails to detect a real regular
+expression.
+@end itemize
+
+Others:
+@p{}
+
+@itemize @bullet
+  @item edfShowFuncName: display the name of the function where the match was
+found in the status line.
+@end itemize
+
+  A very important detail about regular expressions: In sLisp the @code{\}
+character is the escape character. It means that you have to use @code{\\} to
+get @code{\}.
+@p{}
+
+  The following example searchs for the @code{Hello} word followed by a digit
+using Perl regular expressions. Then prints the result of the search in the
+message window and after it repeats the search.
+@p{}
+
+@example
+(eval
+ (= "str" (FindString "Hello\\d" (| edfRegularEx edfPerlRegEx)))
+ (if str
+    (ShowInMessageWindow (+ "Found: " str))
+    (ShowInMessageWindow "Not found.")
+ )
+ (= "str" (FindAgain))
+ (if str
+    (ShowInMessageWindow (+ "Found: " str))
+    (ShowInMessageWindow "Not found.")
+ )
+)
+@end example
+
+  To learn more about the search options consult the find command (@xp{Find})
+and the regular expression options (@xp{Regular Expressions Options}). You
+could be also interested in learning more about POSIX regular expressions
+(@xp{Regular Expressions}), for Perl regular expressions consult some Perl
+reference. This command is complemented by @code{FindAgain} (@xp{FindAgain}),
+@code{ReplaceString} (@xp{ReplaceString}) and @code{ReplaceAgain}
+(@xp{ReplaceAgain}) commands.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ForceUpdate
+
+  (ForceUpdate)
+@paragraph{}
+
+  It forces an update at this point of the macro. That's useful if you want
+to stop to ask the user something or the macro will take some time to complete
+and don't want to give the impression the editor hangs.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection GetCursorX
+
+  (GetCursorX)
+@p{}
+
+  Returns the X cursor coordinate. Note the coordinates are computed from
+zero.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetCursorY
+
+  (GetCursorY)
+@p{}
+
+  Returns the Y cursor coordinate. Note the coordinates are computed from
+zero.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetCurWindowNumber
+
+  (GetCurWindowNumber)
+@p{}
+
+  Returns the window number for the currently selected edition window.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetMaxWindowNumber
+
+  (GetMaxWindowNumber)
+@p{}
+
+  Returns the window number for the edition window with the biggest window
+number. The lowest number is two.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetMaxProjectItem
+
+  (GetMaxProjectItem)
+@p{}
+
+  Returns the number of items in the current project. If no project is opened
+it returns zero. You can retreive the project items using
+@code{GetProjectItem}. @x{GetProjectItem}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetProjectItem
+
+  (GetProjectItem @var{number})
+@p{}
+
+  Returns the name of the nth item in the current project. If no project is
+opened or the number is invalid the function returns an empty string.
+You can know how many items have the current project using
+@code{GetMaxProjectItem}. @x{GetMaxProjectItem}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetSystemInfo
+
+  (GetSystemInfo @var{which})
+@p{}
+
+  Returns information about the system and similar stuff. The @var{which}
+argument selects which kind of information is returned. Available values are:
+@p{}
+
+@itemize @bullet
+  @item edfInfTVDriver: The short name of the Turbo Vision driver in use.
+Some of the possible drivers are: DOS, Linux, QNX, QNX4, UNIX, Win32, WinGr,
+WinNT, X11 and XTerm.
+  @item edfInfOS: The name of the operating system. Some of the possible
+names are: DOS, UNIX and Win32.
+  @item edfInfOSFlavor: Some of the possible flavors are: Linux, FreeBSD,
+Solaris and QNXRtP.
+  @item edfInfCPU: The CPU family used to compile the editor. Some of the
+possible names are: x86, Alpha, SPARC64, SPARC, PPC, HPPA, MIPS, Itanium
+and Unknown.
+  @item edfInfCompiler: The compiler used to compile the editor. Some of the
+possible compilers are: GCC, BCPP and MSVC.
+  @item edfInfCompilerFlavor: Some of the possible flavors are: djgpp,
+MinGW and Cygwin.
+@end itemize
+
+
+@c --------------------------------------------------------------
+@subsection getenv
+
+  (getenv @var{name})
+@paragraph{}
+
+  This command returns the content of the environment variable called
+@var{name}. Internal variables of the editor are also accessable. If the
+variable doesn't exist an empty string is returned.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection GetSelection
+
+  (GetSelection)
+@paragraph{}
+
+  This command returns the selected text in the editor as a sLisp string.
+@x{How to write a sLisp macro}.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection GetSyntaxAtCursor
+
+  (GetSyntaxAtCursor)
+@paragraph{}
+
+  This command returns the syntax highlighting flags for the cursor position.
+That's very specific and can be used to find out if the cursor is inside a
+comment, string or preprocessor code.
+@paragraph{}
+
+  To understand how it works use the following macro and trigger it in many
+places to see what you get:
+@paragraph{}
+
+@example
+(defmacro 'Test edfWE'
+  (eval
+   (ShowInStatusLine (+ "" (GetSyntaxAtCursor)))
+  )
+)
+@end example
+
+  The following table explains the flags returned:
+@paragraph{}
+
+@table2{Flag,Meaning}
+@titemR{edfComInside,Inside an end-of-line comment}
+@titemR{edfEndCom,This line ends a multiline comment}
+@titemR{edfEndCom2,This line ends a multiline comment type 2}
+@titemR{edfExtCom,This line extends a multiline comment}
+@titemR{edfExtCom2,This line extends a multiline comment type 2}
+@titemR{edfExtOneLineCom,The end-of-line comment is extended to the next line}
+@titemR{edfExtPrepro,The preprocessor line follows in the next}
+@titemR{edfExtString,Inside a string}
+@titemR{edfExtString2,Inside a string type 2}
+@titemR{edfExtString3,Inside a string type 3}
+@titemR{edfInsideCom,Inside a multiline comment}
+@titemR{edfInsideCom2,Inside a multiline comment type 2}
+@titemR{edfPrepro,Inside preprocessor code}
+@titemR{edfStartCom,This line starts a multiline comment}
+@titemR{edfStartCom2,This line starts a multiline comment type 2}
+@titemR{edfStartInCom,This line is commented out by the previous}
+@titemR{edfStartInCom2,This line is commented out by the previous (type 2)}
+@titemR{edfStartString,This line startes inside a string}
+@titemR{edfStartString2,This line startes inside a string type 2}
+@titemR{edfStartString3,This line startes inside a string type 3}
+@endtable-{}
+
+  Something very important is that the editor will only analyze the line up
+to the cursor's position. So if the cursor is inside a string the editor
+will think this line extends a string.
+
+@c --------------------------------------------------------------
+@subsection GetSyntaxLang
+
+  (GetSyntaxLang)
+@p{}
+
+  Returns the language used for syntax highlight in the current editor. If
+none syntax highlight is in use it returns an empty string.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetWrapCol
+
+  (GetWrapCol [window_number])
+@p{}
+
+  Returns the @b{wrap column} setting for the specified window. If you don't
+specify a window number then the current window number is used. If the
+specified value is invalid this function returns 0.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetWindowCols
+
+  (GetWindowCols [window_number])
+@p{}
+
+  Returns the number of visible columns in the specified window. If you don't
+specify a window number then the current window number is used. If the
+specified value is invalid this function returns 0.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection GetWindowRows
+
+  (GetWindowRows [window_number])
+@p{}
+
+  Returns the number of visible columns in the specified window. If you don't
+specify a window number then the current window number is used. If the
+specified value is invalid this function returns 0.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection InsertText
+
+  (InsertText @var{string} [@var{selected} [@var{move}]])
+@paragraph{}
+
+  Inserts the @var{string} at the cursor's position. By default the cursor is moved
+behind the insertion and the inserted text isn't selected. If @var{selected} is 1
+the text is selected. If the @var{move} parameter is 0 the cursor isn't moved and if
+the parameter is 1 the action depends on the current editor's setup.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection KeyBindings
+
+  (KeyBindings @var{key_binding} ...)
+@p{}
+
+  Adds the @var{key_binding} to the keyboard definitions. As the operation to
+insert a key in the keyboard definitions is slow this command is used to
+group all the operations in just one operation. Currently the only command
+that returns a key binding is @code{BindKey}. @x{BindKey}.
+@p{}
+
+  It returns zero if the operation failed and one if the operation succeed.
+If any of the specified key bindings fails the keyboard configuration isn't
+altered.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection MessageBox
+
+  (MessageBox @var{message} [@var{options}])
+@p{}
+
+  Pops up a small dialog showing the @var{message} to the user. The
+@var{options} can take the following values (use 'or' to combine them):
+@p{}
+
+@itemize @bullet
+@item edfMBCancelButton: has a @code{Cancel} button.
+@item edfMBNoButton: has a @code{No} button.
+@item edfMBOKButton: has an @code{Ok} button.
+@item edfMBOKCancel: has an @code{Ok} and a @code{Cancel} button.
+@item edfMBYesButton: has a @code{Yes} button.
+@item edfMBYesNoCancel: has a @code{Yes}, a @code{No} and a @code{Cancel} button.
+@item edfMBConfirmation: use @b{Confirmation} as caption.
+@item edfMBError: use @b{Error} as caption.
+@item edfMBInformation: use @b{Information} as caption.
+@item edfMBWarning: use @b{Warning} as caption.
+@end itemize
+
+@c --------------------------------------------------------------
+@subsection OpenFile
+
+  (OpenFile @var{string})
+@p{}
+
+  Opens the file @var{string} in a window and makes it the current one. If the
+file doesn't exist it does nothing. If the file fails to be loaded returns 0.
+If the file was already opened returns 2 and if the file was opened 1.
+@p{}
+
+
+@c --------------------------------------------------------------
+@subsection ReplaceAgain
+
+  (ReplaceAgain)
+@p{}
+
+  Repeats the last search and replace operation. It should be used when you
+didn't gave control to the user since the last search because the user could
+perform a different search changing the compiled search. Returns a boolean
+value indicating the status of the last search. @x{ReplaceString}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ReplaceString
+
+  (ReplaceString @var{string} @var{replacement} [@var{options_flags}])
+@p{}
+
+  Performs a search and replace operation. Returns a boolean value indicating
+the status of the last search. Consult the @code{Find} command
+(@xp{FindString}) and the replace options of the editor
+(@xp{Replace}) for more information.
+@p{}
+
+  In addition to the @code{Find} options you have the following options:
+@p{}
+
+@itemize @bullet
+  @item edfPromptOnReplace: ask confirmation to the user.
+  @item edfReplaceAll: repeat the search and replace operation until no match
+can be found in the current scope.
+  @item edfNormalText: used to indicate that the @var{replacement} string is
+a simple text and not a replacement template. This is the default behavior.
+  @item edfTagsText: used to indicate that the @var{replacement} string
+contains @code{$n} tags. For more information consult the section for the
+regular expressions dialog of the editor (@xp{Regular Expressions Options}).
+@end itemize
+
+  The following example searchs for the @code{Hello} word followed by a digit
+using Perl regular expressions and replaces the text by the digit followed by
+an space and the @code{Bye} word. Then prints the result of the operation in the
+message window.
+@p{}
+
+@example
+(eval
+ (if (ReplaceString "Hello(\\d)" "$1 Bye"
+      (| edfRegularEx edfPerlRegEx edfTagsText))
+  (ShowInMessageWindow "Replaced.")
+  (ShowInMessageWindow "Not replaced.")
+ )
+)
+@end example
+
+@c --------------------------------------------------------------
+@subsection RunProgram
+
+  (RunProgram @var{program_name} [[@var{flags}] @var{parser}])
+@p{}
+
+  Calls the desired program. You can pass more than one using the @code{;}
+separator or any separator supported by your shell. Under DOS @code{;} is ok
+even when command.com doesn't support it. The stderr and stdout are
+redirected and captured by the message window of the editor.
+@p{}
+
+  Use the operator @code{+} to concatenate strings and pass arguments.
+@p{}
+
+  Using @code{edfRunUserScreen} for the @var{flags} argument the editor will
+use the user screen when running the external program. Using
+@code{edfRunNoRedirect} the editor won't redirect the standard output. For
+interactive applications that uses standard input and output you should both
+flags combined using the or operator. @x{Operator | (bitwise or)}.
+@p{}
+
+  Another option you can use is @code{edfRunStopDebug}. This option will stop
+any active debug session. That's a very delicated option and can be used when
+the macro is calling a compiler to rebuild an executable. In some OSs you
+must stop the debugger in order to be able to overwrite the executable.
+Additionaly gdb have some bugs that needs it as workaround.
+@p{}
+
+  The @var{parser} parameter tells the editor which error parser will be used
+to parse the output of the external program. By default the GNU one is used.
+@p{}
+
+  To learn more about the message window @x{Message Window}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection RunProgramRedir
+
+  (RunProgramRedir @var{program_name} [@var{input_text}])
+@paragraph{}
+
+  This function is similar to RunProgram, but the result isn't dumped to
+the message window, instead the output of the program is returned as a
+string.
+@paragraph{}
+
+  Additionally you can specify a text to send to the standard input of the
+program you are calling. You can easily call external filters with it. I provide
+an example of how to replace a selected text with the output of an external
+filter in the @file{macros.slp} file. @x{Configuration files location}.
+@p{}
+
+  Be careful, that's a very powerful command, but very dangerous too.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection SelectionExists
+
+  (SelectionExists)
+@p{}
+
+  Returns 1 if some text is selected and the selection is visible.
+@p{}
+   
+@c --------------------------------------------------------------
+@subsection SelectWindowNumber
+
+  (SelectWindowNumber @var{number})
+@p{}
+
+  Selects the indicated window. Positive numbers are reserved for edition
+windows, except window number one that's the project window. Negative numbers
+are used for special windows. The function returns a boolean value indicating
+if the desired window was selected.
+@p{}
+
+  When you select an edition window it becomes the target of all sLisp
+operations.
+@p{}
+
+  The available constants for special windows are:
+@p{}
+
+@itemize @bullet
+ @item edfWinASCII
+ @item edfWinCalendar
+ @item edfWinClipboard
+ @item edfWinHelp
+ @item edfWinMP3
+ @item edfWinMan
+ @item edfWinMessage
+ @item edfWinPrj
+@end itemize
+
+@c --------------------------------------------------------------
+@subsection SendCommands
+
+  (SendCommands @var{command} ...)
+@paragraph{}
+
+  Sends all the listed commands to the editor. The editor commands are sLisp constants
+that start with @code{cmc}. These commands are the same explained in the keyboard
+section as @code{cmcXXXXX}.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection SetCursorXY
+
+  (SetCursorXY @var{x} [@var{y}])
+@p{}
+
+  Sets the cursor coordinates. Note the coordinates starts from zero. If the
+@var{y} argument is omitted only the X coordinate is changed. This function
+returns the current Y coordinate, it doesn't have to be the same value you
+indicated in the @var{y} argument because the editor limits this value to the
+last line in the current buffer.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ShowInMessageWindow
+
+  (ShowInMessageWindow @var{string} [@var{clear}])
+@p{}
+
+  Prints the desired string in the message window. That's a very good way to
+show a result to the user.
+@p{}
+
+  If the message window isn't selected or visible it gets the focus and
+becomes visible. The optional parameter allows you to clean the contents of
+the window. @x{Message Window}.
+@p{}
+
+@c --------------------------------------------------------------
+@subsection ShowInStatusLine
+
+  (ShowInStatusLine @var{string})
+@paragraph{}
+
+  Prints the passed string in the status line of the current editor. Tabs
+are converted to one space and the message stops at the first carriage
+return or line feed. That's a very good way to show a result to the user.
+@paragraph{}
+
+@c --------------------------------------------------------------
+@subsection WhichEditor
+
+  (WhichEditor [@var{option}])
+@paragraph{}
+
+  This command takes one optional parameter and returns the file name of the current
+file under edition.
+@paragraph{}
+
+  The optional parameter can be:
+@paragraph{}
+
+@table3{Parameter,Meaning,Example}
+@titemR{edfWEFull (0),Full name and path,\@samp\{c:/temp/test.txt\}}
+@titemR{edfWEFullNoExt (1),Same as 0 but without extension,\@samp\{c:/temp/test\}}
+@titemR{edfWEPath (2),Path for the file,\@samp\{c:/temp/\}}
+@titemR{edfWEDisk (3),Disk drive,\@samp\{c:\}}
+@titemR{edfWEExtension (4),File extension,\@samp\{.txt\}}
+@titemR{edfWENameNoExt (5),Name without extension,\@samp\{test\}}
+@endtable-{}
+
+
+@c --------------------------------------------------------------
+@subsection WordUnderCursor
+
+  (WordUnderCursor [@var{max_length} [@var{options}]])
+@paragraph{}
+
+  This command takes one optional parameter and returns the word that's
+located under the cursor. That's very useful for things like searching
+help about the function the user is typing or things like that.
+@paragraph{}
+
+  The maximum length is optional and if you don't specify it 256 is used.
+Values under 4 or over 32768 are adjusted to fit this range for security
+issues.
+@paragraph{}
+
+  The @var{options} parameter is 0 by default. Passing 1 the editor will
+return the word located to the left of the cursor, if the cursor is located
+at the first character after this word.
+@paragraph{}
+
 
 @c ************************************************************************************
 @section Writing macros that use text filters

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.698  2005/09/07 18:19:50  set
+* Modified: [MSVC] Cosmetic change in the makefiles to match TVs layout.
+
 Revision 1.697  2005/09/07 12:18:23  set
 * Fixed(?): [MSVC] The rule to create setedit/infview unconditionally took
 the .obj files from "obj", but for infview it must be "objinf". From the

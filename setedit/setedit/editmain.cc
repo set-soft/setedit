@@ -1766,6 +1766,54 @@ int CloseWindowNumber(int number)
 
 /**[txh]********************************************************************
 
+  Description: Returns the number of cols for the indicated window.
+  
+  Return: Window width-2 or 0 on error.
+  
+***************************************************************************/
+
+int GetWindowCols(int number)
+{
+ TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
+ int ret=-1;
+ if (p)
+    ret=p->view->size.x-2;
+ return ret<0 ? 0 : ret;
+}
+
+/**[txh]********************************************************************
+
+  Description: Returns the number of rows for the indicated window.
+  
+  Return: Window height-2 or 0 on error.
+  
+***************************************************************************/
+
+int GetWindowRows(int number)
+{
+ TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
+ int ret=-1;
+ if (p)
+    ret=p->view->size.y-2;
+ return ret<0 ? 0 : ret;
+}
+
+/**[txh]********************************************************************
+
+  Description: Returns the wrap column for the indicated window.
+  
+  Return: The column wrap setting or 0 if that isn't an editor.
+  
+***************************************************************************/
+
+int GetWrapCol(int number)
+{
+ TDskWin *p=TSetEditorApp::edHelper->searchByNumber(number);
+ return p && p->type==dktEditor ? ((TDskWinEditor *)p)->edw->editor->WrapCol : 0;
+}
+
+/**[txh]********************************************************************
+
   Description:
   Writes all the names of the opened windows to the stream f. The names are
 separated by spaces.@p

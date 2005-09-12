@@ -334,3 +334,41 @@ int CloseWindowNumber(int )
  return 0;
 }
 
+/**[txh]********************************************************************
+
+  Description: Returns the number of cols for the indicated window.
+  
+  Return: 78
+  
+***************************************************************************/
+
+int GetWindowCols(int )
+{
+ return 78;
+}
+
+/**[txh]********************************************************************
+
+  Description: Returns the number of rows for the indicated window.
+  
+  Return: 21
+  
+***************************************************************************/
+
+int GetWindowRows(int )
+{
+ return 21;
+}
+
+/**[txh]********************************************************************
+
+  Description: Returns the wrap column for the indicated window.
+  
+  Return: 60
+  
+***************************************************************************/
+
+int GetWrapCol(int )
+{
+ return 60;
+}

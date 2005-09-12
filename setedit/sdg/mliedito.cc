@@ -816,6 +816,72 @@ DecFun(MLIGetMaxWindowNumber)
  MLIRetInt(TMLIEditor::GetMaxWindowNumber());
 }
 
+// (GetWindowCols [window_number])
+DecFun(MLIGetWindowCols)
+{
+ int wn;
+ LocVarInt(window_number);
+
+ CheckNumParams(cant>1);
+
+ // Optional window number
+ if (!cant)
+    wn=TMLIEditor::GetCurWindowNumber();
+ else
+   {
+    GetInteger(0,window_number);
+    wn=window_number->val;
+   }
+
+ MLIRetInt(TMLIEditor::GetWindowCols(wn));
+CleanUp:
+ destroyFloatVar(window_number);
+}
+
+// (GetWindowRows [window_number])
+DecFun(MLIGetWindowRows)
+{
+ int wn;
+ LocVarInt(window_number);
+
+ CheckNumParams(cant>1);
+
+ // Optional window number
+ if (!cant)
+    wn=TMLIEditor::GetCurWindowNumber();
+ else
+   {
+    GetInteger(0,window_number);
+    wn=window_number->val;
+   }
+
+ MLIRetInt(TMLIEditor::GetWindowRows(wn));
+CleanUp:
+ destroyFloatVar(window_number);
+}
+
+// (GetWrapCol [window_number])
+DecFun(MLIGetWrapCol)
+{
+ int wn;
+ LocVarInt(window_number);
+
+ CheckNumParams(cant>1);
+
+ // Optional window number
+ if (!cant)
+    wn=TMLIEditor::GetCurWindowNumber();
+ else
+   {
+    GetInteger(0,window_number);
+    wn=window_number->val;
+   }
+
+ MLIRetInt(TMLIEditor::GetWrapCol(wn));
+CleanUp:
+ destroyFloatVar(window_number);
+}
+
 // (KeyBindings keyBindOp [keyBindOp ...])
 DecFun(MLIKeyBindings)
 {
@@ -1060,7 +1126,10 @@ char *TMLIEditor::cNames[MLIEditorCommands]=
  "GetSystemInfo",
  "GetProjectItem",
  "GetMaxProjectItem",
- "CloseWindowNumber"
+ "CloseWindowNumber",
+ "GetWindowCols",
+ "GetWindowRows",
+ "GetWrapCol"
 };
 
 Command TMLIEditor::cComms[MLIEditorCommands]=
@@ -1101,7 +1170,10 @@ Command TMLIEditor::cComms[MLIEditorCommands]=
  MLIGetSystemInfo,
  MLIGetProjectItem,
  MLIGetMaxProjectItem,
- MLICloseWindowNumber
+ MLICloseWindowNumber,
+ MLIGetWindowCols,
+ MLIGetWindowRows,
+ MLIGetWrapCol
 };
 
 

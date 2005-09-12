@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #if defined(Uses_TMLIEditor) && !defined(__TMLIEditor__)
 #define __TMLIEditor__
-const int MLIEditorCommands=36;
+const int MLIEditorCommands=39;
 class TNoCaseStringCollection;
 class TCEditor;
 
@@ -82,6 +82,9 @@ public:
  static int  CloseWindowNumber(int num);
  static int  GetCurWindowNumber();
  static int  GetMaxWindowNumber();
+ static int  GetWindowCols(int wn);
+ static int  GetWindowRows(int wn);
+ static int  GetWrapCol(int wn);
  // Key binding operations
  static int  StartKeyBind();
  static void EndKeyBind();

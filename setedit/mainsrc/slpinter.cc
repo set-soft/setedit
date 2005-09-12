@@ -435,6 +435,11 @@ const char *TMLIEditor::GetSyntaxLang()
  return Editor->SyntaxHL!=shlNoSyntax ? Editor->strC.Name : "";
 }
 
+int TMLIEditor::GetWrapCol(int wn)
+{
+ return ::GetWrapCol(wn);
+}
+
 int TMLIEditor::SelectWindowNumber(int num)
 {
  int ret=::SelectWindowNumber(num);
@@ -473,6 +478,15 @@ int TMLIEditor::GetMaxWindowNumber()
  return ::GetMaxWindowNumber();
 }
 
+int TMLIEditor::GetWindowCols(int wn)
+{
+ return ::GetWindowCols(wn);
+}
+
+int TMLIEditor::GetWindowRows(int wn)
+{
+ return ::GetWindowRows(wn);
+}
 /*****************************************************************************
   Key binding operations
 *****************************************************************************/
