@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.699  2005/09/12 16:39:13  set
+* Added: [sLisp] Three new commands GetWrapCol, GetWindowRows and
+GetWindowCols. Two of them are quite useful for text formating. From a
+mailing list thread by Grzegorz.
+
 Revision 1.698  2005/09/07 18:19:50  set
 * Modified: [MSVC] Cosmetic change in the makefiles to match TVs layout.
 

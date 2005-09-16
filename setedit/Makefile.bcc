@@ -32,12 +32,12 @@ all: editor infview
 
 editor: libs
 	-cd makes
-	$(MAKE) MKF_EXT="$(MKF_EXT)" DEBUG="$(DEBUG)" -f editor.bmk
+	$(MAKE) MKF_EXT="$(MKF_EXT)" DEBUG="$(DEBUG)" -f editor.bmk all
 	-cd ..
 
 infview: libs
 	-cd makes
-	$(MAKE) MKF_EXT="$(MKF_EXT)" DEBUG="$(DEBUG)" -f infview.bmk
+	$(MAKE) MKF_EXT="$(MKF_EXT)" DEBUG="$(DEBUG)" -f infview.bmk all
 	-cd ..
 
 #

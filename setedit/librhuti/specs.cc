@@ -1,5 +1,9 @@
 /* Copyright (C) 1996-1998 Robert H”hne, see COPYING.RH for details */
 /* This file is part of RHIDE. */
+
+/* This code isn't used by SETEdit, just disabled. */
+#if 0
+
 #include <rhutils.h>
 #define Uses_stdio
 #define Uses_glob
@@ -881,6 +885,6 @@ end:
   return retval;
 }
 
-
+#endif
 
 
