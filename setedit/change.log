@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.700  2005/09/16 18:52:37  set
+* Fixed: [MSVC] the "all" target isn't special for nmake. After arranging
+things so the variable gets defined by the time all is used I introduced
+a side effect: all isn't the first anymore. So we must explicitly ask for
+"all" target. From information sent by Arnold.
+* Fixed: [MSVC] the mlink tool links the objects using "brut force". As a
+side effect some useless code gets linked. The librhuti/specs.cc code is
+one of them. The problem is that this code generates unresolved
+dependencies. So now I disabled the code. From information sent by Arnold.
+
 Revision 1.699  2005/09/12 16:39:13  set
 * Added: [sLisp] Three new commands GetWrapCol, GetWindowRows and
 GetWindowCols. Two of them are quite useful for text formating. From a

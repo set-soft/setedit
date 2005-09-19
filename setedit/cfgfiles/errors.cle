@@ -151,3 +151,15 @@ SevError=ERROR
 SevWarn=WARNING
 End
 
+#
+# PHP
+#
+# Messages format:
+# <error> in <filename> on line <lineno>
+#
+Name=PHP
+Pattern=in (.+) on line (\d+)
+File=1
+Line=2
+End
+

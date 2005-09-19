@@ -332,8 +332,10 @@
 ;   (setv "name" (WhichEditor edfWENameNoExt)) ; name without extension
 ;   (setv "ext"  (WhichEditor edfWEExtension)) ; extension
 ; 
-;   (cond (== (GetSyntaxLang) 'Perl') (RunProgram (+ "perl -cw " name ext) 0 'Perl') ; Perl
-;         1                           (RunProgram (+ "make obj/" name ".o"))  ; C, C++
+;   (cond (== (GetSyntaxLang) 'C/C++') (RunProgram (+ "make obj/" (WhichEditor edfWENameNoExt) ".o"))
+;         (== (GetSyntaxLang) 'Perl')  (RunProgram (+ "perl -cw " name ext) 0 'Perl')
+;         (== (GetSyntaxLang) 'PHP')   (RunProgram (+ "php -l " name ext) 0 'PHP')
+;         (== (GetSyntaxLang) 'TeX')   (RunProgram (+ "latex \'\\scrollmode\\input\' " name ext))
 ;   )
 ;  )
 ; )
