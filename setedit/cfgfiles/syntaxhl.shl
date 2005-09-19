@@ -2495,3 +2495,34 @@ Keywords=.stabd,.stabn,.stabs,.string,.tag,.text,.title,.type,.val,.word
 Keywords=.globl
 End
 
+# ------------------------------- Ch -------------------------------
+# Here are the definitions for Ch, a C/C++ interpreter used for
+# syntaxhl.shl
+# Contributed by Wayne W. Cheng <wcheng@softintegration.com>
+#
+Name=Ch
+Files=ch,chf
+EmacsModes=Ch,ch
+ShellScript=ch
+Case=1
+OpenComment1=/*
+CloseComment1=*/
+EOLComment1=//
+HexMarker=0x
+Symbols1=!&*+-./:<=>?^|~
+Symbols2=(){}[],;
+String1="
+String2='
+Escape=\
+Preprocessor=#
+PMacros=cpmacros.pmc
+Preload
+Keywords=asm,auto,bool,break,case,catch,char,class,const,continue,default
+Keywords=delete,do,double,else,enum,except,extern,false,far,finally,float,for
+Keywords=friend,goto,huge,if,inline,int,long,near,new,operator,private
+Keywords=protected,public,register,return,short,signed,sizeof,static,struct
+Keywords=switch,this,throw,true,try,typedef,typename,union,unsigned
+Keywords=using,virtual,void,volatile,while
+Keywords=foreach,__declspec,__declspe,string_t,array,complex,wchar_t
+End
+
