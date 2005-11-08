@@ -299,14 +299,17 @@
 ;*******************************************************************
 
 (defmacro 'DuplicateLineOrSelection'
- (if (SelectionExists)
-  (InsertText (GetSelection))
-  (progn
-   (SendCommands cmcLineStart cmcSelectOn cmcLineEnd cmcSelectOff cmcCopy cmcLineEnd)
-   (InsertText "\n")
-   (SendCommands cmcPaste)
+  (if (SelectionExists)  (InsertText (GetSelection))
+
+                         (progn  ; else
+                                 (SendCommands cmcPushCursorPos cmcLineStart cmcSelectOn cmcLineEnd
+                                               cmcSelectOff)
+                                 (= "temp" (GetSelection))
+                                 (SendCommands cmcLineEnd)
+                                 (InsertText (+ "\n" temp))
+                                 (SendCommands cmcPopCursorPos cmcLineDown)
+                         )
   )
- )
 )
 
 (defmacro 'EvalSelection_Print'

@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.702  2005/09/19 15:21:40  set
+* Added: [SHL] Ch syntax highlight.
+
 Revision 1.701  2005/09/19 13:15:09  set
 * Added: PHP errors parser. Contributed by Thiago.
 * Added: PHP "compilation" to the "Compile" macro example. Contributed by
