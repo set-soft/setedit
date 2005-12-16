@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-09-12 13:17-0300\n"
+"PO-Revision-Date: 2005-12-16 11:04-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:711
-#: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:136 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
 #: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
@@ -455,7 +455,7 @@ msgstr ""
 "Para cargar uno del directorio actual agregue ./ al comienzo del nombre.\n"
 "Reporte errores a salvador@inti.gov.ar o djgpp@delorie.com.\n"
 
-#: ../infview/infmain.cc:931
+#: ../infview/infmain.cc:937
 #, c-format
 msgid "Could not find '%s'."
 msgstr "No pude encontrar '%s'."
@@ -794,12 +794,12 @@ msgid "> ~N~ext"
 msgstr "> P~r~óxima"
 
 #: ../install/install.cc:482 ../mainsrc/deedidia.cc:340
-#: ../setedit/advice.cc:125 ../setedit/advice.cc:132
+#: ../setedit/advice.cc:127 ../setedit/advice.cc:134
 msgid "~Y~es"
 msgstr "~S~i"
 
 #: ../install/install.cc:483 ../mainsrc/deedidia.cc:341
-#: ../setedit/advice.cc:126 ../setedit/advice.cc:131
+#: ../setedit/advice.cc:128 ../setedit/advice.cc:133
 msgid "~N~o"
 msgstr "~N~o"
 
@@ -1561,12 +1561,12 @@ msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13827
+#: ../mainsrc/ceditor.cc:13832
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13837
+#: ../mainsrc/ceditor.cc:13842
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -1991,69 +1991,74 @@ msgstr "~N~o cargar y mostrar los cambios"
 msgid "Not enough memory for this operation"
 msgstr "No hay suficiente memoria para esta operación"
 
-#: ../mainsrc/doedidia.cc:70
+#: ../mainsrc/doedidia.cc:72
+#, fuzzy, c-format
+msgid "Error reading file %s. %s"
+msgstr "Error al leer el archivo %s."
+
+#: ../mainsrc/doedidia.cc:73
 #, c-format
 msgid "Error reading file %s. %s (%d)"
 msgstr "Error al leer el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:77
+#: ../mainsrc/doedidia.cc:80
 #, c-format
 msgid "Error writing file %s. %s (%d)"
 msgstr "Error al escribir el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:84
+#: ../mainsrc/doedidia.cc:87
 #, c-format
 msgid "Error creating file %s. %s (%d)"
 msgstr "Error al crear el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:88
+#: ../mainsrc/doedidia.cc:91
 msgid "Error creating temporal file, operation aborted"
 msgstr "Error al crear archivo temporario, operación abortada"
 
-#: ../mainsrc/doedidia.cc:94
+#: ../mainsrc/doedidia.cc:97
 #, c-format
 msgid "%s has been modified. Save?"
 msgstr "%s ha sido modificado. ¿Grabo?"
 
-#: ../mainsrc/doedidia.cc:97
+#: ../mainsrc/doedidia.cc:100
 msgid "Save untitled file?"
 msgstr "¿Grabo el archivo sin título?"
 
-#: ../mainsrc/doedidia.cc:100
+#: ../mainsrc/doedidia.cc:103
 msgid "Save file as"
 msgstr "Grabar como"
 
-#: ../mainsrc/doedidia.cc:108
+#: ../mainsrc/doedidia.cc:111
 msgid "Write to file"
 msgstr "Guardar a un archivo"
 
-#: ../mainsrc/doedidia.cc:111
+#: ../mainsrc/doedidia.cc:114
 msgid "Read from file"
 msgstr "Leer desde un archivo"
 
-#: ../mainsrc/doedidia.cc:122
+#: ../mainsrc/doedidia.cc:125
 msgid "Search string not found."
 msgstr "No se pudo hallar el texto."
 
-#: ../mainsrc/doedidia.cc:207
+#: ../mainsrc/doedidia.cc:210
 msgid "Line too long, cut it?"
 msgstr "Línea demasiado larga, ¿la corto?"
 
-#: ../mainsrc/doedidia.cc:211
+#: ../mainsrc/doedidia.cc:214
 msgid "Line extremely long. Can't handle it reliably, sorry"
 msgstr ""
 "Línea extremadamente larga, no puede ser manejado correctamente, lo lamento"
 
-#: ../mainsrc/doedidia.cc:215
+#: ../mainsrc/doedidia.cc:218
 msgid "This file isn't on the disk!"
 msgstr "¡Este archivo no se encuentra en disco!"
 
-#: ../mainsrc/doedidia.cc:222
+#: ../mainsrc/doedidia.cc:225
 #, c-format
 msgid "The file %s is read-only, try to revert it?"
 msgstr "El archivo %s es de solo lectura, ¿revierto esto?"
 
-#: ../mainsrc/doedidia.cc:225
+#: ../mainsrc/doedidia.cc:228
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -2061,50 +2066,50 @@ msgstr ""
 "No pude revertir el atributo de solo lectura, ud. no podrá sobreescribir "
 "este archivo"
 
-#: ../mainsrc/doedidia.cc:229
+#: ../mainsrc/doedidia.cc:232
 msgid "This action can't be undone. Are you sure?"
 msgstr "Esta acción no puede deshacerse. ¿Está seguro?"
 
-#: ../mainsrc/doedidia.cc:236
+#: ../mainsrc/doedidia.cc:239
 #, c-format
 msgid "%s already exists. Overwrite?"
 msgstr "%s ya existe. ¿Lo sobreescribo?"
 
-#: ../mainsrc/doedidia.cc:242
+#: ../mainsrc/doedidia.cc:245
 #, c-format
 msgid "%s isn't a file, probably a device, go ahead?"
 msgstr "%s no es un archivo, probablemente un dispositivo, ¿continuo?"
 
-#: ../mainsrc/doedidia.cc:245
+#: ../mainsrc/doedidia.cc:248
 msgid "Can't create a backup. Continue saving?"
 msgstr "No puedo crear un archivo de respaldo. ¿Continuo?"
 
-#: ../mainsrc/doedidia.cc:248
+#: ../mainsrc/doedidia.cc:251
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "No se puede pegar un rectángulo que cruce el fin del archivo"
 
-#: ../mainsrc/doedidia.cc:259
+#: ../mainsrc/doedidia.cc:262
 msgid "No pseudo macros available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/doedidia.cc:276
+#: ../mainsrc/doedidia.cc:279
 msgid "The file is compressed. Do you want to save with compression?"
 msgstr "El archivo está comprimido. ¿Desea guardarlo comprimido?"
 
-#: ../mainsrc/doedidia.cc:279
+#: ../mainsrc/doedidia.cc:282
 msgid "Searching inside a selection but nothing is selected"
 msgstr "Búsqueda dentro de una selección pero no hay nada seleccionado"
 
-#: ../mainsrc/doedidia.cc:283
+#: ../mainsrc/doedidia.cc:286
 msgid "You must select some text for this operation"
 msgstr "Debe seleccionar algún texto para esta operación"
 
-#: ../mainsrc/doedidia.cc:290
+#: ../mainsrc/doedidia.cc:293
 #, c-format
 msgid "You must select less than %d characters"
 msgstr "Debe seleccionar menos de %d caracteres"
 
-#: ../mainsrc/doedidia.cc:295
+#: ../mainsrc/doedidia.cc:298
 msgid "The selection can't contain more than one line"
 msgstr "El texto seleccionado no puede contenet más de una línea"
 
@@ -2116,9 +2121,42 @@ msgstr "Portapapeles"
 msgid "Untitled"
 msgstr "Sin Título"
 
-#: ../mainsrc/gzfiles.cc:42
-msgid "You must install gzip to browse compressed files!"
-msgstr "¡Debe instalar gzip para leer archivos comprimidos!"
+#: ../mainsrc/gzfiles.cc:450
+#, fuzzy
+msgid "Validation"
+msgstr "~N~avegación"
+
+#: ../mainsrc/gzfiles.cc:454
+msgid "Passphrase"
+msgstr ""
+
+#: ../mainsrc/gzfiles.cc:609
+#, fuzzy
+msgid "No passphrase available"
+msgstr "No hay pseudo macros disponibles"
+
+#: ../mainsrc/gzfiles.cc:618 ../setedit/debug.cc:8604
+msgid "Out of memory"
+msgstr "No hay memoria suficiente"
+
+#: ../mainsrc/gzfiles.cc:628
+#, fuzzy
+msgid "Can't create temporal file"
+msgstr "No puedo crear una copia temporal del autoexec.bat"
+
+#: ../mainsrc/gzfiles.cc:643 ../mainsrc/gzfiles.cc:703
+msgid "Failed to invoke gpg"
+msgstr ""
+
+#: ../mainsrc/gzfiles.cc:677
+#, fuzzy
+msgid "Error while decrypting"
+msgstr "Error al leer"
+
+#: ../mainsrc/gzfiles.cc:681
+#, fuzzy
+msgid "Failed to determine user ID"
+msgstr "No puedo abrir la lista de archivos %s"
 
 #: ../mainsrc/keytrans.cc:804
 msgid "Wrong file"
@@ -2974,19 +3012,23 @@ msgstr ""
 "El programa será ejecutado en otra terminal virtual.\n"
 "Consulte la Ventada de Depuración para saber cual."
 
-#: ../setedit/advice.cc:102
+#: ../setedit/advice.cc:76
+msgid "Encrypted file detected. Install GPG in /usr/bin/."
+msgstr ""
+
+#: ../setedit/advice.cc:104
 msgid "Advice"
 msgstr "Consejo"
 
-#: ../setedit/advice.cc:117 ../setedit/editdiag.cc:87
+#: ../setedit/advice.cc:119 ../setedit/editdiag.cc:87
 msgid "Don't show it next time"
 msgstr "No mostrar esto la próxima vez"
 
-#: ../setedit/advice.cc:241
+#: ../setedit/advice.cc:243
 msgid "Advice dialogs"
 msgstr "Diálogos de consejo"
 
-#: ../setedit/advice.cc:247
+#: ../setedit/advice.cc:249
 msgid "Select which advice dialogs are enabled"
 msgstr "Seleccione cuales diálogos están habilitados"
 
@@ -3897,10 +3939,6 @@ msgstr "hexadecimal"
 #: ../setedit/debug.cc:8601
 msgid "octal"
 msgstr "octal"
-
-#: ../setedit/debug.cc:8604
-msgid "Out of memory"
-msgstr "No hay memoria suficiente"
 
 #: ../setedit/debug.cc:8605
 msgid "Pipe creation"
@@ -6918,6 +6956,9 @@ msgstr "Comando~s~"
 msgid "s~L~isp code"
 msgstr "Código s~L~isp"
 
+#~ msgid "You must install gzip to browse compressed files!"
+#~ msgstr "¡Debe instalar gzip para leer archivos comprimidos!"
+
 #~ msgid "%d bytes selected, in %d"
 #~ msgstr "%d caracteres seleccionados en %d"
 
@@ -7125,9 +7166,6 @@ msgstr "Código s~L~isp"
 
 #~ msgid "Value not in the range %li to %li"
 #~ msgstr "Valor fuera del rango %li a %li"
-
-#~ msgid "Error reading file %s."
-#~ msgstr "Error al leer el archivo %s."
 
 #~ msgid "Error writing file %s."
 #~ msgstr "Error al escribir el archivo %s."
