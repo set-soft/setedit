@@ -63,7 +63,7 @@ const int
   edSearchAndNoSel  = 35,
   edNothingSelected = 36,
   edSelTooBig       = 37,
-  esSelHaveEOL      = 38;
+  edSelHaveEOL      = 38;
 
 // ************* Various flags
 const int

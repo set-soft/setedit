@@ -893,6 +893,12 @@ void InitInternacSup()
  //------ end of int. support
 }
 
+// Dummy for gzfiles.cc
+int GiveAdvice(int number)
+{
+ return number;
+}
+
 int main(int argc, char *argv[])
 {
  TEditorMiApp *editorApp;

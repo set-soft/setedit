@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined(Uses_TSInputLine) && !defined(__TSInputLine_Defined__)
 #define __TSInputLine_Defined__
@@ -18,8 +18,12 @@ public:
  void fill(int MaxLen, int haveID, ushort ID, int wForce,
            tMakeInputLine makeIt);
  virtual void insert(TDialog *d);
+ void setHide(Boolean state) { vAsIL->hideContent=state; }
 
  THistory *hist;
+
+protected:
+ TInputLine *vAsIL;
 };
 
 // The class must be called TSxxxx, implementing a Txxxx input line with a

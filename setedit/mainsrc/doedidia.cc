@@ -66,7 +66,10 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edReadError:
         {
          s=va_arg(arg,_charPtr);
+         char *err=va_arg(arg,_charPtr);
          va_end(arg);
+         if (err)
+            return messageBox(mfError | mfOKButton,__("Error reading file %s. %s"),s,err);
          return messageBox(mfError | mfOKButton,__("Error reading file %s. %s (%d)"),
                            s,StrError(errno),errno);
         }
@@ -291,7 +294,7 @@ unsigned doEditDialog(int dialog, va_list arg)
         }
          break;
 
-    case esSelHaveEOL:
+    case edSelHaveEOL:
          messageBox(__("The selection can't contain more than one line"),mfError | mfOKButton);
          break;
    }

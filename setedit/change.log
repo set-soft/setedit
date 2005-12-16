@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.703  2005/11/08 20:24:54  set
+* Modified: New version of DuplicateLineOrSelection. It doesn't use the
+clipboard. Contributed by Thiago.
+
 Revision 1.702  2005/09/19 15:21:40  set
 * Added: [SHL] Ch syntax highlight.
 

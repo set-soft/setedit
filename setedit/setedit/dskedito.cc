@@ -41,10 +41,12 @@ void *TDskWinEditor::read( ipstream& is )
    {
     edw->number=number;
     edw->show();
+    // If the file is empty don't put it in the desktop and let the TEditorCollection
+    // close it.
+    view=(edw->editor->FailedToLoad) ? NULL : edw;
    }
- // If the file is empty don't put it in the desktop and let the TEditorCollection
- // close it.
- view=(edw->editor->FailedToLoad) ? 0 : edw;
+ else
+    view=NULL;
 
  return this;
 }

@@ -101,6 +101,7 @@ const int
       hcEditKeysSeq        =0x2241,
       hcEditKeysMac        =0x2242,
       hcEditKeysCom        =0x2243,
-      hcEditKeysLisp       =0x2244;
+      hcEditKeysLisp       =0x2244,
+      hcPassphrase         =0x2250;
 
 

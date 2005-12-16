@@ -509,7 +509,7 @@ void TEditorCollection::removeEditor(TCEditWindow *p, Boolean dontAddClosed)
  TDskWinEditor *st=(TDskWinEditor *)at(pos);
  // The read-only copies doesn't have to be added to the closed list or we get
  // duplicated names!
- if (p->editor->isReadOnly) dontAddClosed=True;
+ if (!p || p->editor->isReadOnly) dontAddClosed=True;
  // Ask for saving
  if (!dontAddClosed && st->edw && !st->edw->editor->valid(cmClose)) return;
  atRemove(pos);

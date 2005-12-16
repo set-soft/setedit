@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_stdlib
@@ -72,7 +72,9 @@ advice Advices[]=
  { __("It will kill the program you are debugging.\nGo ahead?"),
    AdviceVar1, 0x00002000, opsSimple | opsButYesNo },
  { __("The program will be started in another virtual terminal.\nConsult the Debug Window to know which one."),
-   AdviceVar1, 0x00004000, ops40cols }
+   AdviceVar1, 0x00004000, ops40cols },
+ { __("Encrypted file detected.\nInstall GPG in /usr/bin/."),
+   AdviceVar1, 0x00008000, opsSimple }
 };
 
 const int cantAdvices=sizeof(Advices)/sizeof(advice);

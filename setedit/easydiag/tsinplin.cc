@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSInputLine
 #include <easydia1.h>
@@ -35,13 +35,12 @@ void TSInputLine::fill(int MaxLen, int haveID, ushort ID, int wForce,
     w=MaxLen+1;
    }
  h=1;
- TInputLine *p;
- p=makeIt(TRect(0,0,w,h),MaxLen);
- view=p;
+ vAsIL=makeIt(TRect(0,0,w,h),MaxLen);
+ view=vAsIL;
  if (haveID)
    {
     w+=3;
-    hist=new THistory(TRect(0,0,3,1),p,ID);
+    hist=new THistory(TRect(0,0,3,1),vAsIL,ID);
    }
  else
    hist=0;

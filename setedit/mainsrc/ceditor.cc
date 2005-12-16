@@ -610,10 +610,10 @@ void TCEditor::clipFilePaste()
              delete[] p;
             }
           else
-             editorDialog(edReadError,name);
+             editorDialog(edReadError,name,NULL);
          }
        else
-          editorDialog(edReadError,name);
+          editorDialog(edReadError,name,NULL);
       }
    }
 }
@@ -3714,7 +3714,7 @@ Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
  for (unsigned offset=selStart; offset<selEnd; offset++)
      if (CLY_IsEOL(buffer[offset]))
        {
-        editorDialog(esSelHaveEOL);
+        editorDialog(edSelHaveEOL);
         return False;
        }
  // Now is safe to copy
@@ -13273,6 +13273,7 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
  IsCompressed=GZFiles_IsGZ(f);
  if (!IsCompressed)
     return f;
+ GZFiles_ResetError();
  fclose(f);
  char *tmp=unique_name("gz");
  if (!tmp)
@@ -13282,7 +13283,10 @@ FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
    }
 
  if (GZFiles_ExpandHL(tmp,name))
+   {
+    unlink(tmp);
     return NULL;
+   }
 
  temp=tmp;
  return fopen(tmp,"rb");
@@ -13385,7 +13389,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
        f=fopen(fileName,"rb");
        if (!f)
          {
-          editorDialog(edReadError,fileName);
+          editorDialog(edReadError,fileName,NULL);
           return False;
          }
       }
@@ -13400,7 +13404,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
  if (!f)
    {
     TScreen::showBusyState(oldBusy);
-    editorDialog(edReadError,fileName);
+    editorDialog(edReadError,fileName,GZFiles_GetError());
     return False;
    }
 
@@ -13487,7 +13491,7 @@ Boolean TCEditor::loadFile(Boolean setSHL)
  if (realRead==0 && fSize!=0) // 1999/04/08: fSize=0 is not an error ;-)
    {
     TScreen::showBusyState(oldBusy);
-    editorDialog(edReadError,fileName);
+    editorDialog(edReadError,fileName,NULL);
     RemoveTemporal();
     return False;
    }
@@ -13799,9 +13803,10 @@ Boolean TCEditor::saveFile(Boolean ConvertEOL, Boolean AvoidAutoConvert,
        free(s);
       }
 
+    f->close();
     if (!f->ok)
       {
-       editorDialog( edWriteError, fileName );
+       editorDialog(edWriteError,fileName);
        delete f;
        return False;
       }

@@ -312,8 +312,8 @@ Keywords=background,scrolling,noresize,frameborder,onload,alink,language
 Keywords=<div,</div,<frameset,</frameset,<noframes,</noframes,<frame,</frame
 Keywords=<strong,</strong,<dd,<base,<cite,</cite,<code,</code,</option,<nobr
 Keywords=<sub,</sub,<th,</th,<blink,</blink,<noscript,</noscript
-Keywords=style,clear,<link,<style,</style,<col,<colgroup,</colgroup
-Keywords=<tbody,</tbody,<thead,</thead,<tfoot,</tfoot,rel,rev,<!doctype
+Keywords=style,clear,<link,<style,</style,<col,<colgroup,</colgroup,id
+Keywords=<tbody,</tbody,<thead,</thead,<tfoot,</tfoot,rel,rev,<!doctype,usemap
 End
 
 # ---------------- SDG Format files ----------------

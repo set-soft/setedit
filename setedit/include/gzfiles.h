@@ -1,9 +1,15 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-int GZFiles_CheckForGZIP(void);
-int GZFiles_IsGZ(FILE *f);
-int GZFiles_Expand(char *dest, char *orig);
-int GZFiles_ExpandHL(char *dest, char *orig);
+int  GZFiles_CheckForGZIP(void);
+int  GZFiles_IsGZ(FILE *f);
+int  GZFiles_Expand(char *dest, char *orig);
+int  GZFiles_ExpandHL(char *dest, char *orig);
+int  GZFiles_DecryptGPG(char *dest, char *orig);
+int  GZFiles_CreateGPG(const char *file, int &hi, int &ho, int &he, pid_t &child);
+int  GZFiles_CloseGPG(int hi, int ho, int he, pid_t child);
+void GZFiles_ResetError();
+const char *GZFiles_GetError();
+void GZFiles_SetError(const char *error);
 
 #ifndef SUP_GZ
 #define gzFile FILE *
@@ -26,7 +32,8 @@ int GZFiles_ExpandHL(char *dest, char *orig);
  #endif
 #endif
 
-const int gzNoCompressed=0, gzGZIP=1, gzBZIP2=2,
+#define HAVE_GPG
+const int gzNoCompressed=0, gzGZIP=1, gzBZIP2=2, gzGPG=3,
           gzGZIPMagic=0x8B1F;
 
 class TGZFileWrite
@@ -35,6 +42,7 @@ public:
  TGZFileWrite(char *fileName, int compressed=gzNoCompressed);
  ~TGZFileWrite();
  size_t write(void *buffer, size_t len);
+ void close();
  int ok;
 
 private:
@@ -42,6 +50,8 @@ private:
  FILE   *f;
  gzFile  fc;
  BZFILE *fc2;
+ int hi, ho, he;
+ pid_t child;
 };
 
 

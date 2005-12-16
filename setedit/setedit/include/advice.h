@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 const int
 gadvUserScreen  =0,
@@ -15,7 +15,8 @@ gadvDbgNoPrj    =10,
 gadvDbgDestSes  =11,
 gadvDbgSesActive=12,
 gadvDbgKillPrg  =13,
-gadvDbgLinuxTTY =14;
+gadvDbgLinuxTTY =14,
+gadvGPG         =15;
 
 int GiveAdvice(int number);
 void AdviceManager();
