@@ -1,8 +1,6 @@
 /* Copyright (C) 1996-1998 Robert H”hne, see COPYING.RH for details */
-/* Copyright (C) 1998-2002 Salvador E. Tropea */
+/* Copyright (C) 1998-2005 Salvador E. Tropea */
 /* This file is part of RHIDE. */
-#include <rhutils.h>
-
 #define Uses_string
 #define Uses_unistd
 #define Uses_stdio
@@ -12,6 +10,7 @@
 #define Uses_free
 #define Uses_mkstemp
 #include <compatlayer.h>
+#include <rhutils.h>
 
 #define STDOUT 1
 #define STDERR 2
@@ -24,6 +23,29 @@ static int h_err,h_errbak;
 
 /* returns a malloced unique tempname in $TMPDIR */
 char *unique_name(char *before, char *retval)
+{
+ char *name;
+ int h=unique_name(0,name,before,retval);
+ if (h!=-1)
+    close(h);
+ return name;
+}
+
+/* returns a malloced unique tempname in $TMPDIR */
+FILE *unique_name_f(char *&retname, char *before, char *retval)
+{
+ char *name;
+ int h=unique_name(1,name,before,retval);
+ if (h!=-1)
+   {
+    retname=name;
+    return fdopen(h,"w+");
+   }
+ return NULL;
+}
+
+/* returns a malloced unique tempname in $TMPDIR */
+int unique_name(int remove, char *&retname, char *before, char *retval)
 {
   char *name,*tmp = getenv("TMPDIR");
   // SET: The next 2 fallbacks aren't usually needed because RHIDE and SETEdit
@@ -54,12 +76,16 @@ char *unique_name(char *before, char *retval)
   int handler=mkstemp(name);
   if (handler!=-1)
   {
-    close(handler);
     if (retval) strcpy(retval,name);
-    return name;
+    retname=name;
+    #ifdef TVOS_UNIX
+    if (remove) unlink(name);
+    #endif
+    return handler;
   }
   free(name);
-  return NULL; // What to do here?
+  retname=NULL;
+  return -1; // What to do here?
 }
 
 char *open_stderr(int *nherr)

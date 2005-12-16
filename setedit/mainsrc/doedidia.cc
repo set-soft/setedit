@@ -76,7 +76,10 @@ unsigned doEditDialog(int dialog, va_list arg)
     case edWriteError:
         {
          s=va_arg(arg,_charPtr);
+         char *err=va_arg(arg,_charPtr);
          va_end(arg);
+         if (err)
+            return messageBox(mfError | mfOKButton,__("Error writing file %s. %s"),s,err);
          return messageBox(mfError | mfOKButton,__("Error writing file %s. %s (%d)"),
                            s,StrError(errno),errno);
         }

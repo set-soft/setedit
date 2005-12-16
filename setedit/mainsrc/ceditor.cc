@@ -566,7 +566,7 @@ Boolean TCEditor::clipFileCopy()
        if (f)
          {
           if (fwrite(buffer+selStart,selEnd-selStart,1,f)!=1)
-             editorDialog(edWriteError,name);
+             editorDialog(edWriteError,name,NULL);
           else
              res=True;
           fclose(f);
@@ -13218,7 +13218,7 @@ static void writeBlock(TCEditor *editor)
     else
       error=1;
     if (error)
-       TCEditor::editorDialog(edWriteError,fname);
+       TCEditor::editorDialog(edWriteError,fname,NULL);
    }
 }
 
@@ -13251,7 +13251,7 @@ char *TCEditor::saveToTemp()
    error=1;
  if (error)
    {
-    editorDialog(edWriteError,name);
+    editorDialog(edWriteError,name,NULL);
     free(name);
     return NULL;
    }
@@ -13267,29 +13267,30 @@ void GetFileMode(CLY_mode_t *mode, struct stat *statVal, char *fileName)
 }
 
 static
-FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name,
-                           int &IsCompressed)
+FILE *ExpandToTempIfNeeded(FILE *f, char *&temp, char *name, int &IsCompressed)
 {
  IsCompressed=GZFiles_IsGZ(f);
  if (!IsCompressed)
     return f;
  GZFiles_ResetError();
  fclose(f);
- char *tmp=unique_name("gz");
- if (!tmp)
+ char *tmp;
+ f=unique_name_f(tmp,"gz");
+ if (!f)
    {
     TCEditor::editorDialog(edCreateTMPError);
     return NULL;
    }
 
- if (GZFiles_ExpandHL(tmp,name))
+ if (GZFiles_ExpandHL(f,name))
    {
+    fclose(f);
     unlink(tmp);
     return NULL;
    }
 
  temp=tmp;
- return fopen(tmp,"rb");
+ return f;
 }
 
 /****************************************************************************
@@ -13806,7 +13807,7 @@ Boolean TCEditor::saveFile(Boolean ConvertEOL, Boolean AvoidAutoConvert,
     f->close();
     if (!f->ok)
       {
-       editorDialog(edWriteError,fileName);
+       editorDialog(edWriteError,fileName,GZFiles_GetError());
        delete f;
        return False;
       }

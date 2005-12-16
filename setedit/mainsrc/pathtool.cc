@@ -22,10 +22,10 @@
 #ifdef TVComp_BCPP
 #include <io.h>
 #endif
-#include <rhutils.h>
 #define Uses_TScreen
 #define Uses_TStringCollectionW
 #include <settvuti.h>
+#include <rhutils.h>
 #include <pathtool.h>
 #include <pathlist.h>
 #include <edspecs.h>

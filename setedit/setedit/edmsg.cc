@@ -269,7 +269,7 @@ void TSOSListBoxMsg::save(char *name)
      fputs("\n",f);
     }
  if (ferror(f))
-    TCEditor::editorDialog(edWriteError,name);
+    TCEditor::editorDialog(edWriteError,name,NULL);
  fclose(f);
 }
 
@@ -736,6 +736,12 @@ void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
  if (Options & edsmDontUpdate)
     return;
  EdShowMessageUpdate(Options);
+}
+
+
+void EdShowMessageS(const char *msg)
+{
+ EdShowMessage(msg,False,True);
 }
 
 void EdShowMessage(const char *msg, Boolean remove_old, Boolean resetHz)

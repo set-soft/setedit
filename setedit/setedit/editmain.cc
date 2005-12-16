@@ -71,6 +71,7 @@
 #include <pathtool.h>
 #include <intermp3.h>
 #include <ssyntax.h>
+#include <gzfiles.h>
 
 #include <locale.h>
 #include <stdarg.h>
@@ -768,7 +769,7 @@ void ExportAsHTML(void)
              flgs|=xhtmlUseColors;
           e->SourceToHTML(f,pal,flgs);
           if (ferror(f))
-             TCEditor::editorDialog(edWriteError,fileName);
+             TCEditor::editorDialog(edWriteError,fileName,NULL);
           fclose(f);
          }
        else
@@ -3274,6 +3275,11 @@ int main(int argc, char *argv[])
  editorApp->SetTitle();
 
  TSetEditorApp::loadEditorDesktop(1,ProjectAskedByUser,CLY_optind<Argc);
+
+ // After loading the desktop, if we do it before the we can't insert the
+ // message window in the desktop (no helper created). Lamentably we
+ // could lose some messages.
+ GZFiles_SetMessageCallback(EdShowMessageS);
 
  // Open all the files indicated in the command line
  while (CLY_optind<Argc)

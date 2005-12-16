@@ -43,6 +43,12 @@
 static int CheckGPGInstalled();
 
 static char *gzError=NULL;
+static GZFiles_CB gzCB=NULL;
+
+void GZFiles_SetMessageCallback(GZFiles_CB cb)
+{
+ gzCB=cb;
+}
 
 void GZFiles_ResetError()
 {
@@ -65,7 +71,7 @@ const int eachRead=16300;
 
 #ifdef SUP_GZ
 static
-int GZFiles_ExpandGZ(char *dest, char *orig)
+int GZFiles_ExpandGZ(FILE *dest, char *orig)
 {
  // First I alloc a 16Kb buffer
  char *buf=new char[eachRead];
@@ -80,24 +86,14 @@ int GZFiles_ExpandGZ(char *dest, char *orig)
     return 2;
    }
 
- FILE *f;
- f=fopen(dest,"wb");
- if (!f)
-   {
-    gzclose(file);
-    delete buf;
-    return 3;
-   }
-
  int read;
  do
    {
     read=gzread(file,buf,eachRead);
-    fwrite(buf,read,1,f);
+    fwrite(buf,read,1,dest);
    }
  while(read==eachRead);
 
- fclose(f);
  gzclose(file);
  DeleteArray(buf);
 
@@ -105,7 +101,7 @@ int GZFiles_ExpandGZ(char *dest, char *orig)
 }
 
 static
-int GZFiles_SimpleCopy(char *dest, char *orig)
+int GZFiles_SimpleCopy(FILE *dest, char *orig)
 {
  // First I alloc a 16Kb buffer
  char *buf=new char[eachRead];
@@ -120,24 +116,14 @@ int GZFiles_SimpleCopy(char *dest, char *orig)
     return 2;
    }
 
- FILE *f;
- f=fopen(dest,"wb");
- if (!f)
-   {
-    fclose(file);
-    delete buf;
-    return 3;
-   }
-
  int read;
  do
    {
     read=fread(buf,1,eachRead,file);
-    fwrite(buf,read,1,f);
+    fwrite(buf,read,1,dest);
    }
  while(read==eachRead);
 
- fclose(f);
  fclose(file);
  delete buf;
 
@@ -155,7 +141,7 @@ int GZFiles_SimpleCopy(char *dest, char *orig)
 #define BZ2_bzWrite bzWrite
 #endif
 static
-int GZFiles_ExpandBZ2(char *dest, char *orig)
+int GZFiles_ExpandBZ2(FILE *dest, char *orig)
 {
  // First I alloc a 16Kb buffer
  char *buf=new char[eachRead];
@@ -181,25 +167,14 @@ int GZFiles_ExpandBZ2(char *dest, char *orig)
     return 2;
    }
 
- FILE *f;
- f=fopen(dest,"wb");
- if (!f)
-   {
-    BZ2_bzReadClose(&bzError,file);
-    fclose(fi);
-    delete[] buf;
-    return 3;
-   }
-
  int read;
  do
    {
     read=BZ2_bzRead(&bzError,file,buf,eachRead);
-    fwrite(buf,read,1,f);
+    fwrite(buf,read,1,dest);
    }
  while(bzError==BZ_OK);
 
- fclose(f);
  BZ2_bzReadClose(&bzError,file);
  fclose(fi);
  delete[] buf;
@@ -209,7 +184,7 @@ int GZFiles_ExpandBZ2(char *dest, char *orig)
 #endif // HAVE_BZIP2
 
 
-int GZFiles_ExpandHL(char *dest, char *orig)
+int GZFiles_ExpandHL(FILE *dest, char *orig)
 {
  int ret=-1;
 
@@ -282,6 +257,7 @@ int GZFiles_IsGZ(FILE *f)
 
 TGZFileWrite::TGZFileWrite(char *fileName, int comp)
 {
+ GZFiles_ResetError();
  switch (comp)
    {
     case gzNoCompressed:
@@ -600,7 +576,7 @@ int gpgPclose(int fd, int wp, int we, int pid)
 }
 
 // TODO: Send the error to the message window. Tell the user, a callback?
-int GZFiles_DecryptGPG(char *dest, char *orig)
+int GZFiles_DecryptGPG(FILE *dest, char *orig)
 {
  // Get the passphrase
  char *pass=gpgGetPhrase();
@@ -619,26 +595,20 @@ int GZFiles_DecryptGPG(char *dest, char *orig)
     return 2;
    }
 
- // Create destination
- FILE *f;
- f=fopen(dest,"wb");
- if (!f)
-   {
-    delete[] buf;
-    GZFiles_SetError(__("Can't create temporal file"));
-    return 3;
-   }
-
  // Pipe to GPG
  pid_t child;
  int wr, er;
  char *aux=NULL;
  string_cat(aux,gpgCommand,gpgCLine,orig,NULL);
+ if (gzCB)
+   {
+    gzCB(__("Running:"));
+    gzCB(aux);
+   }
  int h=gpgPopen(aux,child,wr,er);
  string_free(aux);
  if (h<0)
    {
-    fclose(f);
     delete[] buf;
     GZFiles_SetError(__("Failed to invoke gpg"));
     return 4;
@@ -651,13 +621,19 @@ int GZFiles_DecryptGPG(char *dest, char *orig)
  // Copy the output from GPG
  int l;
  while ((l=gpgGetline(h,buf,gpgEachRead))!=0)
-    fwrite(buf,l,1,f);
+    fwrite(buf,l,1,dest);
 
  // Analyze error messages
  int foundId=0;
  while (gpgGetline(er,buf,gpgEachRead))
    {
-    printf("%s",buf);
+    if (gzCB)
+      {
+       for (char *s=buf; *s; s++)
+           if (*s=='\r' || *s=='\n')
+              *s=' ';
+       gzCB(buf);
+      }
     if (strncmp(buf,"gpg: encrypted with",19)==0)
       {
        char *name=strstr(buf,", ID ");
@@ -683,7 +659,6 @@ int GZFiles_DecryptGPG(char *dest, char *orig)
       }
     else
        gpgValidPhrase=1;
- fclose(f);
  delete[] buf;
 
  return gpgStatus;
@@ -693,10 +668,15 @@ int GZFiles_CreateGPG(const char *file, int &hi, int &ho, int &he, pid_t &child)
 {
  int len=CLY_snprintf(NULL,0,gpgWCLine,gpgCommand,file,gpgUserID);
  AllocLocalStr(buf,len+1);
- CLY_snprintf(buf,len+1,gpgWCLine,file,gpgUserID);
+ CLY_snprintf(buf,len+1,gpgWCLine,gpgCommand,file,gpgUserID);
 
  unlink(file);
  // Pipe to GPG
+ if (gzCB)
+   {
+    gzCB(__("Running:"));
+    gzCB(buf);
+   }
  ho=gpgPopen(buf,child,hi,he);
  if (ho<0)
    {
@@ -710,12 +690,21 @@ int GZFiles_CreateGPG(const char *file, int &hi, int &ho, int &he, pid_t &child)
 
 int GZFiles_CloseGPG(int hi, int ho, int he, pid_t child)
 {
- /*char b[80];
- while (gpgGetline(he,b,80))
+ if (gzCB)
    {
-    printf("%s",b);
-   }*/
- return gpgPclose(hi,ho,he,child);
+    char buf[80];
+    while (gpgGetline(he,buf,80))
+      {
+       for (char *s=buf; *s; s++)
+           if (*s=='\r' || *s=='\n')
+              *s=' ';
+       gzCB(buf);
+      }
+   }
+ int ret=gpgPclose(hi,ho,he,child);
+ if (ret)
+    GZFiles_SetError(__("Error from GPG"));
+ return ret;
 }
 
 

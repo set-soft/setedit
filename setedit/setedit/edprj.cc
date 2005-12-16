@@ -1331,7 +1331,7 @@ void ExportProjectItems()
  WriteNamesOfProjectTo(f,wnopLineSep);
  int err=ferror(f);
  if (fclose(f) || err)
-    TCEditor::editorDialog(edWriteError,buffer);
+    TCEditor::editorDialog(edWriteError,buffer,NULL);
 }
 
 /**[txh]********************************************************************
@@ -1392,7 +1392,7 @@ void ImportProjectItems()
  prjWin->window->list->drawView();
  int err=ferror(f);
  if (fclose(f) || err)
-    TCEditor::editorDialog(edReadError,buffer);
+    TCEditor::editorDialog(edReadError,buffer,NULL);
 
  messageBox(mfInformation|mfOKButton,
             __("Results: added %d, already included: %d, rejected %d"),

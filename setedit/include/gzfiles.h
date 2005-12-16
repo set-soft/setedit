@@ -3,13 +3,15 @@
 int  GZFiles_CheckForGZIP(void);
 int  GZFiles_IsGZ(FILE *f);
 int  GZFiles_Expand(char *dest, char *orig);
-int  GZFiles_ExpandHL(char *dest, char *orig);
-int  GZFiles_DecryptGPG(char *dest, char *orig);
+int  GZFiles_ExpandHL(FILE *dest, char *orig);
+int  GZFiles_DecryptGPG(FILE *dest, char *orig);
 int  GZFiles_CreateGPG(const char *file, int &hi, int &ho, int &he, pid_t &child);
 int  GZFiles_CloseGPG(int hi, int ho, int he, pid_t child);
 void GZFiles_ResetError();
 const char *GZFiles_GetError();
 void GZFiles_SetError(const char *error);
+typedef void (*GZFiles_CB)(const char *);
+void GZFiles_SetMessageCallback(GZFiles_CB cb);
 
 #ifndef SUP_GZ
 #define gzFile FILE *

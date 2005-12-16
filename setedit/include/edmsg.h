@@ -85,6 +85,7 @@ const uint32 edsmUpdateSpLines=1,edsmRemoveOld=2,edsmDontSelect=4,
 // Mutually exclusive options for the scroll behavior
 const uint32 edsmScrollMask=0xC0000000,edsmEverScroll=0,edsmNeverScroll=0x40000000,
              edsmScrollIfNoFocus=0x80000000,edsmScrollShifter=0x40000000;
+extern void EdShowMessageS(const char *msg);
 extern void EdShowMessage(const char *msg,Boolean remove_old=False,Boolean resetHz=True);
 extern void EdShowMessageI(const char *msg,Boolean remove_old=False,Boolean resetHz=True);
 extern void EdShowMessage(const char *msg, unsigned Options);

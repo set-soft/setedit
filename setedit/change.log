@@ -1,4 +1,11 @@
-$Log$
+$Log$.
+Revision 1.704  2005/12/16 14:24:16  set
+* Added: id and usemap HTML keywords.
+* Added: Support for "hided" input lines in EasyDiag (for passwords).
+* Fixed: esSelHaveEOL to edSelHaveEOL.
+* Added: Transparent support for GPG encrypted files.
+* Fixed: Crashes when failing to load a file at start-up.
+
 Revision 1.703  2005/11/08 20:24:54  set
 * Modified: New version of DuplicateLineOrSelection. It doesn't use the
 clipboard. Contributed by Thiago.

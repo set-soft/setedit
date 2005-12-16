@@ -1707,11 +1707,21 @@ FILE *TInfFile::fOpen(char *Nombre)
        name="__infc__";
     else
        freeName=1;
-    if (GZFiles_ExpandHL(name,Buf))
+    FILE *f=fopen(name,"wb");
+    if (!f)
       {
+       unlink(name);
        if (freeName) free(name);
        return NULL;
       }
+    if (GZFiles_ExpandHL(f,Buf))
+      {
+       fclose(f);
+       unlink(name);
+       if (freeName) free(name);
+       return NULL;
+      }
+    fclose(f);
    }
 
  #ifdef InfV_UseBinaryFile
