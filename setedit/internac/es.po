@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-12-16 11:04-0300\n"
+"PO-Revision-Date: 2006-01-20 15:03-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Error en la expresión (%d)"
 msgid "Calculator"
 msgstr "Calculadora"
 
-#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1507
+#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1508
 msgid "This functionality was disabled at compile time"
 msgstr "Esta opción fue deshabilitada al compilar"
 
@@ -266,7 +266,7 @@ msgstr "InfView"
 msgid "Attention: can't open the help file '%s'."
 msgstr "Atención: no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1881
+#: ../infview/infbase.cc:1891
 msgid ""
 "\n"
 " Sorry, I can't find this link (press ALT-F1).\n"
@@ -345,7 +345,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2896
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2897
 #, c-format
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
@@ -1561,12 +1561,12 @@ msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13832
+#: ../mainsrc/ceditor.cc:13833
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13842
+#: ../mainsrc/ceditor.cc:13843
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2001,64 +2001,69 @@ msgstr "Error al leer el archivo %s."
 msgid "Error reading file %s. %s (%d)"
 msgstr "Error al leer el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:80
+#: ../mainsrc/doedidia.cc:82
+#, fuzzy, c-format
+msgid "Error writing file %s. %s"
+msgstr "Error al escribir el archivo %s."
+
+#: ../mainsrc/doedidia.cc:83
 #, c-format
 msgid "Error writing file %s. %s (%d)"
 msgstr "Error al escribir el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:87
+#: ../mainsrc/doedidia.cc:90
 #, c-format
 msgid "Error creating file %s. %s (%d)"
 msgstr "Error al crear el archivo %s. %s (%d)"
 
-#: ../mainsrc/doedidia.cc:91
+#: ../mainsrc/doedidia.cc:94
 msgid "Error creating temporal file, operation aborted"
 msgstr "Error al crear archivo temporario, operación abortada"
 
-#: ../mainsrc/doedidia.cc:97
+#: ../mainsrc/doedidia.cc:100
 #, c-format
 msgid "%s has been modified. Save?"
 msgstr "%s ha sido modificado. ¿Grabo?"
 
-#: ../mainsrc/doedidia.cc:100
+#: ../mainsrc/doedidia.cc:103
 msgid "Save untitled file?"
 msgstr "¿Grabo el archivo sin título?"
 
-#: ../mainsrc/doedidia.cc:103
+#: ../mainsrc/doedidia.cc:106
 msgid "Save file as"
 msgstr "Grabar como"
 
-#: ../mainsrc/doedidia.cc:111
+#: ../mainsrc/doedidia.cc:114
 msgid "Write to file"
 msgstr "Guardar a un archivo"
 
-#: ../mainsrc/doedidia.cc:114
+#: ../mainsrc/doedidia.cc:117
 msgid "Read from file"
 msgstr "Leer desde un archivo"
 
-#: ../mainsrc/doedidia.cc:125
+#: ../mainsrc/doedidia.cc:128
 msgid "Search string not found."
 msgstr "No se pudo hallar el texto."
 
-#: ../mainsrc/doedidia.cc:210
+#: ../mainsrc/doedidia.cc:213
 msgid "Line too long, cut it?"
 msgstr "Línea demasiado larga, ¿la corto?"
 
-#: ../mainsrc/doedidia.cc:214
+#: ../mainsrc/doedidia.cc:217
 msgid "Line extremely long. Can't handle it reliably, sorry"
 msgstr ""
 "Línea extremadamente larga, no puede ser manejado correctamente, lo lamento"
 
-#: ../mainsrc/doedidia.cc:218
+#: ../mainsrc/doedidia.cc:221
 msgid "This file isn't on the disk!"
 msgstr "¡Este archivo no se encuentra en disco!"
 
-#: ../mainsrc/doedidia.cc:225
+#: ../mainsrc/doedidia.cc:228
 #, c-format
 msgid "The file %s is read-only, try to revert it?"
 msgstr "El archivo %s es de solo lectura, ¿revierto esto?"
 
-#: ../mainsrc/doedidia.cc:228
+#: ../mainsrc/doedidia.cc:231
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -2066,50 +2071,50 @@ msgstr ""
 "No pude revertir el atributo de solo lectura, ud. no podrá sobreescribir "
 "este archivo"
 
-#: ../mainsrc/doedidia.cc:232
+#: ../mainsrc/doedidia.cc:235
 msgid "This action can't be undone. Are you sure?"
 msgstr "Esta acción no puede deshacerse. ¿Está seguro?"
 
-#: ../mainsrc/doedidia.cc:239
+#: ../mainsrc/doedidia.cc:242
 #, c-format
 msgid "%s already exists. Overwrite?"
 msgstr "%s ya existe. ¿Lo sobreescribo?"
 
-#: ../mainsrc/doedidia.cc:245
+#: ../mainsrc/doedidia.cc:248
 #, c-format
 msgid "%s isn't a file, probably a device, go ahead?"
 msgstr "%s no es un archivo, probablemente un dispositivo, ¿continuo?"
 
-#: ../mainsrc/doedidia.cc:248
+#: ../mainsrc/doedidia.cc:251
 msgid "Can't create a backup. Continue saving?"
 msgstr "No puedo crear un archivo de respaldo. ¿Continuo?"
 
-#: ../mainsrc/doedidia.cc:251
+#: ../mainsrc/doedidia.cc:254
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "No se puede pegar un rectángulo que cruce el fin del archivo"
 
-#: ../mainsrc/doedidia.cc:262
+#: ../mainsrc/doedidia.cc:265
 msgid "No pseudo macros available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/doedidia.cc:279
+#: ../mainsrc/doedidia.cc:282
 msgid "The file is compressed. Do you want to save with compression?"
 msgstr "El archivo está comprimido. ¿Desea guardarlo comprimido?"
 
-#: ../mainsrc/doedidia.cc:282
+#: ../mainsrc/doedidia.cc:285
 msgid "Searching inside a selection but nothing is selected"
 msgstr "Búsqueda dentro de una selección pero no hay nada seleccionado"
 
-#: ../mainsrc/doedidia.cc:286
+#: ../mainsrc/doedidia.cc:289
 msgid "You must select some text for this operation"
 msgstr "Debe seleccionar algún texto para esta operación"
 
-#: ../mainsrc/doedidia.cc:293
+#: ../mainsrc/doedidia.cc:296
 #, c-format
 msgid "You must select less than %d characters"
 msgstr "Debe seleccionar menos de %d caracteres"
 
-#: ../mainsrc/doedidia.cc:298
+#: ../mainsrc/doedidia.cc:301
 msgid "The selection can't contain more than one line"
 msgstr "El texto seleccionado no puede contenet más de una línea"
 
@@ -2121,42 +2126,47 @@ msgstr "Portapapeles"
 msgid "Untitled"
 msgstr "Sin Título"
 
-#: ../mainsrc/gzfiles.cc:450
+#: ../mainsrc/gzfiles.cc:426
 #, fuzzy
 msgid "Validation"
 msgstr "~N~avegación"
 
-#: ../mainsrc/gzfiles.cc:454
+#: ../mainsrc/gzfiles.cc:430
 msgid "Passphrase"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:609
+#: ../mainsrc/gzfiles.cc:585
 #, fuzzy
 msgid "No passphrase available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/gzfiles.cc:618 ../setedit/debug.cc:8604
+#: ../mainsrc/gzfiles.cc:594 ../setedit/debug.cc:8604
 msgid "Out of memory"
 msgstr "No hay memoria suficiente"
 
-#: ../mainsrc/gzfiles.cc:628
+#: ../mainsrc/gzfiles.cc:605 ../mainsrc/gzfiles.cc:677
 #, fuzzy
-msgid "Can't create temporal file"
-msgstr "No puedo crear una copia temporal del autoexec.bat"
+msgid "Running:"
+msgstr "Ejecutando"
 
-#: ../mainsrc/gzfiles.cc:643 ../mainsrc/gzfiles.cc:703
+#: ../mainsrc/gzfiles.cc:613 ../mainsrc/gzfiles.cc:683
 msgid "Failed to invoke gpg"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:677
+#: ../mainsrc/gzfiles.cc:653
 #, fuzzy
 msgid "Error while decrypting"
 msgstr "Error al leer"
 
-#: ../mainsrc/gzfiles.cc:681
+#: ../mainsrc/gzfiles.cc:657
 #, fuzzy
 msgid "Failed to determine user ID"
 msgstr "No puedo abrir la lista de archivos %s"
+
+#: ../mainsrc/gzfiles.cc:713
+#, fuzzy
+msgid "Error from GPG"
+msgstr "Error desde el gdb"
 
 #: ../mainsrc/keytrans.cc:804
 msgid "Wrong file"
@@ -3013,7 +3023,9 @@ msgstr ""
 "Consulte la Ventada de Depuración para saber cual."
 
 #: ../setedit/advice.cc:76
-msgid "Encrypted file detected. Install GPG in /usr/bin/."
+msgid ""
+"Encrypted file detected.\n"
+"Install GPG in /usr/bin/."
 msgstr ""
 
 #: ../setedit/advice.cc:104
@@ -4142,64 +4154,64 @@ msgstr "Agradecimientos para:"
 msgid "Made in Argentina"
 msgstr "Hecho en Argentina"
 
-#: ../setedit/editmain.cc:132
+#: ../setedit/editmain.cc:133
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "¿Desea borrar todos los archivos de respaldo y escritorio?"
 
-#: ../setedit/editmain.cc:459
+#: ../setedit/editmain.cc:460
 msgid "No project loaded"
 msgstr "No hay proyecto cargado"
 
-#: ../setedit/editmain.cc:518
+#: ../setedit/editmain.cc:519
 msgid "This file is already open, close it first."
 msgstr "Este archivo ya esta abierto, primero ciérrelo."
 
-#: ../setedit/editmain.cc:605
+#: ../setedit/editmain.cc:606
 msgid "Open File"
 msgstr "Abrir Archivo"
 
-#: ../setedit/editmain.cc:620
+#: ../setedit/editmain.cc:621
 msgid "You must select an editor window for this operation"
 msgstr "Ud. debe seleccionar una ventana de esitor para esta operación"
 
-#: ../setedit/editmain.cc:755
+#: ../setedit/editmain.cc:756
 msgid "Export file as"
 msgstr "Exportar archivo como"
 
-#: ../setedit/editmain.cc:845
+#: ../setedit/editmain.cc:846
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Esta ventana no puede imprimirse, seleccione un editor"
 
-#: ../setedit/editmain.cc:1005
+#: ../setedit/editmain.cc:1006
 msgid "Couldn't find any matching help"
 msgstr "No pude encontrar ninguna ayuda"
 
-#: ../setedit/editmain.cc:1188
+#: ../setedit/editmain.cc:1189
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 "Estamos ejecutando una tarea en segundo plano. ¿Salir de todas maneras?"
 
-#: ../setedit/editmain.cc:1941
+#: ../setedit/editmain.cc:1942
 msgid "This line no longer exists"
 msgstr "Esta línea ya no existe"
 
-#: ../setedit/editmain.cc:2109
+#: ../setedit/editmain.cc:2110
 msgid "Error creating the difference, aborting"
 msgstr "Error al buscar los cambios, operación abortada"
 
-#: ../setedit/editmain.cc:2185
+#: ../setedit/editmain.cc:2186
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es más nueva, ¿la cargo?"
 
-#: ../setedit/editmain.cc:2459
+#: ../setedit/editmain.cc:2460
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
 "the file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, búsquelo en el paquete que instaló."
 
-#: ../setedit/editmain.cc:2594
+#: ../setedit/editmain.cc:2595
 #, c-format
 msgid ""
 "\n"
@@ -4208,7 +4220,7 @@ msgstr ""
 "\n"
 "¡Instalación errónea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:2595
+#: ../setedit/editmain.cc:2596
 #, c-format
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4217,7 +4229,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribución.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2599
+#: ../setedit/editmain.cc:2600
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4226,7 +4238,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2601
+#: ../setedit/editmain.cc:2602
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4235,12 +4247,12 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2606
+#: ../setedit/editmain.cc:2607
 #, c-format
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:2615
+#: ../setedit/editmain.cc:2616
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4250,19 +4262,19 @@ msgstr ""
 "Ud. definió SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2644
+#: ../setedit/editmain.cc:2645
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2889
+#: ../setedit/editmain.cc:2890
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2891
+#: ../setedit/editmain.cc:2892
 msgid ". Copyright (c) "
 msgstr ". Copyright (c) "
 
-#: ../setedit/editmain.cc:2893
+#: ../setedit/editmain.cc:2894
 msgid ""
 " by Salvador E. Tropea\n"
 "\n"
@@ -4270,7 +4282,7 @@ msgstr ""
 " por Salvador Eduardo Tropea\n"
 "\n"
 
-#: ../setedit/editmain.cc:2895
+#: ../setedit/editmain.cc:2896
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4278,7 +4290,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2897
+#: ../setedit/editmain.cc:2898
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4295,11 +4307,11 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2901
+#: ../setedit/editmain.cc:2902
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2902
+#: ../setedit/editmain.cc:2903
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4313,7 +4325,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:2907
+#: ../setedit/editmain.cc:2908
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -4325,7 +4337,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:2911
+#: ../setedit/editmain.cc:2912
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4334,7 +4346,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:2913
+#: ../setedit/editmain.cc:2914
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4342,34 +4354,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2915
+#: ../setedit/editmain.cc:2916
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:2917
+#: ../setedit/editmain.cc:2918
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:2919
+#: ../setedit/editmain.cc:2920
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2920
+#: ../setedit/editmain.cc:2921
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:2921
+#: ../setedit/editmain.cc:2922
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:2924
+#: ../setedit/editmain.cc:2925
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:2926
+#: ../setedit/editmain.cc:2927
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4378,7 +4390,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:2928
+#: ../setedit/editmain.cc:2929
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4386,7 +4398,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:2931
+#: ../setedit/editmain.cc:2932
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -4394,12 +4406,12 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:2933
+#: ../setedit/editmain.cc:2934
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:2934
+#: ../setedit/editmain.cc:2935
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
@@ -6956,6 +6968,10 @@ msgstr "Comando~s~"
 msgid "s~L~isp code"
 msgstr "Código s~L~isp"
 
+#, fuzzy
+#~ msgid "Can't create temporal file"
+#~ msgstr "No puedo crear una copia temporal del autoexec.bat"
+
 #~ msgid "You must install gzip to browse compressed files!"
 #~ msgstr "¡Debe instalar gzip para leer archivos comprimidos!"
 
@@ -7166,9 +7182,6 @@ msgstr "Código s~L~isp"
 
 #~ msgid "Value not in the range %li to %li"
 #~ msgstr "Valor fuera del rango %li a %li"
-
-#~ msgid "Error writing file %s."
-#~ msgstr "Error al escribir el archivo %s."
 
 #~ msgid "that's an interactive application, don't redirect stdin"
 #~ msgstr ""

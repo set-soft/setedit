@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2005-12-16 11:04-0300\n"
+"PO-Revision-Date: 2006-01-20 15:03-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Fehler in Ausdruck (%d)"
 msgid "Calculator"
 msgstr "Rechner"
 
-#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1507
+#: ../calcu/calcu.cc:176 ../setedit/editmain.cc:1508
 msgid "This functionality was disabled at compile time"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgstr "InfView"
 msgid "Attention: can't open the help file '%s'."
 msgstr "Achtung! Kann Hilfedatei `%s' nicht öffnen!"
 
-#: ../infview/infbase.cc:1881
+#: ../infview/infbase.cc:1891
 #, fuzzy
 msgid ""
 "\n"
@@ -347,7 +347,7 @@ msgstr ""
 "infview [option]... [info_datei [menü_eintrag...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2896
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2897
 #, c-format
 msgid "Valid options are:\n"
 msgstr "Gültige Optionen sind:\n"
@@ -1631,12 +1631,12 @@ msgstr "Unbehandeltes Undo!"
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13832
+#: ../mainsrc/ceditor.cc:13833
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13842
+#: ../mainsrc/ceditor.cc:13843
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2087,66 +2087,71 @@ msgstr "Fehler beim Lesen der Datei "
 msgid "Error reading file %s. %s (%d)"
 msgstr "Fehler beim Lesen der Datei "
 
-#: ../mainsrc/doedidia.cc:80
+#: ../mainsrc/doedidia.cc:82
+#, fuzzy, c-format
+msgid "Error writing file %s. %s"
+msgstr "Fehler beim Schreiben der Datei "
+
+#: ../mainsrc/doedidia.cc:83
 #, fuzzy, c-format
 msgid "Error writing file %s. %s (%d)"
 msgstr "Fehler beim Schreiben der Datei "
 
-#: ../mainsrc/doedidia.cc:87
+#: ../mainsrc/doedidia.cc:90
 #, fuzzy, c-format
 msgid "Error creating file %s. %s (%d)"
 msgstr "Fehler beim Erstellen von "
 
-#: ../mainsrc/doedidia.cc:91
+#: ../mainsrc/doedidia.cc:94
 #, fuzzy
 msgid "Error creating temporal file, operation aborted"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../mainsrc/doedidia.cc:97
+#: ../mainsrc/doedidia.cc:100
 #, fuzzy, c-format
 msgid "%s has been modified. Save?"
 msgstr " wurde verändert. Speichern?"
 
-#: ../mainsrc/doedidia.cc:100
+#: ../mainsrc/doedidia.cc:103
 msgid "Save untitled file?"
 msgstr "Unbenannte Datei speichern?"
 
-#: ../mainsrc/doedidia.cc:103
+#: ../mainsrc/doedidia.cc:106
 msgid "Save file as"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/doedidia.cc:111
+#: ../mainsrc/doedidia.cc:114
 msgid "Write to file"
 msgstr "In Datei schreiben"
 
-#: ../mainsrc/doedidia.cc:114
+#: ../mainsrc/doedidia.cc:117
 msgid "Read from file"
 msgstr "Lese aus Datei"
 
-#: ../mainsrc/doedidia.cc:125
+#: ../mainsrc/doedidia.cc:128
 msgid "Search string not found."
 msgstr "Suchtext nicht gefunden."
 
-#: ../mainsrc/doedidia.cc:210
+#: ../mainsrc/doedidia.cc:213
 msgid "Line too long, cut it?"
 msgstr "Zeile zu lang. Abschneiden?"
 
-#: ../mainsrc/doedidia.cc:214
+#: ../mainsrc/doedidia.cc:217
 #, fuzzy
 msgid "Line extremely long. Can't handle it reliably, sorry"
 msgstr "Zeile ist extem lang. Kann Sie leider nicht zuverlässig handhaben."
 
-#: ../mainsrc/doedidia.cc:218
+#: ../mainsrc/doedidia.cc:221
 #, fuzzy
 msgid "This file isn't on the disk!"
 msgstr "Diese Datei ist nicht auf Festplatte!"
 
-#: ../mainsrc/doedidia.cc:225
+#: ../mainsrc/doedidia.cc:228
 #, fuzzy, c-format
 msgid "The file %s is read-only, try to revert it?"
 msgstr "Diese Datei ist Nur-Lesen. Ändern?"
 
-#: ../mainsrc/doedidia.cc:228
+#: ../mainsrc/doedidia.cc:231
 msgid ""
 "Failed to revert the read-only status, you won't be able to overwrite this "
 "file"
@@ -2154,54 +2159,54 @@ msgstr ""
 "Konnte Nur-Lesen-Status nicht umkehren. Sie werden diese Datei nicht "
 "überschreiben können"
 
-#: ../mainsrc/doedidia.cc:232
+#: ../mainsrc/doedidia.cc:235
 #, fuzzy
 msgid "This action can't be undone. Are you sure?"
 msgstr "Diese Operation hat kein `Rückgängig'. Sind Sie sich sicher?"
 
-#: ../mainsrc/doedidia.cc:239
+#: ../mainsrc/doedidia.cc:242
 #, fuzzy, c-format
 msgid "%s already exists. Overwrite?"
 msgstr " existiert bereits. Überschreiben?"
 
-#: ../mainsrc/doedidia.cc:245
+#: ../mainsrc/doedidia.cc:248
 #, fuzzy, c-format
 msgid "%s isn't a file, probably a device, go ahead?"
 msgstr " ist keine Datei -möglicherweise ein Gerät- fortsetzen?"
 
-#: ../mainsrc/doedidia.cc:248
+#: ../mainsrc/doedidia.cc:251
 #, fuzzy
 msgid "Can't create a backup. Continue saving?"
 msgstr "Konnte keine Sicherheitskopie erstellen. Trotzdem speichern?"
 
-#: ../mainsrc/doedidia.cc:251
+#: ../mainsrc/doedidia.cc:254
 msgid "You can't paste a rectangle crossing the end of the file"
 msgstr "Sie können kein Rechteck einfügen, das über das Dateiende hinaus geht"
 
-#: ../mainsrc/doedidia.cc:262
+#: ../mainsrc/doedidia.cc:265
 msgid "No pseudo macros available"
 msgstr "Keine pseudo macros verfügbar"
 
-#: ../mainsrc/doedidia.cc:279
+#: ../mainsrc/doedidia.cc:282
 #, fuzzy
 msgid "The file is compressed. Do you want to save with compression?"
 msgstr "Sie haben autoexec.bat geändert. Änderungen speichern?"
 
-#: ../mainsrc/doedidia.cc:282
+#: ../mainsrc/doedidia.cc:285
 msgid "Searching inside a selection but nothing is selected"
 msgstr ""
 
-#: ../mainsrc/doedidia.cc:286
+#: ../mainsrc/doedidia.cc:289
 #, fuzzy
 msgid "You must select some text for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../mainsrc/doedidia.cc:293
+#: ../mainsrc/doedidia.cc:296
 #, fuzzy, c-format
 msgid "You must select less than %d characters"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/doedidia.cc:298
+#: ../mainsrc/doedidia.cc:301
 msgid "The selection can't contain more than one line"
 msgstr ""
 
@@ -2213,43 +2218,47 @@ msgstr "Zwischenablage"
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: ../mainsrc/gzfiles.cc:450
+#: ../mainsrc/gzfiles.cc:426
 #, fuzzy
 msgid "Validation"
 msgstr "~K~onfiguration"
 
-#: ../mainsrc/gzfiles.cc:454
+#: ../mainsrc/gzfiles.cc:430
 msgid "Passphrase"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:609
+#: ../mainsrc/gzfiles.cc:585
 #, fuzzy
 msgid "No passphrase available"
 msgstr "Keine pseudo macros verfügbar"
 
-#: ../mainsrc/gzfiles.cc:618 ../setedit/debug.cc:8604
+#: ../mainsrc/gzfiles.cc:594 ../setedit/debug.cc:8604
 #, fuzzy
 msgid "Out of memory"
 msgstr "Nicht genug Speicher für diese Operation"
 
-#: ../mainsrc/gzfiles.cc:628
+#: ../mainsrc/gzfiles.cc:605 ../mainsrc/gzfiles.cc:677
 #, fuzzy
-msgid "Can't create temporal file"
-msgstr "Konnte keine temporäre Kopie der autoexec.bat erstellen"
+msgid "Running:"
+msgstr "Führe aus: %s"
 
-#: ../mainsrc/gzfiles.cc:643 ../mainsrc/gzfiles.cc:703
+#: ../mainsrc/gzfiles.cc:613 ../mainsrc/gzfiles.cc:683
 msgid "Failed to invoke gpg"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:677
+#: ../mainsrc/gzfiles.cc:653
 #, fuzzy
 msgid "Error while decrypting"
 msgstr "Fehler während des Lesens"
 
-#: ../mainsrc/gzfiles.cc:681
+#: ../mainsrc/gzfiles.cc:657
 #, fuzzy
 msgid "Failed to determine user ID"
 msgstr "Konnte die Listendatei nicht öffnen"
+
+#: ../mainsrc/gzfiles.cc:713
+msgid "Error from GPG"
+msgstr ""
 
 #: ../mainsrc/keytrans.cc:804
 msgid "Wrong file"
@@ -3124,7 +3133,9 @@ msgid ""
 msgstr ""
 
 #: ../setedit/advice.cc:76
-msgid "Encrypted file detected. Install GPG in /usr/bin/."
+msgid ""
+"Encrypted file detected.\n"
+"Install GPG in /usr/bin/."
 msgstr ""
 
 #: ../setedit/advice.cc:104
@@ -4360,61 +4371,61 @@ msgstr "Danksagungen an:"
 msgid "Made in Argentina"
 msgstr "Hergstellt in Argentinien (übersetzt in Deutschland)"
 
-#: ../setedit/editmain.cc:132
+#: ../setedit/editmain.cc:133
 msgid "Do you want to delete all the .BKP, desktop and project files?"
 msgstr "Wollen Sie alle .bkp, Desktop- und Projektdateien löschen?"
 
-#: ../setedit/editmain.cc:459
+#: ../setedit/editmain.cc:460
 #, fuzzy
 msgid "No project loaded"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/editmain.cc:518
+#: ../setedit/editmain.cc:519
 #, fuzzy
 msgid "This file is already open, close it first."
 msgstr "Die Datei ist bereits geöffnet. Schließen Sie sie zuerst."
 
-#: ../setedit/editmain.cc:605
+#: ../setedit/editmain.cc:606
 #, fuzzy
 msgid "Open File"
 msgstr "Ö~f~fne Info"
 
-#: ../setedit/editmain.cc:620
+#: ../setedit/editmain.cc:621
 msgid "You must select an editor window for this operation"
 msgstr "Sie müssen ein Editorfenster für diese Operation angeben"
 
-#: ../setedit/editmain.cc:755
+#: ../setedit/editmain.cc:756
 msgid "Export file as"
 msgstr "Exportiere Datei als"
 
-#: ../setedit/editmain.cc:845
+#: ../setedit/editmain.cc:846
 #, fuzzy
 msgid "This window can't be printed. Select an editor window instead"
 msgstr "Diese Fenster kann nicht gedruckt werden, wählen Sie einen Editor"
 
-#: ../setedit/editmain.cc:1005
+#: ../setedit/editmain.cc:1006
 msgid "Couldn't find any matching help"
 msgstr "Konnte keine passende Hilfe finden"
 
-#: ../setedit/editmain.cc:1188
+#: ../setedit/editmain.cc:1189
 msgid "A background task is still running, exit anyway?"
 msgstr ""
 
-#: ../setedit/editmain.cc:1941
+#: ../setedit/editmain.cc:1942
 msgid "This line no longer exists"
 msgstr "Die Zeile existiert nicht mehr"
 
-#: ../setedit/editmain.cc:2109
+#: ../setedit/editmain.cc:2110
 #, fuzzy
 msgid "Error creating the difference, aborting"
 msgstr "Fehler beim Lesen der Dateiliste"
 
-#: ../setedit/editmain.cc:2185
+#: ../setedit/editmain.cc:2186
 #, c-format
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "Die Festplattenkopie von `%s' ist neuer. Neu laden?"
 
-#: ../setedit/editmain.cc:2459
+#: ../setedit/editmain.cc:2460
 #, fuzzy
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
@@ -4423,7 +4434,7 @@ msgstr ""
 "Ich kann die `readme.1st' Datei nicht finden. Suchen Sie in der .zip Datei "
 "danach und lesen Sie sie."
 
-#: ../setedit/editmain.cc:2594
+#: ../setedit/editmain.cc:2595
 #, c-format
 msgid ""
 "\n"
@@ -4432,7 +4443,7 @@ msgstr ""
 "\n"
 "Falsche Installation! Sie müssen die %s Umgebungsvariable definieren.\n"
 
-#: ../setedit/editmain.cc:2595
+#: ../setedit/editmain.cc:2596
 #, fuzzy, c-format
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4441,7 +4452,7 @@ msgstr ""
 "Lesen Sie zuerst die Datei `readme.1st', die in der .zip Datei enthalten "
 "ist.\n"
 
-#: ../setedit/editmain.cc:2599
+#: ../setedit/editmain.cc:2600
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4450,7 +4461,7 @@ msgstr ""
 "Ich schlage vor: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2601
+#: ../setedit/editmain.cc:2602
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4459,12 +4470,12 @@ msgstr ""
 "Ich schlage vor: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2606
+#: ../setedit/editmain.cc:2607
 #, c-format
 msgid "press ENTER to continue\n"
 msgstr "Drücken Sie EINGABE, um fortzufahren\n"
 
-#: ../setedit/editmain.cc:2615
+#: ../setedit/editmain.cc:2616
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4474,26 +4485,26 @@ msgstr ""
 "Sie haben SET_FILES falsch definiert; sie zeigt auf kein Verzeichnis.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2644
+#: ../setedit/editmain.cc:2645
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "Speicher ist fast voll. Bitte starten Sie SET' Editor neu."
 
-#: ../setedit/editmain.cc:2889
+#: ../setedit/editmain.cc:2890
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2891
+#: ../setedit/editmain.cc:2892
 msgid ". Copyright (c) "
 msgstr ""
 
-#: ../setedit/editmain.cc:2893
+#: ../setedit/editmain.cc:2894
 #, fuzzy
 msgid ""
 " by Salvador E. Tropea\n"
 "\n"
 msgstr "von Salvador Eduardo Tropea"
 
-#: ../setedit/editmain.cc:2895
+#: ../setedit/editmain.cc:2896
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4501,7 +4512,7 @@ msgstr ""
 "setedit [optionen] [datei_name ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2897
+#: ../setedit/editmain.cc:2898
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4511,11 +4522,11 @@ msgid ""
 "                         the end of the text. Example: +6 file\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2901
+#: ../setedit/editmain.cc:2902
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordnet die Fenster überlappend an.\n"
 
-#: ../setedit/editmain.cc:2902
+#: ../setedit/editmain.cc:2903
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4524,14 +4535,14 @@ msgid ""
 "                         1: do nothing (conservative).\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2907
+#: ../setedit/editmain.cc:2908
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
 "                         3: like 2 but stay in the debugger.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2911
+#: ../setedit/editmain.cc:2912
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4540,7 +4551,7 @@ msgstr ""
 "-f, --file-list file_n:  lädt die Dateien aus der Liste in file_n, in\n"
 "                         der pro Zeile NUR EINE Datei stehen darf.\n"
 
-#: ../setedit/editmain.cc:2913
+#: ../setedit/editmain.cc:2914
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4548,36 +4559,36 @@ msgstr ""
 "-h, --help:              Zeigt diesen Text ;).\n"
 "\n"
 
-#: ../setedit/editmain.cc:2915
+#: ../setedit/editmain.cc:2916
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr ""
 "-k, --use-rh-52-keys     schaltet das Red Hat 5.2 Tastatur mapping ein\n"
 
-#: ../setedit/editmain.cc:2917
+#: ../setedit/editmain.cc:2918
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2919
+#: ../setedit/editmain.cc:2920
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr ""
 "-l, --force-no-lfn       verhindert die Benutzung von langen Dateinamen\n"
 "                         unter Win9x\n"
 
-#: ../setedit/editmain.cc:2920
+#: ../setedit/editmain.cc:2921
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         lange Dateinamen unter Win9x erzwingen.\n"
 
-#: ../setedit/editmain.cc:2921
+#: ../setedit/editmain.cc:2922
 #, fuzzy
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     Schaltet Verwendung des Mausinterrupts aus.\n"
 
-#: ../setedit/editmain.cc:2924
+#: ../setedit/editmain.cc:2925
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2926
+#: ../setedit/editmain.cc:2927
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4586,7 +4597,7 @@ msgstr ""
 "-p, --project <datei>    lädt das angegebene Projekt. Erstellt ein neues,\n"
 "                         wenn die Datei nicht existiert.\n"
 
-#: ../setedit/editmain.cc:2928
+#: ../setedit/editmain.cc:2929
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4594,19 +4605,19 @@ msgstr ""
 "-r, --no-redirect:       Schaltet stderr Umleitung aus. Wird nur während\n"
 "                         Debugging benutzt.\n"
 
-#: ../setedit/editmain.cc:2931
+#: ../setedit/editmain.cc:2932
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
 "-S, --low-vga-save:      einfache Funktionen (low-level) zum Sichern/Laden\n"
 "                         der VGA Karte verwenden.\n"
 
-#: ../setedit/editmain.cc:2933
+#: ../setedit/editmain.cc:2934
 #, fuzzy
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr "-t, --tile-vert:         ordnet die Fenster vertikal geteilt an.\n"
 
-#: ../setedit/editmain.cc:2934
+#: ../setedit/editmain.cc:2935
 #, fuzzy
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr "-T, --tile-horiz:        ordnet die Fenster horizontal geteilt an.\n"
@@ -7379,6 +7390,10 @@ msgstr "Befehl~e~"
 msgid "s~L~isp code"
 msgstr "sLisp Makros"
 
+#, fuzzy
+#~ msgid "Can't create temporal file"
+#~ msgstr "Konnte keine temporäre Kopie der autoexec.bat erstellen"
+
 #~ msgid "You must install gzip to browse compressed files!"
 #~ msgstr "Sie müssen gzip installieren, um komprimierte Dateien einzusehen!"
 
@@ -7551,10 +7566,6 @@ msgstr "sLisp Makros"
 #, fuzzy
 #~ msgid "Highlight"
 #~ msgstr "Syntax~h~ervorhebung"
-
-#, fuzzy
-#~ msgid "Error writing file %s."
-#~ msgstr "Fehler beim Schreiben der Datei "
 
 #, fuzzy
 #~ msgid "failed to open the output terminal"
