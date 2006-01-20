@@ -691,14 +691,21 @@ int GZFiles_CreateGPG(const char *file, int &hi, int &ho, int &he, pid_t &child)
 int GZFiles_CloseGPG(int hi, int ho, int he, pid_t child)
 {
  if (gzCB)
-   {
-    char buf[80];
-    while (gpgGetline(he,buf,80))
+   {// We must avoid blocking. Usually GPG have nothing to say through stderr.
+    int oldflags=fcntl(he,F_GETFL,0);
+    if (oldflags!=-1)
       {
-       for (char *s=buf; *s; s++)
-           if (*s=='\r' || *s=='\n')
-              *s=' ';
-       gzCB(buf);
+       if (fcntl(he,F_SETFL,oldflags|O_NONBLOCK)!=-1)
+         {
+          char buf[80];
+          while (gpgGetline(he,buf,80))
+            {
+             for (char *s=buf; *s; s++)
+                 if (*s=='\r' || *s=='\n')
+                    *s=' ';
+             gzCB(buf);
+            }
+         }
       }
    }
  int ret=gpgPclose(hi,ho,he,child);

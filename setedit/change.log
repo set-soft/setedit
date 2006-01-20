@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.705  2005/12/16 19:52:09  set
+* Modified: Now the temporal file that holds the uncrypted copy is deleted
+as soon as the file handle is created.
+* Added: The messages from gpg are sent to the message window when we can
+do it (not during start-up).
+* Added: Better error reporting when the encrypted file fails to be
+created.
+
 Revision 1.704  2005/12/16 14:24:16  set
 * Added: id and usemap HTML keywords.
 * Added: Support for "hided" input lines in EasyDiag (for passwords).
