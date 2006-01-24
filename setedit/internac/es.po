@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-01-20 15:03-0300\n"
+"PO-Revision-Date: 2006-01-24 12:11-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2126,44 +2126,44 @@ msgstr "Portapapeles"
 msgid "Untitled"
 msgstr "Sin Título"
 
-#: ../mainsrc/gzfiles.cc:426
+#: ../mainsrc/gzfiles.cc:443
 #, fuzzy
 msgid "Validation"
 msgstr "~N~avegación"
 
-#: ../mainsrc/gzfiles.cc:430
+#: ../mainsrc/gzfiles.cc:447
 msgid "Passphrase"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:585
+#: ../mainsrc/gzfiles.cc:602
 #, fuzzy
 msgid "No passphrase available"
 msgstr "No hay pseudo macros disponibles"
 
-#: ../mainsrc/gzfiles.cc:594 ../setedit/debug.cc:8604
+#: ../mainsrc/gzfiles.cc:611 ../setedit/debug.cc:8604
 msgid "Out of memory"
 msgstr "No hay memoria suficiente"
 
-#: ../mainsrc/gzfiles.cc:605 ../mainsrc/gzfiles.cc:677
+#: ../mainsrc/gzfiles.cc:622 ../mainsrc/gzfiles.cc:694
 #, fuzzy
 msgid "Running:"
 msgstr "Ejecutando"
 
-#: ../mainsrc/gzfiles.cc:613 ../mainsrc/gzfiles.cc:683
+#: ../mainsrc/gzfiles.cc:630 ../mainsrc/gzfiles.cc:700
 msgid "Failed to invoke gpg"
 msgstr ""
 
-#: ../mainsrc/gzfiles.cc:653
+#: ../mainsrc/gzfiles.cc:670
 #, fuzzy
 msgid "Error while decrypting"
 msgstr "Error al leer"
 
-#: ../mainsrc/gzfiles.cc:657
+#: ../mainsrc/gzfiles.cc:674
 #, fuzzy
 msgid "Failed to determine user ID"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../mainsrc/gzfiles.cc:713
+#: ../mainsrc/gzfiles.cc:731
 #, fuzzy
 msgid "Error from GPG"
 msgstr "Error desde el gdb"
