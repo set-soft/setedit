@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.706  2006/01/20 18:07:18  set
+* Fixed: When saving a GPG encrypted file the editor hanged waiting for
+errors from gpg.
+
 Revision 1.705  2005/12/16 19:52:09  set
 * Modified: Now the temporal file that holds the uncrypted copy is deleted
 as soon as the file handle is created.

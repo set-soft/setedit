@@ -741,7 +741,9 @@ void EdShowMessageFile(const char *msg, FileInfo &fInfo, char *fileName,
 
 void EdShowMessageS(const char *msg)
 {
- EdShowMessage(msg,False,True);
+ FileInfo dummy;
+ dummy.Line=-1;
+ EdShowMessageFile(msg,dummy,0,edsmNoHzReset|edsmDontSelect);
 }
 
 void EdShowMessage(const char *msg, Boolean remove_old, Boolean resetHz)

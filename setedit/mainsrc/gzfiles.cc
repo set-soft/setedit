@@ -389,8 +389,25 @@ size_t TGZFileWrite::write(void *buffer, size_t len)
 
     #ifdef HAVE_GPG
     case gzGPG:
-         ret=::write(hi,buffer,len);
-         //printf("len=%d , ret=%d\n",len,ret);
+         {// We must iterate until the child process all the data
+          ssize_t r;
+          size_t lori=len;
+          do
+            {
+             r=::write(hi,buffer,len);
+             if (r==-1)
+                break;
+             len-=r;
+             buffer=(char *)buffer+r;
+            }
+          while (len);
+          if (r==-1)
+            {
+             ok=0; ret=(size_t)-1;
+            }
+          else
+             ret=lori;
+         }
          break;
     #endif
 
@@ -692,13 +709,14 @@ int GZFiles_CloseGPG(int hi, int ho, int he, pid_t child)
 {
  if (gzCB)
    {// We must avoid blocking. Usually GPG have nothing to say through stderr.
-    int oldflags=fcntl(he,F_GETFL,0);
+    int h=he;
+    int oldflags=fcntl(h,F_GETFL,0);
     if (oldflags!=-1)
       {
-       if (fcntl(he,F_SETFL,oldflags|O_NONBLOCK)!=-1)
+       if (fcntl(h,F_SETFL,oldflags|O_NONBLOCK)!=-1)
          {
           char buf[80];
-          while (gpgGetline(he,buf,80))
+          while (gpgGetline(h,buf,80))
             {
              for (char *s=buf; *s; s++)
                  if (*s=='\r' || *s=='\n')
