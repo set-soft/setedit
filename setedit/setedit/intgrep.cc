@@ -129,6 +129,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  char *endOfName,*endOfLine=0;
  int offset=0;
 
+ fI.type=fitNone;
  // Look for file name and line number
  // It fails if: The file is absolute and starts with a number
  if (TVCodePage::isAlpha(buf[0]) && buf[1]==':' && (!ucisdigit(buf[2])))
@@ -140,6 +141,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     return 0;
 
  char *ret;
+ fI.type=fitInfo;
  fI.len=strlen(endOfLine+1);
  fI.offset=endOfLine-buf+1;
  ret=newStr(buf);

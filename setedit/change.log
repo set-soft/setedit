@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.707  2006/01/24 15:14:43  set
+* Fixed: GPG interface when writing big files (not waiting for child
+completion).
+* Modified: To avoid poping the message window after each GPG invocation.
+
 Revision 1.706  2006/01/20 18:07:18  set
 * Fixed: When saving a GPG encrypted file the editor hanged waiting for
 errors from gpg.
