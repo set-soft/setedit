@@ -570,7 +570,7 @@ public:
     Boolean       SearchSelBackward();
     void          SetSelectionBuffer();
     void          UnsetSelectionBuffer();
-    Boolean       CopySelToFindStr(char *destination, unsigned max);
+    Boolean       CopySelToFindStr(char *destination, unsigned max, Boolean &isWholeWord);
 
     // Highligth of one char
     int XHLCO,YHLCO,XHLCC,YHLCC,XHLCo,YHLCo,XHLCc,YHLCc;

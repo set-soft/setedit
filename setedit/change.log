@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.708  2006/02/06 18:11:12  set
+* Fixed: The powered grep code added lines to the message box without
+specifying their type. Some lines could get added as fitCont and the code
+could try to get the next line potentially crashing in the process.
+Reported by Thiago (gdb backtrace).
+
 Revision 1.707  2006/01/24 15:14:43  set
 * Fixed: GPG interface when writing big files (not waiting for child
 completion).

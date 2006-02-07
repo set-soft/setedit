@@ -3693,9 +3693,11 @@ to the user. It also checks for @var{max} bytes.
   
 ***************************************************************************/
 
-Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
+Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max,
+                                   Boolean &isWholeWord)
 {
  flushLine();
+ isWholeWord=False;
  // Must have a selection.
  // Note: the command is disabled when no selection is available.
  if (!hasVisibleSelection())
@@ -3719,6 +3721,10 @@ Boolean TCEditor::CopySelToFindStr(char *destination, unsigned max)
        }
  // Now is safe to copy
  strncpyZ(destination,buffer+selStart,selLen+1);
+ // Solve the isWholeWord stuff
+ if ((!selStart || isWordChar(bufChar(selStart-1))) &&
+     (selStart+selLen>=bufLen || isWordChar(bufChar(selStart+selLen))))
+    isWholeWord=True;
  return True;
 }
 
@@ -3738,6 +3744,7 @@ Boolean TCEditor::SearchSelForB(Boolean back)
  if (!bufLen)     // Sanity check
     return False;
 
+ Boolean isWholeWord=True;
  // Get a copy of the current selection
  char findStrSel[maxFindStrLenEd];
  TCEditor *fromEd;
@@ -3745,17 +3752,29 @@ Boolean TCEditor::SearchSelForB(Boolean back)
     fromEd=haveCurSelection;
  else
     fromEd=this;
- if (!fromEd->CopySelToFindStr(findStrSel,maxFindStrLenEd))
-    return False;
+
+ if (fromEd->hasVisibleSelection())
+   {
+    if (!fromEd->CopySelToFindStr(findStrSel,maxFindStrLenEd,isWholeWord))
+       return False;
+   }
+ else
+   {// No selection, get the word under cursor
+    char *s=WordUnderCursor(maxFindStrLenEd);
+    if (!s)
+       return False;
+    strncpyZ(findStrSel,s,maxFindStrLenEd);
+    delete[] s;
+   }
 
  // Remmember the old search settings
  unsigned oldOps=editorFlags;
  ushort   oldSearchInSel=SearchInSel;
  ushort   oldFromWhere=FromWhere;
  // Change the settings for this search
- editorFlags&=~(efCaseSensitive | efWholeWordsOnly | efRegularEx |
-                efSearchInComm | efSearchOutComm | efDoReplace |
-                efSearchBack);
+ editorFlags&=~(efCaseSensitive | efRegularEx | efSearchInComm |
+                efSearchOutComm | efDoReplace | efSearchBack);
+ editorFlags|=efWholeWordsOnly;
  if (strC.Flags1 & FG1_CaseSensitive)
     editorFlags|=efCaseSensitive;
  if (back)
@@ -3781,7 +3800,17 @@ Boolean TCEditor::SearchSelForB(Boolean back)
        StartOfSearch=bufLen-1;
     else
        StartOfSearch=0;
-    search(findStrSel,editorFlags);
+    found=search(findStrSel,editorFlags);
+    if (found)
+      {
+       char bufaux[80];
+       char *fmt=TVIntl::getTextNew(__("Search wrapped, continued from %s."));
+       char *from=TVIntl::getTextNew(back ? __("bottom") : __("top"));
+       CLY_snprintf(bufaux,80,fmt,from);
+       DeleteArray(fmt);
+       DeleteArray(from);
+       setStatusLine(bufaux);
+      }
    }
 
  // Restore previous settings
@@ -3790,7 +3819,7 @@ Boolean TCEditor::SearchSelForB(Boolean back)
  FromWhere=oldFromWhere;
  // Compile the old search
  CompileSearch(findStr);
- return False;
+ return found;
 }
 
 /**[txh]********************************************************************
@@ -11271,8 +11300,8 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
     setCmdState(cmcPasteClipWin,oscli);
    }
- setCmdState(cmcSearchSelBackward,hs);
- setCmdState(cmcSearchSelForward,hs);
+ //setCmdState(cmcSearchSelBackward,hs);
+ //setCmdState(cmcSearchSelForward,hs);
 }
 
 /**[txh]********************************************************************
