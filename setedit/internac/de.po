@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-01-24 12:11-0300\n"
+"PO-Revision-Date: 2006-02-07 14:22-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "~A~uswerten"
 #: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1519 ../mainsrc/tags.cc:1747
 #: ../setedit/debug.cc:1602 ../setedit/edprefs.cc:472
 #: ../setedit/edprefs.cc:617 ../setedit/edprefs.cc:684
-#: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:419
+#: ../setedit/edprefs.cc:913 ../setedit/intgrep.cc:421
 #: ../setedit/winlistd.cc:143 ../settvuti/diaghelp.cc:41
 msgid "Cancel"
 msgstr "Abbruch"
@@ -78,7 +78,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/tags.cc:1541 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:471
 #: ../setedit/edprefs.cc:616 ../setedit/edprefs.cc:683
-#: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:418 ../setedit/tips.cc:213
+#: ../setedit/edprefs.cc:912 ../setedit/intgrep.cc:420 ../setedit/tips.cc:213
 msgid "O~K~"
 msgstr "O~K"
 
@@ -1537,42 +1537,56 @@ msgstr "Aktion"
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
+#: ../mainsrc/ceditor.cc:3807
+#, c-format
+msgid "Search wrapped, continued from %s."
+msgstr ""
+
+#: ../mainsrc/ceditor.cc:3808
+msgid "bottom"
+msgstr ""
+
+#: ../mainsrc/ceditor.cc:3808
+#, fuzzy
+msgid "top"
+msgstr "~S~top"
+
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4229
+#: ../mainsrc/ceditor.cc:4258
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4281
+#: ../mainsrc/ceditor.cc:4310
 #, fuzzy, c-format
 msgid "%d bytes selected"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4283
+#: ../mainsrc/ceditor.cc:4312
 #, fuzzy
 msgid "One byte selected"
 msgstr "gewähltes a~b~spielen"
 
-#: ../mainsrc/ceditor.cc:4285
+#: ../mainsrc/ceditor.cc:4314
 #, fuzzy, c-format
 msgid " in %d lines"
 msgstr " [%d Knoten]"
 
-#: ../mainsrc/ceditor.cc:4287
+#: ../mainsrc/ceditor.cc:4316
 #, fuzzy
 msgid " in one line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/ceditor.cc:4448
+#: ../mainsrc/ceditor.cc:4477
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4467
+#: ../mainsrc/ceditor.cc:4496
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4489
+#: ../mainsrc/ceditor.cc:4518
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1583,7 +1597,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4523
+#: ../mainsrc/ceditor.cc:4552
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1596,16 +1610,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6134
+#: ../mainsrc/ceditor.cc:6163
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6149
+#: ../mainsrc/ceditor.cc:6178
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10729
+#: ../mainsrc/ceditor.cc:10758
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1614,29 +1628,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10744
+#: ../mainsrc/ceditor.cc:10773
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11490
+#: ../mainsrc/ceditor.cc:11519
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12421
+#: ../mainsrc/ceditor.cc:12450
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12632
+#: ../mainsrc/ceditor.cc:12661
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13833
+#: ../mainsrc/ceditor.cc:13862
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13843
+#: ../mainsrc/ceditor.cc:13872
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -1991,7 +2005,7 @@ msgid "Export Options"
 msgstr "Export Optionen"
 
 #: ../mainsrc/deedidia.cc:367 ../setedit/editmenu.cc:354
-#: ../setedit/intgrep.cc:416 ../setedit/runprog.cc:125
+#: ../setedit/intgrep.cc:418 ../setedit/runprog.cc:125
 msgid "~O~ptions"
 msgstr "~O~ptionen"
 
@@ -6859,142 +6873,142 @@ msgstr "Sekundär encoding"
 msgid "The clipboard is empty"
 msgstr "Die Zwischenablage ist leer"
 
-#: ../setedit/intgrep.cc:200
+#: ../setedit/intgrep.cc:202
 #, fuzzy
 msgid "You must install GNU grep to use it!"
 msgstr "Sie müssen grep installieren, um dies zu benutzen!"
 
-#: ../setedit/intgrep.cc:220
+#: ../setedit/intgrep.cc:222
 #, c-format
 msgid "Running grep in: %s"
 msgstr "Starte grep in: %s"
 
-#: ../setedit/intgrep.cc:252
+#: ../setedit/intgrep.cc:254
 msgid "From stderr:"
 msgstr ""
 
-#: ../setedit/intgrep.cc:253
+#: ../setedit/intgrep.cc:255
 msgid "From stdout:"
 msgstr ""
 
-#: ../setedit/intgrep.cc:333
+#: ../setedit/intgrep.cc:335
 #, c-format
 msgid "chdir error: %s"
 msgstr "Fehler beim Wechsel in Verzeichnis: %s"
 
 # unclear
-#: ../setedit/intgrep.cc:377
+#: ../setedit/intgrep.cc:379
 msgid "Powered Grep by SET"
 msgstr "Powered Grep by SET"
 
 #. ACDEFGIJKLNORPSTUWX
 #. Pattern section
-#: ../setedit/intgrep.cc:383
+#: ../setedit/intgrep.cc:385
 msgid "~P~attern box"
 msgstr "~M~uster (Pattern-) box"
 
-#: ../setedit/intgrep.cc:384
+#: ../setedit/intgrep.cc:386
 msgid "Files to ~s~earch"
 msgstr "Zu durchsuchende Dateien"
 
-#: ../setedit/intgrep.cc:385
+#: ../setedit/intgrep.cc:387
 msgid "~D~irectories to search"
 msgstr "~V~erzeichnisse zum Durchsuchen"
 
-#: ../setedit/intgrep.cc:388
+#: ../setedit/intgrep.cc:390
 msgid "`Pattern box' is the pa~t~tern"
 msgstr "`Pattern box' ist das ~M~uster"
 
-#: ../setedit/intgrep.cc:389
+#: ../setedit/intgrep.cc:391
 msgid "`Pattern box' is a fi~l~e name"
 msgstr "`Pattern box' ist ein ~D~ateiname"
 
-#: ../setedit/intgrep.cc:390
+#: ../setedit/intgrep.cc:392
 msgid "Use the ~c~lipboard selection"
 msgstr "Auswahl der Zwis~c~henablage benutzen"
 
-#: ../setedit/intgrep.cc:392
+#: ../setedit/intgrep.cc:394
 msgid "Source of Pattern"
 msgstr "Musterquelle"
 
-#: ../setedit/intgrep.cc:395
+#: ../setedit/intgrep.cc:397
 msgid "Basic regular expression (-~G~)"
 msgstr "Einfacher regulärer Ausdruck (-~G~)"
 
-#: ../setedit/intgrep.cc:396
+#: ../setedit/intgrep.cc:398
 msgid "~E~xtended regular expression (-E)"
 msgstr "~E~rweiterte reguläre Ausdrücke (-E)"
 
-#: ../setedit/intgrep.cc:397
+#: ../setedit/intgrep.cc:399
 msgid "~F~ixed separated by CR (-F)"
 msgstr "~F~est durch CR getrennt (-F)"
 
-#: ../setedit/intgrep.cc:399
+#: ../setedit/intgrep.cc:401
 msgid "Type of Pattern"
 msgstr "Mustertyp"
 
-#: ../setedit/intgrep.cc:402
+#: ../setedit/intgrep.cc:404
 msgid "~U~se `Files to search'"
 msgstr "~B~enutze `zu suchende Dateien'"
 
-#: ../setedit/intgrep.cc:403
+#: ../setedit/intgrep.cc:405
 msgid "Search in ope~n~ed windows"
 msgstr "Suche in geöff~n~eten Fenstern"
 
-#: ../setedit/intgrep.cc:404
+#: ../setedit/intgrep.cc:406
 msgid "Search in pro~j~ect"
 msgstr "Suche im Pro~j~ekt"
 
-#: ../setedit/intgrep.cc:406
+#: ../setedit/intgrep.cc:408
 msgid "Pl~a~ces to search"
 msgstr "Such~p~lätze"
 
-#: ../setedit/intgrep.cc:408
+#: ../setedit/intgrep.cc:410
 msgid "~R~ecurse in subdirs"
 msgstr "In Unterverz. ~e~intauchen"
 
-#: ../setedit/intgrep.cc:411
+#: ../setedit/intgrep.cc:413
 msgid "~I~gnore case (-i)"
 msgstr "~G~rop/Klein nicht beachten (-i)"
 
-#: ../setedit/intgrep.cc:412
+#: ../setedit/intgrep.cc:414
 msgid "~W~hole words only (-w)"
 msgstr "Nur ~g~anze Wörter (-w)"
 
-#: ../setedit/intgrep.cc:413
+#: ../setedit/intgrep.cc:415
 msgid "Whole line (-~x~)"
 msgstr "Ganze Zeile (-~x~)"
 
-#: ../setedit/intgrep.cc:414
+#: ../setedit/intgrep.cc:416
 msgid "In~v~erse matching (-v)"
 msgstr "umgekehrte Übereinstimmung (-~v~)"
 
-#: ../setedit/intgrep.cc:437
+#: ../setedit/intgrep.cc:439
 msgid "You must provide at least one directory to search"
 msgstr "Sie müssen mindestens ein Verzeichnis für die Suche angeben"
 
-#: ../setedit/intgrep.cc:519
+#: ../setedit/intgrep.cc:521
 #, fuzzy
 msgid "There aren't any files open"
 msgstr "Es sind keine Dateien geöffnet"
 
-#: ../setedit/intgrep.cc:527
+#: ../setedit/intgrep.cc:529
 msgid "No files in project"
 msgstr "Keine Dateien im Projekt"
 
-#: ../setedit/intgrep.cc:542
+#: ../setedit/intgrep.cc:544
 msgid "Powered grep"
 msgstr "Besseres grep"
 
-#: ../setedit/intgrep.cc:547
+#: ../setedit/intgrep.cc:549
 msgid "Recurse & dirs. ignored, using internal names"
 msgstr "Rekursive und Verzeichnisse ignoriert, benutze interne Namen"
 
-#: ../setedit/intgrep.cc:557
+#: ../setedit/intgrep.cc:559
 msgid "Grep search aborted"
 msgstr ""
 
-#: ../setedit/intgrep.cc:559
+#: ../setedit/intgrep.cc:561
 msgid "End of grep search"
 msgstr "Ende der grep Suche"
 
