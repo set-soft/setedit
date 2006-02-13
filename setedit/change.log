@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.709  2006/02/07 17:46:40  set
+* Modified: The behavior of the cmcSearchAgainBackward command according
+to Thiango suggestions. Now it takes the word under cursor if no usable
+selection is available, the "whole words" flag is enabled (but only if we
+took a whole word) and we inform after wrapping.
+
 Revision 1.708  2006/02/06 18:11:12  set
 * Fixed: The powered grep code added lines to the message box without
 specifying their type. Some lines could get added as fitCont and the code

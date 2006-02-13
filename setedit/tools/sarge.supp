@@ -1,0 +1,536 @@
+{
+   X11_WriteV1
+   Memcheck:Param
+   writev(vector[...])
+   obj:/lib/tls/libc-2.3.2.so
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_X11TransWritev
+   fun:_XSend
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XPutImage
+   fun:_ZN10TScreenX1111writeLineCPEiiiPvj
+}
+# That's an invalid read/write inside a block freed by exit by exit's code.
+{
+   LibC_W1
+   Memcheck:Addr4
+   obj:/lib/tls/libc-2.3.2.so
+   obj:/lib/tls/libc-2.3.2.so
+   obj:/lib/tls/libc-2.3.2.so
+   obj:/lib/tls/libc-2.3.2.so
+   obj:/lib/tls/libc-2.3.2.so
+   fun:__libc_freeres
+   fun:_vgw__freeres
+   fun:exit
+   fun:__libc_start_main
+}
+# We free the cursors but we get this leak:
+{
+   X11Cursor1
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XrmGetStringDatabase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorSupportsARGB
+   fun:XcursorTryShapeCursor
+   fun:_XTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+   fun:_ZN10TScreenX1113createCursorsEv
+}
+{
+   X11Cursor2
+   Memcheck:Leak
+   fun:malloc
+   fun:_XrmDefaultInitParseInfo
+   fun:_XrmInitParseInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XrmGetStringDatabase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorSupportsARGB
+   fun:XcursorTryShapeCursor
+   fun:_XTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+   fun:_ZN10TScreenX1113createCursorsEv
+}
+{
+   X11Cursor3
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object_deps
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+   fun:_ZN10TScreenX1113createCursorsEv
+}
+{
+   X11Cursor4
+   Memcheck:Leak
+   fun:malloc
+   obj:/lib/ld-2.3.2.so
+   fun:_dl_map_object
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+   fun:_ZN10TScreenX1113createCursorsEv
+}
+{
+   X11Cursor5
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XrmGetStringDatabase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorSupportsARGB
+   fun:XcursorTryShapeCursor
+   fun:_XTryShapeCursor
+   fun:XCreateGlyphCursor
+   fun:XCreateFontCursor
+   fun:_ZN10TScreenX1113createCursorsEv
+}
+#
+# XCloseIM seems to leak?! don't know if that's my fault.
+#
+{
+   XOpenIM1
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/X11/locale/lib/common/ximcp.so.2
+   fun:_XimOpenIM
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:XOpenIM
+}
+{
+   XOpenIM2
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM3
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM4
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM5
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM6
+   Memcheck:Leak
+   fun:malloc
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM7
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM8
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM9
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM10
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XrmInternalStringToQuark
+   fun:XrmStringToQuark
+   fun:_XlcGetCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM11
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM12
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_map_object_deps
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM13
+   Memcheck:Leak
+   fun:malloc
+   obj:/lib/ld-2.3.2.so
+   obj:/lib/ld-2.3.2.so
+   fun:_dl_map_object
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM14
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM15
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM16
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM17
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_check_map_versions
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM18
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM19
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM20
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcAddCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM21
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM22
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM23
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM24
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM25
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM26
+   Memcheck:Leak
+   fun:calloc
+   obj:/lib/ld-2.3.2.so
+   obj:/lib/ld-2.3.2.so
+   fun:_dl_map_object
+   obj:/lib/tls/libc-2.3.2.so
+   fun:_dl_catch_error
+   fun:_dl_open
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:_dl_catch_error
+   obj:/lib/tls/libdl-2.3.2.so
+   fun:dlopen
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+{
+   XOpenIM27
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XrmInternalStringToQuark
+   fun:XrmStringToQuark
+   fun:_XlcGetCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   obj:/usr/X11R6/lib/libX11.so.6.2
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XlcDynamicLoad
+   fun:_XOpenLC
+   fun:XOpenIM
+}
+#
+# putenv needs a copy for glibc.
+#
+{
+   PutEnv1
+   Memcheck:Leak
+   fun:_Znaj
+   fun:_Z19CheckForValidTMPDIRv
+   fun:main
+}
+{
+   PutEnv2
+   Memcheck:Leak
+   fun:_Znaj
+   fun:_Z16GuessOneSET_LIBSPKcc
+   fun:_Z13GuessSET_LIBSv
+   fun:main
+}
+{
+   PutEnv3
+   Memcheck:Leak
+   fun:_Znaj
+   fun:_Z17GuessOneSET_FILESPKcc
+   fun:_Z14GuessSET_FILESv
+   fun:main
+}
+

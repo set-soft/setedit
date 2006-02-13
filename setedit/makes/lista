@@ -842,6 +842,7 @@ tools/symify.cc
 tools/TVpo.pl
 tools/valgrind.cmd
 tools/woody.supp
+tools/sarge.supp
 +update
 *update.bat
 version.txt

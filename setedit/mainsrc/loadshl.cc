@@ -734,6 +734,8 @@ void UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list, int &Cant)
      // PCREs
      free(hl[i].NameMatch);
      free(hl[i].PathMatch);
+     // Indent
+     CLY_destroy(hl[i].nlIndent);
     }
  delete[] hl;
  CLY_destroy(list);
