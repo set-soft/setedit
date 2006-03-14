@@ -163,10 +163,10 @@ if ($OS eq 'DOS')
    if ($a=~/(\w:)(.*)\/specs/i)
      {
       $here=RunRedirect('pwd',$ErrorLog);
-      chop($here);
+      $here=~s/[\r\n]//g;
       chdir("$1$2");
       $a=RunRedirect('pwd',$ErrorLog);
-      chop($a);
+      $a=~s/[\r\n]//g;
       chdir($here);
       $MakeDefsRHIDE[0].=" $a"
      }
@@ -187,7 +187,7 @@ elsif ($OS eq 'UNIX')
       { $libs=TVConfigOption('slibs'); }
    else
       { $libs=TVConfigOption('dlibs'); }
-   chop $libs;
+   $libs=~s/[\r\n]//g;
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS='.$libs.' ';
    #
    # The following are TV dependencies
@@ -212,7 +212,7 @@ else # Win32
   {
    $MakeDefsRHIDE[0]='RHIDE_STDINC=';
    $libs=TVConfigOption('slibs');
-   chop $libs;
+   $libs=~s/[\r\n]//g;
    $MakeDefsRHIDE[1]='RHIDE_OS_LIBS= '.$libs.' ';
    #$MakeDefsRHIDE[1]='RHIDE_OS_LIBS=rhtv stdc++ gdi32 ';
    #$MakeDefsRHIDE[1].='intl ' unless (@conf{'intl'} eq 'no');
@@ -233,7 +233,7 @@ $MakeDefsRHIDE[2].=' -L../gettext '  if (@conf{'intlShipped'} eq 'yes');
 $MakeDefsRHIDE[2].='-L/lib ' if ($OSf eq 'QNXRtP');
 # Libraries for TV
 $libs=TVConfigOption('dir-libs');
-chop $libs;
+$libs=~s/[\r\n]//g;
 $MakeDefsRHIDE[2].=$libs;
 # Extra libraries path
 $libs=$LDExtraDirs;
@@ -916,12 +916,13 @@ int main(void)
  # See if 2.0.6+ is installed
  $subpcre=0;
  $test=RunGCCTest($GCC,'c',$test206,"-lpcre");
- if ($test ne "OK\n")
+ $test=~s/\W//g;
+ if ($test ne "OK")
    {
     $test=RunGCCTest($GCC,'c',$test206,"-lpcre -DSUBPCRE");
     $subpcre=1;
    }
- if ($test eq "OK\n")
+ if ($test eq "OK")
    {
     print "v2.0.6 or better OK\n";
     $conf{'HAVE_PCRE_LIB'}='yes';
@@ -934,12 +935,13 @@ int main(void)
  # See if 2.0+ is installed
  $subpcre=0;
  $test=RunGCCTest($GCC,'c',$test205,"-lpcre");
- if ($test ne "OK\n")
+ $test=~s/\W//g;
+ if ($test ne "OK")
    {
     $test=RunGCCTest($GCC,'c',$test205,"-lpcre -DSUBPCRE");
     $subpcre=1;
    }
- if ($test eq "OK\n")
+ if ($test eq "OK")
    {
     print "v2.0 or better OK\n";
     $conf{'HAVE_PCRE_LIB'}='yes';
@@ -951,7 +953,8 @@ int main(void)
  print 'no 2.0+, ';
  # See if the one shipped works here
  #$test=RunGCCTest($GCC,'c',$test206,"-L$supportDir -lpcre -Isupport");
- #if ($test ne "OK\n")
+ #$test=~s/\W//g;
+ #if ($test ne "OK")
  #  {
  #   print "no shipped, disabling PCRE\n";
  #   $conf{'HAVE_PCRE_LIB'}='no';
@@ -1297,12 +1300,14 @@ int main(void)
  $libdir=$LDExtraDirs;
  $libdir=~s/(\S+)/-L$1/g;
  $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$libdir.' '.$intllib);
- if ($test ne "OK\n")
+ $test=~s/\W//g;
+ if ($test ne "OK")
    {
     print "no, additional check required.\n";
     print "Checking for extra libs for international support: ";
     $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude ".$intllib.' -liconv');
-    if ($test ne "OK\n")
+    $test=~s/\W//g;
+    if ($test ne "OK")
       {
        if ($OS eq 'DOS')
          {
@@ -1314,7 +1319,8 @@ int main(void)
        else
          {
           $test=RunGCCTest($GCC,'c',$intltest,"-I$TVInclude -L$TVLib -ltvfintl");
-          if ($test ne "OK\n")
+          $test=~s/\W//g;
+          if ($test ne "OK")
             {
              print "not found\n";
              $conf{'intl'}='no';
@@ -1783,7 +1789,7 @@ int main(void)
 }
 ';
  $test=RunGCCTest($GCC,'c',$test,'-lwin');
- chop($test);
+ $test=~s/[\r\n]//g;
  if ($test ne 'Ok')
    {
     print " no\n";
@@ -1963,7 +1969,7 @@ sub LookForMI()
   return 0;
  }';
  $ver=RunGCCTest($GCC,'c',$test,'-lmigdb');
- chop($ver);
+ $ver=~s/[\r\n]//g;
  if (length($ver))
    {
     if (CompareVersion($ver,$vNeed))
