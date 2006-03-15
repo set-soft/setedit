@@ -915,7 +915,13 @@ void TSetEditorApp::handleEvent( TEvent& event )
          case cmeOpen:
               fileOpen();
               break;
- 
+
+         // Drag 'n' drop support for JASC's WinGr driver.
+         case cmOpen:
+              if (event.message.infoPtr)
+                 openEditor((char *)event.message.infoPtr,True);
+              break;
+              
          case cmeNew:
               fileNew();
               break;

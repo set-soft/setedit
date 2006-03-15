@@ -16,3 +16,6 @@ sdg.inf
 setedit.1
 infview.1
 Makefile
+*.ps
+*.dvi
+*.log

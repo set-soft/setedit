@@ -9,6 +9,7 @@ $Id$
 2. MANUAL MECHANISM
 3. SYSTEMS BASED ON .DEB FILES (DEBIAN GNU/LINUX)
 4. SYSTEMS BASED ON .RPM FILES (REDHAT, SUSE, MANDRAKE)
+5. DEBUG SUPPORT
 
 
 1. INTRODUCTION
@@ -38,4 +39,9 @@ the doc/install/tools.txt file.
 recommend trying to follow the "manual" mechanism but skip the installation
 procedure. Once you are sure all compiles perfectly for your system then try
 this procedure.
+
+5. DEBUG SUPPORT
+
+  Linux is the only platform where debug support was tested. To enable debug
+support download libmigdb from http://sourceforge.net/projects/libmigdb/
 

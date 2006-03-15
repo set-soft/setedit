@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.711  2006/03/14 17:29:38  set
+* Fixed: Problems using current Perl interpreter shipped with MSys (MinGW).
+Based on a patch by JASC.
+
 Revision 1.710  2006/02/13 14:06:57  set
 * Fixed: Indent rules not freed when unloading shl file.
 * Added: Sarge suppressions for valgrind.
