@@ -95,6 +95,8 @@
 #include <advice.h>
 #include <debug.h>
 
+const unsigned cmOpen=100;
+
 void AddToEditorsHelper(TCEditWindow *p, int SelectHL=0);
 static void PrintEditor(void);
 static void ExportAsHTML(void);

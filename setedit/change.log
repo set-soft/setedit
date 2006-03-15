@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.712  2006/03/15 17:19:38  set
+* Added: Support for WinGr's drag'n drop.
+* Added: Some note about libmigdb to the install text.
+* Added: Rules to exclude DVI and PS from doc/.
+
 Revision 1.711  2006/03/14 17:29:38  set
 * Fixed: Problems using current Perl interpreter shipped with MSys (MinGW).
 Based on a patch by JASC.
