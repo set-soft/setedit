@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-02-07 14:22-0300\n"
+"PO-Revision-Date: 2006-02-13 10:52-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2287,7 +2287,7 @@ msgstr "Primera condición incorrecta en una regla NLIndent"
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Cantidad incorrecta de parámetros en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:1454
+#: ../mainsrc/loadshl.cc:1456
 msgid "Errors while loading syntax highlight file"
 msgstr "Errores al cargar resaltado de sintaxis"
 

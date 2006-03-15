@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-02-07 14:22-0300\n"
+"PO-Revision-Date: 2006-02-13 10:52-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2381,7 +2381,7 @@ msgstr ""
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../mainsrc/loadshl.cc:1454
+#: ../mainsrc/loadshl.cc:1456
 #, fuzzy
 msgid "Errors while loading syntax highlight file"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
