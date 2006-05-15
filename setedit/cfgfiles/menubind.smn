@@ -27,7 +27,7 @@
 # The context is used to bring help about the menu options.
 #
 # The file supports some primitive conditionals, you can use $ifdef and
-# $ifndef. The only tree values defined are DOS, Linux and WIN32.
+# $ifndef.
 #
 
 #            AC  ILNOPQST  X

@@ -837,6 +837,7 @@ tools/mapa.cc
 tools/mft.c
 tools/mft.gpr
 tools/mideline.cc
+tools/moverepo.pl
 +tools/putcopyr.pl
 tools/symify.cc
 tools/TVpo.pl

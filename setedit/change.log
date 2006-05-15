@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.713  2006/03/15 17:39:22  set
+* Fixed: Missing cmOpen definition in last patch.
+
 Revision 1.712  2006/03/15 17:19:38  set
 * Added: Support for WinGr's drag'n drop.
 * Added: Some note about libmigdb to the install text.
