@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.714  2006/05/15 19:01:19  set
+* Added: Small tool to move the CVS root. Used for S.F. changes.
+* Fixed: Incorrect comment in menu file.
+* Modified: Xilinx error pattern for the Linux 7.x WebPack.
+
 Revision 1.713  2006/03/15 17:39:22  set
 * Fixed: Missing cmOpen definition in last patch.
 
