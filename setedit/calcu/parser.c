@@ -461,12 +461,15 @@ int eval (char *_str, char **_ret)
       ltype bin = val;
       *ret ++ = '0';
       *ret ++ = 'b';
-      for (c = 0; bin >> c; c ++);
+      if (bin > 0)
+         for (c = 0; bin >> c; c ++);
+      else
+         c = 64; /* Negative integers use all the bits ;-) SET */
       if (c == 0)
          *ret ++ = '0';
       ret += c;
       *ret -- = '\0';
-      for (; bin; bin >>= 1)
+      for (; c--; bin >>= 1)
          *ret -- = (bin & 1) + '0';
    }
    return 0;

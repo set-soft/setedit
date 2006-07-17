@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.715  2006/06/27 10:51:25  set
+* Fixed: CVS usage in web page (lastest S.F. changes) Reported by Sergio
+Nuñez.
+
 Revision 1.714  2006/05/15 19:01:19  set
 * Added: Small tool to move the CVS root. Used for S.F. changes.
 * Fixed: Incorrect comment in menu file.
