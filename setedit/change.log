@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.716  2006/07/17 14:16:40  set
+* Fixed: "bin(-1)" in the calculator made it enter in an endless loop.
+
 Revision 1.715  2006/06/27 10:51:25  set
 * Fixed: CVS usage in web page (lastest S.F. changes) Reported by Sergio
 Nuñez.

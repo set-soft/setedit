@@ -67,6 +67,7 @@ static char *(*incParseFun)(char *buf,FileInfo &fI,char *&fileName);
 static FILE *incf;
 static char incFinished;
 static uint32 incSMOps;
+static char *fromPrevRun=NULL;
 
 /**[txh]********************************************************************
 
@@ -85,6 +86,8 @@ void DumpFileToMessageInit(char *file, const char *from, uint32 SMOps,
  incSMOps=SMOps;
  incf=0;
  incFinished=0;
+ delete[] fromPrevRun;
+ fromPrevRun=NULL;
 }
 
 /**[txh]********************************************************************
@@ -134,10 +137,16 @@ int  DumpFileToMessageParseMore(int Lines, int *goBack)
  while (lines<Lines)
    {
     clearerr(incf);
+    buf[0]=0;
     fgets(buf,1000,incf);
     if (feof(incf))
       {
        ret=1;
+       if (buf[0])
+         {// If we have a partial line save it for the next run
+          delete[] fromPrevRun;
+          fromPrevRun=newStr(buf);
+         }
        break;
       }
    
@@ -149,6 +158,18 @@ int  DumpFileToMessageParseMore(int Lines, int *goBack)
        buf[l-1]=0;
        if (l>1 && buf[l-2]=='\r')
           buf[l-2]=0;
+      }
+    // Check if we have a partial line from a previous run
+    if (fromPrevRun)
+      {
+       int l2=strlen(fromPrevRun);
+       if (l+l2<1020)
+         {
+          memmove(buf+l2,buf,l+1);
+          memcpy(buf,fromPrevRun,l2);
+         }
+       delete[] fromPrevRun;
+       fromPrevRun=NULL;
       }
     if (incParseFun)
       {
@@ -185,4 +206,6 @@ void DumpFileToMessageEnd()
  if (incf)
     fclose(incf);
  incFinished=1;
+ delete[] fromPrevRun;
+ fromPrevRun=NULL;
 }
