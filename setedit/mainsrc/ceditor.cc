@@ -7546,6 +7546,10 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
 
  lenLines.set(curPos.y,pF);
 
+ // If the section invalidates the drawPtr force a full recalculation
+ if (drawPtr>=unsigned(s-buffer))
+    drawLine=drawPtr=0;
+
  // * Insert the buffer
  // first make a hole
  unsigned holeSize=(unsigned)(bufLen-(s-buffer));
@@ -7827,7 +7831,7 @@ void TCEditor::deleteRangeLineInEdition(char *from,char *to,int x)
 
 ****************************************************************************/
 
-void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
+void TCEditor::deleteRange(char *from, char *to, Boolean allowUndo)
 {
  if (isReadOnly || from>=to)
     return;
@@ -7873,7 +7877,7 @@ void TCEditor::deleteRange(char *from,char *to, Boolean allowUndo)
  int IncludeFirstLine = x==0;
 
  // If the section invalidates the drawPtr force a full recalculation
- if (drawPtr>=selStart)
+ if (drawPtr>=unsigned(from-buffer)) // unsigned(from-buffer) is usually selStart
     drawLine=drawPtr=0;
 
  // Correct the line lengths
