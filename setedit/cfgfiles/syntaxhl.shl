@@ -890,6 +890,7 @@ Name=Makefile
 Files=mak
 NameMatch=(GNU)?[mM]akefile
 ShellScript=make
+Escape=\
 Case=1
 EOLComment1=#
 NoCheckNumbers=1

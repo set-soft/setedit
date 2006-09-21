@@ -310,7 +310,7 @@ public:
 
  virtual TPalette& getPalette() const;
  virtual void close();
- virtual TInfWindow::~TInfWindow();
+ virtual ~TInfWindow();
  TInfViewer *viewer;
  Boolean isTheOne;
  static void SetMagicEditorInfoTranslation() { TInfViewer::TranslateName=1; };

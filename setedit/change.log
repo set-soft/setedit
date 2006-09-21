@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.718  2006/08/08 19:11:23  set
+* Fixed: Some delete and insert operations outside the visible area didn't
+properly update the drawPtr. As a result the "image" of the buffer went
+out of sync. The first useful report about it was by Focha
+focha2@fullzero.com.ar using ^K-V.
+
 Revision 1.717  2006/07/24 12:57:07  set
 * Fixed: The message window some times missed portions of the error lines.
 

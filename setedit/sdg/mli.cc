@@ -308,6 +308,11 @@ void MLIBaseIf(TMLIBase *o,int start ,int cant)
     return;
    }
  TLispVar *p=o->Solve(start);
+ if (!p)
+   {
+    MLIRetNULL();
+    return;
+   }
  int boolval=o->MLIBooleanValOf(p);
  destroyFloatVar(p);
  if (boolval)
