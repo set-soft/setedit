@@ -667,6 +667,8 @@ static stFuncsSHL FuncsAvail[]=
  {"Python",SearchPythonSymbols},
  {"VHDL",SearchVHDLStuff},
  {"PMacros file",SearchPMDefs},
+ {"KICAD Library",SearchKICADLib},
+ {"Makefile",SearchMakeLabels},
  {0,SearchCFuncs}
 };
 

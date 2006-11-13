@@ -212,6 +212,71 @@ int SearchPMDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
 }
 
 
+int SearchKICADLib(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned lineFound=0,funcs=0,lenNom=0;
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    ReplaceCRby0(bfBuffer);
+    if (strncasecmp(bfBuffer,"DEF",3)==0 && isspace((uchar)bfBuffer[3]))
+      {
+       char *pos=bfBuffer+3;
+       for (;*pos && isspace((uchar)*pos); pos++);
+       for (lenNom=0;*pos && !isspace((uchar)*pos) && lenNom<(unsigned)MaxLen_1; pos++)
+           bfNomFun[lenNom++]=*pos;
+       bfNomFun[lenNom++]=0;
+       lineFound=Line;
+      }
+    else if (strncasecmp(bfBuffer,"ENDDEF",6)==0 &&
+             (bfBuffer[6]==0 || isspace((uchar)bfBuffer[6])))
+      {
+       AddFunc(bfNomFun,lenNom,lineFound,Line);
+       lineFound=lenNom=0;
+       funcs++;
+      }
+   }
+ return funcs;
+}
+
+static
+int IsMakeChar(uchar s)
+{
+ return isalnum(s) || s=='_' || s=='-';
+}
+
+static
+int GetMakeLabel(int &len)
+{
+ int i=0;
+ while (IsMakeChar(bfBuffer[i]))
+   {
+    bfNomFun[i]=bfBuffer[i];
+    i++;
+   }
+ bfNomFun[i]=0;
+ len=i;
+ return bfBuffer[i]==':' && i!=0;
+}
+
+int SearchMakeLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned funcs=0;
+ int l;
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    if (GetMakeLabel(l))
+      {
+       AddFunc(bfNomFun,l+1,Line,-1);
+       funcs++;
+      }
+   }
+ return funcs;
+}
+
 
 #ifdef STANDALONE
 char bfBuffer[MaxLenWith0];

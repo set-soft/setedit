@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.719  2006/09/21 13:14:32  set
+* Fixed: [InfView/Compilation] Wrong destructor declaration in TInfWindow.
+* Added: [SHL] \ as escape character for makefiles.
+* Fixed: [sLisp/Crash] SIGSEGV when passing wrong arguments to if.
+
 Revision 1.718  2006/08/08 19:11:23  set
 * Fixed: Some delete and insert operations outside the visible area didn't
 properly update the drawPtr. As a result the "image" of the buffer went

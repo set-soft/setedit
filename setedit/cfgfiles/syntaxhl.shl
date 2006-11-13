@@ -2527,3 +2527,83 @@ Keywords=using,virtual,void,volatile,while
 Keywords=foreach,__declspec,__declspe,string_t,array,complex,wchar_t
 End
 
+# -------------------------------- KICAD SCH ------------------------------------
+#
+# Basic SCH syntax for Kicad files
+# Contributed by Diego J. Brengi {Brengi at inti.gov.ar}
+#
+Name=KICAD Schematic
+Files=sch,SCH
+String1="
+CanStartAName=$#
+AllowedInsideNames=/-
+Symbols1=~":
+NoCheckNumbers=1
+Keywords=Sheet,Title,Date,Rev,Comp,Comment1,Comment2,Comment3,Comment4,Text
+Keywords=$Descr,$EndDescr,$Comp,$EndComp,$EndSCHEMATC,$Sheet,$EndSheet,Label
+Keywords=Wire,Line,Connection,NoConn,Bus,Notes,GLabel,LIBS,EELAYER,END
+Keywords=EESchema,Schematic,File,Version,UnSpc,3State,Output,Input
+UserKeywords=L,U,P,F,V,H,C,R,O,I,R,L
+End
+
+# -------------------------------- KICAD LIB DCM and STF -----------------------
+#
+# Basic .LIB, .DCM and .STF syntax for Kicad files
+# Contributed by Diego J. Brengi {Brengi at inti.gov.ar}
+#
+Name=KICAD Library
+Files=lib,LIB,dcm,DCM,stf,STF
+String1="
+EOLComment1=#
+EOLCInFirstCol=1
+AllowedInsideNames=/-
+Symbols1=~":
+CanStartAName=$
+NoCheckNumbers=1
+#For .LIB
+Keywords=EESchema-LIBRARY,Version,DRAW,ENDDRAW,ENDDEF,DEF,ALIAS,F0,F1,F2,F3,F4
+#For .DCM
+Keywords=EESchema-DOCLIB,Date,$CMP,$ENDCMP
+#For .STF
+Keywords=comp,module
+UserKeywords=A,B,C,F,H,I,L,N,O,P,R,S,T,U,V,W,X,Y
+End
+
+# -------------------------------- KICAD BRD ------------------------------------
+#
+# Basic BRD syntax for Kicad files
+# Contributed by Diego J. Brengi  {Brengi at inti.gov.ar}
+#
+Name=KICAD PCB
+Files=brd,BRD,mod,MOD
+String1="
+Symbols1=="~$
+CanStartAName=$
+AllowedInsideNames=/-
+NoCheckNumbers=1
+Keywords=PCBNEW-BOARD,Version,date
+Keywords=$GENERAL,$EndGENERAL,$SHEETDESCR,$EndSHEETDESCR,$SETUP,$EndSETUP,$EQUIPOT
+Keywords=$MODULE,$EndMODULE,$PAD,$EndPAD,$SHAPE3D,$EndSHAPE3D,$BOARD,$EndBOARD,$ZONE
+Keywords=$MIREPCB,$EndMIREPCB,$EndTEXTPCB,$TEXTPCB,$DRAWSEGMENT,$EndDRAWSEGMENT
+Keywords=$TRACK,$EndTRACK,$COTATION,$EndCOTATION,$EndEQUIPOT,$EndZONE
+# $GENERAL words
+Keywords=LayerCount,Ly,Links,NoConn,Di,Ndraw,Ntrack,Nzone,Nmodule,Nnets
+#$SHEETDESCR words
+Keywords=Sheet,Title,Rev,Comp,Comment1,Comment2,Comment3,Comment4
+#$SETUP Words
+Keywords=InternalUnit,GridSize,ZoneGridSize,Layers,TrackWidth,TrackWidthHistory
+Keywords=ZoneClearence,DrawSegmWidth,EdgeSegmWidth,ViaSize,ViaDrill,ViaSizeHistory
+Keywords=TextPcbSize,EdgeModWidth,TextModSize,TextModWidth,PadSize,PadDrill
+Keywords=TrackClearence,AuxiliaryAxisOrg,TextPcbWidth
+#$EQUIPOT Words
+Keywords=Na,St
+#$MODULE, $PAD and $SHAPE3D Words
+Keywords=Po,Li,Cd,Kw,Sc,Op,T0,T1,T2,T3,T4,T5,T6,T7,T8,T9,DS,DC
+Keywords=Sh,Dr,At,Ne,Po,Of,Ro
+#$COTATION, $DRAWSEGMENT and $TEXTPCB Words
+Keywords=Sb,Sd,Sg,Ge,S1,S2,S3,S4
+Keywords=De,Te
+#For .mod files
+Keywords=PCBNEW-LibModule-V1,$INDEX,$EndINDEX,$EndLIBRARY
+End
+
