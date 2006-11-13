@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-08-08 15:44-0300\n"
+"PO-Revision-Date: 2006-11-13 11:36-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "~A~uswerten"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:741
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:743
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:742
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
@@ -1491,43 +1491,43 @@ msgstr "Text ersetzen"
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/bufun.cc:726
+#: ../mainsrc/bufun.cc:728
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:736
+#: ../mainsrc/bufun.cc:738
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:742 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:744 ../settvuti/tdiagaid.cc:174
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
 
-#: ../mainsrc/bufun.cc:771
+#: ../mainsrc/bufun.cc:773
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:773
+#: ../mainsrc/bufun.cc:775
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:775
+#: ../mainsrc/bufun.cc:777
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:776
+#: ../mainsrc/bufun.cc:778
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:811
+#: ../mainsrc/bufun.cc:813
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:839
+#: ../mainsrc/bufun.cc:841
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"
@@ -2944,91 +2944,91 @@ msgid "Return value:"
 msgstr "Unbekannter Wert"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1411 ../setedit/debug.cc:1784
+#: ../sdg/mli.cc:1618 ../setedit/debug.cc:1411 ../setedit/debug.cc:1784
 #: ../setedit/debug.cc:7276 ../setedit/debug.cc:8602
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../sdg/mli.cc:1618
+#: ../sdg/mli.cc:1623
 msgid "parser"
 msgstr "parser"
 
-#: ../sdg/mli.cc:1619
+#: ../sdg/mli.cc:1624
 msgid "syntax"
 msgstr "Syntax"
 
-#: ../sdg/mli.cc:1624
+#: ../sdg/mli.cc:1629
 #, fuzzy
 msgid "string not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../sdg/mli.cc:1625
+#: ../sdg/mli.cc:1630
 #, fuzzy
 msgid "no ) at end of code"
 msgstr "kein ) Befehlsende"
 
-#: ../sdg/mli.cc:1626
+#: ../sdg/mli.cc:1631
 msgid "no starting ("
 msgstr "keine beginnende ("
 
-#: ../sdg/mli.cc:1627
+#: ../sdg/mli.cc:1632
 msgid "wrong number"
 msgstr "Falsche Nummer"
 
-#: ../sdg/mli.cc:1628
+#: ../sdg/mli.cc:1633
 msgid "unknown value"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1629
+#: ../sdg/mli.cc:1634
 msgid "stack overflow"
 msgstr ""
 
-#: ../sdg/mli.cc:1634
+#: ../sdg/mli.cc:1639
 msgid "command where a parameter was expected"
 msgstr "Befehl, wo Parameter erwartet war"
 
-#: ../sdg/mli.cc:1635
+#: ../sdg/mli.cc:1640
 msgid "command expected"
 msgstr "Befehl erwartet"
 
-#: ../sdg/mli.cc:1636
+#: ../sdg/mli.cc:1641
 msgid "parameter after command"
 msgstr "Parameter nach Befehl"
 
-#: ../sdg/mli.cc:1637
+#: ../sdg/mli.cc:1642
 msgid "wrong number of parameters"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../sdg/mli.cc:1638
+#: ../sdg/mli.cc:1643
 msgid "wrong parameter type"
 msgstr "Falscher Parametertyp"
 
-#: ../sdg/mli.cc:1639
+#: ../sdg/mli.cc:1644
 msgid "undefined variable"
 msgstr "Undefinierte Variable"
 
-#: ../sdg/mli.cc:1640
+#: ../sdg/mli.cc:1645
 msgid "undefined symbol"
 msgstr "Undefiniertes Symbol"
 
-#: ../sdg/mli.cc:1641
+#: ../sdg/mli.cc:1646
 msgid "operation not defined"
 msgstr "Operation nicht definiert"
 
-#: ../sdg/mli.cc:1642
+#: ../sdg/mli.cc:1647
 #, fuzzy
 msgid "invalid character for a name"
 msgstr "Extra Zeichen in Zeile"
 
-#: ../sdg/mli.cc:1643
+#: ../sdg/mli.cc:1648
 msgid "invalid key sequence"
 msgstr ""
 
-#: ../sdg/mli.cc:1644
+#: ../sdg/mli.cc:1649
 msgid "PCRE not available"
 msgstr ""
 
-#: ../sdg/mli.cc:1645
+#: ../sdg/mli.cc:1650
 #, fuzzy
 msgid "PCRE compile error"
 msgstr "PCRE Exec Fehler"

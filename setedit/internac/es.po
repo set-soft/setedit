@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-08-08 15:44-0300\n"
+"PO-Revision-Date: 2006-11-13 11:36-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:741
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:743
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:742
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
@@ -1427,39 +1427,39 @@ msgstr "Texto con cambios"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:726
+#: ../mainsrc/bufun.cc:728
 msgid "Jump to function"
 msgstr "Saltar a una función"
 
-#: ../mainsrc/bufun.cc:736
+#: ../mainsrc/bufun.cc:738
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:742 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:744 ../settvuti/tdiagaid.cc:174
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:771
+#: ../mainsrc/bufun.cc:773
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:773
+#: ../mainsrc/bufun.cc:775
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:775
+#: ../mainsrc/bufun.cc:777
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:776
+#: ../mainsrc/bufun.cc:778
 msgid "by ~L~ine"
 msgstr "por ~L~ínea"
 
-#: ../mainsrc/bufun.cc:811
+#: ../mainsrc/bufun.cc:813
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 
-#: ../mainsrc/bufun.cc:839
+#: ../mainsrc/bufun.cc:841
 msgid "Functions:"
 msgstr "Funciones:"
 
@@ -2820,89 +2820,89 @@ msgid "Return value:"
 msgstr "Valor retornado:"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1613 ../setedit/debug.cc:1411 ../setedit/debug.cc:1784
+#: ../sdg/mli.cc:1618 ../setedit/debug.cc:1411 ../setedit/debug.cc:1784
 #: ../setedit/debug.cc:7276 ../setedit/debug.cc:8602
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1618
+#: ../sdg/mli.cc:1623
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1619
+#: ../sdg/mli.cc:1624
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1624
+#: ../sdg/mli.cc:1629
 msgid "string not closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1625
+#: ../sdg/mli.cc:1630
 msgid "no ) at end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1626
+#: ../sdg/mli.cc:1631
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1627
+#: ../sdg/mli.cc:1632
 msgid "wrong number"
 msgstr "número erróneo"
 
-#: ../sdg/mli.cc:1628
+#: ../sdg/mli.cc:1633
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1629
+#: ../sdg/mli.cc:1634
 msgid "stack overflow"
 msgstr "desborde de pila (stack)"
 
-#: ../sdg/mli.cc:1634
+#: ../sdg/mli.cc:1639
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un parámetro"
 
-#: ../sdg/mli.cc:1635
+#: ../sdg/mli.cc:1640
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1636
+#: ../sdg/mli.cc:1641
 msgid "parameter after command"
 msgstr "parámetro luego de un comando"
 
-#: ../sdg/mli.cc:1637
+#: ../sdg/mli.cc:1642
 msgid "wrong number of parameters"
 msgstr "número equivocado de parámetros"
 
-#: ../sdg/mli.cc:1638
+#: ../sdg/mli.cc:1643
 msgid "wrong parameter type"
 msgstr "tipo de parámetro equivocado"
 
-#: ../sdg/mli.cc:1639
+#: ../sdg/mli.cc:1644
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1640
+#: ../sdg/mli.cc:1645
 msgid "undefined symbol"
 msgstr "símbolo no definido"
 
-#: ../sdg/mli.cc:1641
+#: ../sdg/mli.cc:1646
 msgid "operation not defined"
 msgstr "operación no definida"
 
-#: ../sdg/mli.cc:1642
+#: ../sdg/mli.cc:1647
 msgid "invalid character for a name"
 msgstr "caracter inválido para un nombre"
 
-#: ../sdg/mli.cc:1643
+#: ../sdg/mli.cc:1648
 msgid "invalid key sequence"
 msgstr "secuencia de teclas inválida"
 
-#: ../sdg/mli.cc:1644
+#: ../sdg/mli.cc:1649
 msgid "PCRE not available"
 msgstr "PCRE no disponible"
 
-#: ../sdg/mli.cc:1645
+#: ../sdg/mli.cc:1650
 msgid "PCRE compile error"
 msgstr "Error al compilar PCRE"
 
