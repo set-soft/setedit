@@ -127,9 +127,6 @@ int GetNextValue()
                return 1;
               }
             break;
-       case '\'': // String, search the end
-            GetEndOfStr('\'');
-            break;
        default:
             AddToWord(Buffer[Index]);
             Index--;
@@ -160,12 +157,6 @@ void GetWord()
 static
 void SearchBalance(char start, char end)
 {
- do
-   {
-    if (GetNextValue()==0 && bfBuffer[0]==start)
-       break;
-   }
- while (Index<Len);
  int level=1;
  do
    {
@@ -188,16 +179,17 @@ void SearchBalance(char start, char end)
 void GetFunction(const char *type, tAddFunc AddFunc)
 {
  unsigned lenFound,lineFound;
+ int proto=0;
 
  canBeStr=1;
  GetWord();
  canBeStr=0;
  lineFound=Line;
  strcpy(bfNomFun,bfBuffer);
- int proto=0;
  do
    {
-    if (GetNextValue()==0)
+    int nv=GetNextValue();
+    if (nv==0)
       {
        if (bfBuffer[0]=='(')
           SearchBalance('(',')');
@@ -207,7 +199,7 @@ void GetFunction(const char *type, tAddFunc AddFunc)
           break;
          }
       }
-    else if (strcasecmp(bfBuffer,"is")==0)
+    else if (nv==1 && strcasecmp(bfBuffer,"is")==0)
       {
        break;
       }
@@ -288,7 +280,11 @@ int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
        // First make sure we have a word
        EatSpaces();
        if (Buffer[Index]!=';')
+         {
+          canBeStr=1; // For overloaded operators
           GetWord();
+          canBeStr=0;
+         }
       }
    }
  return funcs;
