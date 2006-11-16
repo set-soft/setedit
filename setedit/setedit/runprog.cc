@@ -113,8 +113,10 @@ void ConfigureRunCommand(void)
    {
     if (!CurrentParser)
        CurrentParser=newStr("GNU");
-    if (!list->search((void *)CurrentParser,box.tl.selection))
-       box.tl.selection=0;
+    ccIndex selection;
+    if (!list->search((void *)CurrentParser,selection))
+       selection=0;
+    box.tl.selection=selection;
    }
 
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),__("Command to run")));

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.721  2006/11/13 19:18:36  set
+* Fixed: [List of func.:VHDL] various errors in the functions parser.
+
 Revision 1.720  2006/11/13 14:41:39  set
 * Added: [SHL] Syntax for KICAD files (PCB, schematic and libs).
 Contributed by Diego J. Brengi.
