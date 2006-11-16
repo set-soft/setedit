@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.722  2006/11/16 16:26:26  set
+* Modified: Added some code to test if we can solve the following gcc 4.x
+issue:
+runprog.cc:116: error: cannot bind packed field 'box.ConfigureRunComm
+and()::<anonymous struct>::tl.TListBoxRec::selection' to 'ccIndex&'.
+
 Revision 1.721  2006/11/13 19:18:36  set
 * Fixed: [List of func.:VHDL] various errors in the functions parser.
 
