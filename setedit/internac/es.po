@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2006-11-13 11:36-0300\n"
+"PO-Revision-Date: 2006-11-17 08:46-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -765,7 +765,7 @@ msgstr "¿Esta seguro que desea abortar la instalación?"
 msgid "Select the type"
 msgstr "Seleccione el tipo"
 
-#: ../install/install.cc:438 ../internac/colors.cc:4
+#: ../install/install.cc:438 ../internac/colors.cc:4 ../internac/colors.cc:197
 msgid "Normal"
 msgstr "Normal"
 
@@ -1056,7 +1056,7 @@ msgstr "Deshabilitado"
 msgid "Shortcut"
 msgstr "Tecla aceleradora"
 
-#: ../internac/colors.cc:9
+#: ../internac/colors.cc:9 ../internac/colors.cc:199
 msgid "Selected"
 msgstr "Seleccionado"
 
@@ -1071,6 +1071,7 @@ msgstr "Tecla del seleccionado"
 #: ../internac/colors.cc:12 ../internac/colors.cc:22 ../internac/colors.cc:32
 #: ../internac/colors.cc:42 ../internac/colors.cc:148
 #: ../internac/colors.cc:160 ../internac/colors.cc:175
+#: ../internac/colors.cc:190
 msgid "Frame disabled"
 msgstr "Marco deshabilitado"
 
@@ -1081,24 +1082,28 @@ msgstr "Ventanas Azules"
 #: ../internac/colors.cc:15 ../internac/colors.cc:25 ../internac/colors.cc:35
 #: ../internac/colors.cc:45 ../internac/colors.cc:151
 #: ../internac/colors.cc:163 ../internac/colors.cc:178
+#: ../internac/colors.cc:193
 msgid "Frame"
 msgstr "Marco"
 
 #: ../internac/colors.cc:16 ../internac/colors.cc:26 ../internac/colors.cc:36
 #: ../internac/colors.cc:46 ../internac/colors.cc:152
 #: ../internac/colors.cc:164 ../internac/colors.cc:179
+#: ../internac/colors.cc:194
 msgid "Frame icons"
 msgstr "Iconos marcos"
 
 #: ../internac/colors.cc:17 ../internac/colors.cc:27 ../internac/colors.cc:37
 #: ../internac/colors.cc:47 ../internac/colors.cc:153
 #: ../internac/colors.cc:165 ../internac/colors.cc:180
+#: ../internac/colors.cc:195
 msgid "Scroll bar page"
 msgstr "Pág. barra desplazamiento"
 
 #: ../internac/colors.cc:18 ../internac/colors.cc:28 ../internac/colors.cc:38
 #: ../internac/colors.cc:48 ../internac/colors.cc:154
 #: ../internac/colors.cc:166 ../internac/colors.cc:181
+#: ../internac/colors.cc:196
 msgid "Scroll bar icons"
 msgstr "Iconos barra desplazamiento"
 
@@ -1125,6 +1130,7 @@ msgstr "Ventanas Cian"
 #: ../internac/colors.cc:147 ../internac/colors.cc:171
 #: ../internac/colors.cc:172 ../internac/colors.cc:173
 #: ../internac/colors.cc:174 ../internac/colors.cc:187
+#: ../internac/colors.cc:188 ../internac/colors.cc:189
 msgid "Reserved"
 msgstr "Reservado"
 
@@ -1422,6 +1428,29 @@ msgstr "Texto seleccionado"
 #: ../internac/colors.cc:186
 msgid "Changed text"
 msgstr "Texto con cambios"
+
+#: ../internac/colors.cc:192 ../setedit/edmsg.cc:606
+msgid "Message Window"
+msgstr "Ventana de Mensajes"
+
+#: ../internac/colors.cc:198
+#, fuzzy
+msgid "Focused"
+msgstr "Texto apuntado"
+
+#: ../internac/colors.cc:200 ../setedit/edprefs.cc:305
+msgid "Information"
+msgstr "Información"
+
+#: ../internac/colors.cc:201
+#, fuzzy
+msgid "Warnings"
+msgstr "aviso"
+
+#: ../internac/colors.cc:202
+#, fuzzy
+msgid "Errors"
+msgstr "error"
 
 #: ../mainsrc/accehtml.cc:53
 msgid "You must select the editor window first"
@@ -1919,7 +1948,7 @@ msgid "Export Options"
 msgstr "Opciones para exportar"
 
 #: ../mainsrc/deedidia.cc:367 ../setedit/editmenu.cc:354
-#: ../setedit/intgrep.cc:418 ../setedit/runprog.cc:125
+#: ../setedit/intgrep.cc:418 ../setedit/runprog.cc:127
 msgid "~O~ptions"
 msgstr "~O~pciones"
 
@@ -5768,10 +5797,6 @@ msgstr "Primer mensaje en la lista"
 msgid "<empty>"
 msgstr "<vacío>"
 
-#: ../setedit/edmsg.cc:606
-msgid "Message Window"
-msgstr "Ventana de Mensajes"
-
 #: ../setedit/edprefs.cc:95
 msgid "Open File options"
 msgstr "Opciones de `Abrir Archivo'"
@@ -5848,10 +5873,6 @@ msgstr "Comien~z~an con ."
 #: ../setedit/edprefs.cc:222
 msgid "Screen saver"
 msgstr "Salvapantallas"
-
-#: ../setedit/edprefs.cc:305
-msgid "Information"
-msgstr "Información"
 
 #: ../setedit/edprefs.cc:311
 msgid "Help for screen saver"
@@ -6016,7 +6037,7 @@ msgstr "S~i~empre"
 msgid "~O~nly if no file specified"
 msgstr "Só~l~o si no se indicaron archivos"
 
-#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:136
+#: ../setedit/edprefs.cc:608 ../setedit/runprog.cc:138
 msgid "~N~ever"
 msgstr "~N~unca"
 
@@ -6024,7 +6045,7 @@ msgstr "~N~unca"
 msgid "Remember other windows"
 msgstr "Recordar otras ventanas"
 
-#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:136
+#: ../setedit/edprefs.cc:610 ../setedit/runprog.cc:138
 msgid "Al~w~ays"
 msgstr "~S~iempre"
 
@@ -6764,117 +6785,117 @@ msgstr "Nuevamente en el editor"
 msgid "From program:"
 msgstr "Desde el programa:"
 
-#: ../setedit/runprog.cc:120
+#: ../setedit/runprog.cc:122
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
 #. EN: ABCDEFGHIJKLMNOPRSTUW
 #. ES: ACDEFKHIJLMNOPRSTUVZ
-#: ../setedit/runprog.cc:123
+#: ../setedit/runprog.cc:125
 msgid "~E~nter the program name"
 msgstr "~I~ngrese el nombre del programa"
 
-#: ../setedit/runprog.cc:126
+#: ../setedit/runprog.cc:128
 msgid "~U~se OS screen to run the program"
 msgstr "~U~sar la pantalla del SO"
 
-#: ../setedit/runprog.cc:127
+#: ../setedit/runprog.cc:129
 msgid "~D~on't try to run in background"
 msgstr "No intentar correr en segundo ~p~lano"
 
-#: ../setedit/runprog.cc:128
+#: ../setedit/runprog.cc:130
 msgid "~A~lways parse in background"
 msgstr "Siempre en segundo pl~a~no"
 
-#: ../setedit/runprog.cc:129
+#: ../setedit/runprog.cc:131
 msgid "~J~ump to the first error"
 msgstr "Sal~t~ar al primer error"
 
-#: ../setedit/runprog.cc:130
+#: ../setedit/runprog.cc:132
 msgid "Don't ~r~edirect stdout"
 msgstr "N~o~ redireccionar stdout"
 
-#: ../setedit/runprog.cc:131
+#: ../setedit/runprog.cc:133
 msgid "Don't make a beep when f~i~nished"
 msgstr "No ~h~acer un sonido al terminar"
 
-#: ../setedit/runprog.cc:132
+#: ../setedit/runprog.cc:134
 msgid "Don't finish debu~g~ session"
 msgstr "No cerrar la sesión de ~d~epuración"
 
-#: ../setedit/runprog.cc:133
+#: ../setedit/runprog.cc:135
 msgid "Don't move breakp~o~ints"
 msgstr "No mo~v~er los breakpoints"
 
-#: ../setedit/runprog.cc:134
+#: ../setedit/runprog.cc:136
 msgid "~C~onfirm if stopping debug session"
 msgstr "Confir~m~ar al cerrar la s. de depuración"
 
-#: ../setedit/runprog.cc:135
+#: ../setedit/runprog.cc:137
 msgid "Message window ~s~croll"
 msgstr "Despla~z~amiento de la ventana de mensajes"
 
-#: ../setedit/runprog.cc:136
+#: ../setedit/runprog.cc:138
 msgid "Only if not ~f~ocused"
 msgstr "Sólo si sele~c~cionada"
 
-#: ../setedit/runprog.cc:141
+#: ../setedit/runprog.cc:143
 msgid "~H~orizontal reset"
 msgstr "Posición horizontal a cero"
 
-#: ../setedit/runprog.cc:142
+#: ../setedit/runprog.cc:144
 msgid "At ~b~eggining"
 msgstr "Al p~r~incipio"
 
-#: ../setedit/runprog.cc:143
+#: ../setedit/runprog.cc:145
 msgid "For each ~m~essage"
 msgstr "En cada mensa~j~e"
 
-#: ../setedit/runprog.cc:144
+#: ../setedit/runprog.cc:146
 msgid "At ~t~he end"
 msgstr "Al ~f~inal"
 
-#: ../setedit/runprog.cc:145
+#: ../setedit/runprog.cc:147
 msgid "~L~ines per pass"
 msgstr "~L~íneas por pasada"
 
-#: ../setedit/runprog.cc:150
+#: ../setedit/runprog.cc:152
 msgid "Error ~p~arser"
 msgstr "Intérprete de ~e~rrores para"
 
 #. Error message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:195
+#: ../setedit/runprog.cc:197
 msgid "error"
 msgstr "error"
 
 #. Warning message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:197
+#: ../setedit/runprog.cc:199
 msgid "warning"
 msgstr "aviso"
 
 #. GNU Make message: Entering directory (partial)
-#: ../setedit/runprog.cc:199
+#: ../setedit/runprog.cc:201
 msgid "ntering dir"
 msgstr "ambiando a dir"
 
 #. GNU Make message: Leaving directory (partial)
-#: ../setedit/runprog.cc:201
+#: ../setedit/runprog.cc:203
 msgid "eaving dir"
 msgstr "aliendo dir"
 
-#: ../setedit/runprog.cc:551
+#: ../setedit/runprog.cc:553
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:582
+#: ../setedit/runprog.cc:584
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:691
+#: ../setedit/runprog.cc:693
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:770
+#: ../setedit/runprog.cc:772
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 
