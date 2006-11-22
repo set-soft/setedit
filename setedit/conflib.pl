@@ -550,7 +550,7 @@ int main(void)
 
 sub FindCFLAGS
 {
- my $ret;
+ my ($ret,$ver);
 
  print 'C flags: ';
  $ret=@conf{'CFLAGS'};
@@ -576,6 +576,9 @@ sub FindCFLAGS
        # Looks like that's common and some sysadmins doesn't configure gcc to
        # look there:
        $conf{'EXTRA_INCLUDE_DIRS'}.=' /usr/local/include' if ($OSf eq 'FreeBSD');
+       # gcc 4.x enables -Wpacked this by default.
+       $ver=RunRedirect("$GCC -dumpversion");
+       $ret.=' -Wno-packed' if $ver>=4;
       }
    }
  print "$ret\n";

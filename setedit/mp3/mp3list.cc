@@ -308,7 +308,7 @@ void MP3ListLoadState(ipstream &is)
    }
 }
 
-struct
+struct stDataRect
 {
  TCollection *col;
  unsigned focused;
