@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2002 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -65,6 +65,8 @@ static TNCSAssociative *AssoObj[MAX_ASSO];
 
 static char  Start[MAX_LEN];
 static char  End[MAX_LEN];
+static char  Skip[MAX_LEN];
+static int   SkipL;
 static int   Definitions;
 static int   Associations;
 static char *Mask;
@@ -84,6 +86,7 @@ static char *EndOfPar;
 static char *CrossRef;
 static char *DoubleA;
 static char *BreakLine;
+static char *Language;
 static stkHandler *ASCIIConv;
 static int   Replaces;
 
@@ -448,6 +451,7 @@ int TXHReadSpects(char *name, SOStack *stk)
  StartMenu=EntryMenuVal=EndMenuVal=NULL;
  mAssoMain=mAssoRest=mMain=NULL;
  EndOfPar=CrossRef=BreakLine=NULL;
+ Language=NULL;
  ASCIIConv=NULL;
 
  // Search a section
@@ -499,6 +503,13 @@ int TXHReadSpects(char *name, SOStack *stk)
                   pos=MoveAfterEqual(fPos);
                   GetUpTo(11,pos,End);
                   EndFound=strlen(End);
+                 }
+               else
+               if (strncasecmp(fPos,"SectionSkip",11)==0)
+                 {
+                  pos=MoveAfterEqual(fPos);
+                  GetUpTo(11,pos,Skip);
+                  SkipL=strlen(Skip);
                  }
                else
                  RetError(9)
@@ -678,6 +689,11 @@ int TXHReadSpects(char *name, SOStack *stk)
                   SpectCommand=1;
                  }
                else
+               if (strncmp(fPos,"Language",8)==0)
+                 {
+                  Language=DuplicateStr(fPos,wasMoved);
+                 }
+               else
                   RetError(9)
                break;
          }
@@ -752,7 +768,11 @@ static char *SkipThisLine(char *s)
 {
  for (; *s && *s!='\n' && *s!='\r'; s++);
  if (*s)
+   {
     for (; *s && ucisspace(*s); s++);
+    if (*s && strncmp(s,Skip,SkipL)==0)
+       for (s+=SkipL; *s && (*s==' ' || *s=='\t'); s++);
+   }
  return s;
 }
 
@@ -809,7 +829,13 @@ static int FixUpPointers(int num, char *&start, char *&end)
    {
     for (s++;*s && s<e && ucisspace(*s); s++);
     for (--e;e>s && *e!='\n'; e--);
-    for (;e>s && ucisspace(*e); e--);
+    do
+      {
+       for (;e>s && ucisspace(*e); e--);
+       if (e-s>=SkipL && strncmp(e-(SkipL-1),Skip,SkipL)==0)
+          e-=SkipL;
+      }
+    while (e>s && ucisspace(*e));
     if (e==s)
        return 0;
    }
@@ -1033,6 +1059,8 @@ GoBack:
 
 void OutPutString(char *s, char *e,FILE *f)
 {
+ if (*s && e-s>=SkipL && strncmp(s,Skip,SkipL)==0)
+    s+=SkipL;
  for (;s<=e && *s; s++)
     {
      switch (*s)
@@ -1077,6 +1105,24 @@ void OutPutString(char *s, char *e,FILE *f)
                 s+=ParseCommand(s,e,f);
              else
                 fputc(*s,f);
+             break;
+
+        case '\r':
+             fputc(*s,f);
+             s++;
+             if (*s!='\n')
+                break;
+        case '\n':
+             fputc(*s,f);
+             // Skip blanks
+             for (s++; s<=e && *s && ucisspace(*s); s++);
+             // Skip indentation
+             if (*s && e-s>=SkipL && strncmp(s,Skip,SkipL)==0)
+               {
+                for (s+=SkipL; s<=e && *s && (*s==' ' || *s=='\t'); s++);
+               }
+             if (*s && s<=e)
+                s--;
              break;
 
         default:
@@ -1183,6 +1229,11 @@ static void AutoFill(int line)
       {
        lFunction=p-s;
        Function=s;
+      }
+    else
+      {
+       lFunction=lPrototype;
+       Function=Prototype;
       }
     // Fill the variables
     for (l=0; l<Definitions; l++)
@@ -1968,7 +2019,7 @@ int TXHGenerateAll(void)
        fList=new TNoCaseSOSStringCollection(20,5,&stkL);
        if (fList)
          {
-          CreateFunctionList(buffer,l,stkL,fList,0,"C/C++");
+          CreateFunctionList(buffer,l,stkL,fList,0,Language ? Language : "C/C++");
           FileUnderProcess=FileName;
           if (TXHGenerateFor(buffer,f,stk))
              goto CleanUp;
@@ -2038,15 +2089,16 @@ CleanUp:
      delete AssoExtra[i];
      delete AssoObj[i];
     }
- delete Mask;
- delete StartMenu;
- delete EntryMenuVal;
- delete EndMenuVal;
- delete EndOfPar;
- delete CrossRef;
- delete DoubleA;
- delete ASCIIConv;
- delete BreakLine;
+ DeleteArray(Mask);
+ DeleteArray(StartMenu);
+ DeleteArray(EntryMenuVal);
+ DeleteArray(EndMenuVal);
+ DeleteArray(EndOfPar);
+ DeleteArray(CrossRef);
+ DeleteArray(DoubleA);
+ DeleteArray(ASCIIConv);
+ DeleteArray(BreakLine);
+ DeleteArray(Language);
  return ret;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2000-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 2000-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -34,13 +34,13 @@ class TNoCaseSOSStringCollection;
 
 const int modeBFPrototypes=0, modeBFFunctions=1, modeBFClassSep=2;
 extern int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
-                                char *fileName, char *shl);
+                                char *fileName, const char *shl);
 extern void DestroyFunctionList();
 extern int CreateFunctionList(char *b, unsigned l, const char *fileName,
-                              unsigned ID, char *shl);
+                              unsigned ID, const char *shl);
 extern int CreateFunctionList(char *b, unsigned l, SOStack &stk,
                               TNoCaseSOSStringCollection *FunList, unsigned ops,
-                              char *shl);
+                              const char *shl);
 extern int SearchFunctionByLine(int line, int &start, int &end, char *&name);
 
 // Other parsers:

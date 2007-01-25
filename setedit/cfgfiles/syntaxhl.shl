@@ -1,4 +1,4 @@
-# Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 # Syntax highlight file for SET's editor
@@ -337,7 +337,7 @@ Keywords=[GenMenu],[GenAssoMain],[GenAssoRest],[GenMain],[Commands]
 Keywords=[DefinedCommands],[ASCIIConvert],[Configuration]
 Keywords=CommandLine,Name,SectionStart,SectionEnd,AddDefinition
 Keywords=Distinguish,AddAssoc,Constant,EndOfPar,BreakLine,CrossRef,Double@
-Keywords=Start,Entry,End,(if,(cutCprot,(print
+Keywords=Start,Entry,End,(if,(cutCprot,(print,SectionSkip,Language
 End
 
 # ---------------- PMacros Files ----------------

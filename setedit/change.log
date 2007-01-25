@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.725  2006/11/22 14:58:49  set
+* Modified: The configuration script to use -Wno-packed when gcc 4.x is
+detected (untested). Needed to eliminate a silly warning.
+* Modified: mp3list.cc to avoid an anonymous struct that generates a gcc
+4.x warning.
+* Modified: The www page to reflect the last pre-release.
+
 Revision 1.724  2006/11/17 12:18:28  set
 * Modified: Colors list.
 

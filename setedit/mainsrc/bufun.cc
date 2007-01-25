@@ -1,9 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2005 by Salvador E. Tropea (SET)
-
-  These routines are compatible with Borland's TVision 1.03 and the port of
-those routines to DJGPP.
+  Busca Funciones (BuFun), Copyright (c) 1996-2007 by Salvador E. Tropea (SET)
 
   int SelectFunctionToJump(char *b, unsigned l)
 
@@ -674,7 +671,7 @@ static stFuncsSHL FuncsAvail[]=
 
 static
 int SearchFuncs(char *b, unsigned l, TNoCaseSOSStringCollection *FunList,
-                SOStack *stk, int mode, char *shl)
+                SOStack *stk, int mode, const char *shl)
 {
  if (!shl) return 0;
  glFunList=FunList;
@@ -792,7 +789,7 @@ int AskSortList()
 ***************************************************************************/
 
 int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
-                         char *fileName, char *shl)
+                         char *fileName, const char *shl)
 {
  SOStack stk;
  TNoCaseSOSStringCollection *FunList = new TNoCaseSOSStringCollection(20,5,&stk);
@@ -888,7 +885,7 @@ int SelectFunctionToJump(char *b, unsigned l, char *word, int mode,
 
 int CreateFunctionList(char *b, unsigned l, SOStack &stk,
                        TNoCaseSOSStringCollection *FunList, unsigned ops,
-                       char *shl)
+                       const char *shl)
 {
  int funcs=SearchFuncs(b,l,FunList,&stk,modeBFFunctions | ops,shl);
  return funcs==0;
@@ -937,7 +934,7 @@ won't leak memory, the old list will be destroyed.
 ***************************************************************************/
 
 int CreateFunctionList(char *b, unsigned l, const char *fileName, unsigned ID,
-                       char *shl)
+                       const char *shl)
 {// Check if that's the one we have cached
  if (stkBufun && FileName && strcmp(FileName,fileName)==0 && FileID==ID)
     return numFuncs;

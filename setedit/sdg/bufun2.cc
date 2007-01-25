@@ -1,24 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones(BuFun), Copyright (c) 1996-2002 by Salvador E. Tropea (SET)
-
-  Designed for the TCEditor class to be used by Robert Hîhne in your RHIDE.
-
-  If you want to use this code contact me first.
-
-  E-Mail: salvador@inti.edu.ar
-
-  Telephone: (+5411) 4759-0013
-
-  Postal Address:
-  Salvador E. Tropea
-  CurapaligÅe 2124
-  (1678) Caseros - 3 de Febrero
-  Prov: Buenos Aires
-  Argentina
-
-  These routines are compatible with Borland's TVision 1.03 and the port of
-those routines to DJGPP.
+  Busca Funciones(BuFun), Copyright (c) 1996-2007 by Salvador E. Tropea (SET)
 
   int SelectFunctionToJump(char *b, unsigned l)
 
@@ -365,10 +347,12 @@ static int SearchFuncs(TNoCaseSOSStringCollection *FunList,SOStack &stk,
 }
 
 int CreateFunctionList(char *b, unsigned l, SOStack &stk,
-                       TNoCaseSOSStringCollection *FunList, unsigned ops=0, char *p=0);
+                       TNoCaseSOSStringCollection *FunList, unsigned ops=0,
+                       const char *p=NULL);
 
 int CreateFunctionList(char *b, unsigned l, SOStack &stk,
-                       TNoCaseSOSStringCollection *FunList, unsigned ops, char *p)
+                       TNoCaseSOSStringCollection *FunList, unsigned ops,
+                       const char *p)
 {
  buffer=b;
  IndexB=0;

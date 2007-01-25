@@ -1,4 +1,4 @@
-; Copyright (C) 2005 by Salvador E. Tropea (SET),
+; Copyright (C) 2005-2007 by Salvador E. Tropea (SET),
 ; see copyrigh file for details
 ;
 ; The following macros are designed for the Autoindent+Unindent mode.
@@ -51,7 +51,6 @@ Trigger: "co"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Component declaration
  "component @{Name} is\n"
- "begin\n"
  "   generic(@0\n"
     "       );\n"
     "\bport(@1\n"
@@ -780,4 +779,23 @@ Name: File header (long)
  "--\n"
  "--\n"
 
+Trigger: "ri"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+Name: rising_edge
+ "rising_edge(@{Signal})"
+
+Trigger: "fa"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+Name: falling_edge
+ "falling_edge(@{Signal})"
+
+Trigger: "/d"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1
+Name: SDG Comment short
+"---[txh]--------------------------------------------------------------------\n"
+"--\n"
+"--  Description:\n"
+"--  @0\n"
+"--\n"
+"-------------------------------------------------------------------[/txh]---\n"
 
