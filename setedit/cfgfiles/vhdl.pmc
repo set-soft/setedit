@@ -336,7 +336,7 @@ Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Package body
  "package body @{Package} is\n"
  "   @0;\n"
- "\bend package @v0;"
+ "\bend package body @v0;"
 
 Trigger: "f1"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1

@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.726  2007/01/25 16:04:42  set
+* Added: [SDG] functionality to support other languages (not just C/C++).
+It currently works for VHDL.
+* Fixed: [PMacros] VHDL's component pmacro.
+* Added: [PMacros] VHDL: rising_edge, falling_edge and SDG short comment.
+
 Revision 1.725  2006/11/22 14:58:49  set
 * Modified: The configuration script to use -Wno-packed when gcc 4.x is
 detected (untested). Needed to eliminate a silly warning.

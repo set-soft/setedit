@@ -252,7 +252,8 @@ int GetMakeLabel(int &len)
  int i=0;
  while (IsMakeChar(bfBuffer[i]))
    {
-    bfNomFun[i]=bfBuffer[i];
+    if (i<MaxLen)
+       bfNomFun[i]=bfBuffer[i];
     i++;
    }
  bfNomFun[i]=0;
@@ -269,6 +270,56 @@ int SearchMakeLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
    {
     GetLine(); Line++;
     if (GetMakeLabel(l))
+      {
+       AddFunc(bfNomFun,l+1,Line,-1);
+       funcs++;
+      }
+   }
+ return funcs;
+}
+
+
+static
+char *GetHTMLAnchor(int &len, char *buffer)
+{
+ char *pos, *s, delim;
+
+ s=buffer;
+ while ((pos=strstr(s,"name"))!=NULL)
+   {
+    for (s=pos+4; *s && isspace((uchar)*s); s++);
+    if (*s=='=')
+      {
+       for (s++; *s && isspace((uchar)*s); s++);
+       if (*s=='\'' || *s=='"')
+          delim=*s;
+       else
+          delim=0;
+       s++;
+       int l;
+       for (l=0; l<MaxLen && ((delim && s[l]!=delim) ||
+            (!delim && isspace((uchar)s[l]))); l++)
+           bfNomFun[l]=s[l];
+       bfNomFun[l]=0;
+       s+=l+1;
+       len=l;
+       return s;
+      }
+   }
+ return NULL;
+}
+
+int SearchHTMLAnchors(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned funcs=0;
+ int l;
+
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    char *buffer=bfBuffer;
+    while ((buffer=GetHTMLAnchor(l,buffer))!=NULL)
       {
        AddFunc(bfNomFun,l+1,Line,-1);
        funcs++;

@@ -666,6 +666,7 @@ static stFuncsSHL FuncsAvail[]=
  {"PMacros file",SearchPMDefs},
  {"KICAD Library",SearchKICADLib},
  {"Makefile",SearchMakeLabels},
+ {"HTML",SearchHTMLAnchors},
  {0,SearchCFuncs}
 };
 

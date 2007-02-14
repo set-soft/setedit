@@ -55,5 +55,6 @@ extern int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFun
 extern int SearchPMDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 extern int SearchKICADLib(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 extern int SearchMakeLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
+extern int SearchHTMLAnchors(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 
 #endif // BUFUN_H_INCLUDED
