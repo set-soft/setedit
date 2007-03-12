@@ -1,3 +1,9 @@
+setedit (0.5.5-3) unstable; urgency=low
+
+  * Build-depend either on aalib1-dev or libaa1-dev.
+
+ -- Baurzhan Ismagulov <ibr@radix50.net>  Sat, 10 Mar 2007 23:19:51 +0100
+
 setedit (0.5.5-2) unstable; urgency=low
 
   * CVS 20061116 r1236 pre-release.
