@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.727  2007/02/14 14:38:27  set
+* Fixed: [VHDL pmacros] package body wasn't properly eneded.
+* Added: [Function list] list of anchors for HTML files.
+
 Revision 1.726  2007/01/25 16:04:42  set
 * Added: [SDG] functionality to support other languages (not just C/C++).
 It currently works for VHDL.
