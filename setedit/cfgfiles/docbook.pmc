@@ -1,0 +1,171 @@
+; Copyright (C) 2007 by Salvador E. Tropea (SET),
+; see copyrigh file for details
+;
+
+Trigger: "ac"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Acronym
+ "<acronym>@{Acronym}</acronym>"
+
+Trigger: "ca"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Caution
+ "<caution>\n"
+ "  <para>@0</para>\n"
+ "\b</caution>\n"
+
+Trigger: "ch"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Chapter
+ "<chapter id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</chapter>\n"
+
+Trigger: "en"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Entity
+ "<!ENTITY @{Name} \"@0\">"
+
+Trigger: "fi"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Figure
+ "<figure id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "<mediaobject>\n"
+   "  <imageobject>\n"
+     "  <imagedata fileref=\"@{EPS File;.eps}\" format=\"eps\" scale=\"@{EPS Scale;60}\" align=\"center\">\n"
+     "\b</imageobject>\n"
+     "<imageobject>\n"
+     "  <imagedata fileref=\"@{PNG File;.png}\" format=\"png\" align=\"center\">\n"
+     "\b</imageobject>\n"
+   "\b</mediaobject>\n"
+ "\b</figure>\n"
+
+Trigger: "ff"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Foreign phrase
+ "<foreignphrase>@{Phrase}</foreignphrase>"
+
+Trigger: "it"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Itemized list
+ "<itemizedlist>\n"
+ "  <listitem><para>@0</para></listitem>\n"
+ "\b</itemizedlist>\n"
+
+Trigger: "ma"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Skeleton (book)
+ "<!DOCTYPE book PUBLIC \"-//OASIS//DTD DocBook V@{Version;4.1}//EN\" [\n"
+ "]>\n"
+ "<book lang=\"@{Language;es}\" id=\"@{ID}\">\n"
+ "  <bookinfo>\n"
+   "  <date>@{(eval (setv 'year' (RunProgramRedir 'date +%F')) (InsertText (left year (- (length year) 1))))}</date>\n"
+     "<!-- Book title -->\n"
+     "<title>@{Title}</title>\n"
+     "<subtitle>@{Subtitle}</subtitle>\n"
+     "<releaseinfo>@{Release Status;work in progress}</releaseinfo>\n"
+     "<!-- Author -->\n"
+     "<authorgroup>\n"
+     "  <author>\n"
+       "  <firstname>@{Author first name;Salvador Eduardo}</firstname>\n"
+         "<surname>@{Author surname;Tropea}</surname>\n"
+         "<affiliation><orgname>@{Organization;Instituto Nacional de Tecnología Industrial}</orgname></affiliation>\n"
+       "\b</author>\n"
+     "\b</authorgroup>\n"
+     "<address><email>@{e-mail;salvador@inti.gov.ar}</email></address>\n"
+     "<pubdate>@{(eval (setv 'year' (RunProgramRedir 'date +%Y')) (InsertText (left year (- (length year) 1))))}</pubdate>\n"
+     "<copyright>\n"
+     "  <year>@{(eval (setv 'year' (RunProgramRedir 'date +%Y')) (InsertText (left year (- (length year) 1))))}</year>\n"
+       "<holder>@v6 @v7</holder>\n"
+     "\b</copyright>\n"
+     "<legalnotice>\n"
+     "  <para>@0</para>\n"
+     "\b</legalnotice>\n"
+     "<revhistory>\n"
+     "  <revision>\n"
+       "  <revnumber>1.0</revnumber>\n"
+         "<date>@{(eval (setv 'year' (RunProgramRedir 'date +%F')) (InsertText (left year (- (length year) 1))))}</date>\n"
+         "<authorinitials>@1</authorinitials>\n"
+         "<revremark>@2</revremark>\n"
+       "\b</revision>\n"
+     "\b</revhistory>\n"
+   "\b</bookinfo>\n\n"
+   "<!-- Chapters -->\n\n"
+   "<!-- Appendix -->\n"
+ "\b</book>\n"
+
+Trigger: "pa"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Paragraph
+ "<para>@0</para>"
+
+Trigger: "s1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Section level 1
+ "<sect1 id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</sect1>\n"
+
+Trigger: "s2"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Section level 2
+ "<sect2 id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</sect2>\n"
+
+Trigger: "s3"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Section level 3
+ "<sect3 id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</sect3>\n"
+
+Trigger: "s1"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Section level 4
+ "<sect4 id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</sect4>\n"
+
+Trigger: "s5"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Section level 5
+ "<sect5 id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "@0\n"
+ "\b</sect5>\n"
+
+Trigger: "ta"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Table
+ "<table id=\"@{ID}\">\n"
+ "  <title>@{Title}</title>\n"
+   "<tgroup cols=\"@0\">\n"
+   "  <colspec colwidth=\"1*\">\n"
+     "<thead>\n"
+     "  <row>\n"
+       "  <entry align=\"center\">@{Col 1 head}</entry>\n"
+       "\b</row>\n"
+     "\b</thead>\n"
+     "<tbody>\n"
+     "  <row>\n"
+       "  <entry></entry>\n"
+       "\b</row>\n"
+     "\b</tbody>\n"
+   "\b</tgroup>\n"
+ "\b</table>\n"
+
+Trigger: "ti"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Tip
+ "<tip>\n"
+ "  <para>@0</para>\n"
+ "\b</tip>\n"
+
+

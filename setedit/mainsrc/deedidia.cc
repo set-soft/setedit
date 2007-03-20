@@ -483,7 +483,7 @@ Boolean AskForPMVars(char *&varsVals, TNSCollection *vars, unsigned &nVars,
  if (w<10) w=10;
  for (unsigned i=0; i<nVars; i++)
     {
-     TSInputLine *lineInp=new TSInputLine(MaxVarValLen,w);
+     TSInputLinePiped *lineInp=new TSInputLinePiped(MaxVarValLen,w);
      // Pad with spaces
      char *o=(char *)vars->at(i);
      unsigned offset=0;
