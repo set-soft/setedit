@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-03-20 11:37-0300\n"
+"PO-Revision-Date: 2007-04-18 15:37-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -322,19 +322,6 @@ msgstr "Error al leer el archivo de escritorio"
 #, c-format
 msgid "InfView v"
 msgstr "InfView v"
-
-# msgid "~C~olors ..."
-# msgstr "~C~olores ..."
-# msgid "~C~olors ..."
-# msgstr "~C~olores ..."
-#: ../infview/infmain.cc:662
-#, c-format
-msgid ""
-". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
-"\n"
-msgstr ""
-". Copyright (c) 1996-2002 por Salvador E. Tropea\n"
-"\n"
 
 #: ../infview/infmain.cc:663
 #, c-format
@@ -7002,6 +6989,17 @@ msgstr "Comando~s~"
 #: ../settvuti/tdiagaid.cc:217
 msgid "s~L~isp code"
 msgstr "Código s~L~isp"
+
+# msgid "~C~olors ..."
+# msgstr "~C~olores ..."
+# msgid "~C~olors ..."
+# msgstr "~C~olores ..."
+#~ msgid ""
+#~ ". Copyright (c) 1996-2002 by Salvador E. Tropea\n"
+#~ "\n"
+#~ msgstr ""
+#~ ". Copyright (c) 1996-2002 por Salvador E. Tropea\n"
+#~ "\n"
 
 #, fuzzy
 #~ msgid "Can't create temporal file"
