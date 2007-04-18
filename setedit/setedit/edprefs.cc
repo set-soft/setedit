@@ -330,9 +330,9 @@ typedef struct
  uint32  scr_on                CLY_Packed;
  TCollection *savers           CLY_Packed;
  ccIndex scr_sel               CLY_Packed;
- char    xtOp[extscrsParMxLen] CLY_Packed;
- char    time[5]               CLY_Packed;
- char    timeM[5]              CLY_Packed;
+ char    xtOp[extscrsParMxLen];// CLY_Packed;
+ char    time[5];//               CLY_Packed;
+ char    timeM[5];//              CLY_Packed;
 } BoxSavers;
 #pragma pack()
 
@@ -417,8 +417,8 @@ typedef struct
  uint32 ops          CLY_Packed;
  uint32 clk_on       CLY_Packed;
  uint32 clk_mode     CLY_Packed;
- char   editors[5]   CLY_Packed;
- char   closed[5]    CLY_Packed;
+ char   editors[5];//   CLY_Packed;
+ char   closed[5];//    CLY_Packed;
 } BoxGral;
 #pragma pack()
 
@@ -646,7 +646,7 @@ typedef struct
  uint32 beep     CLY_Packed;
  uint32 opts     CLY_Packed;
  uint32 opsAv    CLY_Packed;
- char   width[5] CLY_Packed;
+ char   width[5];// CLY_Packed;
  uint32 opsZoom  CLY_Packed;
 } BoxOthers;
 #pragma pack()
@@ -1210,12 +1210,12 @@ void TSetEditorApp::FontsOptions()
 typedef struct
 {
  uint32  options        CLY_Packed;
- char sizeW[5]          CLY_Packed;
- char sizeH[5]          CLY_Packed;
- char sizeCW[5]         CLY_Packed;
- char sizeCH[5]         CLY_Packed;
- char command[80]       CLY_Packed;
- char mode[10]          CLY_Packed;
+ char sizeW[5];//          CLY_Packed;
+ char sizeH[5];//          CLY_Packed;
+ char sizeCW[5];//         CLY_Packed;
+ char sizeCH[5];//         CLY_Packed;
+ char command[80];//       CLY_Packed;
+ char mode[10];//          CLY_Packed;
 } ScreenSizeBox;
 #pragma pack()
 
@@ -1338,7 +1338,7 @@ void TSetEditorApp::SetModifCheckOptions()
 
  struct
  {
-  char time[5]    CLY_Packed;
+  char time[5];//    CLY_Packed;
   uint32 ops      CLY_Packed;
  } box;
  CLY_snprintf(box.time,5,"%d",TCEditor::minDifModCheck);

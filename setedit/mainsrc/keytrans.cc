@@ -1135,7 +1135,7 @@ dSeqSel(ShCtPgDn,cmcTextEnd);
 
 
 
-TKeyTranslate KeyTrans((KeyTTable *)&base);
+TKeyTranslate KeyTrans((KeyTTable *)((void *)&base));
 
 static void StoreError(const char *error,char *file)
 {
@@ -1190,7 +1190,7 @@ int KeyBackToDefault(Boolean ask)
     if (messageBox(__("You'll lose all the changes"),mfOKCancel)==cmCancel)
        return 0;
 
- KeyTrans.ChangeTable((KeyTTable *)&base);
+ KeyTrans.ChangeTable((KeyTTable *)((void *)&base));
  return 1;
 }
 

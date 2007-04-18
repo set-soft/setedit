@@ -152,9 +152,9 @@ const int prgLen=80,sectLen=20,extraLen=80,visibleLen=60;
 #pragma pack(1)
 typedef struct
 {
- char program[prgLen]   CLY_Packed;
- char section[sectLen]  CLY_Packed;
- char options[extraLen] CLY_Packed;
+ char program[prgLen];  // CLY_Packed;
+ char section[sectLen]; // CLY_Packed;
+ char options[extraLen];// CLY_Packed;
 } ManPageOptions;
 #pragma pack()
 

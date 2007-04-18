@@ -92,12 +92,12 @@ void ConfigureRunCommand(void)
  #pragma pack(1)
  struct
  {
-  char   ComAux[maxCommand]  __attribute__((packed));
-  uint32 Options             __attribute__((packed));
-  uint32 OpsScroll           __attribute__((packed));
-  uint32 OpsScrHz            __attribute__((packed));
-  char   Lines[4]            __attribute__((packed));
-  TListBoxRec tl             __attribute__((packed));
+  char   ComAux[maxCommand];//  CLY_Packed;
+  uint32 Options             CLY_Packed;
+  uint32 OpsScroll           CLY_Packed;
+  uint32 OpsScrHz            CLY_Packed;
+  char   Lines[4];//            CLY_Packed;
+  TListBoxRec tl             CLY_Packed;
  } box;
  #pragma pack()
  strcpy(box.ComAux,Command);

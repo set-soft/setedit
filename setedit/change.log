@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.729  2007/03/20 16:33:07  set
+* Added: [SHL] Basic syntax highlight for DocBook documents.
+* Added: [PMacros] Some DocBook pmacros.
+* Modified: [PMacros] Now the input lines are "piped" it allows pasting
+text.
+
 Revision 1.728  2007/03/12 13:48:17  set
 * Modified: [Debian] The build dependencies to support "unstable". SF Patch
 #1678083. Contributed by Baurzhan Ismagulov <ibr/radix50/net>
