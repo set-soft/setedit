@@ -670,7 +670,10 @@ EndStatusRange
 StatusRange: hcDebugMsgWin, 0
 StatusEntry: "~F1~ Help", cmeInfView, kbF1
 StatusEntry: "~Ins~ Send command", cmGDBCommand, kbInsert
-StatusEntry: "~F5~ Zoom", cmZoom, kbF5
+StatusEntry: "Save As", cmcSaveAs, kbUnknown
+StatusEntry: "~Ctrl+Ins~ Copy", cmcCopy, kbCtInsert
+StatusEntry: "Copy OS clip.", cmcCopyOSClip, kbUnknown
+StatusHiddenEntry: cmZoom, kbF5
 EndStatusRange
 
 #

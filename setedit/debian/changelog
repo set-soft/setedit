@@ -1,3 +1,9 @@
+setedit (0.5.5-4etch) unstable; urgency=low
+
+  * Modified to compile with etch. 
+
+ -- Salvador E. Tropea <salvador@kotori.utic.com.ar>  Wed, 18 Apr 2007 17:04:18 -0300
+
 setedit (0.5.5-3) unstable; urgency=low
 
   * Build-depend either on aalib1-dev or libaa1-dev.

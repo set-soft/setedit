@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.730  2007/04/18 19:15:17  set
+* Fixed: [manview.cc, edprefs.cc, runprog.cc] char verctors that requested
+pack attribute. They aren't really packed and gcc 4.1.1 provides a warning.
+* Modified: [keytrans.cc] to avoid a gcc warning in a dubious cast.
+
 Revision 1.729  2007/03/20 16:33:07  set
 * Added: [SHL] Basic syntax highlight for DocBook documents.
 * Added: [PMacros] Some DocBook pmacros.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 2004-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -181,6 +181,8 @@ unaccessable memory.
 #define Uses_TDialogAID
 #define Uses_FileOpenAid
 #define Uses_TCEditWindow
+#define Uses_TCEditor_Commands
+#define Uses_TVOSClipboard
 
 // First include creates the dependencies
 #include <easydia1.h>
@@ -6809,8 +6811,13 @@ public:
  virtual void changeBounds(const TRect &r);
  virtual void close();
  virtual void handleEvent(TEvent &event);
+ virtual void setState(uint16 aState, Boolean enable);
  void realClose() { TDialog::close(); };
  void SendGDBCommand();
+ static void save(char *name);
+ static void copyClipboard(Boolean osClipboard);
+ static void saveAs();
+ void updateCommands();
 
 protected:
  TNoStaticText *status1, *status2, *statusF;
@@ -6957,6 +6964,18 @@ void TDebugMsgDialog::handleEvent(TEvent &event)
             SendGDBCommand();
             clearEvent(event);
             break;
+       case cmcSaveAs:
+            saveAs();
+            clearEvent(event);
+            break;
+       case cmcCopy:
+            copyClipboard(False);
+            clearEvent(event);
+            break;
+       case cmcCopyClipWin:
+            copyClipboard(True);
+            clearEvent(event);
+            break;
       }
 }
 
@@ -6989,6 +7008,102 @@ void TDebugMsgDialog::SendGDBCommand()
     dbg->Send(command);
    }
 }
+
+
+void TDebugMsgDialog::setState(uint16 aState, Boolean enable)
+{
+ TDialog::setState(aState,enable);
+ if (aState==sfActive)
+    updateCommands();
+}
+
+void TDebugMsgDialog::updateCommands()
+{
+ int enable=state & sfActive;
+ if (enable && MsgCol && MsgCol->getCount()!=0)
+   {
+    enableCommand(cmcCopy);
+    enableCommand(cmcCopyClipWin);
+    enableCommand(cmcSaveAs);
+   }
+ else
+   {
+    disableCommand(cmcCopy);
+    disableCommand(cmcCopyClipWin);
+    disableCommand(cmcSaveAs);
+   }
+}
+
+void TDebugMsgDialog::saveAs()
+{
+ char fileName[PATH_MAX];
+ strcpy(fileName,"messages.txt");
+
+ if (TCEditor::editorDialog(edSaveAs,fileName)!=cmCancel)
+    save(fileName);
+}
+
+void TDebugMsgDialog::save(char *name)
+{ // Reusing the editor's dialogs this function is very complet
+ if (access(name,F_OK)==0 && TCEditor::editorDialog(edFileExists,name,0)==cmNo)
+    return;
+ FILE *f=fopen(name,"wt");
+ if (!f)
+   {
+    TCEditor::editorDialog(edCreateError,name);
+    return;
+   }
+ if (MsgCol)
+   {
+    int c=MsgCol->getCount();
+    for (int i=0; i<c; i++)
+       {
+        fputs((char *)MsgCol->at(i),f);
+        fputs("\n",f);
+       }
+   }
+ if (ferror(f))
+    TCEditor::editorDialog(edWriteError,name,NULL);
+ fclose(f);
+}
+
+void TDebugMsgDialog::copyClipboard(Boolean osClipboard)
+{
+ if (!MsgCol || !TCEditor::clipboard)
+    return;
+
+ int c=MsgCol->getCount();
+ int len=1,i,lacu;
+ for (i=0; i<c; i++)
+     len+=strlen((char *)MsgCol->at(i))+CLY_LenEOL;
+
+ char *buffer=new char[len];
+ if (!buffer)
+   {
+    TCEditor::editorDialog(edOutOfMemory);
+    return;
+   }
+
+ for (lacu=0, i=0; i<c; i++)
+    {
+     char *s=(char *)MsgCol->at(i);
+     strcpy(buffer+lacu,s);
+     lacu+=strlen(s);
+     strcpy(buffer+lacu,CLY_crlf);
+     lacu+=CLY_LenEOL;
+    }
+
+ if (osClipboard)
+   {
+    if (TVOSClipboard::isAvailable())
+       TVOSClipboard::copy(0,buffer,lacu);
+   }
+ else
+    TCEditor::clipboard->insertText(buffer,lacu,True);
+
+ delete[] buffer;
+}
+
 
 TDebugMsgDialog *DebugMsgInit(Boolean hide, int ZOrder)
 {
@@ -7047,8 +7162,11 @@ void DebugMsgClose()
 void DebugMsgAdd(char *msg)
 {
  DebugMsgInit();
+ ccIndex c=MsgCol->getCount();
  MsgCol->insert(msg);
- while (MsgCol->getCount()>msgsInDebugWindow)
+ if (MsgWindow && c==1 && (MsgWindow->state & sfActive))
+    MsgWindow->updateCommands();
+ while (c>msgsInDebugWindow)
     MsgCol->atFree(0);
  DebugMsgUpdate(edsmDontSelect);
 }
@@ -7059,6 +7177,8 @@ void DebugMsgClear()
     return;
  MsgCol->removeAll();
  MsgList->setRange(0);
+ if (MsgWindow && (MsgWindow->state & sfActive))
+    MsgWindow->updateCommands();
 }
 
 static

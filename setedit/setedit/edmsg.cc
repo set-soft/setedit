@@ -262,12 +262,15 @@ void TSOSListBoxMsg::save(char *name)
     TCEditor::editorDialog(edCreateError,name);
     return;
    }
- int c=MsgCol->getCount();
- for (int i=0; i<c; i++)
-    {
-     fputs(MsgCol->atStr(i),f);
-     fputs("\n",f);
-    }
+ if (MsgCol)
+   {
+    int c=MsgCol->getCount();
+    for (int i=0; i<c; i++)
+       {
+        fputs(MsgCol->atStr(i),f);
+        fputs("\n",f);
+       }
+   }
  if (ferror(f))
     TCEditor::editorDialog(edWriteError,name,NULL);
  fclose(f);
@@ -275,7 +278,7 @@ void TSOSListBoxMsg::save(char *name)
 
 void TSOSListBoxMsg::copyClipboard(Boolean osClipboard)
 {
- if (!TCEditor::clipboard)
+ if (!MsgCol || !TCEditor::clipboard)
     return;
 
  int c=MsgCol->getCount();
