@@ -1,4 +1,4 @@
-/* Copyright (C) 2003-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -1528,10 +1528,10 @@ TDialog *createDialogTags(const char *title, const char *label,
    {
     TSButton *yes=new TSButton(yesLabel,cmYes);
     yes->view->growMode=gfGrowAll;
-    but123=MakeHzGroup(ok,yes,cancel,0);
+    but123=MakeHzGroup(ok,yes,cancel,NULL);
    }
  else
-    but123=MakeHzGroup(ok,cancel,0);
+    but123=MakeHzGroup(ok,cancel,NULL);
 
  col->insert(xTSCenter,yTSDown,but123);
  col->doItCenter(cmeSearchTag);
@@ -1750,7 +1750,7 @@ static TDialog *createDialogCl()
  TSButton *yes=new TSButton(__("~J~ump"),cmYes);
  TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
  ok->view->growMode=cancel->view->growMode=yes->view->growMode=gfGrowAll;
- TSHzGroup *but123=MakeHzGroup(ok,yes,cancel,0);
+ TSHzGroup *but123=MakeHzGroup(ok,yes,cancel,NULL);
  col->insert(xTSCenter,yTSDown,but123);
  col->doItCenter(cmeClassBrowser);
  delete col;
@@ -1787,18 +1787,18 @@ TDialog *createDialogVCl(stClassTagInfo *cl)
     parents=MakeVeGroup(1 | tsveMakeSameW,
               new TSLabel(__("P~a~rents"),
                           new TSSortedListBox(20,6,tsslbVertical|tsslbHorizontal,1,80)),
-              new TSButton(__("Browse ~p~arent"),cmParent,bfNormal,buttonsCB_VCl),0);
+              new TSButton(__("Browse ~p~arent"),cmParent,bfNormal,buttonsCB_VCl),NULL);
    }
  if (cl->childs->getCount())
    {
     childs=MakeVeGroup(1 | tsveMakeSameW,
               new TSLabel(__("Chil~d~ren"),
                           new TSSortedListBox(20,6,tsslbVertical|tsslbHorizontal,1,80)),
-              new TSButton(__("Browse ~c~hild"),cmChild,bfNormal,buttonsCB_VCl),0);
+              new TSButton(__("Browse ~c~hild"),cmChild,bfNormal,buttonsCB_VCl),NULL);
    }
  TSView *relations=NULL;
  if (parents && childs)
-    relations=MakeHzGroup(parents,childs,0);
+    relations=MakeHzGroup(parents,childs,NULL);
  else
     relations=parents ? parents : childs;
 
@@ -1809,7 +1809,7 @@ TDialog *createDialogVCl(stClassTagInfo *cl)
                             new TSButton(__("~S~orted"),cmSorted),
                             new TSButton(__("E~x~it"),cmExit),
                             relations,
-                            0);
+                            NULL);
  col->insert(xTSCenter,yTSUp,grp);
 
  TDialog *d=col->doItCenter(cmeClassBrowser);
@@ -2076,7 +2076,7 @@ void SetTagFilesGenerationOptions()
  TSViewCol *col=new TSViewCol(__("Tags options"));
  col->insert(xTSCenter,yTSUp,
              TSLabelRadio(__("Automatic generation"),__("~D~isabled"),
-                          __("~U~sing central file"),0));
+                          __("~U~sing central file"),NULL));
  EasyInsertOKCancel(col);
  TDialog *d=col->doItCenter(cmeTagsOps);
  delete col;
