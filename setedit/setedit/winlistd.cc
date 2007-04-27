@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TRect
 #define Uses_TDialog
@@ -140,7 +140,7 @@ void BringListOfWindows(void)
    new TSButton(__("~D~elete"),cmDelete),
    new TSButton(__("~O~pen"),cmInsert),
    new TSButton(__("Re~E~numerate"),cmReEnumerate),
-   new TSButton(__("Cancel"),cmCancel),0);
+   new TSButton(__("Cancel"),cmCancel),NULL);
  col->insert(xTSLeft,yTSUp,list);
  col->insert(xTSCenter,yTSUnder,buttons,0,list);
  col->doItCenter(hcListWin);

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_string
@@ -746,6 +746,7 @@ void EdShowMessageS(const char *msg)
 {
  FileInfo dummy;
  dummy.Line=-1;
+ dummy.type=fitNone;
  EdShowMessageFile(msg,dummy,0,edsmNoHzReset|edsmDontSelect);
 }
 
@@ -753,6 +754,7 @@ void EdShowMessage(const char *msg, Boolean remove_old, Boolean resetHz)
 {
  FileInfo dummy;
  dummy.Line=-1;
+ dummy.type=fitNone;
  EdShowMessageFile(msg,dummy,0,(remove_old ? edsmRemoveOld : 0) |
                    (resetHz ? edsmNoHzReset : 0));
 }
@@ -768,6 +770,7 @@ void EdShowMessage(const char *msg, unsigned Options)
 {
  FileInfo dummy;
  dummy.Line=-1;
+ dummy.type=fitNone;
  EdShowMessageFile(msg,dummy,0,Options);
 }
 

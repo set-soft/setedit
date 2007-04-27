@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (c) 1999-2003 by Salvador E. Tropea.
+  Copyright (c) 1999-2007 by Salvador E. Tropea.
   Covered by the GPL license.
   Part of setedit source code.
   
@@ -445,7 +445,7 @@ int SelectTypeInstall(char *djdir)
 
  CreateCol(cTypeOfInstall);
 
- TSLabel *l=TSLabelRadio(cSelectType,cNormal,cForProgrammers,cForDJGPP,0);
+ TSLabel *l=TSLabelRadio(cSelectType,cNormal,cForProgrammers,cForDJGPP,NULL);
  col->insert(xTSCenter,1,l);
  EasyInsertOKCancel(col);
  DoAndDel(col,d);
@@ -778,7 +778,7 @@ int AskGenericQuestion2Ops(const char *title, const char *desc,
  TSVeGroup *gr=MakeVeGroup(
    new TSStaticText(desc,60),
    new TSRadioButtons(new TSItem(op1,new TSItem(op2,0))),
-   0);
+   NULL);
  gr->makeSameW();
  col->insert(xTSCenter,1,gr);
  InsertPrevNextCancel(col);
@@ -1428,7 +1428,7 @@ int DefinePath()
     memcpy(b,RemWarning,sizeof(RemWarning)-1);
     lenPATH+=sizeof(RemWarning)-1;
    
-    TSLabel *la=TSLabelRadio(cSelectHow,byHand,byHandNow,doItAndSh,doItAndNS,0);
+    TSLabel *la=TSLabelRadio(cSelectHow,byHand,byHandNow,doItAndSh,doItAndNS,NULL);
     col->insert(2,2,x1);
     col->insert(2,yTSUnder,x2,0,x1);
     col->insert(2,yTSUnder,la,0,x2);

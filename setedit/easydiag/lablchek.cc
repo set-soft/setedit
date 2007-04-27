@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSLabelCheck
 #define Uses_TSCheckBoxes
@@ -14,9 +14,9 @@ TSLabel *TSLabelCheck(const char *name, ...)
  va_start(arg,name);
 
  TSItem *first=0,*last=0,*aux;
- while ((s=va_arg(arg,const char *))!=0)
+ while ((s=va_arg(arg,const char *))!=NULL)
    {
-    aux=new TSItem(s,0);
+    aux=new TSItem(s,NULL);
     if (!first)
        first=aux;
     if (last)
@@ -34,9 +34,9 @@ TSLabel *TSLabelCheck(int columns, const char *name, ...)
  va_start(arg,name);
 
  TSItem *first=0,*last=0,*aux;
- while ((s=va_arg(arg,const char *))!=0)
+ while ((s=va_arg(arg,const char *))!=NULL)
    {
-    aux=new TSItem(s,0);
+    aux=new TSItem(s,NULL);
     if (!first)
        first=aux;
     if (last)

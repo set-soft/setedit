@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -79,12 +79,12 @@ TDialog *createRegExOpsDialog()
  TSLabel *Style=TSLabelRadio(__("RegEx style"),__("~B~asic POSIX"),
                              __("~E~xtended POSIX"),
                              SUP_PCRE ? __("~P~erl Compatible") : 0,
-                             0);
+                             NULL);
 
  TSLabel *Replace=TSLabelRadio(__("Replace text"),__("~N~ormal text"),
-                               __("~D~ollar tags"),0);
+                               __("~D~ollar tags"),NULL);
  TSLabel *Optimize=TSLabelRadio(__("Optimize"),__("~T~ry to use normal search"),
-                                __("~A~lways use RegEx"),0);
+                                __("~A~lways use RegEx"),NULL);
 
  TSVeGroup *rightG=new TSVeGroup(Replace,Optimize);
  rightG->makeSameW();
@@ -122,20 +122,20 @@ TDialog *createFindDialog(void *regexBox)
              TSLabelCheck(__("Options"),__("~C~ase sensitive"),
                           __("~W~hole words only"),__("Regular e~x~pressions"),
                           __("Only ~i~nside comments"),__("Only o~u~tside comments"),
-                          __("S~h~ow function name"),0),
-             TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),0),
+                          __("S~h~ow function name"),NULL),
+             TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),NULL),
              TSLabelRadio(__("Origin"),__("~F~rom cursor"),
-                          __("~E~ntire scope"),0),
+                          __("~E~ntire scope"),NULL),
              TSLabelRadio(__("Direction"),__("Forwar~d~"),
-                          __("~B~ackward"),0),
-             0);
+                          __("~B~ackward"),NULL),
+             NULL);
  Options->makeSameW();
 
  TSHzGroup *but123=MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                                new TSButton(__("Cancel"),cmCancel),
                                new TSButton(__("RegEx ~O~ps"),cmRegExOptions,
                                             bfNormal,RegExDialog),
-                               0);
+                               NULL);
 
  col->insert(xTSCenter,yTSUp,Options);
  col->insert(xTSCenter,yTSDown,but123);
@@ -164,15 +164,15 @@ TDialog *createReplaceDialog(void *regexBox)
                   __("Options"),__("~C~ase sensitive"),__("~W~hole words only"),
                   __("Regular e~x~pressions"),__("Only ~i~nside comments"),
                   __("Only o~u~tside comments"),__("S~h~ow function ~n~ame"),
-                  __("~P~rompt on replace"),__("~R~eplace all"),0);
+                  __("~P~rompt on replace"),__("~R~eplace all"),NULL);
  Options->setWidth(FixWTest);
 
  TSVeGroup *OriScoDir=
  MakeVeGroup(tsveMakeSameW, // All together + same width
-             TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),0),
-             TSLabelRadio(__("Or~i~gin"),__("~F~rom cursor"),__("~E~ntire scope"),0),
-             TSLabelRadio(__("Direction"),__("Forwar~d~"),__("~B~ackward"),0),
-             0);
+             TSLabelRadio(__("Scope"),__("~G~lobal"),__("~S~elected text"),NULL),
+             TSLabelRadio(__("Or~i~gin"),__("~F~rom cursor"),__("~E~ntire scope"),NULL),
+             TSLabelRadio(__("Direction"),__("Forwar~d~"),__("~B~ackward"),NULL),
+             NULL);
  TSView::makeSameW(newText,OriScoDir);
 
  TSHzGroup *but123=MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
@@ -180,7 +180,7 @@ TDialog *createReplaceDialog(void *regexBox)
                                new TSButton(__("Cancel"),cmCancel),
                                new TSButton(__("RegEx ~O~ps"),cmRegExOptions,
                                             bfNormal,RegExDialog),
-                               0);
+                               NULL);
 
  col->insert(xTSLeft,yTSUp,TextToFind);
  col->insert(xTSRightOf,yTSUp,newText,TextToFind);
@@ -256,22 +256,22 @@ TDialog *createSetLocalOptions(ShlDiagBox *shlBox)
          __("S~e~e tabs"),__("Don't move inside ta~b~s"),
          __("Tab ~s~mart indents"),__("Use in~d~ent size"),
          __("Keep trailin~g~ whitespace"),__("Backspace unindents ~2~"),
-         __("Column markers ~4~"),0);
+         __("Column markers ~4~"),NULL);
 
  TSHzGroup *Inputs=MakeHzGroup(3,
             new TSHzLabel(__("~T~ab size"),new TSInputLine(3)),
             new TSHzLabel(__("Indent si~z~e"),new TSInputLine(3)),
             new TSHzLabel(__("Wrap co~l~umn"),new TSInputLine(4)),
-            0);
+            NULL);
  TSHzLabel *colMarkers=new TSHzLabel(__("Column markers"),
                                      new TSInputLine(colMarkersStrLen,30));
- TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
+ TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,NULL);
 
  TSHzGroup *but123=MakeHzGroup(
             new TSButton(__("O~K~"),cmOK,bfDefault),
             new TSButton(__("Cancel"),cmCancel),
             new TSButton(__("Syntax ~H~L Options"),cmSHLOptions,bfNormal,SHLSubDiag),
-            0);
+            NULL);
             
  col->insert(xTSCenter,yTSUp,Ops);
  col->insert(xTSCenter,yTSDown,but123);
@@ -309,20 +309,20 @@ TDialog *createSetGlobalOptions()
           __("Keep trailin~g~ whitespace"),
           __("Backspace unindents ~8~"),
           __("Column markers ~9~"),
-         0);
+         NULL);
  TSHzGroup *Inputs=MakeHzGroup(3,
             new TSHzLabel(__("~T~ab size"),new TSInputLine(3)),
             new TSHzLabel(__("Indent si~z~e"),new TSInputLine(3)),
             new TSHzLabel(__("Wrap co~l~umn"),new TSInputLine(4)),
-            0);
+            NULL);
  TSHzLabel *colMarkers=new TSHzLabel(__("Column markers"),
                                      new TSInputLine(colMarkersStrLen,30));
- TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,0);
+ TSVeGroup *Ops=MakeVeGroup(0,Options,Inputs,colMarkers,NULL);
 
  TSHzGroup *but123=MakeHzGroup(new TSButton(__("T~o~ all"), cmYes),
                                new TSButton(__("O~K~"), cmOK, bfDefault),
                                new TSButton(__("Cancel"), cmCancel),
-                               0);
+                               NULL);
 
  col->insert(xTSCenter,yTSUp,Ops);
  col->insert(xTSCenter,yTSDown,but123);
@@ -341,7 +341,7 @@ TDialog *createYesNoAllCancel(TPoint *size, TPoint *cursor)
                                 new TSButton(__("~N~o"),cmNo),
                                 new TSButton(__("~A~ll"),cmOK),
                                 new TSButton(__("Cancel"),cmCancel),
-                                0);
+                                NULL);
 
  col->insert(xTSCenter,yTSUpSep,text);
  col->insert(xTSCenter,yTSUnder,buttons,0,text);
@@ -369,9 +369,9 @@ TDialog *createHTMLExportOps()
                              __("Same ~b~ackground color as the editor"),
                              __("~M~onospaced font"),
                              __("Bo~l~d attribute"),
-                             __("~U~se CSS and HTML 4.01"),0),
+                             __("~U~se CSS and HTML 4.01"),NULL),
                 TSLabelRadio(__("Colors"),__("Use ~c~olors"),
-                             __("~D~on't use colors"),0)
+                             __("~D~on't use colors"),NULL)
                 );
 
  Ops->makeSameW();
@@ -441,7 +441,7 @@ TDialog *createSolveModifCollision(Boolean haveDiff)
               new TSButton(__("~A~bort operation"),cmCancel),
               haveDiff ? new TSButton(__("Load and ~s~how differences"),cmYes) : 0,
               haveDiff ? new TSButton(__("~D~on't load and show differences"),cmNo) : 0,
-              0));
+              NULL));
  TDialog *d=col->doItCenter(cmeSetModiCkOps);
  delete col;
  return d;

@@ -741,7 +741,7 @@ static TDialog *createDialog( )
  TSButton *cancel=new TSButton(__("Cancel"),cmCancel);
  TSButton *browse=new TSButton(__("~B~rowse"),cmYes);
  ok->view->growMode=cancel->view->growMode=browse->view->growMode=gfGrowAll;
- TSHzGroup *but123=MakeHzGroup(ok,cancel,browse,0);
+ TSHzGroup *but123=MakeHzGroup(ok,cancel,browse,NULL);
  col->insert(xTSCenter,yTSDown,but123);
  col->doItCenter(cmcJumpToFunction);
  delete col;

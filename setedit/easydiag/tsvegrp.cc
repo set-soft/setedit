@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSVeGroup
 #include <easydia1.h>
@@ -52,10 +52,8 @@ TSVeGroup *MakeVeGroup(TSView *este, TSView *ant, ...)
  va_start(arg,ant);
 
  ret=new TSVeGroup(este,ant);
- while ((cur=va_arg(arg,TSView *))!=0)
-   {
+ while ((cur=va_arg(arg,TSView *))!=NULL)
     ret=new TSVeGroup(ret,cur);
-   }
  va_end(arg);
  return ret;
 }
@@ -69,10 +67,8 @@ TSVeGroup *MakeVeGroup(int sepa, TSView *este, TSView *ant, ...)
 
  int sep=sepa & (~tsveMakeSameW);
  ret=new TSVeGroup(este,ant,sep);
- while ((cur=va_arg(arg,TSView *))!=0)
-   {
+ while ((cur=va_arg(arg,TSView *))!=NULL)
     ret=new TSVeGroup(ret,cur,sep);
-   }
  va_end(arg);
  if (sepa & tsveMakeSameW)
     ret->makeSameW();

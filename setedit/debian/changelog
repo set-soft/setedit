@@ -1,8 +1,14 @@
+setedit (0.5.5-5etch) unstable; urgency=low
+
+  * Added: Copy and Save for the debug dialog contents (gdb dialog).
+
+ -- Salvador E. Tropea <salvador@inti.gov.ar>  Mon, 23 Apr 2007 11:57:50 -0300
+
 setedit (0.5.5-4etch) unstable; urgency=low
 
   * Modified to compile with etch. 
 
- -- Salvador E. Tropea <salvador@kotori.utic.com.ar>  Wed, 18 Apr 2007 17:04:18 -0300
+ -- Salvador E. Tropea <salvador@inti.gov.ar>  Wed, 18 Apr 2007 17:04:18 -0300
 
 setedit (0.5.5-3) unstable; urgency=low
 

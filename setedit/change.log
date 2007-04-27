@@ -1,4 +1,11 @@
-$Log$.
+$Log$
+Revision 1.731  2007/04/23 14:55:33  set
+* Added: Copy and Save for the debug dialog contents (gdb dialog).
+* Modified: Debian release version (for Etch)
+* Modified: To ignore the "typeref:struct:" attribute from ectags 5.6.
+* Modified: To support the new spanish translation of the "Entering dir"
+message from make (some crazy changed it).
+
 Revision 1.730  2007/04/18 19:15:17  set
 * Fixed: [manview.cc, edprefs.cc, runprog.cc] char verctors that requested
 pack attribute. They aren't really packed and gcc 4.1.1 provides a warning.

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -475,15 +475,15 @@ void SyntaxSearch_EditSettings(void)
  /* I think that's easiest way! The following 5 lines are equivalent to 20 lines
     of cryptic stuff if you don't use EasyDiag! (I can write it in 1 too ;-) */
  TSLabel *Method=TSLabelRadio(__("Search ~m~ethod"),__("E~x~act"),__("~S~ubstring"),
-                              __("~F~uzzy"),0);
+                              __("~F~uzzy"),NULL);
  TSLabel *Options=TSLabelCheck(__("Search O~p~tions"),__("~C~ase sensitive"),
-                               __("So~r~t by score"),0);
+                               __("So~r~t by score"),NULL);
  TSVeGroup *o1=new TSVeGroup(Method,Options);
 
  o1->Flags=wSpan;
  TSLabel *FuzzyV=new TSLabel(__("Fu~z~zy value [1..1000]"),new TSInputLine(5));
  
- TSLabel *oOptions=TSLabelCheck(__("Other options"),__("Search word in the ~t~opic"),0);
+ TSLabel *oOptions=TSLabelCheck(__("Other options"),__("Search word in the ~t~opic"),NULL);
 
  col->insert(2,1,o1);
  col->insert(2,yTSUnder,oOptions,0,o1);

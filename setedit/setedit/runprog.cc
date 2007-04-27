@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -133,25 +133,25 @@ void ConfigureRunCommand(void)
          __("Don't make a beep when f~i~nished"),
          __("Don't finish debu~g~ session"),
          __("Don't move breakp~o~ints"),
-         __("~C~onfirm if stopping debug session"),0);
+         __("~C~onfirm if stopping debug session"),NULL);
  TSLabel *opsscroll=TSLabelRadio(__("Message window ~s~croll"),
-         __("Al~w~ays"),__("~N~ever"),__("Only if not ~f~ocused"),0);
- TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,0);
+         __("Al~w~ays"),__("~N~ever"),__("Only if not ~f~ocused"),NULL);
+ TSVeGroup *grp=MakeVeGroup(0,progInput,options,opsscroll,NULL);
  grp->makeSameW();
  col->insert(2,1,grp);
 
  TSLabel *optscrh=TSLabelCheck(__("~H~orizontal reset"),
          __("At ~b~eggining"),
          __("For each ~m~essage"),
-         __("At ~t~he end"),0);
+         __("At ~t~he end"),NULL);
  TSHzLabel *linesInput=new TSHzLabel(__("~L~ines per pass"),new TSInputLine(4));
- TSVeGroup *grp2=MakeVeGroup(0,optscrh,linesInput,0);
+ TSVeGroup *grp2=MakeVeGroup(0,optscrh,linesInput,NULL);
 
  if (validList)
    {
     TSLabel *compilers=new TSLabel(__("Error ~p~arser"),
                                    new TSSortedListBox(28,grp->h-1-grp2->h,tsslbVertical));
-    grp2=MakeVeGroup(0,grp2,compilers,0);
+    grp2=MakeVeGroup(0,grp2,compilers,NULL);
    }
  grp2->makeSameW();
  col->insert(xTSRightOf,yTSUp,grp2,grp);

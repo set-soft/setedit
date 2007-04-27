@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include <ceditint.h>
@@ -79,13 +79,13 @@ int AboutStartBox(void)
               new TSStaticText(v1),
               new TSStaticText(v2),
               new TSStaticText(cSET),
-              new TSStaticText(cSlogan),0);
+              new TSStaticText(cSlogan),NULL);
 
  TSVeGroup *all=
   MakeVeGroup(1 | tsveMakeSameW,
               ant,
               new TSCheckBoxes(new TSItem(__("Don't show it next time"),0)),
-              new TSButton(__("~O~K"),cmOK,bfDefault),0);
+              new TSButton(__("~O~K"),cmOK,bfDefault),NULL);
 
  col->insert(xTSCenter,yTSUpSep,all);
 
@@ -137,7 +137,7 @@ void FullAboutBox(void)
               new TSStaticText(v2),
               new TSStaticText(v3),
               new TSStaticText(cSET),
-              new TSStaticText(cSlogan),0);
+              new TSStaticText(cSlogan),NULL);
 
  TNSCollection *text=new TNSCollection(12,5);
  #define i(a) text->insert((void *)TVIntl::getTextNew(a));
@@ -170,14 +170,14 @@ void FullAboutBox(void)
  TSVeGroup *thanks=
   MakeVeGroup(tsveMakeSameW,
               new TSStaticText(__("Thanks to:")),
-              txt,0);
+              txt,NULL);
 
  TSVeGroup *all=
   MakeVeGroup(1 | tsveMakeSameW,
               ant,
               new TSStaticText(__("\x3Made in Argentina")),
               thanks,
-              new TSButton(__("~O~K"),cmOK,bfDefault),0);
+              new TSButton(__("~O~K"),cmOK,bfDefault),NULL);
 
  col->insert(xTSCenter,yTSUpSep,all);
  col->exec(0);

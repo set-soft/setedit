@@ -1,4 +1,4 @@
-/* Copyright (C) 1999-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_ctype
@@ -783,7 +783,7 @@ TDialog *ManPageViewSelect(const char *name, ManPageOptions **mpo)
  MakeVeGroup(new TSLabel(__("~M~an page for ..."),new TSInputLine(prgLen,visibleLen)),
              new TSLabel(__("~S~ection"),new TSInputLine(sectLen,visibleLen)),
              new TSLabel(__("~E~xtra options"),new TSInputLine(extraLen,visibleLen)),
-             0);
+             NULL);
 
  col->insert(2,2,options);
  EasyInsertOKCancel(col);

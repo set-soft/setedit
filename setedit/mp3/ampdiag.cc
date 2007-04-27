@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -260,7 +260,7 @@ TAmpDiag *CreateShowDialog()
  ampDia->info4=(TNoStaticText *)info4->view;
  TSNoStaticText *info5=new TSNoStaticText(buffer);
  ampDia->info5=(TNoStaticText *)info5->view;
- TSVeGroup *Info=MakeVeGroup(0,info1,info2,info3,info4,info5,0);
+ TSVeGroup *Info=MakeVeGroup(0,info1,info2,info3,info4,info5,NULL);
 
  TSNoStaticText *SR_BR=new TSNoStaticText(buffer);
  ampDia->SR_BR=(TNoStaticText *)SR_BR->view;
@@ -287,7 +287,7 @@ TAmpDiag *CreateShowDialog()
                     new TSButton(MP3Player::butPause,cmaMP3Pause),
                     new TSButton(MP3Player::butFfw,cmaMP3Ffw),
                     new TSButton(__("Next"),cmaMP3Next),
-                    0);
+                    NULL);
 
  ampDia->SetHeaderValues();
  col->insert(2,1,Info);

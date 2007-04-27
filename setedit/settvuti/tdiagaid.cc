@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_string
 //#define Uses_stdio // debug
@@ -208,13 +208,13 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
     TSStaticText *labasig=new TSStaticText(__("Assigned to:"));
     snst->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
     labasig->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
-    upper=MakeVeGroup(0,upper,labasig,snst,0);
+    upper=MakeVeGroup(0,upper,labasig,snst,NULL);
    }
 
  if (flags & aidComMac)
    {
     TSLabel *tl=TSLabelRadio(__("Assignmen~t~"),__("Command~s~"),__("~M~acro"),
-                             __("s~L~isp code"),0);
+                             __("s~L~isp code"),NULL);
     tl->setGrowMode(gfGrowHiX | gfGrowHiY | gfGrowLoY);
     upper=new TSVeGroup(upper,tl,0);
    }
@@ -238,13 +238,13 @@ TDialogAID *CreateAddInsDelDialog(int x, int y, const char *name, int h, int w,
     bt2=MakeHzGroup(new TSButton(nbotAdd,cmAddKey),
                     new TSButton(nbotIns,cmInsertKey),
                     new TSButton(nbotDel,cmDeleteKey),
-                    0);
+                    NULL);
    }
  else
    {
     bt2=MakeHzGroup(new TSButton(nbotAdd,cmAddKey),
                     new TSButton(nbotDel,cmDeleteKey),
-                    0);
+                    NULL);
    }
  bt2->setGrowMode(gfMoveAccording);
 
@@ -294,7 +294,7 @@ TDialog *CreateChooseDialog(int x, int y, const char *name, int h, int w,
     bts=new TSButton(nbotOk,cmOK,bfDefault);
  else
     bts=MakeHzGroup(new TSButton(nbotOk,cmOK,bfDefault),
-                    new TSButton(nbotCan,cmCancel),0);
+                    new TSButton(nbotCan,cmCancel),NULL);
  col->insert(xTSCenter,yTSDown,bts);
 
  TDialog *d=col->doIt();

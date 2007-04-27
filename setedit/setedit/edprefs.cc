@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_string
@@ -145,27 +145,27 @@ int SetFileOpenDialogOptions(void)
 
  // ACDEFGIKLNPRSW
  TSLabel *Sort=TSLabelRadio(__("~S~ort type"),__("~A~lphabetical"),
-                            __("~D~irectories first"),__("~F~iles first"),0);
+                            __("~D~irectories first"),__("~F~iles first"),NULL);
  d->sortType=(TRadioButtons32 *)Sort->linked->view;
  TSLabel *Case=TSLabelRadio(__("Case style"),__("~C~apital letters go first"),
-                            __("Case ~i~nsensitive"),0);
+                            __("Case ~i~nsensitive"),NULL);
  TSLabel *Parent=TSLabelRadio(__("Parent directory (..)"),__("First in the ~l~ist"),
-                              __("At the ~e~nd of the list"),0);
+                              __("At the ~e~nd of the list"),NULL);
  d->parentSort=Parent->linked->view;
  d->updateState(box.sortType);
 
  // Note: MinGW have a really nasty namespace pollution, the grp1 and grp2
  // names are defined as numeric constants in dlgs.h, which I don't request.
  // I'm sick of these faults, MinGW is really bad.
- TSVeGroup *Grp1=MakeVeGroup(1,Sort,Case,Parent,0);
+ TSVeGroup *Grp1=MakeVeGroup(1,Sort,Case,Parent,NULL);
  Grp1->makeSameW();
 
  TSLabel *DotFiles=TSLabelRadio(__("Files starting with a dot"),__("~N~ormally sorted"),
-                                __("After the ~r~est"),0);
+                                __("After the ~r~est"),NULL);
  TSLabel *Exclude=TSLabelCheck(__("Exclude files"),__("Ending ~w~ith tilde"),
-                               __("Ending with .bk~p~"),__("Startin~g~ with ."),0);
+                               __("Ending with .bk~p~"),__("Startin~g~ with ."),NULL);
 
- TSVeGroup *Grp2=MakeVeGroup(1,DotFiles,Exclude,0);
+ TSVeGroup *Grp2=MakeVeGroup(1,DotFiles,Exclude,NULL);
  Grp2->makeSameW();
 
  col->insert(xTSLeft,yTSUp,Grp1);
@@ -354,11 +354,11 @@ void SetScreenSaversOptions(void)
  diaPrefs->xtOpt=extOptIn->view;
  TSLabel *extOpts=new TSLabel(__("E~x~ternal options"),extOptIn);
  TSVeGroup *Scrv=new TSVeGroup(
-   MakeVeGroup(0,TSLabelRadio(__("Sc~r~een saver (?)"),__("OF~F~"),__("O~N~"),0),
-               scrv,extOpts,0), // First 3 joined
+   MakeVeGroup(0,TSLabelRadio(__("Sc~r~een saver (?)"),__("OF~F~"),__("O~N~"),NULL),
+               scrv,extOpts,NULL), // First 3 joined
    MakeHzGroup(new TSButton(__("T~e~st"),cmTestScrv),
                new TSButton(__("~I~nfo"),cmInfoScrv),
-               new TSButton(__("~H~elp"),cmHelpScrv),0)); // Buttons separated
+               new TSButton(__("~H~elp"),cmHelpScrv),NULL)); // Buttons separated
  Scrv->makeSameW();
 
  TSHzLabel *timeL=new TSHzLabel(__("~T~ime"),new TSInputLine(5));
@@ -455,15 +455,15 @@ unsigned SetGeneralEditorOptionsMain(void)
               #define NO_RO_WARNING 512
               __("Open ~r~ead-only files as R.O. buffers"),
               #define RO_AS_RO 1024
-              0);
+              NULL);
 
- TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),0),
-                                TSLabelRadio(__("St~y~le"),__("AM/PM"),__("24 hs"),0));
+ TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),NULL),
+                                TSLabelRadio(__("St~y~le"),__("AM/PM"),__("24 hs"),NULL));
 
  TSHzLabel *MaxEds=new TSHzLabel(__("~M~ax. editor copies"),new TSInputLine(5));
  TSHzLabel *MaxClo=new TSHzLabel(__("Max. c~l~osed to remember"),new TSInputLine(5));
 
- TSVeGroup *FirstCol=MakeVeGroup(0,tcb,Clock,MaxEds,MaxClo,0);
+ TSVeGroup *FirstCol=MakeVeGroup(0,tcb,Clock,MaxEds,MaxClo,NULL);
  FirstCol->makeSameW();
 
  col->insert(xTSLeft,yTSUp,FirstCol);
@@ -471,7 +471,7 @@ unsigned SetGeneralEditorOptionsMain(void)
              MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                          new TSButton(__("Cancel"),cmCancel),
                          new TSButton(__("+ Desk~t~op"),cmYes),
-                         new TSButton(__("+ Others"),cmNo),0));
+                         new TSButton(__("+ Others"),cmNo),NULL));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -605,17 +605,17 @@ unsigned SetGeneralEditorOptionsMoreDst(void)
  TSViewCol *col=new TSViewCol(__("More desktop options"));
 
  TSLabel *editors=TSLabelRadio(__("Remember editor windows"),
-         __("~A~lways"),__("~O~nly if no file specified"),__("~N~ever"),0);
+         __("~A~lways"),__("~O~nly if no file specified"),__("~N~ever"),NULL);
  TSLabel *others=TSLabelRadio(__("Remember other windows"),
-         __("Al~w~ays"),__("On~l~y if no file specified"),__("Neve~r~"),0);
+         __("Al~w~ays"),__("On~l~y if no file specified"),__("Neve~r~"),NULL);
  TSLabel *closed=TSLabelRadio(__("Remember ~c~losed windows"),
-         __("Alway~s~"),__("Onl~y~ if no file specified"),__("Ne~v~er"),0);
+         __("Alway~s~"),__("Onl~y~ if no file specified"),__("Ne~v~er"),NULL);
 
- col->insert(xTSLeft,yTSUp,MakeVeGroup(0,editors,others,closed,0));
+ col->insert(xTSLeft,yTSUp,MakeVeGroup(0,editors,others,closed,NULL));
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                          new TSButton(__("Cancel"),cmCancel),
-                         new TSButton(__("~M~ain options"),cmYes),0));
+                         new TSButton(__("~M~ain options"),cmYes),NULL));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -662,27 +662,27 @@ unsigned SetGeneralEditorOptionsOthers(void)
    TSLabelRadio(__("At the end of error list in message window"),
                 __("~J~ust stop"),
                 __("~I~ndicate with a message"),
-                __("Wrap (~c~ircular list)"),0),
-   new TSCheckBoxes(new TSItem(__("Make a beep"),0)),
+                __("Wrap (~c~ircular list)"),NULL),
+   new TSCheckBoxes(new TSItem(__("Make a beep"),NULL)),
    TSLabelCheck(__("When creating message and similar windows"),
                 __("Use the ~v~ertical direction"),
-                __("Use the ~r~ight side"),0),
+                __("Use the ~r~ight side"),NULL),
    TSLabelRadio(__("When opening files"),
                 __("~U~se reserved width or 7 (hz dir)"),
-                __("~A~void message and project windows"),0),
+                __("~A~void message and project windows"),NULL),
    new TSHzLabel(__("Reserved ~w~idth"),new TSInputLine(5)),
    TSLabelRadio(__("Zoom windows when"),
                 __("No ~p~roject window"),
                 __("No prj. wi~n~dow or it's zoomed"),
-                __("A~l~ways"),0),
-   0);
+                __("A~l~ways"),NULL),
+   NULL);
  MsgWin->makeSameW();
 
  col->insert(xTSLeft,yTSUp,MsgWin);
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                          new TSButton(__("Cancel"),cmCancel),
-                         new TSButton(__("~M~ain options"),cmYes),0));
+                         new TSButton(__("~M~ain options"),cmYes),NULL));
 
  TDialog *d=col->doItCenter(cmeEdGralOptions);
  delete col;
@@ -866,24 +866,24 @@ void TSetEditorApp::EncodingOptions()
  TSVeGroup *appEncode=NULL,*scrEncode=NULL,*sndEncode=NULL,*inpEncode=NULL;
 
  appEncode=new TSVeGroup(
-   TSLabelCheck(__("~A~pplication"),__("Force encoding"),0),
+   TSLabelCheck(__("~A~pplication"),__("Force encoding"),NULL),
    new TSSortedListBox(wForced,height,tsslbVertical),
    0);
  appEncode->makeSameW();
 
  inpEncode=new TSVeGroup(
-   TSLabelCheck(__("~I~nput"),__("Force encoding"),0),
+   TSLabelCheck(__("~I~nput"),__("Force encoding"),NULL),
    new TSSortedListBox(wForced,height,tsslbVertical),
    0);
  inpEncode->makeSameW();
 
- TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,0);
+ TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,NULL);
  TSView *lowerCPs=NULL;
 
  if (TScreen::codePageVariable())
    {// Only if the code page is variable
     scrEncode=new TSVeGroup(
-      TSLabelCheck(__("~S~creen"),__("Force encoding"),0),
+      TSLabelCheck(__("~S~creen"),__("Force encoding"),NULL),
       new TSSortedListBox(wForced,height,tsslbVertical),
       0);
     scrEncode->makeSameW();
@@ -891,11 +891,11 @@ void TSetEditorApp::EncodingOptions()
     if (TScreen::canSetSBFont())
       {// Only if the secondary font exists
        sndEncode=new TSVeGroup(
-         TSLabelCheck(__("Second ~f~ont"),__("Force encoding"),0),
+         TSLabelCheck(__("Second ~f~ont"),__("Force encoding"),NULL),
          new TSSortedListBox(wForced,height,tsslbVertical),
          0);
        sndEncode->makeSameW();
-       lowerCPs=MakeHzGroup(scrEncode,sndEncode,0);
+       lowerCPs=MakeHzGroup(scrEncode,sndEncode,NULL);
       }
     else
        lowerCPs=scrEncode;
@@ -911,7 +911,7 @@ void TSetEditorApp::EncodingOptions()
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                          new TSButton(__("Cancel"),cmCancel),
-                         new TSButton(__("Set ~D~efaults"),cmYes),0));
+                         new TSButton(__("Set ~D~efaults"),cmYes),NULL));
  TDialog *d=col->doIt();
  delete col;
  d->options|=ofCentered;
@@ -1136,7 +1136,7 @@ void TSetEditorApp::FontsOptions()
  do
    {
     // Primary font label, check box and list
-    TSLabel *priLBl=TSLabelCheck(__("~P~rimary"),__("~L~oad font"),0);
+    TSLabel *priLBl=TSLabelCheck(__("~P~rimary"),__("~L~oad font"),NULL);
     TSVBitmapFontDescLBox *priLB=new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical);
     TSVeGroup *priOps=new TSVeGroup(priLBl,priLB,0);
     priOps->makeSameW();
@@ -1149,7 +1149,7 @@ void TSetEditorApp::FontsOptions()
     TSVeGroup *secOps=NULL;
     if (TScreen::canSetSBFont())
       {
-       secOps=new TSVeGroup(TSLabelCheck(__("~S~econdary"),__("Lo~a~d font"),0),
+       secOps=new TSVeGroup(TSLabelCheck(__("~S~econdary"),__("Lo~a~d font"),NULL),
                             new TSVBitmapFontDescLBox(wForced,height-1,tsslbVertical),0);
        secOps->makeSameW();
       }
@@ -1165,7 +1165,7 @@ void TSetEditorApp::FontsOptions()
     d->fonts=fonts;
     // Now create the EasyDiag collection
     TSViewCol *col=new TSViewCol(d);
-    col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,0));
+    col->insert(xTSLeft,yTSUp,MakeHzGroup(priOps,priSzl,secOps,NULL));
     EasyInsertOKCancel(col);
     col->doIt();
     delete col;
@@ -1258,21 +1258,21 @@ void TSetEditorApp::ScreenOptions()
              __("~S~ame as last run"),
              __("~E~xternal program"),
              __("~C~losest to specified size"),
-             __("Specified ~m~ode number"),0);
+             __("Specified ~m~ode number"),NULL);
    
     TSHzGroup *sizes=MakeHzGroup(
                 new TSVeGroup(new TSHzLabel(__("~W~idth "),new TSInputLine(5)),
                               new TSHzLabel(__("~H~eight"),new TSInputLine(5)),0),
                 new TSVeGroup(new TSHzLabel(__("Chars w~i~dth "),new TSInputLine(5)),
                               new TSHzLabel(__("Chars hei~g~ht"),new TSInputLine(5)),0),
-                0);
+                NULL);
    
     TSLabel *external=new TSLabel(__("E~x~ternal program"),
                                  new TSInputLine(80,36));
 
     TSHzLabel *mode=new TSHzLabel(__("Mode ~n~umber"),new TSInputLine(10));
    
-    TSVeGroup *all=MakeVeGroup(options,sizes,external,mode,0);
+    TSVeGroup *all=MakeVeGroup(options,sizes,external,mode,NULL);
     all->makeSameW();
 
     char *title=CreateTitle(__("Screen size"));
@@ -1330,8 +1330,8 @@ void TSetEditorApp::SetModifCheckOptions()
               new TSHzLabel(__("Seconds between checks"),new TSInputLine(5)),
               TSLabelCheck(__("Related options"),
                            __("~D~on't check after executing an external program"),
-                           __("Don't check while ~i~dle"),0),
-              0));
+                           __("Don't check while ~i~dle"),NULL),
+              NULL));
  EasyInsertOKCancel(col);
  TDialog *d=col->doItCenter(cmeSetModiCkOps);
  delete col;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2003-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -315,8 +315,8 @@ void ConfigureHolidays()
     }
 
  col->insert(xTSCenter,yTSUp,
-             MakeVeGroup(tsveMakeSameW,TSLabelCheck(__("Country"),__("Force country"),0),
-                         new TSRadioButtons(first),0));
+             MakeVeGroup(tsveMakeSameW,TSLabelCheck(__("Country"),__("Force country"),NULL),
+                         new TSRadioButtons(first),NULL));
  EasyInsertOKCancel(col);
 
  TDialog *d=col->doItCenter(cmeHolidaysConf);

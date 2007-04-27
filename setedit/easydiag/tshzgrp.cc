@@ -1,4 +1,4 @@
-/* Copyright (C) 1996,1997,1998,1999,2000 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_TSHzGroup
 #include <easydia1.h>
@@ -65,10 +65,8 @@ TSHzGroup *MakeHzGroup(TSView *este, TSView *ant, ...)
  va_start(arg,ant);
 
  ret=new TSHzGroup(este,ant);
- while ((cur=va_arg(arg,TSView *))!=0)
-   {
+ while ((cur=va_arg(arg,TSView *))!=NULL)
     ret=new TSHzGroup(ret,cur);
-   }
  va_end(arg);
  return ret;
 }
@@ -81,10 +79,8 @@ TSHzGroup *MakeHzGroup(int sepa, TSView *este, TSView *ant, ...)
  va_start(arg,ant);
 
  ret=new TSHzGroup(este,ant,sepa);
- while ((cur=va_arg(arg,TSView *))!=0)
-   {
+ while ((cur=va_arg(arg,TSView *))!=NULL)
     ret=new TSHzGroup(ret,cur,sepa);
-   }
  va_end(arg);
  return ret;
 }

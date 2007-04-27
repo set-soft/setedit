@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -261,7 +261,7 @@ editSetting *EnterNewSetting()
  if (Settings[sel].type==tyFlag)
    {// Ask if is enable or disable.
     TSViewCol *col=new TSViewCol(__("What to do"));
-    TSLabel *p=TSLabelRadio(__("Action"),__("~D~isable"),__("~E~nable"),0);
+    TSLabel *p=TSLabelRadio(__("Action"),__("~D~isable"),__("~E~nable"),NULL);
     p->Flags|=wSpan;
     col->insert(2,1,p);
     EasyInsertOKCancel(col);

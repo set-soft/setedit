@@ -1596,7 +1596,7 @@ TDbgEvalModify *createEvalModifyDialog(evalBox *box)
              new TSLabel(__("~E~xpression (escape \" characters: \\\")"),sExp),
              new TSLabel(__("~R~esult"),sRes),
              new TSLabel(__("~N~ew value"),sVal),
-             0);
+             NULL);
  //o1->makeSameW();
  TSHzGroup *o2=
  MakeHzGroup(new TSButton(__("E~v~al"),cmEval,bfDefault),
@@ -1605,7 +1605,7 @@ TDbgEvalModify *createEvalModifyDialog(evalBox *box)
              new TSButton(__("~C~opy"),cmCaCopy),
              new TSButton(__("~P~aste"),cmCaPaste),
              new TSButton(__("~I~nspect"),cmDbgInspect),
-             0);
+             NULL);
 
  col->insert(xTSLeft,yTSUp,o1);
  col->insert(xTSCenter,yTSDown,o2);
@@ -3131,7 +3131,7 @@ TDialog *createFormatInst()
                           __("~B~inary"),
                           __("~D~ecimal"),
                           __("~H~exadecimal"),
-                          __("~O~ctal"),0));
+                          __("~O~ctal"),NULL));
  EasyInsertOKCancel(col);
 
  TDialog *d=col->doItCenter(cmFormatIns);
@@ -3256,7 +3256,7 @@ TInspector::TInspector(TPVarTree *p) :
  theLBox->hScrollBar->setParams(0,0,5000,w,1);
  theLBox->growMode=gfGrowHiX | gfGrowHiY;
 
- col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),0));
+ col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),NULL));
 
  col->doItCenter(hcInspector);
  delete col;
@@ -3289,7 +3289,7 @@ TInspector::TInspector(const TRect &aR, char *anExp, char *aTState) :
  fake=new TPVarTree(anExp,True);
  theLBox->newList(fake);
 
- col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),0));
+ col->insert(xTSLeft,yTSUp,MakeVeGroup(0,lbox,CreateStatus(),NULL));
 
  col->doIt();
  helpCtx=hcInspector;
@@ -3893,7 +3893,7 @@ TDialog *TDiagBrk::createEdit(const char *title)
                             __("File/L~i~ne"),
                             __("Fu~n~ction"),
                             __("File/Functi~o~n"),
-                            __("~A~ddress"),0);
+                            __("~A~ddress"),NULL);
  // Same width
  TSHzLabel *file=new TSHzLabel(__(" ~F~ilename"),
                   new TSInputLine(wFilename,1,hID_DbgBkFilename,wVisible));
@@ -3914,11 +3914,11 @@ TDialog *TDiagBrk::createEdit(const char *title)
                   new TSInputLine(wCount,1,hID_DbgBkCount,(wVisible-wLabels)/2));
  TSHzLabel *thre=new TSHzLabel(__("   T~h~read"),
                   new TSInputLine(wThreadB,1,hID_DbgBkThread,(wVisible-wLabels)/2));
- TSHzGroup *c_t=MakeHzGroup(coun,thre,0);
+ TSHzGroup *c_t=MakeHzGroup(coun,thre,NULL);
  TSCheckBoxes *enable=new TSCheckBoxes(new TSItem(__("~E~nabled"),0));
  TSCheckBoxes *hw=new TSCheckBoxes(new TSItem(__("Hard~w~are assisted"),0));
 
- TSVeGroup *all=MakeVeGroup(0,type,file,func,line,addr,cond,c_t,enable,hw,0);
+ TSVeGroup *all=MakeVeGroup(0,type,file,func,line,addr,cond,c_t,enable,hw,NULL);
  all->makeSameW();
 
  // The dependencies:
@@ -4308,7 +4308,7 @@ TDiagBrk::TDiagBrk(const TRect &r) :
              new TSButton(__("~D~elete") ,cmBkDel),
              new TSButton(__("~E~nable") ,cmBkEnable),
              new TSButton(__("D~i~sable"),cmBkDisable),
-             new TSButton(__("~S~how")   ,cmBkGo),0));
+             new TSButton(__("~S~how")   ,cmBkGo),NULL));
 
  col->doItCenter(hcBkptDialog);
  delete col;
@@ -4646,10 +4646,10 @@ TDialog *TDiagWp::createEdit(const char *title)
  TSLabel *type=TSLabelRadio(__("~T~ype"),
                             __("~W~rite"),
                             __("~R~ead"),
-                            __("~A~ccess (read or write)"),0);
+                            __("~A~ccess (read or write)"),NULL);
  TSCheckBoxes *enable=new TSCheckBoxes(new TSItem(__("~E~nabled"),0));
 
- TSVeGroup *all=MakeVeGroup(0,exp,type,enable,0);
+ TSVeGroup *all=MakeVeGroup(0,exp,type,enable,NULL);
  all->makeSameW();
 
  col->insert(xTSLeft,yTSUp,all);
@@ -4914,7 +4914,7 @@ TDiagWp::TDiagWp(const TRect &r, const char *aStartVal) :
              new TSButton(__("~N~ew")    ,cmBkAdd),
              new TSButton(__("~D~elete") ,cmBkDel),
              new TSButton(__("~E~nable") ,cmBkEnable),
-             new TSButton(__("D~i~sable"),cmBkDisable),0));
+             new TSButton(__("D~i~sable"),cmBkDisable),NULL));
 
  col->doItCenter(hcWpDialog);
  delete col;
@@ -8117,7 +8117,7 @@ TDialog *createDebugOpsDialog(TSViewCol *&cl)
    TSLabelRadio(__("~M~ode"),
                 __("Local with ~e~xecutable"),
                 __("Local with r~u~nning process"),
-                __("Remote (g~d~bserver/stub)"),0),
+                __("Remote (g~d~bserver/stub)"),NULL),
    new TSStaticText(__("Local target options")),
    new TSLabel(__("Program ~a~rguments, not for remote mode"),
        new TSInputLine(widthFiles,maxWBox)),
@@ -8128,7 +8128,7 @@ TDialog *createDebugOpsDialog(TSViewCol *&cl)
        new TSInputLine(widthShort,maxWBox)),
    new TSLabel(__("Remote ~l~ocation"),
        new TSInputLine(widthShort,maxWBox)),
-   0);
+   NULL);
  o1->makeSameW();
 
  col->insert(xTSLeft,yTSUp,o1);
@@ -8189,7 +8189,7 @@ TDialog *createDebugOpsAdvDialog(TSViewCol *&cl)
                 __("No gdb ~b~anner after connecting"),
                 __("Enable MI v2 ~f~eatures"),
                 __("No ~s~ymbols bug workaround"),
-                __("No source ~c~ode in disasm. window"),0),0);
+                __("No source ~c~ode in disasm. window"),NULL),NULL);
  o1->makeSameW();
 
  col->insert(xTSLeft,yTSUp,o1);
@@ -8270,7 +8270,7 @@ TDialog *createDebugOptsMsgsDialog()
                           __("T~a~rget (not really implemented in gdb)"),
                           __("~L~og (gdb internal messages)"),
                           __("GDB/MI commands sent ~t~o gdb"),
-                          __("GDB/MI responses ~f~rom gdb"),0);
+                          __("GDB/MI responses ~f~rom gdb"),NULL);
 
  col->insert(xTSLeft,yTSUp,o1);
  EasyInsertOKCancel(col);
@@ -8319,7 +8319,7 @@ void TSetEditorApp::DebugCleanElem()
                           __("~W~atchpoints"),
                           __("W~a~tches"),
                           __("~I~nspectors"),
-                          __("~D~ata windows"),0));
+                          __("~D~ata windows"),NULL));
  EasyInsertOKCancel(col);
 
  TDialog *d=col->doItCenter(cmeDbgCleanElem);

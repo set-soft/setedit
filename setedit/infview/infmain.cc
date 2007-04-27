@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -349,24 +349,24 @@ void TEditorMiApp::SetScreenOps()
  TSVeGroup *appEncode=NULL,*scrEncode=NULL,*inpEncode=NULL;
 
  appEncode=new TSVeGroup(
-   TSLabelCheck(__("~A~pplication"),__("Force encoding"),0),
+   TSLabelCheck(__("~A~pplication"),__("Force encoding"),NULL),
    new TSSortedListBox(wForced,height,tsslbVertical),
    0);
  appEncode->makeSameW();
 
  inpEncode=new TSVeGroup(
-   TSLabelCheck(__("~I~nput"),__("Force encoding"),0),
+   TSLabelCheck(__("~I~nput"),__("Force encoding"),NULL),
    new TSSortedListBox(wForced,height,tsslbVertical),
    0);
  inpEncode->makeSameW();
 
- TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,0);
+ TSView *upperCPs=MakeHzGroup(appEncode,inpEncode,NULL);
  TSView *lowerCPs=NULL;
 
  if (TScreen::codePageVariable())
    {// Only if the code page is variable
     scrEncode=new TSVeGroup(
-      TSLabelCheck(__("~S~creen"),__("Force encoding"),0),
+      TSLabelCheck(__("~S~creen"),__("Force encoding"),NULL),
       new TSSortedListBox(wForced,height,tsslbVertical),
       0);
     scrEncode->makeSameW();
@@ -383,7 +383,7 @@ void TEditorMiApp::SetScreenOps()
  col->insert(xTSCenter,yTSDown,
              MakeHzGroup(new TSButton(__("O~K~"),cmOK,bfDefault),
                          new TSButton(__("Cancel"),cmCancel),
-                         new TSButton(__("Set ~D~efaults"),cmYes),0));
+                         new TSButton(__("Set ~D~efaults"),cmYes),NULL));
  TDialog *d=col->doIt();
  delete col;
  d->options|=ofCentered;
