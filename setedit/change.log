@@ -1,4 +1,17 @@
-$Log$
+$Log$.
+Revision 1.732  2007/04/27 13:04:15  set
+* Fixed: A bug that only affected platforms where sizeof(int)<
+sizeof(NULL). That's the AMD64 case. In this case passing 0 to a function
+with variable arguments isn't the same as passing NULL. Calls to
+MakeVeGroup, MakeHzGroup, TSLabelCheck and TSLabelRadio did it wrong. From
+a report by Juan Pablo, he supplied a shell account to remotly debug the
+problem.
+* Fixed: When jumping to an error line followed by a regular message the
+editor could access to wrong memory. Some EdShowMessage* functions failed
+to initialize the FileInfo's type field.
+* Added: The last pre-release to the web page.
+* Modified: The Debian release number.
+
 Revision 1.731  2007/04/23 14:55:33  set
 * Added: Copy and Save for the debug dialog contents (gdb dialog).
 * Modified: Debian release version (for Etch)

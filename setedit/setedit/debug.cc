@@ -2196,7 +2196,7 @@ int TDisAsmEdWin::dissasembleFrame(mi_frames *f)
        char *res=TSetEditorApp::DebugEvalExpression(b);
        if (res && MIDebugger::GetErrorNumber()==MI_OK)
          {
-          start=atoi(res);
+          start=strtoul(res,NULL,0);
           // Put some limits, some times gdb reports a wrong function
           if (start>end || end-start>disAsmMaxDist)
              start=0;
