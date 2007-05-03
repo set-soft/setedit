@@ -1933,12 +1933,15 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
  spLine=NULL;
  curLine=NULL;
 
- MIDebugger::archType tp=dbg ? dbg->GetTargetArchitecture() : MIDebugger::arUnknown;
+ tp=dbg ? dbg->GetTargetArchitecture() : MIDebugger::arUnknown;
  int shlNum;
  switch (tp)
    {
     case MIDebugger::arSPARC:
          shlNum=SHLNumberOf("SPARC asm");
+         break;
+    case MIDebugger::arPIC14:
+         shlNum=SHLNumberOf("PICs asm");
          break;
     // Use IA32 as default
     case MIDebugger::arIA32:
@@ -1981,7 +1984,12 @@ char *TDisAsmEdWin::getCodeInfo(char *b, int l)
     if (p->func)
        CLY_snprintf(b,l,"%p <%s+%d>",p->addr,p->func,p->offset);
     else
-       CLY_snprintf(b,l,"%p",p->addr);
+      {
+       if (tp==MIDebugger::arPIC14)
+          CLY_snprintf(b,l,"0x%04lX",(ulong)p->addr);
+       else
+          CLY_snprintf(b,l,"%p",p->addr);
+      }
    }
  return b;
 }
@@ -2244,7 +2252,7 @@ int TDisAsmEdWin::jumpToFrame(mi_frames *f)
  Boolean newCode=False;
  curLine=NULL;
  // Make sure we have the address in our range
- if (f->addr<from || f->addr>to)
+ if (!a2l || f->addr<from || f->addr>to)
    {
     if (!dissasembleFrame(f))
        return 0;
@@ -2252,6 +2260,8 @@ int TDisAsmEdWin::jumpToFrame(mi_frames *f)
    }
  // Get the line for this address
  ccIndex pos;
+ if (!a2l)
+    return 0;
  Boolean res=a2l->search(f->addr,pos);
  if (!res)
     printf("Oops! no line\n");
@@ -6112,7 +6122,10 @@ void TDataViewer::handleEvent(TEvent & event)
        // Cursor movement
        case cmDWUp:
             if (cursor.y==0)
-               newAddr=memStart-bytesPerLine;
+              {
+               if (memStart>=bytesPerLine)
+                  newAddr=memStart-bytesPerLine;
+              }
             else
                setCursor(cursor.x,cursor.y-1);
             break;
@@ -6132,13 +6145,15 @@ void TDataViewer::handleEvent(TEvent & event)
             cursorHoriz(-1);
             break;
        case cmDWBaseDecrement:
-            newAddr=memStart-1;
+            if (memStart)
+               newAddr=memStart-1;
             break;
        case cmDWPgDn:
             newAddr=memStart+size.y*bytesPerLine;
             break;
        case cmDWPgUp:
-            newAddr=memStart-size.y*bytesPerLine;
+            if (memStart>=size.y*bytesPerLine)
+               newAddr=memStart-size.y*bytesPerLine;
             break;
        case cmDWFirstColumn:
             setCursor(addrLen,cursor.y);
@@ -6171,6 +6186,8 @@ void TDataViewer::handleEvent(TEvent & event)
             break;
        case cmDWUpdateMemory:     // update changes
             writeBytes(memStart,memo,bytesPerLine*size.y,memLen);
+            if (dbg && dbg->GetTargetArchitecture()==MIDebugger::arPIC14)
+               update(memStart);
             drawView();
             break;
        case cmDWTogAutoF:         // toggle auto follow mode
@@ -7166,7 +7183,7 @@ void DebugMsgAdd(char *msg)
  MsgCol->insert(msg);
  if (MsgWindow && c==1 && (MsgWindow->state & sfActive))
     MsgWindow->updateCommands();
- while (c>msgsInDebugWindow)
+ while (c-->msgsInDebugWindow)
     MsgCol->atFree(0);
  DebugMsgUpdate(edsmDontSelect);
 }

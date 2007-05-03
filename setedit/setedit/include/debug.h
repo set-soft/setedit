@@ -186,6 +186,7 @@ protected:
  void *from, *to;
  TSpCollection *spLine;
  mi_asm_insns *curLine;
+ MIDebugger::archType tp;
 
  void setCode(mi_asm_insns *aLines);
  int  dissasembleFrame(mi_frames *f);

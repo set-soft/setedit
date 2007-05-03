@@ -1,4 +1,9 @@
 $Log$.
+Revision 1.733  2007/04/30 16:49:07  set
+* Fixed: When parsing gdb output to open the disassemble window the value
+can be bigger than a singned long int so we must use strtoul.
+* Added: AMD64 packages to the web page, contributed by Juan Pablo.
+
 Revision 1.732  2007/04/27 13:04:15  set
 * Fixed: A bug that only affected platforms where sizeof(int)<
 sizeof(NULL). That's the AMD64 case. In this case passing 0 to a function
