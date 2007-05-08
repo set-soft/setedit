@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.734  2007/05/03 18:59:47  set
+* Added: [Debug] Support for the PIC14 architecture.
+* Fixed: [Debug] To avoid crashing when the disassembler window read from
+address 0.
+* Modified: [Debug] To avoid reading negative addresses in the data window
+when scrolling up.
+* Fixed: [Debug] abort when the debug window contained more than 1000
+messages and the editor started to delete the old ones.
+
 Revision 1.733  2007/04/30 16:49:07  set
 * Fixed: When parsing gdb output to open the disassemble window the value
 can be bigger than a singned long int so we must use strtoul.

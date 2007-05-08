@@ -2,8 +2,8 @@ Source: setedit
 Section: editors
 Priority: optional
 Maintainer: Ivan Baldo <ibaldo@adinet.com.uy>
-Build-Depends: perl | perl5, rhtvision2.1.0-dev | rhtvision2.0.4-dev, debhelper (>=2.0.54), libpcre3-dev | libpcre2-dev, libz-dev, libbz2-dev, texinfo, gettext, aalib1-dev | libaa1-dev
-Standards-Version: 3.6.2.0
+Build-Depends: perl | perl5, rhtvision2.1.0-dev, debhelper (>=2.0.54), libpcre3-dev | libpcre2-dev, libz-dev, libbz2-dev, texinfo, gettext, libaa1-dev | aalib1-dev
+Standards-Version: 3.7.2.2
 
 Package: setedit
 Section: editors
@@ -12,6 +12,7 @@ Depends: ${shlibs:Depends}, debconf
 Recommends: man
 Suggests: doc-base, texinfo, exuberant-ctags | ctags
 Conflicts: suidmanager (<< 0.50)
+XB-Bugs: mailto:ibaldo@adinet.com.uy
 Description: SET's Editor - An editor for programmers
  SET's Editor is a friendly text editor; it was designed to be used
  by programmers; the main target of the editor is C and C++ code but
@@ -35,6 +36,7 @@ Depends: ${shlibs:Depends}
 Recommends: man
 Suggests: doc-base
 Conflicts: suidmanager (<< 0.50)
+XB-Bugs: mailto:ibaldo@adinet.com.uy
 Description: SET's InfoViewer - An info documentation browser
  SET's InfoViewer is a friendly text-console-mode GNU Info documentation
  browser. This is the SET's Editor info browser but standalone.
@@ -45,6 +47,7 @@ Description: SET's InfoViewer - An info documentation browser
 Package: libset-dev
 Section: libdevel
 Architecture: any
+XB-Bugs: mailto:ibaldo@adinet.com.uy
 Description: SET's libset - An editor library
  SET's libset is a library providing the SET's Editor functionality, it is
  used to build RHIDE but maybe in the future can be used by other projects.
