@@ -289,6 +289,13 @@ static int   binReferenceLen=0;
 static time_t binMTime;
 // Main function (main)
 static char *mainFunction=NULL;
+// Executable for gdb
+static char *gdbExe=NULL;
+// Executable for xterm
+static char *xtermExe=NULL;
+// Miscellaneous gdb settings
+static char   miscGDBset=0;
+static uint32 miscGDB;
 // Max. lines in debug window
 static int msgsInDebugWindow;
 
@@ -318,6 +325,7 @@ static int  IsDisAsmWinCurrent();
 static
 int IsEmpty(const char *s)
 {
+ if (!s) return 1;
  for (;*s && ucisspace(*s); s++);
  return *s==0;
 }
@@ -347,15 +355,19 @@ void SetMsgLines(unsigned val)
  msgsInDebugWindow=val;
 }
 
-static inline
+static
 unsigned GetGDBMisc()
 {
+ if (miscGDBset)
+    return miscGDB;
  return EnvirGetIntVar("SET_GDB_MISC",0);
 }
 
-static inline
+static
 void SetGDBMisc(unsigned val)
 {
+ miscGDBset=1;
+ miscGDB=val;
  EnvirSetIntVar("SET_GDB_MISC",val);
  // It shouldn't be needed because the dialog is enabled only when dbg is NULL
  // but in this way we are ready for future changes.
@@ -372,36 +384,51 @@ void SetGDBMisc(unsigned val)
 static inline
 const char *GetGDBExe()
 {
+ if (gdbExe)
+    return gdbExe;
  return GetVariable("SET_GDB_EXE",MIDebugger::GetGDBExe());
 }
 
 static inline
 const char *GetGDBExeNoD()
 {
+ if (gdbExe)
+    return gdbExe;
  return GetVariable("SET_GDB_EXE",NULL);
 }
 
-static inline
-void SetGDBExe(const char *name)
+static void SetGDBExe(const char *name, Boolean copy=True);
+static
+void SetGDBExe(const char *name, Boolean copy)
 {
+ delete[] gdbExe;
+ gdbExe=copy ? newStr(name) : (char *)name;
  InsertEnvironmentVar("SET_GDB_EXE",IsEmpty(name) ? NULL: name);
+ return;
 }
 
 static inline
 const char *GetXTermExe()
 {
+ if (xtermExe)
+    return xtermExe;
  return GetVariable("SET_XTERM_EXE",MIDebugger::GetXTermExe());
 }
 
 static inline
 const char *GetXTermExeNoD()
 {
+ if (xtermExe)
+    return xtermExe;
  return GetVariable("SET_XTERM_EXE",NULL);
 }
 
-static inline
-void SetXTermExe(const char *name)
+static void SetXTermExe(const char *name, Boolean copy=True);
+static
+void SetXTermExe(const char *name, Boolean copy)
 {
+ delete[] xtermExe;
+ xtermExe=copy ? newStr(name) : (char *)name;
  InsertEnvironmentVar("SET_XTERM_EXE",IsEmpty(name) ? NULL: name);
 }
 
@@ -1934,7 +1961,7 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
  curLine=NULL;
 
  tp=dbg ? dbg->GetTargetArchitecture() : MIDebugger::arUnknown;
- int shlNum;
+ int shlNum=-1;
  switch (tp)
    {
     case MIDebugger::arSPARC:
@@ -1945,10 +1972,17 @@ TDisAsmEdWin::TDisAsmEdWin(const TRect &aR) :
          break;
     // Use IA32 as default
     case MIDebugger::arIA32:
-    default:
          shlNum=SHLNumberOf("80x86 asm (AT&T syntax)");
+         break;
+    case MIDebugger::arAVR:
+         shlNum=SHLNumberOf("AVR asm");
+         break;
+    case MIDebugger::arUnknown:
+    case MIDebugger::arUnsupported:
+         break;
    }
- editor->SetHighlightTo(shlGenericSyntax,shlNum);    
+ if (shlNum>=0)
+    editor->SetHighlightTo(shlGenericSyntax,shlNum);
 }
 
 const char *TDisAsmEdWin::getTitle(short)
@@ -1982,7 +2016,12 @@ char *TDisAsmEdWin::getCodeInfo(char *b, int l)
    {
     mi_asm_insn *p=a2l->At(pos)->asmL;
     if (p->func)
-       CLY_snprintf(b,l,"%p <%s+%d>",p->addr,p->func,p->offset);
+      {
+       if (p->addr)
+          CLY_snprintf(b,l,"%p <%s+%d>",p->addr,p->func,p->offset);
+       else
+          CLY_snprintf(b,l,"0x0 <%s+%d>",p->func,p->offset);
+      }
     else
       {
        if (tp==MIDebugger::arPIC14)
@@ -2195,7 +2234,7 @@ int TDisAsmEdWin::dissasembleFrame(mi_frames *f)
     ulong end=(ulong)((char *)f->addr+disAsmAfterPC);
 
     // Solve the starting point
-    if (f->func)
+    if (f->func && strcmp(f->func,"??")!=0)
       {// We know the function name and will try to get from the beggining
        // Find if the function is valid
        unsigned len=strlen(f->func)+20;
@@ -8537,6 +8576,12 @@ void DebugSaveData(opstream &os)
  // Main Function
  os << svPresent;
  os.writeString(mainFunction);
+ // GDB and xterm executables
+ os << svPresent;
+ os.writeString(gdbExe);
+ os.writeString(xtermExe);
+ // Miscellaneous gdb settings
+ os << miscGDBset << miscGDB;
  // No more data
  os << svAbsent;
 }
@@ -8638,6 +8683,18 @@ void DebugReadData(ipstream &is)
     return;
  char *mf=is.readString();
  SetMainFunc(mf,False);
+ // GDB and xterm executables
+ is >> aux;
+ if (!aux)
+    return;
+ mf=is.readString();
+ SetGDBExe(mf,False);
+ mf=is.readString();
+ SetXTermExe(mf,False);
+ // Miscellaneous gdb settings
+ is >> miscGDBset >> miscGDB;
+ if (miscGDBset)
+    SetGDBMisc(miscGDB);
  // No more data
  is >> aux;
 }
