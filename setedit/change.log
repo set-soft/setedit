@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.735  2007/05/08 21:01:54  terrible
+* Updated: [Debian] Packaging to version 0.5.5-6, minor changes.
+
 Revision 1.734  2007/05/03 18:59:47  set
 * Added: [Debug] Support for the PIC14 architecture.
 * Fixed: [Debug] To avoid crashing when the disassembler window read from
