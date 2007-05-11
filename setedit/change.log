@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.736  2007/05/10 19:06:27  set
+* Modified: [TAGs] To exclude all typedef attributes.
+* Modified: [Debug] To make the gdb executable setting local.
+
 Revision 1.735  2007/05/08 21:01:54  terrible
 * Updated: [Debian] Packaging to version 0.5.5-6, minor changes.
 

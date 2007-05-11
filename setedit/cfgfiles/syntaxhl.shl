@@ -2762,3 +2762,55 @@ Keywords=lang=,id=,cols=,colwidth=,class=,fileref=,format=,align=,scale=,linkend
 Keywords=url=
 End
 
+# ---------------- AVR microcontrollers ----------------
+#  AVR Assembler (Very basic)
+# Contributed by Diego J. Brengi  {Brengi at inti.gov.ar}
+Name=AVR asm
+Files=asm,ASM,s,S
+EmacsModes=avr
+OpenComment1=/*
+CloseComment1=*/
+EOLComment1=;
+EOLComment2=//
+HexMarker=0x
+Symbols1=!$%&(),-./:<>?[]
+String1='"
+Preprocessor=#
+#INSTRUCTION SET
+#Aritmetics
+Keywords=ADD,ADC,ADIW,SUB,SUBI,SBC,SBCI,SBIW,AND,ANDI,OR,ORI,EOR,COM,NEG
+Keywords=SBR,CBR,INC,DEC,TST,CLR,SER,MUL,MULS,MULSU,FMUL,FMULS,FMULSU
+#Branch
+Keywords=RJMP,IJMP,EIJMP,JMP,RCALL,ICALL,EICALL,CALL,RET,RETI,CPSE,CP,CPC
+Keywords=CPI,SBRC,SBRS,SBIC,SBIS,BRBS,BRBC,BREQ,BRNE,BRCS,BRCC,BRSH,BRLO,BRMI
+Keywords=BRPL,BRGE,BRLT,BRHS,BRHC,BRTS,BRTC,BRVS,BRVC,BRIE,BRID
+#Data Transfer
+Keywords=MOV,MOVW,LDI,LDS,LD,LDD,STS,ST,STD,LPM,ELPM,SPM,ESPM,IN,OUT,PUSH,POP
+#Bit&others
+Keywords=ASR,BCLR,BLD,BSET,BST,CBI,CBI,CLC,CLH,CLI,CLN,CLS,CLT,CLV,CLZ,LSL,LSR
+Keywords=NOP,ROL,ROR,SBI,SBI,SEC,SEH,SEI,SEN,SES,SET,SEV,SEZ,SLEEP,SWAP,WDR
+#REGISTERS
+UserKeywords=r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17
+UserKeywords=r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31
+UserKeywords=XL,XH,YL,YH,ZL,ZH
+UserKeywords=SP,SPL,SPH,SREG,PC
+#Directive Summary
+Keywords=CSEG,DB,DEF,DW,ENDMACRO,ESEG,EQU,INCLUDE,MACRO,ORG,LIST,NOLIST
+Keywords=EXTERN,GLOBAL
+#SFR
+#2 Wire interface (I2C)
+UserKeywords=TWBR,TWSR,TWAR,TWDR
+#ADC  & comparator
+UserKeywords=ADCW,ADC,ADCL,ADCH,ADCSR,ADCSRA,ADMUX,ACSR
+#Usart & SPI
+UserKeywords=SPCR,SPSR, SPDR,UBRRL, UCSRB,UCSRA,UDR,UCR
+#Ports
+UserKeywords=PIND,DDRD,PORTD,PINC,DDRC,PORTC,PINB,DDRB,PORTB
+#EEPROM
+UserKeywords=EECR,EEDR,EEAR,EEARL,EEARH,UCSRC,UBRRH,WDTCR,ASSR,UBRR
+#Timers
+UserKeywords=OCR2,TCNT2,TCCR2,ICR1,ICR1L,ICR1H,OCR1B,OCR1BL,OCR1BH,OCR1A,OCR1AL,OCR1AH
+UserKeywords=TCNT1,TCNT1L,TCNT1H,TCCR1B,TCCR1A,SFIOR,OSCCAL,TCNT0,TCCR0,MCUCSR,MCUCR,TWCR
+UserKeywords=SPMCR,TIFR,TIMSK,GIFR,GIMSK,GICR
+End
+

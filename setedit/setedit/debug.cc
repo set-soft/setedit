@@ -244,7 +244,7 @@ const int maxWBox=70, widthFiles=256, widthShort=80, widthExpRes=1024;
 const int widthWtExp=widthFiles, maxWtBox=maxWBox;
 const int widthGDBCom=widthFiles, maxGDBComBox=maxWBox;
 const int widthPID=32;
-const unsigned dmLocal=0, dmPID=1, dmRemote=2;
+const unsigned dmLocal=0, dmPID=1, dmRemote=2, dmRemoteEm=3;
 const int wTimeOut=8, wLinesMsg=8;
 const int wVisible=50, wInt=32, wLabels=9,
           wFilename=PATH_MAX,
@@ -986,6 +986,7 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
          break;
 
     case dmRemote:
+    case dmRemoteEm:
          if (IsEmpty(dOps.rtype) || IsEmpty(dOps.rparam))
            {// Don't even try if nothing to try ;-)
             messageBox(__("Please fill both 'Remote target options'. Try extended-remote for the type and IP:PORT for location."),
@@ -1007,7 +1008,8 @@ int TSetEditorApp::DebugSelectTarget(Boolean showConnect)
             messageBox(__("Run gdbserver at the remote machine"),
                        mfInformation | mfOKButton);
            }
-         res=dbg->SelectTargetRemote(dOps.program,dOps.rparam,dOps.rtype);
+         res=dbg->SelectTargetRemote(dOps.program,dOps.rparam,dOps.rtype,
+                                     dOps.mode==dmRemoteEm);
          break;
    }
 
@@ -7392,6 +7394,7 @@ void DebugMsgSetMode(Boolean select)
     case dmPID:
          break;
     case dmRemote:
+    case dmRemoteEm:
          TVIntl::snprintf(b,maxWStatus,__("Mode: Remote (%s) [%s]"),
                           dOps.rparam,dOps.program);
          break;
@@ -8164,7 +8167,7 @@ TDialog *createDebugOpsDialog(TSViewCol *&cl)
 {
  TSViewCol *col=new TSViewCol(__("Debug Options"));
 
- // EN: ADELMPRTU
+ // EN: ABDELMPRTU
  // ES: ADEIMPRTU
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
@@ -8173,7 +8176,8 @@ TDialog *createDebugOpsDialog(TSViewCol *&cl)
    TSLabelRadio(__("~M~ode"),
                 __("Local with ~e~xecutable"),
                 __("Local with r~u~nning process"),
-                __("Remote (g~d~bserver/stub)"),NULL),
+                __("Remote (g~d~bserver/stub)"),
+                __("Remote (gdbserver/stub) em~b~edded"),NULL),
    new TSStaticText(__("Local target options")),
    new TSLabel(__("Program ~a~rguments, not for remote mode"),
        new TSInputLine(widthFiles,maxWBox)),
