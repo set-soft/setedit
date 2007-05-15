@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.737  2007/05/11 14:22:03  set
+* Added: [SHL] AVR assembler. Contributed by Diego J. Brengi.
+* Added: [Debug] A new remote mode. It downloads the binary to the remote
+end. Useful for embedded targets like AVR.
+* Modified: Copyright year in about dialog.
+
 Revision 1.736  2007/05/10 19:06:27  set
 * Modified: [TAGs] To exclude all typedef attributes.
 * Modified: [Debug] To make the gdb executable setting local.
