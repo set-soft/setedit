@@ -1,12 +1,12 @@
 # Este es el archivo de traducción a español.
-# Copyright (C) 2001-2007 Salvador E. Tropea.
-# Salvador E. Tropea <set@ieee.org>, 2001-2007.
+# Copyright (C) 2001-2005 Salvador E. Tropea.
+# Salvador E. Tropea <set@ieee.org>, 2001-2005.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-05-11 10:59-0300\n"
+"PO-Revision-Date: 2007-05-15 13:36-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:741
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:742
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:740
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:741
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
@@ -1440,39 +1440,39 @@ msgstr "Errores"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:726
+#: ../mainsrc/bufun.cc:727
 msgid "Jump to function"
 msgstr "Saltar a una función"
 
-#: ../mainsrc/bufun.cc:736
+#: ../mainsrc/bufun.cc:737
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:742 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:743 ../settvuti/tdiagaid.cc:174
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:771
+#: ../mainsrc/bufun.cc:772
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:773
+#: ../mainsrc/bufun.cc:774
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:775
+#: ../mainsrc/bufun.cc:776
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:776
+#: ../mainsrc/bufun.cc:777
 msgid "by ~L~ine"
 msgstr "por ~L~ínea"
 
-#: ../mainsrc/bufun.cc:811
+#: ../mainsrc/bufun.cc:812
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 
-#: ../mainsrc/bufun.cc:839
+#: ../mainsrc/bufun.cc:840
 msgid "Functions:"
 msgstr "Funciones:"
 
@@ -1482,6 +1482,7 @@ msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
 #: ../mainsrc/ceditor.cc:3807
+#, c-format
 msgid "Search wrapped, continued from %s."
 msgstr "Búsqueda reinicializada, continuando desde %s."
 
