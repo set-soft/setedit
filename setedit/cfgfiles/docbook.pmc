@@ -7,6 +7,11 @@ Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Acronym
  "<acronym>@{Acronym}</acronym>"
 
+Trigger: "ap"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Application
+ "<application>@{Application}</application>"
+
 Trigger: "ca"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Caution
@@ -46,6 +51,11 @@ Trigger: "ff"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Foreign phrase
  "<foreignphrase>@{Phrase}</foreignphrase>"
+
+Trigger: "fn"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Filename
+ "<filename>@{Filename}</filename>"
 
 Trigger: "it"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
@@ -168,4 +178,18 @@ Name: Tip
  "  <para>@0</para>\n"
  "\b</tip>\n"
 
+Trigger: "ul"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: URL (ulink)
+ "<ulink url=\"@{URL}\">@0</ulink>"
+
+Trigger: "va"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Variable Name
+ "<varname>@{Name}</varname>"
+
+Trigger: "xr"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Cross Reference
+ "<xref linkend=\"@{ID}\">"
 

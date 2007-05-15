@@ -1,10 +1,10 @@
 /**[txh]********************************************************************
 
-  Copyright (c) 2001-2005 by Salvador Eduardo Tropea.
+  Copyright (c) 2001-2007 by Salvador Eduardo Tropea.
   This program is covered by the GPL license.
 
   Description:
-  Parses a .shl, .txi, .pmc or assembler file looking for function
+  Parses a .shl, .txi, .pmc, assembler, etc. files looking for function
 definitions.
   It can be compiled as an standalone program by defining STANDALONE.
 
@@ -285,7 +285,7 @@ char *GetHTMLAnchor(int &len, char *buffer)
  char *pos, *s, delim;
 
  s=buffer;
- while ((pos=strstr(s,"name"))!=NULL)
+ while ((pos=strcasestr(s,"name"))!=NULL)
    {
     for (s=pos+4; *s && isspace((uchar)*s); s++);
     if (*s=='=')
@@ -298,7 +298,7 @@ char *GetHTMLAnchor(int &len, char *buffer)
        s++;
        int l;
        for (l=0; l<MaxLen && ((delim && s[l]!=delim) ||
-            (!delim && isspace((uchar)s[l]))); l++)
+            (!delim && isspace((uchar)s[l]))) && s[l]; l++)
            bfNomFun[l]=s[l];
        bfNomFun[l]=0;
        s+=l+1;
@@ -328,6 +328,87 @@ int SearchHTMLAnchors(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
  return funcs;
 }
 
+static
+void ExtractSGMLTitle(char *b, int &len)
+{
+ for (;*b && *b!='>'; b++);
+ if (*b!='>')
+    return;
+ b++;
+ int l=len;
+ bfNomFun[l++]=' ';
+ if (l<MaxLen)
+   {
+    bfNomFun[l++]='(';
+    for (; l<MaxLen && *b!='<' && *b; b++, l++)
+        bfNomFun[l]=*b;
+   if (l<MaxLen)
+      bfNomFun[l++]=')';
+    bfNomFun[l]=0;
+   }
+ len=l;
+}
+
+static
+char *GetSGMLID(int &len, char *buffer)
+{
+ char *pos, *s;
+
+ s=buffer;
+ while ((pos=strcasestr(s,"id"))!=NULL)
+   {
+    for (s=pos+2; *s && isspace((uchar)*s); s++);
+    if (*s=='=')
+      {
+       for (s++; *s && isspace((uchar)*s); s++);
+       if (*s=='"')
+         {
+          s++;
+          int l;
+          for (l=0; l<MaxLen && s[l]!='"' && s[l]; l++)
+              bfNomFun[l]=s[l];
+          bfNomFun[l]=0;
+          s+=l+1;
+          len=l;
+          // The next tag is usually a title
+          if (l<MaxLen)
+            {
+             if ((pos=strcasestr(s,"<title"))!=NULL)
+                ExtractSGMLTitle(pos+6,len);
+             else
+               {
+                unsigned cIndex=Index;
+                GetLine();
+                if (Index<Len && (pos=strcasestr(bfBuffer,"<title"))!=NULL)
+                   ExtractSGMLTitle(pos+6,len);
+                Index=cIndex;
+               }
+            }
+          return s;
+         }
+      }
+   }
+ return NULL;
+}
+
+int SearchSGMLIDs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned funcs=0;
+ int l;
+
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    char *buffer=bfBuffer;
+    while ((buffer=GetSGMLID(l,buffer))!=NULL)
+      {
+       AddFunc(bfNomFun,l+1,Line,-1);
+       funcs++;
+      }
+   }
+ return funcs;
+}
 
 #ifdef STANDALONE
 char bfBuffer[MaxLenWith0];

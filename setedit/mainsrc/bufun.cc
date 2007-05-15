@@ -667,6 +667,7 @@ static stFuncsSHL FuncsAvail[]=
  {"KICAD Library",SearchKICADLib},
  {"Makefile",SearchMakeLabels},
  {"HTML",SearchHTMLAnchors},
+ {"DocBook (SGML)",SearchSGMLIDs},
  {0,SearchCFuncs}
 };
 
