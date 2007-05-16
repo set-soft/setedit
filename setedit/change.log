@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.738  2007/05/15 17:55:11  set
+* Added: [PMacros] More DocBook pmacros.
+* Added: [Function list] list of IDs for SGML files.
+
 Revision 1.737  2007/05/11 14:22:03  set
 * Added: [SHL] AVR assembler. Contributed by Diego J. Brengi.
 * Added: [Debug] A new remote mode. It downloads the binary to the remote

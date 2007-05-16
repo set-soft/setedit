@@ -842,10 +842,29 @@ void PrintEditor(void)
        s=e->fileName;
     else
        s++;
-    PrintSource(e->buffer,s,e->tabSize);
+    Boolean onlySel=False;
+    char *buffer=e->buffer, aux;
+    if (e->hasSelection())
+      {
+       ushort option=messageBox(__("Print only the selecyted text?"),
+                                mfConfirmation | mfYesNoCancel);
+       if (option==cmCancel)
+          return;
+       onlySel=option==cmYes ? True : False;
+       if (onlySel)
+         {
+          buffer=e->buffer+e->selStart;
+          aux=e->buffer[e->selEnd];
+          e->buffer[e->selEnd]=0;
+         }
+      }
+    PrintSource(buffer,s,e->tabSize);
+    if (onlySel)
+       e->buffer[e->selEnd]=aux;
    }
  else
-   messageBox(__("This window can't be printed. Select an editor window instead"),mfError | mfOKButton);
+    messageBox(__("This window can't be printed. Select an editor window instead"),
+               mfError | mfOKButton);
 }
 
 #define T(a) \
