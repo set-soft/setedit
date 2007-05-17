@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.739  2007/05/16 19:36:55  set
+* Added: When printing and some text is selected the editor asks if you
+want to print only the selected text. Suggested by Rupesh Kumar Pradhan
+rupeshkrpradhan/rediffmail/com.
+
 Revision 1.738  2007/05/15 17:55:11  set
 * Added: [PMacros] More DocBook pmacros.
 * Added: [Function list] list of IDs for SGML files.

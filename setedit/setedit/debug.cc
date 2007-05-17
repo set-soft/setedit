@@ -7437,7 +7437,7 @@ int DebugMsgJumpToFrame(mi_frames *f, char *msg, int l)
  return jumped;
 }
 
-int DebugMsgFillReason(mi_frames *f, char *b, Boolean stop)
+int DebugMsgFillReason(mi_frames *f, char *b, Boolean stop, mi_stop_struct *stopInfo)
 {
  int l;
 
@@ -7461,7 +7461,11 @@ int DebugMsgFillReason(mi_frames *f, char *b, Boolean stop)
                        f->func ? f->func : unknown,
                        f->file ? f->file : unknown,
                        f->line);
-   }   
+   }
+ if (stopInfo && stopInfo->signal_meaning)
+   {
+    l+=TVIntl::snprintf(b+l,maxWStatus," (%s)",stopInfo->signal_meaning);
+   }
  MsgWindow->SetStatusStop(b);
 
  return l;
@@ -7473,7 +7477,7 @@ void DebugMsgSetStopped()
     return;
 
  char b[maxWStatus];
- int l=DebugMsgFillReason(stoppedInfo->frame,b,True);
+ int l=DebugMsgFillReason(stoppedInfo->frame,b,True,stoppedInfo);
 
  // If we stopped we changed the state
  DebugMsgSetState();
