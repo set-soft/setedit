@@ -13,6 +13,7 @@ void DBG_AddPathForSources(const char *path);
 class TDebugMsgDialog;
 class TWatchesDialog;
 struct mi_frames_struct;
+struct mi_stop_struct;
 
 // Debug Status and Messages Window
 TDebugMsgDialog *DebugMsgInit(Boolean hide=True, int ZOrder=-1);
@@ -29,7 +30,8 @@ void DebugMsgSetMode(Boolean select=False);
 void DebugMsgSetError();
 void DebugMsgSetStopped();
 int  DebugMsgJumpToFrame(mi_frames_struct *f, char *msg, int l=0);
-int  DebugMsgFillReason(mi_frames_struct *f, char *b, Boolean stop);
+int  DebugMsgFillReason(mi_frames_struct *f, char *b, Boolean stop,
+                        mi_stop_struct *stopInfo=NULL);
 int  DebugGetErrorSt();
 void DebugClearCPULine();
 void DebugSetCPULine(int line, char *file);
