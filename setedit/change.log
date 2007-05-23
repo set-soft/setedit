@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.741  2007/05/23 17:51:48  set
+* Fixed: Error in the rectangular block deletion when it included sections
+outside lines. SF #1724035 reported by scherno2000.
+
 Revision 1.740  2007/05/17 13:07:28  set
 * Added: [Debug] when the child stop reason is a signal now we inform which
 signal in the status.
