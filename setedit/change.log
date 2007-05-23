@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.740  2007/05/17 13:07:28  set
+* Added: [Debug] when the child stop reason is a signal now we inform which
+signal in the status.
+
 Revision 1.739  2007/05/16 19:36:55  set
 * Added: When printing and some text is selected the editor asks if you
 want to print only the selected text. Suggested by Rupesh Kumar Pradhan

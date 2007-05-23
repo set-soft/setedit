@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -5269,16 +5269,16 @@ int TCEditor::EnsureXDontTab(char *s,int x,int w,char **stop)
     return 0;
  while (X<x)
    {
-    oldX=X;
-    AdvanceWithTab(*s,X);
-    if (!ucisspace(*s))
-       lastUsed=s;
-    s++;
     if (!*s || *s=='\r' || *s=='\n')
       {
        *stop=NULL;
        return 1;
       }
+    oldX=X;
+    AdvanceWithTab(*s,X);
+    if (!ucisspace(*s))
+       lastUsed=s;
+    s++;
    }
  *stop=s;
  if (X!=x)
