@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.742  2007/05/23 18:03:08  set
+* Modified: [PMacros] Some VHDL macros con conform the FPGALibre
+guidelines.
+
 Revision 1.741  2007/05/23 17:51:48  set
 * Fixed: Error in the rectangular block deletion when it included sections
 outside lines. SF #1724035 reported by scherno2000.

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #define Uses_string
@@ -7,6 +7,7 @@
 #define Uses_ctype
 #define Uses_TVCodePage
 #define Uses_snprintf
+#define Uses_TScreen // System
 #ifdef DEBUG
  #define Uses_MsgBox
 #endif
@@ -105,6 +106,35 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
     NoFile();
     return False;
    }
+ // Is an image?
+ Boolean isImage=False;
+ if (lname>6 && strncmp(startWord,"image:",6)==0)
+   {
+    lname-=6;
+    startWord+=6;
+    isImage=True;
+   }
+ // Is a PDF?
+ Boolean isPDF=False;
+ int page=-1;
+ if (!isImage && lname>4 && strncmp(startWord,"pdf:",4)==0)
+   {
+    lname-=4;
+    startWord+=4;
+    isPDF=True;
+    if (lname>2 && ucisdigit(startWord[0]))
+      {
+       char *s=startWord+1;
+       int n=lname-1;
+       for (;n && ucisdigit(*s); n--, s++);
+       if (n>1 && *s==':')
+         {
+          page=strtol(startWord,NULL,10);
+          lname=n-1;
+          startWord=s+1;
+         }
+      }
+   }
  name=(char *)alloca(lname+1);
  strncpy(name,startWord,lname);
  name[lname]=0;
@@ -128,7 +158,25 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
    }
  if (result)
    {
-    OpenFileFromEditor(fullName);
+    if (isImage)
+      {
+       const char *command="gqview -r file:%s";
+       int len=strlen(command)+lname+1;
+       char *msgF=(char *)alloca(len);
+       CLY_snprintf(msgF,len,command,name);
+       TScreen::System(msgF);
+      }
+    else if (isPDF)
+      {
+       const char *command="xpdf -remote SETEdit -raise %s %d";
+       int len=strlen(command)+lname+1+32;
+       char *msgF=(char *)alloca(len);
+       pid_t pidChild;
+       CLY_snprintf(msgF,len,command,name,page);
+       TScreen::System(msgF,&pidChild);
+      }
+    else
+       OpenFileFromEditor(fullName);
     free(fullName);
     return True;
    }
@@ -144,9 +192,48 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
  return False;
 }
 
+#define badForFile(b) \
+ (ucisspace(b) || !ucisprint(b) || b=='\"' || b=='>' || b=='<' || b=='|')
+
+static
+int isImage(char *c, char *start)
+{
+ if (*c==':' && c-start>=5 && strncmp(c-5,"image",5)==0)
+   {
+    if (c-start==5) return 1;
+    uchar b=(uchar)c[-6];
+    return badForFile(b);
+   }
+ return 0;
+}
+
+static
+int isPDF(char *c, char *start)
+{
+ if (*c==':' && c-start>=4 && ucisdigit(c[-1]))
+   {// Skip page number
+    for (c-=2; c>=start && ucisdigit(*c); c--);
+    if (c<start || *c!=':')
+       return 0;
+    // Is it "pdf:"?
+    if (!(c-start>=3 && strncmp(c-3,"pdf",3)==0))
+       return 0;
+    if (c-start==3) return 1;
+    uchar b=(uchar)c[-4];
+    return badForFile(b);
+   }
+ if (*c==':' && c-start>=3 && strncmp(c-3,"pdf",3)==0)
+   {
+    if (c-start==3) return 1;
+    uchar b=(uchar)c[-4];
+    return badForFile(b);
+   }
+ return 0;
+}
+
 int isValidForFile(char *c, char *start)
 {
- if (ucisspace(*c) || !ucisprint(*c) || *c=='\"' || *c=='>' || *c=='<' || *c=='|')
+ if (badForFile(*c))
     return 0;
  #ifdef CLY_HaveDriveLetters
  if (*c==':')
@@ -155,10 +242,22 @@ int isValidForFile(char *c, char *start)
     if (!TVCodePage::isAlpha(c[-1])) return 0;
     if (c==start-1) return 1;
     uchar b=(uchar)c[-2];
-    return ucisspace(b) || !ucisprint(b) || b=='\"' || b=='>' || b=='<' || b=='|';
+    if (badForFile(b))
+       return 1;
+    if (isImage(c,start))
+       return 1;
+    if (isPDF(c,start))
+       return 1;
+    return 0;
    }
  return 1;
  #else
+ // Over : in "image:filename"
+ if (isImage(c,start))
+    return 1;
+ // Over : in "pdf:NN:filename"
+ if (isPDF(c,start))
+    return 1;
  return *c!=':';
  #endif
 }

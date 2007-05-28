@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 11 May 2007
+@set update-date 28 May 2007
 @set update-month May 2007
 @set name-author Salvador Eduardo Tropea
 
@@ -2924,6 +2924,8 @@ to use them again.
 @c --------------------------------------------------------------------------
 @subsubsection Search files under cursor in
 @cindex files, search
+@cindex image, display
+@cindex pdf, display
 
 When you press @kbd{Ctrl+Enter} the editor tries to load the file that's in
 the text at the cursor position. If the cursor is in an include line the
@@ -2949,6 +2951,15 @@ same directory of the file you are editing.
 @p{}
 
 This list is stored in the desktop file.
+@p{}
+
+The editor supports some special syntax for the file name to indicate images
+and pdf files. This is only useful when running on X Windows. If the file
+name starts with @code{image:} the editor will invoke @file{gqview} to
+display the indicated image. If the name starts with @code{pdf:NN:}, where
+@code{NN} is a page number, the editor will invoke @file{xpdf} to display the
+provided page of a pdf file. These are experimental fatures that can't be
+configured, if you are interested on them please contact me.
 @p{}
 
 @refMenu1{cmeIncludeList}

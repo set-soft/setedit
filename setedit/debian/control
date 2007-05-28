@@ -10,7 +10,7 @@ Section: editors
 Architecture: any
 Depends: ${shlibs:Depends}, debconf
 Recommends: man
-Suggests: doc-base, texinfo, exuberant-ctags | ctags
+Suggests: glibc-doc, texinfo, exuberant-ctags | ctags, grep, gqview, xpdf
 Conflicts: suidmanager (<< 0.50)
 XB-Bugs: mailto:ibaldo@adinet.com.uy
 Description: SET's Editor - An editor for programmers
