@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-05-23 14:51-0300\n"
+"PO-Revision-Date: 2007-05-28 13:04-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2267,12 +2267,12 @@ msgstr "Opciones globales por defecto"
 msgid "~N~o SHL"
 msgstr "~S~in SHL"
 
-#: ../mainsrc/loadfunc.cc:26
+#: ../mainsrc/loadfunc.cc:27
 msgid "No file name under cursor"
 msgstr "No hay un nombre bajo el cursor"
 
 #. Generate a message indicating we couldn't load it
-#: ../mainsrc/loadfunc.cc:137
+#: ../mainsrc/loadfunc.cc:185
 #, c-format
 msgid "Can't find \"%s\" file"
 msgstr "No puedo encontrar el archivo \"%s\""
