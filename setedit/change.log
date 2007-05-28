@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.743  2007/05/28 19:11:20  set
+* Added: A menchanism to display the "image"/"pdf page" under cursor. This
+is a special syntax for the "open file under cursor" command. Currently
+intended only for X and can't be configured. It uses GQview and XPDF.
+
 Revision 1.742  2007/05/23 18:03:08  set
 * Modified: [PMacros] Some VHDL macros con conform the FPGALibre
 guidelines.

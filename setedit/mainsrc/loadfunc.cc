@@ -161,18 +161,18 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
     if (isImage)
       {
        const char *command="gqview -r file:%s";
-       int len=strlen(command)+lname+1;
+       int len=strlen(command)+strlen(fullName)+1;
        char *msgF=(char *)alloca(len);
-       CLY_snprintf(msgF,len,command,name);
+       CLY_snprintf(msgF,len,command,fullName);
        TScreen::System(msgF);
       }
     else if (isPDF)
       {
        const char *command="xpdf -remote SETEdit -raise %s %d";
-       int len=strlen(command)+lname+1+32;
+       int len=strlen(command)+strlen(fullName)+1+32;
        char *msgF=(char *)alloca(len);
        pid_t pidChild;
-       CLY_snprintf(msgF,len,command,name,page);
+       CLY_snprintf(msgF,len,command,fullName,page);
        TScreen::System(msgF,&pidChild);
       }
     else
