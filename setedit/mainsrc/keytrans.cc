@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -870,13 +870,13 @@ extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
 // 196 keys defined
-const int NormalSize=89,CtrlQSize=50,CtrlKSize=61;
-#define NormalTable KeyTTable89
-#define CtrlQTable  KeyTTable50
-#define CtrlKTable  KeyTTable61
-DeclareTable(89);
-DeclareTable(50);
-DeclareTable(61);
+const int NormalSize=89,CtrlQSize=50,CtrlKSize=62;
+#define NormalTable KeyTTableNormalSize
+#define CtrlQTable  KeyTTableCtrlQSize
+#define CtrlKTable  KeyTTableCtrlKSize
+DeclareTable(NormalSize);
+DeclareTable(CtrlQSize);
+DeclareTable(CtrlKSize);
 
 extern CtrlQTable CtrlQ;
 extern CtrlKTable CtrlK;
@@ -1071,7 +1071,7 @@ CtrlKTable CtrlK=
   { kb9, kbtIsComm, {cmcPutMark9} }, // 41
   { kbTab, kbtIsComm, {cmcIndentBlk} }, // 43
 
-  // Shift 11
+  // Shift 12
   { kbShA, kbtIsComm, {cmcToggleMoveOnPaste} }, // 1
   { kbShB, kbtIsComm, {cmcSelRectStart} }, // 2
   { kbShC, kbtIsComm, {cmcSelRectCopy} }, // 3
@@ -1079,6 +1079,7 @@ CtrlKTable CtrlK=
   { kbShK, kbtIsComm, {cmcSelRectEnd} }, // 11
   { kbShL, kbtIsComm, {cmcSelRectDel} }, // 12
   { kbShM, kbtIsComm, {cmcSelRectMove} }, // 13
+  { kbShO, kbtIsComm, {cmcSelRectCopyPaste} },
   { kbShP, kbtIsComm, {cmcSelRectPaste} }, // 16
   { kbShT, kbtIsComm, {cmcSelRectCut} }, // 20
   { kbShV, kbtIsComm, {cmcSelRectMove} }, // 22

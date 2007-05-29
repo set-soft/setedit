@@ -3406,6 +3406,13 @@ int TCEditor::handleCommand(ushort command)
                 update(ufUpdate);
                 break;
 
+           case cmcSelRectCopyPaste:
+                flushLine();
+                selRectCopy();
+                selRectPaste(selRectClip,curPos.x,curPos.y);
+                update(ufUpdate);
+                break;
+
            case cmcSelRectPaste:
                 if (selRectClip)
                   {
@@ -11269,6 +11276,7 @@ void TCEditor::updateCommands(int full)
     if (!hasRectSel())
       {
        cmdsAux.disableCmd(cmcSelRectCopy);
+       cmdsAux.disableCmd(cmcSelRectCopyPaste);
        cmdsAux.disableCmd(cmcSelRectDel);
        cmdsAux.disableCmd(cmcSelRectMove);
        cmdsAux.disableCmd(cmcSelRectCut);
@@ -11320,6 +11328,7 @@ void TCEditor::updateRectCommands()
 {
  Boolean rs=hasRectSel();
  setCmdState(cmcSelRectCopy,rs);
+ setCmdState(cmcSelRectCopyPaste,rs);
  setCmdState(cmcSelRectHide,rs);
  rs=(rs==True && isClipboard()==False) ? True : False;
  setCmdState(cmcSelRectDel,rs);

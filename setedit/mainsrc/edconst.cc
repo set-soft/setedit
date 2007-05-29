@@ -157,6 +157,7 @@ static edCList List[] =
 { "SearchStart", 9 },
 { "SelLength", 2 },
 { "SelRectCopy", 97 },
+{ "SelRectCopyPaste", 161 },
 { "SelRectCut", 100 },
 { "SelRectDel", 99 },
 { "SelRectEnd", 96 },

@@ -172,8 +172,9 @@ const int
   cmbSearchSelForward  = 158,
   cmbSearchSelBackward = 159,
   cmbSmartTab          = 160,
+  cmbSelRectCopyPaste  = 161,
   
-  cmbLastCommand       = 161;
+  cmbLastCommand       = 162;
 
 
 const int
@@ -339,7 +340,8 @@ const int
   cmcCompactBufferNi   = cmbCompactBufferNi+cmbBaseNumber,
   cmcSearchSelForward  = cmbSearchSelForward+cmbBaseNumber,
   cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber,
-  cmcSmartTab          = cmbSmartTab+cmbBaseNumber;
+  cmcSmartTab          = cmbSmartTab+cmbBaseNumber,
+  cmcSelRectCopyPaste  = cmbSelRectCopyPaste+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;
