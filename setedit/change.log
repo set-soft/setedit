@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.746  2007/05/29 13:45:03  set
+* Added: cmcSelRectCopyPaste it does a rectangular copy and then a paste.
+SF FR #1724894 submitted by scherno2000.
+.
 Revision 1.745  2007/05/29 12:30:17  set
 * Updated: [Debian] Packaging to version 0.5.5-7.
 

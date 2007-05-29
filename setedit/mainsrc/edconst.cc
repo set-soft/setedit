@@ -156,6 +156,7 @@ static edCList List[] =
 { "SearchSelForward", 158 },
 { "SearchStart", 9 },
 { "SelLength", 2 },
+{ "SelRectClear", 162 },
 { "SelRectCopy", 97 },
 { "SelRectCopyPaste", 161 },
 { "SelRectCut", 100 },

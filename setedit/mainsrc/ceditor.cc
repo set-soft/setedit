@@ -3407,6 +3407,7 @@ int TCEditor::handleCommand(ushort command)
                 break;
 
            case cmcSelRectCopyPaste:
+                if (isReadOnly) break;
                 flushLine();
                 selRectCopy();
                 selRectPaste(selRectClip,curPos.x,curPos.y);
@@ -3434,6 +3435,10 @@ int TCEditor::handleCommand(ushort command)
                 selRectCopy();
                 selRectDelete(Xr1,Yr1,Xr2,Yr2);
                 updateRectCommands();
+                break;
+
+           case cmcSelRectClear:
+                selRectClear(Xr1,Yr1,Xr2,Yr2);
                 break;
  
            case cmcSelRectMove:
@@ -5063,27 +5068,47 @@ char *LineHandler::getLine(int y, unsigned &len)
 /**[txh]********************************************************************
 
   Description:
+  This funcion alloctes a new selRect and fills the Xr1, Xr2, Yr1 and Yr2
+members.
+  
+  Return: A pointer to a newly allocated structure. Use delete[].
+  
+***************************************************************************/
+
+static
+selRecSt *CreateRectSt(int Xr1, int Xr2, int Yr1, int Yr2, unsigned &size)
+{
+ unsigned Width=Xr2-Xr1;
+ unsigned Height=Yr2-Yr1+1;
+ size=Width*Height;
+
+ selRecSt *auxR=(struct selRecSt *)(new char[size+sizeof(selRecSt)]);
+ auxR->Xr1=Xr1;
+ auxR->Yr1=Yr1;
+ auxR->Xr2=Xr2;
+ auxR->Yr2=Yr2;
+
+ return auxR;
+}
+
+/**[txh]********************************************************************
+
+  Description:
   This function creates a new copy of a rectangular structure. Is called by
 the undo/redo stuff to undo/redo the rectangle copy operation.
 
 ***************************************************************************/
 
 static
-struct selRecSt *DuplicateRectSt(char *block)
+selRecSt *DuplicateRectSt(char *block)
 {
  if (!block)
-    return 0;
+    return NULL;
 
+ unsigned size;
  struct selRecSt *p=(struct selRecSt *)block;
-
- int Width=p->Xr2-p->Xr1;
- int Height=p->Yr2-p->Yr1+1;
- unsigned size=(unsigned)Width*(unsigned)Height+sizeof(struct selRecSt);
- struct selRecSt *auxR;
-
- // Try to get the memory
- auxR=(struct selRecSt *)(new char[size]);
- memcpy(auxR,block,size);
+ struct selRecSt *auxR=CreateRectSt(p->Xr1,p->Xr2,p->Yr1,p->Yr2,size);
+ memcpy(auxR,p,size+sizeof(selRecSt));
 
  return auxR;
 }
@@ -5163,22 +5188,10 @@ Boolean TCEditor::selRectCopy(Boolean allowUndo)
  if (!hasRectSel())
     return True;
 
- int Width=Xr2-Xr1;
- int Height=Yr2-Yr1+1;
- unsigned size=(unsigned)Width*(unsigned)Height+sizeof(struct selRecSt);
- struct selRecSt *auxR;
-
- // Try to get the memory
- if ((auxR=(struct selRecSt *)malloc(size))==0)
-    return False;
-
+ unsigned size;
+ selRecSt *auxR=CreateRectSt(Xr1,Xr2,Yr1,Yr2,size);
  // A pointer to the buffer area
- char *b=(char *)(auxR)+sizeof(struct selRecSt);
-
- auxR->Xr1=Xr1;
- auxR->Xr2=Xr2;
- auxR->Yr1=Yr1;
- auxR->Yr2=Yr2;
+ char *b=auxR->s;
 
  int y,x;
  char *s=buffer+GetOffSetOffLine(Yr1);
@@ -5228,7 +5241,7 @@ Boolean TCEditor::selRectCopy(Boolean allowUndo)
  // Store it when we have it finished
  if (allowUndo)
     addToUndo(undoRectCopy,auxR);
- delete selRectClip;
+ DeleteArray(selRectClip);
  selRectClip=auxR;
  enableCommand(cmcSelRectPaste);
 
@@ -5632,6 +5645,33 @@ Boolean TCEditor::selRectDelete(int X1, int Y1, int X2, int Y2, Boolean allowUnd
  return True;
 }
 
+
+/**[txh]********************************************************************
+
+  Description:
+  Deletes the current rectangular selection and inserts spaces inside the
+deleted rectangle.
+  
+  Return: True if the operation was successful
+  
+***************************************************************************/
+
+Boolean TCEditor::selRectClear(int X1, int Y1, int X2, int Y2)
+{
+ if (isReadOnly || !hasRectSel())
+    return False;
+ flushLine();
+ // Remove the rectangle
+ if (selRectDelete(X1,Y1,X2,Y2))
+   {// Create a rectangle filled with spaces
+    unsigned size;
+    selRecSt *p=CreateRectSt(X1,X2,Y1,Y2,size);
+    memset(p->s,' ',size);
+    // Paste it
+    return selRectPaste(p,X1,Y1,True);
+   }
+ return False;
+}
 
 /**[txh]********************************************************************
 
@@ -11281,6 +11321,7 @@ void TCEditor::updateCommands(int full)
        cmdsAux.disableCmd(cmcSelRectMove);
        cmdsAux.disableCmd(cmcSelRectCut);
        cmdsAux.disableCmd(cmcSelRectHide);
+       cmdsAux.disableCmd(cmcSelRectClear);
        cmdsAux.disableCmd(cmcSelRectToUpper);
        cmdsAux.disableCmd(cmcSelRectToLower);
       }
@@ -11328,7 +11369,6 @@ void TCEditor::updateRectCommands()
 {
  Boolean rs=hasRectSel();
  setCmdState(cmcSelRectCopy,rs);
- setCmdState(cmcSelRectCopyPaste,rs);
  setCmdState(cmcSelRectHide,rs);
  rs=(rs==True && isClipboard()==False) ? True : False;
  setCmdState(cmcSelRectDel,rs);
@@ -11336,6 +11376,8 @@ void TCEditor::updateRectCommands()
  setCmdState(cmcSelRectCut,rs);
  setCmdState(cmcSelRectToUpper,rs);
  setCmdState(cmcSelRectToLower,rs);
+ setCmdState(cmcSelRectCopyPaste,rs);
+ setCmdState(cmcSelRectClear,rs);
  // cmcSelRectPaste is an exception and is updated by selRectCopy()
 }
 

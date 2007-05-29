@@ -6,7 +6,7 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 28 May 2007
+@set update-date 29 May 2007
 @set update-month May 2007
 @set name-author Salvador Eduardo Tropea
 
@@ -656,6 +656,8 @@ report that like a bug. That is the way it works!
 @titem3{Copy to special Clipboard,cmcSelRectCopy,^K-Shift+C}
 @titem3{Delete block,cmcSelRectDel,^K-Shift+L}
 @titem3{Paste from special Clipboard,cmcSelRectPaste,^K-Shift+P}
+@titem3{Copy and Paste in one operation,cmcSelRectCopyPaste,^K-Shift+O}
+@titem3{Replace the content using spaces,cmcSelRectClear,^K-Shift+E}
 @titem3{Convert to uppercase,cmcSelRectToUpper,}
 @titem3{Convert to lowercase,cmcSelRectToLower,}
 @endtable-{}
@@ -1847,7 +1849,7 @@ To learn more about rectangular blocks: @x{Rectangular Blocks}.
 @refMenu{cmcSelRectCut,^K-Shift+T}
 
 @c --------------------------------------------------------------------------
-@subsection Clear (Rectangle)
+@subsection Delete (Rectangle)
 
 Deletes the selected text.
 @paragraph{}
@@ -1867,6 +1869,31 @@ To learn more about rectangular blocks: @x{Rectangular Blocks}.
 @paragraph{}
 
 @refMenu{cmcSelRectMove,^K-Shift+M}
+
+@c --------------------------------------------------------------------------
+
+@subsection Copy and Paste (Rectangle)
+
+Copies the selected text to the special clipboard and then pastes it at the
+cursor location. This is a combination of the copy and paste operations.
+@x{Copy (Rectangle)}. @x{Paste (Rectangle)}.
+@p{}
+
+To learn more about rectangular blocks: @x{Rectangular Blocks}.
+@p{}
+
+@refMenu{cmcSelRectCopyPaste,^K-Shift+O}
+
+@c --------------------------------------------------------------------------
+@subsection Clear (Rectangle)
+
+Replaces the selected area by spaces.
+@p{}
+
+To learn more about rectangular blocks: @x{Rectangular Blocks}.
+@p{}
+
+@refMenu{cmcSelRectClear,^K-Shift+E}
 
 @c --------------------------------------------------------------------------
 @subsection To upper (Rectangle)

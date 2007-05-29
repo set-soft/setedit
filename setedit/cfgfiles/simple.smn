@@ -46,9 +46,10 @@ SubMenu: "~E~dit", kbAlE
   MenuItemC: "~C~opy",  cmcSelRectCopy, kbUnknown, "Ctrl+K-Shift+C"
   MenuItemC: "~P~aste", cmcSelRectPaste, kbUnknown, "Ctrl+K-Shift+P"
   MenuItemC: "Cu~t~",   cmcSelRectCut, kbUnknown, "Ctrl+K-Shift+T"
-  MenuItemC: "C~l~ear", cmcSelRectDel, kbUnknown, "Ctrl+K-Shift+L"
+  MenuItemC: "De~l~ete", cmcSelRectDel, kbUnknown, "Ctrl+K-Shift+L"
   MenuItemC: "~M~ove",  cmcSelRectMove, kbUnknown, "Ctrl+K-Shift+M"
   MenuItemC: "Cop~y~ & Paste",  cmcSelRectCopyPaste, kbUnknown, "Ctrl+K-Shift+O"
+  MenuItemC: "Cle~a~r", cmcSelRectClear, kbUnknown, "Ctrl+K-Shift+E"
   MenuSeparator
   MenuItemC: "To ~u~pper",  cmcSelRectToUpper, kbUnknown
   MenuItemC: "To l~o~wer",  cmcSelRectToLower, kbUnknown

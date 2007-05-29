@@ -869,8 +869,8 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 196 keys defined
-const int NormalSize=89,CtrlQSize=50,CtrlKSize=62;
+// 198 keys defined
+const int NormalSize=89,CtrlQSize=50,CtrlKSize=63;
 #define NormalTable KeyTTableNormalSize
 #define CtrlQTable  KeyTTableCtrlQSize
 #define CtrlKTable  KeyTTableCtrlKSize
@@ -1071,10 +1071,11 @@ CtrlKTable CtrlK=
   { kb9, kbtIsComm, {cmcPutMark9} }, // 41
   { kbTab, kbtIsComm, {cmcIndentBlk} }, // 43
 
-  // Shift 12
+  // Shift 13
   { kbShA, kbtIsComm, {cmcToggleMoveOnPaste} }, // 1
   { kbShB, kbtIsComm, {cmcSelRectStart} }, // 2
   { kbShC, kbtIsComm, {cmcSelRectCopy} }, // 3
+  { kbShE, kbtIsComm, {cmcSelRectClear} }, // 3
   { kbShH, kbtIsComm, {cmcSelRectHide} }, // 8
   { kbShK, kbtIsComm, {cmcSelRectEnd} }, // 11
   { kbShL, kbtIsComm, {cmcSelRectDel} }, // 12

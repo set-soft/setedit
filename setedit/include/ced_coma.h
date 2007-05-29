@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Commands ) && !defined( __TCEditor_Commands__ )
 #define __TCEditor_Commands__
@@ -173,8 +173,9 @@ const int
   cmbSearchSelBackward = 159,
   cmbSmartTab          = 160,
   cmbSelRectCopyPaste  = 161,
+  cmbSelRectClear      = 162,
   
-  cmbLastCommand       = 162;
+  cmbLastCommand       = 163;
 
 
 const int
@@ -341,7 +342,8 @@ const int
   cmcSearchSelForward  = cmbSearchSelForward+cmbBaseNumber,
   cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber,
   cmcSmartTab          = cmbSmartTab+cmbBaseNumber,
-  cmcSelRectCopyPaste  = cmbSelRectCopyPaste+cmbBaseNumber;
+  cmcSelRectCopyPaste  = cmbSelRectCopyPaste+cmbBaseNumber,
+  cmcSelRectClear      = cmbSelRectClear+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Class )
 
@@ -213,6 +213,7 @@ public:
     Boolean selRectCopy(Boolean allowUndo=True);
     Boolean selRectPaste(struct selRecSt *st, int X, int Y, Boolean allowUndo=True);
     Boolean selRectDelete(int X1, int Y1, int X2, int Y2, Boolean allowUndo=True);
+    Boolean selRectClear(int X1, int Y1, int X2, int Y2);
     void selRectToUpper();
     void selRectToLower();
     void UndoRectangularPasteClear(UndoCell &un);
