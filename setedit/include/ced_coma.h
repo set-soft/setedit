@@ -174,8 +174,9 @@ const int
   cmbSmartTab          = 160,
   cmbSelRectCopyPaste  = 161,
   cmbSelRectClear      = 162,
+  cmbSelRectCopyClip   = 163,
   
-  cmbLastCommand       = 163;
+  cmbLastCommand       = 164;
 
 
 const int
@@ -343,7 +344,8 @@ const int
   cmcSearchSelBackward = cmbSearchSelBackward+cmbBaseNumber,
   cmcSmartTab          = cmbSmartTab+cmbBaseNumber,
   cmcSelRectCopyPaste  = cmbSelRectCopyPaste+cmbBaseNumber,
-  cmcSelRectClear      = cmbSelRectClear+cmbBaseNumber;
+  cmcSelRectClear      = cmbSelRectClear+cmbBaseNumber,
+  cmcSelRectCopyClip   = cmbSelRectCopyClip+cmbBaseNumber;
 
 const int cmcFirstMacro=0x2800,
           cmcLastMacro =0x2FFF;

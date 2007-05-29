@@ -211,6 +211,8 @@ public:
     uint32 CompactFlags(void);
     void ExpandFlags(uint32 t,Boolean allowUndo=True);
     Boolean selRectCopy(Boolean allowUndo=True);
+    void    selRectCopyToBuffer(char *b, Boolean includeEOL=False);
+    Boolean selRectCopyToClip();
     Boolean selRectPaste(struct selRecSt *st, int X, int Y, Boolean allowUndo=True);
     Boolean selRectDelete(int X1, int Y1, int X2, int Y2, Boolean allowUndo=True);
     Boolean selRectClear(int X1, int Y1, int X2, int Y2);

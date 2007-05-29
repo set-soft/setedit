@@ -415,12 +415,12 @@ void TCEditor::changeBounds( const TRect& bounds )
 
 Boolean TCEditor::clipCopy()
 {
- Boolean res = False;
+ Boolean res=False;
  flushLine();
- if ( (clipboard != 0) && (clipboard != this) )
+ if (clipboard && (clipboard!=this))
    {
-    res = clipboard->insertFrom(this);
-    selecting = False;
+    res=clipboard->insertFrom(this);
+    selecting=False;
     update(ufUpdate);
    }
  return res;
@@ -3406,6 +3406,10 @@ int TCEditor::handleCommand(ushort command)
                 update(ufUpdate);
                 break;
 
+           case cmcSelRectCopyClip:
+                selRectCopyToClip();
+                break;
+
            case cmcSelRectCopyPaste:
                 if (isReadOnly) break;
                 flushLine();
@@ -5165,34 +5169,18 @@ void TCEditor::selRectToLower()
  selRectPaste(selRectClip,Xr1,Yr1);
 }
 
-/****************************************************************************
+/**[txh]********************************************************************
 
-   Function: Boolean selRectCopy()
+  Description:
+  Copies the selected rectangle to the provided buffer. That's very low
+level. The buffer must big enough to hold all the data. The function assumes
+a valid selection exists. The @<v>{includeEOL} parameter indicates if every
+line of the rectangle must be finished with an end of line sequence.
+  
+***************************************************************************/
 
-   Type: TCEditor member.
-
-   Objetive: Copy the selected rectangle into a buffer.
-
-   Returns: False on error.
-
-   by SET.
-
-****************************************************************************/
-
-Boolean TCEditor::selRectCopy(Boolean allowUndo)
+void TCEditor::selRectCopyToBuffer(char *b, Boolean includeEOL)
 {
- // Avoid to be out of buffer
- if ((unsigned)Yr2>totalLines)
-    Yr2=totalLines;
-
- if (!hasRectSel())
-    return True;
-
- unsigned size;
- selRecSt *auxR=CreateRectSt(Xr1,Xr2,Yr1,Yr2,size);
- // A pointer to the buffer area
- char *b=auxR->s;
-
  int y,x;
  char *s=buffer+GetOffSetOffLine(Yr1);
  char *sy=s;
@@ -5234,11 +5222,44 @@ Boolean TCEditor::selRectCopy(Boolean allowUndo)
         x++;
         w--;
        }
+     if (includeEOL)
+       {
+        memcpy(b,CLY_crlf,CLY_LenEOL);
+        b+=CLY_LenEOL;
+       }
      // Point to the next line.
      sy+=lenLines[y];
     }
+}
 
- // Store it when we have it finished
+/****************************************************************************
+
+   Function: Boolean selRectCopy()
+
+   Type: TCEditor member.
+
+   Objetive: Copy the selected rectangle into a buffer.
+
+   Returns: False on error.
+
+   by SET.
+
+****************************************************************************/
+
+Boolean TCEditor::selRectCopy(Boolean allowUndo)
+{
+ // Avoid to be out of buffer
+ if ((unsigned)Yr2>totalLines)
+    Yr2=totalLines;
+
+ if (!hasRectSel())
+    return True;
+
+ unsigned size;
+ selRecSt *auxR=CreateRectSt(Xr1,Xr2,Yr1,Yr2,size);
+ selRectCopyToBuffer(auxR->s);
+
+ // Store it when we finished
  if (allowUndo)
     addToUndo(undoRectCopy,auxR);
  DeleteArray(selRectClip);
@@ -5248,6 +5269,39 @@ Boolean TCEditor::selRectCopy(Boolean allowUndo)
  return True;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Copies the selected rectangle to the regular clipboard.
+  
+  Return: True if successful.
+  
+***************************************************************************/
+
+Boolean TCEditor::selRectCopyToClip()
+{
+ if (!clipboard || (clipboard==this) || !hasRectSel())
+    return False;
+ flushLine();
+ // Avoid to be out of buffer
+ if ((unsigned)Yr2>totalLines)
+    Yr2=totalLines;
+
+ // Copy the selection to a temporal buffer
+ unsigned Width=Xr2-Xr1;
+ unsigned Height=Yr2-Yr1+1;
+ unsigned size=Width*Height+CLY_LenEOL*Height;
+ char *buffer=new char[size];
+ selRectCopyToBuffer(buffer,True);
+ // Copy it to the clipboard
+ Boolean res=False;
+ res=clipboard->insertBuffer(buffer,0,size,False,True,False);
+
+ update(ufUpdate);
+ delete[] buffer;
+
+ return res;
+}
 
 /****************************************************************************
 
@@ -8162,15 +8216,10 @@ int TCEditor::LineWidth(char *s, char *d)
 
 ****************************************************************************/
 
-Boolean TCEditor::insertFrom( TCEditor *editor )
+Boolean TCEditor::insertFrom(TCEditor *editor)
 {
- return insertBuffer( editor->buffer,
-                      editor->selStart,
-                      editor->selEnd - editor->selStart,
-                      canUndo,
-                      True,
-                      False
-                    );
+ return insertBuffer(editor->buffer,editor->selStart,
+                     editor->selEnd-editor->selStart,canUndo,True,False);
 }
 
 /****************************************************************************

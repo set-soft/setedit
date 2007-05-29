@@ -158,6 +158,7 @@ static edCList List[] =
 { "SelLength", 2 },
 { "SelRectClear", 162 },
 { "SelRectCopy", 97 },
+{ "SelRectCopyClip", 163 },
 { "SelRectCopyPaste", 161 },
 { "SelRectCut", 100 },
 { "SelRectDel", 99 },

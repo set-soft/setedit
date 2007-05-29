@@ -869,8 +869,8 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 198 keys defined
-const int NormalSize=89,CtrlQSize=50,CtrlKSize=63;
+// 199 keys defined
+const int NormalSize=89,CtrlQSize=50,CtrlKSize=64;
 #define NormalTable KeyTTableNormalSize
 #define CtrlQTable  KeyTTableCtrlQSize
 #define CtrlKTable  KeyTTableCtrlKSize
@@ -1071,20 +1071,21 @@ CtrlKTable CtrlK=
   { kb9, kbtIsComm, {cmcPutMark9} }, // 41
   { kbTab, kbtIsComm, {cmcIndentBlk} }, // 43
 
-  // Shift 13
+  // Shift 14
   { kbShA, kbtIsComm, {cmcToggleMoveOnPaste} }, // 1
   { kbShB, kbtIsComm, {cmcSelRectStart} }, // 2
   { kbShC, kbtIsComm, {cmcSelRectCopy} }, // 3
-  { kbShE, kbtIsComm, {cmcSelRectClear} }, // 3
+  { kbShE, kbtIsComm, {cmcSelRectClear} }, // 5
   { kbShH, kbtIsComm, {cmcSelRectHide} }, // 8
   { kbShK, kbtIsComm, {cmcSelRectEnd} }, // 11
   { kbShL, kbtIsComm, {cmcSelRectDel} }, // 12
   { kbShM, kbtIsComm, {cmcSelRectMove} }, // 13
-  { kbShO, kbtIsComm, {cmcSelRectCopyPaste} },
+  { kbShO, kbtIsComm, {cmcSelRectCopyPaste} }, // 15
   { kbShP, kbtIsComm, {cmcSelRectPaste} }, // 16
   { kbShT, kbtIsComm, {cmcSelRectCut} }, // 20
   { kbShV, kbtIsComm, {cmcSelRectMove} }, // 22
   { kbShTab, kbtIsComm, {cmcUnIndentBlk} }, // 43
+  { kbShInsert, kbtIsComm, {cmcSelRectCopyClip} }, // 77
 
   // Control 25
   { kbCtB, kbtIsComm, {cmcStartSelect} }, // 2

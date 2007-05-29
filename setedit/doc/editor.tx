@@ -1826,6 +1826,17 @@ To learn more about rectangular blocks: @x{Rectangular Blocks}.
 @refMenu{cmcSelRectCopy,^K-Shift+C}
 
 @c --------------------------------------------------------------------------
+@subsection Copy to clipboard (Rectangle)
+
+Copies the rectangular selection into the regular clipboard.
+@p{}
+
+To learn more about rectangular blocks: @x{Rectangular Blocks}.
+@p{}
+
+@refMenu{cmcSelRectCopyClip,^K-Shift+Insert}
+
+@c --------------------------------------------------------------------------
 @subsection Paste (Rectangle)
 
 Inserts the contents of the rectangular clipboard at the cursor position.

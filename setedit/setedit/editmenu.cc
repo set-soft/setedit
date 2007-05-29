@@ -458,5 +458,6 @@ _("Replace in ~a~ll opened...")
 _("Replace in all project ~i~tems...")
 _("Cop~y~ & Paste")
 _("Cle~a~r")
+_("Copy to cl~i~pboard")
 #endif
 

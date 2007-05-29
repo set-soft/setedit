@@ -143,13 +143,14 @@ SubMenu: "~M~acro", kbAlM
  MenuItemC: "Pse~u~do macros...", cmcChoosePMacrosList
 EndSubMenu
 
-# English: ACEHLMOPSTUY
+# English: ACEHILMOPSTUY
 SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "~S~tart", cmcSelRectStart, kbUnknown, "Ctrl+K-Shift+B"
  MenuItemC: "~E~nd",   cmcSelRectEnd, kbUnknown, "Ctrl+K-Shift+K"
  MenuItemC: "~H~ide", cmcSelRectHide, kbUnknown, "Ctrl+K-Shift+H"
  MenuSeparator
  MenuItemC: "~C~opy",  cmcSelRectCopy, kbUnknown, "Ctrl+K-Shift+C"
+ MenuItemC: "Copy to cl~i~pboard",  cmcSelRectCopyClip, kbUnknown, "Ctrl+K-Shift+Insert"
  MenuItemC: "~P~aste", cmcSelRectPaste, kbUnknown, "Ctrl+K-Shift+P"
  MenuItemC: "Cu~t~",   cmcSelRectCut, kbUnknown, "Ctrl+K-Shift+T"
  MenuItemC: "De~l~ete", cmcSelRectDel, kbUnknown, "Ctrl+K-Shift+L"
