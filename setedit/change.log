@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.744  2007/05/28 20:14:00  set
+* Fixed: To pass the full name to gqview/xpdf.
+
 Revision 1.743  2007/05/28 19:11:20  set
 * Added: A menchanism to display the "image"/"pdf page" under cursor. This
 is a special syntax for the "open file under cursor" command. Currently
