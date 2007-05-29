@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-05-28 13:04-0300\n"
+"PO-Revision-Date: 2007-05-29 11:57-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1481,55 +1481,55 @@ msgstr "Funciones:"
 msgid "Error pasting from clipboard: %s"
 msgstr "Error al pegar desde el portapapeles: %s"
 
-#: ../mainsrc/ceditor.cc:3807
+#: ../mainsrc/ceditor.cc:3819
 #, c-format
 msgid "Search wrapped, continued from %s."
 msgstr "Búsqueda reinicializada, continuando desde %s."
 
-#: ../mainsrc/ceditor.cc:3808
+#: ../mainsrc/ceditor.cc:3820
 msgid "bottom"
 msgstr "abajo"
 
-#: ../mainsrc/ceditor.cc:3808
+#: ../mainsrc/ceditor.cc:3820
 msgid "top"
 msgstr "arriba"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4258
+#: ../mainsrc/ceditor.cc:4270
 msgid "Emacs mode already pasted without this editor"
 msgstr "El modo Emacs ya está y no parece haber sido insertado con este editor"
 
 # c-format
-#: ../mainsrc/ceditor.cc:4310
+#: ../mainsrc/ceditor.cc:4322
 #, c-format
 msgid "%d bytes selected"
 msgstr "%d caracteres seleccionados"
 
-#: ../mainsrc/ceditor.cc:4312
+#: ../mainsrc/ceditor.cc:4324
 msgid "One byte selected"
 msgstr "Un caracter seleccionado"
 
 # c-format
-#: ../mainsrc/ceditor.cc:4314
+#: ../mainsrc/ceditor.cc:4326
 #, c-format
 msgid " in %d lines"
 msgstr " en %d líneas"
 
-#: ../mainsrc/ceditor.cc:4316
+#: ../mainsrc/ceditor.cc:4328
 msgid " in one line"
 msgstr " en una línea"
 
-#: ../mainsrc/ceditor.cc:4477
+#: ../mainsrc/ceditor.cc:4489
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Utilice un archivo con al menos 1000 líneas"
 
-#: ../mainsrc/ceditor.cc:4496
+#: ../mainsrc/ceditor.cc:4508
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Velocidad: %f líneas/segundo"
 
-#: ../mainsrc/ceditor.cc:4518
+#: ../mainsrc/ceditor.cc:4530
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1540,7 +1540,7 @@ msgstr ""
 "Velocidad: %f líneas/segundo\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:4552
+#: ../mainsrc/ceditor.cc:4564
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1553,16 +1553,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f caracteres/seg"
 
-#: ../mainsrc/ceditor.cc:6163
+#: ../mainsrc/ceditor.cc:6210
 msgid "No match found"
 msgstr "No encontré el complemento"
 
-#: ../mainsrc/ceditor.cc:6178
+#: ../mainsrc/ceditor.cc:6225
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10762
+#: ../mainsrc/ceditor.cc:10809
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1570,29 +1570,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10777
+#: ../mainsrc/ceditor.cc:10824
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11523
+#: ../mainsrc/ceditor.cc:11574
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12454
+#: ../mainsrc/ceditor.cc:12505
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12665
+#: ../mainsrc/ceditor.cc:12716
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:13866
+#: ../mainsrc/ceditor.cc:13917
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:13876
+#: ../mainsrc/ceditor.cc:13927
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2200,17 +2200,17 @@ msgstr "Versión incorrecta"
 msgid "Error while reading"
 msgstr "Error al leer"
 
-#: ../mainsrc/keytrans.cc:1144
+#: ../mainsrc/keytrans.cc:1146
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr "%s, archivo \"%s\"\n"
 
-#: ../mainsrc/keytrans.cc:1153
+#: ../mainsrc/keytrans.cc:1155
 #, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Error al cargar la configuración de teclado: %s"
 
-#: ../mainsrc/keytrans.cc:1190
+#: ../mainsrc/keytrans.cc:1192
 msgid "You'll lose all the changes"
 msgstr "Perderá todos los cambios"
 
@@ -5637,6 +5637,15 @@ msgstr "Ree~m~plazar en todos los abiertos..."
 #: ../setedit/editmenu.cc:458
 msgid "Replace in all project ~i~tems..."
 msgstr "Reemplazar en todos los del pro~y~ecto..."
+
+#: ../setedit/editmenu.cc:459
+msgid "Cop~y~ & Paste"
+msgstr ""
+
+#: ../setedit/editmenu.cc:460
+#, fuzzy
+msgid "Cle~a~r"
+msgstr "~B~orrar"
 
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"

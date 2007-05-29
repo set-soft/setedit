@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-05-28 13:04-0300\n"
+"PO-Revision-Date: 2007-05-29 11:57-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1559,56 +1559,56 @@ msgstr "Aktion"
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3807
+#: ../mainsrc/ceditor.cc:3819
 #, c-format
 msgid "Search wrapped, continued from %s."
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3808
+#: ../mainsrc/ceditor.cc:3820
 msgid "bottom"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3808
+#: ../mainsrc/ceditor.cc:3820
 #, fuzzy
 msgid "top"
 msgstr "~S~top"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4258
+#: ../mainsrc/ceditor.cc:4270
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4310
+#: ../mainsrc/ceditor.cc:4322
 #, fuzzy, c-format
 msgid "%d bytes selected"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4312
+#: ../mainsrc/ceditor.cc:4324
 #, fuzzy
 msgid "One byte selected"
 msgstr "gewähltes a~b~spielen"
 
-#: ../mainsrc/ceditor.cc:4314
+#: ../mainsrc/ceditor.cc:4326
 #, fuzzy, c-format
 msgid " in %d lines"
 msgstr " [%d Knoten]"
 
-#: ../mainsrc/ceditor.cc:4316
+#: ../mainsrc/ceditor.cc:4328
 #, fuzzy
 msgid " in one line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/ceditor.cc:4477
+#: ../mainsrc/ceditor.cc:4489
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4496
+#: ../mainsrc/ceditor.cc:4508
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4518
+#: ../mainsrc/ceditor.cc:4530
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1619,7 +1619,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4552
+#: ../mainsrc/ceditor.cc:4564
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1632,16 +1632,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6163
+#: ../mainsrc/ceditor.cc:6210
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6178
+#: ../mainsrc/ceditor.cc:6225
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10762
+#: ../mainsrc/ceditor.cc:10809
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1650,29 +1650,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10777
+#: ../mainsrc/ceditor.cc:10824
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11523
+#: ../mainsrc/ceditor.cc:11574
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12454
+#: ../mainsrc/ceditor.cc:12505
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12665
+#: ../mainsrc/ceditor.cc:12716
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:13866
+#: ../mainsrc/ceditor.cc:13917
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:13876
+#: ../mainsrc/ceditor.cc:13927
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2308,17 +2308,17 @@ msgstr "Falsche Version"
 msgid "Error while reading"
 msgstr "Fehler während des Lesens"
 
-#: ../mainsrc/keytrans.cc:1144
+#: ../mainsrc/keytrans.cc:1146
 #, c-format
 msgid "%s, file \"%s\"\n"
 msgstr ""
 
-#: ../mainsrc/keytrans.cc:1153
+#: ../mainsrc/keytrans.cc:1155
 #, fuzzy, c-format
 msgid "Error while loading the keyboard binding: %s"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
 
-#: ../mainsrc/keytrans.cc:1190
+#: ../mainsrc/keytrans.cc:1192
 msgid "You'll lose all the changes"
 msgstr "Sie werden alle Änderungen verlieren"
 
@@ -5998,6 +5998,15 @@ msgstr "Alle ersetzen"
 #: ../setedit/editmenu.cc:458
 msgid "Replace in all project ~i~tems..."
 msgstr ""
+
+#: ../setedit/editmenu.cc:459
+msgid "Cop~y~ & Paste"
+msgstr ""
+
+#: ../setedit/editmenu.cc:460
+#, fuzzy
+msgid "Cle~a~r"
+msgstr "~L~ösche"
 
 #: ../setedit/editpale.cc:110
 msgid "Palette editor"
