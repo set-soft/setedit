@@ -459,5 +459,6 @@ _("Replace in all project ~i~tems...")
 _("Cop~y~ & Paste")
 _("Cle~a~r")
 _("Copy to cl~i~pboard")
+_("Paste from clip~b~oard")
 #endif
 

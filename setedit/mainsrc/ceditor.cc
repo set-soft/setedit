@@ -498,7 +498,7 @@ void TCEditor::clipPaste()
 {
  if (isReadOnly) return;
  flushLine();
- if ( (clipboard != 0) && (clipboard != this) && curPos.x<(MaxLineLen-1))
+ if (clipboard && (clipboard!=this) && curPos.x<(MaxLineLen-1))
     insertFrom(clipboard);
 }
 
@@ -3427,6 +3427,10 @@ int TCEditor::handleCommand(ushort command)
                   }
                 break;
  
+           case cmcSelRectPasteClip:
+                selRectPasteFromClip();
+                break;
+
            case cmcSelRectDel:
                 flushLine();
                 selRectDelete(Xr1,Yr1,Xr2,Yr2);
@@ -5174,28 +5178,33 @@ void TCEditor::selRectToLower()
   Description:
   Copies the selected rectangle to the provided buffer. That's very low
 level. The buffer must big enough to hold all the data. The function assumes
-a valid selection exists. The @<v>{includeEOL} parameter indicates if every
-line of the rectangle must be finished with an end of line sequence.
+a valid selection exists. The @<var>{includeEOL} parameter indicates if every
+line of the rectangle must be finished with an end of line sequence.@p
+  If the @<var>{b} pointer is NULL this function doesn't copy anything and
+adjusts Xr2 to the maximum column. Used to meassure the width.@p
+  The @<var>{offset} argument can be used to specify an offset in the first
+line.
   
 ***************************************************************************/
 
-void TCEditor::selRectCopyToBuffer(char *b, Boolean includeEOL)
+void TCEditor::selRectCopyToBuffer(char *b, unsigned offset,
+                                   Boolean includeEOL)
 {
  int y,x;
- char *s=buffer+GetOffSetOffLine(Yr1);
+ char *s=buffer+GetOffSetOffLine(Yr1)+offset;
  char *sy=s;
  int w;
  char c=' ';
+ if (!b)
+    Xr2=Xr1;
  // Scan the lines inside the rectangle
  for (y=Yr1; y<=Yr2; y++)
-    {
-     // Initialize vars
+    {// Initialize vars
      w=0; x=0;
      s=sy;
      // fill untill you reach the right side of the rect
-     while (x<Xr2)
-       {
-        // w is the width of the actual char
+     while (x<Xr2 || !b)
+       {// w is the width of the actual char
         if (!w)
           {
            c=*s;
@@ -5207,28 +5216,40 @@ void TCEditor::selRectCopyToBuffer(char *b, Boolean includeEOL)
              }
            else
              if (c=='\r' || c==0 || c=='\n')
-               { // the end of line is like infinit blanks
+               {
+                if (!b)
+                  {
+                   if (x>Xr2)
+                      Xr2=x;
+                   break;
+                  }
+                // the end of line is like infinit blanks
                 w=MaxLineLen+1;
                 c=' ';
                }
              else
                w=1; // The normal case
           }
-        if (x>=Xr1)
-          { // If is inside the rect copy it
+        if (x>=Xr1 && b)
+          {// If x is inside the rect copy this char
            *b=c;
            b++;
           }
         x++;
         w--;
        }
-     if (includeEOL)
+     if (includeEOL && b)
        {
         memcpy(b,CLY_crlf,CLY_LenEOL);
         b+=CLY_LenEOL;
        }
      // Point to the next line.
      sy+=lenLines[y];
+     if (offset)
+       {// Compensate for the offset
+        sy-=offset;
+        offset=0;
+       }
     }
 }
 
@@ -5292,7 +5313,7 @@ Boolean TCEditor::selRectCopyToClip()
  unsigned Height=Yr2-Yr1+1;
  unsigned size=Width*Height+CLY_LenEOL*Height;
  char *buffer=new char[size];
- selRectCopyToBuffer(buffer,True);
+ selRectCopyToBuffer(buffer,0,True);
  // Copy it to the clipboard
  Boolean res=False;
  res=clipboard->insertBuffer(buffer,0,size,False,True,False);
@@ -5470,6 +5491,62 @@ Boolean TCEditor::selRectPaste(struct selRecSt *st, int X, int Y, Boolean allowU
  return True;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  This function copies a text from the clipboard as a rectangular selection.
+  
+  Return: True on success.
+  
+***************************************************************************/
+
+Boolean TCEditor::selRectPasteFromClip()
+{// Sanity checks
+ if (isReadOnly || !clipboard || (clipboard==this) ||
+     (clipboard->selEnd<=clipboard->selStart))
+   return False;
+ flushLine();
+ flushLine2(clipboard);
+ // Ensure both tab sizes are the same
+ unsigned auxTS=clipboard->tabSize;
+ clipboard->tabSize=tabSize;
+ // Find the Yr1 and Yr2
+ unsigned offsetEnd, offsetStart;
+ clipboard->Yr1=clipboard->FindLineForOffSet(clipboard->selStart,offsetStart);
+ clipboard->Yr2=clipboard->FindLineForOffSet(clipboard->selEnd-1,offsetEnd);
+ clipboard->Xr1=0;
+ char aux=clipboard->buffer[clipboard->selEnd];
+ clipboard->buffer[clipboard->selEnd]=0;
+ // Find the Xr2
+ clipboard->selRectCopyToBuffer(NULL,offsetStart);
+ Boolean res=False;
+ if (clipboard->Xr2>clipboard->Xr1)
+   {// Allocate a temporal rectangle
+    unsigned size;
+    selRecSt *p=CreateRectSt(clipboard->Xr1,clipboard->Xr2,clipboard->Yr1,
+                             clipboard->Yr2,size);
+    // Copy the rectangle to the temporal buffer
+    clipboard->selRectCopyToBuffer(p->s,offsetStart);
+    // Memorize the current selection and change it to the values used in the clipboard
+    // this is needed for the undo stuff.
+    FillUndoForRectangularStartEnd(undoRectStart);
+    Xr1=clipboard->Xr1;
+    Yr1=0;
+    FillUndoForRectangularStartEnd(undoRectEnd);
+    Xr2=clipboard->Xr2;
+    Yr2=clipboard->Yr2-clipboard->Yr1;
+    selRectHided=False;
+    // Paste it in the current editor
+    res=selRectPaste(p,curPos.x,curPos.y);
+    // Delete the temporal rectangle
+    DeleteArray(p);
+   }
+ // Restore tabSize
+ clipboard->tabSize=auxTS;
+ clipboard->buffer[clipboard->selEnd]=aux;
+
+ return res;
+}
 
 /****************************************************************************
 
@@ -9643,6 +9720,7 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
       }
     while (here<=offset);
     rest=thisLine-(here-offset);
+    // -1: here>offset, we reached the next line
     return y-1;
    }
  if (offset<offCursor/2)
@@ -9655,6 +9733,7 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
       }
     while (here<=offset);
     rest=thisLine-(here-offset);
+    // -1: here>offset, we reached the next line
     return y-1;
    }
  // Search backwards from the cursor
@@ -9666,7 +9745,8 @@ int TCEditor::FindLineForOffSet(unsigned offset, unsigned &rest)
     here-=thisLine;
    }
  rest=offset-here;
- return y+1;
+ // here<=offset, we reached the same line
+ return y;
 }
 
 
@@ -11352,6 +11432,7 @@ void TCEditor::updateCommands(int full)
        cmdsAux.disableCmd(cmcPaste);
        cmdsAux.disableCmd(cmcPasteClipFile);
        cmdsAux.disableCmd(cmcPasteClipWin);
+       cmdsAux.disableCmd(cmcSelRectPasteClip);
        cmdsAux.disableCmd(cmcClear);
        cmdsAux.disableCmd(cmcUndo);
        cmdsAux.disableCmd(cmcRedo);
@@ -11366,6 +11447,7 @@ void TCEditor::updateCommands(int full)
       {
        cmdsAux.disableCmd(cmcSelRectCopy);
        cmdsAux.disableCmd(cmcSelRectCopyPaste);
+       cmdsAux.disableCmd(cmcSelRectCopyClip);
        cmdsAux.disableCmd(cmcSelRectDel);
        cmdsAux.disableCmd(cmcSelRectMove);
        cmdsAux.disableCmd(cmcSelRectCut);
@@ -11393,13 +11475,15 @@ void TCEditor::updateCommands(int full)
     setCmdState(cmcRedo,Boolean(UndoActual<UndoTop));
    
     Boolean oscli=TVOSClipboard::isAvailable() ? True : False;
+    Boolean intcli=Boolean(clipboard && clipboard->hasSelection());
     setCmdState(cmcCut,hs);
     setCmdState(cmcCutClipWin,(hs && oscli) ? True : False);
     setCmdState(cmcCopy,hs);
     setCmdState(cmcCopyClipFile,hs);
     setCmdState(cmcCopyClipWin,(hs && oscli) ? True : False);
     setCmdState(cmcClear,hs);
-    setCmdState(cmcPaste,Boolean(clipboard && clipboard->hasSelection()));
+    setCmdState(cmcPaste,intcli);
+    setCmdState(cmcSelRectPasteClip,intcli);
     setCmdState(cmcPasteClipWin,oscli);
    }
  //setCmdState(cmcSearchSelBackward,hs);
@@ -11418,6 +11502,7 @@ void TCEditor::updateRectCommands()
 {
  Boolean rs=hasRectSel();
  setCmdState(cmcSelRectCopy,rs);
+ setCmdState(cmcSelRectCopyClip,rs);
  setCmdState(cmcSelRectHide,rs);
  rs=(rs==True && isClipboard()==False) ? True : False;
  setCmdState(cmcSelRectDel,rs);

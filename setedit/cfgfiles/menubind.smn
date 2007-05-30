@@ -67,8 +67,8 @@ SubMenu: "~E~dit", kbAlE
  MenuItemC: "~R~edo", cmcRedo
  MenuSeparator
  MenuItemC: "Cu~t~", cmcCut, kbShDelete, "Shift+Del"
- MenuItemC: "~C~opy", cmcCopy, kbCtInsert, "Ctrl+Ins"
- MenuItemC: "~P~aste", cmcPaste, kbShInsert, "Shift+Ins"
+ MenuItemC: "~C~opy", cmcCopy, kbUnknown, "Ctrl+Ins"
+ MenuItemC: "~P~aste", cmcPaste, kbUnknown, "Shift+Ins"
  MenuItemC: "~S~how clipboard", cmeShowClip
  MenuItemC: "C~l~ear", cmcClear, kbCtDelete, "Ctrl+Del"
  MenuSeparator
@@ -143,15 +143,16 @@ SubMenu: "~M~acro", kbAlM
  MenuItemC: "Pse~u~do macros...", cmcChoosePMacrosList
 EndSubMenu
 
-# English: ACEHILMOPSTUY
+# English: ABCEHILMOPSTUY
 SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "~S~tart", cmcSelRectStart, kbUnknown, "Ctrl+K-Shift+B"
  MenuItemC: "~E~nd",   cmcSelRectEnd, kbUnknown, "Ctrl+K-Shift+K"
  MenuItemC: "~H~ide", cmcSelRectHide, kbUnknown, "Ctrl+K-Shift+H"
  MenuSeparator
  MenuItemC: "~C~opy",  cmcSelRectCopy, kbUnknown, "Ctrl+K-Shift+C"
- MenuItemC: "Copy to cl~i~pboard",  cmcSelRectCopyClip, kbUnknown, "Ctrl+K-Shift+Insert"
+ MenuItemC: "Copy to cl~i~pboard", cmcSelRectCopyClip, kbUnknown, "Ctrl+K-Ctrl+Ins"
  MenuItemC: "~P~aste", cmcSelRectPaste, kbUnknown, "Ctrl+K-Shift+P"
+ MenuItemC: "Paste from clip~b~oard", cmcSelRectPasteClip, kbUnknown, "Ctrl+K-Shift+Ins"
  MenuItemC: "Cu~t~",   cmcSelRectCut, kbUnknown, "Ctrl+K-Shift+T"
  MenuItemC: "De~l~ete", cmcSelRectDel, kbUnknown, "Ctrl+K-Shift+L"
  MenuItemC: "~M~ove",  cmcSelRectMove, kbUnknown, "Ctrl+K-Shift+M"

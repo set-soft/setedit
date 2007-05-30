@@ -1834,7 +1834,7 @@ Copies the rectangular selection into the regular clipboard.
 To learn more about rectangular blocks: @x{Rectangular Blocks}.
 @p{}
 
-@refMenu{cmcSelRectCopyClip,^K-Shift+Insert}
+@refMenu{cmcSelRectCopyClip,^K-Ctrl+Insert}
 
 @c --------------------------------------------------------------------------
 @subsection Paste (Rectangle)
@@ -1846,6 +1846,18 @@ To learn more about rectangular blocks: @x{Rectangular Blocks}.
 @paragraph{}
 
 @refMenu{cmcSelRectPaste,^K-Shift+P}
+
+@c --------------------------------------------------------------------------
+@subsection Paste from clipboard (Rectangle)
+
+Inserts the contents of the regular clipboard at the cursor position. If the
+current content isn't a rectangle spaces are added to make it rectangular.
+@p{}
+
+To learn more about rectangular blocks: @x{Rectangular Blocks}.
+@p{}
+
+@refMenu{cmcSelRectPasteClip,^K-Shift+Insert}
 
 @c --------------------------------------------------------------------------
 @subsection Cut (Rectangle)

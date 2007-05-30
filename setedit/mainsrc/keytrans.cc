@@ -869,8 +869,8 @@ DeclareSeq(3);
 extern KeyTSeq3 ShUp,ShDn,ShHome,ShEnd,ShPgUp,ShPgDn,ShL,ShR,ShCtL,ShCtR,
                 ShCtHome,ShCtEnd,ShCtPgUp,ShCtPgDn;
 
-// 199 keys defined
-const int NormalSize=89,CtrlQSize=50,CtrlKSize=64;
+// 201 keys defined
+const int NormalSize=90,CtrlQSize=50,CtrlKSize=65;
 #define NormalTable KeyTTableNormalSize
 #define CtrlQTable  KeyTTableCtrlQSize
 #define CtrlKTable  KeyTTableCtrlKSize
@@ -884,7 +884,7 @@ extern CtrlKTable CtrlK;
 NormalTable base=
 { NormalSize,0,
  { // MUST be sorted
-  // Normal 15
+  // Normal 16
   { kbEsc, kbtIsComm, {cmcHideSelect} }, // 31
   { kbBackSpace, kbtIsComm, {cmcBackSpace} }, // 42
   { kbTab, kbtIsComm, {cmcSmartTab} }, // 43
@@ -911,6 +911,7 @@ NormalTable base=
   { kbShEnd, kbtIsSeq, {pSeq(ShEnd)} }, // 74
   { kbShDown, kbtIsSeq, {pSeq(ShDn)} }, // 75
   { kbShPgDn, kbtIsSeq, {pSeq(ShPgDn)} }, // 76
+  { kbShInsert, kbtIsComm, {cmcPaste} }, // 77
   // Control 46
   { kbCtA, kbtIsComm, {cmcWordLeft} }, // 1
   { kbCtC, kbtIsComm, {cmcPageDown} }, // 3
@@ -1085,9 +1086,9 @@ CtrlKTable CtrlK=
   { kbShT, kbtIsComm, {cmcSelRectCut} }, // 20
   { kbShV, kbtIsComm, {cmcSelRectMove} }, // 22
   { kbShTab, kbtIsComm, {cmcUnIndentBlk} }, // 43
-  { kbShInsert, kbtIsComm, {cmcSelRectCopyClip} }, // 77
+  { kbShInsert, kbtIsComm, {cmcSelRectPasteClip} }, // 77
 
-  // Control 25
+  // Control 26
   { kbCtB, kbtIsComm, {cmcStartSelect} }, // 2
   { kbCtC, kbtIsComm, {cmcCopyBlock} }, // 3
   { kbCtH, kbtIsComm, {cmcHideSelect} }, // 8
@@ -1112,7 +1113,8 @@ CtrlKTable CtrlK=
   { kbCt7, kbtIsComm, {cmcPutMark7} }, // 39
   { kbCt8, kbtIsComm, {cmcPutMark8} }, // 40
   { kbCt9, kbtIsComm, {cmcPutMark9} }, // 41
-  { kbCtTab, kbtIsComm, {cmcIndentBlk} } // 43
+  { kbCtTab, kbtIsComm, {cmcIndentBlk} }, // 43
+  { kbCtInsert, kbtIsComm, {cmcSelRectCopyClip} } // 77
  }
 };
 

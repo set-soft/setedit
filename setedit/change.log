@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.748  2007/05/29 16:03:24  set
+* Added: cmcSelRectCopyClip copies the rectangular selection to the regular
+clipboard. SF FR #1724897 submitted by scherno2000.
+
 Revision 1.747  2007/05/29 15:10:48  set
 * Added: cmcSelRectClear it fills the selected area with spaces. SF FR
 #1724895 submitted by scherno2000.

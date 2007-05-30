@@ -166,6 +166,7 @@ static edCList List[] =
 { "SelRectHide", 102 },
 { "SelRectMove", 101 },
 { "SelRectPaste", 98 },
+{ "SelRectPasteClip", 164 },
 { "SelRectStart", 95 },
 { "SelRectToLower", 128 },
 { "SelRectToUpper", 127 },
