@@ -460,5 +460,6 @@ _("Cop~y~ & Paste")
 _("Cle~a~r")
 _("Copy to cl~i~pboard")
 _("Paste from clip~b~oard")
+_("De~l~ete")
 #endif
 

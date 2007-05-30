@@ -5600,6 +5600,7 @@ void TCEditor::UndoRectangularPasteClear(UndoCell &un)
  selRectHided=sr->selHide;
 
  MoveCursorTo(un.X,un.Y);
+ updateRectCommands();
 }
 
 

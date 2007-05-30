@@ -1,4 +1,15 @@
-$Log$.
+$Log$
+Revision 1.749  2007/05/30 13:08:48  set
+* Modified: cmcPaste and cmcCopy now are both binded to ShInsert/CtInsert
+in the keybinding and doesn't rely on the menu. It was needed to allow
+binding Ctrl+K-Shift/Ctrl+Insert.
+* Modified: cmcSelRectCopyClip assigned to ^K-^Ins to be coherent with the
+regular copy.
+* Added: cmcSelRectPasteClip to paste a rectangle from the regular
+clipboard.
+* Fixed(?): FindLineForOffSet it reported the line +1 when the position
+was before the line with the cursor or the same line.
+
 Revision 1.748  2007/05/29 16:03:24  set
 * Added: cmcSelRectCopyClip copies the rectangular selection to the regular
 clipboard. SF FR #1724897 submitted by scherno2000.

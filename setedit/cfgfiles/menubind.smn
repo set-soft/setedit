@@ -144,6 +144,7 @@ SubMenu: "~M~acro", kbAlM
 EndSubMenu
 
 # English: ABCEHILMOPSTUY
+# Spanish: ABCEFILMOPRTUY
 SubMenu: "Re~c~tangle", kbAlR
  MenuItemC: "~S~tart", cmcSelRectStart, kbUnknown, "Ctrl+K-Shift+B"
  MenuItemC: "~E~nd",   cmcSelRectEnd, kbUnknown, "Ctrl+K-Shift+K"

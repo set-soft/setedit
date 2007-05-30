@@ -846,7 +846,7 @@ void PrintEditor(void)
     char *buffer=e->buffer, aux;
     if (e->hasSelection())
       {
-       ushort option=messageBox(__("Print only the selecyted text?"),
+       ushort option=messageBox(__("Print only the selected text?"),
                                 mfConfirmation | mfYesNoCancel);
        if (option==cmCancel)
           return;
