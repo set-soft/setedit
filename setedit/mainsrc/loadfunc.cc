@@ -7,7 +7,8 @@
 #define Uses_ctype
 #define Uses_TVCodePage
 #define Uses_snprintf
-#define Uses_TScreen // System
+#define Uses_TScreen // App helpers
+#define Uses_MsgBox
 #ifdef DEBUG
  #define Uses_MsgBox
 #endif
@@ -27,6 +28,77 @@ void NoFileNameUnderCursor(void (*Message)(const char *msg, void *data),
  const char *msg=TVIntl::getTextNew(__("No file name under cursor"));
  Message(msg,data);
  DeleteArray(msg);
+}
+
+
+static TScreen::appHelperHandler hPDF=-1;
+static TScreen::appHelperHandler hImg=-1;
+
+/**[txh]********************************************************************
+
+  Description:
+  Opens an image viewer.
+  
+***************************************************************************/
+
+static
+void openImage(const char *fileName)
+{
+ if (hImg==-1)
+   {
+    hImg=TScreen::openHelperApp(TScreen::ImageViewer);
+    if (hImg==-1)
+      {
+       messageBox(TScreen::getHelperAppError(),mfError | mfOKButton);
+       return;
+      }
+   }
+ if (!TScreen::sendFileToHelper(hImg,fileName,NULL))
+   {
+    messageBox(TScreen::getHelperAppError(),mfError | mfOKButton);
+    return;
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Opens a PDF viewer.
+  
+***************************************************************************/
+
+static
+void openPDF(const char *fileName, int page)
+{
+ if (hPDF==-1)
+   {
+    hPDF=TScreen::openHelperApp(TScreen::PDFViewer);
+    if (hPDF==-1)
+      {
+       messageBox(TScreen::getHelperAppError(),mfError | mfOKButton);
+       return;
+      }
+   }
+ if (!TScreen::sendFileToHelper(hPDF,fileName,&page))
+   {
+    messageBox(TScreen::getHelperAppError(),mfError | mfOKButton);
+    return;
+   }
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Closes all opened viewers.
+  
+***************************************************************************/
+
+void CloseViewers()
+{
+ if (hImg!=-1)
+    TScreen::closeHelperApp(hImg);
+ if (hPDF!=-1)
+    TScreen::closeHelperApp(hPDF);
 }
 
 /**[txh]********************************************************************
@@ -159,22 +231,9 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
  if (result)
    {
     if (isImage)
-      {
-       const char *command="gqview -r file:%s";
-       int len=strlen(command)+strlen(fullName)+1;
-       char *msgF=(char *)alloca(len);
-       CLY_snprintf(msgF,len,command,fullName);
-       TScreen::System(msgF);
-      }
+       openImage(fullName);
     else if (isPDF)
-      {
-       const char *command="xpdf -remote SETEdit -raise %s %d";
-       int len=strlen(command)+strlen(fullName)+1+32;
-       char *msgF=(char *)alloca(len);
-       pid_t pidChild;
-       CLY_snprintf(msgF,len,command,fullName,page);
-       TScreen::System(msgF,&pidChild);
-      }
+       openPDF(fullName,page);
     else
        OpenFileFromEditor(fullName);
     free(fullName);

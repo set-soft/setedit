@@ -3407,6 +3407,7 @@ int main(int argc, char *argv[])
  PathListUnLoad();
  SpLinesCleanUp();
  op_cl_std_clean_up();
+ CloseViewers();
 
  return 0;
 }
