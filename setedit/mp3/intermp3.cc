@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -213,7 +213,7 @@ static int playerWasPaused=0;
 
 void MP3PausePlayer()
 {
- if (!playerWasPaused && !mp3.Stoped)
+ if (!playerWasPaused && !mp3.Stoped && !mp3.Paused)
    {
     mp3.Pause();
     playerWasPaused=1;
