@@ -123,7 +123,7 @@ char *ChooseDir(const char *startDir)
 {
  char buf[PATH_MAX],buf2[PATH_MAX];
 
- if (!getcwd(buf,PATH_MAX) || (startDir && !chdir(startDir)))
+ if (!getcwd(buf,PATH_MAX) || (startDir && chdir(startDir)))
     return NULL;
 
  TChDirDialog *d=new TChDirDialog(cdNormal | cdHelpButton,0);
