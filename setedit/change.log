@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.753  2007/06/05 18:56:23  set
+* Fixed: The "Tree" button in the File Open dialog didn't work (wrong chdir
+return value checked). Patch from Witek.
+
 Revision 1.752  2007/06/04 14:03:11  set
 * Fixed(?): [MP3] Problems to update the player status after a long pause.
 Patch by Witek.

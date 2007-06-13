@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2005 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2007 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -24,11 +24,11 @@ $TVCommandLine=0;
 #GetCache() unless (-M 'config.pl' < -M 'configure.cache');
 GetVersion('');
 
-$TVVersionNeeded='2.0.4';
+$TVVersionNeeded='2.1.0';
 $ZLibVersionNeeded='1.1.2';
 $BZ2LibVersionNeeded='0.9.5d';
 $DJGPPVersionNeeded='2.0.2';
-$LibMIVersionNeeded='0.8.6';
+$LibMIVersionNeeded='0.8.11';
 # Allegro 3.1==3.0.1 3.11==3.0.11 3.12==3.0.12
 $AllegroVersionNeeded='3.0.1';
 # 5.0 will change the API, or maybe 6.0 but an API change is discussed
