@@ -499,7 +499,7 @@ void TEditorMiApp::retrieveDesktop(const char *name, int loadWindows)
        return;
     fpstream *f=new fpstream(h);
     #else
-    fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
+    fpstream *f=new fpstream(CLY_IOSIn | CLY_IOSBin,name);
     #endif
 
     if (!f)

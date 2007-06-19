@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.754  2007/06/13 12:52:26  set
+* Modified: [Config] enforced libmigdb 0.8.11 and TV 2.1.0.
+
 Revision 1.753  2007/06/05 18:56:23  set
 * Fixed: The "Tree" button in the File Open dialog didn't work (wrong chdir
 return value checked). Patch from Witek.

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -714,7 +714,7 @@ void LoadProject(char *name)
  int h=open(name, O_RDONLY | O_BINARY);
  fpstream *f=new fpstream(h);
  #else
- fpstream *f=new fpstream(name,CLY_IOSIn | CLY_IOSBin);
+ fpstream *f=new fpstream(CLY_IOSIn | CLY_IOSBin,name);
  #endif
 
  if (!f)
