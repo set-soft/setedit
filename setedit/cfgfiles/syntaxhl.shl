@@ -1716,6 +1716,7 @@ End
 
 #---------------------------------- PHP -------------------------------------
 # Contributed by: Richard Vrijhof <R.J.Vrijhof@bigfoot.com>.
+# MySQLi Definition Contributed by: John Degey <webmaster@johndegey.org>
 #
 Name=PHP
 Files=php,phtm,phtml
@@ -1751,6 +1752,8 @@ Keywords=Directory,stdClass
 # Ming Defined Classes
 Keywords=swfshape,swffill,swfgradient,swfbitmap,swftext,swftextfield,swffont
 Keywords=swfdisplayitem,swfmovie,swfbutton,swfaction,swfmorph,swfsprite
+# Mysqli Defined Classes
+Keywords=mysqli,mysqli_stmt,mysqli_result
 # Oracle 8 Defined Classes
 Keywords=OCI-Lob,OCI-Collection
 # qtdom Defined Classes
@@ -1822,6 +1825,27 @@ Keywords=M_PI,M_E,M_LOG2E,M_LOG10E,M_LN2,M_LN10,M_PI_2,M_PI_4,M_1_PI,M_2_PI
 Keywords=M_SQRTPI,M_2_SQRTPI,M_SQRT2,M_SQRT3,M_SQRT1_2,M_LNPI,M_EULER
 # Pre-defined Constants for MySQL Functions
 Keywords=MYSQL_ASSOC,MYSQL_BOTH,MYSQL_NUM,MYSQL_STORE_RESULT,MYSQL_USE_RESULT
+# Pre-defined Constants for MySQLi Functions
+Keywords=MYSQLI_READ_DEFAULT_GROUP,MYSQLI_READ_DEFAULT_FILE,MYSQLI_OPT_CONNECT_TIMEOUT
+Keywords=MYSQLI_OPT_LOCAL_INFILE,MYSQLI_INIT_COMMAND,MYSQLI_CLIENT_SSL
+Keywords=MYSQLI_CLIENT_COMPRESS,MYSQLI_CLIENT_INTERACTIVE,MYSQLI_CLIENT_IGNORE_SPACE
+Keywords=MYSQLI_CLIENT_NO_SCHEMA,MYSQLI_CLIENT_MULTI_QUERIES,MYSQLI_STORE_RESULT
+Keywords=MYSQLI_USE_RESULT,MYSQLI_ASSOC,MYSQLI_NUM
+Keywords=MYSQLI_BOTH,MYSQLI_NOT_NULL_FLAG,MYSQLI_PRI_KEY_FLAG
+Keywords=MYSQLI_UNIQUE_KEY_FLAG,MYSQLI_MULTIPLE_KEY_FLAG,MYSQLI_BLOB_FLAG
+Keywords=MYSQLI_UNSIGNED_FLAG,MYSQLI_ZEROFILL_FLAG,MYSQLI_AUTO_INCREMENT_FLAG
+Keywords=MYSQLI_TIMESTAMP_FLAG,MYSQLI_SET_FLAG,MYSQLI_NUM_FLAG
+Keywords=MYSQLI_PART_KEY_FLAG,MYSQLI_GROUP_FLAG,MYSQLI_TYPE_DECIMAL
+Keywords=MYSQLI_TYPE_NEWDECIMAL,MYSQLI_TYPE_BIT,MYSQLI_TYPE_TINY
+Keywords=MYSQLI_TYPE_SHORT,MYSQLI_TYPE_LONG,MYSQLI_TYPE_FLOAT
+Keywords=MYSQLI_TYPE_DOUBLE,MYSQLI_TYPE_NULL,MYSQLI_TYPE_TIMESTAMP
+Keywords=MYSQLI_TYPE_LONGLONG,MYSQLI_TYPE_INT24,MYSQLI_TYPE_DATE
+Keywords=MYSQLI_TYPE_TIME,MYSQLI_TYPE_DATETIME,MYSQLI_TYPE_YEAR
+Keywords=MYSQLI_TYPE_NEWDATE,MYSQLI_TYPE_ENUM,MYSQLI_TYPE_SET
+Keywords=MYSQLI_TYPE_TINY_BLOB,MYSQLI_TYPE_MEDIUM_BLOB,MYSQLI_TYPE_LONG_BLOB
+Keywords=MYSQLI_TYPE_BLOB,MYSQLI_TYPE_VAR_STRING,MYSQLI_TYPE_STRING
+Keywords=MYSQLI_TYPE_GEOMETRY,MYSQLI_NEED_DATA,MYSQLI_NO_DATA
+Keywords=MYSQLI_DATA_TRUNCATED
 # Pre-defined Constants for ODBC Functions
 Keywords=ODBC_TYPE,ODBC_BINMODE_PASSTHRU,ODBC_BINMODE_RETURN
 Keywords=ODBC_BINMODE_CONVERT,SQL_ODBC_CURSORS,SQL_CUR_USE_DRIVER
@@ -2003,6 +2027,45 @@ Keywords=mysql_list_processes,mysql_list_tables,mysql_num_fields
 Keywords=mysql_num_rows,mysql_pconnect,mysql_ping,mysql_query
 Keywords=mysql_real_escape_string,mysql_result,mysql_select_db,mysql_stat
 Keywords=mysql_tablename,mysql_thread_id,mysql_unbuffered_query
+# MySQLi Functions
+Keywords=mysqli_affected_rows,mysqli_autocommit,mysqli_bind_param
+Keywords=mysqli_bind_result,mysqli_change_user,mysqli_character_set_name
+Keywords=mysqli_client_encoding,mysqli_close,mysqli_commit
+Keywords=mysqli_connect_errno,mysqli_connect_error,mysqli_connect
+Keywords=mysqli_data_seek,mysqli_debug,mysqli_disable_reads_from_master
+Keywords=mysqli_disable_rpl_parse,mysqli_dump_debug_info,mysqli_embedded_server_end
+Keywords=mysqli_embedded_server_start,mysqli_enable_reads_from_master,mysqli_enable_rpl_parse
+Keywords=mysqli_errno,mysqli_error,mysqli_escape_string
+Keywords=mysqli_execute,mysqli_fetch_array,mysqli_fetch_assoc
+Keywords=mysqli_fetch_field_direct,mysqli_fetch_field,mysqli_fetch_fields
+Keywords=mysqli_fetch_lengths,mysqli_fetch_object,mysqli_fetch_row
+Keywords=mysqli_fetch,mysqli_field_count,mysql_field_seek
+Keywords=mysqli_field_tell,mysqli_free_result,mysqli_get_charset
+Keywords=mysqli_get_client_info,mysqli_get_client_version,mysqli_get_host_info
+keywords=mysqli_get_metadata,mysqli_get_proto_info,mysqli_get_server_info
+Keywords=mysqli_get_server_version,mysqli_get_warnings,mysqli_info
+Keywords=mysqli_init,mysqli_insert_id,mysqli_kill
+Keywords=mysqli_master_query,mysqli_more_results,mysqli_multi_query
+Keywords=mysqli_next_result,mysqli_num_fields,mysqli_num_rows
+Keywords=mysqli_options,mysqli_param_count,mysqli_ping
+Keywords=mysqli_prepare,mysqli_query,mysqli_real_connect
+Keywords=mysqli_real_escape_string,mysqli_real_query,mysqli_report
+Keywords=mysqli_rollback,mysqli_rpl_parse_enabled,mysqli_rpl_probe
+Keywords=mysqli_rpl_query_type,mysqli_select_db,mysqli_send_long_data
+Keywords=mysqli_send_query,mysqli_server_end,mysqli_server_init
+Keywords=mysqli_set_charset,mysqli_set_local_infile_default,mysqli_set_local_infile_handler
+Keywords=mysqli_set_opt,mysqli_slave_query,mysqli_sqlstate
+Keywords=mysqli_ssl_set,mysqli_stat,mysqli_stmt_affected_rows
+Keywords=mysqli_stmt_attr_get,mysqli_stmt_attr_set,mysqli_stmt_bind_param
+Keywords=mysqli_stmt_bind_result,mysqli_stmt_close,mysqli_stmt_data_seek
+Keywords=mysqli_stmt_errno,mysqli_stmt_error,mysqli_stmt_execute
+Keywords=mysqli_stmt_fetch,mysqli_stmt_field_count,mysqli_stmt_free_result
+Keywords=mysqli_stmt_get_warnings,mysqli_stmt_init,mysqli_stmt_insert_id
+Keywords=mysqli_stmt_num_rows,mysqli_stmt_param_count,mysqli_stmt_prepare
+Keywords=mysqli_stmt_reset,mysqli_stmt_result_metadata,mysqli_stmt_send_long_data
+Keywords=mysqli_stmt_sqlstate,mysqli_stmt_store_result,mysqli_store_result
+Keywords=mysqli_thread_id,mysqli_thread_safe,mysqli_use_result
+Keywords=mysqli_warning_count
 # Network Functions
 Keywords=checkdnsrr,closelog,debugger_off,debugger_on,define_syslog_variables
 Keywords=fsockopen,gethostbyaddr,gethostbyname,gethostbynamel,getmxrr

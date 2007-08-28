@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.755  2007/06/19 13:28:54  set
+* Modified: Infview's TEditorMiApp::retrieveDesktop, MP3 list's
+TListDiag::LoadList, TSetEditorApp::retrieveDesktop and LoadProject to
+open read-only files using a new fpstream constructor that avoids the use
+of ios::out. From a report by Witek (about the MP3 list).
+
 Revision 1.754  2007/06/13 12:52:26  set
 * Modified: [Config] enforced libmigdb 0.8.11 and TV 2.1.0.
 
