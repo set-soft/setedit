@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.756  2007/08/28 15:53:58  set
+* Added: [SHL] PHP MySQLi Definition Contributed by: John Degey webmaster/
+johndegey/org.
+
 Revision 1.755  2007/06/19 13:28:54  set
 * Modified: Infview's TEditorMiApp::retrieveDesktop, MP3 list's
 TListDiag::LoadList, TSetEditorApp::retrieveDesktop and LoadProject to
