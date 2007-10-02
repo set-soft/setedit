@@ -5358,7 +5358,7 @@ int TCEditor::EnsureXDontTab(char *s,int x,int w,char **stop)
 {
  int X=0;
  int oldX=0;
- char *lastUsed=s;
+ char *lastUsed=s-1; // We add 1 latter
 
  if (isReadOnly)
     return 0;
