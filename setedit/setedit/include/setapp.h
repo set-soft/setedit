@@ -602,6 +602,7 @@ class TRect;
 extern void OpenProject(char *name=NULL, int preLoad=0);
 extern void CloseProject(int openDesktop);
 extern void SaveProject();
+extern void AutoSaveProject();
 extern int  IsPrjOpened();
 extern int  IsPrjVisible();
 extern int IsPrjZoomed();

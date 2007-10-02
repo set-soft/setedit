@@ -52,6 +52,7 @@
 extern char *ExpandFileNameToThePointWhereTheProgramWasLoaded(const char *s);
 static TDskWinPrj *prjWin=NULL;
 #define PrjExists() (prjWin!=NULL)
+#define PrjModified() prjWin->isModified()
 extern void closeView(TView *p, void *p1);
 
 static int LoadingPrjVersion;
@@ -68,6 +69,8 @@ public:
   void delFile(void);
   void changeSorting(int mode);
   void toggleSorting();
+
+  Boolean modified;
 };
 
 class TEditorProjectWindow : public TDialog
@@ -357,6 +360,7 @@ TEditorProjectListBox::TEditorProjectListBox(const TRect& bounds, ushort aNumCol
                                              TScrollBar *aScrollBar) :
     TSortedListBox(bounds,aNumCols,aScrollBar)
 {
+ modified=False;
 }
 
 void TEditorProjectListBox::changeSorting(int mode)
@@ -427,6 +431,7 @@ int TEditorProjectListBox::addFile(char *name, Boolean interactive)
  setRange(ProjectList->getCount());
  focusItem(pos);
  drawView();
+ modified=True;
  return 1;
 }
 
@@ -496,6 +501,7 @@ void TEditorProjectListBox::delFile(void)
     ProjectList->atFree(focused);
     setRange(c-1);
     drawView();
+    modified=True;
    }
 }
 
@@ -692,6 +698,17 @@ TDskWinPrj::~TDskWinPrj()
  editorApp->SetTitle();
 }
 
+Boolean TDskWinPrj::isModified()
+{
+ return Boolean(window && window->list && window->list->modified);
+}
+
+void TDskWinPrj::clearModified()
+{
+ if (window && window->list)
+    window->list->modified=False;
+}
+
 int TDskWinPrj::GoAction(ccIndex )
 {
  TProgram::deskTop->lock();
@@ -802,7 +819,10 @@ static void SaveOnlyProject(void)
        ::remove(prjWin->getFileName());
       }
     else
+      {
        f->close();
+       prjWin->clearModified();
+      }
    }
  delete f;
 }
@@ -851,6 +871,14 @@ void SaveProject(void)
  HideDesktop(s,DesktopFilesOptions);
  if (remove)
     free(s);
+}
+
+void AutoSaveProject()
+{
+ int DesktopFilesOptions=GetDSTOptions();
+
+ if ((DesktopFilesOptions & dstAutoSavePrj) && PrjExists() && PrjModified())
+    SaveProject();
 }
 
 void SaveDesktopHere(void)

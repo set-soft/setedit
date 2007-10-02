@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.758  2007/10/02 14:20:21  set
+* Fixed: When deleting or moving a rectangular selection that contained
+the first column the lines that were smaller than the selected width
+weren't deleted.
+
 Revision 1.757  2007/09/03 13:22:36  set
 * Fixed: Broken download link to 0.5.5 r1244 from home page. SF #1785773.
 Submitted by alex-vp.

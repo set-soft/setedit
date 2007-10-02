@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 class TEditorProjectWindow;
 
@@ -18,6 +18,8 @@ public:
  void Create(char *File, char *Node, Boolean TheOne=False);
  char *getFileName();
  void setFileName(char *);
+ Boolean isModified();
+ void clearModified();
 
  void write( opstream& os );
  void *read(ipstream& is);

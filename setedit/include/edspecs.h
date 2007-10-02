@@ -26,6 +26,7 @@ const unsigned dstEdEver=0,dstEdOnlyIfNoCL=0x10,dstEdNever=0x20,dstEdMask=0x30;
 const unsigned dstOwEver=0,dstOwOnlyIfNoCL=0x40,dstOwNever=0x80,dstOwMask=0xC0;
 // Are closed files restored?
 const unsigned dstCfEver=0,dstCfOnlyIfNoCL=0x100,dstCfNever=0x200,dstCfMask=0x300;
+const unsigned dstAutoSavePrj=0x400;
 
 #endif // EDSPECS_H_INCLUDED
 

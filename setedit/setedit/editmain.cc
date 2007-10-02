@@ -2398,6 +2398,7 @@ void TSetEditorApp::idle()
     setCmdState(cmeHTMLTag2Accent,False);
     setCmdState(cmeGPushCursorPos,False);
    }
+ AutoSaveProject();
 
  if (!(modifFilesOps & mfoDontCheckInIdle) && e && e->checkDiskCopyChanged())
     AskReloadEditor(GetCurrentIfEditorWindow());

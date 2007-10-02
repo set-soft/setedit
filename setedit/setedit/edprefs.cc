@@ -425,7 +425,7 @@ typedef struct
 static
 unsigned SetGeneralEditorOptionsMain(void)
 {
- // ABCDEHIKLMOPRSTUVWY
+ // ABCDEHIJKLMOPRSTUVWY
  TSViewCol *col=new TSViewCol(__("General editor options"));
 
  TSLabel *tcb=TSLabelCheck(__("~S~ave/Desktop options"),
@@ -455,6 +455,8 @@ unsigned SetGeneralEditorOptionsMain(void)
               #define NO_RO_WARNING 512
               __("Open ~r~ead-only files as R.O. buffers"),
               #define RO_AS_RO 1024
+              __("Autosave pro~j~ect"),
+              #define AUTOSAVE_PRJ 2048
               NULL);
 
  TSHzGroup *Clock=new TSHzGroup(TSLabelRadio(__("~C~lock"),__("OFF"),__("ON"),NULL),
@@ -506,6 +508,9 @@ unsigned SetGeneralEditorOptionsMain(void)
  // Store the list of backups in the desktop file so an Alt+Q can delete it
  if (DesktopFilesOptions & dstRemmeberFK)
     box.ops|=REMM_BKPS;
+ // Automatically save projects
+ if (DesktopFilesOptions & dstAutoSavePrj)
+    box.ops|=AUTOSAVE_PRJ;
  // Better to compare files
  unsigned dsktOps=TApplication::deskTop->getOptions();
  if (dsktOps & dsktTileVertical)
@@ -544,6 +549,8 @@ unsigned SetGeneralEditorOptionsMain(void)
        DesktopFilesOptions|=dstNoCursorPos;
     if (box.ops & REMM_BKPS)
        DesktopFilesOptions|=dstRemmeberFK;
+    if (box.ops & AUTOSAVE_PRJ)
+       DesktopFilesOptions|=dstAutoSavePrj;
     if (box.ops & TILE_VERT)
        TApplication::deskTop->setOptions(dsktOps | dsktTileVertical);
     else
