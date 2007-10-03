@@ -6,8 +6,8 @@
 
 @setfilename setedit.info
 @set version 0.5.5
-@set update-date 29 May 2007
-@set update-month May 2007
+@set update-date 3 Oct 2007
+@set update-month Oct 2007
 @set name-author Salvador Eduardo Tropea
 
 @set rh Robert H@value{ouml}hne
@@ -2182,6 +2182,7 @@ contribute their own themes.
 @cindex closed windows, number
 @cindex message window, options
 @cindex project window, vertical
+@cindex project, autosave
 
 This will open the general configuration dialog containing several
 options.
@@ -2233,6 +2234,8 @@ reverting the read-only attribute until you try to save the file.
 allow you to edit files with the read-only attribute. Note:
 it doesn't disable the warning, use the above mentioned option for
 this.
+@item Autosave project: When enabled the project is saved after any
+modification. It happends during the idle time.
 @c @item Open only specified files: When enabled and you specify one or more
 @c file names in the command line the editor will close all the files already
 @c opened before opening the files specified by you. It helps to keep the

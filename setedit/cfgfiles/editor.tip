@@ -13,6 +13,11 @@ topic.
 ~~~End
 About the Author
 ~~~Start
+Projects can be automatically saved to disk
+every time you add or remove items.
+~~~End
+Editor General
+~~~Start
 When you press tab in the editor it
 normally doesn't insert a tab character
 but you can configure the editor to

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.759  2007/10/02 15:13:46  set
+* Added: An option to automatically save the project.
+
 Revision 1.758  2007/10/02 14:20:21  set
 * Fixed: When deleting or moving a rectangular selection that contained
 the first column the lines that were smaller than the selected width
