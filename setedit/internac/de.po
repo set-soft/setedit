@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-10-31 11:17-0300\n"
+"PO-Revision-Date: 2007-10-31 13:21-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -1559,56 +1559,56 @@ msgstr "Aktion"
 msgid "Error pasting from clipboard: %s"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3827
+#: ../mainsrc/ceditor.cc:3828
 #, c-format
 msgid "Search wrapped, continued from %s."
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3828
+#: ../mainsrc/ceditor.cc:3829
 msgid "bottom"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:3828
+#: ../mainsrc/ceditor.cc:3829
 #, fuzzy
 msgid "top"
 msgstr "~S~top"
 
 #. Nope, is too risky to silently delete it.
 #. printf("Actual mode definition: %s\n",buffer+stComp);
-#: ../mainsrc/ceditor.cc:4278
+#: ../mainsrc/ceditor.cc:4279
 msgid "Emacs mode already pasted without this editor"
 msgstr ""
 
-#: ../mainsrc/ceditor.cc:4330
+#: ../mainsrc/ceditor.cc:4331
 #, fuzzy, c-format
 msgid "%d bytes selected"
 msgstr " Bytes ausgewählt in "
 
-#: ../mainsrc/ceditor.cc:4332
+#: ../mainsrc/ceditor.cc:4333
 #, fuzzy
 msgid "One byte selected"
 msgstr "gewähltes a~b~spielen"
 
-#: ../mainsrc/ceditor.cc:4334
+#: ../mainsrc/ceditor.cc:4335
 #, fuzzy, c-format
 msgid " in %d lines"
 msgstr " [%d Knoten]"
 
-#: ../mainsrc/ceditor.cc:4336
+#: ../mainsrc/ceditor.cc:4337
 #, fuzzy
 msgid " in one line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/ceditor.cc:4497
+#: ../mainsrc/ceditor.cc:4498
 msgid "Use a file with 1000 lines or more for that"
 msgstr "Benutzen Sie eine Datei mit mehr als 1000 Zeilen dafür"
 
-#: ../mainsrc/ceditor.cc:4516
+#: ../mainsrc/ceditor.cc:4517
 #, c-format
 msgid "Speed: %f lines/second"
 msgstr "Geschwindigkeit: %f Zeilen/Sekunde"
 
-#: ../mainsrc/ceditor.cc:4538
+#: ../mainsrc/ceditor.cc:4539
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1619,7 +1619,7 @@ msgstr ""
 "Geschwindigkeit: %f Zeilen/Sekunde\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:4572
+#: ../mainsrc/ceditor.cc:4573
 #, c-format
 msgid ""
 "Time: %f seconds\n"
@@ -1632,16 +1632,16 @@ msgstr ""
 "%5.2f%% Editor\n"
 "%f Zeichen/Sek"
 
-#: ../mainsrc/ceditor.cc:6342
+#: ../mainsrc/ceditor.cc:6343
 msgid "No match found"
 msgstr "Keine Übereinstimmung gefunden"
 
-#: ../mainsrc/ceditor.cc:6357
+#: ../mainsrc/ceditor.cc:6358
 #, c-format
 msgid "Match found at line %d column %d."
 msgstr "Übereinstimmung in Zeile %d, Spalte %d."
 
-#: ../mainsrc/ceditor.cc:10939
+#: ../mainsrc/ceditor.cc:10940
 #, fuzzy
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
@@ -1650,29 +1650,29 @@ msgstr ""
 "Die Datei beinhaltet ASCII 0 Werte, alle Zeichen danach werden unsichtbar in "
 "der Zeile. Seien Sie vorsichtig."
 
-#: ../mainsrc/ceditor.cc:10954
+#: ../mainsrc/ceditor.cc:10955
 msgid "Parsing file"
 msgstr "Analysiere Datei"
 
-#: ../mainsrc/ceditor.cc:11709
+#: ../mainsrc/ceditor.cc:11710
 #, fuzzy
 msgid "Unhandled syntax highlighting"
 msgstr "Unbehandelte Syntaxhervorhebung"
 
-#: ../mainsrc/ceditor.cc:12640
+#: ../mainsrc/ceditor.cc:12641
 msgid "Unhandled undo"
 msgstr "Unbehandeltes Undo!"
 
-#: ../mainsrc/ceditor.cc:12851
+#: ../mainsrc/ceditor.cc:12852
 msgid "Unhandled redo"
 msgstr "Unbehandeltes Redo!"
 
-#: ../mainsrc/ceditor.cc:14052
+#: ../mainsrc/ceditor.cc:14053
 #, fuzzy, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Gespeichert: %s (%ld bytes)."
 
-#: ../mainsrc/ceditor.cc:14062
+#: ../mainsrc/ceditor.cc:14063
 msgid "Stat failed."
 msgstr "`Stat' hhat versagt!"
 
@@ -2229,7 +2229,7 @@ msgid "The file is compressed. Do you want to save with compression?"
 msgstr "Sie haben autoexec.bat geändert. Änderungen speichern?"
 
 #: ../mainsrc/doedidia.cc:285
-msgid "Searching inside a selection but nothing is selected"
+msgid "Searching inside a selection but nothing is selected. Search outside?"
 msgstr ""
 
 #: ../mainsrc/doedidia.cc:289
