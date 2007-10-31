@@ -766,8 +766,9 @@ Boolean TCEditor::doSearchReplace()
 
  if (SearchInSel && !hasVisibleSelection())
    {
-    editorDialog(edSearchAndNoSel);
-    return False;
+    if (editorDialog(edSearchAndNoSel)!=cmYes)
+       return False;
+    SearchInSel=0;
    }
 
  lock();

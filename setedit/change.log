@@ -1,4 +1,10 @@
-$Log$.
+$Log$
+Revision 1.761  2007/10/31 14:24:37  set
+* Added: [TAGs] Some basic support for namespaces. They are collected and
+shown. Looks like ectags doesn't always mark the namespace propperly (only
+when the code is enclosed using the namespace directive, but not for the
+members implementation).
+
 Revision 1.760  2007/10/03 12:46:05  set
 * Added: A tip about the project autosave feature.
 * Added: Documentation for the project autosave feature.

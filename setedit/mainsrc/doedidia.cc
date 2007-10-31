@@ -282,8 +282,8 @@ unsigned doEditDialog(int dialog, va_list arg)
          return messageBox(__("The file is compressed. Do you want to save with compression?"),mfInformation | mfYesNoCancel);
 
     case edSearchAndNoSel:
-         messageBox(__("Searching inside a selection but nothing is selected"),mfError | mfOKButton);
-         break;
+         return messageBox(__("Searching inside a selection but nothing is selected. Search outside?"),
+                           mfError | mfYesButton | mfNoButton);
 
     case edNothingSelected:
          messageBox(__("You must select some text for this operation"),mfError | mfOKButton);
