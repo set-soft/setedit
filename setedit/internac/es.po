@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-10-02 12:01-0300\n"
+"PO-Revision-Date: 2007-10-31 11:17-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "E~v~aluar"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1523 ../mainsrc/tags.cc:1751
+#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1765
 #: ../setedit/debug.cc:1633 ../setedit/edprefs.cc:474
 #: ../setedit/edprefs.cc:624 ../setedit/edprefs.cc:691
 #: ../setedit/edprefs.cc:920 ../setedit/intgrep.cc:421
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:711
-#: ../mainsrc/tags.cc:1545 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1559 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:473
 #: ../setedit/edprefs.cc:623 ../setedit/edprefs.cc:690
 #: ../setedit/edprefs.cc:919 ../setedit/intgrep.cc:420 ../setedit/tips.cc:213
@@ -474,7 +474,7 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1810 ../setedit/debug.cc:4356
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1824 ../setedit/debug.cc:4356
 #: ../setedit/debug.cc:4963 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~S~alir"
@@ -2250,7 +2250,7 @@ msgstr "Valor:"
 msgid "Associated string"
 msgstr "String asociado"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1380
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1394
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "¿Desea descartar los cambios?"
@@ -2523,147 +2523,147 @@ msgstr "Elegir un nodo"
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
-#: ../mainsrc/tags.cc:816
+#: ../mainsrc/tags.cc:825
 msgid "Wrong format for tags file!"
 msgstr "Formato incorrecto para el archivo de TAGs."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:1004
+#: ../mainsrc/tags.cc:1013
 msgid "I can try to generate a tag file, go ahead?"
 msgstr "Puedo intentar generar un archivo de TAGS ¿lo hago?"
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:1013
+#: ../mainsrc/tags.cc:1022
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 "Instale Exuberant Ctags, puede obtenerlo en http://ctags.sourceforge.net"
 
-#: ../mainsrc/tags.cc:1361
+#: ../mainsrc/tags.cc:1375
 msgid "This file is automatically maintained"
 msgstr "Este archivo es mantenido automaticamente"
 
-#: ../mainsrc/tags.cc:1390
+#: ../mainsrc/tags.cc:1404
 msgid "Select tags file"
 msgstr "Seleccione el archivo de TAGs"
 
-#: ../mainsrc/tags.cc:1406
+#: ../mainsrc/tags.cc:1420
 msgid "Use relative path for the file?"
 msgstr "¿Desea usar un camino (path) relativo?"
 
-#: ../mainsrc/tags.cc:1427
+#: ../mainsrc/tags.cc:1441
 msgid "Variables"
 msgstr "Variables"
 
-#: ../mainsrc/tags.cc:1443
+#: ../mainsrc/tags.cc:1457
 msgid "Tag files"
 msgstr "Archivos de TAGs"
 
-#: ../mainsrc/tags.cc:1545
+#: ../mainsrc/tags.cc:1559
 msgid "Jump to symbol"
 msgstr "Saltar a un símbolo"
 
-#: ../mainsrc/tags.cc:1545
+#: ../mainsrc/tags.cc:1559
 msgid "List of symbols"
 msgstr "Lista de símbolos"
 
-#: ../mainsrc/tags.cc:1546
+#: ../mainsrc/tags.cc:1560
 msgid "~S~earch members"
 msgstr "~B~uscar miembros"
 
-#: ../mainsrc/tags.cc:1578
+#: ../mainsrc/tags.cc:1592
 msgid "Unknown line"
 msgstr "Línea desconocida"
 
-#: ../mainsrc/tags.cc:1623 ../mainsrc/tags.cc:1824 ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1838 ../mainsrc/tags.cc:1854
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1623 ../mainsrc/tags.cc:1750 ../mainsrc/tags.cc:1824
-#: ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1764 ../mainsrc/tags.cc:1838
+#: ../mainsrc/tags.cc:1854
 msgid "~J~ump"
 msgstr "~S~altar"
 
-#: ../mainsrc/tags.cc:1632
+#: ../mainsrc/tags.cc:1646
 msgid "Sorry, couldn't find any member"
 msgstr "Lo lamento, no puedo hallar ningún miembro"
 
-#: ../mainsrc/tags.cc:1637
+#: ../mainsrc/tags.cc:1651
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1734
+#: ../mainsrc/tags.cc:1748
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1745
+#: ../mainsrc/tags.cc:1759
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1749
+#: ../mainsrc/tags.cc:1763
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1788
+#: ../mainsrc/tags.cc:1802
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1790
+#: ../mainsrc/tags.cc:1804
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1795
+#: ../mainsrc/tags.cc:1809
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1797
+#: ../mainsrc/tags.cc:1811
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1806
+#: ../mainsrc/tags.cc:1820
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1807
+#: ../mainsrc/tags.cc:1821
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1808
+#: ../mainsrc/tags.cc:1822
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1809
+#: ../mainsrc/tags.cc:1823
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1841
+#: ../mainsrc/tags.cc:1855
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1941
+#: ../mainsrc/tags.cc:1955
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:2071
+#: ../mainsrc/tags.cc:2085
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:2076
+#: ../mainsrc/tags.cc:2090
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:2078
+#: ../mainsrc/tags.cc:2092
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:2078
+#: ../mainsrc/tags.cc:2092
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:2079
+#: ../mainsrc/tags.cc:2093
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:2093
+#: ../mainsrc/tags.cc:2107
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"

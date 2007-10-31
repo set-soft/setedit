@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-10-02 12:01-0300\n"
+"PO-Revision-Date: 2007-10-31 11:17-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "~A~uswerten"
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1523 ../mainsrc/tags.cc:1751
+#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1765
 #: ../setedit/debug.cc:1633 ../setedit/edprefs.cc:474
 #: ../setedit/edprefs.cc:624 ../setedit/edprefs.cc:691
 #: ../setedit/edprefs.cc:920 ../setedit/intgrep.cc:421
@@ -75,7 +75,7 @@ msgstr "Deslizadores"
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
 #: ../mainsrc/sdginter.cc:192 ../mainsrc/slpinter.cc:711
-#: ../mainsrc/tags.cc:1545 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
+#: ../mainsrc/tags.cc:1559 ../setedit/advice.cc:138 ../setedit/boardmix.cc:119
 #: ../setedit/edprefs.cc:239 ../setedit/edprefs.cc:473
 #: ../setedit/edprefs.cc:623 ../setedit/edprefs.cc:690
 #: ../setedit/edprefs.cc:919 ../setedit/intgrep.cc:420 ../setedit/tips.cc:213
@@ -473,7 +473,7 @@ msgstr "~D~OS Shell"
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1810 ../setedit/debug.cc:4356
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1824 ../setedit/debug.cc:4356
 #: ../setedit/debug.cc:4963 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~B~eenden"
@@ -2359,7 +2359,7 @@ msgstr "Wert:"
 msgid "Associated string"
 msgstr "Verbundener Wert"
 
-#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1380
+#: ../mainsrc/loaddefl.cc:550 ../mainsrc/tags.cc:1394
 #: ../setedit/loadnobkp.cc:209 ../setedit/pathlist.cc:395
 msgid "Do you want to discard the changes?"
 msgstr "Wollen Sie die Änderungen verwerfen?"
@@ -2639,169 +2639,169 @@ msgstr "Wählen Sie einen Knoten"
 msgid "No INFO files for syntax help defined"
 msgstr "Keine INFO Dateien für Syntaxsuche angegeben"
 
-#: ../mainsrc/tags.cc:816
+#: ../mainsrc/tags.cc:825
 #, fuzzy
 msgid "Wrong format for tags file!"
 msgstr "Falsche Projektdatei."
 
 #. Ask to generate a new one
-#: ../mainsrc/tags.cc:1004
+#: ../mainsrc/tags.cc:1013
 msgid "I can try to generate a tag file, go ahead?"
 msgstr ""
 
 #. Not installed explain how to get it.
-#: ../mainsrc/tags.cc:1013
+#: ../mainsrc/tags.cc:1022
 msgid "Install Exuberant Ctags, download it from http://ctags.sourceforge.net"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1361
+#: ../mainsrc/tags.cc:1375
 msgid "This file is automatically maintained"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1390
+#: ../mainsrc/tags.cc:1404
 #, fuzzy
 msgid "Select tags file"
 msgstr "Datei aussuchen"
 
-#: ../mainsrc/tags.cc:1406
+#: ../mainsrc/tags.cc:1420
 msgid "Use relative path for the file?"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1427
+#: ../mainsrc/tags.cc:1441
 #, fuzzy
 msgid "Variables"
 msgstr "Verfügbar"
 
-#: ../mainsrc/tags.cc:1443
+#: ../mainsrc/tags.cc:1457
 #, fuzzy
 msgid "Tag files"
 msgstr "Speicher Datei als"
 
-#: ../mainsrc/tags.cc:1545
+#: ../mainsrc/tags.cc:1559
 #, fuzzy
 msgid "Jump to symbol"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/tags.cc:1545
+#: ../mainsrc/tags.cc:1559
 #, fuzzy
 msgid "List of symbols"
 msgstr "Wortliste"
 
-#: ../mainsrc/tags.cc:1546
+#: ../mainsrc/tags.cc:1560
 #, fuzzy
 msgid "~S~earch members"
 msgstr "~S~uche"
 
-#: ../mainsrc/tags.cc:1578
+#: ../mainsrc/tags.cc:1592
 #, fuzzy
 msgid "Unknown line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/tags.cc:1623 ../mainsrc/tags.cc:1824 ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1838 ../mainsrc/tags.cc:1854
 #, fuzzy
 msgid "Members"
 msgstr "Dezember"
 
-#: ../mainsrc/tags.cc:1623 ../mainsrc/tags.cc:1750 ../mainsrc/tags.cc:1824
-#: ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1764 ../mainsrc/tags.cc:1838
+#: ../mainsrc/tags.cc:1854
 #, fuzzy
 msgid "~J~ump"
 msgstr "~G~ruppe"
 
-#: ../mainsrc/tags.cc:1632
+#: ../mainsrc/tags.cc:1646
 #, fuzzy
 msgid "Sorry, couldn't find any member"
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:1637
+#: ../mainsrc/tags.cc:1651
 #, fuzzy
 msgid "I don't know any members for this type"
 msgstr "Nicht genug Speicher für diese Operation"
 
-#: ../mainsrc/tags.cc:1734
+#: ../mainsrc/tags.cc:1748
 #, fuzzy
 msgid "Class list"
 msgstr "Spiel~l~iste"
 
-#: ../mainsrc/tags.cc:1745
+#: ../mainsrc/tags.cc:1759
 #, fuzzy
 msgid "List of classes"
 msgstr "Dateiliste"
 
-#: ../mainsrc/tags.cc:1749
+#: ../mainsrc/tags.cc:1763
 #, fuzzy
 msgid "~V~iew"
 msgstr "~N~eu"
 
-#: ../mainsrc/tags.cc:1788
+#: ../mainsrc/tags.cc:1802
 #, fuzzy
 msgid "P~a~rents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1790
+#: ../mainsrc/tags.cc:1804
 msgid "Browse ~p~arent"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1795
+#: ../mainsrc/tags.cc:1809
 msgid "Chil~d~ren"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1797
+#: ../mainsrc/tags.cc:1811
 msgid "Browse ~c~hild"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1806
+#: ../mainsrc/tags.cc:1820
 #, fuzzy
 msgid "View"
 msgstr "InfView"
 
-#: ../mainsrc/tags.cc:1807
+#: ../mainsrc/tags.cc:1821
 msgid "~T~his class"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1808
+#: ../mainsrc/tags.cc:1822
 #, fuzzy
 msgid "This & Pa~r~ents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1809
+#: ../mainsrc/tags.cc:1823
 #, fuzzy
 msgid "~S~orted"
 msgstr "~S~ortierungsart"
 
-#: ../mainsrc/tags.cc:1841
+#: ../mainsrc/tags.cc:1855
 msgid "View ~C~lass"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1941
+#: ../mainsrc/tags.cc:1955
 #, fuzzy
 msgid "Sorry, but I can't find any class."
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:2071
+#: ../mainsrc/tags.cc:2085
 msgid "This option is only available when using projects"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2076
+#: ../mainsrc/tags.cc:2090
 #, fuzzy
 msgid "Tags options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/tags.cc:2078
+#: ../mainsrc/tags.cc:2092
 msgid "Automatic generation"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2078
+#: ../mainsrc/tags.cc:2092
 #, fuzzy
 msgid "~D~isabled"
 msgstr "~A~usschalten"
 
-#: ../mainsrc/tags.cc:2079
+#: ../mainsrc/tags.cc:2093
 #, fuzzy
 msgid "~U~sing central file"
 msgstr "Falsche Desktopdatei."
 
-#: ../mainsrc/tags.cc:2093
+#: ../mainsrc/tags.cc:2107
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 
