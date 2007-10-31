@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.760  2007/10/03 12:46:05  set
+* Added: A tip about the project autosave feature.
+* Added: Documentation for the project autosave feature.
+
 Revision 1.759  2007/10/02 15:13:46  set
 * Added: An option to automatically save the project.
 

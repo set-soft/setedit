@@ -15,6 +15,7 @@ TODO:
 * make a SortedStringableListBox
 * Itenationalize: void TTagFiles::getText(char *dest, unsigned item, int maxLen)
   and others
+* The class browser doesn't pay attention to namespaces. Can be done?
 
 ***************************************************************************/
 
@@ -431,6 +432,7 @@ void TSpTagCollection::freeItem(void *item)
  stTag *p=(stTag *)item;
  DeleteArray(p->id);
  DeleteArray(p->partof);
+ DeleteArray(p->nspace);
  if (!(p->flags & sttFgLine))
     DeleteArray(p->regex);
  delete p;
@@ -546,7 +548,10 @@ void TSpTagCollection::getText(char *buf, void *item, int maxLen)
        default:
             idP='?';
       }
-    CLY_snprintf(preBuf,maxLen,"%s (%s:%c)",p->id,p->partof,idP);
+    if (p->nspace)
+       CLY_snprintf(preBuf,maxLen,"%s (%s:%s:%c)",p->id,p->nspace,p->partof,idP);
+    else
+       CLY_snprintf(preBuf,maxLen,"%s (%s:%c)",p->id,p->partof,idP);
    }
  else
    {
@@ -706,6 +711,10 @@ int TSpTagCollection::addValue(char *s, stTagFile *tf)
       {
        p->partof=newStr(e+6);
        p->flags|=sttFgClass;
+      }
+    else if (strncmp(e,"namespace:",10)==0)
+      {
+       p->nspace=newStr(e+10);
       }
     else if (strncmp(e,"struct:",7)==0)
       {
@@ -1283,7 +1292,12 @@ void TTagMembersCol::getText(char *dest, unsigned item, int maxLen)
  stTag *p=(stTag *)at(item);
  int level=(long)levels->at(item);
  if (level)
-    CLY_snprintf(dest,maxLen,"%s (%s) %d",p->id,p->partof,level);
+   {
+    if (p->nspace)
+       CLY_snprintf(dest,maxLen,"%s (%s::%s) %d",p->id,p->nspace,p->partof,level);
+    else
+       CLY_snprintf(dest,maxLen,"%s (%s) %d",p->id,p->partof,level);
+   }
  else
     CLY_snprintf(dest,maxLen,"%s",p->id);
 }

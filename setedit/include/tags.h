@@ -45,6 +45,7 @@ struct stTag
   unsigned line;
  };
  const char *partof;
+ const char *nspace;
  stTagFile  *tagFile;
  uchar lang;
  uchar kind;
