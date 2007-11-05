@@ -25,6 +25,7 @@ public:
  void *read(ipstream& is);
 
  ushort wS, hS;
+ char *FullName;
 
  const char *streamableName() const
      { return name; }

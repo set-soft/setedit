@@ -667,6 +667,10 @@ void TDskWinPrj::setFileName(char *file)
    {
     delete[] window->FileName;
     window->FileName=newStr(file);
+    char b[PATH_MAX];
+    strcpy(b,file);
+    CLY_fexpand(b);
+    FullName=newStr(b);
     ProjectList->analizeReference(file);
    }
 }
@@ -684,6 +688,7 @@ TDskWinPrj::TDskWinPrj(char *fName)
  else
     r.a.y=r.b.y-7;
  view=window=new TEditorProjectWindow(r,__("Project Window"));
+ FullName=NULL;
  setFileName(fName);
  type=dktPrj;
  CanBeSaved=0;
@@ -695,6 +700,7 @@ TDskWinPrj::TDskWinPrj(char *fName)
 TDskWinPrj::~TDskWinPrj()
 {
  CLY_destroy(window);
+ delete[] FullName;
  editorApp->SetTitle();
 }
 
@@ -799,7 +805,7 @@ static void UpdateResume(void *p, void *)
 
 static void SaveOnlyProject(void)
 {
- fpstream *f=new fpstream(prjWin->getFileName(),CLY_IOSOut | CLY_IOSBin);
+ fpstream *f=new fpstream(prjWin->FullName,CLY_IOSOut | CLY_IOSBin);
 
  if (f)
    {
@@ -816,7 +822,7 @@ static void SaveOnlyProject(void)
     if (!f)
       {
        messageBox(__("Could not save the project."), mfOKButton | mfError);
-       ::remove(prjWin->getFileName());
+       ::remove(prjWin->FullName);
       }
     else
       {
@@ -850,7 +856,7 @@ void SaveProject(void)
  if (PrjExists())
    {
     SaveOnlyProject();
-    s=strdup(prjWin->getFileName());
+    s=strdup(prjWin->FullName);
     if (s)
       {
        ReplaceExtension(s,DeskTopFileExt,ProjectFileExt);

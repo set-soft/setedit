@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.762  2007/10/31 16:25:05  set
+* Modified: [Search] When searching inside a selection and nothing is
+selected now we offer to search outside.
+
 Revision 1.761  2007/10/31 14:24:37  set
 * Added: [TAGs] Some basic support for namespaces. They are collected and
 shown. Looks like ectags doesn't always mark the namespace propperly (only
