@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-10-31 13:21-0300\n"
+"PO-Revision-Date: 2007-11-05 14:06-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -6837,7 +6837,7 @@ msgstr "Keine Dateien im Projekt"
 msgid "Add File"
 msgstr "Datei hinzufügen"
 
-#: ../setedit/edprj.cc:645 ../setedit/edprj.cc:686
+#: ../setedit/edprj.cc:645 ../setedit/edprj.cc:690
 msgid "Project Window"
 msgstr "Projektfenster"
 
@@ -6845,52 +6845,52 @@ msgstr "Projektfenster"
 msgid " 1 Project Window"
 msgstr " 1 Projektfenster"
 
-#: ../setedit/edprj.cc:738
+#: ../setedit/edprj.cc:744
 msgid "Could not open project file"
 msgstr "Konnte Projektdatei nicht öffnen"
 
-#: ../setedit/edprj.cc:745
+#: ../setedit/edprj.cc:751
 msgid "Wrong project file."
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:780
+#: ../setedit/edprj.cc:786
 msgid "Error reading project file"
 msgstr "Fehler beim Lesen der Projektdatei"
 
-#: ../setedit/edprj.cc:782 ../setedit/edprj.cc:973
+#: ../setedit/edprj.cc:788 ../setedit/edprj.cc:979
 #, fuzzy
 msgid "Project: "
 msgstr "~P~rojekt"
 
-#: ../setedit/edprj.cc:818
+#: ../setedit/edprj.cc:824
 msgid "Could not save the project."
 msgstr "Konnte das Projekt nicht speichern."
 
-#: ../setedit/edprj.cc:918
+#: ../setedit/edprj.cc:924
 msgid "Open Project"
 msgstr "Projekt öffnen"
 
-#: ../setedit/edprj.cc:1073
+#: ../setedit/edprj.cc:1079
 #, fuzzy, c-format
 msgid "Failed to open the file %s"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1345
+#: ../setedit/edprj.cc:1351
 #, fuzzy
 msgid "Export project items"
 msgstr "Export Optionen"
 
-#: ../setedit/edprj.cc:1382
+#: ../setedit/edprj.cc:1388
 #, fuzzy
 msgid "Import project items"
 msgstr "Falsche Projektdatei."
 
-#: ../setedit/edprj.cc:1390
+#: ../setedit/edprj.cc:1396
 #, fuzzy
 msgid "Unable to open file"
 msgstr "Konnte die Listendatei nicht öffnen"
 
-#: ../setedit/edprj.cc:1426
+#: ../setedit/edprj.cc:1432
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr ""

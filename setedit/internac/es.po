@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-10-31 13:21-0300\n"
+"PO-Revision-Date: 2007-11-05 14:06-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2129,7 +2129,9 @@ msgstr "El archivo está comprimido. ¿Desea guardarlo comprimido?"
 
 #: ../mainsrc/doedidia.cc:285
 msgid "Searching inside a selection but nothing is selected. Search outside?"
-msgstr "Búsqueda dentro de una selección pero no hay nada seleccionado. ¿Buscar fuera?"
+msgstr ""
+"Búsqueda dentro de una selección pero no hay nada seleccionado. ¿Buscar "
+"fuera?"
 
 #: ../mainsrc/doedidia.cc:289
 msgid "You must select some text for this operation"
@@ -6431,7 +6433,7 @@ msgstr "El archivo ya está en el proyecto"
 msgid "Add File"
 msgstr "Agregar Archivo"
 
-#: ../setedit/edprj.cc:645 ../setedit/edprj.cc:686
+#: ../setedit/edprj.cc:645 ../setedit/edprj.cc:690
 msgid "Project Window"
 msgstr "Ventana del Proyecto"
 
@@ -6439,48 +6441,48 @@ msgstr "Ventana del Proyecto"
 msgid " 1 Project Window"
 msgstr " 1 Ventana del Proyecto"
 
-#: ../setedit/edprj.cc:738
+#: ../setedit/edprj.cc:744
 msgid "Could not open project file"
 msgstr "No puedo abrir el archivo de proyecto"
 
-#: ../setedit/edprj.cc:745
+#: ../setedit/edprj.cc:751
 msgid "Wrong project file."
 msgstr "Archivo de proyecto incorrecto."
 
-#: ../setedit/edprj.cc:780
+#: ../setedit/edprj.cc:786
 msgid "Error reading project file"
 msgstr "Error al leer el archivo de proyecto"
 
-#: ../setedit/edprj.cc:782 ../setedit/edprj.cc:973
+#: ../setedit/edprj.cc:788 ../setedit/edprj.cc:979
 msgid "Project: "
 msgstr "Proyecto: "
 
-#: ../setedit/edprj.cc:818
+#: ../setedit/edprj.cc:824
 msgid "Could not save the project."
 msgstr "No puedo crear el archivo de proyecto."
 
-#: ../setedit/edprj.cc:918
+#: ../setedit/edprj.cc:924
 msgid "Open Project"
 msgstr "Abrir Proyecto"
 
-#: ../setedit/edprj.cc:1073
+#: ../setedit/edprj.cc:1079
 #, c-format
 msgid "Failed to open the file %s"
 msgstr "No puedo abrir la lista de archivos %s"
 
-#: ../setedit/edprj.cc:1345
+#: ../setedit/edprj.cc:1351
 msgid "Export project items"
 msgstr "Exportar los items del proyecto"
 
-#: ../setedit/edprj.cc:1382
+#: ../setedit/edprj.cc:1388
 msgid "Import project items"
 msgstr "Importar items al proyecto"
 
-#: ../setedit/edprj.cc:1390
+#: ../setedit/edprj.cc:1396
 msgid "Unable to open file"
 msgstr "No pude abrir el archivo"
 
-#: ../setedit/edprj.cc:1426
+#: ../setedit/edprj.cc:1432
 #, c-format
 msgid "Results: added %d, already included: %d, rejected %d"
 msgstr "Resultados: agregados %d, ya estaban %d, rechazados %d"
