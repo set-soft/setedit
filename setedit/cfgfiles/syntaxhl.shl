@@ -2877,3 +2877,18 @@ UserKeywords=TCNT1,TCNT1L,TCNT1H,TCCR1B,TCCR1A,SFIOR,OSCCAL,TCNT0,TCCR0,MCUCSR,M
 UserKeywords=SPMCR,TIFR,TIMSK,GIFR,GIMSK,GICR
 End
 
+# ---------------- USB HID Report ----------------
+#  USB HID Report descriptor language
+#
+Name=USB HID Report
+Files=hid
+EmacsModes=hid
+EOLComment1=;
+EOLComment2=//
+HexMarker=0x
+Symbols1=(),
+Keywords=Input,Output,Collection,Feature,End,Collection
+Keywords=Usage,Page,Logical,Minimum,Maximum,Physical,Unit,Exponent
+Keywords=Report,Size,ID,Count,Push,Pop,Designator,Index,String,Delimiter
+End
+

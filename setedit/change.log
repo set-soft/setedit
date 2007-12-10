@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.763  2007/11/05 17:10:11  set
+* Fixed: When autosaving the project it could get stored in the wrong place
+if the editor changed its working directory. Now we use the full qualified
+file name.
+
 Revision 1.762  2007/10/31 16:25:05  set
 * Modified: [Search] When searching inside a selection and nothing is
 selected now we offer to search outside.
