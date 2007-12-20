@@ -2892,3 +2892,32 @@ Keywords=Usage,Page,Logical,Minimum,Maximum,Physical,Unit,Exponent
 Keywords=Report,Size,ID,Count,Push,Pop,Designator,Index,String,Delimiter
 End
 
+# ---------------- USB Descriptor ----------------
+#  USB Descriptors language
+#
+Name=USB Descriptors
+Files=usbdes,usbd
+EmacsModes=USBDes
+EOLComment1=;
+EOLComment2=#
+HexMarker=0x
+Symbols1=(),=|
+AllowedInsideNames=-.
+Keywords=Input,Output,Collection,Feature,End,Collection
+Keywords=Usage,Page,Logical,Minimum,Maximum,Physical,Unit,Exponent
+Keywords=Report,Size,ID,Count,Push,Pop,Designator,Index,String,Delimiter
+Keywords=bLength,bDescriptorType,wTotalLength,bNumInterfaces
+Keywords=bConfigurationValue,iConfiguration,bmAttributes,bReserved,bMaxPower
+Keywords=Device,Configuration,StringZero,String,Interface,Endpoint,HID,Report
+Keywords=bcdUSB,bDeviceClass,bDeviceSubClass,bDeviceProtocol,bMaxPaquetSize0
+Keywords=idVendor,idProduct,bcdDevice,iManufacturer,iProduct,iSerialNumber
+Keywords=bNumConfigurations,bEndpointAddress,bReserved0
+Keywords=bEndpointDir,bmAttributes,wMaxPacketSize,bAdditionalTrans,bReserved
+Keywords=bInterval,bThisDescriptorType,bcdHID,bCountryCode,bNumDescriptors
+Keywords=wDescriptorLength,bInterfaceNumber,bAlternateSettings,bNumEndpoints
+Keywords=bInterfaceClass,bInterfaceSubClass,bInterfaceProtocol,iInterface
+Keywords=External,bString,wLANGID,Descriptor,DEnd,constant,size_all,number
+Keywords=flags,load,bcd,class,subclass,protocol,enum,enum_fix,id_type,id_size
+Keywords=my_id,unicode
+End
+

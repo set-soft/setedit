@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.764  2007/12/10 14:53:23  set
+* Added: [SHL] USB HID Report descriptor language.
+
 Revision 1.763  2007/11/05 17:10:11  set
 * Fixed: When autosaving the project it could get stored in the wrong place
 if the editor changed its working directory. Now we use the full qualified
