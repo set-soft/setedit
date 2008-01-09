@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.765  2007/12/20 14:02:33  set
+* Added: [SHL] USB Descriptors language.
+
 Revision 1.764  2007/12/10 14:53:23  set
 * Added: [SHL] USB HID Report descriptor language.
 
