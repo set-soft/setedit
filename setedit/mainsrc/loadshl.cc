@@ -1299,10 +1299,11 @@ int SHLNumberOf(char *name)
 char *SHLConstructEmacsModeComment(TCEditor &e, int &sizeSt, int &sizeEnd)
 {
  int shl=e.SHLValueSelected;
- if (shl<0 || shl>=e.SHLCant || !e.SHLArray[shl].EmacsModes)
+ char *list=e.SHLArray[shl].EmacsModes;
+
+ if (shl<0 || shl>=e.SHLCant || !list)
     return 0;
 
- char *list=e.SHLArray[shl].EmacsModes;
  char *tok=strtok(list,",");
  if (!tok)
     return 0;

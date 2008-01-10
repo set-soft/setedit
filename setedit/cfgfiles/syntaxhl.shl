@@ -2898,11 +2898,15 @@ End
 Name=USB Descriptors
 Files=usbdes,usbd,usbreq
 EmacsModes=USBDes
-EOLComment1=;
-EOLComment2=#
+EOLComment1=#
+EOLComment2=;
+String1="
+String2='
 HexMarker=0x
 Symbols1=(),=|
 AllowedInsideNames=-.
+NLIndent=FirstWord,Descriptor,,,AutoIndent,2
+NLIndent=FirstWord,Request,,,AutoIndent,2
 Keywords=Input,Output,Collection,Feature,End,Collection
 Keywords=Usage,Page,Logical,Minimum,Maximum,Physical,Unit,Exponent
 Keywords=Report,Size,ID,Count,Push,Pop,Designator,Index,String,Delimiter
@@ -2934,7 +2938,7 @@ End
 Name=USB Transactions
 Files=usbtra
 EmacsModes=USBTra
-EOLComment2=#
+EOLComment1=#
 Symbols1=,
 Keywords=in,out,setup,ack,nack,stall,data0,data1,empty,reset
 End
