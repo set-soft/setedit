@@ -17,14 +17,14 @@ little bit tricky.@*
 /************************** Feriados *********************************/
 // Domingo,Sábado y Lunes no se corren, Martes y Miércoles pasan al Lunes de
 // esa semana y Jueves y Viernes al Lunes de la siguiente
-#define nFeriados 11
+#define nFeriados 12
 static int Corrimientos[]={0,0,-1,-2,+4,+3,0};
 static char Feriados[nFeriados][2]=
-  {{1,1},{2,4},{1,5},{25,5},{10,6},{20,6},{9,7},{17,8},{12,10},{8,12},{25,12}};
+  {{1,1},{24,3},{2,4},{1,5},{25,5},{10,6},{20,6},{9,7},{17,8},{12,10},{8,12},{25,12}};
 static char SeCorre[nFeriados]=
-  {    0,    1,    0,     0,     1,     1,    0,     1,      1,     0,     0};
+  {    0,    0,    0,    0,     0,     1,     1,    0,     1,      1,     0,     0};
 static char ADonde[nFeriados]=
-  {    0,    1,    0,     0,     1,     2,    0,     2,      1,     0,     0};
+  {    0,    0,    0,    0,     0,     1,     2,    0,     2,      1,     0,     0};
 static const char *Descripciones[nFeriados]=
 {
  "Primer día del año",
@@ -52,6 +52,9 @@ int CalculaFeriado(int nFeriado, int nAno, int *nDiaNum, int *nDiaSem,
  if (nDia==10 && nMes==6 && nAno>=2002)
     return 0;
  if (nDia==2 && nMes==4 && nAno<2002)
+    return 0;
+ // Este feriado no se bien en que año entró, en 2008 seguro que está
+ if (nDia==24 && nMes==3 && nAno<2008)
     return 0;
  *nDiaNum=Day2Number(nDia,nMes,nAno);
  *nDiaSem=WeekDay(nDia,nMes,nAno);

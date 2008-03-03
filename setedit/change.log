@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.766  2008/01/09 13:29:39  set
+* Added: [SHL] USB Transactions language.
+* Added: [SHL] More USB Descriptor language keywords.
+
 Revision 1.765  2007/12/20 14:02:33  set
 * Added: [SHL] USB Descriptors language.
 
