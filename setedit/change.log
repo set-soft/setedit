@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.767  2008/03/03 17:51:03  set
+* Fixed: [Holidays] Argentine holidays for 2008.
+
 Revision 1.766  2008/01/09 13:29:39  set
 * Added: [SHL] USB Transactions language.
 * Added: [SHL] More USB Descriptor language keywords.

@@ -228,6 +228,11 @@ Boolean LoadFileUnderCursor(char *lineStart, char *cursor, unsigned l,
     if (changed)
        result=FindFile(name,fullName,reference);
    }
+ while (!result && lname && !TVCodePage::isAlNum(name[lname-1]))
+   {// We failed and the last char isn't alphanumeric
+    name[--lname]=0;
+    result=FindFile(name,fullName,reference);
+   }
  if (result)
    {
     if (isImage)
