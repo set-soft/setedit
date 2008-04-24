@@ -563,7 +563,6 @@ void IncCleanUp()
  uint32 scrlOps=Options & edsmScrollMask;
  if (!PendingCleanUp)
    {
-    printf("Borrando\n");
     TView::disableCommand(cmeStopChild);
     DumpFileToMessageEnd();
     RemoveErrorFile();
