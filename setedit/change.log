@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.768  2008/03/13 16:08:29  set
+* Modified: The load file under cursor routine to be smarter when the file
+name contains extra characters at the end, if they aren't alphanumeric we
+try removing them.
+
 Revision 1.767  2008/03/03 17:51:03  set
 * Fixed: [Holidays] Argentine holidays for 2008.
 
