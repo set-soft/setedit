@@ -671,14 +671,25 @@ CleanUp:
 
 static void AddIntegers(TLispInteger *Val,TMLIBase *o,int start ,int cant, int startret)
 {
- LocVarInt(NewVal);
+ LocVar(NewVal);
  int i,ret;
 
  ret=Val->val;
  for (i=0; i<cant; i++)
     {
-     GetInteger(i,NewVal);
-     ret+=NewVal->val;
+     GetVar(i,NewVal);
+     switch (GroupTypeOf(NewVal))
+       {
+        case MLIGString:
+             ret+=strtol(((TLispString *)NewVal)->str,NULL,0);
+             break;
+        case MLIGInteger:
+             ret+=((TLispInteger *)NewVal)->val;
+             break;
+        default:
+             o->Error=MLITypeParam;
+             goto CleanUp;
+       }
      destroyFloatVar(NewVal);
      NewVal=NULL;
     }

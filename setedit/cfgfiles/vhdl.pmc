@@ -755,8 +755,8 @@ Name: File header (long)
  "---- Target FPGA:      @{FPGA;Spartan II (XC2S100-5-PQ208)}\n"
  "---- Language:         VHDL\n"
  "---- Wishbone:         @{Wishbone;MASTER (rev B.3)}\n"
- "---- Synthesis tools:  @{Synthesis tools;Xilinx Release 6.2.03i - xst G.31a}\n"
- "---- Simulation tools: @{Simulation tools;GHDL [Sokcho edition] (0.1x)}\n"
+ "---- Synthesis tools:  @{Synthesis tools;Xilinx Release 9.2.03i - xst J.39}\n"
+ "---- Simulation tools: @{Simulation tools;GHDL [Sokcho edition] (0.2x)}\n"
  "---- Text editor:      SETEdit 0.5.x\n"
  "----\n"
 ; sLisp code to make the comment look like a "box" (16 lines)
@@ -770,14 +770,6 @@ Name: File header (long)
     "(SendCommands cmcLineStart cmcLineDown)"
    ")}"
  "------------------------------------------------------------------------------\n"
- "--\n"
- "-- CVS Revision History\n"
- "--\n"
-; We need to fool CVS ;-)
- "-- $"
- "Log$\n"
- "--\n"
- "--\n"
 
 Trigger: "ri"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1

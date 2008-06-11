@@ -6456,7 +6456,7 @@ altered.
 @c --------------------------------------------------------------
 @subsection OpenFile
 
-  (OpenFile @var{string})
+  (OpenFile @var{string} [@var{select}])
 @p{}
 
   Opens the file @var{string} in a window and makes it the current one. If the
@@ -6464,6 +6464,8 @@ file doesn't exist it does nothing. If the file fails to be loaded returns 0.
 If the file was already opened returns 2 and if the file was opened 1.
 @p{}
 
+  If the @var{select} value isn't 0 the opened file is selected.
+@p{}
 
 @c --------------------------------------------------------------
 @subsection ReplaceAgain

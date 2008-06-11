@@ -1,6 +1,6 @@
 /**[txh]********************************************************************
 
-  Copyright (c) 2001-2007 by Salvador Eduardo Tropea.
+  Copyright (c) 2001-2008 by Salvador Eduardo Tropea.
   This program is covered by the GPL license.
 
   Description:
@@ -405,6 +405,42 @@ int SearchSGMLIDs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       {
        AddFunc(bfNomFun,l+1,Line,-1);
        funcs++;
+      }
+   }
+ return funcs;
+}
+
+int SearchUSB(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
+{
+ unsigned lineFound=0,funcs=0,tL=0;
+ bool ready=false;
+ Index=0; Line=0; Len=len; Buffer=(uchar *)buffer;
+ while (Index<len)
+   {
+    GetLine(); Line++;
+    char *s=strtok(bfBuffer," \t");
+    if (!s) continue;
+    if (strcasecmp(s,"Descriptor")==0 ||
+        strcasecmp(s,"Request")==0)
+      {
+       if (ready)
+         {
+          AddFunc(bfNomFun,tL+1,lineFound,Line);
+          funcs++;
+         }
+       char *pos=strtok(NULL," \t");
+       if (pos)
+         {
+          tL=CLY_snprintf(bfNomFun,MaxLenWith0,"%s (%s)",pos,s);
+          lineFound=Line;
+         }
+       ready=true;
+      }
+    else if (ready && (strcasecmp(s,"DEnd")==0 || strcasecmp(s,"REnd")==0))
+      {
+       AddFunc(bfNomFun,tL+1,lineFound,Line);
+       funcs++;
+       ready=false;
       }
    }
  return funcs;

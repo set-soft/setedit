@@ -1,6 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2007 by Salvador E. Tropea (SET)
+  Busca Funciones (BuFun), Copyright (c) 1996-2008 by Salvador E. Tropea (SET)
 
   int SelectFunctionToJump(char *b, unsigned l)
 
@@ -668,6 +668,7 @@ static stFuncsSHL FuncsAvail[]=
  {"Makefile",SearchMakeLabels},
  {"HTML",SearchHTMLAnchors},
  {"DocBook (SGML)",SearchSGMLIDs},
+ {"USB Descriptors",SearchUSB},
  {0,SearchCFuncs}
 };
 

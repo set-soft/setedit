@@ -1,4 +1,4 @@
-/* Copyright (C) 2000-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 2000-2008 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -57,5 +57,6 @@ extern int SearchKICADLib(char *buffer, unsigned len, int mode, tAddFunc AddFunc
 extern int SearchMakeLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 extern int SearchHTMLAnchors(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 extern int SearchSGMLIDs(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
+extern int SearchUSB(char *buffer, unsigned len, int mode, tAddFunc AddFunc);
 
 #endif // BUFUN_H_INCLUDED
