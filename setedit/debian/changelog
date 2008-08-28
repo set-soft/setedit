@@ -1,8 +1,11 @@
 setedit (0.5.5-7) unstable; urgency=low
 
-  * Fixed: Rectangular selection delete and move problems.
+  * Undo changes made by Salvador which where the removal of the suggests of
+    doc-base and addition of suggests of gqview, glibc-doc, xpdf and grep. If
+    the editor can use xpdf, gqview and grep please tell me and I will add
+    them again.
 
- -- Salvador E. Tropea <salvador@inti.gov.ar>  Tue, 29 May 2007 14:17:03 -0300
+ -- Ivan Baldo <ibaldo@adinet.com.uy>  Wed, 27 Aug 2008 21:47:59 -0300
 
 setedit (0.5.5-6) unstable; urgency=low
 

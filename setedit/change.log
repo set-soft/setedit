@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.769  2008/04/24 15:47:41  set
+* Fixed: When the editor finished running a child while displaying a modal
+dialog the temporal file used to collect the child output was deleted, but
+the file for the following childs didn't.
+
 Revision 1.768  2008/03/13 16:08:29  set
 * Modified: The load file under cursor routine to be smarter when the file
 name contains extra characters at the end, if they aren't alphanumeric we
