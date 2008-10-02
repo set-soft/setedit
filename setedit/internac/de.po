@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-11-22 12:12-0300\n"
+"PO-Revision-Date: 2008-10-02 11:48-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "~A~uswerten"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:742
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:743
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1765
+#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1767
 #: ../setedit/debug.cc:1633 ../setedit/edprefs.cc:474
 #: ../setedit/edprefs.cc:624 ../setedit/edprefs.cc:691
 #: ../setedit/edprefs.cc:920 ../setedit/intgrep.cc:421
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:741
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:742
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
@@ -473,7 +473,7 @@ msgstr "~D~OS Shell"
 msgid "S~h~ell"
 msgstr "~A~lles"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1824 ../setedit/debug.cc:4356
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1826 ../setedit/debug.cc:4356
 #: ../setedit/debug.cc:4963 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~B~eenden"
@@ -1513,43 +1513,43 @@ msgstr "Fehler"
 msgid "You must select the editor window first"
 msgstr "Sie müssen zuerst das Editorfenster anwählen"
 
-#: ../mainsrc/bufun.cc:727
+#: ../mainsrc/bufun.cc:728
 msgid "Jump to function"
 msgstr "Gehe zu Funktion"
 
-#: ../mainsrc/bufun.cc:737
+#: ../mainsrc/bufun.cc:738
 msgid "List of functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:743 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:744 ../settvuti/tdiagaid.cc:174
 #, fuzzy
 msgid "~B~rowse"
 msgstr "S~c~hließen"
 
-#: ../mainsrc/bufun.cc:772
+#: ../mainsrc/bufun.cc:773
 #, fuzzy
 msgid "Sort mode"
 msgstr "Bildschirm~m~odus"
 
-#: ../mainsrc/bufun.cc:774
+#: ../mainsrc/bufun.cc:775
 #, fuzzy
 msgid "Sort the functions"
 msgstr "Funktionenliste"
 
-#: ../mainsrc/bufun.cc:776
+#: ../mainsrc/bufun.cc:777
 #, fuzzy
 msgid "~A~lphabetically"
 msgstr "~A~lphabetisch"
 
-#: ../mainsrc/bufun.cc:777
+#: ../mainsrc/bufun.cc:778
 msgid "by ~L~ine"
 msgstr ""
 
-#: ../mainsrc/bufun.cc:812
+#: ../mainsrc/bufun.cc:813
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm... Irgendwie kann ich hier keine Funktionen entdecken..."
 
-#: ../mainsrc/bufun.cc:840
+#: ../mainsrc/bufun.cc:841
 #, fuzzy
 msgid "Functions:"
 msgstr "Aktion"
@@ -2381,7 +2381,7 @@ msgid "No file name under cursor"
 msgstr ""
 
 #. Generate a message indicating we couldn't load it
-#: ../mainsrc/loadfunc.cc:244
+#: ../mainsrc/loadfunc.cc:249
 #, fuzzy, c-format
 msgid "Can't find \"%s\" file"
 msgstr "Zielverzeichnis"
@@ -2403,7 +2403,7 @@ msgstr ""
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../mainsrc/loadshl.cc:1456
+#: ../mainsrc/loadshl.cc:1457
 #, fuzzy
 msgid "Errors while loading syntax highlight file"
 msgstr "Fehler beim Lesen der Tastaturkonfiguration"
@@ -2697,13 +2697,13 @@ msgstr "~S~uche"
 msgid "Unknown line"
 msgstr "Unbekannt"
 
-#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1838 ../mainsrc/tags.cc:1854
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1840 ../mainsrc/tags.cc:1856
 #, fuzzy
 msgid "Members"
 msgstr "Dezember"
 
-#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1764 ../mainsrc/tags.cc:1838
-#: ../mainsrc/tags.cc:1854
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1766 ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1856
 #, fuzzy
 msgid "~J~ump"
 msgstr "~G~ruppe"
@@ -2718,90 +2718,90 @@ msgstr "Kann autoexec.bat nicht finden"
 msgid "I don't know any members for this type"
 msgstr "Nicht genug Speicher für diese Operation"
 
-#: ../mainsrc/tags.cc:1748
+#: ../mainsrc/tags.cc:1750
 #, fuzzy
 msgid "Class list"
 msgstr "Spiel~l~iste"
 
-#: ../mainsrc/tags.cc:1759
+#: ../mainsrc/tags.cc:1761
 #, fuzzy
 msgid "List of classes"
 msgstr "Dateiliste"
 
-#: ../mainsrc/tags.cc:1763
+#: ../mainsrc/tags.cc:1765
 #, fuzzy
 msgid "~V~iew"
 msgstr "~N~eu"
 
-#: ../mainsrc/tags.cc:1802
+#: ../mainsrc/tags.cc:1804
 #, fuzzy
 msgid "P~a~rents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1804
+#: ../mainsrc/tags.cc:1806
 msgid "Browse ~p~arent"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1809
+#: ../mainsrc/tags.cc:1811
 msgid "Chil~d~ren"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1811
+#: ../mainsrc/tags.cc:1813
 msgid "Browse ~c~hild"
-msgstr ""
-
-#: ../mainsrc/tags.cc:1820
-#, fuzzy
-msgid "View"
-msgstr "InfView"
-
-#: ../mainsrc/tags.cc:1821
-msgid "~T~his class"
 msgstr ""
 
 #: ../mainsrc/tags.cc:1822
 #, fuzzy
+msgid "View"
+msgstr "InfView"
+
+#: ../mainsrc/tags.cc:1823
+msgid "~T~his class"
+msgstr ""
+
+#: ../mainsrc/tags.cc:1824
+#, fuzzy
 msgid "This & Pa~r~ents"
 msgstr "~D~rucken"
 
-#: ../mainsrc/tags.cc:1823
+#: ../mainsrc/tags.cc:1825
 #, fuzzy
 msgid "~S~orted"
 msgstr "~S~ortierungsart"
 
-#: ../mainsrc/tags.cc:1855
+#: ../mainsrc/tags.cc:1857
 msgid "View ~C~lass"
 msgstr ""
 
-#: ../mainsrc/tags.cc:1955
+#: ../mainsrc/tags.cc:1957
 #, fuzzy
 msgid "Sorry, but I can't find any class."
 msgstr "Kann autoexec.bat nicht finden"
 
-#: ../mainsrc/tags.cc:2085
+#: ../mainsrc/tags.cc:2090
 msgid "This option is only available when using projects"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2090
+#: ../mainsrc/tags.cc:2095
 #, fuzzy
 msgid "Tags options"
 msgstr "~E~xtraeinstellungen"
 
-#: ../mainsrc/tags.cc:2092
+#: ../mainsrc/tags.cc:2097
 msgid "Automatic generation"
 msgstr ""
 
-#: ../mainsrc/tags.cc:2092
+#: ../mainsrc/tags.cc:2097
 #, fuzzy
 msgid "~D~isabled"
 msgstr "~A~usschalten"
 
-#: ../mainsrc/tags.cc:2093
+#: ../mainsrc/tags.cc:2098
 #, fuzzy
 msgid "~U~sing central file"
 msgstr "Falsche Desktopdatei."
 
-#: ../mainsrc/tags.cc:2107
+#: ../mainsrc/tags.cc:2112
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 
@@ -2966,91 +2966,91 @@ msgid "Return value:"
 msgstr "Unbekannter Wert"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1618 ../setedit/debug.cc:1442 ../setedit/debug.cc:1815
+#: ../sdg/mli.cc:1629 ../setedit/debug.cc:1442 ../setedit/debug.cc:1815
 #: ../setedit/debug.cc:7455 ../setedit/debug.cc:8804
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../sdg/mli.cc:1623
+#: ../sdg/mli.cc:1634
 msgid "parser"
 msgstr "parser"
 
-#: ../sdg/mli.cc:1624
+#: ../sdg/mli.cc:1635
 msgid "syntax"
 msgstr "Syntax"
 
-#: ../sdg/mli.cc:1629
+#: ../sdg/mli.cc:1640
 #, fuzzy
 msgid "string not closed"
 msgstr "Zeichenkette nicht beendent"
 
-#: ../sdg/mli.cc:1630
+#: ../sdg/mli.cc:1641
 #, fuzzy
 msgid "no ) at end of code"
 msgstr "kein ) Befehlsende"
 
-#: ../sdg/mli.cc:1631
+#: ../sdg/mli.cc:1642
 msgid "no starting ("
 msgstr "keine beginnende ("
 
-#: ../sdg/mli.cc:1632
+#: ../sdg/mli.cc:1643
 msgid "wrong number"
 msgstr "Falsche Nummer"
 
-#: ../sdg/mli.cc:1633
+#: ../sdg/mli.cc:1644
 msgid "unknown value"
 msgstr "Unbekannter Wert"
 
-#: ../sdg/mli.cc:1634
+#: ../sdg/mli.cc:1645
 msgid "stack overflow"
 msgstr ""
 
-#: ../sdg/mli.cc:1639
+#: ../sdg/mli.cc:1650
 msgid "command where a parameter was expected"
 msgstr "Befehl, wo Parameter erwartet war"
 
-#: ../sdg/mli.cc:1640
+#: ../sdg/mli.cc:1651
 msgid "command expected"
 msgstr "Befehl erwartet"
 
-#: ../sdg/mli.cc:1641
+#: ../sdg/mli.cc:1652
 msgid "parameter after command"
 msgstr "Parameter nach Befehl"
 
-#: ../sdg/mli.cc:1642
+#: ../sdg/mli.cc:1653
 msgid "wrong number of parameters"
 msgstr "Falsche Anzahl der Parameter"
 
-#: ../sdg/mli.cc:1643
+#: ../sdg/mli.cc:1654
 msgid "wrong parameter type"
 msgstr "Falscher Parametertyp"
 
-#: ../sdg/mli.cc:1644
+#: ../sdg/mli.cc:1655
 msgid "undefined variable"
 msgstr "Undefinierte Variable"
 
-#: ../sdg/mli.cc:1645
+#: ../sdg/mli.cc:1656
 msgid "undefined symbol"
 msgstr "Undefiniertes Symbol"
 
-#: ../sdg/mli.cc:1646
+#: ../sdg/mli.cc:1657
 msgid "operation not defined"
 msgstr "Operation nicht definiert"
 
-#: ../sdg/mli.cc:1647
+#: ../sdg/mli.cc:1658
 #, fuzzy
 msgid "invalid character for a name"
 msgstr "Extra Zeichen in Zeile"
 
-#: ../sdg/mli.cc:1648
+#: ../sdg/mli.cc:1659
 msgid "invalid key sequence"
 msgstr ""
 
-#: ../sdg/mli.cc:1649
+#: ../sdg/mli.cc:1660
 msgid "PCRE not available"
 msgstr ""
 
-#: ../sdg/mli.cc:1650
+#: ../sdg/mli.cc:1661
 #, fuzzy
 msgid "PCRE compile error"
 msgstr "PCRE Exec Fehler"
@@ -6575,148 +6575,148 @@ msgstr "Code page ändern"
 msgid "Second ~f~ont"
 msgstr "~S~ekundäre Schrift"
 
-#: ../setedit/edprefs.cc:1082
+#: ../setedit/edprefs.cc:1084
 msgid "This terminal doesn't support changing fonts"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1088
+#: ../setedit/edprefs.cc:1090
 msgid "Can't determine fonts geometry"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1101
+#: ../setedit/edprefs.cc:1103
 msgid "No fonts available for current video mode"
 msgstr ""
 
 #. Primary font label, check box and list
-#: ../setedit/edprefs.cc:1146
+#: ../setedit/edprefs.cc:1148
 #, fuzzy
 msgid "~P~rimary"
 msgstr "Ab~s~pielen"
 
-#: ../setedit/edprefs.cc:1146
+#: ../setedit/edprefs.cc:1148
 #, fuzzy
 msgid "~L~oad font"
 msgstr "~L~aden"
 
-#: ../setedit/edprefs.cc:1153
+#: ../setedit/edprefs.cc:1155
 #, fuzzy
 msgid "S~i~ze"
 msgstr "~V~erbergen"
 
-#: ../setedit/edprefs.cc:1159
+#: ../setedit/edprefs.cc:1161
 #, fuzzy
 msgid "~S~econdary"
 msgstr "~S~ekundäre Schrift"
 
-#: ../setedit/edprefs.cc:1159
+#: ../setedit/edprefs.cc:1161
 #, fuzzy
 msgid "Lo~a~d font"
 msgstr "Andere ~S~chrift"
 
-#: ../setedit/edprefs.cc:1165
+#: ../setedit/edprefs.cc:1167
 msgid "Fonts"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1203
+#: ../setedit/edprefs.cc:1205
 #, c-format
 msgid "The selected secondary font doesn't support the primary size (%dx%d)"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1242
+#: ../setedit/edprefs.cc:1244
 msgid "This terminal has a fixed size"
 msgstr ""
 
 #. CDEGHIMNSWX
-#: ../setedit/edprefs.cc:1263
+#: ../setedit/edprefs.cc:1265
 #, fuzzy
 msgid "Screen size options"
 msgstr "Bildschirmeinstellungen"
 
-#: ../setedit/edprefs.cc:1264
+#: ../setedit/edprefs.cc:1266
 #, fuzzy
 msgid "~D~on't force"
 msgstr "~N~icht benutzen"
 
-#: ../setedit/edprefs.cc:1265
+#: ../setedit/edprefs.cc:1267
 msgid "~S~ame as last run"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1266
+#: ../setedit/edprefs.cc:1268
 #, fuzzy
 msgid "~E~xternal program"
 msgstr "Externes Programm benutzen"
 
-#: ../setedit/edprefs.cc:1267
+#: ../setedit/edprefs.cc:1269
 #, fuzzy
 msgid "~C~losest to specified size"
 msgstr "Nur s~p~ezifizierte Dateien öffnen"
 
-#: ../setedit/edprefs.cc:1268
+#: ../setedit/edprefs.cc:1270
 msgid "Specified ~m~ode number"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1271
+#: ../setedit/edprefs.cc:1273
 msgid "~W~idth "
 msgstr ""
 
-#: ../setedit/edprefs.cc:1272
+#: ../setedit/edprefs.cc:1274
 #, fuzzy
 msgid "~H~eight"
 msgstr "~R~echte Alt"
 
-#: ../setedit/edprefs.cc:1273
+#: ../setedit/edprefs.cc:1275
 msgid "Chars w~i~dth "
 msgstr ""
 
-#: ../setedit/edprefs.cc:1274
+#: ../setedit/edprefs.cc:1276
 msgid "Chars hei~g~ht"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1277
+#: ../setedit/edprefs.cc:1279
 #, fuzzy
 msgid "E~x~ternal program"
 msgstr "Externes Programm benutzen"
 
-#: ../setedit/edprefs.cc:1280
+#: ../setedit/edprefs.cc:1282
 #, fuzzy
 msgid "Mode ~n~umber"
 msgstr "Falsche Nummer"
 
-#: ../setedit/edprefs.cc:1285
+#: ../setedit/edprefs.cc:1287
 #, fuzzy
 msgid "Screen size"
 msgstr "Bildschirmschoner"
 
-#: ../setedit/edprefs.cc:1304
+#: ../setedit/edprefs.cc:1306
 msgid "Please specify a screen size of at least 80x25 and no more than 250x250"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1309
+#: ../setedit/edprefs.cc:1311
 msgid "Please specify a character size of at least 5x7 and no more than 32x32"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1332
+#: ../setedit/edprefs.cc:1334
 msgid "Checking for modified files"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1336
+#: ../setedit/edprefs.cc:1338
 msgid "When a file on disk is newer than a file in edition:\n"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1337
+#: ../setedit/edprefs.cc:1339
 msgid "Seconds between checks"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1338
+#: ../setedit/edprefs.cc:1340
 #, fuzzy
 msgid "Related options"
 msgstr "Andere Optionen"
 
-#: ../setedit/edprefs.cc:1339
+#: ../setedit/edprefs.cc:1341
 msgid "~D~on't check after executing an external program"
 msgstr ""
 
-#: ../setedit/edprefs.cc:1340
+#: ../setedit/edprefs.cc:1342
 msgid "Don't check while ~i~dle"
 msgstr ""
 
@@ -7337,11 +7337,11 @@ msgstr ""
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:693
+#: ../setedit/runprog.cc:694
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:772
+#: ../setedit/runprog.cc:773
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2007-11-22 12:12-0300\n"
+"PO-Revision-Date: 2008-10-02 11:48-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "E~v~aluar"
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
 #: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
 #: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
-#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:742
+#: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:743
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
 #: ../mainsrc/deedidia.cc:343 ../mainsrc/sdginter.cc:193
-#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1765
+#: ../mainsrc/slpinter.cc:712 ../mainsrc/tags.cc:1537 ../mainsrc/tags.cc:1767
 #: ../setedit/debug.cc:1633 ../setedit/edprefs.cc:474
 #: ../setedit/edprefs.cc:624 ../setedit/edprefs.cc:691
 #: ../setedit/edprefs.cc:920 ../setedit/intgrep.cc:421
@@ -70,7 +70,7 @@ msgid "Sliders"
 msgstr "Deslizadores"
 
 #: ../easydiag/tsbutton.cc:91 ../easydiag/tsbutton.cc:99
-#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:741
+#: ../infview/infmain.cc:384 ../mainsrc/bufun.cc:742
 #: ../mainsrc/deedidia.cc:134 ../mainsrc/deedidia.cc:178
 #: ../mainsrc/deedidia.cc:271 ../mainsrc/deedidia.cc:323
 #: ../mainsrc/loaddefl.cc:713 ../mainsrc/loadusew.cc:393
@@ -474,7 +474,7 @@ msgstr "Ir a ~D~OS"
 msgid "S~h~ell"
 msgstr "~L~ínea de comandos"
 
-#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1824 ../setedit/debug.cc:4356
+#: ../infview/infmenu.cc:40 ../mainsrc/tags.cc:1826 ../setedit/debug.cc:4356
 #: ../setedit/debug.cc:4963 ../setedit/editmenu.cc:70
 msgid "E~x~it"
 msgstr "~S~alir"
@@ -1440,39 +1440,39 @@ msgstr "Errores"
 msgid "You must select the editor window first"
 msgstr "Ud. debe seleccionar una ventana de editor primero"
 
-#: ../mainsrc/bufun.cc:727
+#: ../mainsrc/bufun.cc:728
 msgid "Jump to function"
 msgstr "Saltar a una función"
 
-#: ../mainsrc/bufun.cc:737
+#: ../mainsrc/bufun.cc:738
 msgid "List of functions"
 msgstr "Lista de funciones"
 
-#: ../mainsrc/bufun.cc:743 ../settvuti/tdiagaid.cc:174
+#: ../mainsrc/bufun.cc:744 ../settvuti/tdiagaid.cc:174
 msgid "~B~rowse"
 msgstr "~R~ecorrer"
 
-#: ../mainsrc/bufun.cc:772
+#: ../mainsrc/bufun.cc:773
 msgid "Sort mode"
 msgstr "Ordenamiento"
 
-#: ../mainsrc/bufun.cc:774
+#: ../mainsrc/bufun.cc:775
 msgid "Sort the functions"
 msgstr "Ordenar las funciones"
 
-#: ../mainsrc/bufun.cc:776
+#: ../mainsrc/bufun.cc:777
 msgid "~A~lphabetically"
 msgstr "~A~lfabeticamente"
 
-#: ../mainsrc/bufun.cc:777
+#: ../mainsrc/bufun.cc:778
 msgid "by ~L~ine"
 msgstr "por ~L~ínea"
 
-#: ../mainsrc/bufun.cc:812
+#: ../mainsrc/bufun.cc:813
 msgid "Hmmm ... I can't find any function, are you sure?"
 msgstr "Hmmm ... no puedo encontrar ninguna función ¿está seguro?"
 
-#: ../mainsrc/bufun.cc:840
+#: ../mainsrc/bufun.cc:841
 msgid "Functions:"
 msgstr "Funciones:"
 
@@ -2274,7 +2274,7 @@ msgid "No file name under cursor"
 msgstr "No hay un nombre bajo el cursor"
 
 #. Generate a message indicating we couldn't load it
-#: ../mainsrc/loadfunc.cc:244
+#: ../mainsrc/loadfunc.cc:249
 #, c-format
 msgid "Can't find \"%s\" file"
 msgstr "No puedo encontrar el archivo \"%s\""
@@ -2295,7 +2295,7 @@ msgstr "Primera condición incorrecta en una regla NLIndent"
 msgid "Wrong number of arguments for NLIndent"
 msgstr "Cantidad incorrecta de parámetros en una regla NLIndent"
 
-#: ../mainsrc/loadshl.cc:1456
+#: ../mainsrc/loadshl.cc:1457
 msgid "Errors while loading syntax highlight file"
 msgstr "Errores al cargar resaltado de sintaxis"
 
@@ -2576,12 +2576,12 @@ msgstr "~B~uscar miembros"
 msgid "Unknown line"
 msgstr "Línea desconocida"
 
-#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1838 ../mainsrc/tags.cc:1854
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1840 ../mainsrc/tags.cc:1856
 msgid "Members"
 msgstr "Miembros"
 
-#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1764 ../mainsrc/tags.cc:1838
-#: ../mainsrc/tags.cc:1854
+#: ../mainsrc/tags.cc:1637 ../mainsrc/tags.cc:1766 ../mainsrc/tags.cc:1840
+#: ../mainsrc/tags.cc:1856
 msgid "~J~ump"
 msgstr "~S~altar"
 
@@ -2593,79 +2593,79 @@ msgstr "Lo lamento, no puedo hallar ningún miembro"
 msgid "I don't know any members for this type"
 msgstr "No se acerca de miembros para este tipo de datos"
 
-#: ../mainsrc/tags.cc:1748
+#: ../mainsrc/tags.cc:1750
 msgid "Class list"
 msgstr "Lista de clases"
 
-#: ../mainsrc/tags.cc:1759
+#: ../mainsrc/tags.cc:1761
 msgid "List of classes"
 msgstr "Clases encontradas"
 
-#: ../mainsrc/tags.cc:1763
+#: ../mainsrc/tags.cc:1765
 msgid "~V~iew"
 msgstr "~V~er"
 
-#: ../mainsrc/tags.cc:1802
+#: ../mainsrc/tags.cc:1804
 msgid "P~a~rents"
 msgstr "P~a~dres"
 
-#: ../mainsrc/tags.cc:1804
+#: ../mainsrc/tags.cc:1806
 msgid "Browse ~p~arent"
 msgstr "Ver ~p~adre"
 
-#: ../mainsrc/tags.cc:1809
+#: ../mainsrc/tags.cc:1811
 msgid "Chil~d~ren"
 msgstr "H~i~jos"
 
-#: ../mainsrc/tags.cc:1811
+#: ../mainsrc/tags.cc:1813
 msgid "Browse ~c~hild"
 msgstr "Ver ~h~ijo"
 
-#: ../mainsrc/tags.cc:1820
+#: ../mainsrc/tags.cc:1822
 msgid "View"
 msgstr "Ver"
 
-#: ../mainsrc/tags.cc:1821
+#: ../mainsrc/tags.cc:1823
 msgid "~T~his class"
 msgstr "~E~sta clase"
 
-#: ../mainsrc/tags.cc:1822
+#: ../mainsrc/tags.cc:1824
 msgid "This & Pa~r~ents"
 msgstr "Esta y sus pad~r~es"
 
-#: ../mainsrc/tags.cc:1823
+#: ../mainsrc/tags.cc:1825
 msgid "~S~orted"
 msgstr "I~d~em ordenado"
 
-#: ../mainsrc/tags.cc:1855
+#: ../mainsrc/tags.cc:1857
 msgid "View ~C~lass"
 msgstr "Ver ~C~lase"
 
-#: ../mainsrc/tags.cc:1955
+#: ../mainsrc/tags.cc:1957
 msgid "Sorry, but I can't find any class."
 msgstr "Lo lamento, no puedo hallar ninguna clase"
 
-#: ../mainsrc/tags.cc:2085
+#: ../mainsrc/tags.cc:2090
 msgid "This option is only available when using projects"
 msgstr "Esta opción sólo sirve cuando se usa un proyecto"
 
-#: ../mainsrc/tags.cc:2090
+#: ../mainsrc/tags.cc:2095
 msgid "Tags options"
 msgstr "Opciones de TAGs"
 
-#: ../mainsrc/tags.cc:2092
+#: ../mainsrc/tags.cc:2097
 msgid "Automatic generation"
 msgstr "Generación automática"
 
-#: ../mainsrc/tags.cc:2092
+#: ../mainsrc/tags.cc:2097
 msgid "~D~isabled"
 msgstr "~D~eshabilitada"
 
-#: ../mainsrc/tags.cc:2093
+#: ../mainsrc/tags.cc:2098
 msgid "~U~sing central file"
 msgstr "~U~sando un archivo central"
 
-#: ../mainsrc/tags.cc:2107
+#: ../mainsrc/tags.cc:2112
 msgid "Remove the tags files that I maintained from the list of files to use?"
 msgstr ""
 "¿Quito de la lista de archivos de TAGs los que mantenía automaticamente?"
@@ -2828,89 +2828,89 @@ msgid "Return value:"
 msgstr "Valor retornado:"
 
 #. Convert the frame into something "human readable"
-#: ../sdg/mli.cc:1618 ../setedit/debug.cc:1442 ../setedit/debug.cc:1815
+#: ../sdg/mli.cc:1629 ../setedit/debug.cc:1442 ../setedit/debug.cc:1815
 #: ../setedit/debug.cc:7455 ../setedit/debug.cc:8804
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../sdg/mli.cc:1623
+#: ../sdg/mli.cc:1634
 msgid "parser"
 msgstr "parseo"
 
-#: ../sdg/mli.cc:1624
+#: ../sdg/mli.cc:1635
 msgid "syntax"
 msgstr "sintaxis"
 
-#: ../sdg/mli.cc:1629
+#: ../sdg/mli.cc:1640
 msgid "string not closed"
 msgstr "cadena de caracteres no cerrada"
 
-#: ../sdg/mli.cc:1630
+#: ../sdg/mli.cc:1641
 msgid "no ) at end of code"
 msgstr ") no encontrado"
 
-#: ../sdg/mli.cc:1631
+#: ../sdg/mli.cc:1642
 msgid "no starting ("
 msgstr "( al ppio. no encontrado"
 
 # ../sdg/mli.cc 1151
-#: ../sdg/mli.cc:1632
+#: ../sdg/mli.cc:1643
 msgid "wrong number"
 msgstr "número erróneo"
 
-#: ../sdg/mli.cc:1633
+#: ../sdg/mli.cc:1644
 msgid "unknown value"
 msgstr "valor desconocido"
 
-#: ../sdg/mli.cc:1634
+#: ../sdg/mli.cc:1645
 msgid "stack overflow"
 msgstr "desborde de pila (stack)"
 
-#: ../sdg/mli.cc:1639
+#: ../sdg/mli.cc:1650
 msgid "command where a parameter was expected"
 msgstr "comando donde se esperaba un parámetro"
 
-#: ../sdg/mli.cc:1640
+#: ../sdg/mli.cc:1651
 msgid "command expected"
 msgstr "se esperaba un comando"
 
-#: ../sdg/mli.cc:1641
+#: ../sdg/mli.cc:1652
 msgid "parameter after command"
 msgstr "parámetro luego de un comando"
 
-#: ../sdg/mli.cc:1642
+#: ../sdg/mli.cc:1653
 msgid "wrong number of parameters"
 msgstr "número equivocado de parámetros"
 
-#: ../sdg/mli.cc:1643
+#: ../sdg/mli.cc:1654
 msgid "wrong parameter type"
 msgstr "tipo de parámetro equivocado"
 
-#: ../sdg/mli.cc:1644
+#: ../sdg/mli.cc:1655
 msgid "undefined variable"
 msgstr "variable no definida"
 
-#: ../sdg/mli.cc:1645
+#: ../sdg/mli.cc:1656
 msgid "undefined symbol"
 msgstr "símbolo no definido"
 
-#: ../sdg/mli.cc:1646
+#: ../sdg/mli.cc:1657
 msgid "operation not defined"
 msgstr "operación no definida"
 
-#: ../sdg/mli.cc:1647
+#: ../sdg/mli.cc:1658
 msgid "invalid character for a name"
 msgstr "caracter inválido para un nombre"
 
-#: ../sdg/mli.cc:1648
+#: ../sdg/mli.cc:1659
 msgid "invalid key sequence"
 msgstr "secuencia de teclas inválida"
 
-#: ../sdg/mli.cc:1649
+#: ../sdg/mli.cc:1660
 msgid "PCRE not available"
 msgstr "PCRE no disponible"
 
-#: ../sdg/mli.cc:1650
+#: ../sdg/mli.cc:1661
 msgid "PCRE compile error"
 msgstr "Error al compilar PCRE"
 
@@ -6178,142 +6178,142 @@ msgstr "Cambio de codificación"
 msgid "Second ~f~ont"
 msgstr "Font ~s~ecundaria"
 
-#: ../setedit/edprefs.cc:1082
+#: ../setedit/edprefs.cc:1084
 msgid "This terminal doesn't support changing fonts"
 msgstr "Esta terminal no soporta cambios de tipografía"
 
-#: ../setedit/edprefs.cc:1088
+#: ../setedit/edprefs.cc:1090
 msgid "Can't determine fonts geometry"
 msgstr "No puedo determinar la geometría de la tipografía"
 
-#: ../setedit/edprefs.cc:1101
+#: ../setedit/edprefs.cc:1103
 msgid "No fonts available for current video mode"
 msgstr "No hay tipografías disponibles para este modo de video"
 
 #. Primary font label, check box and list
-#: ../setedit/edprefs.cc:1146
+#: ../setedit/edprefs.cc:1148
 msgid "~P~rimary"
 msgstr "~P~rimaria"
 
-#: ../setedit/edprefs.cc:1146
+#: ../setedit/edprefs.cc:1148
 msgid "~L~oad font"
 msgstr "~C~argar tipografía"
 
-#: ../setedit/edprefs.cc:1153
+#: ../setedit/edprefs.cc:1155
 msgid "S~i~ze"
 msgstr "~T~amaño"
 
-#: ../setedit/edprefs.cc:1159
+#: ../setedit/edprefs.cc:1161
 msgid "~S~econdary"
 msgstr "~S~ecundaria"
 
-#: ../setedit/edprefs.cc:1159
+#: ../setedit/edprefs.cc:1161
 msgid "Lo~a~d font"
 msgstr "Ca~r~gar tipografía"
 
-#: ../setedit/edprefs.cc:1165
+#: ../setedit/edprefs.cc:1167
 msgid "Fonts"
 msgstr "Tipografías"
 
-#: ../setedit/edprefs.cc:1203
+#: ../setedit/edprefs.cc:1205
 #, c-format
 msgid "The selected secondary font doesn't support the primary size (%dx%d)"
 msgstr ""
 "La tipografía secundaria seleccionada no soporta el tamaño de la secundaria "
 "(%d,%d)"
 
-#: ../setedit/edprefs.cc:1242
+#: ../setedit/edprefs.cc:1244
 msgid "This terminal has a fixed size"
 msgstr "Esta terminal tiene un tamaño fijo"
 
 #. CDEGHIMNSWX
-#: ../setedit/edprefs.cc:1263
+#: ../setedit/edprefs.cc:1265
 msgid "Screen size options"
 msgstr "Opciones del tamaño de la pantalla"
 
-#: ../setedit/edprefs.cc:1264
+#: ../setedit/edprefs.cc:1266
 msgid "~D~on't force"
 msgstr "~N~o forzarlo"
 
-#: ../setedit/edprefs.cc:1265
+#: ../setedit/edprefs.cc:1267
 msgid "~S~ame as last run"
 msgstr "~M~ismo que la última vez"
 
-#: ../setedit/edprefs.cc:1266
+#: ../setedit/edprefs.cc:1268
 msgid "~E~xternal program"
 msgstr "Usar un programa ~e~xterno"
 
-#: ../setedit/edprefs.cc:1267
+#: ../setedit/edprefs.cc:1269
 msgid "~C~losest to specified size"
 msgstr "~L~o más cercano posible a lo indicado"
 
-#: ../setedit/edprefs.cc:1268
+#: ../setedit/edprefs.cc:1270
 msgid "Specified ~m~ode number"
 msgstr "Mo~d~o de video por número"
 
-#: ../setedit/edprefs.cc:1271
+#: ../setedit/edprefs.cc:1273
 msgid "~W~idth "
 msgstr "~A~ncho"
 
-#: ../setedit/edprefs.cc:1272
+#: ../setedit/edprefs.cc:1274
 msgid "~H~eight"
 msgstr "A~l~to "
 
-#: ../setedit/edprefs.cc:1273
+#: ../setedit/edprefs.cc:1275
 msgid "Chars w~i~dth "
 msgstr "Ancho ca~r~acteres"
 
-#: ../setedit/edprefs.cc:1274
+#: ../setedit/edprefs.cc:1276
 msgid "Chars hei~g~ht"
 msgstr "Al~t~o caracteres "
 
-#: ../setedit/edprefs.cc:1277
+#: ../setedit/edprefs.cc:1279
 msgid "E~x~ternal program"
 msgstr "Programa ~e~xterno"
 
 # ../sdg/mli.cc 1151
-#: ../setedit/edprefs.cc:1280
+#: ../setedit/edprefs.cc:1282
 msgid "Mode ~n~umber"
 msgstr "~N~úmero de modo"
 
-#: ../setedit/edprefs.cc:1285
+#: ../setedit/edprefs.cc:1287
 msgid "Screen size"
 msgstr "Tamaño de la pantalla"
 
-#: ../setedit/edprefs.cc:1304
+#: ../setedit/edprefs.cc:1306
 msgid "Please specify a screen size of at least 80x25 and no more than 250x250"
 msgstr ""
 "Por favor especifique un tamaño de al menos 80x25 y de no más de 250x250"
 
-#: ../setedit/edprefs.cc:1309
+#: ../setedit/edprefs.cc:1311
 msgid "Please specify a character size of at least 5x7 and no more than 32x32"
 msgstr ""
 "Por favor especifique un tamaño de caracteres de al menos 5x7 y no más de "
 "32x32"
 
-#: ../setedit/edprefs.cc:1332
+#: ../setedit/edprefs.cc:1334
 msgid "Checking for modified files"
 msgstr "Verificación de archivos modificados"
 
-#: ../setedit/edprefs.cc:1336
+#: ../setedit/edprefs.cc:1338
 msgid "When a file on disk is newer than a file in edition:\n"
 msgstr ""
 "Cuando un archivo en disco es más nuevo que la\n"
 "copia que se está editando:\n"
 
-#: ../setedit/edprefs.cc:1337
+#: ../setedit/edprefs.cc:1339
 msgid "Seconds between checks"
 msgstr "Segundos entre verif."
 
-#: ../setedit/edprefs.cc:1338
+#: ../setedit/edprefs.cc:1340
 msgid "Related options"
 msgstr "Opciones relacionadas"
 
-#: ../setedit/edprefs.cc:1339
+#: ../setedit/edprefs.cc:1341
 msgid "~D~on't check after executing an external program"
 msgstr "~N~o verificar luego de ejecutar un programa"
 
-#: ../setedit/edprefs.cc:1340
+#: ../setedit/edprefs.cc:1342
 msgid "Don't check while ~i~dle"
 msgstr "No verificar en los tiempos ~l~ibres"
 
@@ -6904,11 +6904,11 @@ msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:693
+#: ../setedit/runprog.cc:694
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:772
+#: ../setedit/runprog.cc:773
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 
