@@ -1667,9 +1667,10 @@ int SearchTag(char *word)
 
  if (word)
    {
-    if (tags->search(word,br.selection))
+    ccIndex selection=br.selection;
+    if (tags->search(word,selection))
       {
-       ccIndex pos=br.selection;
+       ccIndex pos=selection;
        char *id=(char *)tags->keyOf(tags->at(pos));
        if (strcmp(word,id)==0)
          {// Full match, is the only one?
@@ -1685,9 +1686,10 @@ int SearchTag(char *word)
       }
     else
       {
-       if (br.selection>=tags->getCount())
-          br.selection=tags->getCount()-1;
+       if (selection>=tags->getCount())
+          selection=tags->getCount()-1;
       }
+    br.selection=selection;
     DeleteArray(word);
     if (perfectMatch)
       {
@@ -1956,22 +1958,25 @@ void TagsClassBrowser(char *word)
     return;
    }
 
- TListBoxRec br;
- br.items=classList;
- br.selection=0;
+ ccIndex selection=0;
 
  Boolean perfectMatch=False;
  if (word)
    {
-    perfectMatch=classList->search(word,br.selection);
-    if (br.selection>=classList->getCount())
-       br.selection=classList->getCount()-1;
+    perfectMatch=classList->search(word,selection);
+    if (selection>=classList->getCount())
+       selection=classList->getCount()-1;
     DeleteArray(word);
    }
  if (perfectMatch)
-    BrowseClass(br.selection,classList);
+    BrowseClass(selection,classList);
  else
+   {
+    TListBoxRec br;
+    br.items=classList;
+    br.selection=selection;
     BrowseClasses(br,classList);
+   }
 
  CLY_destroy(classList);
 }

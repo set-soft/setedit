@@ -1056,19 +1056,21 @@ void TDiaFont::handleEvent(TEvent& event)
        if (!sizes->list())
           return;
        TListBoxRec box;
-       if (!p->sizes->search((void *)sizes->list()->at(sizes->focused),box.selection))
+       ccIndex selection=box.selection;
+       if (!p->sizes->search((void *)sizes->list()->at(sizes->focused),selection))
          {
           unsigned w,h;
           if (TScreen::getFontGeometry(w,h))
             {
              TVBitmapFontSize sz={w,h};
-             if (!p->sizes->search((void *)&sz,box.selection))
-                box.selection=0;
+             if (!p->sizes->search((void *)&sz,selection))
+                selection=0;
             }
           else
-             box.selection=0;
+             selection=0;
          }
        box.items=p->sizes;
+       box.selection=selection;
        sizes->setData(&box,False);
       }
    }

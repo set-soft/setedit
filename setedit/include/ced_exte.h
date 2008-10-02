@@ -378,12 +378,15 @@ class TCollection;
 class TPoint;
 class TNSCollection;
 
+#pragma pack(1)
 typedef struct
 {
- uint32 t2;
- TCollection *items;
- ccIndex selection;
+ uint32 t2           CLY_Packed;
+ TCollection *items  CLY_Packed;
+ ccIndex selection   CLY_Packed;
 } ShlDiagBox;
+#pragma pack()
+
 TDialog *createSetLocalOptions(ShlDiagBox *shlBox);
 TDialog *createGotoLineDialog();
 TDialog *createSetGlobalOptions();

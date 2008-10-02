@@ -97,7 +97,7 @@ void ConfigureRunCommand(void)
   uint32 OpsScroll           CLY_Packed;
   uint32 OpsScrHz            CLY_Packed;
   char   Lines[4];//            CLY_Packed;
-  TListBoxRec tl             CLY_Packed;
+  TListBoxRec tl;//             CLY_Packed;
  } box;
  #pragma pack()
  strcpy(box.ComAux,Command);
