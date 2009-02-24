@@ -46,7 +46,7 @@ static const char *EasterRelDescriptions[EASTER_REL]=
 struct dayMonth *GetListOfHolidays(int year, int *holidays)
 {
  int j,v,easter_sunday,a;
- struct dayMonth *ret=(struct dayMonth *)malloc(sizeof(struct dayMonth)*TOTAL));
+ struct dayMonth *ret=(struct dayMonth *)malloc(sizeof(struct dayMonth)*TOTAL);
  int i,k;
 
  /* Fixed dates */

@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+# Copyright (C) 1996-2009 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 open(FIL,'../../version.txt') || die;
@@ -357,6 +357,7 @@ print "Copying calendar plug-ins: ";
 CopyIf('../../holidays/holidays.conf',$libdir.'/holidays.conf');
 CopyIf('../../holidays/datetools.so',$libdir.'/datetools.so');
 CopyIf('../../holidays/argentina.so',$libdir.'/argentina.so');
+CopyIf('../../holidays/deutschland.so',$libdir.'/deutschland.so');
 CopyIf('../../holidays/defholidays.so',$libdir.'/defholidays.so');
 print "done.\n\n";
 
