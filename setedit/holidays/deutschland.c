@@ -13,7 +13,6 @@
 
 #define FIXED          10
 #define ONLY_NATIONAL   0
-#define TOTAL_NATIONAL  9
 #define TOTAL          16
 #define EASTER_REL      5
 static char FixedHolidays[FIXED][2]=
@@ -47,8 +46,7 @@ static const char *EasterRelDescriptions[EASTER_REL]=
 struct dayMonth *GetListOfHolidays(int year, int *holidays)
 {
  int j,v,easter_sunday,a;
- struct dayMonth *ret=(struct dayMonth *)malloc(sizeof(struct dayMonth)*
-                       (ONLY_NATIONAL ? TOTAL_NATIONAL : TOTAL));
+ struct dayMonth *ret=(struct dayMonth *)malloc(sizeof(struct dayMonth)*TOTAL));
  int i,k;
 
  /* Fixed dates */
@@ -75,7 +73,7 @@ struct dayMonth *GetListOfHolidays(int year, int *holidays)
        }
     }
  /* A special one */
- if (!ONLY_NATIONAL)
+ if (year<1995 || !ONLY_NATIONAL)
    {
     int d, wd;
     d=Day2Number(23,11,year);
