@@ -1,4 +1,12 @@
-$Log$.
+$Log$
+Revision 1.771  2008/10/02 15:06:08  set
+* Modified: [tags.cc edprefs.cc] To avoid passing a reference to a packed
+struct member.
+* Fixed: [ced_exte.h] ShlDiagBox structure must be packed for AMD64.
+* Modified: [runprog.cc] To avoid a warning about a box.tl which is
+already packed.
+* Added: [SHL] USB keywords.
+
 Revision 1.770  2008/08/28 01:16:05  terrible
 * Updated: [Debian] Version 0.5.5-7, small corrections.
 

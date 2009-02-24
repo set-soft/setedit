@@ -3,7 +3,7 @@ CFLAGS=@CFLAGS@
 dyndir=@dyndir@
 dynversion=.1.0.0
 
-LIBS=argentina datetools defholidays
+LIBS=argentina deutschland datetools defholidays
 
 all: $(addsuffix .so,$(LIBS))
 
