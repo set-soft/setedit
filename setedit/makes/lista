@@ -248,10 +248,13 @@ holidays/argentina.c
 holidays/datetools.c
 holidays/datetools.h
 holidays/defholidays.c
+holidays/deutschland.c
 holidays/holidays.conf
 holidays/Makefile
 holidays/Makefile.in
 holidays/README
+holidays/test.c
+holidays/test.mak
 include/.cvsignore
 include/bufun.h
 include/ceditint.h

@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.773  2009/02/24 16:19:39  set
+* Modified: [Holidays] The german "Repentance Day" was a nation wide
+holiday upto 1994.
+
 Revision 1.772  2009/02/24 16:07:31  set
 * Added: [Holidays] German holidays. Needs validation.
 * Added: [Holidays] A small test to verify a holidays module. Prints all
