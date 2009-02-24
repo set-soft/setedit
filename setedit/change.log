@@ -1,4 +1,9 @@
-$Log$
+$Log$.
+Revision 1.772  2009/02/24 16:07:31  set
+* Added: [Holidays] German holidays. Needs validation.
+* Added: [Holidays] A small test to verify a holidays module. Prints all
+holidays to stdout for a specified year.
+
 Revision 1.771  2008/10/02 15:06:08  set
 * Modified: [tags.cc edprefs.cc] To avoid passing a reference to a packed
 struct member.
