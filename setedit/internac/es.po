@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2009-02-24 16:23-0200\n"
+"PO-Revision-Date: 2009-02-25 13:46-0200\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,8 @@ msgstr "E~v~aluar"
 
 #. ok->view->growMode=gfGrowAll;
 #: ../calcu/calcu.cc:96 ../easydiag/tsbutton.cc:92 ../easydiag/tsbutton.cc:101
-#: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2412
-#: ../infview/inf.cc:2436 ../infview/inf.cc:2491 ../infview/infmain.cc:385
+#: ../infview/inf.cc:2366 ../infview/inf.cc:2389 ../infview/inf.cc:2414
+#: ../infview/inf.cc:2438 ../infview/inf.cc:2493 ../infview/infmain.cc:385
 #: ../install/install.cc:476 ../install/install.cc:484 ../mainsrc/bufun.cc:743
 #: ../mainsrc/deedidia.cc:135 ../mainsrc/deedidia.cc:180
 #: ../mainsrc/deedidia.cc:272 ../mainsrc/deedidia.cc:324
@@ -82,166 +82,166 @@ msgstr "Deslizadores"
 msgid "O~K~"
 msgstr "O~k~"
 
-#: ../infview/inf.cc:701
+#: ../infview/inf.cc:702
 #, c-format
 msgid "InfView - File: %s - Node: %s"
 msgstr "InfView - Archivo: %s - Nodo: %s"
 
-#: ../infview/inf.cc:882 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:454
+#: ../infview/inf.cc:884 ../infview/manview.cc:313 ../mainsrc/ceditor.cc:454
 #, c-format
 msgid "Error copying to clipboard: %s"
 msgstr "Error al copiar al portapapeles: %s"
 
-#: ../infview/inf.cc:1635
+#: ../infview/inf.cc:1637
 msgid "Open Info"
 msgstr "Abrir Info"
 
-#: ../infview/inf.cc:1846
+#: ../infview/inf.cc:1848
 msgid "Please wait"
 msgstr "Por favor espere"
 
-#: ../infview/inf.cc:1846
+#: ../infview/inf.cc:1848
 msgid "Searching ..."
 msgstr "Buscando ..."
 
-#: ../infview/inf.cc:1964
+#: ../infview/inf.cc:1966
 msgid "Sorry can't find the string"
 msgstr "Lo lamento, no puedo hallar la cadena de caracteres"
 
-#: ../infview/inf.cc:2297
+#: ../infview/inf.cc:2299
 msgid "Help Control"
 msgstr "Control de la ayuda"
 
-#: ../infview/inf.cc:2300 ../infview/infmenu.cc:70 ../setedit/editmenu.cc:119
+#: ../infview/inf.cc:2302 ../infview/infmenu.cc:70 ../setedit/editmenu.cc:119
 msgid "~N~ext"
 msgstr "P~r~óxima"
 
-#: ../infview/inf.cc:2303 ../infview/infmenu.cc:71 ../setedit/editmenu.cc:120
+#: ../infview/inf.cc:2305 ../infview/infmenu.cc:71 ../setedit/editmenu.cc:120
 msgid "~P~revious"
 msgstr "~A~nterior"
 
-#: ../infview/inf.cc:2306 ../setedit/editmenu.cc:396
+#: ../infview/inf.cc:2308 ../setedit/editmenu.cc:396
 msgid "~U~p"
 msgstr "~A~rriba"
 
-#: ../infview/inf.cc:2309
+#: ../infview/inf.cc:2311
 msgid "Prev. ~H~ist."
 msgstr "Ant. en ~H~ist."
 
-#: ../infview/inf.cc:2312
+#: ../infview/inf.cc:2314
 msgid "Nodes ~L~ist"
 msgstr "~L~ista de temas"
 
-#: ../infview/inf.cc:2315 ../infview/infmenu.cc:61
+#: ../infview/inf.cc:2317 ../infview/infmenu.cc:61
 msgid "~B~ookmarks"
 msgstr "~M~arcadores"
 
-#: ../infview/inf.cc:2318 ../infview/infmenu.cc:59
+#: ../infview/inf.cc:2320 ../infview/infmenu.cc:59
 msgid "~C~onfiguration"
 msgstr "~C~onfiguración"
 
-#: ../infview/inf.cc:2321
+#: ../infview/inf.cc:2323
 msgid "~O~pen Info"
 msgstr "~A~brir Info"
 
-#: ../infview/inf.cc:2324
+#: ../infview/inf.cc:2326
 msgid "H~i~de"
 msgstr "Ocu~l~tar"
 
-#: ../infview/inf.cc:2331
+#: ../infview/inf.cc:2333
 msgid "Hi~s~tory"
 msgstr "Hi~s~toria"
 
-#: ../infview/inf.cc:2341
+#: ../infview/inf.cc:2343
 msgid "Inf Find"
 msgstr "Búsqueda en Infos"
 
 #. All together
-#: ../infview/inf.cc:2348 ../mainsrc/deedidia.cc:119
+#: ../infview/inf.cc:2350 ../mainsrc/deedidia.cc:119
 #: ../mainsrc/deedidia.cc:157
 msgid "~T~ext to find"
 msgstr "Texto a ~b~uscar"
 
-#: ../infview/inf.cc:2353 ../mainsrc/deedidia.cc:122
-#: ../mainsrc/deedidia.cc:164 ../mainsrc/ssyntax.cc:479
+#: ../infview/inf.cc:2355 ../mainsrc/deedidia.cc:122
+#: ../mainsrc/deedidia.cc:164 ../mainsrc/ssyntax.cc:480
 msgid "~C~ase sensitive"
 msgstr "Mayús~c~ulas y min."
 
-#: ../infview/inf.cc:2354 ../mainsrc/deedidia.cc:123
+#: ../infview/inf.cc:2356 ../mainsrc/deedidia.cc:123
 #: ../mainsrc/deedidia.cc:164
 msgid "~W~hole words only"
 msgstr "~P~alabras completas"
 
-#: ../infview/inf.cc:2357
+#: ../infview/inf.cc:2359
 msgid "In current ~t~opic"
 msgstr "En el ~i~tem actual"
 
-#: ../infview/inf.cc:2358
+#: ../infview/inf.cc:2360
 msgid "In the ~f~ile"
 msgstr "En todo el ~a~rchivo"
 
-#: ../infview/inf.cc:2359
+#: ../infview/inf.cc:2361
 msgid "In ~a~ll files"
 msgstr "En ~t~odos los archivos"
 
-#: ../infview/inf.cc:2362 ../infview/inf.cc:2385 ../infview/inf.cc:2408
-#: ../infview/inf.cc:2434 ../setedit/editdiag.cc:88 ../setedit/editdiag.cc:180
+#: ../infview/inf.cc:2364 ../infview/inf.cc:2387 ../infview/inf.cc:2410
+#: ../infview/inf.cc:2436 ../setedit/editdiag.cc:88 ../setedit/editdiag.cc:180
 #: ../setedit/editpale.cc:165 ../settvuti/diaghelp.cc:38
 msgid "~O~K"
 msgstr "~O~k"
 
-#: ../infview/inf.cc:2373
+#: ../infview/inf.cc:2375
 msgid "Go To"
 msgstr "Ir a"
 
-#: ../infview/inf.cc:2380
+#: ../infview/inf.cc:2382
 msgid "~N~ame of Node"
 msgstr "~N~ombre del Nodo"
 
 #. Make it growable
-#: ../infview/inf.cc:2399
+#: ../infview/inf.cc:2401
 msgid "Tag Table"
 msgstr "Lista de temas"
 
-#: ../infview/inf.cc:2406
+#: ../infview/inf.cc:2408
 msgid "~N~odes"
 msgstr "~N~odos"
 
-#: ../infview/inf.cc:2426
+#: ../infview/inf.cc:2428
 msgid "InfView Configuration"
 msgstr "Configuración de InfView"
 
-#: ../infview/inf.cc:2431
+#: ../infview/inf.cc:2433
 msgid "Hide '*~N~ote' word"
 msgstr "Ocultar la palabra '*~N~ode'"
 
-#: ../infview/inf.cc:2432
+#: ../infview/inf.cc:2434
 msgid "Hide real ~l~ink name"
 msgstr "Ocultar los nombres de los ~l~inks"
 
-#: ../infview/inf.cc:2475
+#: ../infview/inf.cc:2477
 msgid "InfView Bookmarks"
 msgstr "Marcas del InfView"
 
-#: ../infview/inf.cc:2483 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:168
+#: ../infview/inf.cc:2485 ../mp3/mp3list.cc:333 ../settvuti/tdiagaid.cc:168
 msgid "~A~dd"
 msgstr "~A~gregar"
 
-#: ../infview/inf.cc:2487 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4359
+#: ../infview/inf.cc:2489 ../mp3/mp3list.cc:335 ../setedit/debug.cc:4359
 #: ../setedit/debug.cc:4966 ../setedit/winlistd.cc:140
 #: ../settvuti/tdiagaid.cc:170
 msgid "~D~elete"
 msgstr "~B~orrar"
 
-#: ../infview/inf.cc:2494
+#: ../infview/inf.cc:2496
 msgid "~G~o to"
 msgstr "I~r~ a"
 
-#: ../infview/inf.cc:2506
+#: ../infview/inf.cc:2508
 msgid "~M~arks"
 msgstr "~M~arcas"
 
-#: ../infview/infbase.cc:264
+#: ../infview/infbase.cc:265
 msgid ""
 "Attention !! This file is in DOS format, Do you want to convert it?, But "
 "maybe make a backup first !!"
@@ -249,24 +249,24 @@ msgstr ""
 "¡Atención! este archivo está en formato DOS, ¿quiere convertirlo? Haga una "
 "copia primero"
 
-#: ../infview/infbase.cc:281
+#: ../infview/infbase.cc:282
 msgid "Error: can't find the Node info"
 msgstr "Error: no puedo hallar el Nodo"
 
-#: ../infview/infbase.cc:1122
+#: ../infview/infbase.cc:1123
 msgid "Reading index table for: "
 msgstr "Leyendo el índice de: "
 
-#: ../infview/infbase.cc:1126
+#: ../infview/infbase.cc:1127
 msgid "InfView"
 msgstr "InfView"
 
-#: ../infview/infbase.cc:1295
+#: ../infview/infbase.cc:1296
 #, c-format
 msgid "Attention: can't open the help file '%s'."
 msgstr "Atención: no puedo abrir el archivo de ayuda '%s'."
 
-#: ../infview/infbase.cc:1891
+#: ../infview/infbase.cc:1892
 msgid ""
 "\n"
 " Sorry, I can't find this link (press ALT-F1).\n"
@@ -1562,7 +1562,7 @@ msgstr "No encontré el complemento"
 msgid "Match found at line %d column %d."
 msgstr "Complemento hallado en la línea %d columna %d."
 
-#: ../mainsrc/ceditor.cc:10940
+#: ../mainsrc/ceditor.cc:10945
 msgid ""
 "This file contains ASCII 0 values, all the characters in this line after it "
 "become invisible. Be careful."
@@ -1570,29 +1570,29 @@ msgstr ""
 "Este archivo contiene caracteres con valor 0, todos los caracteres luego del "
 "0 no se podrán ver en esa línea. Tenga cuidado"
 
-#: ../mainsrc/ceditor.cc:10955
+#: ../mainsrc/ceditor.cc:10960
 msgid "Parsing file"
 msgstr "Analizando el archivo"
 
-#: ../mainsrc/ceditor.cc:11710
+#: ../mainsrc/ceditor.cc:11715
 msgid "Unhandled syntax highlighting"
 msgstr "¡Resaltado de sintaxis no soportado!"
 
-#: ../mainsrc/ceditor.cc:12641
+#: ../mainsrc/ceditor.cc:12647
 msgid "Unhandled undo"
 msgstr "¡Undo no soportado!"
 
-#: ../mainsrc/ceditor.cc:12852
+#: ../mainsrc/ceditor.cc:12858
 msgid "Unhandled redo"
 msgstr "¡Redo no soportado!"
 
 # c-format
-#: ../mainsrc/ceditor.cc:14053
+#: ../mainsrc/ceditor.cc:14059
 #, c-format
 msgid "Saved: %s (%ld bytes %d lines)."
 msgstr "Grabado %s (%ld bytes de longitud %d líneas)."
 
-#: ../mainsrc/ceditor.cc:14063
+#: ../mainsrc/ceditor.cc:14069
 msgid "Stat failed."
 msgstr "¡Fallo al usar 'stat'!"
 
@@ -2454,74 +2454,74 @@ msgstr "Macros sLisp"
 msgid "~M~acros"
 msgstr "~M~acros"
 
-#: ../mainsrc/ssyntax.cc:202
+#: ../mainsrc/ssyntax.cc:203
 #, c-format
 msgid " [%d nodes]"
 msgstr " [%d nodos]"
 
-#: ../mainsrc/ssyntax.cc:371
+#: ../mainsrc/ssyntax.cc:372
 msgid "New node for search"
 msgstr "Nuevo nodo a buscar"
 
-#: ../mainsrc/ssyntax.cc:374
+#: ../mainsrc/ssyntax.cc:375
 msgid "Name of the info file"
 msgstr "Nombre del archivo .info"
 
-#: ../mainsrc/ssyntax.cc:376
+#: ../mainsrc/ssyntax.cc:377
 msgid "Name of the node (leave blank for all)"
 msgstr "Nombre del nodo (dejar en blanco para usar todos)"
 
-#: ../mainsrc/ssyntax.cc:435
+#: ../mainsrc/ssyntax.cc:436
 msgid "Nodes for syntax help"
 msgstr "Nodos para ayuda de sintaxis"
 
-#: ../mainsrc/ssyntax.cc:473
+#: ../mainsrc/ssyntax.cc:474
 msgid "Options for syntax help"
 msgstr "Opciones para la ayuda de sintaxis"
 
 #. I think that's easiest way! The following 5 lines are equivalent to 20 lines
 #. of cryptic stuff if you don't use EasyDiag! (I can write it in 1 too ;-)
-#: ../mainsrc/ssyntax.cc:477
+#: ../mainsrc/ssyntax.cc:478
 msgid "Search ~m~ethod"
 msgstr "~M~étodo de búsqueda"
 
-#: ../mainsrc/ssyntax.cc:477
+#: ../mainsrc/ssyntax.cc:478
 msgid "E~x~act"
 msgstr "E~x~acto"
 
-#: ../mainsrc/ssyntax.cc:477
+#: ../mainsrc/ssyntax.cc:478
 msgid "~S~ubstring"
 msgstr "~P~arcial"
 
-#: ../mainsrc/ssyntax.cc:478
+#: ../mainsrc/ssyntax.cc:479
 msgid "~F~uzzy"
 msgstr "~D~ifuso"
 
-#: ../mainsrc/ssyntax.cc:479
+#: ../mainsrc/ssyntax.cc:480
 msgid "Search O~p~tions"
 msgstr "~O~pciones de Búsqueda"
 
-#: ../mainsrc/ssyntax.cc:480
+#: ../mainsrc/ssyntax.cc:481
 msgid "So~r~t by score"
 msgstr "O~r~denar por puntaje"
 
-#: ../mainsrc/ssyntax.cc:484
+#: ../mainsrc/ssyntax.cc:485
 msgid "Fu~z~zy value [1..1000]"
 msgstr "Valor `dif~u~so' [1..1000]"
 
-#: ../mainsrc/ssyntax.cc:486 ../setedit/edprefs.cc:664
+#: ../mainsrc/ssyntax.cc:487 ../setedit/edprefs.cc:664
 msgid "Other options"
 msgstr "Otras opciones"
 
-#: ../mainsrc/ssyntax.cc:486
+#: ../mainsrc/ssyntax.cc:487
 msgid "Search word in the ~t~opic"
 msgstr "Buscar la palabra en ~n~odo"
 
-#: ../mainsrc/ssyntax.cc:875
+#: ../mainsrc/ssyntax.cc:876
 msgid "Choose a node"
 msgstr "Elegir un nodo"
 
-#: ../mainsrc/ssyntax.cc:927
+#: ../mainsrc/ssyntax.cc:928
 msgid "No INFO files for syntax help defined"
 msgstr "No se definieron archivos de ayuda para buscar sintaxis"
 
@@ -6992,7 +6992,7 @@ msgstr "A~r~bol"
 msgid "O~p~tions"
 msgstr "O~p~ciones"
 
-#: ../settvuti/fileopen.cc:304
+#: ../settvuti/fileopen.cc:305
 msgid "~N~ame"
 msgstr "~N~ombre"
 
