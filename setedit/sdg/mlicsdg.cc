@@ -25,7 +25,7 @@ like cutCprot.
 #define Uses_TLispSDGstring
 #include <mli.h>
 
-static char *emptyStr="";
+static char emptyStr[1]={ 0 };
 extern char *TakeNum(char *s,int *num);
 
 int TMLISDG::ParseSymbol(int &Params,int &Commands)
@@ -123,7 +123,7 @@ parenthesis as reference.
 
 ***************************************************************************/
 
-void MLISDGcutCprot(TMLIBase *o,int start ,int cant)
+void MLISDGcutCprot(TMLIBase *o, int start, int cant)
 {
  TLispVar *string=NULL;
  TLispVar *integer1=NULL;
@@ -269,7 +269,7 @@ CleanUp:
  return;
 }
 
-char *TMLISDG::cNames[MLISDGCommands]=
+const char *TMLISDG::cNames[MLISDGCommands]=
 {
  "cutCprot"
 };

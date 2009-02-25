@@ -20,7 +20,7 @@
 
 typedef struct
 {
- char *name;
+ const char *name;
  unsigned command;
 } edCList;
 
@@ -480,7 +480,7 @@ int SearchEditFlag(char *name, unsigned &val)
  return 1;
 }
 
-char *TranslateEdCommand(unsigned cmc_Com)
+const char *TranslateEdCommand(unsigned cmc_Com)
 {
  int i;
  // Turbo Vision commands are 16 bits long. For some technical reasons some
@@ -499,7 +499,7 @@ TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void)
  TNoCaseNoOwnerStringCollection *p=new TNoCaseNoOwnerStringCollection(NumCommands,1);
  int i;
  for (i=0; i<NumCommands; i++)
-     p->insert(List[i].name);
+     p->insert((void *)List[i].name);
  return p;
 }
 

@@ -50,7 +50,7 @@ typedef struct
 
 static TSDGDiagRec SDGOps = {"html.frt","Generated.txh","out","",1};
 
-static void PrintMessage(char *s)
+static void PrintMessage(const char *s)
 {
  //messageBox(s, mfOKButton | mfError);
  EdShowMessage(s);

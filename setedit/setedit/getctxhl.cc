@@ -27,11 +27,11 @@
 typedef struct
 {
  int context;
- char *file;
- char *node;
+ const char *file;
+ const char *node;
 } helpNode;
 
-static char *EditorFile="setedit";
+static const char *EditorFile="setedit";
 
 #define He(a) { cme##a, EditorFile, #a }
 #define HHe(a,b) { cme##a, EditorFile, b }
@@ -253,7 +253,7 @@ void TSetEditorApp::GetContextHelp(void)
  ShowHelpTopic(helpList[i].file,helpList[i].node);
 }
 
-void TSetEditorApp::ShowHelpTopic(char *file, char *node)
+void TSetEditorApp::ShowHelpTopic(const char *file, const char *node)
 {
  TView *v=TProgram::deskTop->current;
  if (v && (v->state & sfModal))
@@ -269,7 +269,7 @@ void TSetEditorApp::ShowHelpTopic(char *file, char *node)
 }
 
 // That's just a wrapper to avoid including a lot of things in other modules
-void ShowHelpTopic(char *file, char *node)
+void ShowHelpTopic(const char *file, const char *node)
 {
  editorApp->ShowHelpTopic(file,node);
 }

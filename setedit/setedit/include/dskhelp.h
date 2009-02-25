@@ -9,7 +9,7 @@ class TDskWinHelp : public TDskWin
 {
 public:
 
- TDskWinHelp(char *File, char *Node, Boolean TheOne=False);
+ TDskWinHelp(const char *File, const char *Node, Boolean TheOne=False);
  ~TDskWinHelp();
 
  int  DeleteAction(ccIndex i, Boolean fromDiskToo=False);
@@ -19,9 +19,9 @@ public:
  TInfFile *file;
  TInfWindow *window;
 
- void Goto(char *File, char *Node, char *word=0);
- void Create(char *File, char *Node, Boolean TheOne=False);
- void CreateModal(char *File, char *Node);
+ void Goto(const char *File, const char *Node, const char *word=0);
+ void Create(const char *File, const char *Node, Boolean TheOne=False);
+ void CreateModal(const char *File, const char *Node);
  void MakeVisible(void);
 
  void write( opstream& os );

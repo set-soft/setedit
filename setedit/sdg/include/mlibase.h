@@ -23,9 +23,9 @@ public:
  char *SkipCode();
  static char *SkipCode(char *&code, int &error);
  TLispVar *Solve(int i);
- virtual char *GetTypeError();
- virtual char *GetError();
- char *GetCodeError();
+ virtual const char *GetTypeError();
+ virtual const char *GetError();
+ const char *GetCodeError();
  void AddVariable(char *name, TLispVar *Value);
  int  DuplicateVar(TLispVar *&aux,TLispVar *Value);
  TLispVar *SearchVar(char *name);
@@ -42,14 +42,14 @@ private:
  TLispVar *InterpretNoClean(char *s);
  
  FILE *fileOut;
- static char *cNames[MLIBaseCommands];
+ static const char *cNames[MLIBaseCommands];
  static Command cComms[MLIBaseCommands];
- static char *sNames[MLIBaseSymbols];
+ static const char *sNames[MLIBaseSymbols];
  static Command sComms[MLIBaseSymbols];
- static char *TypeError[];
- static char *ParseError[];
- static char *SyntaxError[];
- static char *cNamesConst[MLIBaseConstants];
+ static const char *TypeError[];
+ static const char *ParseError[];
+ static const char *SyntaxError[];
+ static const char *cNamesConst[MLIBaseConstants];
  static TLispVar *cConstants[MLIBaseConstants];
  char  ErrorReported;
  char *StartCode;

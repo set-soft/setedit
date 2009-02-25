@@ -20,7 +20,7 @@ Rawtofile::~Rawtofile()
   close(filehandle);
 }
 
-bool Rawtofile::initialize(char *filename)
+bool Rawtofile::initialize(const char *filename)
 {
   if(filename==NULL)filehandle=1;
   else if((filehandle=Mpegsound_creat(filename))==-1)

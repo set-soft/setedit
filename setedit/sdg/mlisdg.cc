@@ -61,9 +61,9 @@ char *TLispSDGstring::toStr()
 }
 
 int MLISDGError;
-char *MLISDGTypeError;
-char *MLISDGErrorName;
-char *MLISDGErrorCode;
+const char *MLISDGTypeError;
+const char *MLISDGErrorName;
+const char *MLISDGErrorCode;
 
 char *InterpretLispCode(char *s,getVarFunction getVar,FILE *f)
 {

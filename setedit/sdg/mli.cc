@@ -1102,7 +1102,7 @@ CleanUp:
 {
 }*/
 
-char *TMLIBase::cNames[MLIBaseCommands]=
+const char *TMLIBase::cNames[MLIBaseCommands]=
 {
  "print",
  "if",
@@ -1162,7 +1162,7 @@ Command TMLIBase::cComms[MLIBaseCommands]=
  MLIBaseFor*/
 };
 
-char *TMLIBase::sNames[MLIBaseSymbols]=
+const char *TMLIBase::sNames[MLIBaseSymbols]=
 {
  "+",
  "&",
@@ -1192,7 +1192,7 @@ Command TMLIBase::sComms[MLIBaseSymbols]=
 
 TLispConstString CRConstant("\r\n",2,0,2);
 
-char *TMLIBase::cNamesConst[MLIBaseConstants]=
+const char *TMLIBase::cNamesConst[MLIBaseConstants]=
 {
  "CR"
 };
@@ -1626,16 +1626,16 @@ int TMLIBase::ParseNumber()
 #define maxParse 6
 #define maxSyntax 11
 
-static char *UnkErr=__("unknown");
+static const char *UnkErr=__("unknown");
 
-char *TMLIBase::TypeError[]=
+const char *TMLIBase::TypeError[]=
 {
  UnkErr,
  __("parser"),
  __("syntax")
 };
 
-char *TMLIBase::ParseError[]=
+const char *TMLIBase::ParseError[]=
 {
  __("string not closed"),
  __("no ) at end of code"),
@@ -1645,7 +1645,7 @@ char *TMLIBase::ParseError[]=
  __("stack overflow")
 };
 
-char *TMLIBase::SyntaxError[]=
+const char *TMLIBase::SyntaxError[]=
 {
  __("command where a parameter was expected"),
  __("command expected"),
@@ -1661,7 +1661,7 @@ char *TMLIBase::SyntaxError[]=
  __("PCRE compile error")
 };
 
-char *TMLIBase::GetTypeError()
+const char *TMLIBase::GetTypeError()
 {
  int type=Error>>12;
  if (type<0 || type>2)
@@ -1670,7 +1670,7 @@ char *TMLIBase::GetTypeError()
 }
 
 
-char *TMLIBase::GetError()
+const char *TMLIBase::GetError()
 {
  int type=Error>>12;
  int subtype=Error & 0xFFF;
@@ -1691,7 +1691,7 @@ char *TMLIBase::GetError()
 
 static char BufError[64];
 
-char *TMLIBase::GetCodeError()
+const char *TMLIBase::GetCodeError()
 {
  ErrorReported=1; // Now we are ready to memorize another error
  return BufError;

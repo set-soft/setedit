@@ -245,7 +245,7 @@ void TKeyTranslate::CatFullNameKey(KeyTNode *node, DynStrCatStruct *cat)
          se=GetTSeqE(node);
          for (i=0; i<se->cant; i++)
             {
-             char *p=TranslateEdCommand(se->commands[i]);
+             const char *p=TranslateEdCommand(se->commands[i]);
              if (p)
                {
                 DynStrCat(cat,p);
@@ -595,7 +595,7 @@ void TComSeqCol::getText(char *dest, unsigned item, int maxLen)
  char b[40];
  *b=0;
 
- char *s=TranslateEdCommand((unsigned long)(at(item)));
+ const char *s=TranslateEdCommand((unsigned long)(at(item)));
  if (s)
    {
     strcpy(b,"cmc");

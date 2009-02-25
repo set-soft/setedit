@@ -94,7 +94,7 @@ public:
  static TCEditor *Editor;
 
 private:
- static char *cNames[MLIEditorCommands];
+ static const char *cNames[MLIEditorCommands];
  static Command cComms[MLIEditorCommands];
  // Variables used for the Find & Replace interface
  static char *findAgainStr;

@@ -22,7 +22,7 @@ static int h_out,h_outbak;
 static int h_err,h_errbak;
 
 /* returns a malloced unique tempname in $TMPDIR */
-char *unique_name(char *before, char *retval)
+char *unique_name(const char *before, char *retval)
 {
  char *name;
  int h=unique_name(0,name,before,retval);
@@ -32,7 +32,7 @@ char *unique_name(char *before, char *retval)
 }
 
 /* returns a malloced unique tempname in $TMPDIR */
-FILE *unique_name_f(char *&retname, char *before, char *retval)
+FILE *unique_name_f(char *&retname, const char *before, char *retval)
 {
  char *name;
  int h=unique_name(1,name,before,retval);
@@ -45,15 +45,16 @@ FILE *unique_name_f(char *&retname, char *before, char *retval)
 }
 
 /* returns a malloced unique tempname in $TMPDIR */
-int unique_name(int remove, char *&retname, char *before, char *retval)
+int unique_name(int remove, char *&retname, const char *before, char *retval)
 {
-  char *name,*tmp = getenv("TMPDIR");
+  char *name;
+  const char *tmp=getenv("TMPDIR");
   // SET: The next 2 fallbacks aren't usually needed because RHIDE and SETEdit
   // defines TMPDIR. SAA added them and I keep it because they make more
   // robust the code if anybody uses the library in another project.
-  if (!tmp) tmp = getenv("TEMP");
-  if (!tmp) tmp = getenv("TMP");
-  if (!tmp) tmp = ".";
+  if (!tmp) tmp=getenv("TEMP");
+  if (!tmp) tmp=getenv("TMP");
+  if (!tmp) tmp=".";
   int l=strlen(tmp);
   if (retval)
   {

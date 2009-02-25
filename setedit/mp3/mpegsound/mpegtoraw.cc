@@ -249,9 +249,9 @@ inline void parseID3(Soundinputstream *fp,ID3 *data,const char *&genre,
   fp->setposition(oldPos);
 }
 
-inline void stripfilename(char *dtr,char *str,int max)
+inline void stripfilename(char *dtr,const char *str,int max)
 {
-  char *ss;
+  const char *ss;
   int p=0,s=0;
 
   for(;str[p];p++)
@@ -334,7 +334,7 @@ bool Mpegtoraw::checkforvbr(void)
 
 // Convert mpeg to raw
 // Mpeg headder class
-void Mpegtoraw::initialize(char *filename, bool avoidID3)
+void Mpegtoraw::initialize(const char *filename, bool avoidID3)
 {
   static bool initialized=false;
 

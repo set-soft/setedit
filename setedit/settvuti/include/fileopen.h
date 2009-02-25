@@ -2,7 +2,7 @@
    see copyrigh file for details */
 #ifndef FILEOPEN_H_INCLUDED
 #define FILEOPEN_H_INCLUDED
-extern int GenericFileDialog(const char *title, char *file, char *mask, int histID,
+extern int GenericFileDialog(const char *title, char *file, const char *mask, int histID,
                              int buttons, char *dir, unsigned flags, int ctx,
                              TRect &r);
 extern int FileOpenDialog(char *title, char *file, int historyID,

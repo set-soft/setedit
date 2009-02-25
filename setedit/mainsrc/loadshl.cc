@@ -104,9 +104,9 @@ void PutInTables(int len, char *s, unsigned flag, ushort *Table, int Case)
       {
        for (i=0; i<len; i++)
            s[i]=TVCodePage::toUpper(s[i]);
-       Table[TVCodePage::toLower(*s)]|=flag;
+       Table[(uchar)TVCodePage::toLower(*s)]|=flag;
       }
-    Table[*s]|=flag;
+    Table[(uchar)*s]|=flag;
    }
 }
 
@@ -340,7 +340,7 @@ int LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection *list,int
            len=CLY_getline(&b,&lenLine,f);
            nLine++;
           }
-        while (len!=-1 && *b=='#' || ucisspace(*b));
+        while (len!=-1 && (*b=='#' || ucisspace(*b)));
 
         if (strncasecmp(b,"NameMatch",9)==0)
           {
@@ -1276,7 +1276,7 @@ void SHLTransferDefaultsNewFile(TCEditor &e)
     e.WrapCol=dflOps->wrapCol;
 }
 
-char *SHLNameOf(unsigned number)
+const char *SHLNameOf(unsigned number)
 {
  if (number<(unsigned)TCEditor::SHLCant)
     return TCEditor::SHLArray[number].Name;

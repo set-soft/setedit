@@ -401,7 +401,7 @@ public:
     static TScOptsCol *soCol;
     void KillClock();
 
-    void   ShowHelpTopic(char *file, char *node);
+    void   ShowHelpTopic(const char *file, const char *node);
     static TDskWinHelp *InfManager;
     static TEditorCollection *edHelper;
     static TCEditWindow *clipWindow;
@@ -529,7 +529,7 @@ const unsigned gflCPULine=1, gflDontSelect=2;
 extern TView *setFocusTo;
 extern Boolean focusChanged;
 extern void CopyHelp2Clip(char *b, long l);
-extern void ShowHelpTopic(char *file, char *node);
+extern void ShowHelpTopic(const char *file, const char *node);
 extern void closeView(TView *p, void *p1);
 extern int ShowFileLine(int line, int column, char *name);
 extern int GotoFileLine(int line, int column, char *name, char *msg=0, int off=-1,
@@ -556,7 +556,6 @@ extern void *WichSaverIs(char *name, int &type);
 extern char *GetDefaultScreenSaver(void);
 extern char *GetScrSaverInfo(char *name);
 extern char *GetScrSaverHelp(char *name);
-extern void  ShowHelpTopic(char *file, char *node);
 extern void ShowTips(char *fileName, int forceDialog=0);
 extern int IsAnEditor(void *p);
 extern TCEditor *GetCurrentIfEditor();

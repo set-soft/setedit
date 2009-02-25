@@ -7,7 +7,7 @@ const unsigned repDontShowDialog=1,repDontShowAsMessage=2,repRestoreScreen=4,
 
 char   *RunExternalProgramGetFile(int &len);
 void    RunExternalProgram(char *Program=0, unsigned flags=repFlagsFromOps,
-                           char *compiler=0);
+                           const char *compiler=0);
 void    RunExternalProgramKillFile(void);
 pid_t   RunExternalProgramGetChildPid();
 Boolean RunExternalProgramRunning();

@@ -151,7 +151,7 @@ void TEnhancedText::copyLine(int y, int w, ushort *line, char *colors)
        for (i=0; i<len/*w*/; i++)
           {
            d[i*2]=s[i*2];
-           d[i*2+1]=colors[s[i*2+1]];
+           d[i*2+1]=colors[(uchar)s[i*2+1]];
           }
        w-=len;
        line+=len;

@@ -13,7 +13,7 @@ extern char *InterpretLispCode(char *s,getVarFunction getVar,FILE *f);
 #define sdgASCIIZ       4
 
 extern int MLISDGError;
-extern char *MLISDGTypeError;
-extern char *MLISDGErrorName;
-extern char *MLISDGErrorCode;
+extern const char *MLISDGTypeError;
+extern const char *MLISDGErrorName;
+extern const char *MLISDGErrorCode;
 #endif

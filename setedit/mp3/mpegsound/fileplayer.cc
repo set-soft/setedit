@@ -40,7 +40,7 @@ Wavefileplayer::~Wavefileplayer()
   if(server)delete server;
 }
 
-bool Wavefileplayer::openfile(char *filename,char *device)
+bool Wavefileplayer::openfile(char *filename,const char *device)
 {
 // Player
   if(device==NULL)device=Rawplayer::defaultdevice;
@@ -116,7 +116,7 @@ Mpegfileplayer::~Mpegfileplayer()
   if(server)delete server;
 }
 
-bool Mpegfileplayer::openfile(char *filename,char *device)
+bool Mpegfileplayer::openfile(char *filename,const char *device)
 {
 // Player
   if(device==NULL)device=Rawplayer::defaultdevice;
@@ -204,7 +204,7 @@ bool Mpegfileplayer::playingwiththread(int verbose,int framenumbers)
 
 void Mpegfileplayer::showverbose(int verbose)
 {
-  static char *modestring[4]={"stereo","joint stereo","dual channel","mono"};
+  static const char *modestring[4]={"stereo","joint stereo","dual channel","mono"};
 
   fprintf(stderr,"Verbose: MPEG-%d Layer %d, %s,\n\t%dHz%s, %dkbit/s, ",
 	  server->getversion()+1,

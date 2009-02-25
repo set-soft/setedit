@@ -120,7 +120,8 @@ void *TInfTopic::Read(TInfFile &File, int offset, int &y)
 }
 
 
-static void CopiarDatosDe(char *Tipo,char *Dest,char *Ori,int maxlen)
+static
+void CopiarDatosDe(const char *Tipo,char *Dest,char *Ori,int maxlen)
 {
  char *pos,*s;
  int largo;
@@ -1278,7 +1279,7 @@ int TInfIndex::SearchFirstWith(int Key,int &selected)
 
 int TInfFile::SizeOfReadBuf=BUF_SIZE;
 
-void TInfFile::DoAll( char *Nombre, int Verbose )
+void TInfFile::DoAll(const char *Nombre, int Verbose)
 {
  int Indirect=0;
  index=NULL;
@@ -1576,9 +1577,10 @@ void InfViewAddInfoDir(char *dir)
 }
 
 static
-char *strrpbrk(char *string, char *search)
+char *strrpbrk(char *string, const char *search)
 {
- char *scanp,*str;
+ char *str;
+ const char *scanp;
  int c, sc;
 
  for (str=string; *str; str++);
@@ -1590,7 +1592,7 @@ char *strrpbrk(char *string, char *search)
 }
 
 
-int TInfFile::ExpandName(char *Buf, char *Nombre, int iExt)
+int TInfFile::ExpandName(char *Buf, const char *Nombre, int iExt)
 {
  int a;
  int HavePath;
@@ -1664,7 +1666,7 @@ int TInfFile::ExpandName(char *Buf, char *Nombre, int iExt)
     return 1;
    }
  s[0]='I';s[1]='N';s[2]='F';s[3]='O';s[4]='\\';
- char *s2=Nombre;
+ const char *s2=Nombre;
  for (s+=5; *s2; s++,s2++) *s=*s2; *s=0;
  a = TryWithName(Buf,ext,iExt,IsCompressed);
  if (a)
@@ -1675,7 +1677,7 @@ int TInfFile::ExpandName(char *Buf, char *Nombre, int iExt)
  return 0;
 }
 
-FILE *TInfFile::fOpen(char *Nombre)
+FILE *TInfFile::fOpen(const char *Nombre)
 {
  char Buf[PATH_MAX];
  char *name=Buf;
@@ -1704,9 +1706,8 @@ FILE *TInfFile::fOpen(char *Nombre)
    {
     name=unique_name("gz",NameOfTemporal);
     if (!name)
-       name="__infc__";
-    else
-       freeName=1;
+       name=strdup("__infc__");
+    freeName=1;
     FILE *f=fopen(name,"wb");
     if (!f)
       {

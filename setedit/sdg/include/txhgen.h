@@ -2,18 +2,18 @@
    see copyrigh file for details */
 typedef char *(*TXHGetNextFileType)(int &l, int &MustBeDeleted, char *FileName);
 extern TXHGetNextFileType TXHGetNextFile;
-extern void (*TXHPrintMessage)(char *s);
+extern void (*TXHPrintMessage)(const char *s);
 
 #define TXHGetErrorSection(a) TXHErrorSection[a]
 #define TXHGetGenSect()       TXHSections[TXHGenSection]
 #define TXHGetErrorMessage()  TXHErrors[TXHError]
 extern int   TXHGenerateAll(void);
-extern char *TXHErrorSection[];
+extern const char *TXHErrorSection[];
 extern int   TXHGenSection;
-extern char *TXHSections[];
+extern const char *TXHSections[];
 extern int   TXHError;
 extern int   TXHLine;
-extern char *TXHErrors[];
+extern const char *TXHErrors[];
 extern int   TXHKeepTemporal;
 extern char *TXHFormatFile;    // Configuration file
 extern char *TXHTempGenFile;   // Name of the temporal for nodes

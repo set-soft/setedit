@@ -59,7 +59,7 @@ void HTMLAcc_Entry(Boolean compact)
 strings.
 
 *****************************************************************************/
-static char *Remap[]=
+static const char *Remap[]=
 {
  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, // 0..15
  0,0,0,0,
@@ -214,7 +214,7 @@ void ExpandAccents(TCEditor *e)
  e->lockUndo();
 
  uchar *s=(uchar *)e->buffer;
- char *repl;
+ const char *repl;
  unsigned len=e->bufLen,pos=0,value,index;
  char buf[12];
  buf[0]='&';

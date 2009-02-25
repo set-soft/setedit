@@ -72,7 +72,7 @@ const char *cDeskTopFileName=DeskTopFileName;
 #ifdef HIDDEN_DIFFERENT
 const char *cDeskTopFileNameHidden=DeskTopFileNameHidden;
 #endif
-static char *Signature="TEditorApp desktop file\x1A";
+static const char *Signature="TEditorApp desktop file\x1A";
 const int    EditorsDelta=10;
 const char  *defaultDrvName="_Default";
 

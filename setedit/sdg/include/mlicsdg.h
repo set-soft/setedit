@@ -14,7 +14,7 @@ public:
  virtual Command WhatCommand(char *s);
 
 private:
- static char *cNames[MLISDGCommands];
+ static const char *cNames[MLISDGCommands];
  static Command cComms[MLISDGCommands];
  getVarFunction getVar;
 };

@@ -144,7 +144,7 @@ public:
     int  handleCommand(ushort command);
 
     virtual void initBuffer();
-    Boolean insertBuffer( char *, unsigned, unsigned, Boolean, Boolean, Boolean moveToEnd=True );
+    Boolean insertBuffer(const char *, unsigned, unsigned, Boolean, Boolean, Boolean moveToEnd=True );
     virtual Boolean insertFrom( TCEditor * );
     Boolean insertText( const void *, unsigned, Boolean );
     unsigned CopySelToBuffer(char *b, unsigned l);
@@ -389,7 +389,7 @@ public:
     void GotoOffSet(unsigned o);
     void JumpEndOfText();
     void ResetCursorPosition(void);
-    void IndentBlock(char *Fill, Boolean allowUndo=True);
+    void IndentBlock(const char *Fill, Boolean allowUndo=True);
     void UnIndentBlock(unsigned Amount, Boolean allowUndo=True);
     void ArbitraryIndent();
     void CommentIndent();

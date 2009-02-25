@@ -633,10 +633,10 @@ void ParseCommandLine(int argc, char *argv[])
     switch (optc)
       {
        case 'l':
-            putenv("LFN=N");
+            putenv(newStr("LFN=N"));
             break;
        case 'L':
-            putenv("LFN=Y");
+            putenv(newStr("LFN=Y"));
             break;
        case 'k':
             UseRH52=1;
@@ -743,7 +743,7 @@ void CreateDesktopNames(char *file)
     return; // Nothing to do the user specified both
 
  char Share[PATH_MAX];
- char *pos=strrchr(file,'/');
+ const char *pos=strrchr(file,'/');
  if (pos && pos-file>4 && strncmp(pos-3,"bin",3)==0)
    {
     strncpy(Share,file,pos-file-3);
@@ -815,7 +815,7 @@ void CreateDesktopNames(char *file)
    }
 }
 
-void OpenInfView(TEditorMiApp *editorApp, char *name)
+void OpenInfView(TEditorMiApp *editorApp, const char *name)
 {
  TInfFile *i=new TInfFile(name);
  startInfo=new TInfWindow(i,"");

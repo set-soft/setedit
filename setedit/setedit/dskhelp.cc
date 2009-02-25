@@ -36,7 +36,7 @@ TStreamable *TDskWinHelp::build()
  return new TDskWinHelp( streamableInit );
 }
 
-void TDskWinHelp::Goto(char *File, char *Node, char *word)
+void TDskWinHelp::Goto(const char *File, const char *Node, const char *word)
 {
  char aux[MAX_NODE_NAME*2];
  aux[0]='(';
@@ -125,7 +125,7 @@ char *TDskWinHelp::GetText(char *dest, short maxLen)
  return dest;
 }
 
-void TDskWinHelp::Create(char *File, char *Node, Boolean TheOne)
+void TDskWinHelp::Create(const char *File, const char *Node, Boolean TheOne)
 {
  file = new TInfFile(File);
  window = new TInfWindow(file,Node,NULL,CopyHelp2Clip,TheOne);
@@ -134,7 +134,7 @@ void TDskWinHelp::Create(char *File, char *Node, Boolean TheOne)
  view=window;
 }
 
-void TDskWinHelp::CreateModal(char *File, char *Node)
+void TDskWinHelp::CreateModal(const char *File, const char *Node)
 {
  TInfFile *aFile = new TInfFile(File);
  TInfWindow *aWindow = new TInfWindow(aFile,Node,NULL,CopyHelp2Clip,False);
@@ -143,7 +143,7 @@ void TDskWinHelp::CreateModal(char *File, char *Node)
  CLY_destroy(aWindow);
 }
 
-TDskWinHelp::TDskWinHelp(char *File, char *Node, Boolean TheOne)
+TDskWinHelp::TDskWinHelp(const char *File, const char *Node, Boolean TheOne)
 {
  Create(File,Node,TheOne);
  type=dktHelp;

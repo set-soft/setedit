@@ -92,7 +92,7 @@ static int   Replaces;
 
 int  TXHLine;
 
-char *TXHErrors[] =
+const char *TXHErrors[] =
 {
 "Unknown error",                //0
 "Can't open the file",          //1
@@ -120,7 +120,7 @@ char *TXHErrors[] =
 };
 int TXHError;
 
-char *TXHErrorSection[]=
+const char *TXHErrorSection[]=
 {
 "unknown part",
 "loading the format file",
@@ -148,12 +148,12 @@ char *TXHFormatFile;                // Configuration file
 char *TXHTempGenFile;               // Name of the temporal for nodes
 char *TXHOutBaseName;               // No extentions here!
 char *TXHFilesDir=NULL;             // Base for format files
-void (*TXHPrintMessage)(char *s);
+void (*TXHPrintMessage)(const char *s);
 
 static void GenerateAssoc(TNCSAssociative *a, char *name, char *extra, FILE *f);
 void OutPutString(char *s, char *e,FILE *f);
 
-char *TXHSections[] =
+const char *TXHSections[] =
 {
  "Delimiters",
  "Variables",
@@ -1476,7 +1476,7 @@ static void PutMenuVal(int num,FILE *f)
    }
 }
 
-static int GetVarMenu(int num,char *&start,char *&end,int &flags)
+static int GetVarMenu(int num, char *&start, char *&end,int &flags)
 {
  flags=sdgSimpleString | sdgASCIIZ;
  switch (num)
@@ -1514,13 +1514,15 @@ static void PutMainCode(int num,FILE *f)
 {
  int i,l;
  char LineB[1000];
+ char s1[]="Alphabetical list of functions";
+ char s2[]="Alphabetical List";
 
  switch (num)
    {
     // Main menu
     case 1:
          fprintf(f,"%s\n",StartMenu);
-         GenMenuEntry(f,"Alphabetical list of functions","Alphabetical List");
+         GenMenuEntry(f,s1,s2);
          for (i=0; i<Associations; i++)
              GenMenuEntry(f,AssoMenu[i],AssoNode[i]);
          fprintf(f,"%s\n\n",EndMenuVal);
@@ -1569,13 +1571,16 @@ static void PutMainCode(int num,FILE *f)
    }
 }
 
+static
+char alphabeticalList[]="Alphabetical List";
+
 static int GetVarMain(int num,char *&start,char *&end,int &flags)
 {
  switch (num)
    {
     // Name of the function list node
     case 2:
-         start=end="Alphabetical List";
+         start=end=alphabeticalList;
          flags=sdgSimpleString | sdgASCIIZ;
          return 1;
 
@@ -1877,7 +1882,7 @@ static void GenerateAssoc(TNCSAssociative *a, char *name, char *extra, FILE *f)
     }
 }
 
-static void DumpFile(char *file,char *from,int kill=1)
+static void DumpFile(char *file, const char *from, int kill=1)
 {
  FILE *f;
  char buf[256];

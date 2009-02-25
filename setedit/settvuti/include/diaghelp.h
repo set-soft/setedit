@@ -3,8 +3,8 @@
 class TDialog;
 ushort execDialogNoDestroy(TDialog *d, void *data, char &lSet);
 void AddOKCancel(TDialog *d);
-ushort messageBoxDSA(const char *msg, ushort aOptions, char *var, ushort defComm);
-ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
+ushort messageBoxDSA(const char *msg, ushort aOptions, const char *var, ushort defComm);
+ushort messageBoxDSA(const char *msg, ushort aOptions, const char *var,
                      unsigned mask, ushort defComm);
 int GetDeskTopCols();
 int GetDeskTopRows();

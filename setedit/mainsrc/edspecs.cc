@@ -18,7 +18,7 @@
 extern char **environ;
 #endif
 
-static char *default_variables[]=
+static const char *default_variables[]=
 {
  "SET_CONFQUIT","0",
  "SET_CREATE_DST","1",
@@ -162,7 +162,7 @@ void ReadEnviromentFile(void)
 }
 
 static
-void fPutVar(char *var,FILE *f)
+void fPutVar(const char *var, FILE *f)
 {
  char *c=(char *)GetVariable(var);
  if (c && c[0])
@@ -206,7 +206,7 @@ void SaveEnviromentFile(void)
 //static __attribute__ ((__constructor__))
 void InitEnvirVariables(void)
 {
- char *variable,*contents;
+ const char *variable,*contents;
  int i=0;
  // The lower priority is the one of the hardcoded
  while (default_variables[i])

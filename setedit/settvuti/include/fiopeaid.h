@@ -15,7 +15,7 @@ typedef struct
 
 AsoID *GetFileIDDirBuffer(int id);
 void  SetFileIDDirValue(int id, char *dir, char *mask=0);
-int   GenericFileDialog(const char *title, char *file, char *mask, int id, unsigned flags=0);
+int   GenericFileDialog(const char *title, char *file, const char *mask, int id, unsigned flags=0);
 void  LoadFileIDDirs(fpstream &s, Boolean isLocal);
 void  SaveFileIDDirs(fpstream &s);
 

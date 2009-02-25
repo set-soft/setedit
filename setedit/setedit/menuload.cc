@@ -107,10 +107,10 @@ typedef struct
 {
  char start;
  char escape;
- char *sIf,*sElse,*sEnd;
- char *sDefined,*sIfDef,*sIfNDef;
- char *sAnd,*sOr,sNot;
- char *sDefine, *sUndef;
+ const char *sIf,*sElse,*sEnd;
+ const char *sDefined,*sIfDef,*sIfNDef;
+ const char *sAnd,*sOr,sNot;
+ const char *sDefine, *sUndef;
  int  depth;
  char stack[maxDepth];
 } stPreproInfo;

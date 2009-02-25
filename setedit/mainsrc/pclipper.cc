@@ -178,7 +178,7 @@ int GetWord()
 }
 
 static
-int CheckStr(char *word, char *toCheck)
+int CheckStr(const char *word, char *toCheck)
 {
  int l=0;
  while (*toCheck && *word)

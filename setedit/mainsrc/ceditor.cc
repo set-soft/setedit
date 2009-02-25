@@ -185,7 +185,7 @@ macros couldn't be loaded.
   
 ***************************************************************************/
 
-int InitTCEditor(char *s,Boolean force)
+int InitTCEditor(const char *s,Boolean force)
 {
  int ret=0;
 
@@ -7484,7 +7484,7 @@ void TCEditor::initBuffer()
 
 ****************************************************************************/
 
-static BufPlusLen *CreateBufPlusLen(char *s,unsigned l)
+static BufPlusLen *CreateBufPlusLen(const char *s,unsigned l)
 {
  BufPlusLen *p;
 
@@ -7514,7 +7514,8 @@ static unsigned CalcNeededCharsToFill(int X1, int X2, int tabSize, Boolean Optim
 }
 
 
-static void FillGapInBuffer(int X1, int X2, char *s, int tabSize, Boolean OptimalFill)
+static
+void FillGapInBuffer(int X1, int X2, char *s, int tabSize, Boolean OptimalFill)
 {
  int x;
  if (X2<=X1) return; // sanity check
@@ -7609,7 +7610,7 @@ void TCEditor::UpdateSyntaxHLBlock(unsigned firstLine, char *firstTouchedP,
 
 ****************************************************************************/
 
-Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
+Boolean TCEditor::insertBuffer(const char *p, uint32 offset, uint32 length,
                                Boolean allowUndo, Boolean selectText,
                                Boolean moveToEnd)
 {
@@ -7809,6 +7810,7 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
 
  if (moveToEnd || !staticNoMoveToEndPaste)
    {
+    const char *s;
     for (s=p,i=0,x=curPos.y,inFirstLine=1,chars=0; (unsigned)i<length; i++,s++,chars++)
        {
         // Is a line feed?
@@ -7844,6 +7846,7 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
    }
  else
    {
+    const char *s;
     for (s=p,i=0,x=curPos.y,inFirstLine=1,chars=0; (unsigned)i<length; i++,s++,chars++)
        {
         // Is a line feed?
@@ -7878,12 +7881,14 @@ Boolean TCEditor::insertBuffer(char *p, uint32 offset, uint32 length,
    }
  // There are characters added to the last line?
  if (chars)
+   {
     if (inFirstLine)
       {// Only a little text inside the line
        lenLines.set(x,lar+CRLFLenOfTheLine+extraSpaces+chars);
       }
     else
        lenLines.set(x,lenLines[x]+chars-1);
+   }
 
  // If needed adjust the SpecialLines array
  if (SpecialLines)
@@ -12012,7 +12017,7 @@ unsigned TCEditor::JumpLineStartSelection()
 
 ****************************************************************************/
 
-void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
+void TCEditor::IndentBlock(const char *Fill, Boolean allowUndo)
 {
  if (isReadOnly) return;
  if (hasVisibleSelection())
@@ -12060,9 +12065,10 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
          }
        else
          Amount=NextTabPos(Xact)-Xact;
-       Fill=(char *)alloca(Amount+1);
-       memset(Fill,' ',Amount);
-       Fill[Amount]=0;
+       char *aux=(char *)alloca(Amount+1);
+       memset(aux,' ',Amount);
+       aux[Amount]=0;
+       Fill=aux;
       }
 
     // How many lines?
@@ -12090,7 +12096,7 @@ void TCEditor::IndentBlock(char *Fill, Boolean allowUndo)
     if (allowUndo)
       {
        addToUndo(undoPre2IndBlock,&Amount);
-       addToUndo(undoIndBlock,Fill);
+       addToUndo(undoIndBlock,(void *)Fill);
       }
 
     // 3) Move the lines

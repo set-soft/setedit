@@ -186,9 +186,9 @@ class TInfFile
 
 public:
 
-    TInfFile( char *s, int Verbose=1 ) { DoAll(s,Verbose); };
+    TInfFile(const char *s, int Verbose=1) { DoAll(s,Verbose); };
     virtual ~TInfFile();
-    void DoAll(char *s, int Verbose=0 );
+    void DoAll(const char *s, int Verbose=0 );
 
     int seekToNode(const char *Name, int fromStart=0);
     TInfTopic *getTopic(char *, int Verbose, int modeForTopic, int &suggY);
@@ -213,7 +213,7 @@ public:
 
     // Special I/O for multi-file
     int  fSeek(long Pos);
-    FILE *fOpen(char *Nombre);
+    FILE *fOpen(const char *Nombre);
     int  fClose(FILE *f);
     long fTell(void);
 
@@ -227,7 +227,7 @@ public:
     long fileLength;
 
 private:
-    int ExpandName(char *Buf, char *Nombre, int iExt);
+    int ExpandName(char *Buf, const char *Nombre, int iExt);
 
 };
 

@@ -89,7 +89,7 @@ http://\path\
 @end macro
 
 @macro quest{stuff}
-@quote-arg
+@c @quote-arg
 @emph{@strong{Question}: \stuff\}
 @end macro
 
@@ -112,7 +112,7 @@ See \desc\ in ``\title\'', or point your Web browser to http://\url\
 @end macro
 
 @macro footnote{stuff}
-@quote-arg
+@c @quote-arg
 (\stuff\)
 @end macro
 

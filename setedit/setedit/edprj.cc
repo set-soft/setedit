@@ -628,7 +628,7 @@ TStreamable *TDskWinPrj::build()
  return new TDskWinPrj( streamableInit );
 }
 
-static char *Signature="Editor project file\x1A";
+static const char *Signature="Editor project file\x1A";
 
 void TDskWinPrj::write( opstream& os )
 {

@@ -737,7 +737,7 @@ ScrSaver PlasmaRB1AA=
 
 
 /************************** Text Stars saver *****************************/
-static char *cCartel1=__("Press a key to continue");
+static const char *cCartel1=__("Press a key to continue");
 
 static char s1[2]="ú";
 static char s2[2]="ù";
@@ -1119,7 +1119,7 @@ void *WichSaverIs(char *name, int &type)
 }
 
 static
-char *GetScrSaverOut(char *name, char *option)
+char *GetScrSaverOut(char *name, const char *option)
 {
  int type;
  char *namePrg=(char *)WichSaverIs(name,type);

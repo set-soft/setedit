@@ -67,7 +67,7 @@ int edTestForFile(const char *name)
  return edTestForFile(name,st);
 }
 
-char *GetHome(void)
+const char *GetHome(void)
 {
  char *s=getenv("HOME");
  if (!s)
@@ -89,7 +89,7 @@ static
 char *ExpandHomeWDir(const char *s, int hidden=0)
 {
  static int HiddenDirFailed=0;
- char *h=GetHome();
+ const char *h=GetHome();
  if (!HiddenDirFailed)
    {// Check ~/.setedit/
     strcpy(FileNameToLoad,h);
@@ -377,7 +377,7 @@ char *ReplaceExtension(char *name, const char *ext)
 
 ***************************************************************************/
 
-char *AddToNameOfFile(char *fname, char *add)
+char *AddToNameOfFile(char *fname, const char *add)
 {
  #ifdef SEOS_DOS
  // It could fail, but in this case the user should disable the option
@@ -411,7 +411,7 @@ char *AddToNameOfFile(char *fname, char *add)
  #endif
 }
 
-int DeleteWildcard(char *mask)
+int DeleteWildcard(const char *mask)
 {
  int deleted=0;
  DIR *d;
@@ -434,7 +434,7 @@ int DeleteWildcard(char *mask)
 }
 
 
-char *GetPathRelativeToRunPoint(char *dest, const char *binReplace, char *file)
+char *GetPathRelativeToRunPoint(char *dest, const char *binReplace, const char *file)
 {
  char *ret;
 
@@ -605,7 +605,7 @@ stderr/stdout could misserably fail.
 
 void CheckForValidTMPDIR()
 {
- char *tmp=getenv("TMPDIR");
+ const char *tmp=getenv("TMPDIR");
 
  // If the variable is defined && is a directory all is ok
  if (!(tmp && IsADirectory(tmp)))

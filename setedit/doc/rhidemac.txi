@@ -98,7 +98,7 @@ http://\path\
 @end macro
 
 @macro quest{stuff}
-@quote-arg
+@c @quote-arg
 @emph{@strong{Question}: \stuff\}
 @end macro
 

@@ -27,7 +27,7 @@ Rawtowav::~Rawtowav()
   close(filehandle);
 }
 
-bool Rawtowav::initialize(char *filename)
+bool Rawtowav::initialize(const char *filename)
 {
   if(filename==NULL)filehandle=1;
   else if((filehandle=Mpegsound_creat(filename))==-1)

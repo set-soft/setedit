@@ -69,8 +69,8 @@ static char Autor[sizeNames+1];
 static char Titulo[sizeNames+1];
 static char Output[sizeNames+1];
 static char *FileName;
-static char *PiePagina=__("Page: %d Lines: %d to %d  Date: %s  Time: %s%s");
-static char *Cabecera=__("* Source: %s * Title: %s * Author: %s\n\n");
+static const char *PiePagina=__("Page: %d Lines: %d to %d  Date: %s  Time: %s%s");
+static const char *Cabecera=__("* Source: %s * Title: %s * Author: %s\n\n");
 
 typedef struct
 {
@@ -80,11 +80,11 @@ typedef struct
 
 typedef struct
 {
- char *inic;
- char *an_cab;
- char *de_cab;
- char *an_pie;
- char *de_pie;
+ const char *inic;
+ const char *an_cab;
+ const char *de_cab;
+ const char *an_pie;
+ const char *de_pie;
 } PrnDef;
 
 // Reset and font, Empha., No empha., Italic, No italic
@@ -103,7 +103,7 @@ static PrnComm ImpAnPie;
 static PrnComm ImpDePie;
 
 static
-void FillComm(PrnComm &s, char *c)
+void FillComm(PrnComm &s, const char *c)
 {
  strcpy((char *)s.comm,c);
  s.size=strlen(c);
@@ -578,7 +578,7 @@ void ExpandComm(char *dest, PrnComm &p)
 }
 
 static
-void ExpandComm(char *dest, char *s)
+void ExpandComm(char *dest, const char *s)
 {
  char buf[8];
 

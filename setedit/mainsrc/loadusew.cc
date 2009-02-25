@@ -60,7 +60,7 @@ void LoadUserWords(strSHL *s, int id)
  FILE *f=fopen(fileName,"rt");
  if (!f)
     return;
- char *name=SHLNameOf(id);
+ const char *name=SHLNameOf(id);
  char line[maxUserWordLen];
  int  state=stateLookingName;
  TStringCollection *col=0;

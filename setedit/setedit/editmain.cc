@@ -139,7 +139,7 @@ const char *TipsFName="editor.tip";
 // Used to guess the info directory in DOS
 static char *EditorFileExt="setedit.inf";
 #endif
-char *EditorFile="setedit";
+const char *EditorFile="setedit";
 DeclarePalette;
 
 TSetEditorApp *editorApp;
@@ -456,7 +456,7 @@ TCEditWindow *TSetEditorApp::openEditor(char *fileName, Boolean visible,
 
 void TSetEditorApp::SetTitle(const char *str1, const char *str2)
 {
- char *str0="SETEdit ";
+ const char *str0="SETEdit ";
  int len=strlen(str0)+sizeof(TCEDITOR_VERSION_STR)+3;
 
  if (!str1) str1=__("No project loaded");
@@ -2617,7 +2617,7 @@ int GuessINFOPATH(void)
 #endif
 
 static
-void ShowInstallError(char *var, const char *suggest, int end)
+void ShowInstallError(const char *var, const char *suggest, int end)
 {
  TScreen::suspend();
  fprintf(stderr,_("\nWrong installation! You must define the %s environment variable.\n"),var);
@@ -2872,10 +2872,10 @@ void ParseCommandLine(int argc, char *argv[])
             KeyBindFNameUser=newStr(CLY_optarg);
             break;
        case 'l':
-            putenv("LFN=N");
+            putenv(newStr("LFN=N"));
             break;
        case 'L':
-            putenv("LFN=Y");
+            putenv(newStr("LFN=Y"));
             break;
        case 'm':
             TVMainConfigFile::Add("DOS","PollMouse",1);

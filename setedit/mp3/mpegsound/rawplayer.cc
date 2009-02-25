@@ -30,7 +30,7 @@
 #define IOCTL(a,b,c)		(c = ioctl(a,b,c) )
 #endif
 
-char *Rawplayer::defaultdevice="/dev/dsp";
+const char *Rawplayer::defaultdevice="/dev/dsp";
 
 /* Volume */
 int Rawplayer::setvolume(int volume)
@@ -63,7 +63,7 @@ Rawplayer::~Rawplayer()
   close(audiohandle);
 }
 
-bool Rawplayer::initialize(char *filename)
+bool Rawplayer::initialize(const char *filename)
 {
   int flag;
 

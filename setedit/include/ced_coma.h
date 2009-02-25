@@ -357,7 +357,7 @@ extern int SearchEditCommand(char *name);
 extern int SearchEditFlag(char *name, unsigned &val);
 extern int SearchSimpleCommand(char *name);
 extern int SearchHelpCtxCommand(char *name);
-extern char *TranslateEdCommand(unsigned cmc_Com);
+extern const char *TranslateEdCommand(unsigned cmc_Com);
 class  TNoCaseNoOwnerStringCollection;
 extern TNoCaseNoOwnerStringCollection *CreateEdCommandCol(void);
 #endif

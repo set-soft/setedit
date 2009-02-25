@@ -12,9 +12,9 @@
 #include <edmsg.h>
 
 int   MLIEditorError;
-char *MLIEditorTypeError;
-char *MLIEditorErrorName;
-char *MLIEditorErrorCode;
+const char *MLIEditorTypeError;
+const char *MLIEditorErrorName;
+const char *MLIEditorErrorCode;
 
 static TMLIArraySimple  *array=0;
 static TLispVariableCol *vars=0;

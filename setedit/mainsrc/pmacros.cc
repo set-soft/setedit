@@ -141,10 +141,10 @@ int MeassureTriLine(char *b,unsigned &s,unsigned &e)
 Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
 {
  FILE *f;
- char buf[256];
- char *sep="\"",*s;
+ char buf[256],*s;
+ const char *sep="\"";
  int Trs=0,partial,loaded;
- unsigned l,start,end,total=0;
+ unsigned l,start=0,end=0,total=0;
  unsigned mode,bit;
  PMacroStr *nDef;
  long startDef;

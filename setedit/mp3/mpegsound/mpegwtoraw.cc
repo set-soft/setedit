@@ -5,7 +5,7 @@
 static bool CheckForMP3InsideWavDontMove(Soundinputstream *f);
 static bool CheckForMP3InsideWav(Soundinputstream *f);
 
-void Mpegwavtoraw::initialize(char *filename, bool avoidID3)
+void Mpegwavtoraw::initialize(const char *filename, bool avoidID3)
 {
  if (loader->getcanseek())
     // Check if that's an MP3 inside a RIFF/WAVe.

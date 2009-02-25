@@ -158,7 +158,7 @@ void TListDiag::handleEvent(TEvent &event)
  clearEvent(event);
 }
 
-static char *Signature="SET's Files list\x1A";
+static const char *Signature="SET's Files list\x1A";
 const int Version=0x100;
 
 void TListDiag::SaveList(char *name)

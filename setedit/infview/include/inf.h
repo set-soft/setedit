@@ -172,8 +172,8 @@ class TInfViewer : public TScroller
 {
 public:
 
-    TInfViewer( const TRect&, TScrollBar*, TScrollBar*, TInfFile*, char *,
-                char *match );
+    TInfViewer(const TRect&, TScrollBar*, TScrollBar*, TInfFile*, const char *,
+               char *match);
     ~TInfViewer();
 
     virtual void changeBounds( const TRect& );
@@ -199,9 +199,9 @@ public:
     void PrevWord(int selectMode, int x, int y);
 
     void gotoInteractive();
-    void switchToTopic( char *, TPoint );
-    void switchToTopic( char * );
-    void switchToTopic( stHisto *h );
+    void switchToTopic(const char *, TPoint);
+    void switchToTopic(const char *);
+    void switchToTopic(stHisto *h);
     int  jumpXRefPartial(char *name, unsigned opts=0);
 
     TInfFile *hFile;
@@ -210,7 +210,7 @@ public:
 
     // Search stuff
     void find();
-    void findInTopic(char *s);
+    void findInTopic(const char *s);
     void makeSearch(int beVerbose=1);
     int  searchInCurrentTopic(int Linea,int Col,int largo);
     int searchInCurrentFile(int Linea,int Col,int largo);
@@ -255,7 +255,7 @@ protected:
 private:
     THisCollection *History;
     int HistPoint;
-    void  AddToHistory(char *);
+    void  AddToHistory(const char *);
     char *TakeFromHistory(TPoint& Pos);
     void SetTitle(char *File, char *Node);
     char QuickSearch[MAX_NODE_NAME];
@@ -305,7 +305,7 @@ class TInfWindow : public TWindow
 {
 public:
 
- TInfWindow( TInfFile*, char *context, char *match=0,
+ TInfWindow( TInfFile*, const char *context, char *match=0,
              void (*ir)(char *b, long l)=NULL, Boolean IsTheOne=False );
 
  virtual TPalette& getPalette() const;

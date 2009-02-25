@@ -756,7 +756,7 @@ applications that prints to stdout.@*
 
 ***************************************************************************/
 
-void RunExternalProgram(char *Program, unsigned flags, char *compiler)
+void RunExternalProgram(char *Program, unsigned flags, const char *compiler)
 {
  // If for some reason we still running a command don't run another
  if (PidChild || ParsingErrors) return;

@@ -240,7 +240,7 @@ void RemoveFromEditorsHelper(TInfWindow *p);
 ***************************************************************/
 
 TInfViewer::TInfViewer( const TRect& bounds, TScrollBar* aHScrollBar,
-    TScrollBar* aVScrollBar, TInfFile *aInfFile, char *context,
+    TScrollBar* aVScrollBar, TInfFile *aInfFile, const char *context,
     char *match )
     : TScroller( bounds, aHScrollBar, aVScrollBar )
 {
@@ -429,7 +429,8 @@ static void moveChar(int indent, char c, char attr, int count, ushort *b)
      *b=val;
 }
 
-static void moveStr(int indent, char *buffer, char attr, ushort *b)
+static
+void moveStr(int indent, const char *buffer, char attr, ushort *b)
 {
  char *s=(char *)(b+indent);
 
@@ -739,7 +740,7 @@ void TInfViewer::makeVisible( TPoint& keyPoint, int largo )
     scrollTo(keyPoint.x,keyPoint.y-1);
 }
 
-void TInfViewer::switchToTopic( char *keyRef, TPoint Pos )
+void TInfViewer::switchToTopic(const char *keyRef, TPoint Pos)
 {
  char NameCopy[MAX_NODE_NAME];
 
@@ -771,7 +772,7 @@ void TInfViewer::switchToTopic( char *keyRef, TPoint Pos )
  drawView();
 }
 
-void TInfViewer::switchToTopic(char *keyRef)
+void TInfViewer::switchToTopic(const char *keyRef)
 {
  TPoint Pos;
 
@@ -824,7 +825,8 @@ int TInfViewer::jumpXRefPartial(char *name, unsigned opts)
  return 0;
 }
 
-static void AddFileToNode(char *dest, char *source, char *file)
+static
+void AddFileToNode(char *dest, const char *source, const char *file)
 {
  if (source[0]=='(')
     strncpy(dest,source,MAX_NODE_NAME-1);
@@ -838,7 +840,7 @@ static void AddFileToNode(char *dest, char *source, char *file)
    }
 }
 
-void TInfViewer::AddToHistory(char *context)
+void TInfViewer::AddToHistory(const char *context)
 {
  stHisto *h = (stHisto *)History->at(HistPoint);
 
@@ -1983,7 +1985,7 @@ void TInfViewer::find()
    }
 }
 
-void TInfViewer::findInTopic(char *s)
+void TInfViewer::findInTopic(const char *s)
 {
  strncpyZ(findStr,s,MAX_NODE_NAME);
  findType=findWhere=0;
@@ -2114,7 +2116,7 @@ TRect &getDefaultSizeWindow()
 
 ***************************************************************/
 
-TInfWindow::TInfWindow(TInfFile *hFile, char *context, char *match,
+TInfWindow::TInfWindow(TInfFile *hFile, const char *context, char *match,
                        void (*ir)(char *b, long l), Boolean IsTheOne) :
        TWindowInit( &TInfWindow::initFrame),
        TWindow( getDefaultSizeWindow(), "InfView", wnNoNumber )
@@ -2123,7 +2125,7 @@ TInfWindow::TInfWindow(TInfFile *hFile, char *context, char *match,
  options = (options | ofCentered);
  r.grow(-1,-1);
 
- viewer=new TInfViewer (r,standardScrollBar(sbHorizontal | sbHandleKeyboard),
+ viewer=new TInfViewer(r,standardScrollBar(sbHorizontal | sbHandleKeyboard),
    standardScrollBar(sbVertical | sbHandleKeyboard), hFile, context,
    match);
  viewer->InsertRoutine=ir;

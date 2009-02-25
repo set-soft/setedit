@@ -269,7 +269,7 @@ public:
   Soundplayer() {__errorcode=SOUND_ERROR_OK;};
   virtual ~Soundplayer();
 
-  virtual bool initialize(char *filename)                       =0;
+  virtual bool initialize(const char *filename)                 =0;
   virtual void abort(void);
   virtual int  getprocessed(void);
 
@@ -295,7 +295,7 @@ class Rawtofile : public Soundplayer
 public:
   ~Rawtofile();
 
-  bool initialize(char *filename);
+  bool initialize(const char *filename);
   bool setsoundtype(int stereo,int samplesize,int speed);
   bool putblock(void *buffer,int size);
   
@@ -309,7 +309,7 @@ class Rawtowav : public Soundplayer
 public:
   ~Rawtowav();
 
-  bool initialize(char *filename);
+  bool initialize(const char *filename);
   bool setsoundtype(int stereo,int samplesize,int speed);
   bool putblock(void *buffer,int size);
   
@@ -324,7 +324,7 @@ class Rawplayer : public Soundplayer
 public:
   ~Rawplayer();
 
-  bool initialize(char *filename);
+  bool initialize(const char *filename);
   void abort(void);
   int  getprocessed(void);
 
@@ -339,7 +339,7 @@ public:
   int  getquota(void) {return quota;};
   bool roomformore(unsigned size);
 
-  static char *defaultdevice;
+  static const char *defaultdevice;
   static int  setvolume(int volume);
 
 private:
@@ -543,7 +543,7 @@ public:
 public:
   Mpegtoraw(Soundinputstream *loader,Soundplayer *player);
   virtual ~Mpegtoraw();
-  virtual void initialize(char *filename, bool avoidID3=false);
+  virtual void initialize(const char *filename, bool avoidID3=false);
   bool run(int frames);
   bool startplay(void) { return run(-1); };
   void stopplay(void);
@@ -706,7 +706,7 @@ class Mpegwavtoraw : public Mpegtoraw
 public:
   Mpegwavtoraw(Soundinputstream *aLoader,Soundplayer *aPlayer) :
     Mpegtoraw(aLoader,aPlayer) {};
-  void initialize(char *filename, bool avoidID3=false);
+  void initialize(const char *filename, bool avoidID3=false);
 };
 // Used to check if this class is suitable
 bool Mpegsound_CheckMP3WAV(char *filename);
@@ -743,7 +743,7 @@ public:
   Wavefileplayer();
   ~Wavefileplayer();
 
-  bool openfile(char *filename,char *device);
+  bool openfile(char *filename, const char *device);
   void setforcetomono(bool flag);
   bool playing(int verbose);
   
@@ -760,7 +760,7 @@ public:
   Mpegfileplayer();
   ~Mpegfileplayer();
 
-  bool openfile(char *filename,char *device);
+  bool openfile(char *filename,const char *device);
   void setforcetomono(bool flag);
   void setdownfrequency(int value);
   bool playing(int verbose);

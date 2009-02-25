@@ -226,7 +226,7 @@ TDiaScrSaver::TDiaScrSaver(void) :
 
 
 static
-void ShowText(char *Text, char *Title)
+void ShowText(char *Text, const char *Title)
 {
  TSViewCol *col=new TSViewCol(new TDialog(TRect(1,1,1,1),Title));
 

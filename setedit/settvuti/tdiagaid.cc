@@ -165,13 +165,13 @@ void TDialogAID::handleEvent(TEvent& event)
    }
 }
 
-static char *nbotAdd=__("~A~dd");
-static char *nbotIns=__("~I~nsert");
-static char *nbotDel=__("~D~elete");
-static char *nbotOk =__("~O~k");
-static char *nbotCan=__("~C~ancel");
-static char *nbotInfo=__("~I~nfo.");
-static char *nbotBrowse=__("~B~rowse");
+static const char *nbotAdd=__("~A~dd");
+static const char *nbotIns=__("~I~nsert");
+static const char *nbotDel=__("~D~elete");
+static const char *nbotOk =__("~O~k");
+static const char *nbotCan=__("~C~ancel");
+static const char *nbotInfo=__("~I~nfo.");
+static const char *nbotBrowse=__("~B~rowse");
 
 const int lSepb=2;
 

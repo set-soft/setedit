@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.775  2009/02/24 18:29:25  set
+* Added: [Holidays] The german holidays to the binary distro.
+* Fixed: [Holidays] An extra ) in the last patch.
+
 Revision 1.774  2009/02/24 18:18:24  set
 * Added: The new files to the source distribution list.
 

@@ -28,7 +28,7 @@
 
 const int MaxCompVal=255;
 
-static char *patterNumShow="123456789012";
+static const char *patterNumShow="123456789012";
 
 class TNumShow : public TStaticText
 {

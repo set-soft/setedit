@@ -162,7 +162,8 @@ buffer used by the provided id and with the buttons according to the flags.
 
 ***************************************************************************/
 
-int GenericFileDialog(const char *title, char *file, char *mask, int id, unsigned flags)
+int GenericFileDialog(const char *title, char *file, const char *mask,
+                      int id, unsigned flags)
 {
  char *dir=0;
  int buttons=0,ctx;

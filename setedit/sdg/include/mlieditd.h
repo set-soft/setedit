@@ -27,7 +27,7 @@ extern int   MLIEdIsolateCode(char *start, char *&end);
 #define SLP_NO_INIT   4
 
 extern int MLIEditorError;
-extern char *MLIEditorTypeError;
-extern char *MLIEditorErrorName;
-extern char *MLIEditorErrorCode;
+extern const char *MLIEditorTypeError;
+extern const char *MLIEditorErrorName;
+extern const char *MLIEditorErrorCode;
 #endif

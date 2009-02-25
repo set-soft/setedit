@@ -181,11 +181,11 @@ void op_cl_std_clean_up(void);
    Store the result also in 'retval' if it is != NULL. This function
    creates the file to make sure that it is really unique. That means
    the application is responsible for deleting this file */
-char *unique_name(char *before,char *retval=NULL);
+char *unique_name(const char *before,char *retval=NULL);
 /* Returns the file already opened and unlinked for UNIX */
-FILE *unique_name_f(char *&retname, char *before, char *retval=NULL);
+FILE *unique_name_f(char *&retname, const char *before, char *retval=NULL);
 /* The base for the above functions */
-int unique_name(int remove, char *&retname, char *before, char *retval=NULL);
+int unique_name(int remove, char *&retname, const char *before, char *retval=NULL);
 
 /* This functions makes ret_path relative to ref_path
    It assumes that ref_path is an absolute path which can

@@ -108,7 +108,8 @@ public:
  TFileEntryCollection(ccIndex aLimit, ccIndex aDelta) :
    TStringCollection(aLimit,aDelta) { };
  void insert(entryInfo *entry);
- void insertCopy(char *file, char *node, int ok=fileDontKnow, TStringCollection *it=0);
+ void insertCopy(const char *file, const char *node, int ok=fileDontKnow,
+                 TStringCollection *it=0);
  char Solve(entryInfo *entry);
  virtual int compare(void *key1, void *key2);
  virtual void getText(char *dest, unsigned item, int maxLen);
@@ -127,7 +128,7 @@ void TFileEntryCollection::insert(entryInfo *entry)
  TSortedCollection::insert(entry);
 }
 
-void TFileEntryCollection::insertCopy(char *file, char *node, int ok,
+void TFileEntryCollection::insertCopy(const char *file, const char *node, int ok,
                                       TStringCollection *it)
 {
  entryInfo *entry;

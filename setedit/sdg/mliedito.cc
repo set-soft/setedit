@@ -221,7 +221,7 @@ CleanUp:
 DecFun(MLIRunProgram)
 {
  int Options=0,flags=repDontFork|repDontShowDialog;
- char *comp="GNU";
+ const char *comp="GNU";
  LocVarStr(string);
  LocVarInt(option);
  LocVarStr(compiler);
@@ -1088,7 +1088,7 @@ DecFun(MLIGetMaxProjectItem)
  MLIRetInt(GetMaxProjectItem());
 }
 
-char *TMLIEditor::cNames[MLIEditorCommands]=
+const char *TMLIEditor::cNames[MLIEditorCommands]=
 {
  "SendCommands",
  "InsertText",

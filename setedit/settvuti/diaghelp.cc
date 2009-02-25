@@ -41,7 +41,7 @@ void AddOKCancel(TDialog *d)
  d->insert(new TButton(r2,__("Cancel"),cmCancel,bfNormal));
 }
 
-ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
+ushort messageBoxDSA(const char *msg, ushort aOptions, const char *var,
                      ushort defComm)
 {
  char *s=(char *)GetVariable(var);
@@ -58,7 +58,7 @@ ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
  return defComm;
 }
 
-ushort messageBoxDSA(const char *msg, ushort aOptions, char *var,
+ushort messageBoxDSA(const char *msg, ushort aOptions, const char *var,
                      unsigned mask, ushort defComm)
 {
  unsigned val=EnvirGetBits(var,mask);

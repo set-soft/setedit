@@ -283,8 +283,9 @@ void TFileDialogHome::handleEvent(TEvent& event)
 
 static char *LastMaskUsed=0;
 
-int GenericFileDialog(const char *title, char *file, char *mask, int histID, int buttons,
-                      char *dir, unsigned flags, int ctx, TRect &dialogSize)
+int GenericFileDialog(const char *title, char *file, const char *mask,
+                      int histID, int buttons, char *dir, unsigned flags,
+                      int ctx, TRect &dialogSize)
 {
  char curDir[PATH_MAX];
  char dirChanged=0;
