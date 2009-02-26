@@ -316,7 +316,7 @@ static const char *cInspWait=__("Can't update");
 static const char *cInspNoScope=__("Out of scope");
 
 static void OpenInspector(const char *var);
-static TDialog *createEditExp(char *tit);
+static TDialog *createEditExp(const char *tit);
 static void ShowErrorInMsgBox();
 static void SaveExpandedRect(opstream &os, TRect &r, unsigned wS, unsigned hS);
 static void ReadExpandedRect(ipstream &is, TRect &r, unsigned wS, unsigned hS);
@@ -7700,7 +7700,7 @@ public:
  int AddWatch(Boolean wScope, char *val=NULL);
  int DeleteWatch();
  int EditWatch();
- int EditExpression(char *exp, char *tit);
+ int EditExpression(char *exp, const char *tit);
  int InsertExp(char *exp, Boolean wScope);
  void realClose() { TDialog::close(); };
 };
@@ -7805,7 +7805,7 @@ int TWatchesDialog::InsertExp(char *exp, Boolean wScope)
  return res;
 }
 
-TDialog *createEditExp(char *tit)
+TDialog *createEditExp(const char *tit)
 {
  TSViewCol *col=new TSViewCol(tit);
 
@@ -7821,7 +7821,7 @@ TDialog *createEditExp(char *tit)
  return d;
 }
 
-int TWatchesDialog::EditExpression(char *exp, char *tit)
+int TWatchesDialog::EditExpression(char *exp, const char *tit)
 {
  if (execDialog(createEditExp(tit),exp)==cmOK)
     return 1;

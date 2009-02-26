@@ -813,6 +813,8 @@ static int FixUpPointers(int num, char *&start, char *&end)
  if (!IsUsed(num))
     return 0;
 
+ if (num<0 || num>MAX_DEFS)
+    abort();
  if (Used[num])
    {
     s=Used[num];

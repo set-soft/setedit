@@ -1284,7 +1284,7 @@ const char *SHLNameOf(unsigned number)
 }
 
 
-int SHLNumberOf(char *name)
+int SHLNumberOf(const char *name)
 {
  int i;
 

@@ -28,7 +28,7 @@ extern int   LoadSyntaxHighLightFile(char *name, strSHL *&hl, TStringCollection 
 extern int   LoadSyntaxHighLightKeywords(strSHL &hl);
 extern void  UnLoadSyntaxHighLightFile(strSHL *&hl, TStringCollection *list,int &Cant);
 extern const char *SHLNameOf(unsigned number);
-extern int   SHLNumberOf(char *name);
+extern int   SHLNumberOf(const char *name);
 class TCEditor;
 extern char *SHLConstructEmacsModeComment(TCEditor &e, int &sizeSt, int &sizeEnd);
 extern int   SHLSelect(TCEditor &e, char *buffer, int lenBuf);

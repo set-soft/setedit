@@ -69,7 +69,7 @@ int edTestForFile(const char *name)
 
 const char *GetHome(void)
 {
- char *s=getenv("HOME");
+ const char *s=getenv("HOME");
  if (!s)
    {
     s=getenv("HOMEDIR");

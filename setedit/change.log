@@ -1,4 +1,14 @@
-$Log$
+$Log$.
+Revision 1.776  2009/02/25 16:11:31  set
+* Modified: [rhidemac.txi rhidemac.txt] Removed the @quote-arg option,
+seems to be the default in modern versions.
+* Modified: New gcc versions are much more strict about the use of string
+constants.
+* Fixed(?): [manview.cc] New gcc versions doesn't like signed chars as
+array subscripts
+* Fixed: [ceditor.cc] Ambiguous else.
+* Fixed: [loadshl.cc] Ambiguous &&/|| conditional.
+
 Revision 1.775  2009/02/24 18:29:25  set
 * Added: [Holidays] The german holidays to the binary distro.
 * Fixed: [Holidays] An extra ) in the last patch.
