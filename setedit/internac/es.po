@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.5\n"
-"PO-Revision-Date: 2009-02-25 13:46-0200\n"
+"PO-Revision-Date: 2009-03-02 10:29-0200\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -2162,31 +2162,31 @@ msgstr "Validación"
 msgid "Passphrase"
 msgstr "Frase secreta"
 
-#: ../mainsrc/gzfiles.cc:602
+#: ../mainsrc/gzfiles.cc:603
 msgid "No passphrase available"
 msgstr "Frase secreta no disponible"
 
-#: ../mainsrc/gzfiles.cc:611 ../setedit/debug.cc:8806
+#: ../mainsrc/gzfiles.cc:612 ../setedit/debug.cc:8806
 msgid "Out of memory"
 msgstr "No hay memoria suficiente"
 
-#: ../mainsrc/gzfiles.cc:622 ../mainsrc/gzfiles.cc:694
+#: ../mainsrc/gzfiles.cc:623 ../mainsrc/gzfiles.cc:695
 msgid "Running:"
 msgstr "Ejecutando:"
 
-#: ../mainsrc/gzfiles.cc:630 ../mainsrc/gzfiles.cc:700
+#: ../mainsrc/gzfiles.cc:631 ../mainsrc/gzfiles.cc:701
 msgid "Failed to invoke gpg"
 msgstr "Fallo al ejecutar gpg"
 
-#: ../mainsrc/gzfiles.cc:670
+#: ../mainsrc/gzfiles.cc:671
 msgid "Error while decrypting"
 msgstr "Error al decifrar"
 
-#: ../mainsrc/gzfiles.cc:674
+#: ../mainsrc/gzfiles.cc:675
 msgid "Failed to determine user ID"
 msgstr "Falla al determinar el ID del usuario"
 
-#: ../mainsrc/gzfiles.cc:731
+#: ../mainsrc/gzfiles.cc:732
 msgid "Error from GPG"
 msgstr "Error desde el GPG"
 
