@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2009 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -525,6 +525,7 @@ int gpgPopen(const char *command, pid_t &pid, int &wrh, int &rde)
          close(pipewr[1]);
          dup2(pipewr[0],STDIN_FILENO);
          close(pipewr[0]);
+         putenv(strdup("LC_ALL=C"));
          /*
           * The System() call assumes that /bin/sh is
           * always available, and so will we.

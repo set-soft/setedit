@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.777  2009/02/26 17:35:18  set
+* Modified: [loadshl.h loadshl.cc pathtool.cc debug.cc] New gcc versions
+are much more strict about the use of string constants.
+* Added: [txhgen.cc] Safe abort suggested by gcc 4.3.
+
 Revision 1.776  2009/02/25 16:11:31  set
 * Modified: [rhidemac.txi rhidemac.txt] Removed the @quote-arg option,
 seems to be the default in modern versions.
