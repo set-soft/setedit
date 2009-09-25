@@ -1,3 +1,9 @@
+setedit (0.5.6-1) unstable; urgency=low
+
+  * Added: gdb start and connection files to insert gdb commands.
+
+ -- Salvador E. Tropea <set@ieee.org>  Fri, 25 Sep 2009 12:00:41 -0300
+
 setedit (0.5.5-8) unstable; urgency=low
 
   * Modified to compile on Lenny (now stable)
