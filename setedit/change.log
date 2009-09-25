@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.778  2009/03/03 11:24:36  set
+* Fixed: [gpg] to avoid internationalization of the messages.
+* Modified: [debian] release version for Lenny.
+
 Revision 1.777  2009/02/26 17:35:18  set
 * Modified: [loadshl.h loadshl.cc pathtool.cc debug.cc] New gcc versions
 are much more strict about the use of string constants.
