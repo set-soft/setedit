@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 2004-2009 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -293,6 +293,10 @@ static char *mainFunction=NULL;
 static char *gdbExe=NULL;
 // Executable for xterm
 static char *xtermExe=NULL;
+// Commands to execute after starting gdb
+static char *gdbStart=NULL;
+// Commands to execute after target connection
+static char *gdbConn=NULL;
 // Miscellaneous gdb settings
 static char   miscGDBset=0;
 static uint32 miscGDB;
@@ -430,6 +434,56 @@ void SetXTermExe(const char *name, Boolean copy)
  delete[] xtermExe;
  xtermExe=copy ? newStr(name) : (char *)name;
  InsertEnvironmentVar("SET_XTERM_EXE",IsEmpty(name) ? NULL: name);
+}
+
+static inline
+const char *GetGDBStartFile()
+{
+ if (gdbStart)
+    return gdbStart;
+ return GetVariable("SET_GDB_START",MIDebugger::GetGDBStartFile());
+}
+
+static inline
+const char *GetGDBStartFileNoD()
+{
+ if (gdbStart)
+    return gdbStart;
+ return GetVariable("SET_GDB_START",NULL);
+}
+
+static void SetGDBStartFile(const char *name, Boolean copy=True);
+static
+void SetGDBStartFile(const char *name, Boolean copy)
+{
+ delete[] gdbStart;
+ gdbStart=copy ? newStr(name) : (char *)name;
+ InsertEnvironmentVar("SET_GDB_START",IsEmpty(name) ? NULL: name);
+}
+
+static inline
+const char *GetGDBConnFile()
+{
+ if (gdbConn)
+    return gdbConn;
+ return GetVariable("SET_GDB_CONN",MIDebugger::GetGDBConnFile());
+}
+
+static inline
+const char *GetGDBConnFileNoD()
+{
+ if (gdbConn)
+    return gdbConn;
+ return GetVariable("SET_GDB_CONN",NULL);
+}
+
+static void SetGDBConnFile(const char *name, Boolean copy=True);
+static
+void SetGDBConnFile(const char *name, Boolean copy)
+{
+ delete[] gdbConn;
+ gdbConn=copy ? newStr(name) : (char *)name;
+ InsertEnvironmentVar("SET_GDB_CONN",IsEmpty(name) ? NULL: name);
 }
 
 static inline
@@ -816,6 +870,12 @@ int TSetEditorApp::DebugConnect()
  aux=GetXTermExeNoD();
  if (aux)
     dbg->SetXTermExe(aux);
+ aux=GetGDBStartFileNoD();
+ if (aux)
+    dbg->SetGDBStartFile(aux);
+ aux=GetGDBConnFileNoD();
+ if (aux)
+    dbg->SetGDBConnFile(aux);
  int res=dbg->Connect();
  if (res)
    {
@@ -8238,12 +8298,14 @@ TDialog *createDebugOpsAdvDialog(TSViewCol *&cl)
 {
  TSViewCol *col=new TSViewCol(__("Advanced Debug Options"));
 
- // EN: BCFGILMSTX
+ // EN: BCFGILMNSTUX
  // ES:
  TSVeGroup *o1=
  MakeVeGroup(0, // All together
    new TSChooseFile(__("~G~DB executable"),hID_DbgGDB,wVisible,"gdb*"),
    new TSChooseFile(__("~X~ terminal executable"),hID_DbgXTerm,wVisible,"xterm*"),
+   new TSChooseFile(__("GDB start-~u~p commands"),hID_DbgGDBStartCmds,wVisible,""),
+   new TSChooseFile(__("GDB co~n~nected commands"),hID_DbgGDBConnCmds,wVisible,""),
    new TSLabel(__("~M~ain function"),
        new TSInputLine(wFunction,1,hID_DbgMainFunc,wVisible)),
    new TSHzGroup(
@@ -8272,6 +8334,8 @@ struct DebugOptionsAdvStruct
 {
  char gdb[wFilename];
  char xterm[wFilename];
+ char gdbStart[wFilename];
+ char gdbConn[wFilename];
  char main[wFunction];
  char to[wTimeOut];
  char lines[wLinesMsg];
@@ -8284,6 +8348,8 @@ int TSetEditorApp::DebugOptionsAdv()
  const char *gdb=GetGDBExe();
  const char *xterm=GetXTermExe();
  const char *mainf=GetMainFunc();
+ const char *gdbStart=GetGDBStartFile();
+ const char *gdbConn=GetGDBConnFile();
  unsigned to=GetGDBTimeOut();
  unsigned lines=GetMsgLines();
  unsigned misc=GetGDBMisc();
@@ -8292,6 +8358,8 @@ int TSetEditorApp::DebugOptionsAdv()
  DebugOptionsAdvStruct box;
  strncpyZ(box.gdb,gdb,wFilename);
  strncpyZ(box.xterm,xterm,wFilename);
+ strncpyZ(box.gdbStart,gdbStart,wFilename);
+ strncpyZ(box.gdbConn,gdbConn,wFilename);
  strncpyZ(box.main,mainf,wFunction);
  CLY_snprintf(box.to,wTimeOut,"%d",to);
  CLY_snprintf(box.lines,wLinesMsg,"%d",lines);
@@ -8305,6 +8373,10 @@ int TSetEditorApp::DebugOptionsAdv()
        SetGDBExe(box.gdb);
     if (strcmp(box.xterm,xterm))
        SetXTermExe(box.xterm);
+    if (!IsEmpty(box.gdbStart))
+       SetGDBStartFile(box.gdbStart);
+    if (!IsEmpty(box.gdbConn))
+       SetGDBConnFile(box.gdbConn);
     if (strcmp(box.main,mainf))
        SetMainFunc(box.main,True);
     unsigned bto=atoi(box.to);
@@ -8590,6 +8662,10 @@ void DebugSaveData(opstream &os)
  os.writeString(xtermExe);
  // Miscellaneous gdb settings
  os << miscGDBset << miscGDB;
+ // GDB start file
+ os << svPresent;
+ os.writeString(gdbStart);
+ os.writeString(gdbConn);
  // No more data
  os << svAbsent;
 }
@@ -8703,6 +8779,14 @@ void DebugReadData(ipstream &is)
  is >> miscGDBset >> miscGDB;
  if (miscGDBset)
     SetGDBMisc(miscGDB);
+ // GDB start file
+ is >> aux;
+ if (!aux)
+    return;
+ mf=is.readString();
+ SetGDBStartFile(mf,False);
+ mf=is.readString();
+ SetGDBConnFile(mf,False);
  // No more data
  is >> aux;
 }

@@ -46,5 +46,7 @@ hID_DbgGDB            = hID_Start+32,
 hID_DbgXTerm          = hID_Start+33,
 hID_DbgMainFunc       = hID_Start+34,
 hID_DbgSourceLoc      = hID_Start+35,
-hID_DbgBinary         = hID_Start+36;
+hID_DbgBinary         = hID_Start+36,
+hID_DbgGDBStartCmds   = hID_Start+37,
+hID_DbgGDBConnCmds    = hID_Start+38;
 #endif
