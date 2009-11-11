@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.779  2009/09/25 15:10:37  set
+* Added: [setedit/debug.cc settvuti/include/edhists.h] Now the user can
+specify files containing the commands to be executed after starting gdb and
+after the target connection.
+* Modified: [debian/control] To accept TV 2.2.0.
+* Modified: [extra/strncpyz.cc] To support passing a NULL pointer for orig.
+* Modified: [version.txt debian/changelog include/ced_inte.h] Version to
+0.5.6.
+
 Revision 1.778  2009/03/03 11:24:36  set
 * Fixed: [gpg] to avoid internationalization of the messages.
 * Modified: [debian] release version for Lenny.
