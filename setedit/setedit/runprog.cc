@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -77,7 +77,7 @@ static int      incGoBack, incLines=20;
 static pid_t    PidChild=0;
 static char     ParsingErrors=0;
 static char     PendingCleanUp=0;
-static SOStack *StackPath;
+static SOStack *StackPath=NULL;
 static char    *RedirInputFile=0;
 
 const char *Running=__("Running %s");
@@ -184,7 +184,7 @@ void MakeBeep()
     CLY_Beep();
 }
 
-static
+//static
 char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
 {
  char *endOfName,*endOfLine=0,*startOfColumn=0;
@@ -285,7 +285,8 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
              strcpy(ActualPath,s+1);
              *e=v;
              strcat(ActualPath,"/");
-             StackPath->addStr(ActualPath);
+             if (StackPath)
+                StackPath->addStr(ActualPath);
             }
           lastFIT=fI.type=fitInfo;
          }
@@ -297,7 +298,8 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
           s=strstr(buf,leavingDir);
        if (s)
          {
-          StackPath->DestroyTop();
+          if (StackPath)
+             StackPath->DestroyTop();
           lastFIT=fI.type=fitInfo;
          }
       }
@@ -306,7 +308,7 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     return strdup(buf);
    }
 
- char *actPath=StackPath->GetStrOf(StackPath->GetTopHandle());
+ const char *actPath=StackPath ? StackPath->GetStrOf(StackPath->GetTopHandle()) : "";
 
  char *ret;
  fI.len=strlen(endOfLine+1);

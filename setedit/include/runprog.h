@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // Include for runprog.cc
 const unsigned repDontShowDialog=1,repDontShowAsMessage=2,repRestoreScreen=4,
@@ -17,3 +17,6 @@ void    RunExternalProgramStopChild();
 void    RunExternalProgramSetInRedir(const char *buffer, unsigned len);
 void    RunExternalProgramRemoveInRedir();
 void    RunExternalProgramFreeMemory();
+#ifdef DEF_PARSE_FUNC
+char   *ParseFun(char *buf, FileInfo &fI, char *&fileName);
+#endif
