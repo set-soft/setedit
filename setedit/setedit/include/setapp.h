@@ -414,6 +414,10 @@ public:
     static TVCodePageCallBack oldCPCallBack;
     static void cpCallBack(ushort *map);
     static uint32 getModifFilesOps() { return modifFilesOps; }
+    // Control pipe
+    static char *controlPipeName;
+    static FILE *controlPipeFILE;
+    static Boolean forceQuit;
 
     void tile();
     void cascade();

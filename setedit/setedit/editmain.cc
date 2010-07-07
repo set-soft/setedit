@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -79,6 +79,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <loadkbin.h>
+#define DEF_PARSE_FUNC
 #include <runprog.h>
 #include <loadcle.h>
 #include <mixer.h>
@@ -126,6 +127,12 @@ int      TSetEditorApp::widthVertWindows=24;
 unsigned long
          TSetEditorApp::deskTopVersion;
 uint32   TSetEditorApp::modifFilesOps=0;
+
+// Control pipe
+const unsigned maxCommandLen=PATH_MAX+64;
+char    *TSetEditorApp::controlPipeName=NULL;
+FILE    *TSetEditorApp::controlPipeFILE=NULL;
+Boolean  TSetEditorApp::forceQuit=False;
 
 XYFStack stkPos;
 const char *KeyBindFName="keybind.dat";
@@ -890,6 +897,11 @@ void TSetEditorApp::getEvent(TEvent& event)
    { // If we already got a request now pop-up the help
     event.what=evCommand;
     event.message.command=cmHelp;
+   }
+ else if (forceQuit && event.what==evNothing)
+   {
+    event.what=evCommand;
+    event.message.command=cmeQuit;
    }
  switch (event.what)
    {
@@ -2336,6 +2348,42 @@ void TSetEditorApp::idle()
  if (multiMenuBar)
     multiMenuBar->update();
  TApplication::idle();
+
+ // Control pipe
+ if (TSetEditorApp::controlPipeFILE)
+   {
+    char b[maxCommandLen];
+    if (fgets(b,maxCommandLen-1,TSetEditorApp::controlPipeFILE))
+      {
+       //printf("Command: %s\n",b);
+       char *s=b;
+       if (*s=='$')
+         {
+          char *end;
+          for (end=s+1; *end && *end!=':'; end++);
+          if (*end==':')
+            {
+             *end=0;
+             s=end+1;
+             if (strcmp(b+1,"quit")==0)
+               {
+                TSetEditorApp::forceQuit=True;
+               }
+             else if (strcmp(b+1,"jump")==0)
+               {
+                FileInfo fI;
+                char *fileName;
+                char *msg=ParseFun(s,fI,fileName);
+                if (fileName && fI.Line>=0)
+                   GotoFileLine(fI.Line,fI.Column,fileName,msg,fI.offset,fI.len);
+                free(msg);
+                free(fileName);
+               }
+            }
+         }
+      }
+   }
+
  clock_t DifLastTime=lastIdleClock-LastTimeUpdate;
 
  /***** Scroll lock centers update *****/
@@ -2794,6 +2842,7 @@ struct CLY_option longopts[] =
   { "bios-keyb",      0, 0, 'b' }, // obsolete
   { "no-bios-keyb",   0, 0, 'B' }, // obsolete
   { "cascade",        0, 0, 'c' },
+  { "control-pipe",   1, 0, 'C' },
   { "stack-dbg",      1, 0, 'd' },
   { "file-list",      1, 0, 'f' },
   { "help",           0, 0, 'h' },
@@ -2852,12 +2901,15 @@ void ParseCommandLine(int argc, char *argv[])
  if (ExtraCMDLine)
     StackDbgStrategy=atoi(ExtraCMDLine);
 
- while ((optc=CLY_getopt_long(Argc,Argv,"b:Bcd:fhkK:lLmMp:rStT:",longopts,0))!=EOF)
+ while ((optc=CLY_getopt_long(Argc,Argv,"b:BcC:d:fhkK:lLmMp:rStT:",longopts,0))!=EOF)
    {
     switch (optc)
       {
        case 'c':
             SE_CascadeWindows=1;
+            break;
+       case 'C':
+            TSetEditorApp::controlPipeName=newStr(CLY_optarg);
             break;
        case 'd':
             StackDbgStrategy=atoi(CLY_optarg);
@@ -2928,6 +2980,9 @@ void ParseCommandLine(int argc, char *argv[])
                         "                         options. If the line number is omitted you'll jump to\n"
                         "                         the end of the text. Example: +6 file\n"));
             PrintHelp(_("-c, --cascade:           arranges the windows using cascade style.\n"));
+            #ifdef SEOS_UNIX
+            PrintHelp(_("-C, --control-pipe fn    opens fn as a named pipe (FIFO) to receive commands.\n"));
+            #endif
             PrintHelp(_("-d, --stack-dbg=n:       indicates which method will be used in the event of a\n"
                         "                         crash. The default method is 0.\n"
                         "                         0: dump unsaved buffers and stack calls.\n"
@@ -3095,12 +3150,30 @@ void InitPCRELibrary()
    }
 }
 
+static
+void OpenControlPipe()
+{
+ if (!TSetEditorApp::controlPipeName)
+    return;
+ FILE *f=fopen(TSetEditorApp::controlPipeName,"rt");
+ if (f)
+   {
+    int h=fileno(f);
+    int old=fcntl(h,F_GETFL,0);
+    fcntl(h,F_SETFL,old|O_NONBLOCK);
+    TSetEditorApp::controlPipeFILE=f;
+    unlink(TSetEditorApp::controlPipeName);
+   }
+}
+
 int main(int argc, char *argv[])
 {
  TSetEditorApp::oldCPCallBack=TVCodePage::SetCallBack(TSetEditorApp::cpCallBack);
  // Avoid handling Alt+N for window selection in TV core.
  TProgram::doNotHandleAltNumber=1;
- 
+
+ TScreen::windowClass="SETEdit";
+
  ParseCommandLine(argc,argv);
  CheckIfCurDirValid();
 
@@ -3347,6 +3420,7 @@ int main(int argc, char *argv[])
  ShowAboutStartBox();
  ShowTips(ExpandHome(TipsFName));
  ShowSHLLoadErrors();
+ OpenControlPipe();
 
  editorApp->run();
 
