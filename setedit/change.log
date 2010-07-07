@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.780  2009/11/11 12:39:42  set
+* Fixed: [WWW] Link to the CVS and how to do a check-out. The information
+was outdated, reported by Joerg Schiermeier (info/schiermeier-software/de)
+
 Revision 1.779  2009/09/25 15:10:37  set
 * Added: [setedit/debug.cc settvuti/include/edhists.h] Now the user can
 specify files containing the commands to be executed after starting gdb and
