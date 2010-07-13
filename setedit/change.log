@@ -1,4 +1,13 @@
-$Log$.
+$Log$
+Revision 1.781  2010/07/07 13:26:28  set
+* Added: [editmain.cc setapp.h] A mechanism to control the editor from
+another program using named pipes. Currently you can jump to an error or
+quit the editor.
+* Modified: [runprog.cc runprog.h] Now ParseFun is exported.
+* Added: [editmain.cc] Editors now report to belong to a window class
+called SETEdit.
+* Modified: [ced_inte.h debian/changelog] Version to 0.5.7.
+
 Revision 1.780  2009/11/11 12:39:42  set
 * Fixed: [WWW] Link to the CVS and how to do a check-out. The information
 was outdated, reported by Joerg Schiermeier (info/schiermeier-software/de)

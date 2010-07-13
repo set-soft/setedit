@@ -1,4 +1,4 @@
-; Copyright (C) 2007 by Salvador E. Tropea (SET),
+; Copyright (C) 2007-2010 by Salvador E. Tropea (SET),
 ; see copyrigh file for details
 ;
 
@@ -11,6 +11,11 @@ Trigger: "ap"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: Application
  "<application>@{Application}</application>"
+
+Trigger: "bt"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Button (GUI)
+ "<guibutton>@{Button}</guibutton>"
 
 Trigger: "ca"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
@@ -26,6 +31,11 @@ Name: Chapter
  "  <title>@{Title}</title>\n"
    "@0\n"
  "\b</chapter>\n"
+
+Trigger: "co"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Command
+ "<command>@{Command}</command>"
 
 Trigger: "en"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
@@ -63,6 +73,11 @@ Name: Itemized list
  "<itemizedlist>\n"
  "  <listitem><para>@0</para></listitem>\n"
  "\b</itemizedlist>\n"
+
+Trigger: "li"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: List item
+ "<listitem><para>@0</para></listitem>"
 
 Trigger: "ma"
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1

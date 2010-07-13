@@ -2944,3 +2944,15 @@ Keywords=in,out,setup,ack,nack,stall,data0,data1,empty,reset,eof,data_size
 Keywords=suspend,ping,nyet
 End
 
+# ---------------- Xil project ----------------
+#  Synthesis project, FPGALibre xiltools
+#
+Name=Synthesis project
+Files=xilprj
+EOLComment1=#
+Symbols1==
+Keywords=Board,Project,Include,Source,DirLevel,Top,Goal,ExtraClean
+UserKeywords=Area,Speed,Area_Strong,Speed_Strong
+UserKeywords=avnet_s3a,gr_xc3s_1500,s2proto_v2,s2proto_v2-150,s2proto_v2-150-6
+End
+
