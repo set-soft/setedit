@@ -1,3 +1,9 @@
+setedit (0.5.7-2) unstable; urgency=low
+
+  * Fixed: TV version dependency.
+
+ -- Salvador E. Tropea <set@ieee.org>  Wed, 14 Jul 2010 10:33:17 -0300
+
 setedit (0.5.7-1) unstable; urgency=low
 
   * Added: control pipe (-C)
