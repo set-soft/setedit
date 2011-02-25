@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.782  2010/07/13 19:20:05  set
+* Added: [SHL] for xilprj files from xiltools (FPGALibre).
+* Added: Some docbook pmacros.
+
 Revision 1.781  2010/07/07 13:26:28  set
 * Added: [editmain.cc setapp.h] A mechanism to control the editor from
 another program using named pipes. Currently you can jump to an error or

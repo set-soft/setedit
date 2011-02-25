@@ -5,8 +5,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: setedit 0.5.6\n"
-"PO-Revision-Date: 2010-07-07 10:04-0300\n"
+"Project-Id-Version: setedit 0.5.7\n"
+"PO-Revision-Date: 2010-07-14 11:05-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -332,7 +332,7 @@ msgstr ""
 "infview [opción]... [archivo_info [item_del_menu...]]\n"
 "\n"
 
-#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2986
+#: ../infview/infmain.cc:664 ../setedit/editmain.cc:2977
 #, c-format
 msgid "Valid options are:\n"
 msgstr "Las opciones disponibles son:\n"
@@ -4245,14 +4245,14 @@ msgstr "Error al buscar los cambios, operación abortada"
 msgid "The disk copy of %s is newer, reload it?"
 msgstr "La copia en disco de `%s' es más nueva, ¿la cargo?"
 
-#: ../setedit/editmain.cc:2545
+#: ../setedit/editmain.cc:2536
 msgid ""
 "I can't find the readme.1st file, please look for it in the .ZIP and read "
 "the file."
 msgstr ""
 "No puedo encontrar el archivo readme.1st, búsquelo en el paquete que instaló."
 
-#: ../setedit/editmain.cc:2680
+#: ../setedit/editmain.cc:2671
 #, c-format
 msgid ""
 "\n"
@@ -4261,7 +4261,7 @@ msgstr ""
 "\n"
 "¡Instalación errónea! Debe definir la variable de entorno %s.\n"
 
-#: ../setedit/editmain.cc:2681
+#: ../setedit/editmain.cc:2672
 #, c-format
 msgid ""
 "Read the readme.1st file included in the .zip distribution file.\n"
@@ -4270,7 +4270,7 @@ msgstr ""
 "Lea el archivo readme.1st incluido en la distribución.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2685
+#: ../setedit/editmain.cc:2676
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s/%s\n"
@@ -4279,7 +4279,7 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s/%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2687
+#: ../setedit/editmain.cc:2678
 #, c-format
 msgid ""
 "I suggest that: SET %s=%s\n"
@@ -4288,12 +4288,12 @@ msgstr ""
 "Sugiero usar esto: SET %s=%s\n"
 "\n"
 
-#: ../setedit/editmain.cc:2692
+#: ../setedit/editmain.cc:2683
 #, c-format
 msgid "press ENTER to continue\n"
 msgstr "presione INTRO para continuar\n"
 
-#: ../setedit/editmain.cc:2701
+#: ../setedit/editmain.cc:2692
 msgid ""
 "\n"
 "You defined SET_FILES wrongly, it doesn't point to a directory.\n"
@@ -4303,19 +4303,19 @@ msgstr ""
 "Ud. definió SET_FILES equivocadamente, no apunta a un directorio.\n"
 "\n"
 
-#: ../setedit/editmain.cc:2730
+#: ../setedit/editmain.cc:2721
 msgid "Memory is nearly full. Please exit, and restart."
 msgstr "La memoria esta casi agotada. Por favor vuelva a iniciar el programa."
 
-#: ../setedit/editmain.cc:2979
+#: ../setedit/editmain.cc:2970
 msgid "Setedit "
 msgstr "Setedit "
 
-#: ../setedit/editmain.cc:2981
+#: ../setedit/editmain.cc:2972
 msgid ". Copyright (c) "
 msgstr ". Copyright (c) "
 
-#: ../setedit/editmain.cc:2983
+#: ../setedit/editmain.cc:2974
 msgid ""
 " by Salvador E. Tropea\n"
 "\n"
@@ -4323,7 +4323,7 @@ msgstr ""
 " por Salvador Eduardo Tropea\n"
 "\n"
 
-#: ../setedit/editmain.cc:2985
+#: ../setedit/editmain.cc:2976
 msgid ""
 "setedit [options] [file_name ...]\n"
 "\n"
@@ -4331,7 +4331,7 @@ msgstr ""
 "setedit [opciones] [nombre_archivo ...]\n"
 "\n"
 
-#: ../setedit/editmain.cc:2987
+#: ../setedit/editmain.cc:2978
 msgid ""
 "+[line number]           jumps to the specified line. It only affects the "
 "next\n"
@@ -4348,17 +4348,17 @@ msgstr ""
 "se\n"
 "                         salta al final del texto. Ejemplo: +6 archivo\n"
 
-#: ../setedit/editmain.cc:2991
+#: ../setedit/editmain.cc:2982
 msgid "-c, --cascade:           arranges the windows using cascade style.\n"
 msgstr "-c, --cascade:           ordena las ventanas estilo cascada.\n"
 
-#: ../setedit/editmain.cc:2993
+#: ../setedit/editmain.cc:2984
 msgid ""
 "-C, --control-pipe fn    opens fn as a named pipe (FIFO) to receive "
 "commands.\n"
 msgstr ""
 
-#: ../setedit/editmain.cc:2995
+#: ../setedit/editmain.cc:2986
 msgid ""
 "-d, --stack-dbg=n:       indicates which method will be used in the event of "
 "a\n"
@@ -4372,7 +4372,7 @@ msgstr ""
 "                         0: grabar texto pendiente y pila de ejecución.\n"
 "                         1: no hacer nada (conservador).\n"
 
-#: ../setedit/editmain.cc:3000
+#: ../setedit/editmain.cc:2991
 msgid ""
 "                         2: dump unsaved buffers and call debugger to get\n"
 "                            information. Then die.\n"
@@ -4384,7 +4384,7 @@ msgstr ""
 "                         3: como 2 pero permanecer en el depurador "
 "(debugger).\n"
 
-#: ../setedit/editmain.cc:3004
+#: ../setedit/editmain.cc:2995
 msgid ""
 "-f, --file-list file_n:  loads the files listed in file_n, each line in "
 "this\n"
@@ -4393,7 +4393,7 @@ msgstr ""
 "-f, --file-list file_n:  carga los archivos listados en file_n, cada línea\n"
 "                         del archivo file_n es interpretada como un nombre.\n"
 
-#: ../setedit/editmain.cc:3006
+#: ../setedit/editmain.cc:2997
 msgid ""
 "-h, --help:              displays this text ;-).\n"
 "\n"
@@ -4401,34 +4401,34 @@ msgstr ""
 "-h, --help:              muestra este texto ;-).\n"
 "\n"
 
-#: ../setedit/editmain.cc:3008
+#: ../setedit/editmain.cc:2999
 msgid ""
 "-k, --use-rh-52-keys:    enables the Red Hat 5.2 style keyboard mapping.\n"
 msgstr "-k, --use-rh-52-keys:    usar el mapeo de teclado de Red Hat 5.2.\n"
 
-#: ../setedit/editmain.cc:3010
+#: ../setedit/editmain.cc:3001
 msgid "-K, --keybind file_name: uses the specified name as keybinding file.\n"
 msgstr ""
 "-K, --keybind nom_arch:  utiliza el rachivo indicado para definir el "
 "teclado.\n"
 
-#: ../setedit/editmain.cc:3012
+#: ../setedit/editmain.cc:3003
 msgid "-l, --force-no-lfn:      avoids the use of long file names under W9x.\n"
 msgstr "-l, --force-no-lfn       evita el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:3013
+#: ../setedit/editmain.cc:3004
 msgid "-L, --force-lfn:         forces the use of long file names under W9x.\n"
 msgstr "-L, --force-lfn:         fuerza el uso de nombres largos en W9x.\n"
 
-#: ../setedit/editmain.cc:3014
+#: ../setedit/editmain.cc:3005
 msgid "-m, --no-mouse-hook:     don't hook the mouse interrupt, poll it.\n"
 msgstr "-m, --no-mouse-hook:     no utilizar la interrupción del mouse.\n"
 
-#: ../setedit/editmain.cc:3017
+#: ../setedit/editmain.cc:3008
 msgid "-M, --no-mixer:          disable board level mixer.\n"
 msgstr "-M, --no-mixer:          deshabilita el mezclador de sonido.\n"
 
-#: ../setedit/editmain.cc:3019
+#: ../setedit/editmain.cc:3010
 msgid ""
 "-p, --project file_name: loads the indicated project, if the file doesn't "
 "exist\n"
@@ -4437,7 +4437,7 @@ msgstr ""
 "-p, --project nombre_ar: carga el proyecto indicado, si no existe uno nuevo\n"
 "                         es creado\n"
 
-#: ../setedit/editmain.cc:3021
+#: ../setedit/editmain.cc:3012
 msgid ""
 "-r, --no-redirect:       disables the stderr redirection. Only used during\n"
 "                         debugging.\n"
@@ -4445,7 +4445,7 @@ msgstr ""
 "-r, --no-redirect:       desabilita el redireccionamiento de `stderr'. Solo\n"
 "                         usado durante la depuración del programa.\n"
 
-#: ../setedit/editmain.cc:3024
+#: ../setedit/editmain.cc:3015
 msgid ""
 "-S, --low-vga-save:      use low level functions to save/restore VGA state.\n"
 msgstr ""
@@ -4453,12 +4453,12 @@ msgstr ""
 "el\n"
 "                         estado del chip VGA.\n"
 
-#: ../setedit/editmain.cc:3026
+#: ../setedit/editmain.cc:3017
 msgid "-t, --tile-vert:         the windows are arranged vertically.\n"
 msgstr ""
 "-t, --tile-vert:         ordena las ventanas estilo mosaico vertical.\n"
 
-#: ../setedit/editmain.cc:3027
+#: ../setedit/editmain.cc:3018
 msgid "-T, --tile-horiz:        the windows are arranged horizontally.\n"
 msgstr ""
 "-T, --tile-horiz:        ordena las ventanas estilo mosaico horizontal.\n"
