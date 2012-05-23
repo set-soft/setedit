@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.783  2011/02/25 14:00:20  set
+* Modified: Holydays for 2011 for Argentina.
+
 Revision 1.782  2010/07/13 19:20:05  set
 * Added: [SHL] for xilprj files from xiltools (FPGALibre).
 * Added: Some docbook pmacros.
