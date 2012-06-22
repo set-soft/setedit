@@ -92,8 +92,7 @@ const int col1=1,col2=12,col3=23,col4=34;
 
 typedef struct
 {
- TStringable *items;
- int selected;
+ TStringableListBoxRec lbRec;
  uint32 ops;
 } TStrLB;
 
@@ -279,8 +278,8 @@ static int AddNewKey(void)
                                     aidInsert | aidComMac | aidAssignedTo);
  AddKeyDialog->helpCtx=hcEditKeysSeq;
  KSequence=new TKeySeqCol(2,2);
- NewKeyBox.items=KSequence;
- NewKeyBox.selected=0;
+ NewKeyBox.lbRec.items=KSequence;
+ NewKeyBox.lbRec.selection=0;
  NewKeyBox.ops=0;
  AddKeyDialog->DelAction=DeleteKeyInSeq;
  AddKeyDialog->AddAction=AddNewKeyInSeq;

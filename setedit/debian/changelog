@@ -1,3 +1,9 @@
+setedit (0.5.7-3) unstable; urgency=low
+
+  * Squeeze release. 
+
+ -- Salvador E. Tropea <set@ieee.org>  Mon, 06 Jun 2011 10:01:47 -0300
+
 setedit (0.5.7-2) unstable; urgency=low
 
   * Fixed: TV version dependency.

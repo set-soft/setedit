@@ -8926,6 +8926,7 @@ void TCEditor::newLine()
           if (larThis>CLY_LenEOL)
             { // The line have chars
              insertSpaces(firstUsedCol-curPos.x,curPos.x);
+             EditLine();
             }
           else
             { // Is empty, only move the cursor

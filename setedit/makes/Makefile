@@ -45,11 +45,11 @@ imks_files=$(addsuffix .imk,$(mkfs_list))
 
 # Tool to extract dependencies
 extrimk.exe: extrimk.cc
-	$(RHIDE_GCC) -o $@ $< $(STDCPP_LIB)
+	$(RHIDE_GXX) -o $@ $< $(STDCPP_LIB)
 
 # Tool to create temporal .mak files and call  extrimk
 genimk.exe: genimk.cc extrimk.exe
-	$(RHIDE_GCC) -o $@ $< $(STDCPP_LIB)
+	$(RHIDE_GXX) -o $@ $< $(STDCPP_LIB)
 
 # Main project, the editor
 editor.imk: editor.gpr amp3.gpr easydiag.gpr extra.gpr inffd.gpr librhuti.gpr \

@@ -623,7 +623,7 @@ static void TakeName(char *Buf,char *Nom,char *Nom2,int &ini,int &largo,int &Lin
        *cutFrom='\n';
        cutFrom++;
       }
-    memcpy(cutFrom,ori,size_t(Size-(ori-Origin)+1));
+    CLY_memcpy(cutFrom,ori,size_t(Size-(ori-Origin)+1));
     Size-=ori-cutFrom;
     Fin-=ori-cutFrom;
    }

@@ -705,7 +705,7 @@ void TInfViewer::SetTitle(char *File, char *Node)
     sprintf(newTitle,intlFmt,File,Node);
     DeleteArray(intlFmt);
     
-    delete (char *)((TWindow *)owner)->title;
+    delete [] (char *)((TWindow *)owner)->title;
     ((TWindow *)owner)->title = (const char *)newTitle;
     ((TWindow *)owner)->frame->drawView();
    }

@@ -30,8 +30,8 @@ static int   IncludeCounter=0;
 struct stMak
 {
  node *base, *last;
- char *objDir;
- char *mainTarget;
+ const char *objDir;
+ const char *mainTarget;
  char *baseDir;
 };
 
@@ -46,8 +46,8 @@ struct node
 
 struct stIncDir
 {
- char *var;
- char *dir;
+ const char *var;
+ const char *dir;
  int   ldir;
 };
 
@@ -76,7 +76,7 @@ stIncDir incDirs[]=
 {0,0}
 };
 
-char *srcDirs[]=
+const char *srcDirs[]=
 {
  "../mainsrc",
  "../names",
@@ -124,7 +124,7 @@ void AddFileName(const char *name, stMak &mk)
 static
 int PrConvertExt(FILE *d, const char *file)
 {
- char *s=strrchr(file,'.');
+ const char *s=strrchr(file,'.');
  if (!s)
     return fprintf(d,"%s",file);
  int l=s-file;
@@ -478,7 +478,7 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
 }
 
 static
-int ExtractVar(FILE *f, const char *var, char *&dest, char ret)
+int ExtractVar(FILE *f, const char *var, const char *&dest, char ret)
 {
  char buffer[maxLine];
  int l=strlen(var);
@@ -595,7 +595,7 @@ void GenerateTarget(FILE *d, stMak &mk)
  fputs(":: ",d);
  l=ListTargetItems(d,l,mk);
  l=AddFixedDeps(d,l);
- char *ext=strrchr(mk.mainTarget,'.')+1;
+ const char *ext=strrchr(mk.mainTarget,'.')+1;
  fputc('\n',d);
  if (strcmp(ext,"exe")==0)
     fputs("\t$(RHIDE_COMPILE_LINK)",d);
@@ -915,7 +915,7 @@ void GenerateLibs(FILE *f, stMak &mk)
 static
 void ExtractBaseDir(const char *mak, stMak &mk)
 {
- char *s=strrchr(mak,'/');
+ const char *s=strrchr(mak,'/');
  if (s)
    {
     int l=s-mak+1;
@@ -1004,7 +1004,7 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
  // Write the variables now
  if (mk.mainTarget && *mk.mainTarget)
    {
-    char *ext=strrchr(mk.mainTarget,'.');
+    const char *ext=strrchr(mk.mainTarget,'.');
     if (strcmp(ext,".exe")==0)
       {
        GenerateObjs(stdout,mk);
