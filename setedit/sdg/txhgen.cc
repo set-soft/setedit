@@ -144,10 +144,10 @@ static SOStack *stkAliasGlobal;
 // The following vars controls the program from outside
 int TXHKeepTemporal=1;              // 1=> don't delete the file with the functions code
 TXHGetNextFileType TXHGetNextFile;  // Function to get the files
-char *TXHFormatFile;                // Configuration file
-char *TXHTempGenFile;               // Name of the temporal for nodes
-char *TXHOutBaseName;               // No extentions here!
-char *TXHFilesDir=NULL;             // Base for format files
+const char *TXHFormatFile;                // Configuration file
+const char *TXHTempGenFile;               // Name of the temporal for nodes
+const char *TXHOutBaseName;               // No extentions here!
+const char *TXHFilesDir=NULL;             // Base for format files
 void (*TXHPrintMessage)(const char *s);
 
 static void GenerateAssoc(TNCSAssociative *a, char *name, char *extra, FILE *f);
@@ -1913,7 +1913,7 @@ static void DumpFile(char *file, const char *from, int kill=1)
    }
 }
 
-static void CallCommandLine(char *s,char *pattern,char *s0,char *s1)
+static void CallCommandLine(char *s,char *pattern,char *s0, const char *s1)
 { // picky tricky string merge ;-)
  if (strcmp(pattern,"NULL")==0)
     return;
@@ -1927,7 +1927,7 @@ static void CallCommandLine(char *s,char *pattern,char *s0,char *s1)
     return;
    }
  char *ori=s;
- char *aux;
+ const char *aux;
  for (;*pattern; pattern++)
     {
      if (*pattern=='~' && *(pattern+1)=='0')

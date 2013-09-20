@@ -15,8 +15,22 @@ extern int   TXHError;
 extern int   TXHLine;
 extern const char *TXHErrors[];
 extern int   TXHKeepTemporal;
-extern char *TXHFormatFile;    // Configuration file
-extern char *TXHTempGenFile;   // Name of the temporal for nodes
-extern char *TXHOutBaseName;   // No extentions here!
-extern char *TXHFilesDir;      // Base for format files
+extern const char *TXHFormatFile;    // Configuration file
+extern const char *TXHTempGenFile;   // Name of the temporal for nodes
+extern const char *TXHOutBaseName;   // No extentions here!
+extern const char *TXHFilesDir;      // Base for format files
+
+typedef struct
+{
+ int PCREMaxMatchs;
+ int *PCREMatchs;
+ int PCREHits;
+} PCREData;
+
+void  PCREInitCompiler(PCREData &p);
+void  PCREStopCompiler(PCREData &p);
+pcre *PCRECompileRegEx(char *text, PCREData &p);
+int   PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p);
+#define PCREDataDestroy(p) PCREInitCompiler(p)
+void  PCREGetMatch(int match, int &offset, int &len, PCREData &p);
 

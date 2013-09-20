@@ -32,6 +32,11 @@ or the user choose cancel the routine returns -1.
 #define Uses_TVCodePage
 #include <settvuti.h>
 
+#include <configed.h> // To know about PCRE support
+#include <ceditint.h>
+#include <ced_pcre.h>
+#include <txhgen.h>
+
 inline int IsWordChar(char c)
 {
  return c=='_' || TVCodePage::isAlpha(c);
@@ -368,3 +373,85 @@ int CreateFunctionList(char *b, unsigned l, SOStack &stk,
 
  return 0;
 }
+
+/************************ Regular expressions file matching stuff *******************/
+/**[txh]********************************************************************
+
+  Description:
+  Initialize the matchs array to 0. Called before starting to compile the
+expressions.
+
+***************************************************************************/
+
+void PCREInitCompiler(PCREData &p)
+{
+ if (!SUP_PCRE)
+    return;
+ p.PCREMaxMatchs=0;
+ DeleteArray(p.PCREMatchs);
+ p.PCREMatchs=0;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Allocates memory for the matchs array. Called after compiling all the
+expressions and before executing any of them.
+
+***************************************************************************/
+
+void PCREStopCompiler(PCREData &p)
+{
+ if (!SUP_PCRE)
+    return;
+ p.PCREMatchs=new int[p.PCREMaxMatchs];
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Compiles a RegEx.
+
+  Return: A pointer to the compiled RegEx or 0 if error.
+
+***************************************************************************/
+
+pcre *PCRECompileRegEx(char *text, PCREData &p)
+{
+ if (!SUP_PCRE)
+    return NULL;
+ const char *error;
+ int   errorOffset;
+ pcre *ret=pcre_compile(text,0,&error,&errorOffset,0);
+ if (!ret)
+    return NULL;
+
+ int matchs=(pcre_info(ret,0,0)+1)*3;
+ if (matchs>p.PCREMaxMatchs)
+    p.PCREMaxMatchs=matchs;
+
+ return ret;
+}
+
+int PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p)
+{
+ if (!SUP_PCRE)
+    return 0;
+ p.PCREHits=pcre_exec(CompiledPCRE,0,search,len,PCRE206 0,p.PCREMatchs,p.PCREMaxMatchs);
+
+ return p.PCREHits>0;
+}
+
+void PCREGetMatch(int match, int &offset, int &len, PCREData &p)
+{
+ if (!SUP_PCRE || match<0 || match>=p.PCREHits)
+   {
+    offset=-1; len=0;
+    return;
+   }
+ offset=p.PCREMatchs[match*2];
+ int end=p.PCREMatchs[match*2+1];
+ len=end-offset;
+}
+/********************** End Regular expressions file matching stuff *****************/
+

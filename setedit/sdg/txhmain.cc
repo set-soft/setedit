@@ -131,7 +131,7 @@ static char *GetNextFile(int &l, int &MustBeDeleted, char *FileName)
  return NULL;
 }
 
-void PrintMessage(char *s)
+void PrintMessage(const char *s)
 {
  puts(s);
 }

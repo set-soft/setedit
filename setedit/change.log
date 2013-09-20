@@ -1,4 +1,17 @@
-$Log$.
+$Log$
+Revision 1.785  2012/06/22 15:20:55  set
+* Fixed: [inf.cc] call to delete instead of delete [] (patch by Martijn)
+* Fixed: [infbase.cc] call to memcpy instead of CLY_memcpy (reported by
+Martijn)
+* Fixed: [ceditor.cc] optimal fill leaving spaces after newLine+movement
+(reported by Martijn)
+* Fixed: [makes/Makefile] Use of gcc instead of g++ (to compile internal
+tools)
+* Fixed: [extrimk.cc] use of char * instead of const char *
+* Fixed: [edkeys.cc] Use of TStringable */int instead of
+TStringableListBoxRec (patch by Martijn)
+* Modified: Debian version to 0.5.7-3
+
 Revision 1.784  2012/05/23 18:55:36  set
 * Added: [SHL] for Octave, contributed by Francisco Salomon.
 
