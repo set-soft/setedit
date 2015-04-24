@@ -1,4 +1,4 @@
-; Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+; Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
 ; see copyrigh file for details
 ;
 ;
@@ -53,6 +53,29 @@ Trigger: "w("
 Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
 Name: While cycle
  "while (@0)\n"
+ "  {\n"
+   " @1\n"
+   "}"
+
+Trigger: "s("
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Switch
+ "switch (@0)\n"
+ "  {\n"
+   " case @1\n"
+    "  {\n"
+      " @2\n"
+      "}\n"
+    "\belse\n"
+    "  {\n"
+      " @3\n"
+      "}\n"
+   "\b\b}"
+
+Trigger: "c:"
+Mode: 0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Name: Case
+ "case @0\n"
  "  {\n"
    " @1\n"
    "}"
