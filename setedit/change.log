@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.786  2013/09/20 16:57:10  set
+* Modified: [debian/changelog] Debian package version.
+* Added: [sdg/bufun2.cc sdg/include/txhgen.h] PCRE stuff needed for mli.cc.
+* Fixed: [sdg/txhgen.cc sdg/txhmain.cc sdg/include/txhgen.h] const char *
+manipulations using char *.
+
 Revision 1.785  2012/06/22 15:20:55  set
 * Fixed: [inf.cc] call to delete instead of delete [] (patch by Martijn)
 * Fixed: [infbase.cc] call to memcpy instead of CLY_memcpy (reported by
