@@ -398,7 +398,7 @@ int SearchPythonSymbols(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
 
    while (extract_symbol(state, result)) {
       found_symbols++;
-      AddFunc(result.text, result.len+1, result.line_start, result.line_end);
+      AddFunc(result.text, result.len+1, result.line_start, result.line_end, NULL, 0);
    }
    
    return found_symbols;

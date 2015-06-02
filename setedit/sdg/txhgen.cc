@@ -39,6 +39,7 @@ bastante bueno.
 
 #define Uses_TMLISDGDefs
 #include <mli.h>
+//#include <ceditint.h>
 #include <txhgen.h>
 #include <bufun.h>
 #include <rhutils.h>
@@ -1180,7 +1181,7 @@ void AlignLen(int &len)
     len+=4-(len & 3);
 }
 
-static char *SearchInfList(int line)
+static char *SearchInfList(int line, char *&proto)
 {
  ccIndex i,c;
  int l,min=1000000,dif;
@@ -1198,6 +1199,8 @@ static char *SearchInfList(int line)
        {
         min=dif;
         best=s;
+        //lProto=*(int *)(s+length+2*sizeof(int));
+        proto=s+length+3*sizeof(int);
        }
     }
 
@@ -1208,13 +1211,13 @@ static void AutoFill(int line)
 {
  char *s,*p;
  // GCC says Class and Function can be used unitialized?!
- char *Class=0,*Function=0,*Prototype;
+ char *Class=0,*Function=0,*Prototype,*FullProto=NULL;
  int  lClass=0,lFunction=0,lPrototype=0;
  int l;
 
- if ((s=SearchInfList(line))!=NULL)
+ if ((s=SearchInfList(line,FullProto))!=NULL)
    {
-    // Get the prototype (no ret value sorry), Function and Class names
+    // Get the prototype, Function and Class names
     Prototype=s;
     lPrototype=strlen(s);
     s=strstr(Prototype,"::");
@@ -1236,6 +1239,11 @@ static void AutoFill(int line)
       {
        lFunction=lPrototype;
        Function=Prototype;
+      }
+    if (FullProto)
+      {
+       Prototype=FullProto;
+       lPrototype=strlen(FullProto);
       }
     // Fill the variables
     for (l=0; l<Definitions; l++)

@@ -268,7 +268,7 @@ const char *envTipStyle="SET_TIP_INFO";
 
 void ShowTips(char *fileName, int forceDialog)
 {
- int LastTip,oldTipStyle=-1;
+ int LastTip;
  char aux[60],day,today;
  time_t LastUse,Today;
  struct tm *t;
@@ -280,8 +280,6 @@ void ShowTips(char *fileName, int forceDialog)
     TipStyle=strtol(s,&end,0);
     if (TipStyle>2)
        TipStyle=1;
-    else
-       oldTipStyle=TipStyle;
 
     if (!TipStyle && !forceDialog)
        return;

@@ -468,7 +468,7 @@ void TSOSListBoxMsg::draw()
 {
  int i, isSelAct, indent, scOff;
  ccIndex item;
- unsigned normalColor, selectedColor, focusedColor=0, color,
+ unsigned normalColor, focusedColor=0, color,
           infoColor, warnColor, errColor;
  TDrawBuffer b;
 
@@ -477,12 +477,12 @@ void TSOSListBoxMsg::draw()
    {// Selected & Active
     normalColor=getColor(1);
     focusedColor=getColor(3);
-    selectedColor=getColor(4);
+    //selectedColor=getColor(4);
    }
  else
    {// !Selected | !Active
     normalColor=getColor(2);
-    selectedColor=getColor(4);
+    //selectedColor=getColor(4);
    }
  infoColor=getColor(5);
  warnColor=getColor(6);

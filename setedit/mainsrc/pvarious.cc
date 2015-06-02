@@ -77,7 +77,7 @@ int SearchSHLDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       }
     else if (strncasecmp(bfBuffer,"End",3)==0)
       {
-       AddFunc(bfNomFun,strlen(bfNomFun)+1,lineFound,Line);
+       AddFunc(bfNomFun,strlen(bfNomFun)+1,lineFound,Line,NULL,0);
        funcs++;
       }
    }
@@ -135,7 +135,7 @@ int SearchTxiSecs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
                  strcpy(bfNomFun+l+2+Sections[i].len,")");
                  l+=3+Sections[i].len;
                 }
-              AddFunc(bfNomFun,l+1,Line,-1);
+              AddFunc(bfNomFun,l+1,Line,-1,NULL,0);
               funcs++;
               break;
              }
@@ -175,7 +175,7 @@ int SearchAsmLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
     GetLine(); Line++;
     if (GetLabel(l))
       {
-       AddFunc(bfNomFun,l+1,Line,-1);
+       AddFunc(bfNomFun,l+1,Line,-1,NULL,0);
        funcs++;
       }
    }
@@ -203,7 +203,7 @@ int SearchPMDefs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       }
     else if (lineFound && lenNom && !bfBuffer[0]) // Empty line
       {
-       AddFunc(bfNomFun,lenNom+1,lineFound,Line);
+       AddFunc(bfNomFun,lenNom+1,lineFound,Line,NULL,0);
        lineFound=lenNom=0;
        funcs++;
       }
@@ -232,7 +232,7 @@ int SearchKICADLib(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
     else if (strncasecmp(bfBuffer,"ENDDEF",6)==0 &&
              (bfBuffer[6]==0 || isspace((uchar)bfBuffer[6])))
       {
-       AddFunc(bfNomFun,lenNom,lineFound,Line);
+       AddFunc(bfNomFun,lenNom,lineFound,Line,NULL,0);
        lineFound=lenNom=0;
        funcs++;
       }
@@ -271,7 +271,7 @@ int SearchMakeLabels(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
     GetLine(); Line++;
     if (GetMakeLabel(l))
       {
-       AddFunc(bfNomFun,l+1,Line,-1);
+       AddFunc(bfNomFun,l+1,Line,-1,NULL,0);
        funcs++;
       }
    }
@@ -321,7 +321,7 @@ int SearchHTMLAnchors(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
     char *buffer=bfBuffer;
     while ((buffer=GetHTMLAnchor(l,buffer))!=NULL)
       {
-       AddFunc(bfNomFun,l+1,Line,-1);
+       AddFunc(bfNomFun,l+1,Line,-1,NULL,0);
        funcs++;
       }
    }
@@ -403,7 +403,7 @@ int SearchSGMLIDs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
     char *buffer=bfBuffer;
     while ((buffer=GetSGMLID(l,buffer))!=NULL)
       {
-       AddFunc(bfNomFun,l+1,Line,-1);
+       AddFunc(bfNomFun,l+1,Line,-1,NULL,0);
        funcs++;
       }
    }
@@ -425,7 +425,7 @@ int SearchUSB(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       {
        if (ready)
          {
-          AddFunc(bfNomFun,tL+1,lineFound,Line);
+          AddFunc(bfNomFun,tL+1,lineFound,Line,NULL,0);
           funcs++;
          }
        char *pos=strtok(NULL," \t");
@@ -438,7 +438,7 @@ int SearchUSB(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       }
     else if (ready && (strcasecmp(s,"DEnd")==0 || strcasecmp(s,"REnd")==0))
       {
-       AddFunc(bfNomFun,tL+1,lineFound,Line);
+       AddFunc(bfNomFun,tL+1,lineFound,Line,NULL,0);
        funcs++;
        ready=false;
       }

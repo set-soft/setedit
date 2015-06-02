@@ -207,7 +207,7 @@ void GetFunction(const char *type, tAddFunc AddFunc)
  while (Index<Len);
  lenFound=CLY_snprintf(bfTempNomFun,MaxLenWith0,"%s [%s%s]",bfNomFun,type,
                        proto ? " Declaration" : "");
- AddFunc(bfTempNomFun,lenFound+1,lineFound,-1);
+ AddFunc(bfTempNomFun,lenFound+1,lineFound,-1,NULL,0);
 }
 
 int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
@@ -221,7 +221,7 @@ int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
       {
        GetWord();
        lenFound=CLY_snprintf(bfTempNomFun,MaxLenWith0,"%s [Entity]",bfBuffer);
-       AddFunc(bfTempNomFun,lenFound+1,Line,-1);
+       AddFunc(bfTempNomFun,lenFound+1,Line,-1,NULL,0);
        funcs++;
       }
     else if (strcasecmp(bfBuffer,"architecture")==0)
@@ -238,14 +238,14 @@ int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
        GetWord();
        lenFound=CLY_snprintf(bfTempNomFun,MaxLenWith0,"%s [Architecture of %s]",
                              bfNomFun,bfBuffer);
-       AddFunc(bfTempNomFun,lenFound+1,lineFound,-1);
+       AddFunc(bfTempNomFun,lenFound+1,lineFound,-1,NULL,0);
       }
     else if (strcasecmp(bfBuffer,"component")==0)
       {
        GetWord();
        lenFound=CLY_snprintf(bfTempNomFun,MaxLenWith0,"%s [Component]",
                              bfBuffer);
-       AddFunc(bfTempNomFun,lenFound+1,Line,-1);
+       AddFunc(bfTempNomFun,lenFound+1,Line,-1,NULL,0);
        funcs++;
       }
     else if (strcasecmp(bfBuffer,"function")==0)
@@ -272,7 +272,7 @@ int SearchVHDLStuff(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
           lenFound=CLY_snprintf(bfTempNomFun,MaxLenWith0,
                                 "%s [Package declaration]",bfBuffer);
          }
-       AddFunc(bfTempNomFun,lenFound+1,Line,-1);
+       AddFunc(bfTempNomFun,lenFound+1,Line,-1,NULL,0);
        funcs++;
       }
     else if (strcasecmp(bfBuffer,"end")==0)

@@ -1395,7 +1395,11 @@ pcre *PCRECompileRegEx(char *text, PCREData &p)
  if (!ret)
     return NULL;
 
- int matchs=(pcre_info(ret,0,0)+1)*3;
+ // int matchs=(pcre_info(ret,0,0)+1)*3; Old PCREs
+ int matchs;
+ if (pcre_fullinfo(ret,NULL,PCRE_INFO_CAPTURECOUNT,&matchs))
+    return 0;
+ matchs=(matchs+1)*3;
  if (matchs>p.PCREMaxMatchs)
     p.PCREMaxMatchs=matchs;
 

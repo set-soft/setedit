@@ -36,6 +36,7 @@ $inNewFile=0;
 $files='change.log ';
 while ($a=<>)
   {
+   $a=~s/\r//;
    if ($estado==1)
      {
       if ($a ne "\n")

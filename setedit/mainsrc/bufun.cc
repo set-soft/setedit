@@ -1,6 +1,6 @@
 /****************************************************************************
 
-  Busca Funciones (BuFun), Copyright (c) 1996-2008 by Salvador E. Tropea (SET)
+  Busca Funciones (BuFun), Copyright (c) 1996-2013 by Salvador E. Tropea (SET)
 
   int SelectFunctionToJump(char *b, unsigned l)
 
@@ -63,7 +63,7 @@ or the user choose cancel the routine returns -1.
 #include <bufun.h>
 #include <splinman.h>
 
-extern ushort execDialog( TDialog *d, void *data );
+extern ushort execDialog(TDialog *d, void *data);
 
 //#define TEST
 
@@ -75,14 +75,17 @@ inline int IsWordChar(char c)
 char bfBuffer[MaxLenWith0];
 char bfNomFun[MaxLenWith0];
 char bfTempNomFun[MaxLenWith0];
+char bfReturn[MaxLenWith0];
 static char Alone;
-static int Used,UsedNom;
+static int Used,UsedNom,UsedRet,LastRetIndex;
 static int Line,LineFun;
+static bool LastRetWasChar;
 typedef struct
 {
  int line;
  ccIndex index;
 } stItem;
+const int aNothing=0, aWord=1, aChar=2, aPrepro=3;
 
 #ifdef TEST
 static FILE *in;
@@ -139,10 +142,11 @@ If TakeOneCharToo!=0 the routine also collects single chars in Alone global
 variable.
 
   Return:
-  0 nothing found.
-  1 a word.
-  2 a single character
-  3 a preprocessor line. The buffer contains the #xxx that started the line.
+  aNothing=0 nothing found.
+  aWord=1    a word.
+  aChar=2    a single character.
+  aPrepro=3  a preprocessor line. The buffer contains the #xxx that started
+  the line.
 
 ***************************************************************************/
 
@@ -156,7 +160,7 @@ int TakeWord(int TakeOneCharToo)
   {
    c=GetAChar();
    if (c==EOF)
-      return 0;
+      return aNothing;
    if (IsWordChar(c))
      {
       Used=0;
@@ -170,7 +174,7 @@ int TakeWord(int TakeOneCharToo)
       if (c!=EOF)
          UnGetAChar(c);
       if (Used==0)
-         return 0;
+         return aNothing;
       return 1;
      }
    else
@@ -257,7 +261,7 @@ int TakeWord(int TakeOneCharToo)
               while (c!=EOF && Used<MaxLen && TVCodePage::isAlpha(c));
               bfBuffer[Used]=0;
               if (c==EOF || Used==0)
-                 return 0;
+                 return aNothing;
               UnGetAChar(c);
               do
                {
@@ -270,7 +274,7 @@ int TakeWord(int TakeOneCharToo)
                 if (c=='\r') c=GetAChar();
                }
               while (last=='\\');
-              return 3;
+              return aPrepro;
 
 
          default:
@@ -278,14 +282,14 @@ int TakeWord(int TakeOneCharToo)
               if (TakeOneCharToo)
                 {
                  Alone=c;
-                 return 2;
+                 return aChar;
                 }
         }
      }
   }
  while (c!=EOF);
 
- return 0;
+ return aNothing;
 }
 
 const int maxPreproStates=64;
@@ -383,6 +387,87 @@ int SearchBalanceCopy(char ref, char ref2)
  return r;
 }
 
+/**[txh]********************************************************************
+
+  Description:
+  Clears the buffer where we collect the return value.
+  
+***************************************************************************/
+
+static
+void ReturnBuffReset()
+{
+ bfReturn[0]=0;
+ UsedRet=0;
+ LastRetWasChar=false;
+ LastRetIndex=0;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Adds a word to the buffer where we collect the return value.
+  
+***************************************************************************/
+
+static
+void ReturnBufAdd(const char *buf, int len)
+{
+ if (UsedRet+len+1<MaxLen)
+   {
+    LastRetIndex=UsedRet;
+    if (UsedRet)
+      {
+       bfReturn[UsedRet]=' ';
+       UsedRet++;
+      }
+    memcpy(bfReturn+UsedRet,buf,len+1);
+    UsedRet+=len;
+   }
+ LastRetWasChar=false;
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Adds a single char to the buffer where we collect the return value.
+  
+***************************************************************************/
+
+static
+void ReturnBufAdd(char character)
+{
+ if (UsedRet+2<MaxLen)
+   {
+    LastRetIndex=UsedRet;
+    if (!LastRetWasChar && UsedRet && character!=';')
+      {
+       bfReturn[UsedRet]=' ';
+       UsedRet++;
+      }
+    bfReturn[UsedRet]=character;
+    UsedRet++;
+    bfReturn[UsedRet]=0;
+   }
+ LastRetWasChar=true;
+ if (character==';')
+    ReturnBuffReset();
+}
+
+/**[txh]********************************************************************
+
+  Description:
+  Removes the last addition to the buffer where we collect the return value.
+  
+***************************************************************************/
+
+static
+void ReturnBufUndo()
+{
+ UsedRet=LastRetIndex;
+ bfReturn[UsedRet]=0;
+}
+
 static
 int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
 {
@@ -395,13 +480,24 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
  buffer=b;
  IndexB=0;
  BufLen=l;
+ ReturnBuffReset();
 
  Line=1;
  int r;
  do
   {
-   r=TakeWord();
+   r=TakeWord(1);
    if (!r) break;
+   if (r==aChar)
+     {// Collect the stuff before the function name
+      ReturnBufAdd(Alone);
+      if (Alone==';') // End of sentence, discard the collected stuff
+         ReturnBuffReset();
+      continue;
+     }
+   if (r==aPrepro) continue;
+   // Collect the stuff before the function name
+   ReturnBufAdd(bfBuffer,Used);
    if (strcmp(bfBuffer,"operator")==0 || (Used>10 && strcmp(bfBuffer+Used-10,"::operator")==0))
      { // C++ operators are a special case.
       // Here we collect the name of the operator, that's symbols until
@@ -426,8 +522,20 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
       do
        {
         r=TakeWord(1);
+        // Collect the stuff before the function name
+        if (r==aWord)
+          {
+           ReturnBufAdd(bfBuffer,Used);
+          }
+        else if (r==aChar)
+          {
+           if (Alone=='(') // Discard the function name
+              ReturnBufUndo();
+           else
+              ReturnBufAdd(Alone);
+          }
        }
-      while(r==1);
+      while (r==aWord);
       if (!r) break;
      }
    // Ok, we should have the name in Buffer and Alone should be (
@@ -591,7 +699,9 @@ int SearchCFuncs(char *b, unsigned l, int mode, tAddFunc AddFunc)
                *(dest++)=')';
                *dest=0;
               }
-            AddFunc(bfNomFun,used,LineFun,Line);
+            AddFunc(bfNomFun,used,LineFun,Line,bfReturn,UsedRet+1);
+            //printf("Function: %s, Line %d, Line end %d Retorna: %s\n",bfTempNomFun,LineFun,Line,bfReturn);
+            ReturnBuffReset();
             funs++;
            }
          #ifdef TEST
@@ -619,13 +729,14 @@ void AlignLen(int &len)
 }
 
 static
-void StrDup(char *s, int len, int line, int lineEnd)
+void StrDup(char *s, int len, int line, int lineEnd, char *ret, int lRet)
 {
  stkHandler h;
  char *d,b[64];
  ccIndex ind;
- int differentiate=0;
+ int differentiate=0, lenRet, lenFun;
 
+ lenFun=len;
  if (glFunList->Search(s,ind))
    {// Already there
     itoa(line,b,10);
@@ -634,7 +745,19 @@ void StrDup(char *s, int len, int line, int lineEnd)
    }
 
  AlignLen(len);
- h=glStk->alloc(len+sizeof(int)*2);
+ // We will make a copy including the return value, just to avoid breaking
+ // the rest.
+ lenRet=lRet;
+ if (ret==NULL)
+    lenRet=0;
+ else
+   {
+    lenRet+=lenFun-1;
+    if (TVCodePage::isAlNum(ret[lRet-1]))
+       lenRet++;
+    AlignLen(lenRet);
+   }
+ h=glStk->alloc(len+sizeof(int)*3+lenRet);
  d=glStk->GetStrOf(h);
  strcpy(d,s);
  if (differentiate)
@@ -645,6 +768,22 @@ void StrDup(char *s, int len, int line, int lineEnd)
  int *l=(int *)&d[len];
  l[0]=line;
  l[1]=lineEnd;
+ l[2]=lenRet;
+ if (lenRet)
+   {
+    char *dest=d+len+sizeof(int)*3;
+    //char *proto=dest;
+    memcpy(dest,ret,lRet);
+    dest+=lRet-2;
+    if (TVCodePage::isAlNum(*dest))
+      {
+       dest[1]=' ';
+       dest++;
+      }
+    dest++;
+    memcpy(dest,s,lenFun);
+    //printf("Added prototype: %s\n",proto);
+   }
  glFunList->insert(h);
 }
 

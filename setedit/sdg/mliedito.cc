@@ -653,7 +653,7 @@ DecFun(MLISelectionExists)
 // FindString(str [flags])
 DecFun(MLIFindString)
 {
- unsigned flags=TMLIEditor::GetFindFlags(), ret;
+ unsigned flags=TMLIEditor::GetFindFlags();
  LocVarStr(findStr);
  LocVarInt(findFlags);
  char *str;
@@ -667,7 +667,7 @@ DecFun(MLIFindString)
     GetInteger(1,findFlags);
     flags=findFlags->val;
    }
- ret=TMLIEditor::FindString(findStr->str,flags,str,strLen);
+ TMLIEditor::FindString(findStr->str,flags,str,strLen);
  if (!str)
    {
     str=newStr("");

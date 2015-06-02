@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.787  2015/04/24 13:42:53  set
+* Added: [perlmac.pmc syntaxhl.shl] Syntax highlight and indentation for
+Perl's switch/case module.
+
 Revision 1.786  2013/09/20 16:57:10  set
 * Modified: [debian/changelog] Debian package version.
 * Added: [sdg/bufun2.cc sdg/include/txhgen.h] PCRE stuff needed for mli.cc.

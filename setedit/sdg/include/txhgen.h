@@ -29,6 +29,7 @@ typedef struct
 
 void  PCREInitCompiler(PCREData &p);
 void  PCREStopCompiler(PCREData &p);
+#include <pcre.h>
 pcre *PCRECompileRegEx(char *text, PCREData &p);
 int   PCREDoSearch(char *search, int len, pcre *CompiledPCRE, PCREData &p);
 #define PCREDataDestroy(p) PCREInitCompiler(p)

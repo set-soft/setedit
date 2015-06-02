@@ -6902,7 +6902,7 @@ void TCEditor::MakeEfectiveLineInEdition(Boolean allowUndo)
    }
  else
    {
-    int lastCol=0, auxCol=0;
+    int auxCol=0;
     for (s=bufEdit,actual=lastChar=0; *s; s++)
        {
         lastChar++;
@@ -6910,7 +6910,6 @@ void TCEditor::MakeEfectiveLineInEdition(Boolean allowUndo)
         if (*s!='\t' && *s!=' ')
           {
            actual=lastChar;
-           lastCol=auxCol;
           }
        }
     SpacesEated=lastChar-actual;

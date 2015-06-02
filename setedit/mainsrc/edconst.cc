@@ -432,16 +432,16 @@ static edCList SetFlags[] =
 {"WENameNoExt"    ,5                  },
 {"WEPath"         ,2                  },
 {"WholeWordsOnly" ,efWholeWordsOnly   },
-{"WinASCII"       ,-dktASCII          }, // SelectWindowNumber constants
-{"WinCalendar"    ,-dktCalendar       },
-{"WinClipboard"   ,-dktClipboard      },
-{"WinDebugger"    ,-dktDbgMsg         },
-{"WinHelp"        ,-dktHelp           },
-{"WinMP3"         ,-dktMP3            },
-{"WinMan"         ,-dktMan            },
-{"WinMessage"     ,-dktMessage        },
-{"WinPrj"         ,-dktPrj            },
-{"WinWatches"     ,-dktDbgWt          }
+{"WinASCII"       ,unsigned(-dktASCII)     }, // SelectWindowNumber constants
+{"WinCalendar"    ,unsigned(-dktCalendar)  },
+{"WinClipboard"   ,unsigned(-dktClipboard) },
+{"WinDebugger"    ,unsigned(-dktDbgMsg)    },
+{"WinHelp"        ,unsigned(-dktHelp)      },
+{"WinMP3"         ,unsigned(-dktMP3)       },
+{"WinMan"         ,unsigned(-dktMan)       },
+{"WinMessage"     ,unsigned(-dktMessage)   },
+{"WinPrj"         ,unsigned(-dktPrj)       },
+{"WinWatches"     ,unsigned(-dktDbgWt)     }
 };
 
 

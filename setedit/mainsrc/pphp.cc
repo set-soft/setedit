@@ -472,7 +472,7 @@ static void registerFunc(const char *funcName, const unsigned funcNameSize,
     *p++=0;
 
     funcAddPtr(bfNomFun, p-bfNomFun /*Length including ending 0!*/,
-        funcStartLine, curLine);
+        funcStartLine, curLine, NULL, 0);
 }
 
 

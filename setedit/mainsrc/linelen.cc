@@ -39,8 +39,9 @@ LineLengthArray::~LineLengthArray()
 
 void LineLengthArray::Resize(unsigned size)
 {
- if ((elArray=elArray=(uint16 *)realloc(elArray,size*2))==0
-     || (elArrayAttr=(uint32 *)realloc(elArrayAttr,size*4))==0)
+ elArray=(uint16 *)realloc(elArray,size*2);
+ elArrayAttr=(uint32 *)realloc(elArrayAttr,size*4);
+ if (elArray==NULL || elArrayAttr==NULL)
     abort();
  MaxPos=size;
 }

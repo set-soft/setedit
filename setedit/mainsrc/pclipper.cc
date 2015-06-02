@@ -223,7 +223,7 @@ int Parsear(tAddFunc AddFunc, int mode)
          {
           if (line>=0)
             { // We have one cached, add it
-             AddFunc(bfNomFun,lenTemp,line,lastReturn);
+             AddFunc(bfNomFun,lenTemp,line,lastReturn,NULL,0);
              lastReturn=-1;
             }
           line=Line;
@@ -249,7 +249,7 @@ int Parsear(tAddFunc AddFunc, int mode)
    }
  while (r);
  if (line>=0) // We have one cached, add it
-    AddFunc(bfNomFun,lenTemp,line,lastReturn);
+    AddFunc(bfNomFun,lenTemp,line,lastReturn,NULL,0);
 
  return funs;
 }

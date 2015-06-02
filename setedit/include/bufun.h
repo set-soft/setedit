@@ -1,4 +1,4 @@
-/* Copyright (C) 2000-2008 by Salvador E. Tropea (SET),
+/* Copyright (C) 2000-2013 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -12,7 +12,7 @@
 #ifndef BUFUN_H_INCLUDED
 #define BUFUN_H_INCLUDED
 
-typedef void (*tAddFunc)(char *name, int len, int lineStart, int lineEnd);
+typedef void (*tAddFunc)(char *name, int len, int lineStart, int lineEnd, char *ret, int lRet);
 const int MaxLenWith0=256,MaxLen=255,MaxLen_1=254;
 
 // Generic use buffers of MaxLenWith0 bytes, can be used by all parsers

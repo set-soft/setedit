@@ -173,7 +173,7 @@ int SearchPerlFuncs(char *buffer, unsigned len, int mode, tAddFunc AddFunc)
        lineFound=Line;
        strcpy(bfNomFun,bfBuffer);
        SearchBalance('{','}');
-       AddFunc(bfNomFun,lenFound,lineFound,Line);
+       AddFunc(bfNomFun,lenFound,lineFound,Line,NULL,0);
        funcs++;
       }
    }
