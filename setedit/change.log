@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.790  2015/06/03 11:28:34  set
+* Fixed: [gcc] Unused variables. (holidays/datetools.c libpcre/study.c
+mainsrc/fstrcmp.c).
+
 Revision 1.789  2015/06/03 11:27:12  set
 * Fixed: [PCRE] The detection of installed PCRE failed for versions 8.30+
 * Fixed: [PCRE] The patch to support PCRE>=8.30 broke the support for

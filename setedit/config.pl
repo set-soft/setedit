@@ -349,6 +349,7 @@ GiveAdvice();
 $conf{'force-intlShipped'}='no';
 CreateCache();
 unlink $ErrorLog;
+0;
 
 sub UpdateSpec
 {
@@ -1086,6 +1087,7 @@ int main(void)
 {
  gzFile f;
  f=gzopen("","rb");
+ gzclose(f);
  printf("%s",ZLIB_VERSION);
  return 0;
 }
