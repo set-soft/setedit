@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -799,8 +799,7 @@ int TKeyTranslate::Load(char *name)
  FILE *f=fopen(name,"rb");
  if (!f)
     return 0;
- fread(buf,sizeof(Signature),1,f);
- if (strcmp(buf,Signature))
+ if (fread(buf,sizeof(Signature),1,f) && strcmp(buf,Signature))
     GenError(__("Wrong file"));
 
  int V=fgetc(f);
@@ -808,11 +807,13 @@ int TKeyTranslate::Load(char *name)
     GenError(__("Wrong version"));
 
  ushort w;
- fread(&w,sizeof(w),1,f);
+ if (!fread(&w,sizeof(w),1,f))
+    GenError(__("Read error"));
  TGKey::SetAltSettings(w);
 
  int lcSize,replaceK=0;
- fread(&lcSize,sizeof(lcSize),1,f);
+ if (!fread(&lcSize,sizeof(lcSize),1,f))
+    GenError(__("Read error"));
  if (lcSize)
    {
     newBase=new char[lcSize];
@@ -827,7 +828,8 @@ int TKeyTranslate::Load(char *name)
  if (V>=4)
    {
     int translateKeyPad;
-    fread(&translateKeyPad,sizeof(translateKeyPad),1,f);
+    if (!fread(&translateKeyPad,sizeof(translateKeyPad),1,f))
+       GenError(__("Read error"));
     TGKey::SetKbdMapping(translateKeyPad ? TGKey::dosTranslateKeypad : TGKey::dosNormalKeypad);
    }
  fclose(f);

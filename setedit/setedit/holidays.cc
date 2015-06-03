@@ -1,4 +1,4 @@
-/* Copyright (C) 2003-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 2003-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -110,38 +110,40 @@ const char *LookUpCountry(const char *lang, char *buffer, char *name)
           memset(countries,0,sizeof(countryEntry)*numCountries);
           for (i=0; i<numCountries; i++)
              {
-              fgets(b,maxLine,f);
-              char *s=b;
-              for (;*s && !ucisspace(*s); s++);
-              if (*s)
+              if (fgets(b,maxLine,f))
                 {
-                 *s=0; s++;
-                 countries[i].lang=newStr(b);
-                 for (; *s && *s!='"'; s++);
-                 if (*s=='"')
+                 char *s=b;
+                 for (;*s && !ucisspace(*s); s++);
+                 if (*s)
                    {
-                    s++;
-                    char *e;
-                    for (e=s; *e && *e!='"'; e++);
-                    if (*e=='"')
+                    *s=0; s++;
+                    countries[i].lang=newStr(b);
+                    for (; *s && *s!='"'; s++);
+                    if (*s=='"')
                       {
-                       *e=0;
-                       countries[i].country=newStr(s);
-                       for (s=e+1; *s && ucisspace(*s); s++);
-                       if (*s)
+                       s++;
+                       char *e;
+                       for (e=s; *e && *e!='"'; e++);
+                       if (*e=='"')
                          {
-                          for (e=s+1; *e && !ucisspace(*e); e++);
                           *e=0;
-                          countries[i].module=newStr(s);
+                          countries[i].country=newStr(s);
+                          for (s=e+1; *s && ucisspace(*s); s++);
+                          if (*s)
+                            {
+                             for (e=s+1; *e && !ucisspace(*e); e++);
+                             *e=0;
+                             countries[i].module=newStr(s);
+                            }
                          }
                       }
                    }
-                }
-              if (DEBUG)
-                 printf("%s %s %s\n",countries[i].lang,countries[i].country,
-                        countries[i].module);
-             }
-         }
+                 if (DEBUG)
+                    printf("%s %s %s\n",countries[i].lang,countries[i].country,
+                           countries[i].module);
+                } // fread
+             } // for countries
+         } // if countries
        fclose(f);
        holidaysConfLoaded=1;
       }

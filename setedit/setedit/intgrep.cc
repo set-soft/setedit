@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdlib
@@ -190,9 +190,10 @@ int CheckForGREP(void)
     if (f)
       {
        char resp[80];
-       fgets(resp,80,f);
+       ok=fgets(resp,80,f)!=NULL;
        fclose(f);
-       ok=strstr(resp,"GNU grep")!=0;
+       if (ok)
+          ok=strstr(resp,"GNU grep")!=NULL;
       }
     unlink(err);
 
@@ -212,13 +213,16 @@ void RunGrep(char *command)
  char *err;
  if (!CheckForGREP())
     return;
-
+ if (getcwd(ActualPath,PATH_MAX)==NULL)
+   {
+    messageBox(__("Failed to get current directory"), mfError | mfOKButton);
+    return;
+   }
  Boolean oldBusy=TScreen::showBusyState(True);
     
  char b[PATH_MAX+60];
  out=open_stdout();
  err=open_stderr();
- getcwd(ActualPath,PATH_MAX);
  TVIntl::snprintf(b,PATH_MAX+60,__("Running grep in: %s"),ActualPath);
  if (ActualPath[strlen(ActualPath)-1]!='/')
     strcat(ActualPath,"/");
@@ -255,6 +259,16 @@ void RunGrep(char *command)
  DumpFileToMessage(out,__("From stdout:"),edsmEverScroll,ParseFun);
 }
 
+
+static
+void ChdirError(const char *s)
+{
+ char b[PATH_MAX+60];
+ TVIntl::snprintf(b,PATH_MAX+60,__("chdir error: %s"),s);
+ EdShowMessage(b);
+}
+
+
 static int stopRecurse;
 
 // That's similar to ftw, I didn't used ftw because isn't in the libc.info of my
@@ -268,7 +282,8 @@ void look_in(char *command)
  ccIndex pos;
 
  // Keep record of our current location
- getcwd(TempDirName,PATH_MAX);
+ if (getcwd(TempDirName,PATH_MAX)==NULL)
+    return;
  pwdHere=newStr(TempDirName);
  if (Visited->search(pwdHere,pos))
    { // Hey we already scanned it!
@@ -300,28 +315,38 @@ void look_in(char *command)
          }
        if (IsADirectory(name)) // It also checks valid access
          { // Recurse
-          chdir(name);
-          look_in(command);
-          // We must go back to the previous location, .. isn't useful
-          // when we taked a link
-          chdir(pwdHere);
+          if (chdir(name))
+             ChdirError(name);
+          else
+            {
+             look_in(command);
+             // We must go back to the previous location, .. isn't useful
+             // when we taked a link
+             if (chdir(pwdHere))
+                ChdirError(pwdHere);
+            }
          }
       }
     closedir(d);
    }
 }
 
+
 static
 void RunRecurseGrep(char *command, int recurse)
 {
+ char StartPoint[PATH_MAX];
+ if (getcwd(StartPoint,PATH_MAX)==NULL)
+   {
+    EdShowMessage(__("Failed to get current directory"));
+    return;
+   }
+
  TView::disableCommand(cmeStopChild);
  
  char dirTemp[maxDirLen];
  // A copy to use strtok
  strcpy(dirTemp,box.dirs);
-
- char StartPoint[PATH_MAX];
- getcwd(StartPoint,PATH_MAX);
 
  CLY_destroy(Visited); // Just in case
  Visited=new TStringCollection(10,5);
@@ -331,9 +356,7 @@ void RunRecurseGrep(char *command, int recurse)
    {
     if (chdir(s))
       {
-       char b[PATH_MAX+60];
-       TVIntl::snprintf(b,PATH_MAX+60,__("chdir error: %s"),s);
-       EdShowMessage(b);
+       ChdirError(s);
       }
     else
       {
@@ -348,7 +371,8 @@ void RunRecurseGrep(char *command, int recurse)
       }
 
     s=strtok(NULL,";, ");
-    chdir(StartPoint);
+    if (chdir(StartPoint))
+       ChdirError(StartPoint);
    }
 
  CLY_destroy(Visited);

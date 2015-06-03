@@ -1,6 +1,6 @@
 /*****************************************************************************
 
- SET's Documentation Helper (SDH) Copyright(c) 1997-2004
+ SET's Documentation Helper (SDH) Copyright(c) 1997-2015
  by Salvador Eduardo Tropea
 
  This program is used to automate the creation of .info, .txt, .html, .dvi
@@ -394,9 +394,9 @@ void ProcessLine(void)
    }
 }
 
-void ReadLine(void)
+char *ReadLine(void)
 {
- fgets(bl,MAX_BL,fi);
+ return fgets(bl,MAX_BL,fi);
 }
 
 void Rewind(void)
@@ -1029,13 +1029,15 @@ int NextNode(FILE *f)
  char *pos,*s;
  while (*bl!=31 && !feof(f))
    {
-    fgets(bl,MAX_BL,f);
+    if (fgets(bl,MAX_BL,f)==NULL)
+       break;
    }
  if (feof(f))
     return 0;
  do
    {
-    fgets(bl,MAX_BL,f);
+    if (fgets(bl,MAX_BL,f)==NULL)
+       break;
    }
  while (ucisspace(*bl) && !feof(f));
  pos=strstr(bl,"Node:");
@@ -1082,7 +1084,8 @@ void GenerateIDX(int ForTXT)
                 }
               do
                 {
-                 fgets(bl,MAX_BL,f);
+                 if (fgets(bl,MAX_BL,f)==NULL)
+                    break;
                  if (*bl=='*' && *(bl+1)!='*' && strncmp(bl,"* Menu:",7)!=0)
                     break;
                 }
@@ -1090,7 +1093,8 @@ void GenerateIDX(int ForTXT)
               do
                 {
                  Convert(bl,o);
-                 fgets(bl,MAX_BL,f);
+                 if (fgets(bl,MAX_BL,f)==NULL)
+                    break;
                  if (*bl!='*')
                     break;
                 }
@@ -1363,20 +1367,28 @@ void GenerateTeX(void)
    }
  if (OutPathOrig)
    {
-    getcwd(path,PATH_MAX);
-    chdir(OutPathOrig);
+    if (getcwd(path,PATH_MAX)==NULL)
+       error=-1;
+    if (chdir(OutPathOrig)==-1)
+       error=-1;
    }
  sprintf(s,"tex %s",inf);
  puts(s);
- system(s);
+ if (system(s)==-1)
+    printf("Failed executing:\n%s\n",s);
  puts(s);
  sprintf(s,"texindex %s.??",inf);
- system(s);
+ if (system(s)==-1)
+    printf("Failed executing:\n%s\n",s);
  puts(s);
  sprintf(s,"tex %s",inf);
- system(s);
- if (OutPathOrig)
-    chdir(path);
+ if (system(s)==-1)
+    printf("Failed executing:\n%s\n",s);
+ if (OutPathOrig && error!=-1)
+   {
+    if (chdir(path)==-1)
+       printf("Failed to go back to dir: %s\n",path);
+   }
 }
 
 void GeneratePS(void)

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_unistd
@@ -21,8 +21,8 @@ int DumpFileToMessage(char *file, const char *from, uint32 SMOps,
  f=fopen(file,"rt");
  if (f)
    {
-    fgets(buf,1000,f);
-    if (!feof(f))
+    char *retVal=fgets(buf,1000,f);
+    if (retVal && !feof(f))
       {
        EdShowMessageI(from);
        do
@@ -138,8 +138,8 @@ int  DumpFileToMessageParseMore(int Lines, int *goBack)
    {
     clearerr(incf);
     buf[0]=0;
-    fgets(buf,1000,incf);
-    if (feof(incf))
+    char *retVal=fgets(buf,1000,incf);
+    if (retVal==NULL || feof(incf))
       {
        ret=1;
        if (buf[0])

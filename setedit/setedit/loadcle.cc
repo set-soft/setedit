@@ -56,8 +56,7 @@ void LoadCLENames()
  // Meassure the number of definitions
  for (CLECant=0; !feof(f); )
     {
-     fgets(b,maxCLEFileWidth,f);
-     if (!feof(f) && strncasecmp(b,"End",3)==0)
+     if (fgets(b,maxCLEFileWidth,f) && !feof(f) && strncasecmp(b,"End",3)==0)
         CLECant++;
     }
  CLELoaded=1;
@@ -78,7 +77,8 @@ void LoadCLENames()
        {
         do
           {
-           fgets(b,maxCLEFileWidth,f);
+           if (!fgets(b,maxCLEFileWidth,f))
+              break;
           }
         while (*b=='#' || ucisspace(*b));
 
@@ -191,7 +191,8 @@ void LoadOneCLE(const char *name)
        {
         do
           {
-           fgets(b,maxCLEFileWidth,f);
+           if (!fgets(b,maxCLEFileWidth,f))
+              break;
           }
         while (*b=='#' || ucisspace(*b));
 
@@ -224,7 +225,8 @@ void LoadOneCLE(const char *name)
    {
     do
       {
-       fgets(b,maxCLEFileWidth,f);
+       if (!fgets(b,maxCLEFileWidth,f))
+          break;
       }
     while (*b=='#' || ucisspace(*b));
 

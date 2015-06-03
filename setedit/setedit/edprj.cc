@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -214,8 +214,7 @@ void TPrjItemColl::analizeReference(const char *filename)
    { // This isn't the same reference
     ::free(referencePath);
     ::free(referenceCurDelta);
-    getcwd(b1,PATH_MAX);
-    if (strcmp(b1,b2)==0)
+    if (getcwd(b1,PATH_MAX)!=NULL && strcmp(b1,b2)==0)
       { // The reference is the current directory
         // I think it never happends
        referencePath=strdup(b1);
@@ -1087,7 +1086,12 @@ char *DskPrjGetNextFile(int &l, int &MustBeDeleted, char *FileName)
           fclose(f);
           return NULL;
          }
-       fread(buffer,l,1,f);
+       if (fread(buffer,l,1,f)==0)
+         {
+          delete[] buffer;
+          fclose(f);
+          return NULL;
+         }
        buffer[l-1]=0;
        fclose(f);
        MustBeDeleted=1;

@@ -1,6 +1,6 @@
 /* MPEG/WAVE Sound library
 
-   (C) 2000 by Salvador E. Tropea */
+   (C) 2000-2015 by Salvador E. Tropea */
 
 // Rawtowav.cc
 // Output raw data to a wav file.
@@ -20,10 +20,13 @@ Rawtowav::~Rawtowav()
   unsigned l;
   lseek(filehandle,4,SEEK_SET);
   l=length-8;
-  write(filehandle,&l,4);
-  lseek(filehandle,sizeof(WAVEHEADER)-4,SEEK_SET);
-  l=length-sizeof(WAVEHEADER);
-  write(filehandle,&l,4);
+  if (write(filehandle,&l,4)!=-1)
+    {
+     lseek(filehandle,sizeof(WAVEHEADER)-4,SEEK_SET);
+     l=length-sizeof(WAVEHEADER);
+     if (write(filehandle,&l,4)==-1)
+        lseek(filehandle,0,SEEK_SET); // Just to avoid warnings
+    }
   close(filehandle);
 }
 

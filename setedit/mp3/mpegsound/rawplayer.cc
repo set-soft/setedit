@@ -3,7 +3,7 @@
    (C) 1997 by Jung woo-jae [Linux code]
    Allegro routines:
    (C) 1998 by Ove Kaaven <ovek@arcticnet.no>
-   (C) 2000/2001 by Salvador E. Tropea <set@ieee.org>
+   (C) 2000/2015 by Salvador E. Tropea <set@ieee.org>
    Solaris routines:
    (C) 2002 by Salvador E. Tropea <set@ieee.org>
 */
@@ -209,7 +209,8 @@ bool Rawplayer::putblock(void *buffer,int size)
   // quota isn't used by SETEdit
   if(quota)
     while(getprocessed()>quota)usleep(3);
-  write(audiohandle,buffer,modifiedsize);
+  if (write(audiohandle,buffer,modifiedsize)==-1)
+     return false;
   if (0)
     {
      unsigned char *s=(unsigned char *)buffer;

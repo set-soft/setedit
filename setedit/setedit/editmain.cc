@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -1574,11 +1574,12 @@ void DumpEditors(void)
                     unsigned l=ed->bufLen;
                     char *b=ed->buffer;
                     ed->fileName[PATH_MAX-1]=0;
-                    BestWrite(DumpStartName,sizeof(DumpStartName)-1);
-                    BestWrite(ed->fileName,strlen(ed->fileName));
-                    BestWrite(DumpStartName,sizeof(DumpStartName)-1);
-                    if (b && l<1000000)
-                       BestWrite(b,l);
+                    if (BestWrite(DumpStartName,sizeof(DumpStartName)-1)!=-1 &&
+                        BestWrite(ed->fileName,strlen(ed->fileName))!=-1 &&
+                        BestWrite(DumpStartName,sizeof(DumpStartName)-1)!=-1 &&
+                        b && l<1000000 &&
+                        BestWrite(b,l)!=-1)
+                       ed->modified=False; // Just an action, to avoid warnings
                    }
                 }
              }
@@ -2114,9 +2115,10 @@ Boolean CheckForDiff()
     if (f)
       {
        char resp[80];
-       fgets(resp,80,f);
+       ok=fgets(resp,80,f)!=NULL;
        fclose(f);
-       ok=strstr(resp,"GNU diff")!=0;
+       if (ok)
+          ok=strstr(resp,"GNU diff")!=NULL;
       }
     unlink(err);
 
@@ -2669,7 +2671,7 @@ void ShowInstallError(const char *var, const char *suggest, int end)
 {
  TScreen::suspend();
  fprintf(stderr,_("\nWrong installation! You must define the %s environment variable.\n"),var);
- fprintf(stderr,_("Read the readme.1st file included in the .zip distribution file.\n\n"));
+ fputs(_("Read the readme.1st file included in the .zip distribution file.\n\n"),stderr);
  #ifdef NoHomeOrientedOS
  char *s=getenv("DJDIR");
  if (s)
@@ -2680,7 +2682,7 @@ void ShowInstallError(const char *var, const char *suggest, int end)
  fflush(stderr);
  if (end)
     exit(1);
- fprintf(stderr,_("press ENTER to continue\n"));
+ fputs(_("press ENTER to continue\n"),stderr);
  getchar();
  TScreen::resume();
 }
@@ -2963,7 +2965,7 @@ void ParseCommandLine(int argc, char *argv[])
 
        case 'h':
        default:
-            #define PrintHelp(a) printf(a)
+            #define PrintHelp(a) fputs(a,stdout)
             #define FlushHelp()  fflush(stdout)
             TScreen::suspend();
 

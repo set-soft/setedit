@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.791  2015/06/03 11:45:12  set
+* Fixed: [gcc] gcc's -Wunused-but-set-variable (4.7.2) broke the zlib
+version detection.
+
 Revision 1.790  2015/06/03 11:28:34  set
 * Fixed: [gcc] Unused variables. (holidays/datetools.c libpcre/study.c
 mainsrc/fstrcmp.c).

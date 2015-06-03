@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2009 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -225,30 +225,31 @@ int GZFiles_IsGZ(FILE *f)
 {
  unsigned val=0;
  long pos=ftell(f);
+ size_t readOK;
 
  #ifdef SUP_GZ
  // Try with gzip
- fread(&val,2,1,f);
+ readOK=fread(&val,2,1,f);
  fseek(f,pos,SEEK_SET);
- if (val==0x8B1F)
+ if (readOK && val==0x8B1F)
     return gzGZIP;
  #endif
 
  #ifdef HAVE_BZIP2
  // Try Bzip2
  char b[4];
- fread(b,4,1,f);
+ readOK=fread(b,4,1,f);
  fseek(f,pos,SEEK_SET);
- if (strncmp(b,"BZh",3)==0 && ucisdigit(b[3]))
+ if (readOK && strncmp(b,"BZh",3)==0 && ucisdigit(b[3]))
     return gzBZIP2;
  #endif
 
  #ifdef HAVE_GPG
  // GPG encrypted
  char bgpg[27];
- fread(bgpg,27,1,f);
+ readOK=fread(bgpg,27,1,f);
  fseek(f,pos,SEEK_SET);
- if (strncmp(bgpg,"-----BEGIN PGP MESSAGE-----",27)==0)
+ if (readOK && strncmp(bgpg,"-----BEGIN PGP MESSAGE-----",27)==0)
     return CheckGPGInstalled() ? gzGPG : gzNoCompressed;
  #endif
 
@@ -633,8 +634,13 @@ int GZFiles_DecryptGPG(FILE *dest, char *orig)
    }
 
  // Send the passphrase
- write(wr,pass,strlen(pass));
- write(wr,"\n",1);
+ if (write(wr,pass,strlen(pass))==-1 ||
+     write(wr,"\n",1)==-1)
+   {
+    delete[] buf;
+    GZFiles_SetError(__("Failed to send the passphrase"));
+    return 5;
+   }
 
  // Copy the output from GPG
  int l;

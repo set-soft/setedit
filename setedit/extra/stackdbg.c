@@ -1,7 +1,7 @@
 /*************************************************************************
  *
  * Copyright (c) 1999 by Bjorn Reese <breese@mail1.stofanet.dk>
- * Copyright (c) 2001 by Salvador E. Tropea (SET) <set@ieee.org>
+ * Copyright (c) 2001-2015 by Salvador E. Tropea (SET) <set@ieee.org>
  *
  * itoa: Copyright (C) 1995 DJ Delorie.
  *
@@ -239,9 +239,9 @@ void my_pclose(int fd, int pid)
   Helper functions for output.
 *****************************************************************************/
 static
-void Write(int fd, const char *s)
+ssize_t Write(int fd, const char *s)
 {
- write(fd,s,strlen(s));
+ return write(fd,s,strlen(s));
 }
 
 static
@@ -488,7 +488,8 @@ void DebugStack(const char *redirect)
  /* This is if we want to end */
  if (strategy==DBGST_INFORMATIVE)
     strcat(buffer,quitCommands);
- write(fd,buffer,l2-1);
+ if (write(fd,buffer,l2-1)==-1)
+    return;
  close(fd);
 
  /* Arrange the command line */

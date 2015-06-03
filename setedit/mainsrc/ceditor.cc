@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -5959,8 +5959,8 @@ void TCEditor::ExpandAllTabs(Boolean interactive)
        if ((uint32)l!=bufLen && setBufSize((uint32)l+1))
          {
           rewind(f);
-          fread(buffer,(size_t)l,1,f);
-          if (!ferror(f))
+          size_t count=fread(buffer,(size_t)l,1,f);
+          if (count && !ferror(f))
             {
              bufLen=(uint32)l;
              ResetCursorPosition();
@@ -12383,7 +12383,8 @@ void TCEditor::BackSpace(Boolean allowUndo)
           X=0;
        //if (X>(inEditPtr-bufEdit))
        memmove(bufEdit+X,inEditPtr,restCharsInLine+1);
-       memset(bufEdit,32,X);
+       if (X)
+          memset(bufEdit,32,X);
 
        int dif=X-(int)PosOfIns;
        AdjustLineSel(PosOfIns,dif,True);
@@ -13640,16 +13641,18 @@ Boolean TCEditor::loadFile(Boolean setSHL)
   char tmpbuf[1024];
   memset(tmpbuf,0,1024);
   long fsize=filelength(fileno(f));
-  if (fsize > 1024) fsize=1024;
-  fread(tmpbuf,fsize,1,f);
-  for (i=0; i<fsize; i++)
-     {
-      if (tmpbuf[i]==13)
-         crfound=1;
-      else
-        if (tmpbuf[i]==10)
-           break;
-     }
+  if (fsize>1024) fsize=1024;
+  if (fread(tmpbuf,fsize,1,f))
+    {
+     for (i=0; i<fsize; i++)
+        {
+         if (tmpbuf[i]==13)
+            crfound=1;
+         else
+           if (tmpbuf[i]==10)
+              break;
+        }
+    }
   #ifdef CLY_UseCrLf
   // DOS: Check if the file is in UNIX format, in this case convert it
   if (crfound)
