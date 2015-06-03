@@ -220,9 +220,11 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
   for (c = 1;; ++c)
     {
       int d;			/* Active diagonal. */
+      #ifdef MINUS_H_FLAG
       int big_snake;
-
       big_snake = 0;
+      #endif
+
       /* Extend the top-down search by an edit step in each diagonal. */
       if (fmin > dmin)
 	fd[--fmin - 1] = -1;
@@ -236,7 +238,9 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
 	{
 	  int x;
 	  int y;
+#ifdef MINUS_H_FLAG
 	  int oldx;
+#endif
 	  int tlo;
 	  int thi;
 
@@ -247,15 +251,19 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
 	    x = tlo + 1;
 	  else
 	    x = thi;
+#ifdef MINUS_H_FLAG
 	  oldx = x;
+#endif
 	  y = x - d;
 	  while (x < xlim && y < ylim && xv[x] == yv[y])
 	    {
 	      ++x;
 	      ++y;
 	    }
+#ifdef MINUS_H_FLAG
 	  if (x - oldx > SNAKE_LIMIT)
 	    big_snake = 1;
+#endif
 	  fd[d] = x;
 	  if (odd && bmin <= d && d <= bmax && bd[d] <= x)
 	    {
@@ -278,7 +286,9 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
 	{
 	  int x;
 	  int y;
+#ifdef MINUS_H_FLAG
 	  int oldx;
+#endif
 	  int tlo;
 	  int thi;
 
@@ -288,15 +298,19 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
 	    x = tlo;
 	  else
 	    x = thi - 1;
+#ifdef MINUS_H_FLAG
 	  oldx = x;
+#endif
 	  y = x - d;
 	  while (x > xoff && y > yoff && xv[x - 1] == yv[y - 1])
 	    {
 	      --x;
 	      --y;
 	    }
+#ifdef MINUS_H_FLAG
 	  if (oldx - x > SNAKE_LIMIT)
 	    big_snake = 1;
+#endif
 	  bd[d] = x;
 	  if (!odd && fmin <= d && d <= fmax && x <= fd[d])
 	    {

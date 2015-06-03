@@ -1,4 +1,9 @@
-$Log$.
+$Log$
+Revision 1.789  2015/06/03 11:27:12  set
+* Fixed: [PCRE] The detection of installed PCRE failed for versions 8.30+
+* Fixed: [PCRE] The patch to support PCRE>=8.30 broke the support for
+versions older than 3.0 (we ship 2.08).
+
 Revision 1.788  2015/06/02 16:38:21  set
 * Modified: [debian/changelog] Debian package release version.
 * Added: [include/bufun.h mainsrc/bufun.cc mainsrc/pclipper.cc

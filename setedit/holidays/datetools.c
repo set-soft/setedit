@@ -164,8 +164,9 @@ before the Easter Sunday for a desired year.
 
 void Easter(int nY, int *nThursday, int *nFriday)
 {// Verified for 1995, 1998, 1999 and 2002.
- int nAureo,nSiglos,nCantBis,nLetraDom,nEpactaJ,nCorrSolar,nCorrLunar;
+ int nAureo,nSiglos,nEpactaJ,nCorrSolar,nCorrLunar;
  int nEpacta,nDireccion,nDiaNum,nDia,nMes;
+ //int nLetraDom,nCantBis;
 
  // Aúreo Número:
  // Para conocer las lunaciones se descubrió que cada 19 años julianos estas
@@ -189,8 +190,8 @@ void Easter(int nY, int *nThursday, int *nFriday)
  // del año por lo que en los años bisiestos no coincide con el nro. del 1er
  // domingo, pero sirve para cálculos suponiendo que no es un bisiesto.
  nSiglos=nY/100;
- nCantBis=nY/4-nSiglos+nY/400;
- nLetraDom=7-(nY+nCantBis-1)%7;
+ //nCantBis=nY/4-nSiglos+nY/400;
+ //nLetraDom=7-(nY+nCantBis-1)%7;
 
  // Epacta: Es el número de días que excede el año solar al lunar.
  // el solar son 365, el lunar 29,5*12 = 354 => cada año la epacta se corre
