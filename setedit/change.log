@@ -1,4 +1,18 @@
-$Log$
+$Log$.
+Revision 1.788  2015/06/02 16:38:21  set
+* Modified: [debian/changelog] Debian package release version.
+* Added: [include/bufun.h mainsrc/bufun.cc mainsrc/pclipper.cc
+mainsrc/pperl.cc mainsrc/pphp.cc mainsrc/ppython.cc mainsrc/pvarious.cc
+mainsrc/pvhdl.cc sdg/txhgen.cc] Support to collect the return values of the
+functions.
+* Removed: [mainsrc/ceditor.cc sdg/mliedito.cc setedit/edmsg.cc
+setedit/tips.cc] Unused variable.
+* Fixed: [mainsrc/edconst.cc] Made explicit a cast from signed to unsigned.
+* Modified: [mainsrc/linelen.cc] To avoid a false warning about elArrayAttr
+* Modified: [mainsrc/loadshl.cc mainsrc/search.cc sdg/include/txhgen.h
+setedit/loadcle.cc] To match the modern PCRE API.
+* Added: [tools/applycvs.pl] Support for DOS files under UNIX.
+
 Revision 1.787  2015/04/24 13:42:53  set
 * Added: [perlmac.pmc syntaxhl.shl] Syntax highlight and indentation for
 Perl's switch/case module.

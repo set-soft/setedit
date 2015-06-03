@@ -901,7 +901,13 @@ int main(void)
  int   errorOffset,hits,max,*matchs;
  compiled=pcre_compile("test",flags,&error,&errorOffset,0);
  if (!compiled) return 1;
+ #if PCRE_MAJOR>=8
+ if (pcre_fullinfo(compiled,NULL,PCRE_INFO_CAPTURECOUNT,&max))
+    return 1;
+ max=(max+1)*3;
+ #else
  max=(pcre_info(compiled,0,0)+1)*3;
+ #endif
  matchs=(int *)malloc(max*sizeof(int));
  hits=pcre_exec(compiled,0,"This is just a test 123",23,';
  $t2='0,matchs,max);

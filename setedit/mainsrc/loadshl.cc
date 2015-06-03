@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #define Uses_stdio
@@ -1395,11 +1395,8 @@ pcre *PCRECompileRegEx(char *text, PCREData &p)
  if (!ret)
     return NULL;
 
- // int matchs=(pcre_info(ret,0,0)+1)*3; Old PCREs
  int matchs;
- if (pcre_fullinfo(ret,NULL,PCRE_INFO_CAPTURECOUNT,&matchs))
-    return 0;
- matchs=(matchs+1)*3;
+ PCRE_MATCHES(matchs,ret,0);
  if (matchs>p.PCREMaxMatchs)
     p.PCREMaxMatchs=matchs;
 

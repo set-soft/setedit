@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]********************************************************************
 
@@ -459,12 +459,7 @@ int TCEditor::CompilePCRE(char *searchStr)
     return -1;
    }
 
- // For PCRE 2.x this value should be enlarged to left space needed by
- // pcre_exec
- // PCREMaxMatchs=(pcre_info(CompiledPCRE,0,0)+1)*3; Old PCREs
- if (pcre_fullinfo(CompiledPCRE,NULL,PCRE_INFO_CAPTURECOUNT,&PCREMaxMatchs))
-    return -1;
- PCREMaxMatchs=(PCREMaxMatchs+1)*3;
+ PCRE_MATCHES(PCREMaxMatchs,CompiledPCRE,-1);
  PCREMatchs=new int[PCREMaxMatchs];
 
  if (!PCREMatchs)

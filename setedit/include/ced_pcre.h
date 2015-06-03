@@ -1,4 +1,4 @@
-/* Copyright (C) 2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 2004-2015 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 
 // PCRE support
@@ -21,4 +21,13 @@
  #undef STATIC
 #endif
 
+#if PCRE_MAJOR>=8
+ #define PCRE_MATCHES(count,compiled,ret_fail)  \
+         if (pcre_fullinfo(compiled,NULL,PCRE_INFO_CAPTURECOUNT,&count)) \
+            return ret_fail; \
+         else \
+            count=(count+1)*3
+#else
+ #define PCRE_MATCHES(count,compiled,ret_fail)  count=(pcre_info(compiled,0,0)+1)*3
+#endif
 

@@ -333,10 +333,7 @@ pcre *CLECompileRegEx(char *text, int &subX)
     return 0;
    }
 
- // subX=(pcre_info(ret,0,0)+1)*3; Old PCREs
- if (pcre_fullinfo(ret,NULL,PCRE_INFO_CAPTURECOUNT,&subX))
-    return 0;
- subX=(subX+1)*3;
+ PCRE_MATCHES(subX,ret,0);
  return ret;
 }
 
