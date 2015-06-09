@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.792  2015/06/03 14:20:12  set
+* Fixed: [gcc] Warnings about write, fgets, chdir and getcwd ignored return
+values.
+* Fixed: [gcc] Warning about memset called with 0 size.
+* Fixed: [gcc] Warnings about *printf when fputs is enough.
+
 Revision 1.791  2015/06/03 11:45:12  set
 * Fixed: [gcc] gcc's -Wunused-but-set-variable (4.7.2) broke the zlib
 version detection.

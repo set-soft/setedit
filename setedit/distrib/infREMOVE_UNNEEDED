@@ -2,9 +2,7 @@
 #
 # It removes files from previous versions not needed anymore
 #
-rm -f /usr/info/infview.inf
-rm -f /usr/info/infview.info
-rm -f /usr/local/info/infview.inf
-rm -f /usr/local/info/infview.info
+rm -f @@pref@@/info/infview.inf
+rm -f @@pref@@/info/infview.info
 
 
