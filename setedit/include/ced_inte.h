@@ -1,8 +1,8 @@
-/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
-#define TCEDITOR_VERSION 0x000507UL
-#define TCEDITOR_VERSION_STR "v0.5.7"
-#define TCEDITOR_C_YEAR  "1996-2010"
+#define TCEDITOR_VERSION 0x000508UL
+#define TCEDITOR_VERSION_STR "v0.5.8"
+#define TCEDITOR_C_YEAR  "1996-2016"
 
 #if defined( Uses_TCEditor_Internal ) && !defined( TCEditor_Internal_H )
 #define TCEditor_Internal_H

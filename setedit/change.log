@@ -1,4 +1,15 @@
-$Log$
+$Log$.
+Revision 1.794  2016/11/17 18:24:42  set
+* Added: [Debian] multi-arch tag.
+* Added: [Debian] To compile using all installed CPUs.
+* Modified: Editor desktop files to allow 32 -> 64 bits migration.
+* Added: Support for LP64 architectures (i.e. AMD64)
+* Fixed: Uses of memcpy that could potentially generate problems, some of
+them were problematic.
+* Added: More checks when reading setenvir.dat.
+* Fixed: [txhgen.cc] Potential use of unitilialized var.
+* Fixed: [Errors parser] to support the new gnu make quotation style.
+
 Revision 1.793  2015/06/09 10:42:13  set
 * Fixed: [distrib] The scripts to remove obsolete installed files didn't
 honor the prefix. Generated problems on Gentoo (reported by Michel Catudal)
