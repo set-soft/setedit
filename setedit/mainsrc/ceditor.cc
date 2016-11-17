@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -6,15 +6,6 @@
 
   E-Mail: salvador@inti.gov.ar or set@ieee.org or set@computer.org
   
-  Telephone: (+5411) 4759-0013
-  
-  Postal Address:
-  Salvador E. Tropea
-  Curapaligue 2124
-  (1678) Caseros - 3 de Febrero
-  Prov: Buenos Aires
-  Argentina
-
   Contributors:
   Robert Hoehne   (Robert.Hoehne@Mathematik.TU-Chemnitz.DE)
   Marek Habersack (grendel@ananke.amu.edu.pl)
@@ -1992,15 +1983,15 @@ void TCEditor::handleKey(TEvent &event)
     switch (node.flags)
       {
        case kbtIsComm:
-            handleCommand(node.d.command);
+            handleCommand(node.dd.command);
             break;
        case kbtIsMacro:
             lock();
-            SLPSearchMacro(this,node.d.macro,False);
+            SLPSearchMacro(this,node.dp.macro,False);
             unlock();
             break;
        case kbtIsSeq:
-            se=node.d.sequence;
+            se=node.dp.sequence;
             for (i=0; i<se->cant; i++)
                 handleCommand(se->commands[i]);
             break;
@@ -2546,7 +2537,7 @@ int TCEditor::handleCommand(ushort command)
                   { // easy
                    addToUndo(undoDelCharDel,inEditPtr);
                    int wasATab=*inEditPtr=='\t';
-                   memcpy(inEditPtr,inEditPtr+1,restCharsInLine);
+                   memmove(inEditPtr,inEditPtr+1,restCharsInLine);
                    if (wasATab)
                       RecalculateXofLineInEdit();
                    restCharsInLine--;
@@ -2579,7 +2570,7 @@ int TCEditor::handleCommand(ushort command)
                          break;
                       addToUndo(undoDelCharDel,inEditPtr);
                       int wasATab=*inEditPtr=='\t';
-                      memcpy(inEditPtr,inEditPtr+1,restCharsInLine);
+                      memmove(inEditPtr,inEditPtr+1,restCharsInLine);
                       if (wasATab)
                          RecalculateXofLineInEdit();
                       restCharsInLine--;
@@ -5241,7 +5232,7 @@ void TCEditor::selRectCopyToBuffer(char *b, unsigned offset,
        }
      if (includeEOL && b)
        {
-        memcpy(b,CLY_crlf,CLY_LenEOL);
+        memmove(b,CLY_crlf,CLY_LenEOL);
         b+=CLY_LenEOL;
        }
      // Point to the next line.
@@ -7781,11 +7772,11 @@ Boolean TCEditor::insertBuffer(const char *p, uint32 offset, uint32 length,
  if (extraSpaces)
    {
     FillGapInBuffer(x,curPos.x,s,tabSize,OptimalFill);
-    memcpy(s+extraSpaces,p,length);
+    memmove(s+extraSpaces,p,length);
     lenLines.set(curPos.y,lenLines[curPos.y]+extraSpaces);
    }
  else
-    memcpy(s,p,length);
+    memmove(s,p,length);
 
  if (allowUndo)
    {
@@ -7971,7 +7962,7 @@ void TCEditor::deleteRangeLineInEdition(char *from,char *to,int x)
  if (x>=0)
     curPos.x=x;
  addToUndo(undoDelete,to);
- memcpy(from,to,restCharsInLine+1);
+ memmove(from,to,restCharsInLine+1);
 
  // Update markers
  int start=(int)(from-bufEdit);
@@ -8159,7 +8150,7 @@ void TCEditor::deleteRange(char *from, char *to, Boolean allowUndo)
     addToUndo(undoDeleteBuf,to);
 
  // do the work
- CLY_memcpy(from,to,(size_t)(bufLen-(to-buffer)));
+ memmove(from,to,(size_t)(bufLen-(to-buffer)));
  bufLen-=(unsigned)(to-from);
 
  // Correct the syntax of the line and test for propagation
@@ -12273,7 +12264,7 @@ void TCEditor::UnIndentBlock(uint32 Amount, Boolean allowUndo)
        }
     if (Eated)
       {
-       memcpy(buffer+PosAux,buffer+PosAux+Eated,bufLen-(PosAux+Eated));
+       memmove(buffer+PosAux,buffer+PosAux+Eated,bufLen-(PosAux+Eated));
        bufLen-=Eated;
        selEnd-=Eated;
        UpdateSyntaxHLBlock(firstLine,firstTouchedP,y);
@@ -12411,7 +12402,7 @@ void TCEditor::BackSpace(Boolean allowUndo)
           addToUndo(undoDelChar,inEditPtr-1);
        // If one of the 2 chars is a tab the X must be recalculated
        int wasATab=*(inEditPtr-1)=='\t' || *inEditPtr=='\t';
-       CLY_memcpy(inEditPtr-1,inEditPtr,restCharsInLine+1);
+       memmove(inEditPtr-1,inEditPtr,restCharsInLine+1);
        AdjustLineSel((uint32)(inEditPtr-bufEdit),-1,True);
 
        // Update the markers
@@ -14148,7 +14139,7 @@ uint32 *TCEditor::CopyColMarkers(uint32 *markers)
  if (!l) return 0;
  l++;
  uint32 *ret=new uint32[l];
- memcpy(ret,markers,l*sizeof(uint32));
+ memmove(ret,markers,l*sizeof(uint32));
  return ret;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 #include <stdio.h>
@@ -25,8 +25,8 @@ TStreamable *TDskWinClipboard::build()
 
 void TDskWinClipboard::write( opstream& os )
 {
- os << edw->origin << edw->size << (int)(edw->state & sfVisible)
-    << (int)(TProgram::deskTop->indexOf(edw));
+ os << edw->origin << edw->size << (uint32)(edw->state & sfVisible)
+    << (uint32)(TProgram::deskTop->indexOf(edw));
 }
 
 void *TDskWinClipboard::read( ipstream& is )
@@ -52,11 +52,13 @@ void *TDskWinClipboard::read( ipstream& is )
  TSetEditorApp::clipWindow->moveTo(aux.x,aux.y);
  is >> aux;
  TSetEditorApp::clipWindow->growTo(aux.x,aux.y);
- int vis;
+ uint32 vis;
  is >> vis;
  if (vis)
     edw->show();
- is >> ZOrder;
+ uint32 z;
+ is >> z;
+ ZOrder=z;
  view=edw;
 
  return this;

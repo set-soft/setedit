@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -653,7 +653,7 @@ void TSetEditorApp::storeDesktop(fpstream& s)
  // Save a signature to identify the file
  s.writeString(Signature);
  // Save the version
- s << TCEDITOR_VERSION;
+ s << (uint32)TCEDITOR_VERSION;
 
  // Save the video mode & font, first to avoid a lot of redraw
  if (soCol)

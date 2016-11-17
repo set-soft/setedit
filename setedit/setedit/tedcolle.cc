@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /**[txh]**********************************************************************
 
@@ -554,7 +554,7 @@ void TEditorCollection::sortClosed(void)
     posOlder=i=Editors+nonEditors;
     total=i+Closed;
     TDskWinClosed *p=(TDskWinClosed *)at(i);
-    time_t older=p->resume.dateResume;
+    uint32 older=p->resume.dateResume;
     for (i++; i<total; i++)
        {
         p=(TDskWinClosed *)at(i);

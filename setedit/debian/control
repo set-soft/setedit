@@ -8,6 +8,7 @@ Standards-Version: 3.7.2.2
 Package: setedit
 Section: editors
 Architecture: any
+Multi-Arch: foreign
 Depends: ${shlibs:Depends}, debconf
 Recommends: man
 Suggests: doc-base, texinfo, exuberant-ctags | ctags
@@ -32,6 +33,7 @@ Description: SET's Editor - An editor for programmers
 Package: infview
 Section: doc
 Architecture: any
+Multi-Arch: foreign
 Depends: ${shlibs:Depends}
 Recommends: man
 Suggests: doc-base

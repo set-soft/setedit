@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2010 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 //#define DEBUG
 #include <ceditint.h>
@@ -273,7 +273,10 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     if (s)
       {
        // The people that makes make if funny:
-       s=strchr(s,'`');
+       char *nameStart=strchr(s,'`');
+       if (!nameStart)
+          nameStart=strchr(s,'\'');
+       s=nameStart;
        if (s)
          {
           char *e=strrchr(s,'\'');

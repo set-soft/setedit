@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <dyncat.h>
 
@@ -17,19 +17,19 @@ typedef struct
 {
  unsigned short key;
  unsigned short flags;
+ // Data values (same size)
  union
  {
   int offset;
-  void *data;
-  //  This value *must* be of the same size as "int".
-  //  That's because when I fill the structure in keytrans.cc the compiler
-  // promotes the ushort to int (and assume is filling offset). This works
-  // for little endians, but for big endians makes command==0 (wrong 16
-  // bits used ;-)
   unsigned command;
+ } dd;
+ // Pointer values (same size)
+ union
+ {
+  void *data;
   char *macro;
   KeyTSeq *sequence;
- } d;
+ } dp;
 } KeyTNode;
 
 struct KeyTTable
@@ -65,28 +65,28 @@ public:
 protected:
  // Inline methodes to symplify the indirections
  // When the table is compacted (relative pointers)
- KeyTSeq *GetTSeqC(KeyTNode *node) { return (KeyTSeq *)(long(base)+node->d.offset); };
- KeyTTable *GetTableC(KeyTNode *node) { return (KeyTTable *)(long(base)+node->d.offset); };
- char *GetMNameC(KeyTNode *node) { return (char *)(long(base)+node->d.offset); };
+ KeyTSeq *GetTSeqC(KeyTNode *node) { return (KeyTSeq *)((char *)base+node->dd.offset); };
+ KeyTTable *GetTableC(KeyTNode *node) { return (KeyTTable *)((char *)base+node->dd.offset); };
+ char *GetMNameC(KeyTNode *node) { return (char *)((char *)base+node->dd.offset); };
  // When the table is expanded
- KeyTSeq *GetTSeqE(KeyTNode *node)  { return (KeyTSeq *)(node->d.data); };
- KeyTTable *GetTableE(KeyTNode *node) { return (KeyTTable *)(node->d.data); };
- char *GetMNameE(KeyTNode *node) { return (char *)(node->d.data); };
+ KeyTSeq *GetTSeqE(KeyTNode *node)  { return (KeyTSeq *)(node->dp.data); };
+ KeyTTable *GetTableE(KeyTNode *node) { return (KeyTTable *)(node->dp.data); };
+ char *GetMNameE(KeyTNode *node) { return (char *)(node->dp.data); };
  // Any time
  KeyTSeq *GetTSeq(KeyTNode *node)
  { if (type==kbtExpanded)
-      return (KeyTSeq *)(node->d.data);
-  return (KeyTSeq *)(long(base)+node->d.offset);
+      return (KeyTSeq *)(node->dp.data);
+  return (KeyTSeq *)((char *)base+node->dd.offset);
  };
  KeyTTable *GetTable(KeyTNode *node)
  { if (type==kbtExpanded)
-      return (KeyTTable *)(node->d.data);
-  return (KeyTTable *)(long(base)+node->d.offset);
+      return (KeyTTable *)(node->dp.data);
+  return (KeyTTable *)((char *)base+node->dd.offset);
  };
  char *GetMName(KeyTNode *node)
  { if (type==kbtExpanded)
-      return (char *)(node->d.data);
-  return (char *)(long(base)+node->d.offset);
+      return (char *)(node->dp.data);
+  return (char *)((char *)base+node->dd.offset);
  };
 
  KeyTNode *InsertKey(unsigned key);
@@ -106,7 +106,7 @@ protected:
  KeyTNode *lastTableInSearch;
  int type;
  int state;
- int cSize;
+ uint32 cSize;
  unsigned OffSet;
  char *newBase;
  unsigned numKey;

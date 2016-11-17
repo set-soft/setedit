@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -173,7 +173,7 @@ void TKeyTranslate::DeleteKey(KeyTTable *t, unsigned baseNumKey, unsigned which)
         if (baseNumKey==which)
           {
            if (node->flags==kbtIsMacro || node->flags==kbtIsSeq)
-              delete[] node->d.macro;
+              delete[] node->dp.macro;
            else if (node->flags==kbtIsSComm)
               // It removes a branch in the tree
               DeleteTree(GetTableE(node));
@@ -236,7 +236,7 @@ void TKeyTranslate::CatFullNameKey(KeyTNode *node, DynStrCatStruct *cat)
  switch (node->flags)
    {
     case kbtIsComm:
-         DynStrCat(cat,TranslateEdCommand(node->d.command));
+         DynStrCat(cat,TranslateEdCommand(node->dd.command));
          break;
     case kbtIsMacro:
          DynStrCat(cat,GetMNameE(node));
@@ -294,10 +294,10 @@ int TKeyTranslate::get(unsigned key,KeyTNode *ret)
          curTable=GetTableC(ret);
          return -1;
     case kbtIsMacro:
-         ret->d.data=GetMNameC(ret);
+         ret->dp.data=GetMNameC(ret);
          break;
     case kbtIsSeq:
-         ret->d.data=GetTSeqC(ret);
+         ret->dp.data=GetTSeqC(ret);
          break;
    }
  rewind();
@@ -393,10 +393,10 @@ KeyTTable *TKeyTranslate::ExpandTable(KeyTTable *t)
              nAux=ExpandTable(GetTableC(node));
              if (!nAux)
                 return 0;
-             node->d.data=nAux;
+             node->dp.data=nAux;
              break;
         case kbtIsMacro:
-             node->d.data=newStr(GetMNameC(node));
+             node->dp.data=newStr(GetMNameC(node));
              break;
         case kbtIsSeq:
              s=GetTSeqC(node);
@@ -405,7 +405,7 @@ KeyTTable *TKeyTranslate::ExpandTable(KeyTTable *t)
              if (!s2)
                 return 0;
              memcpy(s2,s,size);
-             node->d.data=s2;
+             node->dp.data=s2;
              break;
        }
     }
@@ -526,13 +526,13 @@ void TKeyTranslate::CompactTable(KeyTTable *t)
         case kbtIsSComm:
              aux=OffSet;
              CompactTable(GetTableE(node));
-             node->d.offset=aux;
+             node->dd.offset=aux;
              break;
         case kbtIsMacro:
              aux=strlen(GetMNameE(node))+1;
              AlignSize(aux);
              strcpy((char *)(newBase+OffSet),GetMNameE(node));
-             node->d.offset=OffSet;
+             node->dd.offset=OffSet;
              OffSet+=aux;
              break;
         case kbtIsSeq:
@@ -540,7 +540,7 @@ void TKeyTranslate::CompactTable(KeyTTable *t)
              aux=sizeof(unsigned short)*(s->cant+1);
              AlignSize(aux);
              memcpy((KeyTSeq *)(newBase+OffSet),s,aux);
-             node->d.offset=OffSet;
+             node->dd.offset=OffSet;
              OffSet+=aux;
              break;
        }
@@ -633,7 +633,7 @@ KeyTNode *TKeyTranslate::InsertKey(unsigned key)
  // If this table is conected to another don't forget that realloc can
  // change the pointer.
  if (lastTableInSearch)
-    lastTableInSearch->d.data=curTable;
+    lastTableInSearch->dp.data=curTable;
  if (updateBase)
     base=curTable;
  return &(curTable->nodes[i]);
@@ -705,7 +705,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type,
    {
     node->flags=kbtIsSComm;
     KeyTTable *nT=(KeyTTable *)new char[sizeof(KeyTTable)+sizeof(KeyTNode)];
-    node->d.data=nT;
+    node->dp.data=nT;
     nT->cant=1;
     nT->total=0; // Later
     node=nT->nodes;
@@ -716,7 +716,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type,
  if (Type==kbtIsMacro)
    { // Easy ;-)
     node->flags=kbtIsMacro;
-    node->d.data=newStr((char *)data);
+    node->dp.data=newStr((char *)data);
    }
  else
    {
@@ -725,7 +725,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type,
     if (c==1)
       {
        node->flags=kbtIsComm;
-       node->d.command=(unsigned short)((unsigned long)p->at(0));
+       node->dd.command=(unsigned short)((unsigned long)p->at(0));
       }
     else
       { // The never ending story ...
@@ -734,7 +734,7 @@ int TKeyTranslate::addKey(TKeySeqCol *sKeys, void *data, int Type,
        for (i=0; i<c; i++)
            s->commands[i]=(unsigned short)((unsigned long)p->at(i));
        node->flags=kbtIsSeq;
-       node->d.data=s;
+       node->dp.data=s;
       }
    }
  // Hoppefully the key is there
@@ -767,20 +767,20 @@ int TKeyTranslate::Save(char *name)
     return 1;
  fwrite(Signature,sizeof(Signature),1,f);
  fputc(Version,f);
- ushort w=TGKey::GetAltSettings();
- fwrite(&w,sizeof(w),1,f);
+ uint16 w=TGKey::GetAltSettings();
+ fwrite(&w,2,1,f);
  if (type==kbtStatic)
    { // Don't save the keys if not needed
-    unsigned c=0;
-    fwrite(&c,sizeof(cSize),1,f);
+    uint32 c=0;
+    fwrite(&c,4,1,f);
    }
  else
    {
-    fwrite(&cSize,sizeof(cSize),1,f);
+    fwrite(&cSize,4,1,f);
     fwrite(base,cSize,1,f);
    }
- int translateKeyPad=TGKey::GetKbdMapping(TGKey::dosTranslateKeypad);
- fwrite(&translateKeyPad,sizeof(translateKeyPad),1,f);
+ int32 translateKeyPad=TGKey::GetKbdMapping(TGKey::dosTranslateKeypad);
+ fwrite(&translateKeyPad,4,1,f);
  fclose(f);
  return 0;
 }
@@ -806,13 +806,13 @@ int TKeyTranslate::Load(char *name)
  if (V>Version || V<3)
     GenError(__("Wrong version"));
 
- ushort w;
- if (!fread(&w,sizeof(w),1,f))
+ uint16 w;
+ if (!fread(&w,2,1,f))
     GenError(__("Read error"));
  TGKey::SetAltSettings(w);
 
- int lcSize,replaceK=0;
- if (!fread(&lcSize,sizeof(lcSize),1,f))
+ int32 lcSize,replaceK=0;
+ if (!fread(&lcSize,4,1,f))
     GenError(__("Read error"));
  if (lcSize)
    {
@@ -827,8 +827,8 @@ int TKeyTranslate::Load(char *name)
    }
  if (V>=4)
    {
-    int translateKeyPad;
-    if (!fread(&translateKeyPad,sizeof(translateKeyPad),1,f))
+    int32 translateKeyPad;
+    if (!fread(&translateKeyPad,4,1,f))
        GenError(__("Read error"));
     TGKey::SetKbdMapping(translateKeyPad ? TGKey::dosTranslateKeypad : TGKey::dosNormalKeypad);
    }
@@ -859,7 +859,7 @@ typedef struct \
 typedef struct \
 { unsigned short cant; unsigned short commands[a]; } KeyTSeq##a
 
-#define pSeq(a) (((char *)&a)-((char *)&base))
+#define pSeq(a) ((int)(((char *)&a)-((char *)&base)))
 #define dSeqSel(name,comm) \
         KeyTSeq3 name={ 3, {cmcSelectOn,comm,cmcSelectOff} }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #if defined( Uses_TCEditor_Class )
 
@@ -716,7 +716,7 @@ struct EditorResumeV5
  short zorigin_x,zorigin_y;
  short zsize_x,zsize_y;
  uint32 ed_flags,prj_flags;
- unsigned tabSize,indentSize,wrapCol;
+ uint32 tabSize,indentSize,wrapCol;
 };
 
 struct EditorResume
@@ -729,9 +729,9 @@ struct EditorResume
  short zorigin_x,zorigin_y;
  short zsize_x,zsize_y;
  uint32 ed_flags,prj_flags;
- unsigned tabSize,indentSize,wrapCol;
- uint32   extraSize;
- time_t   dateResume;
+ uint32 tabSize,indentSize,wrapCol;
+ uint32 extraSize;
+ uint32 dateResume;
 };
 
 #define CopyEditorResume(dst,sou) memcpy(dst,sou,sizeof(EditorResume))

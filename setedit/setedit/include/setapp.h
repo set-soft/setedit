@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #ifdef Uses_SETAppAll
 #define Uses_SETAppConst
@@ -386,7 +386,7 @@ public:
     static int  ChooseConvCPs(int &From, int &To, uint32 &ops);
     static char *CreateTitle(const char *title);
 
-    static unsigned long deskTopVersion;
+    static uint32 deskTopVersion;
 
     static char ShowClock;
     static char UseScreenSaver;

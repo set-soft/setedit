@@ -25,8 +25,8 @@ build-stamp: debianbackup.tar
 	dh_testdir
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" ./configure \
 		--prefix=$(shell pwd)/debian/tmp/usr --fhs --no-comp-exe
-	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE)
-	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -C makes libset
+	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -j `nproc`
+	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" $(MAKE) -j `nproc` -C makes libset
 	touch build-stamp
 
 

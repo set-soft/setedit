@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.793  2015/06/09 10:42:13  set
+* Fixed: [distrib] The scripts to remove obsolete installed files didn't
+honor the prefix. Generated problems on Gentoo (reported by Michel Catudal)
+
 Revision 1.792  2015/06/03 14:20:12  set
 * Fixed: [gcc] Warnings about write, fgets, chdir and getcwd ignored return
 values.

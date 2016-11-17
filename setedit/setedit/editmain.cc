@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2015 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_BestWrite
 #include <ceditint.h>
@@ -124,7 +124,7 @@ int      TSetEditorApp::DeleteFilesOnExit=0;
 char     TSetEditorApp::ExtScrSaverOpts[extscrsParMxLen]="";
 unsigned TSetEditorApp::geFlags=0;
 int      TSetEditorApp::widthVertWindows=24;
-unsigned long
+uint32
          TSetEditorApp::deskTopVersion;
 uint32   TSetEditorApp::modifFilesOps=0;
 

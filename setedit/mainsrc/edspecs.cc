@@ -1,4 +1,4 @@
-/* Copyright (C) 2001-2004 by Salvador E. Tropea (SET),
+/* Copyright (C) 2001-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /* This file is an adaptation of idespecs.cc from Robert Hoehne to make the editor */
 /* more coherent with RHIDE and more easy to configure (?)                         */
@@ -122,11 +122,12 @@ static
 void fGetStr(char *s, FILE *f)
 {
  ushort len;
- fread(&len,sizeof(ushort),1,f);
- if (!feof(f))
+ if (fread(&len,sizeof(ushort),1,f) && !feof(f))
    {
-    fread(s,len,1,f);
-    s[len]=0;
+    if (fread(s,len,1,f))
+       s[len]=0;
+    else
+       *s=0;
    }
  else
     *s=0;
@@ -144,8 +145,8 @@ void ReadEnviromentFile(void)
     FILE *f=fopen(s,"rb");
     if (f)
       {
-       fread(Name,sizeof(Signature),1,f);
-       if (strcmp(Name,Signature)==0)
+       if (fread(Name,sizeof(Signature),1,f) &&
+           strcmp(Name,Signature)==0)
          {
           do
             {

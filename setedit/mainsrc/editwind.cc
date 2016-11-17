@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2003 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 // That's the first include because is used to configure the editor.
 #include "ceditint.h"
@@ -29,7 +29,7 @@
                          "\x6B\x6C\x6D\x6E\x6F\x70\x71\x72\x73\x74\x75\x76"\
                          "\x77\x78\x79\x7A\x7B\x7C"
 
-const int   TCEditWindow::ResumeVersion=6;
+const int   TCEditWindow::ResumeVersion=7;
 const char *TCEditWindow::clipboardTitle=__("Clipboard");
 const char *TCEditWindow::untitled=__("Untitled");
 stTVIntl   *TCEditWindow::iClipboardTitle=NULL;
@@ -200,7 +200,9 @@ void TCEditWindow::FillResume(EditorResume &r)
  EnlargeSizesResume(r);
 
  r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
- time(&r.dateResume);
+ time_t aux;
+ time(&aux);
+ r.dateResume=(uint32)aux;
 }
 
 void TCEditWindow::ApplyResume(EditorResume &r)
@@ -297,7 +299,9 @@ void TCEditWindow::ReadResume(EditorResume &r, ipstream& is)
    {
     r.version=6;
     r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
-    time(&r.dateResume);
+    time_t aux;
+    time(&aux);
+    r.dateResume=(uint32)aux;
    }
 }
 
@@ -335,7 +339,9 @@ void TCEditWindow::FillResumeWith(EditorResume &r, TPoint &origin,
  r.ed_flags=0;
  EnlargeSizesResume(r);
  r.extraSize=sizeof(EditorResume)-(sizeof(EditorResumeV5)+sizeof(uint32));
- time(&r.dateResume);
+ time_t aux;
+ time(&aux);
+ r.dateResume=(uint32)aux;
 }
 
 TCEditWindow::~TCEditWindow()
