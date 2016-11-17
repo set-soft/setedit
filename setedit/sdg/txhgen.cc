@@ -782,7 +782,10 @@ char *TakeNum(char *s,int *num)
  int val=0;
 
  if (!*s)
+   {
+    *num=MAX_DEFS; // Force to be unused
     return s;
+   }
  if (ucisdigit(*s))
    {
     val=*s-'0';
