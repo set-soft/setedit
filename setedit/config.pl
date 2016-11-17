@@ -75,8 +75,8 @@ $supportDir='makes/'.$supportDir;
 # But we can't check TV functionality yet.
 # Where is the TV library?
 # $TVInclude and $TVLib
-LookForTV();
 LookForTVConfig();
+LookForTV();
 
 # Determine C flags
 $CFLAGS=FindCFLAGS();
@@ -816,6 +816,18 @@ sub LookForTV
     @dirsI=("$parent/tvision/include",@conf{'prefix'}.'/include/tvision');
     @dirsL=("$parent/tvision/makes",@conf{'prefix'}.'/lib');
    }
+ my $dl=TVConfigOption('dir-libs');
+ if ($dl)
+   {
+    $dl=~s/\-L//g;
+    @dirsL=(split(/ /,$dl),@dirsL);
+   }
+ my $di=TVConfigOption('include');
+ if ($di)
+   {
+    $di=~s/\-I//g;
+    @dirsI=(split(/ /,$di),@dirsI);
+   }
  @dirsI=($conf{'TV_INCLUDE'},@dirsI) if $conf{'TV_INCLUDE'};
  $TVInclude=LookForFile('tv.h',@dirsI);
  if (!length($TVInclude))
@@ -846,15 +858,15 @@ sub LookForTVConfig
  my $test;
 
  print 'Looking for Turbo Vision config program: ';
- $test=RunRedirect('rhtv-config --version',$ErrorLog);
+ $test=RunRedirect('../tvision/rhtv-config --version',$ErrorLog);
  if ($test=~/Turbo Vision/)
    {
     print "installed, OK\n";
-    $tvConfig='rhtv-config';
+    $tvConfig='../tvision/rhtv-config';
    }
  else
    {
-    $tvConfig=$TVInclude.'/../rhtv-config';
+    $tvConfig='rhtv-config';
     $test=RunRedirect($tvConfig.' --version',$ErrorLog);
     if ($test=~/Turbo Vision/)
       {

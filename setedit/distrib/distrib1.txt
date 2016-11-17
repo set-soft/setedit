@@ -6,7 +6,7 @@
 
   That's the official distribution of SET's editor v@@v@@
   The editor is Copyrighted by Salvador Eduardo Tropea <set@users.sf.net>.
-(c) 1996-2004 and distributed under the GPL license.
+(c) 1996-2016 and distributed under the GPL license.
   It's free and you don't need to pay for it. Any kind of donations are
 accepted ;-).
 

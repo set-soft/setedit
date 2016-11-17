@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.795  2016/11/17 18:33:47  set
+* Modified: Version to 0.5.8.
+
 Revision 1.794  2016/11/17 18:24:42  set
 * Added: [Debian] multi-arch tag.
 * Added: [Debian] To compile using all installed CPUs.
