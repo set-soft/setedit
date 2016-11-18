@@ -1,4 +1,10 @@
-$Log$
+$Log$.
+Revision 1.796  2016/11/17 21:14:24  set
+* Modified: [config] Now we give more priority to rhtv-config
+* Modified: [config] Now we give more priority to local rhtv-config
+(instead of system wide).
+* Fixed: [distrib/distrib1.txt] (c) year.
+
 Revision 1.795  2016/11/17 18:33:47  set
 * Modified: Version to 0.5.8.
 
