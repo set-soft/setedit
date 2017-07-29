@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <ceditint.h>
 
@@ -659,7 +659,7 @@ void ParseCommandLine(int argc, char *argv[])
        case 'h':
        default:
             TScreen::suspend();
-            fprintf(stderr,_("InfView v"INFVIEW_VERSION_STR". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
+            fprintf(stderr,_("InfView v" INFVIEW_VERSION_STR ". Copyright (c) 1996-2002 by Salvador E. Tropea\n\n"));
             fprintf(stderr,_("infview [option]... [info_file [menu_item...]]\n\n"));
             fprintf(stderr,_("Valid options are:\n"));
             fprintf(stderr,_("-d, --directory DIR      adds a directory to the list of directories to search\n"

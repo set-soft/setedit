@@ -4614,7 +4614,7 @@ void TCEditor::SourceToHTML_Old(FILE *f, unsigned *pal, unsigned flags)
 
  // Head
  fputs("<HTML><HEAD>\n",f);
- fputs("<Meta name=\"GENERATOR\" content=\"SETEdit "TCEDITOR_VERSION_STR"\">\n",f);
+ fputs("<Meta name=\"GENERATOR\" content=\"SETEdit " TCEDITOR_VERSION_STR "\">\n",f);
  // Name of file
  if (flags & xhtmlTitle)
     fprintf(f,"<Title>%s</Title>",fileName);
@@ -4745,7 +4745,7 @@ void TCEditor::SourceToHTML_CSS(FILE *f, unsigned *pal, unsigned flags)
  if (flags & xhtmlTitle)
     fprintf(f,"<Title>%s</Title>",fileName);
  // Common options, needs some adjusts, could be better
- fputs("<Meta name=\"GENERATOR\" content=\"SETEdit "TCEDITOR_VERSION_STR"\">\n",f);
+ fputs("<Meta name=\"GENERATOR\" content=\"SETEdit " TCEDITOR_VERSION_STR "\">\n",f);
  fputs("<meta name=\"resource-type\" content=\"document\">\n",f);
  fputs("<meta name=\"distribution\" content=\"global\">\n",f);
  fputs("<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">\n",f);

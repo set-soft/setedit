@@ -1,4 +1,7 @@
 $Log$.
+Revision 1.803  2017/07/29 23:09:24  set
+* Fixed [Compilation] C++11's "s" member collision with stream macro.
+
 Revision 1.802  2017/07/29 23:05:56  set
 * Fixed: [Compilation] -Wmisleading-indentation (gcc 6.3) warnings on
 infbase.cc
