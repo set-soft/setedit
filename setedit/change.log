@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.800  2017/07/29 21:55:47  set
+* Fixed: [Documentation] Modern versions of makeinfo are incompatible.
+Detected and now we use a pre-generated doc.
+
 Revision 1.799  2017/07/29 21:13:45  set
 * Modified: [config] The name of the packages in the "advice" (updated
 to Debian 9)
