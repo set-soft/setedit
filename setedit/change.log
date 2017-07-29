@@ -1,4 +1,8 @@
-$Log$.
+$Log$
+Revision 1.799  2017/07/29 21:13:45  set
+* Modified: [config] The name of the packages in the "advice" (updated
+to Debian 9)
+
 Revision 1.798  2017/07/29 21:09:08  set
 * Fixed: [config] Now the require statement needs a relative path to
 include Perl files.

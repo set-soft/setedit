@@ -1,0 +1,1200 @@
+This is sdg.inf, produced by makeinfo version 4.13 from sdg.nut.
+
+START-INFO-DIR-ENTRY
+* SET's Documentation Generator: (sdg). A C/C++ documentation generator.
+END-INFO-DIR-ENTRY
+
+This is the documentation for SET's Documentation Generator.
+
+Copyright (C) 1997,1998,1999,2000 Salvador Eduardo Tropea
+
+This documentation may be freely distributed, provided this copyright
+notice is left intact on all copies.
+
+
+File: sdg.inf,  Node: Top,  Prev: (dir),  Up: (dir)
+
+ SDG
+****
+
+This is the documentation for SET's Documentation Generator.
+
+Copyright (C) 1997,1998,1999,2000 Salvador Eduardo Tropea
+
+This documentation may be freely distributed, provided this copyright
+notice is left intact on all copies.
+
+The following master menu lists the major topics in this documentation,
+including all the indices.
+
+* Menu:
+
+* Introduction::
+* How to use it quickly::
+* How to control the generated documentation::
+* Index::
+* Index of variables and commands::
+
+
+File: sdg.inf,  Node: Introduction,  Next: How to use it quickly,  Prev: Top,  Up: Top
+
+1 Introduction
+**************
+
+That's the documentation for the SET's Documentation Generator (SDG)
+program.
+
+The objetive of the program is generate documentation of your source code
+using some special comments in your code. The program simplifies the task
+a lot because you don't need to type things like the prototype of your
+functions, file where the functions are located, class, etc.
+
+* Menu:
+
+* About the Author::
+
+
+File: sdg.inf,  Node: About the Author,  Prev: Introduction,  Up: Introduction
+
+1.1 About the Author
+====================
+
+ 0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+ 0FЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+ 0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+
+SDG was made by Salvador Eduardo Tropea (SET).
+
+     E-Mail: SALVADOR EDUARDO TROPEA
+     <salvador@inti.gov.ar>
+
+     Telephone: (+5411) 4759-0013
+     Postal Address:
+     Salvador E. Tropea
+     CurapaligЃe 2124
+     (1678) Caseros - 3 de Febrero
+     Prov: Buenos Aires
+     Argentina
+
+ 0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+ 0FЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+ 0BЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+
+
+File: sdg.inf,  Node: How to use it quickly,  Next: How to control the generated documentation,  Prev: Introduction,  Up: Top
+
+2 How to use it quickly
+***********************
+
+Even when SDG is a complex tool you can use it without a deep knowledge of
+the program.  This chapter explains the basic steps to use SDG, you'll
+consult the advanced reference for an in deep explanation.
+
+* Menu:
+
+* What I must add to my sources?::
+* What can I assign to the fields?::
+* What I will get after adding it?::
+* What other thing are needed to be tunned?::
+
+
+File: sdg.inf,  Node: What I must add to my sources?,  Next: What can I assign to the fields?,  Prev: How to use it quickly,  Up: How to use it quickly
+
+2.1 What I must add to my sources?
+==================================
+
+You must add some special comments in your code. To make the task easier I
+created some pseudo-macros for my editor; they are `/t' and `/d' and are
+expanded to:
+
+     /**[txh]**********************************************************************
+
+      Function:
+      Class:
+      Include:
+      Module:
+      Prototype:
+      Description:
+
+      Return:
+      Example:
+
+     *****************************************************************************/
+
+     /**[txh]**********************************************************************
+
+       Description:
+
+       Return:
+       Example:
+
+     *****************************************************************************/
+
+You must fill one or more of these fields. Some of them are filled
+automatically.  The following table shows how these fields work.
+
+   * `Function'
+        - Meaning: Is the name of the function
+        - Behavior: Automatic (type 5)
+
+   * `Class'
+        - Meaning: Used for member functions
+        - Behavior: Automatic (type 4)
+
+   * `Include'
+        - Meaning: Is the file that contains the prototype
+        - Behavior: Semiautomatic (type 2)
+
+   * `Module'
+        - Meaning: The module, library or category of the function
+        - Behavior: Semiautomatic (type 2)
+
+   * `Prototype'
+        - Meaning: The prototype of the function
+        - Behavior: Automatic (type 3)
+
+   * `Description'
+        - Meaning: How the function works
+        - Behavior: Manual (type 1)
+
+   * `Return'
+        - Meaning: Value returned; type and meaning
+        - Behavior: Manual (type 1)
+
+   * `Example'
+        - Meaning: How to use it
+        - Behavior: Manual (type 1)
+
+
+As you can see most of the fields are filled automatically. The `/t' macro
+is normally used for the first function in your file; it sets the
+`Include' and `Module' fields for the rest of the functions. As
+`Function', `Class' and `Prototype' are filled automatically most of the
+time you'll need to use the `/d' macro.
+
+Additionally you'll need to add very complet comments for inline members
+because their prototypes are declared in the class and hence the program
+can't fill the fields automatocally.
+
+If you want to get a better result you can add another comments to your
+sources.  These comments looks like this:
+
+     /**[txh]**********************************************************************
+
+       XXXXX:
+       Comments:
+
+     *****************************************************************************/
+
+The field `XXXXX' can be one of the following: `Class' or `Module'.  This
+special comment can be used ones per class or module and is the description
+of this class or module. Comments is a *Note Variables type 6::.
+
+
+File: sdg.inf,  Node: What can I assign to the fields?,  Next: What I will get after adding it?,  Prev: What I must add to my sources?,  Up: How to use it quickly
+
+2.2 What can I assign to the fields?
+====================================
+
+SDG have some macro and formating facilties. SDG defines some macros and
+you can define your own macros in the format file. Because SDG must
+recognize the macros some characters have an special meaning and you
+aren't totally free to use them.
+
+As this section is a little hard I'll provide a little subsection
+explaining the basic concepts. If you are in a hurry or read only this
+first section.
+
+* Menu:
+
+* The basics syntax::
+* More about cross references::
+* More about macros::
+
+
+File: sdg.inf,  Node: The basics syntax,  Next: More about cross references,  Prev: What can I assign to the fields?,  Up: What can I assign to the fields?
+
+2.2.1 The basics syntax
+-----------------------
+
+The macros starts with `@' so you can put a single `@' in your comments.
+If you need to put a `@' use two, like this `@@'.
+
+SDG have some special macros hardcoded they are `@p', `@*' and `@x'.  Use
+`@p' to indicate an end of paragraph and `@*' to break a line inside of a
+paragraph.
+
+The syntax for cross references is more complex so I'll show you it with
+some examples.
+
+   * To indicate a function use @x{Name}.
+
+   * To indicate another member of the same class @x{::Name}.
+
+   * To indicate a member of another class @x{Class::Name}.
+
+Additionally you can use some macros that I defined in the format files,
+they are:
+
+   * @<subtitle>{Name} generates a title.
+
+   * @<pre>  starts a preformated text. Is used for examples.
+
+   * @</pre> ends a preformated text.
+
+As you can see the { and } characters are used too. You can use these
+characters freely but avoid using it in a cross reference or in a title
+because if you make the following:
+
+     @<subtitle>{That's a subtitle with a }}
+
+SDG can be confused by the } and end the title in the wrong place. To
+avoid it use @{ and @}.
+
+
+File: sdg.inf,  Node: More about cross references,  Next: More about macros,  Prev: The basics syntax,  Up: What can I assign to the fields?
+
+2.2.2 More about cross references
+---------------------------------
+
+As you saw in the previous chapter is hard to explain what's the syntax
+for it so here is a detailed explanation on how it works.
+
+To understand it better you must know more about what's generated by a
+cross reference, for it consult the *Note Commands section: Commands.
+
+Basically a cross reference have two parts; the visible name and the name
+of the node pointed by it. In the following explanations I'll call 0 to
+the visible name and 1 to the node. The available cases are:
+
+  1. '@x{A,B}' here 0 is A and 1 is B.
+
+  2. '@x{A}' here 0 and 1 contains A.
+
+  3. '@x{::A}' here 0 is A and 1 is A (class name).
+
+  4. '@x{A::B}' here 0 is B and 1 is B (A).
+
+To generalize three I must say that the reference generated is A
+(Distinguish). Here Distinguish is the variable indicated in the *Note
+Variables section: Variables.
+
+SDG first fills the values of the variables 0 and 1 and then expands the
+code defined for the cross reference.
+
+
+File: sdg.inf,  Node: More about macros,  Prev: More about cross references,  Up: What can I assign to the fields?
+
+2.2.3 More about macros
+-----------------------
+
+The general syntax for the macros is:
+
+     @<Macro Name>{List of parameters}
+
+The parameters are separated by ','. You can't use '}' and '{' inside the
+parameters. Use @{ and @} instead. For similar reasons you can't use > in
+the name of the macro; use @> instead.
+You can use @{ and @} in any place safetly but is necesary only in the
+case named above.
+
+You can define your own macros, for that look the *Note DefinedCommands
+section: DefinedCommands.
+
+The parameters of the macros are passed by the macro expander so you can
+use macros here too. For example:
+
+     @<xx@>>{That's @<xx2>{too} complex @} thing}
+
+That will call to the macro xx> passing to it:
+
+     That's @<xx2>{too} complex @} thing
+
+As the parameter 0, then it will evaluate the parameter calling to the
+macro xx2 passing the word `too' as parameter 0.
+
+As you can see you can make complex things with it but SDG wasn't designed
+to be a complex interpreter so be carreful and be aware that you'll find
+some limitations.
+
+The number of parameters passed to a macro can be range from zero to ten.
+You can use the following syntax for zero parameters:
+
+     @<Macro Name>
+
+If the name of the macro doesn't match with any defined macro you won't
+get a warning, instead SDG will output the name of the macro as-is. As an
+example you can generate an HTML tag making the following:
+
+     @<<any tag@>>
+
+That's no recomended because you are limiting the output format to HTML
+but you can do it.
+
+
+File: sdg.inf,  Node: What I will get after adding it?,  Next: What other thing are needed to be tunned?,  Prev: What can I assign to the fields?,  Up: How to use it quickly
+
+2.3 What I will get after adding it?
+====================================
+
+SDG will generate a documentation with:
+
+  1. An alphabetical list of the functions.
+
+  2. An alphabetical list of the classes and the member functions of each
+     one.
+
+  3. An alphabetical list of the modules and the member functions of each
+     one.
+
+  4. An alphabetical list of the files and the member functions of each
+     one.
+
+For each function you'll get a references filled with the fields
+previouslly mentioned.  Additionally SDG will include the file where the
+function is and the line of the prototype.
+
+
+File: sdg.inf,  Node: What other thing are needed to be tunned?,  Prev: What I will get after adding it?,  Up: How to use it quickly
+
+2.4 What other thing are needed to be tunned?
+=============================================
+
+SDG uses a `.fmt' file to generate the documentation. You'll need to tune
+some constants of the section `[Replace]' of this file.
+
+These constants controls the name of the documentation and other similar
+things. They are dependent of the format generated so I can make a general
+description of these constants.
+
+
+File: sdg.inf,  Node: How to control the generated documentation,  Next: Index,  Prev: How to use it quickly,  Up: Top
+
+3 How to control the generated documentation
+********************************************
+
+This chapter explains how to configure SDG. SDG is very versatile and can
+be configured to behave very different to the original configuration.
+
+SDG uses a format file (`.fmt') to generate the documentation. Actually I
+have two format files; one for `.info', `.html' and `.txt' files and other
+for `.html' files. The former is called `multi.fmt' and the last is called
+`html.fmt'.If you are wondering why I have a separated file for `.html'
+when the other works for HTML the answer is easy; `html.fmt' generated
+much better `.html' files and doesn't need the help of `makeinfo'.
+
+The syntax used in format files is tricky but is easy for easy tasks.
+
+* Menu:
+
+* Format files syntax::
+
+
+File: sdg.inf,  Node: Format files syntax,  Prev: How to control the generated documentation,  Up: How to control the generated documentation
+
+3.1 Format files syntax
+=======================
+
+Format files are divided in sections. Each section is started by a label
+with the following format: `[Section name]'. The rules are the following:
+
+  1. The starting `[' must be in the first column.
+
+  2. Any character is allowed inside the section name.
+
+  3. A `]' delimites the name and the rest of the characters are ignored.
+
+  4. The name is case sensitive.
+
+Any line starting with `#' or a blanck character is ignored. There are
+exceptions for it. In the `Replace' section the variables defined are
+strings, these strings can use more than one line; inside of these strings
+you can't use comments. In the `Gen*' sections the `#' are allowed but the
+blank lines aren't skipped.  Even when these rules can look a little
+stupid now you'll see they are logic.
+
+The lines are limited to 200 characters, if they are longer will be cutted.
+
+Here is a list of the sections of the format file.
+
+* Menu:
+
+* Configuration::
+* Delimiters::
+* Variables::
+* Associations::
+* Replace::
+* Commands::
+* DefinedCommands::
+* ASCIIConvert::
+* GenNode::
+* GenMenu::
+* GenAssoMain::
+* GenAssoRest::
+* GenMain::
+
+
+File: sdg.inf,  Node: Configuration,  Next: Delimiters,  Prev: Format files syntax,  Up: Format files syntax
+
+3.1.1 Configuration
+-------------------
+
+This section indicates what programs are used to generate the
+documentation and what formats are generated with this format file. An
+example is:
+
+     CommandLine=makeinfo --no-validate --fill-column 78 -o ~1.info ~0
+     Name=Info (.info) file format
+     CommandLine=makeinfo --no-validate --fill-column 78 -Dhtml -o ~1.html ~0
+     Name=HTML file format
+     CommandLine=makeinfo --no-validate --fill-column 78 -Dtext -o ~1.txt ~0
+     Name=Text (.txt) file format
+
+That indicates that three formats are generated. `CommandLine' must be
+used before `Name' and you *must* provide pairs.
+
+* Menu:
+
+* CommandLine::
+* Name::
+
+
+File: sdg.inf,  Node: CommandLine,  Next: Name,  Prev: Configuration,  Up: Configuration
+
+3.1.1.1 CommandLine
+...................
+
+This variable indicates what program is called. The ~0 mark is replaced by
+the name of the temporary file created by SDG. ~1 is replaced by the name
+of the outuput file, you must provide the extention.
+
+If you need a long command line or various commands use a batch or script
+file.
+
+
+File: sdg.inf,  Node: Name,  Prev: CommandLine,  Up: Configuration
+
+3.1.1.2 Name
+............
+
+This variable indicates the name of the format generated, make it
+descriptive but avoid making it too long.
+
+
+File: sdg.inf,  Node: Delimiters,  Next: Variables,  Prev: Configuration,  Up: Format files syntax
+
+3.1.2 Delimiters
+----------------
+
+This section defines the delimiters used to detect the special comments.
+SDG will search for these delimiters in the source files. For example:
+
+     SectionStart=/**[txh]**
+     SectionEnd=*********/
+
+* Menu:
+
+* SectionStart::
+* SectionEnd::
+
+
+File: sdg.inf,  Node: SectionStart,  Next: SectionEnd,  Prev: Delimiters,  Up: Delimiters
+
+3.1.2.1 SectionStart
+....................
+
+This variable defines the start of the comments. The variable is limited
+to 11 characters. A line containing it will be taked as the start of the
+comment and the rest of the line will be discarded.
+
+
+File: sdg.inf,  Node: SectionEnd,  Prev: SectionStart,  Up: Delimiters
+
+3.1.2.2 SectionEnd
+..................
+
+This variable defines the end of the special comments. The variable is
+limited to 11 characters. A line containing it will be taked as the end of
+the special comment and the rest of the line will be discarded.
+
+
+File: sdg.inf,  Node: Variables,  Next: Associations,  Prev: Delimiters,  Up: Format files syntax
+
+3.1.3 Variables
+---------------
+
+This is a very important section; it defines the fields recognized inside
+of the special comments.
+
+You can define up to 16 variables. Each variable have a number; the first
+defined is the variable 0, the next 1, etc. The variable 0 is special and
+normally is used for the name of the functions because this variable is
+used for the main index and the associations.
+
+Additionally there are some special variables created internally:
+
+   * `90'
+       - Meaning: Name of the file
+
+   * `91'
+       - Meaning: Line number of the end of the comment
+
+   * `92'
+       - Meaning: Name of the var 0 in the format: ~0
+     ~~Distinguish{(~Distinguish)~} (node name)
+
+
+To define a variable you'll use the following syntax:
+
+     AddDefinition=Name of Variable,Type
+
+One problem that appears here is the fact that two functions can have the
+same name.  To avoid problems you must avoid the automatic function name
+detection and put the name of the function by hand adding to the name some
+thing to distinguish it from the other.
+
+A very special case is the one of the classes, is very common to find
+members with the same name in two classes. In this case is very hard to
+add some distinguish code by hand so SDG can do it automatically. For this
+you must say what other variable is the one used to make the difference.
+The syntax is:
+
+     Distinguish=Number of the variable
+
+With that SDG will add the name of this variable to the name of the
+variable 0. If the variable doesn't exist for that function SDG will skip
+it. The distingish variable appears between parentheses. For more
+information see the section *Note More about cross references::.
+
+The allowed types for variables are:
+
+* Menu:
+
+* Variables type 1::
+* Variables type 2::
+* Variables type 3::
+* Variables type 4::
+* Variables type 5::
+* Variables type 6::
+
+
+File: sdg.inf,  Node: Variables type 1,  Next: Variables type 2,  Prev: Variables,  Up: Variables
+
+3.1.3.1 Variables type 1
+........................
+
+These are normal variables they put your content if exist.
+
+
+File: sdg.inf,  Node: Variables type 2,  Next: Variables type 3,  Prev: Variables type 1,  Up: Variables
+
+3.1.3.2 Variables type 2
+........................
+
+They are "Repeat" variables. If one of them appears in one comment the
+default for this variable is set with this value. If the variable doesn't
+exist in one comment SDG will use the default.
+
+A good example is the `Include' variable. Normally all the functions of one
+source have your prototypes in one header so indicating that in the first
+comment SDG will assume that all the functions are in the same include.
+
+SDG provides two special values that you can use in the comments to stop
+the use of the default value. If you use `~no' SDG will not use the
+default for this function. If you use `~clear' SDG will delete the default
+value.
+
+
+File: sdg.inf,  Node: Variables type 3,  Next: Variables type 4,  Prev: Variables type 2,  Up: Variables
+
+3.1.3.3 Variables type 3
+........................
+
+If this variable isn't in the comment SDG will try to replace it with the
+function prototype. It uses an heuristic so isn't perfect.
+
+
+File: sdg.inf,  Node: Variables type 4,  Next: Variables type 5,  Prev: Variables type 3,  Up: Variables
+
+3.1.3.4 Variables type 4
+........................
+
+If this variable isn't in the comment SDG will try to replace it with the
+class of the function. It uses an heuristic so isn't perfect.
+
+
+File: sdg.inf,  Node: Variables type 5,  Next: Variables type 6,  Prev: Variables type 4,  Up: Variables
+
+3.1.3.5 Variables type 5
+........................
+
+If this variable isn't in the comment SDG will try to replace it with the
+name of the function. It uses an heuristic so isn't perfect.
+
+
+File: sdg.inf,  Node: Variables type 6,  Prev: Variables type 5,  Up: Variables
+
+3.1.3.6 Variables type 6
+........................
+
+That's a very special kind of variables. They disable the node generation
+for this comment. The variable is stored in the first variable that have
+associations and is in the comment. Is used to create comments for modules
+and classes.
+
+
+File: sdg.inf,  Node: Associations,  Next: Replace,  Prev: Variables,  Up: Format files syntax
+
+3.1.4 Associations
+------------------
+
+The associations are used to make groups of functions with a particular
+relation.  You can define up to 8 associations. Each association
+associates the 0 variable and another variable.
+
+That's used to create for example a list of classes and your members.
+
+The syntax is the following:
+
+     AddAssoc=Title of the menu for it,Name of the node,Variable,Distinguish
+
+SDG will create a chapter (node) for this list called `Name of the node'
+that will be available from the main menu with the name `Title of the menu
+for it'.  Additionally to distinguish this chapter from the name of a
+function SDG will add the `Distinguish' string, that's optional.
+
+A good example for `Distinguish' are classes where the constructor could
+make a collition with the class name.
+
+Here is an example:
+
+     AddAssoc=List by classes,Classes,1,(class)
+     AddAssoc=List by modules,Modules,3
+     AddAssoc=List by files,Files,90
+
+
+File: sdg.inf,  Node: Replace,  Next: Commands,  Prev: Associations,  Up: Format files syntax
+
+3.1.5 Replace
+-------------
+
+This section is used to define constants that can be called latter in the
+Gen* section.
+
+Each constant have the following syntax:
+
+     Constant="Value"
+
+Value can be extended various lines and is ended with the second `"'.
+
+You can use *Note macros: More about macros, inside the constants. An
+example is:
+
+     Constant="This document describes the functions of my library
+     @p
+     This document applies to version 0.0.1
+     of the program named A Real World
+     @p"
+
+
+File: sdg.inf,  Node: Commands,  Next: DefinedCommands,  Prev: Replace,  Up: Format files syntax
+
+3.1.6 Commands
+--------------
+
+This section controls the the hardcoded macros of SDG.
+
+There are three hardcoded macros they are:
+
+   * End of paragraph, is represented as `@p' and you can define the code
+     generated by it setting the variable `EndOfPar'.
+
+   * Line break, is represented as `@*' and you can control it with the
+     `BreakLine' variable.
+
+   * Cross references, they are represented as `@x{parameters}'. The
+     generated code is controled by `CrossRef'. This macro takes two
+     parameters and you can indicate where to put these values with the ~0
+     and ~1 markers.
+
+In this section you can control what is generated when SDG finds a @@
+sequence. As `makeinfo' uses @ in a similar way that SDG you'll need to
+indicate that this sequence must be passed as-is to `makeinfo'. For this
+you can use the `Double@' variable.
+
+The following is an example of these variables for the HTML format:
+
+     EndOfPar=<p>
+     BreakLine=<br>
+     CrossRef=<a href="#~1">~0</a>
+     Double@=
+
+For more information see the section *Note More about cross references::.
+
+
+File: sdg.inf,  Node: DefinedCommands,  Next: ASCIIConvert,  Prev: Commands,  Up: Format files syntax
+
+3.1.7 DefinedCommands
+---------------------
+
+This section defines the user macros. The syntax is the following:
+
+     Name of macro=Code generated
+
+You can recall the values of the parameters in the `Code generated' part
+using the `~n' markers. For more information about how `~n' works look the
+*Note GenNode section: GenNode.
+
+An example is:
+
+     subtitle=<Font Size=+1><u>~0</u></Font><p>
+
+With this definition the following code
+
+     @<subtitle>{Hello}
+
+Will generate:
+
+     <Font Size=+1><u>Hello</u></Font><p>
+
+Read the "More about macros" section for more information about it.  *Note
+More about macros::.
+
+
+File: sdg.inf,  Node: ASCIIConvert,  Next: GenNode,  Prev: DefinedCommands,  Up: Format files syntax
+
+3.1.8 ASCIIConvert
+------------------
+
+This section is used to indicate how to handle special characters. A good
+example are the accents. The syntax is the following:
+
+     ASCII=code
+
+Code will be passed directly to the output without expanding macros or
+escaping characters.
+
+
+File: sdg.inf,  Node: GenNode,  Next: GenMenu,  Prev: ASCIIConvert,  Up: Format files syntax
+
+3.1.9 GenNode
+-------------
+
+This section is used to indicate what code is generated for each function.
+The text included in this function is processed in the following way:
+
+  1. The macros aren't expanded.
+
+  2. The ASCII characters aren't translated.
+
+  3. ~n is interpreted as a variable and is expanded with the value of the
+     corresponding variable. The content of the variable is passed by the
+     macro expander.
+
+  4. ~~n is a conditional, the code affected is delimited with { and ~}.
+     This code will be passed to the output only if the variable ~~n have
+     a value.
+
+In the `GenNode' section the variables are the variables from the *Note
+`Variables' section: Variables. So 0 to 15 are the fields of the comment
+and 90 to 92 are the values mentioned in that section.
+
+
+File: sdg.inf,  Node: GenMenu,  Next: GenAssoMain,  Prev: GenNode,  Up: Format files syntax
+
+3.1.10 GenMenu
+--------------
+
+This section is used to indicate how to create a menu in the output file.
+
+You must define three variables:
+
+  1. `Start' defines how to start a menu.
+
+  2. `Entry' defines how to create an entry in the menu. It takes two
+     parameters, the parameter `1' is the name of the menu item and the
+     parameter `2' is the cross reference to it.
+
+  3. `End' defines how to end a menu.
+
+The values assigned to these variables are processed in the same way
+explained in *Note GenNode section: GenNode.
+
+Here is the HTML code example:
+
+     Start=<Menu>
+     Entry=<li><a href="#~2">~1</a>
+     End=</Menu>
+
+
+File: sdg.inf,  Node: GenAssoMain,  Next: GenAssoRest,  Prev: GenMenu,  Up: Format files syntax
+
+3.1.11 GenAssoMain
+------------------
+
+This section is used to indicate how to create the first node for an
+association. The text included in this function is processed in the way
+explained in the *Note GenNode section: GenNode.
+
+The variables available are `~1' the name of the association and `~2' the
+menu for it generated with the information in the *Note GenMenu section:
+GenMenu.
+
+See the *Note GenAssoRest: GenAssoRest, for more information.
+
+
+File: sdg.inf,  Node: GenAssoRest,  Next: GenMain,  Prev: GenAssoMain,  Up: Format files syntax
+
+3.1.12 GenAssoRest
+------------------
+
+This section is used to indicate how to create the rest of the nodes for
+an association.  The text included in this function is processed in the
+way explained in the *Note GenNode section: GenNode.
+
+The variables available are `~1' the name of the association, `~2' is the
+same name but without the distingish, `~3' is the comment collected for it
+using a *Note variable type 6: Variables type 6. and `~4' the menu for this
+association generated with the information in the *Note GenMenu section:
+GenMenu.
+
+
+File: sdg.inf,  Node: GenMain,  Prev: GenAssoRest,  Up: Format files syntax
+
+3.1.13 GenMain
+--------------
+
+This section is used to indicate how to create the output file. The text
+included in this function is processed in the way explained in the *Note
+GenNode section: GenNode.
+
+The variables available are `~1' the main menu, `~2' the name of the
+function list node, `~3' the menu for all the functions, `~4' the code for
+all the associations generated according to the information in the *Note
+GenAssoMain::. and *Note GenAssoRest::. sections and `~5' all the function
+nodes.
+The menus are generated with the information in the *Note GenMenu section:
+GenMenu.
+
+Additionally all the constants defined in the *Note Replace section:
+Replace, can be recalled adding 50 to it. For example the `~50' recalls
+the constant number 0, that's the first defined.
+
+
+File: sdg.inf,  Node: Index,  Next: Index of variables and commands,  Prev: How to control the generated documentation,  Up: Top
+
+4 Index
+*******
+
+ [index ]
+* Menu:
+
+* @:                                     The basics syntax.        (line 6)
+* About the Author:                      About the Author.         (line 6)
+* Accents:                               ASCIIConvert.             (line 6)
+* Alphabetical lists:                    What I will get after adding it?.
+                                                                   (line 6)
+* Alphabetical lists, how to configure <1>: GenAssoMain.           (line 6)
+* Alphabetical lists, how to configure:  Associations.             (line 6)
+* ASCII specials:                        ASCIIConvert.             (line 6)
+* ASCIIConvert:                          ASCIIConvert.             (line 6)
+* ASCIIConvert section:                  ASCIIConvert.             (line 6)
+* Associations:                          Associations.             (line 6)
+* Associations section:                  Associations.             (line 6)
+* Associations, generated text:          GenAssoMain.              (line 6)
+* Basic syntax:                          The basics syntax.        (line 6)
+* Breaking a line:                       The basics syntax.        (line 6)
+* Breaking a line, configuring:          Commands.                 (line 6)
+* Changing the output:                   How to control the generated documentation.
+                                                                   (line 6)
+* Class name variable:                   Variables type 4.         (line 6)
+* CommandLine:                           CommandLine.              (line 6)
+* Commands:                              Commands.                 (line 6)
+* Commands section:                      Commands.                 (line 6)
+* Comments for classes and modules:      Variables type 6.         (line 6)
+* Comments in fmt files:                 How to control the generated documentation.
+                                                                   (line 6)
+* Comments in the sources:               What I must add to my sources?.
+                                                                   (line 6)
+* Configuration:                         Configuration.            (line 6)
+* Configuration section:                 Configuration.            (line 6)
+* Configuting macros:                    DefinedCommands.          (line 6)
+* Constants:                             Replace.                  (line 6)
+* Cross references (basic):              The basics syntax.        (line 6)
+* Cross references (in deep):            More about cross references.
+                                                                   (line 6)
+* Default macros:                        The basics syntax.        (line 6)
+* Default macros, configuring:           DefinedCommands.          (line 6)
+* Defined macros:                        More about macros.        (line 6)
+* DefinedCommands:                       DefinedCommands.          (line 6)
+* DefinedCommands section:               DefinedCommands.          (line 6)
+* Delimiters:                            Delimiters.               (line 6)
+* Delimiters for the special comments:   Delimiters.               (line 6)
+* Delimiters section:                    Delimiters.               (line 6)
+* Differencing two functions with the same name: Variables.        (line 6)
+* Distinguish:                           Variables.                (line 6)
+* Documentation for functions:           GenNode.                  (line 6)
+* Documentation generated:               What I will get after adding it?.
+                                                                   (line 6)
+* End of paragraph:                      The basics syntax.        (line 6)
+* End of paragraph, configuring:         Commands.                 (line 6)
+* Examples:                              The basics syntax.        (line 6)
+* Fields used in the comments:           Variables.                (line 6)
+* fmt files:                             How to control the generated documentation.
+                                                                   (line 6)
+* Foreing characters:                    ASCIIConvert.             (line 6)
+* Format files:                          How to control the generated documentation.
+                                                                   (line 6)
+* Format files syntax:                   Format files syntax.      (line 6)
+* Function name variable:                Variables type 5.         (line 6)
+* Function prototype variable:           Variables type 3.         (line 6)
+* Functions with the same name:          Variables.                (line 6)
+* Functions, generated information:      GenNode.                  (line 6)
+* GenAssoMain:                           GenAssoMain.              (line 6)
+* GenAssoMain section:                   GenAssoMain.              (line 6)
+* GenAssoRest:                           GenAssoRest.              (line 6)
+* GenAssoRest section:                   GenAssoRest.              (line 6)
+* Generated documentation:               What I will get after adding it?.
+                                                                   (line 6)
+* Generated text, configuring:           GenMain.                  (line 6)
+* GenMain:                               GenMain.                  (line 6)
+* GenMain section:                       GenMain.                  (line 6)
+* GenMenu:                               GenMenu.                  (line 6)
+* GenMenu section:                       GenMenu.                  (line 6)
+* GenNode:                               GenNode.                  (line 6)
+* GenNode section:                       GenNode.                  (line 6)
+* Groups of functions <1>:               GenAssoMain.              (line 6)
+* Groups of functions:                   Associations.             (line 6)
+* Harcoded macros:                       The basics syntax.        (line 6)
+* Harcoded macros, configuring:          Commands.                 (line 6)
+* How to add examples:                   The basics syntax.        (line 6)
+* How to add macros:                     DefinedCommands.          (line 6)
+* How to configure, basic:               What other thing are needed to be tunned?.
+                                                                   (line 6)
+* How to configure, deep:                How to control the generated documentation.
+                                                                   (line 6)
+* How to control the generated documentation: How to control the generated documentation.
+                                                                   (line 6)
+* How to indicate a field:               Variables.                (line 6)
+* How to use:                            How to use it quickly.    (line 6)
+* How to use it quickly:                 How to use it quickly.    (line 6)
+* Index:                                 Index.                    (line 6)
+* Index of variables and commands:       Index of variables and commands.
+                                                                   (line 6)
+* Introduction:                          Introduction.             (line 6)
+* Line break:                            The basics syntax.        (line 6)
+* Line break, configuring:               Commands.                 (line 6)
+* Macros, creating:                      DefinedCommands.          (line 6)
+* Macros, default:                       The basics syntax.        (line 6)
+* Macros, default (configuring):         DefinedCommands.          (line 6)
+* Macros, hardcoded:                     The basics syntax.        (line 6)
+* Macros, hardcoded (configuring):       Commands.                 (line 6)
+* Macros, in deep:                       More about macros.        (line 6)
+* Menus, configuring:                    GenMenu.                  (line 6)
+* More about cross references:           More about cross references.
+                                                                   (line 6)
+* More about macros:                     More about macros.        (line 6)
+* Name:                                  Name.                     (line 6)
+* Normal variables:                      Variables type 1.         (line 6)
+* Order of the things in the output file: GenMain.                 (line 6)
+* paragraph:                             The basics syntax.        (line 6)
+* paragraph, configuring:                Commands.                 (line 6)
+* Post procesing:                        Configuration.            (line 6)
+* Program called to generate the output: Configuration.            (line 6)
+* Quick start:                           How to use it quickly.    (line 6)
+* Referencing:                           The basics syntax.        (line 6)
+* Referencing (in deep):                 More about cross references.
+                                                                   (line 6)
+* Repeat variables:                      Variables type 2.         (line 6)
+* Replace:                               Replace.                  (line 6)
+* Replace Section:                       Replace.                  (line 6)
+* Replace section:                       What other thing are needed to be tunned?.
+                                                                   (line 6)
+* Section ASCIIConvert:                  ASCIIConvert.             (line 6)
+* Section Associations <1>:              GenAssoMain.              (line 6)
+* Section Associations:                  Associations.             (line 6)
+* Section Commands:                      Commands.                 (line 6)
+* Section Configuration:                 Configuration.            (line 6)
+* Section DefinedCommands:               DefinedCommands.          (line 6)
+* Section Delimiters:                    Delimiters.               (line 6)
+* Section GenAssoMain:                   GenAssoMain.              (line 6)
+* Section GenAssoRest:                   GenAssoRest.              (line 6)
+* Section GenMain:                       GenMain.                  (line 6)
+* Section GenMenu:                       GenMenu.                  (line 6)
+* Section GenNode:                       GenNode.                  (line 6)
+* Section Replace <1>:                   Replace.                  (line 6)
+* Section Replace:                       What other thing are needed to be tunned?.
+                                                                   (line 6)
+* Section Variables:                     Variables.                (line 6)
+* SectionEnd:                            SectionEnd.               (line 6)
+* Sections in fmt files:                 How to control the generated documentation.
+                                                                   (line 6)
+* SectionStart:                          SectionStart.             (line 6)
+* Source comments:                       What I must add to my sources?.
+                                                                   (line 6)
+* Special comments:                      What I must add to my sources?.
+                                                                   (line 6)
+* Special comments, start and end:       Delimiters.               (line 6)
+* Starting:                              How to use it quickly.    (line 6)
+* Subtitles:                             The basics syntax.        (line 6)
+* Syntax:                                The basics syntax.        (line 6)
+* Text generated for each function:      GenNode.                  (line 6)
+* The basics syntax:                     The basics syntax.        (line 6)
+* Title, author, etc:                    What other thing are needed to be tunned?.
+                                                                   (line 6)
+* Tuning the output:                     How to control the generated documentation.
+                                                                   (line 6)
+* Variables:                             Variables.                (line 6)
+* Variables section:                     Variables.                (line 6)
+* Variables type 1:                      Variables type 1.         (line 6)
+* Variables type 2:                      Variables type 2.         (line 6)
+* Variables type 3:                      Variables type 3.         (line 6)
+* Variables type 4:                      Variables type 4.         (line 6)
+* Variables type 5:                      Variables type 5.         (line 6)
+* Variables type 6:                      Variables type 6.         (line 6)
+* What can I assign to the fields?:      What can I assign to the fields?.
+                                                                   (line 6)
+* What I must add to my sources?:        What I must add to my sources?.
+                                                                   (line 6)
+* What I will get after adding it?:      What I will get after adding it?.
+                                                                   (line 6)
+* What other thing are needed to be tunned?: What other thing are needed to be tunned?.
+                                                                   (line 6)
+* What SDG generates:                    What I will get after adding it?.
+                                                                   (line 6)
+* What you must configure:               What other thing are needed to be tunned?.
+                                                                   (line 6)
+* What you need in your sources:         What I must add to my sources?.
+                                                                   (line 6)
+* Where start a special comment:         Delimiters.               (line 6)
+
+
+File: sdg.inf,  Node: Index of variables and commands,  Prev: Index,  Up: Top
+
+5 Index of variables and commands
+*********************************
+
+ [index ]
+* Menu:
+
+* #:                                     How to control the generated documentation.
+                                                                   (line 6)
+* @:                                     The basics syntax.        (line 6)
+* @*:                                    The basics syntax.        (line 6)
+* @*, configuring:                       Commands.                 (line 6)
+* @</pre>:                               The basics syntax.        (line 6)
+* @</pre>, configuring:                  DefinedCommands.          (line 6)
+* @<macro>{}:                            More about macros.        (line 6)
+* @<pre>:                                The basics syntax.        (line 6)
+* @<pre>, configuring:                   DefinedCommands.          (line 6)
+* @<subtitle>{}:                         The basics syntax.        (line 6)
+* @<subtitle>{}, configuring:            DefinedCommands.          (line 6)
+* @p:                                    The basics syntax.        (line 6)
+* @p, configuring:                       Commands.                 (line 6)
+* @x{}:                                  The basics syntax.        (line 6)
+* @x{} (in deep):                        More about cross references.
+                                                                   (line 6)
+* @{:                                    More about macros.        (line 6)
+* @}:                                    More about macros.        (line 6)
+* [section]:                             How to control the generated documentation.
+                                                                   (line 6)
+* AddAssoc:                              Associations.             (line 6)
+* AddDefinition:                         Variables.                (line 6)
+* ASCIIConvert:                          ASCIIConvert.             (line 6)
+* Associations:                          Associations.             (line 6)
+* BreakLine:                             Commands.                 (line 6)
+* Class:                                 What I must add to my sources?.
+                                                                   (line 6)
+* CommandLine:                           CommandLine.              (line 6)
+* Commands:                              Commands.                 (line 6)
+* Comments:                              What I must add to my sources?.
+                                                                   (line 6)
+* Configuration:                         Configuration.            (line 6)
+* Constant:                              Replace.                  (line 6)
+* CrossRef:                              Commands.                 (line 6)
+* DefinedCommands:                       DefinedCommands.          (line 6)
+* Delimiters:                            Delimiters.               (line 6)
+* Description:                           What I must add to my sources?.
+                                                                   (line 6)
+* Distinguish:                           Variables.                (line 6)
+* Double@:                               Commands.                 (line 6)
+* End:                                   GenMenu.                  (line 6)
+* EndOfPar:                              Commands.                 (line 6)
+* Entry:                                 GenMenu.                  (line 6)
+* Example:                               What I must add to my sources?.
+                                                                   (line 6)
+* file name:                             Variables.                (line 6)
+* Function:                              What I must add to my sources?.
+                                                                   (line 6)
+* GenAssoMain:                           GenAssoMain.              (line 6)
+* GenAssoRest:                           GenAssoRest.              (line 6)
+* GenMain:                               GenMain.                  (line 6)
+* GenMenu:                               GenMenu.                  (line 6)
+* GenNode:                               GenNode.                  (line 6)
+* Include:                               What I must add to my sources?.
+                                                                   (line 6)
+* line number:                           Variables.                (line 6)
+* Module:                                What I must add to my sources?.
+                                                                   (line 6)
+* Name:                                  Name.                     (line 6)
+* Prototype:                             What I must add to my sources?.
+                                                                   (line 6)
+* Replace <1>:                           Replace.                  (line 6)
+* Replace:                               What other thing are needed to be tunned?.
+                                                                   (line 6)
+* Return:                                What I must add to my sources?.
+                                                                   (line 6)
+* SectionEnd:                            SectionEnd.               (line 6)
+* SectionStart:                          SectionStart.             (line 6)
+* Start:                                 GenMenu.                  (line 6)
+* Type 1:                                Variables type 1.         (line 6)
+* Type 2:                                Variables type 2.         (line 6)
+* Type 3:                                Variables type 3.         (line 6)
+* Type 4:                                Variables type 4.         (line 6)
+* Type 5:                                Variables type 5.         (line 6)
+* Type 6:                                Variables type 6.         (line 6)
+* Variables:                             Variables.                (line 6)
+
+
+
+Tag Table:
+Node: Top409
+Node: Introduction950
+Node: About the Author1462
+Node: How to use it quickly2683
+Node: What I must add to my sources?3232
+Node: What can I assign to the fields?6144
+Node: The basics syntax6868
+Node: More about cross references8164
+Node: More about macros9314
+Node: What I will get after adding it?10940
+Node: What other thing are needed to be tunned?11713
+Node: How to control the generated documentation12254
+Node: Format files syntax13152
+Node: Configuration14443
+Node: CommandLine15221
+Node: Name15638
+Node: Delimiters15844
+Node: SectionStart16225
+Node: SectionEnd16560
+Node: Variables16884
+Node: Variables type 118834
+Node: Variables type 219046
+Node: Variables type 319845
+Node: Variables type 420138
+Node: Variables type 520434
+Node: Variables type 620729
+Node: Associations21099
+Node: Replace22144
+Node: Commands22746
+Node: DefinedCommands23925
+Node: ASCIIConvert24646
+Node: GenNode25028
+Node: GenMenu25913
+Node: GenAssoMain26641
+Node: GenAssoRest27190
+Node: GenMain27835
+Node: Index28693
+Node: Index of variables and commands42480
+
+End Tag Table

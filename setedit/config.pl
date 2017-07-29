@@ -35,8 +35,8 @@ $AllegroVersionNeeded='3.0.1';
 $AllegroNotNeeded='5.0.0';
 # I never tested with an older version, you can try reducing it.
 $GPMVersionNeeded='1.10';
-# Workarounded 4.4+ missfeatures, so now I put here a fantasy value
-$BrokenMakeinfo='99.99';
+# These versions aren't compatible
+$BrokenMakeinfo='5.0';
 unlink $ErrorLog;
 
 SeeCommandLine();
@@ -1559,10 +1559,14 @@ sub GenerateMakefile
     $text.="\n\ninternac:\n";
     $text.="\t\$(MAKE) -C internac";
    }
+ $text.="\n\ndoc-basic:\n";
  if ($docbasic)
    {
-    $text.="\n\ndoc-basic:\n";
     $text.="\t\$(MAKE) -C doc txt info";
+   }
+ else
+   {
+    $text.="\tcp doc/pre_gen/*.txt doc/pre_gen/*.inf doc";
    }
  # needed (by editor)
  $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
