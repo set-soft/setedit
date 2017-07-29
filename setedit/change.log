@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.802  2017/07/29 23:05:56  set
+* Fixed: [Compilation] -Wmisleading-indentation (gcc 6.3) warnings on
+infbase.cc
+
 Revision 1.801  2017/07/29 23:03:55  set
 * Fixed: [Compilation] -Wnarrowing (gcc 6.3) warnings on huffmantable.cc
 
