@@ -1,4 +1,4 @@
-/* Copyright (C) 1999-2007 by Salvador E. Tropea (SET),
+/* Copyright (C) 1999-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define Uses_stdio
 #define Uses_ctype
@@ -651,7 +651,7 @@ int isEmpty(const char *str)
  if (!str) return 1;
  for (; *str; str++)
     {
-     if (!isspace((unsigned char)*str));
+     if (!isspace((unsigned char)*str))
         return 0;
     }
  return 1;

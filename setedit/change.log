@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.805  2017/07/29 23:26:51  set
+* Fixed: [Compilation] -Waddress (gcc 6.3) warnings on pmacros.cc and
+ceditor.cc. Was a dubious use of references.
+
 Revision 1.804  2017/07/29 23:17:57  set
 * Fixed: [Compilation] -Wliteral-suffix (gcc 6.3) C++11 requirement on
 ceditor.cc and infmain.cc
