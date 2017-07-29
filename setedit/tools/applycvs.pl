@@ -21,7 +21,7 @@
 # fail.
 #
 
-require "miscperl.pl";
+require "./miscperl.pl";
 
 #$simulate=1;
 

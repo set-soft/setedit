@@ -6,7 +6,7 @@
 # value in the include/vername.h file.
 #
 
-require "miscperl.pl";
+require "./miscperl.pl";
 
 # The time stamp is checked by the Makefile
 #if (-M 'change.log' < -M 'include/vername.h')

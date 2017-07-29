@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.797  2016/11/18 12:11:08  set
+* Added: [WWW] new files released.
+
 Revision 1.796  2016/11/17 21:14:24  set
 * Modified: [config] Now we give more priority to rhtv-config
 * Modified: [config] Now we give more priority to local rhtv-config
