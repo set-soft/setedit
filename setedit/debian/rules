@@ -7,7 +7,7 @@
 #export DH_VERBOSE=1
 
 # This is the debhelper compatibility version to use.
-export DH_COMPAT=1
+export DH_COMPAT=5
 
 # Set CFLAGS according to the Debian Policy:
 CFLAGS = -g -Wall
@@ -117,7 +117,8 @@ install: build
 		|tar xC debian/libset-dev/usr/include/setedit
 	cp makes/libset.a makes/libeasyd.a makes/libsettv.a \
 		debian/libset-dev/usr/lib
-
+	chmod 4755 debian/tmp/usr/bin/setedit
+	dh_movefiles -p setedit usr/
 
 # Build the packages for a specific architecture:
 binary-arch: build install
@@ -136,7 +137,6 @@ binary-arch: build install
 	dh_strip -Xlibset.a -Xlibeasyd.a -Xlibsettv.a
 	dh_compress
 	dh_fixperms
-	chmod 4755 debian/tmp/usr/bin/setedit
 	chmod 4755 debian/infview/usr/bin/infview
 	dh_installdeb
 	dh_shlibdeps
