@@ -1,4 +1,8 @@
-$Log$
+$Log$.
+Revision 1.798  2017/07/29 21:09:08  set
+* Fixed: [config] Now the require statement needs a relative path to
+include Perl files.
+
 Revision 1.797  2016/11/18 12:11:08  set
 * Added: [WWW] new files released.
 

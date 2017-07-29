@@ -674,10 +674,12 @@ sub GiveAdvice
  if (@conf{'xgettext'} eq 'no')
    {
     print "* The 'xgettext' tools aren't installed internat. files can't be created.\n";
+    print "  (i.e. gettext)\n";
    }
  if (@conf{'makeinfo'} eq 'no')
    {
     print "* The 'makeinfo' tool isn't installed documentation can't be created.\n";
+    print "  (i.e. texinfo)\n";
    }
  if (@conf{'makeinfo'} eq 'broken')
    {
@@ -706,7 +708,7 @@ sub GiveAdvice
  if ((@conf{'zlibShipped'} eq 'yes') && ($OS eq 'UNIX'))
    {
     print "* Using shipped zlib, to avoid wasting system resources you should install\n";
-    print "  the library and also the development package (i.e. libz-dev)\n";
+    print "  the library and also the development package (i.e. zlib1-dev)\n";
    }
  if ((@conf{'bz2libShipped'} eq 'yes') && ($OS eq 'UNIX'))
    {
@@ -716,7 +718,7 @@ sub GiveAdvice
  if ((@conf{'HAVE_AA'} eq 'no') && ($OS eq 'UNIX'))
    {
     print "* AA lib is not installed (or isn't functional) so you won't get a nice console\n";
-    print "  screen saver (package example: aalib1-dev)\n";
+    print "  screen saver (package example: libaa1-dev)\n";
    }
  if ((@conf{'HAVE_GDB_MI'} eq 'no') && ($OS eq 'UNIX'))
    {
