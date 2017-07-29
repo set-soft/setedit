@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.801  2017/07/29 23:03:55  set
+* Fixed: [Compilation] -Wnarrowing (gcc 6.3) warnings on huffmantable.cc
+
 Revision 1.800  2017/07/29 21:55:47  set
 * Fixed: [Documentation] Modern versions of makeinfo are incompatible.
 Detected and now we use a pre-generated doc.

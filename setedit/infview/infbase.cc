@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /***************************************************************
 
@@ -983,7 +983,9 @@ int TInfTopic::selBestMatch(char *match, int &PerfectMatch, unsigned opts)
     {
      // Copy & struppr
      s1=opts & bestMVisibleName ? crossRefs[i].Name2 : crossRefs[i].Name;
-     for (s2=Buf; *s1; s1++,s2++) *s2=TVCodePage::toUpper(*s1); *s2=0;
+     for (s2=Buf; *s1; s1++,s2++)
+         *s2=TVCodePage::toUpper(*s1);
+     *s2=0;
      // Compare
      for (s1=Buf, s2=match, j=0; *s1==*s2 && *s1; s1++,s2++,j++);
      if (j>BestPoints ||
@@ -1667,7 +1669,9 @@ int TInfFile::ExpandName(char *Buf, const char *Nombre, int iExt)
    }
  s[0]='I';s[1]='N';s[2]='F';s[3]='O';s[4]='\\';
  const char *s2=Nombre;
- for (s+=5; *s2; s++,s2++) *s=*s2; *s=0;
+ for (s+=5; *s2; s++,s2++)
+     *s=*s2;
+ *s=0;
  a = TryWithName(Buf,ext,iExt,IsCompressed);
  if (a)
    {
@@ -1834,7 +1838,9 @@ TInfTopic *TInfFile::getTopic(char *NameOri, int Verbose, int modeForTopic,
    {
     char *s=Name+1,*s2=cFile;
 
-    for (;*s && *s!=')' && WatchDog;s++,s2++,WatchDog--) *s2=*s; *s2=0;
+    for (;*s && *s!=')' && WatchDog;s++,s2++,WatchDog--)
+        *s2=*s;
+    *s2=0;
     if (!WatchDog)
       {
        messageBox("Guau ... guau!!", mfInformation | mfOKButton);
