@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2005 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #include <stdio.h>
 #define Uses_string
@@ -138,7 +138,7 @@ int MeassureTriLine(char *b,unsigned &s,unsigned &e)
  return l;
 }
 
-Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
+Boolean LoadPseudoMacroFile(char *name, TPMCollection *coll)
 {
  FILE *f;
  char buf[256],*s;
@@ -149,7 +149,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
  PMacroStr *nDef;
  long startDef;
 
- if (!(&coll) || (f=fopen(name,"rb"))==NULL)
+ if (!coll || (f=fopen(name,"rb"))==NULL)
     return False;
 
  FGets(buf,250,f);
@@ -335,7 +335,7 @@ Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll)
       CLY_snprintf(name,len+1,"%s [%c%c]",__("No name"),nDef->trigger[0],nDef->trigger[1]);
       nDef->name=name;
      }
-   coll.insert(nDef);
+   coll->insert(nDef);
    Trs++;
    total+=l+1;
   }

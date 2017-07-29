@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 /*****************************************************************************
 
@@ -184,7 +184,7 @@ int InitTCEditor(const char *s,Boolean force)
    {
     if (!TCEditor::PMColl)
        TCEditor::PMColl=new TPMCollection(32,8);
-    if (LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s),*TCEditor::PMColl)==False)
+    if (LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s),TCEditor::PMColl)==False)
        ret|=1;
     TView::getCommands(TCEditor::cmdsAux);
     DisableCommands(TCEditor::cmdsAux);
@@ -6991,7 +6991,7 @@ struct strSHL *TCEditor::LoadPMForCurSHL()
        if (s->PMacros)
          {
           s->PM=new TPMCollection(32,8);
-          LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),*(s->PM));
+          LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),s->PM);
          }
       }
    }
@@ -7146,7 +7146,7 @@ void TCEditor::ChoosePMacroFromList(void)
        if (s->PMacros)
          {
           s->PM=new TPMCollection(32,8);
-          LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),*(s->PM));
+          LoadPseudoMacroFile(ExpandFileNameToThePointWhereTheProgramWasLoaded(s->PMacros),s->PM);
          }
       }
     col=s->PM;

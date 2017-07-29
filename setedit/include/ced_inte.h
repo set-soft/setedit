@@ -1,4 +1,4 @@
-/* Copyright (C) 1996-2016 by Salvador E. Tropea (SET),
+/* Copyright (C) 1996-2017 by Salvador E. Tropea (SET),
    see copyrigh file for details */
 #define TCEDITOR_VERSION 0x000508UL
 #define TCEDITOR_VERSION_STR "v0.5.8"
@@ -163,7 +163,7 @@ extern TStringCollection *ClipperRWords;
 
 // ****************** Functions
 class TPMCollection;
-extern Boolean LoadPseudoMacroFile(char *name, TPMCollection &coll);
+extern Boolean LoadPseudoMacroFile(char *name, TPMCollection *coll);
 const unsigned MaxVarValLen=80;
 extern Boolean CreateSHShortCutTables(void);
 extern void DestroySHShortCutTables(void);
