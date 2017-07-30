@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.808  2017/07/30 00:39:02  set
+* Fixed: [Installation] to take advantage of pre-generated docs.
+
 Revision 1.807  2017/07/29 23:40:59  set
 * Modified: [Debian] DebHelper compat level from 1 to 5, also moved some
 files that are no longer automagically moved.

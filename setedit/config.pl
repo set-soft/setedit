@@ -1569,6 +1569,8 @@ sub GenerateMakefile
     $text.="\tcp doc/pre_gen/*.txt doc/pre_gen/*.inf doc\n";
     $text.="\tmv doc/infview.inf doc/infeng.inf\n";
     $text.="\tmv doc/infview.txt doc/infeng.txt\n";
+    $text.="\tmv doc/setedit.inf doc/editor.inf\n";
+    $text.="\tmv doc/setedit.txt doc/editor.txt\n";
    }
  # needed (by editor)
  $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
