@@ -291,36 +291,27 @@ print "done.\n\n";
 
 
 print "Copying doc files: ";
-chdir('../../doc');
-$i=`which makeinfo`;
-if (!length($i))
+chdir('../../');
+if (system($Make.' doc-basic')==0)
   {
-   print "\n************* Attention!! *************\n\n";
-   print "You must install the makeinfo package to generate the docs\n";
-   print "Skipping the documentation, you can create it latter, now press ENTER\n";
-   <STDIN>;
+   chdir('doc');
+   CopyIfCpr('editor.inf','../makes/linux/'.$inf_dir.'/setedit.info');
+   CopyIfCpr('sdg.inf','../makes/linux/'.$inf_dir.'/sdg.info');
+   CopyIfCpr('infeng.inf','../makes/linux/'.$inf_dir.'/infview.info');
+   CopyIfCpr('editor.txt','../makes/linux/'.$doc_dir.'/setedit.txt');
+   CopyIfCpr('sdg.txt','../makes/linux/'.$doc_dir.'/sdg.txt');
+   CopyIfCpr('infeng.txt','../makes/linux/'.$doc_dir.'/infview.txt');
+   CopyIfCpr('setedit.man','../makes/linux/'.$man_dir.'/setedit.1');
+   chdir('..');
   }
 else
   {
-   if (system($Make.' txt info')==0)
-     {
-      CopyIfCpr('editor.inf','../makes/linux/'.$inf_dir.'/setedit.info');
-      CopyIfCpr('sdg.inf','../makes/linux/'.$inf_dir.'/sdg.info');
-      CopyIfCpr('infeng.inf','../makes/linux/'.$inf_dir.'/infview.info');
-      CopyIfCpr('editor.txt','../makes/linux/'.$doc_dir.'/setedit.txt');
-      CopyIfCpr('sdg.txt','../makes/linux/'.$doc_dir.'/sdg.txt');
-      CopyIfCpr('infeng.txt','../makes/linux/'.$doc_dir.'/infview.txt');
-      CopyIfCpr('setedit.man','../makes/linux/'.$man_dir.'/setedit.1');
-     }
-   else
-     {
-      print "\n************* Attention!! *************\n\n";
-      print "Failed to generate the docs\n";
-      print "Skipping the documentation, you can create it latter, now press ENTER\n";
-      <STDIN>;
-     }
+   print "\n************* Attention!! *************\n\n";
+   print "Failed to generate the docs\n";
+   print "Skipping the documentation, you can create it latter, now press ENTER\n";
+   <STDIN>;
   }
-chdir('..');
+
 CopyIf('copyrigh','makes/linux/'.$doc_dir.'/copyrigh');
 CopyIf('copying.dj','makes/linux/'.$doc_dir.'/copying.dj');
 CopyIf('copying.gpl','makes/linux/'.$doc_dir.'/copying.gpl');

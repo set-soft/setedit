@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (C) 1999-2007 by Salvador E. Tropea (SET),
+# Copyright (C) 1999-2017 by Salvador E. Tropea (SET),
 # see copyrigh file for details
 #
 
@@ -1566,7 +1566,9 @@ sub GenerateMakefile
    }
  else
    {
-    $text.="\tcp doc/pre_gen/*.txt doc/pre_gen/*.inf doc";
+    $text.="\tcp doc/pre_gen/*.txt doc/pre_gen/*.inf doc\n";
+    $text.="\tmv doc/infview.inf doc/infeng.inf\n";
+    $text.="\tmv doc/infview.txt doc/infeng.txt\n";
    }
  # needed (by editor)
  $text.="\n\n# Libraries not created by RHIDE projects\nneeded:";
