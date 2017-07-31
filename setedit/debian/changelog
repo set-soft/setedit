@@ -1,3 +1,9 @@
+setedit (0.5.8-2) stable; urgency=medium
+
+  * To compile with TV 2.2.2
+
+ -- Salvador Eduardo Tropea <salvador@inti.gov.ar>  Mon, 31 Jul 2017 11:05:44 -0300
+
 setedit (0.5.8-1) stable; urgency=medium
 
   * Support for AMD64 target.

@@ -1,4 +1,7 @@
-$Log$.
+$Log$
+Revision 1.810  2017/07/31 12:46:29  set
+* Fixed: possible use of negative array index in IndentBlock.
+
 Revision 1.809  2017/07/30 00:40:36  set
 * Fixed: [Installation] Name of the editor docs.
 
