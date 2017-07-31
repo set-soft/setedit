@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.809  2017/07/30 00:40:36  set
+* Fixed: [Installation] Name of the editor docs.
+
 Revision 1.808  2017/07/30 00:39:02  set
 * Fixed: [Installation] to take advantage of pre-generated docs.
 

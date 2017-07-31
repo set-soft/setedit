@@ -12105,8 +12105,9 @@ void TCEditor::IndentBlock(const char *Fill, Boolean allowUndo)
         memcpy(buffer+Pos+Total-Amount,Fill,Amount);
         //buffer[Pos+Lines-1]=32;
         lenLines.set(y,Length+Amount);
-        Length=lenLines[--y];
         Total-=Amount;
+        if (y)
+           Length=lenLines[--y];
        }
 
     UpdateSyntaxHLBlock(firstLine,firstTouchedP,lastLine);
