@@ -1,4 +1,7 @@
-$Log$
+$Log$.
+Revision 1.811  2017/07/31 15:30:16  set
+* Modified: [Debian] package version to 0.5.8-2 to use with TV 2.2.2.
+
 Revision 1.810  2017/07/31 12:46:29  set
 * Fixed: possible use of negative array index in IndentBlock.
 
