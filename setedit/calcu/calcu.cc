@@ -75,7 +75,7 @@ TCalcDialog::TCalcDialog(const TRect & bounds, const char *Title, char *StartVal
      // This will copy MaxLinePipe characters -1. For this reason the source
      // *must* be at least MaxLinePipe in size.
      char aux[MaxLinePipe];
-     strncpy(aux,StartVal,MaxLinePipe);
+     strncpyZ(aux,StartVal,MaxLinePipe);
      input->setData(aux);
     }
   insert(input);

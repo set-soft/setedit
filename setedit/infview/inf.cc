@@ -829,7 +829,7 @@ static
 void AddFileToNode(char *dest, const char *source, const char *file)
 {
  if (source[0]=='(')
-    strncpy(dest,source,MAX_NODE_NAME-1);
+    strncpyZ(dest,source,MAX_NODE_NAME);
  else
    {
     dest[0]='(';dest[1]=0;

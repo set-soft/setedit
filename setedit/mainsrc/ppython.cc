@@ -39,6 +39,8 @@
 #define SYMBOL_CLOSE_BRACKET        12
 #define SYMBOL_COLON                13
 
+extern char *strncpyZ(char *dest, const char *orig, int size);
+
 class PARSE_STATE
 {
 public:
@@ -224,8 +226,7 @@ static bool detect_class_name(PARSE_RESULT &result,
       return false;
 
    // Copy into result buffer.
-   strncpy(result.text, parent_state.text, length);
-   result.text[length] = 0;
+   strncpyZ(result.text, parent_state.text, length+1);
 
    // Start parsing the result buffer.
    PARSE_STATE state(result.text, length);
@@ -266,8 +267,7 @@ static bool detect_function_name(PARSE_RESULT &result,
       return false;
 
    // Copy into result buffer.
-   strncpy(result.text, parent_state.text, length);
-   result.text[length] = 0;
+   strncpyZ(result.text, parent_state.text, length+1);
 
    // Start parsing the result buffer.
    PARSE_STATE state(result.text, length);
