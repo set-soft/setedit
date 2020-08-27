@@ -2,3 +2,7 @@ configure.cache
 Makefile
 setedit.epr
 .desktop_files_bkp
+**.o
+**.exe
+**.a
+**.so
