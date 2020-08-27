@@ -8,6 +8,10 @@
 # potfiles.po: all the collected messages without any translation.
 #              Created by xgettext using po_list
 
+# This makefile isn't safe for parallel execution
+# Fixme TODO
+.NOTPARALLEL:
+
 CXX=@CXX@
 CXXFLAGS=@CXXFLAGS@
 
