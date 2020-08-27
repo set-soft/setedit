@@ -730,28 +730,34 @@ Symbols2=(){}[],;:.
 String1="
 String2='
 Escape=\
+CanStartAName=@
 Keywords=and,assert,break,class,continue,def,del,elif,else,except,exec
 Keywords=finally,for,from,global,if,import,in,is,lambda,not,or,pass
-Keywords=print,raise,return,try,while,None,Ellipsis,yield
-#Special method names
-#Basic customization
+Keywords=print,raise,return,try,while,None,Ellipsis,yield,with,as,super
+Keywords=True,False
+# Special method names
+# Basic customization
 Keywords=__init__,__del__,__repr__,__str__,__cmp__,__hash__,__nonzero__
-#Customizing attribute access
+# Customizing attribute access
 Keywords=__getattr__,__setattr__,__delattr__
-#Emulating callable objects
+# Emulating callable objects
 Keywords=__call__
-#Emulating sequence and mapping types
+# Emulating sequence and mapping types
 Keywords=__len__,__getitem__,__setitem__,__delitem__,__getslice__
 Keywords=__setslice__,__delslice__
-#Emulating numeric types
+# Emulating numeric types
 Keywords=__add__,__sub__,__mul__,__div__,__mod__,__divmod__,__pow__
 Keywords=__lshift__,__rshift__,__and__,__xor__,__or__
 Keywords=__radd__,__rsub__,__rmul__,__rdiv__,__rmod__,__rdivmod__,__rpow__
 Keywords=__rlshift__,__rrshift__,__rand__,__rxor__,__ror__
 Keywords=__neg__,__pos__,__abs__,__invert__
 Keywords=__int__,__long__,__float__,__oct__,__hex__,__coerce__
-#Top level names
+# Top level names
 Keywords=__main__,__builtin__
+# Context managers
+Keywords=__enter__,__exit__
+# Decorators
+Keywords=@contextmanager
 End
 
 # ----------------------- UNIX shell scripts --------------------------------
