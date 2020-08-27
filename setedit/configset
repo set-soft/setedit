@@ -9,6 +9,9 @@ echo These settings doesn\'t have to be the same you want.
 echo The most common defaults are obtained by just running configure.bat.
 echo If you want to reconfigure the package first delete configure.cache
 echo
+echo Note that this will only work if you have RHIDE tools in your path
+echo and Turbo Vision is installed in ../tvision and already compiled.
+echo
 echo Press the 'ENTER' key to continue.
 read idontcare
 rm -f configure.cache
