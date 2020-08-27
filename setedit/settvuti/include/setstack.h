@@ -34,8 +34,8 @@ class SOStack
  void *GetItemNumber(unsigned index);
  char *GetStrNumber(unsigned index) { return (char *)GetItemNumber(index); };
  void DestroyTop(int shrink=0);
- void *GetPointerOf(stkHandler h) { return (void *)(Buffer+h); };
- char *GetStrOf(stkHandler h) { return (char *)(Buffer+h); };
+ void *GetPointerOf(stkHandler h) { return h==stkNULL ? NULL : (void *)(Buffer+h); };
+ char *GetStrOf(stkHandler h) { return h==stkNULL ? NULL : (char *)(Buffer+h); };
 
  char *Buffer;
 
