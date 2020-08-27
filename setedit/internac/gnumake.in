@@ -1,5 +1,12 @@
 # 'make languages' will build the language files
 # 'make install.languages' installs the language files at the correct place
+#
+# po_list: a list of all the sources we want to use for message extraction.
+#          Created from ../makes/lista includes colors.cc
+# colors.cc: a fake source containing the names of all the editor colors.
+#            Created from ../setedit/include/pal.h
+# potfiles.po: all the collected messages without any translation.
+#              Created by xgettext using po_list
 
 CXX=@CXX@
 CXXFLAGS=@CXXFLAGS@
@@ -42,6 +49,9 @@ PO_DEPS=
 POTFILES_DEPS=
 endif
 
+####################################
+#  Main target: *.mo files
+####################################
 all: $(addsuffix .mo,$(LANGUAGES))
 
 ifeq ($(xgettext),)
@@ -72,7 +82,7 @@ po_list: colors.cc ../makes/lista
 clean:
 	rm -f potfiles.po
 	rm -f $(addsuffix .mo,$(LANGUAGES))
-	rm -f $(addsuffix .po,$(LANGUAGES))
+	#rm -f $(addsuffix .po,$(LANGUAGES))
 	rm -f po_list
 
 potfiles.po: $(POTFILES_DEPS)
