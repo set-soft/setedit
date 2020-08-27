@@ -1,3 +1,10 @@
+setedit (0.5.8-3) stable; urgency=medium
+
+  * To compile with TV 2.2.3
+  * Small compilation issues with gcc 10.2
+
+ -- Salvador Eduardo Tropea <salvador@inti.gov.ar>  Thu, 27 Aug 2020 10:09:34 -0300
+
 setedit (0.5.8-2) stable; urgency=medium
 
   * To compile with TV 2.2.2
