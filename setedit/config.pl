@@ -1500,8 +1500,12 @@ sub GenerateMakefile
  $text.=" doc-basic"  if ($docbasic);
  $text.=" holidays"   if ($holidays);
  $text.=" libmigdb"   if ($libmigdb);
+
+ # Not parallel execution for this makefile, let the parallel stuff for sub-makes
+ $text.="\n\n.NOTPARALLEL:\n";
+
  # all targets
- $text.="\n\nall: Makefile editor";
+ $text.="\nall: Makefile editor";
  $text.=" libset"    if ($libset);
  $text.=" infview"   if ($infview);
  $text.=" plasmas"   if ($plasmas);
