@@ -10,7 +10,7 @@ echo The most common defaults are obtained by just running configure.bat.
 echo If you want to reconfigure the package first delete configure.cache
 echo
 echo Press the 'ENTER' key to continue.
-read
+read idontcare
 rm -f configure.cache
 rm -f Makefile
 # gcc 2.95.4 compiles much faster (3.2x average)
