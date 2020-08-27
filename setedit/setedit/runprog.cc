@@ -311,7 +311,14 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     return strdup(buf);
    }
 
- const char *actPath=StackPath ? StackPath->GetStrOf(StackPath->GetTopHandle()) : "";
+ const char *actPath="";
+ // Get the last directory reported as "leaving ..."
+ if (StackPath)
+   {
+    size_t h=StackPath->GetTopHandle();
+    if (h!=stkNULL)
+       actPath=StackPath->GetStrOf(h);
+   }
 
  char *ret;
  fI.len=strlen(endOfLine+1);
