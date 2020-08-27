@@ -3,8 +3,7 @@
   Class: SOStack
   Comments:
   Simple Object Stack (SOS), copyright (c) 1997 by Salvador E. Tropea (SET)
-@p
-  If you want to use this code contact me first.
+  Covered by the GPL v2 license.
 @p
 @<subtitle>{Purpose:}
 
@@ -43,19 +42,6 @@ TSOSSortedListBox from public TSortedListBox:@*
   Is a sorted listbox that support a TNoCaseSOSStringCollection as
 collection, that's needed because the original can't handle the stkHandler.
 The both are in tnocastc.cc and tnocastc.h
-@p
-
-@<pre>
-Contact me at:
-E-Mail: salvador@@inti.edu.ar
-Telephone: (+5411) 4759-0013
-Postal Address:
-Salvador E. Tropea
-CurapaligÅe 2124
-(1678) Caseros - 3 de Febrero
-Prov: Buenos Aires
-Argentina
-@</pre>
 
 ****************************************************************************/
 
