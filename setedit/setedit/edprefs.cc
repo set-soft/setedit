@@ -383,11 +383,8 @@ void SetScreenSaversOptions(void)
 
  box.scr_on=TSetEditorApp::UseScreenSaver;
 
- char buf[32];
- sprintf(buf,"%d",TSetEditorApp::screenSaverTime);
- strncpy(box.time,buf,4);
- sprintf(buf,"%d",TSetEditorApp::screenSaverTimeMouse);
- strncpy(box.timeM,buf,4);
+ snprintf(box.time,5,"%d",TSetEditorApp::screenSaverTime);
+ snprintf(box.timeM,5,"%d",TSetEditorApp::screenSaverTimeMouse);
  strcpy(box.xtOp,TSetEditorApp::ExtScrSaverOpts);
 
  diaPrefs->savers=box.savers=GetScreenSaverList();
@@ -520,11 +517,8 @@ unsigned SetGeneralEditorOptionsMain(void)
  box.clk_on=TSetEditorApp::ShowClock;
  box.clk_mode=TDeskTopClock::mode;
 
- char buf[32];
- sprintf(buf,"%d",TSetEditorApp::maxOpenEditorsSame);
- strncpy(box.editors,buf,4);
- sprintf(buf,"%d",TEditorCollection::maxClosedToRemember);
- strncpy(box.closed,buf,4);
+ snprintf(box.editors,5,"%d",TSetEditorApp::maxOpenEditorsSame);
+ snprintf(box.closed,5,"%d",TEditorCollection::maxClosedToRemember);
 
  unsigned command=execDialog(d,&box.ops);
  if (command!=cmCancel)
@@ -699,9 +693,7 @@ unsigned SetGeneralEditorOptionsOthers(void)
  box.beep=TSOSListBoxMsg::opsBeep;
  box.opts=TSetEditorApp::geFlags & geMask1;
  box.opsAv=TSetEditorApp::geFlags & geAvoidPrjAndMsg ? 1 : 0;
- char buf[32];
- sprintf(buf,"%d",TSetEditorApp::widthVertWindows);
- strncpy(box.width,buf,4);
+ snprintf(box.width,5,"%d",TSetEditorApp::widthVertWindows);
  box.opsZoom=(TSetEditorApp::geFlags & geMask2)>>geShift2;
 
  unsigned command=execDialog(d,&box);
@@ -1228,12 +1220,10 @@ typedef struct
 } ScreenSizeBox;
 #pragma pack()
 
-static
+static inline
 void ToStr(int val, char *dest)
 {
- char buf[32];
- sprintf(buf,"%d",val);
- strncpy(dest,buf,4);
+ snprintf(dest,5,"%d",val);
 }
 
 void TSetEditorApp::ScreenOptions()
