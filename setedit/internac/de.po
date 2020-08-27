@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.8\n"
-"PO-Revision-Date: 2020-08-26 21:39-0300\n"
+"PO-Revision-Date: 2020-08-27 16:43-0300\n"
 "Last-Translator: Oliver Schieche <oliver.schieche@d2mail.de>\n"
 "Language-Team: German <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -7313,41 +7313,47 @@ msgid "Error ~p~arser"
 msgstr "Fehler"
 
 #. Error message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:197
+#: ../setedit/runprog.cc:198
 #, fuzzy
 msgid "error"
 msgstr "Fehler"
 
 #. Warning message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:199
+#: ../setedit/runprog.cc:200
 #, fuzzy
 msgid "warning"
 msgstr "Warnung"
 
 #. GNU Make message: Entering directory (partial)
-#: ../setedit/runprog.cc:201
+#: ../setedit/runprog.cc:202
 msgid "ntering dir"
 msgstr ""
 
+#. GNU Make message: Entering directory (partial) variant
+#. Some idiot changed the translation to spanish
+#: ../setedit/runprog.cc:205
+msgid "ntering dir2"
+msgstr ""
+
 #. GNU Make message: Leaving directory (partial)
-#: ../setedit/runprog.cc:203
+#: ../setedit/runprog.cc:207
 msgid "eaving dir"
 msgstr ""
 
-#: ../setedit/runprog.cc:558
+#: ../setedit/runprog.cc:574
 msgid "A child process is running. Please wait or stop it."
 msgstr ""
 
-#: ../setedit/runprog.cc:589
+#: ../setedit/runprog.cc:605
 #, fuzzy
 msgid "Waiting ..."
 msgstr "Suche..."
 
-#: ../setedit/runprog.cc:699
+#: ../setedit/runprog.cc:715
 msgid "Process interrupted"
 msgstr ""
 
-#: ../setedit/runprog.cc:778
+#: ../setedit/runprog.cc:794
 msgid "You must configure it first in the Options submenu"
 msgstr "Sie müssen das erst im Optionen-Untermenü einstellen."
 

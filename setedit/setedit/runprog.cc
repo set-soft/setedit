@@ -192,13 +192,17 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
  int IsLineNumber=0;
  static unsigned lastFIT=fitNone;
  static const char *errorMsg=NULL, *warningMsg=NULL,
-                   *enteringDir=NULL, *leavingDir=NULL;
+                   *enteringDir=NULL, *leavingDir=NULL,
+                   *enteringDir2=NULL;
  // Error message from a GNU tool (i.e. gcc)
  static const char errorMsgEN[]=__("error");
  // Warning message from a GNU tool (i.e. gcc)
  static const char warningMsgEN[]=__("warning");
  // GNU Make message: Entering directory (partial)
  static const char *enteringDirEN=__("ntering dir");
+ // GNU Make message: Entering directory (partial) variant
+ // Some idiot changed the translation to spanish
+ static const char *enteringDirEN2=__("ntering dir2");
  // GNU Make message: Leaving directory (partial)
  static const char *leavingDirEN=__("eaving dir");
  static size_t errorLen, warningLen,
@@ -220,6 +224,9 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     enteringDir=_(enteringDirEN);
     if (strcmp(enteringDir,enteringDirEN)==0)
        enteringDir=NULL;
+    enteringDir2=_(enteringDirEN2);
+    if (strcmp(enteringDir2,enteringDirEN2)==0)
+       enteringDir2=NULL;
     leavingDir=_(leavingDirEN);
     if (strcmp(leavingDir,leavingDirEN)==0)
        leavingDir=NULL;
@@ -270,6 +277,8 @@ char *ParseFun(char *buf, FileInfo &fI, char *&fileName)
     char *s=strstr(buf,enteringDirEN);
     if (!s && enteringDir)
        s=strstr(buf,enteringDir);
+    if (!s && enteringDir2)
+       s=strstr(buf,enteringDir2);
     if (s)
       {
        // The people that makes make if funny:

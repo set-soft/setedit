@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: setedit 0.5.8\n"
-"PO-Revision-Date: 2020-08-26 21:39-0300\n"
+"PO-Revision-Date: 2020-08-27 16:43-0300\n"
 "Last-Translator: Salvador E. Tropea <set@ieee.org>\n"
 "Language-Team: Spanish <set@ieee.org>\n"
 "MIME-Version: 1.0\n"
@@ -6882,38 +6882,44 @@ msgid "Error ~p~arser"
 msgstr "Intérprete de ~e~rrores para"
 
 #. Error message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:197
+#: ../setedit/runprog.cc:198
 msgid "error"
 msgstr "error"
 
 #. Warning message from a GNU tool (i.e. gcc)
-#: ../setedit/runprog.cc:199
+#: ../setedit/runprog.cc:200
 msgid "warning"
 msgstr "aviso"
 
 #. GNU Make message: Entering directory (partial)
-#: ../setedit/runprog.cc:201
+#: ../setedit/runprog.cc:202
 msgid "ntering dir"
 msgstr "e ingresa al dir"
 
+#. GNU Make message: Entering directory (partial) variant
+#. Some idiot changed the translation to spanish
+#: ../setedit/runprog.cc:205
+msgid "ntering dir2"
+msgstr "e entra en el dir"
+
 #. GNU Make message: Leaving directory (partial)
-#: ../setedit/runprog.cc:203
+#: ../setedit/runprog.cc:207
 msgid "eaving dir"
 msgstr "e sale del dir"
 
-#: ../setedit/runprog.cc:558
+#: ../setedit/runprog.cc:574
 msgid "A child process is running. Please wait or stop it."
 msgstr "Estamos corriendo un proceso hijo. Espere o deténgalo."
 
-#: ../setedit/runprog.cc:589
+#: ../setedit/runprog.cc:605
 msgid "Waiting ..."
 msgstr "Esperando ..."
 
-#: ../setedit/runprog.cc:699
+#: ../setedit/runprog.cc:715
 msgid "Process interrupted"
 msgstr "Proceso interrumpido"
 
-#: ../setedit/runprog.cc:778
+#: ../setedit/runprog.cc:794
 msgid "You must configure it first in the Options submenu"
 msgstr "Debe configurar que programa ejecutar en el menú de opciones"
 
