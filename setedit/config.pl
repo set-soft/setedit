@@ -1704,6 +1704,13 @@ sub GenerateMakefile
  $text.="\t\$(MAKE) -C holidays clean\n" if ($holidays);
  $text.="\t\$(MAKE) -C libmigdb clean\n" if ($libmigdb);
 
+ # Targets to make the Debian package
+ $text.="\ndeb:\n";
+ $text.="\tfakeroot dpkg-buildpackage -b -uc\n";
+ $text.="\t#fakeroot debian/rules binary\n";
+ $text.="\ndeb_clean:\n";
+ $text.="\tfakeroot debian/rules clean\n";
+
  replace('Makefile',$text);
 }
 
