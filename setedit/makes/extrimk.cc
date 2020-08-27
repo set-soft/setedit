@@ -25,6 +25,8 @@ unsigned maxCol=78;
 struct node;
 static char *projectBase;
 static int   projectBaseL;
+static char *gprBase;
+static int   gprBaseL;
 static int   IncludeCounter=0;
 
 struct stMak
@@ -49,6 +51,8 @@ struct stIncDir
  const char *var;
  const char *dir;
  int   ldir;
+ const char *abs_dir;
+ int   abs_ldir;
 };
 
 struct stLibItem
@@ -241,6 +245,9 @@ void ExtractDeps(FILE *f, node *p)
         sscanf(buffer,"DEPS_%d=%s ",&depNum,bName)==2 &&
         depNum)
       {
+       int lenName=strlen(bName);
+       if (lenName && bName[lenName-1]=='\\')
+          bName[lenName-1]=0;
        if (strcmp(bName,p->name))
          {
           fprintf(stderr,"Error: unsorted deps? (%d,%s looking for %s)\n",depNum,bName,
@@ -346,6 +353,26 @@ char *SearchSrc(char *toStat)
  return toStat;
 }
 
+/* By liw. */
+static
+const char *last_strstr(const char *haystack, const char *needle)
+{
+ if (*needle == '\0')
+    return haystack;
+
+ const char *result=NULL;
+ for (;;)
+    {
+     const char *p=strstr(haystack, needle);
+     if (p == NULL)
+        break;
+     result=p;
+     haystack=p+1;
+    }
+
+ return result;
+}
+
 static
 void GenerateDepFor(node *p, FILE *d, stMak &mk)
 {
@@ -366,6 +393,14 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
  while (c)
    {
     s=c->name;
+    char *real=realpath(s,NULL);
+    if (real)
+      {
+       free(s);
+       c->name=real;
+       s=real;
+      }
+    //fprintf(stderr,"\nCompacting %s\n",s);
     if (strstr(s,p->name)!=NULL)
       {// RHIDE 1.5 duplicates the source as dependency
        c=c->next;
@@ -384,31 +419,79 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
     int foundOnVPath=0;
     if (stat(toStat,&st))
       {
-       // RHIDE 1.5 CVS filters the VPATH part, now I added it to common.imk.
-       int i;
        char buf[PATH_MAX];
-       for (i=0; !foundOnVPath && incDirs[i].var; i++)
-          {
-           strcpy(buf,incDirs[i].dir);
-           strcat(buf,"/");
-           strcat(buf,toStat);
-           //printf("%s\n",buf);
-           if (stat(buf,&st)==0)
-              foundOnVPath=1;
-          }
-       for (i=0; !foundOnVPath && srcDirs[i]; i++)
-          {
-           strcpy(buf,srcDirs[i]);
-           strcat(buf,"/");
-           strcat(buf,toStat);
-           //printf("%s\n",buf);
-           if (stat(buf,&st)==0)
-              foundOnVPath=1;
-          }
-       if (!foundOnVPath)
-         {
-          fprintf(stderr,"Can't stat %s dependency\n",toStat);
-          exit(12);
+       //fprintf(stderr,"Buscando %s\n",toStat);
+       if (s[0]=='/')
+         {// Try to fix absolute paths to what is currently used
+          // Part of setedit
+          const char *last=last_strstr(s,"setedit");
+          if (last)
+            {
+             snprintf(buf,PATH_MAX,"%s%s",projectBase,last+8);
+             if (stat(buf,&st)==0)
+               {
+                //fprintf(stderr,"%s -> %s\n",s,buf);
+                s=strdup(buf);
+                free(c->name);
+                c->name=s;
+               }
+            }
+          else
+            {// Part of tvision
+             const char *last=last_strstr(s,"tvision/include");
+             if (last)
+               {
+                snprintf(buf,PATH_MAX,"%s%s",incDirs[0].dir,last+15);
+                if (stat(buf,&st)==0)
+                  {
+                   //fprintf(stderr,"%s -> %s\n",s,buf);
+                   s=strdup(buf);
+                   free(c->name);
+                   c->name=s;
+                  }
+               }
+            }
+         }
+       else
+         {// Try to make TV relative
+          const char *last=last_strstr(s,"/tvision");
+          if (last)
+            {
+             strcpy(buf+5,last);
+             strncpy(buf,"../..",5);
+             if (stat(buf,&st)==0)
+               {
+                s=strdup(buf);
+                free(c->name);
+                c->name=s;
+               }
+            }
+          else
+            {
+             // RHIDE 1.5 CVS filters the VPATH part, now I added it to common.imk.
+             int i;
+             for (i=0; !foundOnVPath && incDirs[i].var; i++)
+                {
+                 strcpy(buf,incDirs[i].dir);
+                 strcat(buf,"/");
+                 strcat(buf,toStat);
+                 if (stat(buf,&st)==0)
+                    foundOnVPath=1;
+                }
+             for (i=0; !foundOnVPath && srcDirs[i]; i++)
+                {
+                 strcpy(buf,srcDirs[i]);
+                 strcat(buf,"/");
+                 strcat(buf,toStat);
+                 if (stat(buf,&st)==0)
+                    foundOnVPath=1;
+                }
+             if (!foundOnVPath)
+               {
+                fprintf(stderr,"Can't stat %s dependency\n",toStat);
+                exit(12);
+               }
+            }
          }
       }
     free(toStat);
@@ -417,15 +500,45 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
        int i;
        if (strchr(s,'/'))
          {
-          for (i=0; incDirs[i].var; i++)
-             {
-              if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
+          if (s[0]=='/')
+            {// Absolute path
+             if (strncmp(s,gprBase,gprBaseL)==0)
+               {// Try in same dir as GPR
+                const char *name=s+gprBaseL+1;
+                if (!strchr(name,'/'))
+                  {
+                   s=strdup(name);
+                   //fprintf(stderr,"CURDIR %s -> %s\n",c->name,s);
+                  }
+               }
+             if (s==c->name)
+               {// Try using absolute vars
+                //fprintf(stderr,"Try abs for %s\n",s);
+                for (i=0; incDirs[i].var; i++)
+                   {
+                    if (incDirs[i].abs_dir && strncmp(s,incDirs[i].abs_dir,incDirs[i].abs_ldir)==0)
+                      {
+                       const char *name=s+incDirs[i].abs_ldir;
+                       s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(name));
+                       sprintf(s,"$(%s)%s",incDirs[i].var,name);
+                       //fprintf(stderr,"ABS %s -> %s\n",c->name,s);
+                       break;
+                      }
+                   }
+               }
+            }
+          if (s==c->name)
+            {
+             for (i=0; incDirs[i].var; i++)
                 {
-                 s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
-                 sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
-                 break;
+                 if (strncmp(s,incDirs[i].dir,incDirs[i].ldir)==0)
+                   {
+                    s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(s+incDirs[i].ldir));
+                    sprintf(s,"$(%s)%s",incDirs[i].var,c->name+incDirs[i].ldir);
+                    break;
+                   }
                 }
-             }
+            }
           if (s==c->name)
             {
              // This is some bug in RHIDE 1.5 CVS: some paths are emitted as absolute,
@@ -447,8 +560,32 @@ void GenerateDepFor(node *p, FILE *d, stMak &mk)
                }
              if (s==c->name)
                {
-                fprintf(stderr,"Unknown include dir: %s\n",c->name);
-                exit(4);
+                // 2020: I no longer have the old disk structure, if this is an absolute path try to
+                // make it relative to projectBase
+                const char *last=last_strstr(s,"setedit");
+                if (last)
+                  {
+                   last+=8;
+                   char *toTest=(char *)malloc(strlen(last)+3+1);
+                   sprintf(toTest,"../%s",last);
+                   for (i=0; incDirs[i].var; i++)
+                      {
+                       if (strncmp(toTest,incDirs[i].dir,incDirs[i].ldir)==0)
+                         {
+                          s=(char *)malloc(3+strlen(incDirs[i].var)+1+strlen(toTest+incDirs[i].ldir));
+                          sprintf(s,"¤(%s)%s",incDirs[i].var,toTest+incDirs[i].ldir);
+                          //fprintf(stderr,"%s Da: %s\n",c->name,s);
+                          break;
+                         }
+                       }
+                   free(toTest);
+                  }
+                if (s==c->name)
+                  {
+                   fprintf(stderr,"TV dir: %s\n",incDirs[0].dir);
+                   fprintf(stderr,"Unknown include dir: %s\n",c->name);
+                   exit(4);
+                  }
                }
             }
          }
@@ -530,6 +667,17 @@ void ExtractTVDir(FILE *f)
  if (incDirs[0].dir)
     return;
  ExtractVar(f,"TVISION_INC",incDirs[0].dir,0);
+ const char *old=incDirs[0].dir;
+ char *real=realpath(old,NULL);
+ if (!real)
+   {
+    fprintf(stderr,"Unable to map real tvision dir: %s\n",old);
+    exit(1);
+   }
+ //fprintf(stderr,"ExtractTVDir %s\n", old);
+ //fprintf(stderr,"ExtractTVDir real %s\n", real);
+ free((char *)old);
+ incDirs[0].dir=real;
 }
 
 static
@@ -838,7 +986,7 @@ ccIndex TLibCol::insert(const char *name)
         p->priority=sortLibs[i].priority;
  p->name=name;
  //fprintf(stderr,"%d) Inserting %s (%d)\n",count,name,p->priority);
- TNSSortedCollection::insert((void *)p);
+ return TNSSortedCollection::insert((void *)p);
 }
 
 int TLibCol::compare(void *key1, void *key2)
@@ -928,7 +1076,7 @@ void ExtractBaseDir(const char *mak, stMak &mk)
 static
 void ProcessMakefile(const char *mak, stMak &mk, int level)
 {
- //printf("\n\n\nParsing %s makefile\n\n\n",mak);
+ //fprintf(stderr,"\n\n\nParsing %s makefile\n\n\n",mak);
  ExtractBaseDir(mak,mk);
  FILE *f;
  f=fopen(mak,"rt");
@@ -947,7 +1095,33 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
  int i;
  if (!incDirs[0].ldir)
     for (i=0; incDirs[i].var; i++)
+       {
         incDirs[i].ldir=strlen(incDirs[i].dir);
+        // Absolute version
+        char buf[PATH_MAX];
+        if (incDirs[i].dir[0]=='/')
+          {
+           incDirs[i].abs_dir=incDirs[i].dir;
+           incDirs[i].abs_ldir=incDirs[i].ldir;
+          }
+        else
+          {
+           snprintf(buf,PATH_MAX,"%s/%s",gprBase,incDirs[i].dir);
+           char *s=realpath(buf,NULL);
+           if (!s)
+             {
+              //fprintf(stderr,"Fail to get real path for %s (%s)\n",buf,incDirs[i].var);
+              incDirs[i].abs_dir=NULL;
+             }
+           else
+             {
+              incDirs[i].abs_dir=s;
+              incDirs[i].abs_ldir=strlen(s);
+              //fprintf(stderr,"For %s (%s) -> %s\n",incDirs[i].dir,incDirs[i].var,s);
+             }
+          }
+        //fprintf(stderr,"* %s (%d)\n",incDirs[i].abs_dir,i);
+       }
  node *p;
  //printf("Should dig:\n");
  p=mk.base;
@@ -1030,7 +1204,7 @@ void ProcessMakefile(const char *mak, stMak &mk, int level)
 }
 
 static
-void SetUpCurDir()
+void SetUpCurDir(const char *input)
 {
  char buf[PATH_MAX];
  getcwd(buf,PATH_MAX);
@@ -1043,6 +1217,16 @@ void SetUpCurDir()
  mk[1]=0;
  projectBase=strdup(buf);
  projectBaseL=strlen(projectBase);
+ //fprintf(stderr,"projectBase: %s\n",projectBase);
+
+ strcat(buf,"makes/");
+ strcat(buf,input);
+ char *end_path=strrchr(buf, '/');
+ if (end_path)
+    end_path[1]=0;
+ gprBase=realpath(buf,NULL);
+ gprBaseL=strlen(gprBase);
+ //fprintf(stderr,"gprBase: %s\n",gprBase);
 }
 
 int main(int argc, char *argv[])
@@ -1054,7 +1238,7 @@ int main(int argc, char *argv[])
    }
  stMak mak;
  memset(&mak,0,sizeof(mak));
- SetUpCurDir();
+ SetUpCurDir(argv[1]);
  ProcessMakefile(argv[1],mak,0);
  //ExtractSources();
  return 0;

@@ -1,7 +1,7 @@
 srcdir=.
 VPATH=$(srcdir)
 
-.PHONY: editor
+.PHONY: editor makes
 
 include rhide.env
 
@@ -57,31 +57,31 @@ editor.imk: editor.gpr amp3.gpr easydiag.gpr extra.gpr inffd.gpr librhuti.gpr \
 	@./genimk.exe $@ $^
 
 # InfView project
-infview.imk: infview.gpr easydiag.gpr librhuti.gpr settv.gpr genimk.cc extrimk.cc
+infview.imk: infview.gpr easydiag.gpr librhuti.gpr settv.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # LibSET for RHIDE
-libset.imk: libset.gpr easydiag.gpr extra.gpr settv.gpr genimk.cc extrimk.cc
+libset.imk: libset.gpr easydiag.gpr extra.gpr settv.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # DOS Installer
-install.imk: install.gpr easydiag.gpr genimk.cc extrimk.cc
+install.imk: install.gpr easydiag.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # Command line version of sdg, not fully maintained
-sdgcline.imk: sdgcline.gpr genimk.cc extrimk.cc
+sdgcline.imk: sdgcline.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # EasyDiag example/test, not fully maintained
-testeasy.imk: testeasy.gpr easydiag.gpr settv.gpr genimk.cc extrimk.cc
+testeasy.imk: testeasy.gpr easydiag.gpr settv.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # LibAMP
-../mp3/libamp/libamp.imk: ../mp3/libamp/libamp.gpr genimk.cc extrimk.cc
+../mp3/libamp/libamp.imk: ../mp3/libamp/libamp.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 # LibMPEGSound (splay)
-../mp3/mpegsound/mpegsnd.imk: ../mp3/mpegsound/mpegsnd.gpr genimk.cc extrimk.cc
+../mp3/mpegsound/mpegsnd.imk: ../mp3/mpegsound/mpegsnd.gpr genimk.exe extrimk.exe
 	@./genimk.exe $@ $^
 
 makes: extrimk.exe genimk.exe $(mkfs_files) $(imks_files)
