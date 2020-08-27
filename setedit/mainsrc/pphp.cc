@@ -458,14 +458,14 @@ static void registerFunc(const char *funcName, const unsigned funcNameSize,
     int tsz=funcNameSize+paramSize+1+1+classNameSize+1;
     if(tsz > MaxLenWith0-1) return; //Doesn't fit on the buffer!
     char *p=bfNomFun;
-    strncpy(p, funcName, funcNameSize);
+    memcpy(p, funcName, funcNameSize);
     p+=funcNameSize;
-    strncpy(p, param, paramSize);
+    memcpy(p, param, paramSize);
     p+=paramSize;
     if(className && classNameSize) {
         *p++=' ';
         *p++='(';
-        strncpy(p, className, classNameSize);
+        memcpy(p, className, classNameSize);
         p+=classNameSize;
         *p++=')';
     }

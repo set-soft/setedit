@@ -503,7 +503,7 @@ void TSpTagCollection::getTextType(char *buf, void *item, int maxLen)
     buf[maxLen-1]=EOS;
     return;
    }
- strncpy(buf+acum,p->id,l);
+ memcpy(buf+acum,p->id,l);
  acum+=l;
  // Copy the rest
  pos++;
