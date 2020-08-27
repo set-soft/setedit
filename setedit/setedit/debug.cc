@@ -3573,7 +3573,7 @@ mi_bkpt *TBreakpoints::getItem(int num)
  return num ? NULL : p;
 }
 
-const int wThread=5, wTimes=5, wFormat=28;
+const int wThread=5, wTimes=5, wFormat=44;
 const char *eThread="  *  ";
 const char *eTimes ="  -  ";
 
