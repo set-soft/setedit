@@ -6700,6 +6700,8 @@ int TCEditor::SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *po
  // Compute the SHL for this char
  uint32 extraStart=SyntaxHighlightExtraFor(start,s,curPos.y);
 
+ int oldX=X;
+ int oldY=Y;
  s--;
  Y=curPos.y;
  X=0;
@@ -6737,6 +6739,9 @@ int TCEditor::SearchOpenSymbolXY(char open, char close, int &X, int &Y, char *po
          }
       }
    }
+ // No match, avoid modifying X,Y
+ X=oldX;
+ Y=oldY;
  return -1;
 }
 
