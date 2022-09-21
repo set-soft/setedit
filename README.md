@@ -1,7 +1,7 @@
 # SETEdit and tools
 
 SETEdit is a text editor with an Text User Interface with '90s style.
-Well, i was created in 1996.
+Well, it was created in 1996.
 
 The setedit folder contains the editor.
 
