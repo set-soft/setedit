@@ -1895,7 +1895,7 @@ sub LookForBasicTools
    {
     #$test=RunRedirect('rm --version');
     $test=RunRedirect('cp --version');
-    if (!($test=~/fileutils/))
+    if (!(($test=~/fileutils/) || ($test=~/coreutils/)))
       {
        print "Please install the fileutils package. The name is usually something like it:\n";
        print "filXXXb.zip where XXX is the version.\n";
