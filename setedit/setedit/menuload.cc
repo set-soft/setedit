@@ -1315,7 +1315,6 @@ int LoadTVMenuAndStatus(char *fileName)
  char *s;
  DynStrCatStruct Cat;
  int PreproValue=1;
- InitAddSubMenu();
  TStatusDef *lastStatusDef=NULL;
 
  Error=0; Line=0;
@@ -1368,6 +1367,8 @@ int LoadTVMenuAndStatus(char *fileName)
  #if HAVE_CALENDAR
  defs->insert("CALENDAR");
  #endif
+
+ InitAddSubMenu();
 
  PreproInfo.depth=0;
  GetLine();
